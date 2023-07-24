@@ -1,11 +1,15 @@
 import {classNames} from '@/utils/react';
 
 
+export const buttonStyle = {
+  base: 'group transform-gpu transition-colors rounded-lg',
+  size: 'p-1 h-8',
+  background: 'hover:bg-slate-700 hover:dark:bg-slate-300',
+  border: 'border border-slate-700 dark:border-slate-300',
+  text: 'text-slate-700 hover:text-slate-200 dark:text-slate-300 dark:hover:text-slate-800',
+};
+
 export const whiteHoverableClasses = {
-  parent: classNames(
-    'group transform-gpu transition-colors rounded-lg',
-    'hover:bg-slate-700 hover:text-slate-200',
-    'hover:dark:bg-slate-300 hover:dark:text-neutral-950',
-  ),
+  parent: classNames(buttonStyle.base, buttonStyle.background, buttonStyle.text),
   icon: 'invert dark:invert-0 group-hover:invert-0 group-hover:dark:invert',
 };

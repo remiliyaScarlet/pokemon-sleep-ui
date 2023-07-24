@@ -5,6 +5,7 @@ import {useTheme} from 'next-themes';
 import {DarkModeSwitch} from 'react-toggle-dark-mode';
 
 import {useMounted} from '@/hooks/mounted';
+import {buttonStyle} from '@/styles/classes';
 import {classNames} from '@/utils/react';
 
 
@@ -21,10 +22,7 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <div className={classNames(
-      'h-6 w-6 rounded border p-1 group',
-      'transition-colors border-neutral-700 hover:bg-neutral-700 dark:border-neutral-300 hover:dark:bg-neutral-300',
-    )}>
+    <div className={classNames('w-8', buttonStyle.base, buttonStyle.size, buttonStyle.border, buttonStyle.background)}>
       <DarkModeSwitch
         className={classNames(
           'h-full w-full',
