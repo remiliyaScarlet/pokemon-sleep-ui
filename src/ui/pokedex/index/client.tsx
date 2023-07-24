@@ -14,23 +14,24 @@ type Props = {
 };
 
 export const PokedexClient = ({data}: Props) => {
-  const {filter, setFilter, filteredData} = useFilteredPokedex({data});
+  const {filter, setFilter, isIncluded} = useFilteredPokedex({data});
 
   return (
     <>
       <PokedexInput filter={filter} setFilter={setFilter} data={data}/>
       <hr className="border-t-gray-700"/>
       <Flex direction="row" wrap className="gap-1.5 md:p-3 lg:p-5">
-        {filteredData.map((data) => (
+        {data.map((pokemon) => (
           <div
-            key={data.id}
+            key={pokemon.id}
             className={classNames(
               'relative width-with-gap width-with-gap-2-items xs:width-with-gap-3-items',
               'sm:width-with-gap-4-items md:width-with-gap-5-items',
               'lg:width-with-gap-6-items xl:width-with-gap-8-items',
+              isIncluded[pokemon.id] ? undefined : 'hidden',
             )}
           >
-            <PokedexLink {...data}/>
+            <PokedexLink {...pokemon}/>
           </div>
         ))}
       </Flex>

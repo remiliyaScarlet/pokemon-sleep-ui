@@ -1,4 +1,4 @@
-import {PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
 import {SleepMapId, SleepStyle} from '@/types/mongo/sleepStyle';
 
 
@@ -10,6 +10,8 @@ export type PokedexSinglePokemon = Pick<
 };
 
 export type PokedexData = PokedexSinglePokemon[];
+
+export type PokedexInclusionMap = {[id in PokemonId]?: boolean};
 
 export type PokedexFilter = {
   name: string,

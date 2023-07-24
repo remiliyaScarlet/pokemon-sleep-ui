@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokedexData, PokedexFilter} from '@/ui/pokedex/index/type';
+import {PokedexData, PokedexFilter, PokedexInclusionMap} from '@/ui/pokedex/index/type';
 
 
 type GetFilteredPokedexOpts = {
@@ -18,14 +18,31 @@ export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
     skill: null,
     mapId: null,
   });
-  const filteredData = React.useMemo(() => (
-    data
-      .filter(({id}) => filter.name !== '' ? t(id.toString()) === filter.name : true)
-      .filter(({type}) => filter.type !== null ? type === filter.type : true)
-      .filter(({sleepType}) => filter.sleepType !== null ? sleepType === filter.sleepType : true)
-      .filter(({skill}) => filter.skill !== null ? skill === filter.skill : true)
-      .filter(({sleepStyles}) => filter.mapId !== null ? sleepStyles.some(({mapId}) => mapId === filter.mapId) : true)
+  const isIncluded = React.useMemo((): PokedexInclusionMap => (
+    Object.fromEntries(data.map(({id, type, sleepType, skill, sleepStyles}) => {
+      if (filter.name !== '' && t(id.toString()) === filter.name) {
+        return [id, true];
+      }
+
+      if (filter.type !== null && type === filter.type) {
+        return [id, true];
+      }
+
+      if (filter.sleepType !== null && sleepType === filter.sleepType) {
+        return [id, true];
+      }
+
+      if (filter.skill !== null && skill === filter.skill) {
+        return [id, true];
+      }
+
+      if (filter.mapId !== null && sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
+        return [id, true];
+      }
+
+      return [id, false];
+    }))
   ), [filter]);
 
-  return {filter, setFilter, filteredData};
+  return {filter, setFilter, isIncluded};
 };
