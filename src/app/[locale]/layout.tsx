@@ -36,6 +36,22 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         crossOrigin="anonymous"
       />
+      {/* Google Analytics */}
+      {
+        isProduction() &&
+        <>
+          <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+     
+              gtag('config', 'G-2LL7T4CCZP');
+            `}
+          </Script>
+        </>
+      }
       <body className={`${font.className} h-full w-full overflow-x-hidden`}>
         <Providers>
           {children}
