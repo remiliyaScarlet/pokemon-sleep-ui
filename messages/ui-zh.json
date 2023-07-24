@@ -1,5 +1,23 @@
 {
   "Metadata": {
-    "Title": "Pokémon Sleep Info"
+    "Home": {
+      "Title": "Pokémon Sleep 資訊站"
+    },
+    "Pokedex": {
+      "Index": {
+        "Title": "寶可夢清單"
+      },
+      "Page": {
+        "Title": "寶可夢 - {name}"
+      }
+    },
+    "Map": {
+      "Index": {
+        "Title": "地圖"
+      },
+      "Page": {
+        "Title": "地圖 - {name}"
+      }
+    }
   }
 }

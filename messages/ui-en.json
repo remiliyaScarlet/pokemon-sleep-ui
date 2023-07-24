@@ -1,5 +1,23 @@
 {
   "Metadata": {
-    "Title": "Pokémon Sleep Info"
+    "Home": {
+      "Title": "Pokémon Sleep Info"
+    },
+    "Pokedex": {
+      "Index": {
+        "Title": "Pokédex"
+      },
+      "Page": {
+        "Title": "Pokémon - {name}"
+      }
+    },
+    "Map": {
+      "Index": {
+        "Title": "Map"
+      },
+      "Page": {
+        "Title": "Map - {name}"
+      }
+    }
   }
 }

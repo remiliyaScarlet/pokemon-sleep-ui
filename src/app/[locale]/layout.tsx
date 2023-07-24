@@ -5,28 +5,16 @@ import React from 'react';
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import {useLocale} from 'next-intl';
-import {getTranslator} from 'next-intl/server';
 
 import {LocaleLayoutProps} from '@/types/next/layout';
-import {GenerateMetadata} from '@/types/next/metadata';
-
+import {Providers} from '@/ui/base/providers';
 import './globals.css';
 
 
 const font = Noto_Sans({
-  weight: '500',
+  weight: '400',
   subsets: ['latin'],
 });
-
-export const generateMetadata: GenerateMetadata = async ({params}) => {
-  const {locale} = params;
-  const t = await getTranslator(locale, 'UI.Metadata');
-
-  return {
-    title: t('Title'),
-    colorScheme: 'dark',
-  };
-};
 
 const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProps>) => {
   const locale = useLocale();
@@ -38,8 +26,10 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
 
   return (
     <html lang={locale} className="h-full">
-      <body className={`${font.className} h-full w-full`}>
-        {children}
+      <body className={`${font.className} h-full w-full overflow-x-hidden`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

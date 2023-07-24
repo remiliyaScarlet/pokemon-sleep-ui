@@ -1,5 +1,23 @@
 {
   "Metadata": {
-    "Title": "Pokémon Sleep Info"
+    "Home": {
+      "Title": "Pokémon Sleep 위키"
+    },
+    "Pokedex": {
+      "Index": {
+        "Title": "포켓몬 도감"
+      },
+      "Page": {
+        "Title": "포켓몬 - {name}"
+      }
+    },
+    "Map": {
+      "Index": {
+        "Title": "맵"
+      },
+      "Page": {
+        "Title": "맵 - {name}"
+      }
+    }
   }
 }
