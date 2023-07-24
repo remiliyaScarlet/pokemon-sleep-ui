@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import {PokedexCategoryInput} from '@/ui/pokedex/index/input/category';
-import {buttonInactiveBgClass, toggleClass} from '@/ui/pokedex/index/input/const';
+import {toggleClass} from '@/ui/pokedex/index/input/const';
 import {PokedexCategoryInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
 import {classNames} from '@/utils/react';
