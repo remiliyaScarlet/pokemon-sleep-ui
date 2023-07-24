@@ -1,3 +1,3 @@
-# pokemon-sleep-info
+# pokemon-sleep-ui
 
-Pokemon Sleep info Website.
+Pokemon Sleep info website.
