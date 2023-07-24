@@ -25,7 +25,10 @@ export const NavEntryUI = ({href, imageSrc, alt}: Props) => {
         whiteHoverableClasses.parent,
         href === pathname ? 'bg-slate-700/30 dark:bg-slate-300/30' : undefined,
       )}>
-      <Image src={imageSrc} alt={alt} fill className={whiteHoverableClasses.icon}/>
+      <Image
+        src={imageSrc} alt={alt} fill className={whiteHoverableClasses.icon}
+        sizes="(max-width: 768px) 20vw, 10vw"
+      />
     </Link>
   );
 };

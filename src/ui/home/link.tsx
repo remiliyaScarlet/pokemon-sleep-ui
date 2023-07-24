@@ -27,7 +27,10 @@ export const HomePageLink = ({href, imageSrc, text}: Props) => {
         className="h-full gap-1.5 transition-transform group-hover:scale-120 motion-reduce:transform-none"
       >
         <div className="relative h-12 w-12">
-          <Image src={imageSrc} alt={text} fill className={whiteHoverableClasses.icon}/>
+          <Image
+            src={imageSrc} alt={text} fill className={whiteHoverableClasses.icon}
+            sizes="(max-width: 768px) 20vw, 10vw"
+          />
         </div>
         <div className="text-lg">
           {text}

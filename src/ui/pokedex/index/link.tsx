@@ -11,6 +11,13 @@ import {classNames} from '@/utils/react';
 
 type Props = Pick<PokedexSinglePokemon, 'id' | 'type' | 'berry'>;
 
+const sizes = [
+  '(max-width: 640px) 30vw',
+  '(max-width: 1024px) 20vw',
+  '(max-width: 1280px) 10vw',
+  '8vw',
+].join(', ');
+
 export const PokedexLink = ({id, type, berry}: Props) => {
   const t = useTranslations('Game');
 
@@ -31,7 +38,10 @@ export const PokedexLink = ({id, type, berry}: Props) => {
           )}
         >
           <div className="relative h-5 w-5">
-            <Image src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} fill className="drop-shadow-thick"/>
+            <Image
+              src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} fill
+              className="drop-shadow-thick" sizes={sizes}
+            />
           </div>
           <div>
             {t(`PokemonName.${id}`)}
@@ -39,14 +49,14 @@ export const PokedexLink = ({id, type, berry}: Props) => {
         </Flex>
         <Flex direction="row" className="absolute bottom-1 left-1 z-10 gap-0.5">
           <div className="relative h-5 w-5">
-            <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill/>
+            <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill sizes={sizes}/>
           </div>
           <div className="text-sm">
             {berry.quantity}
           </div>
         </Flex>
         <div className="relative h-16 w-16">
-          <Image src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)} fill/>
+          <Image src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)} fill sizes={sizes} priority/>
         </div>
       </Flex>
     </Link>

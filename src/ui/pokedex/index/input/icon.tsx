@@ -17,6 +17,14 @@ type Props<T, K extends KeysOfType<PokedexFilter, T | null>> = Omit<
   getAlt: (id: T) => string,
 };
 
+const sizes = [
+  '(max-width: 640px) 50vw',
+  '(max-width: 768px) 25vw',
+  '(max-width: 1024px) 20vw',
+  '(max-width: 1280px) 15vw',
+  '10vw',
+].join(', ');
+
 export const PokedexIconInput = <T, K extends KeysOfType<PokedexFilter, T | null>>({
   getAlt,
   ...props
@@ -25,7 +33,7 @@ export const PokedexIconInput = <T, K extends KeysOfType<PokedexFilter, T | null
     <PokedexCategoryInput
       idToButton={(id) => (
         <div className="relative h-7 w-7">
-          <Image src={`/images/type/${id}.png`} alt={getAlt(id)} fill/>
+          <Image src={`/images/type/${id}.png`} alt={getAlt(id)} fill sizes={sizes}/>
         </div>
       )}
       getClassNames={(isActive) => classNames(
