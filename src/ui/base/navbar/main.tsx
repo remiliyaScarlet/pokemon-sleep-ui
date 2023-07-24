@@ -13,15 +13,15 @@ export const NavBar = () => {
   const t = useTranslations('UI.Metadata');
 
   return (
-    <Flex direction="row" center className="border-b border-gray-700">
+    <Flex direction="row" center className="gap-1.5">
       <ul className="flex flex-wrap gap-1 text-center text-sm text-gray-400">
         {NavEntries.map(({i18nTextId, ...props}) => (
-          <li key={i18nTextId} className="h-9">
+          <li key={i18nTextId} className="h-8">
             <NavEntryUI alt={t(i18nTextId)} {...props}/>
           </li>
         ))}
       </ul>
-      <Flex direction="row" center noFullWidth className="ml-auto">
+      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5">
         <LanguageSwitch/>
         <ThemeSwitcher/>
       </Flex>

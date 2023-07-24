@@ -4,14 +4,11 @@ import React from 'react';
 import {ThemeProvider} from 'next-themes';
 
 import {Loading} from '@/components/icons/loading';
+import {useMounted} from '@/hooks/mounted';
 
 
 export const Providers = ({children}: React.PropsWithChildren) => {
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const {mounted} = useMounted();
 
   if (!mounted) {
     return <Loading/>;

@@ -4,16 +4,13 @@ import React from 'react';
 import {useTheme} from 'next-themes';
 import {DarkModeSwitch} from 'react-toggle-dark-mode';
 
+import {useMounted} from '@/hooks/mounted';
 import {classNames} from '@/utils/react';
 
 
 export const ThemeSwitcher = () => {
-  const [mounted, setMounted] = React.useState(false);
+  const {mounted} = useMounted();
   const {theme, setTheme} = useTheme();
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return null;

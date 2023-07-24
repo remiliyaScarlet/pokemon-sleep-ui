@@ -23,6 +23,20 @@
   "InPage": {
     "Home": {
       "Welcome": "Welcome!"
+    },
+    "Pokedex": {
+      "Input": {
+        "Map": "Map",
+        "Name": "Pokémon",
+        "PokemonType": "Pokemon Type",
+        "Skill": "Main Skill",
+        "SleepType": "Sleep Type"
+      }
+    },
+    "Pokemon": {
+      "Info": {
+        "Berry": "Berry"
+      }
     }
   }
 }

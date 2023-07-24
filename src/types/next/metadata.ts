@@ -7,8 +7,10 @@ export type GenerateMetadataParams = {
   locale: Locale,
 };
 
-export type GenerateMetadataOpts = {
-  params: GenerateMetadataParams
+export type GenerateMetadataOpts<P extends GenerateMetadataParams> = {
+  params: P
 };
 
-export type GenerateMetadata = (opts: GenerateMetadataOpts) => PromiseLike<Metadata>;
+export type GenerateMetadata<T extends GenerateMetadataParams = GenerateMetadataParams> = (
+  opts: GenerateMetadataOpts<T>,
+) => PromiseLike<Metadata>;

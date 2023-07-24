@@ -8,7 +8,7 @@ import {useLocale} from 'next-intl';
 
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
-import './globals.css';
+import '../globals.css';
 
 
 const font = Noto_Sans({

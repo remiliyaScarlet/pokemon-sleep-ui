@@ -14,10 +14,10 @@ export const Home = () => {
 
   return (
     <PageLayout>
-      <Flex direction="row" center className="h-20 text-2xl">
+      <Flex direction="row" center className="h-20 gap-1.5 text-2xl">
         {t2('Welcome')}
       </Flex>
-      <Flex direction="row" center wrap className="h-auto md:h-full md:p-10">
+      <Flex direction="row" center wrap className="h-auto gap-1.5 md:h-full md:p-10">
         {NavEntries.map(({href, imageSrc, i18nTextId}) => {
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">

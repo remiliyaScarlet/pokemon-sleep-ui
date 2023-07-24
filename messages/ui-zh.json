@@ -23,6 +23,20 @@
   "InPage": {
     "Home": {
       "Welcome": "歡迎！"
+    },
+    "Pokedex": {
+      "Input": {
+        "Map": "地圖",
+        "Name": "寶可夢",
+        "PokemonType": "寶可夢屬性",
+        "Skill": "主技能",
+        "SleepType": "睡眠類型"
+      },
+      "Pokemon": {
+        "Info": {
+          "Berry": "樹果"
+        }
+      }
     }
   }
 }

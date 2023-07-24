@@ -45,4 +45,16 @@ body {
   .width-with-gap-4-items {
     --items-count: 4;
   }
+  
+  .width-with-gap-5-items {
+    --items-count: 5;
+  }
+  
+  .width-with-gap-6-items {
+    --items-count: 6;
+  }
+  
+  .width-with-gap-8-items {
+    --items-count: 8;
+  }
 }

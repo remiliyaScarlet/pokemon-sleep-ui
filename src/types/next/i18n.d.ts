@@ -10,6 +10,8 @@ type PageWithIndividual = {
   Page: I18nMetadata,
 };
 
+type GameObjectIdToString = {[id in string]: string};
+
 declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
     Metadata: {
@@ -21,6 +23,30 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Home: {
         Welcome: string,
       },
+      Pokedex: {
+        Input: {
+          Map: string,
+          Name: string,
+          PokemonType: string,
+          Skill: string,
+          SleepType: string,
+        },
+        Pokemon: {
+          Info: {
+            Berry: string,
+          },
+        },
+      },
     },
   },
+  Game: {
+    Berry: GameObjectIdToString,
+    Field: GameObjectIdToString,
+    Food: GameObjectIdToString,
+    MainSkill: GameObjectIdToString,
+    PokemonType: GameObjectIdToString,
+    PokemonName: GameObjectIdToString,
+    RankTitle: GameObjectIdToString,
+    SleepType: GameObjectIdToString,
+  }
 }

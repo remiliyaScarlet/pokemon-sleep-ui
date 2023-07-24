@@ -11,6 +11,7 @@ export const PageLayout = ({children}: React.PropsWithChildren) => {
       'from-slate-200 to-slate-300 text-neutral-900 dark:from-slate-800 dark:to-slate-950 dark:text-neutral-100',
     )}>
       <NavBar/>
+      <hr className="border-t-gray-700"/>
       {children}
     </main>
   );

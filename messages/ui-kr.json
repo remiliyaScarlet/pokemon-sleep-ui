@@ -23,6 +23,20 @@
   "InPage": {
     "Home": {
       "Welcome": "환영합니다!"
+    },
+    "Pokedex": {
+      "Input": {
+        "Map": "맵",
+        "Name": "포켓몬",
+        "PokemonType": "포켓몬 타입",
+        "Skill": "메인 스킬",
+        "SleepType": "수면 타입"
+      },
+      "Pokemon": {
+        "Info": {
+          "Berry": "나무열매"
+        }
+      }
     }
   }
 }
