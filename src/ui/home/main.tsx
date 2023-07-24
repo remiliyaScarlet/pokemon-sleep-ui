@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {AdsHomepage} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {PageLayout} from '@/ui/base/layout';
 import {NavEntries} from '@/ui/base/navbar/const';
@@ -26,6 +27,7 @@ export const Home = () => {
           );
         })}
       </Flex>
+      <AdsHomepage/>
     </PageLayout>
   );
 };

@@ -4,10 +4,13 @@ import React from 'react';
 // eslint-disable-next-line camelcase
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
+import Script from 'next/script';
 import {useLocale} from 'next-intl';
 
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
+import {isProduction} from '@/utils/environment';
+
 import '../globals.css';
 
 
@@ -25,7 +28,14 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
   }
 
   return (
-    <html lang={locale} className="h-full">
+    <html lang={locale} className="h-full" suppressHydrationWarning>
+      {/* Google AdSense */}
+      <Script
+        async
+        strategy="lazyOnload"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        crossOrigin="anonymous"
+      />
       <body className={`${font.className} h-full w-full overflow-x-hidden`}>
         <Providers>
           {children}
