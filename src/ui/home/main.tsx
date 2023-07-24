@@ -10,13 +10,14 @@ import {HomePageLink} from '@/ui/home/link';
 
 export const Home = () => {
   const t = useTranslations('UI.Metadata');
+  const t2 = useTranslations('UI.InPage.Home');
 
   return (
     <PageLayout>
-      <Flex direction="row" className="h-20 text-xl">
-        Welcome!
+      <Flex direction="row" center className="h-20 text-2xl">
+        {t2('Welcome')}
       </Flex>
-      <Flex direction="row" className="h-auto md:h-full md:p-10" center wrap>
+      <Flex direction="row" center wrap className="h-auto md:h-full md:p-10">
         {NavEntries.map(({href, imageSrc, i18nTextId}) => {
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">

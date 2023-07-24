@@ -34,5 +34,3 @@ export type TailwindColorLevel =
   '800' |
   '900' |
   '950';
-
-export type TailwindBackgroundClass = `bg-${TailwindColorTheme}-${TailwindColorLevel}`;

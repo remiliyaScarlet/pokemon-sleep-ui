@@ -10,11 +10,11 @@ import {NavEntry} from '@/ui/base/navbar/type';
 import {classNames} from '@/utils/react';
 
 
-type Props = Pick<NavEntry, 'href' | 'activeBgClassName' | 'imageSrc'> & {
+type Props = Pick<NavEntry, 'href' | 'imageSrc'> & {
   alt: string,
 };
 
-export const NavEntryUI = ({href, activeBgClassName, imageSrc, alt}: Props) => {
+export const NavEntryUI = ({href, imageSrc, alt}: Props) => {
   const pathname = usePathname();
 
   return (
@@ -23,7 +23,7 @@ export const NavEntryUI = ({href, activeBgClassName, imageSrc, alt}: Props) => {
       className={classNames(
         'inline-block p-0.5 h-8 w-8 relative',
         whiteHoverableClasses.parent,
-        href === pathname ? activeBgClassName : undefined,
+        href === pathname ? 'bg-slate-700/30 dark:bg-slate-300/30' : undefined,
       )}>
       <Image src={imageSrc} alt={alt} fill className={whiteHoverableClasses.icon}/>
     </Link>

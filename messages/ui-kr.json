@@ -19,5 +19,10 @@
         "Title": "맵 - {name}"
       }
     }
+  },
+  "InPage": {
+    "Home": {
+      "Welcome": "환영합니다!"
+    }
   }
 }

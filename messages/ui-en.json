@@ -19,5 +19,10 @@
         "Title": "Map - {name}"
       }
     }
+  },
+  "InPage": {
+    "Home": {
+      "Welcome": "Welcome!"
+    }
   }
 }

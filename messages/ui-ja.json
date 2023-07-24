@@ -19,5 +19,10 @@
         "Title": "マップ - {name}"
       }
     }
+  },
+  "InPage": {
+    "Home": {
+      "Welcome": "ようこそ！"
+    }
   }
 }

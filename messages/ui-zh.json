@@ -19,5 +19,10 @@
         "Title": "地圖 - {name}"
       }
     }
+  },
+  "InPage": {
+    "Home": {
+      "Welcome": "歡迎！"
+    }
   }
 }

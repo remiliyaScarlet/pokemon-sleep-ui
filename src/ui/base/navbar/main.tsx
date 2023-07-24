@@ -21,7 +21,7 @@ export const NavBar = () => {
           </li>
         ))}
       </ul>
-      <Flex direction="row" className="ml-auto" center noFullWidth>
+      <Flex direction="row" center noFullWidth className="ml-auto">
         <LanguageSwitch/>
         <ThemeSwitcher/>
       </Flex>
