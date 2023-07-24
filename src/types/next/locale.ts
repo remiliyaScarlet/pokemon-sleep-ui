@@ -1,4 +1,4 @@
-import {locales} from '@/const';
+import {localeName} from '@/const';
 
 
-export type Locale = typeof locales[number];
+export type Locale = keyof typeof localeName;

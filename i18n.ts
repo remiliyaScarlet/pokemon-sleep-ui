@@ -1,13 +1,10 @@
 import {getRequestConfig} from 'next-intl/server';
 
 import {locales} from '@/const';
-import {Locale} from '@/types/next/locale';
 
 
 export default getRequestConfig(async ({locale}) => {
-  // https://github.com/microsoft/TypeScript/issues/31018
-  // https://fettblog.eu/typescript-array-includes/
-  if (!locales.includes(locale as Locale)) {
+  if (!locales.includes(locale)) {
     return {};
   }
 
