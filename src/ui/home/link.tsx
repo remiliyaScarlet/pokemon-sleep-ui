@@ -3,7 +3,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {Row} from '@/components/layout/row';
+import {Flex} from '@/components/layout/flex';
+import {whiteHoverableClasses} from '@/styles/classes';
 import {classNames} from '@/utils/react';
 
 
@@ -18,21 +19,20 @@ export const HomePageLink = ({href, imageSrc, text}: Props) => {
     <Link
       href={href}
       className={classNames(
-        'group rounded-lg border border-slate-500 inline-block p-0.5 h-20 w-20 transform-gpu transition-colors',
-        'hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30',
-        'hover:bg-gray-700 hover:text-gray-300',
+        whiteHoverableClasses.parent,
+        'inline-block p-0.5 h-32 w-full border border-slate-700 dark:border-slate-300',
       )}>
-      <Row className="flex-col">
+      <Flex
+        direction="row" center
+        className="h-full transition-transform group-hover:scale-120 motion-reduce:transform-none"
+      >
         <div className="relative h-12 w-12">
-          <Image
-            src={imageSrc} alt={text} fill
-            className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none"
-          />
+          <Image src={imageSrc} alt={text} fill className={whiteHoverableClasses.icon}/>
         </div>
-        <div>
+        <div className="text-lg">
           {text}
         </div>
-      </Row>
+      </Flex>
     </Link>
   );
 };

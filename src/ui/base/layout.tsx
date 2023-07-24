@@ -7,8 +7,8 @@ import {classNames} from '@/utils/react';
 export const PageLayout = ({children}: React.PropsWithChildren) => {
   return (
     <main className={classNames(
-      'flex h-full w-full flex-col gap-1.5 bg-gradient-radial p-2',
-      'dark:from-slate-800 dark:to-slate-950 from-slate-200 to-slate-300',
+      'flex h-full w-full flex-col gap-1.5 bg-gradient-radial p-2 transform-gpu transition-colors',
+      'from-slate-200 to-slate-300 text-neutral-900 dark:from-slate-800 dark:to-slate-950 dark:text-neutral-100',
     )}>
       <NavBar/>
       {children}

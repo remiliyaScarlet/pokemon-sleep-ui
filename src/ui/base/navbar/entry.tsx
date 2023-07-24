@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 
+import {whiteHoverableClasses} from '@/styles/classes';
 import {NavEntry} from '@/ui/base/navbar/type';
 import {classNames} from '@/utils/react';
 
@@ -20,10 +21,11 @@ export const NavEntryUI = ({href, activeBgClassName, imageSrc, alt}: Props) => {
     <Link
       href={href}
       className={classNames(
-        'inline-block rounded-lg p-0.5 h-8 w-8 relative transform-gpu transition-colors',
-        href === pathname ? activeBgClassName : 'hover:bg-gray-700 hover:text-gray-300',
+        'inline-block p-0.5 h-8 w-8 relative',
+        whiteHoverableClasses.parent,
+        href === pathname ? activeBgClassName : undefined,
       )}>
-      <Image src={imageSrc} alt={alt} fill className="p-0.5"/>
+      <Image src={imageSrc} alt={alt} fill className={whiteHoverableClasses.icon}/>
     </Link>
   );
 };

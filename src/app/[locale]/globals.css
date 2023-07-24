@@ -11,7 +11,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: rgb(255, 255, 255);
-    --background-start-rgb: rgb(40, 40, 40);
+    --background-start-rgb: rgb(40, 40, 45);
     --background-end-rgb: rgb(0, 0, 0);
   }
 }
@@ -24,4 +24,25 @@ body {
       var(--background-end-rgb)
     )
     var(--background-start-rgb);
+}
+
+@layer utilities {
+  .width-with-gap {
+    --items-count: 1;
+    --gap: 0.5rem;
+    --gaps-count: calc(var(--items-count) - 1);
+    width: calc(100% / var(--items-count) - (var(--gap) * var(--gaps-count) / var(--items-count)));
+  }
+  
+  .width-with-gap-2-items {
+    --items-count: 2;
+  }
+  
+  .width-with-gap-3-items {
+    --items-count: 3;
+  }
+  
+  .width-with-gap-4-items {
+    --items-count: 4;
+  }
 }
