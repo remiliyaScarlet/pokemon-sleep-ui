@@ -1,6 +1,6 @@
 import {getTranslator} from 'next-intl/server';
 
-import {I18nValidNamespaces} from '@/types/i18n';
+import {I18nValidKeys} from '@/types/i18n';
 import {GenerateMetadata} from '@/types/next/metadata';
 
 
@@ -9,25 +9,16 @@ type GeneratePageMetaValues = {
 };
 
 type GeneratePageMetaOpts = {
-  namespace: I18nValidNamespaces<IntlMessages>,
+  key: I18nValidKeys<IntlMessages['UI']['Metadata']>,
   values?: GeneratePageMetaValues,
 };
 
-export const generatePageMeta = ({namespace, values}: GeneratePageMetaOpts): GenerateMetadata => async ({params}) => {
+export const generatePageMeta = ({key, values}: GeneratePageMetaOpts): GenerateMetadata => async ({params}) => {
   const {locale} = params;
-  const t = await getTranslator(locale, namespace);
-
-  if (namespace === 'UI.Metadata.Home') {
-    return {
-      title: t('Title', values),
-      colorScheme: 'dark',
-    };
-  }
-
-  const t2 = await getTranslator(locale, 'UI.Metadata.Home');
+  const t = await getTranslator(locale, 'UI.Metadata');
 
   return {
-    title: `${t('Title', values)} | ${t2('Title')}`,
+    title: `${t(key, values)} | ${t('SiteName')}`,
     colorScheme: 'dark',
   };
 };

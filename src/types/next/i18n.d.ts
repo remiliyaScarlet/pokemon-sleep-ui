@@ -15,6 +15,7 @@ type GameObjectIdToString = {[id in string]: string};
 declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
     Metadata: {
+      SiteName: string,
       Home: I18nMetadata,
       Pokedex: PageWithIndividual,
       Map: PageWithIndividual,

@@ -13,7 +13,7 @@ export const generateMetadata: GenerateMetadata<PokedexPageParams> = async ({par
   const {id, locale} = params;
   const t = await getTranslator(locale, 'Game.PokemonName');
 
-  return generatePageMeta({namespace: 'UI.Metadata.Pokedex.Page', values: {name: t(id)}})({params});
+  return generatePageMeta({key: 'Pokedex.Page.Title', values: {name: t(id)}})({params});
 };
 
 export default Pokemon;
