@@ -14,6 +14,13 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
     .collection<Announcement>('data');
 };
 
+export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
+  return (await getCollection())
+    .find({locale: locale ?? 'en'})
+    .map(({_id, ...rest}) => rest)
+    .toArray();
+};
+
 const addAnnouncementDataValidation = async () => {
   // Needs to match the type of `Announcement`
   await (await mongoPromise)
@@ -46,12 +53,11 @@ const addAnnouncementDataValidation = async () => {
     });
 };
 
-export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
-  return (await getCollection())
-    .find({locale: locale ?? 'en'})
-    .map(({_id, ...rest}) => rest)
-    .toArray();
+const addAnnouncementDataIndex = async () => {
+  await (await getCollection()).createIndex({'locale': 1});
 };
 
 addAnnouncementDataValidation()
   .catch((e) => console.error('MongoDB failed to add announcement validation', e));
+addAnnouncementDataIndex()
+  .catch((e) => console.error('MongoDB failed to add announcement index', e));
