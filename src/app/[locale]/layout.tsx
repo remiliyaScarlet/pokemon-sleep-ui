@@ -33,7 +33,7 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
       <Script
         async
         strategy="lazyOnload"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        src="://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         crossOrigin="anonymous"
       />
       {/* Google Analytics */}

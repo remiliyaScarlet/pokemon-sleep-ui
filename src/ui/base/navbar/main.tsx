@@ -15,19 +15,22 @@ export const NavBar = () => {
   const t = useTranslations('UI.Metadata');
 
   return (
-    <Flex direction="row" center className="gap-1.5">
-      <ul className="flex flex-wrap gap-1 text-center text-sm text-gray-400">
-        <NavHomepage/>
-        {NavEntries.map(({i18nTextId, ...props}) => (
-          <li key={i18nTextId} className={navItemHeightClass}>
-            <NavEntryUI alt={t(i18nTextId)} {...props}/>
-          </li>
-        ))}
-      </ul>
-      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5">
-        <LanguageSwitch/>
-        <ThemeSwitcher/>
+    <>
+      <Flex direction="row" center className="gap-1.5">
+        <ul className="flex flex-wrap gap-1 text-center text-sm text-gray-400">
+          <NavHomepage/>
+          {NavEntries.map(({i18nTextId, ...props}) => (
+            <li key={i18nTextId} className={navItemHeightClass}>
+              <NavEntryUI alt={t(i18nTextId)} {...props}/>
+            </li>
+          ))}
+        </ul>
+        <Flex direction="row" center noFullWidth className="ml-auto gap-1.5">
+          <LanguageSwitch/>
+          <ThemeSwitcher/>
+        </Flex>
       </Flex>
-    </Flex>
+      <hr className="border-t-gray-700"/>
+    </>
   );
 };
