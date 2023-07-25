@@ -32,11 +32,11 @@
         "PokemonType": "Pokemon Type",
         "Skill": "Main Skill",
         "SleepType": "Sleep Type"
-      }
-    },
-    "Pokemon": {
-      "Info": {
-        "Berry": "Berry"
+      },
+      "Pokemon": {
+        "Info": {
+          "Berry": "Berry"
+        }
       }
     }
   }
