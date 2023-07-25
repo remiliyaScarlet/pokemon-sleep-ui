@@ -44,7 +44,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     Berry: GameObjectIdToString,
     Field: GameObjectIdToString,
     Food: GameObjectIdToString,
-    MainSkill: GameObjectIdToString,
+    MainSkill: {
+      Name: GameObjectIdToString,
+      Description: GameObjectIdToString,
+    },
     PokemonType: GameObjectIdToString,
     PokemonName: GameObjectIdToString,
     RankTitle: GameObjectIdToString,

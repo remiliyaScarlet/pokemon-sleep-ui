@@ -68,7 +68,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         titleI18nKey="Skill"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({skill}) => skill)).sort((a, b) => a - b)}
-        idToButton={(id) => t(`MainSkill.${id.toString()}`)}
+        idToButton={(id) => t(`MainSkill.Name.${id.toString()}`)}
         {...props}
       />
       <PokedexDisplayTypeSelector {...props}/>
