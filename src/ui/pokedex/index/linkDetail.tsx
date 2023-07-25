@@ -26,7 +26,7 @@ export const PokedexLinkDetail = React.memo(({berry, skill, display}: PokedexLin
 
   if (display === 'mainSkill') {
     return (
-      <div>
+      <div className="text-xs">
         {t(`MainSkill.${skill}`)}
       </div>
     );
