@@ -44,6 +44,7 @@ export const LanguageSwitchClient = ({locale}: Props) => {
                   buttonStyle.border,
                   buttonStyle.background,
                   buttonStyle.text,
+                  buttonStyle.textHover,
                 )}
                 onClick={onLocaleClicked(locale)}
               >

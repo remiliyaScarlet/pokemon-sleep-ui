@@ -3,9 +3,9 @@ import React from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
+import {usePathname} from 'next-intl/client';
 
-import {whiteHoverableClasses} from '@/styles/classes';
+import {buttonStyle, invertStyle, whiteHoverableClasses} from '@/styles/classes';
 import {NavEntry} from '@/ui/base/navbar/type';
 import {classNames} from '@/utils/react';
 
@@ -17,16 +17,20 @@ type Props = Pick<NavEntry, 'href' | 'imageSrc'> & {
 export const NavEntryUI = ({href, imageSrc, alt}: Props) => {
   const pathname = usePathname();
 
+  const isCurrent = href === pathname;
+
   return (
     <Link
-      href={href}
+      href={isCurrent ? {} : href}
       className={classNames(
+        buttonStyle.base,
+        buttonStyle.text,
         'inline-block p-0.5 h-8 w-8 relative',
-        whiteHoverableClasses.parent,
-        href === pathname ? 'bg-slate-700/30 dark:bg-slate-300/30' : undefined,
-      )}>
+        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : whiteHoverableClasses.parent,
+      )}
+    >
       <Image
-        src={imageSrc} alt={alt} fill className={whiteHoverableClasses.icon}
+        src={imageSrc} alt={alt} fill className={isCurrent ? invertStyle.normal : whiteHoverableClasses.icon}
         sizes="(max-width: 768px) 20vw, 10vw"
       />
     </Link>
