@@ -23,7 +23,8 @@ export const NavHomepage = () => {
           <Image src="/images/rank/3.png" alt={t('Home.Title')} fill sizes="(max-width: 768px) 20vw, 10vw"/>
         </div>
         <div>
-          {t('Home.Title')}
+          <span className="hidden md:block">{t('SiteName')}</span>
+          <span className="block md:hidden">{t('Home.Title')}</span>
         </div>
       </Link>
     </li>
