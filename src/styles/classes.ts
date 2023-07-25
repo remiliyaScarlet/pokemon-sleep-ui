@@ -1,8 +1,10 @@
 import {classNames} from '@/utils/react';
 
 
+export const smoothTransform = 'transform-gpu transition-colors';
+
 export const buttonStyle = {
-  base: 'group transform-gpu transition-colors rounded-lg',
+  base: classNames('group rounded-lg', smoothTransform),
   size: 'p-1 h-8',
   background: 'hover:bg-slate-700 hover:dark:bg-slate-300',
   border: 'border border-slate-700 dark:border-slate-300',
