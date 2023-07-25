@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {PokedexInputRow} from '@/ui/pokedex/index/input/inputRow';
 import {PokedexCategoryInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
 import {KeysOfType} from '@/utils/type';
@@ -18,11 +19,12 @@ export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | 
   idToItemId,
   idToButton,
   getClassNames,
+  highlight,
 }: PokedexCategoryInputProps<T, K>) => {
   const t = useTranslations('UI.InPage.Pokedex.Input');
 
   return (
-    <Flex direction="row" className="items-center gap-1 rounded-lg bg-slate-50/40 p-1 dark:bg-slate-700/25">
+    <PokedexInputRow highlight={highlight}>
       <div className="w-32 whitespace-nowrap text-center text-sm">
         {t(titleI18nKey)}
       </div>
@@ -42,6 +44,6 @@ export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | 
           </ToggleButton>
         ))}
       </Flex>
-    </Flex>
+    </PokedexInputRow>
   );
 };

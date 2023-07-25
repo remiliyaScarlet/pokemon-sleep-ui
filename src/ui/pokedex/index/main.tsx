@@ -36,7 +36,7 @@ export const Pokedex = () => {
   return (
     <PageLayout>
       {pokedexData && messages ?
-        <NextIntlClientProvider locale={locale} messages={pick(messages, 'Game', 'UI.InPage.Pokedex.Input')}>
+        <NextIntlClientProvider locale={locale} messages={pick(messages, 'Game', 'UI.InPage.Pokedex')}>
           <PokedexClient data={pokedexData}/>
         </NextIntlClientProvider> :
         <Loading text="Pokedex"/>}

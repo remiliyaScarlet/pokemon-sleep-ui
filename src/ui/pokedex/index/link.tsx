@@ -5,20 +5,14 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {PokedexSinglePokemon} from '@/ui/pokedex/index/type';
+import {imageSizes} from '@/ui/pokedex/index/const';
+import {PokedexLinkDetail} from '@/ui/pokedex/index/linkDetail';
+import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {classNames} from '@/utils/react';
 
 
-type Props = Pick<PokedexSinglePokemon, 'id' | 'type' | 'berry'>;
-
-const sizes = [
-  '(max-width: 640px) 30vw',
-  '(max-width: 1024px) 20vw',
-  '(max-width: 1280px) 10vw',
-  '8vw',
-].join(', ');
-
-export const PokedexLink = ({id, type, berry}: Props) => {
+export const PokedexLink = (props: PokedexLinkProps) => {
+  const {id, type} = props;
   const t = useTranslations('Game');
 
   return (
@@ -40,23 +34,21 @@ export const PokedexLink = ({id, type, berry}: Props) => {
           <div className="relative h-5 w-5">
             <Image
               src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} fill
-              className="drop-shadow-thick" sizes={sizes}
+              className="drop-shadow-thick" sizes={imageSizes}
             />
           </div>
           <div>
             {t(`PokemonName.${id}`)}
           </div>
         </Flex>
-        <Flex direction="row" className="absolute bottom-1 left-1 z-10 gap-0.5">
-          <div className="relative h-5 w-5">
-            <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill sizes={sizes}/>
-          </div>
-          <div className="text-sm">
-            {berry.quantity}
-          </div>
+        <Flex direction="col" className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
+          <PokedexLinkDetail {...props}/>
         </Flex>
         <div className="relative h-16 w-16">
-          <Image src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)} fill sizes={sizes} priority/>
+          <Image
+            src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
+            fill sizes={imageSizes} priority
+          />
         </div>
       </Flex>
     </Link>

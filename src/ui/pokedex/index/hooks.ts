@@ -17,6 +17,7 @@ export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
     sleepType: null,
     skill: null,
     mapId: null,
+    display: 'mainSkill',
   });
   const isIncluded = React.useMemo((): PokedexInclusionMap => (
     Object.fromEntries(data.map(({id, type, sleepType, skill, sleepStyles}) => {

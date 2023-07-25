@@ -31,7 +31,7 @@ export const PokedexClient = ({data}: Props) => {
               isIncluded[pokemon.id] ? undefined : 'hidden',
             )}
           >
-            <PokedexLink {...pokemon}/>
+            <PokedexLink {...pokemon} display={filter.display}/>
           </div>
         ))}
       </Flex>

@@ -17,4 +17,5 @@ export type PokedexCategoryInputProps<T, K extends KeysOfType<PokedexFilter, T |
   idToButton: (id: T) => React.ReactNode,
   idToItemId: (id: T) => string,
   getClassNames: (isActive: boolean) => string,
+  highlight?: boolean,
 };
