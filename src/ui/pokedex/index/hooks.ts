@@ -20,27 +20,27 @@ export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
   });
   const isIncluded = React.useMemo((): PokedexInclusionMap => (
     Object.fromEntries(data.map(({id, type, sleepType, skill, sleepStyles}) => {
-      if (filter.name !== '' && t(id.toString()) === filter.name) {
-        return [id, true];
+      if (filter.name !== '' && t(id.toString()) !== filter.name) {
+        return [id, false];
       }
 
-      if (filter.type !== null && type === filter.type) {
-        return [id, true];
+      if (filter.type !== null && type !== filter.type) {
+        return [id, false];
       }
 
-      if (filter.sleepType !== null && sleepType === filter.sleepType) {
-        return [id, true];
+      if (filter.sleepType !== null && sleepType !== filter.sleepType) {
+        return [id, false];
       }
 
-      if (filter.skill !== null && skill === filter.skill) {
-        return [id, true];
+      if (filter.skill !== null && skill !== filter.skill) {
+        return [id, false];
       }
 
-      if (filter.mapId !== null && sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
-        return [id, true];
+      if (filter.mapId !== null && !sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
+        return [id, false];
       }
 
-      return [id, false];
+      return [id, true];
     }))
   ), [filter]);
 
