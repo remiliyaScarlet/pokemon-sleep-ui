@@ -4,13 +4,14 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {sleepTypeClass} from '@/ui/pokedex/index/input/const';
+import {sleepTypeBgClass} from '@/styles/classes';
 import {PokedexDisplayTypeSelector} from '@/ui/pokedex/index/input/displayType';
 import {PokedexIconInput} from '@/ui/pokedex/index/input/icon';
 import {PokedexTextInput} from '@/ui/pokedex/index/input/text';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexData} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
+import {classNames} from '@/utils/react';
 
 
 type Props = PokedexInputProps & {
@@ -57,7 +58,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.map(({sleepType}) => sleepType)).sort((a, b) => a - b)}
         idToButton={(id) => (
           <Flex direction="row" className="gap-1" center>
-            <div className={`h-2.5 w-2.5 rounded-full ${sleepTypeClass[id]}`}/>
+            <div className={classNames('h-2.5 w-2.5 rounded-full', sleepTypeBgClass[id])}/>
             <div>{t(`SleepType.${id.toString()}`)}</div>
           </Flex>
         )}
