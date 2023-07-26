@@ -37,7 +37,6 @@ export const Pokemon = ({params}: Props) => {
     <PageLayout>
       <Flex direction="row" center wrap className="mt-2 gap-2">
         <PokemonMeta {...props}/>
-        <PokemonSleepStyles {...props}/>
         {
           messages ?
             <NextIntlClientProvider
@@ -48,6 +47,7 @@ export const Pokemon = ({params}: Props) => {
             </NextIntlClientProvider> :
             <Loading text="I18n"/>
         }
+        <PokemonSleepStyles {...props}/>
       </Flex>
     </PageLayout>
   );
