@@ -3,7 +3,7 @@ import React from 'react';
 
 
 type UseMountedOpts<T> = {
-  onMounted?: () => PromiseLike<T>,
+  onMounted?: () => Promise<T>,
 };
 
 export const useMounted = <T>(opts?: UseMountedOpts<T>) => {
