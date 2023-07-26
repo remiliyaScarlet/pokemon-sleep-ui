@@ -13,6 +13,7 @@ import {PokemonImage} from '@/ui/pokedex/page/image';
 import {sectionStyle} from '@/ui/pokedex/page/styles';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 import {getPokedexInputButtonClass} from '@/ui/pokedex/utils';
+import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
 
@@ -52,7 +53,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   const imageOptions: CurrentPokemonImage[] = React.useMemo(() => [
     'portrait',
-    ...new Set(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style))),
+    ...toUnique(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style))),
   ], [sleepStyles]);
   const [isShiny, setShiny] = React.useState(false);
   const [currentImage, setCurrentImage] = React.useState<CurrentPokemonImage>('portrait');

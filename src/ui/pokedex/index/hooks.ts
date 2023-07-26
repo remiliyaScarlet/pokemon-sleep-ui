@@ -17,10 +17,20 @@ export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
     sleepType: null,
     skill: null,
     mapId: null,
+    ingredient: null,
+    berryId: null,
     display: 'mainSkill',
   });
   const isIncluded = React.useMemo((): PokedexInclusionMap => (
-    Object.fromEntries(data.map(({id, type, sleepType, skill, sleepStyles}) => {
+    Object.fromEntries(data.map(({
+      id,
+      type,
+      sleepType,
+      skill,
+      sleepStyles,
+      ingredients,
+      berry,
+    }) => {
       if (filter.name !== '' && t(id.toString()) !== filter.name) {
         return [id, false];
       }
@@ -38,6 +48,14 @@ export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
       }
 
       if (filter.mapId !== null && !sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
+        return [id, false];
+      }
+
+      if (filter.ingredient !== null && !ingredients.some((id) => id === filter.ingredient)) {
+        return [id, false];
+      }
+
+      if (filter.berryId !== null && berry.id !== filter.berryId) {
         return [id, false];
       }
 

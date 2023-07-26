@@ -29,6 +29,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         getAlt={(id) => t(`PokemonType.${id.toString()}`)}
+        idToImageSrc={(id) => `/images/type/${id}.png`}
         {...props}
       />
       <PokedexTextInput
@@ -66,6 +67,24 @@ export const PokedexInput = ({data, ...props}: Props) => {
             <div>{t(`SleepType.${id.toString()}`)}</div>
           </Flex>
         )}
+        {...props}
+      />
+      <PokedexIconInput
+        filterKey="ingredient"
+        titleI18nKey="Ingredient"
+        idToItemId={(id) => id.toString()}
+        ids={toUnique(data.flatMap(({ingredients}) => ingredients)).sort((a, b) => a - b)}
+        getAlt={(id) => t(`Food.${id.toString()}`)}
+        idToImageSrc={(id) => `/images/ingredient/${id}.png`}
+        {...props}
+      />
+      <PokedexIconInput
+        filterKey="berryId"
+        titleI18nKey="Berry"
+        idToItemId={(id) => id.toString()}
+        ids={toUnique(data.map(({berry}) => berry.id)).sort((a, b) => a - b)}
+        getAlt={(id) => t(`Berry.${id.toString()}`)}
+        idToImageSrc={(id) => `/images/berry/${id}.png`}
         {...props}
       />
       <PokedexTextInput

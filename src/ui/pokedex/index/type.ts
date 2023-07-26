@@ -1,4 +1,12 @@
-import {PokemonId, PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
+import {
+  PokemonBerryId,
+  PokemonId,
+  PokemonInfo,
+  PokemonIngredientId,
+  PokemonSkillId,
+  PokemonSleepTypeId,
+  PokemonTypeId,
+} from '@/types/mongo/pokemon';
 import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 
@@ -22,6 +30,8 @@ export type PokedexFilter = {
   sleepType: PokemonSleepTypeId | null,
   skill: PokemonSkillId | null,
   mapId: SleepMapId | null,
+  ingredient: PokemonIngredientId | null,
+  berryId: PokemonBerryId | null,
   display: PokedexDisplayType,
 };
 
