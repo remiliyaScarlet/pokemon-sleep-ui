@@ -9,13 +9,8 @@ import {I18nNamespaces} from '@/types/i18n';
 import {classNames} from '@/utils/react';
 
 
-type Props<
-  TFilter,
-  TData,
-  TId,
-  TNamespace extends I18nNamespaces
-> = Omit<
-  FilterCategoryInputProps<TFilter, TData, TId, TNamespace>,
+type Props<TId, TNamespace extends I18nNamespaces> = Omit<
+  FilterCategoryInputProps<TId, TNamespace>,
   'idToButton' | 'getClassNames'
 > & {
   getAlt: (id: TId) => string,
@@ -30,16 +25,11 @@ const sizes = [
   '10vw',
 ].join(', ');
 
-export const FilterIconInput = <
-  TFilter,
-  TData,
-  TId,
-  TNamespace extends I18nNamespaces
->({
+export const FilterIconInput = <TId, TNamespace extends I18nNamespaces>({
   getAlt,
   idToImageSrc,
   ...props
-}: Props<TFilter, TData, TId, TNamespace>) => {
+}: Props<TId, TNamespace>) => {
   return (
     <FilterCategoryInput
       idToButton={(id) => (

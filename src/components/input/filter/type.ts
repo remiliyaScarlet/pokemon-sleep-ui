@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {I18nMessageKeysOfNamespace, I18nNamespaces} from '@/types/i18n';
-import {Indexable, KeysOfType} from '@/utils/type';
+import {Indexable} from '@/utils/type';
 
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
@@ -11,13 +11,12 @@ export type FilterInputProps<TFilter> = {
   setFilter: React.Dispatch<React.SetStateAction<TFilter>>,
 };
 
-export type FilterCategoryInputProps<
-  TFilter,
-  TData,
-  TId,
-  TNamespace extends I18nNamespaces,
-> = FilterInputProps<TFilter> & {
-  filterKey: KeysOfType<TFilter, TData | null>,
+export type FilterInputOnClickProps<TId> = {
+  onClick: (id: TId) => void,
+  isActive: (id: TId) => boolean,
+};
+
+export type FilterCategoryInputProps<TId, TNamespace extends I18nNamespaces> = FilterInputOnClickProps<TId> & {
   titleI18nNamespace: TNamespace,
   titleI18nKey: I18nMessageKeysOfNamespace<TNamespace>,
   ids: TId[],
