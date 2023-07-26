@@ -5,7 +5,7 @@ import {Pokemon} from '@/ui/pokedex/page/main';
 import {generatePageMeta} from '@/utils/meta';
 
 
-type PokedexPageParams = GenerateMetadataParams & {
+export type PokedexPageParams = GenerateMetadataParams & {
   id: string
 };
 

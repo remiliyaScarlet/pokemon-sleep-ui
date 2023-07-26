@@ -11,7 +11,7 @@ import {PokedexClient} from '@/ui/pokedex/index/client';
 import {PokedexData} from '@/ui/pokedex/index/type';
 
 
-export const getPokedexData = async (): Promise<PokedexData> => {
+const getPokedexData = async (): Promise<PokedexData> => {
   const sleepStyleMap = await getPokemonSleepStyleMap();
 
   return (await getAllPokedex())

@@ -14,6 +14,11 @@ type GameObjectIdToString = {[id in string]: string};
 
 declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
+    Common: {
+      DreamShards: string,
+      Exp: string,
+      Shiny: string,
+    },
     Metadata: {
       SiteName: string,
       Home: I18nMetadata,
@@ -25,18 +30,22 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Welcome: string,
       },
       Pokedex: {
-        Input: {
+        Info: {
+          Berry: string,
+          Ingredient: string,
+          MainSkill: string,
           Map: string,
           Name: string,
           PokemonType: string,
-          Skill: string,
           SleepType: string,
+          Stats: string,
         },
-        Pokemon: {
-          Info: {
-            Berry: string,
-          },
-        },
+        Stats: {
+          Frequency: string,
+          Friendship: string,
+          MaxCarry: string,
+          Recruit: string,
+        }
       },
     },
   },
@@ -51,6 +60,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     PokemonType: GameObjectIdToString,
     PokemonName: GameObjectIdToString,
     RankTitle: GameObjectIdToString,
+    SleepFace: {
+      onSnorlax: {default: string},
+      [pokemonId: string]: GameObjectIdToString
+    },
     SleepType: GameObjectIdToString,
   }
 }
