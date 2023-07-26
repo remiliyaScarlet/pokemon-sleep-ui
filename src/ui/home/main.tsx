@@ -19,10 +19,10 @@ export const Home = () => {
         {t2('Welcome')}
       </Flex>
       <Flex direction="row" center wrap className="h-auto gap-2 md:h-full md:px-10">
-        {NavEntries.map(({href, imageSrc, i18nTextId}) => {
+        {NavEntries.map(({i18nTextId, ...props}) => {
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">
-              <HomePageLink href={href} imageSrc={imageSrc} text={t(i18nTextId)}/>
+              <HomePageLink text={t(i18nTextId)} {...props}/>
             </div>
           );
         })}

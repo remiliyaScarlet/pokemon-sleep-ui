@@ -20,12 +20,28 @@
         "Title": "寶可夢 - {name}"
       }
     },
+    "Meal": {
+      "Index": {
+        "Title": "料理"
+      },
+      "Page": {
+        "Title": "料理 - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "地圖"
       },
       "Page": {
         "Title": "地圖 - {name}"
+      }
+    },
+    "Skill": {
+      "Index": {
+        "Title": "技能"
+      },
+      "Page": {
+        "Title": "技能 - {name}"
       }
     }
   },

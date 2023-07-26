@@ -20,12 +20,28 @@
         "Title": "ポケモン - {name}"
       }
     },
+    "Meal": {
+      "Index": {
+        "Title": "料理"
+      },
+      "Page": {
+        "Title": "料理 - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "マップ"
       },
       "Page": {
         "Title": "マップ - {name}"
+      }
+    },
+    "Skill": {
+      "Index": {
+        "Title": "スキル"
+      },
+      "Page": {
+        "Title": "スキル - {name}"
       }
     }
   },

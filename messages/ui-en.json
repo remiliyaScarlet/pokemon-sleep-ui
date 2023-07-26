@@ -20,12 +20,28 @@
         "Title": "Pokémon - {name}"
       }
     },
+    "Meal": {
+      "Index": {
+        "Title": "Meal"
+      },
+      "Page": {
+        "Title": "Meal - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "Map"
       },
       "Page": {
         "Title": "Map - {name}"
+      }
+    },
+    "Skill": {
+      "Index": {
+        "Title": "Skill"
+      },
+      "Page": {
+        "Title": "Skill - {name}"
       }
     }
   },

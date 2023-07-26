@@ -10,14 +10,18 @@ import {NavEntry} from '@/ui/base/navbar/type';
 import {classNames} from '@/utils/react';
 
 
-type Props = Pick<NavEntry, 'href' | 'imageSrc'> & {
+type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
   alt: string,
 };
 
-export const NavEntryUI = ({href, imageSrc, alt}: Props) => {
+export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
   const pathname = usePathname();
 
   const isCurrent = href === pathname;
+
+  if (disabled) {
+    return <></>;
+  }
 
   return (
     <Link

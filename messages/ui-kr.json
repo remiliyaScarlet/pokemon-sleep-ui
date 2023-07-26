@@ -20,12 +20,28 @@
         "Title": "포켓몬 - {name}"
       }
     },
+    "Meal": {
+      "Index": {
+        "Title": "요리"
+      },
+      "Page": {
+        "Title": "요리 - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "맵"
       },
       "Page": {
         "Title": "맵 - {name}"
+      }
+    },
+    "Skill": {
+      "Index": {
+        "Title": "스킬"
+      },
+      "Page": {
+        "Title": "스킬 - {name}"
       }
     }
   },

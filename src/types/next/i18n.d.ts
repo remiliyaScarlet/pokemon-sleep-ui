@@ -26,7 +26,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       SiteName: string,
       Home: I18nMetadata,
       Pokedex: PageWithIndividual,
+      Meal: PageWithIndividual,
       Map: PageWithIndividual,
+      Skill: PageWithIndividual,
     },
     InPage: {
       Home: {
