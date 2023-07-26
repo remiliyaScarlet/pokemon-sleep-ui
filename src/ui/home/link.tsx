@@ -24,7 +24,7 @@ export const HomePageLink = ({href, imageSrc, text}: Props) => {
       )}>
       <Flex
         direction="row" center
-        className="h-full gap-1.5 transition-transform group-hover:scale-120 motion-reduce:transform-none"
+        className="h-full gap-1.5 transition-transform group-hover:scale-125 motion-reduce:transform-none"
       >
         <div className="relative h-12 w-12">
           <Image

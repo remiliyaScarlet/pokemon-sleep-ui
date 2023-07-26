@@ -26,9 +26,6 @@ module.exports = {
       dropShadow: {
         'thick': '0 0 0.4rem var(--tw-shadow-color)',
       },
-      scale: {
-        '120': '1.2',
-      },
       textShadow: {
         none: 'none',
         sm: '0 0 0.4rem var(--tw-shadow-color), '.repeat(2).slice(0, -2),
