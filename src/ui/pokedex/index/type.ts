@@ -1,5 +1,5 @@
 import {PokemonId, PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
-import {SleepMapId, SleepStyle} from '@/types/mongo/sleepStyle';
+import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 
 
@@ -7,7 +7,7 @@ export type PokedexSinglePokemon = Pick<
   PokemonInfo,
   'id' | 'type' | 'sleepType' | 'berry' | 'skill' | 'ingredients'
 > & {
-  sleepStyles: SleepStyle[],
+  sleepStyles: SleepStyleData[],
 };
 
 export type PokedexData = PokedexSinglePokemon[];

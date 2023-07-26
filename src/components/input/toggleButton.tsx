@@ -6,7 +6,8 @@ import {classNames} from '@/utils/react';
 export type ToggleButtonProps = {
   active: boolean,
   id: string,
-  onChange: () => void,
+  onClick?: () => void,
+  onChange?: (checked: boolean) => void,
   disabled?: boolean,
   className?: string,
 };
@@ -14,6 +15,7 @@ export type ToggleButtonProps = {
 export const ToggleButton = ({
   active,
   id,
+  onClick,
   onChange,
   className,
   disabled,
@@ -21,7 +23,15 @@ export const ToggleButton = ({
 }: React.PropsWithChildren<ToggleButtonProps>) => {
   return (
     <>
-      <input type="checkbox" id={id} className="peer hidden" checked={active} onChange={onChange} disabled={disabled}/>
+      <input
+        type="checkbox"
+        id={id}
+        className="peer hidden"
+        checked={active}
+        onClick={onClick}
+        onChange={(e) => onChange && onChange(e.target.checked)}
+        disabled={disabled}
+      />
       <label
         htmlFor={id}
         className={classNames('flex items-center justify-center cursor-pointer select-none', className)}

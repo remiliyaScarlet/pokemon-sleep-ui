@@ -1,4 +1,12 @@
 {
+  "Common": {
+    "Candy": "Candy",
+    "DreamShards": "Dream Shards",
+    "Exp": "EXP",
+    "Rank": "Rank",
+    "Rewards": "Rewards",
+    "Shiny": "Shiny"
+  },
   "Metadata": {
     "SiteName": "Pokémon Sleep Info",
     "Home": {
@@ -26,17 +34,21 @@
       "Welcome": "Welcome!"
     },
     "Pokedex": {
-      "Input": {
+      "Info": {
+        "Berry": "Berry",
+        "Ingredient": "Ingredient",
+        "MainSkill": "Main Skill",
         "Map": "Map",
         "Name": "Pokémon",
         "PokemonType": "Pokemon Type",
-        "Skill": "Main Skill",
-        "SleepType": "Sleep Type"
+        "SleepType": "Sleep Type",
+        "Stats": "Stats"
       },
-      "Pokemon": {
-        "Info": {
-          "Berry": "Berry"
-        }
+      "Stats": {
+        "Frequency": "Frequency",
+        "Friendship": "Friendship Points",
+        "MaxCarry": "Carry Limit",
+        "Recruit": "Partnered"
       }
     }
   }

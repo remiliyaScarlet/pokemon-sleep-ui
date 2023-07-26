@@ -12,7 +12,7 @@ export type PokedexInputProps = {
 
 export type PokedexCategoryInputProps<T, K extends KeysOfType<PokedexFilter, T | null>> = PokedexInputProps & {
   filterKey: K,
-  titleI18nKey: I18nValidKeys<IntlMessages['UI']['InPage']['Pokedex']['Input']>,
+  titleI18nKey: I18nValidKeys<IntlMessages['UI']['InPage']['Pokedex']['Info']>,
   ids: T[],
   idToButton: (id: T) => React.ReactNode,
   idToItemId: (id: T) => string,

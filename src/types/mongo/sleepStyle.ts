@@ -13,11 +13,15 @@ export type SleepReward = {
 };
 
 export type SleepStyle = {
-  pokemonId: PokemonId,
-  mapId: SleepMapId,
-  rank: SnorlaxRank,
   style: SleepStyleId,
+  rank: SnorlaxRank,
   rewards: SleepReward,
 };
 
-export type PokemonSleepStyleMap = {[id in PokemonId]?: SleepStyle[]};
+export type SleepStyleData = {
+  pokemonId: PokemonId,
+  mapId: SleepMapId,
+  styles: SleepStyle[],
+};
+
+export type PokemonSleepDataMap = {[id in PokemonId]?: SleepStyleData[]};

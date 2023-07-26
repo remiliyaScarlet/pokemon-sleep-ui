@@ -8,7 +8,7 @@ import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 import {displayTypeToTranslationId} from '@/ui/pokedex/index/input/const';
 import {PokedexInputRow} from '@/ui/pokedex/index/input/inputRow';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {getPokedexInputButtonClass} from '@/ui/pokedex/index/input/utils';
+import {getPokedexInputButtonClass} from '@/ui/pokedex/utils';
 
 
 export const PokedexDisplayTypeSelector = ({filter, setFilter}: PokedexInputProps) => {
@@ -26,7 +26,7 @@ export const PokedexDisplayTypeSelector = ({filter, setFilter}: PokedexInputProp
               key={key}
               id={key}
               active={active}
-              onChange={() => setFilter((original) => ({
+              onClick={() => setFilter((original) => ({
                 ...original,
                 display,
               }))}

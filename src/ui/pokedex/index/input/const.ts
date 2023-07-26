@@ -1,13 +1,6 @@
 import {I18nValidKeys} from '@/types/i18n';
-import {PokemonSleepTypeId} from '@/types/mongo/pokemon';
 import {PokedexDisplayType} from '@/ui/pokedex/index/type';
 
-
-export const sleepTypeClass: {[id in PokemonSleepTypeId]: string} = {
-  0: 'bg-sleep-deep',
-  1: 'bg-sleep-light',
-  4: 'bg-sleep-awake',
-};
 
 export const toggleClass = {
   active: {
@@ -23,6 +16,6 @@ export const toggleClass = {
 export const displayTypeToTranslationId: {
   [displayType in PokedexDisplayType]: I18nValidKeys<IntlMessages['UI']['InPage']['Pokedex']>
 } = {
-  berry: 'Pokemon.Info.Berry',
-  mainSkill: 'Input.Skill',
+  berry: 'Info.Berry',
+  mainSkill: 'Info.MainSkill',
 };

@@ -2,8 +2,8 @@ import React from 'react';
 
 import {PokedexCategoryInput} from '@/ui/pokedex/index/input/category';
 import {PokedexCategoryInputProps} from '@/ui/pokedex/index/input/type';
-import {getPokedexInputButtonClass} from '@/ui/pokedex/index/input/utils';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
+import {getPokedexInputButtonClass} from '@/ui/pokedex/utils';
 import {KeysOfType} from '@/utils/type';
 
 

@@ -269,6 +269,552 @@
         "3": "Ultra",
         "4": "Master"
     },
+    "SleepFace": {
+        "1": {
+            "3": "Vines-Out Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Sunbathing Sleep"
+        },
+        "10": {
+            "3": "String-Shot Sleep",
+            "2": "Droopy-Headed Sleep",
+            "1": "Sprawled Sleep"
+        },
+        "104": {
+            "3": "Pillow-Bone Sleep",
+            "2": "Scratchy-Bone Sleep",
+            "1": "Weepy Sleep"
+        },
+        "105": {
+            "3": "Pillow-Bone Sleep",
+            "2": "Scratchy-Bone Sleep",
+            "1": "Huggy-Bone Sleep"
+        },
+        "11": {
+            "3": "Hardened Sleep",
+            "2": "Wobbling Sleep",
+            "1": "Placid Sleep"
+        },
+        "115": {
+            "3": "Early-Rising Sleep",
+            "2": "Synchronized Sleep",
+            "1": "Parental-Bond Sleep"
+        },
+        "12": {
+            "3": "Scale-Scattering Sleep",
+            "2": "Floating Sleep",
+            "1": "Air-Sitting Sleep"
+        },
+        "127": {
+            "3": "Burrowing Sleep",
+            "2": "Upright Sleep",
+            "1": "Fearless Sleep"
+        },
+        "132": {
+            "7": "Squirtle Sleep",
+            "6": "Charmander Sleep",
+            "5": "Bulbasaur Sleep",
+            "3": "Pikachu Sleep",
+            "2": "As-Is Sleep",
+            "12": "Glaceon Sleep",
+            "11": "Larvitar Sleep",
+            "10": "Dragonite Sleep",
+            "1": "Rock-Formed Sleep"
+        },
+        "133": {
+            "3": "Energetic Sleep",
+            "2": "Droopy-Eared Sleep",
+            "1": "Roly-Poly Sleep"
+        },
+        "134": {
+            "3": "Sprawled Sleep",
+            "2": "Sitting Sleep",
+            "1": "Tail-Wagging Sleep"
+        },
+        "135": {
+            "3": "Dream-Sprint Sleep",
+            "2": "Sitting Sleep",
+            "1": "Lying-Down Sleep"
+        },
+        "136": {
+            "3": "Tail-Wrapped Sleep",
+            "2": "Snug Sleep",
+            "1": "Tail-Swinging Sleep"
+        },
+        "147": {
+            "3": "Uncoiled Sleep",
+            "2": "Wriggly Sleep",
+            "1": "Coiled Sleep"
+        },
+        "148": {
+            "3": "Uncoiled Sleep",
+            "2": "Wriggly Sleep",
+            "1": "Coiled Sleep"
+        },
+        "149": {
+            "3": "Tummy-Up Sleep",
+            "2": "Seated Sleep",
+            "1": "Roly-Poly Sleep"
+        },
+        "152": {
+            "3": "Belly-Up Sleep",
+            "2": "Droopy-Leaf Sleep",
+            "1": "Leaf-Twirling Sleep"
+        },
+        "153": {
+            "3": "Aroma-Wafting Sleep",
+            "2": "Bud-Shaking Sleep",
+            "1": "Stretching Sleep"
+        },
+        "154": {
+            "3": "Bloom-Filled Sleep",
+            "2": "Head-Bobbing Sleep",
+            "1": "Peaceful Sleep"
+        },
+        "155": {
+            "3": "Flame-Spouting Sleep",
+            "2": "Hunched Sleep",
+            "1": "Sprawled Sleep"
+        },
+        "156": {
+            "3": "Flame-Spouting Sleep",
+            "2": "Flattened Sleep",
+            "1": "Arm-Pillow Sleep"
+        },
+        "157": {
+            "3": "Flame-Spouting Sleep",
+            "2": "Self-Grooming Sleep",
+            "1": "Arm-Pillow Sleep"
+        },
+        "158": {
+            "3": "Gaping-Mouth Sleep",
+            "2": "Bitey Sleep",
+            "1": "One-Eyed Sleep"
+        },
+        "159": {
+            "3": "Gaping-Mouth Sleep",
+            "2": "Fangs-Out Sleep",
+            "1": "One-Eyed Sleep"
+        },
+        "160": {
+            "3": "Gaping-Mouth Sleep",
+            "2": "Intimidating Sleep",
+            "1": "One-Eyed Sleep"
+        },
+        "172": {
+            "3": "Electrifying Sleep",
+            "2": "Seated Sleep",
+            "1": "Peaceful Sleep"
+        },
+        "174": {
+            "3": "Singing Sleep",
+            "2": "Dopey Sleep",
+            "1": "Bouncy Sleep"
+        },
+        "175": {
+            "3": "Shell-Tucked Sleep",
+            "2": "Overturned Sleep",
+            "1": "Rocking Sleep"
+        },
+        "176": {
+            "3": "Floating-Flutter Sleep",
+            "2": "Upright-Flutter Sleep",
+            "1": "Sitting-Flutter Sleep"
+        },
+        "179": {
+            "3": "Blinking-Tail Sleep",
+            "2": "Pawing Sleep",
+            "1": "Fluffy Sleep"
+        },
+        "180": {
+            "3": "Blinking-Tail Sleep",
+            "2": "Fluffy Sleep",
+            "1": "Sprawled Sleep"
+        },
+        "181": {
+            "3": "Glowing-Tail Sleep",
+            "2": "Head-Bobbing Sleep",
+            "1": "Tail-Scratching Sleep"
+        },
+        "185": {
+            "3": "Seriously-Slacking Sleep",
+            "2": "Psuedo-Slacking Sleep",
+            "1": "Psuedo-Wood Sleep"
+        },
+        "19": {
+            "3": "Fang-Filing Sleep",
+            "2": "Head-Tilted Sleep",
+            "1": "Face-Scratching Sleep"
+        },
+        "196": {
+            "3": "Belly-Up Sleep",
+            "2": "Sitting Sleep",
+            "1": "Foreseeing Sleep"
+        },
+        "197": {
+            "3": "Belly-Up Sleep",
+            "2": "Sitting Sleep",
+            "1": "Crescent Sleep"
+        },
+        "199": {
+            "3": "Eureka Sleep",
+            "2": "Sage Sleep",
+            "1": "Loafing Sleep"
+        },
+        "2": {
+            "3": "Vines-Out Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Sunbathing Sleep"
+        },
+        "20": {
+            "3": "Fang-Filing Sleep",
+            "2": "Upright Sleep",
+            "1": "Teeth-Grinding Sleep"
+        },
+        "202": {
+            "3": "Signature-Pose Sleep",
+            "2": "Biding Sleep",
+            "1": "Tail-Hiding Sleep"
+        },
+        "214": {
+            "3": "Sap-Licking Sleep",
+            "2": "Upright Sleep",
+            "1": "Horn-Shaking Sleep"
+        },
+        "228": {
+            "3": "Belly-Up Sleep",
+            "2": "Stretching Sleep",
+            "1": "Howling Sleep"
+        },
+        "229": {
+            "3": "Flame-Blowing Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Lying-Down Sleep"
+        },
+        "23": {
+            "3": "Uncoiled Sleep",
+            "2": "Springy Sleep",
+            "1": "Coiled Sleep"
+        },
+        "24": {
+            "3": "Uncoiled Sleep",
+            "2": "Leaning Sleep",
+            "1": "Coiled Sleep"
+        },
+        "246": {
+            "3": "Earth-Eating Sleep",
+            "2": "Face-Rubbing Sleep",
+            "1": "Stretching Sleep"
+        },
+        "247": {
+            "3": "Gas-Venting Sleep",
+            "2": "Shivering Sleep",
+            "1": "Falling-Over Sleep"
+        },
+        "248": {
+            "3": "Spread-Out Sleep",
+            "2": "Imposing Sleep",
+            "1": "Stomach Sleep"
+        },
+        "25": {
+            "3": "Electrifying Sleep",
+            "2": "Droopy-Eared Sleep",
+            "1": "Roly-Poly Sleep"
+        },
+        "26": {
+            "3": "Grounded-Tail Sleep",
+            "2": "Seated Sleep",
+            "1": "Tail-Waving Sleep"
+        },
+        "287": {
+            "3": "Snacking Sleep",
+            "2": "Self-Grooming Sleep",
+            "1": "Slacking Sleep"
+        },
+        "288": {
+            "3": "Slacking Sleep",
+            "2": "Exercising Sleep",
+            "1": "Impatient Sleep"
+        },
+        "289": {
+            "3": "Snacking Sleep",
+            "2": "Loafing Sleep",
+            "1": "Spread-Out Sleep"
+        },
+        "3": {
+            "3": "Vines-Out Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Sunbathing Sleep"
+        },
+        "302": {
+            "3": "Jewel-Eating Sleep",
+            "2": "Jerky Sleep",
+            "1": "Spread-Out Sleep"
+        },
+        "316": {
+            "3": "Gaping-Mouth Sleep",
+            "2": "Nodding Sleep",
+            "1": "Balloon Sleep"
+        },
+        "317": {
+            "3": "Gaping-Mouth Sleep",
+            "2": "Nodding Sleep",
+            "1": "Toppling-Over Sleep"
+        },
+        "333": {
+            "3": "Cotton-Cloud Sleep",
+            "2": "Flapping Sleep",
+            "1": "Roosting Sleep"
+        },
+        "334": {
+            "3": "Cotton-Cloud Sleep",
+            "2": "Roosting Sleep",
+            "1": "Feather-Nestled Sleep"
+        },
+        "359": {
+            "3": "Belly-Up Sleep",
+            "2": "Danger-Sensing Sleep",
+            "1": "Snug Sleep"
+        },
+        "360": {
+            "3": "Signature-Pose Sleep",
+            "2": "Biding Sleep",
+            "1": "Tail-Shifting Sleep"
+        },
+        "363": {
+            "3": "Clapping Sleep",
+            "2": "Big-Yawn Sleep",
+            "1": "Flopped Sleep"
+        },
+        "364": {
+            "3": "Overturned Sleep",
+            "2": "Big-Yawn Sleep",
+            "1": "Ground-Tapping Sleep"
+        },
+        "365": {
+            "3": "Fang-Lodged Sleep",
+            "2": "Majestic Sleep",
+            "1": "Loafing Sleep"
+        },
+        "39": {
+            "3": "Singing Sleep",
+            "2": "Dopey Sleep",
+            "1": "Seated Sleep"
+        },
+        "4": {
+            "3": "Tummy-Up Sleep",
+            "2": "Tummy-Rub Sleep",
+            "1": "Crackling Sleep"
+        },
+        "40": {
+            "3": "Puffed-Up Sleep",
+            "2": "Startled Sleep",
+            "1": "Smiley Sleep"
+        },
+        "438": {
+            "3": "Watery-Eyed Sleep",
+            "2": "Upright Sleep",
+            "1": "Flopped Sleep"
+        },
+        "447": {
+            "3": "Knee-Up Sleep",
+            "2": "Mid-Training Sleep",
+            "1": "Knee-Hugging Sleep"
+        },
+        "448": {
+            "3": "Training-Break Sleep",
+            "2": "Mid-Training Sleep",
+            "1": "Knee-Up Sleep"
+        },
+        "453": {
+            "3": "Straightened Sleep",
+            "2": "Cheek-Inflating Sleep",
+            "1": "Loafing Sleep"
+        },
+        "454": {
+            "3": "Poison-Sac Sleep",
+            "2": "Throat-Inflating Sleep",
+            "1": "Loafing Sleep"
+        },
+        "462": {
+            "3": "Upside-Down Sleep",
+            "2": "Watchful Sleep",
+            "1": "Swinging Sleep"
+        },
+        "468": {
+            "3": "Acrobatic-Flight Sleep",
+            "2": "Upright-Flutter Sleep",
+            "1": "Free-Flight Sleep"
+        },
+        "470": {
+            "3": "Leaf-Grabbing Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Tail-Swinging Sleep"
+        },
+        "471": {
+            "3": "Sprawled Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Arm-Pillow Sleep"
+        },
+        "5": {
+            "3": "Loafing Sleep",
+            "2": "Seated Sleep",
+            "1": "Arm-Pillow Sleep"
+        },
+        "50": {
+            "3": "Mid-Dig Sleep",
+            "2": "Aboveground Sleep",
+            "1": "Underground Sleep"
+        },
+        "51": {
+            "3": "Cozy-Trio Sleep",
+            "2": "Aboveground Sleep",
+            "1": "Underground Sleep"
+        },
+        "52": {
+            "3": "Pay Day Sleep",
+            "2": "Seated Sleep",
+            "1": "Roly-Poly Sleep"
+        },
+        "53": {
+            "3": "Apologetic Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Elegant Sleep"
+        },
+        "54": {
+            "3": "Tantrum Sleep",
+            "2": "Big-Yawn Sleep",
+            "1": "Headache Sleep"
+        },
+        "55": {
+            "3": "Swimming Sleep",
+            "2": "Rear-Scratching Sleep",
+            "1": "Arm-Pillow Sleep"
+        },
+        "56": {
+            "3": "Peaceful Sleep",
+            "2": "Upright Sleep",
+            "1": "Angry Sleep"
+        },
+        "57": {
+            "3": "Peaceful Sleep",
+            "2": "Stomping Sleep",
+            "1": "Angry Sleep"
+        },
+        "58": {
+            "3": "Belly-Up Sleep",
+            "2": "Sitting Sleep",
+            "1": "Stretching Sleep"
+        },
+        "59": {
+            "3": "Belly-Up Sleep",
+            "2": "Sitting Sleep",
+            "1": "Lying-Down Sleep"
+        },
+        "6": {
+            "3": "Tummy-Up Sleep",
+            "2": "Arms-Crossed Sleep",
+            "1": "Stomach Sleep"
+        },
+        "69": {
+            "3": "Rooted Sleep",
+            "2": "Acid-Dripping Sleep",
+            "1": "Stretched-Out Sleep"
+        },
+        "7": {
+            "3": "Overturned Sleep",
+            "2": "Unsheltered Sleep",
+            "1": "Sheltered Sleep"
+        },
+        "70": {
+            "3": "Suction Sleep",
+            "2": "Floating Sleep",
+            "1": "Acid-Dripping Sleep"
+        },
+        "700": {
+            "3": "Ribbon-Tangled Sleep",
+            "2": "Sturdy Sleep",
+            "1": "Roly-Poly Sleep"
+        },
+        "71": {
+            "3": "Overturned Sleep",
+            "2": "Vine-Held Sleep",
+            "1": "Shuddering Sleep"
+        },
+        "74": {
+            "3": "Buried Sleep",
+            "2": "Biding Sleep",
+            "1": "Arms-Crossed Sleep"
+        },
+        "75": {
+            "3": "Rolling Sleep",
+            "2": "Hearty Sleep",
+            "1": "Lounging Sleep"
+        },
+        "76": {
+            "3": "Rolling Sleep",
+            "2": "Imposing Sleep",
+            "1": "Robust Sleep"
+        },
+        "79": {
+            "3": "Goofy Sleep",
+            "2": "Dazed Sleep",
+            "1": "Zonked Sleep"
+        },
+        "8": {
+            "3": "Flattened Sleep",
+            "2": "Unsheltered Sleep",
+            "1": "Sheltered Sleep"
+        },
+        "80": {
+            "3": "Tail-Gnawing Sleep",
+            "2": "Drooling Sleep",
+            "1": "Cozy-Duo Sleep"
+        },
+        "81": {
+            "3": "Upside-Down Sleep",
+            "2": "Magnet-Rise Sleep",
+            "1": "Droopy-Float Sleep"
+        },
+        "82": {
+            "3": "Unlinked Sleep",
+            "2": "Near-Falling Sleep",
+            "1": "Linked Sleep"
+        },
+        "84": {
+            "3": "Duo Sleep",
+            "2": "Lazy-Lookout Sleep",
+            "1": "Lookout Sleep"
+        },
+        "85": {
+            "3": "Trio Sleep",
+            "2": "Lazy-Lookout Sleep",
+            "1": "Lookout Sleep"
+        },
+        "9": {
+            "3": "Overturned Sleep",
+            "2": "Unsheltered Sleep",
+            "1": "Sheltered Sleep"
+        },
+        "92": {
+            "3": "Tongue-Out Sleep",
+            "2": "Floaty-Gas Sleep",
+            "1": "Snickering Sleep"
+        },
+        "93": {
+            "3": "Tongue-Out Sleep",
+            "2": "Floaty-Gas Sleep",
+            "1": "Head-Tilted Sleep"
+        },
+        "94": {
+            "3": "Tongue-Out Sleep",
+            "2": "Smirking Sleep",
+            "1": "Mischievous Sleep"
+        },
+        "onSnorlax": {
+            "Default": "Atop-Belly Sleep"
+        }
+    },
     "SleepType": {
         "0": "Slumbering",
         "1": "Snoozing",

@@ -21,7 +21,7 @@ export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | 
   getClassNames,
   highlight,
 }: PokedexCategoryInputProps<T, K>) => {
-  const t = useTranslations('UI.InPage.Pokedex.Input');
+  const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
     <PokedexInputRow highlight={highlight}>
@@ -34,7 +34,7 @@ export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | 
             key={`${titleI18nKey}-${idToItemId(id)}`}
             active={filter[filterKey] === id}
             id={`${titleI18nKey}-${idToItemId(id)}`}
-            onChange={() => setFilter((original) => ({
+            onClick={() => setFilter((original) => ({
               ...original,
               [filterKey]: original[filterKey] === id ? null : id,
             }))}

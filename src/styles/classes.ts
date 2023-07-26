@@ -1,3 +1,4 @@
+import {SleepTypeClassMap} from '@/styles/type';
 import {classNames} from '@/utils/react';
 
 
@@ -20,4 +21,16 @@ export const invertStyle = {
 export const whiteHoverableClasses = {
   parent: classNames(buttonStyle.base, buttonStyle.background, buttonStyle.text, buttonStyle.textHover),
   icon: classNames(invertStyle.normal, invertStyle.hover),
+};
+
+export const sleepTypeBgClass: SleepTypeClassMap = {
+  0: 'bg-sleep-dark-deep dark:bg-sleep-deep',
+  1: 'bg-sleep-dark-light dark:bg-sleep-light',
+  4: 'bg-sleep-dark-awake dark:bg-sleep-awake',
+};
+
+export const sleepTypeTextClass: SleepTypeClassMap = {
+  0: 'text-sleep-dark-deep dark:text-sleep-deep',
+  1: 'text-sleep-dark-light dark:text-sleep-light',
+  4: 'text-sleep-dark-awake dark:text-sleep-awake',
 };

@@ -17,7 +17,12 @@ module.exports = {
         sleep: {
           awake: '#ffec70',
           light: '#85fbff',
-          deep: '#4488fc',
+          deep: '#5d93ef',
+          dark: {
+            awake: '#a4951e',
+            light: '#218c8c',
+            deep: '#1b4586',
+          },
         },
       },
       backgroundImage: {

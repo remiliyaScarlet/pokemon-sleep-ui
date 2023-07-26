@@ -37,17 +37,21 @@ export const PokedexInput = ({data, ...props}: Props) => {
         titleI18nKey="Map"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.flatMap(({sleepStyles}) => sleepStyles.map(({mapId}) => mapId))).sort((a, b) => a - b)}
-        idToButton={(id) => (
-          <Flex direction="row" center noFullWidth className="w-28 md:w-40">
-            <Image
-              src={`/images/field/${id}.png`} alt={t(`Field.${id.toString()}`)}
-              fill className="rounded-xl opacity-50 dark:opacity-25"
-            />
-            <Flex direction="row" center className="absolute z-10 h-full w-full">
-              {t(`Field.${id.toString()}`)}
+        idToButton={(id) => {
+          const mapName = t(`Field.${id.toString()}`);
+
+          return (
+            <Flex direction="row" center noFullWidth className="w-28 md:w-40">
+              <Image
+                src={`/images/field/${id}.png`} alt={mapName}
+                fill className="rounded-xl opacity-50 dark:opacity-25"
+              />
+              <Flex direction="row" center className="absolute z-10 h-full w-full">
+                {mapName}
+              </Flex>
             </Flex>
-          </Flex>
-        )}
+          );
+        }}
         {...props}
       />
       <PokedexTextInput
@@ -66,7 +70,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
       />
       <PokedexTextInput
         filterKey="skill"
-        titleI18nKey="Skill"
+        titleI18nKey="MainSkill"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({skill}) => skill)).sort((a, b) => a - b)}
         idToButton={(id) => t(`MainSkill.Name.${id.toString()}`)}

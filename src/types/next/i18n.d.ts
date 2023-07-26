@@ -15,8 +15,11 @@ type GameObjectIdToString = {[id in string]: string};
 declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
     Common: {
+      Candy: string,
       DreamShards: string,
       Exp: string,
+      Rank: string,
+      Rewards: string,
       Shiny: string,
     },
     Metadata: {
@@ -61,7 +64,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     PokemonName: GameObjectIdToString,
     RankTitle: GameObjectIdToString,
     SleepFace: {
-      onSnorlax: {default: string},
+      onSnorlax: {Default: string},
       [pokemonId: string]: GameObjectIdToString
     },
     SleepType: GameObjectIdToString,
