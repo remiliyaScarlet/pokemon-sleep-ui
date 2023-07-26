@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 
-import {usePathname, useRouter} from 'next-intl/client';
+import Link from 'next/link';
+import {usePathname} from 'next-intl/client';
 
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
@@ -19,12 +20,8 @@ export const LanguageSwitchClient = ({locale}: Props) => {
   const [show, setShow] = React.useState(false);
 
   const pathname = usePathname();
-  const router = useRouter();
 
-  const onLocaleClicked = (locale: string) => () => {
-    router.replace(pathname, {locale});
-  };
-
+  // Putting locale manually in `href` because putting in `locale` doesn't work
   return (
     <>
       <button
@@ -36,21 +33,21 @@ export const LanguageSwitchClient = ({locale}: Props) => {
       <Popup show={show} setShow={setShow}>
         <Flex direction="row" center wrap className="gap-2">
           {Object.entries(localeName).map(([locale, name]) => (
-            <div key={locale} className="width-with-gap sm:width-with-gap-2-items">
-              <button
-                className={classNames(
-                  'text-xl p-5 w-full',
-                  buttonStyle.base,
-                  buttonStyle.border,
-                  buttonStyle.background,
-                  buttonStyle.text,
-                  buttonStyle.textHover,
-                )}
-                onClick={onLocaleClicked(locale)}
-              >
-                {name}
-              </button>
-            </div>
+            <Link
+              key={locale}
+              locale={false}
+              href={`/${locale}${pathname}`}
+              className={classNames(
+                'flex w-full justify-center p-5 text-xl width-with-gap sm:width-with-gap-2-items',
+                buttonStyle.base,
+                buttonStyle.border,
+                buttonStyle.background,
+                buttonStyle.text,
+                buttonStyle.textHover,
+              )}
+            >
+              {name}
+            </Link>
           ))}
         </Flex>
       </Popup>
