@@ -17,6 +17,10 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
   const t5 = useTranslations('UI.InPage.Pokedex.Info');
   const t6 = useTranslations('UI.Common');
 
+  if (sleepStyles.length === 0) {
+    return <></>;
+  }
+
   return (
     <Flex direction="col" center className={sectionStyle}>
       {sleepStyles.map(({mapId, styles}) => {
