@@ -2,20 +2,24 @@ import React from 'react';
 
 import Image from 'next/image';
 
-import {PokedexCategoryInput} from '@/ui/pokedex/index/input/category';
-import {toggleClass} from '@/ui/pokedex/index/input/const';
-import {PokedexCategoryInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexFilter} from '@/ui/pokedex/index/type';
+import {FilterCategoryInput} from '@/components/input/filter/category';
+import {toggleClass} from '@/components/input/filter/const';
+import {FilterCategoryInputProps} from '@/components/input/filter/type';
+import {I18nNamespaces} from '@/types/i18n';
 import {classNames} from '@/utils/react';
-import {KeysOfType} from '@/utils/type';
 
 
-type Props<T, K extends KeysOfType<PokedexFilter, T | null>> = Omit<
-  PokedexCategoryInputProps<T, K>,
+type Props<
+  TFilter,
+  TData,
+  TId,
+  TNamespace extends I18nNamespaces
+> = Omit<
+  FilterCategoryInputProps<TFilter, TData, TId, TNamespace>,
   'idToButton' | 'getClassNames'
 > & {
-  getAlt: (id: T) => string,
-  idToImageSrc: (id: T) => string,
+  getAlt: (id: TId) => string,
+  idToImageSrc: (id: TId) => string,
 };
 
 const sizes = [
@@ -26,13 +30,18 @@ const sizes = [
   '10vw',
 ].join(', ');
 
-export const PokedexIconInput = <T, K extends KeysOfType<PokedexFilter, T | null>>({
+export const FilterIconInput = <
+  TFilter,
+  TData,
+  TId,
+  TNamespace extends I18nNamespaces
+>({
   getAlt,
   idToImageSrc,
   ...props
-}: Props<T, K>) => {
+}: Props<TFilter, TData, TId, TNamespace>) => {
   return (
-    <PokedexCategoryInput
+    <FilterCategoryInput
       idToButton={(id) => (
         <div className="relative h-7 w-7">
           <Image src={idToImageSrc(id)} alt={getAlt(id)} fill sizes={sizes}/>

@@ -2,20 +2,20 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {FilterInputRow} from '@/components/input/filter/inputRow';
+import {getFilterInputButtonClass} from '@/components/input/filter/utils';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 import {displayTypeToTranslationId} from '@/ui/pokedex/index/input/const';
-import {PokedexInputRow} from '@/ui/pokedex/index/input/inputRow';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {getPokedexInputButtonClass} from '@/ui/pokedex/utils';
 
 
 export const PokedexDisplayTypeSelector = ({filter, setFilter}: PokedexInputProps) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   return (
-    <PokedexInputRow>
+    <FilterInputRow>
       <Flex direction="row" className="gap-1" wrap>
         {pokedexDisplayType.map((display) => {
           const key = `displayType-${display}`;
@@ -30,13 +30,13 @@ export const PokedexDisplayTypeSelector = ({filter, setFilter}: PokedexInputProp
                 ...original,
                 display,
               }))}
-              className={getPokedexInputButtonClass(active)}
+              className={getFilterInputButtonClass(active)}
             >
               {t(displayTypeToTranslationId[display])}
             </ToggleButton>
           );
         })}
       </Flex>
-    </PokedexInputRow>
+    </FilterInputRow>
   );
 };

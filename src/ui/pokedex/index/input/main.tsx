@@ -3,11 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
+import {FilterIconInput} from '@/components/input/filter/icon';
+import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex';
 import {sleepTypeBgClass} from '@/styles/classes';
+import {I18nNamespaces} from '@/types/i18n';
 import {PokedexDisplayTypeSelector} from '@/ui/pokedex/index/input/displayType';
-import {PokedexIconInput} from '@/ui/pokedex/index/input/icon';
-import {PokedexTextInput} from '@/ui/pokedex/index/input/text';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexData} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
@@ -19,12 +20,14 @@ type Props = PokedexInputProps & {
 };
 
 export const PokedexInput = ({data, ...props}: Props) => {
+  const titleI18nNamespace: I18nNamespaces = 'UI.InPage.Pokedex.Info';
   const t = useTranslations('Game');
 
   return (
     <Flex direction="col" className="gap-1">
-      <PokedexIconInput
+      <FilterIconInput
         filterKey="type"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="PokemonType"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
@@ -32,9 +35,10 @@ export const PokedexInput = ({data, ...props}: Props) => {
         idToImageSrc={(id) => `/images/type/${id}.png`}
         {...props}
       />
-      <PokedexTextInput
+      <FilterTextInput
         highlight
         filterKey="mapId"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="Map"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.flatMap(({sleepStyles}) => sleepStyles.map(({mapId}) => mapId))).sort((a, b) => a - b)}
@@ -55,9 +59,10 @@ export const PokedexInput = ({data, ...props}: Props) => {
         }}
         {...props}
       />
-      <PokedexTextInput
+      <FilterTextInput
         highlight
         filterKey="sleepType"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="SleepType"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({sleepType}) => sleepType)).sort((a, b) => a - b)}
@@ -69,8 +74,9 @@ export const PokedexInput = ({data, ...props}: Props) => {
         )}
         {...props}
       />
-      <PokedexIconInput
+      <FilterIconInput
         filterKey="ingredient"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="Ingredient"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.flatMap(({ingredients}) => ingredients)).sort((a, b) => a - b)}
@@ -78,8 +84,9 @@ export const PokedexInput = ({data, ...props}: Props) => {
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         {...props}
       />
-      <PokedexIconInput
+      <FilterIconInput
         filterKey="berryId"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="Berry"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({berry}) => berry.id)).sort((a, b) => a - b)}
@@ -87,8 +94,9 @@ export const PokedexInput = ({data, ...props}: Props) => {
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         {...props}
       />
-      <PokedexTextInput
+      <FilterTextInput
         filterKey="skill"
+        titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="MainSkill"
         idToItemId={(id) => id.toString()}
         ids={toUnique(data.map(({skill}) => skill)).sort((a, b) => a - b)}

@@ -5,6 +5,7 @@ import {Transition} from '@headlessui/react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
+import {getFilterInputButtonClass} from '@/components/input/filter/utils';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {smoothTransform} from '@/styles/classes';
@@ -12,7 +13,6 @@ import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonImage} from '@/ui/pokedex/page/image';
 import {sectionStyle} from '@/ui/pokedex/page/styles';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
-import {getPokedexInputButtonClass} from '@/ui/pokedex/utils';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
@@ -83,7 +83,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
           active={isShiny}
           id="shiny"
           onChange={setShiny}
-          className={getPokedexInputButtonClass(isShiny)}
+          className={getFilterInputButtonClass(isShiny)}
         >
           {t('Shiny')}
         </ToggleButton>
@@ -96,7 +96,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               active={isActive}
               id={image.toString()}
               onClick={() => setCurrentImage(image)}
-              className={getPokedexInputButtonClass(isActive)}
+              className={getFilterInputButtonClass(isActive)}
             >
               <GalleryButton pokemonId={pokemon.id} image={image} isActive={isActive}/>
             </ToggleButton>

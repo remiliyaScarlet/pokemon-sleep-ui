@@ -1,67 +1,56 @@
-import React from 'react';
-
 import {useTranslations} from 'next-intl';
 
-import {PokedexData, PokedexFilter, PokedexInclusionMap} from '@/ui/pokedex/index/type';
+import {useFilterInput} from '@/components/input/filter/hooks';
+import {PokemonId} from '@/types/mongo/pokemon';
+import {PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
 
 
 type GetFilteredPokedexOpts = {
-  data: PokedexData,
+  data: PokedexSinglePokemon[],
 };
 
 export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
   const t = useTranslations('Game.PokemonName');
-  const [filter, setFilter] = React.useState<PokedexFilter>({
-    name: '',
-    type: null,
-    sleepType: null,
-    skill: null,
-    mapId: null,
-    ingredient: null,
-    berryId: null,
-    display: 'mainSkill',
+
+  return useFilterInput<PokedexFilter, PokedexSinglePokemon, PokemonId>({
+    data,
+    dataToId: ({id}) => id,
+    initialFilter: {
+      name: '',
+      type: null,
+      sleepType: null,
+      skill: null,
+      mapId: null,
+      ingredient: null,
+      berryId: null,
+      display: 'mainSkill',
+    },
+    isDataIncluded: (filter, data) => {
+      if (filter.name !== '' && t(data.id.toString()) !== filter.name) {
+        return false;
+      }
+
+      if (filter.type !== null && data.type !== filter.type) {
+        return false;
+      }
+
+      if (filter.sleepType !== null && data.sleepType !== filter.sleepType) {
+        return false;
+      }
+
+      if (filter.skill !== null && data.skill !== filter.skill) {
+        return false;
+      }
+
+      if (filter.mapId !== null && !data.sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
+        return false;
+      }
+
+      if (filter.ingredient !== null && !data.ingredients.some((id) => id === filter.ingredient)) {
+        return false;
+      }
+
+      return !(filter.berryId !== null && data.berry.id !== filter.berryId);
+    },
   });
-  const isIncluded = React.useMemo((): PokedexInclusionMap => (
-    Object.fromEntries(data.map(({
-      id,
-      type,
-      sleepType,
-      skill,
-      sleepStyles,
-      ingredients,
-      berry,
-    }) => {
-      if (filter.name !== '' && t(id.toString()) !== filter.name) {
-        return [id, false];
-      }
-
-      if (filter.type !== null && type !== filter.type) {
-        return [id, false];
-      }
-
-      if (filter.sleepType !== null && sleepType !== filter.sleepType) {
-        return [id, false];
-      }
-
-      if (filter.skill !== null && skill !== filter.skill) {
-        return [id, false];
-      }
-
-      if (filter.mapId !== null && !sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
-        return [id, false];
-      }
-
-      if (filter.ingredient !== null && !ingredients.some((id) => id === filter.ingredient)) {
-        return [id, false];
-      }
-
-      if (filter.berryId !== null && berry.id !== filter.berryId) {
-        return [id, false];
-      }
-
-      return [id, true];
-    }))
-  ), [filter]);
-
-  return {filter, setFilter, isIncluded};
 };

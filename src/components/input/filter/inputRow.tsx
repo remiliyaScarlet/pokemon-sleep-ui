@@ -8,7 +8,7 @@ type Props = {
   highlight?: boolean,
 };
 
-export const PokedexInputRow = ({highlight, children}: React.PropsWithChildren<Props>) => {
+export const FilterInputRow = ({highlight, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex
       direction="col"

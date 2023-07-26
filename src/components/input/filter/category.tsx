@@ -2,29 +2,34 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {FilterInputRow} from '@/components/input/filter/inputRow';
+import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {PokedexInputRow} from '@/ui/pokedex/index/input/inputRow';
-import {PokedexCategoryInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexFilter} from '@/ui/pokedex/index/type';
-import {KeysOfType} from '@/utils/type';
+import {I18nNamespaces} from '@/types/i18n';
 
 
-export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | null>>({
+export const FilterCategoryInput = <
+  TFilter,
+  TData,
+  TId,
+  TNamespace extends I18nNamespaces
+>({
   filter,
   setFilter,
   filterKey,
+  titleI18nNamespace,
   titleI18nKey,
   ids,
   idToItemId,
   idToButton,
   getClassNames,
   highlight,
-}: PokedexCategoryInputProps<T, K>) => {
-  const t = useTranslations('UI.InPage.Pokedex.Info');
+}: FilterCategoryInputProps<TFilter, TData, TId, TNamespace>) => {
+  const t = useTranslations(titleI18nNamespace);
 
   return (
-    <PokedexInputRow highlight={highlight}>
+    <FilterInputRow highlight={highlight}>
       <div className="w-32 whitespace-nowrap text-center text-sm">
         {t(titleI18nKey)}
       </div>
@@ -44,6 +49,6 @@ export const PokedexCategoryInput = <T, K extends KeysOfType<PokedexFilter, T | 
           </ToggleButton>
         ))}
       </Flex>
-    </PokedexInputRow>
+    </FilterInputRow>
   );
 };

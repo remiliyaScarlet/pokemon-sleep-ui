@@ -1,6 +1,5 @@
 import {
   PokemonBerryId,
-  PokemonId,
   PokemonInfo,
   PokemonIngredientId,
   PokemonSkillId,
@@ -19,8 +18,6 @@ export type PokedexSinglePokemon = Pick<
 };
 
 export type PokedexData = PokedexSinglePokemon[];
-
-export type PokedexInclusionMap = {[id in PokemonId]?: boolean};
 
 export type PokedexDisplayType = typeof pokedexDisplayType[number];
 
