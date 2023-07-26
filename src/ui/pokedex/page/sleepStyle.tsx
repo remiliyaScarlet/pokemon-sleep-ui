@@ -27,14 +27,12 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
         const mapName = t(mapId.toString());
 
         return (
-          <Flex key={mapId} direction="col" className="p-1.5">
-            {/* <div className="relative h-full w-full">*/}
-            {/*  <Image*/}
-            {/*    src={`/images/field/${mapId}.png`} alt={mapName}*/}
-            {/*    fill className="rounded-xl opacity-50 dark:opacity-25"*/}
-            {/*  />*/}
-            {/* </div>*/}
-            <Flex direction="row" center className="p-1.5">
+          <Flex key={mapId} direction="col" className="relative p-1.5">
+            <Image
+              src={`/images/field/${mapId}.png`} alt={mapName}
+              fill className="rounded-xl opacity-50 dark:opacity-25"
+            />
+            <Flex direction="row" center className="z-10 p-1.5">
               <div>
                 <div className="relative h-9 w-9">
                   <Image src="/images/generic/map_pin.png" alt={t5('Map')} fill sizes="7vw"/>
@@ -44,7 +42,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
                 {mapName}
               </div>
             </Flex>
-            <Flex direction="row" center wrap className="gap-1">
+            <Flex direction="row" center wrap className="z-10 gap-1">
               {styles.map(({rank, style, rewards}) => {
                 const rankTitle = t2(rank.title.toString());
 
