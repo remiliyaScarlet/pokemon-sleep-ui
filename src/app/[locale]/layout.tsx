@@ -7,6 +7,7 @@ import {notFound} from 'next/navigation';
 import Script from 'next/script';
 import {useLocale} from 'next-intl';
 
+import {adsClientId} from '@/components/ads/const';
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
 import {isProduction} from '@/utils/environment';
@@ -31,15 +32,15 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
   return (
     <html lang={locale} className="h-full" suppressHydrationWarning>
       {/* Google AdSense */}
-      <Script
-        async
-        strategy="lazyOnload"
-        src="://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-        crossOrigin="anonymous"
-      />
+      {isProduction() &&
+        <Script
+          async
+          strategy="lazyOnload"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClientId}`}
+          crossOrigin="anonymous"
+        />}
       {/* Google Analytics */}
-      {
-        isProduction() &&
+      {isProduction() &&
         <>
           <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
           <Script id="google-analytics">
@@ -51,8 +52,7 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
               gtag('config', 'G-2LL7T4CCZP');
             `}
           </Script>
-        </>
-      }
+        </>}
       <body className={classNames(font.className, 'h-full w-full overflow-x-hidden')}>
         <Providers>
           {children}
