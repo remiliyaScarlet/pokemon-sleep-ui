@@ -13,18 +13,20 @@ const getCollection = async (): Promise<Collection<SleepStyle>> => {
 };
 
 export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepStyleMap> => {
-  const data = await (await getCollection()).find().toArray();
+  const data = (await getCollection()).find({}, {projection: {_id: false}});
 
   const ret: PokemonSleepStyleMap = {};
-  for (const entry of data) {
+  for await (const entry of data) {
     if (!(entry.pokemonId in ret)) {
       ret[entry.pokemonId] = [] as SleepStyle[];
     }
 
-    // Remove `_id`
-    const {_id, ...rest} = entry;
-    ret[entry.pokemonId]?.push(rest);
+    ret[entry.pokemonId]?.push(entry);
   }
 
   return ret;
 };
+
+export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyle[]> => (
+  (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
+);

@@ -13,9 +13,9 @@ const getCollection = async (): Promise<Collection<PokemonInfo>> => {
 };
 
 export const getSinglePokemonInfo = async (id: number) => {
-  return (await getCollection()).findOne({id});
+  return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
 
 export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> => {
-  return (await getCollection()).find();
+  return (await getCollection()).find({}, {projection: {_id: false}});
 };

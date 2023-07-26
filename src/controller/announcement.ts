@@ -16,8 +16,7 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
 
 export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
   return (await getCollection())
-    .find({locale: locale ?? 'en'})
-    .map(({_id, ...rest}) => rest)
+    .find({locale: locale ?? 'en'}, {projection: {_id: false}})
     .toArray();
 };
 
