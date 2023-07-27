@@ -34,7 +34,7 @@ export const CookingInputRecipeSingle = ({input, setInput, data}: Props) => {
             ...original,
             recipeLevel: {
               ...original.recipeLevel,
-              [id]: Number(e.target.value),
+              [id]: Number(e.target.value) || 1,
             },
           }))}
         />
