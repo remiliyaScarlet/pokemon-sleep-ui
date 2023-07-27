@@ -26,9 +26,9 @@ export const MealIndexClient = ({data}: Props) => {
           <div
             key={meal.id}
             className={classNames(
-              'relative width-with-gap xs:width-with-gap-2-items',
-              'sm:width-with-gap-3-items md:width-with-gap-4-items',
-              'lg:width-with-gap-5-items xl:width-with-gap-6-items',
+              'relative width-with-gap',
+              'sm:width-with-gap-2-items md:width-with-gap-3-items',
+              'lg:width-with-gap-4-items xl:width-with-gap-5-items',
               isIncluded[meal.id] ? undefined : 'hidden',
             )}
           >
