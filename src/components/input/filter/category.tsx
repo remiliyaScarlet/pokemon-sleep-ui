@@ -18,12 +18,12 @@ export const FilterCategoryInput = <TId, TNamespace extends I18nNamespaces>({
   onClick,
   isActive,
   getClassNames,
-  highlight,
+  style,
 }: FilterCategoryInputProps<TId, TNamespace>) => {
   const t = useTranslations(titleI18nNamespace);
 
   return (
-    <FilterInputRow highlight={highlight}>
+    <FilterInputRow style={style}>
       <div className="w-32 whitespace-nowrap text-center text-sm">
         {t(titleI18nKey)}
       </div>

@@ -43,7 +43,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         {...props}
       />
       <FilterTextInput
-        highlight
+        style="highlight"
         titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="Map"
         idToItemId={(id) => id.toString()}
@@ -71,7 +71,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         {...props}
       />
       <FilterTextInput
-        highlight
+        style="highlight"
         titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="SleepType"
         idToItemId={(id) => id.toString()}

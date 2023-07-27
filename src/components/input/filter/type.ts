@@ -25,5 +25,7 @@ export type FilterCategoryInputProps<TId, TNamespace extends I18nNamespaces> = F
   idToButton: (id: TId) => React.ReactNode,
   idToItemId: (id: TId) => string,
   getClassNames: (isActive: boolean) => string,
-  highlight?: boolean,
+  style?: FilterRowBackgroundStyle,
 };
+
+export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';

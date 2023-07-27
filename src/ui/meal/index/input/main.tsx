@@ -31,7 +31,7 @@ export const MealInput = (props: Props) => {
   return (
     <Flex direction="col" className="gap-1">
       <FilterTextInput
-        highlight
+        style="highlight"
         titleI18nNamespace={titleI18nNamespace}
         titleI18nKey="Ingredient"
         idToItemId={(id) => id.toString()}
