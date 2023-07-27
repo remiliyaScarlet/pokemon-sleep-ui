@@ -7,4 +7,5 @@ export const displayTypeToTranslationId: {
 } = {
   berry: 'Info.Berry',
   mainSkill: 'Info.MainSkill',
+  ingredient: 'Info.Ingredient',
 };

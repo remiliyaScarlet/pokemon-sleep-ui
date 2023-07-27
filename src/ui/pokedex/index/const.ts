@@ -1,1 +1,1 @@
-export const pokedexDisplayType = ['berry', 'mainSkill'] as const;
+export const pokedexDisplayType = ['berry', 'mainSkill', 'ingredient'] as const;
