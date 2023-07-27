@@ -9,7 +9,7 @@ import {Flex} from '@/components/layout/flex';
 import {I18nNamespaces} from '@/types/i18n';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
-import {mealTypeDotStyleClass} from '@/ui/meal/index/style';
+import {mealTypeDotStyle} from '@/ui/meal/style';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
@@ -36,7 +36,7 @@ export const MealInput = (props: Props) => {
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         idToButton={(id) => (
           <Flex direction="row" className="gap-1" center>
-            <div className={classNames('h-3 w-3 rounded-full', mealTypeDotStyleClass[id])}/>
+            <div className={classNames('h-3 w-3 rounded-full', mealTypeDotStyle[id])}/>
             <div>{t2(id.toString())}</div>
           </Flex>
         )}

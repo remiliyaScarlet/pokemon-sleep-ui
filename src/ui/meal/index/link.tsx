@@ -7,8 +7,8 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
 import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
-import {mealTypeBackgroundStyleClass} from '@/ui/meal/index/style';
 import {MealLinkProps} from '@/ui/meal/index/type';
+import {mealTypeBackgroundStyle} from '@/ui/meal/style';
 import {classNames} from '@/utils/react';
 
 
@@ -21,7 +21,7 @@ export const MealLink = (props: MealLinkProps) => {
   return (
     <Link
       href={`/meal/${id}`}
-      className={classNames('group inline-block h-full w-full rounded-lg', mealTypeBackgroundStyleClass[type])}
+      className={classNames('group inline-block h-full w-full rounded-lg', mealTypeBackgroundStyle[type])}
     >
       <Flex direction="row" className="h-full items-center justify-end gap-1.5">
         <Flex
