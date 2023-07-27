@@ -6,6 +6,7 @@ import Link from 'next/link';
 import {Flex} from '@/components/layout/flex';
 import {buttonStyle, invertStyle, whiteHoverableClasses} from '@/styles/classes';
 import {NavEntry} from '@/ui/base/navbar/type';
+import {commonHomeLinkStyle} from '@/ui/home/style';
 import {classNames} from '@/utils/react';
 
 
@@ -20,8 +21,8 @@ export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
         disabled
         className={classNames(
           buttonStyle.base,
-          'bg-slate-400/50 dark:bg-slate-700/50 text-slate-500/70 dark:text-slate-500',
-          'inline-block p-0.5 h-32 w-full border border-slate-400/50 dark:border-slate-500',
+          buttonStyle.disabled,
+          commonHomeLinkStyle,
         )}
       >
         <Flex direction="row" center className="h-full gap-1.5">
@@ -44,7 +45,8 @@ export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
       href={href}
       className={classNames(
         whiteHoverableClasses.parent,
-        'inline-block p-0.5 h-32 w-full border border-slate-700 dark:border-slate-300',
+        commonHomeLinkStyle,
+        'border border-slate-700 dark:border-slate-300',
       )}
     >
       <Flex

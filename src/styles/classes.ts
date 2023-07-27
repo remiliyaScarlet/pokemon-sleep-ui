@@ -14,7 +14,20 @@ export const buttonStyle = {
   border: 'border border-slate-700 dark:border-slate-300',
   text: 'text-slate-700 dark:text-slate-300',
   textHover: 'hover:text-slate-200 dark:hover:text-slate-800',
+  disabled: classNames(
+    'bg-slate-400/50 dark:bg-slate-700/50 text-slate-500/70 dark:text-slate-500',
+    'border border-slate-400/50 dark:border-slate-500',
+  ),
 };
+
+export const buttonStyleEnabled = classNames(
+  buttonStyle.base,
+  buttonStyle.size,
+  buttonStyle.background,
+  buttonStyle.border,
+  buttonStyle.text,
+  buttonStyle.textHover,
+);
 
 export const invertStyle = {
   normal: 'invert dark:invert-0',

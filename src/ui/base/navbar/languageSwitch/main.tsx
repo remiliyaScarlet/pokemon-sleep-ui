@@ -1,12 +1,13 @@
 import React from 'react';
 
-import {useLocale} from 'next-intl';
-
+import {I18nProvider} from '@/contexts/i18n';
 import {LanguageSwitchClient} from '@/ui/base/navbar/languageSwitch/client';
 
 
 export const LanguageSwitch = () => {
-  const locale = useLocale();
-
-  return <LanguageSwitchClient locale={locale}/>;
+  return (
+    <I18nProvider namespaces={[]}>
+      <LanguageSwitchClient/>
+    </I18nProvider>
+  );
 };
