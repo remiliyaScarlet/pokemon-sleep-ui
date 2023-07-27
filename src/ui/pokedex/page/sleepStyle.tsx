@@ -4,8 +4,8 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {infoSectionStyle} from '@/styles/classes';
 import {PokemonDataIcon} from '@/ui/pokedex/page/dataIcon';
-import {sectionStyle} from '@/ui/pokedex/page/styles';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
@@ -22,7 +22,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
   }
 
   return (
-    <Flex direction="col" center className={sectionStyle}>
+    <Flex direction="col" center className={infoSectionStyle}>
       {sleepStyles.map(({mapId, styles}) => {
         const mapName = t(mapId.toString());
 

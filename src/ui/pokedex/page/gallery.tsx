@@ -8,10 +8,9 @@ import {useTranslations} from 'next-intl';
 import {getFilterInputButtonClass} from '@/components/input/filter/utils';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {smoothTransform} from '@/styles/classes';
+import {infoSectionStyle, smoothTransform} from '@/styles/classes';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonImage} from '@/ui/pokedex/page/image';
-import {sectionStyle} from '@/ui/pokedex/page/styles';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
@@ -59,7 +58,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
   const [currentImage, setCurrentImage] = React.useState<CurrentPokemonImage>('portrait');
 
   return (
-    <Flex direction="col" center className={sectionStyle}>
+    <Flex direction="col" center className={infoSectionStyle}>
       <Flex direction="col" center noFullWidth className="relative h-72 w-72">
         {imageOptions
           .flatMap<[CurrentPokemonImage, boolean]>((image) => [[image, true], [image, false]])

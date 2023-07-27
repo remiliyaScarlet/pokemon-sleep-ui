@@ -4,9 +4,8 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {infoSectionStyle, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
-import {sectionStyle} from '@/ui/pokedex/page/styles';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
 
@@ -29,7 +28,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   const berryName = t(`Berry.${berry.id}`);
 
   return (
-    <Flex direction="col" center className={sectionStyle}>
+    <Flex direction="col" center className={infoSectionStyle}>
       <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
         <div className="relative h-8 w-8">
           <Image
