@@ -78,7 +78,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.map(({sleepType}) => sleepType)).sort((a, b) => a - b)}
         idToButton={(id) => (
           <Flex direction="row" className="gap-1" center>
-            <div className={classNames('h-2.5 w-2.5 rounded-full', sleepTypeBgClass[id])}/>
+            <div className={classNames('h-3 w-3 rounded-full', sleepTypeBgClass[id])}/>
             <div>{t(`SleepType.${id.toString()}`)}</div>
           </Flex>
         )}

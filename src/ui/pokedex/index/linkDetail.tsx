@@ -4,7 +4,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {imageSizes} from '@/ui/pokedex/index/const';
+import {imageIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 
 
@@ -15,7 +15,7 @@ export const PokedexLinkDetail = React.memo(({berry, skill, display}: PokedexLin
     return (
       <Flex direction="row" className="gap-0.5">
         <div className="relative h-5 w-5">
-          <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill sizes={imageSizes}/>
+          <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill sizes={imageIconSizes}/>
         </div>
         <div>
           {berry.quantity}

@@ -14,7 +14,7 @@
     },
     "Pokedex": {
       "Index": {
-        "Title": "寶可夢清單"
+        "Title": "寶可夢一覽"
       },
       "Page": {
         "Title": "寶可夢 - {name}"
@@ -66,6 +66,17 @@
         "MaxCarry": "持有上限",
         "Recruit": "成為夥伴"
       }
+    },
+    "Meal": {
+      "Ingredient": "食材",
+      "MealType": "料理"
+    }
+  },
+  "Game": {
+    "MealType": {
+      "1": "咖哩",
+      "2": "沙拉",
+      "3": "果汁"
     }
   }
 }

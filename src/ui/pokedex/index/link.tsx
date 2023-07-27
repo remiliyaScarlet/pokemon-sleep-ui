@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {imageSizes} from '@/ui/pokedex/index/const';
+import {imageIconSizes} from '@/styles/image';
 import {PokedexLinkDetail} from '@/ui/pokedex/index/linkDetail';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {classNames} from '@/utils/react';
@@ -34,7 +34,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
           <div className="relative h-5 w-5">
             <Image
               src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} fill
-              className="drop-shadow-thick" sizes={imageSizes}
+              className="drop-shadow-thick" sizes={imageIconSizes}
             />
           </div>
           <div>
@@ -44,10 +44,10 @@ export const PokedexLink = (props: PokedexLinkProps) => {
         <Flex direction="col" className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
           <PokedexLinkDetail {...props}/>
         </Flex>
-        <div className="relative h-16 w-16">
+        <div className="relative h-16 w-16 opacity-70">
           <Image
             src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
-            fill sizes={imageSizes} priority
+            fill sizes={imageIconSizes} priority
           />
         </div>
       </Flex>

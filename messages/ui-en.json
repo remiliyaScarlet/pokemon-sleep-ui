@@ -66,6 +66,17 @@
         "MaxCarry": "Carry Limit",
         "Recruit": "Partnered"
       }
+    },
+    "Meal": {
+      "Ingredient": "Ingredient",
+      "MealType": "Meal"
+    }
+  },
+  "Game": {
+    "MealType": {
+      "1": "Curry",
+      "2": "Salad",
+      "3": "Juice"
     }
   }
 }

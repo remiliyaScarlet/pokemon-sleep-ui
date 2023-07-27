@@ -2,14 +2,14 @@ import {useTranslations} from 'next-intl';
 
 import {useFilterInput} from '@/components/input/filter/hooks';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
+import {PokedexData, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
 
 
-type GetFilteredPokedexOpts = {
-  data: PokedexSinglePokemon[],
+type UseFilteredPokedexOpts = {
+  data: PokedexData,
 };
 
-export const useFilteredPokedex = ({data}: GetFilteredPokedexOpts) => {
+export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
   const t = useTranslations('Game.PokemonName');
 
   return useFilterInput<PokedexFilter, PokedexSinglePokemon, PokemonId>({
