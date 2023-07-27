@@ -1,14 +1,12 @@
 import React from 'react';
 
-import {pick} from 'lodash';
-import {NextIntlClientProvider, useLocale, useMessages} from 'next-intl';
-
 import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {getSinglePokemonInfo} from '@/controller/pokemonInfo';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
+import {I18nProvider} from '@/ui/cooking/i18n';
 import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonMeta} from '@/ui/pokedex/page/meta';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
@@ -24,9 +22,6 @@ export const Pokemon = ({params}: Props) => {
   const pokemon = React.use(getSinglePokemonInfo(idNumber));
   const sleepStyles = React.use(getPokemonSleepStyles(idNumber));
 
-  const locale = useLocale();
-  const messages = useMessages();
-
   if (!pokemon) {
     return <Loading text="Pokemon"/>;
   }
@@ -37,16 +32,9 @@ export const Pokemon = ({params}: Props) => {
     <PageLayout>
       <Flex direction="row" center wrap className="mt-2 gap-2">
         <PokemonMeta {...props}/>
-        {
-          messages ?
-            <NextIntlClientProvider
-              locale={locale}
-              messages={pick(messages, 'UI.Common', 'UI.InPage.Pokedex.Info', 'Game.SleepFace')}
-            >
-              <PokemonImageGallery {...props}/>
-            </NextIntlClientProvider> :
-            <Loading text="I18n"/>
-        }
+        <I18nProvider namespaces={['UI.Common', 'UI.InPage.Pokedex.Info', 'Game.SleepFace']}>
+          <PokemonImageGallery {...props}/>
+        </I18nProvider>
         <PokemonSleepStyles {...props}/>
       </Flex>
     </PageLayout>
