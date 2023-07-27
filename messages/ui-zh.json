@@ -14,11 +14,14 @@
     },
     "Pokedex": {
       "Index": {
-        "Title": "寶可夢一覽"
+        "Title": "寶可夢圖鑑"
       },
       "Page": {
         "Title": "寶可夢 - {name}"
       }
+    },
+    "Cooking": {
+      "Title": "製作料理"
     },
     "Meal": {
       "Index": {
@@ -26,6 +29,14 @@
       },
       "Page": {
         "Title": "料理 - {name}"
+      }
+    },
+    "Ingredient": {
+      "Index": {
+        "Title": "食材"
+      },
+      "Page": {
+        "Title": "食材 - {name}"
       }
     },
     "Map": {

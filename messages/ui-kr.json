@@ -20,12 +20,23 @@
         "Title": "포켓몬 - {name}"
       }
     },
+    "Cooking": {
+      "Title": "요리를 만들어"
+    },
     "Meal": {
       "Index": {
-        "Title": "요리"
+        "Title": "요리 도감"
       },
       "Page": {
         "Title": "요리 - {name}"
+      }
+    },
+    "Ingredient": {
+      "Index": {
+        "Title": "식재료"
+      },
+      "Page": {
+        "Title": "식재료 - {name}"
       }
     },
     "Map": {
