@@ -26,6 +26,14 @@ body {
     var(--background-start-rgb);
 }
 
+@layer base {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 @layer utilities {
   .width-with-gap {
     --items-count: 1;
