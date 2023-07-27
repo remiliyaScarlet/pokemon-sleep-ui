@@ -5,10 +5,10 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {mealTypeBackgroundStyle} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
 import {MealLinkProps} from '@/ui/meal/index/type';
-import {mealTypeBackgroundStyle} from '@/ui/meal/style';
 import {classNames} from '@/utils/react';
 
 

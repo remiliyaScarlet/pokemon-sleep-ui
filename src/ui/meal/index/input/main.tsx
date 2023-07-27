@@ -6,10 +6,10 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils';
 import {Flex} from '@/components/layout/flex';
+import {mealTypeDotStyle} from '@/styles/classes';
 import {I18nNamespaces} from '@/types/i18n';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
-import {mealTypeDotStyle} from '@/ui/meal/style';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
