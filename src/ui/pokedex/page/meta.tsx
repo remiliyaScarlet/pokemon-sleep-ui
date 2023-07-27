@@ -64,15 +64,15 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Berry')}
             </td>
             <td>
-              <Flex direction="row" center className="gap-0.5">
-                <div className="relative h-12 w-12">
+              <Flex direction="row" center className="gap-1">
+                <div className="relative h-10 w-10">
                   <Image
                     src={`/images/berry/${berry.id}.png`} alt={berryName}
                     fill sizes="(max-width: 768px) 10vw, 5vw"
                   />
                 </div>
-                <div className="whitespace-nowrap">
-                  {berryName}
+                <div className="whitespace-nowrap text-lg">
+                  {berryName} &times; {berry.quantity}
                 </div>
               </Flex>
             </td>
