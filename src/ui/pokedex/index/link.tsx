@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {textShadow} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {PokedexLinkDetail} from '@/ui/pokedex/index/linkDetail';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
@@ -28,7 +29,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
           direction="row"
           className={classNames(
             'absolute left-1 top-1 z-10 whitespace-nowrap items-center gap-0.5',
-            'shadow-slate-200 text-shadow dark:shadow-slate-900',
+            textShadow,
           )}
         >
           <div className="relative h-5 w-5">

@@ -79,6 +79,7 @@
       }
     },
     "Meal": {
+      "PotCapacity": "容量",
       "Ingredient": "食材",
       "MealType": "料理"
     }

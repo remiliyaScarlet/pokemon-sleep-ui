@@ -1,7 +1,8 @@
 import {useFilterInput} from '@/components/input/filter/hooks';
-import {isFilterConditionActive, isFilterMatchingGivenArray} from '@/components/input/filter/utils';
+import {isFilterConditionActive} from '@/components/input/filter/utils';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {MealFilter} from '@/ui/meal/index/type';
+import {toSum} from '@/utils/array';
 
 
 type UseFilteredMealsOpts = {
@@ -15,17 +16,19 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
     initialFilter: {
       type: {},
       ingredient: {},
+      ingredientCountCap: null,
     },
     isDataIncluded: (filter, data) => {
       if (
         isFilterConditionActive({filter, filterKey: 'ingredient'}) &&
-        !isFilterMatchingGivenArray({
-          filter,
-          filterKey: 'ingredient',
-          ids: data.ingredients.map(({id}) => id),
-          keyToId: (key) => Number(key),
-          onIdsEmpty: true,
-        })
+        !data.ingredients.some(({id}) => filter.ingredient[id])
+      ) {
+        return false;
+      }
+
+      if (
+        filter.ingredientCountCap !== null &&
+        toSum(data.ingredients.map(({quantity}) => quantity)) > filter.ingredientCountCap
       ) {
         return false;
       }

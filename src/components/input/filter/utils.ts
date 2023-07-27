@@ -1,5 +1,10 @@
 import {toggleClass} from '@/components/input/filter/const';
-import {FilterInclusionMap, FilterInputOnClickProps, FilterInputProps} from '@/components/input/filter/type';
+import {
+  FilterInclusionMap,
+  FilterInputOnClickProps,
+  FilterInputProps,
+  FilterWithInclusionMap,
+} from '@/components/input/filter/type';
 import {classNames} from '@/utils/react';
 import {Indexable, KeysOfType} from '@/utils/type';
 
@@ -27,14 +32,14 @@ export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
 });
 
 type GetMultiSelectOnClickPropsOpts<
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 > = FilterInputProps<TFilter> & {
   filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>
 };
 
 export const getMultiSelectOnClickProps = <
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 >({
   filter,
@@ -54,7 +59,7 @@ export const getMultiSelectOnClickProps = <
 };
 
 type IsFilterConditionActiveProps<
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 > = {
   filter: TFilter,
@@ -62,7 +67,7 @@ type IsFilterConditionActiveProps<
 };
 
 export const isFilterConditionActive = <
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 >({filter, filterKey}: IsFilterConditionActiveProps<TFilter, TId>) => (
   Object.values(filter[filterKey]).some((value) => value)
@@ -70,7 +75,7 @@ export const isFilterConditionActive = <
 
 
 type IsFilterIncludeAllIdsProps<
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable,
 > = {
   filter: TFilter,
@@ -81,7 +86,7 @@ type IsFilterIncludeAllIdsProps<
 };
 
 export const isFilterMatchingGivenArray = <
-  TFilter extends Record<TId, FilterInclusionMap<TId>>,
+  TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 >({filter, filterKey, ids, keyToId, onIdsEmpty}: IsFilterIncludeAllIdsProps<TFilter, TId>) => (
   Object.entries(filter[filterKey])

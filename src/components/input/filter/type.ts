@@ -6,6 +6,8 @@ import {Indexable} from '@/utils/type';
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
 
+export type FilterWithInclusionMap<TId extends Indexable> = Record<TId, FilterInclusionMap<TId> | any>;
+
 export type FilterInputProps<TFilter> = {
   filter: TFilter,
   setFilter: React.Dispatch<React.SetStateAction<TFilter>>,

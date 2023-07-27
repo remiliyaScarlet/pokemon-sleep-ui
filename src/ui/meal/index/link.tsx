@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {mealTypeBackgroundStyle} from '@/styles/classes';
+import {mealTypeBackgroundStyle, textShadow} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
 import {MealLinkProps} from '@/ui/meal/index/type';
@@ -28,7 +28,7 @@ export const MealLink = (props: MealLinkProps) => {
           direction="row"
           className={classNames(
             'absolute left-1 top-1 z-10 whitespace-nowrap items-center gap-0.5',
-            'shadow-slate-200 text-shadow dark:shadow-slate-900',
+            textShadow,
           )}
         >
           {mealName}

@@ -79,6 +79,7 @@
       }
     },
     "Meal": {
+      "PotCapacity": "Max",
       "Ingredient": "Ingredient",
       "MealType": "Meal"
     }

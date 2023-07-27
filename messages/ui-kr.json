@@ -79,6 +79,7 @@
       }
     },
     "Meal": {
+      "PotCapacity": "용량",
       "Ingredient": "식재료",
       "MealType": "요리"
     }
