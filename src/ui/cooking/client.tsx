@@ -7,6 +7,8 @@ import {Meal} from '@/types/mongo/meal';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';
 import {CookingInput} from '@/ui/cooking/type';
+import {toUnique} from '@/utils/array';
+import {getMealRequiredQuantity} from '@/utils/game/meal';
 
 
 type Props = {
@@ -21,11 +23,23 @@ export const CookingClient = ({meals, ingredients}: Props) => {
     recipeLevel: {},
   });
 
+  const validMeals = React.useMemo(
+    () => meals.filter((meal) => {
+      if (input.type !== meal.type) {
+        return false;
+      }
+
+      return getMealRequiredQuantity(meal) <= input.capacity;
+    }),
+    [input],
+  );
+  const mealTypes = toUnique(meals.map(({type}) => type));
+
   return (
     <Flex direction="col">
-      <CookingInputUI input={input} setInput={setInput} meals={meals}/>
+      <CookingInputUI input={input} setInput={setInput} meals={validMeals} mealTypes={mealTypes}/>
       <hr className="my-2 border-t-gray-700"/>
-      <CookingResult input={input} meals={meals} ingredients={ingredients}/>
+      <CookingResult input={input} meals={validMeals} mealTypes={mealTypes} ingredients={ingredients}/>
     </Flex>
   );
 };

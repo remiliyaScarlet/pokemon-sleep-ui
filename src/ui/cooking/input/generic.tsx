@@ -13,13 +13,13 @@ import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
 
-export const CookingInputGeneral = ({meals, input, setInput}: CookingCommonProps) => {
+export const CookingInputGeneral = ({mealTypes, input, setInput}: CookingCommonProps) => {
   const t = useTranslations('Game.MealType');
 
   return (
     <>
       <Flex direction="row" center className="gap-1.5">
-        {toUnique(meals.map(({type}) => type)).map((type) => {
+        {mealTypes.map((type) => {
           const isActive = input.type === type;
 
           return (

@@ -13,4 +13,5 @@ export type CookingCommonProps = {
   input: CookingInput,
   setInput: React.Dispatch<React.SetStateAction<CookingInput>>,
   meals: Meal[],
+  mealTypes: MealTypeId[],
 };

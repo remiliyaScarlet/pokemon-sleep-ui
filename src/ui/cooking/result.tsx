@@ -10,7 +10,6 @@ import {IngredientMap} from '@/types/mongo/ingredient';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergy} from '@/ui/cooking/utils';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {classNames} from '@/utils/react';
 
 
@@ -21,18 +20,8 @@ type Props = Omit<CookingCommonProps, 'setInput'> & {
 export const CookingResult = ({input, meals, ingredients}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
-  const validMeals = React.useMemo(
-    () => meals.filter((meal) => {
-      if (input.type !== meal.type) {
-        return false;
-      }
-
-      return getMealRequiredQuantity(meal) <= input.capacity;
-    }),
-    [input],
-  );
   const totalEnergy = React.useMemo(
-    () => validMeals.map((meal) => ({
+    () => meals.map((meal) => ({
       meal,
       energy: getMealEnergy({
         meal,
@@ -40,7 +29,7 @@ export const CookingResult = ({input, meals, ingredients}: Props) => {
         ingredients,
       }),
     })),
-    [validMeals, input, ingredients],
+    [meals, input, ingredients],
   );
 
   return (
