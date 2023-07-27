@@ -24,7 +24,7 @@ export const MealInput = (props: Props) => {
   const {data, filter, setFilter} = props;
 
   const t = useTranslations('Game');
-  const t2 = useTranslations('UI.Game.MealType');
+  const t2 = useTranslations('Game.MealType');
 
   return (
     <Flex direction="col" className="gap-1">

@@ -134,6 +134,11 @@
             "9": "Instantly gets you × '{#1'} the usual help from a helper Pokémon."
         }
     },
+    "MealType": {
+        "1": "Curries / Stews",
+        "2": "Salads",
+        "3": "Desserts / Drinks"
+    },
     "PokemonType": {
         "1": "Normal",
         "10": "Flying",

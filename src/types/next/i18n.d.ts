@@ -59,9 +59,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         MealType: string,
       },
     },
-    Game: {
-      MealType: GameObjectIdToString,
-    },
   },
   Game: {
     Berry: GameObjectIdToString,
@@ -71,6 +68,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Name: GameObjectIdToString,
       Description: GameObjectIdToString,
     },
+    MealType: GameObjectIdToString,
     PokemonType: GameObjectIdToString,
     PokemonName: GameObjectIdToString,
     RankTitle: GameObjectIdToString,
