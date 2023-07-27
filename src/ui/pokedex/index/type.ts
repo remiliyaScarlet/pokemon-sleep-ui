@@ -1,7 +1,7 @@
+import {IngredientId} from '@/types/mongo/ingredient';
 import {
   PokemonBerryId,
   PokemonInfo,
-  PokemonIngredientId,
   PokemonSkillId,
   PokemonSleepTypeId,
   PokemonTypeId,
@@ -27,7 +27,7 @@ export type PokedexFilter = {
   sleepType: PokemonSleepTypeId | null,
   skill: PokemonSkillId | null,
   mapId: SleepMapId | null,
-  ingredient: PokemonIngredientId | null,
+  ingredient: IngredientId | null,
   berryId: PokemonBerryId | null,
   display: PokedexDisplayType,
 };

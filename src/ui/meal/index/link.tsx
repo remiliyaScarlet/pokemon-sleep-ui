@@ -39,7 +39,7 @@ export const MealLink = (props: MealLinkProps) => {
         <div className="relative h-16 w-16 opacity-40">
           <Image
             src={`/images/meal/portrait/${id}.png`} alt={mealName}
-            fill sizes={imageIconSizes} priority
+            fill sizes={imageIconSizes}
           />
         </div>
       </Flex>

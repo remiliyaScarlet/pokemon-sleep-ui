@@ -1,14 +1,21 @@
 import React from 'react';
 
+import {I18nProvider} from '@/contexts/i18n';
+import {getAllIngredients} from '@/controller/ingredient';
+import {getAllMeals} from '@/controller/meal';
 import {PageLayout} from '@/ui/base/layout';
+import {CookingClient} from '@/ui/cooking/client';
 
 
 export const Cooking = () => {
-  // FIXME: Meal link to allow entering current level (default 1)
-  // FIXME: Meal link to show current energy
+  const meals = React.use(getAllMeals());
+  const ingredients = React.use(getAllIngredients());
+
   return (
     <PageLayout>
-      TBA
+      <I18nProvider namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
+        <CookingClient meals={meals} ingredients={ingredients}/>
+      </I18nProvider>
     </PageLayout>
   );
 };

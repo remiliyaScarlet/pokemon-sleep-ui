@@ -48,7 +48,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
         <div className="relative h-16 w-16 opacity-70">
           <Image
             src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
-            fill sizes={imageIconSizes} priority
+            fill sizes={imageIconSizes}
           />
         </div>
       </Flex>

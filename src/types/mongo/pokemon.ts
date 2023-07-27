@@ -1,3 +1,6 @@
+import {IngredientId} from '@/types/mongo/ingredient';
+
+
 export type PokemonId = number;
 
 export type PokemonTypeId = number;
@@ -5,8 +8,6 @@ export type PokemonTypeId = number;
 export type PokemonSleepTypeId = number;
 
 export type PokemonBerryId = number;
-
-export type PokemonIngredientId = number;
 
 export type PokemonSkillId = number;
 
@@ -31,6 +32,6 @@ export type PokemonInfo = {
   sleepType: PokemonSleepTypeId,
   stats: PokemonStats,
   berry: PokemonBerry,
-  ingredients: PokemonIngredientId[],
+  ingredients: IngredientId[],
   skill: PokemonSkillId,
 };

@@ -25,10 +25,10 @@
     },
     "Meal": {
       "Index": {
-        "Title": "料理"
+        "Title": "レシピ一覧"
       },
       "Page": {
-        "Title": "料理 - {name}"
+        "Title": "レシピ - {name}"
       }
     },
     "Ingredient": {
@@ -77,6 +77,11 @@
         "MaxCarry": "最大所持数",
         "Recruit": "仲間になる"
       }
+    },
+    "Cooking": {
+      "Energy": "最終エナジー",
+      "PotCapacity": "容量",
+      "RecipeLevel": "レシピレベル"
     },
     "Meal": {
       "PotCapacity": "容量",

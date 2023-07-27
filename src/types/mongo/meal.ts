@@ -1,4 +1,4 @@
-import {PokemonIngredientId} from '@/types/mongo/pokemon';
+import {IngredientId} from '@/types/mongo/ingredient';
 
 
 export type MealId = number;
@@ -6,7 +6,7 @@ export type MealId = number;
 export type MealTypeId = number;
 
 export type MealIngredient = {
-  id: PokemonIngredientId,
+  id: IngredientId,
   quantity: number,
 };
 

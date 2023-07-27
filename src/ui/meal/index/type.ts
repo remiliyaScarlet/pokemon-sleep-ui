@@ -1,11 +1,11 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
+import {IngredientId} from '@/types/mongo/ingredient';
 import {Meal, MealTypeId} from '@/types/mongo/meal';
-import {PokemonIngredientId} from '@/types/mongo/pokemon';
 
 
 export type MealFilter = {
   type: FilterInclusionMap<MealTypeId>,
-  ingredient: FilterInclusionMap<PokemonIngredientId>,
+  ingredient: FilterInclusionMap<IngredientId>,
   ingredientCountCap: number | null,
 };
 

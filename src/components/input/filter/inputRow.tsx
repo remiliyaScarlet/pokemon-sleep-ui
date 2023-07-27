@@ -15,6 +15,7 @@ export const FilterInputRow = ({style = 'normal', children}: React.PropsWithChil
     <Flex
       direction="col"
       className={classNames('items-center gap-1 rounded-lg p-1 sm:flex-row', rowBackground[style])}
+      noFullWidth={style === 'none'}
     >
       {children}
     </Flex>

@@ -25,10 +25,10 @@
     },
     "Meal": {
       "Index": {
-        "Title": "料理"
+        "Title": "食譜一覽"
       },
       "Page": {
-        "Title": "料理 - {name}"
+        "Title": "食譜 - {name}"
       }
     },
     "Ingredient": {
@@ -77,6 +77,11 @@
         "MaxCarry": "持有上限",
         "Recruit": "成為夥伴"
       }
+    },
+    "Cooking": {
+      "Energy": "最終能量",
+      "PotCapacity": "容量",
+      "RecipeLevel": "食譜等級"
     },
     "Meal": {
       "PotCapacity": "容量",

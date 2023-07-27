@@ -2,7 +2,7 @@ import {useFilterInput} from '@/components/input/filter/hooks';
 import {isFilterConditionActive} from '@/components/input/filter/utils';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {MealFilter} from '@/ui/meal/index/type';
-import {toSum} from '@/utils/array';
+import {getMealRequiredQuantity} from '@/utils/game/meal';
 
 
 type UseFilteredMealsOpts = {
@@ -26,10 +26,7 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
         return false;
       }
 
-      if (
-        filter.ingredientCountCap !== null &&
-        toSum(data.ingredients.map(({quantity}) => quantity)) > filter.ingredientCountCap
-      ) {
+      if (filter.ingredientCountCap !== null && getMealRequiredQuantity(data) > filter.ingredientCountCap) {
         return false;
       }
 

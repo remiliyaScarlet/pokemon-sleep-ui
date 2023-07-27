@@ -21,14 +21,14 @@
       }
     },
     "Cooking": {
-      "Title": "요리를 만들어"
+      "Title": "요리한다"
     },
     "Meal": {
       "Index": {
-        "Title": "요리 도감"
+        "Title": "레시피 일람"
       },
       "Page": {
-        "Title": "요리 - {name}"
+        "Title": "레시피 - {name}"
       }
     },
     "Ingredient": {
@@ -77,6 +77,11 @@
         "MaxCarry": "최대 소지 수",
         "Recruit": "동료가 되어"
       }
+    },
+    "Cooking": {
+      "Energy": "최종 에너지",
+      "PotCapacity": "용량",
+      "RecipeLevel": "레시피 레벨"
     },
     "Meal": {
       "PotCapacity": "용량",
