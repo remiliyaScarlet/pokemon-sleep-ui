@@ -87,10 +87,6 @@ body {
     --items-count: 8;
   }
   
-  .width-with-gap-12-items {
-    --items-count: 12;
-  }
-  
   /* endregion */
   
   .info-in-image {

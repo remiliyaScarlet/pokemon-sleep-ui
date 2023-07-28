@@ -18,7 +18,7 @@ export const CookingInputGeneral = ({mealTypes, input, setInput}: CookingCommonP
 
   return (
     <>
-      <Flex direction="row" center className="gap-1.5">
+      <Flex direction="row" center wrap className="gap-1.5">
         {mealTypes.map((type) => {
           const isActive = input.type === type;
 
@@ -30,7 +30,7 @@ export const CookingInputGeneral = ({mealTypes, input, setInput}: CookingCommonP
               onClick={() => setInput((original) => ({...original, type}))}
             >
               <Flex direction="col" center className={classNames(
-                'px-5 h-8 rounded-lg',
+                'px-4 h-8 rounded-lg whitespace-nowrap',
                 mealTypeBackgroundStyle[type],
                 isActive ? mealTypeActiveStyle[type] : undefined,
               )}>

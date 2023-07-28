@@ -27,7 +27,7 @@ export const FilterCategoryInput = <TId, TNamespace extends I18nNamespaces>({
       <div className="w-32 whitespace-nowrap text-center text-sm">
         {t(titleI18nKey)}
       </div>
-      <Flex direction="row" className="gap-1" wrap>
+      <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {
           const active = isActive(id);
 

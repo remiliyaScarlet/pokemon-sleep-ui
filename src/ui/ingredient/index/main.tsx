@@ -17,8 +17,8 @@ export const IngredientIndex = () => {
           <div
             key={ingredient.id}
             className={classNames(
-              'relative width-with-gap width-with-gap-3-items sm:width-with-gap-4-items',
-              'md:width-with-gap-6-items lg:width-with-gap-8-items xl:width-with-gap-12-items',
+              'relative width-with-gap width-with-gap-2-items sm:width-with-gap-3-items',
+              'md:width-with-gap-5-items lg:width-with-gap-6-items xl:width-with-gap-8-items',
             )}
           >
             <IngredientLink ingredient={ingredient}/>
