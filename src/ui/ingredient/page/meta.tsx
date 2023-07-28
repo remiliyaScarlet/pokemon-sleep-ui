@@ -15,6 +15,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
 
   const t = useTranslations('Game.Food');
   const t2 = useTranslations('UI.Common');
+  const t3 = useTranslations('UI.InPage.Ingredient');
 
   const ingredientName = t(id.toString());
 
@@ -31,7 +32,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
           <tr>
             <td>
               <div className="relative h-7 w-7">
-                <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageSmallIconSizes}/>
+                <Image src="/images/generic/energy.png" alt={t3('Energy')} fill sizes={imageSmallIconSizes}/>
               </div>
             </td>
             <td>
