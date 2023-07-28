@@ -66,4 +66,8 @@ body {
   .width-with-gap-8-items {
     --items-count: 8;
   }
+  
+  .width-with-gap-12-items {
+    --items-count: 12;
+  }
 }
