@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {buttonStyleClickable} from '@/styles/classes';
+import {imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
 import {classNames} from '@/utils/react';
 
@@ -26,10 +27,7 @@ export const IngredientLink = ({ingredient}: Props) => {
     <Link href={`/ingredient/${id}`}>
       <Flex key={id} direction="col" center className={classNames('gap-0.5 p-1', buttonStyleClickable)} noFullWidth>
         <div className="relative h-12 w-12">
-          <Image
-            src={`/images/ingredient/${id}.png`} alt={ingredientName}
-            fill sizes="(max-width: 768px) 10vw, 5vw"
-          />
+          <Image src={`/images/ingredient/${id}.png`} alt={ingredientName} fill sizes={imageSmallIconSizes}/>
         </div>
         <div className="whitespace-nowrap p-1">
           {ingredientName}
@@ -39,10 +37,7 @@ export const IngredientLink = ({ingredient}: Props) => {
             <tr>
               <td>
                 <div className="relative h-4 w-4">
-                  <Image
-                    src="/images/generic/energy.png" alt={t('Energy')} fill
-                    sizes="(max-width: 768px) 10vw, 5vw"
-                  />
+                  <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageSmallIconSizes}/>
                 </div>
               </td>
               <td>
@@ -52,10 +47,7 @@ export const IngredientLink = ({ingredient}: Props) => {
             <tr>
               <td>
                 <div className="relative h-4 w-4">
-                  <Image
-                    src="/images/generic/shard.png" alt={t2('DreamShards')} fill
-                    sizes="(max-width: 768px) 10vw, 5vw"
-                  />
+                  <Image src="/images/generic/shard.png" alt={t2('DreamShards')} fill sizes={imageSmallIconSizes}/>
                 </div>
               </td>
               <td>

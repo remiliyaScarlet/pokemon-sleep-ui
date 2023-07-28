@@ -21,13 +21,14 @@ export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> 
   return (await getCollection()).find({}, {projection: {_id: false}});
 };
 
-export const getPokemonByIngredient = async (ingredientId: IngredientId | undefined): Promise<PokemonInfo[]> => {
+export const getPokemonByIngredient = async (ingredientId: IngredientId | undefined): Promise<PokemonId[]> => {
   if (!ingredientId) {
     return [];
   }
 
   return (await getCollection())
     .find({ingredients: ingredientId}, {projection: {_id: false}})
+    .map(({id}) => id)
     .toArray();
 };
 

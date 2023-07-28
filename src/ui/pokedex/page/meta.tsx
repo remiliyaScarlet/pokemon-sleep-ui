@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {infoSectionStyle, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
@@ -65,10 +66,7 @@ export const PokemonMeta = (props: PokemonProps) => {
             <td>
               <Flex direction="row" center className="gap-1">
                 <div className="relative h-10 w-10">
-                  <Image
-                    src={`/images/berry/${berry.id}.png`} alt={berryName}
-                    fill sizes="(max-width: 768px) 10vw, 5vw"
-                  />
+                  <Image src={`/images/berry/${berry.id}.png`} alt={berryName} fill sizes={imageSmallIconSizes}/>
                 </div>
                 <div className="whitespace-nowrap text-lg">
                   {berryName} &times; {berry.quantity}
@@ -90,7 +88,7 @@ export const PokemonMeta = (props: PokemonProps) => {
                       <div className="relative h-12 w-12">
                         <Image
                           src={`/images/ingredient/${ingredient}.png`} alt={ingredientName}
-                          fill sizes="(max-width: 768px) 10vw, 5vw"
+                          fill sizes={imageSmallIconSizes}
                         />
                       </div>
                       <div className="whitespace-nowrap text-sm">
