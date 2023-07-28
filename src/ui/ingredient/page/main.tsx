@@ -30,7 +30,7 @@ export const IngredientPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="col" center className="gap-1.5 p-2 md:flex-row">
         <IngredientMeta {...ingredient}/>
-        <Flex direction="col" center className="gap-1.5">
+        <Flex direction="col" center stretch className="gap-1.5">
           <IngredientCookableMeals cookableMeals={cookableMeals}/>
           <IngredientObtainablePokemon obtainablePokemon={obtainablePokemon} ingredientId={idNumber}/>
         </Flex>
