@@ -22,3 +22,12 @@ export const getAllIngredients = async (): Promise<IngredientMap> => {
 export const getIngredient = async (id: IngredientId) => {
   return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
+
+const addIngredientDataIndex = async () => {
+  return Promise.all([
+    (await getCollection()).createIndex({id: 1}, {unique: true}),
+  ]);
+};
+
+addIngredientDataIndex()
+  .catch((e) => console.error('MongoDB failed to add ingredient index', e));

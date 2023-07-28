@@ -32,3 +32,13 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
 export const getPokemonSleepStyles = async (pokemonId: number): Promise<PokemonProps['sleepStyles']> => (
   (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
 );
+
+const addSleepStyleIndex = async () => {
+  return Promise.all([
+    (await getCollection()).createIndex([{pokemonId: 1}, {mapId: 1}], {unique: true}),
+    (await getCollection()).createIndex({mapId: 1}),
+  ]);
+};
+
+addSleepStyleIndex()
+  .catch((e) => console.error('MongoDB failed to add sleep style index', e));

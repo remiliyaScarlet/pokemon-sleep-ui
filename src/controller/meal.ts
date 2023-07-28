@@ -29,3 +29,13 @@ export const getMealByIngredient = async (id: number | undefined): Promise<Meal[
 
   return (await getCollection()).find({'ingredients.id': id}, {projection: {_id: false}}).toArray();
 };
+
+const addMealDataIndex = async () => {
+  return Promise.all([
+    (await getCollection()).createIndex({id: 1}, {unique: true}),
+    (await getCollection()).createIndex({'ingredients.id': 1}),
+  ]);
+};
+
+addMealDataIndex()
+  .catch((e) => console.error('MongoDB failed to add meal index', e));

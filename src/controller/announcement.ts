@@ -60,9 +60,9 @@ const addAnnouncementDataValidation = async () => {
 
 const addAnnouncementDataIndex = async () => {
   return Promise.all([
-    (await getCollection()).createIndex({'locale': 1}),
-    (await getCollection()).createIndex({'expiry': 1}, {expireAfterSeconds: 0}),
-    (await getCollection()).createIndex({'order': -1}),
+    (await getCollection()).createIndex({locale: 1}),
+    (await getCollection()).createIndex({expiry: 1}, {expireAfterSeconds: 0}),
+    (await getCollection()).createIndex({order: -1}),
   ]);
 };
 

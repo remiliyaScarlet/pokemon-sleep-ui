@@ -18,9 +18,8 @@ export const NavHomepage = () => {
   return (
     <li className={styles['nav-height']}>
       <Link href="/" className={classNames(
-        'transform-smooth',
-        'flex flex-row items-center gap-1 px-1.5',
-        'rounded-lg text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
+        'transform-smooth flex flex-row items-center gap-1 rounded-lg px-1.5',
+        'text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
       )}>
         <div className={classNames(styles['nav-height'], 'w-8 relative')}>
           <Image src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} fill sizes={imageSmallIconSizes}/>

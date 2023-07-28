@@ -57,3 +57,13 @@ export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Pr
 
   return ret;
 };
+
+const addPokemonInfoIndex = async () => {
+  return Promise.all([
+    (await getCollection()).createIndex({id: 1}, {unique: true}),
+    (await getCollection()).createIndex({ingredients: 1}),
+  ]);
+};
+
+addPokemonInfoIndex()
+  .catch((e) => console.error('MongoDB failed to add pokemon info index', e));
