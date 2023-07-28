@@ -2,7 +2,7 @@ import {Collection, FindCursor, WithId} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
 import {IngredientId} from '@/types/mongo/ingredient';
-import {PokemonByIngredientMap, PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo, PokemonIngredientData} from '@/types/mongo/pokemon';
 
 
 const getCollection = async (): Promise<Collection<PokemonInfo>> => {
@@ -21,33 +21,37 @@ export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> 
   return (await getCollection()).find({}, {projection: {_id: false}});
 };
 
-export const getPokemonByIngredient = async (ingredientId: IngredientId | undefined): Promise<PokemonId[]> => {
+export const getPokemonByIngredient = async (ingredientId: IngredientId | undefined): Promise<PokemonInfo[]> => {
   if (!ingredientId) {
     return [];
   }
 
   return (await getCollection())
     .find({ingredients: ingredientId}, {projection: {_id: false}})
-    .map(({id}) => id)
     .toArray();
 };
 
-export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Promise<PokemonByIngredientMap> => {
+export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Promise<PokemonIngredientData> => {
+  const ret: PokemonIngredientData = {
+    ingredient: {},
+    info: {},
+  };
+
   if (!ingredientIds.length) {
-    return [];
+    return ret;
   }
 
   const data = (await getCollection())
     .find({ingredients: {$in: ingredientIds}}, {projection: {_id: false}});
 
-  const ret: PokemonByIngredientMap = {};
   for await (const entry of data) {
     entry.ingredients.forEach((ingredientId) => {
-      if (!(ingredientId in ret) && ingredientIds.includes(ingredientId)) {
-        ret[ingredientId] = [] as PokemonId[];
+      if (!(ingredientId in ret.ingredient) && ingredientIds.includes(ingredientId)) {
+        ret.ingredient[ingredientId] = [] as PokemonInfo[];
       }
 
-      ret[ingredientId]?.push(entry.id);
+      ret.ingredient[ingredientId]?.push(entry);
+      ret.info[entry.id] = entry;
     });
   }
 
