@@ -13,6 +13,8 @@ import styles from './main.module.css';
 export const NavHomepage = () => {
   const t = useTranslations('UI.Metadata');
 
+  const rankBallId = Date.now() % 4 + 1;
+
   return (
     <li className={styles['nav-height']}>
       <Link href="/" className={classNames(
@@ -21,7 +23,7 @@ export const NavHomepage = () => {
         'rounded-lg text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
       )}>
         <div className={classNames(styles['nav-height'], 'w-8 relative')}>
-          <Image src="/images/rank/4.png" alt={t('Home.Title')} fill sizes={imageSmallIconSizes}/>
+          <Image src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} fill sizes={imageSmallIconSizes}/>
         </div>
         <div>
           <span className="hidden md:block">{t('SiteName')}</span>
