@@ -1,11 +1,12 @@
 import React from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
-import {infoSectionStyle, mealTypeTextStyle, textShadow} from '@/styles/classes';
+import {buttonStyleClickable, infoSectionStyle, mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {MealExp} from '@/ui/meal/page/exp';
@@ -29,16 +30,22 @@ export const MealMeta = (meal: Meal) => {
       <I18nProvider namespaces={['UI.InPage.Cooking']}>
         <MealExp {...meal}/>
       </I18nProvider>
-      <Flex direction="row">
+      <Flex direction="row" center className="gap-1.5">
         {meal.ingredients.map(({id, quantity}) => (
-          <Flex direction="col" center key={id}>
-            <div className="relative h-12 w-12">
-              <Image src={`/images/ingredient/${id}.png`} alt={mealName} fill sizes={imageIconSizes}/>
-            </div>
-            <div className={textShadow}>
-              {quantity}
-            </div>
-          </Flex>
+          <Link
+            key={id}
+            href={`/ingredient/${id}`}
+            className={classNames(buttonStyleClickable, 'p-1.5')}
+          >
+            <Flex direction="col" center>
+              <div className="relative h-12 w-12">
+                <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageIconSizes}/>
+              </div>
+              <div>
+                {quantity}
+              </div>
+            </Flex>
+          </Link>
         ))}
       </Flex>
     </Flex>

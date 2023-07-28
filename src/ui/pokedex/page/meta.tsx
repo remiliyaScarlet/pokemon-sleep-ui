@@ -1,10 +1,11 @@
 import React from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {infoSectionStyle, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {buttonStyleClickable, infoSectionStyle, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -79,22 +80,28 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Ingredient')}
             </td>
             <td>
-              <Flex direction="row" center className="gap-3">
+              <Flex direction="row" center className="gap-1">
                 {ingredients.map((ingredient) => {
                   const ingredientName = t(`Food.${ingredient}`);
 
                   return (
-                    <Flex key={`${id}-${ingredient}`} direction="col" center className="gap-0.5">
-                      <div className="relative h-12 w-12">
-                        <Image
-                          src={`/images/ingredient/${ingredient}.png`} alt={ingredientName}
-                          fill sizes={imageSmallIconSizes}
-                        />
-                      </div>
-                      <div className="whitespace-nowrap text-sm">
-                        {ingredientName}
-                      </div>
-                    </Flex>
+                    <Link
+                      key={`${id}-${ingredient}`}
+                      href={`/ingredient/${id}`}
+                      className={classNames(buttonStyleClickable, 'p-1.5')}
+                    >
+                      <Flex direction="col" center className="gap-0.5">
+                        <div className="relative h-12 w-12">
+                          <Image
+                            src={`/images/ingredient/${ingredient}.png`} alt={ingredientName}
+                            fill sizes={imageSmallIconSizes}
+                          />
+                        </div>
+                        <div className="whitespace-nowrap text-sm">
+                          {ingredientName}
+                        </div>
+                      </Flex>
+                    </Link>
                   );
                 })}
               </Flex>
