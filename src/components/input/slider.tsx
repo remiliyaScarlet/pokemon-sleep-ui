@@ -1,0 +1,26 @@
+import React from 'react';
+
+import {classNames} from '@/utils/react';
+
+
+type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'value'> & {
+  id: string,
+  value: number,
+  setValue: (newValue: number) => void,
+};
+
+export const Slider = ({id, value, setValue, ...props}: Props) => {
+  return (
+    <input
+      id={id}
+      type="range"
+      value={value}
+      onChange={(e) => setValue(Number(e.target.value))}
+      className={classNames(
+        'h-2 w-full cursor-pointer appearance-none rounded-lg',
+        'bg-slate-400/50 accent-slate-600/50 dark:bg-slate-700/70 dark:accent-slate-300/50',
+      )}
+      {...props}
+    />
+  );
+};

@@ -35,3 +35,5 @@ export type PokemonInfo = {
   ingredients: IngredientId[],
   skill: PokemonSkillId,
 };
+
+export type PokemonByIngredientMap = {[ingredient in IngredientId]?: PokemonInfo[]};

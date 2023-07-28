@@ -17,3 +17,7 @@ export const getAllMeals = async (): Promise<Meal[]> => {
     .find({}, {projection: {_id: false}})
     .toArray();
 };
+
+export const getSingleMeal = async (id: number) => {
+  return (await getCollection()).findOne({id}, {projection: {_id: false}});
+};

@@ -57,10 +57,16 @@ export const mealTypeBackgroundStyle: {[type in MealTypeId]: string} = {
   3: 'bg-lime-300/40 hover:bg-lime-400/70 dark:bg-lime-700/40 hover:dark:bg-lime-700/90',
 };
 
+export const mealTypeTextStyle: {[type in MealTypeId]: string} = {
+  1: 'text-orange-800 dark:text-orange-200',
+  2: 'text-yellow-800 dark:text-yellow-200',
+  3: 'text-lime-800 dark:text-lime-200',
+};
+
 export const mealTypeActiveStyle: {[type in MealTypeId]: string} = {
-  1: 'text-orange-800 ring-1 ring-inset ring-orange-800 dark:text-orange-200 dark:ring-orange-200',
-  2: 'text-yellow-800 ring-1 ring-inset ring-yellow-800 dark:text-yellow-200 dark:ring-yellow-200',
-  3: 'text-lime-800 ring-1 ring-inset ring-lime-800 dark:text-lime-200 dark:ring-lime-200',
+  1: classNames('ring-1 ring-inset ring-orange-800 dark:ring-orange-200', mealTypeTextStyle[1]),
+  2: classNames('ring-1 ring-inset ring-yellow-800 dark:ring-yellow-200', mealTypeTextStyle[2]),
+  3: classNames('ring-1 ring-inset ring-lime-800 dark:ring-lime-200', mealTypeTextStyle[3]),
 };
 
 export const mealTypeDotStyle: {[type in MealTypeId]: string} = {
