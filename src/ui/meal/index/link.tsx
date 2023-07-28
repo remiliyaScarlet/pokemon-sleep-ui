@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {mealTypeBackgroundStyle, textShadow} from '@/styles/classes';
+import {mealTypeBackgroundStyle} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
 import {MealLinkProps} from '@/ui/meal/index/type';
@@ -26,10 +26,7 @@ export const MealLink = (props: MealLinkProps) => {
       <Flex direction="row" className="h-full items-center justify-end gap-1.5">
         <Flex
           direction="row"
-          className={classNames(
-            'absolute left-1 top-1 z-10 whitespace-nowrap items-center gap-0.5',
-            textShadow,
-          )}
+          className="text-shadow-preset absolute left-1 top-1 z-10 items-center gap-0.5 whitespace-nowrap"
         >
           {mealName}
         </Flex>

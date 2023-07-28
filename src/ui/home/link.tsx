@@ -4,10 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import {Flex} from '@/components/layout/flex';
-import {buttonStyle, invertStyle, whiteHoverableClasses} from '@/styles/classes';
+import {imageSmallIconSizes} from '@/styles/image';
 import {NavEntry} from '@/ui/base/navbar/type';
-import {commonHomeLinkStyle} from '@/ui/home/style';
 import {classNames} from '@/utils/react';
+
+import styles from './main.module.css';
 
 
 type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
@@ -17,20 +18,10 @@ type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
 export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
   if (disabled) {
     return (
-      <button
-        disabled
-        className={classNames(
-          buttonStyle.base,
-          buttonStyle.disabled,
-          commonHomeLinkStyle,
-        )}
-      >
+      <button disabled className={classNames('button-base button-disabled', styles['home-link'])}>
         <Flex direction="row" center className="h-full gap-1.5">
           <div className="relative h-12 w-12">
-            <Image
-              src={imageSrc} alt={text} fill className={invertStyle.normal}
-              sizes="(max-width: 768px) 20vw, 10vw"
-            />
+            <Image src={imageSrc} alt={text} fill className="invert-on-light" sizes={imageSmallIconSizes}/>
           </div>
           <div className="text-lg">
             {text}
@@ -44,9 +35,8 @@ export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
     <Link
       href={href}
       className={classNames(
-        whiteHoverableClasses.parent,
-        commonHomeLinkStyle,
-        'border border-slate-700 dark:border-slate-300',
+        'button-clickable group border border-slate-700 dark:border-slate-300',
+        styles['home-link'],
       )}
     >
       <Flex
@@ -54,10 +44,7 @@ export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
         className="h-full gap-1.5 transition-transform group-hover:scale-125 motion-reduce:transform-none"
       >
         <div className="relative h-12 w-12">
-          <Image
-            src={imageSrc} alt={text} fill className={whiteHoverableClasses.icon}
-            sizes="(max-width: 768px) 20vw, 10vw"
-          />
+          <Image src={imageSrc} alt={text} fill className="invert-icon" sizes={imageSmallIconSizes}/>
         </div>
         <div className="text-lg">
           {text}

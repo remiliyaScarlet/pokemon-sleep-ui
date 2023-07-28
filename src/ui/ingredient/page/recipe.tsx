@@ -6,12 +6,10 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
-import {buttonStyle, buttonStyleClickable, infoSectionStyle} from '@/styles/classes';
 import {imageGallerySizes, imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -23,15 +21,12 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
   const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
-    <Flex direction="row" center wrap className={classNames(infoSectionStyle, 'gap-1 h-full')}>
+    <Flex direction="row" center wrap className="info-section h-full gap-1">
       {cookableMeals
         .sort((a, b) => (a.levels.at(-1)?.energy ?? 0) - (b.levels.at(-1)?.energy ?? 0))
         .map((meal) => (
           <Link key={meal.id} href={`/meal/${meal.id}`}>
-            <Flex
-              direction="col" center
-              className={classNames(buttonStyleClickable, buttonStyle.background, 'p-1.5 gap-0.5')}
-            >
+            <Flex direction="col" center className="button-clickable-bg gap-0.5 p-1.5">
               <div className="text-sm">
                 {t(meal.id.toString())}
               </div>

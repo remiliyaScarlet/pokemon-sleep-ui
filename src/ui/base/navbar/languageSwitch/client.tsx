@@ -7,10 +7,10 @@ import {usePathname, useRouter} from 'next-intl/client';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {localeName} from '@/const';
-import {buttonStyle, buttonStyleClickable} from '@/styles/classes';
-import {navButtonCommonStyle} from '@/ui/base/navbar/const';
 import {isLocale} from '@/utils/i18n';
 import {classNames} from '@/utils/react';
+
+import styles from '../main.module.css';
 
 
 export const LanguageSwitchClient = () => {
@@ -27,7 +27,7 @@ export const LanguageSwitchClient = () => {
   return (
     <>
       <button
-        className={classNames('text-sm px-2.5', navButtonCommonStyle, buttonStyleClickable, buttonStyle.border)}
+        className={classNames('button-clickable-border text-sm px-2.5', styles['nav-button'])}
         onClick={() => setShow(true)}
       >
         {isLocale(currentLocale) ? localeName[currentLocale] : `(${currentLocale})`}
@@ -41,10 +41,8 @@ export const LanguageSwitchClient = () => {
               onClick={() => onClick(locale)}
               className={classNames(
                 'flex w-full justify-center p-5 text-xl width-with-gap sm:width-with-gap-2-items',
-                buttonStyle.base,
-                currentLocale === locale ?
-                  buttonStyle.disabled :
-                  classNames(buttonStyle.border, buttonStyleClickable),
+                'button-base',
+                currentLocale === locale ? 'button-disabled' : 'button-clickable-border',
               )}
             >
               {name}

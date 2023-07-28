@@ -20,6 +20,8 @@
       }
     }
     
+    @apply h-10 overflow-hidden text-sm md:h-5;
+    
     & > div {
       @apply rounded-none table-cell align-middle w-screen transform-gpu;
       

@@ -34,7 +34,27 @@ body {
   }
 }
 
+@layer components {
+  .button-border {
+    @apply border border-slate-700 dark:border-slate-300;
+  }
+  
+  .button-bg-hover {
+    @apply hover:bg-slate-700 hover:dark:bg-slate-300;
+  }
+  
+  .button-text-hover {
+    @apply hover:text-slate-200 dark:hover:text-slate-800;
+  }
+  
+  .meal-active {
+    @apply ring-1 ring-inset;
+  }
+}
+
 @layer utilities {
+  /* region `width-with-gap` series */
+  
   .width-with-gap {
     --items-count: 1;
     --gap: 0.5rem;
@@ -69,5 +89,120 @@ body {
   
   .width-with-gap-12-items {
     --items-count: 12;
+  }
+  
+  /* endregion */
+  
+  .info-in-image {
+    @apply rounded-full bg-slate-400/80 dark:bg-slate-500/80;
+  }
+  
+  .info-section {
+    @apply
+      gap-2 rounded-lg p-4 self-stretch
+      bg-gradient-to-br
+      from-slate-50/75 to-slate-100/60
+      dark:from-black/60 dark:to-slate-950/75
+    ;
+  }
+  
+  .info-section-md-fit {
+    @apply info-section md:w-fit;
+  }
+  
+  .text-shadow-preset {
+    @apply shadow-slate-200 text-shadow dark:shadow-slate-900;
+  }
+  
+  .transform-smooth {
+    @apply transform-gpu transition-colors;
+  }
+  
+  .invert-on-light {
+    @apply invert dark:invert-0;
+  }
+  
+  .invert-icon {
+    @apply invert-on-light group-hover:invert-0 group-hover:dark:invert;
+  }
+  
+  .button-base {
+    @apply rounded-lg transform-smooth;
+  }
+  
+  .button-bg {
+    @apply bg-slate-300/50 dark:bg-slate-700/50;
+  }
+  
+  .button-text {
+    @apply text-slate-700 dark:text-slate-300;
+  }
+  
+  .button-clickable {
+    @apply button-base button-bg-hover button-text button-text-hover;
+  }
+  
+  .button-clickable-border {
+    @apply button-clickable button-border;
+  }
+  
+  .button-clickable-bg {
+    @apply button-clickable button-bg;
+  }
+  
+  .button-disabled {
+    @apply
+      bg-slate-400/50 dark:bg-slate-700/50
+      text-slate-500/70 dark:text-slate-500
+      border border-slate-400/50 dark:border-slate-500
+    ;
+  }
+  
+  .meal-bg-curry {
+    @apply bg-orange-300/40 hover:bg-orange-400/70 dark:bg-orange-700/40 hover:dark:bg-orange-700/90;
+  }
+  
+  .meal-text-curry {
+    @apply text-orange-800 dark:text-orange-200;
+  }
+  
+  .meal-active-curry {
+    @apply meal-active meal-text-curry ring-1 ring-inset ring-orange-800 dark:ring-orange-200;
+  }
+  
+  .meal-dot-curry {
+    @apply bg-orange-600 dark:bg-orange-500;
+  }
+  
+  .meal-bg-salad {
+    @apply bg-yellow-300/40 hover:bg-yellow-400/70 dark:bg-yellow-700/40 hover:dark:bg-yellow-700/90;
+  }
+  
+  .meal-text-salad {
+    @apply text-yellow-800 dark:text-yellow-200;
+  }
+  
+  .meal-active-salad {
+    @apply meal-active meal-text-salad ring-yellow-800 dark:ring-yellow-200;
+  }
+  
+  .meal-dot-salad {
+    @apply bg-yellow-600 dark:bg-yellow-500;
+  }
+  
+  .meal-bg-dessert {
+    @apply bg-lime-300/40 hover:bg-lime-400/70 dark:bg-lime-700/40 hover:dark:bg-lime-700/90;
+  }
+  
+  .meal-text-dessert {
+    @apply text-lime-800 dark:text-lime-200;
+  }
+  
+  .meal-active-dessert {
+    @apply meal-active meal-text-dessert ring-inset ring-lime-800 dark:ring-lime-200;
+  }
+  
+  .meal-dot-dessert {
+    @apply bg-lime-600 dark:bg-lime-500;
   }
 }

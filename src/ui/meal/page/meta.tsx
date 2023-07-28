@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
-import {buttonStyle, buttonStyleClickable, infoSectionStyle, mealTypeTextStyle} from '@/styles/classes';
+import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {MealExp} from '@/ui/meal/page/exp';
@@ -20,7 +20,7 @@ export const MealMeta = (meal: Meal) => {
   const mealName = t(id.toString());
 
   return (
-    <Flex direction="col" center className={classNames(infoSectionStyle, 'md:w-fit')}>
+    <Flex direction="col" center className="info-section-md-fit">
       <div className={classNames('text-lg', mealTypeTextStyle[type])}>
         {mealName}
       </div>
@@ -32,11 +32,7 @@ export const MealMeta = (meal: Meal) => {
       </I18nProvider>
       <Flex direction="row" center className="gap-1.5">
         {meal.ingredients.map(({id, quantity}) => (
-          <Link
-            key={id}
-            href={`/ingredient/${id}`}
-            className={classNames(buttonStyleClickable, buttonStyle.background, 'p-1.5')}
-          >
+          <Link key={id} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
             <Flex direction="col" center>
               <div className="relative h-12 w-12">
                 <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageIconSizes}/>

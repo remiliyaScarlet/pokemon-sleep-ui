@@ -8,10 +8,8 @@ import {useTranslations} from 'next-intl';
 import {getFilterInputButtonClass} from '@/components/input/filter/utils';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {smoothTransform} from '@/styles/classes';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonImage} from '@/ui/pokedex/page/image';
-import {pokemonInfoSectionStyle} from '@/ui/pokedex/page/style';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
@@ -37,7 +35,7 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
       <div className="relative h-5 w-5">
         <Image
           src="/images/generic/pokeball.png" alt={t3('Name')} fill sizes="5vw"
-          className={classNames(smoothTransform, isActive ? 'invert-0 dark:invert' : '')}
+          className={classNames('transform-smooth', isActive ? 'invert-0 dark:invert' : '')}
         />
       </div>
     );
@@ -59,7 +57,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
   const [currentImage, setCurrentImage] = React.useState<CurrentPokemonImage>('portrait');
 
   return (
-    <Flex direction="col" center className={pokemonInfoSectionStyle}>
+    <Flex direction="col" center className="info-section-md-fit">
       <Flex direction="col" center noFullWidth className="relative h-72 w-72">
         {imageOptions
           .flatMap<[CurrentPokemonImage, boolean]>((image) => [[image, true], [image, false]])

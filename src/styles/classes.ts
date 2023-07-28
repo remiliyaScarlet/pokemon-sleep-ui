@@ -1,41 +1,5 @@
-import {SleepTypeClassMap} from '@/styles/type';
-import {MealTypeId} from '@/types/mongo/meal';
-import {classNames} from '@/utils/react';
+import {MealTypeClassMap, SleepTypeClassMap} from '@/styles/type';
 
-
-export const smoothTransform = 'transform-gpu transition-colors';
-
-export const textShadow = 'shadow-slate-200 text-shadow dark:shadow-slate-900';
-
-export const buttonStyle = {
-  base: classNames('group rounded-lg', smoothTransform),
-  background: 'bg-slate-300/50 dark:bg-slate-700/50',
-  backgroundHover: 'hover:bg-slate-700 hover:dark:bg-slate-300',
-  border: 'border border-slate-700 dark:border-slate-300',
-  text: 'text-slate-700 dark:text-slate-300',
-  textHover: 'hover:text-slate-200 dark:hover:text-slate-800',
-  disabled: classNames(
-    'bg-slate-400/50 dark:bg-slate-700/50 text-slate-500/70 dark:text-slate-500',
-    'border border-slate-400/50 dark:border-slate-500',
-  ),
-};
-
-export const buttonStyleClickable = classNames(
-  buttonStyle.base,
-  buttonStyle.backgroundHover,
-  buttonStyle.text,
-  buttonStyle.textHover,
-);
-
-export const invertStyle = {
-  normal: 'invert dark:invert-0',
-  hover: 'group-hover:invert-0 group-hover:dark:invert',
-};
-
-export const whiteHoverableClasses = {
-  parent: buttonStyleClickable,
-  icon: classNames(invertStyle.normal, invertStyle.hover),
-};
 
 export const sleepTypeBgClass: SleepTypeClassMap = {
   0: 'bg-sleep-dark-deep dark:bg-sleep-deep',
@@ -49,33 +13,26 @@ export const sleepTypeTextClass: SleepTypeClassMap = {
   4: 'text-sleep-dark-awake dark:text-sleep-awake',
 };
 
-export const mealTypeBackgroundStyle: {[type in MealTypeId]: string} = {
-  1: 'bg-orange-300/40 hover:bg-orange-400/70 dark:bg-orange-700/40 hover:dark:bg-orange-700/90',
-  2: 'bg-yellow-300/40 hover:bg-yellow-400/70 dark:bg-yellow-700/40 hover:dark:bg-yellow-700/90',
-  3: 'bg-lime-300/40 hover:bg-lime-400/70 dark:bg-lime-700/40 hover:dark:bg-lime-700/90',
+export const mealTypeBackgroundStyle: MealTypeClassMap = {
+  1: 'meal-bg-curry',
+  2: 'meal-bg-salad',
+  3: 'meal-bg-dessert',
 };
 
-export const mealTypeTextStyle: {[type in MealTypeId]: string} = {
-  1: 'text-orange-800 dark:text-orange-200',
-  2: 'text-yellow-800 dark:text-yellow-200',
-  3: 'text-lime-800 dark:text-lime-200',
+export const mealTypeTextStyle: MealTypeClassMap = {
+  1: 'meal-text-curry',
+  2: 'meal-text-salad',
+  3: 'meal-text-dessert',
 };
 
-export const mealTypeActiveStyle: {[type in MealTypeId]: string} = {
-  1: classNames('ring-1 ring-inset ring-orange-800 dark:ring-orange-200', mealTypeTextStyle[1]),
-  2: classNames('ring-1 ring-inset ring-yellow-800 dark:ring-yellow-200', mealTypeTextStyle[2]),
-  3: classNames('ring-1 ring-inset ring-lime-800 dark:ring-lime-200', mealTypeTextStyle[3]),
+export const mealTypeActiveStyle: MealTypeClassMap = {
+  1: 'meal-active-curry',
+  2: 'meal-active-salad',
+  3: 'meal-active-dessert',
 };
 
-export const mealTypeDotStyle: {[type in MealTypeId]: string} = {
-  1: 'bg-orange-600 dark:bg-orange-500',
-  2: 'bg-yellow-600 dark:bg-yellow-500',
-  3: 'bg-lime-600 dark:bg-lime-500',
+export const mealTypeDotStyle: MealTypeClassMap = {
+  1: 'meal-dot-curry',
+  2: 'meal-dot-salad',
+  3: 'meal-dot-dessert',
 };
-
-export const infoSectionStyle = classNames(
-  'gap-2 rounded-lg p-4 self-stretch',
-  'bg-gradient-to-br from-slate-50/75 to-slate-100/60 dark:from-black/60 dark:to-slate-950/75',
-);
-
-export const iconInfoStyle = 'rounded-full bg-slate-400/80 dark:bg-slate-500/80';

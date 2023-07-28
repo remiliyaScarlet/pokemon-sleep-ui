@@ -5,10 +5,9 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {buttonStyle, buttonStyleClickable, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
-import {pokemonInfoSectionStyle} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
 
@@ -31,7 +30,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   const berryName = t(`Berry.${berry.id}`);
 
   return (
-    <Flex direction="col" center className={pokemonInfoSectionStyle}>
+    <Flex direction="col" center className="info-section-md-fit">
       <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
         <div className="relative h-8 w-8">
           <Image
@@ -86,11 +85,7 @@ export const PokemonMeta = (props: PokemonProps) => {
                   const ingredientName = t(`Food.${ingredient}`);
 
                   return (
-                    <Link
-                      key={`${id}-${ingredient}`}
-                      href={`/ingredient/${id}`}
-                      className={classNames(buttonStyleClickable, buttonStyle.background, 'p-1.5')}
-                    >
+                    <Link key={`${id}-${ingredient}`} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
                       <Flex direction="col" center className="gap-0.5">
                         <div className="relative h-12 w-12">
                           <Image

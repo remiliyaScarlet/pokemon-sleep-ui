@@ -8,6 +8,7 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {getSingleSelectOnClickProps} from '@/components/input/filter/utils';
 import {Flex} from '@/components/layout/flex';
 import {sleepTypeBgClass} from '@/styles/classes';
+import {imageGallerySizes} from '@/styles/image';
 import {I18nNamespaces} from '@/types/i18n';
 import {PokedexDisplayTypeSelector} from '@/ui/pokedex/index/input/displayType';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
@@ -56,6 +57,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
               <Image
                 src={`/images/field/${id}.png`} alt={mapName}
                 fill className="rounded-xl opacity-50 dark:opacity-25"
+                sizes={imageGallerySizes}
               />
               <Flex direction="row" center className="absolute z-10 h-full w-full">
                 {mapName}

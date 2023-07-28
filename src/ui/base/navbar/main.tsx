@@ -8,7 +8,8 @@ import {ThemeSwitcher} from '@/ui/base/navbar/darkMode/main';
 import {NavEntryUI} from '@/ui/base/navbar/entry';
 import {NavHomepage} from '@/ui/base/navbar/home';
 import {LanguageSwitch} from '@/ui/base/navbar/languageSwitch/main';
-import {navItemHeightClass} from '@/ui/base/navbar/styles';
+
+import styles from './main.module.css';
 
 
 export const NavBar = () => {
@@ -22,7 +23,7 @@ export const NavBar = () => {
       <ul className="flex flex-wrap gap-1 text-center text-sm text-gray-400">
         <NavHomepage/>
         {navEntries.map(({i18nTextId, ...props}) => (
-          <li key={i18nTextId} className={navItemHeightClass}>
+          <li key={i18nTextId} className={styles['nav-height']}>
             <NavEntryUI alt={t(i18nTextId)} {...props}/>
           </li>
         ))}

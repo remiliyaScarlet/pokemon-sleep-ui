@@ -5,9 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {usePathname} from 'next-intl/client';
 
-import {buttonStyle, invertStyle, whiteHoverableClasses} from '@/styles/classes';
+import {imageSmallIconSizes} from '@/styles/image';
 import {NavEntry} from '@/ui/base/navbar/type';
 import {classNames} from '@/utils/react';
+
+import styles from './main.module.css';
 
 
 type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
@@ -27,16 +29,12 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
     <Link
       href={isCurrent ? {} : href}
       className={classNames(
-        buttonStyle.base,
-        buttonStyle.text,
-        'inline-block p-0.5 h-8 w-8 relative',
-        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : whiteHoverableClasses.parent,
+        styles['nav-height'],
+        'button-base button-text inline-block p-0.5 w-8 relative group',
+        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'button-clickable',
       )}
     >
-      <Image
-        src={imageSrc} alt={alt} fill className={isCurrent ? invertStyle.normal : whiteHoverableClasses.icon}
-        sizes="(max-width: 768px) 20vw, 10vw"
-      />
+      <Image src={imageSrc} alt={alt} fill className="invert-icon" sizes={imageSmallIconSizes}/>
     </Link>
   );
 };

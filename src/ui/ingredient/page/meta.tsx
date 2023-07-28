@@ -4,10 +4,8 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {infoSectionStyle} from '@/styles/classes';
 import {imagePortraitSizes, imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
-import {classNames} from '@/utils/react';
 
 
 export const IngredientMeta = (ingredient: Ingredient) => {
@@ -20,7 +18,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
   const ingredientName = t(id.toString());
 
   return (
-    <Flex direction="col" center className={classNames(infoSectionStyle, 'md:w-fit')}>
+    <Flex direction="col" center className="info-section-md-fit">
       <div className="text-xl">
         {ingredientName}
       </div>

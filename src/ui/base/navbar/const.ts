@@ -1,8 +1,6 @@
 import {NavEntry} from '@/ui/base/navbar/type';
 
 
-export const navButtonCommonStyle = 'p-1 h-8';
-
 export const navEntries: NavEntry[] = [
   {
     href: '/pokedex',

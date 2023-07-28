@@ -1,9 +1,8 @@
 'use client';
 import React from 'react';
 
-import {alertClassCommon, alertClasses} from '@/components/announcement/styles';
+import {announcementTextClasses} from '@/components/announcement/styles';
 import {Announcement} from '@/types/mongo/announcement';
-import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
@@ -29,9 +28,9 @@ export const AnnouncementsClient = ({announcements}: Props) => {
 
   return (
     <>
-      <div className={classNames(alertClassCommon, styles['announcement'])}>
+      <div className={styles['announcement']}>
         <div
-          className={classNames(alertClassCommon, alertClasses[level])}
+          className={announcementTextClasses[level]}
           onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
         >
           {message}

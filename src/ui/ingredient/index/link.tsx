@@ -5,10 +5,8 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {buttonStyle, buttonStyleClickable} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -25,10 +23,7 @@ export const IngredientLink = ({ingredient}: Props) => {
 
   return (
     <Link href={`/ingredient/${id}`}>
-      <Flex
-        key={id} direction="col" center noFullWidth
-        className={classNames(buttonStyleClickable, buttonStyle.background, 'gap-0.5 p-1')}
-      >
+      <Flex key={id} direction="col" center noFullWidth className="button-clickable-bg gap-0.5 p-1">
         <div className="relative h-12 w-12">
           <Image src={`/images/ingredient/${id}.png`} alt={ingredientName} fill sizes={imageSmallIconSizes}/>
         </div>

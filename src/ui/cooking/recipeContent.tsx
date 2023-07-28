@@ -5,7 +5,6 @@ import {useTranslations} from 'next-intl';
 
 import {toggleClass} from '@/components/input/filter/const';
 import {Flex} from '@/components/layout/flex';
-import {buttonStyleClickable} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {CookingRecipeLayoutProps} from '@/ui/cooking/type';
 import {classNames} from '@/utils/react';
@@ -25,7 +24,7 @@ export const CookingRecipeContent = ({
     <Flex
       direction="col"
       className={classNames(
-        clickable ? buttonStyleClickable : undefined,
+        clickable ? 'button-clickable' : undefined,
         toggleClass.inactive.background,
         'relative items-end rounded-lg',
       )}

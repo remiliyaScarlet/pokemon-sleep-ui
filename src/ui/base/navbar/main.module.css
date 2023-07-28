@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@layer utilities {
+  .nav-height {
+    @apply h-8;
+  }
+  
+  .nav-button {
+    @apply nav-height py-1;
+  }
+}

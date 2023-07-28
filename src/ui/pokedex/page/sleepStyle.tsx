@@ -4,8 +4,8 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {imageGallerySizes} from '@/styles/image';
 import {PokemonDataIcon} from '@/ui/pokedex/page/dataIcon';
-import {pokemonInfoSectionStyle} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
@@ -22,7 +22,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
   }
 
   return (
-    <Flex direction="col" center className={pokemonInfoSectionStyle}>
+    <Flex direction="col" center className="info-section-md-fit">
       {sleepStyles.map(({mapId, styles}) => {
         const mapName = t(mapId.toString());
 
@@ -31,6 +31,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
             <Image
               src={`/images/field/${mapId}.png`} alt={mapName}
               fill className="rounded-xl opacity-50 dark:opacity-25"
+              sizes={imageGallerySizes}
             />
             <Flex direction="row" center className="z-10 p-1.5">
               <div>

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {textShadow} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {classNames} from '@/utils/react';
@@ -27,7 +26,7 @@ export const IngredientIcons = ({meal, useTextShadow = true}: Props) => {
             <div className="relative h-4 w-4">
               <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageIconSizes}/>
             </div>
-            <div className={classNames('text-xs', useTextShadow ? textShadow : undefined)}>
+            <div className={classNames('text-xs', useTextShadow ? 'text-shadow-preset' : undefined)}>
               {quantity}
             </div>
           </Flex>

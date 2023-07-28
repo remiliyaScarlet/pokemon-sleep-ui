@@ -1,0 +1,7 @@
+@tailwind utilities;
+
+@layer utilities {
+  .home-link {
+    @apply inline-block p-0.5 h-32 w-full;
+  }
+}

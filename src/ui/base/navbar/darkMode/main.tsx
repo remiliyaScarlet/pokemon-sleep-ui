@@ -5,9 +5,9 @@ import {useTheme} from 'next-themes';
 import {DarkModeSwitch} from 'react-toggle-dark-mode';
 
 import {useMounted} from '@/hooks/mounted';
-import {buttonStyleClickable} from '@/styles/classes';
-import {navButtonCommonStyle} from '@/ui/base/navbar/const';
 import {classNames} from '@/utils/react';
+
+import styles from '../main.module.css';
 
 
 export const ThemeSwitcher = () => {
@@ -23,7 +23,7 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <div className={classNames('w-8', navButtonCommonStyle, buttonStyleClickable)}>
+    <div className={classNames('w-8 group button-clickable', styles['nav-button'])}>
       <DarkModeSwitch
         className={classNames(
           'h-full w-full',
