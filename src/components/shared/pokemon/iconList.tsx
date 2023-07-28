@@ -6,16 +6,18 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {buttonStyleClickable} from '@/styles/classes';
-import {imageGallerySizes} from '@/styles/image';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
+import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
-  pokemonIds: PokemonId[] | undefined
+  pokemonIds: PokemonId[] | undefined,
+  getInfo?: (id: PokemonId) => React.ReactNode,
 };
 
-export const PokemonIconList = ({pokemonIds}: Props) => {
+export const PokemonIconList = ({pokemonIds, getInfo}: Props) => {
   const t = useTranslations('Game.PokemonName');
 
   if (!pokemonIds?.length) {
@@ -32,12 +34,13 @@ export const PokemonIconList = ({pokemonIds}: Props) => {
       {pokemonIds.map((id) => (
         <Link key={id} href={`/pokedex/${id}`}>
           <div className={classNames('p-1.5', buttonStyleClickable)}>
-            <div className="relative h-12 w-12">
-              <Image
-                src={`/images/pokemon/icons/${id}.png`} alt={t(id.toString())} fill
-                sizes={imageGallerySizes}
-              />
-            </div>
+            <IconWithInfo
+              imageSrc={`/images/pokemon/icons/${id}.png`}
+              imageAlt={t(id.toString())}
+              imageDimension="h-12 w-12"
+              imageSizes={imageIconSizes}
+              info={getInfo && getInfo(id)}
+            />
           </div>
         </Link>
       ))}
