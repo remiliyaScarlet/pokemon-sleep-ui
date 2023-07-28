@@ -42,10 +42,10 @@ export const CookingResult = ({input, meals, ingredients}: Props) => {
             'sm:width-with-gap-3-items md:width-with-gap-4-items',
             'lg:width-with-gap-5-items xl:width-with-gap-6-items',
           )}>
-            <CookingRecipeLayout mealId={meal.id} imageSizeClass="h-24 w-24">
+            <CookingRecipeLayout mealId={meal.id} imageSizeClass="h-24 w-24" clickable>
               <Flex direction="col" className="gap-1">
                 <Flex direction="row" className="gap-0.5">
-                  <IngredientIcons meal={meal}/>
+                  <IngredientIcons meal={meal} useTextShadow={false}/>
                 </Flex>
                 <Flex direction="row" className="items-center gap-1">
                   <div className="relative h-4 w-4">

@@ -15,3 +15,9 @@ export type CookingCommonProps = {
   meals: Meal[],
   mealTypes: MealTypeId[],
 };
+
+export type CookingRecipeLayoutProps = {
+  mealId: number,
+  imageSizeClass: string,
+  clickable: boolean,
+};

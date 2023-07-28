@@ -31,7 +31,7 @@ export const CookingInputRecipeSingle = ({input, setInput, data}: Props) => {
   };
 
   return (
-    <CookingRecipeLayout mealId={id} imageSizeClass="h-20 w-20">
+    <CookingRecipeLayout mealId={id} imageSizeClass="h-20 w-20" clickable={false}>
       <Flex direction="row" className="items-center gap-1.5">
         <Flex direction="col" className="w-14" noFullWidth>
           <div className="whitespace-nowrap text-xs text-slate-500 dark:text-slate-400">
