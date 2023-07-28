@@ -20,7 +20,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
   const ingredientName = t(id.toString());
 
   return (
-    <Flex direction="col" center noFullWidth className={classNames(infoSectionStyle, 'w-full')}>
+    <Flex direction="col" center className={classNames(infoSectionStyle, 'md:w-fit')}>
       <div className="text-xl">
         {ingredientName}
       </div>

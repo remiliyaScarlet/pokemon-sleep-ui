@@ -18,7 +18,7 @@ export const MealIngredientByPokemon = ({pokemonByIngredients}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
-    <Flex direction="row" className={classNames(infoSectionStyle, 'w-full md:w-1/2')}>
+    <Flex direction="row" className={classNames(infoSectionStyle, 'md:w-1/2')}>
       <table className="-m-4 border-separate border-spacing-4">
         <tbody>
           {Object.entries(pokemonByIngredients).map(([ingredientId, pokemonIds]) => (

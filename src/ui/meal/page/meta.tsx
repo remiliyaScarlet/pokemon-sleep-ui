@@ -20,7 +20,7 @@ export const MealMeta = (meal: Meal) => {
   const mealName = t(id.toString());
 
   return (
-    <Flex direction="col" center noFullWidth className={classNames(infoSectionStyle, 'w-full')}>
+    <Flex direction="col" center className={classNames(infoSectionStyle, 'md:w-fit')}>
       <div className={classNames('text-lg', mealTypeTextStyle[type])}>
         {mealName}
       </div>

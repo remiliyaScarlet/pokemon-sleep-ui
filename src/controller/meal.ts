@@ -21,3 +21,11 @@ export const getAllMeals = async (): Promise<Meal[]> => {
 export const getSingleMeal = async (id: number) => {
   return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
+
+export const getMealByIngredient = async (id: number | undefined): Promise<Meal[]> => {
+  if (id === undefined) {
+    return [];
+  }
+
+  return (await getCollection()).find({'ingredients.id': id}, {projection: {_id: false}}).toArray();
+};

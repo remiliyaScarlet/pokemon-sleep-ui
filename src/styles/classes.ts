@@ -73,6 +73,6 @@ export const mealTypeDotStyle: {[type in MealTypeId]: string} = {
 };
 
 export const infoSectionStyle = classNames(
-  'gap-2 rounded-lg p-4 md:w-fit self-stretch',
+  'gap-2 rounded-lg p-4 self-stretch',
   'bg-gradient-to-br from-slate-50/75 to-slate-100/60 dark:from-black/60 dark:to-slate-950/75',
 );
