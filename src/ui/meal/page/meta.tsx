@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
-import {buttonStyleClickable, infoSectionStyle, mealTypeTextStyle} from '@/styles/classes';
+import {buttonStyle, buttonStyleClickable, infoSectionStyle, mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {MealExp} from '@/ui/meal/page/exp';
@@ -35,7 +35,7 @@ export const MealMeta = (meal: Meal) => {
           <Link
             key={id}
             href={`/ingredient/${id}`}
-            className={classNames(buttonStyleClickable, 'p-1.5')}
+            className={classNames(buttonStyleClickable, buttonStyle.background, 'p-1.5')}
           >
             <Flex direction="col" center>
               <div className="relative h-12 w-12">

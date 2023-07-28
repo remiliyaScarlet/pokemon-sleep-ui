@@ -7,4 +7,6 @@ export const imageIconSizes = [
   '8vw',
 ].join(', ');
 
+export const imageGallerySizes = '(max-width: 768px) 60vw, 40vw';
+
 export const imagePortraitSizes = '(max-width: 768px) 100vw, 65vw';

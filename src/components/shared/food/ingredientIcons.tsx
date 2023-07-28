@@ -11,9 +11,10 @@ import {classNames} from '@/utils/react';
 
 type Props = {
   meal: Meal,
+  useTextShadow?: boolean,
 };
 
-export const IngredientIcons = ({meal}: Props) => {
+export const IngredientIcons = ({meal, useTextShadow = true}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
@@ -23,7 +24,7 @@ export const IngredientIcons = ({meal}: Props) => {
           <div className="relative h-4 w-4">
             <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageIconSizes}/>
           </div>
-          <div className={classNames('text-xs', textShadow)}>
+          <div className={classNames('text-xs', useTextShadow ? textShadow : undefined)}>
             {quantity}
           </div>
         </>

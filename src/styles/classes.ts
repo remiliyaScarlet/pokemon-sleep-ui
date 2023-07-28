@@ -9,7 +9,8 @@ export const textShadow = 'shadow-slate-200 text-shadow dark:shadow-slate-900';
 
 export const buttonStyle = {
   base: classNames('group rounded-lg', smoothTransform),
-  background: 'hover:bg-slate-700 hover:dark:bg-slate-300',
+  background: 'bg-slate-300/50 dark:bg-slate-700/50',
+  backgroundHover: 'hover:bg-slate-700 hover:dark:bg-slate-300',
   border: 'border border-slate-700 dark:border-slate-300',
   text: 'text-slate-700 dark:text-slate-300',
   textHover: 'hover:text-slate-200 dark:hover:text-slate-800',
@@ -21,7 +22,7 @@ export const buttonStyle = {
 
 export const buttonStyleClickable = classNames(
   buttonStyle.base,
-  buttonStyle.background,
+  buttonStyle.backgroundHover,
   buttonStyle.text,
   buttonStyle.textHover,
 );

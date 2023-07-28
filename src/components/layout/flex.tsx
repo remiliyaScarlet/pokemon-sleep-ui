@@ -16,7 +16,7 @@ export const Flex = ({direction, center, wrap, noFullWidth, className, children}
     <div className={classNames(
       'flex',
       direction === 'row' ? 'flex-row' : 'flex-col',
-      center ? 'items-center justify-center text-center' : undefined,
+      center ? 'items-center justify-center text-center content-center' : undefined,
       wrap ? 'flex-wrap' : undefined,
       noFullWidth ? undefined : 'w-full',
       className,

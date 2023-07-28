@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {buttonStyleClickable} from '@/styles/classes';
+import {imageGallerySizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {classNames} from '@/utils/react';
 
@@ -28,17 +29,17 @@ export const PokemonIconList = ({pokemonIds}: Props) => {
 
   return (
     <Flex direction="row" center wrap>
-      {pokemonIds.map((id) =>(
-        <div key={id} className={classNames('p-1.5', buttonStyleClickable)}>
-          <div className="relative h-12 w-12">
-            <Link href={`/pokedex/${id}`}>
+      {pokemonIds.map((id) => (
+        <Link key={id} href={`/pokedex/${id}`}>
+          <div className={classNames('p-1.5', buttonStyleClickable)}>
+            <div className="relative h-12 w-12">
               <Image
                 src={`/images/pokemon/icons/${id}.png`} alt={t(id.toString())} fill
-                sizes="(max-width: 768px) 60vw, 40vw"
+                sizes={imageGallerySizes}
               />
-            </Link>
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </Flex>
   );

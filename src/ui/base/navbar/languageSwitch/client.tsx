@@ -44,7 +44,7 @@ export const LanguageSwitchClient = () => {
                 buttonStyle.base,
                 currentLocale === locale ?
                   buttonStyle.disabled :
-                  classNames(buttonStyle.border, buttonStyle.background, buttonStyle.text, buttonStyle.textHover),
+                  classNames(buttonStyle.border, buttonStyleClickable),
               )}
             >
               {name}

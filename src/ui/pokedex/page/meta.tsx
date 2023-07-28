@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {buttonStyleClickable, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {buttonStyle, buttonStyleClickable, sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
 import {pokemonInfoSectionStyle} from '@/ui/pokedex/page/style';
@@ -89,7 +89,7 @@ export const PokemonMeta = (props: PokemonProps) => {
                     <Link
                       key={`${id}-${ingredient}`}
                       href={`/ingredient/${id}`}
-                      className={classNames(buttonStyleClickable, 'p-1.5')}
+                      className={classNames(buttonStyleClickable, buttonStyle.background, 'p-1.5')}
                     >
                       <Flex direction="col" center className="gap-0.5">
                         <div className="relative h-12 w-12">
