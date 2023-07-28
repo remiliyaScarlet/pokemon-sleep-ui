@@ -30,8 +30,8 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
       href={isCurrent ? {} : href}
       className={classNames(
         styles['nav-height'],
-        'button-base button-text inline-block p-0.5 w-8 relative group',
-        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'button-clickable',
+        'button-base button-text inline-block p-0.5 w-8 relative',
+        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
       )}
     >
       <Image src={imageSrc} alt={alt} fill className="invert-icon" sizes={imageSmallIconSizes}/>
