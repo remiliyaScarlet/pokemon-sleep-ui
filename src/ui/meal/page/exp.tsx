@@ -29,10 +29,7 @@ export const MealExp = ({id, levels}: Meal) => {
         </Flex>
         <Flex direction="row" className="ml-auto items-center justify-end gap-1">
           <div className="relative h-5 w-5">
-            <Image
-              src="/images/generic/energy.png" alt={t('Energy')}
-              fill sizes={imageIconSizes}
-            />
+            <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
           </div>
           <div>
             {current.energy}

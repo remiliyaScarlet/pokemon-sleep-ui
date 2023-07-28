@@ -49,10 +49,7 @@ export const CookingResult = ({input, meals, ingredients}: Props) => {
                 </Flex>
                 <Flex direction="row" className="items-center gap-1">
                   <div className="relative h-4 w-4">
-                    <Image
-                      src="/images/generic/energy.png" alt={t('Energy')}
-                      fill sizes={imageIconSizes}
-                    />
+                    <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
                   </div>
                   <div>
                     {energy}
