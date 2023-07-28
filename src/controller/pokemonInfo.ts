@@ -2,7 +2,7 @@ import {Collection, FindCursor, WithId} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
 import {IngredientId} from '@/types/mongo/ingredient';
-import {PokemonByIngredientMap, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonByIngredientMap, PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 
 
 const getCollection = async (): Promise<Collection<PokemonInfo>> => {
@@ -21,7 +21,17 @@ export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> 
   return (await getCollection()).find({}, {projection: {_id: false}});
 };
 
-export const getPokemonByIngredient = async (ingredientIds: IngredientId[]): Promise<PokemonByIngredientMap> => {
+export const getPokemonByIngredient = async (ingredientId: IngredientId | undefined): Promise<PokemonInfo[]> => {
+  if (!ingredientId) {
+    return [];
+  }
+
+  return (await getCollection())
+    .find({ingredients: ingredientId}, {projection: {_id: false}})
+    .toArray();
+};
+
+export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Promise<PokemonByIngredientMap> => {
   if (!ingredientIds.length) {
     return [];
   }
@@ -33,10 +43,10 @@ export const getPokemonByIngredient = async (ingredientIds: IngredientId[]): Pro
   for await (const entry of data) {
     entry.ingredients.forEach((ingredientId) => {
       if (!(ingredientId in ret) && ingredientIds.includes(ingredientId)) {
-        ret[ingredientId] = [] as PokemonInfo[];
+        ret[ingredientId] = [] as PokemonId[];
       }
 
-      ret[ingredientId]?.push(entry);
+      ret[ingredientId]?.push(entry.id);
     });
   }
 

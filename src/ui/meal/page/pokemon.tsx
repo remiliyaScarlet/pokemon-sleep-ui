@@ -21,7 +21,7 @@ export const MealIngredientByPokemon = ({pokemonByIngredients}: Props) => {
     <Flex direction="row" className={classNames(infoSectionStyle, 'w-full md:w-1/2')}>
       <table className="-m-4 border-separate border-spacing-4">
         <tbody>
-          {Object.entries(pokemonByIngredients).map(([ingredientId, pokemonList]) => (
+          {Object.entries(pokemonByIngredients).map(([ingredientId, pokemonIds]) => (
             <tr key={ingredientId}>
               <td className="rounded-lg bg-slate-700">
                 <div className="relative h-16 w-16">
@@ -32,7 +32,7 @@ export const MealIngredientByPokemon = ({pokemonByIngredients}: Props) => {
                 </div>
               </td>
               <td>
-                <PokemonIconList pokemonIds={pokemonList?.map(({id}) => id)}/>
+                <PokemonIconList pokemonIds={pokemonIds}/>
               </td>
             </tr>
           ))}
