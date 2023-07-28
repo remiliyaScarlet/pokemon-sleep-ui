@@ -18,8 +18,8 @@ export const ThemeSwitcher = () => {
     return null;
   }
 
-  const toggleDarkMode = (isDark: boolean) => {
-    setTheme(isDark ? 'light' : 'dark');
+  const toggleDarkMode = (checked: boolean) => {
+    setTheme(checked ? 'dark' : 'light');
   };
 
   return (
@@ -32,7 +32,7 @@ export const ThemeSwitcher = () => {
           '[&>*]:dark:fill-white [&>*]:dark:stroke-white',
           '[&>*]:group-hover:dark:fill-black [&>*]:group-hover:dark:stroke-black',
         )}
-        checked={theme === 'light'}
+        checked={theme === 'dark'}
         onChange={toggleDarkMode}
         size={120}
       />
