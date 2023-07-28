@@ -15,4 +15,6 @@ export type Announcement = {
   message: string,
   locale: Locale[],
   level: AnnouncementLevel,
+  expiry?: string,
+  order?: number,
 };

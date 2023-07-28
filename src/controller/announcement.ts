@@ -16,7 +16,7 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
 
 export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
   return (await getCollection())
-    .find({locale: locale ?? 'en'}, {projection: {_id: false}})
+    .find({locale: locale ?? 'en'}, {sort: {order: -1}, projection: {_id: false}})
     .toArray();
 };
 
@@ -45,6 +45,12 @@ const addAnnouncementDataValidation = async () => {
             level: {
               enum: announcementLevels,
             },
+            expiry: {
+              bsonType: 'date',
+            },
+            order: {
+              bsonType: 'int',
+            },
           },
           additionalProperties: false,
         },
@@ -53,7 +59,11 @@ const addAnnouncementDataValidation = async () => {
 };
 
 const addAnnouncementDataIndex = async () => {
-  await (await getCollection()).createIndex({'locale': 1});
+  return Promise.all([
+    (await getCollection()).createIndex({'locale': 1}),
+    (await getCollection()).createIndex({'expiry': 1}, {expireAfterSeconds: 0}),
+    (await getCollection()).createIndex({'order': -1}),
+  ]);
 };
 
 addAnnouncementDataValidation()
