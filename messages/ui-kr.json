@@ -87,6 +87,9 @@
       "PotCapacity": "용량",
       "Ingredient": "식재료",
       "MealType": "요리"
+    },
+    "Ingredient": {
+      "Energy": "에너지"
     }
   }
 }

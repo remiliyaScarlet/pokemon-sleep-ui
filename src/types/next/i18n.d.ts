@@ -64,6 +64,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Ingredient: string,
         MealType: string,
       },
+      Ingredient: {
+        Energy: string,
+      },
     },
   },
   Game: {

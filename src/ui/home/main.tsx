@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {AdsHomepage} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {PageLayout} from '@/ui/base/layout';
-import {NavEntries} from '@/ui/base/navbar/const';
+import {navEntries} from '@/ui/base/navbar/const';
 import {HomePageLink} from '@/ui/home/link';
 
 
@@ -19,7 +19,7 @@ export const Home = () => {
         {t2('Welcome')}
       </Flex>
       <Flex direction="row" center wrap className="h-auto gap-2 md:h-full md:px-10">
-        {NavEntries.map(({i18nTextId, ...props}) => {
+        {navEntries.map(({i18nTextId, ...props}) => {
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">
               <HomePageLink text={t(i18nTextId)} {...props}/>

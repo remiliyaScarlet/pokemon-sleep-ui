@@ -87,6 +87,9 @@
       "PotCapacity": "Max",
       "Ingredient": "Ingredient",
       "MealType": "Meal"
+    },
+    "Ingredient": {
+      "Energy": "Strength"
     }
   }
 }

@@ -87,6 +87,9 @@
       "PotCapacity": "容量",
       "Ingredient": "食材",
       "MealType": "料理"
+    },
+    "Ingredient": {
+      "Energy": "能量"
     }
   }
 }

@@ -3,7 +3,7 @@ import {NavEntry} from '@/ui/base/navbar/type';
 
 export const navButtonCommonStyle = 'p-1 h-8';
 
-export const NavEntries: NavEntry[] = [
+export const navEntries: NavEntry[] = [
   {
     href: '/pokedex',
     imageSrc: '/images/generic/pokeball.png',
@@ -23,7 +23,6 @@ export const NavEntries: NavEntry[] = [
     href: '/ingredient',
     imageSrc: '/images/generic/ingredient.png',
     i18nTextId: 'Ingredient.Index.Title',
-    disabled: true,
   },
   {
     href: '/map',
