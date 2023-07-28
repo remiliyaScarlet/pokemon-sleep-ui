@@ -14,6 +14,8 @@ import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
+import styles from './main.module.css';
+
 
 type Props = {
   pokemonId: PokemonId,
@@ -58,7 +60,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   return (
     <Flex direction="col" center className="info-section-md-fit">
-      <Flex direction="col" center noFullWidth className="relative h-72 w-72">
+      <Flex direction="col" center noFullWidth className={styles['gallery-wrapper']}>
         {imageOptions
           .flatMap<[CurrentPokemonImage, boolean]>((image) => [[image, true], [image, false]])
           .map(([image, imageShiny]) => (
@@ -71,6 +73,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               leave="transition-opacity duration-250"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
+              className={styles['gallery-wrapper']}
             >
               <PokemonImage image={image} isShiny={imageShiny} {...props}/>
             </Transition>

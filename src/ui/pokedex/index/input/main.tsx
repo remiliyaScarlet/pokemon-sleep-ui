@@ -53,16 +53,18 @@ export const PokedexInput = ({data, ...props}: Props) => {
           const mapName = t(`Field.${id.toString()}`);
 
           return (
-            <Flex direction="row" center noFullWidth className="w-28 md:w-40">
-              <Image
-                src={`/images/field/${id}.png`} alt={mapName}
-                fill className="rounded-xl opacity-50 dark:opacity-25"
-                sizes={imageGallerySizes}
-              />
-              <Flex direction="row" center className="absolute z-10 h-full w-full">
+            <>
+              <div className="relative -mx-2 h-full w-28 md:w-40">
+                <Image
+                  src={`/images/field/${id}.png`} alt={mapName}
+                  fill className="rounded-xl opacity-50 dark:opacity-25"
+                  sizes={imageGallerySizes}
+                />
+              </div>
+              <Flex direction="row" center className="absolute z-10 h-full">
                 {mapName}
               </Flex>
-            </Flex>
+            </>
           );
         }}
         {...getSingleSelectOnClickProps({
