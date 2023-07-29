@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {setCookie} from 'cookies-next';
 import {useLocale} from 'next-intl';
 import {usePathname, useRouter} from 'next-intl/client';
 
@@ -22,6 +23,7 @@ export const LanguageSwitchClient = () => {
 
   const onClick = (nextLocale: string) => {
     router.push(pathname, {locale: nextLocale});
+    setCookie('NEXT_LOCALE', nextLocale);
   };
 
   return (
