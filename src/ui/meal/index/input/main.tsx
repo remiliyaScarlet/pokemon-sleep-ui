@@ -24,7 +24,7 @@ export const MealInput = (props: Props) => {
 
   const t = useTranslations('Game');
   const t2 = useTranslations('Game.MealType');
-  const t3 = useTranslations('UI.InPage.Meal');
+  const t3 = useTranslations('UI.InPage.Cooking');
 
   return (
     <Flex direction="col" className="gap-1">

@@ -11,7 +11,7 @@ export const MealIndex = () => {
 
   return (
     <PageLayout>
-      <I18nProvider namespaces={['Game', 'UI.InPage.Meal']}>
+      <I18nProvider namespaces={['Game', 'UI.InPage.Cooking']}>
         <MealIndexClient data={data}/>
       </I18nProvider>
     </PageLayout>

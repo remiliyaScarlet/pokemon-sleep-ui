@@ -19,7 +19,7 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
       ingredientCountCap: null,
     },
     isDataIncluded: (filter, data) => {
-      if (isFilterMatchingSome({filter, filterKey: 'ingredient', ids: data.ingredients.map(({id}) => id)})) {
+      if (!isFilterMatchingSome({filter, filterKey: 'ingredient', ids: data.ingredients.map(({id}) => id)})) {
         return false;
       }
 
