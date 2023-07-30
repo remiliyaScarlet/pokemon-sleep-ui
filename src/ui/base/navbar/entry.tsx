@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {usePathname} from 'next-intl/client';
 
 import {imageSmallIconSizes} from '@/styles/image';
-import {NavEntry} from '@/ui/base/navbar/type';
+import {NavEntry} from '@/types/nav';
 import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
@@ -26,15 +26,17 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
   }
 
   return (
-    <Link
-      href={isCurrent ? {} : href}
-      className={classNames(
-        styles['nav-height'],
-        'button-base button-text inline-block p-0.5 w-8 relative',
-        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
-      )}
-    >
-      <Image src={imageSrc} alt={alt} fill className="invert-icon" sizes={imageSmallIconSizes}/>
-    </Link>
+    <li className={styles['nav-height']}>
+      <Link
+        href={isCurrent ? {} : href}
+        className={classNames(
+          styles['nav-height'],
+          'button-base button-text inline-block p-0.5 w-8 relative',
+          isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
+        )}
+      >
+        <Image src={imageSrc} alt={alt} fill className="invert-icon" sizes={imageSmallIconSizes}/>
+      </Link>
+    </li>
   );
 };

@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import {Flex} from '@/components/layout/flex';
 import {imageSmallIconSizes} from '@/styles/image';
-import {NavEntry} from '@/ui/base/navbar/type';
+import {NavEntry} from '@/types/nav';
 import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';

@@ -1,7 +1,10 @@
-import {NavEntry} from '@/ui/base/navbar/type';
+'use client';
+import React from 'react';
+
+import {NavEntry} from '@/types/nav';
 
 
-export const navEntries: NavEntry[] = [
+const navEntries: NavEntry[] = [
   {
     href: '/pokedex',
     imageSrc: '/images/generic/pokeball.png',
@@ -35,3 +38,7 @@ export const navEntries: NavEntry[] = [
     disabled: true,
   },
 ];
+
+// Need to "cache" the nav entries (effectively making whatever using nav entries a client component)
+// If this is not stored, fast refresh will not work i.e. every page change triggers full reload
+export const useNavEntries = () => React.useMemo(() => navEntries, []);
