@@ -8,13 +8,14 @@ import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
-import {Meal} from '@/types/mongo/meal';
 import {MealExp} from '@/ui/meal/page/exp';
+import {MealMetaProps} from '@/ui/meal/page/type';
 import {classNames} from '@/utils/react';
 
 
-export const MealMeta = (meal: Meal) => {
+export const MealMeta = (props: MealMetaProps) => {
   const t = useTranslations('Game.Food');
+  const {meal} = props;
   const {id, type} = meal;
 
   const mealName = t(id.toString());
@@ -28,7 +29,7 @@ export const MealMeta = (meal: Meal) => {
         <Image src={`/images/meal/portrait/${id}.png`} alt={mealName} fill sizes={imagePortraitSizes}/>
       </div>
       <I18nProvider namespaces={['UI.InPage.Cooking']}>
-        <MealExp {...meal}/>
+        <MealExp {...props}/>
       </I18nProvider>
       <Flex direction="row" center className="gap-1.5">
         {meal.ingredients.map(({id, quantity}) => (

@@ -7,42 +7,47 @@ import {useTranslations} from 'next-intl';
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
-import {Meal} from '@/types/mongo/meal';
+import {MealMetaProps} from '@/ui/meal/page/type';
+import {getMealEnergyInfo} from '@/utils/game/meal';
 
 
-export const MealExp = ({id, levels}: Meal) => {
+export const MealExp = ({meal, ingredients}: MealMetaProps) => {
+  const {id, levels} = meal;
+
   const t = useTranslations('UI.InPage.Cooking');
-  const [levelIndex, setLevelIndex] = React.useState(0);
+  const [level, setLevel] = React.useState(1);
 
-  const current = levels[levelIndex];
+  const {atLevel, diffVal, diffPct} = React.useMemo(() => getMealEnergyInfo({
+    meal,
+    ingredients,
+    level,
+  }), [meal, ingredients, level]);
 
   return (
     <Flex direction="col" className="gap-1">
-      <Flex direction="row">
-        <Flex direction="row" className="gap-1">
-          <div className="whitespace-nowrap">
-            {t('RecipeLevel')}
-          </div>
-          <div>
-            {current.lv}
-          </div>
-        </Flex>
-        <Flex direction="row" className="ml-auto items-center justify-end gap-1">
-          <div className="relative h-5 w-5">
-            <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
-          </div>
-          <div>
-            {current.energy}
-          </div>
-        </Flex>
+      <Flex direction="row" className="gap-1">
+        <div className="whitespace-nowrap">
+          {t('RecipeLevel')}
+        </div>
+        <div>
+          {level}
+        </div>
       </Flex>
       <Slider
-        id={`metaExp-${id}`}
-        value={levelIndex}
-        setValue={setLevelIndex}
-        min={0}
-        max={levels.length - 1}
+        id={`mealExp-${id}`}
+        value={level}
+        setValue={setLevel}
+        min={1}
+        max={levels.length}
       />
+      <Flex direction="row" className="ml-auto items-center justify-end gap-1">
+        <div className="relative h-4 w-4">
+          <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
+        </div>
+        <div className="text-sm">
+          {atLevel.energy} (+{diffVal} / +{diffPct.toFixed(0)}%)
+        </div>
+      </Flex>
     </Flex>
   );
 };

@@ -8,31 +8,32 @@ import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {imageIconSizes} from '@/styles/image';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
-import {getMealEnergy} from '@/ui/cooking/utils';
+import {getMealEnergyInfo} from '@/utils/game/meal';
 import {classNames} from '@/utils/react';
 
 
 type Props = Omit<CookingCommonProps, 'setFilter'>;
 
-export const CookingResult = ({filter, meals}: Props) => {
+export const CookingResult = ({filter, meals, ingredients}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
-  const totalEnergy = React.useMemo(
+  const mealEnergyInfo = React.useMemo(
     () => meals.map((meal) => ({
       meal,
-      energy: getMealEnergy({
+      energyInfo: getMealEnergyInfo({
         meal,
-        recipeLevel: filter.recipeLevel[meal.id] ?? 1,
+        ingredients,
+        level: filter.recipeLevel[meal.id] ?? 1,
       }),
     })),
-    [meals, filter],
+    [meals, ingredients, filter],
   );
 
   return (
     <Flex direction="row" wrap center className="gap-1.5">
-      {totalEnergy
-        .sort((a, b) => (b.energy ?? 0) - (a.energy ?? 0))
-        .map(({meal, energy}) => (
+      {mealEnergyInfo
+        .sort((a, b) => (b.energyInfo.atLevel.energy ?? 0) - (a.energyInfo.atLevel.energy ?? 0))
+        .map(({meal, energyInfo}) => (
           <div key={meal.id} className={classNames(
             'width-with-gap xs:width-with-gap-2-items',
             'sm:width-with-gap-3-items md:width-with-gap-4-items',
@@ -48,7 +49,10 @@ export const CookingResult = ({filter, meals}: Props) => {
                     <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
                   </div>
                   <div>
-                    {energy}
+                    {energyInfo.atLevel.energy}
+                  </div>
+                  <div className="ml-auto text-sm">
+                    +{energyInfo.diffVal} / +{energyInfo.diffPct.toFixed(0)}%
                   </div>
                 </Flex>
               </Flex>
