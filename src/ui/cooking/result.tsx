@@ -6,18 +6,15 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {imageIconSizes} from '@/styles/image';
-import {IngredientMap} from '@/types/mongo/ingredient';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergy} from '@/ui/cooking/utils';
 import {classNames} from '@/utils/react';
 
 
-type Props = Omit<CookingCommonProps, 'setFilter'> & {
-  ingredients: IngredientMap,
-};
+type Props = Omit<CookingCommonProps, 'setFilter'>;
 
-export const CookingResult = ({filter, meals, ingredients}: Props) => {
+export const CookingResult = ({filter, meals}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   const totalEnergy = React.useMemo(
@@ -26,10 +23,9 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
       energy: getMealEnergy({
         meal,
         recipeLevel: filter.recipeLevel[meal.id] ?? 1,
-        ingredients,
       }),
     })),
-    [meals, filter, ingredients],
+    [meals, filter],
   );
 
   return (
