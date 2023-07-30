@@ -9,7 +9,8 @@
     "start": "next start",
     "tsc": "tsc --noemit",
     "lint": "next lint",
-    "lint:css": "stylelint **/*.css"
+    "lint:css": "stylelint **/*.css",
+    "devops": "node scripts/discord-webhook.js"
   },
   "dependencies": {
     "@ctrl/react-adsense": "^1.7.0",
