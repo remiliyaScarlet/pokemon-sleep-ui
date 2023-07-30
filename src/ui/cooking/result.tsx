@@ -13,11 +13,11 @@ import {getMealEnergy} from '@/ui/cooking/utils';
 import {classNames} from '@/utils/react';
 
 
-type Props = Omit<CookingCommonProps, 'setInput'> & {
+type Props = Omit<CookingCommonProps, 'setFilter'> & {
   ingredients: IngredientMap,
 };
 
-export const CookingResult = ({input, meals, ingredients}: Props) => {
+export const CookingResult = ({filter, meals, ingredients}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   const totalEnergy = React.useMemo(
@@ -25,11 +25,11 @@ export const CookingResult = ({input, meals, ingredients}: Props) => {
       meal,
       energy: getMealEnergy({
         meal,
-        recipeLevel: input.recipeLevel[meal.id] ?? 1,
+        recipeLevel: filter.recipeLevel[meal.id] ?? 1,
         ingredients,
       }),
     })),
-    [meals, input, ingredients],
+    [meals, filter, ingredients],
   );
 
   return (

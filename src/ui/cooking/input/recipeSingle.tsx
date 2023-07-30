@@ -14,14 +14,14 @@ type Props = Omit<CookingCommonProps, 'meals'> & {
   data: Meal,
 };
 
-export const CookingInputRecipeSingle = ({input, setInput, data}: Props) => {
+export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
   const {id, levels} = data;
   const t = useTranslations('UI.InPage.Cooking');
 
-  const recipeLevel = input.recipeLevel[id] ?? 1;
+  const recipeLevel = filter.recipeLevel[id] ?? 1;
 
   const setLevel = (level: number) => {
-    setInput((original) => ({
+    setFilter((original) => ({
       ...original,
       recipeLevel: {
         ...original.recipeLevel,

@@ -7,12 +7,12 @@ import {classNames} from '@/utils/react';
 
 
 export const CookingInputRecipe = (props: CookingCommonProps) => {
-  const {meals, input} = props;
+  const {meals, filter} = props;
 
   return (
     <Flex direction="row" center wrap className="gap-1.5">
       {meals
-        .filter(({type}) => input.type === type)
+        .filter(({type}) => filter.type === type)
         .map((data) => (
           <div key={data.id} className={classNames(
             'width-with-gap xs:width-with-gap-2-items',

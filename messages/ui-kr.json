@@ -80,13 +80,10 @@
     },
     "Cooking": {
       "Energy": "최종 에너지",
+      "Ingredient": "식재료",
+      "MealType": "요리",
       "PotCapacity": "용량",
       "RecipeLevel": "레시피 레벨"
-    },
-    "Meal": {
-      "PotCapacity": "용량",
-      "Ingredient": "식재료",
-      "MealType": "요리"
     },
     "Ingredient": {
       "Energy": "에너지"

@@ -3,3 +3,5 @@ export type KeysOfType<T, KT> = {
 }[keyof T];
 
 export type Indexable = number | string | symbol;
+
+export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;

@@ -80,13 +80,10 @@
     },
     "Cooking": {
       "Energy": "Final Strength",
+      "Ingredient": "Ingredient",
+      "MealType": "Meal",
       "PotCapacity": "Max",
       "RecipeLevel": "Recipe Level"
-    },
-    "Meal": {
-      "PotCapacity": "Max",
-      "Ingredient": "Ingredient",
-      "MealType": "Meal"
     },
     "Ingredient": {
       "Energy": "Strength"

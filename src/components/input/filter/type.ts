@@ -22,7 +22,7 @@ export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & {
   ids: TId[],
   idToButton: (id: TId) => React.ReactNode,
   idToItemId: (id: TId) => string,
-  getClassNames: (isActive: boolean) => string,
+  getClassNames: (isActive: boolean, id: TId) => string,
   style?: FilterRowBackgroundStyle,
 };
 

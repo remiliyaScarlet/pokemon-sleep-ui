@@ -1,13 +1,15 @@
 'use client';
 import React from 'react';
 
+import {useFilterInput} from '@/components/input/filter/hooks';
+import {isFilterMatchingSome} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal} from '@/types/mongo/meal';
+import {Meal, MealId} from '@/types/mongo/meal';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';
-import {CookingInput} from '@/ui/cooking/type';
+import {CookingCommonProps, CookingFilter} from '@/ui/cooking/type';
 import {toUnique} from '@/utils/array';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 
@@ -18,29 +20,38 @@ type Props = {
 };
 
 export const CookingClient = ({meals, ingredients}: Props) => {
-  const [input, setInput] = React.useState<CookingInput>({
-    type: 1,
-    capacity: 15,
-    recipeLevel: {},
-  });
-
-  const validMeals = React.useMemo(
-    () => meals.filter((meal) => {
-      if (input.type !== meal.type) {
+  const {filter, setFilter, isIncluded} = useFilterInput<CookingFilter, Meal, MealId>({
+    data: meals,
+    dataToId: ({id}) => id,
+    initialFilter: {
+      type: 1,
+      recipeLevel: {},
+      capacity: 15,
+      ingredient: {},
+    },
+    isDataIncluded: (filter, meal) => {
+      if (filter.type !== meal.type) {
         return false;
       }
 
-      return getMealRequiredQuantity(meal) <= input.capacity;
-    }),
-    [input],
-  );
+      if (!isFilterMatchingSome({filter, filterKey: 'ingredient', ids: meal.ingredients.map(({id}) => id)})) {
+        return false;
+      }
+
+      return getMealRequiredQuantity(meal) <= filter.capacity;
+    },
+  });
+
+  const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
+
+  const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredients};
 
   return (
     <Flex direction="col">
-      <CookingInputUI input={input} setInput={setInput} meals={validMeals} mealTypes={mealTypes}/>
+      <CookingInputUI {...props}/>
       <HorizontalSplitter className="my-2"/>
-      <CookingResult input={input} meals={validMeals} mealTypes={mealTypes} ingredients={ingredients}/>
+      <CookingResult {...props}/>
     </Flex>
   );
 };

@@ -1,19 +1,23 @@
 import React from 'react';
 
+import {FilterInclusionMap} from '@/components/input/filter/type';
+import {IngredientId, IngredientMap} from '@/types/mongo/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/mongo/meal';
 
 
-export type CookingInput = {
+export type CookingFilter = {
   type: MealTypeId,
-  capacity: number,
   recipeLevel: {[id in MealId]?: number},
+  capacity: number,
+  ingredient: FilterInclusionMap<IngredientId>,
 };
 
 export type CookingCommonProps = {
-  input: CookingInput,
-  setInput: React.Dispatch<React.SetStateAction<CookingInput>>,
+  filter: CookingFilter,
+  setFilter: React.Dispatch<React.SetStateAction<CookingFilter>>,
   meals: Meal[],
   mealTypes: MealTypeId[],
+  ingredients: IngredientMap,
 };
 
 export type CookingRecipeLayoutProps = {

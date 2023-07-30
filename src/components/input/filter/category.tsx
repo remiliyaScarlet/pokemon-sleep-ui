@@ -31,7 +31,7 @@ export const FilterCategoryInput = <TId, >({
               active={active}
               id={idToItemId(id)}
               onClick={() => onClick(id)}
-              className={getClassNames(active)}
+              className={getClassNames(active, id)}
             >
               {idToButton(id)}
             </ToggleButton>
