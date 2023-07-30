@@ -1,17 +1,13 @@
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-
 import {FilterInputRow} from '@/components/input/filter/inputRow';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {I18nNamespaces} from '@/types/i18n';
 
 
-export const FilterCategoryInput = <TId, TNamespace extends I18nNamespaces>({
-  titleI18nNamespace,
-  titleI18nKey,
+export const FilterCategoryInput = <TId, >({
+  title,
   ids,
   idToItemId,
   idToButton,
@@ -19,13 +15,11 @@ export const FilterCategoryInput = <TId, TNamespace extends I18nNamespaces>({
   isActive,
   getClassNames,
   style,
-}: FilterCategoryInputProps<TId, TNamespace>) => {
-  const t = useTranslations(titleI18nNamespace);
-
+}: FilterCategoryInputProps<TId>) => {
   return (
     <FilterInputRow style={style}>
       <div className="w-32 whitespace-nowrap text-center text-sm">
-        {t(titleI18nKey)}
+        {title}
       </div>
       <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {
@@ -33,9 +27,9 @@ export const FilterCategoryInput = <TId, TNamespace extends I18nNamespaces>({
 
           return (
             <ToggleButton
-              key={`${titleI18nKey}-${idToItemId(id)}`}
+              key={idToItemId(id)}
               active={active}
-              id={`${titleI18nKey}-${idToItemId(id)}`}
+              id={idToItemId(id)}
               onClick={() => onClick(id)}
               className={getClassNames(active)}
             >

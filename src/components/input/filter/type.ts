@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {I18nMessageKeysOfNamespace, I18nNamespaces} from '@/types/i18n';
 import {Indexable} from '@/utils/type';
 
 
@@ -18,9 +17,8 @@ export type FilterInputOnClickProps<TId> = {
   isActive: (id: TId) => boolean,
 };
 
-export type FilterCategoryInputProps<TId, TNamespace extends I18nNamespaces> = FilterInputOnClickProps<TId> & {
-  titleI18nNamespace: TNamespace,
-  titleI18nKey: I18nMessageKeysOfNamespace<TNamespace>,
+export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & {
+  title: React.ReactNode,
   ids: TId[],
   idToButton: (id: TId) => React.ReactNode,
   idToItemId: (id: TId) => string,

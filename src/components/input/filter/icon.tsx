@@ -5,14 +5,10 @@ import Image from 'next/image';
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {toggleClass} from '@/components/input/filter/const';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
-import {I18nNamespaces} from '@/types/i18n';
 import {classNames} from '@/utils/react';
 
 
-type Props<TId, TNamespace extends I18nNamespaces> = Omit<
-  FilterCategoryInputProps<TId, TNamespace>,
-  'idToButton' | 'getClassNames'
-> & {
+type Props<TId> = Omit< FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
   getAlt: (id: TId) => string,
   idToImageSrc: (id: TId) => string,
 };
@@ -25,11 +21,7 @@ const sizes = [
   '10vw',
 ].join(', ');
 
-export const FilterIconInput = <TId, TNamespace extends I18nNamespaces>({
-  getAlt,
-  idToImageSrc,
-  ...props
-}: Props<TId, TNamespace>) => {
+export const FilterIconInput = <TId, >({getAlt, idToImageSrc, ...props}: Props<TId>) => {
   return (
     <FilterCategoryInput
       idToButton={(id) => (

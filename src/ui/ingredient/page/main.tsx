@@ -5,7 +5,7 @@ import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {getIngredient} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
-import {getPokemonByIngredient} from '@/controller/pokemonInfo';
+import {getPokemonByIngredient} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientObtainablePokemon} from '@/ui/ingredient/page/pokemon';

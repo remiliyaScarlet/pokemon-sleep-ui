@@ -4,7 +4,7 @@ import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
-import {getSinglePokemonInfo} from '@/controller/pokemonInfo';
+import {getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
 import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';

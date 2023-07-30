@@ -1,12 +1,14 @@
 import React from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {VerticalSplitter} from '@/components/shared/common/splitter';
+import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
+import {PokemonIngredient} from '@/ui/pokedex/page/ingredient';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
@@ -80,26 +82,26 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Ingredient')}
             </td>
             <td>
-              <Flex direction="row" center className="gap-1">
-                {ingredients.map((ingredient) => {
-                  const ingredientName = t(`Food.${ingredient}`);
-
-                  return (
-                    <Link key={`${id}-${ingredient}`} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
-                      <Flex direction="col" center className="gap-0.5">
-                        <div className="relative h-12 w-12">
-                          <Image
-                            src={`/images/ingredient/${ingredient}.png`} alt={ingredientName}
-                            fill sizes={imageSmallIconSizes}
-                          />
-                        </div>
-                        <div className="whitespace-nowrap text-sm">
-                          {ingredientName}
-                        </div>
-                      </Flex>
-                    </Link>
-                  );
-                })}
+              <Flex direction="row" className="justify-center gap-1">
+                <Flex direction="col" center noFullWidth className="gap-1">
+                  <div className="h-5 w-5">
+                    <IngredientTypeIcon type="fixed"/>
+                  </div>
+                  <PokemonIngredient id={ingredients.fixed}/>
+                </Flex>
+                <VerticalSplitter/>
+                <Flex direction="col" center noFullWidth>
+                  <div className="h-5 w-5">
+                    <IngredientTypeIcon type="random"/>
+                  </div>
+                  <Flex direction="row" className="gap-1">
+                    {ingredients.random ?
+                      ingredients.random.map((ingredient) => (
+                        <PokemonIngredient key={ingredient} id={ingredient}/>
+                      )) :
+                      <PokemonIngredient id={undefined}/>}
+                  </Flex>
+                </Flex>
               </Flex>
             </td>
           </tr>

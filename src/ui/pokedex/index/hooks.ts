@@ -21,7 +21,8 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
       sleepType: null,
       skill: null,
       mapId: null,
-      ingredient: null,
+      ingredientFixed: null,
+      ingredientRandom: null,
       berryId: null,
       display: 'mainSkill',
     },
@@ -46,7 +47,11 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
         return false;
       }
 
-      if (filter.ingredient !== null && !data.ingredients.some((id) => id === filter.ingredient)) {
+      if (filter.ingredientFixed !== null && data.ingredients.fixed !== filter.ingredientFixed) {
+        return false;
+      }
+
+      if (filter.ingredientRandom !== null && !data.ingredients.random?.some((id) => id === filter.ingredientRandom)) {
         return false;
       }
 

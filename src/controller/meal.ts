@@ -31,9 +31,11 @@ export const getMealByIngredient = async (id: number | undefined): Promise<Meal[
 };
 
 const addMealDataIndex = async () => {
+  const collection = await getCollection();
+
   return Promise.all([
-    (await getCollection()).createIndex({id: 1}, {unique: true}),
-    (await getCollection()).createIndex({'ingredients.id': 1}),
+    collection.createIndex({id: 1}, {unique: true}),
+    collection.createIndex({'ingredients.id': 1}),
   ]);
 };
 

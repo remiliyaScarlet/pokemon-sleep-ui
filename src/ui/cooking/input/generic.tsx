@@ -15,6 +15,7 @@ import {classNames} from '@/utils/react';
 
 export const CookingInputGeneral = ({mealTypes, input, setInput}: CookingCommonProps) => {
   const t = useTranslations('Game.MealType');
+  const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
     <>
@@ -42,9 +43,8 @@ export const CookingInputGeneral = ({mealTypes, input, setInput}: CookingCommonP
       </Flex>
       <FilterTextInput
         style="none"
-        titleI18nNamespace="UI.InPage.Cooking"
-        titleI18nKey="PotCapacity"
-        idToItemId={(id) => id.toString()}
+        title={t2('PotCapacity')}
+        idToItemId={(id) => `PotCapacity-${id.toString()}`}
         ids={toUnique(potCapacity.map(({capacity}) => capacity)).sort((a, b) => a - b)}
         idToButton={(id) => id.toString()}
         {...getSingleSelectOnClickProps({

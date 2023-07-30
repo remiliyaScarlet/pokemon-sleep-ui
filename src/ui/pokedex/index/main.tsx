@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {I18nProvider} from '@/contexts/i18n';
-import {getAllPokedex} from '@/controller/pokemonInfo';
+import {getAllPokedex} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
 import {PokedexClient} from '@/ui/pokedex/index/client';

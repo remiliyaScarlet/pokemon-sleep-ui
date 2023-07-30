@@ -9,14 +9,11 @@ import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/compone
 import {Flex} from '@/components/layout/flex';
 import potCapacity from '@/data/potCapacity.json';
 import {mealTypeDotStyle} from '@/styles/classes';
-import {I18nNamespaces} from '@/types/i18n';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
-
-const titleI18nNamespace: I18nNamespaces = 'UI.InPage.Meal';
 
 type Props = MealIndexInputProps & {
   data: Meal[],
@@ -27,14 +24,14 @@ export const MealInput = (props: Props) => {
 
   const t = useTranslations('Game');
   const t2 = useTranslations('Game.MealType');
+  const t3 = useTranslations('UI.InPage.Meal');
 
   return (
     <Flex direction="col" className="gap-1">
       <FilterTextInput
         style="highlight"
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="Ingredient"
-        idToItemId={(id) => id.toString()}
+        title={t3('Ingredient')}
+        idToItemId={(id) => `Ingredient-${id}`}
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         idToButton={(id) => (
           <Flex direction="row" className="gap-1" center>
@@ -50,9 +47,8 @@ export const MealInput = (props: Props) => {
         {...props}
       />
       <FilterIconInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="MealType"
-        idToItemId={(id) => id.toString()}
+        title={t3('MealType')}
+        idToItemId={(id) => `MealType-${id}`}
         ids={toUnique(data.flatMap(({ingredients}) => ingredients.map(({id}) => id))).sort((a, b) => a - b)}
         getAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
@@ -64,9 +60,8 @@ export const MealInput = (props: Props) => {
         {...props}
       />
       <FilterTextInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="PotCapacity"
-        idToItemId={(id) => id.toString()}
+        title={t3('PotCapacity')}
+        idToItemId={(id) => `PotCapacity-${id}`}
         ids={toUnique(potCapacity.map(({capacity}) => capacity)).sort((a, b) => a - b)}
         idToButton={(id) => id.toString()}
         {...getSingleSelectOnClickProps({

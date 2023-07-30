@@ -49,9 +49,11 @@ export const getSleepStyleByLocations = async (): Promise<FieldToSleepStyleMap> 
 };
 
 const addSleepStyleIndex = async () => {
+  const collection = await getCollection();
+
   return Promise.all([
-    (await getCollection()).createIndex([{pokemonId: 1}, {mapId: 1}], {unique: true}),
-    (await getCollection()).createIndex({mapId: 1}),
+    collection.createIndex([{pokemonId: 1}, {mapId: 1}], {unique: true}),
+    collection.createIndex({mapId: 1}),
   ]);
 };
 

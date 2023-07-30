@@ -7,17 +7,15 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {getSingleSelectOnClickProps} from '@/components/input/filter/utils';
 import {Flex} from '@/components/layout/flex';
+import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {sleepTypeBgClass} from '@/styles/classes';
 import {imageGallerySizes} from '@/styles/image';
-import {I18nNamespaces} from '@/types/i18n';
 import {PokedexDisplayTypeSelector} from '@/ui/pokedex/index/input/displayType';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexData} from '@/ui/pokedex/index/type';
-import {toUnique} from '@/utils/array';
+import {isNotFalsy, toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
-
-const titleI18nNamespace: I18nNamespaces = 'UI.InPage.Pokedex.Info';
 
 type Props = PokedexInputProps & {
   data: PokedexData,
@@ -26,13 +24,13 @@ type Props = PokedexInputProps & {
 export const PokedexInput = ({data, ...props}: Props) => {
   const {filter, setFilter} = props;
   const t = useTranslations('Game');
+  const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
     <Flex direction="col" className="gap-1">
       <FilterIconInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="PokemonType"
-        idToItemId={(id) => id.toString()}
+        title={t2('PokemonType')}
+        idToItemId={(id) => `PokemonType-${id}`}
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         getAlt={(id) => t(`PokemonType.${id.toString()}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
@@ -45,9 +43,8 @@ export const PokedexInput = ({data, ...props}: Props) => {
       />
       <FilterTextInput
         style="highlight"
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="Map"
-        idToItemId={(id) => id.toString()}
+        title={t2('Map')}
+        idToItemId={(id) => `Map-${id}`}
         ids={toUnique(data.flatMap(({sleepStyles}) => sleepStyles.map(({mapId}) => mapId))).sort((a, b) => a - b)}
         idToButton={(id) => {
           const mapName = t(`Field.${id.toString()}`);
@@ -76,9 +73,8 @@ export const PokedexInput = ({data, ...props}: Props) => {
       />
       <FilterTextInput
         style="highlight"
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="SleepType"
-        idToItemId={(id) => id.toString()}
+        title={t2('SleepType')}
+        idToItemId={(id) => `SleepType-${id}`}
         ids={toUnique(data.map(({sleepType}) => sleepType)).sort((a, b) => a - b)}
         idToButton={(id) => (
           <Flex direction="row" className="gap-1" center>
@@ -94,23 +90,48 @@ export const PokedexInput = ({data, ...props}: Props) => {
         {...props}
       />
       <FilterIconInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="Ingredient"
-        idToItemId={(id) => id.toString()}
-        ids={toUnique(data.flatMap(({ingredients}) => ingredients)).sort((a, b) => a - b)}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <div className="h-5 w-5">
+              <IngredientTypeIcon type="fixed"/>
+            </div>
+            <div>{t2('Ingredient')}</div>
+          </Flex>
+        }
+        idToItemId={(id) => `IngredientFixed-${id}`}
+        ids={toUnique(data.map(({ingredients}) => ingredients.fixed).filter(isNotFalsy)).sort((a, b) => a - b)}
         getAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         {...getSingleSelectOnClickProps({
           filter,
           setFilter,
-          filterKey: 'ingredient',
+          filterKey: 'ingredientFixed',
         })}
         {...props}
       />
       <FilterIconInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="Berry"
-        idToItemId={(id) => id.toString()}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <div className="h-5 w-5">
+              <IngredientTypeIcon type="random"/>
+            </div>
+            <div>{t2('Ingredient')}</div>
+          </Flex>
+        }
+        idToItemId={(id) => `IngredientRandom-${id}`}
+        ids={toUnique(data.flatMap(({ingredients}) => ingredients.random ?? [])).sort((a, b) => a - b)}
+        getAlt={(id) => t(`Food.${id.toString()}`)}
+        idToImageSrc={(id) => `/images/ingredient/${id}.png`}
+        {...getSingleSelectOnClickProps({
+          filter,
+          setFilter,
+          filterKey: 'ingredientRandom',
+        })}
+        {...props}
+      />
+      <FilterIconInput
+        title={t2('Berry')}
+        idToItemId={(id) => `Berry-${id}`}
         ids={toUnique(data.map(({berry}) => berry.id)).sort((a, b) => a - b)}
         getAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
@@ -122,9 +143,8 @@ export const PokedexInput = ({data, ...props}: Props) => {
         {...props}
       />
       <FilterTextInput
-        titleI18nNamespace={titleI18nNamespace}
-        titleI18nKey="MainSkill"
-        idToItemId={(id) => id.toString()}
+        title={t2('MainSkill')}
+        idToItemId={(id) => `MainSkill-${id}`}
         ids={toUnique(data.map(({skill}) => skill)).sort((a, b) => a - b)}
         idToButton={(id) => t(`MainSkill.Name.${id.toString()}`)}
         {...getSingleSelectOnClickProps({

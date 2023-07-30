@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {imageIconSizes} from '@/styles/image';
+import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
 
@@ -20,10 +20,11 @@ export const PokemonIconList = ({pokemonIds, getInfo}: Props) => {
 
   if (!pokemonIds?.length) {
     return (
-      <Image
-        src="/images/generic/pokeball_unavailable.png" alt="N/A" fill
-        sizes="(max-width: 768px) 70vw, 45vw"
-      />
+      <div className="p-1.5">
+        <div className="relative h-12 w-12">
+          <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imageSmallIconSizes}/>
+        </div>
+      </div>
     );
   }
 

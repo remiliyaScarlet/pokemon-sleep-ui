@@ -1,44 +1,51 @@
 import React from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonIconList} from '@/components/shared/pokemon/iconList';
-import {PokemonIngredientData} from '@/types/mongo/pokemon';
+import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {Meal} from '@/types/mongo/meal';
+import {PokemonIngredientData, pokemonIngredientType, PokemonIngredientType} from '@/types/mongo/pokemon';
 
 
 type Props = {
+  meal: Meal,
   pokemonByIngredients: PokemonIngredientData,
 };
 
-export const MealIngredientByPokemon = ({pokemonByIngredients}: Props) => {
+export const MealIngredientByPokemon = ({meal, pokemonByIngredients}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
-    <Flex direction="row" className="info-section md:w-1/2">
-      <table className="-m-4 border-separate border-spacing-4">
-        <tbody>
-          {Object.entries(pokemonByIngredients.ingredient).map(([ingredientId, pokemonIds]) => (
-            <tr key={ingredientId}>
-              <td className="button-bg rounded-lg">
-                <div className="relative h-16 w-16">
-                  <Image
-                    src={`/images/ingredient/${ingredientId}.png`} alt={t(ingredientId.toString())}
-                    fill sizes="15vw"
-                  />
-                </div>
-              </td>
-              <td>
-                <PokemonIconList
-                  pokemonIds={pokemonIds?.map(({id}) => id)}
-                  getInfo={(id) => `#${pokemonByIngredients.info[id]?.ingredients.indexOf(Number(ingredientId)) + 1}`}
-                />
-              </td>
-            </tr>
+    <Flex direction="col" center className="info-section gap-2 md:w-1/2">
+      {Object.entries(pokemonByIngredients.ingredient).map(([type, ingredientMap], idx) => (
+        <React.Fragment key={type}>
+          <div className="h-6 w-6">
+            <IngredientTypeIcon type={type as PokemonIngredientType}/>
+          </div>
+          {meal.ingredients.map(({id}) => (
+            <Flex key={id} direction="row">
+              <Link href={`/ingredient/${id}`} className="button-clickable-bg">
+                <Flex direction="col" center className="h-full">
+                  <div className="relative h-12 w-12">
+                    <Image
+                      src={`/images/ingredient/${id}.png`} alt={t(id.toString())}
+                      fill sizes="15vw"
+                    />
+                  </div>
+                </Flex>
+              </Link>
+              <Flex direction="col" center>
+                <PokemonIconList pokemonIds={ingredientMap[id]}/>
+              </Flex>
+            </Flex>
           ))}
-        </tbody>
-      </table>
+          {idx + 1 !== pokemonIngredientType.length && <hr className="w-full border-t-gray-700"/>}
+        </React.Fragment>
+      ))}
     </Flex>
   );
 };

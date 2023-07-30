@@ -11,6 +11,10 @@ export type PokemonBerryId = number;
 
 export type PokemonSkillId = number;
 
+export const pokemonIngredientType = ['fixed', 'random'] as const;
+
+export type PokemonIngredientType = typeof pokemonIngredientType[number];
+
 export type PokemonStats = {
   frequency: number,
   maxCarry: number,
@@ -32,13 +36,17 @@ export type PokemonInfo = {
   sleepType: PokemonSleepTypeId,
   stats: PokemonStats,
   berry: PokemonBerry,
-  ingredients: IngredientId[],
+  ingredients: {
+    fixed?: IngredientId,
+    random?: IngredientId[],
+  },
   skill: PokemonSkillId,
 };
 
-export type PokemonInfoMap = {[id in PokemonId]: PokemonInfo};
+export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonId[]};
+
+export type PokemonIngredientTypeMap = {[type in PokemonIngredientType]: PokemonInfo[]};
 
 export type PokemonIngredientData = {
-  ingredient: {[ingredient in IngredientId]?: PokemonInfo[]},
-  info: PokemonInfoMap,
+  ingredient: {[type in PokemonIngredientType]: PokemonIngredientMap},
 };

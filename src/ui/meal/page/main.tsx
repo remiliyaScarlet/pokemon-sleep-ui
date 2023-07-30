@@ -4,7 +4,7 @@ import {MealPageParams} from '@/app/[locale]/meal/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {getSingleMeal} from '@/controller/meal';
-import {getPokemonByIngredients} from '@/controller/pokemonInfo';
+import {getPokemonByIngredients} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealIngredientByPokemon} from '@/ui/meal/page/pokemon';
@@ -27,7 +27,7 @@ export const MealPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="row" center wrap className="gap-1.5">
         <MealMeta {...meal}/>
-        <MealIngredientByPokemon pokemonByIngredients={pokemonByIngredients}/>
+        <MealIngredientByPokemon meal={meal} pokemonByIngredients={pokemonByIngredients}/>
       </Flex>
     </PageLayout>
   );

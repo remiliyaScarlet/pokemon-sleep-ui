@@ -27,7 +27,8 @@ export type PokedexFilter = {
   sleepType: PokemonSleepTypeId | null,
   skill: PokemonSkillId | null,
   mapId: SleepMapId | null,
-  ingredient: IngredientId | null,
+  ingredientFixed: IngredientId | null,
+  ingredientRandom: IngredientId | null,
   berryId: PokemonBerryId | null,
   display: PokedexDisplayType,
 };
