@@ -90,6 +90,10 @@
     },
     "Ingredient": {
       "Energy": "能量"
+    },
+    "Map": {
+      "Pokemon": "寶可夢",
+      "SleepStyle": "睡姿"
     }
   }
 }

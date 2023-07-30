@@ -25,3 +25,5 @@ export type SleepStyleData = {
 };
 
 export type PokemonSleepDataMap = {[id in PokemonId]?: SleepStyleData[]};
+
+export type FieldToSleepStyleMap = {[id in SleepMapId]?: SleepStyleData[]};

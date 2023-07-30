@@ -90,6 +90,10 @@
     },
     "Ingredient": {
       "Energy": "에너지"
+    },
+    "Map": {
+      "Pokemon": "포켓몬",
+      "SleepStyle": "잠자는 모습"
     }
   }
 }

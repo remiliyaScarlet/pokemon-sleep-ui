@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokemonSleepDataMap, SleepStyleData} from '@/types/mongo/sleepStyle';
+import {FieldToSleepStyleMap, PokemonSleepDataMap, SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
@@ -32,6 +32,21 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
 export const getPokemonSleepStyles = async (pokemonId: number): Promise<PokemonProps['sleepStyles']> => (
   (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
 );
+
+export const getSleepStyleByLocations = async (): Promise<FieldToSleepStyleMap> => {
+  const data = (await getCollection()).find({}, {projection: {_id: false}});
+
+  const ret: FieldToSleepStyleMap = {};
+  for await (const entry of data) {
+    if (!(entry.mapId in ret)) {
+      ret[entry.mapId] = [] as FieldToSleepStyleMap[SleepMapId];
+    }
+
+    ret[entry.mapId]?.push(entry);
+  }
+
+  return ret;
+};
 
 const addSleepStyleIndex = async () => {
   return Promise.all([
