@@ -8,6 +8,7 @@ import {useTranslations} from 'next-intl';
 import {getFilterInputButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonImage} from '@/ui/pokedex/page/image';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
@@ -36,8 +37,8 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
     return (
       <div className="relative h-5 w-5">
         <Image
-          src="/images/generic/pokeball.png" alt={t3('Name')} fill sizes="5vw"
-          className={classNames('transform-smooth', isActive ? 'invert-0 dark:invert' : '')}
+          src="/images/generic/pokeball.png" alt={t3('Name')} fill sizes={imageIconSizes}
+          className={classNames('transform-smooth', isActive ? 'invert-on-dark' : '')}
         />
       </div>
     );

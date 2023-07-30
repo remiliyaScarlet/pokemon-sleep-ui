@@ -35,7 +35,6 @@ export const navEntries: NavEntry[] = [
     href: '/map',
     imageSrc: '/images/generic/map.png',
     i18nTextId: 'Map.Index.Title',
-    disabled: true,
   },
   {
     href: '/skill',

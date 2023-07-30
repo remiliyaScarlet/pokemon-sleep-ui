@@ -3,9 +3,9 @@ import {PokedexDisplayType} from '@/ui/pokedex/index/type';
 
 
 export const displayTypeToTranslationId: {
-  [displayType in PokedexDisplayType]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex'>
+  [displayType in PokedexDisplayType]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex.Info'>
 } = {
-  berry: 'Info.Berry',
-  mainSkill: 'Info.MainSkill',
-  ingredient: 'Info.Ingredient',
+  berry: 'Berry',
+  mainSkill: 'MainSkill',
+  ingredient: 'Ingredient',
 };

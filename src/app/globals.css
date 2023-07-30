@@ -114,13 +114,21 @@ body {
     @apply transform-gpu transition-colors;
   }
   
+  /* region Invert */
+  
   .invert-on-light {
     @apply invert dark:invert-0;
+  }
+  
+  .invert-on-dark {
+    @apply dark:invert;
   }
   
   .invert-icon {
     @apply invert-on-light group-hover:invert-0 group-hover:dark:invert;
   }
+  
+  /* endregion */
   
   .button-base {
     @apply rounded-lg transform-smooth;

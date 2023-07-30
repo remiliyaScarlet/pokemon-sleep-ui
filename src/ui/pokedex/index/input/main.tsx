@@ -1,5 +1,6 @@
 import React from 'react';
 
+import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
@@ -10,7 +11,8 @@ import {Flex} from '@/components/layout/flex';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {sleepTypeBgClass} from '@/styles/classes';
 import {imageGallerySizes} from '@/styles/image';
-import {PokedexDisplayTypeSelector} from '@/ui/pokedex/index/input/displayType';
+import {pokedexDisplayType} from '@/ui/pokedex/index/const';
+import {displayTypeToTranslationId} from '@/ui/pokedex/index/input/const';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexData} from '@/ui/pokedex/index/type';
 import {isNotFalsy, toUnique} from '@/utils/array';
@@ -154,7 +156,23 @@ export const PokedexInput = ({data, ...props}: Props) => {
         })}
         {...props}
       />
-      <PokedexDisplayTypeSelector {...props}/>
+      <FilterTextInput
+        onClick={(display) => setFilter((original) => ({
+          ...original,
+          display,
+        }))}
+        isActive={(display) => filter.display === display}
+        title={
+          <Flex direction="row" center>
+            <div className="h-6 w-6">
+              <InformationCircleIcon/>
+            </div>
+          </Flex>
+        }
+        ids={[...pokedexDisplayType]}
+        idToButton={(display) => t2(displayTypeToTranslationId[display])}
+        idToItemId={(display) => `displayType-${display}`}
+      />
     </Flex>
   );
 };
