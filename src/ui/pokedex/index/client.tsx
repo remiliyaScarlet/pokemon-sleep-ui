@@ -3,6 +3,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hooks';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
@@ -21,7 +22,8 @@ export const PokedexClient = ({data}: Props) => {
     <>
       <PokedexInput filter={filter} setFilter={setFilter} data={data}/>
       <HorizontalSplitter/>
-      <Flex direction="row" wrap className="gap-1.5 md:p-3 lg:p-5">
+      <PokedexResultCount data={data} inclusionMap={isIncluded}/>
+      <Flex direction="row" wrap className="gap-2">
         {data.map((pokemon) => (
           <div
             key={pokemon.id}
