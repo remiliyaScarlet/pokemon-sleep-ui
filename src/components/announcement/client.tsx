@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {announcementTextClasses} from '@/components/announcement/styles';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {Announcement} from '@/types/mongo/announcement';
 
 import styles from './main.module.css';
@@ -36,7 +37,7 @@ export const AnnouncementsClient = ({announcements}: Props) => {
           {message}
         </div>
       </div>
-      <hr className="border-t-gray-700"/>
+      <HorizontalSplitter/>
     </>
   );
 };

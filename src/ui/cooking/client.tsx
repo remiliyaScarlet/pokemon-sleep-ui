@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {Meal} from '@/types/mongo/meal';
 import {CookingInputUI} from '@/ui/cooking/input/main';
@@ -38,7 +39,7 @@ export const CookingClient = ({meals, ingredients}: Props) => {
   return (
     <Flex direction="col">
       <CookingInputUI input={input} setInput={setInput} meals={validMeals} mealTypes={mealTypes}/>
-      <hr className="my-2 border-t-gray-700"/>
+      <HorizontalSplitter className="my-2"/>
       <CookingResult input={input} meals={validMeals} mealTypes={mealTypes} ingredients={ingredients}/>
     </Flex>
   );

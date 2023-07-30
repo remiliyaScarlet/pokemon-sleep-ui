@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {Meal} from '@/types/mongo/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hooks';
 import {MealInput} from '@/ui/meal/index/input/main';
@@ -20,7 +21,7 @@ export const MealIndexClient = ({data}: Props) => {
   return (
     <>
       <MealInput data={data} {...props}/>
-      <hr className="border-t-gray-700"/>
+      <HorizontalSplitter/>
       <Flex direction="row" wrap className="gap-1.5 md:p-3 lg:p-5">
         {data.map((meal) => (
           <div

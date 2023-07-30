@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hooks';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
@@ -19,7 +20,7 @@ export const PokedexClient = ({data}: Props) => {
   return (
     <>
       <PokedexInput filter={filter} setFilter={setFilter} data={data}/>
-      <hr className="border-t-gray-700"/>
+      <HorizontalSplitter/>
       <Flex direction="row" wrap className="gap-1.5 md:p-3 lg:p-5">
         {data.map((pokemon) => (
           <div
