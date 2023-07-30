@@ -64,8 +64,14 @@ type IsFilterMismatchOnSingleProps<
 export const isFilterMismatchOnSingle = <
   TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
->({filter, filterKey, id}: IsFilterMismatchOnSingleProps<TFilter, TId>) => (
-  id ?
-    isFilterConditionActive({filter, filterKey}) && !filter[filterKey][id] :
-    true
-);
+>({filter, filterKey, id}: IsFilterMismatchOnSingleProps<TFilter, TId>) => {
+  if (!isFilterConditionActive({filter, filterKey})) {
+    return false;
+  }
+
+  if (id === null || id === undefined) {
+    return true;
+  }
+
+  return !filter[filterKey][id];
+};
