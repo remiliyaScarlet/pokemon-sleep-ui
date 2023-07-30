@@ -1,6 +1,6 @@
 import {getTranslator} from 'next-intl/server';
 
-import {I18nMessageKeysOfObject} from '@/types/i18n';
+import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {GenerateMetadata} from '@/types/next/metadata';
 
 
@@ -9,7 +9,7 @@ type GeneratePageMetaValues = {
 };
 
 type GeneratePageMetaOpts = {
-  key: I18nMessageKeysOfObject<IntlMessages['UI']['Metadata']>,
+  key: I18nMessageKeysOfNamespace<'UI.Metadata'>,
   values?: GeneratePageMetaValues,
 };
 

@@ -6,7 +6,7 @@ import NestedValueOf from 'use-intl/dist/core/utils/NestedValueOf';
 
 export type I18nNamespaces = NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>;
 
-export type I18nMessageKeysOfObject<TMessageObject> = MessageKeys<TMessageObject, NestedKeyOf<TMessageObject>>;
+type I18nMessageKeysOfObject<TMessageObject> = MessageKeys<TMessageObject, NestedKeyOf<TMessageObject>>;
 
 type I18nNamespaceObject<TNamespace extends I18nNamespaces> = NestedValueOf<
   {'!': IntlMessages},
