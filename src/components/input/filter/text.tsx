@@ -2,7 +2,7 @@ import React from 'react';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
-import {getFilterInputButtonClass} from '@/components/input/filter/utils';
+import {getFilterInputButtonClass} from '@/components/input/filter/utils/props';
 
 
 type Props<TId> = Omit<FilterCategoryInputProps<TId>, 'getClassNames'>;

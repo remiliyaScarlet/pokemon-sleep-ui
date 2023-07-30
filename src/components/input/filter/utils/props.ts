@@ -57,39 +57,3 @@ export const getMultiSelectOnClickProps = <
     })),
   };
 };
-
-type IsFilterConditionActiveProps<
-  TFilter extends FilterWithInclusionMap<TId>,
-  TId extends Indexable
-> = {
-  filter: TFilter,
-  filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>,
-};
-
-export const isFilterConditionActive = <
-  TFilter extends FilterWithInclusionMap<TId>,
-  TId extends Indexable
->({filter, filterKey}: IsFilterConditionActiveProps<TFilter, TId>) => (
-  Object.values(filter[filterKey]).some((value) => value)
-);
-
-
-type IsFilterIncludeAllIdsProps<
-  TFilter extends FilterWithInclusionMap<TId>,
-  TId extends Indexable,
-> = {
-  filter: TFilter,
-  filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>,
-  ids: TId[],
-  keyToId: (key: string) => TId,
-  onIdsEmpty: boolean,
-};
-
-export const isFilterMatchingGivenArray = <
-  TFilter extends FilterWithInclusionMap<TId>,
-  TId extends Indexable
->({filter, filterKey, ids, keyToId, onIdsEmpty}: IsFilterIncludeAllIdsProps<TFilter, TId>) => (
-  Object.entries(filter[filterKey])
-    .filter(([_, ingredient]) => !!ingredient)
-    .every(([idInFilter]) => ids.length === 0 ? onIdsEmpty : ids.includes(keyToId(idInFilter)))
-);

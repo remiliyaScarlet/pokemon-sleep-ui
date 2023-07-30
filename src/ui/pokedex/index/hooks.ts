@@ -1,6 +1,9 @@
-import {useTranslations} from 'next-intl';
-
 import {useFilterInput} from '@/components/input/filter/hooks';
+import {
+  isFilterMatchingAll,
+  isFilterMatchingSome,
+  isFilterMismatchOnSingle,
+} from '@/components/input/filter/utils/check';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokedexData, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
 
@@ -10,52 +13,55 @@ type UseFilteredPokedexOpts = {
 };
 
 export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
-  const t = useTranslations('Game.PokemonName');
-
   return useFilterInput<PokedexFilter, PokedexSinglePokemon, PokemonId>({
     data,
     dataToId: ({id}) => id,
     initialFilter: {
-      name: '',
-      type: null,
-      sleepType: null,
-      skill: null,
-      mapId: null,
-      ingredientFixed: null,
-      ingredientRandom: null,
-      berryId: null,
+      type: {},
+      mapId: {},
+      sleepType: {},
+      ingredientFixed: {},
+      ingredientRandom: {},
+      berryId: {},
+      skill: {},
       display: 'mainSkill',
     },
     isDataIncluded: (filter, data) => {
-      if (filter.name !== '' && t(data.id.toString()) !== filter.name) {
+      if (isFilterMismatchOnSingle({filter, filterKey: 'type', id: data.type})) {
         return false;
       }
 
-      if (filter.type !== null && data.type !== filter.type) {
+      if (isFilterMismatchOnSingle({filter, filterKey: 'sleepType', id: data.sleepType})) {
         return false;
       }
 
-      if (filter.sleepType !== null && data.sleepType !== filter.sleepType) {
+      if (isFilterMismatchOnSingle({filter, filterKey: 'skill', id: data.skill})) {
         return false;
       }
 
-      if (filter.skill !== null && data.skill !== filter.skill) {
+      if (!isFilterMatchingAll({
+        filter,
+        filterKey: 'mapId',
+        ids: data.sleepStyles.map(({mapId}) => mapId),
+        idInFilterToIdForCheck: Number,
+        onIdsEmpty: false,
+      })) {
         return false;
       }
 
-      if (filter.mapId !== null && !data.sleepStyles.some(({mapId}) => mapId === filter.mapId)) {
+      if (isFilterMismatchOnSingle({filter, filterKey: 'ingredientFixed', id: data.ingredients.fixed})) {
         return false;
       }
 
-      if (filter.ingredientFixed !== null && data.ingredients.fixed !== filter.ingredientFixed) {
+      if (!isFilterMatchingSome({
+        filter,
+        filterKey: 'ingredientRandom',
+        ids: data.ingredients.random ?? [],
+      })) {
         return false;
       }
 
-      if (filter.ingredientRandom !== null && !data.ingredients.random?.some((id) => id === filter.ingredientRandom)) {
-        return false;
-      }
-
-      return !(filter.berryId !== null && data.berry.id !== filter.berryId);
+      return !isFilterMismatchOnSingle({filter, filterKey: 'berryId', id: data.berry.id});
     },
   });
 };

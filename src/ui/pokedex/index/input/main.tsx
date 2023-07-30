@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
-import {getSingleSelectOnClickProps} from '@/components/input/filter/utils';
+import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {sleepTypeBgClass} from '@/styles/classes';
@@ -34,7 +34,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         getAlt={(id) => t(`PokemonType.${id.toString()}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'type',
@@ -64,7 +64,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
             </>
           );
         }}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'mapId',
@@ -82,7 +82,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
             <div>{t(`SleepType.${id.toString()}`)}</div>
           </Flex>
         )}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'sleepType',
@@ -102,7 +102,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.map(({ingredients}) => ingredients.fixed).filter(isNotFalsy)).sort((a, b) => a - b)}
         getAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'ingredientFixed',
@@ -122,7 +122,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.flatMap(({ingredients}) => ingredients.random ?? [])).sort((a, b) => a - b)}
         getAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'ingredientRandom',
@@ -135,7 +135,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         ids={toUnique(data.map(({berry}) => berry.id)).sort((a, b) => a - b)}
         getAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'berryId',
@@ -147,7 +147,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
         idToItemId={(id) => `MainSkill-${id}`}
         ids={toUnique(data.map(({skill}) => skill)).sort((a, b) => a - b)}
         idToButton={(id) => t(`MainSkill.Name.${id.toString()}`)}
-        {...getSingleSelectOnClickProps({
+        {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'skill',

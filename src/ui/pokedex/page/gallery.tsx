@@ -5,7 +5,7 @@ import {Transition} from '@headlessui/react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
-import {getFilterInputButtonClass} from '@/components/input/filter/utils';
+import {getFilterInputButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {PokemonId} from '@/types/mongo/pokemon';

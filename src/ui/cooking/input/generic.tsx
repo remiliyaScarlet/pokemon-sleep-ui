@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
-import {getSingleSelectOnClickProps} from '@/components/input/filter/utils';
+import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import potCapacity from '@/data/potCapacity.json';

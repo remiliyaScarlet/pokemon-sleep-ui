@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
-import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils';
+import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import potCapacity from '@/data/potCapacity.json';
 import {mealTypeDotStyle} from '@/styles/classes';

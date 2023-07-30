@@ -1,11 +1,6 @@
+import {FilterInclusionMap} from '@/components/input/filter/type';
 import {IngredientId} from '@/types/mongo/ingredient';
-import {
-  PokemonBerryId,
-  PokemonInfo,
-  PokemonSkillId,
-  PokemonSleepTypeId,
-  PokemonTypeId,
-} from '@/types/mongo/pokemon';
+import {PokemonBerryId, PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
 import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 
@@ -22,14 +17,13 @@ export type PokedexData = PokedexSinglePokemon[];
 export type PokedexDisplayType = typeof pokedexDisplayType[number];
 
 export type PokedexFilter = {
-  name: string,
-  type: PokemonTypeId | null,
-  sleepType: PokemonSleepTypeId | null,
-  skill: PokemonSkillId | null,
-  mapId: SleepMapId | null,
-  ingredientFixed: IngredientId | null,
-  ingredientRandom: IngredientId | null,
-  berryId: PokemonBerryId | null,
+  type: FilterInclusionMap<PokemonTypeId>,
+  mapId: FilterInclusionMap<SleepMapId>,
+  sleepType: FilterInclusionMap<PokemonSleepTypeId>,
+  ingredientFixed: FilterInclusionMap<IngredientId>,
+  ingredientRandom: FilterInclusionMap<IngredientId>,
+  berryId: FilterInclusionMap<PokemonBerryId>,
+  skill: FilterInclusionMap<PokemonSkillId>,
   display: PokedexDisplayType,
 };
 
