@@ -1,5 +1,8 @@
 export type FeatureLinkProps = {
   href: string,
-  imageSrc: string,
   disabled?: boolean,
+};
+
+export type FeatureLinkImageProps = FeatureLinkProps & {
+  imageSrc: string,
 };

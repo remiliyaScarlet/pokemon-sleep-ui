@@ -19,6 +19,5 @@ export const generatePageMeta = ({key, values}: GeneratePageMetaOpts): GenerateM
 
   return {
     title: `${t(key, values)} | ${t('SiteName')}`,
-    colorScheme: 'dark',
   };
 };

@@ -37,15 +37,20 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Map.Index.Title',
   },
   {
-    href: '/skill',
-    imageSrc: '/images/generic/skill.png',
-    i18nTextId: 'Skill.Index.Title',
-    disabled: true,
+    href: '/energy',
+    imageSrc: '/images/generic/energy_white.png',
+    i18nTextId: 'Energy.Index.Title',
   },
   {
     href: '/rarity',
     imageSrc: '/images/generic/flash.png',
     i18nTextId: 'Rarity.Index.Title',
+    disabled: true,
+  },
+  {
+    href: '/skill',
+    imageSrc: '/images/generic/memo.png',
+    i18nTextId: 'Skill.Index.Title',
     disabled: true,
   },
   {

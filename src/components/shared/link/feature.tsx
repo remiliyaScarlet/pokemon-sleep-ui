@@ -1,11 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkProps} from '@/components/shared/link/type';
-import {imageSmallIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
@@ -15,14 +13,12 @@ type Props = FeatureLinkProps & {
   text: string,
 };
 
-export const FeatureLink = ({href, imageSrc, disabled, text}: Props) => {
+export const FeatureLink = ({href, disabled, text, children}: React.PropsWithChildren<Props>) => {
   if (disabled) {
     return (
       <button disabled className={classNames('button-base button-disabled', styles['home-link'])}>
         <Flex direction="row" center className="h-full gap-1.5">
-          <div className="relative h-12 w-12">
-            <Image src={imageSrc} alt={text} fill className="invert-on-light" sizes={imageSmallIconSizes}/>
-          </div>
+          {children}
           <div className="text-lg">
             {text}
           </div>
@@ -43,9 +39,7 @@ export const FeatureLink = ({href, imageSrc, disabled, text}: Props) => {
         direction="row" center
         className="h-full gap-1.5 transition-transform group-hover:scale-125 motion-reduce:transform-none"
       >
-        <div className="relative h-12 w-12">
-          <Image src={imageSrc} alt={text} fill className="invert-icon" sizes={imageSmallIconSizes}/>
-        </div>
+        {children}
         <div className="text-lg">
           {text}
         </div>

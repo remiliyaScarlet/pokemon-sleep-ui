@@ -52,10 +52,10 @@
         "Title": "能量計算"
       },
       "Team": {
-        "Title": "能量 / 隊伍分析"
+        "Title": "隊伍分析"
       },
       "Optimizer": {
-        "Title": "能量 / 最佳化"
+        "Title": "最佳化"
       }
     },
     "Skill": {
