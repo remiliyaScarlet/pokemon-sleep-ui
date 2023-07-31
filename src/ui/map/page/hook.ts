@@ -12,6 +12,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
     initialFilter: {
       pokemonType: {},
       sleepType: {},
+      specialty: {},
       ingredientFixed: {},
       ingredientRandom: {},
       berry: {},

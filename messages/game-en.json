@@ -825,5 +825,10 @@
         "1": "Snoozing",
         "4": "Dozing",
         "99": "Balanced"
+    },
+    "Specialty": {
+        "1": "Berries",
+        "2": "Ingredients",
+        "3": "Skills"
     }
 }

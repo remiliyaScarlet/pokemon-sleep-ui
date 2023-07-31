@@ -6,8 +6,9 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {I18nProvider} from '@/contexts/i18n';
-import {sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
+import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonBerryEnergy} from '@/ui/pokedex/page/berry';
 import {PokemonIngredient} from '@/ui/pokedex/page/ingredient';
@@ -19,13 +20,14 @@ import {classNames} from '@/utils/react';
 export const PokemonMeta = (props: PokemonProps) => {
   const {pokemon, berryData} = props;
   const {
-    type,
     id,
-    berry,
-    skill,
+    type,
+    specialty,
     sleepType,
     stats,
+    berry,
     ingredients,
+    skill,
   } = pokemon;
 
   const t = useTranslations('Game');
@@ -65,6 +67,14 @@ export const PokemonMeta = (props: PokemonProps) => {
                   {t(`SleepType.${sleepType}`)}
                 </div>
               </Flex>
+            </td>
+          </tr>
+          <tr>
+            <td className={metaTitleClass}>
+              {t2('Info.Specialty')}
+            </td>
+            <td className={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}>
+              <PokemonSpecialty specialty={specialty} dimension="h-5 w-5"/>
             </td>
           </tr>
           <tr>

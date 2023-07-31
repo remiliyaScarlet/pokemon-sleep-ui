@@ -1,9 +1,20 @@
 import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
-import {PokemonInfoRequiredForInput, PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {
+  PokemonInfoRequiredForInput,
+  PokemonInputFilter,
+  PokemonInputType,
+} from '@/components/shared/pokemon/input/type';
 
 
-export const isPokemonIncludedFromFilter = (filter: PokemonInputFilter, pokemon: PokemonInfoRequiredForInput) => {
+export const isPokemonIncludedFromFilter = (
+  filter: PokemonInputFilter<PokemonInputType>,
+  pokemon: PokemonInfoRequiredForInput,
+) => {
   if (isFilterMismatchOnSingle({filter, filterKey: 'pokemonType', id: pokemon.type})) {
+    return false;
+  }
+
+  if (isFilterMismatchOnSingle({filter, filterKey: 'specialty', id: pokemon.specialty})) {
     return false;
   }
 

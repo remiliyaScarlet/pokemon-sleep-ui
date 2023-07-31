@@ -8,4 +8,5 @@ export const displayTypeToTranslationId: {
   berry: 'Berry',
   mainSkill: 'MainSkill',
   ingredient: 'Ingredient',
+  specialty: 'Specialty',
 };

@@ -100,6 +100,7 @@
         "PokemonLevel": "寶可夢等級",
         "PokemonType": "寶可夢屬性",
         "SleepType": "睡眠類型",
+        "Specialty": "專長",
         "Stats": "能力"
       },
       "Stats": {

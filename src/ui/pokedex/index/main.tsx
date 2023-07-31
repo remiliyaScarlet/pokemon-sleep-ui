@@ -12,9 +12,10 @@ const getPokedexData = async (): Promise<PokedexData> => {
   const sleepStyleMap = await getPokemonSleepStyleMap();
 
   return (await getAllPokedex())
-    .map(({id, type, sleepType, berry, skill, ingredients}) => ({
+    .map(({id, type, specialty, sleepType, berry, skill, ingredients}) => ({
       id,
       type,
+      specialty,
       sleepType,
       berry,
       skill,

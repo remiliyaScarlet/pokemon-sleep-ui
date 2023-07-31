@@ -21,6 +21,10 @@ export const PokemonFilterTitle = ({type}: Props) => {
     return <>{t('SleepType')}</>;
   }
 
+  if (type === 'specialty') {
+    return <>{t('Specialty')}</>;
+  }
+
   if (type === 'ingredientFixed') {
     return <PokemonIngredientTypeTitle type="fixed"/>;
   }
@@ -36,4 +40,6 @@ export const PokemonFilterTitle = ({type}: Props) => {
   if (type === 'mainSkill') {
     return <>{t('MainSkill')}</>;
   }
+
+  throw new Error(`Unhandled pokemon filter title of type ${type}`);
 };

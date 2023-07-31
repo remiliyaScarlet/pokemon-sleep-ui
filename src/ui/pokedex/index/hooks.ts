@@ -17,6 +17,7 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
       pokemonType: {},
       mapId: {},
       sleepType: {},
+      specialty: {},
       ingredientFixed: {},
       ingredientRandom: {},
       berry: {},

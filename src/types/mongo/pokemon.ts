@@ -14,6 +14,8 @@ export const pokemonIngredientType = ['fixed', 'random'] as const;
 
 export type PokemonIngredientType = typeof pokemonIngredientType[number];
 
+export type PokemonSpecialtyId = number;
+
 export type PokemonStats = {
   frequency: number,
   maxCarry: number,
@@ -32,6 +34,7 @@ export type PokemonBerry = {
 export type PokemonInfo = {
   id: PokemonId,
   type: PokemonTypeId,
+  specialty: PokemonSpecialtyId | null,
   sleepType: PokemonSleepTypeId,
   stats: PokemonStats,
   berry: PokemonBerry,

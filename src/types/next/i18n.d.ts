@@ -57,6 +57,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           PokemonLevel: string,
           PokemonType: string,
           SleepType: string,
+          Specialty: string,
           Stats: string,
         },
         Stats: {
@@ -104,5 +105,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       [pokemonId: string]: GameObjectIdToString
     },
     SleepType: GameObjectIdToString,
+    Specialty: GameObjectIdToString,
   }
 }

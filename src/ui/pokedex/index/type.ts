@@ -1,7 +1,10 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInfoRequiredForInput, PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {
+  PokemonInfoRequiredForInput,
+  PokemonInputFilter,
+  PokemonInputType,
+} from '@/components/shared/pokemon/input/type';
 import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
-import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 
 
 export type PokedexSinglePokemon = PokemonInfoRequiredForInput & {
@@ -10,9 +13,16 @@ export type PokedexSinglePokemon = PokemonInfoRequiredForInput & {
 
 export type PokedexData = PokedexSinglePokemon[];
 
+export const pokedexDisplayType = [
+  'berry',
+  'mainSkill',
+  'ingredient',
+  'specialty',
+] as const;
+
 export type PokedexDisplayType = typeof pokedexDisplayType[number];
 
-export type PokedexFilter = PokemonInputFilter & {
+export type PokedexFilter = PokemonInputFilter<PokemonInputType> & {
   mapId: FilterInclusionMap<SleepMapId>,
   display: PokedexDisplayType,
 };

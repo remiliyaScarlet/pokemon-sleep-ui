@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageIconSizes} from '@/styles/image';
 import {PokedexIngredientIcon} from '@/ui/pokedex/index/linkIngredientIcon';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
@@ -13,6 +14,7 @@ export const PokedexLinkDetail = React.memo(({
   berry,
   skill,
   ingredients,
+  specialty,
   display,
 }: PokedexLinkProps) => {
   const t = useTranslations('Game');
@@ -48,6 +50,12 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  return <></>;
+  if (display === 'specialty') {
+    return (
+      <Flex direction="row">
+        <PokemonSpecialty specialty={specialty}/>
+      </Flex>
+    );
+  }
 });
 PokedexLinkDetail.displayName = 'PokedexLinkDetail';

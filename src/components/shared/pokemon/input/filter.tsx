@@ -13,6 +13,7 @@ import {
   PokemonInputFilterIdType,
   PokemonInputType,
 } from '@/components/shared/pokemon/input/type';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {sleepTypeBgClass} from '@/styles/classes';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
@@ -65,6 +66,17 @@ export const PokemonFilter = <
         idToAlt={(id) => t2(`PokemonType.${id}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
         ids={getIds(({type}) => type as TId)}
+        {...commonProps}
+      />
+    );
+  }
+
+  if (type === 'specialty') {
+    return (
+      <FilterTextInput
+        idToItemId={(id) => `Specialty-${id}`}
+        idToButton={(id) => <PokemonSpecialty specialty={id}/>}
+        ids={getIds(({specialty}) => specialty as TId)}
         {...commonProps}
       />
     );
@@ -132,4 +144,6 @@ export const PokemonFilter = <
       />
     );
   }
+
+  throw new Error(`Unhandled pokemon filter of type ${type}`);
 };

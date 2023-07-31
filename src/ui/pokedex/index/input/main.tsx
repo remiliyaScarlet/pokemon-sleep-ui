@@ -8,11 +8,11 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
+import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageGallerySizes} from '@/styles/image';
-import {pokedexDisplayType} from '@/ui/pokedex/index/const';
 import {displayTypeToTranslationId} from '@/ui/pokedex/index/input/const';
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexData} from '@/ui/pokedex/index/type';
+import {PokedexData, pokedexDisplayType} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
 
 
@@ -27,12 +27,6 @@ export const PokedexInput = ({data, ...props}: Props) => {
 
   return (
     <Flex direction="col" className="gap-1">
-      <PokemonFilter
-        type="pokemonType"
-        filterKey="pokemonType"
-        pokemon={data}
-        {...props}
-      />
       <FilterTextInput
         style="highlight"
         title={t2('Map')}
@@ -62,37 +56,16 @@ export const PokedexInput = ({data, ...props}: Props) => {
           filterKey: 'mapId',
         })}
       />
-      <PokemonFilter
-        style="highlight"
-        type="sleepType"
-        filterKey="sleepType"
-        pokemon={data}
-        {...props}
-      />
-      <PokemonFilter
-        type="ingredientFixed"
-        filterKey="ingredientFixed"
-        pokemon={data}
-        {...props}
-      />
-      <PokemonFilter
-        type="ingredientRandom"
-        filterKey="ingredientRandom"
-        pokemon={data}
-        {...props}
-      />
-      <PokemonFilter
-        type="berry"
-        filterKey="berry"
-        pokemon={data}
-        {...props}
-      />
-      <PokemonFilter
-        type="mainSkill"
-        filterKey="mainSkill"
-        pokemon={data}
-        {...props}
-      />
+      {pokemonInputType.map((type) => (
+        <PokemonFilter
+          key={type}
+          style={type === 'sleepType' ? 'highlight' : 'normal'}
+          type={type}
+          filterKey={type}
+          pokemon={data}
+          {...props}
+        />
+      ))}
       <FilterTextInput
         onClick={(display) => setFilter((original) => ({
           ...original,
