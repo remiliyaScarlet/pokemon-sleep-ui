@@ -4,7 +4,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
-import {useFilteredPokedex} from '@/ui/pokedex/index/hooks';
+import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexData} from '@/ui/pokedex/index/type';

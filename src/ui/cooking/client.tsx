@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {useFilterInput} from '@/components/input/filter/hooks';
+import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';

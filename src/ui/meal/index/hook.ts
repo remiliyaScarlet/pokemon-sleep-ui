@@ -1,4 +1,4 @@
-import {useFilterInput} from '@/components/input/filter/hooks';
+import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {MealFilter} from '@/ui/meal/index/type';

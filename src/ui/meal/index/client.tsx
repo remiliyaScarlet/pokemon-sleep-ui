@@ -4,7 +4,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {Meal} from '@/types/mongo/meal';
-import {useFilteredMeals} from '@/ui/meal/index/hooks';
+import {useFilteredMeals} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
 import {MealLink} from '@/ui/meal/index/link';
 import {toSum} from '@/utils/array';

@@ -1,4 +1,4 @@
-import {useFilterInput} from '@/components/input/filter/hooks';
+import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterConditionActive} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
