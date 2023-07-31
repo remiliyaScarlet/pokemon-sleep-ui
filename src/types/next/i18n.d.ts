@@ -54,11 +54,17 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           MainSkill: string,
           Map: string,
           Name: string,
+          PokemonLevel: string,
           PokemonType: string,
           SleepType: string,
           Stats: string,
         },
         Stats: {
+          Energy: {
+            Daily: string,
+            Name: string,
+            Weekly: string,
+          },
           Frequency: string,
           Friendship: string,
           MaxCarry: string,

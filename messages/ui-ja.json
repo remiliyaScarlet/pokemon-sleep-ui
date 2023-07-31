@@ -97,11 +97,17 @@
         "MainSkill": "メインスキル",
         "Map": "マップ",
         "Name": "ポケモン",
+        "PokemonLevel": "ポケモンレベル",
         "PokemonType": "ポケモンタイプ",
         "SleepType": "睡眠タイプ",
         "Stats": "能力"
       },
       "Stats": {
+        "Energy": {
+          "Daily": "毎日",
+          "Name": "エナジー",
+          "Weekly": "毎週"
+        },
         "Frequency": "おてつだい時間",
         "Friendship": "フレンドポイント",
         "MaxCarry": "最大所持数",

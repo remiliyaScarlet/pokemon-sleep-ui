@@ -6,8 +6,10 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {I18nProvider} from '@/contexts/i18n';
 import {sleepTypeBgClass, sleepTypeTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
+import {PokemonBerryEnergy} from '@/ui/pokedex/page/berry';
 import {PokemonIngredient} from '@/ui/pokedex/page/ingredient';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -15,16 +17,19 @@ import {classNames} from '@/utils/react';
 
 
 export const PokemonMeta = (props: PokemonProps) => {
-  const t = useTranslations('Game');
-  const t2 = useTranslations('UI.InPage.Pokedex');
+  const {pokemon, berryData} = props;
   const {
     type,
     id,
     berry,
     skill,
     sleepType,
+    stats,
     ingredients,
-  } = props.pokemon;
+  } = pokemon;
+
+  const t = useTranslations('Game');
+  const t2 = useTranslations('UI.InPage.Pokedex');
 
   const metaTitleClass = 'whitespace-nowrap text-sm text-slate-500';
 
@@ -67,13 +72,18 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Berry')}
             </td>
             <td>
-              <Flex direction="row" center className="gap-1">
-                <div className="relative h-10 w-10">
-                  <Image src={`/images/berry/${berry.id}.png`} alt={berryName} fill sizes={imageSmallIconSizes}/>
-                </div>
-                <div className="whitespace-nowrap text-lg">
-                  {berryName} &times; {berry.quantity}
-                </div>
+              <Flex direction="col" center className="gap-1">
+                <Flex direction="row" center className="gap-1">
+                  <div className="relative h-10 w-10">
+                    <Image src={`/images/berry/${berry.id}.png`} alt={berryName} fill sizes={imageSmallIconSizes}/>
+                  </div>
+                  <div className="whitespace-nowrap text-lg">
+                    {berryName} &times; {berry.quantity}
+                  </div>
+                </Flex>
+                <I18nProvider namespaces={['UI.InPage.Pokedex']}>
+                  <PokemonBerryEnergy frequency={stats.frequency} berry={berry} berryData={berryData}/>
+                </I18nProvider>
               </Flex>
             </td>
           </tr>

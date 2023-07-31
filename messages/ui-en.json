@@ -97,11 +97,17 @@
         "MainSkill": "Main Skill",
         "Map": "Map",
         "Name": "Pokémon",
+        "PokemonLevel": "Pokemon Level",
         "PokemonType": "Pokemon Type",
         "SleepType": "Sleep Type",
         "Stats": "Stats"
       },
       "Stats": {
+        "Energy": {
+          "Daily": "Daily",
+          "Name": "Strength",
+          "Weekly": "Weekly"
+        },
         "Frequency": "Frequency",
         "Friendship": "Friendship Points",
         "MaxCarry": "Carry Limit",

@@ -1,6 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
+import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
-import {PokemonBerryId, PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
+import {PokemonInfo, PokemonSkillId, PokemonSleepTypeId, PokemonTypeId} from '@/types/mongo/pokemon';
 
 
 export const pokemonInputType = [
@@ -24,7 +25,7 @@ export type PokemonInputFilterIdType = {
   sleepType: PokemonSleepTypeId,
   ingredientFixed: IngredientId,
   ingredientRandom: IngredientId,
-  berry: PokemonBerryId,
+  berry: BerryId,
   mainSkill: PokemonSkillId,
 };
 
@@ -33,6 +34,6 @@ export type PokemonInputFilter = {
   sleepType: FilterInclusionMap<PokemonSleepTypeId>,
   ingredientFixed: FilterInclusionMap<IngredientId>,
   ingredientRandom: FilterInclusionMap<IngredientId>,
-  berry: FilterInclusionMap<PokemonBerryId>,
+  berry: FilterInclusionMap<BerryId>,
   mainSkill: FilterInclusionMap<PokemonSkillId>,
 };

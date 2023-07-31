@@ -97,11 +97,17 @@
         "MainSkill": "主技能",
         "Map": "地圖",
         "Name": "寶可夢",
+        "PokemonLevel": "寶可夢等級",
         "PokemonType": "寶可夢屬性",
         "SleepType": "睡眠類型",
         "Stats": "能力"
       },
       "Stats": {
+        "Energy": {
+          "Daily": "每日",
+          "Name": "能量",
+          "Weekly": "每周"
+        },
         "Frequency": "幫忙間隔",
         "Friendship": "友情點數",
         "MaxCarry": "持有上限",

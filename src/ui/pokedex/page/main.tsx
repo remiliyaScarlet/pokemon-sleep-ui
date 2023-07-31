@@ -4,6 +4,7 @@ import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
+import {getBerryData} from '@/controller/berry';
 import {getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
@@ -21,12 +22,17 @@ export const Pokemon = ({params}: Props) => {
   const idNumber = Number(params.id);
   const pokemon = React.use(getSinglePokemonInfo(idNumber));
   const sleepStyles = React.use(getPokemonSleepStyles(idNumber));
+  const berryData = React.use(getBerryData(pokemon?.berry.id));
 
   if (!pokemon) {
     return <Loading text="Pokemon"/>;
   }
 
-  const props: PokemonProps = {pokemon, sleepStyles};
+  if (!berryData) {
+    return <Loading text="Berry"/>;
+  }
+
+  const props: PokemonProps = {pokemon, sleepStyles, berryData};
 
   return (
     <PageLayout>
