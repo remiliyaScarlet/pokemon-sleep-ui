@@ -4,6 +4,7 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageIconSizes} from '@/styles/image';
 import {PokedexIngredientIcon} from '@/ui/pokedex/index/linkIngredientIcon';
@@ -44,7 +45,7 @@ export const PokedexLinkDetail = React.memo(({
     return (
       <Flex direction="row" className="gap-0.5">
         <PokedexIngredientIcon id={ingredients.fixed ?? null}/>
-        {ingredients.random && <div className="border border-r-gray-700"/>}
+        {ingredients.random && <VerticalSplitter/>}
         {ingredients.random?.map((id) => <PokedexIngredientIcon key={id} id={id}/>)}
       </Flex>
     );

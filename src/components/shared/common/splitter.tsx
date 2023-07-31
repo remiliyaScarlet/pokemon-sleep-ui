@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const VerticalSplitter = ({className}: Props) => {
-  return <div className={classNames('border-r border-r-gray-600', className)}/>;
+  return <div className={classNames('border-r border-r-gray-500', className)}/>;
 };
 
 export const HorizontalSplitter = ({className}: Props) => {

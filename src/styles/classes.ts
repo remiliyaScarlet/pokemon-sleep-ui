@@ -39,12 +39,12 @@ export const mealTypeDotStyle: MealTypeClassMap = {
 
 export const specialtyBgClass: SpecialtyClassMap = {
   1: 'bg-green-500',
-  2: 'bg-yellow-400',
+  2: 'bg-amber-500 dark:bg-yellow-400',
   3: 'bg-blue-500',
 };
 
 export const specialtyTextClass: SpecialtyClassMap = {
   1: 'text-green-500',
-  2: 'text-yellow-400',
+  2: 'text-amber-500 dark:text-yellow-400',
   3: 'text-blue-500',
 };
