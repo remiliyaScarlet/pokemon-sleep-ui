@@ -25,14 +25,12 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
           {...props}
         />
       ))}
+      <MapInputSleepStyleToggle
+        sleepStyles={toUnique(sleepStyles.map(({style}) => style.style))}
+        filter={filter}
+        setFilter={setFilter}
+      />
       <FilterInputRow>
-        <div>
-          <MapInputSleepStyleToggle
-            sleepStyles={toUnique(sleepStyles.map(({style}) => style.style))}
-            filter={filter}
-            setFilter={setFilter}
-          />
-        </div>
         <div className="ml-auto">
           <MapInputEmptyRankToggle {...props}/>
         </div>

@@ -30,9 +30,9 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
     <table className="w-full md:w-3/4">
       <thead className="sticky top-12 z-10">
         <tr className="bg-slate-400/90 dark:bg-slate-700/90">
-          <td>{t('Rank')}</td>
+          <td className="p-1">{t('Rank')}</td>
           <td/>
-          <td>
+          <td className="p-1">
             <Flex direction="row" center>
               <div className="relative h-6 w-6">
                 <Image
