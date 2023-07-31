@@ -5,7 +5,7 @@ import {Transition} from '@headlessui/react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
-import {getFilterInputButtonClass} from '@/components/input/filter/utils/props';
+import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
@@ -85,7 +85,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
           active={isShiny}
           id="shiny"
           onChange={setShiny}
-          className={getFilterInputButtonClass(isShiny)}
+          className={getTextFilterButtonClass(isShiny)}
         >
           {t('Shiny')}
         </ToggleButton>
@@ -98,7 +98,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               active={isActive}
               id={image.toString()}
               onClick={() => setCurrentImage(image)}
-              className={getFilterInputButtonClass(isActive)}
+              className={getTextFilterButtonClass(isActive)}
             >
               <GalleryButton pokemonId={pokemon.id} image={image} isActive={isActive}/>
             </ToggleButton>

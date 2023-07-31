@@ -1,9 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hooks';
-import {
-  isFilterMatchingAll,
-  isFilterMatchingSome,
-  isFilterMismatchOnSingle,
-} from '@/components/input/filter/utils/check';
+import {isFilterMatchingAll} from '@/components/input/filter/utils/check';
+import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokedexData, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
 
@@ -17,28 +14,16 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
     data,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: {},
+      pokemonType: {},
       mapId: {},
       sleepType: {},
       ingredientFixed: {},
       ingredientRandom: {},
-      berryId: {},
-      skill: {},
+      berry: {},
+      mainSkill: {},
       display: 'mainSkill',
     },
     isDataIncluded: (filter, data) => {
-      if (isFilterMismatchOnSingle({filter, filterKey: 'type', id: data.type})) {
-        return false;
-      }
-
-      if (isFilterMismatchOnSingle({filter, filterKey: 'sleepType', id: data.sleepType})) {
-        return false;
-      }
-
-      if (isFilterMismatchOnSingle({filter, filterKey: 'skill', id: data.skill})) {
-        return false;
-      }
-
       if (!isFilterMatchingAll({
         filter,
         filterKey: 'mapId',
@@ -49,19 +34,7 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
         return false;
       }
 
-      if (isFilterMismatchOnSingle({filter, filterKey: 'ingredientFixed', id: data.ingredients.fixed})) {
-        return false;
-      }
-
-      if (!isFilterMatchingSome({
-        filter,
-        filterKey: 'ingredientRandom',
-        ids: data.ingredients.random ?? [],
-      })) {
-        return false;
-      }
-
-      return !isFilterMismatchOnSingle({filter, filterKey: 'berryId', id: data.berry.id});
+      return isPokemonIncludedFromFilter(filter, data);
     },
   });
 };

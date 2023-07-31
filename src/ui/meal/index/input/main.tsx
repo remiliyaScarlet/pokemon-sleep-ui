@@ -50,7 +50,7 @@ export const MealInput = (props: Props) => {
         title={t3('MealType')}
         idToItemId={(id) => `MealType-${id}`}
         ids={toUnique(data.flatMap(({ingredients}) => ingredients.map(({id}) => id))).sort((a, b) => a - b)}
-        getAlt={(id) => t(`Food.${id.toString()}`)}
+        idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         {...getMultiSelectOnClickProps({
           filter,

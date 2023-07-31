@@ -9,13 +9,23 @@ import {classNames} from '@/utils/react';
 import {Indexable, KeysOfType} from '@/utils/type';
 
 
-export const getFilterInputButtonClass = (isActive: boolean) => classNames(
-  'relative h-8 px-2 rounded-full whitespace-nowrap text-sm',
+export const getTextFilterButtonClass = (isActive: boolean) => classNames(
+  'px-2 whitespace-nowrap text-sm',
+  getFilterInputButtonClass(isActive),
+);
+
+export const getIconFilterButtonClass = (isActive: boolean) => classNames(
+  'w-8',
+  getFilterInputButtonClass(isActive),
+);
+
+const getFilterInputButtonClass = (isActive: boolean) => classNames(
+  'relative h-8 rounded-full',
   isActive ? toggleClass.active.hover : toggleClass.inactive.hover,
   isActive ? toggleClass.active.background : toggleClass.inactive.background,
 );
 
-type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
+export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
   filterKey: KeysOfType<TFilter, TData | null>
 };
 
@@ -31,7 +41,7 @@ export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
   })),
 });
 
-type GetMultiSelectOnClickPropsOpts<
+export type GetMultiSelectOnClickPropsOpts<
   TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 > = FilterInputProps<TFilter> & {

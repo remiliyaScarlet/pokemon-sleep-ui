@@ -9,6 +9,7 @@ type UseFilterInputOpts<TFilter, TData, TId extends Indexable> = {
   dataToId: (data: TData) => TId,
   initialFilter: TFilter,
   isDataIncluded: (filter: TFilter, data: TData) => boolean,
+  deps?: React.DependencyList,
 };
 
 export const useFilterInput = <TFilter, TData, TId extends Indexable>({
@@ -16,13 +17,14 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
   dataToId,
   initialFilter,
   isDataIncluded,
+  deps,
 }: UseFilterInputOpts<TFilter, TData, TId>) => {
   const [filter, setFilter] = React.useState<TFilter>(initialFilter);
   const isIncluded = React.useMemo((): FilterInclusionMap<TId> => (
     Object.fromEntries(data.map((single) => (
       [dataToId(single), isDataIncluded(filter, single)]
     ))) as FilterInclusionMap<TId>
-  ), [filter]);
+  ), [filter, ...(deps ?? [])]);
 
   return {filter, setFilter, isIncluded};
 };

@@ -49,7 +49,7 @@ export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}:
         title={t2('Ingredient')}
         idToItemId={(id) => `Ingredient-${id}`}
         ids={Object.keys(ingredients).map((id) => Number(id))}
-        getAlt={(id) => t(`Food.${id.toString()}`)}
+        idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         {...getMultiSelectOnClickProps({
           filter: filter,
