@@ -47,6 +47,17 @@
         "Title": "地圖 - {name}"
       }
     },
+    "Energy": {
+      "Index": {
+        "Title": "能量計算"
+      },
+      "Team": {
+        "Title": "能量 / 隊伍分析"
+      },
+      "Optimizer": {
+        "Title": "能量 / 最佳化"
+      }
+    },
     "Skill": {
       "Index": {
         "Title": "技能"

@@ -47,6 +47,17 @@
         "Title": "マップ - {name}"
       }
     },
+    "Energy": {
+      "Index": {
+        "Title": "エナジー計算"
+      },
+      "Team": {
+        "Title": "エナジー / チーム分析"
+      },
+      "Optimizer": {
+        "Title": "エナジー / 最適化"
+      }
+    },
     "Skill": {
       "Index": {
         "Title": "スキル"

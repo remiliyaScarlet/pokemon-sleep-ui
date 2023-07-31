@@ -47,6 +47,17 @@
         "Title": "Map - {name}"
       }
     },
+    "Energy": {
+      "Index": {
+        "Title": "Energy Calculator"
+      },
+      "Team": {
+        "Title": "Energy / Team Analysis"
+      },
+      "Optimizer": {
+        "Title": "Energy / Optimizer"
+      }
+    },
     "Skill": {
       "Index": {
         "Title": "Skill"
