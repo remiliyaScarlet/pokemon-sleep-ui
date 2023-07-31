@@ -1,5 +1,5 @@
 import {useFilterInput} from '@/components/input/filter/hooks';
-import {isFilterMatchingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
+import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {MealFilter} from '@/ui/meal/index/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
@@ -19,7 +19,7 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
       ingredientCountCap: null,
     },
     isDataIncluded: (filter, data) => {
-      if (!isFilterMatchingSome({filter, filterKey: 'ingredient', ids: data.ingredients.map(({id}) => id)})) {
+      if (!isFilterIncludingSome({filter, filterKey: 'ingredient', ids: data.ingredients.map(({id}) => id)})) {
         return false;
       }
 

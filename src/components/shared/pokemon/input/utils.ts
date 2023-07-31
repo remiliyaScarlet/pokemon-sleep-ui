@@ -1,4 +1,4 @@
-import {isFilterMatchingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
+import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {PokemonInfoRequiredForInput, PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 
 
@@ -15,7 +15,7 @@ export const isPokemonIncludedFromFilter = (filter: PokemonInputFilter, pokemon:
     return false;
   }
 
-  if (!isFilterMatchingSome({
+  if (!isFilterIncludingSome({
     filter,
     filterKey: 'ingredientRandom',
     ids: pokemon.ingredients.random ?? [],

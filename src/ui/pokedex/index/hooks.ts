@@ -1,5 +1,5 @@
 import {useFilterInput} from '@/components/input/filter/hooks';
-import {isFilterMatchingAll} from '@/components/input/filter/utils/check';
+import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokedexData, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
@@ -24,7 +24,7 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
       display: 'mainSkill',
     },
     isDataIncluded: (filter, data) => {
-      if (!isFilterMatchingAll({
+      if (!isDataIncludingAllOfFilter({
         filter,
         filterKey: 'mapId',
         ids: data.sleepStyles.map(({mapId}) => mapId),

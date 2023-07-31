@@ -2,7 +2,7 @@
 import React from 'react';
 
 import {useFilterInput} from '@/components/input/filter/hooks';
-import {isFilterMatchingSome} from '@/components/input/filter/utils/check';
+import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {IngredientMap} from '@/types/mongo/ingredient';
@@ -34,7 +34,11 @@ export const CookingClient = ({meals, ingredients}: Props) => {
         return false;
       }
 
-      if (!isFilterMatchingSome({filter, filterKey: 'ingredient', ids: meal.ingredients.map(({id}) => id)})) {
+      if (!isFilterIncludingAllOfData({
+        filter,
+        filterKey: 'ingredient',
+        ids: meal.ingredients.map(({id}) => id),
+      })) {
         return false;
       }
 
