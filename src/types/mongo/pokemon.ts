@@ -50,3 +50,5 @@ export type PokemonIngredientTypeMap = {[type in PokemonIngredientType]: Pokemon
 export type PokemonIngredientData = {
   ingredient: {[type in PokemonIngredientType]: PokemonIngredientMap},
 };
+
+export type PokedexMap = {[id in PokemonId]?: PokemonInfo};

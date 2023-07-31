@@ -3,10 +3,12 @@ import {Collection, FindCursor, WithId} from 'mongodb';
 import mongoPromise from '@/lib/mongodb';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {
+  PokedexMap,
+  PokemonId,
   PokemonInfo,
   PokemonIngredientData,
-  PokemonIngredientType,
   pokemonIngredientType,
+  PokemonIngredientType,
   PokemonIngredientTypeMap,
 } from '@/types/mongo/pokemon';
 
@@ -25,6 +27,16 @@ export const getSinglePokemonInfo = async (id: number) => {
 
 export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> => {
   return (await getCollection()).find({}, {projection: {_id: false}});
+};
+
+export const getPokemonAsMap = async (ids: PokemonId[]): Promise<PokedexMap> => {
+  const ret: PokedexMap = {};
+
+  for await (const pokemon of (await getCollection()).find({id: {$in: ids}}, {projection: {_id: false}})) {
+    ret[pokemon.id] = pokemon;
+  }
+
+  return ret;
 };
 
 export const getPokemonByIngredient = async (

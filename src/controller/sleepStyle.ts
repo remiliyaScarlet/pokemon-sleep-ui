@@ -33,7 +33,7 @@ export const getPokemonSleepStyles = async (pokemonId: number): Promise<PokemonP
   (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
 );
 
-export const getSleepStyleByLocations = async (): Promise<FieldToSleepStyleMap> => {
+export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleMap> => {
   const data = (await getCollection()).find({}, {projection: {_id: false}});
 
   const ret: FieldToSleepStyleMap = {};
@@ -47,6 +47,10 @@ export const getSleepStyleByLocations = async (): Promise<FieldToSleepStyleMap> 
 
   return ret;
 };
+
+export const getSleepStyleOfMap = async (mapId: number): Promise<SleepStyleData[]> => (
+  (await getCollection()).find({mapId}, {projection: {_id: false}}).toArray()
+);
 
 const addSleepStyleIndex = async () => {
   const collection = await getCollection();

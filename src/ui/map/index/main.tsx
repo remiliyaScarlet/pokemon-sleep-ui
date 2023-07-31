@@ -5,26 +5,22 @@ import Link from 'next/link';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {getSleepStyleByLocations} from '@/controller/sleepStyle';
-import {imageGallerySizes, imageIconSizes} from '@/styles/image';
+import {getSleepStyleByMaps} from '@/controller/sleepStyle';
+import {imageGallerySizes} from '@/styles/image';
 import {PageLayout} from '@/ui/base/layout';
-import {toSum} from '@/utils/array';
+import {MapStats} from '@/ui/map/common/stats';
 
 
 export const MapIndex = () => {
-  const data = React.use(getSleepStyleByLocations());
+  const data = React.use(getSleepStyleByMaps());
 
   const t = useTranslations('Game.Field');
-  const t2 = useTranslations('UI.InPage.Map');
 
   return (
     <PageLayout>
       <Flex direction="row" center wrap className="gap-1.5">
         {Object.entries(data).map(([mapId, sleepStyles]) => {
           const mapName = t(mapId.toString());
-
-          const sleepStyleCount = toSum(sleepStyles?.map(({styles}) => styles.length) ?? []);
-          const pokemonCount = sleepStyles?.length ?? 0;
 
           return (
             <Flex
@@ -41,30 +37,7 @@ export const MapIndex = () => {
                   <h4 className="text-xl">
                     {mapName}
                   </h4>
-                  <Flex direction="row" center className="gap-4 text-lg">
-                    <Flex direction="row" center noFullWidth className="gap-1.5">
-                      <div className="relative h-6 w-6">
-                        <Image
-                          src="/images/generic/sleep.png" alt={t2('SleepStyle')} fill sizes={imageIconSizes}
-                          className="invert-icon"
-                        />
-                      </div>
-                      <div>
-                        {sleepStyleCount}
-                      </div>
-                    </Flex>
-                    <Flex direction="row" center noFullWidth className="gap-1.5">
-                      <div className="relative h-6 w-6">
-                        <Image
-                          src="/images/generic/pokeball.png" alt={t2('Pokemon')} fill sizes={imageIconSizes}
-                          className="invert-icon"
-                        />
-                      </div>
-                      <div>
-                        {pokemonCount}
-                      </div>
-                    </Flex>
-                  </Flex>
+                  <MapStats sleepStyles={sleepStyles}/>
                 </Flex>
               </Link>
             </Flex>
