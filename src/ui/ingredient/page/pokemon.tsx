@@ -1,8 +1,13 @@
 import React from 'react';
 
+import Image from 'next/image';
+import {useTranslations} from 'next-intl';
+
 import {Flex} from '@/components/layout/flex';
-import {PokemonIconList} from '@/components/shared/pokemon/iconList';
+import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {imageSmallIconSizes} from '@/styles/image';
+import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonIngredientType, pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
 
 
@@ -12,6 +17,8 @@ type Props = {
 };
 
 export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
+  const t = useTranslations('UI.InPage.Pokedex.Info');
+
   return (
     <Flex direction="col" className="info-section">
       {pokemonIngredientType.map((type, idx) => {
@@ -24,7 +31,20 @@ export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
                 </div>
               </Flex>
               <Flex direction="col" center>
-                <PokemonIconList pokemonIds={obtainablePokemon[type].map(({id}) => id)}/>
+                <PokemonIconListDuplicable
+                  dataWithPokemonId={obtainablePokemon[type]}
+                  getPokemonId={({id}) => id}
+                  getInfo={({specialty}) => (
+                    specialty === specialtyIdMap.ingredient ?
+                      <div className="relative h-4 w-4">
+                        <Image
+                          src="/images/generic/flash.png" alt={t('Specialty')} fill
+                          sizes={imageSmallIconSizes} className="invert-on-light"
+                        />
+                      </div> :
+                      undefined
+                  )}
+                />
               </Flex>
             </Flex>
             {idx + 1 !== pokemonIngredientType.length && <hr className="w-full border-t-gray-700"/>}
