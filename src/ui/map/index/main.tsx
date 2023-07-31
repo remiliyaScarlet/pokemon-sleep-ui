@@ -27,13 +27,13 @@ export const MapIndex = () => {
               key={mapId} direction="col" noFullWidth
               className="width-with-gap md:width-with-gap-2-items"
             >
-              <Link key={mapId} href={`/map/${mapId}`} className="button-clickable-bg group relative h-40 p-1.5">
+              <Link key={mapId} href={`/map/${mapId}`} className="button-clickable-bg group relative h-40">
                 <Image
                   src={`/images/field/${mapId}.png`} alt={mapName}
                   fill className="rounded-xl opacity-50 dark:opacity-25"
                   sizes={imageGallerySizes}
                 />
-                <Flex direction="col" center className="z-10 h-full gap-1 p-1.5">
+                <Flex direction="col" center className="absolute left-0 top-0 z-10 h-full gap-1">
                   <h4 className="text-xl">
                     {mapName}
                   </h4>
