@@ -90,7 +90,7 @@ export const PokemonMeta = (props: PokemonProps) => {
                   <PokemonIngredient id={ingredients.fixed}/>
                 </Flex>
                 <VerticalSplitter/>
-                <Flex direction="col" center noFullWidth>
+                <Flex direction="col" center noFullWidth className="gap-1">
                   <div className="h-5 w-5">
                     <IngredientTypeIcon type="random"/>
                   </div>
