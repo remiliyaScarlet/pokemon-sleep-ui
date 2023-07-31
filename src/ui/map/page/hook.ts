@@ -1,14 +1,13 @@
 import {useFilterInput} from '@/components/input/filter/hooks';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
-import {PokemonId} from '@/types/mongo/pokemon';
-import {SleepStyleData} from '@/types/mongo/sleepStyle';
-import {MapCommonProps, MapPageFilter} from '@/ui/map/page/type';
+import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 
 
 export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
-  return useFilterInput<MapPageFilter, SleepStyleData, PokemonId>({
+  return useFilterInput<MapPageFilter, SleepStyleDataFlattened, MapInputInclusionKey>({
     data: sleepStyles,
-    dataToId: ({pokemonId}) => pokemonId,
+    dataToId: ({pokemonId, style}) => `${pokemonId}-${style.style}`,
     initialFilter: {
       pokemonType: {},
       sleepType: {},
@@ -17,11 +16,16 @@ export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
       berry: {},
       mainSkill: {},
       showEmptyRank: false,
+      sleepStyle: null,
     },
     isDataIncluded: (filter, data) => {
       const pokemon = pokedexMap[data.pokemonId];
 
       if (!pokemon) {
+        return false;
+      }
+
+      if (filter.sleepStyle !== null && filter.sleepStyle !== data.style.style) {
         return false;
       }
 

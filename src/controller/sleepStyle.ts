@@ -2,7 +2,13 @@ import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {FieldToSleepStyleMap, PokemonSleepDataMap, SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
+import {
+  FieldToSleepStyleFlattenedMap,
+  PokemonSleepDataMap,
+  SleepMapId,
+  SleepStyleData,
+  SleepStyleDataFlattened,
+} from '@/types/mongo/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
@@ -33,23 +39,28 @@ export const getPokemonSleepStyles = async (pokemonId: number): Promise<PokemonP
   (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
 );
 
-export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleMap> => {
+export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleFlattenedMap> => {
   const data = (await getCollection()).find({}, {projection: {_id: false}});
 
-  const ret: FieldToSleepStyleMap = {};
+  const ret: FieldToSleepStyleFlattenedMap = {};
   for await (const entry of data) {
     if (!(entry.mapId in ret)) {
-      ret[entry.mapId] = [] as FieldToSleepStyleMap[SleepMapId];
+      ret[entry.mapId] = [] as FieldToSleepStyleFlattenedMap[SleepMapId];
     }
 
-    ret[entry.mapId]?.push(entry);
+    const {styles, ...rest} = entry;
+
+    ret[entry.mapId]?.push(...styles.map((style) => ({style, ...rest})));
   }
 
   return ret;
 };
 
-export const getSleepStyleOfMap = async (mapId: number): Promise<SleepStyleData[]> => (
-  (await getCollection()).find({mapId}, {projection: {_id: false}}).toArray()
+export const getSleepStyleOfMap = async (mapId: number): Promise<SleepStyleDataFlattened[]> => (
+  (await (await getCollection()).find({mapId}, {projection: {_id: false}}).toArray())
+    .flatMap(({styles, ...props}) => (
+      styles.map((style) => ({style, ...props}))
+    ))
 );
 
 const addSleepStyleIndex = async () => {

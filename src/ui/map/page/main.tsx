@@ -31,7 +31,7 @@ export const MapPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="col" center className="gap-1.5">
         <MapMeta {...props}/>
-        <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex.Info', 'UI.Common']}>
+        <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex.Info', 'UI.InPage.Map', 'UI.Common']}>
           <MapInfo {...props}/>
         </I18nProvider>
       </Flex>

@@ -14,7 +14,7 @@ export const MapInfo = (props: MapCommonProps) => {
   return (
     <>
       <MapInfoInput filter={filter} setFilter={setFilter} {...props}/>
-      <MapUnlockTable sleepStyles={sleepStyles} isIncluded={isIncluded} showEmptyRank={filter.showEmptyRank}/>
+      <MapUnlockTable filter={filter} sleepStyles={sleepStyles} isIncluded={isIncluded}/>
     </>
   );
 };

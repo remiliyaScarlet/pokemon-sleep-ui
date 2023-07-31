@@ -5,19 +5,19 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
-import {SleepStyleData} from '@/types/mongo/sleepStyle';
-import {toSum} from '@/utils/array';
+import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {toUnique} from '@/utils/array';
 
 
 type Props = {
-  sleepStyles: SleepStyleData[] | undefined,
+  sleepStyles: SleepStyleDataFlattened[] | undefined,
 };
 
 export const MapStats = ({sleepStyles}: Props) => {
   const t = useTranslations('UI.InPage.Map');
 
-  const sleepStyleCount = toSum(sleepStyles?.map(({styles}) => styles.length) ?? []);
-  const pokemonCount = sleepStyles?.length ?? 0;
+  const sleepStyleCount = sleepStyles?.length ?? 0;
+  const pokemonCount = toUnique(sleepStyles?.map(({pokemonId}) => pokemonId) ?? []).length;
 
   return (
     <Flex direction="row" center className="gap-4 text-lg">

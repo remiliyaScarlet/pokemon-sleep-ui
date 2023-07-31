@@ -5,25 +5,26 @@ import {useTranslations} from 'next-intl';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
-import {PokemonIconList} from '@/components/shared/pokemon/iconList';
+import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {PokemonId} from '@/types/mongo/pokemon';
-import {MapCommonProps} from '@/ui/map/page/type';
+import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {getPossibleRanks} from '@/ui/map/page/utils';
+import {classNames} from '@/utils/react';
 
 
 type Props = Pick<MapCommonProps, 'sleepStyles'> & {
-  isIncluded: FilterInclusionMap<PokemonId>,
-  showEmptyRank: boolean,
+  filter: MapPageFilter,
+  isIncluded: FilterInclusionMap<MapInputInclusionKey>,
 };
 
-export const MapUnlockTable = ({sleepStyles, isIncluded, showEmptyRank}: Props) => {
+export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
+  const {showEmptyRank} = filter;
+
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('Game');
   const t3 = useTranslations('UI.InPage.Map');
 
-  let pokemonCountAccumulated = 0;
-  const counter: {[id in PokemonId]?: number} = {};
+  let stylesAccumulated = 0;
 
   return (
     <table className="w-full md:w-3/4">
@@ -46,19 +47,21 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, showEmptyRank}: Props) 
       <tbody>
         {getPossibleRanks().map(({title, number}) => {
           const titleName = `${t2(`RankTitle.${title}`)} ${number}`;
-          const pokemonIds = sleepStyles
-            .filter(({pokemonId}) => isIncluded[pokemonId])
-            .filter(({styles}) => styles.some(({rank}) => rank.title === title && rank.number === number))
-            .map(({pokemonId}) => pokemonId);
+          const matchingStyles = sleepStyles
+            .filter(({pokemonId, style}) => (
+              isIncluded[`${pokemonId}-${style.style}`] &&
+              style.rank.title === title && style.rank.number === number
+            ));
 
-          if (!showEmptyRank && !pokemonIds.length) {
-            return <React.Fragment key={titleName}/>;
-          }
+          const toHide = !showEmptyRank && !matchingStyles.length;
 
-          pokemonCountAccumulated += pokemonIds.length;
+          stylesAccumulated += matchingStyles.length;
 
           return (
-            <tr key={titleName} className="border-b border-b-gray-700 last:border-b-0">
+            <tr
+              key={titleName}
+              className={classNames(toHide ? 'hidden' : 'border-b border-b-gray-700 last:border-b-0')}
+            >
               <td>
                 <Flex direction="row" center className="gap-1">
                   <div className="relative h-6 w-6">
@@ -71,20 +74,29 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, showEmptyRank}: Props) 
               </td>
               <td>
                 <Flex direction="col" center>
-                  <PokemonIconList
-                    pokemonIds={pokemonIds}
-                    getInfo={(id) => {
-                      const count = (counter[id] ?? 0) + 1;
+                  <PokemonIconListDuplicable
+                    dataWithPokemonId={matchingStyles}
+                    getPokemonId={({pokemonId}) => pokemonId}
+                    getInfo={({style}) => {
+                      if (style.style === 'onSnorlax') {
+                        return (
+                          <div className="relative h-3.5 w-3.5">
+                            <Image
+                              src="/images/generic/flash.png" alt={style.style} fill
+                              sizes={imageSmallIconSizes} className="invert-icon"
+                            />
+                          </div>
+                        );
+                      }
 
-                      counter[id] = count;
-
-                      return `#${count}`;
+                      return `#${style.style}`;
                     }}
+                    getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
                   />
                 </Flex>
               </td>
               <td className="whitespace-nowrap">
-                {pokemonCountAccumulated}{pokemonIds.length ? ` (+${pokemonIds.length})` : ''}
+                {stylesAccumulated}{matchingStyles.length ? ` (+${matchingStyles.length})` : ''}
               </td>
             </tr>
           );
