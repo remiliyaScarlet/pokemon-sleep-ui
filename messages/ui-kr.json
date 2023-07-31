@@ -54,6 +54,36 @@
       "Page": {
         "Title": "스킬 - {name}"
       }
+    },
+    "Info": {
+      "Index": {
+        "Title": "기타"
+      },
+      "Pot": {
+        "Title": "냄비"
+      },
+      "Nature": {
+        "Title": "성격"
+      },
+      "Rank": {
+        "Title": "잠만보 랭크"
+      }
+    },
+    "Rarity": {
+      "Index": {
+        "Title": "레어도 분석"
+      },
+      "Objective":  {
+        "Title": "레어도 분석 (객관)"
+      }
+    },
+    "Incense": {
+      "Index": {
+        "Title": "향로"
+      },
+      "Page": {
+        "Title": "향로 - {name}"
+      }
     }
   },
   "InPage": {

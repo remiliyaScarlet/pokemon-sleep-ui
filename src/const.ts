@@ -42,4 +42,16 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Skill.Index.Title',
     disabled: true,
   },
+  {
+    href: '/rarity',
+    imageSrc: '/images/generic/flash.png',
+    i18nTextId: 'Rarity.Index.Title',
+    disabled: true,
+  },
+  {
+    href: '/info',
+    imageSrc: '/images/generic/info.png',
+    i18nTextId: 'Info.Index.Title',
+    disabled: true,
+  },
 ];

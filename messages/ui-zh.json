@@ -54,6 +54,36 @@
       "Page": {
         "Title": "技能 - {name}"
       }
+    },
+    "Info": {
+      "Index": {
+        "Title": "其他"
+      },
+      "Pot": {
+        "Title": "鍋子"
+      },
+      "Nature": {
+        "Title": "性格"
+      },
+      "Rank": {
+        "Title": "卡比獸階級"
+      }
+    },
+    "Rarity": {
+      "Index": {
+        "Title": "稀有度分析"
+      },
+      "Objective":  {
+        "Title": "稀有度分析 (客觀)"
+      }
+    },
+    "Incense": {
+      "Index": {
+        "Title": "薰香"
+      },
+      "Page": {
+        "Title": "薰香 - {name}"
+      }
     }
   },
   "InPage": {

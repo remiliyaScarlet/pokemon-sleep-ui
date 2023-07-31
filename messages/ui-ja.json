@@ -54,6 +54,36 @@
       "Page": {
         "Title": "スキル - {name}"
       }
+    },
+    "Info": {
+      "Index": {
+        "Title": "その他"
+      },
+      "Pot": {
+        "Title": "なべ"
+      },
+      "Nature": {
+        "Title": "せいかく"
+      },
+      "Rank": {
+        "Title": "カビゴンランク"
+      }
+    },
+    "Rarity": {
+      "Index": {
+        "Title": "レア度分析"
+      },
+      "Objective":  {
+        "Title": "レア度分析 (客観的)"
+      }
+    },
+    "Incense": {
+      "Index": {
+        "Title": "おこう"
+      },
+      "Page": {
+        "Title": "おこう - {name}"
+      }
     }
   },
   "InPage": {

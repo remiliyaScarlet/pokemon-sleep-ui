@@ -31,6 +31,17 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Ingredient: PageWithIndividual,
       Map: PageWithIndividual,
       Skill: PageWithIndividual,
+      Info: {
+        Index: I18nMetadata,
+        Pot: I18nMetadata,
+        Nature: I18nMetadata,
+        Rank: I18nMetadata,
+      },
+      Rarity: {
+        Index: I18nMetadata,
+        Objective: I18nMetadata,
+      },
+      Incense: PageWithIndividual,
     },
     InPage: {
       Home: {

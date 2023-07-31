@@ -54,6 +54,36 @@
       "Page": {
         "Title": "Skill - {name}"
       }
+    },
+    "Info": {
+      "Index": {
+        "Title": "Other"
+      },
+      "Pot": {
+        "Title": "Pot"
+      },
+      "Nature": {
+        "Title": "Nature"
+      },
+      "Rank": {
+        "Title": "Snorlax Rank"
+      }
+    },
+    "Rarity": {
+      "Index": {
+        "Title": "Rarity Analysis"
+      },
+      "Objective":  {
+        "Title": "Rarity Analysis (Objective)"
+      }
+    },
+    "Incense": {
+      "Index": {
+        "Title": "Incense"
+      },
+      "Page": {
+        "Title": "Incense - {name}"
+      }
     }
   },
   "InPage": {
