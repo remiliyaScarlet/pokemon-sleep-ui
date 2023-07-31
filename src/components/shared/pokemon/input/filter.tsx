@@ -14,8 +14,9 @@ import {
   PokemonInputType,
 } from '@/components/shared/pokemon/input/type';
 import {sleepTypeBgClass} from '@/styles/classes';
-import {isNotNullish, toUnique} from '@/utils/array';
+import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props<

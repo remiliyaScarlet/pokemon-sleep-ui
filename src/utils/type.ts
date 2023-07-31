@@ -5,3 +5,13 @@ export type KeysOfType<T, KT> = {
 export type Indexable = number | string | symbol;
 
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
+export const isNotNullish = <TValue>(value: TValue | null | undefined): value is TValue => {
+  if (value === null || value === undefined) {
+    return false;
+  }
+
+  // noinspection BadExpressionStatementJS
+  value satisfies TValue;
+  return true;
+};
