@@ -4,18 +4,18 @@ import Image from 'next/image';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {FeatureLinkProps} from '@/components/shared/link/type';
 import {imageSmallIconSizes} from '@/styles/image';
-import {NavEntry} from '@/types/nav';
 import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
 
-type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
+type Props = FeatureLinkProps & {
   text: string,
 };
 
-export const HomePageLink = ({href, imageSrc, disabled, text}: Props) => {
+export const FeatureLink = ({href, imageSrc, disabled, text}: Props) => {
   if (disabled) {
     return (
       <button disabled className={classNames('button-base button-disabled', styles['home-link'])}>
