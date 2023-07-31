@@ -51,7 +51,7 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
                   <div>
                     {energyInfo.atLevel.energy}
                   </div>
-                  <div className="ml-auto text-sm">
+                  <div className="ml-auto self-end text-sm">
                     +{energyInfo.diffVal} / +{energyInfo.diffPct.toFixed(0)}%
                   </div>
                 </Flex>
