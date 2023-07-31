@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Link from 'next/link';
+import Link from 'next-intl/link';
 
 import {CookingRecipeContent} from '@/ui/cooking/recipeContent';
 import {CookingRecipeLayoutProps} from '@/ui/cooking/type';

@@ -2,8 +2,8 @@
 import React from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import {usePathname} from 'next-intl/client';
+import Link from 'next-intl/link';
 
 import {imageSmallIconSizes} from '@/styles/image';
 import {NavEntry} from '@/types/nav';
