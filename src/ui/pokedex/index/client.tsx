@@ -23,12 +23,12 @@ export const PokedexClient = ({data}: Props) => {
       <PokedexInput filter={filter} setFilter={setFilter} data={data}/>
       <HorizontalSplitter/>
       <PokedexResultCount data={data} inclusionMap={isIncluded}/>
-      <Flex direction="row" wrap className="gap-2">
+      <Flex direction="row" wrap className="gap-1.5">
         {data.map((pokemon) => (
           <div
             key={pokemon.id}
             className={classNames(
-              'relative width-with-gap width-with-gap-2-items xs:width-with-gap-3-items',
+              'relative width-with-gap-sm width-with-gap-2-items xs:width-with-gap-3-items',
               'sm:width-with-gap-4-items md:width-with-gap-5-items',
               'lg:width-with-gap-6-items xl:width-with-gap-8-items',
               isIncluded[pokemon.id] ? undefined : 'hidden',

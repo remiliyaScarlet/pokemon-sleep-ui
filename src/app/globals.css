@@ -35,6 +35,13 @@ body {
 }
 
 @layer components {
+  .width-with-gap-base {
+    --items-count: 1;
+    --gaps-count: calc(var(--items-count) - 1);
+    
+    width: calc(100% / var(--items-count) - (var(--gap) * var(--gaps-count) / var(--items-count)));
+  }
+  
   .button-border {
     @apply border border-slate-700 dark:border-slate-300;
   }
@@ -55,12 +62,16 @@ body {
 @layer utilities {
   /* region `width-with-gap` series */
   
+  .width-with-gap-sm {
+    --gap: theme('gap[1.5]') !important;
+    
+    @apply width-with-gap-base;
+  }
+  
   .width-with-gap {
-    --items-count: 1;
     --gap: 0.5rem;
-    --gaps-count: calc(var(--items-count) - 1);
-
-    width: calc(100% / var(--items-count) - (var(--gap) * var(--gaps-count) / var(--items-count)));
+    
+    @apply width-with-gap-base;
   }
   
   .width-with-gap-2-items {
