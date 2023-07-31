@@ -61,20 +61,20 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   return (
     <Flex direction="col" center className="info-section-md-fit">
-      <Flex direction="col" center noFullWidth className={styles['gallery-wrapper']}>
+      <Flex direction="col" center noFullWidth className={styles['gallery-size']}>
         {imageOptions
           .flatMap<[CurrentPokemonImage, boolean]>((image) => [[image, true], [image, false]])
           .map(([image, imageShiny]) => (
             <Transition
               key={`${image}-${imageShiny}`}
               show={image === currentImage && isShiny === imageShiny}
-              enter="transition-opacity duration-150"
+              enter="transition-opacity duration-500"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="transition-opacity duration-250"
+              leave="transition-opacity duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
-              className={styles['gallery-wrapper']}
+              className={classNames('absolute', styles['gallery-size'])}
             >
               <PokemonImage image={image} isShiny={imageShiny} {...props}/>
             </Transition>

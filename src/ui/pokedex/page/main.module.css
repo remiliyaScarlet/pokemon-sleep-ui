@@ -1,7 +1,7 @@
 @tailwind components;
 
 @layer components {
-  div.gallery-wrapper {
-    @apply relative h-72 w-72;
+  div.gallery-size {
+    @apply h-72 w-72;
   }
 }
