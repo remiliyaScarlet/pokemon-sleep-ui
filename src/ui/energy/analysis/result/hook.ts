@@ -7,7 +7,7 @@ import {
   EnergyAnalysisFilter,
   EnergyAnalysisSlotName,
   energyAnalysisSlotName,
-  EnergyAnalysisTeamSelection,
+  EnergyAnalysisTeamSetup,
 } from '@/ui/energy/analysis/type';
 import {toSum} from '@/utils/array';
 import {getPokemonBerryProductionRate, getPokemonIngredientBaseProductionRate} from '@/utils/game/pokemon';
@@ -15,7 +15,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 type UseProductionStatsOpts = EnergyAnalysisDataProps & {
-  team: EnergyAnalysisTeamSelection,
+  setup: EnergyAnalysisTeamSetup,
   snorlaxFavorite: EnergyAnalysisFilter['snorlaxFavorite'],
 };
 
@@ -24,7 +24,7 @@ type UseProductionStatsOfSlotOpts = UseProductionStatsOpts & {
 };
 
 const useProductionStatsOfSlot = ({
-  team,
+  setup,
   snorlaxFavorite,
   slotName,
   pokedex,
@@ -32,7 +32,7 @@ const useProductionStatsOfSlot = ({
   ingredientMap,
 }: UseProductionStatsOfSlotOpts): ProductionStatsSingle | null => {
   return React.useMemo(() => {
-    const slot = team.team[slotName];
+    const slot = setup.team[slotName];
     if (!slot) {
       return null;
     }
@@ -47,27 +47,29 @@ const useProductionStatsOfSlot = ({
     const berryData = berryMap[berry.id];
     const ingredient = ingredients.fixed;
 
+    const overallMultiplier = 1 + (setup.bonus.overall / 100);
+
     return {
       berry: getPokemonBerryProductionRate({
         frequency: stats.frequency,
         level,
         berry,
         berryData,
-        multiplier: snorlaxFavorite[berryData.id] ? 2 : 1,
+        multiplier: (snorlaxFavorite[berryData.id] ? 2 : 1) * overallMultiplier,
       }),
       ingredient: getPokemonIngredientBaseProductionRate({
         frequency: stats.frequency,
         ingredient,
         ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
         quantity: specialty === specialtyIdMap.ingredient ? 2 : 1,
-        multiplier: 1 + (team.ingredientBonusPercent / 100),
+        multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
       }),
     };
-  }, [team.team[slotName], team.ingredientBonusPercent]);
+  }, [setup.team[slotName], setup.bonus]);
 };
 
 export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStats => {
-  const {team} = opts;
+  const {setup} = opts;
 
   const bySlot: ProductionStatsBySlot = {
     A: useProductionStatsOfSlot({slotName: 'A', ...opts}),
@@ -92,12 +94,12 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
         weekly: toSum(stats.map(({ingredient}) => ingredient.weekly)),
       },
     };
-  }, [team]);
+  }, [setup]);
 
   const overall: ProductionRate = React.useMemo(() => ({
     daily: toSum(Object.values(total).flatMap(({daily}) => daily)),
     weekly: toSum(Object.values(total).flatMap(({weekly}) => weekly)),
-  }), [team]);
+  }), [setup]);
 
   return {bySlot, total, overall};
 };

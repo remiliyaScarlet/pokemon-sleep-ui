@@ -14,21 +14,21 @@ import {
   EnergyAnalysisDataProps,
   EnergyAnalysisFilter,
   energyAnalysisSlotName,
-  EnergyAnalysisTeamSelection,
+  EnergyAnalysisTeamSetup,
 } from '@/ui/energy/analysis/type';
 import {classNames} from '@/utils/react';
 
 
 type Props = EnergyAnalysisDataProps & {
-  team: EnergyAnalysisTeamSelection,
-  setTeam: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSelection>>,
+  setup: EnergyAnalysisTeamSetup,
+  setSetup: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSetup>>,
   snorlaxFavorite: EnergyAnalysisFilter['snorlaxFavorite'],
 };
 
 export const EnergyAnalysis = (props: Props) => {
   const {
-    team,
-    setTeam,
+    setup,
+    setSetup,
     pokedex,
     berryMap,
     snorlaxRankData,
@@ -39,7 +39,7 @@ export const EnergyAnalysis = (props: Props) => {
   return (
     <Flex direction="row" center wrap className="gap-1.5">
       {energyAnalysisSlotName.map((slotName) => {
-        const slot = team.team[slotName];
+        const slot = setup.team[slotName];
         const pokemon = slot ? pokedex[slot.pokemonId] : undefined;
         const stats = productionStats.bySlot[slotName];
 
@@ -53,7 +53,7 @@ export const EnergyAnalysis = (props: Props) => {
             <button
               className="button-clickable disabled:button-disabled absolute right-1 top-1 h-5 w-5 rounded-full"
               disabled={!slot}
-              onClick={() => setTeam((original) => ({
+              onClick={() => setSetup((original) => ({
                 ...original,
                 team: {
                   ...original.team,
@@ -73,7 +73,7 @@ export const EnergyAnalysis = (props: Props) => {
             {isAvailable ?
               <EnergyAnalysisPokemon
                 key={slotName} slot={slot} productionStats={stats} slotName={slotName}
-                setLevel={(newLevel: number) => setTeam((original) => ({
+                setLevel={(newLevel: number) => setSetup((original) => ({
                   ...original,
                   team: {
                     ...original.team,
@@ -92,10 +92,10 @@ export const EnergyAnalysis = (props: Props) => {
         );
       })}
       <EnergyTotalProductionRate
-        bonusPercent={team.ingredientBonusPercent}
-        setBonusPercent={(ingredientBonusPoint) => setTeam((original) => ({
+        bonus={setup.bonus}
+        setBonus={(bonus) => setSetup((original) => ({
           ...original,
-          ingredientBonusPercent: ingredientBonusPoint,
+          bonus,
         }))}
         stats={productionStats}
         snorlaxRankData={snorlaxRankData}

@@ -10,21 +10,21 @@ import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {
   EnergyAnalysisSlotName,
   energyAnalysisSlotName,
-  EnergyAnalysisTeamSelection,
+  EnergyAnalysisTeamSetup,
 } from '@/ui/energy/analysis/type';
 
 
 type Props = {
-  setTeam: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSelection>>,
+  setSetup: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSetup>>,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemon: PokemonInfo[],
 };
 
-export const EnergyAnalysisSelectablePokemon = ({setTeam, isIncluded, pokemon}: Props) => {
+export const EnergyAnalysisSelectablePokemon = ({setSetup, isIncluded, pokemon}: Props) => {
   const t = useTranslations('Game');
 
   const putOnTeam = (id: PokemonId) => () => {
-    setTeam((original) => {
+    setSetup((original) => {
       let slotToInsert: EnergyAnalysisSlotName | null = null;
 
       for (const slotName of energyAnalysisSlotName) {

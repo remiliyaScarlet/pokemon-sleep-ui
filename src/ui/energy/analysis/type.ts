@@ -26,7 +26,12 @@ export type EnergyAnalysisMember = {
   level: number,
 };
 
-export type EnergyAnalysisTeamSelection = {
+export type EnergyAnalysisBonus = {
+  overall: number,
+  ingredient: number,
+};
+
+export type EnergyAnalysisTeamSetup = {
   team: {[slot in EnergyAnalysisSlotName]: EnergyAnalysisMember | null},
-  ingredientBonusPercent: number,
+  bonus: EnergyAnalysisBonus,
 };

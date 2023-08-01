@@ -20,7 +20,3 @@ export type ProductionStats = {
   overall: ProductionRate,
 };
 
-export type IngredientBonusProps = {
-  bonusPercent: number,
-  setBonusPercent: (newValue: number) => void,
-};

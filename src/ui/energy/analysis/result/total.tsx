@@ -5,18 +5,21 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {EnergyAnalysisIngredientBonusSlider} from '@/ui/energy/analysis/result/ingredientBonus';
+import {EnergyAnalysisIngredientBonusSlider} from '@/ui/energy/analysis/result/bonus/ingredient';
+import {EnergyAnalysisOverallBonusSlider} from '@/ui/energy/analysis/result/bonus/overall';
 import {EnergyAnalysisSnorlaxRank} from '@/ui/energy/analysis/result/rank';
 import {EnergyRateLayout} from '@/ui/energy/analysis/result/rate';
-import {IngredientBonusProps, ProductionStats} from '@/ui/energy/analysis/result/type';
-import {EnergyAnalysisDataProps} from '@/ui/energy/analysis/type';
+import {ProductionStats} from '@/ui/energy/analysis/result/type';
+import {EnergyAnalysisBonus, EnergyAnalysisDataProps} from '@/ui/energy/analysis/type';
 
 
-type Props = IngredientBonusProps & Pick<EnergyAnalysisDataProps, 'snorlaxRankData'> & {
+type Props = Pick<EnergyAnalysisDataProps, 'snorlaxRankData'> & {
+  bonus: EnergyAnalysisBonus,
+  setBonus: (newBonus: EnergyAnalysisBonus) => void,
   stats: ProductionStats,
 };
 
-export const EnergyTotalProductionRate = ({stats, snorlaxRankData, ...props}: Props) => {
+export const EnergyTotalProductionRate = ({stats, snorlaxRankData, bonus, setBonus}: Props) => {
   const {berry, ingredient} = stats.total;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
@@ -24,7 +27,14 @@ export const EnergyTotalProductionRate = ({stats, snorlaxRankData, ...props}: Pr
   return (
     <Flex direction="col" className="button-bg items-center justify-end gap-4 rounded-lg p-2 md:flex-row">
       <Flex direction="col">
-        <EnergyAnalysisIngredientBonusSlider {...props}/>
+        <EnergyAnalysisIngredientBonusSlider
+          bonus={bonus.ingredient}
+          setBonus={(ingredient) => setBonus({...bonus, ingredient})}
+        />
+        <EnergyAnalysisOverallBonusSlider
+          bonus={bonus.overall}
+          setBonus={(overall) => setBonus({...bonus, overall})}
+        />
       </Flex>
       <Flex direction="col" className="gap-1.5">
         <EnergyAnalysisSnorlaxRank energy={stats.overall.weekly} snorlaxRankData={snorlaxRankData}/>
