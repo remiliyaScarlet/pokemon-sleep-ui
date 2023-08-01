@@ -6,12 +6,13 @@ import Link from 'next-intl/link';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
+import {Dimension} from '@/types/style';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
   id: number | null,
-  dimension?: `h-${number} w-${number}`,
+  dimension?: Dimension,
 };
 
 export const PokemonIngredientIcon = ({id, dimension}: Props) => {

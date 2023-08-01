@@ -6,12 +6,13 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {specialtyBgClass} from '@/styles/classes';
 import {PokemonInfo} from '@/types/mongo/pokemon';
+import {Dimension} from '@/types/style';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
   specialty: PokemonInfo['specialty'],
-  dimension?: `h-${number} w-${number}`,
+  dimension?: Dimension,
   hideText?: boolean,
 };
 

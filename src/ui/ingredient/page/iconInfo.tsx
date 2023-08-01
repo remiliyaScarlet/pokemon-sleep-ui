@@ -2,13 +2,14 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {Dimension} from '@/types/style';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
   imageSrc: string,
   imageAlt: string,
-  imageDimension: `h-${number} w-${number}`,
+  imageDimension: Dimension,
   imageSizes: string,
   info?: React.ReactNode,
 };
