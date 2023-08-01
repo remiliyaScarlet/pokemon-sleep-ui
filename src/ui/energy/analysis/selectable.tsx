@@ -6,23 +6,29 @@ import {useTranslations} from 'next-intl';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId} from '@/types/mongo/pokemon';
-import {EnergyAnalysisInputProps, EnergyAnalysisSlotNames, energyAnalysisSlotNames} from '@/ui/energy/analysis/type';
+import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {
+  EnergyAnalysisSlotName,
+  energyAnalysisSlotName,
+  EnergyAnalysisTeamSelection,
+} from '@/ui/energy/analysis/type';
 
 
-type Props = EnergyAnalysisInputProps & {
+type Props = {
+  setTeam: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSelection>>,
   isIncluded: FilterInclusionMap<PokemonId>,
+  pokemon: PokemonInfo[],
 };
 
-export const EnergyAnalysisSelectablePokemon = ({setFilter, isIncluded, pokemon}: Props) => {
+export const EnergyAnalysisSelectablePokemon = ({setTeam, isIncluded, pokemon}: Props) => {
   const t = useTranslations('Game');
 
   const putOnTeam = (id: PokemonId) => () => {
-    setFilter((filter) => {
-      let slotToInsert: EnergyAnalysisSlotNames | null = null;
+    setTeam((original) => {
+      let slotToInsert: EnergyAnalysisSlotName | null = null;
 
-      for (const slotName of energyAnalysisSlotNames) {
-        if (filter.team[slotName]) {
+      for (const slotName of energyAnalysisSlotName) {
+        if (original[slotName]) {
           continue;
         }
         slotToInsert = slotName;
@@ -30,13 +36,10 @@ export const EnergyAnalysisSelectablePokemon = ({setFilter, isIncluded, pokemon}
       }
 
       return {
-        ...filter,
-        team: {
-          ...filter.team,
-          [slotToInsert ?? 'E']: {
-            pokemonId: id,
-            level: 1,
-          },
+        ...original,
+        [slotToInsert ?? 'E']: {
+          pokemonId: id,
+          level: 1,
         },
       };
     });

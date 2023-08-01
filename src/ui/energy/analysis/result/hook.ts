@@ -2,33 +2,34 @@ import React from 'react';
 
 import {ProductionStats, ProductionStatsBySlot, ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
 import {
+  EnergyAnalysisDataProps,
   EnergyAnalysisFilter,
-  EnergyAnalysisProps,
-  EnergyAnalysisSlotNames,
-  energyAnalysisSlotNames,
+  EnergyAnalysisSlotName,
+  energyAnalysisSlotName,
+  EnergyAnalysisTeamSelection,
 } from '@/ui/energy/analysis/type';
 import {toSum} from '@/utils/array';
 import {getPokemonBerryProductionRate} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
-type UseProductionStatsOpts = EnergyAnalysisProps & {
-  filter: EnergyAnalysisFilter,
+type UseProductionStatsOpts = EnergyAnalysisDataProps & {
+  team: EnergyAnalysisTeamSelection,
+  snorlaxFavorite: EnergyAnalysisFilter['snorlaxFavorite'],
 };
 
 type UseProductionStatsOfSlotOpts = UseProductionStatsOpts & {
-  slotName: EnergyAnalysisSlotNames,
+  slotName: EnergyAnalysisSlotName,
 };
 
 const useProductionStatsOfSlot = ({
-  filter,
+  team,
+  snorlaxFavorite,
   slotName,
   pokedex,
   berryMap,
 }: UseProductionStatsOfSlotOpts): ProductionStatsSingle | null => {
   return React.useMemo(() => {
-    const {team, snorlaxFavorite} = filter;
-
     const slot = team[slotName];
     if (!slot) {
       return null;
@@ -52,7 +53,7 @@ const useProductionStatsOfSlot = ({
         multiplier: snorlaxFavorite[berryData.id] ? 2 : 1,
       }),
     };
-  }, [filter.team[slotName]]);
+  }, [team[slotName]]);
 };
 
 export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStats => {
@@ -66,11 +67,11 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
 
   const total: ProductionStatsSingle = React.useMemo(() => ({
     berry: {
-      daily: toSum(energyAnalysisSlotNames
+      daily: toSum(energyAnalysisSlotName
         .map((slotName) => bySlot[slotName])
         .filter(isNotNullish)
         .map(({berry}) => berry.daily)),
-      weekly: toSum(energyAnalysisSlotNames
+      weekly: toSum(energyAnalysisSlotName
         .map((slotName) => bySlot[slotName])
         .filter(isNotNullish)
         .map(({berry}) => berry.weekly)),

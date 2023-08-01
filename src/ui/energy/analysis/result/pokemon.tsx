@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
-import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -11,20 +10,20 @@ import {EnergyAnalysisOnBerry} from '@/ui/energy/analysis/result/berry';
 import {EnergyAnalysisLevelSlider} from '@/ui/energy/analysis/result/level';
 import {teamSlotStyle} from '@/ui/energy/analysis/result/style';
 import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
-import {EnergyAnalysisFilter, EnergyAnalysisProps, EnergyAnalysisSlot, EnergyAnalysisSlotNames} from '@/ui/energy/analysis/type';
+import {EnergyAnalysisDataProps, EnergyAnalysisMember, EnergyAnalysisSlotName} from '@/ui/energy/analysis/type';
 
 
-type Props = FilterInputProps<EnergyAnalysisFilter> & Pick<EnergyAnalysisProps, 'berryMap'> & {
-  slotName: EnergyAnalysisSlotNames,
-  slot: EnergyAnalysisSlot,
+type Props = Pick<EnergyAnalysisDataProps, 'berryMap'> & {
+  setLevel: (newLevel: number) => void,
+  slotName: EnergyAnalysisSlotName,
+  slot: EnergyAnalysisMember,
   pokemon: PokemonInfo,
   productionStats: ProductionStatsSingle,
 };
 
 export const EnergyAnalysisPokemon = ({
-  setFilter,
+  setLevel,
   slot,
-  slotName,
   pokemon,
   berryMap,
   productionStats,
@@ -34,17 +33,6 @@ export const EnergyAnalysisPokemon = ({
   const {id, type, berry} = pokemon;
   const berryData = berryMap[berry.id];
   const maxLevel = berryData.energy.length;
-
-  const setLevel = (newLevel: number) => setFilter((original) => ({
-    ...original,
-    team: {
-      ...original.team,
-      [slotName]: {
-        ...original.team[slotName],
-        level: newLevel,
-      },
-    },
-  }));
 
   return (
     <Flex direction="col" center className={teamSlotStyle}>

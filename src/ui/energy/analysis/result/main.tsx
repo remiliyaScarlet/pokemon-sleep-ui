@@ -5,28 +5,40 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import Image from 'next/image';
 import Link from 'next-intl/link';
 
-import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {imageGallerySizes} from '@/styles/image';
 import {useProductionStats} from '@/ui/energy/analysis/result/hook';
 import {EnergyAnalysisPokemon} from '@/ui/energy/analysis/result/pokemon';
 import {teamSlotStyle} from '@/ui/energy/analysis/result/style';
 import {EnergyTotalProductionRate} from '@/ui/energy/analysis/result/total';
-import {EnergyAnalysisProps, EnergyAnalysisFilter, energyAnalysisSlotNames} from '@/ui/energy/analysis/type';
+import {
+  EnergyAnalysisDataProps,
+  EnergyAnalysisFilter,
+  energyAnalysisSlotName,
+  EnergyAnalysisTeamSelection,
+} from '@/ui/energy/analysis/type';
 import {classNames} from '@/utils/react';
 
 
-type Props = FilterInputProps<EnergyAnalysisFilter> & EnergyAnalysisProps;
+type Props = EnergyAnalysisDataProps & {
+  team: EnergyAnalysisTeamSelection,
+  setTeam: React.Dispatch<React.SetStateAction<EnergyAnalysisTeamSelection>>,
+  snorlaxFavorite: EnergyAnalysisFilter['snorlaxFavorite'],
+};
 
 export const EnergyAnalysisAnalysis = (props: Props) => {
-  const {filter, setFilter, pokedex} = props;
-  const {team} = filter;
+  const {
+    team,
+    setTeam,
+    pokedex,
+    berryMap,
+  } = props;
 
   const productionStats = useProductionStats(props);
 
   return (
     <Flex direction="row" center wrap className="gap-1.5">
-      {energyAnalysisSlotNames.map((slotName) => {
+      {energyAnalysisSlotName.map((slotName) => {
         const slot = team[slotName];
         const pokemon = slot ? pokedex[slot.pokemonId] : undefined;
         const stats = productionStats.bySlot[slotName];
@@ -41,10 +53,7 @@ export const EnergyAnalysisAnalysis = (props: Props) => {
             <button
               className="button-clickable disabled:button-disabled absolute right-1 top-1 h-5 w-5 rounded-full"
               disabled={!slot}
-              onClick={() => setFilter((original) => ({
-                ...original,
-                team: {...original.team, [slotName]: null},
-              }))}
+              onClick={() => setTeam((original) => ({...original, [slotName]: null}))}
             >
               <XMarkIcon/>
             </button>
@@ -57,7 +66,15 @@ export const EnergyAnalysisAnalysis = (props: Props) => {
               </Link>}
             {isAvailable ?
               <EnergyAnalysisPokemon
-                key={slotName} slot={slot} pokemon={pokemon} productionStats={stats} slotName={slotName} {...props}
+                key={slotName} slot={slot} productionStats={stats} slotName={slotName}
+                setLevel={(newLevel: number) => setTeam((original) => ({
+                  ...original,
+                  [slotName]: {
+                    ...original[slotName],
+                    level: newLevel,
+                  },
+                }))}
+                pokemon={pokemon} berryMap={berryMap}
               /> :
               <Flex direction="row" center className={teamSlotStyle}>
                 <div className="relative h-12 w-12">

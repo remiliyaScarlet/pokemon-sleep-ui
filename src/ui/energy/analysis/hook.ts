@@ -20,13 +20,6 @@ export const useEnergyAnalysisPokemonFilter = ({data}: UseFilteredEnergyAnalysis
       ingredientRandom: {},
       berry: {},
       mainSkill: {},
-      team: {
-        A: null,
-        B: null,
-        C: null,
-        D: null,
-        E: null,
-      },
       snorlaxFavorite: {},
     },
     isDataIncluded: (filter, data) => {

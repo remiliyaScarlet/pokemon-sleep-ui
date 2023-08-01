@@ -5,14 +5,14 @@ import {getAllBerryData} from '@/controller/berry';
 import {getAllPokemonAsMap} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
 import {EnergyAnalysisClient} from '@/ui/energy/analysis/client';
-import {EnergyAnalysisProps} from '@/ui/energy/analysis/type';
+import {EnergyAnalysisDataProps} from '@/ui/energy/analysis/type';
 
 
 export const EnergyAnalysis = () => {
   const pokedex = React.use(getAllPokemonAsMap());
   const berryMap = React.use(getAllBerryData());
 
-  const props: EnergyAnalysisProps = {pokedex, berryMap};
+  const props: EnergyAnalysisDataProps = {pokedex, berryMap};
 
   return (
     <PageLayout>

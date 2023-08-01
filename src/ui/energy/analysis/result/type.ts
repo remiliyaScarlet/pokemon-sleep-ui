@@ -1,5 +1,5 @@
 import {ProductionRate} from '@/types/game/pokemon';
-import {EnergyAnalysisSlotNames} from '@/ui/energy/analysis/type';
+import {EnergyAnalysisSlotName} from '@/ui/energy/analysis/type';
 
 
 export type IngredientProductionStats = {
@@ -11,7 +11,7 @@ export type ProductionStatsSingle = {
   berry: ProductionRate,
 };
 
-export type ProductionStatsBySlot = {[slot in EnergyAnalysisSlotNames]: ProductionStatsSingle | null};
+export type ProductionStatsBySlot = {[slot in EnergyAnalysisSlotName]: ProductionStatsSingle | null};
 
 export type ProductionStats = {
   bySlot: ProductionStatsBySlot,

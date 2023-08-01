@@ -4,16 +4,22 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
+import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageSmallIconSizes} from '@/styles/image';
-import {EnergyAnalysisInputProps} from '@/ui/energy/analysis/type';
+import {PokemonInfo} from '@/types/mongo/pokemon';
+import {EnergyAnalysisFilter} from '@/ui/energy/analysis/type';
 import {toUnique} from '@/utils/array';
 
 
-export const EnergyAnalysisPokemonFilter = ({pokemon, ...props}: EnergyAnalysisInputProps) => {
+type Props = FilterInputProps<EnergyAnalysisFilter> & {
+  pokemon: PokemonInfo[],
+};
+
+export const EnergyAnalysisPokemonFilter = ({pokemon, ...props}: Props) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Energy');
 
