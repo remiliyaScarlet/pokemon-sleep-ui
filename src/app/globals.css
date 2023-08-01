@@ -42,6 +42,8 @@ body {
     width: calc(100% / var(--items-count) - (var(--gap) * var(--gaps-count) / var(--items-count)));
   }
   
+  /* region Button styling (button-*) */
+  
   .button-border {
     @apply border border-slate-700 dark:border-slate-300;
   }
@@ -54,13 +56,15 @@ body {
     @apply hover:text-slate-200 dark:hover:text-slate-800;
   }
   
+  /* endregion */
+  
   .meal-active {
     @apply ring-1 ring-inset;
   }
 }
 
 @layer utilities {
-  /* region `width-with-gap` series */
+  /* region Fixed count of element in row (width-with-gap-*) */
   
   .width-with-gap-sm {
     --gap: theme('gap[1.5]') !important;
@@ -125,7 +129,7 @@ body {
     @apply transform-gpu transition-colors;
   }
   
-  /* region Invert */
+  /* region Image inverting (invert-*) */
   
   .invert-on-light {
     @apply invert dark:invert-0;
@@ -140,6 +144,8 @@ body {
   }
   
   /* endregion */
+  
+  /* region Button styling (button-*) */
   
   .button-base {
     @apply rounded-lg transform-smooth;
@@ -172,6 +178,50 @@ body {
       border border-slate-400/50 dark:border-slate-500
     ;
   }
+  
+  /* endregion */
+  
+  /* region Toggle button styling (button-toggle-*) */
+  
+  .button-toggle-inactive-hover {
+    @apply hover:bg-slate-400 dark:hover:bg-slate-500 hover:text-slate-900 dark:hover:text-slate-100;
+  }
+  
+  .button-toggle-inactive-bg {
+    @apply bg-slate-400/20 dark:bg-slate-700/50;
+  }
+  
+  .button-toggle-inactive {
+    @apply button-toggle-inactive-hover button-toggle-inactive-bg;
+  }
+  
+  .button-toggle-active-hover {
+    @apply hover:bg-slate-500 dark:hover:bg-slate-400 hover:text-slate-100 dark:hover:text-slate-800;
+  }
+  
+  .button-toggle-active-bg {
+    @apply bg-slate-800 text-slate-100 dark:bg-slate-50 dark:text-slate-800;
+  }
+  
+  .button-toggle-active {
+    @apply button-toggle-active-hover button-toggle-active-bg;
+  }
+  
+  /* endregion */
+  
+  /* region Input row styling (input-row-*) */
+  
+  .input-row-normal {
+    @apply bg-slate-50/40 dark:bg-slate-700/20;
+  }
+  
+  .input-row-highlight {
+    @apply bg-slate-50 dark:bg-slate-700/50;
+  }
+  
+  /* endregion */
+  
+  /* region Meal type styling (meal-*) */
   
   .meal-bg-curry {
     @apply bg-orange-300/40 hover:bg-orange-400/70 dark:bg-orange-700/40 hover:dark:bg-orange-700/90;
@@ -220,4 +270,6 @@ body {
   .meal-dot-dessert {
     @apply bg-lime-600 dark:bg-lime-500;
   }
+  
+  /* endregion */
 }

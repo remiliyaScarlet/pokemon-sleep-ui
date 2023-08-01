@@ -12,9 +12,10 @@ import {classNames} from '@/utils/react';
 type Props = {
   specialty: PokemonInfo['specialty'],
   dimension?: `h-${number} w-${number}`,
+  hideText?: boolean,
 };
 
-export const PokemonSpecialty = ({specialty, dimension}: Props) => {
+export const PokemonSpecialty = ({specialty, dimension, hideText}: Props) => {
   const t = useTranslations('Game');
 
   return (
@@ -22,7 +23,7 @@ export const PokemonSpecialty = ({specialty, dimension}: Props) => {
       {specialty ?
         <>
           <div className={classNames(dimension ?? 'h-3 w-3', 'rounded-full', specialtyBgClass[specialty])}/>
-          <div>{t(`Specialty.${specialty}`)}</div>
+          {!hideText && <div>{t(`Specialty.${specialty}`)}</div>}
         </> :
         <div className="h-5 w-5">
           <XMarkIcon/>

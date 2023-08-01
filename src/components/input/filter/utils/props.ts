@@ -1,4 +1,3 @@
-import {toggleClass} from '@/components/input/filter/const';
 import {
   FilterInclusionMap,
   FilterInputOnClickProps,
@@ -21,8 +20,11 @@ export const getIconFilterButtonClass = (isActive: boolean) => classNames(
 
 const getFilterInputButtonClass = (isActive: boolean) => classNames(
   'relative h-8 rounded-full',
-  isActive ? toggleClass.active.hover : toggleClass.inactive.hover,
-  isActive ? toggleClass.active.background : toggleClass.inactive.background,
+  getToggleButtonClass(isActive),
+);
+
+export const getToggleButtonClass = (isActive: boolean) => classNames(
+  isActive ? 'button-toggle-active' : 'button-toggle-inactive',
 );
 
 export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
