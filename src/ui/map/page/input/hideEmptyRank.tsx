@@ -33,7 +33,7 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: FilterInputProps<Ma
         <div className="relative h-7 w-7">
           <NextImage
             src="/images/generic/pokeball_unavailable.png" alt="N/A"
-            sizes={imageSmallIconSizes} className="invert-icon"
+            sizes={imageSmallIconSizes} className="invert-hoverable"
           />
         </div>
       </Flex>

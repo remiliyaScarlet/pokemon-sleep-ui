@@ -29,7 +29,7 @@ export const MapInputSleepStyleToggle = (props: Props) => {
           <div className="relative h-8 w-8">
             <NextImage
               src="/images/generic/sleep.png" alt={t('SleepStyle')}
-              sizes={imageIconSizes} className="invert-icon"
+              sizes={imageIconSizes} className="invert-on-light"
             />
           </div>
         </Flex>

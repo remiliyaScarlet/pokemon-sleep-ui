@@ -139,7 +139,7 @@ body {
     @apply dark:invert;
   }
   
-  .invert-icon {
+  .invert-hoverable {
     @apply invert-on-light group-hover:invert-0 group-hover:dark:invert;
   }
   

@@ -25,7 +25,7 @@ export const MapStats = ({sleepStyles}: Props) => {
         <div className="relative h-6 w-6">
           <NextImage
             src="/images/generic/sleep.png" alt={t('SleepStyle')}
-            sizes={imageIconSizes} className="invert-icon"
+            sizes={imageIconSizes} className="invert-hoverable"
           />
         </div>
         <div>
@@ -36,7 +36,7 @@ export const MapStats = ({sleepStyles}: Props) => {
         <div className="relative h-6 w-6">
           <NextImage
             src="/images/generic/pokeball.png" alt={t('Pokemon')}
-            sizes={imageIconSizes} className="invert-icon"
+            sizes={imageIconSizes} className="invert-hoverable"
           />
         </div>
         <div>

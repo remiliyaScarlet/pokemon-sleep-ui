@@ -37,7 +37,7 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
               <div className="relative h-6 w-6">
                 <NextImage
                   src="/images/generic/pokeball.png" alt={t2('Pokemon')}
-                  sizes={imageIconSizes} className="invert-icon"
+                  sizes={imageIconSizes} className="invert-on-light"
                 />
               </div>
             </Flex>
@@ -75,7 +75,7 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
                           <div className="relative h-3.5 w-3.5">
                             <NextImage
                               src="/images/generic/flash.png" alt={style.style}
-                              sizes={imageSmallIconSizes} className="invert-icon"
+                              sizes={imageSmallIconSizes} className="invert-on-light"
                             />
                           </div>
                         );
