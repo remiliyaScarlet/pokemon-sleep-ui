@@ -1,15 +1,15 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
-import {EnergyTeamFilter} from '@/ui/energy/team/type';
+import {EnergyAnalysisFilter} from '@/ui/energy/analysis/type';
 
 
-type UseFilteredEnergyTeamOpts = {
+type UseFilteredEnergyAnalysisOpts = {
   data: PokemonInfo[],
 };
 
-export const useEnergyTeamPokemonFilter = ({data}: UseFilteredEnergyTeamOpts) => {
-  return useFilterInput<EnergyTeamFilter, PokemonInfo, PokemonId>({
+export const useEnergyAnalysisPokemonFilter = ({data}: UseFilteredEnergyAnalysisOpts) => {
+  return useFilterInput<EnergyAnalysisFilter, PokemonInfo, PokemonId>({
     data,
     dataToId: ({id}) => id,
     initialFilter: {

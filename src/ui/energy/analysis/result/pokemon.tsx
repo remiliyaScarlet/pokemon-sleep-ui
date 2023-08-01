@@ -3,20 +3,25 @@ import React from 'react';
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
+import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {EnergyAnalysisOnBerry} from '@/ui/energy/team/analysis/berry';
-import {EnergyTeamLevelSlider} from '@/ui/energy/team/analysis/level';
-import {teamSlotStyle} from '@/ui/energy/team/analysis/style';
-import {EnergyAnalysisPokemonProps} from '@/ui/energy/team/analysis/type';
+import {EnergyAnalysisOnBerry} from '@/ui/energy/analysis/result/berry';
+import {EnergyAnalysisLevelSlider} from '@/ui/energy/analysis/result/level';
+import {teamSlotStyle} from '@/ui/energy/analysis/result/style';
+import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
+import {EnergyAnalysisFilter, EnergyAnalysisProps, EnergyAnalysisSlot, EnergyAnalysisSlotNames} from '@/ui/energy/analysis/type';
 
 
-type Props = EnergyAnalysisPokemonProps & {
+type Props = FilterInputProps<EnergyAnalysisFilter> & Pick<EnergyAnalysisProps, 'berryMap'> & {
+  slotName: EnergyAnalysisSlotNames,
+  slot: EnergyAnalysisSlot,
   pokemon: PokemonInfo,
+  productionStats: ProductionStatsSingle,
 };
 
-export const EnergyTeamAnalysisPokemonFull = ({
+export const EnergyAnalysisPokemon = ({
   setFilter,
   slot,
   slotName,
@@ -62,7 +67,7 @@ export const EnergyTeamAnalysisPokemonFull = ({
           />
         </div>
       </Flex>
-      <EnergyTeamLevelSlider level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
+      <EnergyAnalysisLevelSlider level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
       <EnergyAnalysisOnBerry berryData={berryData} rate={productionStats.berry}/>
     </Flex>
   );

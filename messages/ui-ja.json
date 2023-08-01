@@ -48,11 +48,11 @@
       }
     },
     "Energy": {
+      "Analysis": {
+        "Title": "チーム分析"
+      },
       "Index": {
         "Title": "エナジー計算"
-      },
-      "Team": {
-        "Title": "チーム分析"
       },
       "Optimizer": {
         "Title": "最適化"

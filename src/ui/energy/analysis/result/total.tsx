@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
-import {ProductionStatsSingle} from '@/ui/energy/team/analysis/type';
+import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
 
 
 type Props = {

@@ -7,21 +7,21 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {EnergyTeamInputProps, EnergyTeamSlotNames, energyTeamSlotNames} from '@/ui/energy/team/type';
+import {EnergyAnalysisInputProps, EnergyAnalysisSlotNames, energyAnalysisSlotNames} from '@/ui/energy/analysis/type';
 
 
-type Props = EnergyTeamInputProps & {
+type Props = EnergyAnalysisInputProps & {
   isIncluded: FilterInclusionMap<PokemonId>,
 };
 
-export const EnergyTeamSelectablePokemon = ({setFilter, isIncluded, pokemon}: Props) => {
+export const EnergyAnalysisSelectablePokemon = ({setFilter, isIncluded, pokemon}: Props) => {
   const t = useTranslations('Game');
 
   const putOnTeam = (id: PokemonId) => () => {
     setFilter((filter) => {
-      let slotToInsert: EnergyTeamSlotNames | null = null;
+      let slotToInsert: EnergyAnalysisSlotNames | null = null;
 
-      for (const slotName of energyTeamSlotNames) {
+      for (const slotName of energyAnalysisSlotNames) {
         if (filter.team[slotName]) {
           continue;
         }

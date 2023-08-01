@@ -9,11 +9,11 @@ import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageSmallIconSizes} from '@/styles/image';
-import {EnergyTeamInputProps} from '@/ui/energy/team/type';
+import {EnergyAnalysisInputProps} from '@/ui/energy/analysis/type';
 import {toUnique} from '@/utils/array';
 
 
-export const EnergyTeamInput = ({pokemon, ...props}: EnergyTeamInputProps) => {
+export const EnergyAnalysisPokemonFilter = ({pokemon, ...props}: EnergyAnalysisInputProps) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Energy');
 

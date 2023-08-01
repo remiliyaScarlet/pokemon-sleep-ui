@@ -17,9 +17,9 @@ export const EnergyIndex = () => {
       <Flex direction="col" center className="h-auto gap-2 md:mt-40">
         <div className="width-with-gap md:width-with-gap-2-items">
           <FeatureLinkImage
-            href="/energy/team"
+            href="/energy/analysis"
             imageSrc="/images/generic/pokeball.png"
-            text={t('Team.Title')}
+            text={t('Analysis.Title')}
           />
         </div>
         <div className="width-with-gap md:width-with-gap-2-items">

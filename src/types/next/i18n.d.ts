@@ -31,8 +31,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Ingredient: PageWithIndividual,
       Map: PageWithIndividual,
       Energy: {
+        Analysis: I18nMetadata,
         Index: I18nMetadata,
-        Team: I18nMetadata,
         Optimizer: I18nMetadata,
       },
       Skill: PageWithIndividual,

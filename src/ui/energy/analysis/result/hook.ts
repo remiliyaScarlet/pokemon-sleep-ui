@@ -1,18 +1,23 @@
 import React from 'react';
 
-import {ProductionStats, ProductionStatsBySlot, ProductionStatsSingle} from '@/ui/energy/team/analysis/type';
-import {EnergyTeamFilter, EnergyTeamProps, EnergyTeamSlotNames, energyTeamSlotNames} from '@/ui/energy/team/type';
+import {ProductionStats, ProductionStatsBySlot, ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
+import {
+  EnergyAnalysisFilter,
+  EnergyAnalysisProps,
+  EnergyAnalysisSlotNames,
+  energyAnalysisSlotNames,
+} from '@/ui/energy/analysis/type';
 import {toSum} from '@/utils/array';
 import {getPokemonBerryProductionRate} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
-type UseProductionStatsOpts = EnergyTeamProps & {
-  filter: EnergyTeamFilter,
+type UseProductionStatsOpts = EnergyAnalysisProps & {
+  filter: EnergyAnalysisFilter,
 };
 
 type UseProductionStatsOfSlotOpts = UseProductionStatsOpts & {
-  slotName: EnergyTeamSlotNames,
+  slotName: EnergyAnalysisSlotNames,
 };
 
 const useProductionStatsOfSlot = ({
@@ -61,11 +66,11 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
 
   const total: ProductionStatsSingle = React.useMemo(() => ({
     berry: {
-      daily: toSum(energyTeamSlotNames
+      daily: toSum(energyAnalysisSlotNames
         .map((slotName) => bySlot[slotName])
         .filter(isNotNullish)
         .map(({berry}) => berry.daily)),
-      weekly: toSum(energyTeamSlotNames
+      weekly: toSum(energyAnalysisSlotNames
         .map((slotName) => bySlot[slotName])
         .filter(isNotNullish)
         .map(({berry}) => berry.weekly)),

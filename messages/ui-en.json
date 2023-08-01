@@ -48,11 +48,11 @@
       }
     },
     "Energy": {
+      "Analysis": {
+        "Title": "Team Analysis"
+      },
       "Index": {
         "Title": "Energy Calculator"
-      },
-      "Team": {
-        "Title": "Team Analysis"
       },
       "Optimizer": {
         "Title": "Optimizer"
