@@ -9,7 +9,6 @@ import {Flex} from '@/components/layout/flex';
 import {imageGallerySizes} from '@/styles/image';
 import {useProductionStats} from '@/ui/energy/analysis/result/hook';
 import {EnergyAnalysisPokemon} from '@/ui/energy/analysis/result/pokemon';
-import {teamSlotStyle} from '@/ui/energy/analysis/result/style';
 import {EnergyTotalProductionRate} from '@/ui/energy/analysis/result/total';
 import {
   EnergyAnalysisDataProps,
@@ -26,7 +25,7 @@ type Props = EnergyAnalysisDataProps & {
   snorlaxFavorite: EnergyAnalysisFilter['snorlaxFavorite'],
 };
 
-export const EnergyAnalysisAnalysis = (props: Props) => {
+export const EnergyAnalysis = (props: Props) => {
   const {
     team,
     setTeam,
@@ -46,8 +45,8 @@ export const EnergyAnalysisAnalysis = (props: Props) => {
         const isAvailable = slot && pokemon && stats;
 
         return (
-          <Flex key={slotName} direction="col" className={classNames(
-            'relative',
+          <Flex key={slotName} direction="col" center className={classNames(
+            'relative button-bg h-80 rounded-lg p-3 gap-1.5',
             'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
           )}>
             <button
@@ -76,11 +75,9 @@ export const EnergyAnalysisAnalysis = (props: Props) => {
                 }))}
                 pokemon={pokemon} berryMap={berryMap}
               /> :
-              <Flex direction="row" center className={teamSlotStyle}>
-                <div className="relative h-12 w-12">
-                  <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imageGallerySizes}/>
-                </div>
-              </Flex>}
+              <div className="relative h-12 w-12">
+                <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imageGallerySizes}/>
+              </div>}
           </Flex>
         );
       })}

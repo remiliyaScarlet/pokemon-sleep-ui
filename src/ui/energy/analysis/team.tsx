@@ -3,7 +3,7 @@ import React from 'react';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
-import {EnergyAnalysisAnalysis} from '@/ui/energy/analysis/result/main';
+import {EnergyAnalysis} from '@/ui/energy/analysis/result/main';
 import {EnergyAnalysisSelectablePokemon} from '@/ui/energy/analysis/selectable';
 import {EnergyAnalysisDataProps, EnergyAnalysisFilter, EnergyAnalysisTeamSelection} from '@/ui/energy/analysis/type';
 
@@ -35,7 +35,7 @@ export const EnergyAnalysisTeam = (props: Props) => {
         />
       </div>
       <HorizontalSplitter/>
-      <EnergyAnalysisAnalysis team={team} setTeam={setTeam} {...props}/>
+      <EnergyAnalysis team={team} setTeam={setTeam} {...props}/>
     </>
   );
 };
