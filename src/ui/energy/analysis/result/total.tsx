@@ -4,40 +4,37 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {imageIconSizes} from '@/styles/image';
-import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
+import {imageSmallIconSizes} from '@/styles/image';
+import {EnergyRateLayout} from '@/ui/energy/analysis/result/rate';
+import {ProductionStats} from '@/ui/energy/analysis/result/type';
 
 
 type Props = {
-  stats: ProductionStatsSingle,
+  stats: ProductionStats,
 };
 
 export const EnergyTotalProductionRate = ({stats}: Props) => {
-  const {berry} = stats;
+  const {berry, ingredient} = stats.total;
 
-  const t = useTranslations('UI.InPage.Pokedex');
+  const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="row" className="button-bg items-center justify-end gap-2 rounded-lg p-2">
-      <Flex direction="row" noFullWidth className="items-center justify-end gap-1">
-        <div>
-          {t('Stats.Energy.Daily')}
-        </div>
-        <div className="text-xl">
-          {berry.daily.toFixed(2)}
-        </div>
+    <Flex direction="col" className="button-bg items-center justify-end gap-4 rounded-lg p-2">
+      <Flex direction="row" wrap className="justify-end gap-x-8 gap-y-2">
+        <EnergyRateLayout shrink rate={ingredient}>
+          <div className="relative h-8 w-8">
+            <Image src="/images/generic/ingredient.png" alt={t('Ingredient')} fill sizes={imageSmallIconSizes}/>
+          </div>
+        </EnergyRateLayout>
+        <EnergyRateLayout shrink rate={berry}>
+          <div className="relative h-8 w-8">
+            <Image src="/images/generic/berry.png" alt={t('Berry')} fill sizes={imageSmallIconSizes}/>
+          </div>
+        </EnergyRateLayout>
       </Flex>
-      <Flex direction="row" noFullWidth className="items-center justify-end gap-1">
-        <div>
-          {t('Stats.Energy.Weekly')}
-        </div>
-        <div className="text-xl">
-          {berry.weekly.toFixed(2)}
-        </div>
+      <Flex direction="row" className="justify-end">
+        <EnergyRateLayout larger rate={stats.overall}/>
       </Flex>
-      <div className="relative h-7 w-7">
-        <Image src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} fill sizes={imageIconSizes}/>
-      </div>
     </Flex>
   );
 };

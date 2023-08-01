@@ -46,7 +46,7 @@ export const EnergyAnalysis = (props: Props) => {
 
         return (
           <Flex key={slotName} direction="col" center className={classNames(
-            'relative button-bg h-80 rounded-lg p-3 gap-1.5',
+            'relative button-bg h-96 rounded-lg p-3 gap-1.5',
             'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
           )}>
             <button
@@ -81,7 +81,7 @@ export const EnergyAnalysis = (props: Props) => {
           </Flex>
         );
       })}
-      <EnergyTotalProductionRate stats={productionStats.total}/>
+      <EnergyTotalProductionRate stats={productionStats}/>
     </Flex>
   );
 };

@@ -9,6 +9,7 @@ export type IngredientProductionStats = {
 
 export type ProductionStatsSingle = {
   berry: ProductionRate,
+  ingredient: ProductionRate,
 };
 
 export type ProductionStatsBySlot = {[slot in EnergyAnalysisSlotName]: ProductionStatsSingle | null};
@@ -16,4 +17,5 @@ export type ProductionStatsBySlot = {[slot in EnergyAnalysisSlotName]: Productio
 export type ProductionStats = {
   bySlot: ProductionStatsBySlot,
   total: ProductionStatsSingle,
+  overall: ProductionRate,
 };

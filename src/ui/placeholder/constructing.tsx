@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex';
 export const Constructing = () => {
   return (
     <Flex direction="col" center className="h-full">
-      <div className="h-80 w-80">
+      <div className="h-72 w-72">
         <WrenchIcon/>
       </div>
     </Flex>

@@ -8,6 +8,7 @@ import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {EnergyAnalysisOnBerry} from '@/ui/energy/analysis/result/berry';
+import {EnergyAnalysisOnIngredient} from '@/ui/energy/analysis/result/ingredient';
 import {EnergyAnalysisLevelSlider} from '@/ui/energy/analysis/result/level';
 import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
 import {EnergyAnalysisDataProps, EnergyAnalysisMember, EnergyAnalysisSlotName} from '@/ui/energy/analysis/type';
@@ -62,7 +63,8 @@ export const EnergyAnalysisPokemon = ({
         {t(`MainSkill.Name.${skill}`)}
       </Flex>
       <EnergyAnalysisLevelSlider level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
-      <EnergyAnalysisOnBerry berryData={berryData} rate={productionStats.berry}/>
+      <EnergyAnalysisOnBerry id={berryData.id} rate={productionStats.berry}/>
+      <EnergyAnalysisOnIngredient id={ingredients.fixed} rate={productionStats.ingredient}/>
     </>
   );
 };
