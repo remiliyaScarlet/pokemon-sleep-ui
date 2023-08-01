@@ -10,7 +10,7 @@ type Props = {
   id: number | null,
 };
 
-export const PokedexIngredientIcon = ({id}: Props) => {
+export const PokemonIngredientIcon = ({id}: Props) => {
   const t = useTranslations('Game.Food');
 
   if (id === null) {

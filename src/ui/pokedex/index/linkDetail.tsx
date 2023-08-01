@@ -4,10 +4,9 @@ import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {VerticalSplitter} from '@/components/shared/common/splitter';
+import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageIconSizes} from '@/styles/image';
-import {PokedexIngredientIcon} from '@/ui/pokedex/index/linkIngredientIcon';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 
 
@@ -42,13 +41,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredient') {
-    return (
-      <Flex direction="row" className="gap-0.5">
-        <PokedexIngredientIcon id={ingredients.fixed ?? null}/>
-        {ingredients.random && <VerticalSplitter/>}
-        {ingredients.random?.map((id) => <PokedexIngredientIcon key={id} id={id}/>)}
-      </Flex>
-    );
+    return <PokemonIngredients ingredients={ingredients}/>;
   }
 
   if (display === 'specialty') {
