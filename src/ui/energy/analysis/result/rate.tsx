@@ -26,7 +26,7 @@ export const EnergyRateLayout = ({rate, larger, shrink, children}: React.PropsWi
       {children}
       <Flex
         direction={larger ? 'row' : 'col'} noFullWidth
-        className={classNames('ml-auto justify-end', larger ? 'gap-1.5' : '')}
+        className={classNames('ml-auto justify-end', larger ? 'gap-2' : '')}
       >
         <Flex direction="row" className="items-center justify-end gap-1">
           <div className={titleClass}>

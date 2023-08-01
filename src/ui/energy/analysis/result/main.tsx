@@ -31,6 +31,7 @@ export const EnergyAnalysis = (props: Props) => {
     setTeam,
     pokedex,
     berryMap,
+    snorlaxRankData,
   } = props;
 
   const productionStats = useProductionStats(props);
@@ -97,6 +98,7 @@ export const EnergyAnalysis = (props: Props) => {
           ingredientBonusPercent: ingredientBonusPoint,
         }))}
         stats={productionStats}
+        snorlaxRankData={snorlaxRankData}
       />
     </Flex>
   );

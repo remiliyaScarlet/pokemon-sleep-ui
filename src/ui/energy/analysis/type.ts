@@ -3,6 +3,7 @@ import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/
 import {BerryDataMap, BerryId} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
+import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 
 
 export type EnergyAnalysisFilter = PokemonInputFilter<PokemonInputType> & {
@@ -13,6 +14,7 @@ export type EnergyAnalysisDataProps = {
   pokedex: PokedexMap,
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
+  snorlaxRankData: SnorlaxRankInMap[],
 };
 
 export const energyAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;
