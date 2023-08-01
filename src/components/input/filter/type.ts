@@ -3,6 +3,10 @@ import React from 'react';
 import {Indexable} from '@/utils/type';
 
 
+export type InputRowProps = {
+  style?: FilterRowBackgroundStyle,
+};
+
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
 
 export type FilterWithInclusionMap<TId extends Indexable> = Record<TId, FilterInclusionMap<TId> | any>;

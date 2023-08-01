@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FilterInputRow} from '@/components/input/filter/inputRow';
+import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
@@ -30,11 +30,11 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
         filter={filter}
         setFilter={setFilter}
       />
-      <FilterInputRow>
+      <InputRow>
         <div className="ml-auto">
           <MapInputEmptyRankToggle {...props}/>
         </div>
-      </FilterInputRow>
+      </InputRow>
     </Flex>
   );
 };

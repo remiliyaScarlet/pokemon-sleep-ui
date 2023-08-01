@@ -1,16 +1,12 @@
 import React from 'react';
 
 import {rowBackground} from '@/components/input/filter/const';
-import {FilterRowBackgroundStyle} from '@/components/input/filter/type';
+import {InputRowProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {classNames} from '@/utils/react';
 
 
-type Props = {
-  style?: FilterRowBackgroundStyle,
-};
-
-export const FilterInputRow = ({style = 'normal', children}: React.PropsWithChildren<Props>) => {
+export const InputRow = ({style = 'normal', children}: React.PropsWithChildren<InputRowProps>) => {
   return (
     <Flex
       direction="col"

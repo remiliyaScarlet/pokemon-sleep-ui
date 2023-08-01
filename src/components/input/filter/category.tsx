@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FilterInputRow} from '@/components/input/filter/inputRow';
+import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
@@ -17,10 +17,14 @@ export const FilterCategoryInput = <TId, >({
   style,
 }: FilterCategoryInputProps<TId>) => {
   return (
-    <FilterInputRow style={style}>
-      <div className="w-32 whitespace-nowrap text-center text-sm">
-        {title}
-      </div>
+    <InputRowWithTitle
+      style={style}
+      title={
+        <div className="w-32 whitespace-nowrap text-center text-sm">
+          {title}
+        </div>
+      }
+    >
       <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {
           const active = isActive(id);
@@ -38,6 +42,6 @@ export const FilterCategoryInput = <TId, >({
           );
         })}
       </Flex>
-    </FilterInputRow>
+    </InputRowWithTitle>
   );
 };
