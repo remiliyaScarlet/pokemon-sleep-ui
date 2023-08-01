@@ -7,6 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconList} from '@/components/shared/pokemon/iconList';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {PokemonIngredientData, pokemonIngredientType, PokemonIngredientType} from '@/types/mongo/pokemon';
 
@@ -31,7 +32,7 @@ export const MealIngredientByPokemon = ({meal, pokemonByIngredients}: Props) => 
               <Link href={`/ingredient/${id}`} className="button-clickable-bg">
                 <Flex direction="col" center className="h-full">
                   <div className="relative h-12 w-12">
-                    <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes="15vw"/>
+                    <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
                   </div>
                 </Flex>
               </Link>

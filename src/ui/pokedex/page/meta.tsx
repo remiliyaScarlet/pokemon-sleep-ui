@@ -42,7 +42,7 @@ export const PokemonMeta = (props: PokemonProps) => {
     <Flex direction="col" center className="info-section-md-fit">
       <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
         <div className="relative h-8 w-8">
-          <NextImage src={`/images/type/${type}.png`} alt={name} sizes="(max-width: 768px) 15vw, 10vw"/>
+          <NextImage src={`/images/type/${type}.png`} alt={name} sizes={imageSmallIconSizes}/>
         </div>
         <div>
           {name}

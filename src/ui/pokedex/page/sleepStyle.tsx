@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {imageGallerySizes} from '@/styles/image';
+import {imageGallerySizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonDataIcon} from '@/ui/pokedex/page/dataIcon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
@@ -35,7 +35,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
             <Flex direction="row" center className="z-10 p-1.5">
               <div>
                 <div className="relative h-9 w-9">
-                  <NextImage src="/images/generic/map_pin.png" alt={t5('Map')} sizes="7vw"/>
+                  <NextImage src="/images/generic/map_pin.png" alt={t5('Map')} sizes={imageSmallIconSizes}/>
                 </div>
               </div>
               <div className="text-lg">
@@ -53,7 +53,10 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
                     </div>
                     <Flex direction="row" center className="gap-1">
                       <div className="relative h-5 w-5">
-                        <NextImage src={`/images/rank/${rank.title}.png`} alt={t6('Rank')} sizes="5vw"/>
+                        <NextImage
+                          src={`/images/rank/${rank.title}.png`} alt={t6('Rank')}
+                          sizes={imageSmallIconSizes}
+                        />
                       </div>
                       <div>{rankTitle}</div>
                       <div>{rank.number}</div>
