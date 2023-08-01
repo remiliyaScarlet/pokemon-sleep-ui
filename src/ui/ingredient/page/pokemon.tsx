@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -47,7 +48,7 @@ export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
                 />
               </Flex>
             </Flex>
-            {idx + 1 !== pokemonIngredientType.length && <hr className="w-full border-t-gray-700"/>}
+            {idx + 1 !== pokemonIngredientType.length && <HorizontalSplitter className="w-full"/>}
           </React.Fragment>
         );
       })}

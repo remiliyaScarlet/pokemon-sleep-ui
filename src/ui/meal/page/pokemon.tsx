@@ -5,6 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconList} from '@/components/shared/pokemon/iconList';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {imageIconSizes} from '@/styles/image';
@@ -41,7 +42,7 @@ export const MealIngredientByPokemon = ({meal, pokemonByIngredients}: Props) => 
               </Flex>
             </Flex>
           ))}
-          {idx + 1 !== pokemonIngredientType.length && <hr className="w-full border-t-gray-700"/>}
+          {idx + 1 !== pokemonIngredientType.length && <HorizontalSplitter className="w-full"/>}
         </React.Fragment>
       ))}
     </Flex>
