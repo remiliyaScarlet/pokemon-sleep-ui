@@ -1,7 +1,7 @@
 @tailwind utilities;
 
 @layer utilities {
-  div.announcement {
+  div.announcement-animation {
     @keyframes marquee {
       0% {
         transform: translate(0, 100%);
@@ -20,12 +20,18 @@
       }
     }
     
-    @apply h-10 overflow-hidden text-sm md:h-5;
-    
     & > div {
-      @apply rounded-none table-cell align-middle w-screen transform-gpu;
+      @apply rounded-none table-cell align-middle w-full transform-gpu;
       
       animation: marquee 4s linear infinite;
     }
+  }
+  
+  div.announcement {
+    @apply h-10 overflow-hidden md:h-5 text-sm;
+  }
+  
+  div.announcement-lg {
+    @apply h-56 overflow-hidden md:h-28 text-lg;
   }
 }

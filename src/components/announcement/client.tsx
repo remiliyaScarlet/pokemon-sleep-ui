@@ -2,17 +2,18 @@
 import React from 'react';
 
 import {announcementTextClasses} from '@/components/announcement/styles';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {AnnouncementProps} from '@/components/announcement/type';
 import {Announcement} from '@/types/mongo/announcement';
+import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
 
-type Props = {
+type Props = AnnouncementProps & {
   announcements: Announcement[],
 };
 
-export const AnnouncementsClient = ({announcements}: Props) => {
+export const AnnouncementsClient = ({larger, announcements}: Props) => {
   const [idx, setIdx] = React.useState(0);
 
   // Could be `undefined` if `idx` goes out of bound
@@ -26,18 +27,16 @@ export const AnnouncementsClient = ({announcements}: Props) => {
   }
 
   const {message, level} = announcement;
+  const commonClass = larger ? styles['announcement-lg'] : styles['announcement'];
 
   return (
-    <>
-      <div className={styles['announcement']}>
-        <div
-          className={announcementTextClasses[level]}
-          onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
-        >
-          {message}
-        </div>
+    <div className={classNames(styles['announcement-animation'], commonClass)}>
+      <div
+        className={classNames(announcementTextClasses[level], commonClass)}
+        onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
+      >
+        {message}
       </div>
-      <HorizontalSplitter/>
-    </>
+    </div>
   );
 };
