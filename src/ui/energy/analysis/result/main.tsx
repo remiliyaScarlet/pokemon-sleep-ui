@@ -38,7 +38,7 @@ export const EnergyAnalysis = (props: Props) => {
   return (
     <Flex direction="row" center wrap className="gap-1.5">
       {energyAnalysisSlotName.map((slotName) => {
-        const slot = team[slotName];
+        const slot = team.team[slotName];
         const pokemon = slot ? pokedex[slot.pokemonId] : undefined;
         const stats = productionStats.bySlot[slotName];
 
@@ -52,7 +52,13 @@ export const EnergyAnalysis = (props: Props) => {
             <button
               className="button-clickable disabled:button-disabled absolute right-1 top-1 h-5 w-5 rounded-full"
               disabled={!slot}
-              onClick={() => setTeam((original) => ({...original, [slotName]: null}))}
+              onClick={() => setTeam((original) => ({
+                ...original,
+                team: {
+                  ...original.team,
+                  [slotName]: null,
+                },
+              }))}
             >
               <XMarkIcon/>
             </button>
@@ -68,9 +74,12 @@ export const EnergyAnalysis = (props: Props) => {
                 key={slotName} slot={slot} productionStats={stats} slotName={slotName}
                 setLevel={(newLevel: number) => setTeam((original) => ({
                   ...original,
-                  [slotName]: {
-                    ...original[slotName],
-                    level: newLevel,
+                  team: {
+                    ...original.team,
+                    [slotName]: {
+                      ...original.team[slotName],
+                      level: newLevel,
+                    },
                   },
                 }))}
                 pokemon={pokemon} berryMap={berryMap}
@@ -81,7 +90,14 @@ export const EnergyAnalysis = (props: Props) => {
           </Flex>
         );
       })}
-      <EnergyTotalProductionRate stats={productionStats}/>
+      <EnergyTotalProductionRate
+        bonusPercent={team.ingredientBonusPercent}
+        setBonusPercent={(ingredientBonusPoint) => setTeam((original) => ({
+          ...original,
+          ingredientBonusPercent: ingredientBonusPoint,
+        }))}
+        stats={productionStats}
+      />
     </Flex>
   );
 };

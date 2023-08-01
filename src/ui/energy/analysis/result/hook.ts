@@ -32,7 +32,7 @@ const useProductionStatsOfSlot = ({
   ingredientMap,
 }: UseProductionStatsOfSlotOpts): ProductionStatsSingle | null => {
   return React.useMemo(() => {
-    const slot = team[slotName];
+    const slot = team.team[slotName];
     if (!slot) {
       return null;
     }
@@ -60,12 +60,15 @@ const useProductionStatsOfSlot = ({
         ingredient,
         ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
         quantity: specialty === specialtyIdMap.ingredient ? 2 : 1,
+        multiplier: 1 + (team.ingredientBonusPercent / 100),
       }),
     };
-  }, [team[slotName]]);
+  }, [team.team[slotName], team.ingredientBonusPercent]);
 };
 
 export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStats => {
+  const {team} = opts;
+
   const bySlot: ProductionStatsBySlot = {
     A: useProductionStatsOfSlot({slotName: 'A', ...opts}),
     B: useProductionStatsOfSlot({slotName: 'B', ...opts}),
@@ -89,12 +92,12 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
         weekly: toSum(stats.map(({ingredient}) => ingredient.weekly)),
       },
     };
-  }, Object.values(bySlot));
+  }, [team]);
 
   const overall: ProductionRate = React.useMemo(() => ({
     daily: toSum(Object.values(total).flatMap(({daily}) => daily)),
     weekly: toSum(Object.values(total).flatMap(({weekly}) => weekly)),
-  }), Object.values(bySlot));
+  }), [team]);
 
   return {bySlot, total, overall};
 };

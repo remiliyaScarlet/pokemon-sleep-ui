@@ -18,11 +18,14 @@ export const EnergyAnalysisTeam = (props: Props) => {
   const {pokemonSelectableInclusionMap, pokemon} = props;
 
   const [team, setTeam] = React.useState<EnergyAnalysisTeamSelection>({
-    A: null,
-    B: null,
-    C: null,
-    D: null,
-    E: null,
+    team: {
+      A: null,
+      B: null,
+      C: null,
+      D: null,
+      E: null,
+    },
+    ingredientBonusPercent: 10,
   });
 
   return (

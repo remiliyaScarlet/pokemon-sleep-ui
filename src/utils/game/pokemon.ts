@@ -35,6 +35,7 @@ export type GetPokemonIngredientBaseProductionRateOpts = {
   ingredient: PokemonInfo['ingredients']['fixed'],
   ingredientData: Ingredient | undefined,
   quantity?: number,
+  multiplier?: number,
 };
 
 export const getPokemonIngredientBaseProductionRate = ({
@@ -42,12 +43,13 @@ export const getPokemonIngredientBaseProductionRate = ({
   ingredient,
   ingredientData,
   quantity = 1,
+  multiplier = 1,
 }: GetPokemonIngredientBaseProductionRateOpts): ProductionRate => {
   if (!ingredient || !ingredientData) {
     return {daily: 0, weekly: 0};
   }
 
-  const daily = 86400 / frequency * quantity * ingredientData.energy;
+  const daily = 86400 / frequency * quantity * ingredientData.energy * multiplier;
 
   return {
     daily,

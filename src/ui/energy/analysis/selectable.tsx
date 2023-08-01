@@ -28,7 +28,7 @@ export const EnergyAnalysisSelectablePokemon = ({setTeam, isIncluded, pokemon}: 
       let slotToInsert: EnergyAnalysisSlotName | null = null;
 
       for (const slotName of energyAnalysisSlotName) {
-        if (original[slotName]) {
+        if (original.team[slotName]) {
           continue;
         }
         slotToInsert = slotName;
@@ -37,9 +37,12 @@ export const EnergyAnalysisSelectablePokemon = ({setTeam, isIncluded, pokemon}: 
 
       return {
         ...original,
-        [slotToInsert ?? 'E']: {
-          pokemonId: id,
-          level: 1,
+        team: {
+          ...original.team,
+          [slotToInsert ?? 'E']: {
+            pokemonId: id,
+            level: 1,
+          },
         },
       };
     });

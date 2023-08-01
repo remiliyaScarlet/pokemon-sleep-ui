@@ -19,3 +19,8 @@ export type ProductionStats = {
   total: ProductionStatsSingle,
   overall: ProductionRate,
 };
+
+export type IngredientBonusProps = {
+  bonusPercent: number,
+  setBonusPercent: (newValue: number) => void,
+};
