@@ -1,13 +1,9 @@
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
+import {PokemonIconListMarkSpecialty} from '@/components/shared/pokemon/iconListMarkSpecialty';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
-import {imageSmallIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonIngredientType, pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
 
@@ -18,8 +14,6 @@ type Props = {
 };
 
 export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
-  const t = useTranslations('UI.InPage.Pokedex.Info');
-
   return (
     <Flex direction="col" className="info-section">
       {pokemonIngredientType.map((type, idx) => {
@@ -32,20 +26,7 @@ export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
                 </div>
               </Flex>
               <Flex direction="col" center>
-                <PokemonIconListDuplicable
-                  dataWithPokemonId={obtainablePokemon[type]}
-                  getPokemonId={({id}) => id}
-                  getInfo={({specialty}) => (
-                    specialty === specialtyIdMap.ingredient ?
-                      <div className="relative h-4 w-4">
-                        <NextImage
-                          src="/images/generic/flash.png" alt={t('Specialty')}
-                          sizes={imageSmallIconSizes} className="invert-on-light"
-                        />
-                      </div> :
-                      undefined
-                  )}
-                />
+                <PokemonIconListMarkSpecialty data={obtainablePokemon[type]} specialty={specialtyIdMap.ingredient}/>
               </Flex>
             </Flex>
             {idx + 1 !== pokemonIngredientType.length && <HorizontalSplitter className="w-full"/>}

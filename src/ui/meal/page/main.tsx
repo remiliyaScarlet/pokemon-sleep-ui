@@ -5,7 +5,7 @@ import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSingleMeal} from '@/controller/meal';
-import {getPokemonByIngredients} from '@/controller/pokemon';
+import {getAllPokemonAsMap, getPokemonByIngredients} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealIngredientByPokemon} from '@/ui/meal/page/pokemon';
@@ -20,6 +20,7 @@ export const MealPage = ({params}: Props) => {
   const meal = React.use(getSingleMeal(idNumber));
   const pokemonByIngredients = React.use(getPokemonByIngredients(meal?.ingredients.map(({id}) => id) ?? []));
   const ingredients = React.use(getAllIngredients());
+  const pokedex = React.use(getAllPokemonAsMap());
 
   if (!meal) {
     return <Loading text="Meal"/>;
@@ -29,7 +30,7 @@ export const MealPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="row" center wrap className="gap-1.5">
         <MealMeta meal={meal} ingredients={ingredients}/>
-        <MealIngredientByPokemon meal={meal} pokemonByIngredients={pokemonByIngredients}/>
+        <MealIngredientByPokemon meal={meal} pokedex={pokedex} pokemonByIngredients={pokemonByIngredients}/>
       </Flex>
     </PageLayout>
   );

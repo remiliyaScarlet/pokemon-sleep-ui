@@ -6,19 +6,28 @@ import Link from 'next-intl/link';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonIconList} from '@/components/shared/pokemon/iconList';
+import {PokemonIconListMarkSpecialty} from '@/components/shared/pokemon/iconListMarkSpecialty';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {imageIconSizes} from '@/styles/image';
+import {specialtyIdMap} from '@/types/game/pokemon';
 import {Meal} from '@/types/mongo/meal';
-import {PokemonIngredientData, pokemonIngredientType, PokemonIngredientType} from '@/types/mongo/pokemon';
+import {
+  PokedexMap,
+  PokemonIngredientData,
+  pokemonIngredientType,
+  PokemonIngredientType,
+} from '@/types/mongo/pokemon';
+import {toUnique} from '@/utils/array';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = {
   meal: Meal,
+  pokedex: PokedexMap,
   pokemonByIngredients: PokemonIngredientData,
 };
 
-export const MealIngredientByPokemon = ({meal, pokemonByIngredients}: Props) => {
+export const MealIngredientByPokemon = ({meal, pokedex, pokemonByIngredients}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
@@ -38,7 +47,10 @@ export const MealIngredientByPokemon = ({meal, pokemonByIngredients}: Props) => 
                 </Flex>
               </Link>
               <Flex direction="col" center>
-                <PokemonIconList pokemonIds={ingredientMap[id]}/>
+                <PokemonIconListMarkSpecialty
+                  data={toUnique(ingredientMap[id] ?? []).map((id) => pokedex[id]).filter(isNotNullish)}
+                  specialty={specialtyIdMap.ingredient}
+                />
               </Flex>
             </Flex>
           ))}
