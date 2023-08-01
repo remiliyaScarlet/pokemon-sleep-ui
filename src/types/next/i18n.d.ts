@@ -40,7 +40,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Index: I18nMetadata,
         Pot: I18nMetadata,
         Nature: I18nMetadata,
-        Rank: I18nMetadata,
       },
       Rarity: {
         Index: I18nMetadata,
