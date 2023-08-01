@@ -59,7 +59,7 @@ export const EnergyAnalysisSelectablePokemon = ({setTeam, isIncluded, pokemon}: 
                 />
               </div>
             </div>
-            <div className="relative h-14 w-14 opacity-70">
+            <div className="relative h-14 w-14">
               <Image
                 src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
                 fill sizes={imageIconSizes}
