@@ -6,6 +6,7 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
+import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {getPossibleRanks} from '@/ui/map/page/utils';
@@ -21,8 +22,7 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
   const {showEmptyRank} = filter;
 
   const t = useTranslations('UI.Common');
-  const t2 = useTranslations('Game');
-  const t3 = useTranslations('UI.InPage.Map');
+  const t2 = useTranslations('UI.InPage.Map');
 
   let stylesAccumulated = 0;
 
@@ -36,7 +36,7 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
             <Flex direction="row" center>
               <div className="relative h-6 w-6">
                 <NextImage
-                  src="/images/generic/pokeball.png" alt={t3('Pokemon')}
+                  src="/images/generic/pokeball.png" alt={t2('Pokemon')}
                   sizes={imageIconSizes} className="invert-icon"
                 />
               </div>
@@ -45,12 +45,11 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
         </tr>
       </thead>
       <tbody>
-        {getPossibleRanks().map(({title, number}) => {
-          const titleName = `${t2(`RankTitle.${title}`)} ${number}`;
+        {getPossibleRanks().map((rank) => {
           const matchingStyles = sleepStyles
             .filter(({pokemonId, style}) => (
               isIncluded[`${pokemonId}-${style.style}`] &&
-              style.rank.title === title && style.rank.number === number
+              style.rank.title === rank.title && style.rank.number === rank.number
             ));
 
           const toHide = !showEmptyRank && !matchingStyles.length;
@@ -59,18 +58,11 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
 
           return (
             <tr
-              key={titleName}
+              key={`${rank.title}-${rank.number}`}
               className={classNames(toHide ? 'hidden' : 'border-b border-b-gray-700 last:border-b-0')}
             >
               <td>
-                <Flex direction="row" center className="gap-1">
-                  <div className="relative h-6 w-6">
-                    <NextImage src={`/images/rank/${title}.png`} alt={titleName} sizes={imageSmallIconSizes}/>
-                  </div>
-                  <div className="whitespace-nowrap">
-                    {titleName}
-                  </div>
-                </Flex>
+                <SnorlaxRankUI rank={rank} hideTextBelowMd/>
               </td>
               <td>
                 <Flex direction="col" center>
