@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {EnergyAnalysisIngredientBonusSlider} from '@/ui/energy/analysis/result/ingredientBonus';
 import {EnergyRateLayout} from '@/ui/energy/analysis/result/rate';
@@ -28,12 +28,12 @@ export const EnergyTotalProductionRate = ({stats, ...props}: Props) => {
         <Flex direction="row" noFullWidth wrap className="justify-end gap-x-8 gap-y-2">
           <EnergyRateLayout shrink rate={ingredient}>
             <div className="relative h-8 w-8">
-              <Image src="/images/generic/ingredient.png" alt={t('Ingredient')} fill sizes={imageSmallIconSizes}/>
+              <NextImage src="/images/generic/ingredient.png" alt={t('Ingredient')} sizes={imageSmallIconSizes}/>
             </div>
           </EnergyRateLayout>
           <EnergyRateLayout shrink rate={berry}>
             <div className="relative h-8 w-8">
-              <Image src="/images/generic/berry.png" alt={t('Berry')} fill sizes={imageSmallIconSizes}/>
+              <NextImage src="/images/generic/berry.png" alt={t('Berry')} sizes={imageSmallIconSizes}/>
             </div>
           </EnergyRateLayout>
         </Flex>

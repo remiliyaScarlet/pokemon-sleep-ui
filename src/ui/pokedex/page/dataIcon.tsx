@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Image from 'next/image';
+import {NextImage} from '@/components/shared/common/image/main';
 
 
 type Props = {
@@ -12,8 +12,8 @@ type Props = {
 export const PokemonDataIcon = ({src, alt, invert}: Props) => {
   return (
     <div className="relative h-6 w-6">
-      <Image
-        src={src} alt={alt} fill sizes="5vw"
+      <NextImage
+        src={src} alt={alt} sizes="5vw"
         className={invert ? 'invert-on-light' : undefined}
       />
     </div>

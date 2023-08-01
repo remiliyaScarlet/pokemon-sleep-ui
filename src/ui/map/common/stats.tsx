@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
 import {toUnique} from '@/utils/array';
@@ -23,9 +23,9 @@ export const MapStats = ({sleepStyles}: Props) => {
     <Flex direction="row" center className="gap-4 text-lg">
       <Flex direction="row" center noFullWidth className="gap-1.5">
         <div className="relative h-6 w-6">
-          <Image
-            src="/images/generic/sleep.png" alt={t('SleepStyle')} fill sizes={imageIconSizes}
-            className="invert-icon"
+          <NextImage
+            src="/images/generic/sleep.png" alt={t('SleepStyle')}
+            sizes={imageIconSizes} className="invert-icon"
           />
         </div>
         <div>
@@ -34,9 +34,9 @@ export const MapStats = ({sleepStyles}: Props) => {
       </Flex>
       <Flex direction="row" center noFullWidth className="gap-1.5">
         <div className="relative h-6 w-6">
-          <Image
-            src="/images/generic/pokeball.png" alt={t('Pokemon')} fill sizes={imageIconSizes}
-            className="invert-icon"
+          <NextImage
+            src="/images/generic/pokeball.png" alt={t('Pokemon')}
+            sizes={imageIconSizes} className="invert-icon"
           />
         </div>
         <div>

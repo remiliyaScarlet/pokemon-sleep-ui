@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {I18nProvider} from '@/contexts/i18n';
 import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
@@ -26,7 +26,7 @@ export const MealMeta = (props: MealMetaProps) => {
         {mealName}
       </div>
       <div className="relative h-44 w-44 rounded-lg border border-slate-300 dark:border-slate-700">
-        <Image src={`/images/meal/portrait/${id}.png`} alt={mealName} fill sizes={imagePortraitSizes}/>
+        <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imagePortraitSizes}/>
       </div>
       <I18nProvider namespaces={['UI.InPage.Cooking']}>
         <MealExp {...props}/>
@@ -36,7 +36,7 @@ export const MealMeta = (props: MealMetaProps) => {
           <Link key={id} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
             <Flex direction="col" center>
               <div className="relative h-12 w-12">
-                <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageIconSizes}/>
+                <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
               </div>
               <div>
                 {quantity}

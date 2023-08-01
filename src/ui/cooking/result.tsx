@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {imageIconSizes} from '@/styles/image';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
@@ -46,7 +46,7 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
                 </Flex>
                 <Flex direction="row" className="items-center gap-1">
                   <div className="relative h-4 w-4">
-                    <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
+                    <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
                   </div>
                   <div>
                     {energyInfo.atLevel.energy}

@@ -2,12 +2,12 @@ import React from 'react';
 
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
-import Image from 'next/image';
 
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {MapPageFilter} from '@/ui/map/page/type';
 import {classNames} from '@/utils/react';
@@ -31,9 +31,9 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: FilterInputProps<Ma
           {showEmptyRank ? <EyeIcon/> : <EyeSlashIcon/>}
         </div>
         <div className="relative h-7 w-7">
-          <Image
-            src="/images/generic/pokeball_unavailable.png" alt="N/A" fill
-            className="invert-icon" sizes={imageSmallIconSizes}
+          <NextImage
+            src="/images/generic/pokeball_unavailable.png" alt="N/A"
+            sizes={imageSmallIconSizes} className="invert-icon"
           />
         </div>
       </Flex>

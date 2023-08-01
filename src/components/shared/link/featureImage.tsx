@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Image from 'next/image';
-
+import {NextImage} from '@/components/shared/common/image/main';
 import {FeatureLink} from '@/components/shared/link/feature';
 import {FeatureLinkImageProps} from '@/components/shared/link/type';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -18,7 +17,7 @@ export const FeatureLinkImage = ({imageSrc, ...props}: Props) => {
     return (
       <FeatureLink {...props}>
         <div className="relative h-12 w-12">
-          <Image src={imageSrc} alt={text} fill className="invert-on-light" sizes={imageSmallIconSizes}/>
+          <NextImage src={imageSrc} alt={text} className="invert-on-light" sizes={imageSmallIconSizes}/>
         </div>
       </FeatureLink>
     );
@@ -27,7 +26,7 @@ export const FeatureLinkImage = ({imageSrc, ...props}: Props) => {
   return (
     <FeatureLink {...props}>
       <div className="relative h-12 w-12">
-        <Image src={imageSrc} alt={text} fill className="invert-icon" sizes={imageSmallIconSizes}/>
+        <NextImage src={imageSrc} alt={text} className="invert-icon" sizes={imageSmallIconSizes}/>
       </div>
     </FeatureLink>
   );

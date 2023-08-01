@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 
-import Image from 'next/image';
 import {usePathname} from 'next-intl/client';
 import Link from 'next-intl/link';
 
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {NavEntry} from '@/types/nav';
 import {classNames} from '@/utils/react';
@@ -35,7 +35,7 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
           isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
         )}
       >
-        <Image src={imageSrc} alt={alt} fill className="invert-icon" sizes={imageSmallIconSizes}/>
+        <NextImage src={imageSrc} alt={alt} className="invert-icon" sizes={imageSmallIconSizes}/>
       </Link>
     </li>
   );

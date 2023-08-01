@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {mealTypeBackgroundStyle} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
@@ -34,10 +34,7 @@ export const MealLink = (props: MealLinkProps) => {
           <MealLinkDetail {...props}/>
         </Flex>
         <div className="relative h-16 w-16 opacity-40">
-          <Image
-            src={`/images/meal/portrait/${id}.png`} alt={mealName}
-            fill sizes={imageIconSizes}
-          />
+          <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
         </div>
       </Flex>
     </Link>

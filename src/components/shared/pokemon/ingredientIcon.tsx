@@ -1,10 +1,10 @@
 import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
@@ -28,7 +28,7 @@ export const PokemonIngredientIcon = ({id, dimension}: Props) => {
   return (
     <Link href={`/ingredient/${id}`} className="button-clickable">
       <div className={classNames('relative', dimension ?? 'h-5 w-5')}>
-        <Image src={`/images/ingredient/${id}.png`} alt={t(id.toString())} fill sizes={imageSmallIconSizes}/>
+        <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageSmallIconSizes}/>
       </div>
     </Link>
   );

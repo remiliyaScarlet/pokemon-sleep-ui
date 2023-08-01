@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {MealMetaProps} from '@/ui/meal/page/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
@@ -42,7 +42,7 @@ export const MealExp = ({meal, ingredients}: MealMetaProps) => {
       />
       <Flex direction="row" className="ml-auto items-center justify-end gap-1">
         <div className="relative h-4 w-4">
-          <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageIconSizes}/>
+          <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
         </div>
         <div className="text-sm">
           {atLevel.energy} (+{diffVal} / +{diffPct.toFixed(0)}%)

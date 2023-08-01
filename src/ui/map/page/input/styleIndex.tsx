@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {SleepStyleId} from '@/types/mongo/sleepStyle';
 import {MapPageFilter} from '@/ui/map/page/type';
@@ -27,9 +27,9 @@ export const MapInputSleepStyleToggle = (props: Props) => {
       title={
         <Flex direction="row" center>
           <div className="relative h-8 w-8">
-            <Image
-              src="/images/generic/sleep.png" alt={t('SleepStyle')} fill sizes={imageIconSizes}
-              className="invert-icon"
+            <NextImage
+              src="/images/generic/sleep.png" alt={t('SleepStyle')}
+              sizes={imageIconSizes} className="invert-icon"
             />
           </div>
         </Flex>
@@ -39,9 +39,9 @@ export const MapInputSleepStyleToggle = (props: Props) => {
         if (id === 'onSnorlax') {
           return (
             <div className="relative h-4 w-4">
-              <Image
-                src="/images/generic/flash.png" alt={id} fill sizes={imageSmallIconSizes}
-                className={sleepStyle.onSnorlax ? 'invert-on-dark' : 'invert-on-light'}
+              <NextImage
+                src="/images/generic/flash.png" alt={id}
+                sizes={imageSmallIconSizes} className={sleepStyle.onSnorlax ? 'invert-on-dark' : 'invert-on-light'}
               />
             </div>
           );

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
@@ -42,10 +42,7 @@ export const PokemonMeta = (props: PokemonProps) => {
     <Flex direction="col" center className="info-section-md-fit">
       <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
         <div className="relative h-8 w-8">
-          <Image
-            src={`/images/type/${type}.png`} alt={name}
-            fill sizes="(max-width: 768px) 15vw, 10vw"
-          />
+          <NextImage src={`/images/type/${type}.png`} alt={name} sizes="(max-width: 768px) 15vw, 10vw"/>
         </div>
         <div>
           {name}
@@ -85,7 +82,7 @@ export const PokemonMeta = (props: PokemonProps) => {
               <Flex direction="col" center className="gap-1">
                 <Flex direction="row" center className="gap-1">
                   <div className="relative h-10 w-10">
-                    <Image src={`/images/berry/${berry.id}.png`} alt={berryName} fill sizes={imageSmallIconSizes}/>
+                    <NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>
                   </div>
                   <div className="whitespace-nowrap text-lg">
                     {berryName} &times; {berry.quantity}

@@ -2,10 +2,10 @@ import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
-import Image from 'next/image';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
 import {useProductionStats} from '@/ui/energy/analysis/result/hook';
 import {EnergyAnalysisPokemon} from '@/ui/energy/analysis/result/pokemon';
@@ -85,7 +85,7 @@ export const EnergyAnalysis = (props: Props) => {
                 pokemon={pokemon} berryMap={berryMap}
               /> :
               <div className="relative h-12 w-12">
-                <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imageGallerySizes}/>
+                <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageGallerySizes}/>
               </div>}
           </Flex>
         );

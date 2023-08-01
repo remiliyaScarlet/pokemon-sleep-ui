@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {imageGallerySizes, imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
@@ -42,7 +42,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
               </Flex>
               <Flex direction="row" center className="gap-0.5">
                 <div className="relative h-4 w-4">
-                  <Image src="/images/generic/energy.png" alt={t2('Energy')} fill sizes={imageIconSizes}/>
+                  <NextImage src="/images/generic/energy.png" alt={t2('Energy')} sizes={imageIconSizes}/>
                 </div>
                 <div className="text-sm">
                   {meal.levels.at(-1)?.energy ?? '-'}

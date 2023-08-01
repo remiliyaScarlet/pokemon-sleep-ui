@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -38,7 +38,9 @@ export const EnergyAnalysisPokemonFilter = ({pokemon, ...props}: Props) => {
         title={
           <Flex direction="row" center>
             <div className="relative h-7 w-7">
-              <Image src="/images/generic/snorlax.png" alt={t2('SnorlaxFavorite')} fill sizes={imageSmallIconSizes}/>
+              <NextImage
+                src="/images/generic/snorlax.png" alt={t2('SnorlaxFavorite')} sizes={imageSmallIconSizes}
+              />
             </div>
           </Flex>
         }

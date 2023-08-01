@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
 import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -37,8 +37,8 @@ export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
                   getInfo={({specialty}) => (
                     specialty === specialtyIdMap.ingredient ?
                       <div className="relative h-4 w-4">
-                        <Image
-                          src="/images/generic/flash.png" alt={t('Specialty')} fill
+                        <NextImage
+                          src="/images/generic/flash.png" alt={t('Specialty')}
                           sizes={imageSmallIconSizes} className="invert-on-light"
                         />
                       </div> :

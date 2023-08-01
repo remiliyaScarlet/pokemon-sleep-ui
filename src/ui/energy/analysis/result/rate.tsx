@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {ProductionRate} from '@/types/game/pokemon';
 import {classNames} from '@/utils/react';
@@ -46,7 +46,7 @@ export const EnergyRateLayout = ({rate, larger, shrink, children}: React.PropsWi
         </Flex>
       </Flex>
       <div className="relative h-7 w-7">
-        <Image src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} fill sizes={imageIconSizes}/>
+        <NextImage src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} sizes={imageIconSizes}/>
       </div>
     </Flex>
   );

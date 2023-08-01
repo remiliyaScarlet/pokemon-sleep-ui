@@ -1,8 +1,7 @@
 import React from 'react';
 
-import Image from 'next/image';
-
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {classNames} from '@/utils/react';
 
 
@@ -17,16 +16,14 @@ type Props = {
 export const IconWithInfo = ({imageSrc, imageAlt, imageDimension, imageSizes, info}: Props) => {
   return (
     <div className={classNames('relative', imageDimension)}>
-      {
-        info &&
+      {info &&
         <Flex
           direction="col" center noFullWidth
           className="info-in-image absolute bottom-0 right-0 z-10 h-5 w-5 text-xs"
         >
           {info}
-        </Flex>
-      }
-      <Image src={imageSrc} alt={imageAlt} fill sizes={imageSizes}/>
+        </Flex>}
+      <NextImage src={imageSrc} alt={imageAlt} sizes={imageSizes}/>
     </div>
   );
 };

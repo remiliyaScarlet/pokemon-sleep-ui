@@ -1,10 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
-
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {getIconFilterButtonClass} from '@/components/input/filter/utils/props';
+import {NextImage} from '@/components/shared/common/image/main';
 
 
 type Props<TId> = Omit<FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
@@ -25,7 +24,7 @@ export const FilterIconInput = <TId, >({idToAlt, idToImageSrc, ...props}: Props<
     <FilterCategoryInput
       idToButton={(id) => (
         <div className="relative h-7 w-7">
-          <Image src={idToImageSrc(id)} alt={idToAlt(id)} fill sizes={sizes}/>
+          <NextImage src={idToImageSrc(id)} alt={idToAlt(id)} sizes={sizes}/>
         </div>
       )}
       getClassNames={getIconFilterButtonClass}

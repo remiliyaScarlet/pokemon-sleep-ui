@@ -1,12 +1,12 @@
 import React from 'react';
 
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageGallerySizes} from '@/styles/image';
@@ -38,10 +38,9 @@ export const PokedexInput = ({data, ...props}: Props) => {
           return (
             <>
               <div className="relative -mx-2 h-full w-28 md:w-40">
-                <Image
+                <NextImage
                   src={`/images/field/${id}.png`} alt={mapName}
-                  fill className="rounded-xl opacity-50 dark:opacity-25"
-                  sizes={imageGallerySizes}
+                  sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
                 />
               </div>
               <Flex direction="row" center className="absolute z-10 h-full">

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
@@ -22,7 +22,7 @@ export const NavHomepage = () => {
         'text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
       )}>
         <div className={classNames(styles['nav-height'], 'w-8 relative')}>
-          <Image src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} fill sizes={imageSmallIconSizes}/>
+          <NextImage src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} sizes={imageSmallIconSizes}/>
         </div>
         <div>
           <span className="hidden md:block">{t('SiteName')}</span>

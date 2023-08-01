@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
 
@@ -25,7 +25,7 @@ export const IngredientLink = ({ingredient}: Props) => {
     <Link href={`/ingredient/${id}`}>
       <Flex key={id} direction="col" center noFullWidth className="button-clickable-bg gap-0.5 p-1">
         <div className="relative h-12 w-12">
-          <Image src={`/images/ingredient/${id}.png`} alt={ingredientName} fill sizes={imageSmallIconSizes}/>
+          <NextImage src={`/images/ingredient/${id}.png`} alt={ingredientName} sizes={imageSmallIconSizes}/>
         </div>
         <div className="whitespace-nowrap p-1">
           {ingredientName}
@@ -35,7 +35,7 @@ export const IngredientLink = ({ingredient}: Props) => {
             <tr>
               <td>
                 <div className="relative h-4 w-4">
-                  <Image src="/images/generic/energy.png" alt={t('Energy')} fill sizes={imageSmallIconSizes}/>
+                  <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageSmallIconSizes}/>
                 </div>
               </td>
               <td>
@@ -45,7 +45,9 @@ export const IngredientLink = ({ingredient}: Props) => {
             <tr>
               <td>
                 <div className="relative h-4 w-4">
-                  <Image src="/images/generic/shard.png" alt={t2('DreamShards')} fill sizes={imageSmallIconSizes}/>
+                  <NextImage
+                    src="/images/generic/shard.png" alt={t2('DreamShards')} sizes={imageSmallIconSizes}
+                  />
                 </div>
               </td>
               <td>

@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
@@ -29,7 +29,7 @@ export const PokemonIconListDuplicable = <TData, >({
     return (
       <div className="p-1.5">
         <div className="relative h-12 w-12">
-          <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imageSmallIconSizes}/>
+          <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageSmallIconSizes}/>
         </div>
       </div>
     );

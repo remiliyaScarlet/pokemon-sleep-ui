@@ -2,12 +2,12 @@
 import React from 'react';
 
 import {Transition} from '@headlessui/react';
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonImage} from '@/ui/pokedex/page/image';
@@ -36,8 +36,8 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
   if (image === 'portrait') {
     return (
       <div className="relative h-5 w-5">
-        <Image
-          src="/images/generic/pokeball.png" alt={t3('Name')} fill sizes={imageIconSizes}
+        <NextImage
+          src="/images/generic/pokeball.png" alt={t3('Name')} sizes={imageIconSizes}
           className={classNames('transform-smooth', isActive ? 'invert-on-dark' : 'invert-on-light')}
         />
       </div>

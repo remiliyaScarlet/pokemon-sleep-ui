@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
+import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {ProductionRate} from '@/types/game/pokemon';
 import {BerryId} from '@/types/mongo/berry';
@@ -20,10 +20,7 @@ export const EnergyAnalysisOnBerry = ({id, rate}: Props) => {
   return (
     <EnergyRateLayout rate={rate}>
       <div className="button-bg relative h-8 w-8 rounded-lg">
-        <Image
-          src={`/images/berry/${id}.png`} alt={t(`Berry.${id}`)}
-          fill sizes={imageIconSizes}
-        />
+        <NextImage src={`/images/berry/${id}.png`} alt={t(`Berry.${id}`)} sizes={imageIconSizes}/>
       </div>
     </EnergyRateLayout>
   );

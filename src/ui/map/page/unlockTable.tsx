@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
@@ -35,9 +35,9 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
           <td className="p-1">
             <Flex direction="row" center>
               <div className="relative h-6 w-6">
-                <Image
-                  src="/images/generic/pokeball.png" alt={t3('Pokemon')} fill sizes={imageIconSizes}
-                  className="invert-icon"
+                <NextImage
+                  src="/images/generic/pokeball.png" alt={t3('Pokemon')}
+                  sizes={imageIconSizes} className="invert-icon"
                 />
               </div>
             </Flex>
@@ -65,7 +65,7 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
               <td>
                 <Flex direction="row" center className="gap-1">
                   <div className="relative h-6 w-6">
-                    <Image src={`/images/rank/${title}.png`} alt={titleName} fill sizes={imageSmallIconSizes}/>
+                    <NextImage src={`/images/rank/${title}.png`} alt={titleName} sizes={imageSmallIconSizes}/>
                   </div>
                   <div className="whitespace-nowrap">
                     {titleName}
@@ -81,8 +81,8 @@ export const MapUnlockTable = ({sleepStyles, isIncluded, filter}: Props) => {
                       if (style.style === 'onSnorlax') {
                         return (
                           <div className="relative h-3.5 w-3.5">
-                            <Image
-                              src="/images/generic/flash.png" alt={style.style} fill
+                            <NextImage
+                              src="/images/generic/flash.png" alt={style.style}
                               sizes={imageSmallIconSizes} className="invert-icon"
                             />
                           </div>

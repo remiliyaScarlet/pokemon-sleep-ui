@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -39,8 +39,8 @@ export const EnergyAnalysisPokemon = ({
     <>
       <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
         <div className="relative h-5 w-5">
-          <Image
-            src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} fill
+          <NextImage
+            src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
             className="drop-shadow-thick" sizes={imageIconSizes}
           />
         </div>
@@ -50,9 +50,8 @@ export const EnergyAnalysisPokemon = ({
       </Flex>
       <Flex direction="row" center>
         <div className="relative h-28 w-28">
-          <Image
-            src={`/images/pokemon/portrait/${id}.png`} alt={t(`PokemonName.${id}`)}
-            fill sizes={imagePortraitSizes}
+          <NextImage
+            src={`/images/pokemon/portrait/${id}.png`} alt={t(`PokemonName.${id}`)} sizes={imagePortraitSizes}
           />
         </div>
       </Flex>

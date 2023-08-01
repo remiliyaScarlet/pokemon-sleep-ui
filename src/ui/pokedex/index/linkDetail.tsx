@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageIconSizes} from '@/styles/image';
@@ -23,7 +23,7 @@ export const PokedexLinkDetail = React.memo(({
     return (
       <Flex direction="row" className="gap-0.5">
         <div className="relative h-5 w-5">
-          <Image src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} fill sizes={imageIconSizes}/>
+          <NextImage src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} sizes={imageIconSizes}/>
         </div>
         <div>
           {berry.quantity}

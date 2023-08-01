@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Image from 'next/image';
-
+import {NextImage} from '@/components/shared/common/image/main';
 import {imagePortraitSizes} from '@/styles/image';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 
@@ -16,7 +15,7 @@ export const PokemonImage = ({pokemon, image, isShiny}: Props) => {
 
   if (image === 'onSnorlax') {
     return (
-      <Image src="/images/generic/pokeball_unavailable.png" alt="N/A" fill sizes={imagePortraitSizes}/>
+      <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
     );
   }
 
@@ -24,17 +23,17 @@ export const PokemonImage = ({pokemon, image, isShiny}: Props) => {
 
   if (image === 'portrait') {
     return (
-      <Image
+      <NextImage
         src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${id}.png`} alt={alt}
-        fill sizes={imagePortraitSizes}
+        sizes={imagePortraitSizes}
       />
     );
   }
 
   return (
-    <Image
+    <NextImage
       src={`/images/sleep/${image}/${isShiny ? 'shiny/' : ''}${id}.png`} alt={alt}
-      fill sizes={imagePortraitSizes}
+      sizes={imagePortraitSizes}
     />
   );
 };
