@@ -1,7 +1,7 @@
 import {getTranslator} from 'next-intl/server';
 
 import {GenerateMetadata} from '@/types/next/metadata';
-import {Constructing} from '@/ui/placeholder/constructing';
+import {EnergyTeam} from '@/ui/energy/team/main';
 
 
 export const generateMetadata: GenerateMetadata = async ({params}) => {
@@ -13,4 +13,4 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   };
 };
 
-export default Constructing;
+export default EnergyTeam;

@@ -139,6 +139,9 @@
     "Map": {
       "Pokemon": "Pokémon",
       "SleepStyle": "Sleep Style"
+    },
+    "Energy": {
+      "SnorlaxFavorite": "Snorlax's Favorite Berries"
     }
   }
 }

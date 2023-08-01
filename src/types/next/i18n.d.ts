@@ -91,6 +91,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Pokemon: string,
         SleepStyle: string,
       },
+      Energy: {
+        SnorlaxFavorite: string,
+      },
     },
   },
   Game: {

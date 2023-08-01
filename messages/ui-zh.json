@@ -139,6 +139,9 @@
     "Map": {
       "Pokemon": "寶可夢",
       "SleepStyle": "睡姿"
+    },
+    "Energy": {
+      "SnorlaxFavorite": "卡比獸喜歡的樹果"
     }
   }
 }

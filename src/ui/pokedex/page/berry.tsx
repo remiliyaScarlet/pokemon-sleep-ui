@@ -7,10 +7,10 @@ import {useTranslations} from 'next-intl';
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {imageIconSizes} from '@/styles/image';
-import {getPokemonBerryEnergyRate, GetPokemonBerryEnergyRateOpts} from '@/utils/game/pokemon';
+import {getPokemonBerryProductionRate, GetPokemonBerryProductionRateOpts} from '@/utils/game/pokemon';
 
 
-type Props = Omit<GetPokemonBerryEnergyRateOpts, 'level'>;
+type Props = Omit<GetPokemonBerryProductionRateOpts, 'level'>;
 
 export const PokemonBerryEnergy = (props: Props) => {
   const {berryData} = props;
@@ -18,7 +18,7 @@ export const PokemonBerryEnergy = (props: Props) => {
 
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const atLevel = getPokemonBerryEnergyRate({level, ...props});
+  const atLevel = getPokemonBerryProductionRate({level, ...props});
 
   return (
     <Flex direction="col" className="gap-1">

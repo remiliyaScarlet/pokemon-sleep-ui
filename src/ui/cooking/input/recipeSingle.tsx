@@ -20,15 +20,13 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
 
   const recipeLevel = filter.recipeLevel[id] ?? 1;
 
-  const setLevel = (level: number) => {
-    setFilter((original) => ({
-      ...original,
-      recipeLevel: {
-        ...original.recipeLevel,
-        [id]: level || 1,
-      },
-    }));
-  };
+  const setLevel = (level: number) => setFilter((original) => ({
+    ...original,
+    recipeLevel: {
+      ...original.recipeLevel,
+      [id]: level || 1,
+    },
+  }));
 
   return (
     <CookingRecipeLayout mealId={id} imageSizeClass="h-20 w-20" clickable={false}>

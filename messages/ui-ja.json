@@ -139,6 +139,9 @@
     "Map": {
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔"
+    },
+    "Energy": {
+      "SnorlaxFavorite": "カビゴンの好きなきのみ"
     }
   }
 }

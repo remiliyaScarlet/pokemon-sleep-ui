@@ -3,3 +3,8 @@ export const specialtyIdMap = {
   ingredient: 2,
   skill: 3,
 };
+
+export type ProductionRate = {
+  daily: number,
+  weekly: number,
+};

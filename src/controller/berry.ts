@@ -1,7 +1,7 @@
 import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
-import {BerryData, BerryId} from '@/types/mongo/berry';
+import {BerryData, BerryDataMap, BerryId} from '@/types/mongo/berry';
 
 
 const getCollection = async (): Promise<Collection<BerryData>> => {
@@ -15,6 +15,16 @@ const getCollection = async (): Promise<Collection<BerryData>> => {
 export const getBerryData = async (id: BerryId | undefined): Promise<BerryData | null> => (
   id ? (await getCollection()).findOne({id}, {projection: {_id: false}}) : null
 );
+
+export const getAllBerryData = async (): Promise<BerryDataMap> => {
+  const ret: BerryDataMap = {};
+
+  for await (const berryData of (await getCollection()).find({}, {projection: {_id: false}})) {
+    ret[berryData.id] = berryData;
+  }
+
+  return ret;
+};
 
 const addBerryDataIndex = async () => {
   const collection = await getCollection();

@@ -139,6 +139,9 @@
     "Map": {
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습"
+    },
+    "Energy": {
+      "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
     }
   }
 }
