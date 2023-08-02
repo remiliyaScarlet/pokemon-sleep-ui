@@ -15,7 +15,7 @@ export const PokemonDataIcon = ({src, alt, invert}: Props) => {
     <div className="relative h-6 w-6">
       <NextImage
         src={src} alt={alt} sizes={imageSmallIconSizes}
-        className={invert ? 'invert-on-light' : undefined}
+        className={invert ? 'invert-hoverable' : undefined}
       />
     </div>
   );

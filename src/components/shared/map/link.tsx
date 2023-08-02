@@ -25,7 +25,7 @@ export const MapLink = ({mapId, className, children}: React.PropsWithChildren<Pr
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
       />
-      <Flex direction="col" center className="absolute left-0 top-0 z-10 h-full gap-1">
+      <Flex direction="col" center className="left-0 top-0 z-10 h-full gap-1">
         {children}
       </Flex>
     </Link>
