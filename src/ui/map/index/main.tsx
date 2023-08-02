@@ -26,10 +26,12 @@ export const MapIndex = () => {
               className="width-with-gap md:width-with-gap-2-items"
             >
               <MapLink mapId={mapId} className="h-40">
-                <h4 className="text-xl">
-                  {mapName}
-                </h4>
-                <MapStats sleepStyles={sleepStyles}/>
+                <Flex direction="col" className="z-10">
+                  <h4 className="text-xl">
+                    {mapName}
+                  </h4>
+                  <MapStats sleepStyles={sleepStyles}/>
+                </Flex>
               </MapLink>
             </Flex>
           );
