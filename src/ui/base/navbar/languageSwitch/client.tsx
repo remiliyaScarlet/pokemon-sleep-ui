@@ -30,7 +30,7 @@ export const LanguageSwitchClient = () => {
   return (
     <>
       <button
-        className={classNames('button-clickable-border text-sm px-2.5', styles['nav-button'])}
+        className={classNames('button-clickable-border text-sm whitespace-nowrap px-2.5', styles['nav-button'])}
         onClick={() => setShow(true)}
         disabled={isPending}
       >
@@ -44,8 +44,8 @@ export const LanguageSwitchClient = () => {
               disabled={isPending || currentLocale === locale}
               onClick={() => onClick(locale)}
               className={classNames(
-                'flex w-full justify-center p-5 text-xl width-with-gap sm:width-with-gap-2-items',
-                'button-base',
+                'flex w-full justify-center p-5 width-with-gap sm:width-with-gap-2-items',
+                'button-base text-xl',
                 currentLocale === locale ? 'button-disabled' : 'button-clickable-border',
               )}
             >

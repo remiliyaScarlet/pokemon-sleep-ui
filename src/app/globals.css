@@ -288,4 +288,12 @@ body {
       @apply border-b border-b-gray-700 py-1 last:border-b-0;
     }
   }
+  
+  .scrollbar-hide {
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
