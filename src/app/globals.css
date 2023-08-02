@@ -272,4 +272,20 @@ body {
   }
   
   /* endregion */
+  
+  table.table-unlock {
+    @apply w-full md:w-3/4;
+    
+    & > thead {
+      @apply sticky top-12 z-10;
+      
+      & > tr {
+        @apply bg-slate-400/90 dark:bg-slate-700/90;
+      }
+    }
+    
+    & > tbody > tr {
+      @apply border-b border-b-gray-700 py-1 last:border-b-0;
+    }
+  }
 }

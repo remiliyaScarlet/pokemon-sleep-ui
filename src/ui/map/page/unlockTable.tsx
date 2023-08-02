@@ -29,9 +29,9 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
   let stylesAccumulated = 0;
 
   return (
-    <table className="w-full md:w-3/4">
-      <thead className="sticky top-12 z-10">
-        <tr className="bg-slate-400/90 dark:bg-slate-700/90">
+    <table className="table-unlock">
+      <thead>
+        <tr>
           <td className="p-1">{t('Rank')}</td>
           <td/>
           <td className="p-1">
