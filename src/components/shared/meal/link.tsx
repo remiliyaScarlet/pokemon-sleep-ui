@@ -5,15 +5,15 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {MealLinkDetail} from '@/components/shared/meal/linkDetail';
+import {MealLinkProps} from '@/components/shared/meal/type';
 import {mealTypeBackgroundStyle} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
-import {MealLinkDetail} from '@/ui/meal/index/linkDetail';
-import {MealLinkProps} from '@/ui/meal/index/type';
 import {classNames} from '@/utils/react';
 
 
-export const MealLink = (props: MealLinkProps) => {
-  const {id, type} = props;
+export const MealLink = ({meal}: MealLinkProps) => {
+  const {id, type} = meal;
   const t = useTranslations('Game.Food');
 
   const mealName = t(id.toString());
@@ -22,7 +22,7 @@ export const MealLink = (props: MealLinkProps) => {
   return (
     <>
       <Flex direction="col" noFullWidth className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
-        <MealLinkDetail {...props}/>
+        <MealLinkDetail meal={meal}/>
       </Flex>
       <Flex
         direction="row" noFullWidth

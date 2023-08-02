@@ -3,10 +3,10 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/mongo/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
-import {MealLink} from '@/ui/meal/index/link';
 import {toSum} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
@@ -56,7 +56,7 @@ export const MealIndexClient = ({data}: Props) => {
                 isIncluded[meal.id] ? undefined : 'hidden',
               )}
             >
-              <MealLink {...meal}/>
+              <MealLink meal={meal}/>
             </div>
           ))}
       </Flex>
