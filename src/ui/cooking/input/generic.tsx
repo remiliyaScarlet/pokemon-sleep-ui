@@ -4,9 +4,7 @@ import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/compone
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
-import potCapacity from '@/data/potCapacity.json';
 import {CookingCommonProps} from '@/ui/cooking/type';
-import {toUnique} from '@/utils/array';
 
 
 export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}: CookingCommonProps) => {
@@ -21,7 +19,6 @@ export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}:
         })}
       />
       <PotCapacityInput
-        capacityPossibilities={toUnique(potCapacity.map(({capacity}) => capacity)).sort((a, b) => a - b)}
         {...getSingleSelectOnClickProps({
           filter,
           setFilter,

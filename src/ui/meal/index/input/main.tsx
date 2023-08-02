@@ -37,7 +37,6 @@ export const MealInput = (props: Props) => {
         })}
       />
       <PotCapacityInput
-        capacityPossibilities={toUnique(potCapacity.map(({capacity}) => capacity)).sort((a, b) => a - b)}
         {...getSingleSelectOnClickProps({
           filter,
           setFilter,

@@ -4,20 +4,19 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputOnClickProps} from '@/components/input/filter/type';
+import {potPossibleCapacity} from '@/data/potCapacity';
 
 
-type Props = FilterInputOnClickProps<number> & {
-  capacityPossibilities: number[],
-};
+type Props = FilterInputOnClickProps<number>;
 
-export const PotCapacityInput = ({capacityPossibilities, ...props}: Props) => {
+export const PotCapacityInput = (props: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (
     <FilterTextInput
       title={t('PotCapacity')}
       idToItemId={(id) => `PotCapacity-${id.toString()}`}
-      ids={capacityPossibilities}
+      ids={potPossibleCapacity}
       idToButton={(id) => id.toString()}
       {...props}
     />
