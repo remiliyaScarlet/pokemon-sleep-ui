@@ -6,6 +6,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {ProductionRate} from '@/types/game/pokemon';
+import {formatFloat} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
 
@@ -33,7 +34,7 @@ export const EnergyRateLayout = ({rate, larger, shrink, children}: React.PropsWi
             {t('Stats.Energy.Daily')}
           </div>
           <div className={textClass}>
-            {rate.daily.toFixed(2)}
+            {formatFloat(rate.daily)}
           </div>
         </Flex>
         <Flex direction="row" className="items-center justify-end gap-1">
@@ -41,7 +42,7 @@ export const EnergyRateLayout = ({rate, larger, shrink, children}: React.PropsWi
             {t('Stats.Energy.Weekly')}
           </div>
           <div className={textClass}>
-            {rate.weekly.toFixed(2)}
+            {formatFloat(rate.weekly)}
           </div>
         </Flex>
       </Flex>

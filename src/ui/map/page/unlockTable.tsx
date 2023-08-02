@@ -11,6 +11,7 @@ import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
+import {formatInt} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
 
@@ -77,7 +78,7 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
                       <NextImage src="/images/generic/energy.png" alt={t2('Energy')} sizes={imageSmallIconSizes}/>
                     </div>
                     <div>
-                      {snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy.toLocaleString() ?? '-'}
+                      {formatInt(snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy)}
                     </div>
                   </Flex>
                 </Flex>
@@ -115,7 +116,7 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
                       <NextImage src="/images/generic/shard.png" alt={t('DreamShards')} sizes={imageSmallIconSizes}/>
                     </div>
                     <div>
-                      {snorlaxReward.find((reward) => isSameRank(reward.rank, rank))?.shard.toLocaleString() ?? '-'}
+                      {formatInt(snorlaxReward.find((reward) => isSameRank(reward.rank, rank))?.shard)}
                     </div>
                   </Flex>
                 </Flex>

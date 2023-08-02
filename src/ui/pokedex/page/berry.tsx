@@ -8,6 +8,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {getPokemonBerryProductionRate, GetPokemonBerryProductionRateOpts} from '@/utils/game/pokemon';
+import {formatFloat} from '@/utils/number';
 
 
 type Props = Omit<GetPokemonBerryProductionRateOpts, 'level'>;
@@ -45,13 +46,13 @@ export const PokemonBerryEnergy = (props: Props) => {
           {t('Stats.Energy.Daily')}
         </div>
         <div className="text-sm">
-          {atLevel.daily.toFixed(2)}
+          {formatFloat(atLevel.daily)}
         </div>
         <div className="text-sm">
           {t('Stats.Energy.Weekly')}
         </div>
         <div className="text-sm">
-          {atLevel.weekly.toFixed(2)}
+          {formatFloat(atLevel.weekly)}
         </div>
       </Flex>
     </Flex>

@@ -9,6 +9,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {MealMetaProps} from '@/ui/meal/page/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
+import {formatInt} from '@/utils/number';
 
 
 export const MealExp = ({meal, ingredients}: MealMetaProps) => {
@@ -45,7 +46,7 @@ export const MealExp = ({meal, ingredients}: MealMetaProps) => {
           <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
         </div>
         <div className="text-sm">
-          {atLevel.energy} (+{diffVal} / +{diffPct.toFixed(0)}%)
+          {formatInt(atLevel.energy)} (+{formatInt(diffVal)} / +{diffPct.toFixed(0)}%)
         </div>
       </Flex>
     </Flex>

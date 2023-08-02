@@ -9,6 +9,7 @@ import {imageIconSizes} from '@/styles/image';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
+import {formatInt} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
 
@@ -49,10 +50,10 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
                     <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
                   </div>
                   <div>
-                    {energyInfo.atLevel.energy}
+                    {formatInt(energyInfo.atLevel.energy)}
                   </div>
                   <div className="ml-auto self-end text-sm">
-                    +{energyInfo.diffVal} / +{energyInfo.diffPct.toFixed(0)}%
+                    +{formatInt(energyInfo.diffVal)} / +{energyInfo.diffPct.toFixed(0)}%
                   </div>
                 </Flex>
               </Flex>
