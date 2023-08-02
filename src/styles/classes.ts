@@ -25,12 +25,6 @@ export const mealTypeTextStyle: MealTypeClassMap = {
   3: 'meal-text-dessert',
 };
 
-export const mealTypeActiveStyle: MealTypeClassMap = {
-  1: 'meal-active-curry',
-  2: 'meal-active-salad',
-  3: 'meal-active-dessert',
-};
-
 export const mealTypeDotStyle: MealTypeClassMap = {
   1: 'meal-dot-curry',
   2: 'meal-dot-salad',

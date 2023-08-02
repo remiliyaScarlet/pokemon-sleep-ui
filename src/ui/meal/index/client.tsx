@@ -23,7 +23,7 @@ export const MealIndexClient = ({data}: Props) => {
     <>
       <MealInput data={data} {...props}/>
       <HorizontalSplitter/>
-      <Flex direction="row" wrap className="gap-1.5 md:p-3 lg:p-5">
+      <Flex direction="row" wrap className="gap-1.5">
         {data
           .map((meal) => ({
             meal,
@@ -50,7 +50,7 @@ export const MealIndexClient = ({data}: Props) => {
             <div
               key={meal.id}
               className={classNames(
-                'relative width-with-gap',
+                'relative width-with-gap-sm',
                 'sm:width-with-gap-2-items md:width-with-gap-3-items',
                 'lg:width-with-gap-4-items xl:width-with-gap-5-items',
                 isIncluded[meal.id] ? undefined : 'hidden',

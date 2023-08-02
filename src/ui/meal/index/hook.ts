@@ -14,7 +14,7 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
     data,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: {},
+      mealType: {},
       ingredient: {},
       ingredientCountCap: null,
     },
@@ -27,7 +27,7 @@ export const useFilteredMeals = ({data}: UseFilteredMealsOpts) => {
         return false;
       }
 
-      return !isFilterMismatchOnSingle({filter, filterKey: 'type', id: data.type});
+      return !isFilterMismatchOnSingle({filter, filterKey: 'mealType', id: data.type});
     },
   });
 };

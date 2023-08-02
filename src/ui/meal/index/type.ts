@@ -4,7 +4,7 @@ import {Meal, MealTypeId} from '@/types/mongo/meal';
 
 
 export type MealFilter = {
-  type: FilterInclusionMap<MealTypeId>,
+  mealType: FilterInclusionMap<MealTypeId>,
   ingredient: FilterInclusionMap<IngredientId>,
   ingredientCountCap: number | null,
 };

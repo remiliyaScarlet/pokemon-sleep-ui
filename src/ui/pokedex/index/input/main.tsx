@@ -26,7 +26,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex direction="col" className="gap-1.5">
       <FilterTextInput
         style="highlight"
         title={t2('Map')}

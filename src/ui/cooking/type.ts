@@ -1,8 +1,7 @@
-import React from 'react';
-
-import {FilterInclusionMap} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/mongo/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/mongo/meal';
+import {Dimension} from '@/types/style';
 
 
 export type CookingFilter = {
@@ -12,16 +11,14 @@ export type CookingFilter = {
   ingredient: FilterInclusionMap<IngredientId>,
 };
 
-export type CookingCommonProps = {
-  filter: CookingFilter,
-  setFilter: React.Dispatch<React.SetStateAction<CookingFilter>>,
+export type CookingCommonProps = FilterInputProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
   ingredients: IngredientMap,
 };
 
 export type CookingRecipeLayoutProps = {
-  mealId: number,
-  imageSizeClass: string,
+  imageDimension: Dimension,
   clickable: boolean,
+  mealId: number,
 };

@@ -29,14 +29,14 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
   }));
 
   return (
-    <CookingRecipeLayout mealId={id} imageSizeClass="h-20 w-20" clickable={false}>
-      <Flex direction="row" className="items-center gap-1.5">
+    <CookingRecipeLayout mealId={id} imageDimension="h-20 w-20" clickable={false}>
+      <Flex direction="row" className="absolute bottom-1 z-10 items-center gap-1.5 px-1.5">
         <Flex direction="col" className="w-14" noFullWidth>
           <div className="whitespace-nowrap text-xs text-slate-500 dark:text-slate-400">
             {t('RecipeLevel')}
           </div>
           <InputBox
-            id={`capacity-${id}`}
+            id={`recipeLevel-${id}`}
             type="number"
             step="1"
             min="1"
@@ -47,7 +47,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
         </Flex>
         <div className="w-full self-end">
           <Slider
-            id={`capacity-${id}-slider`}
+            id={`recipeLevel-${id}-slider`}
             min="1"
             max={levels.length}
             value={recipeLevel}

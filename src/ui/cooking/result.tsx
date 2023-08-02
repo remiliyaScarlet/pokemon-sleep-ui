@@ -40,8 +40,8 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
             'sm:width-with-gap-3-items md:width-with-gap-4-items',
             'lg:width-with-gap-5-items xl:width-with-gap-6-items',
           )}>
-            <CookingRecipeLayout mealId={meal.id} imageSizeClass="h-24 w-24" clickable>
-              <Flex direction="col" className="gap-1">
+            <CookingRecipeLayout mealId={meal.id} imageDimension="h-24 w-24" clickable>
+              <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
                 <Flex direction="row" className="gap-0.5">
                   <IngredientIcons meal={meal} useTextShadow={false}/>
                 </Flex>
@@ -52,11 +52,11 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
                   <div>
                     {formatInt(energyInfo.atLevel.energy)}
                   </div>
-                  <div className="ml-auto self-end text-sm">
-                    +{formatInt(energyInfo.diffVal)} / +{energyInfo.diffPct.toFixed(0)}%
-                  </div>
                 </Flex>
               </Flex>
+              <div className="absolute bottom-1 right-1 z-10 text-sm">
+                +{formatInt(energyInfo.diffVal)} / +{energyInfo.diffPct.toFixed(0)}%
+              </div>
             </CookingRecipeLayout>
           </div>
         ))}
