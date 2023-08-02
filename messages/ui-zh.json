@@ -140,6 +140,13 @@
     },
     "Energy": {
       "SnorlaxFavorite": "卡比獸喜歡的樹果"
+    },
+    "Info": {
+      "Pot": {
+        "Capacity": "鍋子容量",
+        "Expand": "擴充",
+        "UnlockedRecipes": "已開放食譜"
+      }
     }
   }
 }

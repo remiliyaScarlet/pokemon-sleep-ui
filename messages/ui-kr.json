@@ -140,6 +140,13 @@
     },
     "Energy": {
       "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
+    },
+    "Info": {
+      "Pot": {
+        "Capacity": "최대 용량",
+        "Expand": "확장",
+        "UnlockedRecipes": "새로운 레시피 개방"
+      }
     }
   }
 }

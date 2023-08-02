@@ -12,7 +12,7 @@ import {imageIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
 
-export const MealLink = ({meal}: MealLinkProps) => {
+export const MealLink = ({meal, small}: MealLinkProps) => {
   const {id, type} = meal;
   const t = useTranslations('Game.Food');
 
@@ -25,8 +25,10 @@ export const MealLink = ({meal}: MealLinkProps) => {
         <MealLinkDetail meal={meal}/>
       </Flex>
       <Flex
-        direction="row" noFullWidth
-        className="text-shadow-preset absolute left-1 top-1 z-10 items-center gap-0.5 whitespace-nowrap"
+        direction="row" noFullWidth className={classNames(
+          'text-shadow-preset absolute left-1 top-1 z-10 items-center gap-0.5 whitespace-nowrap',
+          small ? 'text-sm' : '',
+        )}
       >
         {mealName}
       </Flex>
@@ -35,7 +37,7 @@ export const MealLink = ({meal}: MealLinkProps) => {
         className={classNames('group inline-block h-full w-full rounded-lg', mealTypeBackgroundStyle[type])}
       >
         <Flex direction="row" className="h-full items-center justify-end gap-1.5">
-          <div className="relative h-16 w-16 opacity-40">
+          <div className={classNames('relative opacity-40', small ? 'h-12 w-12' : 'h-16 w-16')}>
             <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
           </div>
         </Flex>

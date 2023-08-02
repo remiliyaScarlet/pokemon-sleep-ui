@@ -140,6 +140,13 @@
     },
     "Energy": {
       "SnorlaxFavorite": "カビゴンの好きなきのみ"
+    },
+    "Info": {
+      "Pot": {
+        "Capacity": "最大容量",
+        "Expand": "拡張",
+        "UnlockedRecipes": "レシピ解放"
+      }
     }
   }
 }

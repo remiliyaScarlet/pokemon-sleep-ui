@@ -94,6 +94,13 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Energy: {
         SnorlaxFavorite: string,
       },
+      Info: {
+        Pot: {
+          Capacity: string,
+          Expand: string,
+          UnlockedRecipes: string,
+        },
+      },
     },
   },
   Game: {

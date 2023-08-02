@@ -5,7 +5,6 @@ import {Flex} from '@/components/layout/flex';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
-import potCapacity from '@/data/potCapacity.json';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {toUnique} from '@/utils/array';

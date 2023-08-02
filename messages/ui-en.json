@@ -140,6 +140,13 @@
     },
     "Energy": {
       "SnorlaxFavorite": "Snorlax's Favorite Berries"
+    },
+    "Info": {
+      "Pot": {
+        "Capacity": "Pot Capacity",
+        "Expand": "Expand",
+        "UnlockedRecipes": "Recipe Unlocked"
+      }
     }
   }
 }
