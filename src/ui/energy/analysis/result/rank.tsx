@@ -2,13 +2,10 @@ import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
-import {imageGallerySizes} from '@/styles/image';
 import {EnergyAnalysisDataProps} from '@/ui/energy/analysis/type';
 import {getSnorlaxRankAtEnergy} from '@/utils/game/snorlax';
 

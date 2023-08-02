@@ -1,7 +1,6 @@
 import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
-import Link from 'next-intl/link';
 
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredientIcon';
 import {ProductionRate} from '@/types/game/pokemon';
