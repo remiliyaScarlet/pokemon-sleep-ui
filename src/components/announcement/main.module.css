@@ -32,6 +32,6 @@
   }
   
   div.announcement-lg {
-    @apply h-56 overflow-hidden md:h-28 text-lg;
+    @apply h-40 overflow-hidden md:h-20 text-lg;
   }
 }
