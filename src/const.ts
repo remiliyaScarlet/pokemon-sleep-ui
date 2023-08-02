@@ -42,6 +42,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Energy.Index.Title',
   },
   {
+    href: '/info',
+    imageSrc: '/images/generic/info.png',
+    i18nTextId: 'Info.Index.Title',
+  },
+  {
     href: '/rarity',
     imageSrc: '/images/generic/flash.png',
     i18nTextId: 'Rarity.Index.Title',
@@ -51,12 +56,6 @@ export const navEntries: NavEntry[] = [
     href: '/skill',
     imageSrc: '/images/generic/memo.png',
     i18nTextId: 'Skill.Index.Title',
-    disabled: true,
-  },
-  {
-    href: '/info',
-    imageSrc: '/images/generic/info.png',
-    i18nTextId: 'Info.Index.Title',
     disabled: true,
   },
 ];
