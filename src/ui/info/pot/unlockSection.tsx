@@ -14,14 +14,17 @@ import {formatInt} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
 
-type Props = Pick<PotInfoFilter, 'capacity'> & {
+type Props = {
+  filter: PotInfoFilter,
   cumulativeCost: number,
   potInfo: PotLevelInfo,
   meals: Meal[],
   unlockedRecipes: number,
 };
 
-export const PotRecipeUnlockSection = ({capacity, cumulativeCost, potInfo, meals, unlockedRecipes}: Props) => {
+export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, unlockedRecipes}: Props) => {
+  const {capacity, displayType} = filter;
+
   const t = useTranslations('UI.InPage.Info.Pot');
 
   return (
@@ -63,7 +66,7 @@ export const PotRecipeUnlockSection = ({capacity, cumulativeCost, potInfo, meals
                   'sm:width-with-gap-3-items md:width-with-gap-4-items lg:width-with-gap-5-items',
                 )}
               >
-                <MealLink meal={meal} small/>
+                <MealLink meal={meal} small displayType={displayType}/>
               </div>
             )) :
           <div className="m-auto h-10 w-10">

@@ -126,6 +126,10 @@
     "Cooking": {
       "Energy": "Final Strength",
       "Ingredient": "Ingredient",
+      "MealDisplayType": {
+        "EnergyRange": "Strength",
+        "Ingredient": "Ingredient"
+      },
       "MealType": "Meal",
       "PotCapacity": "Max",
       "RecipeLevel": "Recipe Level"

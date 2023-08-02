@@ -17,7 +17,7 @@ type Props = {
 
 export const MealIndexClient = ({data}: Props) => {
   const props = useFilteredMeals({data});
-  const {isIncluded} = props;
+  const {isIncluded, filter} = props;
 
   return (
     <>
@@ -56,7 +56,7 @@ export const MealIndexClient = ({data}: Props) => {
                 isIncluded[meal.id] ? undefined : 'hidden',
               )}
             >
-              <MealLink meal={meal}/>
+              <MealLink meal={meal} displayType={filter.displayType}/>
             </div>
           ))}
       </Flex>

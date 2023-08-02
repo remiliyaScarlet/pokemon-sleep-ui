@@ -12,7 +12,8 @@ import {imageIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
 
-export const MealLink = ({meal, small}: MealLinkProps) => {
+export const MealLink = (props: MealLinkProps) => {
+  const {meal, small} = props;
   const {id, type} = meal;
   const t = useTranslations('Game.Food');
 
@@ -22,7 +23,7 @@ export const MealLink = ({meal, small}: MealLinkProps) => {
   return (
     <>
       <Flex direction="col" noFullWidth className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
-        <MealLinkDetail meal={meal}/>
+        <MealLinkDetail {...props}/>
       </Flex>
       <Flex
         direction="row" noFullWidth className={classNames(

@@ -11,6 +11,7 @@ export const usePotInfoFilter = ({meals}: PotInfoCommonProps) => {
     initialFilter: {
       mealType: {},
       ingredients: {},
+      displayType: 'ingredient',
       capacity: 15,
       showEmpty: false,
     },

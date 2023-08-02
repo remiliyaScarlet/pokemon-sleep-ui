@@ -8,11 +8,13 @@ import {PotRecipeUnlockSection} from '@/ui/info/pot/unlockSection';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 
 
-type Props = Pick<PotInfoFilter, 'capacity' | 'showEmpty'> & {
+type Props = & {
+  filter: PotInfoFilter,
   meals: Meal[]
 };
 
-export const PotRecipeUnlockTable = ({capacity, showEmpty, meals}: Props) => {
+export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
+  const {capacity, showEmpty} = filter;
   const sortedMeals = meals.sort((a, b) => {
     const diff = getMealRequiredQuantity(a) - getMealRequiredQuantity(b);
 
@@ -51,7 +53,7 @@ export const PotRecipeUnlockTable = ({capacity, showEmpty, meals}: Props) => {
           return (
             <PotRecipeUnlockSection
               key={potInfo.capacity}
-              capacity={capacity}
+              filter={filter}
               cumulativeCost={cumulativeCost}
               potInfo={potInfo}
               meals={unlockedMeals}

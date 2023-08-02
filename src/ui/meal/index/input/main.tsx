@@ -5,6 +5,7 @@ import {Flex} from '@/components/layout/flex';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
+import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {toUnique} from '@/utils/array';
@@ -41,6 +42,13 @@ export const MealInput = (props: Props) => {
           setFilter,
           filterKey: 'ingredientCountCap',
         })}
+      />
+      <MealLinkDisplayTypeInput
+        displayType={filter.displayType}
+        setDisplayType={(displayType) => setFilter((original) => ({
+          ...original,
+          displayType,
+        }))}
       />
     </Flex>
   );

@@ -18,7 +18,7 @@ export const PotInfoClient = (props: PotInfoCommonProps) => {
   return (
     <>
       <PotInfoInput filter={filter} setFilter={setFilter} mealTypes={mealTypes} ingredients={ingredients}/>
-      <PotRecipeUnlockTable capacity={filter.capacity} showEmpty={filter.showEmpty} meals={validMeals}/>
+      <PotRecipeUnlockTable filter={filter} meals={validMeals}/>
     </>
   );
 };
