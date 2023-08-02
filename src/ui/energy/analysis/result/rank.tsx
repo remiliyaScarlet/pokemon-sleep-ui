@@ -30,7 +30,7 @@ export const EnergyAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
         return (
           <Flex key={mapId} direction="col">
             <MapLink mapId={mapId} className="h-16">
-              <Flex direction="row" center className="absolute left-0 top-0 z-10 h-full gap-1.5">
+              <Flex direction="row" center wrap className="absolute left-0 top-0 z-10 h-full gap-1.5">
                 <div className="whitespace-nowrap px-2">
                   {mapName}
                 </div>
