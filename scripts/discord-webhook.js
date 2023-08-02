@@ -33,7 +33,7 @@ writeFile('devops-env.txt', JSON.stringify(env), (err) => {
 
 const discordData = {
   timestamp: Date.now(),
-  content: `${env.title} / ${env.status} <@503484431437398016>`,
+  content: `**${env.status}** / ${env.title} <@503484431437398016>`,
   embeds: [
     {
       'title': env.title,
