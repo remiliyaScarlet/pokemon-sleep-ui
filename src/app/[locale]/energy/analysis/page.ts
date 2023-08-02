@@ -1,16 +1,8 @@
-import {getTranslator} from 'next-intl/server';
-
-import {GenerateMetadata} from '@/types/next/metadata';
-import {EnergyAnalysis} from '@/ui/energy/analysis/main';
+import {redirect} from 'next-intl/server';
 
 
-export const generateMetadata: GenerateMetadata = async ({params}) => {
-  const {locale} = params;
-  const t = await getTranslator(locale, 'UI.Metadata');
-
-  return {
-    title: `${t('Energy.Index.Title')} / ${t('Energy.Analysis.Title')}`,
-  };
+const redirectToNewPath = () => {
+  redirect('/team/analysis');
 };
 
-export default EnergyAnalysis;
+export default redirectToNewPath;

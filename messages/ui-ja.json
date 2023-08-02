@@ -47,7 +47,7 @@
         "Title": "マップ - {name}"
       }
     },
-    "Energy": {
+    "Team": {
       "Analysis": {
         "Title": "チーム分析"
       },
@@ -142,7 +142,7 @@
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔"
     },
-    "Energy": {
+    "Team": {
       "CurrentEnergy": "エナジー",
       "SnorlaxFavorite": "カビゴンの好きなきのみ"
     },

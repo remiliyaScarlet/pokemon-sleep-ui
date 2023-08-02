@@ -47,7 +47,7 @@
         "Title": "Map - {name}"
       }
     },
-    "Energy": {
+    "Team": {
       "Analysis": {
         "Title": "Team Analysis"
       },
@@ -142,7 +142,7 @@
       "Pokemon": "Pokémon",
       "SleepStyle": "Sleep Style"
     },
-    "Energy": {
+    "Team": {
       "CurrentEnergy": "Strength",
       "SnorlaxFavorite": "Snorlax's Favorite Berries"
     },

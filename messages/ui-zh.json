@@ -47,7 +47,7 @@
         "Title": "地圖 - {name}"
       }
     },
-    "Energy": {
+    "Team": {
       "Analysis": {
         "Title": "隊伍分析"
       },
@@ -142,7 +142,7 @@
       "Pokemon": "寶可夢",
       "SleepStyle": "睡姿"
     },
-    "Energy": {
+    "Team": {
       "CurrentEnergy": "能量",
       "SnorlaxFavorite": "卡比獸喜歡的樹果"
     },

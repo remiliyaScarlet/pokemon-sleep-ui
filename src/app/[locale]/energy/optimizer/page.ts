@@ -1,17 +1,8 @@
-import {getTranslator} from 'next-intl/server';
-
-import {GenerateMetadata} from '@/types/next/metadata';
-import {Constructing} from '@/ui/placeholder/constructing';
+import {redirect} from 'next-intl/server';
 
 
-export const generateMetadata: GenerateMetadata = async ({params}) => {
-  const {locale} = params;
-  const t = await getTranslator(locale, 'UI.Metadata');
-
-  return {
-    title: `${t('Energy.Index.Title')} / ${t('Energy.Optimizer.Title')}`,
-  };
+const redirectToNewPath = () => {
+  redirect('/team/optimizer');
 };
 
-
-export default Constructing;
+export default redirectToNewPath;

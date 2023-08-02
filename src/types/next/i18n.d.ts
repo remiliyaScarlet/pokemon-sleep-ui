@@ -30,7 +30,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Meal: PageWithIndividual,
       Ingredient: PageWithIndividual,
       Map: PageWithIndividual,
-      Energy: {
+      Team: {
         Analysis: I18nMetadata,
         Index: I18nMetadata,
         Optimizer: I18nMetadata,
@@ -95,7 +95,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Pokemon: string,
         SleepStyle: string,
       },
-      Energy: {
+      Team: {
         CurrentEnergy: string,
         SnorlaxFavorite: string,
       },

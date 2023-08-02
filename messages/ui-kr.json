@@ -47,7 +47,7 @@
         "Title": "맵 - {name}"
       }
     },
-    "Energy": {
+    "Team": {
       "Analysis": {
         "Title": "팀 분석"
       },
@@ -142,7 +142,7 @@
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습"
     },
-    "Energy": {
+    "Team": {
       "CurrentEnergy": "에너지",
       "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
     },

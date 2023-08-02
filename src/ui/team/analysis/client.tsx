@@ -1,0 +1,25 @@
+'use client';
+import React from 'react';
+
+import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/filter/main';
+import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
+import {TeamAnalysisUI} from '@/ui/team/analysis/team';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
+import {isNotNullish} from '@/utils/type';
+
+
+export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
+  const {pokedex} = props;
+  const pokemon = Object.values(pokedex).filter(isNotNullish);
+  const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({data: pokemon});
+
+  return (
+    <>
+      <TeamAnalysisPokemonFilter filter={filter} setFilter={setFilter} pokemon={pokemon}/>
+      <TeamAnalysisUI
+        pokemonSelectableInclusionMap={isIncluded} snorlaxFavorite={filter.snorlaxFavorite}
+        pokemon={pokemon} {...props}
+      />
+    </>
+  );
+};

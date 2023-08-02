@@ -37,9 +37,9 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Map.Index.Title',
   },
   {
-    href: '/energy',
-    imageSrc: '/images/generic/energy_white.png',
-    i18nTextId: 'Energy.Index.Title',
+    href: '/team',
+    imageSrc: '/images/generic/team.png',
+    i18nTextId: 'Team.Index.Title',
   },
   {
     href: '/info',

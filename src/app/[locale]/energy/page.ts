@@ -1,7 +1,8 @@
-import {EnergyIndex} from '@/ui/energy/index/main';
-import {generatePageMeta} from '@/utils/meta';
+import {redirect} from 'next-intl/server';
 
 
-export const generateMetadata = generatePageMeta({key: 'Energy.Index.Title'});
+const redirectToNewPath = () => {
+  redirect('/team');
+};
 
-export default EnergyIndex;
+export default redirectToNewPath;
