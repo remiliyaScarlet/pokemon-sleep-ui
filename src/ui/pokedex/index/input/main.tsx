@@ -26,7 +26,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex direction="col" className="gap-1">
       <FilterTextInput
         style="highlight"
         title={t2('Map')}
@@ -58,7 +58,7 @@ export const PokedexInput = ({data, ...props}: Props) => {
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}
-          style={type === 'sleepType' ? 'highlight' : 'normal'}
+          style={type === 'sleepType' || type === 'ingredientFixed' ? 'highlight' : 'normal'}
           type={type}
           filterKey={type}
           pokemon={data}

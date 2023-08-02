@@ -8,7 +8,7 @@ import {CookingCommonProps} from '@/ui/cooking/type';
 
 export const CookingInputUI = (props: CookingCommonProps) => {
   return (
-    <Flex direction="col" center className="gap-1.5">
+    <Flex direction="col" center className="gap-1">
       <CookingInputGeneral {...props}/>
       <CookingInputRecipe {...props}/>
     </Flex>
