@@ -19,7 +19,7 @@ export const EnergyAnalysisOnBerry = ({id, rate}: Props) => {
 
   return (
     <EnergyRateLayout rate={rate}>
-      <div className="button-bg relative h-8 w-8 rounded-lg">
+      <div className="relative h-8 w-8 rounded-lg">
         <NextImage src={`/images/berry/${id}.png`} alt={t(`Berry.${id}`)} sizes={imageIconSizes}/>
       </div>
     </EnergyRateLayout>

@@ -27,9 +27,7 @@ export const EnergyAnalysisOnIngredient = ({id, rate}: Props) => {
 
   return (
     <EnergyRateLayout rate={rate}>
-      <Link href={`/ingredient/${id}`} className="button-clickable-bg">
-        <PokemonIngredientIcon id={id} dimension="h-8 w-8"/>
-      </Link>
+      <PokemonIngredientIcon id={id} dimension="h-8 w-8"/>
     </EnergyRateLayout>
   );
 };

@@ -26,17 +26,15 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
   }
 
   return (
-    <li className={styles['nav-height']}>
-      <Link
-        href={isCurrent ? {} : href}
-        className={classNames(
-          styles['nav-height'],
-          'button-base button-text inline-block p-0.5 w-8 relative',
-          isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
-        )}
-      >
-        <NextImage src={imageSrc} alt={alt} className="invert-hoverable" sizes={imageSmallIconSizes}/>
-      </Link>
-    </li>
+    <Link
+      href={isCurrent ? {} : href}
+      className={classNames(
+        styles['nav-height'],
+        'button-base button-text inline-block p-0.5 w-8 relative',
+        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
+      )}
+    >
+      <NextImage src={imageSrc} alt={alt} className="invert-hoverable" sizes={imageSmallIconSizes}/>
+    </Link>
   );
 };
