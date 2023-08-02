@@ -35,14 +35,16 @@ export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
 
   return (
     <Flex direction="col" center className="gap-2">
-      <Flex direction="row" className="gap-2">
-        <Flex direction="row" center className="gap-1">
+      <Flex direction="row" center className="gap-4">
+        <Flex direction="row" center noFullWidth className="gap-1">
           <div className="h-6 w-6">
             <ClockIcon/>
           </div>
           <InputBox
             id="endsAt"
             type="date"
+            min={new Date().toISOString().slice(0, 10)}
+            className="text-center"
             value={endsAt}
             onChange={({target}) => setEstimateInput((original) => ({
               ...original,
@@ -50,7 +52,7 @@ export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
             }))}
           />
         </Flex>
-        <Flex direction="row" center className="gap-1">
+        <Flex direction="row" center noFullWidth className="gap-1">
           <div className="relative h-6 w-6">
             <NextImage src="/images/generic/energy_white.png" alt={t('CurrentEnergy')} sizes={imageIconSizes}/>
           </div>
@@ -58,7 +60,7 @@ export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
             id="currentEnergy"
             type="number"
             min={0}
-            className="w-24 text-center"
+            className="w-20 text-center"
             value={currentEnergy.toString()}
             onChange={({target}) => setEstimateInput((original) => ({
               ...original,
