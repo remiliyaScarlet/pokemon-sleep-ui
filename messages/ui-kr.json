@@ -143,6 +143,7 @@
       "SleepStyle": "잠자는 모습"
     },
     "Energy": {
+      "CurrentEnergy": "에너지",
       "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
     },
     "Info": {

@@ -143,6 +143,7 @@
       "SleepStyle": "Sleep Style"
     },
     "Energy": {
+      "CurrentEnergy": "Strength",
       "SnorlaxFavorite": "Snorlax's Favorite Berries"
     },
     "Info": {

@@ -143,6 +143,7 @@
       "SleepStyle": "睡姿"
     },
     "Energy": {
+      "CurrentEnergy": "能量",
       "SnorlaxFavorite": "卡比獸喜歡的樹果"
     },
     "Info": {

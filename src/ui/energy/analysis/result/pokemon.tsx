@@ -10,7 +10,7 @@ import {PokemonInfo} from '@/types/mongo/pokemon';
 import {EnergyAnalysisOnBerry} from '@/ui/energy/analysis/result/berry';
 import {EnergyAnalysisOnIngredient} from '@/ui/energy/analysis/result/ingredient';
 import {EnergyAnalysisLevelSlider} from '@/ui/energy/analysis/result/level';
-import {ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
+import {EnergyProductionStatsSingle} from '@/ui/energy/analysis/result/type';
 import {EnergyAnalysisDataProps, EnergyAnalysisMember, EnergyAnalysisSlotName} from '@/ui/energy/analysis/type';
 
 
@@ -19,7 +19,7 @@ type Props = Pick<EnergyAnalysisDataProps, 'berryMap'> & {
   slotName: EnergyAnalysisSlotName,
   slot: EnergyAnalysisMember,
   pokemon: PokemonInfo,
-  productionStats: ProductionStatsSingle,
+  productionStats: EnergyProductionStatsSingle,
 };
 
 export const EnergyAnalysisPokemon = ({

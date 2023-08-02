@@ -1,7 +1,11 @@
 import React from 'react';
 
 import {ProductionRate, specialtyIdMap} from '@/types/game/pokemon';
-import {ProductionStats, ProductionStatsBySlot, ProductionStatsSingle} from '@/ui/energy/analysis/result/type';
+import {
+  EnergyProductionStats,
+  EnergyProductionStatsBySlot,
+  EnergyProductionStatsSingle,
+} from '@/ui/energy/analysis/result/type';
 import {
   EnergyAnalysisDataProps,
   EnergyAnalysisFilter,
@@ -30,7 +34,7 @@ const useProductionStatsOfSlot = ({
   pokedex,
   berryMap,
   ingredientMap,
-}: UseProductionStatsOfSlotOpts): ProductionStatsSingle | null => {
+}: UseProductionStatsOfSlotOpts): EnergyProductionStatsSingle | null => {
   return React.useMemo(() => {
     const slot = setup.team[slotName];
     if (!slot) {
@@ -68,10 +72,10 @@ const useProductionStatsOfSlot = ({
   }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
 };
 
-export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStats => {
+export const useProductionStats = (opts: UseProductionStatsOpts): EnergyProductionStats => {
   const {setup, snorlaxFavorite} = opts;
 
-  const bySlot: ProductionStatsBySlot = {
+  const bySlot: EnergyProductionStatsBySlot = {
     A: useProductionStatsOfSlot({slotName: 'A', ...opts}),
     B: useProductionStatsOfSlot({slotName: 'B', ...opts}),
     C: useProductionStatsOfSlot({slotName: 'C', ...opts}),
@@ -81,7 +85,7 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
 
   const deps: React.DependencyList = [setup, snorlaxFavorite];
 
-  const total: ProductionStatsSingle = React.useMemo(() => {
+  const total: EnergyProductionStatsSingle = React.useMemo(() => {
     const stats = energyAnalysisSlotName
       .map((slotName) => bySlot[slotName])
       .filter(isNotNullish);

@@ -143,6 +143,7 @@
       "SleepStyle": "寝顔"
     },
     "Energy": {
+      "CurrentEnergy": "エナジー",
       "SnorlaxFavorite": "カビゴンの好きなきのみ"
     },
     "Info": {

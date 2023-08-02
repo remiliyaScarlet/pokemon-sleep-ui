@@ -7,16 +7,20 @@ export type IngredientProductionStats = {
   energy: ProductionRate,
 };
 
-export type ProductionStatsSingle = {
+export type EnergyProductionStatsSingle = {
   berry: ProductionRate,
   ingredient: ProductionRate,
 };
 
-export type ProductionStatsBySlot = {[slot in EnergyAnalysisSlotName]: ProductionStatsSingle | null};
+export type EnergyProductionStatsBySlot = {[slot in EnergyAnalysisSlotName]: EnergyProductionStatsSingle | null};
 
-export type ProductionStats = {
-  bySlot: ProductionStatsBySlot,
-  total: ProductionStatsSingle,
+export type EnergyProductionStats = {
+  bySlot: EnergyProductionStatsBySlot,
+  total: EnergyProductionStatsSingle,
   overall: ProductionRate,
 };
 
+export type EnergyFinalEstimateInput = {
+  endsAt: string,
+  currentEnergy: number,
+};
