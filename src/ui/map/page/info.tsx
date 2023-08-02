@@ -8,13 +8,12 @@ import {MapUnlockTable} from '@/ui/map/page/unlockTable';
 
 
 export const MapInfo = (props: MapCommonProps) => {
-  const {sleepStyles} = props;
   const {filter, setFilter, isIncluded} = useMapFilter(props);
 
   return (
     <>
       <MapInfoInput filter={filter} setFilter={setFilter} {...props}/>
-      <MapUnlockTable filter={filter} sleepStyles={sleepStyles} isIncluded={isIncluded}/>
+      <MapUnlockTable filter={filter} isIncluded={isIncluded} {...props}/>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import {SnorlaxRank} from '@/types/game/rank';
 import {SnorlaxRankData} from '@/types/mongo/snorlax';
 
 
@@ -11,3 +12,5 @@ export const getSnorlaxRankAtEnergy = ({energy, data}: GetSnorlaxRankAtEnergyPro
 
   return sorted.find((rankData) => rankData.energy < energy) ?? sorted.at(-1);
 };
+
+export const isSameRank = (a: SnorlaxRank, b: SnorlaxRank): boolean => a.title === b.title && a.number === b.number;

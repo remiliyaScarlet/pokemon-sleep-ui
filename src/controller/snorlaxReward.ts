@@ -20,5 +20,9 @@ const addSnorlaxRewardIndex = async () => {
   ]);
 };
 
+export const getSnorlaxReward = async () => (
+  (await getCollection()).find({}, {projection: {_id: false}}).toArray()
+);
+
 addSnorlaxRewardIndex()
   .catch((e) => console.error('MongoDB failed to add Snorlax reward index', e));

@@ -134,6 +134,7 @@
       "Energy": "Strength"
     },
     "Map": {
+      "Energy": "Strength",
       "Pokemon": "Pokémon",
       "SleepStyle": "Sleep Style"
     },
