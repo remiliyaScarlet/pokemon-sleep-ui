@@ -19,7 +19,7 @@ export const TeamIndex = () => {
           <FeatureLinkImage
             href="/energy/analysis"
             imageSrc="/images/generic/pokeball.png"
-            text={t('Analysis.Title')}
+            text={t('Calculate.Title')}
           />
         </div>
         <div className="width-with-gap md:width-with-gap-2-items">

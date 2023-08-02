@@ -48,11 +48,11 @@
       }
     },
     "Team": {
-      "Analysis": {
-        "Title": "隊伍分析"
+      "Calculate": {
+        "Title": "能量計算"
       },
       "Index": {
-        "Title": "能量計算"
+        "Title": "隊伍分析"
       },
       "Optimizer": {
         "Title": "最佳化"

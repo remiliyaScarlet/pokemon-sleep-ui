@@ -48,11 +48,11 @@
       }
     },
     "Team": {
-      "Analysis": {
-        "Title": "Team Analysis"
+      "Calculate": {
+        "Title": "Strength Calculator"
       },
       "Index": {
-        "Title": "Strength Calculator"
+        "Title": "Team Analysis"
       },
       "Optimizer": {
         "Title": "Optimizer"

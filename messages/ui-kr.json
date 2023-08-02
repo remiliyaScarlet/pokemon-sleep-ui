@@ -48,11 +48,11 @@
       }
     },
     "Team": {
-      "Analysis": {
-        "Title": "팀 분석"
+      "Calculate": {
+        "Title": "에너지 계산기"
       },
       "Index": {
-        "Title": "에너지 계산기"
+        "Title": "팀 분석기"
       },
       "Optimizer": {
         "Title": "최적화"

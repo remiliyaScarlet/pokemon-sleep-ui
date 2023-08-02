@@ -48,11 +48,11 @@
       }
     },
     "Team": {
-      "Analysis": {
-        "Title": "チーム分析"
+      "Calculate": {
+        "Title": "エナジー計算"
       },
       "Index": {
-        "Title": "エナジー計算"
+        "Title": "チーム分析"
       },
       "Optimizer": {
         "Title": "最適化"
@@ -142,7 +142,7 @@
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔"
     },
-    "Team": {
+    "Energy": {
       "CurrentEnergy": "エナジー",
       "SnorlaxFavorite": "カビゴンの好きなきのみ"
     },

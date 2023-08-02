@@ -9,7 +9,7 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   const t = await getTranslator(locale, 'UI.Metadata');
 
   return {
-    title: `${t('Team.Index.Title')} / ${t('Team.Analysis.Title')}`,
+    title: `${t('Team.Index.Title')} / ${t('Team.Optimizer.Title')}`,
   };
 };
 
