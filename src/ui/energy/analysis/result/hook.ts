@@ -65,11 +65,11 @@ const useProductionStatsOfSlot = ({
         multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
       }),
     };
-  }, [setup.team[slotName], setup.bonus]);
+  }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
 };
 
 export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStats => {
-  const {setup} = opts;
+  const {setup, snorlaxFavorite} = opts;
 
   const bySlot: ProductionStatsBySlot = {
     A: useProductionStatsOfSlot({slotName: 'A', ...opts}),
@@ -78,6 +78,8 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
     D: useProductionStatsOfSlot({slotName: 'D', ...opts}),
     E: useProductionStatsOfSlot({slotName: 'E', ...opts}),
   };
+
+  const deps: React.DependencyList = [setup, snorlaxFavorite];
 
   const total: ProductionStatsSingle = React.useMemo(() => {
     const stats = energyAnalysisSlotName
@@ -94,12 +96,12 @@ export const useProductionStats = (opts: UseProductionStatsOpts): ProductionStat
         weekly: toSum(stats.map(({ingredient}) => ingredient.weekly)),
       },
     };
-  }, [setup]);
+  }, deps);
 
   const overall: ProductionRate = React.useMemo(() => ({
     daily: toSum(Object.values(total).flatMap(({daily}) => daily)),
     weekly: toSum(Object.values(total).flatMap(({weekly}) => weekly)),
-  }), [setup]);
+  }), deps);
 
   return {bySlot, total, overall};
 };
