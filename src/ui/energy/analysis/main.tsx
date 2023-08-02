@@ -20,7 +20,7 @@ export const EnergyAnalysis = () => {
 
   return (
     <PageLayout>
-      <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex']}>
+      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Energy', 'UI.InPage.Pokedex']}>
         <EnergyAnalysisClient {...props}/>
       </I18nProvider>
     </PageLayout>
