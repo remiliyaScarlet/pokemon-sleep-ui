@@ -6,6 +6,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageGallerySizes} from '@/styles/image';
 import {EnergyAnalysisDataProps} from '@/ui/energy/analysis/type';
@@ -31,11 +32,7 @@ export const EnergyAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
 
         return (
           <Flex key={mapId} direction="col">
-            <Link href={`/map/${mapId}`} className="button-clickable-bg group relative h-16">
-              <NextImage
-                src={`/images/field/${mapId}.png`} alt={mapName}
-                sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
-              />
+            <MapLink mapId={mapId} className="h-16">
               <Flex direction="row" center className="absolute left-0 top-0 z-10 h-full gap-1.5">
                 <div className="whitespace-nowrap px-2">
                   {mapName}
@@ -46,7 +43,7 @@ export const EnergyAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
                     <XMarkIcon/>
                   </div>}
               </Flex>
-            </Link>
+            </MapLink>
           </Flex>
         );
       })}
