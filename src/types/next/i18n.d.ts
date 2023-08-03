@@ -118,6 +118,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Description: GameObjectIdToString,
     },
     MealType: GameObjectIdToString,
+    Nature: GameObjectIdToString,
+    NatureEffect: GameObjectIdToString,
     PokemonType: GameObjectIdToString,
     PokemonName: GameObjectIdToString,
     RankTitle: GameObjectIdToString,
@@ -127,5 +129,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     },
     SleepType: GameObjectIdToString,
     Specialty: GameObjectIdToString,
+    SubSkill: GameObjectIdToString,
   }
 }
