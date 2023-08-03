@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
+import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
@@ -41,7 +41,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredient') {
-    return <PokemonIngredients ingredients={ingredients}/>;
+    return <PokemonIngredientIcons ingredients={ingredients}/>;
   }
 
   if (display === 'specialty') {

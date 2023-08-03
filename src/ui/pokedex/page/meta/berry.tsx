@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {PokemonProductionRate} from '@/ui/pokedex/page/common/productionRate';
+import {PokemonProductionRate} from '@/components/shared/pokemon/productionRate';
 import {getPokemonBerryProductionRate, GetPokemonBerryProductionRateOpts} from '@/utils/game/pokemon';
 
 

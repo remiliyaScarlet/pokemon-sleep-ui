@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredientTitle';
+import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
 import {PokemonInputType} from '@/components/shared/pokemon/input/type';
 
 

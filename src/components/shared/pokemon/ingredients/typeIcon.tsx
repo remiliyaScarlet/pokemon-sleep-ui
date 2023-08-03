@@ -10,7 +10,7 @@ type Props = {
   type: PokemonIngredientType,
 };
 
-export const IngredientTypeIcon = ({type}: Props) => {
+export const PokemonIngredientTypeIcon = ({type}: Props) => {
   if (type === 'fixed') {
     return <LockClosedIcon/>;
   }

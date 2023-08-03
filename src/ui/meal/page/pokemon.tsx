@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconListMarkSpecialty} from '@/components/shared/pokemon/iconListMarkSpecialty';
-import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {imageIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {Meal} from '@/types/mongo/meal';
@@ -30,7 +30,7 @@ export const MealIngredientByPokemon = ({meal, pokedex, pokemonByIngredients}: P
       {Object.entries(pokemonByIngredients.ingredient).map(([type, ingredientMap]) => (
         <Flex key={type} direction="col" center className="info-section gap-2 lg:m-auto lg:w-2/3">
           <div className="h-8 w-8">
-            <IngredientTypeIcon type={type as PokemonIngredientType}/>
+            <PokemonIngredientTypeIcon type={type as PokemonIngredientType}/>
           </div>
           <HorizontalSplitter className="w-full"/>
           {meal.ingredients.map(({id}) => (

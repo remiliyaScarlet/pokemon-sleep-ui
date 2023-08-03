@@ -5,12 +5,12 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter, VerticalSplitter} from '@/components/shared/common/splitter';
-import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
+import {PokemonProductionRate} from '@/components/shared/pokemon/productionRate';
 import {imageSmallIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {PokemonProductionRate} from '@/ui/pokedex/page/common/productionRate';
 import {PokemonIngredientLink} from '@/ui/pokedex/page/meta/ingredientLink';
 import {getPokemonIngredientProductionRate} from '@/utils/game/pokemon';
 
@@ -36,14 +36,14 @@ export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
       <Flex direction="row" className="justify-center gap-1">
         <Flex direction="col" center noFullWidth className="gap-1">
           <div className="h-5 w-5">
-            <IngredientTypeIcon type="fixed"/>
+            <PokemonIngredientTypeIcon type="fixed"/>
           </div>
           <PokemonIngredientLink id={ingredients.fixed}/>
         </Flex>
         <VerticalSplitter/>
         <Flex direction="col" center noFullWidth className="gap-1">
           <div className="h-5 w-5">
-            <IngredientTypeIcon type="random"/>
+            <PokemonIngredientTypeIcon type="random"/>
           </div>
           <Flex direction="row" className="gap-1">
             {ingredients.random ?

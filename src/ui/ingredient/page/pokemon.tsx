@@ -3,7 +3,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconListMarkSpecialty} from '@/components/shared/pokemon/iconListMarkSpecialty';
-import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
+import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonIngredientType, pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
 
@@ -22,7 +22,7 @@ export const IngredientObtainablePokemon = ({obtainablePokemon}: Props) => {
             <Flex direction="row">
               <Flex direction="col" center noFullWidth>
                 <div className="h-6 w-6">
-                  <IngredientTypeIcon type={type as PokemonIngredientType}/>
+                  <PokemonIngredientTypeIcon type={type as PokemonIngredientType}/>
                 </div>
               </Flex>
               <Flex direction="col" center>

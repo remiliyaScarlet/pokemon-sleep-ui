@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
+import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -59,7 +59,7 @@ export const TeamAnalysisPokemon = ({
         </div>
       </Flex>
       <Flex direction="row" className="justify-end">
-        <PokemonIngredients ingredients={ingredients}/>
+        <PokemonIngredientIcons ingredients={ingredients}/>
       </Flex>
       <Flex direction="row" className="justify-end text-xs">
         <span className={classNames(pokemon.specialty === specialtyIdMap.skill ? 'bg-blink' : '', 'px-1.5 py-0.5')}>
