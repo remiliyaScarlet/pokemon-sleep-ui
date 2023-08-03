@@ -55,8 +55,8 @@
       "Index": {
         "Title": "Team Analysis"
       },
-      "Optimizer": {
-        "Title": "Optimizer"
+      "Maker": {
+        "Title": "Team Building Help"
       }
     },
     "Skill": {
@@ -79,11 +79,11 @@
       }
     },
     "Rarity": {
+      "Databased":  {
+        "Title": "Rarity Analysis (Data-based)"
+      },
       "Index": {
         "Title": "Rarity Analysis"
-      },
-      "Objective":  {
-        "Title": "Rarity Analysis (Objective)"
       }
     },
     "Incense": {

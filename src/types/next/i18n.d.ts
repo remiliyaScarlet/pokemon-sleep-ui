@@ -34,7 +34,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Team: {
         Calculate: I18nMetadata,
         Index: I18nMetadata,
-        Optimizer: I18nMetadata,
+        Maker: I18nMetadata,
       },
       Skill: PageWithIndividual,
       Info: {
@@ -43,8 +43,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Nature: I18nMetadata,
       },
       Rarity: {
+        Databased: I18nMetadata,
         Index: I18nMetadata,
-        Objective: I18nMetadata,
       },
       Incense: PageWithIndividual,
     },

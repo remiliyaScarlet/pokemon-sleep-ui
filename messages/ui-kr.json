@@ -55,8 +55,8 @@
       "Index": {
         "Title": "팀 분석기"
       },
-      "Optimizer": {
-        "Title": "최적화"
+      "Maker": {
+        "Title": "자동 편성"
       }
     },
     "Skill": {
@@ -82,7 +82,7 @@
       "Index": {
         "Title": "레어도 분석"
       },
-      "Objective":  {
+      "Databased":  {
         "Title": "레어도 분석 (객관)"
       }
     },

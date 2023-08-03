@@ -55,8 +55,8 @@
       "Index": {
         "Title": "隊伍分析"
       },
-      "Optimizer": {
-        "Title": "最佳化"
+      "Maker": {
+        "Title": "自動組隊"
       }
     },
     "Skill": {
@@ -79,11 +79,11 @@
       }
     },
     "Rarity": {
+      "Databased":  {
+        "Title": "稀有度分析 (客觀)"
+      },
       "Index": {
         "Title": "稀有度分析"
-      },
-      "Objective":  {
-        "Title": "稀有度分析 (客觀)"
       }
     },
     "Incense": {

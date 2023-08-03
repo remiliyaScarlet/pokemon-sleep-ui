@@ -55,8 +55,8 @@
       "Index": {
         "Title": "チーム分析"
       },
-      "Optimizer": {
-        "Title": "最適化"
+      "Maker": {
+        "Title": "おまかせ編成"
       }
     },
     "Skill": {
@@ -82,7 +82,7 @@
       "Index": {
         "Title": "レア度分析"
       },
-      "Objective":  {
+      "Databased":  {
         "Title": "レア度分析 (客観的)"
       }
     },

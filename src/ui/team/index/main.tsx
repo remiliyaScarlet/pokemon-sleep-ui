@@ -17,13 +17,13 @@ export const TeamIndex = () => {
       <Flex direction="col" center className="h-auto gap-2 md:mt-40">
         <div className="width-with-gap md:width-with-gap-2-items">
           <FeatureLinkImage
-            href="/energy/analysis"
+            href="/team/analysis"
             imageSrc="/images/generic/pokeball.png"
             text={t('Calculate.Title')}
           />
         </div>
         <div className="width-with-gap md:width-with-gap-2-items">
-          <FeatureLink href="/energy/optimizer" text={t('Optimizer.Title')} disabled>
+          <FeatureLink href="/team/maker" text={t('Maker.Title')} disabled>
             <div className="h-10 w-10 p-1">
               <WrenchScrewdriverIcon/>
             </div>
