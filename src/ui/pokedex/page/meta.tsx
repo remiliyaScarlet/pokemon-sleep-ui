@@ -10,6 +10,7 @@ import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {I18nProvider} from '@/contexts/i18n';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
+import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonBerryEnergy} from '@/ui/pokedex/page/berry';
 import {PokemonIngredient} from '@/ui/pokedex/page/ingredient';
 import {PokemonStats} from '@/ui/pokedex/page/stats';
@@ -75,7 +76,7 @@ export const PokemonMeta = (props: PokemonProps) => {
             </td>
           </tr>
           <tr>
-            <td className={metaTitleClass}>
+            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.berry ? 'bg-blink' : '')}>
               {t2('Info.Berry')}
             </td>
             <td>
@@ -95,7 +96,7 @@ export const PokemonMeta = (props: PokemonProps) => {
             </td>
           </tr>
           <tr>
-            <td className={metaTitleClass}>
+            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.ingredient ? 'bg-blink' : '')}>
               {t2('Info.Ingredient')}
             </td>
             <td>
@@ -123,7 +124,7 @@ export const PokemonMeta = (props: PokemonProps) => {
             </td>
           </tr>
           <tr>
-            <td className={metaTitleClass}>
+            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.skill ? 'bg-blink' : '')}>
               {t2('Info.MainSkill')}
             </td>
             <td>

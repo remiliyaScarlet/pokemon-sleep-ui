@@ -7,12 +7,14 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
+import {specialtyIdMap} from '@/types/game/pokemon';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
 import {TeamAnalysisPokemonLevel} from '@/ui/team/analysis/result/pokemon/level';
 import {TeamProductionStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {classNames} from '@/utils/react';
 
 
 type Props = Pick<TeamAnalysisDataProps, 'berryMap'> & {
@@ -60,12 +62,20 @@ export const TeamAnalysisPokemon = ({
         <PokemonIngredients ingredients={ingredients}/>
       </Flex>
       <Flex direction="row" className="justify-end text-xs">
-        {t(`MainSkill.Name.${skill}`)}
+        <span className={classNames(pokemon.specialty === specialtyIdMap.skill ? 'bg-blink' : '', 'px-1.5 py-0.5')}>
+          {t(`MainSkill.Name.${skill}`)}
+        </span>
       </Flex>
       <TeamAnalysisPokemonLevel level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
-      <TeamAnalysisBerryRate id={berryData.id} rate={productionStats.berry}/>
+      <TeamAnalysisBerryRate
+        id={berryData.id} rate={productionStats.berry}
+        highlight={pokemon.specialty === specialtyIdMap.berry}
+      />
       <HorizontalSplitter className="w-full"/>
-      <TeamAnalysisIngredientRate id={ingredients.fixed} rate={productionStats.ingredient}/>
+      <TeamAnalysisIngredientRate
+        id={ingredients.fixed} rate={productionStats.ingredient}
+        highlight={pokemon.specialty === specialtyIdMap.ingredient}
+      />
     </>
   );
 };

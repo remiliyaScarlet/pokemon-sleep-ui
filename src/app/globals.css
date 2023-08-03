@@ -61,6 +61,26 @@ body {
   .meal-active {
     @apply ring-1 ring-inset;
   }
+  
+  .bg-blink-base {
+    @apply rounded-lg;
+    
+    @keyframes bg-blink-animation {
+      0% {
+        background-color: var(--bg-highlight);
+      }
+      
+      50% {
+        background-color: transparent;
+      }
+      
+      100% {
+        background-color: var(--bg-highlight);
+      }
+    }
+    
+    animation: bg-blink-animation 3s ease-in-out infinite;
+  }
 }
 
 @layer utilities {
@@ -142,7 +162,7 @@ body {
     @apply
       gap-2 rounded-lg p-4 self-stretch
       bg-gradient-to-br
-      from-slate-50/75 to-slate-100/60
+      from-slate-200/80 to-slate-100/60
       dark:from-black/60 dark:to-slate-950/75
     ;
   }
@@ -176,7 +196,7 @@ body {
   }
   
   .button-bg {
-    @apply bg-slate-100/50 dark:bg-slate-700/50;
+    @apply bg-slate-50/70 dark:bg-slate-700/50;
   }
   
   .button-text {
@@ -305,6 +325,26 @@ body {
   
   .text-energy {
     @apply text-amber-700 dark:text-amber-400
+  }
+  
+  /* endregion */
+  
+  /* region Blink styling (bg-blink-on-*) */
+  
+  .bg-blink-light {
+    @apply bg-blink-base;
+    
+    --bg-highlight: theme('colors.slate.300');
+  }
+  
+  .bg-blink-dark {
+    @apply bg-blink-base;
+    
+    --bg-highlight: theme('colors.slate.700');
+  }
+  
+  .bg-blink {
+    @apply bg-blink-light dark:bg-blink-dark
   }
   
   /* endregion */

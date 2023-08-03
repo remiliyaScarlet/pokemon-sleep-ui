@@ -7,18 +7,19 @@ import {imageIconSizes} from '@/styles/image';
 import {ProductionRate} from '@/types/game/pokemon';
 import {BerryId} from '@/types/mongo/berry';
 import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/result/common/rateLayoutWithQuantity';
+import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/common/type';
 
 
-type Props = {
+type Props = TeamAnalysisRateLayoutCommonProps & {
   id: BerryId,
   rate: ProductionRate,
 };
 
-export const TeamAnalysisBerryRate = ({id, rate}: Props) => {
+export const TeamAnalysisBerryRate = ({id, rate, highlight}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <TeamAnalysisRateLayoutWithQuantity rate={rate} icon={
+    <TeamAnalysisRateLayoutWithQuantity highlight={highlight} rate={rate} icon={
       <NextImage src={`/images/berry/${id}.png`} alt={t(`Berry.${id}`)} sizes={imageIconSizes}/>
     }/>
   );

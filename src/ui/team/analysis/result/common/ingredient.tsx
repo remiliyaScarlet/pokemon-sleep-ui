@@ -6,14 +6,15 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredientIcon'
 import {ProductionRate} from '@/types/game/pokemon';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/result/common/rateLayoutWithQuantity';
+import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/common/type';
 
 
-type Props = {
+type Props = TeamAnalysisRateLayoutCommonProps & {
   id: IngredientId | undefined,
   rate: ProductionRate | null,
 };
 
-export const TeamAnalysisIngredientRate = ({id, rate}: Props) => {
+export const TeamAnalysisIngredientRate = ({id, rate, highlight}: Props) => {
   if (!id || !rate) {
     return (
       <TeamAnalysisRateLayoutWithQuantity rate={null} icon={<XCircleIcon/>}/>
@@ -21,7 +22,7 @@ export const TeamAnalysisIngredientRate = ({id, rate}: Props) => {
   }
 
   return (
-    <TeamAnalysisRateLayoutWithQuantity rate={rate} icon={
+    <TeamAnalysisRateLayoutWithQuantity highlight={highlight} rate={rate} icon={
       <PokemonIngredientIcon id={id} dimension="h-8 w-8"/>
     }/>
   );
