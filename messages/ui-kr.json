@@ -148,7 +148,7 @@
     },
     "Info": {
       "Pot": {
-        "Capacity": "최대 용량",
+        "Capacity": "현재 최대 용량",
         "Expand": "확장",
         "UnlockedRecipes": "새로운 레시피 개방"
       }

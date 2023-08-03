@@ -148,7 +148,7 @@
     },
     "Info": {
       "Pot": {
-        "Capacity": "Pot Capacity",
+        "Capacity": "Current Capacity",
         "Expand": "Expand",
         "UnlockedRecipes": "Recipe Unlocked"
       }

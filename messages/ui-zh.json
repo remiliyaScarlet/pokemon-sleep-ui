@@ -148,7 +148,7 @@
     },
     "Info": {
       "Pot": {
-        "Capacity": "鍋子容量",
+        "Capacity": "目前容量",
         "Expand": "擴充",
         "UnlockedRecipes": "已開放食譜"
       }
