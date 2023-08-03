@@ -1,4 +1,4 @@
-import {ProducingRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/producing/rate';
 
 
 export type TeamAnalysisCategoryData = {

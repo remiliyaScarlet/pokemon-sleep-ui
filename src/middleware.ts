@@ -1,6 +1,6 @@
 import createMiddleware from 'next-intl/middleware';
 
-import {locales} from '@/const';
+import {locales} from '@/const/website';
 
 
 export default createMiddleware({

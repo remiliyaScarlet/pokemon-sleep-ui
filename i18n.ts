@@ -1,6 +1,6 @@
 import {getRequestConfig} from 'next-intl/server';
 
-import {locales} from '@/const';
+import {locales} from '@/const/website';
 
 
 export default getRequestConfig(async ({locale}) => {

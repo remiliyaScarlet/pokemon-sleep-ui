@@ -1,4 +1,5 @@
-import {ProducingRate, specialtyIdMap} from '@/types/game/pokemon';
+import {specialtyIdMap} from '@/const/game/pokemon';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {BerryData} from '@/types/mongo/berry';
 import {Ingredient} from '@/types/mongo/ingredient';
 import {PokemonBerry, PokemonInfo} from '@/types/mongo/pokemon';

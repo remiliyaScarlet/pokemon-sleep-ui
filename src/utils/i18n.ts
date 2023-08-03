@@ -1,4 +1,4 @@
-import {locales} from '@/const';
+import {locales} from '@/const/website';
 import {Locale} from '@/types/next/locale';
 
 

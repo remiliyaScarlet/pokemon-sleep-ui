@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {locales} from '@/const';
+import {locales} from '@/const/website';
 import mongoPromise from '@/lib/mongodb';
 import {Announcement, announcementLevels} from '@/types/mongo/announcement';
 import {Locale} from '@/types/next/locale';

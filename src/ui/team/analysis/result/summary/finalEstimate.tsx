@@ -7,7 +7,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
-import {ProducingRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/result/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';

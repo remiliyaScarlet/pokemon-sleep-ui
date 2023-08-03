@@ -6,7 +6,7 @@ import {usePathname, useRouter} from 'next-intl/client';
 
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
-import {localeName} from '@/const';
+import {localeName} from '@/const/website';
 import {isLocale} from '@/utils/i18n';
 import {classNames} from '@/utils/react';
 

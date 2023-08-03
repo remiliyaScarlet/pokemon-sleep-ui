@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ProducingRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {
   TeamProducingStats,
   TeamProducingStatsBySlot,
