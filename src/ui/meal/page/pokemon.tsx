@@ -5,7 +5,6 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsWithIngredient} from '@/components/shared/pokemon/icon/listWithIngredient';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {imageIconSizes} from '@/styles/image';

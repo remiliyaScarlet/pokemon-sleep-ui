@@ -14,15 +14,17 @@ export const IngredientIndex = () => {
     <PageLayout>
       <Flex direction="row" wrap center className="gap-2 p-3">
         {Object.values(data).map((ingredient) => (
-          <div
-            key={ingredient.id}
-            className={classNames(
-              'relative width-with-gap width-with-gap-2-items sm:width-with-gap-3-items',
-              'md:width-with-gap-5-items lg:width-with-gap-6-items xl:width-with-gap-8-items',
-            )}
-          >
-            <IngredientLink ingredient={ingredient}/>
-          </div>
+          ingredient ?
+            <div
+              key={ingredient.id}
+              className={classNames(
+                'relative width-with-gap width-with-gap-2-items sm:width-with-gap-3-items',
+                'md:width-with-gap-5-items lg:width-with-gap-6-items xl:width-with-gap-8-items',
+              )}
+            >
+              <IngredientLink ingredient={ingredient}/>
+            </div> :
+            <></>
         ))}
       </Flex>
     </PageLayout>

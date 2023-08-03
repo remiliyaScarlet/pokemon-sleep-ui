@@ -15,7 +15,7 @@ export const getMealEnergyInfo = ({meal, ingredientMap, level}: GetMealEnergyInf
   const atLevel = meal.levels[level - 1];
 
   const energyNoRecipe = toSum(
-    meal.ingredients.map(({id, quantity}) => ingredientMap[id].energy * quantity),
+    meal.ingredients.map(({id, quantity}) => (ingredientMap[id]?.energy ?? 0) * quantity),
   );
 
   return {
