@@ -1,0 +1,127 @@
+[
+  {
+    "id": 1,
+    "buff": 5,
+    "nerf": 3
+  },
+  {
+    "id": 2,
+    "buff": 5,
+    "nerf": 4
+  },
+  {
+    "id": 3,
+    "buff": 5,
+    "nerf": 1
+  },
+  {
+    "id": 4,
+    "buff": 5,
+    "nerf": 2
+  },
+  {
+    "id": 5,
+    "buff": 3,
+    "nerf": 5
+  },
+  {
+    "id": 6,
+    "buff": 3,
+    "nerf": 4
+  },
+  {
+    "id": 7,
+    "buff": 3,
+    "nerf": 1
+  },
+  {
+    "id": 8,
+    "buff": 3,
+    "nerf": 2
+  },
+  {
+    "id": 9,
+    "buff": 4,
+    "nerf": 5
+  },
+  {
+    "id": 10,
+    "buff": 4,
+    "nerf": 3
+  },
+  {
+    "id": 11,
+    "buff": 4,
+    "nerf": 1
+  },
+  {
+    "id": 12,
+    "buff": 4,
+    "nerf": 2
+  },
+  {
+    "id": 13,
+    "buff": 1,
+    "nerf": 5
+  },
+  {
+    "id": 14,
+    "buff": 1,
+    "nerf": 3
+  },
+  {
+    "id": 15,
+    "buff": 1,
+    "nerf": 4
+  },
+  {
+    "id": 16,
+    "buff": 1,
+    "nerf": 2
+  },
+  {
+    "id": 17,
+    "buff": 2,
+    "nerf": 5
+  },
+  {
+    "id": 18,
+    "buff": 2,
+    "nerf": 3
+  },
+  {
+    "id": 19,
+    "buff": 2,
+    "nerf": 4
+  },
+  {
+    "id": 20,
+    "buff": 2,
+    "nerf": 1
+  },
+  {
+    "id": 21,
+    "buff": null,
+    "nerf": null
+  },
+  {
+    "id": 22,
+    "buff": null,
+    "nerf": null
+  },
+  {
+    "id": 23,
+    "buff": null,
+    "nerf": null
+  },
+  {
+    "id": 24,
+    "buff": null,
+    "nerf": null
+  },
+  {
+    "id": 25,
+    "buff": null,
+    "nerf": null
+  }
+]
