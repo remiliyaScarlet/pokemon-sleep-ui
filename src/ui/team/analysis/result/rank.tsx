@@ -1,6 +1,6 @@
 import React from 'react';
 
-import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -37,7 +37,7 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
                 {rank ?
                   <SnorlaxRankUI rank={rank.rank}/> :
                   <div className="h-6 w-6">
-                    <XMarkIcon/>
+                    <XCircleIcon/>
                   </div>}
               </Flex>
             </MapLink>

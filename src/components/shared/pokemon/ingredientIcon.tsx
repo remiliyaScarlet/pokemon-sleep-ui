@@ -1,6 +1,6 @@
 import React from 'react';
 
-import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -21,7 +21,7 @@ export const PokemonIngredientIcon = ({id, dimension}: Props) => {
   if (id === null) {
     return (
       <div className={dimension ?? 'h-5 w-5'}>
-        <XMarkIcon/>
+        <XCircleIcon/>
       </div>
     );
   }

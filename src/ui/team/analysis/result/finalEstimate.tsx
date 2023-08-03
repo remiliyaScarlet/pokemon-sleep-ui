@@ -54,7 +54,10 @@ export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
           <div className="relative h-6 w-6">
-            <NextImage src="/images/generic/energy_white.png" alt={t('CurrentEnergy')} sizes={imageIconSizes}/>
+            <NextImage
+              src="/images/generic/energy_white.png" alt={t('CurrentEnergy')}
+              sizes={imageIconSizes} className="invert-on-light"
+            />
           </div>
           <InputBox
             id="currentEnergy"

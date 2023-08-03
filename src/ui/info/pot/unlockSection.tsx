@@ -1,6 +1,6 @@
 import React from 'react';
 
-import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -70,7 +70,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
               </div>
             )) :
           <div className="m-auto h-10 w-10">
-            <XMarkIcon/>
+            <XCircleIcon/>
           </div>}
       </Flex>
     </Flex>
