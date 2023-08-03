@@ -58,7 +58,7 @@ export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
               'width-with-gap-sm width-with-gap-2-items sm:width-with-gap-3-items',
               'md:width-with-gap-4-items lg:width-with-gap-5-items xl:width-with-gap-6-items',
             )}>
-              <Flex direction="col" noFullWidth className="absolute bottom-1.5 right-1.5 z-10">
+              <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
                 <PokemonProducingRate
                   simplified
                   rate={rate}
@@ -71,7 +71,7 @@ export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
                     <XCircleIcon/>}
                 />
               </Flex>
-              <Link href={`/pokedex/${id}`} className="button-clickable p-1.5">
+              <Link href={`/pokedex/${id}`} className="button-clickable">
                 <Flex direction="row" className="h-full items-center gap-1.5 p-1.5">
                   <IconWithInfo
                     imageSrc={`/images/pokemon/icons/${id}.png`}
