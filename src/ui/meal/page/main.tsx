@@ -9,6 +9,7 @@ import {getAllPokemonAsMap, getPokemonByIngredients} from '@/controller/pokemon'
 import {PageLayout} from '@/ui/base/layout';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealIngredientByPokemon} from '@/ui/meal/page/pokemon';
+import {MealCommonProps} from '@/ui/meal/page/type';
 
 
 type Props = {
@@ -19,18 +20,20 @@ export const MealPage = ({params}: Props) => {
   const idNumber = Number(params.id);
   const meal = React.use(getSingleMeal(idNumber));
   const pokemonByIngredients = React.use(getPokemonByIngredients(meal?.ingredients.map(({id}) => id) ?? []));
-  const ingredients = React.use(getAllIngredients());
+  const ingredientMap = React.use(getAllIngredients());
   const pokedex = React.use(getAllPokemonAsMap());
 
   if (!meal) {
     return <Loading text="Meal"/>;
   }
 
+  const props: MealCommonProps = {meal, ingredientMap};
+
   return (
     <PageLayout>
       <Flex direction="col" center className="gap-1.5">
-        <MealMeta meal={meal} ingredients={ingredients}/>
-        <MealIngredientByPokemon meal={meal} pokedex={pokedex} pokemonByIngredients={pokemonByIngredients}/>
+        <MealMeta {...props}/>
+        <MealIngredientByPokemon pokedex={pokedex} pokemonByIngredients={pokemonByIngredients} {...props}/>
       </Flex>
     </PageLayout>
   );

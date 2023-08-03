@@ -1,7 +1,7 @@
-import {ProductionRate} from '@/types/game/pokemon';
+import {ProductionRate, specialtyIdMap} from '@/types/game/pokemon';
 import {BerryData} from '@/types/mongo/berry';
 import {Ingredient} from '@/types/mongo/ingredient';
-import {PokemonBerry} from '@/types/mongo/pokemon';
+import {PokemonBerry, PokemonInfo} from '@/types/mongo/pokemon';
 
 
 export type GetPokemonBerryProductionRateOpts = {
@@ -28,23 +28,23 @@ export const getPokemonBerryProductionRate = ({
 };
 
 export type GetPokemonIngredientProductionRateOpts = {
-  frequency: number,
+  pokemon: PokemonInfo,
   ingredientData: Ingredient | undefined,
-  isSpecialized: boolean,
   multiplier?: number,
 };
 
 export const getPokemonIngredientProductionRate = ({
-  frequency,
+  pokemon,
   ingredientData,
-  isSpecialized,
   multiplier = 1,
 }: GetPokemonIngredientProductionRateOpts): ProductionRate => {
+  const {stats, specialty} = pokemon;
+
   if (!ingredientData) {
     return {dailyEnergy: 0, quantity: 0};
   }
 
-  const quantityRate = 86400 / frequency * (isSpecialized ? 2 : 1);
+  const quantityRate = 86400 / stats.frequency * (specialty === specialtyIdMap.ingredient ? 2 : 1);
   const dailyEnergy = quantityRate * ingredientData.energy * multiplier;
 
   return {dailyEnergy, quantity: quantityRate};

@@ -7,15 +7,15 @@ export const getMealRequiredQuantity = ({ingredients}: Meal) => toSum(ingredient
 
 type GetMealEnergyInfoOpts = {
   meal: Meal,
-  ingredients: IngredientMap,
+  ingredientMap: IngredientMap,
   level: number,
 };
 
-export const getMealEnergyInfo = ({meal, ingredients, level}: GetMealEnergyInfoOpts) => {
+export const getMealEnergyInfo = ({meal, ingredientMap, level}: GetMealEnergyInfoOpts) => {
   const atLevel = meal.levels[level - 1];
 
   const energyNoRecipe = toSum(
-    meal.ingredients.map(({id, quantity}) => ingredients[id].energy * quantity),
+    meal.ingredients.map(({id, quantity}) => ingredientMap[id].energy * quantity),
   );
 
   return {

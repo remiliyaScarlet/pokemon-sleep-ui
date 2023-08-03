@@ -14,7 +14,7 @@ export type CookingFilter = {
 export type CookingCommonProps = FilterInputProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
-  ingredients: IngredientMap,
+  ingredientMap: IngredientMap,
 };
 
 export type CookingRecipeLayoutProps = {

@@ -7,7 +7,7 @@ import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {CookingCommonProps} from '@/ui/cooking/type';
 
 
-export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}: CookingCommonProps) => {
+export const CookingInputGeneral = ({mealTypes, ingredientMap, filter, setFilter}: CookingCommonProps) => {
   return (
     <>
       <MealTypeInput
@@ -28,7 +28,7 @@ export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}:
         })}
       />
       <IngredientInput
-        ingredientIds={Object.keys(ingredients).map((id) => Number(id))}
+        ingredientIds={Object.keys(ingredientMap).map((id) => Number(id))}
         {...getMultiSelectOnClickProps({
           filter: filter,
           setFilter: setFilter,

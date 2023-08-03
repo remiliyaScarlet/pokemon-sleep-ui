@@ -7,12 +7,12 @@ import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
-import {MealMetaProps} from '@/ui/meal/page/type';
+import {MealCommonProps} from '@/ui/meal/page/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
 
 
-export const MealExp = ({meal, ingredients}: MealMetaProps) => {
+export const MealExp = ({meal, ingredientMap}: MealCommonProps) => {
   const {id, levels} = meal;
 
   const t = useTranslations('UI.InPage.Cooking');
@@ -20,9 +20,9 @@ export const MealExp = ({meal, ingredients}: MealMetaProps) => {
 
   const {atLevel, diffVal, diffPct} = React.useMemo(() => getMealEnergyInfo({
     meal,
-    ingredients,
+    ingredientMap,
     level,
-  }), [meal, ingredients, level]);
+  }), [meal, ingredientMap, level]);
 
   return (
     <Flex direction="col" className="gap-1">

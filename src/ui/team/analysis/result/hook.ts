@@ -1,11 +1,12 @@
 import React from 'react';
 
-import {ProductionRate, specialtyIdMap} from '@/types/game/pokemon';
+import {ProductionRate} from '@/types/game/pokemon';
 import {
   TeamProductionStats,
   TeamProductionStatsBySlot,
   TeamProductionStatsGrouped,
-  TeamProductionStatsSingle, TeamProductionStatsTotal,
+  TeamProductionStatsSingle,
+  TeamProductionStatsTotal,
 } from '@/ui/team/analysis/result/type';
 import {groupProductionStats} from '@/ui/team/analysis/result/utils';
 import {
@@ -49,7 +50,7 @@ const useProductionStatsOfSlot = ({
     }
 
     const level = slot.level;
-    const {berry, stats, ingredients, specialty} = pokemon;
+    const {berry, stats, ingredients} = pokemon;
     const berryData = berryMap[berry.id];
     const ingredient = ingredients.fixed;
 
@@ -70,9 +71,8 @@ const useProductionStatsOfSlot = ({
         {
           id: ingredient,
           ...getPokemonIngredientProductionRate({
-            frequency: stats.frequency,
-            ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
-            isSpecialized: specialty === specialtyIdMap.ingredient,
+            pokemon,
+            ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
             multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
           }),
         } :

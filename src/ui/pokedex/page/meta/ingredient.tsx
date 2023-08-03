@@ -6,9 +6,8 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter, VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
-import {PokemonProductionRate} from '@/components/shared/pokemon/productionRate';
+import {PokemonProductionRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {specialtyIdMap} from '@/types/game/pokemon';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokemonIngredientLink} from '@/ui/pokedex/page/meta/ingredientLink';
@@ -23,12 +22,11 @@ type Props = {
 export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
   const t = useTranslations('Game.Food');
 
-  const {ingredients, stats, specialty} = pokemon;
+  const {ingredients} = pokemon;
 
   const rate = getPokemonIngredientProductionRate({
-    frequency: stats.frequency,
+    pokemon,
     ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
-    isSpecialized: specialty === specialtyIdMap.ingredient,
   });
 
   return (
@@ -57,18 +55,15 @@ export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
       <HorizontalSplitter/>
       {
         ingredients.fixed &&
-        <>
-          <PokemonProductionRate dailyRate={rate.dailyEnergy}/>
-          <PokemonProductionRate
-            dailyRate={rate.quantity}
-            icon={
-              <NextImage src={`/images/ingredient/${ingredients.fixed}.png`}
-                alt={t(ingredients.fixed.toString())}
-                sizes={imageSmallIconSizes}
-              />
-            }
-          />
-        </>
+        <PokemonProductionRate
+          rate={rate}
+          icon={
+            <NextImage src={`/images/ingredient/${ingredients.fixed}.png`}
+              alt={t(ingredients.fixed.toString())}
+              sizes={imageSmallIconSizes}
+            />
+          }
+        />
       }
     </Flex>
   );

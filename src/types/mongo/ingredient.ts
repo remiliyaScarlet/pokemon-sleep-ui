@@ -6,4 +6,4 @@ export type Ingredient = {
   energy: number,
 };
 
-export type IngredientMap = {[id in IngredientId]: Ingredient};
+export type IngredientMap = {[id in IngredientId]?: Ingredient};

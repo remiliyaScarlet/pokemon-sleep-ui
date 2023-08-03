@@ -9,11 +9,11 @@ import {I18nProvider} from '@/contexts/i18n';
 import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {MealExp} from '@/ui/meal/page/exp';
-import {MealMetaProps} from '@/ui/meal/page/type';
+import {MealCommonProps} from '@/ui/meal/page/type';
 import {classNames} from '@/utils/react';
 
 
-export const MealMeta = (props: MealMetaProps) => {
+export const MealMeta = (props: MealCommonProps) => {
   const t = useTranslations('Game.Food');
   const {meal} = props;
   const {id, type} = meal;
@@ -21,7 +21,7 @@ export const MealMeta = (props: MealMetaProps) => {
   const mealName = t(id.toString());
 
   return (
-    <Flex direction="col" center className="info-section md:flex-row md:gap-4 lg:m-auto lg:w-2/3">
+    <Flex direction="col" center className="info-section md:flex-row md:gap-4">
       <Flex direction="col" center noFullWidth className="gap-2">
         <div className={classNames('text-lg', mealTypeTextStyle[type])}>
           {mealName}
@@ -30,7 +30,7 @@ export const MealMeta = (props: MealMetaProps) => {
           <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imagePortraitSizes}/>
         </div>
       </Flex>
-      <Flex direction="col" className="gap-2">
+      <Flex direction="col" className="gap-2 lg:w-2/3">
         <I18nProvider namespaces={['UI.InPage.Cooking']}>
           <MealExp {...props}/>
         </I18nProvider>

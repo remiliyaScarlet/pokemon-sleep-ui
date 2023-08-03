@@ -3,7 +3,7 @@ import React from 'react';
 import {IngredientPageParams} from '@/app/[locale]/ingredient/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
-import {getIngredient} from '@/controller/ingredient';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonByIngredient} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
@@ -18,7 +18,8 @@ type Props = {
 
 export const IngredientPage = ({params}: Props) => {
   const idNumber = Number(params.id);
-  const ingredient = React.use(getIngredient(idNumber));
+  const ingredientMap = React.use(getAllIngredients());
+  const ingredient = ingredientMap[idNumber];
   const obtainablePokemon = React.use(getPokemonByIngredient(ingredient?.id));
   const cookableMeals = React.use(getMealByIngredient(ingredient?.id));
 
@@ -28,13 +29,11 @@ export const IngredientPage = ({params}: Props) => {
 
   return (
     <PageLayout>
-      <Flex direction="col" center className="gap-1.5 p-2 md:flex-row">
+      <Flex direction="col" className="gap-1.5 md:flex-row">
         <IngredientMeta {...ingredient}/>
-        <Flex direction="col" center stretch className="gap-1.5">
-          <IngredientCookableMeals cookableMeals={cookableMeals}/>
-          <IngredientObtainablePokemon obtainablePokemon={obtainablePokemon} ingredientId={idNumber}/>
-        </Flex>
+        <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>
+      <IngredientObtainablePokemon obtainablePokemon={obtainablePokemon} ingredientMap={ingredientMap}/>
     </PageLayout>
   );
 };

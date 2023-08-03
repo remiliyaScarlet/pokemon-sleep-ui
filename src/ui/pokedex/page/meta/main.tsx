@@ -77,19 +77,12 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Berry')}
             </td>
             <td>
-              <Flex direction="col" center className="gap-1">
-                <Flex direction="row" center className="gap-1">
-                  <div className="relative h-10 w-10">
-                    <NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>
-                  </div>
-                  <div className="whitespace-nowrap text-lg">
-                    {berryName} &times; {berry.quantity}
-                  </div>
-                </Flex>
-                <I18nProvider namespaces={['UI.InPage.Pokedex']}>
-                  <PokemonBerryMeta frequency={stats.frequency} berry={berry} berryData={berryData}/>
-                </I18nProvider>
-              </Flex>
+              <I18nProvider namespaces={['UI.InPage.Pokedex']}>
+                <PokemonBerryMeta
+                  frequency={stats.frequency} berry={berry}
+                  berryData={berryData} berryName={berryName}
+                />
+              </I18nProvider>
             </td>
           </tr>
           <tr>

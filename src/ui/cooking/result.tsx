@@ -15,7 +15,7 @@ import {classNames} from '@/utils/react';
 
 type Props = Omit<CookingCommonProps, 'setFilter'>;
 
-export const CookingResult = ({filter, meals, ingredients}: Props) => {
+export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   const mealEnergyInfo = React.useMemo(
@@ -23,11 +23,11 @@ export const CookingResult = ({filter, meals, ingredients}: Props) => {
       meal,
       energyInfo: getMealEnergyInfo({
         meal,
-        ingredients,
+        ingredientMap,
         level: filter.recipeLevel[meal.id] ?? 1,
       }),
     })),
-    [meals, ingredients, filter],
+    [meals, ingredientMap, filter],
   );
 
   return (

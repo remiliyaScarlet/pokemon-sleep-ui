@@ -5,14 +5,18 @@ import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {PokemonProductionRate} from '@/components/shared/pokemon/productionRate';
+import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonProductionRate} from '@/components/shared/pokemon/rate/main';
+import {imageSmallIconSizes} from '@/styles/image';
 import {getPokemonBerryProductionRate, GetPokemonBerryProductionRateOpts} from '@/utils/game/pokemon';
 
 
-type Props = Omit<GetPokemonBerryProductionRateOpts, 'level'>;
+type Props = Omit<GetPokemonBerryProductionRateOpts, 'level'> & {
+  berryName: string,
+};
 
 export const PokemonBerryMeta = (props: Props) => {
-  const {berryData} = props;
+  const {berry, berryData, berryName} = props;
   const [level, setLevel] = React.useState(1);
 
   const t = useTranslations('UI.InPage.Pokedex');
@@ -20,23 +24,36 @@ export const PokemonBerryMeta = (props: Props) => {
   const atLevel = getPokemonBerryProductionRate({level, ...props});
 
   return (
-    <Flex direction="col" className="gap-1">
-      <Flex direction="row" className="gap-1">
-        <div className="whitespace-nowrap">
-          {t('Info.PokemonLevel')}
+    <Flex direction="col" center className="gap-1">
+      <Flex direction="row" center className="gap-1">
+        <div className="relative h-10 w-10">
+          <NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>
         </div>
-        <div>
-          {level}
+        <div className="whitespace-nowrap text-lg">
+          {berryName} &times; {berry.quantity}
         </div>
       </Flex>
-      <Slider
-        id="BerryEnergy"
-        value={level}
-        setValue={setLevel}
-        min={1}
-        max={berryData.energy.length}
-      />
-      <PokemonProductionRate dailyRate={atLevel.dailyEnergy}/>
+      <Flex direction="col" className="gap-1">
+        <Flex direction="row" className="gap-1">
+          <div className="whitespace-nowrap">
+            {t('Info.PokemonLevel')}
+          </div>
+          <div>
+            {level}
+          </div>
+        </Flex>
+        <Slider
+          id="BerryEnergy"
+          value={level}
+          setValue={setLevel}
+          min={1}
+          max={berryData.energy.length}
+        />
+        <PokemonProductionRate
+          rate={atLevel}
+          icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}
+        />
+      </Flex>
     </Flex>
   );
 };

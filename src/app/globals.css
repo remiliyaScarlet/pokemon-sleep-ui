@@ -348,4 +348,12 @@ body {
   }
   
   /* endregion */
+  
+  /* region Border styling (border-*) */
+  
+  .border-button-clickable {
+    @apply border-slate-50/70 dark:border-slate-700/50;
+  }
+  
+  /* endregion */
 }

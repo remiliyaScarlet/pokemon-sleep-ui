@@ -16,6 +16,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
     Common: {
       Candy: string,
+      Day: string,
       DreamShards: string,
       Exp: string,
       Rank: string,

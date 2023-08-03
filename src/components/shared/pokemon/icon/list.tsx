@@ -4,10 +4,10 @@ import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
 
 
 type Props<TData> = {
@@ -17,7 +17,7 @@ type Props<TData> = {
   getReactKey?: (data: TData) => React.Key,
 };
 
-export const PokemonIconListDuplicable = <TData, >({
+export const PokemonIconList = <TData, >({
   dataWithPokemonId,
   getPokemonId,
   getInfo,

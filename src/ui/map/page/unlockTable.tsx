@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonIconListDuplicable} from '@/components/shared/pokemon/iconListDuplicable';
+import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
@@ -85,7 +85,7 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
               </td>
               <td>
                 <Flex direction="col" center>
-                  <PokemonIconListDuplicable
+                  <PokemonIconList
                     dataWithPokemonId={matchingStyles}
                     getPokemonId={({pokemonId}) => pokemonId}
                     getInfo={({style}) => {

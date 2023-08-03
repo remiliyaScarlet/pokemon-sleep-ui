@@ -49,7 +49,7 @@ export const CookingClient = ({meals, ingredients}: Props) => {
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
-  const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredients};
+  const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredientMap: ingredients};
 
   return (
     <Flex direction="col">

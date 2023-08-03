@@ -4,11 +4,11 @@ import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {imageGallerySizes, imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
-import {IconWithInfo} from '@/ui/ingredient/page/iconInfo';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
 
@@ -22,7 +22,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
   const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
-    <Flex direction="row" center wrap className="info-section h-full gap-1">
+    <Flex direction="row" center wrap className="info-section gap-1">
       {cookableMeals
         .sort((a, b) => (a.levels.at(-1)?.energy ?? 0) - (b.levels.at(-1)?.energy ?? 0))
         .map((meal) => (
