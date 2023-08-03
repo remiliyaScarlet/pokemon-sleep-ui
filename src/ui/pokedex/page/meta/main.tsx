@@ -77,7 +77,7 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Berry')}
             </td>
             <td>
-              <I18nProvider namespaces={['UI.InPage.Pokedex']}>
+              <I18nProvider namespaces={['UI.Common', 'UI.InPage.Pokedex']}>
                 <PokemonBerryMeta
                   frequency={stats.frequency} berry={berry}
                   berryData={berryData} berryName={berryName}
