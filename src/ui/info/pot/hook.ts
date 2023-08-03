@@ -12,7 +12,7 @@ export const usePotInfoFilter = ({meals}: PotInfoCommonProps) => {
       mealType: {},
       ingredients: {},
       displayType: 'ingredient',
-      capacity: 15,
+      capacity: null,
       showEmpty: false,
     },
     isDataIncluded: (filter, meal) => {

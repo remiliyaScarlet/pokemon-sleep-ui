@@ -28,18 +28,20 @@ export const getToggleButtonClass = (isActive: boolean) => classNames(
 );
 
 export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
-  filterKey: KeysOfType<TFilter, TData | null>
+  filterKey: KeysOfType<TFilter, TData | null>,
+  allowNull?: boolean,
 };
 
 export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
   filter,
   setFilter,
   filterKey,
+  allowNull = true,
 }: GetSingleSelectOnClickPropsOpts<TFilter, TData>): FilterInputOnClickProps<TId> => ({
   isActive: (id) => filter[filterKey] === id,
   onClick: (id) => setFilter((original) => ({
     ...original,
-    [filterKey]: original[filterKey] === id ? null : id,
+    [filterKey]: original[filterKey] === id ? (allowNull ? null : id) : id,
   })),
 });
 

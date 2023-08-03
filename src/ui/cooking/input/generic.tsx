@@ -16,6 +16,7 @@ export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}:
           filter,
           setFilter,
           filterKey: 'type',
+          allowNull: false,
         })}
       />
       <PotCapacityInput
@@ -23,6 +24,7 @@ export const CookingInputGeneral = ({mealTypes, ingredients, filter, setFilter}:
           filter,
           setFilter,
           filterKey: 'capacity',
+          allowNull: false,
         })}
       />
       <IngredientInput
