@@ -13,7 +13,7 @@ type Props = {
   id: IngredientId | undefined,
 };
 
-export const PokemonIngredient = ({id}: Props) => {
+export const PokemonIngredientLink = ({id}: Props) => {
   const t = useTranslations('Game.Food');
 
   if (id === undefined) {

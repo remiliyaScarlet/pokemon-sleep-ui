@@ -4,22 +4,20 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {VerticalSplitter} from '@/components/shared/common/splitter';
-import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {I18nProvider} from '@/contexts/i18n';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
-import {PokemonBerryEnergy} from '@/ui/pokedex/page/berry';
-import {PokemonIngredient} from '@/ui/pokedex/page/ingredient';
-import {PokemonStats} from '@/ui/pokedex/page/stats';
+import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
+import {PokemonIngredientMeta} from '@/ui/pokedex/page/meta/ingredient';
+import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
 
 
 export const PokemonMeta = (props: PokemonProps) => {
-  const {pokemon, berryData} = props;
+  const {pokemon, berryData, ingredientMap} = props;
   const {
     id,
     type,
@@ -27,7 +25,6 @@ export const PokemonMeta = (props: PokemonProps) => {
     sleepType,
     stats,
     berry,
-    ingredients,
     skill,
   } = pokemon;
 
@@ -90,7 +87,7 @@ export const PokemonMeta = (props: PokemonProps) => {
                   </div>
                 </Flex>
                 <I18nProvider namespaces={['UI.InPage.Pokedex']}>
-                  <PokemonBerryEnergy frequency={stats.frequency} berry={berry} berryData={berryData}/>
+                  <PokemonBerryMeta frequency={stats.frequency} berry={berry} berryData={berryData}/>
                 </I18nProvider>
               </Flex>
             </td>
@@ -100,27 +97,7 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Ingredient')}
             </td>
             <td>
-              <Flex direction="row" className="justify-center gap-1">
-                <Flex direction="col" center noFullWidth className="gap-1">
-                  <div className="h-5 w-5">
-                    <IngredientTypeIcon type="fixed"/>
-                  </div>
-                  <PokemonIngredient id={ingredients.fixed}/>
-                </Flex>
-                <VerticalSplitter/>
-                <Flex direction="col" center noFullWidth className="gap-1">
-                  <div className="h-5 w-5">
-                    <IngredientTypeIcon type="random"/>
-                  </div>
-                  <Flex direction="row" className="gap-1">
-                    {ingredients.random ?
-                      ingredients.random.map((ingredient) => (
-                        <PokemonIngredient key={ingredient} id={ingredient}/>
-                      )) :
-                      <PokemonIngredient id={undefined}/>}
-                  </Flex>
-                </Flex>
-              </Flex>
+              <PokemonIngredientMeta pokemon={pokemon} ingredientMap={ingredientMap}/>
             </td>
           </tr>
           <tr>

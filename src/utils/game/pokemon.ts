@@ -30,21 +30,21 @@ export const getPokemonBerryProductionRate = ({
 export type GetPokemonIngredientProductionRateOpts = {
   frequency: number,
   ingredientData: Ingredient | undefined,
-  quantity?: number,
+  isSpecialized: boolean,
   multiplier?: number,
 };
 
 export const getPokemonIngredientProductionRate = ({
   frequency,
   ingredientData,
-  quantity = 1,
+  isSpecialized,
   multiplier = 1,
 }: GetPokemonIngredientProductionRateOpts): ProductionRate => {
   if (!ingredientData) {
     return {dailyEnergy: 0, quantity: 0};
   }
 
-  const quantityRate = 86400 / frequency * quantity;
+  const quantityRate = 86400 / frequency * (isSpecialized ? 2 : 1);
   const dailyEnergy = quantityRate * ingredientData.energy * multiplier;
 
   return {dailyEnergy, quantity: quantityRate};

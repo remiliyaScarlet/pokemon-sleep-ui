@@ -10,12 +10,12 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokemonImage} from '@/ui/pokedex/page/image';
+import {PokemonImage} from '@/ui/pokedex/page/gallery/image';
 import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
-import styles from './main.module.css';
+import styles from '../main.module.css';
 
 
 type Props = {

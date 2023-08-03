@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokemonDataIcon} from '@/ui/pokedex/page/dataIcon';
+import {PokemonDataIcon} from '@/ui/pokedex/page/common/dataIcon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 

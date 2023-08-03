@@ -72,7 +72,7 @@ const useProductionStatsOfSlot = ({
           ...getPokemonIngredientProductionRate({
             frequency: stats.frequency,
             ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
-            quantity: specialty === specialtyIdMap.ingredient ? 2 : 1,
+            isSpecialized: specialty === specialtyIdMap.ingredient,
             multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
           }),
         } :

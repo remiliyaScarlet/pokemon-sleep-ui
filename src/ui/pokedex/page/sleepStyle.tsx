@@ -7,7 +7,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageSmallIconSizes} from '@/styles/image';
-import {PokemonDataIcon} from '@/ui/pokedex/page/dataIcon';
+import {PokemonDataIcon} from '@/ui/pokedex/page/common/dataIcon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
