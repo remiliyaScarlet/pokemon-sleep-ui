@@ -11,12 +11,7 @@ import {IngredientTypeIcon} from '@/components/shared/pokemon/ingredientTypeIcon
 import {imageIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {Meal} from '@/types/mongo/meal';
-import {
-  PokedexMap,
-  PokemonIngredientData,
-  pokemonIngredientType,
-  PokemonIngredientType,
-} from '@/types/mongo/pokemon';
+import {PokedexMap, PokemonIngredientData, PokemonIngredientType} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
@@ -31,12 +26,13 @@ export const MealIngredientByPokemon = ({meal, pokedex, pokemonByIngredients}: P
   const t = useTranslations('Game.Food');
 
   return (
-    <Flex direction="col" center className="info-section gap-2 md:w-1/2">
-      {Object.entries(pokemonByIngredients.ingredient).map(([type, ingredientMap], idx) => (
-        <React.Fragment key={type}>
-          <div className="h-6 w-6">
+    <>
+      {Object.entries(pokemonByIngredients.ingredient).map(([type, ingredientMap]) => (
+        <Flex key={type} direction="col" center className="info-section gap-2 lg:m-auto lg:w-2/3">
+          <div className="h-8 w-8">
             <IngredientTypeIcon type={type as PokemonIngredientType}/>
           </div>
+          <HorizontalSplitter className="w-full"/>
           {meal.ingredients.map(({id}) => (
             <Flex key={id} direction="row">
               <Link href={`/ingredient/${id}`} className="button-clickable-bg">
@@ -54,9 +50,8 @@ export const MealIngredientByPokemon = ({meal, pokedex, pokemonByIngredients}: P
               </Flex>
             </Flex>
           ))}
-          {idx + 1 !== pokemonIngredientType.length && <HorizontalSplitter className="w-full"/>}
-        </React.Fragment>
+        </Flex>
       ))}
-    </Flex>
+    </>
   );
 };
