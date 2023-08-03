@@ -6,12 +6,12 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter, VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
-import {PokemonProductionRate} from '@/components/shared/pokemon/rate/main';
+import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokemonIngredientLink} from '@/ui/pokedex/page/meta/ingredientLink';
-import {getPokemonIngredientProductionRate} from '@/utils/game/pokemon';
+import {getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
 
 
 type Props = {
@@ -24,7 +24,7 @@ export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
 
   const {ingredients} = pokemon;
 
-  const rate = getPokemonIngredientProductionRate({
+  const rate = getPokemonIngredientProducingRate({
     pokemon,
     ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
   });
@@ -55,7 +55,7 @@ export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
       <HorizontalSplitter/>
       {
         ingredients.fixed &&
-        <PokemonProductionRate
+        <PokemonProducingRate
           rate={rate}
           icon={
             <NextImage src={`/images/ingredient/${ingredients.fixed}.png`}

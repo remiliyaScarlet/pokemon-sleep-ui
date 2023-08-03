@@ -7,7 +7,7 @@ import Link from 'next-intl/link';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
-import {useProductionStats} from '@/ui/team/analysis/result/hook';
+import {useProducingStats} from '@/ui/team/analysis/result/hook';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon/main';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/result/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/result/summary/main';
@@ -35,14 +35,14 @@ export const TeamAnalysis = (props: Props) => {
     snorlaxRankData,
   } = props;
 
-  const productionStats = useProductionStats(props);
+  const producingStats = useProducingStats(props);
 
   return (
     <Flex direction="row" center wrap className="gap-1.5">
       {teamAnalysisSlotName.map((slotName) => {
         const slot = setup.team[slotName];
         const pokemon = slot ? pokedex[slot.pokemonId] : undefined;
-        const stats = productionStats.bySlot[slotName];
+        const stats = producingStats.bySlot[slotName];
 
         const isAvailable = slot && pokemon && stats;
 
@@ -73,7 +73,7 @@ export const TeamAnalysis = (props: Props) => {
               </Link>}
             {isAvailable ?
               <TeamAnalysisPokemon
-                key={slotName} slot={slot} productionStats={stats} slotName={slotName}
+                key={slotName} slot={slot} producingStats={stats} slotName={slotName}
                 setLevel={(newLevel: number) => setSetup((original) => ({
                   ...original,
                   team: {
@@ -92,14 +92,14 @@ export const TeamAnalysis = (props: Props) => {
           </Flex>
         );
       })}
-      <TeamAnalysisGroupedSummary grouped={productionStats.grouped}/>
+      <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
       <TeamAnalysisSummary
         bonus={setup.bonus}
         setBonus={(bonus) => setSetup((original) => ({
           ...original,
           bonus,
         }))}
-        stats={productionStats}
+        stats={producingStats}
         snorlaxRankData={snorlaxRankData}
       />
     </Flex>

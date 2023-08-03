@@ -10,14 +10,14 @@ import {TeamAnalysisRateLayout} from '@/ui/team/analysis/result/common/rateLayou
 import {TeamAnalysisIngredientBonusSlider} from '@/ui/team/analysis/result/summary/bonus/ingredient';
 import {TeamAnalysisOverallBonusSlider} from '@/ui/team/analysis/result/summary/bonus/overall';
 import {TeamAnalysisFinalEstimate} from '@/ui/team/analysis/result/summary/finalEstimate';
-import {TeamProductionStats} from '@/ui/team/analysis/result/type';
+import {TeamProducingStats} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisBonus, TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 
 type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
   bonus: TeamAnalysisBonus,
   setBonus: (newBonus: TeamAnalysisBonus) => void,
-  stats: TeamProductionStats,
+  stats: TeamProducingStats,
 };
 
 export const TeamAnalysisSummary = ({stats, snorlaxRankData, bonus, setBonus}: Props) => {

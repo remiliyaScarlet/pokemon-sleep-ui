@@ -1,14 +1,14 @@
 import React from 'react';
 
-import {ProductionRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/pokemon';
 import {
-  TeamProductionStats,
-  TeamProductionStatsBySlot,
-  TeamProductionStatsGrouped,
-  TeamProductionStatsSingle,
-  TeamProductionStatsTotal,
+  TeamProducingStats,
+  TeamProducingStatsBySlot,
+  TeamProducingStatsGrouped,
+  TeamProducingStatsSingle,
+  TeamProducingStatsTotal,
 } from '@/ui/team/analysis/result/type';
-import {groupProductionStats} from '@/ui/team/analysis/result/utils';
+import {groupProducingStats} from '@/ui/team/analysis/result/utils';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
@@ -17,27 +17,27 @@ import {
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
-import {getPokemonBerryProductionRate, getPokemonIngredientProductionRate} from '@/utils/game/pokemon';
+import {getPokemonBerryProducingRate, getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
-type UseProductionStatsOpts = TeamAnalysisDataProps & {
+type UseProducingStatsOpts = TeamAnalysisDataProps & {
   setup: TeamAnalysisTeamSetup,
   snorlaxFavorite: TeamAnalysisFilter['snorlaxFavorite'],
 };
 
-type UseProductionStatsOfSlotOpts = UseProductionStatsOpts & {
+type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
   slotName: TeamAnalysisSlotName,
 };
 
-const useProductionStatsOfSlot = ({
+const useProducingStatsOfSlot = ({
   setup,
   snorlaxFavorite,
   slotName,
   pokedex,
   berryMap,
   ingredientMap,
-}: UseProductionStatsOfSlotOpts): TeamProductionStatsSingle | null => {
+}: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   return React.useMemo(() => {
     const slot = setup.team[slotName];
     if (!slot) {
@@ -59,7 +59,7 @@ const useProductionStatsOfSlot = ({
     return {
       berry: {
         id: berry.id,
-        ...getPokemonBerryProductionRate({
+        ...getPokemonBerryProducingRate({
           frequency: stats.frequency,
           level,
           berry,
@@ -70,7 +70,7 @@ const useProductionStatsOfSlot = ({
       ingredient: (ingredient ?
         {
           id: ingredient,
-          ...getPokemonIngredientProductionRate({
+          ...getPokemonIngredientProducingRate({
             pokemon,
             ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
             multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
@@ -82,20 +82,20 @@ const useProductionStatsOfSlot = ({
   }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
 };
 
-export const useProductionStats = (opts: UseProductionStatsOpts): TeamProductionStats => {
+export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
   const {setup, snorlaxFavorite} = opts;
 
-  const bySlot: TeamProductionStatsBySlot = {
-    A: useProductionStatsOfSlot({slotName: 'A', ...opts}),
-    B: useProductionStatsOfSlot({slotName: 'B', ...opts}),
-    C: useProductionStatsOfSlot({slotName: 'C', ...opts}),
-    D: useProductionStatsOfSlot({slotName: 'D', ...opts}),
-    E: useProductionStatsOfSlot({slotName: 'E', ...opts}),
+  const bySlot: TeamProducingStatsBySlot = {
+    A: useProducingStatsOfSlot({slotName: 'A', ...opts}),
+    B: useProducingStatsOfSlot({slotName: 'B', ...opts}),
+    C: useProducingStatsOfSlot({slotName: 'C', ...opts}),
+    D: useProducingStatsOfSlot({slotName: 'D', ...opts}),
+    E: useProducingStatsOfSlot({slotName: 'E', ...opts}),
   };
 
   const deps: React.DependencyList = [setup, snorlaxFavorite];
 
-  const total: TeamProductionStatsTotal = React.useMemo(() => {
+  const total: TeamProducingStatsTotal = React.useMemo(() => {
     const stats = teamAnalysisSlotName
       .map((slotName) => bySlot[slotName])
       .filter(isNotNullish);
@@ -112,18 +112,18 @@ export const useProductionStats = (opts: UseProductionStatsOpts): TeamProduction
     };
   }, deps);
 
-  const grouped: TeamProductionStatsGrouped = React.useMemo(() => {
+  const grouped: TeamProducingStatsGrouped = React.useMemo(() => {
     const stats = teamAnalysisSlotName
       .map((slotName) => bySlot[slotName])
       .filter(isNotNullish);
 
     return {
-      berry: groupProductionStats({stats, key: 'berry'}),
-      ingredient: groupProductionStats({stats, key: 'ingredient'}),
+      berry: groupProducingStats({stats, key: 'berry'}),
+      ingredient: groupProducingStats({stats, key: 'ingredient'}),
     };
   }, deps);
 
-  const overall: ProductionRate = React.useMemo(() => ({
+  const overall: ProducingRate = React.useMemo(() => ({
     dailyEnergy: toSum(Object.values(total).flatMap((rate) => rate?.dailyEnergy).filter(isNotNullish)),
     quantity: toSum(Object.values(total).flatMap((rate) => rate?.quantity).filter(isNotNullish)),
   }), deps);

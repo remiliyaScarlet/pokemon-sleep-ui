@@ -9,11 +9,11 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
 import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/result/summary/grouped/category';
-import {TeamProductionStatsGrouped} from '@/ui/team/analysis/result/type';
+import {TeamProducingStatsGrouped} from '@/ui/team/analysis/result/type';
 
 
 type Props = {
-  grouped: TeamProductionStatsGrouped,
+  grouped: TeamProducingStatsGrouped,
 };
 
 export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {

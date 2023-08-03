@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
-import {ProductionRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/pokemon';
 import {BerryId} from '@/types/mongo/berry';
 import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/result/common/rateLayoutWithQuantity';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/common/type';
@@ -12,7 +12,7 @@ import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/commo
 
 type Props = TeamAnalysisRateLayoutCommonProps & {
   id: BerryId,
-  rate: ProductionRate,
+  rate: ProducingRate,
 };
 
 export const TeamAnalysisBerryRate = ({id, rate, highlight}: Props) => {

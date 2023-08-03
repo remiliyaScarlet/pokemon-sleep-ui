@@ -1,35 +1,35 @@
-import {ProductionRate, ProductionRateOfItem} from '@/types/game/pokemon';
+import {ProducingRate, ProducingRateOfItem} from '@/types/game/pokemon';
 import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 
-export type IngredientProductionStats = {
-  quantity: ProductionRate,
-  energy: ProductionRate,
+export type IngredientProducingStats = {
+  quantity: ProducingRate,
+  energy: ProducingRate,
 };
 
-export type TeamProductionStatsByItem<T> = {
+export type TeamProducingStatsByItem<T> = {
   berry: T,
   ingredient: T | null,
 };
 
-export type TeamProductionStatsTotal = TeamProductionStatsByItem<ProductionRate>;
+export type TeamProducingStatsTotal = TeamProducingStatsByItem<ProducingRate>;
 
-export type TeamProductionStatsSingle = TeamProductionStatsByItem<ProductionRateOfItem>;
+export type TeamProducingStatsSingle = TeamProducingStatsByItem<ProducingRateOfItem>;
 
-export type TeamProductionStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProductionStatsSingle | null};
+export type TeamProducingStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProducingStatsSingle | null};
 
-export type TeamProductionStatsGrouped = {
-  berry: {[id in BerryId]?: ProductionRate},
-  ingredient: {[id in IngredientId]?: ProductionRate},
+export type TeamProducingStatsGrouped = {
+  berry: {[id in BerryId]?: ProducingRate},
+  ingredient: {[id in IngredientId]?: ProducingRate},
 };
 
-export type TeamProductionStats = {
-  bySlot: TeamProductionStatsBySlot,
-  total: TeamProductionStatsTotal,
-  grouped: TeamProductionStatsGrouped,
-  overall: ProductionRate,
+export type TeamProducingStats = {
+  bySlot: TeamProducingStatsBySlot,
+  total: TeamProducingStatsTotal,
+  grouped: TeamProducingStatsGrouped,
+  overall: ProducingRate,
 };
 
 export type TeamFinalEstimateInput = {

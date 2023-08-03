@@ -6,12 +6,12 @@ import {useTranslations} from 'next-intl';
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonProductionRate} from '@/components/shared/pokemon/rate/main';
+import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {getPokemonBerryProductionRate, GetPokemonBerryProductionRateOpts} from '@/utils/game/pokemon';
+import {getPokemonBerryProducingRate, GetPokemonBerryProducingRateOpts} from '@/utils/game/pokemon';
 
 
-type Props = Omit<GetPokemonBerryProductionRateOpts, 'level'> & {
+type Props = Omit<GetPokemonBerryProducingRateOpts, 'level'> & {
   berryName: string,
 };
 
@@ -21,7 +21,7 @@ export const PokemonBerryMeta = (props: Props) => {
 
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const atLevel = getPokemonBerryProductionRate({level, ...props});
+  const atLevel = getPokemonBerryProducingRate({level, ...props});
 
   return (
     <Flex direction="col" center className="gap-1">
@@ -49,7 +49,7 @@ export const PokemonBerryMeta = (props: Props) => {
           min={1}
           max={berryData.energy.length}
         />
-        <PokemonProductionRate
+        <PokemonProducingRate
           rate={atLevel}
           icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}
         />

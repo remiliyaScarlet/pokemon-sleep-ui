@@ -12,7 +12,7 @@ import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
 import {TeamAnalysisPokemonLevel} from '@/ui/team/analysis/result/pokemon/level';
-import {TeamProductionStatsSingle} from '@/ui/team/analysis/result/type';
+import {TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {classNames} from '@/utils/react';
 
@@ -22,7 +22,7 @@ type Props = Pick<TeamAnalysisDataProps, 'berryMap'> & {
   slotName: TeamAnalysisSlotName,
   slot: TeamAnalysisMember,
   pokemon: PokemonInfo,
-  productionStats: TeamProductionStatsSingle,
+  producingStats: TeamProducingStatsSingle,
 };
 
 export const TeamAnalysisPokemon = ({
@@ -30,7 +30,7 @@ export const TeamAnalysisPokemon = ({
   slot,
   pokemon,
   berryMap,
-  productionStats,
+  producingStats,
 }: Props) => {
   const t = useTranslations('Game');
 
@@ -68,12 +68,12 @@ export const TeamAnalysisPokemon = ({
       </Flex>
       <TeamAnalysisPokemonLevel level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
       <TeamAnalysisBerryRate
-        id={berryData.id} rate={productionStats.berry}
+        id={berryData.id} rate={producingStats.berry}
         highlight={pokemon.specialty === specialtyIdMap.berry}
       />
       <HorizontalSplitter className="w-full"/>
       <TeamAnalysisIngredientRate
-        id={ingredients.fixed} rate={productionStats.ingredient}
+        id={ingredients.fixed} rate={producingStats.ingredient}
         highlight={pokemon.specialty === specialtyIdMap.ingredient}
       />
     </>

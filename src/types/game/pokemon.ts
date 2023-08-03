@@ -4,11 +4,11 @@ export const specialtyIdMap = {
   skill: 3,
 };
 
-export type ProductionRate = {
+export type ProducingRate = {
   quantity: number,
   dailyEnergy: number,
 };
 
-export type ProductionRateOfItem = ProductionRate & {
+export type ProducingRateOfItem = ProducingRate & {
   id: number
 };

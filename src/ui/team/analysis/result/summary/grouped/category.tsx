@@ -3,14 +3,14 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imagePortraitSizes} from '@/styles/image';
-import {ProductionRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/pokemon';
 import {TeamAnalysisCategoryData} from '@/ui/team/analysis/result/summary/grouped/type';
 
 
 type Props = {
   icon: React.ReactNode,
   data: TeamAnalysisCategoryData[],
-  getReactNode: (id: number, rate: ProductionRate) => React.ReactNode,
+  getReactNode: (id: number, rate: ProducingRate) => React.ReactNode,
 };
 
 export const TeamAnalysisCategorySummary = ({icon, data, getReactNode}: Props) => {

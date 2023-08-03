@@ -4,17 +4,17 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonProductionRateProps} from '@/components/shared/pokemon/rate/type';
+import {PokemonProducingRateProps} from '@/components/shared/pokemon/rate/type';
 import {imageIconSizes} from '@/styles/image';
 import {formatFloat} from '@/utils/number';
 
 
-type Props = PokemonProductionRateProps & {
+type Props = PokemonProducingRateProps & {
   dailyRate: number,
   icon?: React.ReactNode,
 };
 
-export const PokemonProductionRateSingle = ({icon, dailyRate, simplified}: Props) => {
+export const PokemonProducingRateSingle = ({icon, dailyRate, simplified}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
   const t2 = useTranslations('UI.Common');
 

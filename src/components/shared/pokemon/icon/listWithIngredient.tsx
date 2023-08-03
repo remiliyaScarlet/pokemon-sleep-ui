@@ -7,12 +7,12 @@ import Link from 'next-intl/link';
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonProductionRate} from '@/components/shared/pokemon/rate/main';
+import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {specialtyIdMap} from '@/types/game/pokemon';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {getPokemonIngredientProductionRate} from '@/utils/game/pokemon';
+import {getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
 import {classNames} from '@/utils/react';
 
 
@@ -41,7 +41,7 @@ export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
         .map((pokemon) => {
           const {ingredients} = pokemon;
 
-          const rate = getPokemonIngredientProductionRate({
+          const rate = getPokemonIngredientProducingRate({
             pokemon,
             ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
           });
@@ -59,7 +59,7 @@ export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
               'md:width-with-gap-4-items lg:width-with-gap-5-items xl:width-with-gap-6-items',
             )}>
               <Flex direction="col" noFullWidth className="absolute bottom-1.5 right-1.5 z-10">
-                <PokemonProductionRate
+                <PokemonProducingRate
                   simplified
                   rate={rate}
                   icon={ingredients.fixed ?

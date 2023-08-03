@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
-import {ProductionRate} from '@/types/game/pokemon';
+import {ProducingRate} from '@/types/game/pokemon';
 import {TeamAnalysisRateLayout, TeamAnalysisRateLayoutProps} from '@/ui/team/analysis/result/common/rateLayout';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/common/type';
 import {classNames} from '@/utils/react';
 
 
 type Props = Pick<TeamAnalysisRateLayoutProps, 'icon'> & TeamAnalysisRateLayoutCommonProps & {
-  rate: ProductionRate | null,
+  rate: ProducingRate | null,
 };
 
 export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, highlight}: Props) => {

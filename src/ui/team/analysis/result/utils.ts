@@ -1,15 +1,15 @@
-import {TeamProductionStatsGrouped, TeamProductionStatsSingle} from '@/ui/team/analysis/result/type';
+import {TeamProducingStatsGrouped, TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
 
 
-type GroupProductionStatsOpts = {
-  stats: TeamProductionStatsSingle[],
-  key: keyof TeamProductionStatsSingle,
+type GroupProducingStatsOpts = {
+  stats: TeamProducingStatsSingle[],
+  key: keyof TeamProducingStatsSingle,
 };
 
-export const groupProductionStats = <K extends keyof TeamProductionStatsGrouped>({
+export const groupProducingStats = <K extends keyof TeamProducingStatsGrouped>({
   stats,
   key,
-}: GroupProductionStatsOpts) => {
+}: GroupProducingStatsOpts) => {
   return stats.reduce((group, single) => {
     const singleStats = single[key];
 
@@ -23,5 +23,5 @@ export const groupProductionStats = <K extends keyof TeamProductionStatsGrouped>
       dailyEnergy: (group[id]?.dailyEnergy ?? 0) + dailyEnergy,
     };
     return group;
-  }, {} as TeamProductionStatsGrouped[K]);
+  }, {} as TeamProducingStatsGrouped[K]);
 };
