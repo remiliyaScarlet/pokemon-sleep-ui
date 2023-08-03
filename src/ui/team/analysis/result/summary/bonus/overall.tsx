@@ -2,8 +2,8 @@ import React from 'react';
 
 import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 
-import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/result/bonus/base';
-import {TeamAnalysisBonusProps} from '@/ui/team/analysis/result/bonus/type';
+import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/result/summary/bonus/base';
+import {TeamAnalysisBonusProps} from '@/ui/team/analysis/result/summary/bonus/type';
 
 
 export const TeamAnalysisOverallBonusSlider = ({bonus, setBonus}: TeamAnalysisBonusProps) => {

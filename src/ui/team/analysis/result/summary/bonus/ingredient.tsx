@@ -5,8 +5,8 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/result/bonus/base';
-import {TeamAnalysisBonusProps} from '@/ui/team/analysis/result/bonus/type';
+import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/result/summary/bonus/base';
+import {TeamAnalysisBonusProps} from '@/ui/team/analysis/result/summary/bonus/type';
 
 
 export const TeamAnalysisIngredientBonusSlider = ({bonus, setBonus}: TeamAnalysisBonusProps) => {

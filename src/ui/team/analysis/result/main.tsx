@@ -8,8 +8,9 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
 import {useProductionStats} from '@/ui/team/analysis/result/hook';
-import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon';
-import {TeamTotalProductionRate} from '@/ui/team/analysis/result/total';
+import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon/main';
+import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/result/summary/grouped/main';
+import {TeamAnalysisSummary} from '@/ui/team/analysis/result/summary/main';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
@@ -47,7 +48,7 @@ export const TeamAnalysis = (props: Props) => {
 
         return (
           <Flex key={slotName} direction="col" center className={classNames(
-            'relative button-bg h-96 rounded-lg p-3 gap-1.5',
+            'relative button-bg h-[30rem] rounded-lg p-3 gap-1.5',
             'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
           )}>
             <button
@@ -91,7 +92,8 @@ export const TeamAnalysis = (props: Props) => {
           </Flex>
         );
       })}
-      <TeamTotalProductionRate
+      <TeamAnalysisGroupedSummary grouped={productionStats.grouped}/>
+      <TeamAnalysisSummary
         bonus={setup.bonus}
         setBonus={(bonus) => setSetup((original) => ({
           ...original,

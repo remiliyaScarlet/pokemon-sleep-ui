@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {ProductionRate} from '@/types/game/pokemon';
-import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/result/rank';
+import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/result/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
@@ -17,7 +17,7 @@ type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
   energyRate: ProductionRate,
 };
 
-export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
+export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
   const t = useTranslations('UI.InPage.Team');
 
   const [estimateInput, setEstimateInput] = React.useState<TeamFinalEstimateInput>(() => {
@@ -31,7 +31,7 @@ export const TeamFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
     };
   });
   const {currentEnergy, endsAt} = estimateInput;
-  const finalEnergy = currentEnergy + energyRate.daily * (new Date(endsAt).getTime() - Date.now()) / 86400000;
+  const finalEnergy = currentEnergy + energyRate.dailyEnergy * (new Date(endsAt).getTime() - Date.now()) / 86400000;
 
   return (
     <Flex direction="col" center className="gap-2">

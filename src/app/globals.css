@@ -64,6 +64,34 @@ body {
 }
 
 @layer utilities {
+  .transform-smooth {
+    @apply transform-gpu transition-colors;
+  }
+  
+  table.table-unlock {
+    @apply w-full md:w-3/4;
+    
+    & > thead {
+      @apply sticky top-12 z-10;
+      
+      & > tr {
+        @apply bg-slate-400/90 dark:bg-slate-700/90;
+      }
+    }
+    
+    & > tbody > tr {
+      @apply border-b border-b-gray-700 py-1 last:border-b-0;
+    }
+  }
+  
+  .scrollbar-hide {
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
   /* region Fixed count of element in row (width-with-gap-*) */
   
   .width-with-gap-sm {
@@ -104,6 +132,8 @@ body {
   
   /* endregion */
   
+  /* region Info section styling (info-*) */
+  
   .info-in-image {
     @apply rounded-full bg-slate-400/80 dark:bg-slate-500/80;
   }
@@ -121,13 +151,7 @@ body {
     @apply info-section md:w-fit;
   }
   
-  .text-shadow-preset {
-    @apply shadow-slate-200 text-shadow dark:shadow-slate-900;
-  }
-  
-  .transform-smooth {
-    @apply transform-gpu transition-colors;
-  }
+  /* endregion */
   
   /* region Image inverting (invert-*) */
   
@@ -152,7 +176,7 @@ body {
   }
   
   .button-bg {
-    @apply bg-slate-300/50 dark:bg-slate-700/50;
+    @apply bg-slate-100/50 dark:bg-slate-700/50;
   }
   
   .button-text {
@@ -273,27 +297,15 @@ body {
   
   /* endregion */
   
-  table.table-unlock {
-    @apply w-full md:w-3/4;
-    
-    & > thead {
-      @apply sticky top-12 z-10;
-      
-      & > tr {
-        @apply bg-slate-400/90 dark:bg-slate-700/90;
-      }
-    }
-    
-    & > tbody > tr {
-      @apply border-b border-b-gray-700 py-1 last:border-b-0;
-    }
+  /* region Miscellaneous text styling (text-*) */
+  
+  .text-shadow-preset {
+    @apply shadow-slate-200 text-shadow dark:shadow-slate-900;
   }
   
-  .scrollbar-hide {
-    scrollbar-width: none;
-    
-    &::-webkit-scrollbar {
-      display: none;
-    }
+  .text-energy {
+    @apply text-amber-700 dark:text-amber-400
   }
+  
+  /* endregion */
 }

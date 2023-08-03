@@ -12,7 +12,7 @@ type Props = {
   maxLevel: number,
 };
 
-export const TeamAnalysisLevelSlider = ({level, setLevel, maxLevel}: Props) => {
+export const TeamAnalysisPokemonLevel = ({level, setLevel, maxLevel}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (

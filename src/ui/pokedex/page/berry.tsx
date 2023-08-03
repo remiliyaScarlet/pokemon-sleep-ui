@@ -46,13 +46,13 @@ export const PokemonBerryEnergy = (props: Props) => {
           {t('Stats.Energy.Daily')}
         </div>
         <div className="text-sm">
-          {formatFloat(atLevel.daily)}
+          {formatFloat(atLevel.dailyEnergy)}
         </div>
         <div className="text-sm">
           {t('Stats.Energy.Weekly')}
         </div>
         <div className="text-sm">
-          {formatFloat(atLevel.weekly)}
+          {formatFloat(atLevel.dailyEnergy * 7)}
         </div>
       </Flex>
     </Flex>

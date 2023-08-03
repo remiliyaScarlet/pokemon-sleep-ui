@@ -3,9 +3,9 @@ import React from 'react';
 import Image, {ImageProps} from 'next/image';
 
 
-type Props = Omit<ImageProps, 'fill' | 'title'>;
+export type NextImageProps = Omit<ImageProps, 'fill' | 'title'>;
 
-export const NextImage = ({src, alt, sizes, className}: Props) => {
+export const NextImage = ({src, alt, sizes, className}: NextImageProps) => {
   return (
     <Image src={src} alt={alt} fill title={alt} sizes={sizes} className={className}/>
   );

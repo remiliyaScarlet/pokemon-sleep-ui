@@ -1,7 +1,7 @@
 import {ProductionRate} from '@/types/game/pokemon';
 import {BerryData} from '@/types/mongo/berry';
 import {Ingredient} from '@/types/mongo/ingredient';
-import {PokemonBerry, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonBerry} from '@/types/mongo/pokemon';
 
 
 export type GetPokemonBerryProductionRateOpts = {
@@ -21,38 +21,31 @@ export const getPokemonBerryProductionRate = ({
 }: GetPokemonBerryProductionRateOpts): ProductionRate => {
   const current = berryData.energy[level - 1];
 
-  const daily = 86400 / frequency * berry.quantity * current.energy * multiplier;
+  const quantity = 86400 / frequency * berry.quantity;
+  const dailyEnergy = quantity * current.energy * multiplier;
 
-  return {
-    daily,
-    weekly: daily * 7,
-  };
+  return {dailyEnergy, quantity};
 };
 
-
-export type GetPokemonIngredientBaseProductionRateOpts = {
+export type GetPokemonIngredientProductionRateOpts = {
   frequency: number,
-  ingredient: PokemonInfo['ingredients']['fixed'],
   ingredientData: Ingredient | undefined,
   quantity?: number,
   multiplier?: number,
 };
 
-export const getPokemonIngredientBaseProductionRate = ({
+export const getPokemonIngredientProductionRate = ({
   frequency,
-  ingredient,
   ingredientData,
   quantity = 1,
   multiplier = 1,
-}: GetPokemonIngredientBaseProductionRateOpts): ProductionRate => {
-  if (!ingredient || !ingredientData) {
-    return {daily: 0, weekly: 0};
+}: GetPokemonIngredientProductionRateOpts): ProductionRate => {
+  if (!ingredientData) {
+    return {dailyEnergy: 0, quantity: 0};
   }
 
-  const daily = 86400 / frequency * quantity * ingredientData.energy * multiplier;
+  const quantityRate = 86400 / frequency * quantity;
+  const dailyEnergy = quantityRate * ingredientData.energy * multiplier;
 
-  return {
-    daily,
-    weekly: daily * 7,
-  };
+  return {dailyEnergy, quantity: quantityRate};
 };

@@ -4,12 +4,13 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredients} from '@/components/shared/pokemon/ingredients';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {TeamAnalysisOnBerry} from '@/ui/team/analysis/result/berry';
-import {TeamAnalysisOnIngredient} from '@/ui/team/analysis/result/ingredient';
-import {TeamAnalysisLevelSlider} from '@/ui/team/analysis/result/level';
+import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
+import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
+import {TeamAnalysisPokemonLevel} from '@/ui/team/analysis/result/pokemon/level';
 import {TeamProductionStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
@@ -61,9 +62,10 @@ export const TeamAnalysisPokemon = ({
       <Flex direction="row" className="justify-end text-xs">
         {t(`MainSkill.Name.${skill}`)}
       </Flex>
-      <TeamAnalysisLevelSlider level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
-      <TeamAnalysisOnBerry id={berryData.id} rate={productionStats.berry}/>
-      <TeamAnalysisOnIngredient id={ingredients.fixed} rate={productionStats.ingredient}/>
+      <TeamAnalysisPokemonLevel level={slot.level} setLevel={setLevel} maxLevel={maxLevel}/>
+      <TeamAnalysisBerryRate id={berryData.id} rate={productionStats.berry}/>
+      <HorizontalSplitter className="w-full"/>
+      <TeamAnalysisIngredientRate id={ingredients.fixed} rate={productionStats.ingredient}/>
     </>
   );
 };

@@ -27,8 +27,8 @@ export const PokemonIngredientIcon = ({id, dimension}: Props) => {
   }
 
   return (
-    <Link href={`/ingredient/${id}`} className="button-clickable">
-      <div className={classNames('relative', dimension ?? 'h-5 w-5')}>
+    <Link href={`/ingredient/${id}`}>
+      <div className={classNames('relative button-clickable', dimension ?? 'h-5 w-5')}>
         <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageSmallIconSizes}/>
       </div>
     </Link>

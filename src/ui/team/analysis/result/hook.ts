@@ -4,8 +4,10 @@ import {ProductionRate, specialtyIdMap} from '@/types/game/pokemon';
 import {
   TeamProductionStats,
   TeamProductionStatsBySlot,
-  TeamProductionStatsSingle,
+  TeamProductionStatsGrouped,
+  TeamProductionStatsSingle, TeamProductionStatsTotal,
 } from '@/ui/team/analysis/result/type';
+import {groupProductionStats} from '@/ui/team/analysis/result/utils';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
@@ -14,7 +16,7 @@ import {
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
-import {getPokemonBerryProductionRate, getPokemonIngredientBaseProductionRate} from '@/utils/game/pokemon';
+import {getPokemonBerryProductionRate, getPokemonIngredientProductionRate} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -54,20 +56,28 @@ const useProductionStatsOfSlot = ({
     const overallMultiplier = 1 + (setup.bonus.overall / 100);
 
     return {
-      berry: getPokemonBerryProductionRate({
-        frequency: stats.frequency,
-        level,
-        berry,
-        berryData,
-        multiplier: (snorlaxFavorite[berryData.id] ? 2 : 1) * overallMultiplier,
-      }),
-      ingredient: getPokemonIngredientBaseProductionRate({
-        frequency: stats.frequency,
-        ingredient,
-        ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
-        quantity: specialty === specialtyIdMap.ingredient ? 2 : 1,
-        multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
-      }),
+      berry: {
+        id: berry.id,
+        ...getPokemonBerryProductionRate({
+          frequency: stats.frequency,
+          level,
+          berry,
+          berryData,
+          multiplier: (snorlaxFavorite[berryData.id] ? 2 : 1) * overallMultiplier,
+        }),
+      },
+      ingredient: (ingredient ?
+        {
+          id: ingredient,
+          ...getPokemonIngredientProductionRate({
+            frequency: stats.frequency,
+            ingredientData: ingredient ? ingredientMap[ingredient] : undefined,
+            quantity: specialty === specialtyIdMap.ingredient ? 2 : 1,
+            multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
+          }),
+        } :
+        null
+      ),
     };
   }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
 };
@@ -85,27 +95,38 @@ export const useProductionStats = (opts: UseProductionStatsOpts): TeamProduction
 
   const deps: React.DependencyList = [setup, snorlaxFavorite];
 
-  const total: TeamProductionStatsSingle = React.useMemo(() => {
+  const total: TeamProductionStatsTotal = React.useMemo(() => {
     const stats = teamAnalysisSlotName
       .map((slotName) => bySlot[slotName])
       .filter(isNotNullish);
 
     return {
       berry: {
-        daily: toSum(stats.map(({berry}) => berry.daily)),
-        weekly: toSum(stats.map(({berry}) => berry.weekly)),
+        dailyEnergy: toSum(stats.map(({berry}) => berry.dailyEnergy)),
+        quantity: toSum(stats.map(({berry}) => berry.quantity)),
       },
       ingredient: {
-        daily: toSum(stats.map(({ingredient}) => ingredient.daily)),
-        weekly: toSum(stats.map(({ingredient}) => ingredient.weekly)),
+        dailyEnergy: toSum(stats.map(({ingredient}) => ingredient?.dailyEnergy).filter(isNotNullish)),
+        quantity: toSum(stats.map(({ingredient}) => ingredient?.quantity).filter(isNotNullish)),
       },
     };
   }, deps);
 
+  const grouped: TeamProductionStatsGrouped = React.useMemo(() => {
+    const stats = teamAnalysisSlotName
+      .map((slotName) => bySlot[slotName])
+      .filter(isNotNullish);
+
+    return {
+      berry: groupProductionStats({stats, key: 'berry'}),
+      ingredient: groupProductionStats({stats, key: 'ingredient'}),
+    };
+  }, deps);
+
   const overall: ProductionRate = React.useMemo(() => ({
-    daily: toSum(Object.values(total).flatMap(({daily}) => daily)),
-    weekly: toSum(Object.values(total).flatMap(({weekly}) => weekly)),
+    dailyEnergy: toSum(Object.values(total).flatMap((rate) => rate?.dailyEnergy).filter(isNotNullish)),
+    quantity: toSum(Object.values(total).flatMap((rate) => rate?.quantity).filter(isNotNullish)),
   }), deps);
 
-  return {bySlot, total, overall};
+  return {bySlot, total, grouped, overall};
 };

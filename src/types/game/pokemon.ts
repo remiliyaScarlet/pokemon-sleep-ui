@@ -5,6 +5,10 @@ export const specialtyIdMap = {
 };
 
 export type ProductionRate = {
-  daily: number,
-  weekly: number,
+  quantity: number,
+  dailyEnergy: number,
+};
+
+export type ProductionRateOfItem = ProductionRate & {
+  id: number
 };
