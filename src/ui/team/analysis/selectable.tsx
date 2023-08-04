@@ -8,6 +8,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {
+  TeamAnalysisMember,
   TeamAnalysisSlotName,
   teamAnalysisSlotName,
   TeamAnalysisTeamSetup,
@@ -42,7 +43,8 @@ export const TeamAnalysisSelectablePokemon = ({setSetup, isIncluded, pokemon}: P
           [slotToInsert ?? 'E']: {
             pokemonId: id,
             level: 1,
-          },
+            nature: null,
+          } satisfies TeamAnalysisMember,
         },
       };
     });

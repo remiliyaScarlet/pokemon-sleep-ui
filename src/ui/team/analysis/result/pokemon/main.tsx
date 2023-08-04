@@ -13,6 +13,7 @@ import {NatureId} from '@/types/game/producing/nature';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
+import {TeamAnalysisNature} from '@/ui/team/analysis/result/pokemon/nature';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {classNames} from '@/utils/react';
@@ -20,7 +21,7 @@ import {classNames} from '@/utils/react';
 
 type Props = Pick<TeamAnalysisDataProps, 'berryMap'> & {
   setLevel: (newLevel: number) => void,
-  setNature: (nature: NatureId) => void,
+  setNature: (nature: NatureId | null) => void,
   slotName: TeamAnalysisSlotName,
   member: TeamAnalysisMember,
   pokemon: PokemonInfo,
@@ -29,6 +30,7 @@ type Props = Pick<TeamAnalysisDataProps, 'berryMap'> & {
 
 export const TeamAnalysisPokemon = ({
   setLevel,
+  setNature,
   member,
   pokemon,
   berryMap,
@@ -68,6 +70,7 @@ export const TeamAnalysisPokemon = ({
           {t(`MainSkill.Name.${skill}`)}
         </span>
       </Flex>
+      <TeamAnalysisNature nature={member.nature} setNature={setNature}/>
       <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>
       <TeamAnalysisBerryRate
         id={berryData.id} rate={producingStats.berry}

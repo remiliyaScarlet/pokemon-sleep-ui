@@ -1,6 +1,7 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -26,12 +27,19 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
   };
 
   return (
-    <>
+    <Flex direction="row">
       <button
-        className="button-clickable-border whitespace-nowrap px-2.5 text-sm"
+        className="button-clickable-bg whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
-        {nature ? t(`Nature.${nature}`) : <div className="h-6 w-6"><XCircleIcon/></div>}
+        <Flex direction="row" center>
+          <div className="h-5 w-5">
+            <ChevronUpDownIcon/>
+          </div>
+          <div className="pr-1">
+            {nature ? t(`Nature.${nature}`) : <div className="h-5 w-5"><XCircleIcon/></div>}
+          </div>
+        </Flex>
       </button>
       <Popup show={show} setShow={setShow}>
         <Flex direction="row" center wrap className="gap-2 pr-2">
@@ -43,6 +51,6 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
           ))}
         </Flex>
       </Popup>
-    </>
+    </Flex>
   );
 };
