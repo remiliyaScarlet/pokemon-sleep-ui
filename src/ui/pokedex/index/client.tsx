@@ -7,24 +7,29 @@ import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
-import {PokedexData} from '@/ui/pokedex/index/type';
+import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
+import {sortPokemon} from '@/ui/pokedex/index/utils';
 import {classNames} from '@/utils/react';
 
 
-type Props = {
-  data: PokedexData,
-};
+export const PokedexClient = (props: PokedexClientCommonProps) => {
+  const {pokedex, ingredientMap, berryMap} = props;
+  const {filter, setFilter, isIncluded} = useFilteredPokedex({data: pokedex});
 
-export const PokedexClient = ({data}: Props) => {
-  const {filter, setFilter, isIncluded} = useFilteredPokedex({data});
+  const sortedData = pokedex.sort(sortPokemon({
+    type: filter.sort,
+    level: filter.level,
+    ingredientMap,
+    berryMap,
+  }));
 
   return (
     <>
-      <PokedexInput filter={filter} setFilter={setFilter} data={data}/>
+      <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
       <HorizontalSplitter/>
-      <PokedexResultCount data={data} inclusionMap={isIncluded}/>
+      <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <Flex direction="row" wrap className="gap-1.5">
-        {data.map((pokemon) => (
+        {sortedData.map((pokemon) => (
           <div
             key={pokemon.id}
             className={classNames(
@@ -34,7 +39,7 @@ export const PokedexClient = ({data}: Props) => {
               isIncluded[pokemon.id] ? undefined : 'hidden',
             )}
           >
-            <PokedexLink {...pokemon} display={filter.display}/>
+            <PokedexLink pokemon={pokemon} display={filter.display} level={filter.level} {...props}/>
           </div>
         ))}
       </Flex>

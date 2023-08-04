@@ -1,13 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
-import {
-  PokemonInfo,
-  PokemonSkillId,
-  PokemonSleepTypeId,
-  PokemonSpecialtyId,
-  PokemonTypeId,
-} from '@/types/mongo/pokemon';
+import {PokemonSkillId, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/mongo/pokemon';
 
 
 export const pokemonInputType = [
@@ -19,11 +13,6 @@ export const pokemonInputType = [
   'berry',
   'mainSkill',
 ] as const;
-
-export type PokemonInfoRequiredForInput = Pick<
-  PokemonInfo,
-  'id' | 'type' | 'specialty' | 'sleepType' | 'berry' | 'skill' | 'ingredients'
->;
 
 export type PokemonInputType = typeof pokemonInputType[number];
 

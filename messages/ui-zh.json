@@ -122,6 +122,14 @@
         "Friendship": "友情點數",
         "MaxCarry": "持有上限",
         "Recruit": "成為夥伴"
+      },
+      "Sort": {
+        "Id": "ID",
+        "IngredientEnergy": "食材能量",
+        "IngredientCount": "食材產量",
+        "BerryEnergy": "樹果能量",
+        "BerryCount": "樹果產量",
+        "FriendshipPoint": "友情點數"
       }
     },
     "Cooking": {

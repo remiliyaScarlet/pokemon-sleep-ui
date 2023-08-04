@@ -12,7 +12,8 @@ import {classNames} from '@/utils/react';
 
 
 export const PokedexLink = (props: PokedexLinkProps) => {
-  const {id, type} = props;
+  const {pokemon} = props;
+  const {id, type} = pokemon;
   const t = useTranslations('Game');
 
   // This `<Flex>` needs to be outside `<Link>` to avoid `<a>` in `<a>` DOM tree issue

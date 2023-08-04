@@ -8,13 +8,10 @@ import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/inp
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
-import {
-  PokemonInfoRequiredForInput,
-  PokemonInputFilterIdType,
-  PokemonInputType,
-} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {sleepTypeBgClass} from '@/styles/classes';
+import {PokemonInfo} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 import {isNotNullish} from '@/utils/type';
@@ -26,7 +23,7 @@ type Props<
   TFilter extends FilterWithInclusionMap<TId>,
 > = GetMultiSelectOnClickPropsOpts<TFilter, TId> & Pick<FilterCategoryInputProps<TId>, 'style'> & {
   type: TDisplayType,
-  pokemon: PokemonInfoRequiredForInput[],
+  pokemon: PokemonInfo[],
 };
 
 export const PokemonFilter = <
@@ -53,7 +50,7 @@ export const PokemonFilter = <
     }),
   };
 
-  const getIds = (toId: (single: PokemonInfoRequiredForInput) => TId | TId[] | undefined) => {
+  const getIds = (toId: (single: PokemonInfo) => TId | TId[] | undefined) => {
     return toUnique(pokemon.flatMap(toId))
       .filter(isNotNullish)
       .sort((a, b) => a - b);

@@ -22,7 +22,9 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
       ingredientRandom: {},
       berry: {},
       mainSkill: {},
+      level: 1,
       display: 'mainSkill',
+      sort: 'id',
     },
     isDataIncluded: (filter, data) => {
       if (!isDataIncludingAllOfFilter({

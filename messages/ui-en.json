@@ -122,6 +122,14 @@
         "Friendship": "Friendship Points",
         "MaxCarry": "Carry Limit",
         "Recruit": "Partnered"
+      },
+      "Sort": {
+        "Id": "ID",
+        "IngredientEnergy": "Ingredient Energy",
+        "IngredientCount": "Ingredient Finding",
+        "BerryEnergy": "Berry Energy",
+        "BerryCount": "Berry Finding",
+        "FriendshipPoint": "Friendship Points"
       }
     },
     "Cooking": {

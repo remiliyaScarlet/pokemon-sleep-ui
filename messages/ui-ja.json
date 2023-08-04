@@ -122,6 +122,14 @@
         "Friendship": "フレンドポイント",
         "MaxCarry": "最大所持数",
         "Recruit": "仲間になる"
+      },
+      "Sort": {
+        "Id": "ID",
+        "IngredientEnergy": "食材のエナジー",
+        "IngredientCount": "食材の数",
+        "BerryEnergy": "きのみのエナジー",
+        "BerryCount": "きのみの数",
+        "FriendshipPoint": "フレンドポイント"
       }
     },
     "Cooking": {

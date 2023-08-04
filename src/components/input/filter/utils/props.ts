@@ -23,7 +23,7 @@ const getFilterInputButtonClass = (isActive: boolean) => classNames(
   getToggleButtonClass(isActive),
 );
 
-export const getToggleButtonClass = (isActive: boolean) => classNames(
+const getToggleButtonClass = (isActive: boolean) => classNames(
   isActive ? 'button-toggle-active' : 'button-toggle-inactive',
 );
 
