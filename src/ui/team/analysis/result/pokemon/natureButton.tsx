@@ -11,10 +11,11 @@ import {NatureData} from '@/types/game/producing/nature';
 
 type Props = {
   data: NatureData | null,
+  active: boolean,
   onClick: () => void,
 };
 
-export const TeamAnalysisNatureButton = ({data, onClick}: Props) => {
+export const TeamAnalysisNatureButton = ({data, active, onClick}: Props) => {
   const t = useTranslations('Game');
 
   return (

@@ -34,10 +34,12 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
         {nature ? t(`Nature.${nature}`) : <div className="h-6 w-6"><XCircleIcon/></div>}
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="row" center wrap className="h-80 gap-2 overflow-x-hidden overflow-y-scroll pr-2">
-          <TeamAnalysisNatureButton data={null} onClick={() => onClick(null)}/>
+        <Flex direction="row" center wrap className="gap-2 pr-2">
+          <TeamAnalysisNatureButton data={null} active={nature === null} onClick={() => onClick(null)}/>
           {natureData.map((data) => (
-            <TeamAnalysisNatureButton key={data.id} data={data} onClick={() => onClick(data.id)}/>
+            <TeamAnalysisNatureButton
+              key={data.id} data={data} active={nature === data.id} onClick={() => onClick(data.id)}
+            />
           ))}
         </Flex>
       </Popup>

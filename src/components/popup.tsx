@@ -31,7 +31,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
         >
           <div className="fixed inset-0 bg-white/75 transition-opacity dark:bg-black/75"/>
         </Transition.Child>
-        <div className="fixed inset-0 flex items-end justify-center p-4 text-center sm:items-center">
+        <div className="transform-smooth fixed inset-0 flex items-end justify-center p-4 text-center sm:items-center">
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-300"
@@ -42,11 +42,13 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className={classNames(
-              'relative overflow-hidden rounded-lg bg-slate-300 dark:bg-gray-950 transition-all',
-              'sm:my-8 sm:w-full sm:max-w-lg p-3 ring-1 ring-inset ring-slate-400 dark:ring-gray-600',
+              'rounded-lg p-3 transition-all sm:max-w-2xl',
+              'bg-slate-200 dark:bg-gray-950 ring-1 ring-inset ring-slate-400 dark:ring-gray-600',
               className,
             )}>
-              {children}
+              <div className="max-h-96 overflow-y-auto">
+                {children}
+              </div>
             </Dialog.Panel>
           </Transition.Child>
         </div>

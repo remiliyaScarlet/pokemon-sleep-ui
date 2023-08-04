@@ -38,7 +38,7 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
       <div className="relative h-5 w-5">
         <NextImage
           src="/images/generic/pokeball.png" alt={t3('Name')} sizes={imageIconSizes}
-          className={classNames('transform-smooth', isActive ? 'invert-on-dark' : 'invert-on-light')}
+          className={isActive ? 'invert-on-dark' : 'invert-on-light'}
         />
       </div>
     );
