@@ -11,7 +11,6 @@ import {adsClientId} from '@/components/ads/const';
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
 import {isProduction} from '@/utils/environment';
-import {classNames} from '@/utils/react';
 
 import '../globals.css';
 
@@ -53,7 +52,7 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
             `}
           </Script>
         </>}
-      <body className={classNames(font.className, 'h-full w-full overflow-x-hidden')}>
+      <body className={font.className}>
         <Providers>
           {children}
         </Providers>

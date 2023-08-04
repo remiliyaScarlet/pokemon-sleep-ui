@@ -5,7 +5,6 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {I18nProvider} from '@/contexts/i18n';
 import {NavBar} from '@/ui/base/navbar/main';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -14,11 +13,7 @@ type Props = {
 
 export const PageLayout = ({announcement = true, children}: React.PropsWithChildren<Props>) => {
   return (
-    <main className={classNames(
-      'transform-smooth flex min-h-screen w-full flex-col',
-      'bg-gradient-radial from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-950',
-      'text-neutral-900 dark:text-neutral-100',
-    )}>
+    <main className="min-h-full w-full">
       <I18nProvider namespaces={['UI.Metadata']}>
         <NavBar/>
       </I18nProvider>

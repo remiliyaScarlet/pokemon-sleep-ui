@@ -11,7 +11,11 @@ export const Providers = ({children}: React.PropsWithChildren) => {
   const {mounted} = useMounted();
 
   if (!mounted) {
-    return <Loading/>;
+    return (
+      <div className="h-screen">
+        <Loading/>
+      </div>
+    );
   }
 
   return (
