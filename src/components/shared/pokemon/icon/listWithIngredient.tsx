@@ -12,16 +12,18 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
+import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
   data: PokemonInfo[],
+  level: number,
   ingredientMap: IngredientMap,
 };
 
-export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
+export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
@@ -38,17 +40,16 @@ export const PokemonIconsWithIngredient = ({data, ingredientMap}: Props) => {
   return (
     <Flex direction="row" wrap className="gap-1.5">
       {data
-        .map((pokemon) => {
-          const {ingredients} = pokemon;
-
-          const rate = getPokemonIngredientProducingRate({
+        .map((pokemon) => ({
+          pokemon,
+          rate: getIngredientProducingRate({
+            level,
             pokemon,
-            ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
-          });
-
-          return {pokemon, rate};
-        })
-        .sort((a, b) => b.rate.quantity - a.rate.quantity)
+            ...defaultNeutralOpts,
+            ingredientMap,
+          }),
+        }))
+        .sort((a, b) => (b.rate?.quantity ?? 0) - (a.rate?.quantity ?? 0))
         .map(({pokemon, rate}) => {
           const {id, ingredients, specialty} = pokemon;
 

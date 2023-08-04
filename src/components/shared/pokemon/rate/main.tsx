@@ -7,15 +7,15 @@ import {ProducingRate} from '@/types/game/producing/rate';
 
 
 type Props = PokemonProducingRateProps & {
-  rate: ProducingRate,
+  rate: ProducingRate | null,
   icon: React.ReactNode,
 };
 
 export const PokemonProducingRate = ({rate, icon, ...props}: Props) => {
   return (
     <Flex direction="col">
-      <PokemonProducingRateSingle dailyRate={rate.dailyEnergy} {...props}/>
-      <PokemonProducingRateSingle dailyRate={rate.quantity} icon={icon} {...props}/>
+      <PokemonProducingRateSingle dailyRate={rate?.dailyEnergy} {...props}/>
+      <PokemonProducingRateSingle dailyRate={rate?.quantity} icon={icon} {...props}/>
     </Flex>
   );
 };

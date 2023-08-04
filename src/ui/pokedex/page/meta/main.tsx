@@ -1,12 +1,13 @@
+'use client';
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {I18nProvider} from '@/contexts/i18n';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
@@ -23,10 +24,11 @@ export const PokemonMeta = (props: PokemonProps) => {
     type,
     specialty,
     sleepType,
-    stats,
     berry,
     skill,
   } = pokemon;
+
+  const [level, setLevel] = React.useState(1);
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
@@ -49,6 +51,21 @@ export const PokemonMeta = (props: PokemonProps) => {
           #{id}
         </div>
       </Flex>
+      <Flex direction="row" className="justify-end gap-1">
+        <div className="whitespace-nowrap">
+          {t2('Info.PokemonLevel')}
+        </div>
+        <div>
+          {level}
+        </div>
+      </Flex>
+      <Slider
+        id="Level"
+        value={level}
+        setValue={setLevel}
+        min={1}
+        max={berryData.energy.length}
+      />
       <table className="border-separate border-spacing-3">
         <tbody>
           <tr>
@@ -77,12 +94,7 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Berry')}
             </td>
             <td>
-              <I18nProvider namespaces={['UI.Common', 'UI.InPage.Pokedex']}>
-                <PokemonBerryMeta
-                  frequency={stats.frequency} berry={berry}
-                  berryData={berryData} berryName={berryName}
-                />
-              </I18nProvider>
+              <PokemonBerryMeta pokemon={pokemon} level={level} berryData={berryData} berryName={berryName}/>
             </td>
           </tr>
           <tr>
@@ -90,7 +102,7 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t2('Info.Ingredient')}
             </td>
             <td>
-              <PokemonIngredientMeta pokemon={pokemon} ingredientMap={ingredientMap}/>
+              <PokemonIngredientMeta pokemon={pokemon} level={level} ingredientMap={ingredientMap}/>
             </td>
           </tr>
           <tr>

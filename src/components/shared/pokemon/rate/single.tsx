@@ -10,7 +10,7 @@ import {formatFloat} from '@/utils/number';
 
 
 type Props = PokemonProducingRateProps & {
-  dailyRate: number,
+  dailyRate: number | undefined,
   icon?: React.ReactNode,
 };
 
@@ -24,12 +24,12 @@ export const PokemonProducingRateSingle = ({icon, dailyRate, simplified}: Props)
         {icon ?? <NextImage src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} sizes={imageIconSizes}/>}
       </div>
       {!simplified && <div>{t('Stats.Energy.Daily')}</div>}
-      <div>{formatFloat(dailyRate)}</div>
+      <div>{dailyRate ? formatFloat(dailyRate) : '-'}</div>
       {!simplified &&
         <>
           <div>/</div>
           <div>{t('Stats.Energy.Weekly')}</div>
-          <div>{formatFloat(dailyRate * 7)}</div>
+          <div>{dailyRate ? formatFloat(dailyRate * 7) : '-'}</div>
         </>}
       {simplified &&
         <>

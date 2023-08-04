@@ -1,27 +1,33 @@
 'use client';
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-
-import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {getPokemonBerryProducingRate, GetPokemonBerryProducingRateOpts} from '@/utils/game/pokemon';
+import {BerryData} from '@/types/mongo/berry';
+import {PokemonInfo} from '@/types/mongo/pokemon';
+import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
-type Props = Omit<GetPokemonBerryProducingRateOpts, 'level'> & {
+type Props = {
+  pokemon: PokemonInfo,
   berryName: string,
+  berryData: BerryData,
+  level: number,
 };
 
-export const PokemonBerryMeta = (props: Props) => {
-  const {berry, berryData, berryName} = props;
-  const [level, setLevel] = React.useState(1);
+export const PokemonBerryMeta = ({pokemon, berryName, berryData, level}: Props) => {
+  const {berry} = pokemon;
 
-  const t = useTranslations('UI.InPage.Pokedex');
-
-  const atLevel = getPokemonBerryProducingRate({level, ...props});
+  const atLevel = getBerryProducingRate({
+    level,
+    pokemon,
+    ...defaultNeutralOpts,
+    berryData,
+    isSnorlaxFavorite: false,
+  });
 
   return (
     <Flex direction="col" center className="gap-1">
@@ -34,21 +40,6 @@ export const PokemonBerryMeta = (props: Props) => {
         </div>
       </Flex>
       <Flex direction="col" className="gap-1">
-        <Flex direction="row" className="gap-1">
-          <div className="whitespace-nowrap">
-            {t('Info.PokemonLevel')}
-          </div>
-          <div>
-            {level}
-          </div>
-        </Flex>
-        <Slider
-          id="BerryEnergy"
-          value={level}
-          setValue={setLevel}
-          min={1}
-          max={berryData.energy.length}
-        />
         <PokemonProducingRate
           rate={atLevel}
           icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}

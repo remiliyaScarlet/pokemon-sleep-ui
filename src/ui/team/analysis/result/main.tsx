@@ -14,6 +14,8 @@ import {TeamAnalysisSummary} from '@/ui/team/analysis/result/summary/main';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
+  TeamAnalysisMember,
+  TeamAnalysisSlotName,
   teamAnalysisSlotName,
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
@@ -37,14 +39,27 @@ export const TeamAnalysis = (props: Props) => {
 
   const producingStats = useProducingStats(props);
 
+  const setTeamMember = React.useCallback((slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => {
+    setSetup((original) => ({
+      ...original,
+      team: {
+        ...original.team,
+        [slotName]: {
+          ...original.team[slotName],
+          ...update,
+        },
+      },
+    }));
+  }, [setSetup]);
+
   return (
     <Flex direction="row" center wrap className="gap-1.5">
       {teamAnalysisSlotName.map((slotName) => {
-        const slot = setup.team[slotName];
-        const pokemon = slot ? pokedex[slot.pokemonId] : undefined;
+        const member = setup.team[slotName];
+        const pokemon = member ? pokedex[member.pokemonId] : undefined;
         const stats = producingStats.bySlot[slotName];
 
-        const isAvailable = slot && pokemon && stats;
+        const isAvailable = member && pokemon && stats;
 
         return (
           <Flex key={slotName} direction="col" center className={classNames(
@@ -53,7 +68,7 @@ export const TeamAnalysis = (props: Props) => {
           )}>
             <button
               className="button-clickable disabled:button-disabled absolute right-1 top-1 h-5 w-5 rounded-full"
-              disabled={!slot}
+              disabled={!member}
               onClick={() => setSetup((original) => ({
                 ...original,
                 team: {
@@ -73,17 +88,9 @@ export const TeamAnalysis = (props: Props) => {
               </Link>}
             {isAvailable ?
               <TeamAnalysisPokemon
-                key={slotName} slot={slot} producingStats={stats} slotName={slotName}
-                setLevel={(newLevel: number) => setSetup((original) => ({
-                  ...original,
-                  team: {
-                    ...original.team,
-                    [slotName]: {
-                      ...original.team[slotName],
-                      level: newLevel,
-                    },
-                  },
-                }))}
+                key={slotName} member={member} producingStats={stats} slotName={slotName}
+                setLevel={(level) => setTeamMember(slotName, {level})}
+                setNature={(nature) => setTeamMember(slotName, {nature})}
                 pokemon={pokemon} berryMap={berryMap}
               /> :
               <div className="relative h-12 w-12">

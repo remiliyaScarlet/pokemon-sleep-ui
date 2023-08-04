@@ -1,4 +1,4 @@
-import {NatureEffectId} from '@/types/game/producing/nature';
+import {NatureEffectId, NatureEffectType} from '@/types/game/producing/nature';
 
 
 export const specialtyIdMap = {
@@ -7,10 +7,10 @@ export const specialtyIdMap = {
   skill: 3,
 };
 
-export const natureEffectMap: {[name in string]: NatureEffectId} = {
+export const natureEffectIdMap: {[type in NatureEffectType]: NatureEffectId} = {
   mainSkill: 1,
   exp: 2,
   energy: 3,
-  ingredient: 4,
-  frequency: 5,
+  frequencyOfIngredient: 4,
+  frequencyOfBase: 5,
 };

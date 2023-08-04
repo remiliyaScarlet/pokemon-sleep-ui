@@ -39,8 +39,8 @@ export const Pokemon = ({params}: Props) => {
   return (
     <PageLayout>
       <Flex direction="row" center wrap className="mt-2 gap-2">
-        <PokemonMeta {...props}/>
-        <I18nProvider namespaces={['Game.SleepFace', 'UI.Common', 'UI.InPage.Pokedex.Info']}>
+        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex']}>
+          <PokemonMeta {...props}/>
           <PokemonImageGallery {...props}/>
         </I18nProvider>
         <PokemonSleepStyles {...props}/>

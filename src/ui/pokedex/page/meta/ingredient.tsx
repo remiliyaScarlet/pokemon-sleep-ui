@@ -11,22 +11,26 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokemonIngredientLink} from '@/ui/pokedex/page/meta/ingredientLink';
-import {getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
+import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 
 
 type Props = {
   pokemon: PokemonInfo,
+  level: number,
   ingredientMap: IngredientMap,
 };
 
-export const PokemonIngredientMeta = ({pokemon, ingredientMap}: Props) => {
-  const t = useTranslations('Game.Food');
-
+export const PokemonIngredientMeta = ({pokemon, level, ingredientMap}: Props) => {
   const {ingredients} = pokemon;
 
-  const rate = getPokemonIngredientProducingRate({
+  const t = useTranslations('Game.Food');
+
+  const rate = getIngredientProducingRate({
+    level,
     pokemon,
-    ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
+    ...defaultNeutralOpts,
+    ingredientMap,
   });
 
   return (

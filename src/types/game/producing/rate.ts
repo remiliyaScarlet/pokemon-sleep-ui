@@ -6,3 +6,8 @@ export type ProducingRate = {
 export type ProducingRateOfItem = ProducingRate & {
   id: number
 };
+
+export type PokemonProducingRate = {
+  berry: ProducingRateOfItem,
+  ingredient: ProducingRateOfItem | null,
+};

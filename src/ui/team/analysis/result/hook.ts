@@ -17,7 +17,11 @@ import {
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
-import {getPokemonBerryProducingRate, getPokemonIngredientProducingRate} from '@/utils/game/pokemon';
+import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
+import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
+import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
+import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -39,45 +43,39 @@ const useProducingStatsOfSlot = ({
   ingredientMap,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   return React.useMemo(() => {
-    const slot = setup.team[slotName];
-    if (!slot) {
+    const member = setup.team[slotName];
+    if (!member) {
       return null;
     }
 
-    const pokemon = pokedex[slot.pokemonId];
+    const pokemon = pokedex[member.pokemonId];
     if (!pokemon) {
       return null;
     }
 
-    const level = slot.level;
-    const {berry, stats, ingredients} = pokemon;
-    const berryData = berryMap[berry.id];
-    const ingredient = ingredients.fixed;
+    const level = member.level;
+    const berryData = berryMap[pokemon.berry.id];
+    const producingRateOpts: GetProducingRateChangeableOpts = {
+      ...defaultNeutralOpts,
+      natureId: member.nature,
+    };
 
     const overallMultiplier = 1 + (setup.bonus.overall / 100);
 
     return {
-      berry: {
-        id: berry.id,
-        ...getPokemonBerryProducingRate({
-          frequency: stats.frequency,
-          level,
-          berry,
-          berryData,
-          multiplier: (snorlaxFavorite[berryData.id] ? 2 : 1) * overallMultiplier,
-        }),
-      },
-      ingredient: (ingredient ?
-        {
-          id: ingredient,
-          ...getPokemonIngredientProducingRate({
-            pokemon,
-            ingredientData: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
-            multiplier: (1 + (setup.bonus.ingredient / 100)) * overallMultiplier,
-          }),
-        } :
-        null
-      ),
+      berry: applyEnergyMultiplier(overallMultiplier, getBerryProducingRate({
+        level,
+        pokemon,
+        ...producingRateOpts,
+        isSnorlaxFavorite: snorlaxFavorite[berryData.id] ?? false,
+        berryData,
+      })),
+      ingredient: applyEnergyMultiplier(overallMultiplier, getIngredientProducingRate({
+        level,
+        pokemon,
+        ...producingRateOpts,
+        ingredientMap,
+      })),
     };
   }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
 };

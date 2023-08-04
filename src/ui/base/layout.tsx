@@ -15,7 +15,7 @@ type Props = {
 export const PageLayout = ({announcement = true, children}: React.PropsWithChildren<Props>) => {
   return (
     <main className={classNames(
-      'transform-smooth flex min-h-full w-full flex-col',
+      'transform-smooth flex min-h-screen w-full flex-col',
       'bg-gradient-radial from-slate-200 to-slate-300 dark:from-slate-800 dark:to-slate-950',
       'text-neutral-900 dark:text-neutral-100',
     )}>
