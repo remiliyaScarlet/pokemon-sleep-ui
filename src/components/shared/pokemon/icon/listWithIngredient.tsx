@@ -73,7 +73,7 @@ export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) 
                 />
               </Flex>
               <Link href={`/pokedex/${id}`} className="button-clickable">
-                <Flex direction="row" className="h-full items-center gap-1.5 p-1.5">
+                <Flex direction="row" className="h-full items-center gap-1.5 p-1.5 opacity-60">
                   <IconWithInfo
                     imageSrc={`/images/pokemon/icons/${id}.png`}
                     imageAlt={t(`PokemonName.${id}`)}
