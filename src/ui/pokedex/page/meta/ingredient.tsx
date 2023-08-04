@@ -47,7 +47,7 @@ export const PokemonIngredientMeta = ({pokemon, level, ingredientMap}: Props) =>
           <div className="h-5 w-5">
             <PokemonIngredientTypeIcon type="random"/>
           </div>
-          <Flex direction="row" className="gap-1">
+          <Flex direction="row" center wrap className="gap-1">
             {ingredients.random ?
               ingredients.random.map((ingredient) => (
                 <PokemonIngredientLink key={ingredient} id={ingredient}/>

@@ -12,6 +12,7 @@ import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
 import {PokemonIngredientMeta} from '@/ui/pokedex/page/meta/ingredient';
+import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {classNames} from '@/utils/react';
@@ -39,7 +40,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   const berryName = t(`Berry.${berry.id}`);
 
   return (
-    <Flex direction="col" center className="info-section-md-fit">
+    <Flex direction="col" center className="info-section-md-fit md:gap-y-3">
       <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
         <div className="relative h-8 w-8">
           <NextImage src={`/images/type/${type}.png`} alt={name} sizes={imageSmallIconSizes}/>
@@ -52,70 +53,51 @@ export const PokemonMeta = (props: PokemonProps) => {
         </div>
       </Flex>
       <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
-      <table className="border-separate border-spacing-3">
-        <tbody>
-          <tr>
-            <td className={metaTitleClass}>
-              {t2('Info.SleepType')}
-            </td>
-            <td className="text-lg">
-              <Flex direction="row" className="gap-1" center>
-                <div className={classNames('h-5 w-5 rounded-full', sleepTypeBgClass[sleepType])}/>
-                <div className={sleepTypeTextClass[sleepType]}>
-                  {t(`SleepType.${sleepType}`)}
-                </div>
-              </Flex>
-            </td>
-          </tr>
-          <tr>
-            <td className={metaTitleClass}>
-              {t2('Info.Specialty')}
-            </td>
-            <td className={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}>
-              <PokemonSpecialty specialty={specialty} dimension="h-5 w-5"/>
-            </td>
-          </tr>
-          <tr>
-            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.berry ? 'bg-blink' : '')}>
-              {t2('Info.Berry')}
-            </td>
-            <td>
-              <PokemonBerryMeta pokemon={pokemon} level={level} berryData={berryData} berryName={berryName}/>
-            </td>
-          </tr>
-          <tr>
-            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.ingredient ? 'bg-blink' : '')}>
-              {t2('Info.Ingredient')}
-            </td>
-            <td>
-              <PokemonIngredientMeta pokemon={pokemon} level={level} ingredientMap={ingredientMap}/>
-            </td>
-          </tr>
-          <tr>
-            <td className={classNames(metaTitleClass, specialty === specialtyIdMap.skill ? 'bg-blink' : '')}>
-              {t2('Info.MainSkill')}
-            </td>
-            <td>
-              <Flex direction="col">
-                <div className="text-lg">
-                  {t(`MainSkill.Name.${skill}`)}
-                </div>
-                <div className="text-xs text-slate-500 dark:text-slate-400">
-                  {t(`MainSkill.Description.${skill}`)}
-                </div>
-              </Flex>
-            </td>
-          </tr>
-          <tr>
-            <td className={metaTitleClass}>
-              {t2('Info.Stats')}
-            </td>
-            <td className="flex justify-center">
-              <PokemonStats {...props}/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <PokemonMetaSection title={t2('Info.SleepType')} contentClassName="text-lg">
+        <Flex direction="row" className="gap-1" center>
+          <div className={classNames('h-5 w-5 rounded-full', sleepTypeBgClass[sleepType])}/>
+          <div className={sleepTypeTextClass[sleepType]}>
+            {t(`SleepType.${sleepType}`)}
+          </div>
+        </Flex>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.Specialty')}
+        contentClassName={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}
+      >
+        <PokemonSpecialty specialty={specialty} dimension="h-5 w-5"/>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.Berry')}
+        titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.berry ? 'bg-blink' : '')}
+      >
+        <PokemonBerryMeta pokemon={pokemon} level={level} berryData={berryData} berryName={berryName}/>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.Ingredient')}
+        titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.ingredient ? 'bg-blink' : '')}
+      >
+        <PokemonIngredientMeta pokemon={pokemon} level={level} ingredientMap={ingredientMap}/>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.MainSkill')}
+        titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.skill ? 'bg-blink' : '')}
+      >
+        <Flex direction="col">
+          <div className="text-lg">
+            {t(`MainSkill.Name.${skill}`)}
+          </div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">
+            {t(`MainSkill.Description.${skill}`)}
+          </div>
+        </Flex>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.Stats')}
+        contentClassName="flex justify-center"
+      >
+        <PokemonStats {...props}/>
+      </PokemonMetaSection>
     </Flex>
   );
 };
