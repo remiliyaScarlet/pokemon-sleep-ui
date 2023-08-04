@@ -34,13 +34,7 @@ export const MealExp = ({meal, ingredientMap}: MealCommonProps) => {
           {level}
         </div>
       </Flex>
-      <Slider
-        id={`mealExp-${id}`}
-        value={level}
-        setValue={setLevel}
-        min={1}
-        max={levels.length}
-      />
+      <Slider id={`recipeLevel-${id}`} value={level} setValue={setLevel} min={1} max={levels.length}/>
       <Flex direction="row" className="ml-auto items-center justify-end gap-1">
         <div className="relative h-4 w-4">
           <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>

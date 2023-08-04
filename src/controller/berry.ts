@@ -26,6 +26,16 @@ export const getAllBerryData = async (): Promise<BerryDataMap> => {
   return ret;
 };
 
+export const getPokemonMaxLevelByBerry = async (): Promise<number> => {
+  const data = await (await getCollection()).findOne({});
+
+  if (!data) {
+    throw new Error('No berry data available for getting max pokemon leevel');
+  }
+
+  return data.energy.length;
+};
+
 const addBerryDataIndex = async () => {
   const collection = await getCollection();
 

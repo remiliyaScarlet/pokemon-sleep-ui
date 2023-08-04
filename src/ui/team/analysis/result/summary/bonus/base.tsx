@@ -40,13 +40,7 @@ export const TeamAnalysisBonusSlider = ({
           %
         </div>
       </Flex>
-      <Slider
-        id={`${id}-slider`}
-        value={bonus}
-        setValue={setBonus}
-        min={min}
-        max={max}
-      />
+      <Slider id={`${id}-slider`} value={bonus} setValue={setBonus} min={min} max={max}/>
     </Flex>
   );
 };

@@ -3,6 +3,8 @@ import React from 'react';
 import {IngredientPageParams} from '@/app/[locale]/ingredient/[id]/page';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
+import {I18nProvider} from '@/contexts/i18n';
+import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonByIngredient} from '@/controller/pokemon';
@@ -22,6 +24,7 @@ export const IngredientPage = ({params}: Props) => {
   const ingredient = ingredientMap[idNumber];
   const obtainablePokemon = React.use(getPokemonByIngredient(ingredient?.id));
   const cookableMeals = React.use(getMealByIngredient(ingredient?.id));
+  const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
   if (!ingredient) {
     return <Loading text="Ingredient"/>;
@@ -33,7 +36,13 @@ export const IngredientPage = ({params}: Props) => {
         <IngredientMeta {...ingredient}/>
         <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>
-      <IngredientObtainablePokemon obtainablePokemon={obtainablePokemon} ingredientMap={ingredientMap}/>
+      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex']}>
+        <IngredientObtainablePokemon
+          pokemonMaxLevel={pokemonMaxLevel}
+          obtainablePokemon={obtainablePokemon}
+          ingredientMap={ingredientMap}
+        />
+      </I18nProvider>
     </PageLayout>
   );
 };

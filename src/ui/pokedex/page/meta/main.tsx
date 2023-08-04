@@ -3,9 +3,9 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
@@ -51,21 +51,7 @@ export const PokemonMeta = (props: PokemonProps) => {
           #{id}
         </div>
       </Flex>
-      <Flex direction="row" className="justify-end gap-1">
-        <div className="whitespace-nowrap">
-          {t2('Info.PokemonLevel')}
-        </div>
-        <div>
-          {level}
-        </div>
-      </Flex>
-      <Slider
-        id="Level"
-        value={level}
-        setValue={setLevel}
-        min={1}
-        max={berryData.energy.length}
-      />
+      <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
       <table className="border-separate border-spacing-3">
         <tbody>
           <tr>
