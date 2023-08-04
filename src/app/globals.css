@@ -2,26 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: theme('colors.neutral.900');
-  --background-start-rgb: theme('colors.slate.200');
-  --background-end-rgb: theme('colors.slate.300');
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: theme('colors.neutral.100');
-    --background-start-rgb: theme('colors.slate.800');
-    --background-end-rgb: theme('colors.slate.950');
-  }
-}
-
-body {
-  color: var(--foreground-rgb);
-  background-image: radial-gradient(var(--background-start-rgb), var(--background-end-rgb));
-}
 
 @layer base {
+  .theme-light {
+    --foreground-rgb: theme('colors.neutral.900');
+    --background-start-rgb: theme('colors.slate.200');
+    --background-end-rgb: theme('colors.slate.300');
+  }
+  
+  .theme-dark {
+    --foreground-rgb: theme('colors.neutral.100');
+    --background-start-rgb: theme('colors.slate.900');
+    --background-end-rgb: theme('colors.slate.950');
+  }
+  
+  :root {
+    @apply theme-light;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      @apply theme-dark;
+    }
+  }
+  
+  html {
+    &.light {
+      @apply theme-light;
+    }
+    
+    &.dark {
+      @apply theme-dark;
+    }
+  }
+  
+  body {
+    color: var(--foreground-rgb);
+    background-image: radial-gradient(var(--background-start-rgb), var(--background-end-rgb));
+  }
+  
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     appearance: none;
