@@ -17,7 +17,7 @@ export const NavHomepage = () => {
 
   return (
     <Link href="/" className={classNames(
-      'transform-smooth sticky left-0 z-50 flex flex-row items-center gap-1 rounded-lg px-1.5',
+      'transform-smooth sticky left-0 flex flex-row items-center gap-1 rounded-lg px-1.5',
       'text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
       styles['nav-height'],
     )}>
