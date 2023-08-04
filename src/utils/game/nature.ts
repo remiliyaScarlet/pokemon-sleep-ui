@@ -19,12 +19,28 @@ export const getNatureMultiplier = ({id, effect}: GetNatureMultiplierOpts): numb
     return 1;
   }
 
+  const isFrequencyEffect = effect === 'frequencyOfBase' || effect === 'frequencyOfIngredient';
+
+  const isExpOrStaminaEffect = effect === 'energy' || effect === 'exp';
+
   if (natureDataToUse.buff === natureEffectIdMap[effect]) {
-    return 0.9;
+    if (isFrequencyEffect) {
+      return 0.9;
+    }
+
+    if (isExpOrStaminaEffect) {
+      return 0.8;
+    }
   }
 
   if (natureDataToUse.nerf === natureEffectIdMap[effect]) {
-    return 1.1;
+    if (isFrequencyEffect) {
+      return 1.1;
+    }
+
+    if (isExpOrStaminaEffect) {
+      return 1.2;
+    }
   }
 
   return 1;
