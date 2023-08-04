@@ -34,7 +34,10 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
         isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
       )}
     >
-      <NextImage src={imageSrc} alt={alt} className="invert-hoverable" sizes={imageSmallIconSizes}/>
+      <NextImage
+        src={imageSrc} alt={alt} sizes={imageSmallIconSizes}
+        className="invert-hoverable transition-transform group-hover:scale-125 motion-reduce:transform-none"
+      />
     </Link>
   );
 };
