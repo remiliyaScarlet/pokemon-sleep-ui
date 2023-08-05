@@ -162,5 +162,9 @@
         "UnlockedRecipes": "已開放食譜"
       }
     }
+  },
+  "UserControl": {
+    "Login": "登入",
+    "Logout": "登出"
   }
 }

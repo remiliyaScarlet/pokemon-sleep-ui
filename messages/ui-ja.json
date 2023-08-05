@@ -162,5 +162,9 @@
         "UnlockedRecipes": "レシピ解放"
       }
     }
+  },
+  "UserControl": {
+    "Login": "ログイン",
+    "Logout": "ログアウト"
   }
 }

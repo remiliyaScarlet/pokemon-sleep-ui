@@ -162,5 +162,9 @@
         "UnlockedRecipes": "새로운 레시피 개방"
       }
     }
+  },
+  "UserControl": {
+    "Login": "로그인",
+    "Logout": "로그아웃"
   }
 }

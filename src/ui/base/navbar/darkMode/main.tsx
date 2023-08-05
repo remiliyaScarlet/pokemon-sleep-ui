@@ -7,8 +7,6 @@ import {DarkModeSwitch} from 'react-toggle-dark-mode';
 import {useMounted} from '@/hooks/mounted';
 import {classNames} from '@/utils/react';
 
-import styles from '../main.module.css';
-
 
 export const ThemeSwitcher = () => {
   const {mounted} = useMounted();
@@ -23,7 +21,7 @@ export const ThemeSwitcher = () => {
   };
 
   return (
-    <div className={classNames('w-8 group button-clickable', styles['nav-button'])}>
+    <div className="button-clickable-bg nav-button group w-8">
       <DarkModeSwitch
         className={classNames(
           'h-full w-full',

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   .theme-light {
     --foreground-rgb: theme('colors.neutral.900');
@@ -57,6 +56,7 @@
   }
   
   /* region Button styling (button-*) */
+  
   .button-border {
     @apply border border-slate-700 dark:border-slate-300;
   }
@@ -70,6 +70,7 @@
   }
   
   /* endregion */
+  
   .meal-active {
     @apply ring-1 ring-inset;
   }
@@ -125,6 +126,7 @@
   }
   
   /* region Fixed count of element in row (width-with-gap-*) */
+  
   .width-with-gap-sm {
     --gap: theme('gap[1.5]') !important;
     
@@ -164,6 +166,7 @@
   /* endregion */
 
   /* region Info section styling (info-*) */
+  
   .info-in-image {
     @apply rounded-full bg-slate-400/80 dark:bg-slate-500/80;
   }
@@ -184,6 +187,7 @@
   /* endregion */
 
   /* region Image inverting (invert-*) */
+  
   .invert-on-light {
     @apply invert dark:invert-0;
   }
@@ -199,6 +203,7 @@
   /* endregion */
 
   /* region Button styling (button-*) */
+  
   .button-base {
     @apply rounded-lg transform-smooth;
   }
@@ -232,8 +237,9 @@
   }
   
   /* endregion */
-
+  
   /* region Toggle button styling (button-toggle-*) */
+  
   .button-toggle-inactive-hover {
     @apply hover:bg-slate-400 dark:hover:bg-slate-500 hover:text-slate-900 dark:hover:text-slate-100;
   }
@@ -261,6 +267,7 @@
   /* endregion */
 
   /* region Input row styling (input-row-*) */
+  
   .input-row-normal {
     @apply bg-slate-50/40 dark:bg-slate-700/20;
   }
@@ -272,6 +279,7 @@
   /* endregion */
 
   /* region Meal type styling (meal-*) */
+  
   .meal-bg-curry {
     @apply bg-orange-300/40 hover:bg-orange-400/70 dark:bg-orange-700/40 hover:dark:bg-orange-700/90;
   }
@@ -323,6 +331,7 @@
   /* endregion */
 
   /* region Miscellaneous text styling (text-*) */
+  
   .text-shadow-preset {
     @apply shadow-slate-200 text-shadow dark:shadow-slate-900;
   }
@@ -334,6 +343,7 @@
   /* endregion */
 
   /* region Blink styling (bg-blink-on-*) */
+  
   .bg-blink-light {
     @apply bg-blink-base;
     
@@ -353,8 +363,25 @@
   /* endregion */
 
   /* region Border styling (border-*) */
+  
   .border-button-clickable {
     @apply border-slate-50/70 dark:border-slate-700/50;
+  }
+  
+  /* endregion */
+  
+  /* region Navbar styling (nav-*) */
+  
+  .nav-height {
+    @apply h-8;
+  }
+  
+  .nav-button {
+    @apply nav-height py-1;
+  }
+  
+  .nav-button-text {
+    @apply nav-button button-clickable-bg text-sm whitespace-nowrap px-2.5;
   }
   
   /* endregion */

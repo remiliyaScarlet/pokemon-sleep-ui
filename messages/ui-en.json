@@ -162,5 +162,9 @@
         "UnlockedRecipes": "Recipe Unlocked"
       }
     }
+  },
+  "UserControl": {
+    "Login": "Login",
+    "Logout": "Logout"
   }
 }

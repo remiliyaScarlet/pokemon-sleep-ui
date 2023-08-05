@@ -116,6 +116,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         },
       },
     },
+    UserControl: {
+      Login: string,
+      Logout: string,
+    },
   },
   Game: {
     Berry: GameObjectIdToString,

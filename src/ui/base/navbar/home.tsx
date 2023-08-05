@@ -7,8 +7,6 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {classNames} from '@/utils/react';
 
-import styles from './main.module.css';
-
 
 export const NavHomepage = () => {
   const t = useTranslations('UI.Metadata');
@@ -17,11 +15,10 @@ export const NavHomepage = () => {
 
   return (
     <Link href="/" className={classNames(
-      'transform-smooth sticky left-0 flex flex-row items-center gap-1 rounded-lg px-1.5',
+      'transform-smooth nav-height sticky left-0 flex flex-row items-center gap-1 rounded-lg px-1.5',
       'text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
-      styles['nav-height'],
     )}>
-      <div className={classNames(styles['nav-height'], 'w-8 relative')}>
+      <div className="nav-height relative w-8">
         <NextImage src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} sizes={imageSmallIconSizes}/>
       </div>
       <div className="whitespace-nowrap">
