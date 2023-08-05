@@ -37,6 +37,9 @@ module.exports = {
         DEFAULT: '0 0 0.4rem var(--tw-shadow-color), '.repeat(4).slice(0, -2),
         lg: '0 0 0.4rem var(--tw-shadow-color), '.repeat(7).slice(0, -2),
       },
+      scale: {
+        120: '1.2',
+      },
     },
   },
   plugins: [
