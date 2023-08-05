@@ -5,10 +5,10 @@ import googleProvider from 'next-auth/providers/google';
 import mongoPromise from '@/lib/mongodb';
 
 
-const cookieDomain = process.env.NEXTAUTH_URL;
+const cookieDomain = process.env.NEXTAUTH_COOKIE_DOMAIN;
 
 if (!cookieDomain) {
-  throw new Error('Invalid/missing environment variable `NEXTAUTH_URL`.');
+  throw new Error('Invalid/missing environment variable `NEXTAUTH_COOKIE_DOMAIN`.');
 }
 
 const useSecureCookies = cookieDomain.startsWith('https://');
