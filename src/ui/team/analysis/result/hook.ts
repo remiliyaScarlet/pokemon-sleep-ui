@@ -61,6 +61,7 @@ const useProducingStatsOfSlot = ({
     };
 
     const overallMultiplier = 1 + (setup.bonus.overall / 100);
+    const ingredientMultiplier = 1 + (setup.bonus.ingredient / 100);
 
     return {
       berry: applyEnergyMultiplier(overallMultiplier, getBerryProducingRate({
@@ -70,7 +71,7 @@ const useProducingStatsOfSlot = ({
         isSnorlaxFavorite: snorlaxFavorite[berryData.id] ?? false,
         berryData,
       })),
-      ingredient: applyEnergyMultiplier(overallMultiplier, getIngredientProducingRate({
+      ingredient: applyEnergyMultiplier(overallMultiplier * ingredientMultiplier, getIngredientProducingRate({
         level,
         pokemon,
         ...producingRateOpts,
