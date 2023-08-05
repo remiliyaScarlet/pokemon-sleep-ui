@@ -1,5 +1,6 @@
 import React from 'react';
 
+import HomeIcon from '@heroicons/react/24/solid/HomeIcon';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -16,14 +17,18 @@ export const NavHomepage = () => {
   return (
     <Link href="/" className={classNames(
       'transform-smooth nav-height sticky left-0 flex flex-row items-center gap-1 rounded-lg px-1.5',
-      'text-slate-950 hover:bg-slate-400/30 dark:text-slate-200',
+      'button-clickable-bg',
     )}>
       <div className="nav-height relative w-8">
         <NextImage src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} sizes={imageSmallIconSizes}/>
       </div>
       <div className="whitespace-nowrap">
         <span className="hidden md:block">{t('SiteName')}</span>
-        <span className="block md:hidden">{t('Home.Title')}</span>
+        <span className="block md:hidden">
+          <div className="h-6 w-6">
+            <HomeIcon/>
+          </div>
+        </span>
       </div>
     </Link>
   );
