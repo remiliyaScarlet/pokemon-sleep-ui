@@ -12,9 +12,7 @@ export const Providers = ({children}: React.PropsWithChildren) => {
 
   if (!mounted) {
     return (
-      <div className="h-screen">
-        <Loading/>
-      </div>
+      <Loading/>
     );
   }
 

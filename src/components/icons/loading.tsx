@@ -10,7 +10,7 @@ type Props = {
 
 export const Loading = ({text}: Props) => {
   return (
-    <Flex direction="col" center className="h-full gap-1">
+    <Flex direction="col" center className="h-screen gap-1">
       <div className="h-6 w-6">
         <svg
           aria-hidden="true"
