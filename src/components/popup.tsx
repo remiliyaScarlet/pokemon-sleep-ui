@@ -29,7 +29,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-white/75 transition-opacity dark:bg-black/75"/>
+          <div className="fixed inset-0 bg-white/75 dark:bg-black/75"/>
         </Transition.Child>
         <div className="transform-smooth fixed inset-0 flex items-end justify-center p-4 text-center sm:items-center">
           <Transition.Child
@@ -42,7 +42,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className={classNames(
-              'rounded-lg p-3 transition-all sm:max-w-2xl',
+              'rounded-lg p-3 sm:max-w-2xl',
               'bg-slate-200 dark:bg-gray-950 ring-1 ring-inset ring-slate-400 dark:ring-gray-600',
               className,
             )}>

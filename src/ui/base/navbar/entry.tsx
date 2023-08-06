@@ -33,7 +33,7 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
     >
       <NextImage
         src={imageSrc} alt={alt} sizes={imageSmallIconSizes}
-        className="invert-hoverable transition-transform group-hover:scale-120 motion-reduce:transform-none"
+        className="invert-hoverable transform-smooth group-hover:scale-120 motion-reduce:transform-none"
       />
     </Link>
   );

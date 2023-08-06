@@ -73,6 +73,10 @@
   
   /* endregion */
   
+  .invert-base {
+    @apply duration-200;
+  }
+  
   .meal-active {
     @apply ring-1 ring-inset;
   }
@@ -100,7 +104,7 @@
 
 @layer utilities {
   .transform-smooth {
-    @apply transform-gpu transition-colors;
+    @apply transform-gpu transition-all;
   }
   
   table.table-unlock {
@@ -201,11 +205,11 @@
   /* region Image inverting (invert-*) */
   
   .invert-on-light {
-    @apply invert dark:invert-0;
+    @apply invert-base invert dark:invert-0;
   }
   
   .invert-on-dark {
-    @apply dark:invert;
+    @apply invert-base dark:invert;
   }
   
   .invert-hoverable {
