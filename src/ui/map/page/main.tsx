@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {MapPageParams} from '@/app/[locale]/map/[id]/page';
-import {Loading} from '@/components/icons/loading';
+import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonAsMap} from '@/controller/pokemon';
@@ -31,7 +31,7 @@ export const MapPage = ({params}: Props) => {
   const t = useTranslations('Game.Field');
 
   if (!snorlaxRank) {
-    return <Loading text="Snorlax"/>;
+    return <Failed text="Snorlax"/>;
   }
 
   const props: MapCommonProps = {

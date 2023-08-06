@@ -30,7 +30,7 @@ export const getPokemonMaxLevelByBerry = async (): Promise<number> => {
   const data = await (await getCollection()).findOne({});
 
   if (!data) {
-    throw new Error('No berry data available for getting max pokemon leevel');
+    throw new Error('No berry data available for getting max pokemon level');
   }
 
   return data.energy.length;

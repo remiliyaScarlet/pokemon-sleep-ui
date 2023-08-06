@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {IngredientPageParams} from '@/app/[locale]/ingredient/[id]/page';
-import {Loading} from '@/components/icons/loading';
+import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
@@ -27,7 +27,7 @@ export const IngredientPage = ({params}: Props) => {
   const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
   if (!ingredient) {
-    return <Loading text="Ingredient"/>;
+    return <Failed text="Ingredient"/>;
   }
 
   return (

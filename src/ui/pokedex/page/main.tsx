@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
-import {Loading} from '@/components/icons/loading';
+import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
@@ -27,11 +27,11 @@ export const Pokemon = ({params}: Props) => {
   const ingredientMap = React.use(getAllIngredients());
 
   if (!pokemon) {
-    return <Loading text="Pokemon"/>;
+    return <Failed text="Pokemon"/>;
   }
 
   if (!berryData) {
-    return <Loading text="Berry"/>;
+    return <Failed text="Berry"/>;
   }
 
   const props: PokemonProps = {pokemon, sleepStyles, berryData, ingredientMap};

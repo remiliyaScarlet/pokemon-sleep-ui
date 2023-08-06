@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {MealPageParams} from '@/app/[locale]/meal/[id]/page';
-import {Loading} from '@/components/icons/loading';
+import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -26,7 +26,7 @@ export const MealPage = ({params}: Props) => {
   const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
   if (!meal) {
-    return <Loading text="Meal"/>;
+    return <Failed text="Meal"/>;
   }
 
   const props: MealCommonProps = {meal, ingredientMap, pokedex, pokemonMaxLevel};
