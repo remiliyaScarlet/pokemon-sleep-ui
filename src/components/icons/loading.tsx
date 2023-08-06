@@ -8,9 +8,17 @@ type Props = {
   text?: string,
 };
 
-export const Loading = ({text}: Props) => {
+export const LoadingFullScreen = ({text}: Props) => {
   return (
-    <Flex direction="col" center className="h-screen gap-1">
+    <div className="h-screen">
+      <LoadingIcon text={text}/>
+    </div>
+  );
+};
+
+export const LoadingIcon = ({text}: Props) => {
+  return (
+    <Flex direction="col" center className="h-full gap-1">
       <div className="h-6 w-6">
         <svg
           aria-hidden="true"
