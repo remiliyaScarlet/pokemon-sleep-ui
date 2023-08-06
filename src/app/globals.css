@@ -171,6 +171,10 @@
     --items-count: 8;
   }
   
+  .width-with-gap-12-items {
+    --items-count: 12;
+  }
+  
   /* endregion */
 
   /* region Info section styling (info-*) */
@@ -345,7 +349,19 @@
   }
   
   .text-energy {
-    @apply text-amber-700 dark:text-amber-400
+    @apply text-amber-700 dark:text-amber-400;
+  }
+  
+  .text-rare {
+    @apply text-amber-600 dark:text-amber-400;
+  }
+  
+  .text-super-rare {
+    @apply text-rose-600 dark:text-rose-400;
+  }
+  
+  .text-ordinary {
+    @apply text-slate-400 dark:text-slate-500;
   }
   
   /* endregion */

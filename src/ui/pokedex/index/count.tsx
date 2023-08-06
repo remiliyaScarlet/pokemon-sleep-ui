@@ -17,18 +17,10 @@ export const PokedexResultCount = ({data, inclusionMap}: Props) => {
 
   return (
     <Flex direction="row" className="justify-end gap-1">
-      <div>
-        {selected}
-      </div>
-      <div>
-        /
-      </div>
-      <div>
-        {total}
-      </div>
-      <div>
-        ({(selected / total * 100).toFixed(2)}%)
-      </div>
+      <div>{selected}</div>
+      <div>/</div>
+      <div>{total}</div>
+      <div>({(selected / total * 100).toFixed(2)}%)</div>
     </Flex>
   );
 };

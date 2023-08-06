@@ -15,7 +15,6 @@ export const AnalysisIndexInput = ({filter, setFilter, pokedex}: Props) => {
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}
-          style={type === 'sleepType' || type === 'ingredientFixed' ? 'highlight' : 'normal'}
           type={type}
           filterKey={type}
           pokemon={pokedex}

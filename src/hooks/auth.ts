@@ -13,7 +13,7 @@ export const useUpdateUserData = (opts: UpdateUserDataOpts): UpdateUserData => {
     const timeoutId = setTimeout(() => {
       update(opts)
         .catch((error) => console.error(`Failed to update user data of type ${opts.type}`, error));
-    }, 1000);
+    }, 500);
 
     return () => clearTimeout(timeoutId);
   }, [opts.data]);
