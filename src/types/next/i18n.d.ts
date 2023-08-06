@@ -27,6 +27,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       SiteName: string,
       Home: I18nMetadata,
       Pokedex: PageWithIndividual,
+      Analysis: PageWithIndividual,
       Cooking: I18nMetadata,
       Meal: PageWithIndividual,
       Ingredient: PageWithIndividual,
@@ -36,16 +37,12 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Index: I18nMetadata,
         Maker: I18nMetadata,
       },
-      Skill: PageWithIndividual,
       Info: {
         Index: I18nMetadata,
         Pot: I18nMetadata,
         Nature: I18nMetadata,
       },
-      Rarity: {
-        Databased: I18nMetadata,
-        Index: I18nMetadata,
-      },
+      Skill: PageWithIndividual,
       Incense: PageWithIndividual,
     },
     InPage: {

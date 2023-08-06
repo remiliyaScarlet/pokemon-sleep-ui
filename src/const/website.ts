@@ -17,6 +17,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Pokedex.Index.Title',
   },
   {
+    href: '/analysis',
+    imageSrc: '/images/generic/analysis.png',
+    i18nTextId: 'Analysis.Index.Title',
+  },
+  {
     href: '/cooking',
     imageSrc: '/images/generic/pot.png',
     i18nTextId: 'Cooking.Title',
@@ -45,12 +50,6 @@ export const navEntries: NavEntry[] = [
     href: '/info',
     imageSrc: '/images/generic/info.png',
     i18nTextId: 'Info.Index.Title',
-  },
-  {
-    href: '/rarity',
-    imageSrc: '/images/generic/flash.png',
-    i18nTextId: 'Rarity.Index.Title',
-    disabled: true,
   },
   {
     href: '/skill',

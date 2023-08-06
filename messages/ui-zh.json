@@ -21,6 +21,14 @@
         "Title": "寶可夢 - {name}"
       }
     },
+    "Analysis": {
+      "Index": {
+        "Title": "寶可夢分析"
+      },
+      "Page":  {
+        "Title": "寶可夢分析 - {name}"
+      }
+    },
     "Cooking": {
       "Title": "製作料理"
     },
@@ -59,14 +67,6 @@
         "Title": "自動組隊"
       }
     },
-    "Skill": {
-      "Index": {
-        "Title": "技能"
-      },
-      "Page": {
-        "Title": "技能 - {name}"
-      }
-    },
     "Info": {
       "Index": {
         "Title": "其他"
@@ -78,12 +78,12 @@
         "Title": "性格"
       }
     },
-    "Rarity": {
-      "Databased":  {
-        "Title": "稀有度分析 (客觀)"
-      },
+    "Skill": {
       "Index": {
-        "Title": "稀有度分析"
+        "Title": "技能"
+      },
+      "Page": {
+        "Title": "技能 - {name}"
       }
     },
     "Incense": {

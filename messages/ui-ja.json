@@ -21,6 +21,14 @@
         "Title": "ポケモン - {name}"
       }
     },
+    "Analysis": {
+      "Index": {
+        "Title": "ポケモン分析"
+      },
+      "Page":  {
+        "Title": "ポケモン分析 - {name}"
+      }
+    },
     "Cooking": {
       "Title": "料理を作る"
     },
@@ -59,14 +67,6 @@
         "Title": "おまかせ編成"
       }
     },
-    "Skill": {
-      "Index": {
-        "Title": "スキル"
-      },
-      "Page": {
-        "Title": "スキル - {name}"
-      }
-    },
     "Info": {
       "Index": {
         "Title": "その他"
@@ -78,12 +78,12 @@
         "Title": "せいかく"
       }
     },
-    "Rarity": {
+    "Skill": {
       "Index": {
-        "Title": "レア度分析"
+        "Title": "スキル"
       },
-      "Databased":  {
-        "Title": "レア度分析 (客観的)"
+      "Page": {
+        "Title": "スキル - {name}"
       }
     },
     "Incense": {

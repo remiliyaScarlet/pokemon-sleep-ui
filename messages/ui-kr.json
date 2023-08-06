@@ -21,6 +21,14 @@
         "Title": "포켓몬 - {name}"
       }
     },
+    "Analysis": {
+      "Index": {
+        "Title": "포켓몬 분석"
+      },
+      "Page":  {
+        "Title": "포켓몬 분석 - {name}"
+      }
+    },
     "Cooking": {
       "Title": "요리한다"
     },
@@ -59,14 +67,6 @@
         "Title": "자동 편성"
       }
     },
-    "Skill": {
-      "Index": {
-        "Title": "스킬"
-      },
-      "Page": {
-        "Title": "스킬 - {name}"
-      }
-    },
     "Info": {
       "Index": {
         "Title": "기타"
@@ -78,12 +78,12 @@
         "Title": "성격"
       }
     },
-    "Rarity": {
+    "Skill": {
       "Index": {
-        "Title": "레어도 분석"
+        "Title": "스킬"
       },
-      "Databased":  {
-        "Title": "레어도 분석 (객관)"
+      "Page": {
+        "Title": "스킬 - {name}"
       }
     },
     "Incense": {

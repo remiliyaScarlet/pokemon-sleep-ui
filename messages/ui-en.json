@@ -21,6 +21,14 @@
         "Title": "Pokémon - {name}"
       }
     },
+    "Analysis": {
+      "Index": {
+        "Title": "Pokémon Analysis"
+      },
+      "Page":  {
+        "Title": "Pokémon Analysis - {name}"
+      }
+    },
     "Cooking": {
       "Title": "Cooking"
     },
@@ -59,14 +67,6 @@
         "Title": "Team Building Help"
       }
     },
-    "Skill": {
-      "Index": {
-        "Title": "Skill"
-      },
-      "Page": {
-        "Title": "Skill - {name}"
-      }
-    },
     "Info": {
       "Index": {
         "Title": "Other"
@@ -78,12 +78,12 @@
         "Title": "Nature"
       }
     },
-    "Rarity": {
-      "Databased":  {
-        "Title": "Rarity Analysis (Data-based)"
-      },
+    "Skill": {
       "Index": {
-        "Title": "Rarity Analysis"
+        "Title": "Skill"
+      },
+      "Page": {
+        "Title": "Skill - {name}"
       }
     },
     "Incense": {
