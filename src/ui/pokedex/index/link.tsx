@@ -26,7 +26,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
         href={`/pokedex/${id}`}
         className={classNames(
           'group inline-block h-full w-full rounded-lg',
-          'bg-slate-400/50 hover:bg-slate-500/70 dark:bg-slate-600/50 hover:dark:bg-slate-500',
+          'bg-slate-50 hover:bg-slate-100/50 dark:bg-slate-600/50 hover:dark:bg-slate-600',
         )}
       >
         <Flex direction="row" className="h-full items-center justify-end gap-1.5">
