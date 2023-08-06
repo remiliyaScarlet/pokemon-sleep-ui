@@ -5,8 +5,7 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageGallerySizes} from '@/styles/image';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {useProducingStats} from '@/ui/team/analysis/result/hook';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon/main';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/result/summary/grouped/main';
@@ -93,9 +92,7 @@ export const TeamAnalysis = (props: Props) => {
                 setNature={(nature) => setTeamMember(slotName, {nature})}
                 pokemon={pokemon} berryMap={berryMap}
               /> :
-              <div className="relative h-12 w-12">
-                <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageGallerySizes}/>
-              </div>}
+              <UnavailableIcon/>}
           </Flex>
         );
       })}

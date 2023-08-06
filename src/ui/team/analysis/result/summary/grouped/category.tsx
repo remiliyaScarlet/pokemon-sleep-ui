@@ -1,8 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imagePortraitSizes} from '@/styles/image';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisCategoryData} from '@/ui/team/analysis/result/summary/grouped/type';
 
@@ -36,9 +35,7 @@ export const TeamAnalysisCategorySummary = ({icon, data, getReactNode}: Props) =
                 </React.Fragment>
               );
             }) :
-          <div className="relative h-10 w-10">
-            <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
-          </div>
+          <UnavailableIcon dimension="h-10 w-10"/>
         }
       </Flex>
     </Flex>

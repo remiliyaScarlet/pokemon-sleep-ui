@@ -5,8 +5,8 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {Dimension} from '@/types/style';
 
@@ -33,9 +33,7 @@ export const PokemonIconList = <TData, >({
   if (!dataWithPokemonId?.length) {
     return (
       <div className="p-1.5">
-        <div className="relative h-12 w-12">
-          <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageSmallIconSizes}/>
-        </div>
+        <UnavailableIcon/>
       </div>
     );
   }

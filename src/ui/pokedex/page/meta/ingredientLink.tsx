@@ -5,6 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientId} from '@/types/mongo/ingredient';
 
@@ -17,11 +18,7 @@ export const PokemonIngredientLink = ({id}: Props) => {
   const t = useTranslations('Game.Food');
 
   if (id === undefined) {
-    return (
-      <div className="relative h-12 w-12">
-        <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageSmallIconSizes}/>
-      </div>
-    );
+    return <UnavailableIcon/>;
   }
 
   const ingredientName = t(id.toString());

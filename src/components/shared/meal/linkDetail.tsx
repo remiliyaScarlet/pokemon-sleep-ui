@@ -3,10 +3,9 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {MealLinkProps} from '@/components/shared/meal/type';
-import {imageIconSizes} from '@/styles/image';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
 
@@ -22,9 +21,7 @@ const MealLinkDetailChangeable = ({meal, displayType}: MealLinkProps) => {
     const sortedLevels = meal.levels.sort((a, b) => a.lv - b.lv);
     return (
       <Flex direction="row" noFullWidth className="gap-0.5">
-        <div className="relative h-4 w-4">
-          <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
-        </div>
+        <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
         <div>{formatInt(sortedLevels.at(0)?.energy)}</div>
         <div>~</div>
         <div>{formatInt(sortedLevels.at(-1)?.energy)}</div>

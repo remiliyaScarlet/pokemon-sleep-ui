@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
@@ -74,9 +75,7 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
                 <Flex direction="col" center className="gap-1">
                   <SnorlaxRankUI rank={rank} hideTextBelowMd/>
                   <Flex direction="row" center className="gap-1">
-                    <div className="relative h-5 w-5">
-                      <NextImage src="/images/generic/energy.png" alt={t2('Energy')} sizes={imageSmallIconSizes}/>
-                    </div>
+                    <ColoredEnergyIcon alt={t2('Energy')}/>
                     <div>
                       {formatInt(snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy)}
                     </div>

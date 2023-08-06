@@ -6,14 +6,12 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
-import {Flex} from '@/components/layout/flex';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
 import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
-import {sleepTypeBgClass} from '@/styles/classes';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
-import {classNames} from '@/utils/react';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -83,12 +81,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `SleepType-${id}`}
-        idToButton={(id) => (
-          <Flex direction="row" className="gap-1" center>
-            <div className={classNames('h-3 w-3 rounded-full', sleepTypeBgClass[id])}/>
-            <div>{t2(`SleepType.${id.toString()}`)}</div>
-          </Flex>
-        )}
+        idToButton={(id) => <PokemonSleepType sleepType={id}/>}
         ids={getIds(({sleepType}) => sleepType as TId)}
         {...commonProps}
       />

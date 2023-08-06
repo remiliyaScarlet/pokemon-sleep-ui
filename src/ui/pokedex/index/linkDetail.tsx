@@ -4,6 +4,9 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -97,15 +100,8 @@ export const PokedexLinkDetail = React.memo(({
     if (display === 'ingredientEnergy') {
       return (
         <Flex direction="row" className="gap-0.5">
-          <div className="relative h-5 w-5">
-            <NextImage
-              src={`/images/ingredient/${fixedIngredientId}.png`} alt={t(`Food.${fixedIngredientId}`)}
-              sizes={imageSmallIconSizes}
-            />
-          </div>
-          <div className="relative h-5 w-5">
-            <NextImage src="/images/generic/energy.png" alt={t2('Stats.Energy.Name')} sizes={imageSmallIconSizes}/>
-          </div>
+          <PokemonIngredientIcon id={fixedIngredientId}/>
+          <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
           <div>
             {formatFloat(rate?.dailyEnergy)}
           </div>
@@ -116,12 +112,7 @@ export const PokedexLinkDetail = React.memo(({
     if (display === 'ingredientCount') {
       return (
         <Flex direction="row" className="gap-0.5">
-          <div className="relative h-5 w-5">
-            <NextImage
-              src={`/images/ingredient/${fixedIngredientId}.png`} alt={t(`Food.${fixedIngredientId}`)}
-              sizes={imageSmallIconSizes}
-            />
-          </div>
+          <PokemonIngredientIcon id={fixedIngredientId}/>
           <div>
             {formatFloat(rate?.quantity)}
           </div>
@@ -143,15 +134,8 @@ export const PokedexLinkDetail = React.memo(({
     if (display === 'berryEnergy') {
       return (
         <Flex direction="row" className="gap-0.5">
-          <div className="relative h-5 w-5">
-            <NextImage
-              src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)}
-              sizes={imageSmallIconSizes}
-            />
-          </div>
-          <div className="relative h-5 w-5">
-            <NextImage src="/images/generic/energy.png" alt={t2('Stats.Energy.Name')} sizes={imageSmallIconSizes}/>
-          </div>
+          <PokemonBerryIcon id={berry.id}/>
+          <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
           <div>
             {formatFloat(rate?.dailyEnergy)}
           </div>
@@ -162,12 +146,7 @@ export const PokedexLinkDetail = React.memo(({
     if (display === 'berryCount') {
       return (
         <Flex direction="row" className="gap-0.5">
-          <div className="relative h-5 w-5">
-            <NextImage
-              src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)}
-              sizes={imageSmallIconSizes}
-            />
-          </div>
+          <PokemonBerryIcon id={berry.id}/>
           <div>
             {formatFloat(rate?.quantity)}
           </div>

@@ -5,9 +5,9 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
-import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
-import {imageGallerySizes, imageIconSizes} from '@/styles/image';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {imageGallerySizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
@@ -42,9 +42,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
                 <IngredientIcons meal={meal} useTextShadow={false}/>
               </Flex>
               <Flex direction="row" center className="gap-0.5">
-                <div className="relative h-4 w-4">
-                  <NextImage src="/images/generic/energy.png" alt={t2('Energy')} sizes={imageIconSizes}/>
-                </div>
+                <ColoredEnergyIcon dimension="h-4 w-4" alt={t2('Energy')}/>
                 <div className="text-sm">
                   {formatInt(meal.levels.at(-1)?.energy)}
                 </div>

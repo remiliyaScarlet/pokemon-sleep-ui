@@ -3,9 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/rate/type';
-import {imageIconSizes} from '@/styles/image';
 import {formatFloat} from '@/utils/number';
 
 
@@ -20,9 +19,9 @@ export const PokemonProducingRateSingle = ({icon, dailyRate, simplified}: Props)
 
   return (
     <Flex direction="row" className="ml-auto items-center justify-end gap-1 text-sm">
-      <div className="relative h-4 w-4">
-        {icon ?? <NextImage src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} sizes={imageIconSizes}/>}
-      </div>
+      {icon ?
+        <div className="relative h-4 w-4">{icon}</div> :
+        <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Stats.Energy.Name')}/>}
       {!simplified && <div>{t('Stats.Energy.Daily')}</div>}
       <div>{dailyRate ? formatFloat(dailyRate) : '-'}</div>
       {!simplified &&

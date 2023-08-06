@@ -7,6 +7,7 @@ import Link from 'next-intl/link';
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
@@ -30,9 +31,7 @@ export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) 
   if (!data.length) {
     return (
       <div className="p-1.5">
-        <div className="relative h-12 w-12">
-          <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imageSmallIconSizes}/>
-        </div>
+        <UnavailableIcon/>
       </div>
     );
   }

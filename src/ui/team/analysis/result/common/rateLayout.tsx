@@ -3,8 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage, NextImageProps} from '@/components/shared/common/image/main';
-import {imageIconSizes} from '@/styles/image';
+import {NextImageProps} from '@/components/shared/common/image/main';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {formatFloat} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
@@ -59,11 +59,11 @@ export const TeamAnalysisRateLayout = ({
           </div>
         </Flex>
       </Flex>
-      <div className="relative h-8 w-8">
-        {!isSpecial && icon ?
-          icon :
-          <NextImage src="/images/generic/energy.png" alt={t('Stats.Energy.Name')} sizes={imageIconSizes}/>}
-      </div>
+      {!isSpecial && icon ?
+        <div className="relative h-8 w-8">
+          {icon}
+        </div>:
+        <ColoredEnergyIcon dimension="h-8 w-8" alt={t('Stats.Energy.Name')}/>}
     </Flex>
   );
 };

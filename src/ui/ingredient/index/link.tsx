@@ -5,6 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
 
@@ -34,9 +35,7 @@ export const IngredientLink = ({ingredient}: Props) => {
           <tbody>
             <tr>
               <td>
-                <div className="relative h-4 w-4">
-                  <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageSmallIconSizes}/>
-                </div>
+                <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
               </td>
               <td>
                 {energy}

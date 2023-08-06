@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {imagePortraitSizes, imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
 
@@ -29,9 +30,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
         <tbody>
           <tr>
             <td>
-              <div className="relative h-7 w-7">
-                <NextImage src="/images/generic/energy.png" alt={t3('Energy')} sizes={imageSmallIconSizes}/>
-              </div>
+              <ColoredEnergyIcon dimension="h-7 w-7" alt={t3('Energy')}/>
             </td>
             <td>
               {energy}

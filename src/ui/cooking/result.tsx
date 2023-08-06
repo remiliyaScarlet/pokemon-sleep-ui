@@ -3,9 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
-import {imageIconSizes} from '@/styles/image';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
@@ -46,9 +45,7 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
                   <IngredientIcons meal={meal} useTextShadow={false}/>
                 </Flex>
                 <Flex direction="row" className="items-center gap-1">
-                  <div className="relative h-4 w-4">
-                    <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
-                  </div>
+                  <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
                   <div>
                     {formatInt(energyInfo.atLevel.energy)}
                   </div>

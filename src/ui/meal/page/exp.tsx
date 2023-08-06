@@ -5,8 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageIconSizes} from '@/styles/image';
+import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {MealCommonProps} from '@/ui/meal/page/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
@@ -36,9 +35,7 @@ export const MealExp = ({meal, ingredientMap}: MealCommonProps) => {
       </Flex>
       <Slider id={`recipeLevel-${id}`} value={level} setValue={setLevel} min={1} max={levels.length}/>
       <Flex direction="row" className="ml-auto items-center justify-end gap-1">
-        <div className="relative h-4 w-4">
-          <NextImage src="/images/generic/energy.png" alt={t('Energy')} sizes={imageIconSizes}/>
-        </div>
+        <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
         <div className="text-sm">
           {formatInt(atLevel.energy)} (+{formatInt(diffVal)} / +{diffPct.toFixed(0)}%)
         </div>
