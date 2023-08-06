@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
+import {authOptions} from '@/const/auth';
+import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -26,18 +30,22 @@ export const Pokedex = () => {
   const maxLevel = React.use(getPokemonMaxLevelByBerry());
   const ingredientMap = React.use(getAllIngredients());
   const berryMap = React.use(getAllBerryData());
+  const session = React.use(getServerSession(authOptions));
 
   const props: PokedexClientCommonProps = {
     pokedex,
     maxLevel,
     ingredientMap,
     berryMap,
+    session,
   };
 
   return (
     <PageLayout>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
-        <PokedexClient {...props}/>
+        <AuthProvider>
+          <PokedexClient {...props}/>
+        </AuthProvider>
       </I18nProvider>
     </PageLayout>
   );

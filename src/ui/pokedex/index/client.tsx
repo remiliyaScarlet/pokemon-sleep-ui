@@ -3,6 +3,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {useUpdateUserData} from '@/hooks/auth';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
@@ -13,8 +14,13 @@ import {classNames} from '@/utils/react';
 
 
 export const PokedexClient = (props: PokedexClientCommonProps) => {
-  const {pokedex, ingredientMap, berryMap} = props;
-  const {filter, setFilter, isIncluded} = useFilteredPokedex({data: pokedex});
+  const {pokedex, ingredientMap, berryMap, session} = props;
+  const {filter, setFilter, isIncluded} = useFilteredPokedex({
+    data: pokedex,
+    display: session?.user.data.pokedex,
+  });
+
+  useUpdateUserData({type: 'pokedex', data: {sort: filter.sort, display: filter.display}});
 
   const sortedData = pokedex.sort(sortPokemon({
     type: filter.sort,

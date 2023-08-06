@@ -1,3 +1,5 @@
+import {Session} from 'next-auth';
+
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/input/type';
 import {BerryData, BerryDataMap} from '@/types/mongo/berry';
@@ -13,11 +15,14 @@ export type PokedexSinglePokemon = PokemonInfo & {
 
 export type PokedexData = PokedexSinglePokemon[];
 
-export type PokedexFilter = PokemonInputFilter<PokemonInputType> & {
-  mapId: FilterInclusionMap<SleepMapId>,
-  level: number,
+export type PokedexDisplay = {
   display: PokedexDisplayType,
   sort: PokedexSortType,
+};
+
+export type PokedexFilter = PokemonInputFilter<PokemonInputType> & PokedexDisplay & {
+  mapId: FilterInclusionMap<SleepMapId>,
+  level: number,
 };
 
 export type PokedexClientCommonProps = {
@@ -25,6 +30,7 @@ export type PokedexClientCommonProps = {
   maxLevel: number,
   ingredientMap: IngredientMap,
   berryMap: BerryDataMap,
+  session: Session | null,
 };
 
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {

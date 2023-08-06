@@ -1,15 +1,19 @@
+import merge from 'lodash/merge';
+
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokedexData, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
+import {PokedexData, PokedexDisplay, PokedexFilter, PokedexSinglePokemon} from '@/ui/pokedex/index/type';
+import {DeepPartial} from '@/utils/type';
 
 
 type UseFilteredPokedexOpts = {
   data: PokedexData,
+  display: DeepPartial<PokedexDisplay> | undefined,
 };
 
-export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
+export const useFilteredPokedex = ({data, display}: UseFilteredPokedexOpts) => {
   return useFilterInput<PokedexFilter, PokedexSinglePokemon, PokemonId>({
     data,
     dataToId: ({id}) => id,
@@ -23,8 +27,10 @@ export const useFilteredPokedex = ({data}: UseFilteredPokedexOpts) => {
       berry: {},
       mainSkill: {},
       level: 1,
-      display: 'mainSkill',
-      sort: 'id',
+      ...merge({
+        display: 'mainSkill',
+        sort: 'id',
+      }, display),
     },
     isDataIncluded: (filter, data) => {
       if (!isDataIncludingAllOfFilter({

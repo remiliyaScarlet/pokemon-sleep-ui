@@ -1,4 +1,4 @@
-import {userDataRecipeLevel, userDataTeamAnalysisSetup} from '@/controller/user/manager';
+import {userDataPokedex, userDataRecipeLevel, userDataTeamAnalysisSetup} from '@/controller/user/manager';
 import {UpdateUserDataOpts, UserData} from '@/types/userData';
 
 
@@ -15,17 +15,28 @@ export const updateUserData = async ({userId, opts}: {userId: string, opts: Upda
     return;
   }
 
+  if (type === 'pokedex') {
+    await userDataPokedex.setData(userId, data);
+    return;
+  }
+
   console.error(`Unhandled user data update type: [${type satisfies never}]`);
 };
 
 export const getUserData = async (userId: string): Promise<UserData> => {
-  const [recipeLevel, teamAnalysis] = await Promise.all([
+  const [
+    recipeLevel,
+    teamAnalysis,
+    pokedex,
+  ] = await Promise.all([
     userDataRecipeLevel.getData(userId),
     userDataTeamAnalysisSetup.getData(userId),
+    userDataPokedex.getData(userId),
   ]);
 
   return {
     recipeLevel: recipeLevel?.data,
     teamAnalysisSetup: teamAnalysis?.data,
+    pokedex: pokedex?.data,
   };
 };
