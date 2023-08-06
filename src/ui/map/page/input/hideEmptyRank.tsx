@@ -23,7 +23,7 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: FilterInputProps<Ma
       onClick={() => setFilter((original) => ({
         ...original,
         showEmptyRank: !original.showEmptyRank,
-      }))}
+      } satisfies MapPageFilter))}
       className={classNames('group', getTextFilterButtonClass(showEmptyRank))}
     >
       <Flex direction="row" center noFullWidth className="gap-1">

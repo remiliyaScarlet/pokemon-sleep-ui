@@ -71,14 +71,14 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           <PokemonLevelSlider level={filter.level} maxLevel={maxLevel} setLevel={(level) => setFilter((original) => ({
             ...original,
             level,
-          }))}/>
+          } satisfies PokedexInputProps['filter']))}/>
         </Flex>
       </InputRow>
       <FilterTextInput
         onClick={(display) => setFilter((original) => ({
           ...original,
           display,
-        }))}
+        } satisfies PokedexInputProps['filter']))}
         isActive={(display) => filter.display === display}
         title={
           <Flex direction="row" center>
@@ -95,7 +95,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
         onClick={(sort) => setFilter((original) => ({
           ...original,
           sort,
-        }))}
+        } satisfies PokedexInputProps['filter']))}
         isActive={(sort) => filter.sort === sort}
         title={
           <Flex direction="row" center>

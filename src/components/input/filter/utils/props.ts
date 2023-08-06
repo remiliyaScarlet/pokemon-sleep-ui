@@ -42,7 +42,7 @@ export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
   onClick: (id) => setFilter((original) => ({
     ...original,
     [filterKey]: original[filterKey] === id ? (allowNull ? null : id) : id,
-  })),
+  } satisfies TFilter)),
 });
 
 export type GetMultiSelectOnClickPropsOpts<
@@ -68,6 +68,6 @@ export const getMultiSelectOnClickProps = <
         ...original[filterKey],
         [id]: !original[filterKey][id],
       },
-    })),
+    } satisfies TFilter)),
   };
 };

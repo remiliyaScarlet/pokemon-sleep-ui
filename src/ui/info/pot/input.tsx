@@ -59,7 +59,7 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
         setDisplayType={(displayType) => setFilter((original) => ({
           ...original,
           displayType,
-        }))}
+        } satisfies PotInfoFilter))}
       />
       <InputRow>
         <div className="ml-auto">
@@ -69,7 +69,7 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
             onClick={() => setFilter((original) => ({
               ...original,
               showEmpty: !original.showEmpty,
-            }))}
+            } satisfies PotInfoFilter))}
             className={classNames('group', getTextFilterButtonClass(showEmpty))}
           >
             <Flex direction="row" center noFullWidth className="gap-1">

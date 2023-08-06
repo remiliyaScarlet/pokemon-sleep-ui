@@ -26,7 +26,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
       ...original.recipeLevel,
       [id]: level || 1,
     },
-  }));
+  } satisfies CookingCommonProps['filter']));
 
   return (
     <CookingRecipeLayout mealId={id} imageDimension="h-20 w-20" clickable={false}>

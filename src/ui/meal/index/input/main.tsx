@@ -48,7 +48,7 @@ export const MealInput = (props: Props) => {
         setDisplayType={(displayType) => setFilter((original) => ({
           ...original,
           displayType,
-        }))}
+        } satisfies MealIndexInputProps['filter']))}
       />
     </Flex>
   );
