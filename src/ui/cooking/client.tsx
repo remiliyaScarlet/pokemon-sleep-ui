@@ -21,7 +21,7 @@ import {getMealRequiredQuantity} from '@/utils/game/meal';
 type Props = {
   meals: Meal[],
   ingredientMap: IngredientMap,
-  session: Session,
+  session: Session | null,
 };
 
 export const CookingClient = ({meals, ingredientMap, session}: Props) => {
@@ -31,7 +31,7 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
     dataToId: ({id}) => id,
     initialFilter: {
       type: 1,
-      recipeLevel: merge({}, session.user.data?.recipeLevel),
+      recipeLevel: merge({}, session?.user.data?.recipeLevel),
       capacity: 15,
       ingredient: {},
     },

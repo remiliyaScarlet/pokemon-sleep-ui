@@ -2,7 +2,6 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
-import {Loading} from '@/components/icons/loading';
 import {authOptions} from '@/const/auth';
 import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
@@ -16,10 +15,6 @@ export const Cooking = () => {
   const meals = React.use(getAllMeals());
   const ingredientMap = React.use(getAllIngredients());
   const session = React.use(getServerSession(authOptions));
-
-  if (!session) {
-    return <Loading text="Session"/>;
-  }
 
   return (
     <PageLayout>
