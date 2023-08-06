@@ -33,6 +33,8 @@
     &.dark {
       @apply theme-dark;
     }
+    
+    @apply overflow-x-hidden;
   }
   
   body {
