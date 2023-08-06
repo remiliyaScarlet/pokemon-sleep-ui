@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
+import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -15,8 +18,9 @@ export const TeamAnalysis = () => {
   const berryMap = React.use(getAllBerryData());
   const ingredientMap = React.use(getAllIngredients());
   const snorlaxRankData = React.use(getSnorlaxRank());
+  const session = React.use(getServerSession(authOptions));
 
-  const props: TeamAnalysisDataProps = {pokedex, berryMap, ingredientMap, snorlaxRankData};
+  const props: TeamAnalysisDataProps = {pokedex, berryMap, ingredientMap, snorlaxRankData, session};
 
   return (
     <PageLayout>

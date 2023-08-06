@@ -25,7 +25,6 @@ type Props = {
 };
 
 export const CookingClient = ({meals, ingredientMap, session}: Props) => {
-  const update = useUpdateUserData();
   const {filter, setFilter, isIncluded} = useFilterInput<CookingFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
@@ -51,15 +50,7 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
       return getMealRequiredQuantity(meal) <= filter.capacity;
     },
   });
-
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      update({type: 'recipeLevel', data: filter.recipeLevel})
-        .catch((error) => console.error('Failed to update recipe level to server', error));
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, [filter.recipeLevel]);
+  useUpdateUserData({type: 'recipeLevel', data: filter.recipeLevel});
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));

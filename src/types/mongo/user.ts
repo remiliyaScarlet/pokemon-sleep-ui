@@ -1,7 +1,12 @@
 import {CookingFilterRecipeLevel} from '@/ui/cooking/type';
+import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 
 
-export type UserDataRecipeLevel = {
+export type UserDataInDatabase<T> = {
   userId: string,
-  recipeLevel: CookingFilterRecipeLevel,
+  data: T,
 };
+
+export type UserDataRecipeLevel = UserDataInDatabase<CookingFilterRecipeLevel>;
+
+export type UserDataTeamAnalysisSetup = UserDataInDatabase<TeamAnalysisTeamSetup>;

@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {AuthProvider} from '@/contexts/auth';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/filter/main';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisUI} from '@/ui/team/analysis/team';
@@ -16,10 +17,12 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
   return (
     <>
       <TeamAnalysisPokemonFilter filter={filter} setFilter={setFilter} pokemon={pokemon}/>
-      <TeamAnalysisUI
-        pokemonSelectableInclusionMap={isIncluded} snorlaxFavorite={filter.snorlaxFavorite}
-        pokemon={pokemon} {...props}
-      />
+      <AuthProvider>
+        <TeamAnalysisUI
+          pokemonSelectableInclusionMap={isIncluded} snorlaxFavorite={filter.snorlaxFavorite}
+          pokemon={pokemon} {...props}
+        />
+      </AuthProvider>
     </>
   );
 };

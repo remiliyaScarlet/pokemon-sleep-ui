@@ -1,7 +1,10 @@
 import React from 'react';
 
+import merge from 'lodash/merge';
+
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {useUpdateUserData} from '@/hooks/auth';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysis} from '@/ui/team/analysis/result/main';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
@@ -15,9 +18,9 @@ type Props = TeamAnalysisDataProps & {
 };
 
 export const TeamAnalysisUI = (props: Props) => {
-  const {pokemonSelectableInclusionMap, pokemon} = props;
+  const {pokemonSelectableInclusionMap, pokemon, session} = props;
 
-  const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>({
+  const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>(merge({
     team: {
       A: null,
       B: null,
@@ -29,7 +32,8 @@ export const TeamAnalysisUI = (props: Props) => {
       overall: 0,
       ingredient: 12,
     },
-  });
+  }, session?.user.data.teamAnalysisSetup));
+  useUpdateUserData({type: 'teamAnalysisSetup', data: setup});
 
   return (
     <>

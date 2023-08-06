@@ -1,3 +1,5 @@
+import {Session} from 'next-auth';
+
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/input/type';
 import {NatureId} from '@/types/game/producing/nature';
@@ -16,6 +18,7 @@ export type TeamAnalysisDataProps = {
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],
+  session: Session | null,
 };
 
 export const teamAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;
