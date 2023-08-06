@@ -7,6 +7,7 @@ import {AdsHomepage} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {useNavEntries} from '@/hooks/nav';
+import {HomePokeball} from '@/ui/home/pokeball';
 
 
 export const HomeClient = () => {
@@ -17,6 +18,7 @@ export const HomeClient = () => {
   return (
     <>
       <AdsHomepage/>
+      <HomePokeball/>
       <Flex direction="row" center wrap className="h-auto gap-2 md:h-full md:px-10">
         {entries.map(({i18nTextId, ...props}) => {
           return (
