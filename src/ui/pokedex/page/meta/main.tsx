@@ -4,12 +4,11 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonName} from '@/components/shared/pokemon/name';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
-import {imageSmallIconSizes} from '@/styles/image';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
 import {PokemonIngredientMeta} from '@/ui/pokedex/page/meta/ingredient';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
@@ -20,14 +19,7 @@ import {classNames} from '@/utils/react';
 
 export const PokemonMeta = (props: PokemonProps) => {
   const {pokemon, berryData, ingredientMap} = props;
-  const {
-    id,
-    type,
-    specialty,
-    sleepType,
-    berry,
-    skill,
-  } = pokemon;
+  const {specialty, sleepType, berry, skill} = pokemon;
 
   const [level, setLevel] = React.useState(1);
 
@@ -36,22 +28,11 @@ export const PokemonMeta = (props: PokemonProps) => {
 
   const metaTitleClass = 'whitespace-nowrap text-sm text-slate-500';
 
-  const name = t(`PokemonName.${id}`);
   const berryName = t(`Berry.${berry.id}`);
 
   return (
     <Flex direction="col" center className="info-section-md-fit md:gap-y-3">
-      <Flex direction="row" className="items-end justify-center gap-1 p-2.5 text-2xl">
-        <div className="relative h-8 w-8">
-          <NextImage src={`/images/type/${type}.png`} alt={name} sizes={imageSmallIconSizes}/>
-        </div>
-        <div>
-          {name}
-        </div>
-        <div className="text-sm text-slate-500">
-          #{id}
-        </div>
-      </Flex>
+      <PokemonName pokemon={pokemon}/>
       <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
       <PokemonMetaSection title={t2('Info.SleepType')} contentClassName="text-lg">
         <Flex direction="row" className="gap-1" center>

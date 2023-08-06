@@ -9,7 +9,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
-import {PokemonImageGallery} from '@/ui/pokedex/page/gallery/main';
+import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';

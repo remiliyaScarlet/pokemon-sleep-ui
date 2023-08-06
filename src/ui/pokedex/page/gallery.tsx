@@ -8,19 +8,20 @@ import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonImage} from '@/components/shared/pokemon/image/main';
+import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokemonImage} from '@/ui/pokedex/page/gallery/image';
-import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 import {classNames} from '@/utils/react';
 
-import styles from '../main.module.css';
+import styles from './main.module.css';
 
 
 type Props = {
   pokemonId: PokemonId,
-  image: CurrentPokemonImage,
+  image: PokemonImageType,
   isActive: boolean,
 };
 
@@ -52,18 +53,18 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   const t = useTranslations('UI.Common');
 
-  const imageOptions: CurrentPokemonImage[] = React.useMemo(() => [
+  const imageOptions: PokemonImageType[] = React.useMemo(() => [
     'portrait',
     ...toUnique(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style))),
   ], [sleepStyles]);
   const [isShiny, setShiny] = React.useState(false);
-  const [currentImage, setCurrentImage] = React.useState<CurrentPokemonImage>('portrait');
+  const [currentImage, setCurrentImage] = React.useState<PokemonImageType>('portrait');
 
   return (
     <Flex direction="col" center className="info-section-md-fit">
       <Flex direction="col" center noFullWidth className={styles['gallery-size']}>
         {imageOptions
-          .flatMap<[CurrentPokemonImage, boolean]>((image) => [[image, true], [image, false]])
+          .flatMap<[PokemonImageType, boolean]>((image) => [[image, true], [image, false]])
           .map(([image, imageShiny]) => (
             <Transition
               key={`${image}-${imageShiny}`}

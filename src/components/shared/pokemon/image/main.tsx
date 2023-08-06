@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {imagePortraitSizes} from '@/styles/image';
-import {CurrentPokemonImage, PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonInfo} from '@/types/mongo/pokemon';
 
 
-type Props = PokemonProps & {
-  image: CurrentPokemonImage,
+type Props = {
+  pokemon: PokemonInfo,
+  image: PokemonImageType,
   isShiny: boolean,
 };
 
