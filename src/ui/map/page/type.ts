@@ -1,11 +1,11 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SleepStyleDataFlattened, SleepStyleId} from '@/types/mongo/sleepStyle';
 import {SnorlaxRankInMap, SnorlaxReward} from '@/types/mongo/snorlax';
 
 
-export type MapPageFilter = PokemonInputFilter<PokemonInputType> & {
+export type MapPageFilter = PokemonInputFilter & {
   showEmptyRank: boolean,
   sleepStyle: FilterInclusionMap<SleepStyleId>,
 };

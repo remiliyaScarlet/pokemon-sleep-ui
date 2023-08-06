@@ -1,7 +1,7 @@
 import {Session} from 'next-auth';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {BerryData, BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -20,7 +20,7 @@ export type PokedexDisplay = {
   sort: PokedexSortType,
 };
 
-export type PokedexFilter = PokemonInputFilter<PokemonInputType> & PokedexDisplay & {
+export type PokedexFilter = PokemonInputFilter & PokedexDisplay & {
   mapId: FilterInclusionMap<SleepMapId>,
   level: number,
 };

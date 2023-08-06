@@ -26,7 +26,7 @@ export type PokemonInputFilterIdType = {
   mainSkill: PokemonSkillId,
 };
 
-export type PokemonInputFilter<K extends PokemonInputType> = Record<
-  K,
-  FilterInclusionMap<PokemonInputFilterIdType[K]>
+export type PokemonInputFilter = Record<
+  PokemonInputType,
+  FilterInclusionMap<PokemonInputFilterIdType[PokemonInputType]>
 >;

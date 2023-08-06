@@ -1,7 +1,7 @@
 import {Session} from 'next-auth';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {NatureId} from '@/types/game/producing/nature';
 import {BerryDataMap, BerryId} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
@@ -9,7 +9,7 @@ import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 
 
-export type TeamAnalysisFilter = PokemonInputFilter<PokemonInputType> & {
+export type TeamAnalysisFilter = PokemonInputFilter & {
   snorlaxFavorite: FilterInclusionMap<BerryId>,
 };
 
