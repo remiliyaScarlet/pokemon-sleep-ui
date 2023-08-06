@@ -25,8 +25,12 @@ export const getSinglePokemonInfo = async (id: number) => {
   return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
 
-export const getAllPokedex = async (): Promise<FindCursor<WithId<PokemonInfo>>> => {
+export const getAllPokemonAsCursor = async (): Promise<FindCursor<WithId<PokemonInfo>>> => {
   return (await getCollection()).find({}, {projection: {_id: false}});
+};
+
+export const getAllPokemonAsArray = async (): Promise<PokemonInfo[]> => {
+  return (await getAllPokemonAsCursor()).toArray();
 };
 
 const pokemonInfoToMap = async (filter: Filter<PokemonInfo>): Promise<PokedexMap> => {
