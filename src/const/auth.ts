@@ -2,7 +2,9 @@ import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import googleProvider from 'next-auth/providers/google';
 
+import {getUserData, updateUserData} from '@/controller/user/main';
 import mongoPromise from '@/lib/mongodb';
+import {UpdateUserDataOpts} from '@/types/userData';
 
 
 const cookieDomain = process.env.NEXTAUTH_COOKIE_DOMAIN;
@@ -37,6 +39,22 @@ export const authOptions: AuthOptions = {
         domain: '.' + hostName,
         secure: useSecureCookies,
       },
+    },
+  },
+  callbacks: {
+    session: async ({session, user, trigger, newSession}) => {
+      const userId = user.id;
+
+      session.user.data = await getUserData(userId);
+
+      if (trigger !== 'update' || !newSession) {
+        return session;
+      }
+
+      await updateUserData({userId, opts: newSession satisfies UpdateUserDataOpts});
+      session.user.data = await getUserData(userId);
+
+      return session;
     },
   },
 };

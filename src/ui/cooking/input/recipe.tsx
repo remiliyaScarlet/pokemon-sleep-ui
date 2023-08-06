@@ -10,12 +10,12 @@ export const CookingInputRecipe = (props: CookingCommonProps) => {
   const {meals, filter} = props;
 
   return (
-    <Flex direction="row" center wrap className="gap-1.5">
+    <Flex direction="row" center wrap className="gap-1">
       {meals
         .filter(({type}) => filter.type === type)
         .map((data) => (
           <div key={data.id} className={classNames(
-            'width-with-gap xs:width-with-gap-2-items',
+            'width-with-gap-xs xs:width-with-gap-2-items',
             'sm:width-with-gap-3-items md:width-with-gap-4-items',
             'lg:width-with-gap-5-items xl:width-with-gap-6-items',
           )}>

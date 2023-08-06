@@ -1,10 +1,14 @@
 'use client';
 import React from 'react';
 
+import merge from 'lodash/merge';
+import {Session} from 'next-auth';
+
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {useUpdateUserData} from '@/hooks/auth';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {CookingInputUI} from '@/ui/cooking/input/main';
@@ -16,16 +20,18 @@ import {getMealRequiredQuantity} from '@/utils/game/meal';
 
 type Props = {
   meals: Meal[],
-  ingredients: IngredientMap,
+  ingredientMap: IngredientMap,
+  session: Session,
 };
 
-export const CookingClient = ({meals, ingredients}: Props) => {
+export const CookingClient = ({meals, ingredientMap, session}: Props) => {
+  const update = useUpdateUserData();
   const {filter, setFilter, isIncluded} = useFilterInput<CookingFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
       type: 1,
-      recipeLevel: {},
+      recipeLevel: merge({}, session.user.data?.recipeLevel),
       capacity: 15,
       ingredient: {},
     },
@@ -46,10 +52,19 @@ export const CookingClient = ({meals, ingredients}: Props) => {
     },
   });
 
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      update({type: 'recipeLevel', data: filter.recipeLevel})
+        .catch((error) => console.error('Failed to update recipe level to server', error));
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [filter.recipeLevel]);
+
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
-  const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredientMap: ingredients};
+  const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredientMap};
 
   return (
     <Flex direction="col">

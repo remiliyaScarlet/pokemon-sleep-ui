@@ -8,6 +8,8 @@ export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export type Nullable<T> = {[K in keyof T]: T[K] | null};
 
+export type DeepPartial<T> = T extends object ? {[P in keyof T]?: DeepPartial<T[P]>} : T;
+
 export const isNotNullish = <TValue>(value: TValue | null | undefined): value is TValue => {
   if (value === null || value === undefined) {
     return false;

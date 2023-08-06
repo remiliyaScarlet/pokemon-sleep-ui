@@ -127,6 +127,12 @@
   
   /* region Fixed count of element in row (width-with-gap-*) */
   
+  .width-with-gap-xs {
+    --gap: theme('gap[1]') !important;
+    
+    @apply width-with-gap-base;
+  }
+  
   .width-with-gap-sm {
     --gap: theme('gap[1.5]') !important;
     

@@ -4,9 +4,11 @@ import {Meal, MealId, MealTypeId} from '@/types/mongo/meal';
 import {Dimension} from '@/types/style';
 
 
+export type CookingFilterRecipeLevel = {[id in MealId]?: number};
+
 export type CookingFilter = {
   type: MealTypeId,
-  recipeLevel: {[id in MealId]?: number},
+  recipeLevel: CookingFilterRecipeLevel,
   capacity: number,
   ingredient: FilterInclusionMap<IngredientId>,
 };
