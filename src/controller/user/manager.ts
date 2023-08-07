@@ -9,3 +9,5 @@ export const userDataRecipeLevel = createUserDataManager<CookingFilterRecipeLeve
 export const userDataTeamAnalysisSetup = createUserDataManager<TeamAnalysisTeamSetup>('teamAnalysisSetup');
 
 export const userDataPokedex = createUserDataManager<PokedexDisplay>('pokedex');
+
+export const userDataPotCapacity = createUserDataManager<number>('potCapacity');

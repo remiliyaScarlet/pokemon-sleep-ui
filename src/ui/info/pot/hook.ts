@@ -4,7 +4,7 @@ import {Meal, MealId} from '@/types/mongo/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
-export const usePotInfoFilter = ({meals}: PotInfoCommonProps) => {
+export const usePotInfoFilter = ({meals, session}: PotInfoCommonProps) => {
   return useFilterInput<PotInfoFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
@@ -12,7 +12,7 @@ export const usePotInfoFilter = ({meals}: PotInfoCommonProps) => {
       mealType: {},
       ingredients: {},
       displayType: 'ingredient',
-      capacity: null,
+      capacity: session?.user.data.potCapacity ?? null,
       showEmpty: false,
     },
     isDataIncluded: (filter, meal) => {

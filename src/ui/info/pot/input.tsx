@@ -13,6 +13,7 @@ import {
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {UserDataUploadButton} from '@/components/shared/control/upload';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
@@ -62,7 +63,7 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
         } satisfies PotInfoFilter))}
       />
       <InputRow>
-        <div className="ml-auto">
+        <Flex direction="row" noFullWidth className="ml-auto gap-2">
           <ToggleButton
             id="showEmpty"
             active={filter.showEmpty}
@@ -81,7 +82,8 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
               </div>
             </Flex>
           </ToggleButton>
-        </div>
+          <UserDataUploadButton opts={{type: 'potCapacity', data: filter.capacity}}/>
+        </Flex>
       </InputRow>
     </>
   );

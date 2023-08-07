@@ -30,7 +30,7 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
     initialFilter: {
       type: 1,
       recipeLevel: merge({}, session?.user.data?.recipeLevel),
-      capacity: 15,
+      capacity: session?.user.data.potCapacity ?? 15,
       ingredient: {},
     },
     isDataIncluded: (filter, meal) => {

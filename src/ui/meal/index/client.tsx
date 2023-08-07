@@ -1,6 +1,8 @@
 'use client';
 import React from 'react';
 
+import {Session} from 'next-auth';
+
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {MealLink} from '@/components/shared/meal/link';
@@ -13,10 +15,14 @@ import {classNames} from '@/utils/react';
 
 type Props = {
   data: Meal[],
+  session: Session | null,
 };
 
-export const MealIndexClient = ({data}: Props) => {
-  const props = useFilteredMeals({data});
+export const MealIndexClient = ({data, session}: Props) => {
+  const props = useFilteredMeals({
+    data,
+    initialPotCapacity: session?.user.data.potCapacity,
+  });
   const {isIncluded, filter} = props;
 
   return (

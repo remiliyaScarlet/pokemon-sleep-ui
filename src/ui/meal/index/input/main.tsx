@@ -2,6 +2,7 @@ import React from 'react';
 
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
+import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
@@ -40,7 +41,7 @@ export const MealInput = (props: Props) => {
         {...getSingleSelectOnClickProps({
           filter,
           setFilter,
-          filterKey: 'ingredientCountCap',
+          filterKey: 'potCapacity',
         })}
       />
       <MealLinkDisplayTypeInput
@@ -50,6 +51,7 @@ export const MealInput = (props: Props) => {
           displayType,
         } satisfies MealIndexInputProps['filter']))}
       />
+      <UserDataUploadControlRow opts={{type: 'potCapacity', data: filter.potCapacity}}/>
     </Flex>
   );
 };

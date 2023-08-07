@@ -7,6 +7,6 @@ import {MealTypeId} from '@/types/mongo/meal';
 export type MealFilter = {
   mealType: FilterInclusionMap<MealTypeId>,
   ingredient: FilterInclusionMap<IngredientId>,
-  ingredientCountCap: number | null,
+  potCapacity: number | null,
   displayType: MealLinkDisplayType,
 };

@@ -6,13 +6,16 @@ import {DeepPartialExceptKey} from '@/utils/type';
 
 export type UploadUserDataOpts = {
   type: 'recipeLevel',
-  data: CookingFilterRecipeLevel,
+  data: {level: CookingFilterRecipeLevel, potCapacity: number},
 } | {
   type: 'teamAnalysisSetup',
   data: TeamAnalysisTeamSetup,
 } | {
   type: 'pokedex',
   data: PokedexDisplay,
+} | {
+  type: 'potCapacity',
+  data: number | null,
 };
 
 export type UserDataUploader = (opts: UploadUserDataOpts) => void;
@@ -30,6 +33,7 @@ export type UserDataUploadContent = {
   recipeLevel: CookingFilterRecipeLevel,
   teamAnalysisSetup: TeamAnalysisTeamSetup,
   pokedex: PokedexDisplay,
+  potCapacity: number,
 };
 
 export type UserData = DeepPartialExceptKey<UserDataUploadContent>;
