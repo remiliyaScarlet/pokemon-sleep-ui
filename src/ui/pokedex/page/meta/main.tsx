@@ -38,13 +38,13 @@ export const PokemonMeta = (props: PokemonProps) => {
   const pokemonName = t(`PokemonName.${pokemon.id}`);
 
   return (
-    <Flex direction="col" center className="info-section gap-2 md:flex-row">
+    <Flex direction="col" center className="info-section gap-2 lg:flex-row">
       <Flex direction="col" className="gap-2 md:p-5 lg:p-8">
         <PokemonName pokemon={pokemon}/>
         <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
         <PokemonImageGallery {...props}/>
       </Flex>
-      <AdsUnit className="my-2 md:hidden"/>
+      <AdsUnit className="my-2 lg:hidden"/>
       <Flex direction="col" className="gap-y-3 md:p-5 lg:p-8">
         <PokemonMetaSection title={t2('Info.SleepType')} contentClassName="text-lg">
           <Flex direction="row" className="gap-1" center>
