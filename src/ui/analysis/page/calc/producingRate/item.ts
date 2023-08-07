@@ -24,7 +24,7 @@ export const getAnalysisStatsOfItemProducingRate = ({
   return getAnalysisStatsOfContinuous({
     samples,
     getPokemonId: ({pokemon}) => pokemon.id,
-    isCurrent: (sample) => sample.pokemon.id === pokemon.id,
+    isCurrentRank: (sample) => sample.pokemon.id === pokemon.id,
     getValue: ({rate}) => getComparer(rate),
     isRelated: ({rate}) => getComparer(rate) > getComparer(currentRate),
     currentValue: getComparer(currentRate),

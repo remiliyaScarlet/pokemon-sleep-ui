@@ -4,7 +4,7 @@ import {AnalysisStatsContinuous, GetAnalysisStatsCommonOpts} from '@/ui/analysis
 export type GetAnalysisStatsOfContinuousOpts<TSample> = GetAnalysisStatsCommonOpts<TSample> & {
   getValue: (sample: TSample) => number,
   isRelated: (sample: TSample) => boolean,
-  isCurrent: (sample: TSample) => boolean,
+  isCurrentRank: (sample: TSample) => boolean,
   currentValue: number,
   order?: 'asc' | 'desc',
 };
@@ -14,7 +14,7 @@ export const getAnalysisStatsOfContinuous = <TSample>({
   getPokemonId,
   getValue,
   isRelated,
-  isCurrent,
+  isCurrentRank,
   currentValue,
   order = 'desc',
 }: GetAnalysisStatsOfContinuousOpts<TSample>): AnalysisStatsContinuous => {
@@ -38,7 +38,7 @@ export const getAnalysisStatsOfContinuous = <TSample>({
   const min = values.at(-1);
   const max = values.at(0);
 
-  let rank: number | null = sorted.findIndex(({sample}) => isCurrent(sample)) + 1;
+  let rank: number | null = sorted.findIndex(({sample}) => isCurrentRank(sample)) + 1;
   if (rank === 0) {
     rank = null;
   }

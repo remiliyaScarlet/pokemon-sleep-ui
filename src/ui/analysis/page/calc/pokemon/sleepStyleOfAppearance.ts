@@ -1,7 +1,7 @@
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {AnalysisStatsSleepStyleAppearance} from '@/ui/analysis/page/calc/type';
-import {getSnorlaxRankEquivalentNumber, isFirstRankGreater, isSameRank} from '@/utils/game/snorlax';
+import {getSnorlaxRankEquivalentNumber, isSameRank} from '@/utils/game/snorlax';
 
 
 type GetAnalysisStatsOfAppearanceOpts = {
@@ -20,7 +20,7 @@ export const getAnalysisStatsOfAppearance = ({
       getPokemonId: ({pokemonId}) => pokemonId,
       getValue: ({style}) => getSnorlaxRankEquivalentNumber(style.rank),
       isRelated: (sample) => (
-        !isFirstRankGreater(sample.style.rank, current.style.rank) &&
+        isSameRank(sample.style.rank, current.style.rank) &&
         sample.pokemonId !== current.pokemonId
       ),
       isCurrentRank: (sample) => isSameRank(sample.style.rank, current.style.rank),
