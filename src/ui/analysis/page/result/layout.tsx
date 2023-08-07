@@ -32,7 +32,7 @@ export const AnalysisLayout = <TData, >({
   return (
     <>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="row" center wrap className="items-center gap-1">
+        <Flex direction="row" wrap className="items-center gap-1">
           {linked.map((linkedData) => (
             <AnalysisPokemonIcon key={linkedData.pokemonId} linked={linkedData} renderData={renderData}/>
           ))}

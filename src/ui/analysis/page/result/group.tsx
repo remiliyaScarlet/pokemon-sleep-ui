@@ -8,18 +8,18 @@ import {getMarkByThreshold} from '@/ui/analysis/page/result/utils';
 import {formatFloat} from '@/utils/number';
 
 
-type Props = {
-  stats: AnalysisStatsGrouped,
+type Props<TData> = {
+  stats: AnalysisStatsGrouped<TData>,
   title: React.ReactNode,
   threshold?: AnalysisMarkThreshold,
 };
 
-export const AnalysisStatsGroupedUI = ({
+export const AnalysisStatsGroupedUI = <TData, >({
   stats,
   title,
   threshold,
   children,
-}: React.PropsWithChildren<Props>) => {
+}: React.PropsWithChildren<Props<TData>>) => {
   const {totalCount, sharedCount} = stats;
 
   const isAvailable = sharedCount > 0;
@@ -29,7 +29,7 @@ export const AnalysisStatsGroupedUI = ({
 
   return (
     <AnalysisLayout
-      related={stats.related}
+      linked={stats.linked}
       title={title}
       mark={isAvailable ? getMarkByThreshold(rarity, threshold) : 'ordinary'}
       footer={

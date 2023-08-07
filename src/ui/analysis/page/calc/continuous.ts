@@ -1,23 +1,29 @@
-import {AnalysisStatsContinuous, GetAnalysisStatsCommonOpts} from '@/ui/analysis/page/calc/type';
+import {
+  AnalysisStatsContinuous,
+  AnalysisStatsLinkedData,
+  GetAnalysisStatsCommonOpts,
+} from '@/ui/analysis/page/calc/type';
 
 
-export type GetAnalysisStatsOfContinuousOpts<TSample> = GetAnalysisStatsCommonOpts<TSample> & {
+export type GetAnalysisStatsOfContinuousOpts<TSample, TData> = GetAnalysisStatsCommonOpts<TSample> & {
   getValue: (sample: TSample) => number,
-  isRelated: (sample: TSample) => boolean,
+  getLinkedData: (sample: TSample) => AnalysisStatsLinkedData<TData>['data'],
+  isLinked: (sample: TSample) => boolean,
   isCurrentRank: (sample: TSample) => boolean,
   currentValue: number,
   order?: 'asc' | 'desc',
 };
 
-export const getAnalysisStatsOfContinuous = <TSample>({
+export const getAnalysisStatsOfContinuous = <TSample, TData>({
   samples,
   getPokemonId,
   getValue,
-  isRelated,
+  getLinkedData,
+  isLinked,
   isCurrentRank,
   currentValue,
   order = 'desc',
-}: GetAnalysisStatsOfContinuousOpts<TSample>): AnalysisStatsContinuous => {
+}: GetAnalysisStatsOfContinuousOpts<TSample, TData>): AnalysisStatsContinuous<TData> => {
   const sorted = samples
     .map((sample) => ({sample, value: getValue(sample)}))
     .sort((a, b) => {
@@ -30,10 +36,6 @@ export const getAnalysisStatsOfContinuous = <TSample>({
       return getPokemonId(a.sample) - getPokemonId(b.sample);
     });
 
-  const related = sorted
-    .filter(({sample}) => isRelated(sample))
-    .map(({sample}) => getPokemonId(sample));
-
   const values = sorted.map(({value}) => value);
   const min = values.at(-1);
   const max = values.at(0);
@@ -44,7 +46,9 @@ export const getAnalysisStatsOfContinuous = <TSample>({
   }
 
   return {
-    related,
+    linked: sorted
+      .filter(({sample}) => isLinked(sample))
+      .map(({sample}) => ({pokemonId: getPokemonId(sample), data: getLinkedData(sample)})),
     rank,
     percentage: min && max ? Math.abs((currentValue - min) / (max - min) * 100) : null,
     percentile: rank ? Math.abs((values.length + 1 - rank) / (values.length + 1) * 100) : null,

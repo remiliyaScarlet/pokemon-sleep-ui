@@ -19,7 +19,8 @@ export const getAnalysisStatsOfAppearance = ({
       samples: appearances,
       getPokemonId: ({pokemonId}) => pokemonId,
       getValue: ({style}) => getSnorlaxRankEquivalentNumber(style.rank),
-      isRelated: (sample) => (
+      getLinkedData: ({style}) => style.rank,
+      isLinked: (sample) => (
         isSameRank(sample.style.rank, current.style.rank) &&
         sample.pokemonId !== current.pokemonId
       ),

@@ -1,20 +1,28 @@
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {AnalysisStatsGrouped, GetAnalysisStatsCommonOpts} from '@/ui/analysis/page/calc/type';
+import {
+  AnalysisStatsGrouped,
+  AnalysisStatsLinkedData,
+  GetAnalysisStatsCommonOpts,
+} from '@/ui/analysis/page/calc/type';
 
 
-type GetAnalysisStatsOfGroupedOpts<TSample> = Pick<GetAnalysisStatsCommonOpts<TSample>, 'samples'> & {
+type GetAnalysisStatsOfGroupedOpts<TSample, TData> = Pick<GetAnalysisStatsCommonOpts<TSample>, 'samples'> & {
+  getLinkedData: (sample: TSample) => AnalysisStatsLinkedData<TData>['data'],
   isMatched: (sample: TSample) => boolean,
 };
 
-export const getAnalysisStatsOfGrouped = ({
+export const getAnalysisStatsOfGrouped = <TData>({
   samples,
+  getLinkedData,
   isMatched,
-}: GetAnalysisStatsOfGroupedOpts<PokemonInfo>): AnalysisStatsGrouped => {
-  const related = samples.filter((sample) => isMatched(sample)).map(({id}) => id);
+}: GetAnalysisStatsOfGroupedOpts<PokemonInfo, TData>): AnalysisStatsGrouped<TData> => {
+  const linked = samples
+    .filter((sample) => isMatched(sample))
+    .map((sample) => ({pokemonId: sample.id, data: getLinkedData(sample)} satisfies AnalysisStatsLinkedData<TData>));
 
   return {
-    related,
-    sharedCount: related.length,
+    linked: linked,
+    sharedCount: linked.length,
     totalCount: samples.length,
   };
 };

@@ -171,6 +171,10 @@
     --items-count: 6;
   }
   
+  .width-with-gap-7-items {
+    --items-count: 7;
+  }
+  
   .width-with-gap-8-items {
     --items-count: 8;
   }

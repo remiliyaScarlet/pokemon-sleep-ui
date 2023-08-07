@@ -1,30 +1,43 @@
 import {SnorlaxRank} from '@/types/game/rank';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {BerryId} from '@/types/mongo/berry';
+import {IngredientId} from '@/types/mongo/ingredient';
+import {
+  PokemonId,
+  PokemonSkillId,
+  PokemonSleepTypeId,
+  PokemonSpecialtyId,
+  PokemonTypeId,
+} from '@/types/mongo/pokemon';
 import {SleepMapId} from '@/types/mongo/sleepStyle';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
-export type AnalysisStatsCommon = {
-  related: PokemonId[],
+export type AnalysisStatsLinkedData<TData> = {
+  pokemonId: PokemonId,
+  data: TData,
+};
+
+export type AnalysisStatsCommon<TData> = {
+  linked: AnalysisStatsLinkedData<TData>[],
   totalCount: number,
 };
 
-export type AnalysisStatsGrouped = AnalysisStatsCommon & {
+export type AnalysisStatsGrouped<TData> = AnalysisStatsCommon<TData> & {
   sharedCount: number,
 };
 
-export type AnalysisStatsContinuous = AnalysisStatsCommon & {
+export type AnalysisStatsContinuous<TData> = AnalysisStatsCommon<TData> & {
   percentile: number | null,
   percentage: number | null,
   rank: number | null,
 };
 
 export type AnalysisStatsProducingRate = {
-  count: AnalysisStatsContinuous,
-  energy: AnalysisStatsContinuous,
+  count: AnalysisStatsContinuous<number>,
+  energy: AnalysisStatsContinuous<number>,
 };
 
-export type AnalysisStatsSleepStyleAppearance = AnalysisStatsContinuous & {
+export type AnalysisStatsSleepStyleAppearance = AnalysisStatsContinuous<SnorlaxRank> & {
   snorlaxRank: SnorlaxRank,
 };
 
@@ -36,15 +49,15 @@ export type AnalysisStatsSleepStyle = {
 
 export type AnalysisStats = {
   pokemon: {
-    type: AnalysisStatsGrouped,
-    specialty: AnalysisStatsGrouped,
-    sleepType: AnalysisStatsGrouped,
+    type: AnalysisStatsGrouped<PokemonTypeId>,
+    specialty: AnalysisStatsGrouped<PokemonSpecialtyId | null>,
+    sleepType: AnalysisStatsGrouped<PokemonSleepTypeId>,
     ingredient: {
-      fixed: AnalysisStatsGrouped,
-      random: AnalysisStatsGrouped[],
+      fixed: AnalysisStatsGrouped<IngredientId | undefined>,
+      random: AnalysisStatsGrouped<IngredientId>[],
     },
-    berry: AnalysisStatsGrouped,
-    mainSkill: AnalysisStatsGrouped,
+    berry: AnalysisStatsGrouped<BerryId>,
+    mainSkill: AnalysisStatsGrouped<PokemonSkillId>,
     sleepStyle: AnalysisStatsSleepStyle[],
   },
   producingRate: {

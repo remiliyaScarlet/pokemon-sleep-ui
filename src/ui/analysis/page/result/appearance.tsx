@@ -24,7 +24,10 @@ export const AnalysisStatsAppearanceUI = ({stats, mapId, i18nTitleKey}: Props) =
   const mapName = t(`Field.${mapId}`);
 
   return (
-    <AnalysisStatsContinuousUI stats={stats} title={t2(i18nTitleKey, {mapName})}>
+    <AnalysisStatsContinuousUI
+      stats={stats} title={t2(i18nTitleKey, {mapName})}
+      renderData={({data}) => <SnorlaxRankUI rank={data} hideTextBelowMd/>}
+    >
       <MapLink mapId={mapId} className="h-full w-full p-1.5">
         <Flex direction="col" center className="z-10 gap-1.5 md:flex-row">
           <h4 className="text-xl">

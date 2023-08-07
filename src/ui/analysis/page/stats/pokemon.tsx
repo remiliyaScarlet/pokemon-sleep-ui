@@ -27,14 +27,20 @@ export const AnalysisStatsOfPokemonMeta = ({stats, pokemon}: AnalysisStatsUiProp
 
   return (
     <>
-      <AnalysisStatsGroupedUI stats={stats.pokemon.type} title={<PokemonFilterTitle type="pokemonType"/>}>
+      <AnalysisStatsGroupedUI
+        stats={stats.pokemon.type}
+        title={<PokemonFilterTitle type="pokemonType"/>}
+      >
         <div className="relative h-10 w-10">
           <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageIconSizes}/>
         </div>
       </AnalysisStatsGroupedUI>
       {
         specialty &&
-        <AnalysisStatsGroupedUI stats={stats.pokemon.specialty} title={<PokemonFilterTitle type="specialty"/>}>
+        <AnalysisStatsGroupedUI
+          stats={stats.pokemon.specialty}
+          title={<PokemonFilterTitle type="specialty"/>}
+        >
           <div className="text-2xl">
             <PokemonSpecialty dimension="h-5 w-5" specialty={specialty}/>
           </div>
