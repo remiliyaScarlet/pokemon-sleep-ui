@@ -5,6 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonName} from '@/components/shared/pokemon/name';
 import {imageIconSizes} from '@/styles/image';
@@ -33,12 +34,7 @@ export const PokemonLinkPopupContent = ({pokemon}: Props) => {
         <Flex direction="col">
           <Link href={`/pokedex/${id}`}>
             <Flex direction="col" center className="button-clickable-bg group p-2">
-              <div className="relative h-10 w-10">
-                <NextImage
-                  src="/images/generic/pokeball.png" alt={t('Pokedex.Page.Title', {name})}
-                  sizes={imageIconSizes} className="invert-hoverable"
-                />
-              </div>
+              <GenericPokeballIcon dimension="h-10 w-10" alt={t('Pokedex.Page.Title', {name})}/>
             </Flex>
           </Link>
         </Flex>

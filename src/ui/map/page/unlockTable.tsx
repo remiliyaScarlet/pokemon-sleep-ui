@@ -6,9 +6,10 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
-import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
+import {imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
@@ -37,12 +38,7 @@ export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxRew
           <td/>
           <td className="p-1">
             <Flex direction="row" center className="gap-1">
-              <div className="relative h-6 w-6">
-                <NextImage
-                  src="/images/generic/pokeball.png" alt={t2('Pokemon')}
-                  sizes={imageIconSizes} className="invert-on-light"
-                />
-              </div>
+              <GenericPokeballIcon dimension="h-6 w-6" alt={t2('Pokemon')}/>
               <div>/</div>
               <div className="relative h-6 w-6">
                 <NextImage

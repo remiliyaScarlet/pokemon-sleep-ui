@@ -10,16 +10,16 @@ type Props = IconProps & {
   src: string,
 };
 
-export const GenericIconBase = ({dimension, alt, noWrap, src}: Props) => {
+export const GenericIconBase = ({alt, className, dimension, noWrap, src}: Props) => {
   if (noWrap) {
     return (
-      <NextImage src={src} alt={alt} sizes={imageSmallIconSizes} className="invert-on-light"/>
+      <NextImage src={src} alt={alt} sizes={imageSmallIconSizes} className={className ?? 'invert-hoverable'}/>
     );
   }
 
   return (
     <div className={classNames('relative', dimension ?? 'h-5 w-5')}>
-      <NextImage src={src} alt={alt} sizes={imageSmallIconSizes} className="invert-on-light"/>
+      <NextImage src={src} alt={alt} sizes={imageSmallIconSizes} className={className ?? 'invert-hoverable'}/>
     </div>
   );
 };

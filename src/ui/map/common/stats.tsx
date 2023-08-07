@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {imageIconSizes} from '@/styles/image';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
 import {toUnique} from '@/utils/array';
@@ -33,12 +34,7 @@ export const MapStats = ({sleepStyles}: Props) => {
         </div>
       </Flex>
       <Flex direction="row" center noFullWidth className="gap-1.5">
-        <div className="relative h-6 w-6">
-          <NextImage
-            src="/images/generic/pokeball.png" alt={t('Pokemon')}
-            sizes={imageIconSizes} className="invert-hoverable"
-          />
-        </div>
+        <GenericPokeballIcon dimension="h-6 w-6" alt={t('Pokemon')}/>
         <div>
           {pokemonCount}
         </div>

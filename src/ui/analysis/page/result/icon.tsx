@@ -5,6 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {imageIconSizes} from '@/styles/image';
 import {AnalysisStatsLinkedData} from '@/ui/analysis/page/calc/type';
 import {classNames} from '@/utils/react';
@@ -39,10 +40,7 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
       <Flex direction="row" className="gap-2">
         <Flex direction="col" center>
           <Link href={`/pokedex/${pokemonId}`} className="button-clickable group relative h-6 w-6">
-            <NextImage
-              src="/images/generic/pokeball.png" alt={t2('Pokedex.Page.Title', {name})}
-              sizes={imageIconSizes} className="invert-hoverable"
-            />
+            <GenericPokeballIcon alt={t2('Pokedex.Page.Title', {name})} noWrap/>
           </Link>
         </Flex>
         <Flex direction="col" center>

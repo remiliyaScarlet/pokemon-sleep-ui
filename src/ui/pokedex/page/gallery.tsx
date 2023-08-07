@@ -7,10 +7,9 @@ import {useTranslations} from 'next-intl';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
-import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
@@ -36,12 +35,10 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
 
   if (image === 'portrait') {
     return (
-      <div className="relative h-5 w-5">
-        <NextImage
-          src="/images/generic/pokeball.png" alt={t3(pokemonId.toString())} sizes={imageIconSizes}
-          className={isActive ? 'invert-on-dark' : 'invert-on-light'}
-        />
-      </div>
+      <GenericPokeballIcon
+        alt={t3(pokemonId.toString())}
+        className={isActive ? 'invert-on-dark' : 'invert-on-light'}
+      />
     );
   }
 
