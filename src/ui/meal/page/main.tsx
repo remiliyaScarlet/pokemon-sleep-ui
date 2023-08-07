@@ -36,7 +36,7 @@ export const MealPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="col" center className="gap-1.5">
         <MealMeta {...props}/>
-        <AdsUnit className="w-full"/>
+        <AdsUnit/>
         <MealPokemonOfIngredient pokemonByIngredients={pokemonByIngredients} {...props}/>
       </Flex>
     </PageLayout>

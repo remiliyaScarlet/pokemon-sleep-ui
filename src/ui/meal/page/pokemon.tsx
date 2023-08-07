@@ -22,7 +22,7 @@ export const MealPokemonOfIngredient = (props: Props) => {
             type={type as PokemonIngredientType}
             pokeIngredientMap={pokeIngredientMap} {...props}
           />
-          <AdsUnit className="w-full"/>
+          <AdsUnit/>
         </React.Fragment>
       ))}
     </I18nProvider>

@@ -109,7 +109,7 @@ export const TeamAnalysis = (props: Props) => {
           );
         })}
         <TeamAnalysisUploadSetup setup={setup}/>
-        <AdsUnit className="w-full"/>
+        <AdsUnit/>
         <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
         <TeamAnalysisSummary
           bonus={setup.bonus}
@@ -120,7 +120,7 @@ export const TeamAnalysis = (props: Props) => {
           stats={producingStats}
           snorlaxRankData={snorlaxRankData}
         />
-        <AdsUnit className="w-full"/>
+        <AdsUnit/>
       </Flex>
     </>
   );
