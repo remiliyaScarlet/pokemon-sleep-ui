@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
+import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
@@ -9,7 +10,6 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
-import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -38,12 +38,13 @@ export const Pokemon = ({params}: Props) => {
 
   return (
     <PageLayout>
-      <Flex direction="row" center wrap className="mt-2 gap-2">
+      <Flex direction="col" center className="gap-2">
         <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.Metadata']}>
           <PokemonMeta {...props}/>
-          <PokemonImageGallery {...props}/>
         </I18nProvider>
+        <AdsUnit/>
         <PokemonSleepStyles {...props}/>
+        <AdsUnit/>
       </Flex>
     </PageLayout>
   );

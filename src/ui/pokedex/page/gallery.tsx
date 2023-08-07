@@ -58,7 +58,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
   const [currentImage, setCurrentImage] = React.useState<PokemonImageType>('portrait');
 
   return (
-    <Flex direction="col" center className="info-section-md-fit">
+    <Flex direction="col" center>
       <Flex direction="col" center noFullWidth className={styles['gallery-size']}>
         {imageOptions
           .flatMap<[PokemonImageType, boolean]>((image) => [[image, true], [image, false]])
