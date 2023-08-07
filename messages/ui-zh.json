@@ -22,12 +22,7 @@
       }
     },
     "Analysis": {
-      "Index": {
-        "Title": "寶可夢分析"
-      },
-      "Page":  {
-        "Title": "寶可夢分析 - {name}"
-      }
+      "Title": "寶可夢分析 - {name}"
     },
     "Cooking": {
       "Title": "製作料理"

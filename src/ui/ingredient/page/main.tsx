@@ -36,7 +36,7 @@ export const IngredientPage = ({params}: Props) => {
         <IngredientMeta {...ingredient}/>
         <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex']}>
+      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <IngredientObtainablePokemon
           pokemonMaxLevel={pokemonMaxLevel}
           obtainablePokemon={obtainablePokemon}

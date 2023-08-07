@@ -1,7 +1,8 @@
-import {AnalysisIndex} from '@/ui/analysis/index/main';
-import {generatePageMeta} from '@/utils/meta';
+import {redirect} from 'next-intl/server';
 
 
-export const generateMetadata = generatePageMeta({key: 'Analysis.Index.Title'});
+const redirectToNewPath = () => {
+  redirect('/pokedex');
+};
 
-export default AnalysisIndex;
+export default redirectToNewPath;

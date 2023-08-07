@@ -13,7 +13,7 @@ export const generateMetadata: GenerateMetadata<AnalysisPageParams> = async ({pa
   const {id, locale} = params;
   const t = await getTranslator(locale, 'Game.PokemonName');
 
-  return generatePageMeta({key: 'Analysis.Page.Title', values: {name: t(id)}})({params});
+  return generatePageMeta({key: 'Analysis.Title', values: {name: t(id)}})({params});
 };
 
 export default AnalysisPage;

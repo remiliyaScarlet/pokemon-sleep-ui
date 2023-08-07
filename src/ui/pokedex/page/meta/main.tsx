@@ -33,6 +33,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   const metaTitleClass = 'whitespace-nowrap text-sm text-slate-500';
 
   const berryName = t(`Berry.${berry.id}`);
+  const pokemonName = t(`PokemonName.${pokemon.id}`);
 
   return (
     <Flex direction="col" center className="info-section-md-fit md:gap-y-3">
@@ -86,7 +87,7 @@ export const PokemonMeta = (props: PokemonProps) => {
       <Flex direction="col" className="items-end">
         <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">
           <NextImage
-            src="/images/generic/analysis.png" alt={t3('Analysis.Index.Title')}
+            src="/images/generic/analysis.png" alt={t3('Analysis.Title', {name: pokemonName})}
             sizes={imageIconSizes} className="invert-hoverable"
           />
         </Link>

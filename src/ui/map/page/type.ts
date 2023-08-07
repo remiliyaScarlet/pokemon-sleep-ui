@@ -14,7 +14,7 @@ export type MapCommonProps = {
   mapId: number,
   mapName: string,
   sleepStyles: SleepStyleDataFlattened[],
-  pokedexMap: PokedexMap
+  pokedexMap: PokedexMap,
   snorlaxRank: SnorlaxRankInMap,
   snorlaxReward: SnorlaxReward[],
 };

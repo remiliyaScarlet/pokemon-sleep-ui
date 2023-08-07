@@ -14,7 +14,7 @@ export const MealPokemonOfIngredient = (props: Props) => {
   const {pokemonByIngredients} = props;
 
   return (
-    <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex']}>
+    <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
       {Object.entries(pokemonByIngredients.ingredient).map(([type, pokeIngredientMap]) => (
         <MealPokemonOfIngredientType
           key={type} type={type as PokemonIngredientType}

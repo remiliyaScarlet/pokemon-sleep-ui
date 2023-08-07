@@ -47,9 +47,9 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
           </Link>
         </Flex>
         <Flex direction="col" center>
-          <Link href={`/analysis/${pokemonId}`} className="button-clickable group relative mt-auto h-6 w-6">
+          <Link href={`/analysis/${pokemonId}`} className="button-clickable group relative h-6 w-6">
             <NextImage
-              src="/images/generic/analysis.png" alt={t2('Analysis.Page.Title', {name})}
+              src="/images/generic/analysis.png" alt={t2('Analysis.Title', {name})}
               sizes={imageIconSizes} className="invert-hoverable"
             />
           </Link>

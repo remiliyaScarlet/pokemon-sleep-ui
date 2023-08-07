@@ -22,12 +22,7 @@
       }
     },
     "Analysis": {
-      "Index": {
-        "Title": "포켓몬 분석"
-      },
-      "Page":  {
-        "Title": "포켓몬 분석 - {name}"
-      }
+      "Title": "포켓몬 분석 - {name}"
     },
     "Cooking": {
       "Title": "요리한다"

@@ -22,12 +22,7 @@
       }
     },
     "Analysis": {
-      "Index": {
-        "Title": "Pokémon Analysis"
-      },
-      "Page":  {
-        "Title": "Pokémon Analysis - {name}"
-      }
+      "Title": "Pokémon Analysis - {name}"
     },
     "Cooking": {
       "Title": "Cooking"

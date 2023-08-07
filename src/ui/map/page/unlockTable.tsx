@@ -16,12 +16,12 @@ import {formatInt} from '@/utils/number';
 import {classNames} from '@/utils/react';
 
 
-type Props = Pick<MapCommonProps, 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
+type Props = Pick<MapCommonProps, 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
 };
 
-export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter, isIncluded}: Props) => {
+export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxReward, filter, isIncluded}: Props) => {
   const {showEmptyRank} = filter;
 
   const t = useTranslations('UI.Common');
@@ -85,7 +85,8 @@ export const MapUnlockTable = ({sleepStyles, snorlaxRank, snorlaxReward, filter,
               <td>
                 <Flex direction="col" center>
                   <PokemonIconList
-                    dataWithPokemonId={matchingStyles}
+                    dataWithPokemon={matchingStyles}
+                    getPokemon={({pokemonId}) => pokedexMap[pokemonId]}
                     getPokemonId={({pokemonId}) => pokemonId}
                     getInfo={({style}) => {
                       if (style.style === 'onSnorlax') {
