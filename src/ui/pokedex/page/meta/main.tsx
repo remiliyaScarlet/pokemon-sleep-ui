@@ -2,13 +2,16 @@
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
+import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonName} from '@/components/shared/pokemon/name';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
 import {PokemonIngredientMeta} from '@/ui/pokedex/page/meta/ingredient';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
@@ -25,6 +28,7 @@ export const PokemonMeta = (props: PokemonProps) => {
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
+  const t3 = useTranslations('UI.Metadata');
 
   const metaTitleClass = 'whitespace-nowrap text-sm text-slate-500';
 
@@ -79,6 +83,14 @@ export const PokemonMeta = (props: PokemonProps) => {
       >
         <PokemonStats {...props}/>
       </PokemonMetaSection>
+      <Flex direction="col" className="items-end">
+        <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">
+          <NextImage
+            src="/images/generic/analysis.png" alt={t3('Analysis.Index.Title')}
+            sizes={imageIconSizes} className="invert-hoverable"
+          />
+        </Link>
+      </Flex>
     </Flex>
   );
 };
