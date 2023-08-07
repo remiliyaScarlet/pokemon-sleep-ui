@@ -3,12 +3,12 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {useUpdateUserData} from '@/hooks/auth';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
+import {usePokedexAutoUpload} from '@/ui/pokedex/index/upload';
 import {sortPokemon} from '@/ui/pokedex/index/utils';
 import {classNames} from '@/utils/react';
 
@@ -19,8 +19,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     data: pokedex,
     display: session?.user.data.pokedex,
   });
-
-  useUpdateUserData({type: 'pokedex', data: {sort: filter.sort, display: filter.display}});
+  usePokedexAutoUpload({filter});
 
   const sortedData = pokedex.sort(sortPokemon({
     type: filter.sort,

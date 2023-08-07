@@ -10,6 +10,7 @@ import {useProducingStats} from '@/ui/team/analysis/result/hook';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon/main';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/result/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/result/summary/main';
+import {TeamAnalysisUploadSetup} from '@/ui/team/analysis/result/upload';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
@@ -96,6 +97,7 @@ export const TeamAnalysis = (props: Props) => {
           </Flex>
         );
       })}
+      <TeamAnalysisUploadSetup setup={setup}/>
       <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
       <TeamAnalysisSummary
         bonus={setup.bonus}

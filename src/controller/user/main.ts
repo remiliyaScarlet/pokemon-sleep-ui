@@ -1,8 +1,8 @@
 import {userDataPokedex, userDataRecipeLevel, userDataTeamAnalysisSetup} from '@/controller/user/manager';
-import {UpdateUserDataOpts, UserData} from '@/types/userData';
+import {UploadUserDataOpts, UserData} from '@/types/userData';
 
 
-export const updateUserData = async ({userId, opts}: {userId: string, opts: UpdateUserDataOpts}) => {
+export const uploadUserData = async ({userId, opts}: {userId: string, opts: UploadUserDataOpts}) => {
   const {type, data} = opts;
 
   if (type === 'recipeLevel') {
@@ -20,7 +20,7 @@ export const updateUserData = async ({userId, opts}: {userId: string, opts: Upda
     return;
   }
 
-  console.error(`Unhandled user data update type: [${type satisfies never}]`);
+  console.error(`Unhandled user data upload type: [${type satisfies never}]`);
 };
 
 export const getUserData = async (userId: string): Promise<UserData> => {

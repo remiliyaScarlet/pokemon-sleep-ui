@@ -2,9 +2,9 @@ import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import googleProvider from 'next-auth/providers/google';
 
-import {getUserData, updateUserData} from '@/controller/user/main';
+import {getUserData, uploadUserData} from '@/controller/user/main';
 import mongoPromise from '@/lib/mongodb';
-import {UpdateUserDataOpts} from '@/types/userData';
+import {UploadUserDataOpts} from '@/types/userData';
 
 
 const cookieDomain = process.env.NEXTAUTH_COOKIE_DOMAIN;
@@ -51,7 +51,7 @@ export const authOptions: AuthOptions = {
         return session;
       }
 
-      await updateUserData({userId, opts: newSession satisfies UpdateUserDataOpts});
+      await uploadUserData({userId, opts: newSession satisfies UploadUserDataOpts});
       session.user.data = await getUserData(userId);
 
       return session;

@@ -8,7 +8,6 @@ import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {useUpdateUserData} from '@/hooks/auth';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {Meal, MealId} from '@/types/mongo/meal';
 import {CookingInputUI} from '@/ui/cooking/input/main';
@@ -50,7 +49,6 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
       return getMealRequiredQuantity(meal) <= filter.capacity;
     },
   });
-  useUpdateUserData({type: 'recipeLevel', data: filter.recipeLevel});
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));

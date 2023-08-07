@@ -4,7 +4,6 @@ import merge from 'lodash/merge';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {useUpdateUserData} from '@/hooks/auth';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysis} from '@/ui/team/analysis/result/main';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
@@ -33,7 +32,6 @@ export const TeamAnalysisUI = (props: Props) => {
       ingredient: 12,
     },
   }, session?.user.data.teamAnalysisSetup));
-  useUpdateUserData({type: 'teamAnalysisSetup', data: setup});
 
   return (
     <>
