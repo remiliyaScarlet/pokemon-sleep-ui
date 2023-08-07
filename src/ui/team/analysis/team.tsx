@@ -2,8 +2,8 @@ import React from 'react';
 
 import merge from 'lodash/merge';
 
+import {AdsUnit} from '@/components/ads/main';
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysis} from '@/ui/team/analysis/result/main';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
@@ -42,7 +42,7 @@ export const TeamAnalysisUI = (props: Props) => {
           pokemon={pokemon}
         />
       </div>
-      <HorizontalSplitter/>
+      <AdsUnit/>
       <TeamAnalysis setup={setup} setSetup={setSetup} {...props}/>
     </>
   );

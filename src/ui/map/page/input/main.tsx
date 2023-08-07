@@ -15,7 +15,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
   const {filter, setFilter, pokedexMap, sleepStyles} = props;
 
   return (
-    <Flex direction="col" className="gap-1 md:w-3/4">
+    <Flex direction="col" className="gap-1">
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}

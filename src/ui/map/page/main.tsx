@@ -3,6 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {MapPageParams} from '@/app/[locale]/map/[id]/page';
+import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
@@ -45,11 +46,15 @@ export const MapPage = ({params}: Props) => {
 
   return (
     <PageLayout>
-      <Flex direction="col" center className="gap-1.5">
-        <MapMeta {...props}/>
-        <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex.Info', 'UI.InPage.Map', 'UI.Common']}>
-          <MapInfo {...props}/>
-        </I18nProvider>
+      <Flex direction="col" center>
+        <Flex direction="col" className="gap-1.5 md:w-3/4">
+          <MapMeta {...props}/>
+          <AdsUnit/>
+          <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex.Info', 'UI.InPage.Map', 'UI.Common']}>
+            <MapInfo {...props}/>
+          </I18nProvider>
+          <AdsUnit/>
+        </Flex>
       </Flex>
     </PageLayout>
   );

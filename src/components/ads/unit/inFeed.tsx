@@ -5,12 +5,12 @@ import {Adsense} from '@ctrl/react-adsense';
 import {useTheme} from 'next-themes';
 
 import {adsClientId} from '@/components/ads/const';
-import {AdSenseValue, AdsUnitProps} from '@/components/ads/unit/types';
+import {AdSenseValue, AdsTemplateUnitProps} from '@/components/ads/unit/types';
 import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
 
 
-type Props = AdsUnitProps & {
+type Props = AdsTemplateUnitProps & {
   layoutKey: AdSenseValue,
 };
 

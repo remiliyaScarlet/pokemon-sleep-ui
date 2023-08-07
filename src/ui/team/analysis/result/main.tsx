@@ -3,6 +3,7 @@ import React from 'react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {useTranslations} from 'next-intl';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
@@ -108,6 +109,7 @@ export const TeamAnalysis = (props: Props) => {
           );
         })}
         <TeamAnalysisUploadSetup setup={setup}/>
+        <AdsUnit className="w-full"/>
         <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
         <TeamAnalysisSummary
           bonus={setup.bonus}
@@ -118,6 +120,7 @@ export const TeamAnalysis = (props: Props) => {
           stats={producingStats}
           snorlaxRankData={snorlaxRankData}
         />
+        <AdsUnit className="w-full"/>
       </Flex>
     </>
   );

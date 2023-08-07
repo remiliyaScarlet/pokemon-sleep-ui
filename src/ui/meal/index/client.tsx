@@ -3,8 +3,8 @@ import React from 'react';
 
 import {Session} from 'next-auth';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/mongo/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hook';
@@ -28,7 +28,7 @@ export const MealIndexClient = ({data, session}: Props) => {
   return (
     <>
       <MealInput data={data} {...props}/>
-      <HorizontalSplitter/>
+      <AdsUnit/>
       <Flex direction="row" wrap className="gap-1.5">
         {data
           .map((meal) => ({
@@ -66,6 +66,7 @@ export const MealIndexClient = ({data, session}: Props) => {
             </div>
           ))}
       </Flex>
+      <AdsUnit/>
     </>
   );
 };

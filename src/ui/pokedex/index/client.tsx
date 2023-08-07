@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
@@ -31,7 +31,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   return (
     <>
       <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
-      <HorizontalSplitter/>
+      <AdsUnit/>
       <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <Flex direction="row" wrap className="gap-1.5">
         {sortedData.map((pokemon) => (
@@ -48,6 +48,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
           </div>
         ))}
       </Flex>
+      <AdsUnit/>
     </>
   );
 };

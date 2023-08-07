@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {usePotInfoFilter} from '@/ui/info/pot/hook';
 import {PotInfoInput} from '@/ui/info/pot/input';
 import {PotInfoCommonProps} from '@/ui/info/pot/type';
@@ -18,7 +19,9 @@ export const PotInfoClient = (props: PotInfoCommonProps) => {
   return (
     <>
       <PotInfoInput filter={filter} setFilter={setFilter} mealTypes={mealTypes} ingredients={ingredients}/>
+      <AdsUnit/>
       <PotRecipeUnlockTable filter={filter} meals={validMeals}/>
+      <AdsUnit/>
     </>
   );
 };

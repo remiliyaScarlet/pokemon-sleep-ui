@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {MealPageParams} from '@/app/[locale]/meal/[id]/page';
+import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
@@ -35,6 +36,7 @@ export const MealPage = ({params}: Props) => {
     <PageLayout>
       <Flex direction="col" center className="gap-1.5">
         <MealMeta {...props}/>
+        <AdsUnit className="w-full"/>
         <MealPokemonOfIngredient pokemonByIngredients={pokemonByIngredients} {...props}/>
       </Flex>
     </PageLayout>

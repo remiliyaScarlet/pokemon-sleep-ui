@@ -6,6 +6,7 @@ export type AdSenseValue = {
   [theme: string]: string,
 };
 
-export type AdsUnitProps = {
+export type AdsTemplateUnitProps = {
   slot: AdSenseValue,
+  className?: string,
 };

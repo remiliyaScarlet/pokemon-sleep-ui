@@ -9,7 +9,7 @@ import {MapCommonProps} from '@/ui/map/page/type';
 
 export const MapMeta = ({mapId, mapName, sleepStyles}: MapCommonProps) => {
   return (
-    <Flex direction="col" className="relative h-28 md:w-2/3">
+    <Flex direction="col" className="relative h-32">
       <NextImage
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"

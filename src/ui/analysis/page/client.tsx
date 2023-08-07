@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
 import {AnalysisPageInput} from '@/ui/analysis/page/input/main';
@@ -37,14 +37,16 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   return (
     <Flex direction="col" className="gap-1">
       <AnalysisMeta {...props}/>
+      <AdsUnit/>
       <AnalysisPageInput
         filter={filter}
         setFilter={setFilter}
         maxLevel={berryDataMap[pokemon.berry.id].energy.length}
         {...props}
       />
-      <HorizontalSplitter/>
+      <AdsUnit/>
       <AnalysisStatsUI pokemon={pokemon} stats={stats} loading={loading}/>
+      <AdsUnit/>
     </Flex>
   );
 };

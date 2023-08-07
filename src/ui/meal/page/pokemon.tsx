@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/contexts/i18n';
 import {PokemonIngredientData, PokemonIngredientType} from '@/types/mongo/pokemon';
 import {MealPokemonOfIngredientType} from '@/ui/meal/page/pokemonOfType';
@@ -16,10 +17,13 @@ export const MealPokemonOfIngredient = (props: Props) => {
   return (
     <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
       {Object.entries(pokemonByIngredients.ingredient).map(([type, pokeIngredientMap]) => (
-        <MealPokemonOfIngredientType
-          key={type} type={type as PokemonIngredientType}
-          pokeIngredientMap={pokeIngredientMap} {...props}
-        />
+        <React.Fragment key={type}>
+          <MealPokemonOfIngredientType
+            type={type as PokemonIngredientType}
+            pokeIngredientMap={pokeIngredientMap} {...props}
+          />
+          <AdsUnit className="w-full"/>
+        </React.Fragment>
       ))}
     </I18nProvider>
   );

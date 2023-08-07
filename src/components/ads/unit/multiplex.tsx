@@ -5,20 +5,20 @@ import {Adsense} from '@ctrl/react-adsense';
 import {useTheme} from 'next-themes';
 
 import {adsClientId} from '@/components/ads/const';
-import {AdsUnitProps} from '@/components/ads/unit/types';
+import {AdsTemplateUnitProps} from '@/components/ads/unit/types';
 import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
 
 
-type Props = AdsUnitProps;
+type Props = AdsTemplateUnitProps;
 
-export const AdsUnitMultiplex = ({slot}: Props) => {
+export const AdsUnitMultiplex = ({slot, className}: Props) => {
   const {theme} = useTheme();
 
   // About customization: https://support.google.com/adsense/answer/7533385?hl=en&ref_topic=9183242
   // This renders 1x4 in desktop, 2x2 in mobile
   return (
-    <AdsWrapper>
+    <AdsWrapper className={className}>
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}

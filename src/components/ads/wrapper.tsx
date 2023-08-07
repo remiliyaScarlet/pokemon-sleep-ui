@@ -1,16 +1,13 @@
 import React from 'react';
 
+import {AdsUnitProps} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
 import {classNames} from '@/utils/react';
 
 
-type Props = {
-  className?: string,
-};
-
-export const AdsWrapper = ({children, className}: React.PropsWithChildren<Props>) => {
+export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUnitProps>) => {
   return (
-    <div className={classNames(className, isProduction() ? undefined : 'border-1 border-green-500')}>
+    <div className={classNames(className, isProduction() ? undefined : 'border border-green-500 h-20')}>
       {children}
     </div>
   );

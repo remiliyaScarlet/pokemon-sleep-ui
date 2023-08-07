@@ -108,7 +108,7 @@
   }
   
   table.table-unlock {
-    @apply w-full md:w-3/4;
+    @apply w-full;
     
     & > thead {
       @apply sticky top-12 z-10;

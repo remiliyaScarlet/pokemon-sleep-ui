@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {getAllIngredients} from '@/controller/ingredient';
 import {PageLayout} from '@/ui/base/layout';
@@ -12,6 +13,7 @@ export const IngredientIndex = () => {
 
   return (
     <PageLayout>
+      <AdsUnit/>
       <Flex direction="row" wrap center className="gap-2 p-3">
         {Object.values(data).map((ingredient) => (
           ingredient ?
@@ -27,6 +29,7 @@ export const IngredientIndex = () => {
             <></>
         ))}
       </Flex>
+      <AdsUnit/>
     </PageLayout>
   );
 };

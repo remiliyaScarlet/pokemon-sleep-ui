@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {IngredientPageParams} from '@/app/[locale]/ingredient/[id]/page';
+import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
@@ -36,6 +37,7 @@ export const IngredientPage = ({params}: Props) => {
         <IngredientMeta {...ingredient}/>
         <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>
+      <AdsUnit/>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <IngredientObtainablePokemon
           pokemonMaxLevel={pokemonMaxLevel}
@@ -43,6 +45,7 @@ export const IngredientPage = ({params}: Props) => {
           ingredientMap={ingredientMap}
         />
       </I18nProvider>
+      <AdsUnit/>
     </PageLayout>
   );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {AdsHomepage} from '@/components/ads/main';
+import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {useNavEntries} from '@/hooks/nav';
@@ -16,10 +16,10 @@ export const HomeClient = () => {
   const entries = useNavEntries();
 
   return (
-    <>
-      <AdsHomepage/>
+    <Flex direction="col" className="gap-2 md:h-full md:px-10">
       <HomePokeball/>
-      <Flex direction="row" center wrap className="h-auto gap-2 md:h-full md:px-10">
+      <AdsUnit/>
+      <Flex direction="row" center wrap className="h-auto gap-2">
         {entries.map(({i18nTextId, ...props}) => {
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">
@@ -28,6 +28,7 @@ export const HomeClient = () => {
           );
         })}
       </Flex>
-    </>
+      <AdsUnit/>
+    </Flex>
   );
 };
