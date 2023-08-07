@@ -16,7 +16,7 @@ type Props = FeatureLinkProps & {
 export const FeatureLink = ({href, disabled, text, children}: React.PropsWithChildren<Props>) => {
   if (disabled) {
     return (
-      <button disabled className={classNames('button-base button-disabled', styles['home-link'])}>
+      <button disabled className={classNames('button-disabled-border', styles['home-link'])}>
         <Flex direction="row" center className="h-full gap-1.5">
           {children}
           <div className="text-lg">

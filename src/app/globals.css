@@ -245,11 +245,11 @@
   }
   
   .button-disabled {
-    @apply
-    bg-slate-400/50 dark:bg-slate-700/50
-    text-slate-500/70 dark:text-slate-500
-    border border-slate-400/50 dark:border-slate-500
-    ;
+    @apply button-base bg-slate-400/50 dark:bg-slate-800/30 text-slate-500/70 dark:text-slate-500;
+  }
+  
+  .button-disabled-border {
+    @apply button-disabled border border-slate-400/50 dark:border-slate-500/50;
   }
   
   /* endregion */

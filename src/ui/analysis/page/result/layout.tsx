@@ -42,7 +42,10 @@ export const AnalysisLayout = ({related, title, footer, mark, children}: React.P
           {footer}
         </Flex>
         <Flex direction="row" className="justify-end">
-          <button className="button-clickable-bg h-6 w-6 p-1" onClick={() => setShow(true)}>
+          <button
+            className="enabled:button-clickable-border disabled:button-disabled h-6 w-6 p-1"
+            disabled={!related.length} onClick={() => setShow(true)}
+          >
             <LinkIcon/>
           </button>
         </Flex>

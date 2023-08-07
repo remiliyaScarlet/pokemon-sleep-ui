@@ -66,7 +66,7 @@ export const TeamAnalysis = (props: Props) => {
             'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
           )}>
             <button
-              className="button-clickable disabled:button-disabled absolute right-1 top-1 h-5 w-5 rounded-full"
+              className="button-clickable disabled:button-disabled-border absolute right-1 top-1 h-5 w-5 rounded-full"
               disabled={!member}
               onClick={() => setSetup((original) => ({
                 ...original,

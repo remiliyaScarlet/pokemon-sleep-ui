@@ -39,7 +39,7 @@ export const LanguageSwitch = () => {
               onClick={() => onClick(locale)}
               className={classNames(
                 'flex button-base w-full justify-center p-5 width-with-gap sm:width-with-gap-2-items text-xl',
-                currentLocale === locale ? 'button-disabled' : 'button-clickable-border',
+                'disabled:button-disabled-border enabled:button-clickable-bg',
               )}
             >
               {name}
