@@ -51,9 +51,7 @@ export const useCalculationWorker = ({
   };
 
   React.useEffect(() => {
-    const timeoutId = setTimeout(requestStats, 500);
-
-    return () => clearTimeout(timeoutId);
+    requestStats();
   }, calculateDeps);
 
   React.useEffect(() => {
