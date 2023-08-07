@@ -24,7 +24,7 @@ export const TeamAnalysis = () => {
 
   return (
     <PageLayout>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Team', 'UI.InPage.Pokedex']}>
+      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
         <TeamAnalysisClient {...props}/>
       </I18nProvider>
     </PageLayout>

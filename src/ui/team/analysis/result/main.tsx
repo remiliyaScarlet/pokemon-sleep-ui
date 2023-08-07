@@ -1,11 +1,13 @@
 import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
-import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
-import Link from 'next-intl/link';
+import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
+import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {useProducingStats} from '@/ui/team/analysis/result/hook';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/result/pokemon/main';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/result/summary/grouped/main';
@@ -37,7 +39,10 @@ export const TeamAnalysis = (props: Props) => {
     snorlaxRankData,
   } = props;
 
+  const t = useTranslations('UI.Metadata.Pokedex');
+  const t2 = useTranslations('Game.PokemonName');
   const producingStats = useProducingStats(props);
+  const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   const setTeamMember = React.useCallback((slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => {
     setSetup((original) => ({
@@ -53,61 +58,67 @@ export const TeamAnalysis = (props: Props) => {
   }, [setSetup]);
 
   return (
-    <Flex direction="row" center wrap className="gap-1.5">
-      {teamAnalysisSlotName.map((slotName) => {
-        const member = setup.team[slotName];
-        const pokemon = member ? pokedex[member.pokemonId] : undefined;
-        const stats = producingStats.bySlot[slotName];
+    <>
+      <PokemonLinkPopup state={state} setState={setState}/>
+      <Flex direction="row" center wrap className="gap-1.5">
+        {teamAnalysisSlotName.map((slotName) => {
+          const member = setup.team[slotName];
+          const pokemon = member ? pokedex[member.pokemonId] : undefined;
+          const stats = producingStats.bySlot[slotName];
 
-        const isAvailable = member && pokemon && stats;
+          const isAvailable = member && pokemon && stats;
 
-        return (
-          <Flex key={slotName} direction="col" center className={classNames(
-            'relative button-bg h-[30rem] rounded-lg p-3 gap-1.5',
-            'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
-          )}>
-            <button
-              className="button-clickable disabled:button-disabled-border absolute right-1 top-1 h-5 w-5 rounded-full"
-              disabled={!member}
-              onClick={() => setSetup((original) => ({
-                ...original,
-                team: {
-                  ...original.team,
-                  [slotName]: null,
-                },
-              }))}
-            >
-              <XMarkIcon/>
-            </button>
-            {isAvailable &&
-              <Link
-                href={`/pokedex/${pokemon?.id}`}
-                className="button-clickable absolute left-1 top-1 h-5 w-5 rounded-full"
+          return (
+            <Flex key={slotName} direction="col" center className={classNames(
+              'relative button-bg h-[30rem] rounded-lg p-3 gap-1.5',
+              'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
+            )}>
+              <button
+                className={classNames(
+                  'absolute right-1 top-1 h-5 w-5 rounded-full',
+                  'enabled:button-clickable disabled:button-disabled-border',
+                )}
+                disabled={!member}
+                onClick={() => setSetup((original) => ({
+                  ...original,
+                  team: {
+                    ...original.team,
+                    [slotName]: null,
+                  },
+                }))}
               >
-                <InformationCircleIcon/>
-              </Link>}
-            {isAvailable ?
-              <TeamAnalysisPokemon
-                key={slotName} member={member} producingStats={stats} slotName={slotName}
-                setLevel={(level) => setTeamMember(slotName, {level})}
-                setNature={(nature) => setTeamMember(slotName, {nature})}
-                pokemon={pokemon} berryMap={berryMap}
-              /> :
-              <UnavailableIcon/>}
-          </Flex>
-        );
-      })}
-      <TeamAnalysisUploadSetup setup={setup}/>
-      <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
-      <TeamAnalysisSummary
-        bonus={setup.bonus}
-        setBonus={(bonus) => setSetup((original) => ({
-          ...original,
-          bonus,
-        }))}
-        stats={producingStats}
-        snorlaxRankData={snorlaxRankData}
-      />
-    </Flex>
+                <XMarkIcon/>
+              </button>
+              {isAvailable &&
+                <button
+                  className="button-clickable group absolute left-1 top-1 h-6 w-6 rounded-full"
+                  onClick={() => showPokemon(pokemon)}
+                >
+                  <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
+                </button>}
+              {isAvailable ?
+                <TeamAnalysisPokemon
+                  key={slotName} member={member} producingStats={stats} slotName={slotName}
+                  setLevel={(level) => setTeamMember(slotName, {level})}
+                  setNature={(nature) => setTeamMember(slotName, {nature})}
+                  pokemon={pokemon} berryMap={berryMap}
+                /> :
+                <UnavailableIcon/>}
+            </Flex>
+          );
+        })}
+        <TeamAnalysisUploadSetup setup={setup}/>
+        <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
+        <TeamAnalysisSummary
+          bonus={setup.bonus}
+          setBonus={(bonus) => setSetup((original) => ({
+            ...original,
+            bonus,
+          }))}
+          stats={producingStats}
+          snorlaxRankData={snorlaxRankData}
+        />
+      </Flex>
+    </>
   );
 };
