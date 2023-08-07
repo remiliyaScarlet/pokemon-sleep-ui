@@ -4,6 +4,7 @@ import Image, {ImageProps} from 'next/image';
 
 import {imageCDN} from '@/const/website';
 import {isProduction} from '@/utils/environment';
+import {classNames} from '@/utils/react';
 
 
 export type NextImageProps = Omit<ImageProps, 'fill' | 'title'>;
@@ -16,7 +17,7 @@ export const NextImage = ({src, alt, sizes, className}: NextImageProps) => {
   return (
     <Image
       src={actualSrc} alt={alt} fill title={alt} sizes={sizes}
-      className={className} objectFit="cover" unoptimized
+      className={classNames(className, 'object-cover')} unoptimized
     />
   );
 };
