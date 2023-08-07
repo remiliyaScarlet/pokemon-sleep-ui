@@ -17,22 +17,28 @@ type Props = {
 export const AnalysisStatsContinuousUI = ({stats, title, threshold, children}: React.PropsWithChildren<Props>) => {
   const {percentage, percentile, rank, totalCount} = stats;
 
+  const isAvailable = rank !== null;
+
   return (
     <AnalysisLayout
       related={stats.related}
       title={title}
-      mark={percentile ? getMarkByThreshold(percentile, threshold) : undefined}
+      mark={percentile ? getMarkByThreshold(percentile, threshold) : 'ordinary'}
       footer={
         <Flex direction="col" className="text-sm md:w-2/3">
           <Flex direction="row" noFullWidth className="justify-end gap-1">
-            <div>#{rank}</div>
+            <div>{isAvailable ? `#${rank}` : '-'}</div>
             <div>/</div>
             <div>{totalCount}</div>
           </Flex>
           <Flex direction="row" noFullWidth className="justify-end gap-1">
-            <div>{formatFloat(percentage)}%</div>
-            <div>/</div>
-            <div>{formatInt(percentile)}<sup>th</sup></div>
+            {isAvailable ?
+              <>
+                <div>{formatFloat(percentage)}%</div>
+                <div>/</div>
+                <div>{formatInt(percentile)}<sup>th</sup></div>
+              </> :
+              '-'}
           </Flex>
         </Flex>
       }

@@ -21,6 +21,9 @@ export const AnalysisStatsGroupedUI = ({
   children,
 }: React.PropsWithChildren<Props>) => {
   const {totalCount, sharedCount} = stats;
+
+  const isAvailable = sharedCount > 0;
+
   const ratio = sharedCount / totalCount;
   const rarity = 1 / ratio;
 
@@ -28,7 +31,7 @@ export const AnalysisStatsGroupedUI = ({
     <AnalysisLayout
       related={stats.related}
       title={title}
-      mark={getMarkByThreshold(rarity, threshold)}
+      mark={isAvailable ? getMarkByThreshold(rarity, threshold) : 'ordinary'}
       footer={
         <Flex direction="col" className="text-sm md:w-2/3">
           <Flex direction="row" noFullWidth className="justify-end gap-1">
@@ -37,9 +40,13 @@ export const AnalysisStatsGroupedUI = ({
             <div>{totalCount}</div>
           </Flex>
           <Flex direction="row" noFullWidth className="justify-end gap-1">
-            <div>{(ratio * 100).toFixed(2)}%</div>
-            <div>/</div>
-            <div>1 in {formatFloat(rarity)}</div>
+            {isAvailable ?
+              <>
+                <div>{(ratio * 100).toFixed(2)}%</div>
+                <div>/</div>
+                <div>1 in {formatFloat(rarity)}</div>
+              </> :
+              '-'}
           </Flex>
         </Flex>
       }
