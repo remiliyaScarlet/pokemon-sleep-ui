@@ -33,7 +33,7 @@ export const TeamAnalysisBonusSlider = ({
           min={min}
           max={max}
           className="w-16 text-center"
-          value={bonus}
+          value={bonus.toString()}
           onChange={({target}) => setBonus(Number(target.value))}
         />
         <div>
