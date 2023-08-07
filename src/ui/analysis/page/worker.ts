@@ -17,6 +17,7 @@ export const useCalculationWorker = ({
   pokemon,
   ingredientMap,
   berryDataMap,
+  sleepStyleMap,
   level,
   pokemonToAnalyze,
   setStats,
@@ -44,6 +45,7 @@ export const useCalculationWorker = ({
       pokemon,
       ingredientMap,
       berryDataMap,
+      sleepStyleMap,
     } satisfies GetAnalysisStatsOpts);
     setLoading(true);
   };

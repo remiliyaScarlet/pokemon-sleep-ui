@@ -29,8 +29,8 @@ export const AnalysisLayout = ({related, title, footer, mark, children}: React.P
         </Flex>
       </Popup>
       <Flex direction="col" className={classNames(
-        'info-section items-center gap-1',
-        'width-with-gap-xs width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-4-items',
+        'info-section items-center gap-1 width-with-gap-xs width-with-gap-2-items',
+        'md:width-with-gap-3-items lg:width-with-gap-4-items xl:width-with-gap-5-items',
       )}>
         <div className="text-sm text-slate-500">
           {title}

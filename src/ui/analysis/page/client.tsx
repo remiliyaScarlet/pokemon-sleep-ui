@@ -7,7 +7,7 @@ import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
 import {AnalysisPageInput} from '@/ui/analysis/page/input/main';
 import {AnalysisMeta} from '@/ui/analysis/page/meta';
-import {AnalysisStatsUI} from '@/ui/analysis/page/stats';
+import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {useCalculationWorker} from '@/ui/analysis/page/worker';
 

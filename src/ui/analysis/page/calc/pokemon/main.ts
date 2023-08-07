@@ -1,8 +1,11 @@
 import {getAnalysisStatsOfGrouped} from '@/ui/analysis/page/calc/grouped';
+import {getAnalysisStatsOfSleepStyle} from '@/ui/analysis/page/calc/pokemon/sleepStyle';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 
 
-export const getAnalysisStatsOfPokemon = ({pokedex, pokemon}: GetAnalysisStatsOpts): AnalysisStats['pokemon'] => {
+export const getAnalysisStatsOfPokemon = (opts: GetAnalysisStatsOpts): AnalysisStats['pokemon'] => {
+  const {pokedex, pokemon} = opts;
+
   return {
     type: getAnalysisStatsOfGrouped({
       samples: pokedex,
@@ -34,7 +37,6 @@ export const getAnalysisStatsOfPokemon = ({pokedex, pokemon}: GetAnalysisStatsOp
       samples: pokedex,
       isMatched: ({skill}) => skill === pokemon.skill,
     }),
-    // TODO: Sleep style stats calculation & display
-    sleepStyle: [],
+    sleepStyle: getAnalysisStatsOfSleepStyle(opts),
   };
 };

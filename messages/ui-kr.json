@@ -132,6 +132,10 @@
         "FriendshipPoint": "프렌드 포인트"
       }
     },
+    "Analysis": {
+      "FirstAppearance": "첫번째 잠자는 모습 - {mapName}",
+      "LastSleepStyle": "마지막 잠자는 모습 - {mapName}"
+    },
     "Cooking": {
       "Energy": "최종 에너지",
       "Ingredient": "식재료",

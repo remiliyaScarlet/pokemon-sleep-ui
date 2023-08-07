@@ -34,7 +34,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
         idToItemId={(id) => `Map-${id}`}
         ids={toUnique(pokedex.flatMap(({sleepStyles}) => sleepStyles.map(({mapId}) => mapId))).sort((a, b) => a - b)}
         idToButton={(id) => {
-          const mapName = t(`Field.${id.toString()}`);
+          const mapName = t(`Field.${id}`);
 
           return (
             <>

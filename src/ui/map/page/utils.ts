@@ -1,17 +1,11 @@
+import {maxSnorlaxRankByTitle} from '@/const/game/rank';
 import {SnorlaxRank, SnorlaxRankTitleId} from '@/types/game/rank';
 
-
-const maxRankByTitle: {[title in SnorlaxRankTitleId]?: number} = {
-  1: 5,
-  2: 5,
-  3: 5,
-  4: 20,
-};
 
 export const getPossibleRanks = (): SnorlaxRank[] => {
   const ranks: SnorlaxRank[] = [];
   let title: SnorlaxRankTitleId = 1;
-  let maxRank = maxRankByTitle[title];
+  let maxRank = maxSnorlaxRankByTitle[title];
 
   while (maxRank) {
     ranks.push(...[...Array(maxRank).keys()].map((level) => ({
@@ -19,7 +13,7 @@ export const getPossibleRanks = (): SnorlaxRank[] => {
       number: level + 1,
     })));
     title += 1;
-    maxRank = maxRankByTitle[title];
+    maxRank = maxSnorlaxRankByTitle[title];
   }
 
   return ranks;

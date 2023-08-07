@@ -132,6 +132,10 @@
         "FriendshipPoint": "友情點數"
       }
     },
+    "Analysis": {
+      "FirstAppearance": "首次出現 - {mapName}",
+      "LastSleepStyle": "最終睡姿 - {mapName}"
+    },
     "Cooking": {
       "Energy": "最終能量",
       "Ingredient": "食材",

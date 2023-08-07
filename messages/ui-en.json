@@ -132,6 +132,10 @@
         "FriendshipPoint": "Friendship Points"
       }
     },
+    "Analysis": {
+      "FirstAppearance": "First Appearance - {mapName}",
+      "LastSleepStyle": "Last Sleep Style - {mapName}"
+    },
     "Cooking": {
       "Energy": "Final Strength",
       "Ingredient": "Ingredient",

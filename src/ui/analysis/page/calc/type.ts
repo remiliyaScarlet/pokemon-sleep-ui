@@ -1,3 +1,4 @@
+import {SnorlaxRank} from '@/types/game/rank';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {SleepMapId} from '@/types/mongo/sleepStyle';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
@@ -23,10 +24,14 @@ export type AnalysisStatsProducingRate = {
   energy: AnalysisStatsContinuous,
 };
 
+export type AnalysisStatsSleepStyleAppearance = AnalysisStatsContinuous & {
+  snorlaxRank: SnorlaxRank,
+};
+
 export type AnalysisStatsSleepStyle = {
   mapId: SleepMapId,
-  first: AnalysisStatsContinuous,
-  last: AnalysisStatsContinuous,
+  first: AnalysisStatsSleepStyleAppearance,
+  last: AnalysisStatsSleepStyleAppearance,
 };
 
 export type AnalysisStats = {
