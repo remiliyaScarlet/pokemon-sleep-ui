@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';

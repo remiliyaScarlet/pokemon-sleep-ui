@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';

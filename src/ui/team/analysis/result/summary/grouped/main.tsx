@@ -3,9 +3,9 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {imageSmallIconSizes} from '@/styles/image';
+import {GenericBerryIcon} from '@/components/shared/icon/berry';
+import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
 import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/result/summary/grouped/category';
@@ -22,23 +22,13 @@ export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {
   return (
     <Flex direction="col" className="button-bg gap-2 rounded-lg p-2">
       <TeamAnalysisCategorySummary
-        icon={
-          <NextImage
-            src="/images/generic/ingredient.png" alt={t('Ingredient')}
-            sizes={imageSmallIconSizes} className="invert-on-light"
-          />
-        }
+        icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
         data={Object.entries(grouped.berry).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate}/>}
       />
       <HorizontalSplitter/>
       <TeamAnalysisCategorySummary
-        icon={
-          <NextImage
-            src="/images/generic/berry.png" alt={t('Berry')}
-            sizes={imageSmallIconSizes} className="invert-on-light"
-          />
-        }
+        icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
         data={Object.entries(grouped.ingredient).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate}/>}
       />

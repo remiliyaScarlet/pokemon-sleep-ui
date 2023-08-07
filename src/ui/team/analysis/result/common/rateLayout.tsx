@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImageProps} from '@/components/shared/common/image/main';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {formatFloat} from '@/utils/number';
 import {classNames} from '@/utils/react';
 

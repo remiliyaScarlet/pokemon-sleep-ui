@@ -3,11 +3,11 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
+import {GenericBerryIcon} from '@/components/shared/icon/berry';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {imageSmallIconSizes} from '@/styles/image';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
@@ -29,12 +29,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
         threshold={percentileThreshold}
         renderData={({data}) => (
           <Flex direction="row" center className="gap-1">
-            <div className="relative h-5 w-5">
-              <NextImage
-                src="/images/generic/berry.png" alt={t('Info.Berry')}
-                sizes={imageSmallIconSizes} className="invert-on-light"
-              />
-            </div>
+            <GenericBerryIcon alt={t('Info.Berry')}/>
             <div>{formatInt(data)}</div>
           </Flex>
         )}
@@ -65,12 +60,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
             threshold={percentileThreshold}
             renderData={({data}) => (
               <Flex direction="row" center className="gap-1">
-                <div className="relative h-5 w-5">
-                  <NextImage
-                    src="/images/generic/ingredient.png" alt={t('Info.Ingredient')}
-                    sizes={imageSmallIconSizes} className="invert-on-light"
-                  />
-                </div>
+                <GenericIngredientIcon alt={t('Info.Ingredient')}/>
                 <div>{formatInt(data)}</div>
               </Flex>
             )}

@@ -5,7 +5,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imageSmallIconSizes} from '@/styles/image';
 import {Ingredient} from '@/types/mongo/ingredient';
 

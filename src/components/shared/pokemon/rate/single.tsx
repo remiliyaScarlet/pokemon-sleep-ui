@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/rate/type';
 import {formatFloat} from '@/utils/number';
 

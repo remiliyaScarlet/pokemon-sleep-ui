@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {ColoredEnergyIcon} from '@/components/shared/pokemon/energy/colored';
+import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {MealCommonProps} from '@/ui/meal/page/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
