@@ -15,11 +15,12 @@ export const NextImage = ({src, alt, sizes, className}: NextImageProps) => {
   // Can't use `next.js` image optimization because it causes too much workload for the reverse proxy
   if (isProduction()) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
-        src={`${imageCDN}${src}`} alt={alt} title={alt} sizes={sizes}
-        className={classNames('absolute h-full w-full object-cover', className)}
-      />
+      <picture>
+        <img
+          src={`${imageCDN}${src}`} alt={alt} title={alt} sizes={sizes}
+          className={classNames('absolute h-full w-full object-cover', className)}
+        />
+      </picture>
     );
   }
 
