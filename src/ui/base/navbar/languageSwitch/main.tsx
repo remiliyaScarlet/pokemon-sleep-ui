@@ -31,7 +31,7 @@ export const LanguageSwitch = () => {
         {isLocale(currentLocale) ? localeName[currentLocale] : `(${currentLocale})`}
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="row" center wrap className="gap-2">
+        <Flex direction="row" center wrap className="w-48 gap-2">
           {Object.entries(localeName).map(([locale, name]) => (
             <button
               key={locale}

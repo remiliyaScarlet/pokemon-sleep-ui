@@ -15,7 +15,7 @@ export const AnalysisMeta = ({pokemon}: Props) => {
   return (
     <Flex direction="col" center className="info-section">
       <PokemonName pokemon={pokemon}/>
-      <div className="relative h-48 w-48">
+      <div className="relative h-60 w-60">
         <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
         <Link
           href={`/pokedex/${pokemon.id}`}

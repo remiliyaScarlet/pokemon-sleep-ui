@@ -42,7 +42,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className={classNames(
-              'rounded-lg p-3 sm:max-w-2xl',
+              'rounded-lg p-3 flex justify-center w-full sm:w-fit sm:max-w-2xl',
               'bg-slate-200 dark:bg-gray-950 ring-1 ring-inset ring-slate-400 dark:ring-gray-600',
               className,
             )}>
