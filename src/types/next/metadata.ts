@@ -1,11 +1,9 @@
 import {Metadata} from 'next';
 
-import {Locale} from '@/types/next/locale';
+import {PageParams} from '@/types/next/page';
 
 
-export type GenerateMetadataParams = {
-  locale: Locale,
-};
+export type GenerateMetadataParams = PageParams;
 
 export type GenerateMetadataOpts<P extends GenerateMetadataParams> = {
   params: P

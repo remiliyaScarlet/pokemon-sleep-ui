@@ -28,7 +28,7 @@ type Props = {
 const GalleryButton = ({pokemonId, image, isActive}: Props) => {
   const t = useTranslations(`Game.SleepFace.${pokemonId}`);
   const t2 = useTranslations('Game.SleepFace.onSnorlax');
-  const t3 = useTranslations('UI.InPage.Pokedex.Info');
+  const t3 = useTranslations('Game.PokemonName');
 
   if (image === 'onSnorlax') {
     return t2('Default');
@@ -38,7 +38,7 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
     return (
       <div className="relative h-5 w-5">
         <NextImage
-          src="/images/generic/pokeball.png" alt={t3('Name')} sizes={imageIconSizes}
+          src="/images/generic/pokeball.png" alt={t3(pokemonId.toString())} sizes={imageIconSizes}
           className={isActive ? 'invert-on-dark' : 'invert-on-light'}
         />
       </div>

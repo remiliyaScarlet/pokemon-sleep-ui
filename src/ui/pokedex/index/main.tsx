@@ -1,8 +1,10 @@
 import React from 'react';
 
 import {getServerSession} from 'next-auth';
+import {getTranslator} from 'next-intl/server';
 
 import {authOptions} from '@/const/auth';
+import {locales} from '@/const/website';
 import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
@@ -11,17 +13,19 @@ import {getAllPokemonAsCursor} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {PageLayout} from '@/ui/base/layout';
 import {PokedexClient} from '@/ui/pokedex/index/client';
-import {PokedexClientCommonProps, PokedexData} from '@/ui/pokedex/index/type';
+import {PokedexClientCommonProps, PokedexData, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 
 
 const getPokedexData = async (): Promise<PokedexData> => {
   const sleepStyleMap = await getPokemonSleepStyleMap();
+  const translators = await Promise.all(locales.map((locale) => getTranslator(locale, 'Game.PokemonName')));
 
   return (await getAllPokemonAsCursor())
     .map((pokemon) => ({
       ...pokemon,
       sleepStyles: sleepStyleMap[pokemon.id] ?? [],
-    }))
+      nameOfAllLocale: translators.map((t) => t(pokemon.id.toString())),
+    } satisfies PokemonInfoForPokedex))
     .toArray();
 };
 

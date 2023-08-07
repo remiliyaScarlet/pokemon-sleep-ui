@@ -4,7 +4,9 @@ import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {useTranslations} from 'next-intl';
 
+import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
+import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
@@ -37,6 +39,12 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           filterKey: 'mapId',
         })}
       />
+      <InputRowWithTitle title={t('Info.Name')}>
+        <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
+          ...original,
+          name: target.value,
+        }))}/>
+      </InputRowWithTitle>
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}

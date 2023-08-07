@@ -9,11 +9,12 @@ import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {PokedexDisplayType, PokedexSortType} from '@/ui/pokedex/index/input/type';
 
 
-export type PokedexSinglePokemon = PokemonInfo & {
+export type PokemonInfoForPokedex = PokemonInfo & {
   sleepStyles: SleepStyleData[],
+  nameOfAllLocale: string[],
 };
 
-export type PokedexData = PokedexSinglePokemon[];
+export type PokedexData = PokemonInfoForPokedex[];
 
 export type PokedexDisplay = {
   display: PokedexDisplayType,
@@ -21,6 +22,7 @@ export type PokedexDisplay = {
 };
 
 export type PokedexFilter = PokemonInputFilter & PokedexDisplay & {
+  name: string,
   mapId: FilterInclusionMap<SleepMapId>,
   level: number,
 };
@@ -34,7 +36,7 @@ export type PokedexClientCommonProps = {
 };
 
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
-  pokemon: PokedexSinglePokemon,
+  pokemon: PokemonInfoForPokedex,
 };
 
 export type PokemonComparerGetterOpts = {
