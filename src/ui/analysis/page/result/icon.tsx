@@ -24,9 +24,8 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
   const name = t(pokemonId.toString());
 
   return (
-    <Flex direction="col" center className={classNames(
-      'relative button-bg gap-1.5 rounded-lg p-1 width-with-gap-xs width-with-gap-4-items',
-      'sm:width-with-gap-5-items lg:width-with-gap-7-items',
+    <Flex direction="col" center noFullWidth className={classNames(
+      'relative button-bg gap-1.5 rounded-lg p-1 w-24',
     )}>
       <div className="relative h-14 w-14">
         <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={name} sizes={imageIconSizes}/>
