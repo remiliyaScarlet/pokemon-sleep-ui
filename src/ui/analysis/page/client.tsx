@@ -10,14 +10,20 @@ import {AnalysisMeta} from '@/ui/analysis/page/meta';
 import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {useCalculationWorker} from '@/ui/analysis/page/worker';
+import {toUnique} from '@/utils/array';
 
 
 export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
-  const {pokedex, pokemon, berryDataMap} = props;
+  const {pokedex, pokemon, berryDataMap, sleepStyleMap} = props;
 
   const [stats, setStats] = React.useState<AnalysisStats | null>(null);
   const [loading, setLoading] = React.useState(true);
-  const {filter, setFilter, isIncluded} = useAnalysisFilter({data: pokedex});
+  const {filter, setFilter, isIncluded} = useAnalysisFilter({
+    data: pokedex.map((pokemon) => ({
+      info: pokemon,
+      mapsAvailable: toUnique(sleepStyleMap[pokemon.id]?.map(({mapId}) => mapId) ?? []),
+    })),
+  });
 
   useCalculationWorker({
     ...props,

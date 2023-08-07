@@ -36,7 +36,7 @@ export const PokemonFilter = <
   pokemon,
   style,
 }: Props<TDisplayType, TId, TFilter>) => {
-  const t2 = useTranslations('Game');
+  const t = useTranslations('Game');
 
   const commonProps: Pick<FilterCategoryInputProps<TId>, 'style' | 'isActive' | 'onClick' | 'title'> = {
     style,
@@ -58,7 +58,7 @@ export const PokemonFilter = <
     return (
       <FilterIconInput
         idToItemId={(id) => `PokemonType-${id}`}
-        idToAlt={(id) => t2(`PokemonType.${id}`)}
+        idToAlt={(id) => t(`PokemonType.${id}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
         ids={getIds(({type}) => type as TId)}
         {...commonProps}
@@ -92,7 +92,7 @@ export const PokemonFilter = <
     return (
       <FilterIconInput
         idToItemId={(id) => `IngredientFixed-${id}`}
-        idToAlt={(id) => t2(`Food.${id.toString()}`)}
+        idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         ids={getIds(({ingredients}) => ingredients.fixed as TId)}
         {...commonProps}
@@ -104,7 +104,7 @@ export const PokemonFilter = <
     return (
       <FilterIconInput
         idToItemId={(id) => `IngredientRandom-${id}`}
-        idToAlt={(id) => t2(`Food.${id.toString()}`)}
+        idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         ids={getIds(({ingredients}) => ingredients.random as TId[])}
         {...commonProps}
@@ -116,7 +116,7 @@ export const PokemonFilter = <
     return (
       <FilterIconInput
         idToItemId={(id) => `Berry-${id}`}
-        idToAlt={(id) => t2(`Berry.${id.toString()}`)}
+        idToAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         ids={getIds(({berry}) => berry.id as TId)}
         {...commonProps}
@@ -128,7 +128,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `MainSkill-${id}`}
-        idToButton={(id) => t2(`MainSkill.Name.${id}`)}
+        idToButton={(id) => t(`MainSkill.Name.${id}`)}
         ids={getIds(({skill}) => skill as TId)}
         {...commonProps}
       />

@@ -6,13 +6,14 @@ import {Flex} from '@/components/layout/flex';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
+import {SleepMapId} from '@/types/mongo/sleepStyle';
 import {AnalysisStatsSleepStyleAppearance} from '@/ui/analysis/page/calc/type';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 
 
 type Props = {
   stats: AnalysisStatsSleepStyleAppearance,
-  mapId: number,
+  mapId: SleepMapId,
   i18nTitleKey: I18nMessageKeysOfNamespace<'UI.InPage.Analysis'>,
 };
 

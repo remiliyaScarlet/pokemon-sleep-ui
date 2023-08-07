@@ -3,7 +3,6 @@ import {Collection} from 'mongodb';
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {
-  FieldSleepDataMap,
   FieldToSleepStyleFlattenedMap,
   PokemonSleepDataMap,
   SleepMapId,
@@ -32,19 +31,6 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
     }
 
     ret[entry.pokemonId]?.push(entry);
-  }
-
-  return ret;
-};
-
-export const getFieldSleepDataMap = async (): Promise<FieldSleepDataMap> => {
-  const ret: PokemonSleepDataMap = {};
-  for await (const entry of await getSleepStyles()) {
-    if (!(entry.mapId in ret)) {
-      ret[entry.mapId] = [] as PokemonSleepDataMap[SleepMapId];
-    }
-
-    ret[entry.mapId]?.push(entry);
   }
 
   return ret;

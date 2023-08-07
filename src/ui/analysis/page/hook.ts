@@ -1,17 +1,18 @@
 import {useFilterInput} from '@/components/input/filter/hook';
+import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
-import {AnalysisComparisonFilter} from '@/ui/analysis/page/type';
+import {PokemonId} from '@/types/mongo/pokemon';
+import {AnalysisComparisonFilter, AnalysisFilterPokemonData} from '@/ui/analysis/page/type';
 
 
 type UseAnalysisFilterOpts = {
-  data: PokemonInfo[],
+  data: AnalysisFilterPokemonData[],
 };
 
 export const useAnalysisFilter = ({data}: UseAnalysisFilterOpts) => {
-  return useFilterInput<AnalysisComparisonFilter, PokemonInfo, PokemonId>({
+  return useFilterInput<AnalysisComparisonFilter, AnalysisFilterPokemonData, PokemonId>({
     data,
-    dataToId: ({id}) => id,
+    dataToId: ({info}) => info.id,
     initialFilter: {
       pokemonType: {},
       sleepType: {},
@@ -21,9 +22,20 @@ export const useAnalysisFilter = ({data}: UseAnalysisFilterOpts) => {
       berry: {},
       mainSkill: {},
       level: 1,
+      mapId: {},
     },
     isDataIncluded: (filter, data) => {
-      return isPokemonIncludedFromFilter(filter, data);
+      if (!isDataIncludingAllOfFilter({
+        filter,
+        filterKey: 'mapId',
+        ids: data.mapsAvailable,
+        idInFilterToIdForCheck: Number,
+        onIdsEmpty: false,
+      })) {
+        return false;
+      }
+
+      return isPokemonIncludedFromFilter(filter, data.info);
     },
   });
 };

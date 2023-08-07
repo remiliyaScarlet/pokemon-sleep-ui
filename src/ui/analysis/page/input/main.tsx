@@ -2,20 +2,36 @@ import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
 import {FilterInputProps} from '@/components/input/filter/type';
+import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
+import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
+import {toUnique} from '@/utils/array';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = FilterInputProps<AnalysisComparisonFilter> & AnalysisPageCommonProps & {
   maxLevel: number,
 };
 
-export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex}: Props) => {
+export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap}: Props) => {
   return (
     <Flex direction="col" className="gap-1">
+      <PokemonMapFilter
+        mapIds={toUnique(Object
+          .values(sleepStyleMap)
+          .flatMap((sleepStyle) => sleepStyle?.map(({mapId}) => mapId))
+          .filter(isNotNullish)
+          .sort((a, b) => a - b))}
+        {...getMultiSelectOnClickProps({
+          filter,
+          setFilter,
+          filterKey: 'mapId',
+        })}
+      />
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}

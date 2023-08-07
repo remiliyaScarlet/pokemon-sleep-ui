@@ -6,7 +6,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllPokemonAsArray} from '@/controller/pokemon';
-import {getFieldSleepDataMap} from '@/controller/sleepStyle';
+import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {PageLayout} from '@/ui/base/layout';
@@ -22,7 +22,7 @@ export const AnalysisPage = ({params}: Props) => {
   const pokemon = pokedex.find(({id}) => id === idNumber);
   const ingredientMap = React.use(getAllIngredients());
   const berryDataMap = React.use(getAllBerryData());
-  const sleepStyleMap = React.use(getFieldSleepDataMap());
+  const sleepStyleMap = React.use(getPokemonSleepStyleMap());
 
   if (!pokemon) {
     return <Failed text="Pokemon"/>;
