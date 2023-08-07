@@ -3,4 +3,10 @@ const withNextI18n = require('next-intl/plugin')(
 );
 
 
-module.exports = withNextI18n({});
+module.exports = withNextI18n({
+  images: {
+    domains: [
+      'raw.githubusercontent.com',
+    ],
+  },
+});
