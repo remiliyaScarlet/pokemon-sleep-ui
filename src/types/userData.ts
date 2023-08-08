@@ -8,9 +8,14 @@ import {DeepPartialExceptKey} from '@/utils/type';
 
 export type UserDataForTeamAnalysisSetup = TeamAnalysisTeamSetup & {snorlaxFavorite: FilterInclusionMap<BerryId>};
 
+export type UserDataForRecipeData = {
+  level: CookingFilterRecipeLevel,
+  potCapacity: number
+};
+
 export type UploadUserDataOpts = {
   type: 'recipeLevel',
-  data: {level: CookingFilterRecipeLevel, potCapacity: number},
+  data: UserDataForRecipeData,
 } | {
   type: 'teamAnalysisSetup',
   data: UserDataForTeamAnalysisSetup,

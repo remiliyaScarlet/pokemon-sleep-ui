@@ -20,7 +20,7 @@ export const MealInput = (props: Props) => {
   const {data, filter, setFilter} = props;
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex direction="col" className="gap-1">
       <MealTypeInput
         mealTypes={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps({
@@ -29,19 +29,19 @@ export const MealInput = (props: Props) => {
           filterKey: 'mealType',
         })}
       />
+      <PotCapacityInput
+        {...getSingleSelectOnClickProps({
+          filter,
+          setFilter,
+          filterKey: 'potCapacity',
+        })}
+      />
       <IngredientInput
         ingredientIds={toUnique(data.flatMap(({ingredients}) => ingredients.map(({id}) => id))).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps({
           filter,
           setFilter,
           filterKey: 'ingredient',
-        })}
-      />
-      <PotCapacityInput
-        {...getSingleSelectOnClickProps({
-          filter,
-          setFilter,
-          filterKey: 'potCapacity',
         })}
       />
       <MealLinkDisplayTypeInput
