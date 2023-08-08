@@ -38,6 +38,8 @@
   }
   
   body {
+    @apply w-full;
+    
     color: var(--foreground-rgb);
     background-image: radial-gradient(var(--background-start-rgb), var(--background-end-rgb));
   }
