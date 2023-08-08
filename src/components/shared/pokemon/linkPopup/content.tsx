@@ -25,7 +25,7 @@ export const PokemonLinkPopupContent = ({pokemon}: Props) => {
   const name = t2(`PokemonName.${id}`);
 
   return (
-    <Flex direction="col" center noFullWidth className="w-96 gap-2">
+    <Flex direction="col" center className="gap-2 md:w-96">
       <PokemonName pokemon={pokemon}/>
       <div className="relative h-60 w-60">
         <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
