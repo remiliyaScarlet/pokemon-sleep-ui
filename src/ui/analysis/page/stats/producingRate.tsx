@@ -12,7 +12,7 @@ import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
 import {sortTypeToTranslationId} from '@/ui/pokedex/index/input/const';
-import {formatFloat, formatInt} from '@/utils/number';
+import {formatFloat} from '@/utils/number';
 
 
 export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiProps) => {
@@ -36,12 +36,12 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
         renderData={({data}) => (
           <Flex direction="row" center className="gap-1">
             <GenericBerryIcon alt={t('Info.Berry')}/>
-            <div>{formatInt(data)}</div>
+            <div>{formatFloat(data)}</div>
           </Flex>
         )}
       >
         <div className="text-2xl">
-          {formatInt(producingRate.berry.count.current)}
+          {formatFloat(producingRate.berry.count.current)}
         </div>
       </AnalysisStatsContinuousUI>
       <AnalysisStatsContinuousUI
@@ -79,12 +79,12 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
             renderData={({data}) => (
               <Flex direction="row" center className="gap-1">
                 <GenericIngredientIcon alt={t('Info.Ingredient')}/>
-                <div>{formatInt(data)}</div>
+                <div>{formatFloat(data)}</div>
               </Flex>
             )}
           >
             <div className="text-2xl">
-              {formatInt(producingRate.ingredient.count.current)}
+              {formatFloat(producingRate.ingredient.count.current)}
             </div>
           </AnalysisStatsContinuousUI>
           <AnalysisStatsContinuousUI
