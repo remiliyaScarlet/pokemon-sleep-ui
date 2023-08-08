@@ -31,7 +31,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
         >
           <div className="fixed inset-0 bg-white/75 dark:bg-black/75"/>
         </Transition.Child>
-        <div className="transform-smooth fixed inset-0 flex items-end justify-center p-4 text-center sm:items-center">
+        <div className="transform-smooth fixed inset-0 flex items-center justify-center p-4 text-center">
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-300"
