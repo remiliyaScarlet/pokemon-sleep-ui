@@ -2,7 +2,6 @@ import React from 'react';
 
 import {Announcements} from '@/components/announcement/main';
 import {Flex} from '@/components/layout/flex';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {NavBar} from '@/ui/base/navbar/main';
 
 
@@ -15,12 +14,7 @@ export const PageLayout = ({announcement = true, children}: React.PropsWithChild
     <main className="min-h-full w-full">
       <NavBar/>
       <Flex direction="col" className="gap-1.5 p-2">
-        {announcement && (
-          <>
-            <Announcements/>
-            <HorizontalSplitter/>
-          </>
-        )}
+        {announcement && <Announcements/>}
         {children}
       </Flex>
     </main>

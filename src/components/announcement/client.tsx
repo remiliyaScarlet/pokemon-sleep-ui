@@ -3,6 +3,7 @@ import React from 'react';
 
 import {announcementTextClasses} from '@/components/announcement/styles';
 import {AnnouncementProps} from '@/components/announcement/type';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {Announcement} from '@/types/mongo/announcement';
 import {classNames} from '@/utils/react';
 
@@ -30,13 +31,16 @@ export const AnnouncementsClient = ({larger, announcements}: Props) => {
   const commonClass = larger ? styles['announcement-lg'] : styles['announcement'];
 
   return (
-    <div className={classNames(styles['announcement-animation'], commonClass)}>
-      <div
-        className={classNames(announcementTextClasses[level], commonClass)}
-        onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
-      >
-        {message}
+    <>
+      <div className={classNames(styles['announcement-animation'], commonClass)}>
+        <div
+          className={classNames(announcementTextClasses[level], commonClass)}
+          onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
+        >
+          {message}
+        </div>
       </div>
-    </div>
+      <HorizontalSplitter/>
+    </>
   );
 };
