@@ -1,5 +1,6 @@
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {BerryData} from '@/types/mongo/berry';
+import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultBerryProbability, defaultHelperCount, defaultLevel} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRate} from '@/utils/game/producing/rate';
@@ -20,14 +21,16 @@ export const getBerryProducingRate = ({
   isSnorlaxFavorite,
   berryData,
 }: GetBerryProducingRateOpts): ProducingRateOfItem => {
-  const frequency = getFrequencyFromPokemon({
+  const baseFrequency = getFrequencyFromPokemon({
     level,
     pokemon,
     subSkillBonus: subSkillBonus ?? {},
     helperCount: helperCount ?? defaultHelperCount,
     natureId,
-    probability: defaultBerryProbability - (subSkillBonus?.ingredientProbability ?? 0),
   });
+
+  const probability = defaultBerryProbability - (subSkillBonus?.ingredientProbability ?? 0);
+  const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
 
   let countPerHelp = pokemon.berry.quantity + (subSkillBonus?.berryCount ?? 0);
   if (isSnorlaxFavorite) {
@@ -37,7 +40,7 @@ export const getBerryProducingRate = ({
   return {
     id: pokemon.berry.id,
     ...getProducingRate({
-      frequency,
+      frequency: baseFrequency / (probability - (1 - ingredientNatureMultiplier)),
       countPerHelp,
       energyPerCount: berryData.energy[(level ?? defaultLevel) - 1].energy,
     }),

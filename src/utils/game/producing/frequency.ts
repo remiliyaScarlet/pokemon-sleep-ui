@@ -34,26 +34,22 @@ export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCoun
   level: number,
   subSkillBonus: SubSkillBonus,
   pokemon: PokemonInfo,
-  probability: number,
 };
 
 export const getFrequencyFromPokemon = ({
   level,
   subSkillBonus,
   pokemon,
-  probability,
   helperCount,
   natureId,
 }: GetFrequencyFromPokemonOpts): number => {
   const {stats} = pokemon;
 
-  const baseFrequency = getBaseFrequency({
+  return getBaseFrequency({
     level,
     frequency: stats.frequency,
     subSkillBonusRate: (subSkillBonus?.frequency ?? 0),
     helperCount,
     natureId,
   });
-
-  return baseFrequency * (2 - probability);
 };

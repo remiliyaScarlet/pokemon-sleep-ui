@@ -33,19 +33,21 @@ export const getIngredientProducingRate = ({
     return null;
   }
 
-  const frequency = getFrequencyFromPokemon({
+  const baseFrequency = getFrequencyFromPokemon({
     level,
-    subSkillBonus: subSkillBonus ?? {},
     pokemon,
-    probability: defaultIngredientProbability + (subSkillBonus?.ingredientProbability ?? 0),
+    subSkillBonus: subSkillBonus ?? {},
     helperCount: helperCount ?? defaultHelperCount,
     natureId,
-  }) * getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
+  });
+
+  const probability = defaultIngredientProbability + (subSkillBonus?.ingredientProbability ?? 0);
+  const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
 
   return {
     id,
     ...getProducingRate({
-      frequency,
+      frequency: baseFrequency / (probability - (ingredientNatureMultiplier - 1)),
       countPerHelp: pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1,
       energyPerCount: ingredient.energy,
     }),
