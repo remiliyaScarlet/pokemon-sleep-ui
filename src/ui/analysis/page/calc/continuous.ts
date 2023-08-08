@@ -50,6 +50,7 @@ export const getAnalysisStatsOfContinuous = <TSample, TData>({
       .filter(({sample}) => isLinked(sample))
       .map(({sample}) => ({pokemonId: getPokemonId(sample), data: getLinkedData(sample)})),
     rank,
+    current: currentValue,
     percentage: min && max ? Math.abs((currentValue - min) / (max - min) * 100) : null,
     percentile: rank ? Math.abs((values.length + 1 - rank) / (values.length + 1) * 100) : null,
     totalCount: samples.length,

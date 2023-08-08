@@ -17,6 +17,7 @@ import {formatFloat, formatInt} from '@/utils/number';
 
 export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiProps) => {
   const {berry, ingredients} = pokemon;
+  const {producingRate} = stats;
 
   const t = useTranslations('UI.InPage.Pokedex');
   const percentileThreshold: AnalysisMarkThreshold = {superRare: 93, rare: 85, ordinary: 10};
@@ -24,8 +25,13 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   return (
     <>
       <AnalysisStatsContinuousUI
-        stats={stats.producingRate.berry.count}
-        title={t(sortTypeToTranslationId['berryCount'])}
+        stats={producingRate.berry.count}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <PokemonBerryIcon dimension="h-6 w-6" id={berry.id}/>
+            <div>{t(sortTypeToTranslationId['berryCount'])}</div>
+          </Flex>
+        }
         threshold={percentileThreshold}
         renderData={({data}) => (
           <Flex direction="row" center className="gap-1">
@@ -34,11 +40,19 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
           </Flex>
         )}
       >
-        <PokemonBerryIcon dimension="h-12 w-12" id={berry.id}/>
+        <div className="text-2xl">
+          {formatInt(producingRate.berry.count.current)}
+        </div>
       </AnalysisStatsContinuousUI>
       <AnalysisStatsContinuousUI
-        stats={stats.producingRate.berry.energy}
-        title={t(sortTypeToTranslationId['berryEnergy'])}
+        stats={producingRate.berry.energy}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <PokemonBerryIcon dimension="h-6 w-6" id={berry.id}/>
+            <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
+            <div>{t(sortTypeToTranslationId['berryEnergy'])}</div>
+          </Flex>
+        }
         threshold={percentileThreshold}
         renderData={({data}) => (
           <Flex direction="row" center className="gap-1 text-sm">
@@ -47,16 +61,20 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
           </Flex>
         )}
       >
-        <Flex direction="row" center>
-          <PokemonBerryIcon dimension="h-12 w-12" id={berry.id}/>
-          <ColoredEnergyIcon dimension="h-10 w-10" alt={t('Stats.Energy.Name')}/>
-        </Flex>
+        <div className="text-2xl">
+          {formatFloat(producingRate.berry.energy.current)}
+        </div>
       </AnalysisStatsContinuousUI>
-      {stats.producingRate.ingredient && ingredients.fixed &&
+      {producingRate.ingredient && ingredients.fixed &&
         <>
           <AnalysisStatsContinuousUI
-            stats={stats.producingRate.ingredient.count}
-            title={t(sortTypeToTranslationId['ingredientCount'])}
+            stats={producingRate.ingredient.count}
+            title={
+              <Flex direction="row" center className="gap-1.5">
+                <PokemonIngredientIcon id={ingredients.fixed}/>
+                {t(sortTypeToTranslationId['ingredientCount'])}
+              </Flex>
+            }
             threshold={percentileThreshold}
             renderData={({data}) => (
               <Flex direction="row" center className="gap-1">
@@ -65,11 +83,19 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
               </Flex>
             )}
           >
-            <PokemonIngredientIcon dimension="h-12 w-12" id={ingredients.fixed}/>
+            <div className="text-2xl">
+              {formatInt(producingRate.ingredient.count.current)}
+            </div>
           </AnalysisStatsContinuousUI>
           <AnalysisStatsContinuousUI
-            stats={stats.producingRate.ingredient.energy}
-            title={t(sortTypeToTranslationId['ingredientEnergy'])}
+            stats={producingRate.ingredient.energy}
+            title={
+              <Flex direction="row" center className="gap-1.5">
+                <PokemonIngredientIcon id={ingredients.fixed}/>
+                <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
+                {t(sortTypeToTranslationId['ingredientEnergy'])}
+              </Flex>
+            }
             threshold={percentileThreshold}
             renderData={({data}) => (
               <Flex direction="row" center className="gap-1 text-sm">
@@ -78,10 +104,9 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
               </Flex>
             )}
           >
-            <Flex direction="row" center>
-              <PokemonIngredientIcon dimension="h-12 w-12" id={ingredients.fixed}/>
-              <ColoredEnergyIcon dimension="h-10 w-10" alt={t('Stats.Energy.Name')}/>
-            </Flex>
+            <div className="text-2xl">
+              {formatFloat(producingRate.ingredient.energy.current)}
+            </div>
           </AnalysisStatsContinuousUI>
         </>}
     </>

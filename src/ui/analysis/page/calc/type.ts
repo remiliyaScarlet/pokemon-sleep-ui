@@ -30,6 +30,7 @@ export type AnalysisStatsContinuous<TData> = AnalysisStatsCommon<TData> & {
   percentile: number | null,
   percentage: number | null,
   rank: number | null,
+  current: number,
 };
 
 export type AnalysisStatsProducingRate = {

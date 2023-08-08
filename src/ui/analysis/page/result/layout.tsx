@@ -42,7 +42,7 @@ export const AnalysisLayout = <TData, >({
         'info-section items-center gap-1 width-with-gap-xs width-with-gap-2-items',
         'md:width-with-gap-3-items lg:width-with-gap-4-items xl:width-with-gap-5-items',
       )}>
-        <div className="text-sm text-slate-500">
+        <div className="text-center text-sm text-slate-500">
           {title}
         </div>
         <Flex direction="col" center className="h-16">
