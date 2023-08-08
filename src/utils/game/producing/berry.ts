@@ -32,17 +32,12 @@ export const getBerryProducingRate = ({
   const probability = defaultBerryProbability - (subSkillBonus?.ingredientProbability ?? 0);
   const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
 
-  let countPerHelp = pokemon.berry.quantity + (subSkillBonus?.berryCount ?? 0);
-  if (isSnorlaxFavorite) {
-    countPerHelp *= 2;
-  }
-
   return {
     id: pokemon.berry.id,
     ...getProducingRate({
       frequency: baseFrequency / (probability - (1 - ingredientNatureMultiplier)),
-      countPerHelp,
-      energyPerCount: berryData.energy[(level ?? defaultLevel) - 1].energy,
+      countPerHelp: pokemon.berry.quantity + (subSkillBonus?.berryCount ?? 0),
+      energyPerCount: berryData.energy[(level ?? defaultLevel) - 1].energy * (isSnorlaxFavorite ? 2 : 1),
     }),
   };
 };
