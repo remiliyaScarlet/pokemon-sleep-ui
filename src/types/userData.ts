@@ -1,15 +1,19 @@
+import {FilterInclusionMap} from '@/components/input/filter/type';
+import {BerryId} from '@/types/mongo/berry';
 import {CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {DeepPartialExceptKey} from '@/utils/type';
 
 
+export type UserDataForTeamAnalysisSetup = TeamAnalysisTeamSetup & {snorlaxFavorite: FilterInclusionMap<BerryId>};
+
 export type UploadUserDataOpts = {
   type: 'recipeLevel',
   data: {level: CookingFilterRecipeLevel, potCapacity: number},
 } | {
   type: 'teamAnalysisSetup',
-  data: TeamAnalysisTeamSetup,
+  data: UserDataForTeamAnalysisSetup,
 } | {
   type: 'pokedex',
   data: PokedexDisplay,
@@ -31,7 +35,7 @@ export type UserDataUploadType = UploadUserDataOpts['type'];
 
 export type UserDataUploadContent = {
   recipeLevel: CookingFilterRecipeLevel,
-  teamAnalysisSetup: TeamAnalysisTeamSetup,
+  teamAnalysisSetup: UserDataForTeamAnalysisSetup,
   pokedex: PokedexDisplay,
   potCapacity: number,
 };

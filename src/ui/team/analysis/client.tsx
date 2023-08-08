@@ -10,9 +10,12 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
-  const {pokedex} = props;
+  const {pokedex, session} = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
-  const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({data: pokemon});
+  const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
+    data: pokemon,
+    snorlaxFavorite: session?.user.data.teamAnalysisSetup?.snorlaxFavorite,
+  });
 
   return (
     <>

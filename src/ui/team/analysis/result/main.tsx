@@ -38,6 +38,7 @@ export const TeamAnalysis = (props: Props) => {
     pokedex,
     berryMap,
     snorlaxRankData,
+    snorlaxFavorite,
   } = props;
 
   const t = useTranslations('UI.Metadata.Pokedex');
@@ -108,7 +109,7 @@ export const TeamAnalysis = (props: Props) => {
             </Flex>
           );
         })}
-        <TeamAnalysisUploadSetup setup={setup}/>
+        <TeamAnalysisUploadSetup setup={setup} snorlaxFavorite={snorlaxFavorite}/>
         <AdsUnit/>
         <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
         <TeamAnalysisSummary

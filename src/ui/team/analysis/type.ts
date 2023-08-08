@@ -9,8 +9,10 @@ import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 
 
+export type SnorlaxFavorite = FilterInclusionMap<BerryId>;
+
 export type TeamAnalysisFilter = PokemonInputFilter & {
-  snorlaxFavorite: FilterInclusionMap<BerryId>,
+  snorlaxFavorite: SnorlaxFavorite,
 };
 
 export type TeamAnalysisDataProps = {
