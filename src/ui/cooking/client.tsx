@@ -28,7 +28,7 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: 1,
+      type: session?.user.data?.mealType ?? 1,
       recipeLevel: merge({}, session?.user.data?.recipeLevel),
       capacity: session?.user.data.potCapacity ?? 15,
       ingredient: {},

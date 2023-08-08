@@ -9,7 +9,7 @@ export const usePotInfoFilter = ({meals, session}: PotInfoCommonProps) => {
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      mealType: {},
+      mealType: session?.user.data.mealType ? {[session?.user.data.mealType]: true} : {},
       ingredients: {},
       displayType: 'ingredient',
       capacity: session?.user.data.potCapacity ?? null,

@@ -7,7 +7,14 @@ import {CookingCommonProps} from '@/ui/cooking/type';
 export const CookingInputUpload = ({filter}: CookingCommonProps) => {
   return (
     <UserDataUploadControlRow
-      opts={{type: 'recipeLevel', data: {level: filter.recipeLevel, potCapacity: filter.capacity}}}
+      opts={{
+        type: 'cooking',
+        data: {
+          type: filter.type,
+          level: filter.recipeLevel,
+          potCapacity: filter.capacity,
+        },
+      }}
     />
   );
 };

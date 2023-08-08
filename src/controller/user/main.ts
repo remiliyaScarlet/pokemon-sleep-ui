@@ -1,4 +1,5 @@
 import {
+  userDataMealType,
   userDataPokedex,
   userDataPotCapacity,
   userDataRecipeLevel,
@@ -10,9 +11,20 @@ import {UploadUserDataOpts, UserData} from '@/types/userData';
 export const uploadUserData = async ({userId, opts}: {userId: string, opts: UploadUserDataOpts}) => {
   const {type, data} = opts;
 
-  if (type === 'recipeLevel') {
-    await userDataRecipeLevel.setData(userId, data.level);
-    await userDataPotCapacity.setData(userId, data.potCapacity);
+  if (type === 'cooking' || type === 'potInfo') {
+    const promises: Promise<void>[] = [];
+
+    if (data.potCapacity) {
+      promises.push(userDataPotCapacity.setData(userId, data.potCapacity));
+    }
+    if (data.type) {
+      promises.push(userDataMealType.setData(userId, data.type));
+    }
+    if (type === 'cooking') {
+      promises.push(userDataRecipeLevel.setData(userId, data.level));
+    }
+
+    await Promise.all(promises);
     return;
   }
 
@@ -40,11 +52,13 @@ export const uploadUserData = async ({userId, opts}: {userId: string, opts: Uplo
 
 export const getUserData = async (userId: string): Promise<UserData> => {
   const [
+    mealType,
     recipeLevel,
     teamAnalysis,
     pokedex,
     potCapacity,
   ] = await Promise.all([
+    userDataMealType.getData(userId),
     userDataRecipeLevel.getData(userId),
     userDataTeamAnalysisSetup.getData(userId),
     userDataPokedex.getData(userId),
@@ -52,6 +66,7 @@ export const getUserData = async (userId: string): Promise<UserData> => {
   ]);
 
   return {
+    mealType: mealType?.data,
     recipeLevel: recipeLevel?.data,
     teamAnalysisSetup: teamAnalysis?.data,
     pokedex: pokedex?.data,

@@ -1,30 +1,38 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {BerryId} from '@/types/mongo/berry';
+import {MealTypeId} from '@/types/mongo/meal';
 import {CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {DeepPartialExceptKey} from '@/utils/type';
 
 
-export type UserDataForTeamAnalysisSetup = TeamAnalysisTeamSetup & {snorlaxFavorite: FilterInclusionMap<BerryId>};
+export type UploadOfTeamAnalysisSetup = TeamAnalysisTeamSetup & {snorlaxFavorite: FilterInclusionMap<BerryId>};
 
-export type UserDataForRecipeData = {
+export type UploadOfPotInfo = {
+  type: MealTypeId | null,
+  potCapacity: number | null,
+};
+
+export type UploadOfCookingData = UploadOfPotInfo & {
   level: CookingFilterRecipeLevel,
-  potCapacity: number
 };
 
 export type UploadUserDataOpts = {
-  type: 'recipeLevel',
-  data: UserDataForRecipeData,
-} | {
-  type: 'teamAnalysisSetup',
-  data: UserDataForTeamAnalysisSetup,
-} | {
   type: 'pokedex',
   data: PokedexDisplay,
 } | {
+  type: 'teamAnalysisSetup',
+  data: UploadOfTeamAnalysisSetup,
+} | {
   type: 'potCapacity',
   data: number | null,
+} | {
+  type: 'potInfo',
+  data: UploadOfPotInfo,
+}| {
+  type: 'cooking',
+  data: UploadOfCookingData,
 };
 
 export type UserDataUploader = (opts: UploadUserDataOpts) => void;
@@ -39,8 +47,9 @@ export type UseUploadUserDataReturn = {
 export type UserDataUploadType = UploadUserDataOpts['type'];
 
 export type UserDataUploadContent = {
+  mealType: MealTypeId | null,
   recipeLevel: CookingFilterRecipeLevel,
-  teamAnalysisSetup: UserDataForTeamAnalysisSetup,
+  teamAnalysisSetup: UploadOfTeamAnalysisSetup,
   pokedex: PokedexDisplay,
   potCapacity: number,
 };

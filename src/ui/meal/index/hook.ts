@@ -8,14 +8,15 @@ import {getMealRequiredQuantity} from '@/utils/game/meal';
 type UseFilteredMealsOpts = {
   data: Meal[],
   initialPotCapacity: number | undefined,
+  initialMealType: number | null | undefined,
 };
 
-export const useFilteredMeals = ({data, initialPotCapacity}: UseFilteredMealsOpts) => {
+export const useFilteredMeals = ({data, initialPotCapacity, initialMealType}: UseFilteredMealsOpts) => {
   return useFilterInput<MealFilter, Meal, MealId>({
     data,
     dataToId: ({id}) => id,
     initialFilter: {
-      mealType: {},
+      mealType: initialMealType ? {[initialMealType]: true} : {},
       ingredient: {},
       potCapacity: initialPotCapacity ?? null,
       displayType: 'ingredient',
