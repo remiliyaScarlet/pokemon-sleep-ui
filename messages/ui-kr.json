@@ -52,6 +52,9 @@
       }
     },
     "Team": {
+      "Box": {
+        "Title": "포켓몬 박스"
+      },
       "Calculate": {
         "Title": "에너지 계산기"
       },

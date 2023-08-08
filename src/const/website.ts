@@ -50,7 +50,7 @@ export const navEntries: NavEntry[] = [
   },
   {
     href: '/skill',
-    imageSrc: '/images/generic/memo.png',
+    imageSrc: '/images/generic/skill.png',
     i18nTextId: 'Skill.Index.Title',
     disabled: true,
   },

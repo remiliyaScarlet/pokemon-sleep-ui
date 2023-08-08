@@ -52,6 +52,9 @@
       }
     },
     "Team": {
+      "Box": {
+        "Title": "寶可夢盒"
+      },
       "Calculate": {
         "Title": "能量計算"
       },

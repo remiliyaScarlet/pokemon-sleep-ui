@@ -33,6 +33,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Ingredient: PageWithIndividual,
       Map: PageWithIndividual,
       Team: {
+        Box: I18nMetadata,
         Calculate: I18nMetadata,
         Index: I18nMetadata,
         Maker: I18nMetadata,

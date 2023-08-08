@@ -35,6 +35,14 @@ export const TeamIndex = () => {
                 </div>
               </FeatureLink>
             </div>
+            <div className="width-with-gap">
+              <FeatureLinkImage
+                href="/team/box"
+                imageSrc="/images/generic/bag.png"
+                text={t('Box.Title')}
+                disabled
+              />
+            </div>
           </Flex>
           <div className="w-full">
             <AdsUnit/>

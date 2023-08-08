@@ -52,6 +52,9 @@
       }
     },
     "Team": {
+      "Box": {
+        "Title": "Pokémon Box"
+      },
       "Calculate": {
         "Title": "Strength Calculator"
       },
