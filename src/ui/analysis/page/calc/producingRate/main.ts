@@ -1,3 +1,4 @@
+import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {
   getAnalysisStatsOfItemProducingRate,
   ProducingRateWithPokemon,
@@ -43,6 +44,8 @@ export const getAnalysisStatsOfProducingRate = ({
     .map(({pokemon, rate}) => ({pokemon, rate: rate.ingredient}))
     .filter((data): data is ProducingRateWithPokemon => isNotNullish(data.rate));
 
+  const currentDailyTotal = currentRate.berry.dailyEnergy + (currentRate.ingredient?.dailyEnergy ?? 0);
+
   return {
     berry: {
       count: getAnalysisStatsOfItemProducingRate({
@@ -58,7 +61,7 @@ export const getAnalysisStatsOfProducingRate = ({
         getComparer: (rate) => rate.dailyEnergy,
       }),
     },
-    ingredient: !currentRate.ingredient ? null : {
+    ingredient: currentRate.ingredient && {
       count: getAnalysisStatsOfItemProducingRate({
         samples: ingredientRates,
         currentRate: currentRate.ingredient,
@@ -72,5 +75,18 @@ export const getAnalysisStatsOfProducingRate = ({
         getComparer: (rate) => rate.dailyEnergy,
       }),
     },
+    total: getAnalysisStatsOfContinuous({
+      samples: rateOfAllPokemon
+        .map(({pokemon, rate}) => ({
+          pokemon,
+          dailyTotal: rate.berry.dailyEnergy + (rate.ingredient?.dailyEnergy ?? 0),
+        })),
+      getPokemonId: ({pokemon}) => pokemon.id,
+      getValue: ({dailyTotal}) => dailyTotal,
+      getLinkedData: ({dailyTotal}) => dailyTotal,
+      isLinked: ({dailyTotal}) => dailyTotal > currentDailyTotal,
+      isCurrentRank: (sample) => sample.pokemon.id === pokemon.id,
+      currentValue: currentDailyTotal,
+    }),
   };
 };

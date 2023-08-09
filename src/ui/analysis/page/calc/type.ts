@@ -64,6 +64,7 @@ export type AnalysisStats = {
   producingRate: {
     berry: AnalysisStatsProducingRate,
     ingredient: AnalysisStatsProducingRate | null,
+    total: AnalysisStatsContinuous<number>,
   },
 };
 
