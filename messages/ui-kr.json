@@ -127,7 +127,8 @@
         "IngredientCount": "식재료 수",
         "BerryEnergy": "나무열매 에너지",
         "BerryCount": "나무열매 수",
-        "FriendshipPoint": "프렌드 포인트"
+        "FriendshipPoint": "프렌드 포인트",
+        "TotalEnergy": "총에너지"
       }
     },
     "Analysis": {

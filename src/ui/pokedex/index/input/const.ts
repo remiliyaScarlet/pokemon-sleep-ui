@@ -11,6 +11,7 @@ export const sortTypeToTranslationId: {
   berryEnergy: 'Sort.BerryEnergy',
   berryCount: 'Sort.BerryCount',
   friendshipPoint: 'Sort.FriendshipPoint',
+  totalEnergy: 'Sort.TotalEnergy',
 };
 
 export const displayTypeToTranslationId: {

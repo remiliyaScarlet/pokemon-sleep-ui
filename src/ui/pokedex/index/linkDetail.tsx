@@ -23,6 +23,7 @@ export const PokedexLinkDetail = React.memo(({
   level,
   ingredientMap,
   berryMap,
+  sorter,
 }: PokedexLinkProps) => {
   const {id, berry, skill, ingredients, specialty, stats} = pokemon;
 
@@ -121,7 +122,6 @@ export const PokedexLinkDetail = React.memo(({
     }
   }
 
-
   if (display === 'berryEnergy' || display === 'berryCount') {
     const rate = getBerryProducingRate({
       level,
@@ -154,5 +154,18 @@ export const PokedexLinkDetail = React.memo(({
       );
     }
   }
+
+  if (display === 'totalEnergy') {
+    return (
+      <Flex direction="row" className="gap-0.5">
+        <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
+        <div>
+          {formatFloat(sorter)}
+        </div>
+      </Flex>
+    );
+  }
+
+  console.error(`Unhandled Pokedex display type: [${display satisfies never}]`);
 });
 PokedexLinkDetail.displayName = 'PokedexLinkDetail';

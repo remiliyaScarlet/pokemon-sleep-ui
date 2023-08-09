@@ -7,9 +7,9 @@ import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/hook';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
-import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
+import {PokedexClientCommonProps, SortedPokemonInfo} from '@/ui/pokedex/index/type';
 import {usePokedexAutoUpload} from '@/ui/pokedex/index/upload';
-import {sortPokemon} from '@/ui/pokedex/index/utils';
+import {getPokemonSorter, sortPokemon} from '@/ui/pokedex/index/utils';
 import {classNames} from '@/utils/react';
 
 
@@ -21,12 +21,18 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   });
   usePokedexAutoUpload({filter});
 
-  const sortedData = pokedex.sort(sortPokemon({
-    type: filter.sort,
-    level: filter.level,
-    ingredientMap,
-    berryMap,
-  }));
+  const sortedData = pokedex
+    .map<SortedPokemonInfo>((pokemon) => ({
+      pokemon,
+      sorter: getPokemonSorter({
+        type: filter.sort,
+        level: filter.level,
+        pokemon,
+        ingredientMap,
+        berryMap,
+      }),
+    }))
+    .sort(sortPokemon(filter.sort));
 
   return (
     <>
@@ -34,7 +40,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       <AdsUnit/>
       <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <Flex direction="row" wrap className="gap-1.5">
-        {sortedData.map((pokemon) => (
+        {sortedData.map(({pokemon, sorter}) => (
           <div
             key={pokemon.id}
             className={classNames(
@@ -44,7 +50,13 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
               isIncluded[pokemon.id] ? undefined : 'hidden',
             )}
           >
-            <PokedexLink pokemon={pokemon} display={filter.display} level={filter.level} {...props}/>
+            <PokedexLink
+              pokemon={pokemon}
+              display={filter.display}
+              level={filter.level}
+              sorter={sorter}
+              {...props}
+            />
           </div>
         ))}
       </Flex>

@@ -2,13 +2,13 @@ import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokedexSortType} from '@/ui/pokedex/index/input/type';
-import {PokemonComparerGetter} from '@/ui/pokedex/index/type';
+import {PokemonSorterGetter, SortedPokemonInfo} from '@/ui/pokedex/index/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 
 
-const pokemonComparerGetterBySortType: {[type in PokedexSortType]: PokemonComparerGetter} = {
+const pokemonSorterGetterBySortType: {[type in PokedexSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
   ingredientEnergy: ({level, pokemon, ingredientMap}) => getIngredientProducingRate({
     level,
@@ -37,39 +37,58 @@ const pokemonComparerGetterBySortType: {[type in PokedexSortType]: PokemonCompar
     berryData,
   }).quantity : 0,
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
+  totalEnergy: ({level, pokemon, berryData, ingredientMap}) => {
+    if (!berryData) {
+      return 0;
+    }
+
+    const berry = getBerryProducingRate({
+      level,
+      pokemon,
+      ...defaultNeutralOpts,
+      isSnorlaxFavorite: false,
+      berryData,
+    }).dailyEnergy;
+    const ingredient = getIngredientProducingRate({
+      level,
+      pokemon,
+      ...defaultNeutralOpts,
+      ingredientMap,
+    })?.dailyEnergy;
+
+    return berry + (ingredient ?? 0);
+  },
 };
 
-type SortPokemonOpts = {
+type GetPokemonSorterOpts = {
   type: PokedexSortType,
   level: number,
+  pokemon: PokemonInfo,
   ingredientMap: IngredientMap,
   berryMap: BerryDataMap
 };
 
-export const sortPokemon = ({
+export const getPokemonSorter = ({
   type,
   level,
+  pokemon,
   ingredientMap,
   berryMap,
-}: SortPokemonOpts) => (
-  a: PokemonInfo,
-  b: PokemonInfo,
-): number => {
-  const comparerGetter = pokemonComparerGetterBySortType[type];
+}: GetPokemonSorterOpts): number => {
+  return pokemonSorterGetterBySortType[type]({
+    pokemon,
+    level,
+    ingredientMap,
+    berryData: berryMap[pokemon.berry.id],
+  });
+};
 
-  const comparerA = comparerGetter({
-    pokemon: a,
-    level,
-    ingredientMap,
-    berryData: berryMap[a.berry.id],
-  });
-  const comparerB = comparerGetter({
-    pokemon: b,
-    level,
-    ingredientMap,
-    berryData: berryMap[b.berry.id],
-  });
-  let comparer = comparerA - comparerB;
+export const sortPokemon = (
+  type: PokedexSortType,
+) => (
+  a: SortedPokemonInfo, b: SortedPokemonInfo,
+) => {
+  let comparer = a.sorter - b.sorter;
 
   if (comparer !== 0 && type !== 'id' && type !== 'friendshipPoint') {
     comparer *= -1;
@@ -79,5 +98,5 @@ export const sortPokemon = ({
     return comparer;
   }
 
-  return a.id - b.id;
+  return a.pokemon.id - b.pokemon.id;
 };

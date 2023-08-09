@@ -127,7 +127,8 @@
         "IngredientCount": "Ingredient Finding",
         "BerryEnergy": "Berry Strength",
         "BerryCount": "Berry Finding",
-        "FriendshipPoint": "Friendship Points"
+        "FriendshipPoint": "Friendship Points",
+        "TotalEnergy": "Total Strength"
       }
     },
     "Analysis": {

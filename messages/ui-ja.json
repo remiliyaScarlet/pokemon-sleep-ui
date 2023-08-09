@@ -127,7 +127,8 @@
         "IngredientCount": "食材の数",
         "BerryEnergy": "きのみのエナジー",
         "BerryCount": "きのみの数",
-        "FriendshipPoint": "フレンドポイント"
+        "FriendshipPoint": "フレンドポイント",
+        "TotalEnergy": "総エナジー"
       }
     },
     "Analysis": {

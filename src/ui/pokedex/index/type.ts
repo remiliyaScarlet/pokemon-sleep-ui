@@ -16,6 +16,11 @@ export type PokemonInfoForPokedex = PokemonInfo & {
 
 export type PokedexData = PokemonInfoForPokedex[];
 
+export type SortedPokemonInfo = {
+  pokemon: PokemonInfoForPokedex,
+  sorter: ReturnType<PokemonSorterGetter>,
+};
+
 export type PokedexDisplay = {
   display: PokedexDisplayType,
   sort: PokedexSortType,
@@ -37,13 +42,14 @@ export type PokedexClientCommonProps = {
 
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
   pokemon: PokemonInfoForPokedex,
+  sorter: ReturnType<PokemonSorterGetter>,
 };
 
-export type PokemonComparerGetterOpts = {
+export type PokemonSorterGetterOpts = {
   pokemon: PokemonInfo,
   level: number,
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
 };
 
-export type PokemonComparerGetter = (opts: PokemonComparerGetterOpts) => number;
+export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;
