@@ -3,8 +3,8 @@ import React from 'react';
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
-import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
@@ -43,11 +43,11 @@ export const MapTableInfoIcon = ({data, pokedex, displayType}: Props) => {
   }
 
   if (displayType === 'specialty') {
-    return <PokemonSpecialtyIcon specialty={pokemon.specialty} dimension="h-4 w-4"/>;
+    return <PokemonSpecialty specialty={pokemon.specialty} dimension="h-4 w-4" hideText/>;
   }
 
   if (displayType === 'sleepType') {
-    return <PokemonSleepTypeIcon sleepType={pokemon.sleepType} dimension="h-4 w-4"/>;
+    return <PokemonSleepType sleepType={pokemon.sleepType} dimension="h-4 w-4" hideText/>;
   }
 
   console.error(`Unhandled map unlock table display type: ${displayType satisfies never}`);

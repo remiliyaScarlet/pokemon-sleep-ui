@@ -9,9 +9,10 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonName} from '@/components/shared/pokemon/name';
-import {PokemonSpecialtyText} from '@/components/shared/pokemon/specialty/text';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
+import {specialtyTextClass} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
@@ -47,18 +48,13 @@ export const PokemonMeta = (props: PokemonProps) => {
       <AdsUnit className="my-2 lg:hidden"/>
       <Flex direction="col" className="gap-y-3 md:p-5 lg:p-8">
         <PokemonMetaSection title={t2('Info.SleepType')} contentClassName="text-lg">
-          <Flex direction="row" className="gap-1" center>
-            <div className={classNames('h-5 w-5 rounded-full', sleepTypeBgClass[sleepType])}/>
-            <div className={sleepTypeTextClass[sleepType]}>
-              {t(`SleepType.${sleepType}`)}
-            </div>
-          </Flex>
+          <PokemonSleepType sleepType={sleepType} dimension="h-7 w-7"/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Specialty')}
           contentClassName={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}
         >
-          <PokemonSpecialtyText specialty={specialty} dimension="h-5 w-5"/>
+          <PokemonSpecialty specialty={specialty} dimension="h-7 w-7"/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Berry')}
