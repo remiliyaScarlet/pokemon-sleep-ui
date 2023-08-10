@@ -91,6 +91,9 @@
       "Page": {
         "Title": "薰香 - {name}"
       }
+    },
+    "About": {
+      "Title": "關於"
     }
   },
   "InPage": {

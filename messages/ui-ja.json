@@ -91,6 +91,9 @@
       "Page": {
         "Title": "おこう - {name}"
       }
+    },
+    "About": {
+      "Title": "サイトについて"
     }
   },
   "InPage": {

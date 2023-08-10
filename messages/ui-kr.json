@@ -91,6 +91,9 @@
       "Page": {
         "Title": "향로 - {name}"
       }
+    },
+    "About": {
+      "Title": "소개"
     }
   },
   "InPage": {

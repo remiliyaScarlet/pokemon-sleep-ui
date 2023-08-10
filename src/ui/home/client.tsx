@@ -20,7 +20,12 @@ export const HomeClient = () => {
       <HomePokeball/>
       <AdsUnit/>
       <Flex direction="row" center wrap className="h-auto gap-2">
-        {entries.map(({i18nTextId, ...props}) => {
+        {entries.map(({i18nTextId, showInHome, ...props}) => {
+          // `showInHome` being `undefined` (falsy) should be treated as `true`
+          if (showInHome === false) {
+            return <React.Fragment key={i18nTextId}/>;
+          }
+
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">
               <FeatureLinkImage text={t(i18nTextId)} {...props}/>

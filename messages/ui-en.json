@@ -91,6 +91,9 @@
       "Page": {
         "Title": "Incense - {name}"
       }
+    },
+    "About": {
+      "Title": "About"
     }
   },
   "InPage": {

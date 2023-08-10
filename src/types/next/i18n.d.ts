@@ -45,6 +45,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       },
       Skill: PageWithIndividual,
       Incense: PageWithIndividual,
+      About: I18nMetadata,
     },
     InPage: {
       Home: {
