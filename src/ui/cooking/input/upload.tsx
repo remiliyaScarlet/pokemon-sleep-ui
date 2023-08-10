@@ -13,6 +13,7 @@ export const CookingInputUpload = ({filter}: CookingCommonProps) => {
           type: filter.type,
           level: filter.recipeLevel,
           potCapacity: filter.capacity,
+          ingredientCount: filter.ingredientCount,
         },
       }}
     />

@@ -1,20 +1,17 @@
 'use client';
 import React from 'react';
 
-import merge from 'lodash/merge';
 import {Session} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
-import {useFilterInput} from '@/components/input/filter/hook';
-import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal, MealId} from '@/types/mongo/meal';
+import {Meal} from '@/types/mongo/meal';
+import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';
-import {CookingCommonProps, CookingFilter} from '@/ui/cooking/type';
+import {CookingCommonProps} from '@/ui/cooking/type';
 import {toUnique} from '@/utils/array';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
 
 
 type Props = {
@@ -24,30 +21,9 @@ type Props = {
 };
 
 export const CookingClient = ({meals, ingredientMap, session}: Props) => {
-  const {filter, setFilter, isIncluded} = useFilterInput<CookingFilter, Meal, MealId>({
-    data: meals,
-    dataToId: ({id}) => id,
-    initialFilter: {
-      type: session?.user.data?.mealType ?? 1,
-      recipeLevel: merge({}, session?.user.data?.recipeLevel),
-      capacity: session?.user.data.potCapacity ?? 15,
-      ingredient: {},
-    },
-    isDataIncluded: (filter, meal) => {
-      if (filter.type !== meal.type) {
-        return false;
-      }
-
-      if (!isFilterIncludingAllOfData({
-        filter,
-        filterKey: 'ingredient',
-        ids: meal.ingredients.map(({id}) => id),
-      })) {
-        return false;
-      }
-
-      return getMealRequiredQuantity(meal) <= filter.capacity;
-    },
+  const {filter, setFilter, isIncluded} = useCookingFilter({
+    meals,
+    session,
   });
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);

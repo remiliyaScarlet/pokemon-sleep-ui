@@ -1,7 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {BerryId} from '@/types/mongo/berry';
 import {MealTypeId} from '@/types/mongo/meal';
-import {CookingFilterRecipeLevel} from '@/ui/cooking/type';
+import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {DeepPartialExceptKey} from '@/utils/type';
@@ -16,6 +16,7 @@ export type UploadOfPotInfo = {
 
 export type UploadOfCookingData = UploadOfPotInfo & {
   level: CookingFilterRecipeLevel,
+  ingredientCount: CookingFilterIngredientCount,
 };
 
 export type UploadUserDataOpts = {
@@ -52,6 +53,7 @@ export type UserDataUploadContent = {
   teamAnalysisSetup: UploadOfTeamAnalysisSetup,
   pokedex: PokedexDisplay,
   potCapacity: number,
+  ingredientCount: CookingFilterIngredientCount,
 };
 
 export type UserData = DeepPartialExceptKey<UserDataUploadContent>;
