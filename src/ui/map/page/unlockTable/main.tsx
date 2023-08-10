@@ -11,6 +11,7 @@ import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageSmallIconSizes} from '@/styles/image';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
+import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
 import {formatInt} from '@/utils/number';
@@ -23,7 +24,7 @@ type Props = Pick<MapCommonProps, 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' |
 };
 
 export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxReward, filter, isIncluded}: Props) => {
-  const {showEmptyRank} = filter;
+  const {showEmptyRank, displayType} = filter;
 
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('UI.InPage.Map');
@@ -84,20 +85,9 @@ export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxRew
                     dataWithPokemon={matchingStyles}
                     getPokemon={({pokemonId}) => pokedexMap[pokemonId]}
                     getPokemonId={({pokemonId}) => pokemonId}
-                    getInfo={({style}) => {
-                      if (style.style === 'onSnorlax') {
-                        return (
-                          <div className="relative h-3.5 w-3.5">
-                            <NextImage
-                              src="/images/generic/flash.png" alt={style.style}
-                              sizes={imageSmallIconSizes} className="invert-on-light"
-                            />
-                          </div>
-                        );
-                      }
-
-                      return `#${style.style}`;
-                    }}
+                    getInfo={(data) => (
+                      <MapTableInfoIcon data={data} pokedex={pokedexMap} displayType={displayType}/>
+                    )}
                     getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
                   />
                 </Flex>

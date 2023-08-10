@@ -9,7 +9,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonName} from '@/components/shared/pokemon/name';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
+import {PokemonSpecialtyText} from '@/components/shared/pokemon/specialty/text';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {sleepTypeBgClass, sleepTypeTextClass, specialtyTextClass} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
@@ -58,7 +58,7 @@ export const PokemonMeta = (props: PokemonProps) => {
           title={t2('Info.Specialty')}
           contentClassName={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}
         >
-          <PokemonSpecialty specialty={specialty} dimension="h-5 w-5"/>
+          <PokemonSpecialtyText specialty={specialty} dimension="h-5 w-5"/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Berry')}

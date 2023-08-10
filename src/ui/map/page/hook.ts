@@ -19,6 +19,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
       mainSkill: {},
       showEmptyRank: false,
       sleepStyle: {},
+      displayType: 'sleepStyle',
     },
     isDataIncluded: (filter, data) => {
       const pokemon = pokedexMap[data.pokemonId];

@@ -1,10 +1,17 @@
 import {NatureEffectId, NatureEffectType} from '@/types/game/producing/nature';
+import {PokemonSpecialtyId} from '@/types/mongo/pokemon';
 
 
-export const specialtyIdMap = {
+export const specialtyIdMap: {[name in string]: PokemonSpecialtyId} = {
   berry: 1,
   ingredient: 2,
   skill: 3,
+};
+
+export const specialtyImageSrcMap: {[id in PokemonSpecialtyId]: string} = {
+  1: '/images/generic/berry.png',
+  2: '/images/generic/ingredient.png',
+  3: '/images/generic/skill.png',
 };
 
 export const natureEffectIdMap: {[type in NatureEffectType]: NatureEffectId} = {

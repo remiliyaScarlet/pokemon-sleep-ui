@@ -8,7 +8,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
+import {PokemonSpecialtyText} from '@/components/shared/pokemon/specialty/text';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
@@ -58,7 +58,7 @@ export const PokedexLinkDetail = React.memo(({
   if (display === 'specialty') {
     return (
       <Flex direction="row">
-        <PokemonSpecialty specialty={specialty}/>
+        <PokemonSpecialtyText specialty={specialty}/>
       </Flex>
     );
   }

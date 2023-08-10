@@ -7,8 +7,8 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
-import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
+import {PokemonSleepTypeText} from '@/components/shared/pokemon/sleepType/text';
+import {PokemonSpecialtyText} from '@/components/shared/pokemon/specialty/text';
 import {imageIconSizes} from '@/styles/image';
 import {AnalysisStatsGroupedUI} from '@/ui/analysis/page/result/group';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
@@ -42,13 +42,13 @@ export const AnalysisStatsOfPokemonMeta = ({stats, pokemon}: AnalysisStatsUiProp
           title={<PokemonFilterTitle type="specialty"/>}
         >
           <div className="text-2xl">
-            <PokemonSpecialty dimension="h-5 w-5" specialty={specialty}/>
+            <PokemonSpecialtyText dimension="h-5 w-5" specialty={specialty}/>
           </div>
         </AnalysisStatsGroupedUI>
       }
       <AnalysisStatsGroupedUI stats={stats.pokemon.sleepType} title={<PokemonFilterTitle type="sleepType"/>}>
         <div className="text-2xl">
-          <PokemonSleepType dimension="h-5 w-5" sleepType={sleepType}/>
+          <PokemonSleepTypeText dimension="h-5 w-5" sleepType={sleepType}/>
         </div>
       </AnalysisStatsGroupedUI>
       {

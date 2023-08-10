@@ -6,9 +6,18 @@ import {SleepStyleDataFlattened, SleepStyleId} from '@/types/mongo/sleepStyle';
 import {SnorlaxRankInMap, SnorlaxReward} from '@/types/mongo/snorlax';
 
 
+export const mapUnlockTableDisplayType = [
+  'sleepStyle',
+  'specialty',
+  'sleepType',
+] as const;
+
+export type MapUnlockTableDisplayType = typeof mapUnlockTableDisplayType[number];
+
 export type MapPageFilter = PokemonInputFilter & {
   showEmptyRank: boolean,
   sleepStyle: FilterInclusionMap<SleepStyleId>,
+  displayType: MapUnlockTableDisplayType,
 };
 
 export type MapCommonProps = {

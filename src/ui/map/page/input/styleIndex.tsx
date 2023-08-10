@@ -18,7 +18,6 @@ type Props = FilterInputProps<MapPageFilter> & {
 
 export const MapInputSleepStyleToggle = (props: Props) => {
   const {filter, setFilter, sleepStyles} = props;
-  const {sleepStyle} = filter;
 
   const t = useTranslations('UI.InPage.Map');
 
@@ -38,11 +37,8 @@ export const MapInputSleepStyleToggle = (props: Props) => {
       idToButton={(id) => {
         if (id === 'onSnorlax') {
           return (
-            <div className="relative h-4 w-4">
-              <NextImage
-                src="/images/generic/flash.png" alt={id}
-                sizes={imageSmallIconSizes} className={sleepStyle.onSnorlax ? 'invert-on-dark' : 'invert-on-light'}
-              />
+            <div className="relative h-6 w-6">
+              <NextImage src="/images/generic/snorlax.png" alt={id} sizes={imageSmallIconSizes}/>
             </div>
           );
         }

@@ -8,9 +8,9 @@ import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/inp
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
 import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonSleepTypeText} from '@/components/shared/pokemon/sleepType/text';
+import {PokemonSpecialtyText} from '@/components/shared/pokemon/specialty/text';
+import {PokemonInfo, PokemonSpecialtyId} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
@@ -70,7 +70,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `Specialty-${id}`}
-        idToButton={(id) => <PokemonSpecialty specialty={id}/>}
+        idToButton={(id) => <PokemonSpecialtyText specialty={id as PokemonSpecialtyId}/>}
         ids={getIds(({specialty}) => specialty as TId)}
         {...commonProps}
       />
@@ -81,7 +81,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `SleepType-${id}`}
-        idToButton={(id) => <PokemonSleepType sleepType={id}/>}
+        idToButton={(id) => <PokemonSleepTypeText sleepType={id}/>}
         ids={getIds(({sleepType}) => sleepType as TId)}
         {...commonProps}
       />

@@ -5,7 +5,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {useMapFilter} from '@/ui/map/page/hook';
 import {MapInfoInput} from '@/ui/map/page/input/main';
 import {MapCommonProps} from '@/ui/map/page/type';
-import {MapUnlockTable} from '@/ui/map/page/unlockTable';
+import {MapUnlockTable} from '@/ui/map/page/unlockTable/main';
 
 
 export const MapInfo = (props: MapCommonProps) => {
