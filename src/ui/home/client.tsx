@@ -8,16 +8,26 @@ import {Flex} from '@/components/layout/flex';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {useNavEntries} from '@/hooks/nav';
 import {HomePokeball} from '@/ui/home/pokeball';
+import {HomeUserCount} from '@/ui/home/userCount';
 
 
-export const HomeClient = () => {
+type Props = {
+  userCount: number,
+};
+
+export const HomeClient = ({userCount}: Props) => {
   const t = useTranslations('UI.Metadata');
 
   const entries = useNavEntries();
 
   return (
     <Flex direction="col" className="gap-2 md:h-full md:px-10">
-      <HomePokeball/>
+      <Flex direction="col" className="relative">
+        <HomePokeball/>
+        <div className="absolute bottom-0 right-0">
+          <HomeUserCount userCount={userCount}/>
+        </div>
+      </Flex>
       <AdsUnit/>
       <Flex direction="row" center wrap className="h-auto gap-2">
         {entries.map(({i18nTextId, showInHome, ...props}) => {
