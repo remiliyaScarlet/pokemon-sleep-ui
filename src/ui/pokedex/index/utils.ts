@@ -1,8 +1,11 @@
+import merge from 'lodash/merge';
+import {Session} from 'next-auth';
+
 import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokedexSortType} from '@/ui/pokedex/index/input/type';
-import {PokemonSorterGetter, SortedPokemonInfo} from '@/ui/pokedex/index/type';
+import {PokedexFilter, PokemonSorterGetter, SortedPokemonInfo} from '@/ui/pokedex/index/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
@@ -99,4 +102,23 @@ export const sortPokemon = (
   }
 
   return a.pokemon.id - b.pokemon.id;
+};
+
+export const generateInitialFilter = (session: Session | null): PokedexFilter => {
+  return {
+    name: '',
+    pokemonType: {},
+    mapId: {},
+    sleepType: {},
+    specialty: {},
+    ingredientFixed: {},
+    ingredientRandom: {},
+    berry: {},
+    mainSkill: {},
+    level: 1,
+    ...merge({
+      display: 'mainSkill',
+      sort: 'id',
+    }, session?.user.data.pokedex?.display),
+  };
 };

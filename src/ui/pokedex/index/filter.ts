@@ -1,38 +1,23 @@
-import merge from 'lodash/merge';
+import {Session} from 'next-auth';
 
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/mongo/pokemon';
-import {PokedexData, PokedexDisplay, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
-import {DeepPartial} from '@/utils/type';
+import {PokedexData, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
+import {generateInitialFilter} from '@/ui/pokedex/index/utils';
 
 
 type UseFilteredPokedexOpts = {
   data: PokedexData,
-  display: DeepPartial<PokedexDisplay> | undefined,
+  session: Session | null,
 };
 
-export const useFilteredPokedex = ({data, display}: UseFilteredPokedexOpts) => {
+export const useFilteredPokedex = ({data, session}: UseFilteredPokedexOpts) => {
   return useFilterInput<PokedexFilter, PokemonInfoForPokedex, PokemonId>({
     data,
     dataToId: ({id}) => id,
-    initialFilter: {
-      name: '',
-      pokemonType: {},
-      mapId: {},
-      sleepType: {},
-      specialty: {},
-      ingredientFixed: {},
-      ingredientRandom: {},
-      berry: {},
-      mainSkill: {},
-      level: 1,
-      ...merge({
-        display: 'mainSkill',
-        sort: 'id',
-      }, display),
-    },
+    initialFilter: generateInitialFilter(session),
     isDataIncluded: (filter, data) => {
       if (!isDataIncludingAllOfFilter({
         filter,

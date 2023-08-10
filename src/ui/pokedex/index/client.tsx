@@ -20,7 +20,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   const [loading, setLoading] = React.useState(false);
   const {filter, setFilter, isIncluded} = useFilteredPokedex({
     data: pokedex,
-    display: session?.user.data.pokedex,
+    session,
   });
   usePokedexAutoUpload({filter});
 
