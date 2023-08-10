@@ -44,7 +44,8 @@ export const useFilteredPokedex = ({data, display}: UseFilteredPokedexOpts) => {
         return false;
       }
 
-      if (filter.name !== '' && !data.nameOfAllLocale.some((name) => name.includes(filter.name))) {
+      const filterName = filter.name.toUpperCase();
+      if (filter.name !== '' && !data.nameOfAllLocale.some((name) => name.toUpperCase().includes(filterName))) {
         return false;
       }
 
