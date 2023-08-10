@@ -1,5 +1,6 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {MapMeta} from '@/types/mongo/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SleepStyleDataFlattened, SleepStyleId} from '@/types/mongo/sleepStyle';
 import {SnorlaxRankInMap, SnorlaxReward} from '@/types/mongo/snorlax';
@@ -17,6 +18,7 @@ export type MapCommonProps = {
   pokedexMap: PokedexMap,
   snorlaxRank: SnorlaxRankInMap,
   snorlaxReward: SnorlaxReward[],
+  mapMeta: MapMeta | null,
 };
 
 export type MapInputInclusionKey = `${PokemonId}-${SleepStyleId}`;

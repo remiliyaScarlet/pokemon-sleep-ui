@@ -7,6 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
+import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon';
 import {getSleepStyleOfMap} from '@/controller/sleepStyle';
 import {getSnorlaxRankOfMap} from '@/controller/snorlaxRank';
@@ -28,6 +29,7 @@ export const MapPage = ({params}: Props) => {
   const pokedexMap = React.use(getPokemonAsMap(toUnique(sleepStyles.map(({pokemonId}) => pokemonId))));
   const snorlaxRank = React.use(getSnorlaxRankOfMap(mapId));
   const snorlaxReward = React.use(getSnorlaxReward());
+  const mapMeta = React.use(getMapMeta(mapId));
 
   const t = useTranslations('Game.Field');
 
@@ -42,6 +44,7 @@ export const MapPage = ({params}: Props) => {
     pokedexMap,
     snorlaxRank,
     snorlaxReward,
+    mapMeta,
   };
 
   return (
