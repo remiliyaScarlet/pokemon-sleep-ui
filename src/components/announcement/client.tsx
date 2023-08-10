@@ -1,6 +1,9 @@
 'use client';
 import React from 'react';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 import {announcementTextClasses} from '@/components/announcement/styles';
 import {AnnouncementProps} from '@/components/announcement/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
@@ -37,7 +40,9 @@ export const AnnouncementsClient = ({larger, announcements}: Props) => {
           className={classNames(announcementTextClasses[level], commonClass)}
           onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
         >
-          {message}
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {message}
+          </ReactMarkdown>
         </div>
       </div>
       <HorizontalSplitter/>
