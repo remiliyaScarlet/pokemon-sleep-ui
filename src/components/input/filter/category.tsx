@@ -11,6 +11,7 @@ export const FilterCategoryInput = <TId, >({
   ids,
   idToItemId,
   idToButton,
+  isHidden,
   onClick,
   isActive,
   getClassNames,
@@ -28,12 +29,18 @@ export const FilterCategoryInput = <TId, >({
       <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {
           const active = isActive(id);
+          const hidden = isHidden && isHidden(id);
+          const itemId = idToItemId(id);
+
+          if (hidden) {
+            return <React.Fragment key={itemId}/>;
+          }
 
           return (
             <ToggleButton
-              key={idToItemId(id)}
+              key={itemId}
               active={active}
-              id={idToItemId(id)}
+              id={itemId}
               onClick={() => onClick(id)}
               className={getClassNames(active, id)}
             >

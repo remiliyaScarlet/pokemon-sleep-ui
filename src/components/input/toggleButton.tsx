@@ -34,7 +34,10 @@ export const ToggleButton = ({
       />
       <label
         htmlFor={id}
-        className={classNames('flex items-center justify-center cursor-pointer select-none', className)}
+        className={classNames(
+          'flex items-center justify-center cursor-pointer select-none transform-smooth',
+          className,
+        )}
       >
         {children}
       </label>

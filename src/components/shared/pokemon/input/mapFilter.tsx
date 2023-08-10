@@ -12,10 +12,11 @@ import {SleepMapId} from '@/types/mongo/sleepStyle';
 
 type Props = FilterInputOnClickProps<SleepMapId> & {
   mapIds: SleepMapId[],
+  isHidden?: (mapId: SleepMapId) => boolean,
   highlight?: boolean,
 };
 
-export const PokemonMapFilter = ({mapIds, highlight, ...props}: Props) => {
+export const PokemonMapFilter = ({mapIds, isHidden, highlight, ...props}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
   const t2 = useTranslations('Game');
 
@@ -25,6 +26,7 @@ export const PokemonMapFilter = ({mapIds, highlight, ...props}: Props) => {
       title={t('Info.Map')}
       idToItemId={(id) => `Map-${id}`}
       ids={mapIds}
+      isHidden={(id) => (isHidden && isHidden(id)) ?? false}
       idToButton={(id) => {
         const mapName = t2(`Field.${id}`);
 

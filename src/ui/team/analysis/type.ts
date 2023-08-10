@@ -5,6 +5,7 @@ import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {NatureId} from '@/types/game/producing/nature';
 import {BerryDataMap, BerryId} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
+import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 
@@ -20,6 +21,7 @@ export type TeamAnalysisDataProps = {
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],
+  mapMeta: FieldMetaMap,
   session: Session | null,
 };
 

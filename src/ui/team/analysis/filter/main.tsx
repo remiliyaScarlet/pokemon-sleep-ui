@@ -8,8 +8,10 @@ import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props'
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
+import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageSmallIconSizes} from '@/styles/image';
+import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisFilter} from '@/ui/team/analysis/type';
 import {toUnique} from '@/utils/array';
@@ -17,9 +19,12 @@ import {toUnique} from '@/utils/array';
 
 type Props = FilterInputProps<TeamAnalysisFilter> & {
   pokemon: PokemonInfo[],
+  mapMeta: FieldMetaMap,
 };
 
-export const TeamAnalysisPokemonFilter = ({pokemon, ...props}: Props) => {
+export const TeamAnalysisPokemonFilter = ({pokemon, mapMeta, ...props}: Props) => {
+  const {setFilter} = props;
+
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Team');
 
@@ -52,6 +57,22 @@ export const TeamAnalysisPokemonFilter = ({pokemon, ...props}: Props) => {
           ...props,
           filterKey: 'snorlaxFavorite',
         })}
+      />
+      <PokemonMapFilter
+        mapIds={Object.keys(mapMeta).map(Number)}
+        isActive={() => false}
+        isHidden={(id) => !mapMeta[id]?.berry?.length}
+        onClick={(mapId) => {
+          const snorlaxFavorite = mapMeta[mapId]?.berry;
+          if (!snorlaxFavorite) {
+            return;
+          }
+
+          setFilter((original) => ({
+            ...original,
+            snorlaxFavorite: Object.fromEntries(snorlaxFavorite.map((favorite) => [favorite, true])),
+          }));
+        }}
       />
     </Flex>
   );

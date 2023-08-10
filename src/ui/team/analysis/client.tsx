@@ -10,7 +10,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
-  const {pokedex, session} = props;
+  const {pokedex, mapMeta, session} = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
@@ -19,7 +19,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
 
   return (
     <>
-      <TeamAnalysisPokemonFilter filter={filter} setFilter={setFilter} pokemon={pokemon}/>
+      <TeamAnalysisPokemonFilter filter={filter} setFilter={setFilter} pokemon={pokemon} mapMeta={mapMeta}/>
       <AuthProvider>
         <TeamAnalysisUI
           pokemonSelectableInclusionMap={isIncluded} snorlaxFavorite={filter.snorlaxFavorite}
