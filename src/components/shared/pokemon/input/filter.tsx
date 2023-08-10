@@ -10,7 +10,7 @@ import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
 import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
-import {PokemonInfo, PokemonSpecialtyId} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
@@ -70,7 +70,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `Specialty-${id}`}
-        idToButton={(id) => <PokemonSpecialty specialty={id as PokemonSpecialtyId}/>}
+        idToButton={(id) => <PokemonSpecialty specialty={id}/>}
         ids={getIds(({specialty}) => specialty as TId)}
         {...commonProps}
       />

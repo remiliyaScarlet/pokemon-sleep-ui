@@ -7,7 +7,7 @@ import {PokemonIconsWithIngredient} from '@/components/shared/pokemon/icon/listW
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {IngredientMap} from '@/types/mongo/ingredient';
-import {PokemonIngredientType, pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
+import {pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
 
 
 type Props = {
@@ -29,7 +29,7 @@ export const IngredientObtainablePokemon = ({pokemonMaxLevel, obtainablePokemon,
             <Flex direction="row" className="gap-3">
               <Flex direction="col" center noFullWidth>
                 <div className="h-8 w-8">
-                  <PokemonIngredientTypeIcon type={type as PokemonIngredientType}/>
+                  <PokemonIngredientTypeIcon type={type}/>
                 </div>
               </Flex>
               <Flex direction="col" center>
