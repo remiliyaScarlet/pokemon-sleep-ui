@@ -42,7 +42,6 @@ export type PokedexClientCommonProps = {
 
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
   pokemon: PokemonInfoForPokedex,
-  sorter: ReturnType<PokemonSorterGetter>,
 };
 
 export type PokemonSorterGetterOpts = {

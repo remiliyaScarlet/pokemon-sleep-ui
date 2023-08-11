@@ -23,7 +23,6 @@ export const PokedexLinkDetail = React.memo(({
   level,
   ingredientMap,
   berryMap,
-  sorter,
 }: PokedexLinkProps) => {
   const {id, berry, skill, ingredients, specialty, stats} = pokemon;
 
@@ -156,11 +155,26 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'totalEnergy') {
+    const rateOfBerry = getBerryProducingRate({
+      level,
+      pokemon,
+      ...defaultNeutralOpts,
+      isSnorlaxFavorite: false,
+      berryData: berryMap[berry.id],
+    });
+
+    const rateOfIngredient = getIngredientProducingRate({
+      level,
+      pokemon,
+      ...defaultNeutralOpts,
+      ingredientMap,
+    });
+
     return (
       <Flex direction="row" className="gap-0.5">
         <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
         <div>
-          {formatFloat(sorter)}
+          {formatFloat(rateOfBerry.dailyEnergy + (rateOfIngredient?.dailyEnergy ?? 0))}
         </div>
       </Flex>
     );

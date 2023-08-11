@@ -50,7 +50,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
           </Flex>
         }
         <Flex direction="row" wrap className="gap-1.5">
-          {sortedData.map(({pokemon, sorter}) => (
+          {sortedData.map(({pokemon}) => (
             <div
               key={pokemon.id}
               className={classNames(
@@ -64,7 +64,6 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
                 pokemon={pokemon}
                 display={filter.display}
                 level={filter.level}
-                sorter={sorter}
                 {...props}
               />
             </div>
