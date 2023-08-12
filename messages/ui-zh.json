@@ -43,6 +43,14 @@
         "Title": "食材 - {name}"
       }
     },
+    "Berry": {
+      "Index": {
+        "Title": "樹果"
+      },
+      "Page": {
+        "Title": "樹果 - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "地圖"

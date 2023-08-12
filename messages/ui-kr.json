@@ -43,6 +43,14 @@
         "Title": "식재료 - {name}"
       }
     },
+    "Berry": {
+      "Index": {
+        "Title": "나무열매"
+      },
+      "Page": {
+        "Title": "나무열매 - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "맵"

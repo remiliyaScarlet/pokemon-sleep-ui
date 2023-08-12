@@ -31,6 +31,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Cooking: I18nMetadata,
       Meal: PageWithIndividual,
       Ingredient: PageWithIndividual,
+      Berry: PageWithIndividual,
       Map: PageWithIndividual,
       Team: {
         Box: I18nMetadata,

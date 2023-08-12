@@ -19,6 +19,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Pokedex.Index.Title',
   },
   {
+    href: '/map',
+    imageSrc: '/images/generic/map.png',
+    i18nTextId: 'Map.Index.Title',
+  },
+  {
     href: '/cooking',
     imageSrc: '/images/generic/pot.png',
     i18nTextId: 'Cooking.Title',
@@ -29,14 +34,14 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Meal.Index.Title',
   },
   {
+    href: '/berry',
+    imageSrc: '/images/generic/berry.png',
+    i18nTextId: 'Berry.Index.Title',
+  },
+  {
     href: '/ingredient',
     imageSrc: '/images/generic/ingredient.png',
     i18nTextId: 'Ingredient.Index.Title',
-  },
-  {
-    href: '/map',
-    imageSrc: '/images/generic/map.png',
-    i18nTextId: 'Map.Index.Title',
   },
   {
     href: '/team',

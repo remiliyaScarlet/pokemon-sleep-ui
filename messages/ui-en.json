@@ -43,6 +43,14 @@
         "Title": "Ingredient - {name}"
       }
     },
+    "Berry": {
+      "Index": {
+        "Title": "Berry"
+      },
+      "Page": {
+        "Title": "Berry - {name}"
+      }
+    },
     "Map": {
       "Index": {
         "Title": "Map"
