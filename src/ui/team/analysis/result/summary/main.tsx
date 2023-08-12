@@ -41,12 +41,12 @@ export const TeamAnalysisSummary = ({stats, snorlaxRankData, bonus, setBonus}: P
         <Flex direction="col" className="lg:flex-row">
           <Flex direction="row" noFullWidth className="justify-end gap-x-8 gap-y-1.5">
             <TeamAnalysisRateLayout
-              shrink isEnergy dailyRate={ingredient?.dailyEnergy ?? null}
-              icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
-            />
-            <TeamAnalysisRateLayout
               shrink isEnergy dailyRate={berry.dailyEnergy}
               icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
+            />
+            <TeamAnalysisRateLayout
+              shrink isEnergy dailyRate={ingredient?.dailyEnergy ?? null}
+              icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
             />
           </Flex>
           <Flex direction="row" className="justify-end">
