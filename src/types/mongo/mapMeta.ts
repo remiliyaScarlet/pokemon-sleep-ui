@@ -9,8 +9,12 @@ export type MapUnlockCondition = null | {
 
 export type MapMeta = {
   mapId: SleepMapId,
+} & ({
   berry: BerryId[],
   unlock: MapUnlockCondition,
-};
+} | {
+  berry: null,
+  unlock: null,
+});
 
 export type FieldMetaMap = {[map in SleepMapId]?: MapMeta};
