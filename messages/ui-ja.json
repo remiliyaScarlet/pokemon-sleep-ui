@@ -157,6 +157,9 @@
       "PotCapacity": "容量",
       "RecipeLevel": "レシピレベル"
     },
+    "Berry": {
+      "Energy": "エナジー"
+    },
     "Ingredient": {
       "Energy": "エナジー"
     },

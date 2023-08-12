@@ -157,6 +157,9 @@
       "PotCapacity": "Max",
       "RecipeLevel": "Recipe Level"
     },
+    "Berry": {
+      "Energy": "Strength"
+    },
     "Ingredient": {
       "Energy": "Strength"
     },

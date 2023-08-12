@@ -157,6 +157,9 @@
       "PotCapacity": "容量",
       "RecipeLevel": "食譜等級"
     },
+    "Berry": {
+      "Energy": "能量"
+    },
     "Ingredient": {
       "Energy": "能量"
     },
