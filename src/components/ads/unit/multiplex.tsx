@@ -24,8 +24,8 @@ export const AdsUnitMultiplex = ({slot, className}: Props) => {
         slot={getAdSenseValue({value: slot, theme})}
         className="block"
         format="rectangle"
-        data-matched-content-rows-num="2,1"
-        data-matched-content-columns-num="2,4"
+        data-matched-content-rows-num="1,1"
+        data-matched-content-columns-num="3,4"
         data-matched-content-ui-type="image_stacked,image_card_sidebyside"
       />
     </AdsWrapper>

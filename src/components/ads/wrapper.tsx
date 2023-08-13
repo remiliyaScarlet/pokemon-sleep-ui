@@ -10,8 +10,9 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
   return (
     <div className={classNames(
       className,
-      'w-full',
-      isProduction() ? undefined : `border border-green-500 ${adsHeight}`,
+      'w-full overflow-auto',
+      adsHeight,
+      isProduction() ? undefined : 'border border-green-500',
     )}>
       {children}
     </div>
