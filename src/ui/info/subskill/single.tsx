@@ -6,8 +6,8 @@ import ChevronUpIcon from '@heroicons/react/24/solid/ChevronUpIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {subSkillRarityBg, subSkillRarityDisabled} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subskill';
-import {raritySection, raritySectionUnreleased} from '@/ui/info/subskill/style';
 import {classNames} from '@/utils/react';
 
 
@@ -26,7 +26,7 @@ export const SubSkillInfoSingle = ({data}: Props) => {
     <Flex direction="col" center className={classNames(
       'gap-1 p-2 rounded-lg',
       'width-with-gap md:width-with-gap-2-items lg:width-with-gap-3-items xl:width-with-gap-4-items',
-      rarity ? raritySection[rarity] : raritySectionUnreleased,
+      rarity ? subSkillRarityBg[rarity] : subSkillRarityDisabled,
     )}>
       <Flex direction="row" className="items-end justify-center gap-1 text-lg">
         <div className="text-sm text-slate-600 dark:text-slate-400">#{id}</div>

@@ -1,4 +1,5 @@
 import {MealTypeClassMap, SleepTypeClassMap, SpecialtyClassMap} from '@/styles/type';
+import {SubSkillRarity} from '@/types/game/pokemon/subskill';
 
 
 export const sleepTypeBgClass: SleepTypeClassMap = {
@@ -36,3 +37,11 @@ export const specialtyTextClass: SpecialtyClassMap = {
   2: 'text-amber-600 dark:text-yellow-400',
   3: 'text-blue-600 dark:text-blue-400',
 };
+
+export const subSkillRarityBg: {[rarity in SubSkillRarity]: string} = {
+  1: 'bg-slate-300 dark:bg-slate-800/90',
+  2: 'bg-sky-300 dark:bg-sky-700/30',
+  3: 'bg-yellow-300 dark:bg-yellow-700/40',
+};
+
+export const subSkillRarityDisabled = 'border border-slate-500 text-slate-500';
