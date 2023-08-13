@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {Session} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -10,7 +11,6 @@ import {Meal} from '@/types/mongo/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
 import {toSum} from '@/utils/array';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -56,11 +56,11 @@ export const MealIndexClient = ({data, session}: Props) => {
           .map(({meal}) => (
             <div
               key={meal.id}
-              className={classNames(
-                'relative width-with-gap-sm',
+              className={clsx(
+                'width-with-gap-sm relative',
                 'sm:width-with-gap-2-items md:width-with-gap-3-items',
                 'lg:width-with-gap-4-items xl:width-with-gap-5-items',
-                isIncluded[meal.id] ? undefined : 'hidden',
+                !isIncluded[meal.id] && 'hidden',
               )}
             >
               <MealLink meal={meal} displayType={filter.displayType}/>

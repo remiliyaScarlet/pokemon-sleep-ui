@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -9,7 +10,6 @@ import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
-import {classNames} from '@/utils/react';
 
 
 type Props = Omit<CookingCommonProps, 'setFilter'>;
@@ -34,7 +34,7 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
       {mealEnergyInfo
         .sort((a, b) => (b.energyInfo.atLevel.energy ?? 0) - (a.energyInfo.atLevel.energy ?? 0))
         .map(({meal, energyInfo}) => (
-          <div key={meal.id} className={classNames(
+          <div key={meal.id} className={clsx(
             'width-with-gap xs:width-with-gap-2-items',
             'sm:width-with-gap-3-items md:width-with-gap-4-items',
             'lg:width-with-gap-5-items xl:width-with-gap-6-items',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {classNames} from '@/utils/react';
+import {clsx} from 'clsx';
 
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'value'> & {
@@ -16,7 +16,7 @@ export const Slider = ({id, value, setValue, ...props}: Props) => {
       type="range"
       value={value}
       onChange={(e) => setValue(Number(e.target.value))}
-      className={classNames(
+      className={clsx(
         'h-2 w-full cursor-pointer appearance-none rounded-lg',
         'bg-slate-400/50 accent-slate-600/50 dark:bg-slate-700/70 dark:accent-slate-300/50',
       )}

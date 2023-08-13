@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -18,9 +18,9 @@ export const PokemonLevelSlider = ({level, maxLevel, setLevel, noSameLine}: Prop
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="col" className={classNames('items-center gap-1.5', noSameLine ? '' : 'lg:flex-row')}>
-      <Flex direction="row" noFullWidth className={classNames(
-        'gap-1.5 self-end', noSameLine ? '' : 'lg:mr-auto lg:self-auto',
+    <Flex direction="col" className={clsx('items-center gap-1.5', !noSameLine && 'lg:flex-row')}>
+      <Flex direction="row" noFullWidth className={clsx(
+        'gap-1.5 self-end', !noSameLine && 'lg:mr-auto lg:self-auto',
       )}>
         <div className="whitespace-nowrap">
           {t('PokemonLevel')}

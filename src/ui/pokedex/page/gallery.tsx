@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Transition} from '@headlessui/react';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
@@ -13,7 +14,6 @@ import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
-import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
@@ -72,7 +72,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               leave="transition-opacity duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
-              className={classNames('absolute', styles['gallery-size'])}
+              className={clsx('absolute', styles['gallery-size'])}
             >
               <PokemonImage image={image} isShiny={imageShiny} {...props}/>
             </Transition>

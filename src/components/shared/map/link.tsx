@@ -1,12 +1,12 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -20,7 +20,7 @@ export const MapLink = ({mapId, className, children}: React.PropsWithChildren<Pr
   const mapName = t(mapId.toString());
 
   return (
-    <Link href={`/map/${mapId}`} className={classNames('button-clickable-bg group relative', className)}>
+    <Link href={`/map/${mapId}`} className={clsx('button-clickable-bg group relative', className)}>
       <NextImage
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"

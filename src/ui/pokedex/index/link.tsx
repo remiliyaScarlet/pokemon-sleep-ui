@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -9,7 +10,6 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokedexLinkDetail} from '@/ui/pokedex/index/linkDetail';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
-import {classNames} from '@/utils/react';
 
 
 export const PokedexLink = (props: PokedexLinkProps) => {
@@ -26,7 +26,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
         <PokedexLinkDetail {...props}/>
       </Flex>
       <button
-        className={classNames(
+        className={clsx(
           'group inline-block h-full w-full rounded-lg',
           'bg-slate-50 hover:bg-slate-100/50 dark:bg-slate-600/50 hover:dark:bg-slate-600',
         )}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -8,7 +9,6 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {imageIconSizes} from '@/styles/image';
 import {AnalysisStatsLinkedData} from '@/ui/analysis/page/calc/type';
-import {classNames} from '@/utils/react';
 
 
 type Props<TData> = {
@@ -25,8 +25,8 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
   const name = t(pokemonId.toString());
 
   return (
-    <Flex direction="col" center noFullWidth className={classNames(
-      'relative button-bg gap-1.5 rounded-lg p-1 w-24',
+    <Flex direction="col" center noFullWidth className={clsx(
+      'button-bg relative w-24 gap-1.5 rounded-lg p-1',
     )}>
       <div className="relative h-14 w-14">
         <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={name} sizes={imageIconSizes}/>

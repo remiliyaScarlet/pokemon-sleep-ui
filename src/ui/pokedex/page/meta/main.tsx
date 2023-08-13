@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -20,7 +21,6 @@ import {PokemonIngredientMeta} from '@/ui/pokedex/page/meta/ingredient';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {classNames} from '@/utils/react';
 
 
 export const PokemonMeta = (props: PokemonProps) => {
@@ -52,25 +52,25 @@ export const PokemonMeta = (props: PokemonProps) => {
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Specialty')}
-          contentClassName={classNames('text-lg', specialty ? specialtyTextClass[specialty] : undefined)}
+          contentClassName={clsx('text-lg', specialty && specialtyTextClass[specialty])}
         >
           <PokemonSpecialty specialty={specialty} dimension="h-7 w-7"/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Berry')}
-          titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.berry ? 'bg-blink' : '')}
+          titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.berry && 'bg-blink')}
         >
           <PokemonBerryMeta pokemon={pokemon} level={level} berryData={berryData} berryName={berryName}/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Ingredient')}
-          titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.ingredient ? 'bg-blink' : '')}
+          titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
         >
           <PokemonIngredientMeta pokemon={pokemon} level={level} ingredientMap={ingredientMap}/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.MainSkill')}
-          titleClassName={classNames(metaTitleClass, specialty === specialtyIdMap.skill ? 'bg-blink' : '')}
+          titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.skill && 'bg-blink')}
         >
           <Flex direction="col">
             <div className="text-lg">

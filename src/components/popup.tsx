@@ -2,8 +2,7 @@
 import React from 'react';
 
 import {Dialog, Transition} from '@headlessui/react';
-
-import {classNames} from '@/utils/react';
+import {clsx} from 'clsx';
 
 
 type Props = {
@@ -41,9 +40,9 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <Dialog.Panel className={classNames(
-              'rounded-lg p-3 flex justify-center w-full sm:w-fit sm:max-w-2xl',
-              'bg-slate-200 dark:bg-gray-950 ring-1 ring-inset ring-slate-400 dark:ring-gray-600',
+            <Dialog.Panel className={clsx(
+              'flex w-full justify-center rounded-lg p-3 sm:w-fit sm:max-w-2xl',
+              'bg-slate-200 ring-1 ring-inset ring-slate-400 dark:bg-gray-950 dark:ring-gray-600',
               className,
             )}>
               <div className="max-h-96 overflow-y-auto">

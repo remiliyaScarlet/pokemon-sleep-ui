@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -7,7 +8,6 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {SnorlaxRank} from '@/types/game/rank';
 import {Dimension} from '@/types/style';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -30,7 +30,7 @@ export const SnorlaxRankUI = ({rank, dimension, hideTextBelowMd}: Props) => {
           sizes={imageSmallIconSizes}
         />
       </div>
-      <div className={classNames('whitespace-nowrap', hideTextBelowMd ? 'hidden md:block' : '')}>
+      <div className={clsx('whitespace-nowrap', hideTextBelowMd && 'hidden md:block')}>
         {rankTitle}
       </div>
       <div>{rank.number}</div>

@@ -2,13 +2,13 @@
 import React from 'react';
 
 import {Adsense} from '@ctrl/react-adsense';
+import {clsx} from 'clsx';
 import {useTheme} from 'next-themes';
 
 import {adsClientId, adsHeight} from '@/components/ads/const';
 import {AdSenseValue, AdsTemplateUnitProps} from '@/components/ads/unit/types';
 import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
-import {classNames} from '@/utils/react';
 
 
 type Props = AdsTemplateUnitProps & {
@@ -23,7 +23,7 @@ export const AdsUnitInFeed = ({slot, layoutKey, className}: Props) => {
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}
-        className={classNames('block', adsHeight)}
+        className={clsx('block', adsHeight)}
         layoutKey={getAdSenseValue({value: layoutKey, theme})}
         format="fluid"
       />

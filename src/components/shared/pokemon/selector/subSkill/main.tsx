@@ -2,6 +2,7 @@ import React from 'react';
 
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
@@ -20,7 +21,6 @@ import {
   SubSkillId,
   SubSkillMap,
 } from '@/types/game/pokemon/subskill';
-import {classNames} from '@/utils/react';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -86,7 +86,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
       </button>
       <Popup show={show} setShow={setShow}>
         <Flex direction="col" className="gap-2 pr-2">
-          <Flex direction="row" wrap className={classNames(
+          <Flex direction="row" wrap className={clsx(
             'sticky top-0 z-10 gap-2 rounded-lg bg-slate-50/90 p-1.5 dark:bg-slate-950/90',
           )}>
             {pokemonSubSkillLevel.map((level) => {

@@ -3,12 +3,12 @@ import React from 'react';
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import ChevronUpIcon from '@heroicons/react/24/solid/ChevronUpIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {subSkillRaritySectionBg, subSkillRarityDisabled} from '@/styles/classes';
+import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subskill';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -23,8 +23,8 @@ export const SubSkillInfoSingle = ({data}: Props) => {
   const bonusValue = Object.values(bonus).at(0) ?? '(?)';
 
   return (
-    <Flex direction="col" center className={classNames(
-      'gap-1 p-2 rounded-lg',
+    <Flex direction="col" center className={clsx(
+      'gap-1 rounded-lg p-2',
       'width-with-gap md:width-with-gap-2-items lg:width-with-gap-3-items xl:width-with-gap-4-items',
       rarity ? subSkillRaritySectionBg[rarity] : subSkillRarityDisabled,
     )}>

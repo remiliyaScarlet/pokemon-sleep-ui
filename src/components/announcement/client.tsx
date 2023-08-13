@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -8,7 +9,6 @@ import {announcementTextClasses} from '@/components/announcement/styles';
 import {AnnouncementProps} from '@/components/announcement/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {Announcement} from '@/types/mongo/announcement';
-import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
@@ -35,9 +35,9 @@ export const AnnouncementsClient = ({larger, announcements}: Props) => {
 
   return (
     <>
-      <div className={classNames(styles['announcement-animation'], commonClass)}>
+      <div className={clsx(commonClass, styles['announcement-animation'])}>
         <div
-          className={classNames(announcementTextClasses[level], commonClass)}
+          className={clsx(commonClass, announcementTextClasses[level])}
           onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
         >
           <ReactMarkdown remarkPlugins={[remarkGfm]}>

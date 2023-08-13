@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -9,7 +10,6 @@ import {ThemeSwitcher} from '@/ui/base/navbar/darkMode/main';
 import {NavEntryUI} from '@/ui/base/navbar/entry';
 import {NavHomepage} from '@/ui/base/navbar/home';
 import {LanguageSwitch} from '@/ui/base/navbar/languageSwitch/main';
-import {classNames} from '@/utils/react';
 
 
 export const NavBarClient = () => {
@@ -20,7 +20,7 @@ export const NavBarClient = () => {
   return (
     <>
       <NavHomepage/>
-      <Flex direction="row" className={classNames(
+      <Flex direction="row" className={clsx(
         'scrollbar-hide gap-1 overflow-x-auto overflow-y-hidden',
         'text-center text-sm text-gray-400',
       )}>

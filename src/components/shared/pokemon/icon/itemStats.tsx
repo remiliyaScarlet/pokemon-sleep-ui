@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -12,7 +13,6 @@ import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/mongo/pokemon';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -50,8 +50,8 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
             const {id, specialty} = pokemon;
 
             return (
-              <Flex key={id} direction="col" className={classNames(
-                'relative button-clickable-bg',
+              <Flex key={id} direction="col" className={clsx(
+                'button-clickable-bg relative',
                 'width-with-gap-sm width-with-gap-2-items sm:width-with-gap-3-items',
                 'md:width-with-gap-4-items lg:width-with-gap-5-items xl:width-with-gap-6-items',
               )}>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -7,7 +8,6 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -26,7 +26,7 @@ export const IngredientIcons = ({meal, useTextShadow = true}: Props) => {
             <div className="relative h-4 w-4">
               <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
             </div>
-            <div className={classNames('text-xs', useTextShadow ? 'text-shadow-preset' : undefined)}>
+            <div className={clsx('text-xs', useTextShadow && 'text-shadow-preset')}>
               {quantity}
             </div>
           </Flex>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -10,7 +11,6 @@ import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {MealExp} from '@/ui/meal/page/exp';
 import {MealCommonProps} from '@/ui/meal/page/type';
-import {classNames} from '@/utils/react';
 
 
 export const MealMeta = (props: MealCommonProps) => {
@@ -23,7 +23,7 @@ export const MealMeta = (props: MealCommonProps) => {
   return (
     <Flex direction="col" center className="info-section md:flex-row md:gap-4">
       <Flex direction="col" center noFullWidth className="gap-2">
-        <div className={classNames('text-lg', mealTypeTextStyle[type])}>
+        <div className={clsx('text-lg', mealTypeTextStyle[type])}>
           {mealName}
         </div>
         <div className="relative h-44 w-44 rounded-lg border border-slate-300 dark:border-slate-700">

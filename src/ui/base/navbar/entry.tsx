@@ -1,13 +1,13 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {usePathname} from 'next-intl/client';
 import Link from 'next-intl/link';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {NavEntry} from '@/types/nav';
-import {classNames} from '@/utils/react';
 
 
 type Props = Pick<NavEntry, 'href' | 'imageSrc' | 'disabled'> & {
@@ -26,9 +26,9 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
   return (
     <Link
       href={isCurrent ? {} : href}
-      className={classNames(
-        'nav-height button-base button-text inline-block p-0.5 w-8 relative',
-        isCurrent ? 'bg-slate-700/30 dark:bg-slate-300/30 cursor-auto' : 'group button-clickable',
+      className={clsx(
+        'nav-height button-base button-text relative inline-block w-8 p-0.5',
+        isCurrent ? 'cursor-auto bg-slate-700/30 dark:bg-slate-300/30' : 'button-clickable group',
       )}
     >
       <NextImage

@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useLocale} from 'next-intl';
 import {usePathname, useRouter} from 'next-intl/client';
 
@@ -8,7 +9,6 @@ import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {localeName} from '@/const/website';
 import {isLocale} from '@/utils/i18n';
-import {classNames} from '@/utils/react';
 
 
 export const LanguageSwitch = () => {
@@ -37,8 +37,8 @@ export const LanguageSwitch = () => {
               key={locale}
               disabled={isPending || currentLocale === locale}
               onClick={() => onClick(locale)}
-              className={classNames(
-                'flex button-base w-full justify-center p-5 width-with-gap sm:width-with-gap-2-items text-xl',
+              className={clsx(
+                'button-base width-with-gap sm:width-with-gap-2-items flex w-full justify-center p-5 text-xl',
                 'disabled:button-disabled-border enabled:button-clickable-bg',
               )}
             >

@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTheme} from 'next-themes';
 import {DarkModeSwitch} from 'react-toggle-dark-mode';
 
 import {useMounted} from '@/hooks/mounted';
-import {classNames} from '@/utils/react';
 
 
 export const ThemeSwitcher = () => {
@@ -23,7 +23,7 @@ export const ThemeSwitcher = () => {
   return (
     <div className="button-clickable-bg nav-button group w-8">
       <DarkModeSwitch
-        className={classNames(
+        className={clsx(
           'h-full w-full',
           '[&>*]:fill-black [&>*]:stroke-black',
           '[&>*]:group-hover:fill-white [&>*]:group-hover:stroke-white',

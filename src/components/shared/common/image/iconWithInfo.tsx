@@ -1,9 +1,10 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {Dimension} from '@/types/style';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
 
 export const IconWithInfo = ({imageSrc, imageAlt, imageDimension, imageSizes, info}: Props) => {
   return (
-    <div className={classNames('relative', imageDimension)}>
+    <div className={clsx('relative', imageDimension)}>
       {info &&
         <Flex
           direction="col" center noFullWidth

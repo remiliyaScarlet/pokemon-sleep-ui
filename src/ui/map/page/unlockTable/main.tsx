@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
@@ -15,7 +16,6 @@ import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
 import {formatInt} from '@/utils/number';
-import {classNames} from '@/utils/react';
 
 
 type Props = Pick<MapCommonProps, 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
@@ -66,7 +66,7 @@ export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxRew
           return (
             <tr
               key={`${rank.title}-${rank.number}`}
-              className={classNames(toHide ? 'hidden' : 'border-b border-b-gray-700 last:border-b-0')}
+              className={clsx(toHide ? 'hidden' : 'border-b border-b-gray-700 last:border-b-0')}
             >
               <td>
                 <Flex direction="col" center className="gap-1">

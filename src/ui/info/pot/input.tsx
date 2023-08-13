@@ -3,6 +3,7 @@ import React from 'react';
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
+import {clsx} from 'clsx';
 
 import {InputRow} from '@/components/input/filter/row';
 import {FilterInputProps} from '@/components/input/filter/type';
@@ -20,7 +21,6 @@ import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
 import {MealTypeId} from '@/types/mongo/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
-import {classNames} from '@/utils/react';
 
 
 type Props = FilterInputProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'ingredients'> & {
@@ -71,7 +71,7 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
               ...original,
               showEmpty: !original.showEmpty,
             } satisfies PotInfoFilter))}
-            className={classNames('group', getTextFilterButtonClass(showEmpty))}
+            className={clsx('group', getTextFilterButtonClass(showEmpty))}
           >
             <Flex direction="row" center noFullWidth className="gap-1">
               <div className="h-5 w-5">

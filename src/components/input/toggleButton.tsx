@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {classNames} from '@/utils/react';
+import {clsx} from 'clsx';
 
 
 export type ToggleButtonProps = {
@@ -34,10 +34,7 @@ export const ToggleButton = ({
       />
       <label
         htmlFor={id}
-        className={classNames(
-          'flex items-center justify-center cursor-pointer select-none transform-smooth',
-          className,
-        )}
+        className={clsx('transform-smooth flex cursor-pointer select-none items-center justify-center', className)}
       >
         {children}
       </label>

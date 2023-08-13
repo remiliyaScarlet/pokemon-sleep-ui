@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
@@ -7,7 +8,6 @@ import {FilterInputOnClickProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {mealTypeDotStyle} from '@/styles/classes';
 import {MealTypeId} from '@/types/mongo/meal';
-import {classNames} from '@/utils/react';
 
 
 type Props = FilterInputOnClickProps<MealTypeId> & {
@@ -26,7 +26,7 @@ export const MealTypeInput = ({mealTypes, ...props}: Props) => {
       ids={mealTypes}
       idToButton={(id) => (
         <Flex direction="row" className="gap-1" center>
-          <div className={classNames('h-3 w-3 rounded-full', mealTypeDotStyle[id])}/>
+          <div className={clsx('h-3 w-3 rounded-full', mealTypeDotStyle[id])}/>
           <div>{t2(id.toString())}</div>
         </Flex>
       )}

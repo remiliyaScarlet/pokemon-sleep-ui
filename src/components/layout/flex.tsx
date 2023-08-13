@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {classNames} from '@/utils/react';
+import {clsx} from 'clsx';
 
 
 type Props = {
@@ -22,13 +22,13 @@ export const Flex = ({
   children,
 }: React.PropsWithChildren<Props>) => {
   return (
-    <div className={classNames(
+    <div className={clsx(
       'flex',
       direction === 'row' ? 'flex-row' : 'flex-col',
-      center ? 'items-center justify-center text-center content-center' : undefined,
-      wrap ? 'flex-wrap' : undefined,
-      stretch ? 'self-stretch' : undefined,
-      noFullWidth ? undefined : 'w-full',
+      center && 'content-center items-center justify-center text-center',
+      wrap && 'flex-wrap',
+      stretch && 'self-stretch',
+      !noFullWidth && 'w-full',
       className,
     )}>
       {children}

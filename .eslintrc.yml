@@ -104,6 +104,9 @@ rules:
   react-hooks/exhaustive-deps:
     - off
 
+  tailwindcss/classnames-order:
+    - error
+
 settings:
   react:
     version: detect

@@ -1,10 +1,10 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkProps} from '@/components/shared/link/type';
-import {classNames} from '@/utils/react';
 
 import styles from './main.module.css';
 
@@ -16,7 +16,7 @@ type Props = FeatureLinkProps & {
 export const FeatureLink = ({href, disabled, text, children}: React.PropsWithChildren<Props>) => {
   if (disabled) {
     return (
-      <button disabled className={classNames('button-disabled-border', styles['home-link'])}>
+      <button disabled className={clsx('button-disabled-border', styles['home-link'])}>
         <Flex direction="row" center className="h-full gap-1.5">
           {children}
           <div className="text-lg">
@@ -30,10 +30,7 @@ export const FeatureLink = ({href, disabled, text, children}: React.PropsWithChi
   return (
     <Link
       href={href}
-      className={classNames(
-        'button-clickable group border border-slate-700 dark:border-slate-300',
-        styles['home-link'],
-      )}
+      className={clsx('button-clickable group border border-slate-700 dark:border-slate-300', styles['home-link'])}
     >
       <Flex
         direction="row" center

@@ -1,12 +1,12 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImageProps} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {formatFloat} from '@/utils/number';
-import {classNames} from '@/utils/react';
 
 
 export type TeamAnalysisRateLayoutProps = {
@@ -27,11 +27,11 @@ export const TeamAnalysisRateLayout = ({
   const t = useTranslations('UI.InPage.Pokedex');
 
   const isSpecial = larger || shrink;
-  const titleClass = classNames(larger ? '' : 'text-xs', isEnergy ? 'text-energy' : '', 'whitespace-nowrap');
-  const textClass = classNames(larger ? 'text-xl' : '', isEnergy ? 'text-energy' : '');
+  const titleClass = clsx('whitespace-nowrap', !larger && 'text-xs', isEnergy && 'text-energy');
+  const textClass = clsx(larger && 'text-xl', isEnergy && 'text-energy');
 
   return (
-    <Flex direction="row" center noFullWidth={larger || shrink} className={classNames(
+    <Flex direction="row" center noFullWidth={larger || shrink} className={clsx(
       'text-sm', larger ? 'gap-2' : 'gap-1',
     )}>
       {isSpecial &&
@@ -40,7 +40,7 @@ export const TeamAnalysisRateLayout = ({
         </div>}
       <Flex
         direction={larger ? 'row' : 'col'} noFullWidth
-        className={classNames('ml-auto justify-end', larger ? 'gap-3' : '')}
+        className={clsx('ml-auto justify-end', larger && 'gap-3')}
       >
         <Flex direction="row" className="items-center justify-end gap-1">
           <div className={titleClass}>

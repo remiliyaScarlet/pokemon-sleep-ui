@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -18,7 +19,6 @@ import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
-import {classNames} from '@/utils/react';
 
 
 type Props = Pick<TeamAnalysisDataProps, 'berryMap' | 'subSkillMap'> & {
@@ -75,7 +75,7 @@ export const TeamAnalysisPokemon = ({
           <PokemonIngredientIcons ingredients={ingredients}/>
         </Flex>
         <Flex direction="row" className="justify-end text-xs">
-          <span className={classNames(pokemon.specialty === specialtyIdMap.skill ? 'bg-blink' : '', 'px-1.5 py-0.5')}>
+          <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
             {t(`MainSkill.Name.${skill}`)}
           </span>
         </Flex>

@@ -1,11 +1,12 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {getAllIngredients} from '@/controller/ingredient';
 import {PageLayout} from '@/ui/base/layout';
 import {IngredientLink} from '@/ui/ingredient/index/link';
-import {classNames} from '@/utils/react';
 
 
 export const IngredientIndex = () => {
@@ -19,8 +20,8 @@ export const IngredientIndex = () => {
           ingredient ?
             <div
               key={ingredient.id}
-              className={classNames(
-                'relative width-with-gap width-with-gap-2-items sm:width-with-gap-3-items',
+              className={clsx(
+                'width-with-gap width-with-gap-2-items sm:width-with-gap-3-items relative',
                 'md:width-with-gap-5-items lg:width-with-gap-6-items xl:width-with-gap-8-items',
               )}
             >

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -11,7 +12,6 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';
 import {formatInt} from '@/utils/number';
-import {classNames} from '@/utils/react';
 
 
 type Props = {
@@ -61,8 +61,8 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
             .map((meal) => (
               <div
                 key={meal.id}
-                className={classNames(
-                  'relative width-with-gap-sm width-with-gap-2-items',
+                className={clsx(
+                  'width-with-gap-sm width-with-gap-2-items relative',
                   'sm:width-with-gap-3-items md:width-with-gap-4-items lg:width-with-gap-5-items',
                 )}
               >

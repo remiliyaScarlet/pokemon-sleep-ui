@@ -1,6 +1,7 @@
 import React from 'react';
 
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -22,7 +23,6 @@ import {
   teamAnalysisSlotName,
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
-import {classNames} from '@/utils/react';
 
 
 type Props = TeamAnalysisDataProps & {
@@ -72,12 +72,12 @@ export const TeamAnalysis = (props: Props) => {
           const isAvailable = member && pokemon && stats;
 
           return (
-            <Flex key={slotName} direction="col" center className={classNames(
-              'relative button-bg h-[33rem] rounded-lg p-3 gap-1.5',
+            <Flex key={slotName} direction="col" center className={clsx(
+              'button-bg relative h-[33rem] gap-1.5 rounded-lg p-3',
               'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
             )}>
               <button
-                className={classNames(
+                className={clsx(
                   'absolute right-1 top-1 h-5 w-5 rounded-full',
                   'enabled:button-clickable disabled:button-disabled-border',
                 )}

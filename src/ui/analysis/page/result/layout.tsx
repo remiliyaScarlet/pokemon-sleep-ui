@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
+import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
@@ -8,7 +9,6 @@ import {AnalysisStatsLinkedData} from '@/ui/analysis/page/calc/type';
 import {AnalysisPokemonIcon} from '@/ui/analysis/page/result/icon';
 import {classOfMarkStyle} from '@/ui/analysis/page/result/style';
 import {AnalysisMarkStyle} from '@/ui/analysis/page/result/type';
-import {classNames} from '@/utils/react';
 
 
 type Props<TData> = {
@@ -38,8 +38,8 @@ export const AnalysisLayout = <TData, >({
           ))}
         </Flex>
       </Popup>
-      <Flex direction="col" className={classNames(
-        'info-section items-center gap-1 width-with-gap-xs width-with-gap-2-items',
+      <Flex direction="col" className={clsx(
+        'info-section width-with-gap-xs width-with-gap-2-items items-center gap-1',
         'md:width-with-gap-3-items lg:width-with-gap-4-items xl:width-with-gap-5-items',
       )}>
         <div className="text-center text-sm text-slate-500">

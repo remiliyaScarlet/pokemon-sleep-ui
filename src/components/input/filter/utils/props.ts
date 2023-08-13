@@ -1,31 +1,27 @@
+import {clsx} from 'clsx';
+
 import {
   FilterInclusionMap,
   FilterInputOnClickProps,
   FilterInputProps,
   FilterWithInclusionMap,
 } from '@/components/input/filter/type';
-import {classNames} from '@/utils/react';
 import {Indexable, KeysOfType} from '@/utils/type';
 
 
-export const getTextFilterButtonClass = (isActive: boolean) => classNames(
-  'px-2 whitespace-nowrap text-sm',
+export const getTextFilterButtonClass = (isActive: boolean) => clsx(
+  'whitespace-nowrap px-2 text-sm',
   getFilterInputButtonClass(isActive),
 );
 
-export const getIconFilterButtonClass = (isActive: boolean) => classNames(
-  'w-8',
-  getFilterInputButtonClass(isActive),
-);
+export const getIconFilterButtonClass = (isActive: boolean) => clsx('w-8', getFilterInputButtonClass(isActive));
 
-const getFilterInputButtonClass = (isActive: boolean) => classNames(
+const getFilterInputButtonClass = (isActive: boolean) => clsx(
   'relative h-8 rounded-full',
   getToggleButtonClass(isActive),
 );
 
-const getToggleButtonClass = (isActive: boolean) => classNames(
-  isActive ? 'button-toggle-active' : 'button-toggle-inactive',
-);
+const getToggleButtonClass = (isActive: boolean) => clsx(isActive ? 'button-toggle-active' : 'button-toggle-inactive');
 
 export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
   filterKey: KeysOfType<TFilter, TData | null>,
