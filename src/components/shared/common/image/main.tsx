@@ -8,9 +8,6 @@ export type NextImageProps = Omit<ImageProps, 'fill' | 'title'>;
 
 export const NextImage = ({src, alt, sizes, className}: NextImageProps) => {
   return (
-    <Image
-      src={src} alt={alt} fill title={alt} sizes={sizes}
-      className={clsx('object-cover', className)} unoptimized
-    />
+    <Image src={src} alt={alt} fill title={alt} sizes={sizes} className={clsx('object-cover', className)}/>
   );
 };
