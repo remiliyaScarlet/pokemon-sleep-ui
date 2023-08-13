@@ -7,11 +7,7 @@ import {classNames} from '@/utils/react';
 
 export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUnitProps>) => {
   return (
-    <div className={classNames(
-      className,
-      'w-full h-44 md:h-28',
-      isProduction() ? undefined : 'border border-green-500',
-    )}>
+    <div className={classNames(className, 'w-full', isProduction() ? undefined : 'border border-green-500 h-20')}>
       {children}
     </div>
   );
