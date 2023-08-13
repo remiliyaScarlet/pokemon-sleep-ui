@@ -82,14 +82,17 @@
       },
       "Nature": {
         "Title": "성격"
+      },
+      "SubSkill": {
+        "Title": "서브 스킬"
       }
     },
     "Skill": {
       "Index": {
-        "Title": "스킬"
+        "Title": "메인 스킬"
       },
       "Page": {
-        "Title": "스킬 - {name}"
+        "Title": "메인 스킬 - {name}"
       }
     },
     "Incense": {

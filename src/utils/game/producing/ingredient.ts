@@ -41,7 +41,7 @@ export const getIngredientProducingRate = ({
     natureId,
   });
 
-  const probability = defaultIngredientProbability + (subSkillBonus?.ingredientProbability ?? 0);
+  const probability = (defaultIngredientProbability + (subSkillBonus?.ingredientProbability ?? 0)) / 100;
   const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
 
   return {

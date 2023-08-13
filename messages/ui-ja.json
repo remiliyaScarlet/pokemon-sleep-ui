@@ -82,14 +82,17 @@
       },
       "Nature": {
         "Title": "せいかく"
+      },
+      "SubSkill": {
+        "Title": "サブスキル"
       }
     },
     "Skill": {
       "Index": {
-        "Title": "スキル"
+        "Title": "メインスキル"
       },
       "Page": {
-        "Title": "スキル - {name}"
+        "Title": "メインスキル - {name}"
       }
     },
     "Incense": {

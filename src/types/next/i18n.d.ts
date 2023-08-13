@@ -43,6 +43,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Index: I18nMetadata,
         Pot: I18nMetadata,
         Nature: I18nMetadata,
+        SubSkill: I18nMetadata,
       },
       Skill: PageWithIndividual,
       Incense: PageWithIndividual,
@@ -149,6 +150,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     },
     SleepType: GameObjectIdToString,
     Specialty: GameObjectIdToString,
-    SubSkill: GameObjectIdToString,
+    SubSkill: {
+      Name: GameObjectIdToString,
+      Description: GameObjectIdToString,
+    },
   }
 }

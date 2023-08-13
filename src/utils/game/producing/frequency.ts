@@ -48,7 +48,7 @@ export const getFrequencyFromPokemon = ({
   return getBaseFrequency({
     level,
     frequency: stats.frequency,
-    subSkillBonusRate: (subSkillBonus?.frequency ?? 0),
+    subSkillBonusRate: (subSkillBonus?.frequency ?? 0) / 100,
     helperCount,
     natureId,
   });

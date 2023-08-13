@@ -19,7 +19,7 @@ export const InfoIndex = () => {
             <AdsUnit/>
           </div>
           <Flex direction="row" wrap className="gap-2">
-            <div className="width-with-gap xl:width-with-gap-2-items">
+            <div className="width-with-gap">
               <FeatureLinkImage
                 href="/info/pot"
                 imageSrc="/images/generic/pot.png"
@@ -32,6 +32,13 @@ export const InfoIndex = () => {
                 imageSrc="/images/generic/memo.png"
                 text={t('Nature.Title')}
                 disabled
+              />
+            </div>
+            <div className="width-with-gap xl:width-with-gap-2-items">
+              <FeatureLinkImage
+                href="/info/subskill"
+                imageSrc="/images/generic/skill.png"
+                text={t('SubSkill.Title')}
               />
             </div>
           </Flex>
