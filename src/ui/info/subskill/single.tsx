@@ -40,7 +40,7 @@ export const SubSkillInfoSingle = ({data}: Props) => {
           <div className="h-5 w-5">
             <ArrowUpCircleIcon/>
           </div>
-          <div className="text-sm">
+          <div className={clsx('text-sm', next ? 'text-green-700 dark:text-green-400' : 'text-slate-500')}>
             {next ?
               t(`Name.${next}`) :
               <div className="h-5 w-5"><XMarkIcon/></div>
