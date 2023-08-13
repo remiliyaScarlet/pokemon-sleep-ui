@@ -16,7 +16,7 @@ export const TeamIndex = () => {
   return (
     <PageLayout>
       <Flex direction="col" center>
-        <Flex direction="col" wrap center className="h-auto gap-2 md:mt-32 md:w-1/2">
+        <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">
             <AdsUnit/>
           </div>
