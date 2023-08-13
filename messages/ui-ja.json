@@ -173,7 +173,8 @@
     },
     "Team": {
       "CurrentEnergy": "エナジー",
-      "SnorlaxFavorite": "カビゴンの好きなきのみ"
+      "SnorlaxFavorite": "カビゴンの好きなきのみ",
+      "SubSkill": "サブスキル"
     },
     "Info": {
       "Pot": {

@@ -1,7 +1,7 @@
 import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
-import {SubSkillData} from '@/types/game/pokemon/subskill';
+import {SubSkillData, SubSkillMap} from '@/types/game/pokemon/subskill';
 
 
 const getCollection = async (): Promise<Collection<SubSkillData>> => {
@@ -15,6 +15,16 @@ const getCollection = async (): Promise<Collection<SubSkillData>> => {
 export const getAllSubSkillData = async () => (
   (await getCollection()).find({}, {projection: {_id: false}}).toArray()
 );
+
+export const getSubSkillMap = async () => {
+  const ret: SubSkillMap = {};
+
+  for await (const map of (await getCollection()).find({}, {projection: {_id: false}})) {
+    ret[map.id] = map;
+  }
+
+  return ret;
+};
 
 const addSubSkillIndex = async () => {
   return Promise.all([

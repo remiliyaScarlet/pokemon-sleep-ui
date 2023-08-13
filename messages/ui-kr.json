@@ -173,7 +173,8 @@
     },
     "Team": {
       "CurrentEnergy": "에너지",
-      "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
+      "SnorlaxFavorite": "잠만보가 좋아하는 나무열매",
+      "SubSkill": "서브 스킬"
     },
     "Info": {
       "Pot": {

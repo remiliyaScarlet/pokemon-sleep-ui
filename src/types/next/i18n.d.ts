@@ -116,6 +116,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Team: {
         CurrentEnergy: string,
         SnorlaxFavorite: string,
+        SubSkill: string,
       },
       Info: {
         Pot: {

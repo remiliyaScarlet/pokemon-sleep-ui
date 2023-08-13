@@ -23,3 +23,17 @@ export type SubSkillData = {
   next: SubSkillId | null,
   bonus: SubSkillBonus,
 };
+
+export type SubSkillMap = {[id in SubSkillId]?: SubSkillData};
+
+export const pokemonSubSkillLevel = [
+  10,
+  25,
+  50,
+  75,
+  100,
+];
+
+export type PokemonSubSkillLevel = typeof pokemonSubSkillLevel[number];
+
+export type PokemonSubSkill = {[level in PokemonSubSkillLevel]?: SubSkillId};

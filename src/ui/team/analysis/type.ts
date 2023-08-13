@@ -2,6 +2,7 @@ import {Session} from 'next-auth';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {NatureId} from '@/types/game/producing/nature';
 import {Migratable} from '@/types/migrate';
 import {BerryDataMap, BerryId} from '@/types/mongo/berry';
@@ -23,6 +24,7 @@ export type TeamAnalysisDataProps = {
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],
   mapMeta: FieldMetaMap,
+  subSkillMap: SubSkillMap,
   session: Session | null,
 };
 
@@ -34,6 +36,7 @@ export type TeamAnalysisMember = {
   level: number,
   pokemonId: PokemonId,
   nature: NatureId | null,
+  subSkill: PokemonSubSkill,
 };
 
 export type TeamAnalysisBonus = {

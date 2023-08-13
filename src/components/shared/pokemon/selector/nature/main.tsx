@@ -35,8 +35,7 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
     ].join(' '),
   })), []);
 
-  const matchingNatureData = natureDataWithSearch
-    .filter(({keyword}) => search && keyword.includes(search));
+  const matchingNatureData = natureDataWithSearch.filter(({keyword}) => search && keyword.includes(search));
 
   const onClick = (id: NatureId | null) => {
     setNature(id);
@@ -46,7 +45,7 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
   return (
     <>
       <button
-        className="button-clickable-bg whitespace-nowrap px-1.5 text-sm"
+        className="button-clickable-bg h-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
         <Flex direction="row" center>
@@ -89,12 +88,11 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
             <></>}
           <Flex direction="row" center wrap className="gap-2">
             <PokemonNatureSelectorButton data={null} active={nature === null} onClick={() => onClick(null)}/>
-            {natureData
-              .map((data) => (
-                <PokemonNatureSelectorButton
-                  key={data.id} data={data} active={nature === data.id} onClick={() => onClick(data.id)}
-                />
-              ))}
+            {natureData.map((data) => (
+              <PokemonNatureSelectorButton
+                key={data.id} data={data} active={nature === data.id} onClick={() => onClick(data.id)}
+              />
+            ))}
           </Flex>
         </Flex>
       </Popup>

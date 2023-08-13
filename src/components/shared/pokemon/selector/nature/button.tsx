@@ -33,13 +33,10 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <button
-      key={data?.id} onClick={onClick} disabled={active}
-      className={classNames(
-        'width-with-gap rounded-lg sm:width-with-gap-2-items group',
-        'enabled:button-clickable-border disabled:button-bg',
-      )}
-    >
+    <button onClick={onClick} disabled={active} className={classNames(
+      'width-with-gap sm:width-with-gap-2-items rounded-lg group',
+      'enabled:button-clickable-border disabled:button-bg',
+    )}>
       <Flex direction="col" center className="p-2">
         <div className={!data?.buff || !data?.nerf ? natureStyleIfClean : ''}>
           {data ? t(`Nature.${data.id}`) : <div className="h-6 w-6"><XCircleIcon/></div>}

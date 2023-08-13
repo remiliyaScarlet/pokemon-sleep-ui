@@ -44,6 +44,7 @@ export const TeamAnalysisSelectablePokemon = ({setSetup, isIncluded, pokemon}: P
             pokemonId: id,
             level: 1,
             nature: null,
+            subSkill: {},
           } satisfies TeamAnalysisMember,
         },
       };

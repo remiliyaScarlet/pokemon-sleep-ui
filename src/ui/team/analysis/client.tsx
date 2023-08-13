@@ -22,8 +22,10 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
       <TeamAnalysisPokemonFilter filter={filter} setFilter={setFilter} pokemon={pokemon} mapMeta={mapMeta}/>
       <AuthProvider>
         <TeamAnalysisUI
-          pokemonSelectableInclusionMap={isIncluded} snorlaxFavorite={filter.snorlaxFavorite}
-          pokemon={pokemon} {...props}
+          pokemonSelectableInclusionMap={isIncluded}
+          snorlaxFavorite={filter.snorlaxFavorite}
+          pokemon={pokemon}
+          {...props}
         />
       </AuthProvider>
     </>

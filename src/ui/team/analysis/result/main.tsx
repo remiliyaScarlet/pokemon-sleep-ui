@@ -37,6 +37,7 @@ export const TeamAnalysis = (props: Props) => {
     setSetup,
     pokedex,
     berryMap,
+    subSkillMap,
     snorlaxRankData,
     snorlaxFavorite,
   } = props;
@@ -56,7 +57,7 @@ export const TeamAnalysis = (props: Props) => {
           ...update,
         },
       },
-    }));
+    } satisfies TeamAnalysisTeamSetup));
   }, [setSetup]);
 
   return (
@@ -72,7 +73,7 @@ export const TeamAnalysis = (props: Props) => {
 
           return (
             <Flex key={slotName} direction="col" center className={classNames(
-              'relative button-bg h-[30rem] rounded-lg p-3 gap-1.5',
+              'relative button-bg h-[33rem] rounded-lg p-3 gap-1.5',
               'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
             )}>
               <button
@@ -100,10 +101,16 @@ export const TeamAnalysis = (props: Props) => {
                 </button>}
               {isAvailable ?
                 <TeamAnalysisPokemon
-                  key={slotName} member={member} producingStats={stats} slotName={slotName}
+                  key={slotName}
+                  slotName={slotName}
+                  member={member}
+                  producingStats={stats}
                   setLevel={(level) => setTeamMember(slotName, {level})}
                   setNature={(nature) => setTeamMember(slotName, {nature})}
-                  pokemon={pokemon} berryMap={berryMap}
+                  setSubSkill={(subSkill) => setTeamMember(slotName, {subSkill})}
+                  pokemon={pokemon}
+                  berryMap={berryMap}
+                  subSkillMap={subSkillMap}
                 /> :
                 <UnavailableIcon/>}
             </Flex>
