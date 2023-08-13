@@ -3,6 +3,7 @@ import {Session} from 'next-auth';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {NatureId} from '@/types/game/producing/nature';
+import {Migratable} from '@/types/migrate';
 import {BerryDataMap, BerryId} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
@@ -40,7 +41,7 @@ export type TeamAnalysisBonus = {
   ingredient: number,
 };
 
-export type TeamAnalysisTeamSetup = {
+export type TeamAnalysisTeamSetup = Migratable & {
   team: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
   bonus: TeamAnalysisBonus,
 };
