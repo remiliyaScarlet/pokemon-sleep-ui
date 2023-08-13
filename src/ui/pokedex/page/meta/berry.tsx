@@ -3,6 +3,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData} from '@/types/mongo/berry';
@@ -32,9 +33,7 @@ export const PokemonBerryMeta = ({pokemon, berryName, berryData, level}: Props) 
   return (
     <Flex direction="col" center className="gap-1">
       <Flex direction="row" center className="gap-1">
-        <div className="relative h-10 w-10">
-          <NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>
-        </div>
+        <PokemonBerryIcon id={berry.id} dimension="h-10 w-10"/>
         <div className="whitespace-nowrap text-lg">
           {berryName} &times; {berry.quantity}
         </div>

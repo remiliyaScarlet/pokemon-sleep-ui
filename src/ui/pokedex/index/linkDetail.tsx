@@ -32,9 +32,7 @@ export const PokedexLinkDetail = React.memo(({
   if (display === 'berry') {
     return (
       <Flex direction="row" className="gap-0.5">
-        <div className="relative h-5 w-5">
-          <NextImage src={`/images/berry/${berry.id}.png`} alt={t(`Berry.${berry.id}`)} sizes={imageSmallIconSizes}/>
-        </div>
+        <PokemonBerryIcon id={berry.id}/>
         <div>
           {berry.quantity}
         </div>

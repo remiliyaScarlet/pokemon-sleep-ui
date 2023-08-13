@@ -54,7 +54,7 @@ export const MapStats = ({sleepStyles, meta}: Props) => {
         </div>
         <Flex direction="row" center noFullWidth className="gap-1">
           {meta?.berry ?
-            meta?.berry.map((berry) => <PokemonBerryIcon dimension="h-8 w-8" key={berry} id={berry}/>) :
+            meta?.berry.map((berry) => <PokemonBerryIcon key={berry} dimension="h-8 w-8" id={berry}/>) :
             <div className="relative h-8 w-8">
               <QuestionMarkCircleIcon/>
             </div>
