@@ -12,11 +12,11 @@ import {AdsWrapper} from '@/components/ads/wrapper';
 
 type Props = AdsTemplateUnitProps;
 
-export const AdsUnitDisplay = ({slot}: Props) => {
+export const AdsUnitDisplay = ({slot, className}: Props) => {
   const {theme} = useTheme();
 
   return (
-    <AdsWrapper>
+    <AdsWrapper className={className}>
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}

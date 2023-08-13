@@ -4,25 +4,26 @@ import React from 'react';
 import {Adsense} from '@ctrl/react-adsense';
 import {useTheme} from 'next-themes';
 
-import {adsClientId} from '@/components/ads/const';
+import {adsClientId, adsHeight} from '@/components/ads/const';
 import {AdSenseValue, AdsTemplateUnitProps} from '@/components/ads/unit/types';
 import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
+import {classNames} from '@/utils/react';
 
 
 type Props = AdsTemplateUnitProps & {
   layoutKey: AdSenseValue,
 };
 
-export const AdsUnitInFeed = ({slot, layoutKey}: Props) => {
+export const AdsUnitInFeed = ({slot, layoutKey, className}: Props) => {
   const {theme} = useTheme();
 
   return (
-    <AdsWrapper>
+    <AdsWrapper className={className}>
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}
-        className="block"
+        className={classNames('block', adsHeight)}
         layoutKey={getAdSenseValue({value: layoutKey, theme})}
         format="fluid"
       />
