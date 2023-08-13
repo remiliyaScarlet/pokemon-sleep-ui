@@ -10,8 +10,6 @@ export const localeName = {
 
 export const locales = Object.keys(localeName);
 
-export const imageCDN = `https://raw.githubusercontent.com/RaenonX-PokemonSleep/pokemon-sleep-ui/main/public`;
-
 export const navEntries: NavEntry[] = [
   {
     href: '/pokedex',
