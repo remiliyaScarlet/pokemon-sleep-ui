@@ -1,13 +1,13 @@
 import {getRequestConfig} from 'next-intl/server';
 
-import {locales} from '@/const/website';
+import {defaultLocale, locales} from '@/const/website';
 import {Locale} from '@/types/next/locale';
 
 
 export default getRequestConfig(async ({locale}) => {
   let localeToUse = locale;
   if (!locales.includes(locale)) {
-    localeToUse = 'zh' satisfies Locale;
+    localeToUse = defaultLocale satisfies Locale;
   }
 
   const [UI, Game] = await Promise.all([

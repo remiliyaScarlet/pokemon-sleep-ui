@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {locales} from '@/const/website';
+import {defaultLocale, locales} from '@/const/website';
 import mongoPromise from '@/lib/mongodb';
 import {Announcement, announcementLevels} from '@/types/mongo/announcement';
 import {Locale} from '@/types/next/locale';
@@ -16,7 +16,7 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
 
 export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
   return (await getCollection())
-    .find({locale: locale ?? 'en'}, {sort: {order: -1}, projection: {_id: false}})
+    .find({locale: locale ?? defaultLocale}, {sort: {order: -1}, projection: {_id: false}})
     .toArray();
 };
 
