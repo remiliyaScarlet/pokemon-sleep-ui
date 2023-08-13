@@ -10,7 +10,7 @@ export const defaultIngredientProbability = 20;
 export const defaultBerryProbability = 100 - defaultIngredientProbability;
 
 export const defaultNeutralOpts: GetProducingRateChangeableOpts = {
-  helperCount: 0,
+  helperCount: defaultHelperCount,
   subSkillBonus: null,
   natureId: null,
 };

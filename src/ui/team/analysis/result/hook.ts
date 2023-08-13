@@ -18,10 +18,10 @@ import {
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
 import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
+import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -32,15 +32,18 @@ type UseProducingStatsOpts = TeamAnalysisDataProps & {
 
 type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
   slotName: TeamAnalysisSlotName,
+  helperCount: number,
 };
 
 const useProducingStatsOfSlot = ({
   setup,
   snorlaxFavorite,
   slotName,
+  helperCount,
   pokedex,
   berryMap,
   ingredientMap,
+  subSkillMap,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   return React.useMemo(() => {
     const member = setup.team[slotName];
@@ -52,11 +55,15 @@ const useProducingStatsOfSlot = ({
     if (!pokemon) {
       return null;
     }
-
     const level = member.level;
     const berryData = berryMap[pokemon.berry.id];
     const producingRateOpts: GetProducingRateChangeableOpts = {
-      ...defaultNeutralOpts,
+      helperCount,
+      subSkillBonus: getSubSkillBonus({
+        level: member.level,
+        pokemonSubSkill: member.subSkill,
+        subSkillMap,
+      }),
       natureId: member.nature,
     };
 
@@ -82,14 +89,24 @@ const useProducingStatsOfSlot = ({
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
-  const {setup, snorlaxFavorite} = opts;
+  const {setup, snorlaxFavorite, subSkillMap} = opts;
+  const helperCount = Object.values(setup.team)
+    .filter((member) => {
+      if (!member) {
+        return false;
+      }
+
+      const {level, subSkill} = member;
+      return hasHelperSubSkill({level, pokemonSubSkill: subSkill, subSkillMap});
+    })
+    .length;
 
   const bySlot: TeamProducingStatsBySlot = {
-    A: useProducingStatsOfSlot({slotName: 'A', ...opts}),
-    B: useProducingStatsOfSlot({slotName: 'B', ...opts}),
-    C: useProducingStatsOfSlot({slotName: 'C', ...opts}),
-    D: useProducingStatsOfSlot({slotName: 'D', ...opts}),
-    E: useProducingStatsOfSlot({slotName: 'E', ...opts}),
+    A: useProducingStatsOfSlot({slotName: 'A', helperCount, ...opts}),
+    B: useProducingStatsOfSlot({slotName: 'B', helperCount, ...opts}),
+    C: useProducingStatsOfSlot({slotName: 'C', helperCount, ...opts}),
+    D: useProducingStatsOfSlot({slotName: 'D', helperCount, ...opts}),
+    E: useProducingStatsOfSlot({slotName: 'E', helperCount, ...opts}),
   };
 
   const deps: React.DependencyList = [setup, snorlaxFavorite];
