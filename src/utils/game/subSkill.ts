@@ -10,7 +10,7 @@ type SubSkillCheckOpts = {
 
 export const getEffectiveSubSkills = ({level, pokemonSubSkill, subSkillMap}: SubSkillCheckOpts) => {
   return Object.entries(pokemonSubSkill)
-    .filter(([subSkillLv]) => parseInt(subSkillLv) >= level)
+    .filter(([subSkillLv]) => level >= parseInt(subSkillLv))
     .map(([_, subSkillId]) => subSkillId ? subSkillMap[subSkillId] : null)
     .filter(isNotNullish);
 };
