@@ -3,7 +3,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonIconsWithIngredient} from '@/components/shared/pokemon/icon/listWithIngredient';
+import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {IngredientMap} from '@/types/mongo/ingredient';
@@ -33,7 +33,7 @@ export const IngredientObtainablePokemon = ({pokemonMaxLevel, obtainablePokemon,
                 </div>
               </Flex>
               <Flex direction="col" center>
-                <PokemonIconsWithIngredient
+                <PokemonIconsIngredientStats
                   level={level}
                   data={obtainablePokemon[type]}
                   ingredientMap={ingredientMap}

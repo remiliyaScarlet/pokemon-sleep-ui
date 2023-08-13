@@ -1,8 +1,9 @@
+import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {NatureEffectId, NatureEffectType} from '@/types/game/producing/nature';
 import {PokemonSpecialtyId} from '@/types/mongo/pokemon';
 
 
-export const specialtyIdMap: {[name in string]: PokemonSpecialtyId} = {
+export const specialtyIdMap: {[name in SpecialtyType]: PokemonSpecialtyId} = {
   berry: 1,
   ingredient: 2,
   skill: 3,

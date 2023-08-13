@@ -1,6 +1,5 @@
 import React from 'react';
 
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -10,22 +9,20 @@ import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
-import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {PokemonInfo, PokemonSpecialtyId} from '@/types/mongo/pokemon';
 import {classNames} from '@/utils/react';
 
 
 type Props = {
   data: PokemonInfo[],
-  level: number,
-  ingredientMap: IngredientMap,
+  getProducingRate: (pokemon: PokemonInfo) => ProducingRateOfItem | null,
+  getIcon: (pokemon: PokemonInfo) => React.ReactNode,
+  targetSpecialty: PokemonSpecialtyId,
 };
 
-export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) => {
+export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSpecialty}: Props) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   const t = useTranslations('Game');
@@ -46,16 +43,11 @@ export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) 
         {data
           .map((pokemon) => ({
             pokemon,
-            rate: getIngredientProducingRate({
-              level,
-              pokemon,
-              ...defaultNeutralOpts,
-              ingredientMap,
-            }),
+            rate: getProducingRate(pokemon),
           }))
-          .sort((a, b) => (b.rate?.quantity ?? 0) - (a.rate?.quantity ?? 0))
+          .sort((a, b) => (b.rate?.dailyEnergy ?? 0) - (a.rate?.dailyEnergy ?? 0))
           .map(({pokemon, rate}) => {
-            const {id, ingredients, specialty} = pokemon;
+            const {id, specialty} = pokemon;
 
             return (
               <Flex key={id} direction="col" className={classNames(
@@ -67,13 +59,7 @@ export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) 
                   <PokemonProducingRate
                     simplified
                     rate={rate}
-                    icon={ingredients.fixed ?
-                      <NextImage
-                        src={`/images/ingredient/${ingredients.fixed}.png`}
-                        alt={t(`Food.${ingredients.fixed}`)}
-                        sizes={imageSmallIconSizes}
-                      /> :
-                      <XCircleIcon/>}
+                    icon={getIcon(pokemon)}
                   />
                 </Flex>
                 <button className="button-clickable" onClick={() => showPokemon(pokemon)}>
@@ -83,7 +69,7 @@ export const PokemonIconsWithIngredient = ({data, level, ingredientMap}: Props) 
                       imageAlt={t(`PokemonName.${id}`)}
                       imageDimension="h-12 w-12"
                       imageSizes={imageIconSizes}
-                      info={specialty === specialtyIdMap.ingredient ?
+                      info={specialty === targetSpecialty ?
                         <div className="relative h-4 w-4">
                           <NextImage
                             src="/images/generic/flash.png" alt={t2('Specialty')}

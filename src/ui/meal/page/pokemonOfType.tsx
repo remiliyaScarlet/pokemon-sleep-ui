@@ -6,7 +6,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonIconsWithIngredient} from '@/components/shared/pokemon/icon/listWithIngredient';
+import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {imageIconSizes} from '@/styles/image';
@@ -53,7 +53,7 @@ export const MealPokemonOfIngredientType = ({
             direction="col" center
             className="border-button-clickable rounded-r-lg border-y-2 border-r-2 py-2 pr-2"
           >
-            <PokemonIconsWithIngredient
+            <PokemonIconsIngredientStats
               level={level}
               data={toUnique(pokeIngredientMap[id] ?? []).map((id) => pokedex[id]).filter(isNotNullish)}
               ingredientMap={ingredientMap}

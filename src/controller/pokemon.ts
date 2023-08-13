@@ -1,6 +1,7 @@
 import {Collection, Filter, FindCursor, WithId} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
+import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {
   PokedexMap,
@@ -113,11 +114,16 @@ export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Pr
   return ret;
 };
 
+export const getPokemonByBerry = async (berryId: BerryId) => {
+  return (await getCollection()).find({'berry.id': berryId}, {projection: {_id: false}}).toArray();
+};
+
 const addPokemonInfoIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
     collection.createIndex({id: 1}, {unique: true}),
+    collection.createIndex({'berry.id': 1}),
     ...pokemonIngredientType.map((type) => collection.createIndex({[`ingredients.${type}`]: 1})),
   ]);
 };

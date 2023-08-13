@@ -1,16 +1,44 @@
 import React from 'react';
 
 import {BerryPageParams} from '@/app/[locale]/berry/[id]/page';
+import {Failed} from '@/components/icons/failed';
+import {I18nProvider} from '@/contexts/i18n';
+import {getBerryData} from '@/controller/berry';
+import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
+import {getPokemonByBerry} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
+import {BerryPageClient} from '@/ui/berry/page/client';
+import {BerryPageCommonProps} from '@/ui/berry/page/type';
 
 
 type Props = {
   params: BerryPageParams,
 };
 
-export const BerryPage = ({}: Props) => {
+export const BerryPage = ({params}: Props) => {
+  const idNumber = parseInt(params.id);
+  const berryData = React.use(getBerryData(idNumber));
+  const favoriteInfo = React.use(getFavoriteInfoOfBerry(idNumber));
+  const pokemonOfBerry = React.use(getPokemonByBerry(idNumber));
+
+  if (!berryData) {
+    return <Failed text="Berry"/>;
+  }
+
+  const props: BerryPageCommonProps = {berryData, favoriteInfo, pokemonOfBerry};
+
   return (
     <PageLayout>
+      <I18nProvider namespaces={[
+        'Game.Berry',
+        'Game.Field',
+        'Game.PokemonName',
+        'UI.Common',
+        'UI.InPage.Pokedex',
+        'UI.InPage.Berry',
+      ]}>
+        <BerryPageClient {...props}/>
+      </I18nProvider>
     </PageLayout>
   );
 };

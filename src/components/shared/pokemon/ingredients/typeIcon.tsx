@@ -18,4 +18,6 @@ export const PokemonIngredientTypeIcon = ({type}: Props) => {
   if (type === 'random') {
     return <QuestionMarkCircleIcon/>;
   }
+
+  console.error(`Unhandled pokemon ingredient type [${type satisfies never}]`);
 };

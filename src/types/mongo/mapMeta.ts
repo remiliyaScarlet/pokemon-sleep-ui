@@ -18,3 +18,13 @@ export type MapMeta = {
 });
 
 export type FieldMetaMap = {[map in SleepMapId]?: MapMeta};
+
+export const berryFavoriteType = [
+  'fixed',
+  'random',
+  'unavailable',
+] as const;
+
+export type BerryFavoriteType = typeof berryFavoriteType[number];
+
+export type BerryFavoriteInfo = {[map in SleepMapId]?: BerryFavoriteType};
