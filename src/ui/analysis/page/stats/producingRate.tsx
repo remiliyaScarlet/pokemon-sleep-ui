@@ -77,8 +77,8 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
             stats={producingRate.ingredient.count}
             title={
               <Flex direction="row" center className="gap-1.5">
-                <PokemonIngredientIcon id={ingredients.fixed}/>
-                {}
+                <PokemonIngredientIcon dimension="h-6 w-6" id={ingredients.fixed}/>
+                <div>{textIngredientCount}</div>
               </Flex>
             }
             threshold={percentileThreshold}
@@ -97,7 +97,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
             stats={producingRate.ingredient.energy}
             title={
               <Flex direction="row" center className="gap-1.5">
-                <PokemonIngredientIcon id={ingredients.fixed}/>
+                <PokemonIngredientIcon dimension="h-6 w-6" id={ingredients.fixed}/>
                 <ColoredEnergyIcon alt={textIngredientEnergy}/>
                 {textIngredientEnergy}
               </Flex>
