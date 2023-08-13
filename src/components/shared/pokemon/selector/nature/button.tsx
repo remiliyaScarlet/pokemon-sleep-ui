@@ -29,7 +29,7 @@ type Props = {
   onClick: () => void,
 };
 
-export const TeamAnalysisNatureButton = ({data, active, onClick}: Props) => {
+export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
   const t = useTranslations('Game');
 
   return (

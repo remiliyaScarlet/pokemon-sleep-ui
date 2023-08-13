@@ -10,9 +10,9 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/selector/nature/button';
 import {natureData} from '@/data/nature';
 import {NatureId} from '@/types/game/producing/nature';
-import {TeamAnalysisNatureButton} from '@/ui/team/analysis/result/pokemon/natureButton';
 
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
   setNature: (nature: NatureId | null) => void,
 };
 
-export const TeamAnalysisNature = ({nature, setNature}: Props) => {
+export const PokemonNatureSelector = ({nature, setNature}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -44,7 +44,7 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
   };
 
   return (
-    <Flex direction="row">
+    <>
       <button
         className="button-clickable-bg whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
@@ -76,7 +76,7 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
               <Flex direction="row" center wrap className="gap-2">
                 {matchingNatureData.length ?
                   matchingNatureData.map((data) => (
-                    <TeamAnalysisNatureButton
+                    <PokemonNatureSelectorButton
                       key={data.id} data={data} active={nature === data.id} onClick={() => onClick(data.id)}
                     />
                   )) :
@@ -88,16 +88,16 @@ export const TeamAnalysisNature = ({nature, setNature}: Props) => {
             </> :
             <></>}
           <Flex direction="row" center wrap className="gap-2">
-            <TeamAnalysisNatureButton data={null} active={nature === null} onClick={() => onClick(null)}/>
+            <PokemonNatureSelectorButton data={null} active={nature === null} onClick={() => onClick(null)}/>
             {natureData
               .map((data) => (
-                <TeamAnalysisNatureButton
+                <PokemonNatureSelectorButton
                   key={data.id} data={data} active={nature === data.id} onClick={() => onClick(data.id)}
                 />
               ))}
           </Flex>
         </Flex>
       </Popup>
-    </Flex>
+    </>
   );
 };

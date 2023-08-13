@@ -7,13 +7,13 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonNatureSelector} from '@/components/shared/pokemon/selector/nature/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {NatureId} from '@/types/game/producing/nature';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
-import {TeamAnalysisNature} from '@/ui/team/analysis/result/pokemon/nature';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {classNames} from '@/utils/react';
@@ -70,7 +70,9 @@ export const TeamAnalysisPokemon = ({
           {t(`MainSkill.Name.${skill}`)}
         </span>
       </Flex>
-      <TeamAnalysisNature nature={member.nature} setNature={setNature}/>
+      <Flex direction="row">
+        <PokemonNatureSelector nature={member.nature} setNature={setNature}/>
+      </Flex>
       <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>
       <TeamAnalysisBerryRate
         id={berryData.id} rate={producingStats.berry}
