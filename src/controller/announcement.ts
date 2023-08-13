@@ -70,5 +70,6 @@ const addAnnouncementDataIndex = async () => {
 
 addAnnouncementDataValidation()
   .catch((e) => console.error('MongoDB failed to add announcement validation', e));
+
 addAnnouncementDataIndex()
   .catch((e) => console.error('MongoDB failed to add announcement index', e));

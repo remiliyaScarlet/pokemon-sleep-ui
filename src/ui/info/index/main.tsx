@@ -37,7 +37,7 @@ export const InfoIndex = () => {
             <div className="width-with-gap xl:width-with-gap-2-items">
               <FeatureLinkImage
                 href="/info/subskill"
-                imageSrc="/images/generic/skill.png"
+                imageSrc="/images/generic/subSkill.png"
                 text={t('SubSkill.Title')}
               />
             </div>

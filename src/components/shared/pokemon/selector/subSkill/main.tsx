@@ -71,7 +71,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
         <Flex direction="row" center className="gap-0.5 p-0.5">
           <div className="relative h-5 w-5">
             <NextImage
-              src="/images/generic/skill.png" alt={t2('SubSkill')}
+              src="/images/generic/subSkill.png" alt={t2('SubSkill')}
               sizes={imageSmallIconSizes} className="invert-hoverable"
             />
           </div>
