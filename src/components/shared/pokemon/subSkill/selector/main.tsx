@@ -62,7 +62,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
   return (
     <>
       <button
-        className="button-clickable-bg group h-full whitespace-nowrap px-1.5 text-sm"
+        className="button-clickable-bg group h-full w-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
         <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>

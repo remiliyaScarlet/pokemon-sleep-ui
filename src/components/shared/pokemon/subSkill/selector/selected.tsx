@@ -23,7 +23,7 @@ export const PokemonSubSkillSelected = ({level, selected, onClick}: Props) => {
       'width-with-gap width-with-gap-2-items md:width-with-gap-5-items',
       selected?.rarity ? subSkillRaritySectionBg[selected.rarity] : subSkillRarityDisabled,
     )}>
-      <Flex direction="row" className="md:flex-col">
+      <Flex direction="row" className="items-center gap-2 md:flex-col">
         <div className="text-sm">
           {level}
         </div>

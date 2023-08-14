@@ -67,10 +67,7 @@ export const TeamAnalysisPokemon = ({
           />
         </div>
       </Flex>
-      <Flex direction="col" className="relative justify-end">
-        <div className="absolute bottom-0 left-0 h-full">
-          <PokemonNatureSelector nature={member.nature} setNature={setNature}/>
-        </div>
+      <Flex direction="col" className="justify-end">
         <Flex direction="row" className="justify-end">
           <PokemonIngredientIcons ingredients={ingredients}/>
         </Flex>
@@ -80,7 +77,8 @@ export const TeamAnalysisPokemon = ({
           </span>
         </Flex>
       </Flex>
-      <Flex direction="col" className="h-7">
+      <Flex direction="col" className="h-14 gap-1.5">
+        <PokemonNatureSelector nature={member.nature} setNature={setNature}/>
         <PokemonSubSkillSelector subSkill={member.subSkill} setSubSkill={setSubSkill} subSkillMap={subSkillMap}/>
       </Flex>
       <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>

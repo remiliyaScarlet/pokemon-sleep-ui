@@ -44,7 +44,7 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
   return (
     <>
       <button
-        className="button-clickable-bg h-full whitespace-nowrap px-1.5 text-sm"
+        className="button-clickable-bg h-full w-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
         <PokemonNatureIndicator nature={nature}/>
