@@ -85,7 +85,7 @@ const useProducingStatsOfSlot = ({
         ingredientMap,
       })),
     };
-  }, [setup.team[slotName], snorlaxFavorite, setup.bonus]);
+  }, [setup.team[slotName], snorlaxFavorite, helperCount, setup.bonus]);
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
