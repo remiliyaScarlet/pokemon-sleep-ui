@@ -32,7 +32,7 @@ export const PokemonMapFilter = ({mapIds, isHidden, highlight, ...props}: Props)
 
         return (
           <>
-            <div className="relative -mx-2 h-full w-28 md:w-40">
+            <div className="relative -mx-2 h-full w-40">
               <NextImage
                 src={`/images/field/${id}.png`} alt={mapName}
                 sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
