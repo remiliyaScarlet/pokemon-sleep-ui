@@ -29,8 +29,8 @@ export const TeamAnalysisUI = (props: Props) => {
         E: null,
       },
       bonus: {
-        overall: 0,
-        ingredient: 12,
+        overall: 80,
+        ingredient: 16,
       },
       version: 1,
     },
