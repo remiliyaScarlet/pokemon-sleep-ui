@@ -7,9 +7,7 @@ import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
-import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageSmallIconSizes} from '@/styles/image';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -22,7 +20,7 @@ type Props = FilterInputProps<TeamAnalysisFilter> & {
   mapMeta: FieldMetaMap,
 };
 
-export const TeamAnalysisPokemonFilter = ({pokemon, mapMeta, ...props}: Props) => {
+export const TeamAnalysisSnorlaxFavorite = ({pokemon, mapMeta, ...props}: Props) => {
   const {setFilter} = props;
 
   const t = useTranslations('Game');
@@ -30,15 +28,6 @@ export const TeamAnalysisPokemonFilter = ({pokemon, mapMeta, ...props}: Props) =
 
   return (
     <Flex direction="col" className="gap-1">
-      {pokemonInputType.map((type) => (
-        <PokemonFilter
-          key={type}
-          type={type}
-          filterKey={type}
-          pokemon={pokemon}
-          {...props}
-        />
-      ))}
       <FilterIconInput
         title={
           <Flex direction="row" center>

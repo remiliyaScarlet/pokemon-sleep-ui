@@ -31,7 +31,7 @@ type Props = TeamAnalysisDataProps & {
   snorlaxFavorite: TeamAnalysisFilter['snorlaxFavorite'],
 };
 
-export const TeamAnalysis = (props: Props) => {
+export const TeamAnalysisResult = (props: Props) => {
   const {
     setup,
     setSetup,
