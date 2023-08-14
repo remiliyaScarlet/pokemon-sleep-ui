@@ -2,15 +2,14 @@ import React from 'react';
 
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/selector/nature/button';
+import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator';
+import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
 import {natureData} from '@/data/nature';
 import {NatureId} from '@/types/game/producing/nature';
 
@@ -48,14 +47,7 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
         className="button-clickable-bg h-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
-        <Flex direction="row" center>
-          <div className="h-5 w-5">
-            <ChevronUpDownIcon/>
-          </div>
-          <div className="pr-1">
-            {nature ? t(`Nature.${nature}`) : <div className="h-5 w-5"><XCircleIcon/></div>}
-          </div>
-        </Flex>
+        <PokemonNatureIndicator nature={nature}/>
       </button>
       <Popup show={show} setShow={setShow}>
         <Flex direction="col" className="gap-2 pr-2">
