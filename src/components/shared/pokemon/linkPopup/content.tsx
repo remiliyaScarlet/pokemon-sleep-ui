@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
-import {PokemonName} from '@/components/shared/pokemon/name';
+import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 
@@ -26,7 +26,7 @@ export const PokemonLinkPopupContent = ({pokemon}: Props) => {
 
   return (
     <Flex direction="col" center className="gap-2 md:w-96">
-      <PokemonName pokemon={pokemon}/>
+      <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-60 w-60">
         <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
       </div>

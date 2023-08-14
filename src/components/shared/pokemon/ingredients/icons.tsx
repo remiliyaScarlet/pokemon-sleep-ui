@@ -15,7 +15,7 @@ export const PokemonIngredientIcons = ({ingredients}: Props) => {
     <Flex direction="row" noFullWidth className="gap-0.5">
       <PokemonIngredientIcon id={ingredients.fixed ?? null}/>
       {ingredients.random && <VerticalSplitter/>}
-      {ingredients.random?.map((id) => <PokemonIngredientIcon key={id} id={id}/>)}
+      {ingredients.random?.map((id, idx) => <PokemonIngredientIcon key={idx} id={id}/>)}
     </Flex>
   );
 };

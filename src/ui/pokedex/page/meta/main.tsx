@@ -9,7 +9,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
-import {PokemonName} from '@/components/shared/pokemon/name';
+import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -41,7 +41,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   return (
     <Flex direction="col" center className="info-section gap-2 lg:flex-row">
       <Flex direction="col" className="gap-2 md:p-5 lg:p-8">
-        <PokemonName pokemon={pokemon}/>
+        <PokemonNameBig pokemon={pokemon}/>
         <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
         <PokemonImageGallery {...props}/>
       </Flex>
