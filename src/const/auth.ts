@@ -4,6 +4,7 @@ import googleProvider from 'next-auth/providers/google';
 
 import {getUserData, uploadUserData} from '@/controller/user/main';
 import mongoPromise from '@/lib/mongodb';
+import {NextAuthSessionUser} from '@/types/auth';
 import {UploadUserDataOpts} from '@/types/userData';
 
 
@@ -45,7 +46,10 @@ export const authOptions: AuthOptions = {
     session: async ({session, user, trigger, newSession}) => {
       const userId = user.id;
 
-      session.user.data = await getUserData(userId);
+      session.user = {
+        id: userId,
+        data: await getUserData(userId),
+      } satisfies NextAuthSessionUser;
 
       if (trigger !== 'update' || !newSession) {
         return session;
