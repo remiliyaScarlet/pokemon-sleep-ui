@@ -1,6 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
-import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {AnalysisComparisonFilter, AnalysisFilterPokemonData} from '@/ui/analysis/page/type';
 
@@ -14,13 +14,7 @@ export const useAnalysisFilter = ({data}: UseAnalysisFilterOpts) => {
     data,
     dataToId: ({info}) => info.id,
     initialFilter: {
-      pokemonType: {},
-      sleepType: {},
-      specialty: {},
-      ingredientFixed: {},
-      ingredientRandom: {},
-      berry: {},
-      mainSkill: {},
+      ...generatePokemonInputFilter(),
       level: 1,
       mapId: {},
     },

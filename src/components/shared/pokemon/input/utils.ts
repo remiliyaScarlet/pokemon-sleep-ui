@@ -34,3 +34,13 @@ export const isPokemonIncludedFromFilter = (filter: PokemonInputFilter, pokemon:
 
   return !isFilterMismatchOnSingle({filter, filterKey: 'mainSkill', id: pokemon.skill});
 };
+
+export const generatePokemonInputFilter = (): PokemonInputFilter => ({
+  pokemonType: {},
+  sleepType: {},
+  specialty: {},
+  ingredientFixed: {},
+  ingredientRandom: {},
+  berry: {},
+  mainSkill: {},
+});

@@ -1,6 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterConditionActive} from '@/components/input/filter/utils/check';
-import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 
@@ -10,13 +10,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
     data: sleepStyles,
     dataToId: ({pokemonId, style}) => `${pokemonId}-${style.style}`,
     initialFilter: {
-      pokemonType: {},
-      sleepType: {},
-      specialty: {},
-      ingredientFixed: {},
-      ingredientRandom: {},
-      berry: {},
-      mainSkill: {},
+      ...generatePokemonInputFilter(),
       showEmptyRank: false,
       sleepStyle: {},
       displayType: 'sleepStyle',

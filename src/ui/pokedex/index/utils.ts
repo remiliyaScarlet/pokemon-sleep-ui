@@ -1,6 +1,7 @@
 import merge from 'lodash/merge';
 import {Session} from 'next-auth';
 
+import {generatePokemonInputFilter} from '@/components/shared/pokemon/input/utils';
 import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -107,14 +108,8 @@ export const sortPokemon = (
 export const generateInitialFilter = (session: Session | null): PokedexFilter => {
   return {
     name: '',
-    pokemonType: {},
     mapId: {},
-    sleepType: {},
-    specialty: {},
-    ingredientFixed: {},
-    ingredientRandom: {},
-    berry: {},
-    mainSkill: {},
+    ...generatePokemonInputFilter(),
     level: 1,
     ...merge({
       display: 'mainSkill',
