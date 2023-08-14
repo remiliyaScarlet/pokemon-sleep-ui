@@ -28,20 +28,19 @@ export const TeamIndex = () => {
                 text={t('Calculate.Title')}
               />
             </div>
+            <div className="width-with-gap">
+              <FeatureLinkImage
+                href="/team/box"
+                imageSrc="/images/generic/bag.png"
+                text={t('Box.Title')}
+              />
+            </div>
             <div className="width-with-gap xl:width-with-gap-2-items">
               <FeatureLink href="/team/maker" text={t('Maker.Title')} disabled>
                 <div className="h-10 w-10 p-1">
                   <WrenchScrewdriverIcon/>
                 </div>
               </FeatureLink>
-            </div>
-            <div className="width-with-gap">
-              <FeatureLinkImage
-                href="/team/box"
-                imageSrc="/images/generic/bag.png"
-                text={t('Box.Title')}
-                disabled
-              />
             </div>
           </Flex>
           <div className="w-full">

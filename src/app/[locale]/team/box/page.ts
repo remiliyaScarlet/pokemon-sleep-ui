@@ -1,7 +1,7 @@
 import {getTranslator} from 'next-intl/server';
 
 import {GenerateMetadata} from '@/types/next/metadata';
-import {Constructing} from '@/ui/placeholder/constructing';
+import {Pokebox} from '@/ui/team/pokebox/main';
 
 
 export const generateMetadata: GenerateMetadata = async ({params}) => {
@@ -9,9 +9,9 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   const t = await getTranslator(locale, 'UI.Metadata');
 
   return {
-    title: `${t('Team.Index.Title')} / ${t('Team.Maker.Title')}`,
+    title: `${t('Team.Index.Title')} / ${t('Team.Box.Title')}`,
   };
 };
 
 
-export default Constructing;
+export default Pokebox;
