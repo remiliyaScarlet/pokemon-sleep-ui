@@ -8,8 +8,8 @@ import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/inp
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
 import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';

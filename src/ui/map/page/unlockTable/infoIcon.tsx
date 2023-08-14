@@ -3,8 +3,8 @@ import React from 'react';
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonSleepType} from '@/components/shared/pokemon/sleepType';
-import {PokemonSpecialty} from '@/components/shared/pokemon/specialty';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
+import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
