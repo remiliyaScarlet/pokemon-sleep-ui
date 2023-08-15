@@ -4,18 +4,12 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonSleepTypeCommonProps} from '@/components/shared/pokemon/sleepType/type';
 import {sleepTypeBgClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
-import {PokemonSleepTypeId} from '@/types/mongo/pokemon';
-import {Dimension} from '@/types/style';
 
 
-type Props = {
-  sleepType: PokemonSleepTypeId,
-  dimension?: Dimension,
-};
-
-export const PokemonSleepTypeIcon = ({sleepType, dimension}: Props) => {
+export const PokemonSleepTypeIcon = ({sleepType, dimension}: PokemonSleepTypeCommonProps) => {
   const t = useTranslations('Game.SleepType');
 
   return (

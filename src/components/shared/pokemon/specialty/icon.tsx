@@ -5,19 +5,13 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonSpecialtyCommonProps} from '@/components/shared/pokemon/specialty/type';
 import {specialtyImageSrcMap} from '@/const/game/pokemon';
 import {specialtyBgClass} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
-import {PokemonInfo} from '@/types/mongo/pokemon';
-import {Dimension} from '@/types/style';
 
 
-type Props = {
-  specialty: PokemonInfo['specialty'],
-  dimension?: Dimension,
-};
-
-export const PokemonSpecialtyIcon = ({specialty, dimension}: Props) => {
+export const PokemonSpecialtyIcon = ({specialty, dimension}: PokemonSpecialtyCommonProps) => {
   const t = useTranslations('Game');
 
   return (

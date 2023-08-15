@@ -22,5 +22,6 @@ export const displayTypeToI18nId: {
   berry: 'Info.Berry',
   mainSkill: 'Info.MainSkill',
   ingredient: 'Info.Ingredient',
+  sleepType: 'Info.SleepType',
   specialty: 'Info.Specialty',
 };

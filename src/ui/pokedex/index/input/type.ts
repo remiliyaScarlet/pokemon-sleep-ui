@@ -22,6 +22,7 @@ export const pokedexDisplayType = [
   'berry',
   'mainSkill',
   'ingredient',
+  'sleepType',
   'specialty',
 ] as const;
 

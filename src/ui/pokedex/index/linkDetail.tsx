@@ -9,6 +9,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
@@ -25,7 +26,15 @@ export const PokedexLinkDetail = React.memo(({
   ingredientMap,
   berryMap,
 }: PokedexLinkProps) => {
-  const {id, berry, skill, ingredients, specialty, stats} = pokemon;
+  const {
+    id,
+    berry,
+    skill,
+    ingredients,
+    specialty,
+    sleepType,
+    stats,
+  } = pokemon;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
@@ -57,6 +66,14 @@ export const PokedexLinkDetail = React.memo(({
     return (
       <Flex direction="row">
         <PokemonSpecialty specialty={specialty}/>
+      </Flex>
+    );
+  }
+
+  if (display === 'sleepType') {
+    return (
+      <Flex direction="row">
+        <PokemonSleepType sleepType={sleepType}/>
       </Flex>
     );
   }
