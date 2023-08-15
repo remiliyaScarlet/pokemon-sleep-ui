@@ -47,14 +47,17 @@ export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
         <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={(id) => {
           showToast({content: (
             <Flex direction="row" className="gap-1.5">
-              <div className="relative h-10 w-10">
+              <div className="relative h-9 w-9">
                 <PlusCircleIcon/>
               </div>
-              <div className="relative h-10 w-10">
+              <div className="relative h-9 w-9">
                 <NextImage
                   src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
                   sizes={imageIconSizes}
                 />
+              </div>
+              <div className="self-end text-sm">
+                #{id}
               </div>
             </Flex>
           )});
