@@ -12,22 +12,20 @@ export const PokeboxPokeInBoxProducing = ({pokemon, pokeInBox}: PokeboxPokeInBox
   const {randomIngredient} = pokeInBox;
 
   return (
-    <Flex direction="row" center className="mt-auto">
-      <Flex direction="row" center noFullWidth className="gap-1.5">
+    <Flex direction="col" className="gap-1.5">
+      <Flex direction="row" noFullWidth className="gap-1.5">
         <PokemonBerryIcon id={berry.id} dimension="h-6 w-6"/>
         <div>{berry.quantity}</div>
       </Flex>
-      <Flex direction="col" noFullWidth className="ml-auto">
-        <PokemonIngredientIcons
-          ingredients={{
-            fixed: ingredients.fixed,
-            random: Object.values(randomIngredient)
-              .map((ingredient) => ingredient?.id)
-              .filter(isNotNullish),
-          }}
-          dimension="h-6 w-6"
-        />
-      </Flex>
+      <PokemonIngredientIcons
+        ingredients={{
+          fixed: ingredients.fixed,
+          random: Object.values(randomIngredient)
+            .map((ingredient) => ingredient?.id)
+            .filter(isNotNullish),
+        }}
+        dimension="h-6 w-6"
+      />
     </Flex>
   );
 };

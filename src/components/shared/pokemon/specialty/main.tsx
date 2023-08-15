@@ -17,7 +17,7 @@ export const PokemonSpecialty = ({specialty, dimension, hideText}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="row" noFullWidth center className="gap-1">
+    <Flex direction="row" noFullWidth className="items-center gap-1">
       {specialty ?
         <>
           <PokemonSpecialtyIcon specialty={specialty} dimension={dimension}/>

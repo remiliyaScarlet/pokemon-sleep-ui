@@ -16,7 +16,7 @@ export const PokemonSleepType = ({sleepType, dimension, hideText}: Props) => {
   const t = useTranslations('Game.SleepType');
 
   return (
-    <Flex direction="row" noFullWidth center className="gap-1">
+    <Flex direction="row" noFullWidth className="items-center gap-1">
       <PokemonSleepTypeIcon sleepType={sleepType} dimension={dimension}/>
       {!hideText && <div className={sleepTypeTextClass[sleepType]}>{t(sleepType.toString())}</div>}
     </Flex>

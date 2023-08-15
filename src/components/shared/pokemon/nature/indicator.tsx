@@ -16,11 +16,11 @@ export const PokemonNatureIndicator = ({nature}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="row" center>
+    <Flex direction="row" center noFullWidth>
       <div className="h-5 w-5">
         <ChevronUpDownIcon/>
       </div>
-      <div className="pr-1">
+      <div>
         {nature ? t(`Nature.${nature}`) : <div className="h-5 w-5"><XCircleIcon/></div>}
       </div>
     </Flex>

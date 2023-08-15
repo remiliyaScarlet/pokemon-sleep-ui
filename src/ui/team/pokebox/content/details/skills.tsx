@@ -15,11 +15,11 @@ export const PokeboxPokeInBoxSkills = ({pokemon, pokeInBox, subSkillMap}: Pokebo
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="row" center>
-      <div className="whitespace-nowrap">
+    <Flex direction="col" className="gap-1.5">
+      <Flex direction="col" className="items-start whitespace-nowrap">
         {t(`MainSkill.Name.${skill}`)}
-      </div>
-      <Flex direction="row" noFullWidth center className="ml-auto gap-1.5">
+      </Flex>
+      <Flex direction="row" className="gap-1.5">
         <PokemonNatureIndicator nature={nature}/>
         <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
       </Flex>

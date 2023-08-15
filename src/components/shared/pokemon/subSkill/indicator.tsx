@@ -18,7 +18,7 @@ export const PokemonSubSkillIndicator = ({subSkill, subSkillMap}: Props) => {
   const t = useTranslations('UI.InPage.Team');
 
   return (
-    <Flex direction="row" center className="gap-0.5 p-0.5">
+    <Flex direction="row" noFullWidth className="items-center gap-0.5 p-0.5">
       <div className="relative h-5 w-5">
         <NextImage
           src="/images/generic/subSkill.png" alt={t('SubSkill')}

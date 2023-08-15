@@ -10,11 +10,9 @@ export const PokeboxPokeInBoxInfo = ({pokemon}: PokeboxPokeInBoxCommonProps) => 
   const {sleepType, specialty} = pokemon;
 
   return (
-    <Flex direction="row">
+    <Flex direction="col" className="gap-1.5">
       <PokemonSleepType sleepType={sleepType} dimension="h-6 w-6"/>
-      <div className="ml-auto">
-        <PokemonSpecialty specialty={specialty} dimension="h-6 w-6"/>
-      </div>
+      <PokemonSpecialty specialty={specialty} dimension="h-6 w-6"/>
     </Flex>
   );
 };
