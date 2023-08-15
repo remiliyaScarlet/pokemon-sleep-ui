@@ -2,7 +2,7 @@ import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {PokedexDisplayType, PokedexSortType} from '@/ui/pokedex/index/input/type';
 
 
-export const sortTypeToTranslationId: {
+export const sortTypeToI18nId: {
   [sortType in PokedexSortType]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex'>
 } = {
   id: 'Sort.Id',
@@ -14,10 +14,10 @@ export const sortTypeToTranslationId: {
   totalEnergy: 'Sort.TotalEnergy',
 };
 
-export const displayTypeToTranslationId: {
+export const displayTypeToI18nId: {
   [displayType in PokedexDisplayType]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex'>
 } = {
-  ...sortTypeToTranslationId,
+  ...sortTypeToI18nId,
   berry: 'Info.Berry',
   mainSkill: 'Info.MainSkill',
   ingredient: 'Info.Ingredient',

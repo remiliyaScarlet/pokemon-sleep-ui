@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
-import {displayTypeToTranslationId} from '@/ui/map/page/input/const';
+import {displayTypeToI18nId} from '@/ui/map/page/input/const';
 import {MapPageFilter, mapUnlockTableDisplayType} from '@/ui/map/page/type';
 
 
@@ -32,7 +32,7 @@ export const MapInputDisplayType = (props: Props) => {
         </Flex>
       }
       ids={[...mapUnlockTableDisplayType]}
-      idToButton={(display) => t(displayTypeToTranslationId[display])}
+      idToButton={(display) => t(displayTypeToI18nId[display])}
       idToItemId={(display) => `displayType-${display}`}
     />
   );

@@ -11,7 +11,7 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/ico
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
-import {sortTypeToTranslationId} from '@/ui/pokedex/index/input/const';
+import {sortTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {formatFloat} from '@/utils/number';
 
 
@@ -22,11 +22,11 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   const t = useTranslations('UI.InPage.Pokedex');
   const percentileThreshold: AnalysisMarkThreshold = {superRare: 93, rare: 85, ordinary: 10};
 
-  const textBerryCount = t(sortTypeToTranslationId.berryCount);
-  const textBerryEnergy = t(sortTypeToTranslationId.berryEnergy);
-  const textIngredientCount = t(sortTypeToTranslationId.ingredientCount);
-  const textIngredientEnergy = t(sortTypeToTranslationId.ingredientEnergy);
-  const textTotalEnergy = t(sortTypeToTranslationId.totalEnergy);
+  const textBerryCount = t(sortTypeToI18nId.berryCount);
+  const textBerryEnergy = t(sortTypeToI18nId.berryEnergy);
+  const textIngredientCount = t(sortTypeToI18nId.ingredientCount);
+  const textIngredientEnergy = t(sortTypeToI18nId.ingredientEnergy);
+  const textTotalEnergy = t(sortTypeToI18nId.totalEnergy);
 
   return (
     <>

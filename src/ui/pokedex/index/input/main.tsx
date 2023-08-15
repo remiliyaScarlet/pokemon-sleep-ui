@@ -15,7 +15,7 @@ import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
-import {displayTypeToTranslationId, sortTypeToTranslationId} from '@/ui/pokedex/index/input/const';
+import {displayTypeToI18nId, sortTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps, pokedexSortType} from '@/ui/pokedex/index/input/type';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
@@ -83,7 +83,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             </Flex>
           }
           ids={[...pokedexDisplayType]}
-          idToButton={(display) => t(displayTypeToTranslationId[display])}
+          idToButton={(display) => t(displayTypeToI18nId[display])}
           idToItemId={(display) => `displayType-${display}`}
         />
         <FilterTextInput
@@ -100,7 +100,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             </Flex>
           }
           ids={[...pokedexSortType]}
-          idToButton={(sort) => t(sortTypeToTranslationId[sort])}
+          idToButton={(sort) => t(sortTypeToI18nId[sort])}
           idToItemId={(sort) => `sortType-${sort}`}
         />
       </Flex>

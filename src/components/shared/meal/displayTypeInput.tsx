@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex';
-import {mealDisplayTypeToTranslationId} from '@/components/shared/meal/const';
+import {mealDisplayTypeToI18nId} from '@/components/shared/meal/const';
 import {mealLinkDisplayType, MealLinkDisplayType} from '@/components/shared/meal/type';
 
 
@@ -29,7 +29,7 @@ export const MealLinkDisplayTypeInput = ({displayType, setDisplayType}: Props) =
         </Flex>
       }
       ids={[...mealLinkDisplayType]}
-      idToButton={(display) => t(mealDisplayTypeToTranslationId[display])}
+      idToButton={(display) => t(mealDisplayTypeToI18nId[display])}
       idToItemId={(display) => `mealDisplayType-${display}`}
     />
   );

@@ -2,7 +2,7 @@ import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {MapUnlockTableDisplayType} from '@/ui/map/page/type';
 
 
-export const displayTypeToTranslationId: {
+export const displayTypeToI18nId: {
   [displayType in MapUnlockTableDisplayType]: I18nMessageKeysOfNamespace<'UI.InPage'>
 } = {
   sleepStyle: 'Map.SleepStyle',
