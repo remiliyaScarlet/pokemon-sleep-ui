@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 
@@ -15,7 +17,7 @@ export const PokemonDataIcon = ({src, alt, invert}: Props) => {
     <div className="relative h-6 w-6">
       <NextImage
         src={src} alt={alt} sizes={imageSmallIconSizes}
-        className={invert ? 'invert-hoverable' : undefined}
+        className={clsx(invert && 'invert-hoverable')}
       />
     </div>
   );

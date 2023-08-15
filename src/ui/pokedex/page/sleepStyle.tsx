@@ -5,9 +5,9 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {MapLink} from '@/components/shared/map/link';
+import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageSmallIconSizes} from '@/styles/image';
-import {PokemonDataIcon} from '@/ui/pokedex/page/common/dataIcon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
