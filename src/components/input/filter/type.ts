@@ -29,6 +29,7 @@ export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & {
   isHidden?: (id: TId) => boolean,
   getClassNames: (isActive: boolean, id: TId) => string,
   style?: FilterRowBackgroundStyle,
+  ender?: React.ReactNode,
 };
 
 export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';

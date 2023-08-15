@@ -16,6 +16,7 @@ export const FilterCategoryInput = <TId, >({
   isActive,
   getClassNames,
   style,
+  ender,
 }: FilterCategoryInputProps<TId>) => {
   return (
     <InputRowWithTitle
@@ -25,6 +26,7 @@ export const FilterCategoryInput = <TId, >({
           {title}
         </div>
       }
+      ender={ender}
     >
       <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {

@@ -6,11 +6,13 @@ import {InputRowProps} from '@/components/input/filter/type';
 
 type Props = InputRowProps & {
   title: React.ReactNode,
+  ender?: React.ReactNode,
 };
 
 
 export const InputRowWithTitle = ({
   title,
+  ender,
   children,
   ...props
 }: React.PropsWithChildren<Props>) => {
@@ -20,6 +22,7 @@ export const InputRowWithTitle = ({
         {title}
       </div>
       {children}
+      {ender && <div className="ml-auto">{ender}</div>}
     </InputRow>
   );
 };
