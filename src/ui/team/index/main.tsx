@@ -21,18 +21,19 @@ export const TeamIndex = () => {
             <AdsUnit/>
           </div>
           <Flex direction="row" wrap className="gap-2">
-            <div className="width-with-gap xl:width-with-gap-2-items">
-              <FeatureLinkImage
-                href="/team/analysis"
-                imageSrc="/images/generic/pokeball.png"
-                text={t('Calculate.Title')}
-              />
-            </div>
             <div className="width-with-gap">
               <FeatureLinkImage
                 href="/team/box"
                 imageSrc="/images/generic/bag.png"
                 text={t('Box.Title')}
+                disabled
+              />
+            </div>
+            <div className="width-with-gap xl:width-with-gap-2-items">
+              <FeatureLinkImage
+                href="/team/analysis"
+                imageSrc="/images/generic/pokeball.png"
+                text={t('Calculate.Title')}
               />
             </div>
             <div className="width-with-gap xl:width-with-gap-2-items">
