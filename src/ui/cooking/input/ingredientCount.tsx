@@ -26,6 +26,7 @@ export const CookingInputIngredientCount = ({filter, setFilter, ingredientMap}: 
             <PokemonIngredientIcon dimension="h-7 w-7" id={id}/>
             <InputBox
               id={`Ingredient-${id}`}
+              type="number"
               value={filter.ingredientCount[id] ?? ''}
               className="w-20 text-center"
               onChange={({target}) => {

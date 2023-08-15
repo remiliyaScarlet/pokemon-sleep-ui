@@ -19,14 +19,17 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   const recipeLevel = filter.recipeLevel[id] ?? 1;
+  const maxLevel = levels.length;
 
-  const setLevel = (level: number) => setFilter((original) => ({
-    ...original,
-    recipeLevel: {
-      ...original.recipeLevel,
-      [id]: level || 1,
-    },
-  } satisfies CookingCommonProps['filter']));
+  const setLevel = (level: number) => {
+    setFilter((original) => ({
+      ...original,
+      recipeLevel: {
+        ...original.recipeLevel,
+        [id]: Math.min(level || 1, maxLevel),
+      },
+    } satisfies CookingCommonProps['filter']));
+  };
 
   return (
     <CookingRecipeLayout mealId={id} imageDimension="h-20 w-20" clickable={false}>
@@ -40,6 +43,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
             type="number"
             step="1"
             min="1"
+            max={maxLevel}
             className="text-center text-sm"
             value={recipeLevel}
             onChange={({target}) => setLevel(Number(target.value))}
@@ -49,7 +53,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
           <Slider
             id={`recipeLevel-${id}-slider`}
             min="1"
-            max={levels.length}
+            max={maxLevel}
             value={recipeLevel}
             setValue={(newValue) => setLevel(newValue)}
           />
