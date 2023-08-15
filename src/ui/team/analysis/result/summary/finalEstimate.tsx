@@ -5,8 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageIconSizes} from '@/styles/image';
+import {EnergyIcon} from '@/components/shared/icon/energy';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/result/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/result/type';
@@ -53,12 +52,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
           />
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
-          <div className="relative h-6 w-6">
-            <NextImage
-              src="/images/generic/energy_white.png" alt={t('CurrentEnergy')}
-              sizes={imageIconSizes} className="invert-on-light"
-            />
-          </div>
+          <EnergyIcon alt={t('CurrentEnergy')} dimension="h-6 w-6"/>
           <InputBox
             id="currentEnergy"
             type="number"
