@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
@@ -25,11 +26,14 @@ export const PokeboxContent = ({pokebox, pokemon, ...props}: Props) => {
   return (
     <Flex direction="col" className="gap-1.5">
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
+      <UserDataUploadControlRow opts={{type: 'pokebox', data: pokebox}}/>
       <Flex direction="row" wrap className="gap-1.5">
         {pokebox.map((pokeInBox, idx) => {
           const key = pokeInBox.id ?? `idx-${idx}`;
 
-          if (Object.keys(isIncluded).length && !isIncluded[pokeInBox.pokemon]) {
+          // Explicitly checking `false` because the data might not get into the filter data array for check,
+          // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
+          if (isIncluded[pokeInBox.pokemon] === false) {
             return <React.Fragment key={key}/>;
           }
 

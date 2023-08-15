@@ -3,6 +3,7 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
+import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getUserPokebox} from '@/controller/pokebox';
 import {getAllPokemonAsMap} from '@/controller/pokemon';
@@ -23,7 +24,9 @@ export const Pokebox = () => {
   return (
     <PageLayout>
       <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex', 'UI.InPage.Team']}>
-        <PokeboxClient initialPokebox={initialPokebox} {...props}/>
+        <AuthProvider>
+          <PokeboxClient initialPokebox={initialPokebox} {...props}/>
+        </AuthProvider>
       </I18nProvider>
     </PageLayout>
   );

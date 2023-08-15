@@ -1,4 +1,5 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
+import {Pokebox} from '@/types/game/pokebox';
 import {BerryId} from '@/types/mongo/berry';
 import {MealTypeId} from '@/types/mongo/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
@@ -22,6 +23,9 @@ export type UploadOfCookingData = UploadOfPotInfo & {
 export type UploadUserDataOpts = {
   type: 'pokedex',
   data: PokedexDisplay,
+} | {
+  type: 'pokebox',
+  data: Pokebox,
 } | {
   type: 'teamAnalysisSetup',
   data: UploadOfTeamAnalysisSetup,

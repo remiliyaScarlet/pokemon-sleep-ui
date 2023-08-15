@@ -1,3 +1,4 @@
+import {updateUserPokebox} from '@/controller/pokebox';
 import {
   userDataIngredientCount,
   userDataMealType,
@@ -46,6 +47,11 @@ export const uploadUserData = async ({userId, opts}: {userId: string, opts: Uplo
     }
 
     await userDataPotCapacity.setData(userId, data);
+    return;
+  }
+
+  if (type === 'pokebox') {
+    await updateUserPokebox(userId, data);
     return;
   }
 

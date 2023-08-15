@@ -18,14 +18,33 @@ export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox
     return [];
   }
 
-  return (await getCollection()).find({owner}, {projection: {owner: false, _id: 'id'}}).toArray();
+  return (await getCollection())
+    .find({owner}, {projection: {owner: false}})
+    .map(({_id, ...pokemon}) => ({...pokemon, id: _id.toString()}))
+    .toArray();
+};
+
+export const updateUserPokebox = async (owner: string, pokebox: Pokebox) => {
+  if (!pokebox.length) {
+    return;
+  }
+
+  const session = (await mongoPromise).startSession();
+  const collection = await getCollection();
+
+  session.startTransaction();
+
+  await collection.deleteMany({owner}, {session});
+  await collection.insertMany(pokebox.map((pokemon): PokeInBoxData => ({...pokemon, owner})), {session});
+
+  await session.commitTransaction();
 };
 
 const addPokeboxIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
-    collection.createIndex({owner: 1}, {unique: true}),
+    collection.createIndex({owner: 1}),
   ]);
 };
 
