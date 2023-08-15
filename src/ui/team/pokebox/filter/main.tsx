@@ -1,11 +1,17 @@
 import React from 'react';
 
+import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
+import {useTranslations} from 'next-intl';
+
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
 import {usePokeboxPickerFilter} from '@/ui/team/pokebox/filter/hook';
+import {showToast} from '@/utils/toast';
 
 
 type Props = {
@@ -14,6 +20,8 @@ type Props = {
 };
 
 export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
+  const t = useTranslations('Game');
+
   const {
     filter,
     setFilter,
@@ -36,7 +44,22 @@ export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
         ))}
       </Flex>
       <div className="h-80 overflow-y-scroll md:h-60 lg:h-40">
-        <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={onClick}/>
+        <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={(id) => {
+          showToast({content: (
+            <Flex direction="row" className="gap-1.5">
+              <div className="relative h-10 w-10">
+                <PlusCircleIcon/>
+              </div>
+              <div className="relative h-10 w-10">
+                <NextImage
+                  src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
+                  sizes={imageIconSizes}
+                />
+              </div>
+            </Flex>
+          )});
+          onClick(id);
+        }}/>
       </div>
     </>
   );

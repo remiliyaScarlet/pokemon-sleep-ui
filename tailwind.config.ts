@@ -41,6 +41,28 @@ const config: Config = {
       scale: {
         120: '1.2',
       },
+      animation: {
+        enter: 'fadeIn 300ms ease-out',
+        leave: 'fadeOut 300ms ease-in forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        fadeOut: {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+      },
     },
   },
   plugins: [
