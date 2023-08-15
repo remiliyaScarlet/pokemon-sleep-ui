@@ -12,6 +12,12 @@ import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 
 
+const sortInAsc: PokedexSortType[] = [
+  'id',
+  'frequency',
+  'friendshipPoint',
+];
+
 const pokemonSorterGetterBySortType: {[type in PokedexSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
   ingredientEnergy: ({level, pokemon, ingredientMap}) => getIngredientProducingRate({
@@ -41,6 +47,7 @@ const pokemonSorterGetterBySortType: {[type in PokedexSortType]: PokemonSorterGe
     berryData,
   }).quantity : 0,
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
+  frequency: ({pokemon}) => pokemon.stats.frequency,
   totalEnergy: ({level, pokemon, berryData, ingredientMap}) => {
     if (!berryData) {
       return 0;
@@ -94,7 +101,7 @@ export const sortPokemon = (
 ) => {
   let comparer = a.sorter - b.sorter;
 
-  if (comparer !== 0 && type !== 'id' && type !== 'friendshipPoint') {
+  if (comparer !== 0 && !sortInAsc.some((basis) => type === basis)) {
     comparer *= -1;
   }
 

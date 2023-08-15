@@ -11,6 +11,7 @@ export const sortTypeToI18nId: {
   berryEnergy: 'Sort.BerryEnergy',
   berryCount: 'Sort.BerryCount',
   friendshipPoint: 'Sort.FriendshipPoint',
+  frequency: 'Stats.Frequency',
   totalEnergy: 'Sort.TotalEnergy',
 };
 

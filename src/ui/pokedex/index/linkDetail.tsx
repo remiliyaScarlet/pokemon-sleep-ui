@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ClockIcon from '@heroicons/react/24/solid/ClockIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -42,7 +43,7 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'mainSkill') {
     return (
-      <div className="text-xs">
+      <div className="text-sm">
         {t(`MainSkill.Name.${skill}`)}
       </div>
     );
@@ -68,6 +69,19 @@ export const PokedexLinkDetail = React.memo(({
         </div>
         <div>
           {stats.friendshipPoints}
+        </div>
+      </Flex>
+    );
+  }
+
+  if (display === 'frequency') {
+    return (
+      <Flex direction="row" className="items-center gap-1">
+        <div className="h-5 w-5">
+          <ClockIcon/>
+        </div>
+        <div>
+          {stats.frequency}
         </div>
       </Flex>
     );

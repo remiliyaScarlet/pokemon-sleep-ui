@@ -11,6 +11,7 @@ export const pokedexSortType = [
   'berryEnergy',
   'berryCount',
   'friendshipPoint',
+  'frequency',
   'totalEnergy',
 ] as const;
 
