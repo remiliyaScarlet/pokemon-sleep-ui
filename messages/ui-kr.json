@@ -174,7 +174,15 @@
     "Team": {
       "CurrentEnergy": "에너지",
       "SnorlaxFavorite": "잠만보가 좋아하는 나무열매",
-      "SubSkill": "서브 스킬"
+      "SubSkill": "서브 스킬",
+      "Box": {
+        "DisplayType": {
+          "Info": "정보",
+          "Production": "생산",
+          "Skills": "스킬",
+          "Stats": "매개변수"
+        }
+      }
     },
     "Info": {
       "Pot": {

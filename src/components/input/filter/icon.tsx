@@ -9,6 +9,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 type Props<TId> = Omit<FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
   idToAlt: (id: TId) => string,
   idToImageSrc: (id: TId) => string,
+  idToImageClassName?: (id: TId) => string,
 };
 
 const sizes = [
@@ -19,12 +20,15 @@ const sizes = [
   '10vw',
 ].join(', ');
 
-export const FilterIconInput = <TId, >({idToAlt, idToImageSrc, ...props}: Props<TId>) => {
+export const FilterIconInput = <TId, >({idToAlt, idToImageSrc, idToImageClassName, ...props}: Props<TId>) => {
   return (
     <FilterCategoryInput
       idToButton={(id) => (
-        <div className="relative h-7 w-7">
-          <NextImage src={idToImageSrc(id)} alt={idToAlt(id)} sizes={sizes}/>
+        <div className="group relative h-7 w-7">
+          <NextImage
+            src={idToImageSrc(id)} alt={idToAlt(id)} sizes={sizes}
+            className={idToImageClassName && idToImageClassName(id)}
+          />
         </div>
       )}
       getClassNames={getIconFilterButtonClass}

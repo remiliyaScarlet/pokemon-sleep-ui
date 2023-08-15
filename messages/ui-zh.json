@@ -174,7 +174,15 @@
     "Team": {
       "CurrentEnergy": "能量",
       "SnorlaxFavorite": "卡比獸喜歡的樹果",
-      "SubSkill": "副技能"
+      "SubSkill": "副技能",
+      "Box": {
+        "DisplayType": {
+          "Info": "資訊",
+          "Production": "生產",
+          "Skills": "技能",
+          "Stats": "參數"
+        }
+      }
     },
     "Info": {
       "Pot": {

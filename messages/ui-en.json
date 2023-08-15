@@ -174,7 +174,15 @@
     "Team": {
       "CurrentEnergy": "Strength",
       "SnorlaxFavorite": "Snorlax's Favorite Berries",
-      "SubSkill": "Sub Skill"
+      "SubSkill": "Sub Skill",
+      "Box": {
+        "DisplayType": {
+          "Info": "Info",
+          "Production": "Production",
+          "Skills": "Skills",
+          "Stats": "Stats"
+        }
+      }
     },
     "Info": {
       "Pot": {

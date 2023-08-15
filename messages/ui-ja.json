@@ -174,7 +174,15 @@
     "Team": {
       "CurrentEnergy": "エナジー",
       "SnorlaxFavorite": "カビゴンの好きなきのみ",
-      "SubSkill": "サブスキル"
+      "SubSkill": "サブスキル",
+      "Box": {
+        "DisplayType": {
+          "Info": "情報",
+          "Production": "生産",
+          "Skills": "スキル",
+          "Stats": "パラメーター"
+        }
+      }
     },
     "Info": {
       "Pot": {
