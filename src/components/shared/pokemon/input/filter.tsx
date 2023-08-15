@@ -22,6 +22,7 @@ type Props<
 > = GetMultiSelectOnClickPropsOpts<TFilter, TId> & Pick<FilterCategoryInputProps<TId>, 'style'> & {
   type: TDisplayType,
   pokemon: PokemonInfo[],
+  idPrefix?: string,
 };
 
 export const PokemonFilter = <
@@ -32,9 +33,10 @@ export const PokemonFilter = <
   filter,
   setFilter,
   filterKey,
+  style,
   type,
   pokemon,
-  style,
+  idPrefix,
 }: Props<TDisplayType, TId, TFilter>) => {
   const t = useTranslations('Game');
 
@@ -57,7 +59,7 @@ export const PokemonFilter = <
   if (type === 'pokemonType') {
     return (
       <FilterIconInput
-        idToItemId={(id) => `PokemonType-${id}`}
+        idToItemId={(id) => `${idPrefix}PokemonType-${id}`}
         idToAlt={(id) => t(`PokemonType.${id}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
         ids={getIds(({type}) => type as TId)}
@@ -69,7 +71,7 @@ export const PokemonFilter = <
   if (type === 'specialty') {
     return (
       <FilterTextInput
-        idToItemId={(id) => `Specialty-${id}`}
+        idToItemId={(id) => `${idPrefix}Specialty-${id}`}
         idToButton={(id) => <PokemonSpecialty specialty={id}/>}
         ids={getIds(({specialty}) => specialty as TId)}
         {...commonProps}
@@ -80,7 +82,7 @@ export const PokemonFilter = <
   if (type === 'sleepType') {
     return (
       <FilterTextInput
-        idToItemId={(id) => `SleepType-${id}`}
+        idToItemId={(id) => `${idPrefix}SleepType-${id}`}
         idToButton={(id) => <PokemonSleepType sleepType={id}/>}
         ids={getIds(({sleepType}) => sleepType as TId)}
         {...commonProps}
@@ -91,7 +93,7 @@ export const PokemonFilter = <
   if (type === 'ingredientFixed') {
     return (
       <FilterIconInput
-        idToItemId={(id) => `IngredientFixed-${id}`}
+        idToItemId={(id) => `${idPrefix}IngredientFixed-${id}`}
         idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         ids={getIds(({ingredients}) => ingredients.fixed as TId)}
@@ -103,7 +105,7 @@ export const PokemonFilter = <
   if (type === 'ingredientRandom') {
     return (
       <FilterIconInput
-        idToItemId={(id) => `IngredientRandom-${id}`}
+        idToItemId={(id) => `${idPrefix}IngredientRandom-${id}`}
         idToAlt={(id) => t(`Food.${id.toString()}`)}
         idToImageSrc={(id) => `/images/ingredient/${id}.png`}
         ids={getIds(({ingredients}) => ingredients.random as TId[])}
@@ -115,7 +117,7 @@ export const PokemonFilter = <
   if (type === 'berry') {
     return (
       <FilterIconInput
-        idToItemId={(id) => `Berry-${id}`}
+        idToItemId={(id) => `${idPrefix}Berry-${id}`}
         idToAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         ids={getIds(({berry}) => berry.id as TId)}
@@ -127,7 +129,7 @@ export const PokemonFilter = <
   if (type === 'mainSkill') {
     return (
       <FilterTextInput
-        idToItemId={(id) => `MainSkill-${id}`}
+        idToItemId={(id) => `${idPrefix}MainSkill-${id}`}
         idToButton={(id) => t(`MainSkill.Name.${id}`)}
         ids={getIds(({skill}) => skill as TId)}
         {...commonProps}
