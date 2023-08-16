@@ -5,6 +5,8 @@ import {getServerSession} from 'next-auth';
 import {authOptions} from '@/const/auth';
 import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
+import {getAllBerryData} from '@/controller/berry';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getUserPokebox} from '@/controller/pokebox';
 import {getAllPokemonAsMap} from '@/controller/pokemon';
 import {getSubSkillMap} from '@/controller/subSkill';
@@ -18,8 +20,10 @@ export const Pokebox = () => {
   const initialPokebox = React.use(getUserPokebox(session?.user.id));
   const pokedexMap = React.use(getAllPokemonAsMap());
   const subSkillMap = React.use(getSubSkillMap());
+  const ingredientMap = React.use(getAllIngredients());
+  const berryMap = React.use(getAllBerryData());
 
-  const props: PokeboxCommonProps = {pokedexMap, subSkillMap};
+  const props: PokeboxCommonProps = {pokedexMap, subSkillMap, ingredientMap, berryMap};
 
   return (
     <PageLayout>

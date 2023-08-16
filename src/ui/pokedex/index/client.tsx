@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
-import {LazyLoad} from '@/components/layout/loading';
+import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';

@@ -3,8 +3,11 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {LazyLoad} from '@/components/layout/lazyLoad';
 import {UserDataUploadControlRow} from '@/components/shared/control/upload';
-import {Pokebox} from '@/types/game/pokebox';
+import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
+import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
 import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
@@ -24,6 +27,7 @@ type Props = PokeboxCommonProps & {
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
   const {pokedexMap} = props;
   const t = useTranslations('Game');
+  const [loading, setLoading] = React.useState(false);
   const {
     filter,
     setFilter,
@@ -37,22 +41,44 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         .map(({id}) => [id, t(`PokemonName.${id}`)]),
     ),
   });
+  const sortedPokemonInfo = useSortingWorker({
+    data: pokebox
+      .map((pokeInBox) => {
+        const pokemon = pokedexMap[pokeInBox.pokemon];
+
+        if (!pokemon) {
+          return null;
+        }
+
+        return {
+          pokemon,
+          level: pokeInBox.level,
+          extra: pokeInBox,
+        };
+      })
+      .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
+    sort: filter.sort,
+    ...props,
+    triggerDeps: [pokebox, filter],
+    setLoading,
+  });
+  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
 
   const [editOriginIdx, setEditOriginIdx] = React.useState<number>();
 
   return (
     <Flex direction="col" className="gap-1.5">
       <PokeboxPokeInBoxUpdatePopup
-        pokebox={pokebox}
+        pokebox={sortedPokebox}
         editOriginIdx={editOriginIdx}
         onUpdateCompleted={(pokeInBox) => {
           if (editOriginIdx === undefined) {
             return;
           }
-          setPokebox((original) => [
-            ...original.slice(0, editOriginIdx),
+          setPokebox([
+            ...sortedPokebox.slice(0, editOriginIdx),
             pokeInBox,
-            ...original.slice(editOriginIdx + 1),
+            ...sortedPokebox.slice(editOriginIdx + 1),
           ]);
           setEditOriginIdx(undefined);
         }}
@@ -61,12 +87,10 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
             return;
           }
 
-          // Shouldn't `original.concat()` because the modified data (whatever in the popup) is not reflected
-          // in `original` yet
-          setPokebox((original) => [
-            ...original.slice(0, editOriginIdx),
+          setPokebox([
+            ...sortedPokebox.slice(0, editOriginIdx),
             pokeInBox,
-            ...original.slice(editOriginIdx + 1),
+            ...sortedPokebox.slice(editOriginIdx + 1),
             pokeInBox,
           ]);
           setEditOriginIdx(undefined);
@@ -76,9 +100,9 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
             return;
           }
 
-          setPokebox((original) => [
-            ...original.slice(0, editOriginIdx),
-            ...original.slice(editOriginIdx + 1),
+          setPokebox([
+            ...sortedPokebox.slice(0, editOriginIdx),
+            ...sortedPokebox.slice(editOriginIdx + 1),
           ]);
           setEditOriginIdx(undefined);
         }}
@@ -86,27 +110,27 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
       <UserDataUploadControlRow opts={{type: 'pokebox', data: pokebox}}/>
-      <Flex direction="row" wrap className="gap-1.5">
-        {pokebox.map((pokeInBox, idx) => {
-          const key = pokeInBox.id ?? `idx-${idx}`;
+      <LazyLoad loading={loading} className="gap-1.5">
+        {sortedPokemonInfo.map(({source}, idx) => {
+          const key = source.pokemon.id ?? `idx-${idx}`;
 
           // Explicitly checking `false` because the data might not get into the filter data array for check,
           // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
-          if (isIncluded[pokeInBox.pokemon] === false) {
+          if (isIncluded[source.pokemon.id] === false) {
             return <React.Fragment key={key}/>;
           }
 
           return (
             <PokeboxContentPokeInBox
               key={key}
-              pokeInBox={pokeInBox}
+              pokeInBox={source.extra}
               displayType={filter.displayType}
               onClick={() => setEditOriginIdx(idx)}
               {...props}
             />
           );
         })}
-      </Flex>
+      </LazyLoad>
     </Flex>
   );
 };

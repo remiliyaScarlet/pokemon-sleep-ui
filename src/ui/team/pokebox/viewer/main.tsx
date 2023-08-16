@@ -12,6 +12,7 @@ import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonSortingFilter} from '@/components/shared/pokemon/sorter/filter';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {pokeboxDisplayTypeToI18nId, pokeboxDisplayTypeToImageSrc} from '@/ui/team/pokebox/viewer/const';
 import {pokeboxDisplayType, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
@@ -26,46 +27,48 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
   const t2 = useTranslations('UI.InPage.Pokedex');
 
   return (
-    <>
-      <Flex direction="col" className="h-72 gap-1 overflow-x-hidden overflow-y-scroll pr-1 md:h-52">
-        {pokemonInputType.map((type) => (
-          <PokemonFilter
-            key={type}
-            type={type}
-            pokemon={pokemon}
-            filterKey={type}
-            filter={filter}
-            setFilter={setFilter}
-            idPrefix="viewer-"
-          />
-        ))}
-        <InputRowWithTitle title={t2('Info.Name')}>
-          <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
-            ...original,
-            name: target.value,
-          }))}/>
-        </InputRowWithTitle>
-        <FilterIconInput
-          title={
-            <Flex direction="col" center>
-              <div className="h-6 w-6">
-                <InformationCircleIcon/>
-              </div>
-            </Flex>
-          }
-          ids={[...pokeboxDisplayType]}
-          idToItemId={(type) => type}
-          idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
-          idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
-          idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
-          {...getSingleSelectOnClickProps({
-            filter,
-            setFilter,
-            filterKey: 'displayType',
-            allowNull: false,
-          })}
+    <Flex direction="col" className="h-72 gap-1 overflow-x-hidden overflow-y-scroll pr-1 md:h-52">
+      <InputRowWithTitle title={t2('Info.Name')}>
+        <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
+          ...original,
+          name: target.value,
+        }))}/>
+      </InputRowWithTitle>
+      {pokemonInputType.map((type) => (
+        <PokemonFilter
+          key={type}
+          type={type}
+          pokemon={pokemon}
+          filterKey={type}
+          filter={filter}
+          setFilter={setFilter}
+          idPrefix="viewer-"
         />
-      </Flex>
-    </>
+      ))}
+      <PokemonSortingFilter
+        sort={filter.sort}
+        updateSort={(sort) => setFilter((original) => ({...original, sort}))}
+      />
+      <FilterIconInput
+        title={
+          <Flex direction="col" center>
+            <div className="h-6 w-6">
+              <InformationCircleIcon/>
+            </div>
+          </Flex>
+        }
+        ids={[...pokeboxDisplayType]}
+        idToItemId={(type) => type}
+        idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
+        idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
+        idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
+        {...getSingleSelectOnClickProps({
+          filter,
+          setFilter,
+          filterKey: 'displayType',
+          allowNull: false,
+        })}
+      />
+    </Flex>
   );
 };

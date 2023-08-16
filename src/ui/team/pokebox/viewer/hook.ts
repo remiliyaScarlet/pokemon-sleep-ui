@@ -38,6 +38,7 @@ export const usePokeboxViewerFilter = ({pokebox, pokedexMap, pokemonNameMap}: Us
     initialFilter: {
       ...generatePokemonInputFilter(),
       name: '',
+      sort: 'id',
       displayType: 'production',
     },
     isDataIncluded: (filter, data) => {

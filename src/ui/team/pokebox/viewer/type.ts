@@ -1,4 +1,5 @@
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 
@@ -20,5 +21,6 @@ export type PokeboxPokemonForView = {
 
 export type PokeboxViewerFilter = PokemonInputFilter & {
   name: string,
+  sort: PokemonSortType,
   displayType: PokeboxDisplayType,
 };
