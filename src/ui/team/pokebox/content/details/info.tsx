@@ -1,10 +1,13 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {Flex} from '@/components/layout/flex';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
+import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {isNotNullish} from '@/utils/type';
 
@@ -16,18 +19,23 @@ export const PokeboxPokeInBoxInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommo
   return (
     <Flex direction="row" className="items-center gap-2">
       <Flex direction="col" noFullWidth className="items-center gap-1">
-        <Flex direction="row" noFullWidth className="items-center gap-1">
+        <Flex
+          direction="row" noFullWidth
+          className={clsx('items-center gap-1 px-1', specialty === specialtyIdMap.berry && 'bg-blink')}
+        >
           <PokemonBerryIcon id={berry.id}/>
           <div>{berry.quantity}</div>
         </Flex>
-        <PokemonIngredientIcons
-          ingredients={{
-            fixed: ingredients.fixed,
-            random: Object.values(randomIngredient)
-              .map((ingredient) => ingredient?.id)
-              .filter(isNotNullish),
-          }}
-        />
+        <div className={clsx(specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+          <PokemonIngredientIcons
+            ingredients={{
+              fixed: ingredients.fixed,
+              random: Object.values(randomIngredient)
+                .map((ingredient) => ingredient?.id)
+                .filter(isNotNullish),
+            }}
+          />
+        </div>
       </Flex>
       <Flex direction="col" className="gap-1.5">
         <PokemonSleepType sleepType={sleepType} dimension="h-4 w-4"/>

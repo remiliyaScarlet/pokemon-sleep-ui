@@ -1,23 +1,29 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
+import {specialtyIdMap} from '@/const/game/pokemon';
 import {getRateOfBerry} from '@/ui/team/pokebox/content/details/utils';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
 
 
 export const PokeboxPokeInBoxProductionBerry = (props: PokeboxPokeInBoxCommonProps) => {
+  const {pokemon} = props;
   const t = useTranslations('UI.InPage.Pokedex');
 
   const rateOfBerry = getRateOfBerry(props);
 
   return (
-    <Flex direction="row" className="items-center gap-0.5">
-      <PokemonBerryIcon id={props.pokemon.berry.id}/>
+    <Flex direction="row" className={clsx(
+      pokemon.specialty === specialtyIdMap.berry && 'bg-blink',
+      'items-center gap-1 p-0',
+    )}>
+      <PokemonBerryIcon id={pokemon.berry.id}/>
       <div>
         x{formatFloat(rateOfBerry.quantity)}
       </div>
