@@ -31,8 +31,8 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
         E: null,
       },
       bonus: {
-        overall: 80,
-        ingredient: 16,
+        overall: 125,
+        ingredient: 20,
       },
       version: 1,
     },
