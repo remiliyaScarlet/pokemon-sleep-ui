@@ -8,7 +8,7 @@ import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
-import {PokedexMap, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
 import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
@@ -20,7 +20,6 @@ import {isNotNullish} from '@/utils/type';
 type Props = PokeboxCommonProps & {
   pokebox: Pokebox,
   pokemon: PokemonInfo[],
-  pokedexMap: PokedexMap,
   setPokebox: React.Dispatch<React.SetStateAction<Pokebox>>,
 };
 

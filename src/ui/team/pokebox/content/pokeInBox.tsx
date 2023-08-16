@@ -7,19 +7,16 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
-import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/details/main';
 import {PokeboxPokeInBoxFixedInfo} from '@/ui/team/pokebox/content/fixed';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 
 
-type Props = {
+type Props = PokeboxCommonProps & Pick<PokeboxPokeInBoxCommonProps, 'displayType'> & {
   pokeInBox: PokeInBox,
   pokedexMap: PokedexMap,
-  subSkillMap: SubSkillMap,
-  displayType: PokeboxDisplayType,
   onClick: () => void,
 };
 
