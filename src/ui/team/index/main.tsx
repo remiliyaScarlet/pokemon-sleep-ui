@@ -26,7 +26,6 @@ export const TeamIndex = () => {
                 href="/team/box"
                 imageSrc="/images/generic/bag.png"
                 text={t('Box.Title')}
-                disabled
               />
             </div>
             <div className="width-with-gap xl:width-with-gap-2-items">
