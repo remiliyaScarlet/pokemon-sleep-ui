@@ -8,3 +8,8 @@ export type PokeboxPokeInBoxUpdateCommonProps = {
   pokemon: PokemonInfo,
   setPokeInBox: (newPokeInBox: PokeInBox) => void,
 };
+
+export type PokeboxPokeInBoxActionProps = {
+  onRemovePokeInBox: () => void,
+  onCopyPokeInBox: (pokeInBox: PokeInBox) => void,
+};

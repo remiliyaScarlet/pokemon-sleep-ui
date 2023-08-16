@@ -44,6 +44,21 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
           ]);
           setEditOriginIdx(undefined);
         }}
+        onCopyPokeInBox={(pokeInBox) => {
+          setPokebox((original) => original.concat(pokeInBox));
+          setEditOriginIdx(undefined);
+        }}
+        onRemovePokeInBox={() => {
+          if (!editOriginIdx) {
+            return;
+          }
+
+          setPokebox((original) => [
+            ...original.slice(0, editOriginIdx),
+            ...original.slice(editOriginIdx + 1),
+          ]);
+          setEditOriginIdx(undefined);
+        }}
         {...props}
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
