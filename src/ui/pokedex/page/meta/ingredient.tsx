@@ -29,8 +29,8 @@ export const PokemonIngredientMeta = ({pokemon, level, ingredientMap}: Props) =>
   const rate = getIngredientProducingRate({
     level,
     pokemon,
+    ingredient: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
     ...defaultNeutralOpts,
-    ingredientMap,
   });
 
   return (

@@ -8,7 +8,6 @@ type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProd
 export const getPokemonProducingRate = ({
   isSnorlaxFavorite,
   berryData,
-  ingredientMap,
   ...props
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
   return {
@@ -17,9 +16,6 @@ export const getPokemonProducingRate = ({
       berryData,
       ...props,
     }),
-    ingredient: getIngredientProducingRate({
-      ingredientMap,
-      ...props,
-    }),
+    ingredient: getIngredientProducingRate(props),
   };
 };

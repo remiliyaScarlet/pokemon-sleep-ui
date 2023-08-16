@@ -1,6 +1,6 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
-import {IngredientMap} from '@/types/mongo/ingredient';
+import {Ingredient} from '@/types/mongo/ingredient';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultHelperCount, defaultIngredientProbability} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
@@ -9,7 +9,8 @@ import {GetProducingRateCommonOpts} from '@/utils/game/producing/type';
 
 
 export type GetIngredientProducingRateOpts = GetProducingRateCommonOpts & {
-  ingredientMap: IngredientMap,
+  ingredient: Ingredient | undefined,
+  countPerHelp?: number,
 };
 
 export const getIngredientProducingRate = ({
@@ -18,17 +19,9 @@ export const getIngredientProducingRate = ({
   subSkillBonus,
   helperCount,
   natureId,
-  ingredientMap,
+  ingredient,
+  countPerHelp,
 }: GetIngredientProducingRateOpts): ProducingRateOfItem | null => {
-  const id = pokemon.ingredients.fixed;
-
-  if (!id) {
-    return null;
-  }
-
-  const {ingredients} = pokemon;
-  const ingredient = ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined;
-
   if (!ingredient) {
     return null;
   }
@@ -45,10 +38,10 @@ export const getIngredientProducingRate = ({
   const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
 
   return {
-    id,
+    id: ingredient.id,
     ...getProducingRate({
       frequency: baseFrequency / (probability - (ingredientNatureMultiplier - 1)),
-      countPerHelp: pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1,
+      countPerHelp: countPerHelp || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
       energyPerCount: ingredient.energy,
     }),
   };

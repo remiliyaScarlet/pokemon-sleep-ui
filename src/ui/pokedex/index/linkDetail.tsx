@@ -122,8 +122,8 @@ export const PokedexLinkDetail = React.memo(({
     const rate = getIngredientProducingRate({
       level,
       pokemon,
+      ingredient: ingredientMap[fixedIngredientId],
       ...defaultNeutralOpts,
-      ingredientMap,
     });
 
     if (display === 'ingredientEnergy') {
@@ -195,8 +195,8 @@ export const PokedexLinkDetail = React.memo(({
     const rateOfIngredient = getIngredientProducingRate({
       level,
       pokemon,
+      ingredient: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
       ...defaultNeutralOpts,
-      ingredientMap,
     });
 
     return (

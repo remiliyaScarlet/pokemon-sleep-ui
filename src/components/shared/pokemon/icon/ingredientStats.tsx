@@ -29,7 +29,7 @@ export const PokemonIconsIngredientStats = ({data, level, ingredientMap}: Props)
         level,
         pokemon,
         ...defaultNeutralOpts,
-        ingredientMap,
+        ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
       })}
       getIcon={({ingredients}) => (
         <>

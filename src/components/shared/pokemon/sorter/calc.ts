@@ -19,8 +19,16 @@ const sortInAsc: PokemonSortType[] = [
 
 const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
-  ingredientEnergy: (opts) => getIngredientProducingRate(opts)?.dailyEnergy ?? 0,
-  ingredientCount: ({berryData, ...opts}) => getIngredientProducingRate(opts)?.quantity ?? 0,
+  ingredientEnergy: ({pokemon, berryData, ingredientMap, ...opts}) => getIngredientProducingRate({
+    pokemon,
+    ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
+    ...opts,
+  })?.dailyEnergy ?? 0,
+  ingredientCount: ({pokemon, berryData, ingredientMap, ...opts}) => getIngredientProducingRate({
+    pokemon,
+    ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
+    ...opts,
+  })?.quantity ?? 0,
   berryEnergy: ({berryData, ...opts}) => berryData ? getBerryProducingRate({
     isSnorlaxFavorite: false,
     berryData,
@@ -33,17 +41,22 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   }).quantity : 0,
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequency: ({pokemon}) => pokemon.stats.frequency,
-  totalEnergy: ({berryData, ...opts}) => {
+  totalEnergy: ({pokemon, berryData, ingredientMap, ...opts}) => {
     if (!berryData) {
       return 0;
     }
 
     const berry = getBerryProducingRate({
       isSnorlaxFavorite: false,
+      pokemon,
       berryData,
       ...opts,
     }).dailyEnergy;
-    const ingredient = getIngredientProducingRate(opts)?.dailyEnergy;
+    const ingredient = getIngredientProducingRate({
+      pokemon,
+      ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
+      ...opts,
+    })?.dailyEnergy;
 
     return berry + (ingredient ?? 0);
   },
