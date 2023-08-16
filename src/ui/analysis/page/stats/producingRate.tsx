@@ -8,10 +8,10 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
-import {sortTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {formatFloat} from '@/utils/number';
 
 

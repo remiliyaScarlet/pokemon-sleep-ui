@@ -2,11 +2,12 @@ import {Session} from 'next-auth';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
-import {BerryData, BerryDataMap} from '@/types/mongo/berry';
+import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
+import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
-import {PokedexDisplayType, PokedexSortType} from '@/ui/pokedex/index/input/type';
+import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
 
 export type PokemonInfoForPokedex = PokemonInfo & {
@@ -16,14 +17,9 @@ export type PokemonInfoForPokedex = PokemonInfo & {
 
 export type PokedexData = PokemonInfoForPokedex[];
 
-export type SortedPokemonInfo = {
-  pokemon: PokemonInfoForPokedex,
-  sorter: ReturnType<PokemonSorterGetter>,
-};
-
 export type PokedexDisplay = {
   display: PokedexDisplayType,
-  sort: PokedexSortType,
+  sort: PokemonSortType,
 };
 
 export type PokedexFilter = PokemonInputFilter & PokedexDisplay & {
@@ -43,12 +39,3 @@ export type PokedexClientCommonProps = {
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
   pokemon: PokemonInfoForPokedex,
 };
-
-export type PokemonSorterGetterOpts = {
-  pokemon: PokemonInfo,
-  level: number,
-  ingredientMap: IngredientMap,
-  berryData: BerryData | null,
-};
-
-export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;

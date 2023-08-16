@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {useTranslations} from 'next-intl';
 
@@ -14,9 +13,10 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonSortingFilter} from '@/components/shared/pokemon/sorter/filter';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
-import {displayTypeToI18nId, sortTypeToI18nId} from '@/ui/pokedex/index/input/const';
-import {pokedexDisplayType, PokedexInputProps, pokedexSortType} from '@/ui/pokedex/index/input/type';
+import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
+import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
 
@@ -86,22 +86,12 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           idToButton={(display) => t(displayTypeToI18nId[display])}
           idToItemId={(display) => `displayType-${display}`}
         />
-        <FilterTextInput
-          onClick={(sort) => setFilter((original) => ({
+        <PokemonSortingFilter
+          sort={filter.sort}
+          updateSort={(sort) => setFilter((original) => ({
             ...original,
             sort,
           } satisfies PokedexInputProps['filter']))}
-          isActive={(sort) => filter.sort === sort}
-          title={
-            <Flex direction="row" center>
-              <div className="h-6 w-6">
-                <Bars3BottomLeftIcon/>
-              </div>
-            </Flex>
-          }
-          ids={[...pokedexSortType]}
-          idToButton={(sort) => t(sortTypeToI18nId[sort])}
-          idToItemId={(sort) => `sortType-${sort}`}
         />
       </Flex>
     </div>

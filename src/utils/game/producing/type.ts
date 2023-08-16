@@ -1,7 +1,6 @@
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
 import {NatureId} from '@/types/game/producing/nature';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {Nullable} from '@/utils/type';
 
 
 export type GetProducingRateChangeOnTeamOpts = {
@@ -16,7 +15,7 @@ export type GetProducingRateChangeOnIndividualOpts = {
 export type GetProducingRateChangeableOpts =
   GetProducingRateChangeOnTeamOpts & GetProducingRateChangeOnIndividualOpts;
 
-export type GetProducingRateCommonOpts = Nullable<GetProducingRateChangeableOpts> & {
+export type GetProducingRateCommonOpts = GetProducingRateChangeableOpts & {
   level: number
   pokemon: PokemonInfo,
 };
