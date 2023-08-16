@@ -11,6 +11,7 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator';
 import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
 import {natureData} from '@/data/nature';
+import {useSearchableData} from '@/hooks/search';
 import {NatureId} from '@/types/game/producing/nature';
 
 
@@ -25,16 +26,15 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
 
   const t = useTranslations('Game');
 
-  const natureDataWithSearch = React.useMemo(() => natureData.map((data) => ({
-    ...data,
-    keyword: [
+  const matchingNatureData = useSearchableData({
+    search,
+    data: natureData,
+    getKeyword: (data) => [
       t(`Nature.${data.id}`),
       data.buff && t(`NatureEffect.${data.buff}`),
       data.nerf && t(`NatureEffect.${data.nerf}`),
     ].join(' '),
-  })), []);
-
-  const matchingNatureData = natureDataWithSearch.filter(({keyword}) => search && keyword.includes(search));
+  });
 
   const onClick = (id: NatureId | null) => {
     setNature(id);

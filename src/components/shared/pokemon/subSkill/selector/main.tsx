@@ -12,6 +12,7 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokemonSubSkillSelectionButton} from '@/components/shared/pokemon/subSkill/selector/button';
 import {PokemonSubSkillSelected} from '@/components/shared/pokemon/subSkill/selector/selected';
+import {useSearchableData} from '@/hooks/search';
 import {
   PokemonSubSkill,
   PokemonSubSkillLevel,
@@ -36,12 +37,11 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
 
   const subSkills = Object.values(subSkillMap).filter(isNotNullish).filter(({rarity}) => !!rarity);
 
-  const subSkillsWithSearch = React.useMemo(() => subSkills.map((data) => ({
-    ...data,
-    keyword: t(data.id.toString()),
-  })), []);
-
-  const matchingSubSkills = subSkillsWithSearch.filter(({keyword}) => search && keyword.includes(search));
+  const matchingSubSkills = useSearchableData({
+    search,
+    data: subSkills,
+    getKeyword: (data) => t(data.id.toString()),
+  });
 
   const onSelect = (id: SubSkillId) => {
     const emptyLevel = pokemonSubSkillLevel.find((level) => !subSkill[level]) ?? pokemonSubSkillLevel[0];
