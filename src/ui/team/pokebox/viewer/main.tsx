@@ -4,7 +4,9 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InputBox} from '@/components/input/box';
 import {FilterIconInput} from '@/components/input/filter/icon';
+import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
@@ -21,6 +23,7 @@ type Props = FilterInputProps<PokeboxViewerFilter> & {
 
 export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
+  const t2 = useTranslations('UI.InPage.Pokedex');
 
   return (
     <>
@@ -36,6 +39,12 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
             idPrefix="viewer-"
           />
         ))}
+        <InputRowWithTitle title={t2('Info.Name')}>
+          <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
+            ...original,
+            name: target.value,
+          }))}/>
+        </InputRowWithTitle>
         <FilterIconInput
           title={
             <Flex direction="col" center>

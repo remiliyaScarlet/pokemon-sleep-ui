@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {useTranslations} from 'next-intl';
+
 import {Flex} from '@/components/layout/flex';
 import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {Pokebox} from '@/types/game/pokebox';
@@ -9,6 +11,7 @@ import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokeboxCommonProps & {
@@ -20,11 +23,20 @@ type Props = PokeboxCommonProps & {
 
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
   const {pokedexMap} = props;
+  const t = useTranslations('Game');
   const {
     filter,
     setFilter,
     isIncluded,
-  } = usePokeboxViewerFilter({pokebox, pokedexMap});
+  } = usePokeboxViewerFilter({
+    pokebox,
+    pokedexMap,
+    pokemonNameMap: Object.fromEntries(
+      Object.values(pokedexMap)
+        .filter(isNotNullish)
+        .map(({id}) => [id, t(`PokemonName.${id}`)]),
+    ),
+  });
 
   const [editOriginIdx, setEditOriginIdx] = React.useState<number>();
 

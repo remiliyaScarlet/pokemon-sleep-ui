@@ -15,8 +15,10 @@ export type PokeboxDisplayType = typeof pokeboxDisplayType[number];
 export type PokeboxPokemonForView = {
   info: PokemonInfo,
   inBox: PokeInBox,
+  names: string[],
 };
 
 export type PokeboxViewerFilter = PokemonInputFilter & {
+  name: string,
   displayType: PokeboxDisplayType,
 };
