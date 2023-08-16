@@ -41,6 +41,10 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
     search,
     data: subSkills,
     getKeyword: (data) => t(data.id.toString()),
+    getSorter: (a, b) => (
+      (b.rarity ?? 0) - (a.rarity ?? 0) ||
+      t(a.id.toString()).localeCompare(t(b.id.toString()))
+    ),
   });
 
   const onSelect = (id: SubSkillId) => {

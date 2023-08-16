@@ -34,6 +34,10 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
       data.buff && t(`NatureEffect.${data.buff}`),
       data.nerf && t(`NatureEffect.${data.nerf}`),
     ].join(' '),
+    getSorter: (a, b) => (
+      (a.buff ?? 0) - (b.buff ?? 0) ||
+      t(`Nature.${a.id}`).localeCompare(t(`Nature.${b.id}`))
+    ),
   });
 
   const onClick = (id: NatureId | null) => {
