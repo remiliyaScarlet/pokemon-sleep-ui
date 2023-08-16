@@ -20,11 +20,16 @@ type Props = {
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
   displayType: PokeboxDisplayType,
+  onClick: () => void,
 };
 
-// FIXME: Click to show popup for edit
 export const PokeboxContentPokeInBox = (props: Props) => {
-  const {pokeInBox, pokedexMap, displayType} = props;
+  const {
+    pokeInBox,
+    pokedexMap,
+    displayType,
+    onClick,
+  } = props;
   const {pokemon: pokemonId} = pokeInBox;
   const pokemon = pokedexMap[pokemonId];
 
@@ -43,20 +48,23 @@ export const PokeboxContentPokeInBox = (props: Props) => {
   };
 
   return (
-    <Flex direction="col" noFullWidth className={clsx(
-      'button-bg width-with-gap-sm md:width-with-gap-2-items lg:width-with-gap-3-items gap-1.5 rounded-lg p-2',
+    <button onClick={onClick} className={clsx(
+      'button-clickable-bg group rounded-lg p-2',
+      'width-with-gap-sm md:width-with-gap-2-items lg:width-with-gap-3-items',
     )}>
-      <Flex direction="row" className="gap-2">
-        <div className="relative h-16 w-16">
-          <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={pokemonName} sizes={imageIconSizes}/>
+      <Flex direction="row" className="relative h-24 gap-2">
+        <div className="absolute bottom-0 right-0">
+          <div className="relative h-16 w-16 opacity-50">
+            <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={pokemonName} sizes={imageIconSizes}/>
+          </div>
         </div>
-        <Flex direction="col" className="gap-1">
+        <Flex direction="col" className="z-10 gap-1">
           <PokeboxPokeInBoxFixedInfo {...pokeInBoxProps}/>
           <div className="mt-auto">
             <PokeboxPokeInBoxDetails {...pokeInBoxProps}/>
           </div>
         </Flex>
       </Flex>
-    </Flex>
+    </button>
   );
 };

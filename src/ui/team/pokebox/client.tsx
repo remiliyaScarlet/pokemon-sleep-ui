@@ -35,7 +35,7 @@ export const PokeboxClient = ({initialPokebox, ...props}: Props) => {
         }}
       />
       <AdsUnit/>
-      <PokeboxContent pokebox={pokebox} pokemon={pokemon} {...props}/>
+      <PokeboxContent pokebox={pokebox} pokemon={pokemon} setPokebox={setPokebox} {...props}/>
       <AdsUnit/>
     </Flex>
   );

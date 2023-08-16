@@ -4,14 +4,22 @@ import {IngredientId} from '@/types/mongo/ingredient';
 import {PokemonId} from '@/types/mongo/pokemon';
 
 
-export type PokeInBoxIngredientLevel = 30 | 60;
+export const pokeInBoxIngredientLevel = [
+  30,
+  60,
+] as const;
+
+export type PokeInBoxIngredientLevel = typeof pokeInBoxIngredientLevel[number];
 
 export type PokeInBoxIngredientSingle = {
   id: IngredientId,
   quantity: number,
 };
 
-export type PokeInBoxIngredient = {[level in PokeInBoxIngredientLevel]: PokeInBoxIngredientSingle | null};
+export type PokeInBoxIngredient = {
+  // Value of `null` is for Pokémon that doesn't have their ingredient data available only
+  [level in PokeInBoxIngredientLevel]: PokeInBoxIngredientSingle | null
+};
 
 export type PokeInBox = {
   id?: string,

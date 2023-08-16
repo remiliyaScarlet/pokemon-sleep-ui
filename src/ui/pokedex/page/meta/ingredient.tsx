@@ -62,7 +62,8 @@ export const PokemonIngredientMeta = ({pokemon, level, ingredientMap}: Props) =>
         <PokemonProducingRate
           rate={rate}
           icon={
-            <NextImage src={`/images/ingredient/${ingredients.fixed}.png`}
+            <NextImage
+              src={`/images/ingredient/${ingredients.fixed}.png`}
               alt={t(ingredients.fixed.toString())}
               sizes={imageSmallIconSizes}
             />
