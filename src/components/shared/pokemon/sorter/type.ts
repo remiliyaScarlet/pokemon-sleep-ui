@@ -8,13 +8,13 @@ import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
 
 export const pokemonSortType = [
   'id',
-  'ingredientEnergy',
-  'ingredientCount',
   'berryEnergy',
   'berryCount',
+  'ingredientEnergy',
+  'ingredientCount',
+  'totalEnergy',
   'friendshipPoint',
   'frequency',
-  'totalEnergy',
 ] as const;
 
 export type PokemonSortType = typeof pokemonSortType[number];

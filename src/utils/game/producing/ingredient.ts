@@ -4,13 +4,14 @@ import {Ingredient} from '@/types/mongo/ingredient';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultHelperCount, defaultIngredientProbability} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
-import {getProducingRate} from '@/utils/game/producing/rate';
+import {getProducingRateBase} from '@/utils/game/producing/rate';
 import {GetProducingRateCommonOpts} from '@/utils/game/producing/type';
 
 
 export type GetIngredientProducingRateOpts = GetProducingRateCommonOpts & {
   ingredient: Ingredient | undefined,
-  countPerHelp?: number,
+  count?: number,
+  possibilities?: number,
 };
 
 export const getIngredientProducingRate = ({
@@ -20,7 +21,8 @@ export const getIngredientProducingRate = ({
   helperCount,
   natureId,
   ingredient,
-  countPerHelp,
+  count,
+  possibilities,
 }: GetIngredientProducingRateOpts): ProducingRateOfItem | null => {
   if (!ingredient) {
     return null;
@@ -39,9 +41,10 @@ export const getIngredientProducingRate = ({
 
   return {
     id: ingredient.id,
-    ...getProducingRate({
+    ...getProducingRateBase({
       frequency: baseFrequency / (probability - (ingredientNatureMultiplier - 1)),
-      countPerHelp: countPerHelp || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
+      count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
+      possibilities: possibilities ?? 1,
       energyPerCount: ingredient.energy,
     }),
   };

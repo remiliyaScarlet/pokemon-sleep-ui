@@ -5,7 +5,9 @@ import {PokemonInfo} from '@/types/mongo/pokemon';
 
 
 export const pokeboxDisplayType = [
-  'production',
+  'productionBerry',
+  'productionIngredient',
+  'productionTotal',
   'skills',
   'stats',
   'info',

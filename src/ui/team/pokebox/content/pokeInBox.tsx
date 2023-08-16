@@ -47,7 +47,8 @@ export const PokeboxContentPokeInBox = (props: Props) => {
   return (
     <button onClick={onClick} className={clsx(
       'button-clickable-bg group rounded-lg p-2',
-      'width-with-gap-sm md:width-with-gap-2-items lg:width-with-gap-3-items',
+      'width-with-gap-sm sm:width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-4-items',
+      'xl:width-with-gap-5-items',
     )}>
       <Flex direction="row" className="relative h-24 gap-2">
         <div className="absolute bottom-0 right-0">

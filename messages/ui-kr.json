@@ -142,7 +142,7 @@
         "BerryEnergy": "나무열매 에너지",
         "BerryCount": "나무열매 수",
         "FriendshipPoint": "프렌드 포인트",
-        "TotalEnergy": "총에너지"
+        "TotalEnergy": "총 에너지"
       }
     },
     "Analysis": {
@@ -178,7 +178,9 @@
       "Box": {
         "DisplayType": {
           "Info": "정보",
-          "Production": "생산",
+          "ProductionBerry": "생산 (나무열매)",
+          "ProductionIngredient": "생산 (식재료)",
+          "ProductionTotal": "생산 (총합)",
           "Skills": "스킬",
           "Stats": "매개변수"
         }

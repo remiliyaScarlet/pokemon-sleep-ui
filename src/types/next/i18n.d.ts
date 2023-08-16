@@ -120,7 +120,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Box: {
           DisplayType: {
             Info: string,
-            Production: string,
+            ProductionBerry: string,
+            ProductionIngredient: string,
+            ProductionTotal: string,
             Skills: string,
             Stats: string,
           },

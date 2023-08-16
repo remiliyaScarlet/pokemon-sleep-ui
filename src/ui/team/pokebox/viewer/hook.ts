@@ -39,7 +39,7 @@ export const usePokeboxViewerFilter = ({pokebox, pokedexMap, pokemonNameMap}: Us
       ...generatePokemonInputFilter(),
       name: '',
       sort: 'id',
-      displayType: 'production',
+      displayType: 'productionTotal',
     },
     isDataIncluded: (filter, data) => {
       const filterName = filter.name.toUpperCase();

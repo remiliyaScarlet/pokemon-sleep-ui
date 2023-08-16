@@ -178,7 +178,9 @@
       "Box": {
         "DisplayType": {
           "Info": "情報",
-          "Production": "生産",
+          "ProductionBerry": "生産 (きのみ)",
+          "ProductionIngredient": "生産 (食材)",
+          "ProductionTotal": "生産 (トータル)",
           "Skills": "スキル",
           "Stats": "パラメーター"
         }

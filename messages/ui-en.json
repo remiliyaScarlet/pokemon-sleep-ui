@@ -178,7 +178,9 @@
       "Box": {
         "DisplayType": {
           "Info": "Info",
-          "Production": "Production",
+          "ProductionBerry": "Production (Berry)",
+          "ProductionIngredient": "Production (Ingredient)",
+          "ProductionTotal": "Production (Total)",
           "Skills": "Skills",
           "Stats": "Stats"
         }
