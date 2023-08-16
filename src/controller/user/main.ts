@@ -2,6 +2,7 @@ import {updateUserPokebox} from '@/controller/pokebox';
 import {
   userDataIngredientCount,
   userDataMealType,
+  userDataPokeboxDisplay,
   userDataPokedex,
   userDataPotCapacity,
   userDataRecipeLevel,
@@ -51,7 +52,10 @@ export const uploadUserData = async ({userId, opts}: {userId: string, opts: Uplo
   }
 
   if (type === 'pokebox') {
-    await updateUserPokebox(userId, data);
+    await Promise.all([
+      userDataPokeboxDisplay.setData(userId, data.display),
+      updateUserPokebox(userId, data.pokebox),
+    ]);
     return;
   }
 
@@ -64,6 +68,7 @@ export const getUserData = async (userId: string): Promise<UserData> => {
     recipeLevel,
     teamAnalysis,
     pokedex,
+    pokeboxDisplay,
     potCapacity,
     ingredientCount,
   ] = await Promise.all([
@@ -71,6 +76,7 @@ export const getUserData = async (userId: string): Promise<UserData> => {
     userDataRecipeLevel.getData(userId),
     userDataTeamAnalysisSetup.getData(userId),
     userDataPokedex.getData(userId),
+    userDataPokeboxDisplay.getData(userId),
     userDataPotCapacity.getData(userId),
     userDataIngredientCount.getData(userId),
   ]);
@@ -80,6 +86,7 @@ export const getUserData = async (userId: string): Promise<UserData> => {
     recipeLevel: recipeLevel?.data,
     teamAnalysisSetup: teamAnalysis?.data,
     pokedex: pokedex?.data,
+    pokeboxDisplay: pokeboxDisplay?.data,
     potCapacity: potCapacity?.data,
     ingredientCount: ingredientCount?.data,
   };

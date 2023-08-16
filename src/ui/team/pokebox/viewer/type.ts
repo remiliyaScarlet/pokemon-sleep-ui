@@ -21,8 +21,11 @@ export type PokeboxPokemonForView = {
   names: string[],
 };
 
-export type PokeboxViewerFilter = PokemonInputFilter & {
-  name: string,
+export type PokeboxViewerDisplay = {
   sort: PokemonSortType,
   displayType: PokeboxDisplayType,
+};
+
+export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
+  name: string,
 };

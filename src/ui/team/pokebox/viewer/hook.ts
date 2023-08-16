@@ -1,19 +1,23 @@
+import merge from 'lodash/merge';
+import {Session} from 'next-auth';
+
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
-import {PokeboxPokemonForView, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {isNotNullish} from '@/utils/type';
 
 
 type UsePokeboxViewerFilterOpts = {
+  session: Session | null,
   pokebox: Pokebox,
   pokedexMap: PokedexMap,
   pokemonNameMap: {[id in PokemonId]?: string},
 };
 
-export const usePokeboxViewerFilter = ({pokebox, pokedexMap, pokemonNameMap}: UsePokeboxViewerFilterOpts) => {
+export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNameMap}: UsePokeboxViewerFilterOpts) => {
   return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, PokemonId>({
     data: pokebox
       .map((inBox) => {
@@ -38,8 +42,10 @@ export const usePokeboxViewerFilter = ({pokebox, pokedexMap, pokemonNameMap}: Us
     initialFilter: {
       ...generatePokemonInputFilter(),
       name: '',
-      sort: 'id',
-      displayType: 'productionTotal',
+      ...merge({
+        sort: 'id',
+        displayType: 'productionTotal',
+      } satisfies PokeboxViewerDisplay, session?.user.data?.pokeboxDisplay),
     },
     isDataIncluded: (filter, data) => {
       const filterName = filter.name.toUpperCase();

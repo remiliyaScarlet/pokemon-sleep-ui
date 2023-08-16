@@ -5,6 +5,7 @@ import {MealTypeId} from '@/types/mongo/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 import {DeepPartialExceptKey} from '@/utils/type';
 
 
@@ -20,12 +21,17 @@ export type UploadOfCookingData = UploadOfPotInfo & {
   ingredientCount: CookingFilterIngredientCount,
 };
 
+export type UploadOfPokebox = {
+  pokebox: Pokebox,
+  display: PokeboxViewerDisplay,
+};
+
 export type UploadUserDataOpts = {
   type: 'pokedex',
   data: PokedexDisplay,
 } | {
   type: 'pokebox',
-  data: Pokebox,
+  data: UploadOfPokebox,
 } | {
   type: 'teamAnalysisSetup',
   data: UploadOfTeamAnalysisSetup,
@@ -56,6 +62,7 @@ export type UserDataUploadContent = {
   recipeLevel: CookingFilterRecipeLevel,
   teamAnalysisSetup: UploadOfTeamAnalysisSetup,
   pokedex: PokedexDisplay,
+  pokeboxDisplay: PokeboxViewerDisplay,
   potCapacity: number,
   ingredientCount: CookingFilterIngredientCount,
 };

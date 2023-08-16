@@ -24,7 +24,7 @@ type Props = PokeboxCommonProps & {
 };
 
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
-  const {pokedexMap} = props;
+  const {session, pokedexMap} = props;
   const t = useTranslations('Game');
   const [loading, setLoading] = React.useState(false);
   const {
@@ -32,6 +32,7 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
     setFilter,
     isIncluded,
   } = usePokeboxViewerFilter({
+    session,
     pokebox,
     pokedexMap,
     pokemonNameMap: Object.fromEntries(
@@ -108,7 +109,12 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         {...props}
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
-      <UserDataUploadControlRow opts={{type: 'pokebox', data: pokebox}}/>
+      <UserDataUploadControlRow
+        opts={{
+          type: 'pokebox',
+          data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType}},
+        }}
+      />
       <LazyLoad loading={loading} className="gap-1.5">
         {sortedPokemonInfo.map(({source}, idx) => {
           const key = source.pokemon.id ?? `idx-${idx}`;

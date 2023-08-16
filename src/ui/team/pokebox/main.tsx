@@ -23,7 +23,7 @@ export const Pokebox = () => {
   const ingredientMap = React.use(getAllIngredients());
   const berryMap = React.use(getAllBerryData());
 
-  const props: PokeboxCommonProps = {pokedexMap, subSkillMap, ingredientMap, berryMap};
+  const props: PokeboxCommonProps = {session, pokedexMap, subSkillMap, ingredientMap, berryMap};
 
   return (
     <PageLayout>
