@@ -49,7 +49,7 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
           setEditOriginIdx(undefined);
         }}
         onRemovePokeInBox={() => {
-          if (!editOriginIdx) {
+          if (editOriginIdx === undefined) {
             return;
           }
 
