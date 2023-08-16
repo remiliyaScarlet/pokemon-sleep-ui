@@ -27,7 +27,7 @@ export const Pokebox = () => {
 
   return (
     <PageLayout>
-      <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex', 'UI.InPage.Team']}>
+      <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
         <AuthProvider>
           <PokeboxClient initialPokebox={initialPokebox} {...props}/>
         </AuthProvider>
