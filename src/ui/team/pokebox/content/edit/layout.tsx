@@ -17,15 +17,17 @@ import {pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {maxCarryLimit} from '@/ui/team/pokebox/content/edit/const';
 import {PokeboxPokeInBoxIngredientEditor} from '@/ui/team/pokebox/content/edit/ingredient';
-import {PokeboxPokeInBoxActionProps, PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/type';
+import {PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/type';
 
 
-type Props = PokeboxPokeInBoxActionProps & {
+type Props = {
   idx: number | undefined,
   pokeInBox: PokeInBox,
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
   setPokeInBox: (newPokeInBox: PokeInBox) => void,
+  onRemovePokeInBox: () => void,
+  onCopyPokeInBox: () => void,
 };
 
 export const PokeboxPokeInBoxUpdateLayout = ({
@@ -137,7 +139,7 @@ export const PokeboxPokeInBoxUpdateLayout = ({
       </Flex>
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
-        <button className="button-clickable-bg !rounded-full p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
+        <button className="button-clickable-bg !rounded-full p-1" onClick={onCopyPokeInBox}>
           <div className="h-5 w-5">
             <DocumentDuplicateIcon/>
           </div>

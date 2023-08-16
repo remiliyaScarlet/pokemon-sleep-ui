@@ -45,7 +45,18 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
           setEditOriginIdx(undefined);
         }}
         onCopyPokeInBox={(pokeInBox) => {
-          setPokebox((original) => original.concat(pokeInBox));
+          if (editOriginIdx === undefined) {
+            return;
+          }
+
+          // Shouldn't `original.concat()` because the modified data (whatever in the popup) is not reflected
+          // in `original` yet
+          setPokebox((original) => [
+            ...original.slice(0, editOriginIdx),
+            pokeInBox,
+            ...original.slice(editOriginIdx + 1),
+            pokeInBox,
+          ]);
           setEditOriginIdx(undefined);
         }}
         onRemovePokeInBox={() => {

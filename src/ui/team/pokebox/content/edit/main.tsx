@@ -5,15 +5,16 @@ import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdateLayout} from '@/ui/team/pokebox/content/edit/layout';
-import {PokeboxPokeInBoxActionProps} from '@/ui/team/pokebox/content/edit/type';
 
 
-type Props = PokeboxPokeInBoxActionProps & {
+type Props = {
   pokebox: Pokebox,
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
   editOriginIdx: number | undefined,
   onUpdateCompleted: (updated: PokeInBox) => void,
+  onCopyPokeInBox: (pokeInBox: PokeInBox) => void,
+  onRemovePokeInBox: () => void,
 };
 
 export const PokeboxPokeInBoxUpdatePopup = ({
@@ -22,7 +23,8 @@ export const PokeboxPokeInBoxUpdatePopup = ({
   subSkillMap,
   editOriginIdx,
   onUpdateCompleted,
-  ...props
+  onCopyPokeInBox,
+  onRemovePokeInBox,
 }: Props) => {
   const [data, setData] = React.useState<PokeInBox>();
 
@@ -50,7 +52,8 @@ export const PokeboxPokeInBoxUpdatePopup = ({
           pokedexMap={pokedexMap}
           subSkillMap={subSkillMap}
           setPokeInBox={setData}
-          {...props}
+          onCopyPokeInBox={() => onCopyPokeInBox(data)}
+          onRemovePokeInBox={onRemovePokeInBox}
         />
       }
     </Popup>
