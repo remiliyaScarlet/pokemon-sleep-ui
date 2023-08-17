@@ -1,7 +1,7 @@
 import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
-import {Ingredient, IngredientMap} from '@/types/mongo/ingredient';
+import {Ingredient, IngredientId, IngredientMap} from '@/types/mongo/ingredient';
 
 
 const getCollection = async (): Promise<Collection<Ingredient>> => {
@@ -10,6 +10,10 @@ const getCollection = async (): Promise<Collection<Ingredient>> => {
   return client
     .db('food')
     .collection<Ingredient>('ingredient');
+};
+
+export const getIngredientData = async (id: IngredientId): Promise<Ingredient | null> => {
+  return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
 
 export const getAllIngredients = async (): Promise<IngredientMap> => {

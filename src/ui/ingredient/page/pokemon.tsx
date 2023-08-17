@@ -6,17 +6,21 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
-import {IngredientMap} from '@/types/mongo/ingredient';
+import {Ingredient} from '@/types/mongo/ingredient';
 import {pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
 
 
 type Props = {
   pokemonMaxLevel: number,
   obtainablePokemon: PokemonIngredientTypeMap,
-  ingredientMap: IngredientMap,
+  ingredient: Ingredient,
 };
 
-export const IngredientObtainablePokemon = ({pokemonMaxLevel, obtainablePokemon, ingredientMap}: Props) => {
+export const IngredientObtainablePokemon = ({
+  pokemonMaxLevel,
+  obtainablePokemon,
+  ingredient,
+}: Props) => {
   const [level, setLevel] = React.useState(1);
 
   return (
@@ -31,12 +35,13 @@ export const IngredientObtainablePokemon = ({pokemonMaxLevel, obtainablePokemon,
                 <div className="h-8 w-8">
                   <PokemonIngredientTypeIcon type={type}/>
                 </div>
+                {type === 'random' && '(x1)'}
               </Flex>
               <Flex direction="col" center>
                 <PokemonIconsIngredientStats
                   level={level}
                   data={obtainablePokemon[type]}
-                  ingredientMap={ingredientMap}
+                  ingredient={ingredient}
                 />
               </Flex>
             </Flex>

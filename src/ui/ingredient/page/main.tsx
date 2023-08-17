@@ -6,7 +6,7 @@ import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientData} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonByIngredient} from '@/controller/pokemon';
 import {PageLayout} from '@/ui/base/layout';
@@ -21,8 +21,7 @@ type Props = {
 
 export const IngredientPage = ({params}: Props) => {
   const idNumber = Number(params.id);
-  const ingredientMap = React.use(getAllIngredients());
-  const ingredient = ingredientMap[idNumber];
+  const ingredient = React.use(getIngredientData(idNumber));
   const obtainablePokemon = React.use(getPokemonByIngredient(ingredient?.id));
   const cookableMeals = React.use(getMealByIngredient(ingredient?.id));
   const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
@@ -42,7 +41,7 @@ export const IngredientPage = ({params}: Props) => {
         <IngredientObtainablePokemon
           pokemonMaxLevel={pokemonMaxLevel}
           obtainablePokemon={obtainablePokemon}
-          ingredientMap={ingredientMap}
+          ingredient={ingredient}
         />
       </I18nProvider>
       <AdsUnit/>

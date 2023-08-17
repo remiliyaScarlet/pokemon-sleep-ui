@@ -1,13 +1,12 @@
 import React from 'react';
 
-import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
-import {IngredientMap} from '@/types/mongo/ingredient';
+import {Ingredient} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
@@ -16,11 +15,15 @@ import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 type Props = {
   data: PokemonInfo[],
   level: number,
-  ingredientMap: IngredientMap,
+  ingredient: Ingredient | undefined,
 };
 
-export const PokemonIconsIngredientStats = ({data, level, ingredientMap}: Props) => {
+export const PokemonIconsIngredientStats = ({data, level, ingredient}: Props) => {
   const t = useTranslations('Game');
+
+  if (!ingredient) {
+    return <></>;
+  }
 
   return (
     <PokemonIconsItemStats
@@ -29,18 +32,14 @@ export const PokemonIconsIngredientStats = ({data, level, ingredientMap}: Props)
         level,
         pokemon,
         ...defaultNeutralOpts,
-        ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
+        ingredient,
       })}
-      getIcon={({ingredients}) => (
-        <>
-          {ingredients.fixed ?
-            <NextImage
-              src={`/images/ingredient/${ingredients.fixed}.png`}
-              alt={t(`Food.${ingredients.fixed}`)}
-              sizes={imageSmallIconSizes}
-            /> :
-            <XCircleIcon/>}
-        </>
+      getIcon={() => (
+        <NextImage
+          src={`/images/ingredient/${ingredient.id}.png`}
+          alt={t(`Food.${ingredient.id}`)}
+          sizes={imageSmallIconSizes}
+        />
       )}
       targetSpecialty={specialtyIdMap.ingredient}
     />

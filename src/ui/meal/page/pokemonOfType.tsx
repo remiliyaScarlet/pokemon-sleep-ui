@@ -56,7 +56,7 @@ export const MealPokemonOfIngredientType = ({
             <PokemonIconsIngredientStats
               level={level}
               data={toUnique(pokeIngredientMap[id] ?? []).map((id) => pokedex[id]).filter(isNotNullish)}
-              ingredientMap={ingredientMap}
+              ingredient={ingredientMap[id]}
             />
           </Flex>
         </Flex>
