@@ -21,7 +21,6 @@ import {PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/
 
 
 type Props = {
-  idx: number | undefined,
   pokeInBox: PokeInBox,
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
@@ -31,7 +30,6 @@ type Props = {
 };
 
 export const PokeboxPokeInBoxUpdateLayout = ({
-  idx,
   pokeInBox,
   pokedexMap,
   subSkillMap,
@@ -40,7 +38,7 @@ export const PokeboxPokeInBoxUpdateLayout = ({
   onCopyPokeInBox,
 }: Props) => {
   const {
-    id,
+    uuid,
     pokemon: pokemonId,
     name,
     level,
@@ -63,7 +61,6 @@ export const PokeboxPokeInBoxUpdateLayout = ({
 
   const props: PokeboxPokeInBoxUpdateCommonProps = {
     pokeInBox,
-    pokeInBoxUiId: pokeInBox.id ?? idx?.toString() ?? '(placeholder)',
     setPokeInBox,
     pokemon,
   };
@@ -72,7 +69,7 @@ export const PokeboxPokeInBoxUpdateLayout = ({
     <Flex direction="col" className="gap-2 pr-1.5 sm:pr-0">
       <Flex direction="col" center className="gap-1.5 md:flex-row-reverse">
         <pre className="text-sm text-slate-500">
-          {id}
+          {uuid}
         </pre>
         <InputBox
           value={name ?? ''}

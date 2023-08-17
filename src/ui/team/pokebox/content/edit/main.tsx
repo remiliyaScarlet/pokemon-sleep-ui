@@ -11,7 +11,7 @@ type Props = {
   pokebox: Pokebox,
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
-  editOriginIdx: number | undefined,
+  editingUuid: string | undefined,
   onUpdateCompleted: (updated: PokeInBox) => void,
   onCopyPokeInBox: (pokeInBox: PokeInBox) => void,
   onRemovePokeInBox: () => void,
@@ -21,7 +21,7 @@ export const PokeboxPokeInBoxUpdatePopup = ({
   pokebox,
   pokedexMap,
   subSkillMap,
-  editOriginIdx,
+  editingUuid,
   onUpdateCompleted,
   onCopyPokeInBox,
   onRemovePokeInBox,
@@ -29,15 +29,15 @@ export const PokeboxPokeInBoxUpdatePopup = ({
   const [data, setData] = React.useState<PokeInBox>();
 
   React.useEffect(() => {
-    if (editOriginIdx === undefined) {
+    if (editingUuid === undefined) {
       return;
     }
 
-    setData(pokebox[editOriginIdx]);
-  }, [editOriginIdx]);
+    setData(pokebox[editingUuid]);
+  }, [editingUuid]);
 
   return (
-    <Popup show={editOriginIdx !== undefined} setShow={() => {
+    <Popup show={editingUuid !== undefined} setShow={() => {
       if (!data) {
         return;
       }
@@ -47,7 +47,6 @@ export const PokeboxPokeInBoxUpdatePopup = ({
       {
         data &&
         <PokeboxPokeInBoxUpdateLayout
-          idx={editOriginIdx}
           pokeInBox={data}
           pokedexMap={pokedexMap}
           subSkillMap={subSkillMap}

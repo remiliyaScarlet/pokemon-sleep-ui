@@ -19,7 +19,8 @@ type UsePokeboxViewerFilterOpts = {
 
 export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNameMap}: UsePokeboxViewerFilterOpts) => {
   return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, PokemonId>({
-    data: pokebox
+    data: Object.values(pokebox)
+      .filter(isNotNullish)
       .map((inBox) => {
         const pokemonId = inBox.pokemon;
         if (!pokemonId) {

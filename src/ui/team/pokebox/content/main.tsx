@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
+import {v4} from 'uuid';
 
 import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
@@ -42,7 +43,8 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
     ),
   });
   const sortedPokemonInfo = useSortingWorker({
-    data: pokebox
+    data: Object.values(pokebox)
+      .filter(isNotNullish)
       .map((pokeInBox) => {
         const pokemon = pokedexMap[pokeInBox.pokemon];
 
@@ -64,47 +66,47 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
   });
   const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
 
-  const [editOriginIdx, setEditOriginIdx] = React.useState<number>();
+  const [editingUuid, setEditingUuid] = React.useState<string>();
 
   return (
     <Flex direction="col" className="gap-1.5">
       <PokeboxPokeInBoxUpdatePopup
-        pokebox={sortedPokebox}
-        editOriginIdx={editOriginIdx}
+        pokebox={Object.fromEntries(sortedPokebox.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]))}
+        editingUuid={editingUuid}
         onUpdateCompleted={(pokeInBox) => {
-          if (editOriginIdx === undefined) {
+          if (editingUuid === undefined) {
             return;
           }
-          setPokebox([
-            ...sortedPokebox.slice(0, editOriginIdx),
-            pokeInBox,
-            ...sortedPokebox.slice(editOriginIdx + 1),
-          ]);
-          setEditOriginIdx(undefined);
+          setPokebox((original) => ({
+            ...original,
+            [editingUuid]: pokeInBox,
+          }));
+          setEditingUuid(undefined);
         }}
         onCopyPokeInBox={(pokeInBox) => {
-          if (editOriginIdx === undefined) {
+          if (editingUuid === undefined) {
             return;
           }
 
-          setPokebox([
-            ...sortedPokebox.slice(0, editOriginIdx),
-            pokeInBox,
-            ...sortedPokebox.slice(editOriginIdx + 1),
-            pokeInBox,
-          ]);
-          setEditOriginIdx(undefined);
+          const uuid = v4();
+          setPokebox((original) => ({
+            ...original,
+            [uuid]: {...pokeInBox, uuid},
+          }));
+          setEditingUuid(undefined);
         }}
         onRemovePokeInBox={() => {
-          if (editOriginIdx === undefined) {
+          if (editingUuid === undefined) {
             return;
           }
 
-          setPokebox([
-            ...sortedPokebox.slice(0, editOriginIdx),
-            ...sortedPokebox.slice(editOriginIdx + 1),
-          ]);
-          setEditOriginIdx(undefined);
+          setPokebox((original) => {
+            const updated = {...original};
+            delete updated[editingUuid];
+
+            return updated;
+          });
+          setEditingUuid(undefined);
         }}
         {...props}
       />
@@ -116,21 +118,21 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         }}
       />
       <LazyLoad loading={loading} className="gap-1.5">
-        {sortedPokemonInfo.map(({source}, idx) => {
-          const key = source.pokemon.id ?? `idx-${idx}`;
+        {sortedPokemonInfo.map(({source}) => {
+          const uuid = source.extra.uuid;
 
           // Explicitly checking `false` because the data might not get into the filter data array for check,
           // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
           if (isIncluded[source.pokemon.id] === false) {
-            return <React.Fragment key={key}/>;
+            return <React.Fragment key={uuid}/>;
           }
 
           return (
             <PokeboxContentPokeInBox
-              key={key}
+              key={uuid}
               pokeInBox={source.extra}
               displayType={filter.displayType}
-              onClick={() => setEditOriginIdx(idx)}
+              onClick={() => setEditingUuid(uuid)}
               {...props}
             />
           );

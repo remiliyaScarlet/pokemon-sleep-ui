@@ -22,7 +22,7 @@ export type PokeInBoxIngredient = {
 };
 
 export type PokeInBox = {
-  id?: string,
+  uuid: string,
   pokemon: PokemonId,
   name: string | null,
   level: number,
@@ -32,4 +32,4 @@ export type PokeInBox = {
   nature: NatureId | null,
 };
 
-export type Pokebox = PokeInBox[];
+export type Pokebox = {[uuid in string]?: PokeInBox};

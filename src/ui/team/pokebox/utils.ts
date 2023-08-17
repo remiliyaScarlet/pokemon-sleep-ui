@@ -1,3 +1,5 @@
+import {v4} from 'uuid';
+
 import {PokeInBox, PokeInBoxIngredientSingle} from '@/types/game/pokebox';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -11,6 +13,7 @@ const generatePokeInBoxIngredientSingle = (
 
 export const generateNewPokeInBox = ({id, stats, ingredients}: PokemonInfo): PokeInBox => {
   return {
+    uuid: v4(),
     pokemon: id,
     name: null,
     level: 1,

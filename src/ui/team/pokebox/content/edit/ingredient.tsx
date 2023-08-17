@@ -13,7 +13,6 @@ import {PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/
 
 
 export const PokeboxPokeInBoxIngredientEditor = ({
-  pokeInBoxUiId,
   pokeInBox,
   pokemon,
   setPokeInBox,
@@ -38,7 +37,7 @@ export const PokeboxPokeInBoxIngredientEditor = ({
             isActive={(id) => id === randomIngredientOfLevel.id}
             title={<><span className="text-xs">Lv</span>&nbsp;{ingredientLevel}</>}
             ids={pokemon.ingredients.random ?? []}
-            idToItemId={(id) => `${pokeInBoxUiId}-ingredient-${ingredientLevel}-${id}`}
+            idToItemId={(id) => `${pokeInBox.uuid}-ingredient-${ingredientLevel}-${id}`}
             idToAlt={(id) => t(`Food.${id}`)}
             idToImageSrc={(id) => `/images/ingredient/${id}.png`}
             ender={

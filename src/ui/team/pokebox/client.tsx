@@ -31,7 +31,11 @@ export const PokeboxClient = ({initialPokebox, ...props}: Props) => {
             return;
           }
 
-          setPokebox((original) => original.concat(generateNewPokeInBox(pokeInfo)));
+          const newPokeInBox = generateNewPokeInBox(pokeInfo);
+          setPokebox((original) => ({
+            ...original,
+            [newPokeInBox.uuid]: newPokeInBox,
+          }));
         }}
       />
       <AdsUnit/>
