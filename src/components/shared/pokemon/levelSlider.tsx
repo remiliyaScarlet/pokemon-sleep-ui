@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InputBox} from '@/components/input/box';
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
 
@@ -25,9 +26,19 @@ export const PokemonLevelSlider = ({level, maxLevel, setLevel, noSameLine}: Prop
         <div className="whitespace-nowrap">
           {t('PokemonLevel')}
         </div>
-        <div>
-          {level}
-        </div>
+        <InputBox
+          value={level.toString()}
+          className="w-12 text-center"
+          onChange={({target}) => {
+            const level = parseInt(target.value || '0');
+
+            if (isNaN(level)) {
+              return;
+            }
+
+            setLevel(Math.min(level, maxLevel));
+          }}
+        />
       </Flex>
       <Slider id="PokemonLevel" value={level} setValue={setLevel} min={1} max={maxLevel}/>
     </Flex>
