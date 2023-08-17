@@ -12,9 +12,10 @@ import {PokemonSortType, pokemonSortType} from '@/components/shared/pokemon/sort
 type Props = {
   sort: PokemonSortType,
   updateSort: (sort: PokemonSortType) => void,
+  exclude?: PokemonSortType[],
 };
 
-export const PokemonSortingFilter = ({sort, updateSort}: Props) => {
+export const PokemonSortingPicker = ({sort, updateSort, exclude}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   return (
@@ -28,7 +29,7 @@ export const PokemonSortingFilter = ({sort, updateSort}: Props) => {
           </div>
         </Flex>
       }
-      ids={[...pokemonSortType]}
+      ids={[...pokemonSortType].filter((sortType) => !exclude?.includes(sortType))}
       idToButton={(sort) => t(sortTypeToI18nId[sort])}
       idToItemId={(sort) => `sortType-${sort}`}
     />

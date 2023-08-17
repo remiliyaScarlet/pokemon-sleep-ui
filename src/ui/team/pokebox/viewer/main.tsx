@@ -12,7 +12,7 @@ import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonSortingFilter} from '@/components/shared/pokemon/sorter/filter';
+import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {pokeboxDisplayTypeToI18nId, pokeboxDisplayTypeToImageSrc} from '@/ui/team/pokebox/viewer/const';
 import {pokeboxDisplayType, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
@@ -45,9 +45,10 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
           idPrefix="viewer-"
         />
       ))}
-      <PokemonSortingFilter
+      <PokemonSortingPicker
         sort={filter.sort}
         updateSort={(sort) => setFilter((original) => ({...original, sort}))}
+        exclude={['friendshipPoint']}
       />
       <FilterIconInput
         title={

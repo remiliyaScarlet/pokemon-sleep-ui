@@ -13,7 +13,7 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
-import {PokemonSortingFilter} from '@/components/shared/pokemon/sorter/filter';
+import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
 import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
@@ -86,7 +86,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           idToButton={(display) => t(displayTypeToI18nId[display])}
           idToItemId={(display) => `displayType-${display}`}
         />
-        <PokemonSortingFilter
+        <PokemonSortingPicker
           sort={filter.sort}
           updateSort={(sort) => setFilter((original) => ({
             ...original,
