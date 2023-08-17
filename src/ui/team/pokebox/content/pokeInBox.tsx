@@ -54,6 +54,7 @@ export const PokeboxContentPokeInBox = (props: Props) => {
     <Flex direction="col" className={clsx(
       'width-with-gap-sm relative',
       'sm:width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-4-items xl:width-with-gap-5-items',
+      '2xl:width-with-gap-7-items',
     )}>
       <PokemonLinkPopup state={state} setState={setState}/>
       <button
