@@ -8,12 +8,14 @@ import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {usePokedexAutoUpload} from '@/ui/pokedex/index/upload';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
 export const PokedexClient = (props: PokedexClientCommonProps) => {
@@ -31,6 +33,16 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       pokemon: pokemon,
       level: filter.level,
       extra: null,
+      ingredients: (
+        pokemon.ingredients.fixed ?
+          [{
+            level: 1,
+            id: pokemon.ingredients.fixed,
+            quantity: pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1,
+          }] :
+          []
+      ),
+      ...defaultNeutralOpts,
     } satisfies PokemonInfoWithSortingPayload<null>)),
     sort: filter.sort,
     ingredientMap,

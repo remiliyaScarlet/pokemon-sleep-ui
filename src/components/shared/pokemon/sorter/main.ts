@@ -4,12 +4,11 @@ import {
   PokemonSortType,
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
-import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
 
 
 export type GetSortedPokemonOpts<TExtra, TData extends PokemonInfoWithSortingPayload<TExtra>> = Pick<
   GetPokemonSorterOpts,
-  'ingredientMap' | 'berryMap' | keyof GetProducingRateChangeableOpts
+  'ingredientMap' | 'berryMap'
 > & {
   data: TData[],
   sort: PokemonSortType,
@@ -21,16 +20,9 @@ export const getSortedPokemon = <TExtra, TData extends PokemonInfoWithSortingPay
   ...opts
 }: GetSortedPokemonOpts<TExtra, TData>): SortedPokemonInfo<TExtra, TData>[] => {
   return data
-    .map<SortedPokemonInfo<TExtra, TData>>((data) => {
-      return {
-        sorter: getPokemonSorter({
-          type: sort,
-          level: data.level,
-          pokemon: data.pokemon,
-          ...opts,
-        }),
-        source: data,
-      };
-    })
+    .map<SortedPokemonInfo<TExtra, TData>>((data) => ({
+      sorter: getPokemonSorter({type: sort, ...data, ...opts}),
+      source: data,
+    }))
     .sort(sortPokemon(sort));
 };

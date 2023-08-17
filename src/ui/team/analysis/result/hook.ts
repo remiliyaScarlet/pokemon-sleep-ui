@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ProducingRate} from '@/types/game/producing/rate';
+import {ProducingRateSingleParams, ProducingRate} from '@/types/game/producing/rate';
 import {
   TeamProducingStats,
   TeamProducingStatsBySlot,
@@ -19,7 +19,6 @@ import {
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
-import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
 import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
@@ -57,7 +56,7 @@ const useProducingStatsOfSlot = ({
     }
     const level = member.level;
     const berryData = berryMap[pokemon.berry.id];
-    const producingRateOpts: GetProducingRateChangeableOpts = {
+    const producingRateOpts: ProducingRateSingleParams = {
       helperCount,
       subSkillBonus: getSubSkillBonus({
         level: member.level,

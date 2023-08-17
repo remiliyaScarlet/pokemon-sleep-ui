@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import sum from 'lodash/sum';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -24,15 +23,15 @@ export const PokeboxPokeInBoxProductionIngredient = (props: PokeboxPokeInBoxComm
       pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
       'gap-0.5 text-sm',
     )}>
-      {Object.entries(rateOfIngredients).map(([id, rates]) => (
+      {rateOfIngredients.map(({id, quantity, dailyEnergy}) => (
         <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
-          <PokemonIngredientIcon id={parseInt(id)}/>
+          <PokemonIngredientIcon id={id}/>
           <div>
-            x{formatFloat(sum(rates.map(({quantity}) => quantity)))}
+            x{formatFloat(quantity)}
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(sum(rates.map(({dailyEnergy}) => dailyEnergy)))}
+            {formatFloat(dailyEnergy)}
           </div>
         </Flex>
       ))}

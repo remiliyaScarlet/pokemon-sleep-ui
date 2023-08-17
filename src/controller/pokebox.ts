@@ -72,8 +72,37 @@ const addUuidMigration = async () => {
   }
 };
 
+const addRandomIngredientMigration = async () => {
+  const collection = await getCollection();
+
+  const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
+  for await (const pokeInBox of collection.find({randomIngredient: {$not: {$type: 'array'}}})) {
+    bulkUpdate.push({
+      updateOne: {
+        filter: {_id: pokeInBox._id},
+        update: {$set: {randomIngredient: Object.entries(pokeInBox.randomIngredient).map(([lv, data]) => ({
+          level: parseInt(lv),
+          id: data.id,
+          quantity: data.quantity,
+        }))}},
+      },
+    });
+  }
+
+  if (bulkUpdate.length) {
+    await collection.bulkWrite(bulkUpdate, {ordered: false});
+  }
+};
+
+const addMigrations = () => {
+  return Promise.all([
+    addUuidMigration(),
+    addRandomIngredientMigration(),
+  ]);
+};
+
 addPokeboxIndex()
   .catch((e) => console.error('MongoDB failed to add Pokebox index', e));
 
-addUuidMigration()
-  .catch((e) => console.error('MongoDB failed to do UUID migration', e));
+addMigrations()
+  .catch((e) => console.error('MongoDB failed to do migrations', e));

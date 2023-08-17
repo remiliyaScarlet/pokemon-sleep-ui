@@ -1,14 +1,17 @@
 import {v4} from 'uuid';
 
-import {PokeInBox, PokeInBoxIngredientSingle} from '@/types/game/pokebox';
+import {PokeInBox} from '@/types/game/pokebox';
+import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
+import {isNotNullish} from '@/utils/type';
 
 
 const generatePokeInBoxIngredientSingle = (
+  level: number,
   ingredientId: IngredientId | undefined,
-): PokeInBoxIngredientSingle | null => {
-  return ingredientId ? {id: ingredientId, quantity: 1} : null;
+): PokemonIngredientPick | null => {
+  return ingredientId ? {level, id: ingredientId, quantity: 1} : null;
 };
 
 export const generateNewPokeInBox = ({id, stats, ingredients}: PokemonInfo): PokeInBox => {
@@ -17,10 +20,10 @@ export const generateNewPokeInBox = ({id, stats, ingredients}: PokemonInfo): Pok
     pokemon: id,
     name: null,
     level: 1,
-    randomIngredient: {
-      30: generatePokeInBoxIngredientSingle(ingredients.fixed),
-      60: generatePokeInBoxIngredientSingle(ingredients.fixed),
-    },
+    randomIngredient: [
+      generatePokeInBoxIngredientSingle(30, ingredients.fixed),
+      generatePokeInBoxIngredientSingle(60, ingredients.fixed),
+    ].filter(isNotNullish),
     carryLimit: stats.maxCarry,
     subSkill: {},
     nature: null,

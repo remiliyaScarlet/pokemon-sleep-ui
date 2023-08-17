@@ -15,6 +15,8 @@ import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
+import {getIngredientPicks} from '@/utils/game/producing/ingredientPick';
+import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -25,7 +27,7 @@ type Props = PokeboxCommonProps & {
 };
 
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
-  const {session, pokedexMap} = props;
+  const {session, pokedexMap, subSkillMap} = props;
   const t = useTranslations('Game');
   const [loading, setLoading] = React.useState(false);
   const {
@@ -52,10 +54,17 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
           return null;
         }
 
+        const {level} = pokeInBox;
+
         return {
           pokemon,
-          level: pokeInBox.level,
+          level,
           extra: pokeInBox,
+          ingredients: getIngredientPicks({
+            pokemon,
+            randomIngredientPicks: pokeInBox.randomIngredient,
+          }),
+          ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
         };
       })
       .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],

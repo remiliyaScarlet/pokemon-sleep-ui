@@ -1,22 +1,20 @@
-import {ProducingRate} from '@/types/game/producing/rate';
+import {ProducingRate, ProducingRateProportion} from '@/types/game/producing/rate';
 
 
-type GetProducingRateOpts = {
+type GetProducingRateOpts = ProducingRateProportion & {
   frequency: number,
   energyPerCount: number,
-  count: number,
-  possibilities: number,
 };
 
 export const getProducingRateBase = ({
   frequency,
   energyPerCount,
   count,
-  possibilities,
+  picks,
 }: GetProducingRateOpts): ProducingRate => {
   const quantity = 86400 / frequency;
   const dailyEnergy = quantity * energyPerCount;
-  const proportion = count / possibilities;
+  const proportion = count / picks;
 
   return {
     dailyEnergy: dailyEnergy * proportion,

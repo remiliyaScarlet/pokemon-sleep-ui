@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import sum from 'lodash/sum';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -11,6 +10,7 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/ico
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/details/utils';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
@@ -38,11 +38,11 @@ export const PokeboxPokeInBoxProductionTotal = (props: PokeboxPokeInBoxCommonPro
           'items-center gap-0.5 px-1',
           pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
         )}>
-          {Object.entries(rateOfIngredients).map(([id, rates]) => (
+          {rateOfIngredients.map(({id, quantity}) => (
             <React.Fragment key={id}>
-              <PokemonIngredientIcon id={parseInt(id)}/>
+              <PokemonIngredientIcon id={id}/>
               <div>
-              x{formatFloat(sum(rates.map(({quantity}) => quantity)))}
+              x{formatFloat(quantity)}
               </div>
             </React.Fragment>
           ))}
@@ -53,9 +53,8 @@ export const PokeboxPokeInBoxProductionTotal = (props: PokeboxPokeInBoxCommonPro
         <div>
           {formatFloat(
             rateOfBerry.dailyEnergy +
-            sum(Object.values(rateOfIngredients)
-              .flatMap((rates) => rates).map(({dailyEnergy}) => dailyEnergy),
-            ))}
+            toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy)),
+          )}
         </div>
       </Flex>
     </Flex>

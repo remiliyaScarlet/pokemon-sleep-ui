@@ -9,7 +9,6 @@ import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {isNotNullish} from '@/utils/type';
 
 
 export const PokeboxPokeInBoxInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommonProps) => {
@@ -30,9 +29,7 @@ export const PokeboxPokeInBoxInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommo
           <PokemonIngredientIcons
             ingredients={{
               fixed: ingredients.fixed,
-              random: Object.values(randomIngredient)
-                .map((ingredient) => ingredient?.id)
-                .filter(isNotNullish),
+              random: randomIngredient.map(({id}) => id),
             }}
           />
         </div>

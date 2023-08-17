@@ -6,9 +6,9 @@ import {
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/mongo/berry';
+import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
-import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
+import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 
 
 const sortInAsc: PokemonSortType[] = [
@@ -19,16 +19,8 @@ const sortInAsc: PokemonSortType[] = [
 
 const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
-  ingredientEnergy: ({pokemon, berryData, ingredientMap, ...opts}) => getIngredientProducingRate({
-    pokemon,
-    ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
-    ...opts,
-  })?.dailyEnergy ?? 0,
-  ingredientCount: ({pokemon, berryData, ingredientMap, ...opts}) => getIngredientProducingRate({
-    pokemon,
-    ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
-    ...opts,
-  })?.quantity ?? 0,
+  ingredientEnergy: (opts) => toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy)),
+  ingredientCount: (opts) => toSum(getIngredientProducingRates(opts).map(({quantity}) => quantity)),
   berryEnergy: ({berryData, ...opts}) => berryData ? getBerryProducingRate({
     isSnorlaxFavorite: false,
     berryData,
@@ -41,7 +33,7 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   }).quantity : 0,
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequency: ({pokemon}) => pokemon.stats.frequency,
-  totalEnergy: ({pokemon, berryData, ingredientMap, ...opts}) => {
+  totalEnergy: ({pokemon, berryData, ...opts}) => {
     if (!berryData) {
       return 0;
     }
@@ -52,22 +44,18 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
       berryData,
       ...opts,
     }).dailyEnergy;
-    const ingredient = getIngredientProducingRate({
+    const ingredient = toSum(getIngredientProducingRates({
       pokemon,
-      ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
       ...opts,
-    })?.dailyEnergy;
+    }).map(({dailyEnergy}) => dailyEnergy));
 
     return berry + (ingredient ?? 0);
   },
 };
 
-export type GetPokemonSorterOpts = Pick<
-  PokemonSorterGetterOpts,
-  'pokemon' | 'level' | 'ingredientMap' | keyof GetProducingRateChangeableOpts
-> & {
+export type GetPokemonSorterOpts = Omit<PokemonSorterGetterOpts, 'berryData'> & {
   type: PokemonSortType,
-  berryMap: BerryDataMap
+  berryMap: BerryDataMap,
 };
 
 export const getPokemonSorter = ({

@@ -1,9 +1,8 @@
-import {SubSkillBonus} from '@/types/game/pokemon/subskill';
-import {NatureId} from '@/types/game/producing/nature';
+import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
+import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {BerryData} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {GetProducingRateChangeableOpts} from '@/utils/game/producing/type';
 
 
 export const pokemonSortType = [
@@ -19,9 +18,10 @@ export const pokemonSortType = [
 
 export type PokemonSortType = typeof pokemonSortType[number];
 
-export type PokemonInfoWithSortingPayload<TExtra> = {
+export type PokemonInfoWithSortingPayload<TExtra> = ProducingRateSingleParams & {
   pokemon: PokemonInfo,
   level: number,
+  ingredients: PokemonIngredientPick[],
   extra: TExtra,
 };
 
@@ -30,13 +30,12 @@ export type SortedPokemonInfo<TExtra, TSource extends PokemonInfoWithSortingPayl
   source: TSource,
 };
 
-export type PokemonSorterGetterOpts = GetProducingRateChangeableOpts & {
+export type PokemonSorterGetterOpts = ProducingRateSingleParams & {
   pokemon: PokemonInfo,
   level: number,
+  ingredients: PokemonIngredientPick[],
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
-  subSkillBonus: SubSkillBonus | null,
-  natureId: NatureId | null,
 };
 
 export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;
