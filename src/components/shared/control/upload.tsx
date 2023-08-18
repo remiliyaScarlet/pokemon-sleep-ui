@@ -7,8 +7,8 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {LoadingSvg} from '@/components/icons/loading';
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex';
-import {useUploadUserData} from '@/hooks/userData';
-import {UploadUserDataOpts, UserDataUploadStatus} from '@/types/userData';
+import {useUploadUserData} from '@/hooks/userData/upload';
+import {UploadUserDataOpts, UserDataUploadStatus} from '@/types/userData/upload';
 
 
 const statusIcon: {[status in UserDataUploadStatus]: React.ReactNode} = {

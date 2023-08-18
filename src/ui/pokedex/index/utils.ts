@@ -14,6 +14,6 @@ export const generateInitialFilter = (session: Session | null): PokedexFilter =>
     ...merge({
       display: 'mainSkill',
       sort: 'id',
-    }, session?.user.data.pokedex),
+    }, session?.user.preloaded.pokedex),
   };
 };

@@ -9,10 +9,10 @@ export const usePotInfoFilter = ({meals, session}: PotInfoCommonProps) => {
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      mealType: session?.user.data.mealType ? {[session?.user.data.mealType]: true} : {},
+      mealType: session?.user.preloaded.mealType ? {[session?.user.preloaded.mealType]: true} : {},
       ingredients: {},
       displayType: 'ingredient',
-      capacity: session?.user.data.potCapacity ?? null,
+      capacity: session?.user.preloaded.potCapacity ?? null,
       showEmpty: false,
     },
     isDataIncluded: (filter, meal) => {

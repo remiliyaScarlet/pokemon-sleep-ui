@@ -8,7 +8,8 @@ import {
   userDataRecipeLevel,
   userDataTeamAnalysisSetup,
 } from '@/controller/user/manager';
-import {UploadUserDataOpts, UserData} from '@/types/userData';
+import {UploadUserDataOpts} from '@/types/userData/upload';
+import {UserPreloadedData} from '@/types/userData/userData';
 
 
 export const uploadUserData = async ({userId, opts}: {userId: string, opts: UploadUserDataOpts}) => {
@@ -62,7 +63,7 @@ export const uploadUserData = async ({userId, opts}: {userId: string, opts: Uplo
   console.error(`Unhandled user data upload type: [${type satisfies never}]`);
 };
 
-export const getUserData = async (userId: string): Promise<UserData> => {
+export const getUserPreloadedData = async (userId: string): Promise<UserPreloadedData> => {
   const [
     mealType,
     recipeLevel,
@@ -74,6 +75,7 @@ export const getUserData = async (userId: string): Promise<UserData> => {
   ] = await Promise.all([
     userDataMealType.getData(userId),
     userDataRecipeLevel.getData(userId),
+    // FIXME: Move this to lazy load
     userDataTeamAnalysisSetup.getData(userId),
     userDataPokedex.getData(userId),
     userDataPokeboxDisplay.getData(userId),

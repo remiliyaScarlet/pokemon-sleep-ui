@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useUploadUserData} from '@/hooks/userData';
+import {useUploadUserData} from '@/hooks/userData/upload';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
 
 

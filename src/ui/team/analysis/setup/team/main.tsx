@@ -19,7 +19,12 @@ type Props = TeamAnalysisDataProps & {
 };
 
 export const TeamAnalysisTeamView = (props: Props) => {
-  const {setup, setSetup, pokedex, producingStats} = props;
+  const {
+    setup,
+    setSetup,
+    pokedex,
+    producingStats,
+  } = props;
 
   return (
     <>

@@ -2,8 +2,17 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {UseUploadUserDataReturn, UploadUserDataOpts, UserDataUploader, UserDataUploadStatus} from '@/types/userData';
+import {
+  UploadUserDataOpts,
+  UserDataUploader,
+  UserDataUploadStatus,
+} from '@/types/userData/upload';
 
+
+type UseUploadUserDataReturn = {
+  upload: UserDataUploader | null,
+  status: UserDataUploadStatus,
+};
 
 export const useUploadUserData = (): UseUploadUserDataReturn => {
   const [status, setStatus] = React.useState<UserDataUploadStatus>('waiting');

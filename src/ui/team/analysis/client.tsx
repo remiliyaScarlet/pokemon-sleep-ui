@@ -19,7 +19,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
 
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
-    snorlaxFavorite: session?.user.data.teamAnalysisSetup?.snorlaxFavorite,
+    snorlaxFavorite: session?.user.preloaded.teamAnalysisSetup?.snorlaxFavorite,
   });
   const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>(migrate({
     original: {
@@ -36,7 +36,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
       },
       version: 1,
     },
-    override: session?.user.data.teamAnalysisSetup,
+    override: session?.user.preloaded.teamAnalysisSetup,
     migrators: teamAnalysisSetupMigrators,
   }));
 

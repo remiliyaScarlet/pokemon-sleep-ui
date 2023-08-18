@@ -2,10 +2,10 @@ import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import googleProvider from 'next-auth/providers/google';
 
-import {getUserData, uploadUserData} from '@/controller/user/main';
+import {getUserPreloadedData, uploadUserData} from '@/controller/user/main';
 import mongoPromise from '@/lib/mongodb';
 import {NextAuthSessionUser} from '@/types/auth';
-import {UploadUserDataOpts} from '@/types/userData';
+import {UploadUserDataOpts} from '@/types/userData/upload';
 
 
 const cookieDomain = process.env.NEXTAUTH_COOKIE_DOMAIN;
@@ -48,7 +48,8 @@ export const authOptions: AuthOptions = {
 
       session.user = {
         id: userId,
-        data: await getUserData(userId),
+        preloaded: await getUserPreloadedData(userId),
+        lazyLoaded: {},
       } satisfies NextAuthSessionUser;
 
       if (trigger !== 'update' || !newSession) {
@@ -56,7 +57,7 @@ export const authOptions: AuthOptions = {
       }
 
       await uploadUserData({userId, opts: newSession satisfies UploadUserDataOpts});
-      session.user.data = await getUserData(userId);
+      session.user.preloaded = await getUserPreloadedData(userId);
 
       return session;
     },

@@ -21,8 +21,8 @@ type Props = {
 export const MealIndexClient = ({data, session}: Props) => {
   const props = useFilteredMeals({
     data,
-    initialPotCapacity: session?.user.data.potCapacity,
-    initialMealType: session?.user.data.mealType,
+    initialPotCapacity: session?.user.preloaded.potCapacity,
+    initialMealType: session?.user.preloaded.mealType,
   });
   const {isIncluded, filter} = props;
 

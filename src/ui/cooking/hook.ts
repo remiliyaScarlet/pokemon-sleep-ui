@@ -18,11 +18,11 @@ export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: session?.user.data?.mealType ?? 1,
-      recipeLevel: merge({}, session?.user.data?.recipeLevel),
-      capacity: session?.user.data.potCapacity ?? 15,
+      type: session?.user.preloaded?.mealType ?? 1,
+      recipeLevel: merge({}, session?.user.preloaded?.recipeLevel),
+      capacity: session?.user.preloaded.potCapacity ?? 15,
       ingredient: {},
-      ingredientCount: merge({}, session?.user.data?.ingredientCount),
+      ingredientCount: merge({}, session?.user.preloaded?.ingredientCount),
     },
     isDataIncluded: (filter, meal) => {
       if (filter.type !== meal.type) {
