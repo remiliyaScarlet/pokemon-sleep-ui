@@ -14,11 +14,11 @@ import {
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
-import {UserDataUploadButton} from '@/components/shared/control/upload';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
+import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {MealTypeId} from '@/types/mongo/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 

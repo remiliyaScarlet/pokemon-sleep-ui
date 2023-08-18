@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UserDataUploadControlRow} from '@/components/shared/control/upload';
+import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {SnorlaxFavorite, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 
 

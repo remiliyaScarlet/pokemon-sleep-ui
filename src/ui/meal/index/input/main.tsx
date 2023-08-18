@@ -2,11 +2,11 @@ import React from 'react';
 
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
-import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
+import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {Meal} from '@/types/mongo/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {toUnique} from '@/utils/array';

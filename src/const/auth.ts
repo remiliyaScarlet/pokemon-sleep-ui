@@ -5,7 +5,7 @@ import googleProvider from 'next-auth/providers/google';
 import {getUserPreloadedData, uploadUserData} from '@/controller/user/main';
 import mongoPromise from '@/lib/mongodb';
 import {NextAuthSessionUser} from '@/types/auth';
-import {UploadUserDataOpts} from '@/types/userData/upload';
+import {UserDataAction} from '@/types/userData/main';
 
 
 const cookieDomain = process.env.NEXTAUTH_COOKIE_DOMAIN;
@@ -56,8 +56,12 @@ export const authOptions: AuthOptions = {
         return session;
       }
 
-      await uploadUserData({userId, opts: newSession satisfies UploadUserDataOpts});
-      session.user.preloaded = await getUserPreloadedData(userId);
+      const action = newSession as UserDataAction;
+
+      if (action.action === 'upload') {
+        await uploadUserData({userId, opts: action.options});
+        session.user.preloaded = await getUserPreloadedData(userId);
+      }
 
       return session;
     },

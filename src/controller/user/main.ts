@@ -8,11 +8,11 @@ import {
   userDataRecipeLevel,
   userDataTeamAnalysisSetup,
 } from '@/controller/user/manager';
-import {UploadUserDataOpts} from '@/types/userData/upload';
-import {UserPreloadedData} from '@/types/userData/userData';
+import {UserPreloadedData} from '@/types/userData/main';
+import {UserDataUploadOpts} from '@/types/userData/upload';
 
 
-export const uploadUserData = async ({userId, opts}: {userId: string, opts: UploadUserDataOpts}) => {
+export const uploadUserData = async ({userId, opts}: {userId: string, opts: UserDataUploadOpts}) => {
   const {type, data} = opts;
 
   if (type === 'cooking' || type === 'potInfo') {

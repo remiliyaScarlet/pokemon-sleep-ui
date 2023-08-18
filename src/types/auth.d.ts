@@ -1,6 +1,6 @@
 import {DefaultSession} from 'next-auth';
 
-import {UserLazyLoadedData, UserPreloadedData} from '@/types/userData/userData';
+import {UserLazyLoadedData, UserPreloadedData} from '@/types/userData/main';
 
 
 export type NextAuthSessionUser = DefaultSession['user'] & {

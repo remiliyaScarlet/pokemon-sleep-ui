@@ -25,7 +25,7 @@ export type UploadOfPokebox = {
   display: PokeboxViewerDisplay,
 };
 
-export type UploadUserDataOpts = {
+export type UserDataUploadOpts = {
   type: 'pokedex',
   data: PokedexDisplay,
 } | {
@@ -44,7 +44,3 @@ export type UploadUserDataOpts = {
   type: 'cooking',
   data: UploadOfCookingData,
 };
-
-export type UserDataUploader = (opts: UploadUserDataOpts) => void;
-
-export type UserDataUploadStatus = 'waiting' | 'updating' | 'completed' | 'failed';

@@ -5,9 +5,9 @@ import {v4} from 'uuid';
 
 import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
-import {UserDataUploadControlRow} from '@/components/shared/control/upload';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';

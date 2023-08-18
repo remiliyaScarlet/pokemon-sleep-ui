@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useUploadUserData} from '@/hooks/userData/upload';
+import {useUserDataActor} from '@/hooks/userData';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
 
 
@@ -9,15 +9,18 @@ type Props = {
 };
 
 export const usePokedexAutoUpload = ({filter}: Props) => {
-  const {upload, status} = useUploadUserData();
+  const {act, status} = useUserDataActor();
 
   React.useEffect(() => {
-    if (!upload || status === 'updating') {
+    if (!act || status === 'processing') {
       return;
     }
 
     const timeoutId = setTimeout(() => (
-      upload({type: 'pokedex', data: {sort: filter.sort, display: filter.display}})
+      act({
+        action: 'upload',
+        options: {type: 'pokedex', data: {sort: filter.sort, display: filter.display}},
+      })
     ), 500);
 
     return () => clearTimeout(timeoutId);
