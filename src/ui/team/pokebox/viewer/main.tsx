@@ -1,21 +1,32 @@
 import React from 'react';
 
+import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
+import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterInputProps} from '@/components/input/filter/type';
-import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
+import {getIconFilterButtonClass, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {pokeboxDisplayTypeToI18nId, pokeboxDisplayTypeToImageSrc} from '@/ui/team/pokebox/viewer/const';
-import {pokeboxDisplayType, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {
+  pokeboxDisplayTypeToI18nId,
+  pokeboxDisplayTypeToImageSrc,
+  pokeboxViewTypeToIcon,
+} from '@/ui/team/pokebox/viewer/const';
+import {
+  pokeboxDisplayType,
+  PokeboxViewerFilter,
+  PokeboxViewType,
+  pokeboxViewType,
+} from '@/ui/team/pokebox/viewer/type';
 
 
 type Props = FilterInputProps<PokeboxViewerFilter> & {
@@ -67,6 +78,29 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
           filter,
           setFilter,
           filterKey: 'displayType',
+          allowNull: false,
+        })}
+      />
+      <FilterCategoryInput
+        title={
+          <Flex direction="col" center>
+            <div className="h-6 w-6">
+              <EyeIcon/>
+            </div>
+          </Flex>
+        }
+        ids={[...pokeboxViewType]}
+        idToButton={(type: PokeboxViewType) => (
+          <div className="h-6 w-6">
+            {pokeboxViewTypeToIcon[type]}
+          </div>
+        )}
+        idToItemId={(type) => type}
+        getClassNames={getIconFilterButtonClass}
+        {...getSingleSelectOnClickProps({
+          filter,
+          setFilter,
+          filterKey: 'viewType',
           allowNull: false,
         })}
       />

@@ -1,5 +1,10 @@
+import React from 'react';
+
+import Squares2X2Icon from '@heroicons/react/24/outline/Squares2X2Icon';
+import TableCellsIcon from '@heroicons/react/24/outline/TableCellsIcon';
+
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
-import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxDisplayType, PokeboxViewType} from '@/ui/team/pokebox/viewer/type';
 
 
 export const pokeboxDisplayTypeToI18nId: {
@@ -20,4 +25,9 @@ export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: st
   skills: '/images/generic/skill.png',
   stats: '/images/generic/analysis.png',
   info: '/images/generic/info.png',
+};
+
+export const pokeboxViewTypeToIcon: {[viewType in PokeboxViewType]: React.ReactNode} = {
+  table: <TableCellsIcon/>,
+  grid: <Squares2X2Icon/>,
 };

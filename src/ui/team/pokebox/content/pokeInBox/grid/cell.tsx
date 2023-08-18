@@ -10,20 +10,12 @@ import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokeInBox} from '@/types/game/pokebox';
-import {PokedexMap} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/details/main';
+import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 
 
-type Props = PokeboxCommonProps & Pick<PokeboxPokeInBoxCommonProps, 'displayType'> & {
-  pokeInBox: PokeInBox,
-  pokedexMap: PokedexMap,
-  onClick: () => void,
-};
-
-export const PokeboxContentPokeInBox = (props: Props) => {
+export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
   const {
     pokeInBox,
     pokedexMap,

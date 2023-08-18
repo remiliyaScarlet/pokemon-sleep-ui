@@ -1,0 +1,23 @@
+import React from 'react';
+
+import {FilterInclusionMap} from '@/components/input/filter/type';
+import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
+import {PokeInBox} from '@/types/game/pokebox';
+import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
+import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
+import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+
+
+export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
+  filter: PokeboxViewerFilter,
+  isIncluded: FilterInclusionMap<PokemonId>,
+  setEditingUuid: React.Dispatch<React.SetStateAction<string | undefined>>,
+  sortedPokemonInfo: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
+};
+
+export type PokeInBoxViewUnitProps = PokeboxCommonProps & Pick<PokeboxPokeInBoxCommonProps, 'displayType'> & {
+  pokeInBox: PokeInBox,
+  pokedexMap: PokedexMap,
+  onClick: () => void,
+};

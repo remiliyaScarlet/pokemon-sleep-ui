@@ -11,7 +11,7 @@ import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
-import {PokeboxContentPokeInBox} from '@/ui/team/pokebox/content/pokeInBox';
+import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
@@ -78,9 +78,9 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
   useAutoUpload({
     opts: {
       type: 'pokebox',
-      data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType}},
+      data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType, viewType: filter.viewType}},
     },
-    triggerDeps: [pokebox, filter.sort, filter.displayType],
+    triggerDeps: [pokebox, filter.sort, filter.displayType, filter.viewType],
     delay: 0,
   });
 
@@ -130,25 +130,13 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
       <LazyLoad loading={loading} className="gap-1.5">
-        {sortedPokemonInfo.map(({source}) => {
-          const uuid = source.extra.uuid;
-
-          // Explicitly checking `false` because the data might not get into the filter data array for check,
-          // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
-          if (isIncluded[source.pokemon.id] === false) {
-            return <React.Fragment key={uuid}/>;
-          }
-
-          return (
-            <PokeboxContentPokeInBox
-              key={uuid}
-              pokeInBox={source.extra}
-              displayType={filter.displayType}
-              onClick={() => setEditingUuid(uuid)}
-              {...props}
-            />
-          );
-        })}
+        <PokeboxPokeInBoxView
+          filter={filter}
+          isIncluded={isIncluded}
+          setEditingUuid={setEditingUuid}
+          sortedPokemonInfo={sortedPokemonInfo}
+          {...props}
+        />
       </LazyLoad>
     </Flex>
   );

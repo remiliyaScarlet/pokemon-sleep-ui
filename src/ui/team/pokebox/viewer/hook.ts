@@ -46,6 +46,7 @@ export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNam
       ...merge({
         sort: 'id',
         displayType: 'productionTotal',
+        viewType: 'table',
       } satisfies PokeboxViewerDisplay, session?.user.preloaded?.pokeboxDisplay),
     },
     isDataIncluded: (filter, data) => {
