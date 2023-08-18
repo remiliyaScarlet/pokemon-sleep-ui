@@ -5,20 +5,27 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {PokemonSleepTypeCommonProps} from '@/components/shared/pokemon/sleepType/type';
-import {sleepTypeTextClass} from '@/styles/classes';
+import {getSleepTypeTextClass} from '@/styles/game/sleepType';
 
 
 type Props = PokemonSleepTypeCommonProps & {
   hideText?: boolean,
 };
 
-export const PokemonSleepType = ({sleepType, dimension, hideText}: Props) => {
+export const PokemonSleepType = ({hideText, ...props}: Props) => {
+  const {sleepType, active} = props;
+
   const t = useTranslations('Game.SleepType');
 
   return (
     <Flex direction="row" noFullWidth className="items-center gap-1">
-      <PokemonSleepTypeIcon sleepType={sleepType} dimension={dimension}/>
-      {!hideText && <div className={sleepTypeTextClass[sleepType]}>{t(sleepType.toString())}</div>}
+      <PokemonSleepTypeIcon {...props}/>
+      {
+        !hideText &&
+        <div className={getSleepTypeTextClass(sleepType, active ?? false)}>
+          {t(sleepType.toString())}
+        </div>
+      }
     </Flex>
   );
 };

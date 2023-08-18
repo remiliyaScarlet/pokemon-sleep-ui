@@ -5,19 +5,19 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSleepTypeCommonProps} from '@/components/shared/pokemon/sleepType/type';
-import {sleepTypeBgClass} from '@/styles/classes';
+import {getSleepTypeBgClass} from '@/styles/game/sleepType';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-export const PokemonSleepTypeIcon = ({sleepType, dimension}: PokemonSleepTypeCommonProps) => {
+export const PokemonSleepTypeIcon = ({sleepType, dimension, active}: PokemonSleepTypeCommonProps) => {
   const t = useTranslations('Game.SleepType');
 
   return (
-    <div className={clsx('rounded-full p-0.5', sleepTypeBgClass[sleepType])}>
+    <div className={clsx('rounded-full p-0.5', getSleepTypeBgClass(sleepType, active ?? false))}>
       <div className={clsx('relative', dimension ?? 'h-5 w-5')}>
         <NextImage
           src={`/images/sleepType/${sleepType}.png`} alt={t(sleepType.toString())}
-          sizes={imageSmallIconSizes} className="invert-on-dark"
+          sizes={imageSmallIconSizes} className={active ? 'invert-on-light' : 'invert-on-dark'}
         />
       </div>
     </div>

@@ -13,7 +13,7 @@ import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {specialtyTextClass} from '@/styles/classes';
+import {specialtyTextClassDefault} from '@/styles/game/specialty';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonBerryMeta} from '@/ui/pokedex/page/meta/berry';
@@ -52,7 +52,7 @@ export const PokemonMeta = (props: PokemonProps) => {
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Specialty')}
-          contentClassName={clsx('text-lg', specialty && specialtyTextClass[specialty])}
+          contentClassName={clsx('text-lg', specialty && specialtyTextClassDefault[specialty])}
         >
           <PokemonSpecialty specialty={specialty} dimension="h-7 w-7"/>
         </PokemonMetaSection>

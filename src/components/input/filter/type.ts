@@ -24,7 +24,7 @@ export type FilterInputOnClickProps<TId> = {
 export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & {
   title: React.ReactNode,
   ids: TId[],
-  idToButton: (id: TId) => React.ReactNode,
+  idToButton: (id: TId, isActive: boolean) => React.ReactNode,
   idToItemId: (id: TId) => string,
   isHidden?: (id: TId) => boolean,
   getClassNames: (isActive: boolean, id: TId) => string,

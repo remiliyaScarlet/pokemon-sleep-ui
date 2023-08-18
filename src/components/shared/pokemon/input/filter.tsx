@@ -72,7 +72,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `${idPrefix}Specialty-${id}`}
-        idToButton={(id) => <PokemonSpecialty specialty={id}/>}
+        idToButton={(id, isActive) => <PokemonSpecialty specialty={id} active={isActive}/>}
         ids={getIds(({specialty}) => specialty as TId)}
         {...commonProps}
       />
@@ -83,7 +83,7 @@ export const PokemonFilter = <
     return (
       <FilterTextInput
         idToItemId={(id) => `${idPrefix}SleepType-${id}`}
-        idToButton={(id) => <PokemonSleepType sleepType={id}/>}
+        idToButton={(id, isActive) => <PokemonSleepType sleepType={id} active={isActive}/>}
         ids={getIds(({sleepType}) => sleepType as TId)}
         {...commonProps}
       />
