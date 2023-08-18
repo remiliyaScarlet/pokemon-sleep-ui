@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {getAllBerryData} from '@/controller/berry';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryLink} from '@/ui/berry/index/link';
 
 
@@ -13,7 +13,7 @@ export const BerryIndex = () => {
   const berryDataMap = React.use(getAllBerryData());
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <AdsUnit/>
       <Flex direction="row" wrap center className="gap-2 p-3">
         {Object.values(berryDataMap).map((berry) => (
@@ -29,6 +29,6 @@ export const BerryIndex = () => {
         ))}
       </Flex>
       <AdsUnit/>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

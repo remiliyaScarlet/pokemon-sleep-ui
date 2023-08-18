@@ -7,7 +7,7 @@ import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {CookingClient} from '@/ui/cooking/client';
 
 
@@ -17,12 +17,12 @@ export const Cooking = () => {
   const session = React.use(getServerSession(authOptions));
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
         <AuthProvider>
           <CookingClient meals={meals} ingredientMap={ingredientMap} session={session}/>
         </AuthProvider>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

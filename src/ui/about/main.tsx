@@ -7,14 +7,14 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {AboutSection} from '@/ui/about/section';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
 export const About = () => {
   const t = useTranslations('UI.Metadata');
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" center className="info-section !gap-8">
         <Flex direction="col" className="gap-2">
           <div className="text-2xl">
@@ -59,6 +59,6 @@ export const About = () => {
           </Flex>
         </Flex>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

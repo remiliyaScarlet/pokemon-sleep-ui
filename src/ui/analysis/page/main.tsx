@@ -9,7 +9,7 @@ import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
 type Props = {
@@ -41,10 +41,10 @@ export const AnalysisPage = ({params}: Props) => {
   };
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Analysis', 'UI.InPage.Pokedex', 'UI.Metadata']}>
         <AnalysisPageClient {...props}/>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

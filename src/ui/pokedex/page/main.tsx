@@ -9,7 +9,7 @@ import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -37,7 +37,7 @@ export const Pokemon = ({params}: Props) => {
   const props: PokemonProps = {pokemon, sleepStyles, berryData, ingredientMap};
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" center className="gap-2">
         <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.Metadata']}>
           <PokemonMeta {...props}/>
@@ -46,6 +46,6 @@ export const Pokemon = ({params}: Props) => {
         <PokemonSleepStyles {...props}/>
         <AdsUnit/>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

@@ -7,14 +7,14 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {FeatureLink} from '@/components/shared/link/feature';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
 export const TeamIndex = () => {
   const t = useTranslations('UI.Metadata.Team');
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" center>
         <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">
@@ -48,6 +48,6 @@ export const TeamIndex = () => {
           </div>
         </Flex>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

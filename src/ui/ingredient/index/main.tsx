@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {getAllIngredients} from '@/controller/ingredient';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientLink} from '@/ui/ingredient/index/link';
 
 
@@ -13,7 +13,7 @@ export const IngredientIndex = () => {
   const data = React.use(getAllIngredients());
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <AdsUnit/>
       <Flex direction="row" wrap center className="gap-2 p-3">
         {Object.values(data).map((ingredient) => (
@@ -31,6 +31,6 @@ export const IngredientIndex = () => {
         ))}
       </Flex>
       <AdsUnit/>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

@@ -6,7 +6,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
 import {getPokemonByBerry} from '@/controller/pokemon';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageCommonProps} from '@/ui/berry/page/type';
 
@@ -28,7 +28,7 @@ export const BerryPage = ({params}: Props) => {
   const props: BerryPageCommonProps = {berryData, favoriteInfo, pokemonOfBerry};
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={[
         'Game.Berry',
         'Game.Field',
@@ -39,6 +39,6 @@ export const BerryPage = ({params}: Props) => {
       ]}>
         <BerryPageClient {...props}/>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

@@ -6,7 +6,7 @@ import {authOptions} from '@/const/auth';
 import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllMeals} from '@/controller/meal';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealIndexClient} from '@/ui/meal/index/client';
 
 
@@ -15,12 +15,12 @@ export const MealIndex = () => {
   const session = React.use(getServerSession(authOptions));
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.InPage.Cooking']}>
         <AuthProvider>
           <MealIndexClient data={data} session={session}/>
         </AuthProvider>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

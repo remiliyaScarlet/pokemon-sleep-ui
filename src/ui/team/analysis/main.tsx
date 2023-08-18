@@ -7,7 +7,7 @@ import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsMap} from '@/controller/pokemon';
 import {getSnorlaxRank} from '@/controller/snorlaxRank';
 import {getSubSkillMap} from '@/controller/subSkill';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {TeamAnalysisClient} from '@/ui/team/analysis/client/main';
 import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
 
@@ -30,10 +30,10 @@ export const TeamAnalysis = () => {
   };
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
         <TeamAnalysisClient {...props}/>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

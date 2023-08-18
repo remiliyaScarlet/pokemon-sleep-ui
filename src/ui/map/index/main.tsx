@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {MapLink} from '@/components/shared/map/link';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getSleepStyleByMaps} from '@/controller/sleepStyle';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MapStats} from '@/ui/map/common/stats';
 
 
@@ -18,7 +18,7 @@ export const MapIndex = () => {
   const t = useTranslations('Game.Field');
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" className="gap-1.5 md:px-32 md:pt-32">
         <AdsUnit/>
         <Flex direction="row" center wrap className="gap-1.5">
@@ -44,6 +44,6 @@ export const MapIndex = () => {
         </Flex>
         <AdsUnit/>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

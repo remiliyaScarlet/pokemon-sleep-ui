@@ -12,7 +12,7 @@ import {getPokemonAsMap} from '@/controller/pokemon';
 import {getSleepStyleOfMap} from '@/controller/sleepStyle';
 import {getSnorlaxRankOfMap} from '@/controller/snorlaxRank';
 import {getSnorlaxReward} from '@/controller/snorlaxReward';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MapInfo} from '@/ui/map/page/info';
 import {MapMeta} from '@/ui/map/page/meta';
 import {MapCommonProps} from '@/ui/map/page/type';
@@ -48,7 +48,7 @@ export const MapPage = ({params}: Props) => {
   };
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" center>
         <Flex direction="col" className="gap-1.5 md:w-3/4">
           <MapMeta {...props}/>
@@ -59,6 +59,6 @@ export const MapPage = ({params}: Props) => {
           <AdsUnit/>
         </Flex>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

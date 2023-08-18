@@ -11,7 +11,7 @@ import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllPokemonAsCursor} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';
 import {PokedexClientCommonProps, PokedexData, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 
@@ -45,12 +45,12 @@ export const Pokedex = () => {
   };
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <AuthProvider>
           <PokedexClient {...props}/>
         </AuthProvider>
       </I18nProvider>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

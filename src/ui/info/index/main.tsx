@@ -5,14 +5,14 @@ import {useTranslations} from 'next-intl';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
-import {PageLayout} from '@/ui/base/layout';
+import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
 export const InfoIndex = () => {
   const t = useTranslations('UI.Metadata.Info');
 
   return (
-    <PageLayout>
+    <PublicPageLayout>
       <Flex direction="col" center>
         <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">
@@ -47,6 +47,6 @@ export const InfoIndex = () => {
           </div>
         </Flex>
       </Flex>
-    </PageLayout>
+    </PublicPageLayout>
   );
 };

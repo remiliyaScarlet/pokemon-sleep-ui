@@ -4,14 +4,11 @@ import {Toaster} from 'react-hot-toast';
 
 import {Announcements} from '@/components/announcement/main';
 import {Flex} from '@/components/layout/flex';
+import {PageProps} from '@/ui/base/layout/type';
 import {NavBar} from '@/ui/base/navbar/main';
 
 
-type Props = {
-  announcement?: boolean,
-};
-
-export const PageLayout = ({announcement = true, children}: React.PropsWithChildren<Props>) => {
+export const PageLayout = ({announcement = true, children}: React.PropsWithChildren<PageProps>) => {
   return (
     <main className="min-h-full w-full">
       <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
