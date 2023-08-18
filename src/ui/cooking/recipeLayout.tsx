@@ -16,7 +16,10 @@ export const CookingRecipeLayout = (props: React.PropsWithChildren<CookingRecipe
 
   return (
     <div className={clsx('button-toggle-inactive-bg relative rounded-lg', clickable && 'button-clickable')}>
-      <div className={clsx('absolute left-1.5 top-1.5 z-10 whitespace-nowrap text-sm', markGray && 'text-slate-500')}>
+      <div className={clsx(
+        'absolute left-1.5 top-1.5 z-10 whitespace-nowrap text-sm',
+        markGray && 'text-slate-400 dark:text-slate-600',
+      )}>
         {mealName}
       </div>
       {children}
