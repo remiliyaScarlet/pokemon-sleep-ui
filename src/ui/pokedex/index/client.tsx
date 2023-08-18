@@ -9,12 +9,12 @@ import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
-import {usePokedexAutoUpload} from '@/ui/pokedex/index/upload';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
@@ -26,7 +26,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     data: pokedex,
     session,
   });
-  usePokedexAutoUpload({filter});
+  useAutoUpload({
+    opts: {type: 'pokedex', data: {sort: filter.sort, display: filter.display}},
+    triggerDeps: [filter.sort, filter.display],
+  });
 
   const sortedData = useSortingWorker({
     data: pokedex.map((pokemon) => ({

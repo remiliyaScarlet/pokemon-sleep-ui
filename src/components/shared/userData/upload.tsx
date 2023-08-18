@@ -3,7 +3,7 @@ import React from 'react';
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex';
 import {actionStatusIcon} from '@/components/shared/userData/const';
-import {useUserDataActor} from '@/hooks/userData';
+import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 
 

@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 import {Failed} from '@/components/icons/failed';
 import {Loading} from '@/components/icons/loading';
 import {AuthProvider} from '@/contexts/auth';
-import {useUserDataActor} from '@/hooks/userData';
+import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
