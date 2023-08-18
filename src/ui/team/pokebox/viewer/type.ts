@@ -4,6 +4,13 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 
 
+export const pokeboxViewType = [
+  'grid',
+  'table',
+] as const;
+
+export type PokeboxViewType = typeof pokeboxViewType[number];
+
 export const pokeboxDisplayType = [
   'productionBerry',
   'productionIngredient',
@@ -15,13 +22,6 @@ export const pokeboxDisplayType = [
 
 export type PokeboxDisplayType = typeof pokeboxDisplayType[number];
 
-export const pokeboxViewType = [
-  'grid',
-  'table',
-] as const;
-
-export type PokeboxViewType = typeof pokeboxViewType[number];
-
 export type PokeboxPokemonForView = {
   info: PokemonInfo,
   inBox: PokeInBox,
@@ -30,8 +30,8 @@ export type PokeboxPokemonForView = {
 
 export type PokeboxViewerDisplay = {
   sort: PokemonSortType,
-  displayType: PokeboxDisplayType,
   viewType: PokeboxViewType,
+  displayType: PokeboxDisplayType,
 };
 
 export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {

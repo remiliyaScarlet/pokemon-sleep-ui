@@ -61,26 +61,6 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
         updateSort={(sort) => setFilter((original) => ({...original, sort}))}
         exclude={['friendshipPoint']}
       />
-      <FilterIconInput
-        title={
-          <Flex direction="col" center>
-            <div className="h-6 w-6">
-              <InformationCircleIcon/>
-            </div>
-          </Flex>
-        }
-        ids={[...pokeboxDisplayType]}
-        idToItemId={(type) => type}
-        idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
-        idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
-        idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
-        {...getSingleSelectOnClickProps({
-          filter,
-          setFilter,
-          filterKey: 'displayType',
-          allowNull: false,
-        })}
-      />
       <FilterCategoryInput
         title={
           <Flex direction="col" center>
@@ -104,6 +84,29 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
           allowNull: false,
         })}
       />
+      {
+        filter.viewType === 'grid' &&
+        <FilterIconInput
+          title={
+            <Flex direction="col" center>
+              <div className="h-6 w-6">
+                <InformationCircleIcon/>
+              </div>
+            </Flex>
+          }
+          ids={[...pokeboxDisplayType]}
+          idToItemId={(type) => type}
+          idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
+          idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
+          idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
+          {...getSingleSelectOnClickProps({
+            filter,
+            setFilter,
+            filterKey: 'displayType',
+            allowNull: false,
+          })}
+        />
+      }
     </Flex>
   );
 };
