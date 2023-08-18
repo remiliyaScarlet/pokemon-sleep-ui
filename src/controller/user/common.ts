@@ -38,13 +38,12 @@ export const createUserDataManager = <TData>(collectionName: string) => {
       .collection<UserDataInDatabase<TData>>(collectionName);
   };
 
+  addUserDataIndex(getCollection())
+    .catch((e) => console.error(`MongoDB failed to add index of user data [${collectionName}]`, e));
+
   return {
     getCollection,
     getData: (userId: string) => getUserData(getCollection(), userId),
     setData: (userId: string, data: TData) => setUserData(getCollection(), userId, data),
-    addIndex: () => {
-      addUserDataIndex(getCollection())
-        .catch((e) => console.error(`MongoDB failed to add index of user data [${collectionName}]`, e));
-    },
   };
 };
