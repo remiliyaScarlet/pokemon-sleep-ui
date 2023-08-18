@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
-import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
+import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
@@ -73,9 +73,18 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
     triggerDeps: [pokebox, filter],
     setLoading,
   });
-  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
-
   const [editingUuid, setEditingUuid] = React.useState<string>();
+
+  useAutoUpload({
+    opts: {
+      type: 'pokebox',
+      data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType}},
+    },
+    triggerDeps: [pokebox, filter.sort, filter.displayType],
+    delay: 0,
+  });
+
+  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
 
   return (
     <Flex direction="col" className="gap-1.5">
@@ -120,12 +129,6 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         {...props}
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
-      <UserDataUploadControlRow
-        opts={{
-          type: 'pokebox',
-          data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType}},
-        }}
-      />
       <LazyLoad loading={loading} className="gap-1.5">
         {sortedPokemonInfo.map(({source}) => {
           const uuid = source.extra.uuid;

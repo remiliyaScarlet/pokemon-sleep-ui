@@ -7,9 +7,10 @@ import {UserDataUploadOpts} from '@/types/userData/upload';
 type Props = {
   opts: UserDataUploadOpts,
   triggerDeps: React.DependencyList,
+  delay?: number,
 };
 
-export const useAutoUpload = ({opts, triggerDeps}: Props) => {
+export const useAutoUpload = ({opts, triggerDeps, delay}: Props) => {
   const {act, status} = useUserDataActor();
 
   React.useEffect(() => {
@@ -22,7 +23,7 @@ export const useAutoUpload = ({opts, triggerDeps}: Props) => {
         action: 'upload',
         options: opts,
       })
-    ), 500);
+    ), delay ?? 500);
 
     return () => clearTimeout(timeoutId);
   }, triggerDeps);
