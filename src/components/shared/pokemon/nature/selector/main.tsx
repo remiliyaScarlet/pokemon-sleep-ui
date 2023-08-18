@@ -54,7 +54,7 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
         <PokemonNatureIndicator nature={nature}/>
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="gap-2 pr-2">
+        <Flex direction="col" className="max-w-2xl gap-2 pr-2">
           <Flex direction="row" center className="gap-1.5">
             <div className="h-6 w-6">
               <MagnifyingGlassIcon/>

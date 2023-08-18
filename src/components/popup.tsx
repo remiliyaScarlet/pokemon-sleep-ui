@@ -41,11 +41,11 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className={clsx(
-              'flex w-full justify-center rounded-lg p-3 sm:w-fit sm:max-w-2xl',
+              'flex w-full justify-center rounded-lg p-3 sm:w-fit',
               'bg-slate-200 ring-1 ring-inset ring-slate-400 dark:bg-gray-950 dark:ring-gray-600',
               className,
             )}>
-              <div className="max-h-96 overflow-y-auto">
+              <div className="max-h-[70vh] overflow-y-auto">
                 {children}
               </div>
             </Dialog.Panel>
