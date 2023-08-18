@@ -31,7 +31,10 @@ export const AnnouncementsClient = ({larger, announcements}: Props) => {
   }
 
   const {message, level} = announcement;
-  const commonClass = larger ? styles['announcement-lg'] : styles['announcement'];
+  const commonClass = clsx(
+    styles['announcement-common'],
+    larger ? styles['announcement-lg'] : styles['announcement'],
+  );
 
   return (
     <>
