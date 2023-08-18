@@ -2,7 +2,13 @@ import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/ty
 import {IngredientId, IngredientMap} from '@/types/mongo/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/mongo/meal';
 import {Dimension} from '@/types/style';
+import {MealEnergyInfo} from '@/utils/game/meal';
 
+
+export type MealEnergyData = {
+  meal: Meal,
+  energyInfo: MealEnergyInfo,
+};
 
 export type CookingFilterRecipeLevel = {[id in MealId]?: number};
 
@@ -26,4 +32,5 @@ export type CookingRecipeLayoutProps = {
   imageDimension: Dimension,
   clickable: boolean,
   mealId: number,
+  markGray?: boolean,
 };

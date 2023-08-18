@@ -1,5 +1,5 @@
 import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal} from '@/types/mongo/meal';
+import {Meal, MealLevel} from '@/types/mongo/meal';
 import {toSum} from '@/utils/array';
 
 
@@ -11,7 +11,13 @@ type GetMealEnergyInfoOpts = {
   level: number,
 };
 
-export const getMealEnergyInfo = ({meal, ingredientMap, level}: GetMealEnergyInfoOpts) => {
+export type MealEnergyInfo = {
+  atLevel: MealLevel,
+  diffVal: number,
+  diffPct: number,
+};
+
+export const getMealEnergyInfo = ({meal, ingredientMap, level}: GetMealEnergyInfoOpts): MealEnergyInfo => {
   const atLevel = meal.levels[level - 1];
 
   const energyNoRecipe = toSum(

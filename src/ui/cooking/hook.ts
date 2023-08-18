@@ -37,18 +37,6 @@ export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
         return false;
       }
 
-      if (meal.ingredients.some((ingredient) => {
-        const filterIngredientCount = filter.ingredientCount[ingredient.id];
-
-        if (filterIngredientCount == null) {
-          return false;
-        }
-
-        return ingredient.quantity > filterIngredientCount;
-      })) {
-        return false;
-      }
-
       return getMealRequiredQuantity(meal) <= filter.capacity;
     },
   });

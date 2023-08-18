@@ -95,3 +95,8 @@ export const subSkillRarityIconBg: {[rarity in SubSkillRarity]: string} = {
 };
 
 export const subSkillRarityDisabled = 'border border-slate-500 text-slate-500';
+
+export const dangerText = clsx(
+  'transform-smooth text-red-600 group-hover:text-red-400',
+  'dark:text-red-400 dark:group-hover:text-red-600',
+);

@@ -9,14 +9,14 @@ import {CookingRecipeLayoutProps} from '@/ui/cooking/type';
 
 
 export const CookingRecipeLayout = (props: React.PropsWithChildren<CookingRecipeLayoutProps>) => {
+  const {mealId, clickable, children, markGray} = props;
   const t = useTranslations('Game.Food');
-  const {mealId, clickable, children} = props;
 
   const mealName = t(mealId.toString());
 
   return (
     <div className={clsx('button-toggle-inactive-bg relative rounded-lg', clickable && 'button-clickable')}>
-      <div className="absolute left-1.5 top-1.5 z-10 whitespace-nowrap text-sm">
+      <div className={clsx('absolute left-1.5 top-1.5 z-10 whitespace-nowrap text-sm', markGray && 'text-slate-500')}>
         {mealName}
       </div>
       {children}
