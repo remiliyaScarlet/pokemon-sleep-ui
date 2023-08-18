@@ -99,7 +99,7 @@
         background-color: var(--bg-highlight);
       }
     }
-    
+
     animation: bg-blink-animation 3s ease-in-out infinite;
   }
 }
