@@ -1,5 +1,3 @@
-import {Session} from 'next-auth';
-
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
@@ -10,6 +8,7 @@ import {IngredientMap} from '@/types/mongo/ingredient';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
+import {UserLazyLoadedData} from '@/types/userData/main';
 
 
 export type SnorlaxFavorite = FilterInclusionMap<BerryId>;
@@ -18,14 +17,17 @@ export type TeamAnalysisFilter = PokemonInputFilter & {
   snorlaxFavorite: SnorlaxFavorite,
 };
 
-export type TeamAnalysisDataProps = {
+export type TeamAnalysisServerDataProps = {
   pokedex: PokedexMap,
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],
   mapMeta: FieldMetaMap,
   subSkillMap: SubSkillMap,
-  session: Session | null,
+};
+
+export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {
+  preloadedSetup: UserLazyLoadedData['teamAnalysisSetup'] | null | undefined,
 };
 
 export const teamAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;

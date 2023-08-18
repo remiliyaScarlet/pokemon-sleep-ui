@@ -8,7 +8,9 @@ import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
-export type UploadOfTeamAnalysisSetup = TeamAnalysisTeamSetup & {snorlaxFavorite: FilterInclusionMap<BerryId>};
+export type UploadOfTeamAnalysisSetup = TeamAnalysisTeamSetup & {
+  snorlaxFavorite: FilterInclusionMap<BerryId>
+};
 
 export type UploadOfPotInfo = {
   type: MealTypeId | null,

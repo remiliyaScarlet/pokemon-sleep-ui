@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -13,13 +12,13 @@ import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migr
 import {isNotNullish} from '@/utils/type';
 
 
-export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
-  const {pokedex, session} = props;
+export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
+  const {pokedex, preloadedSetup} = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
 
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
-    snorlaxFavorite: session?.user.preloaded.teamAnalysisSetup?.snorlaxFavorite,
+    snorlaxFavorite: preloadedSetup?.snorlaxFavorite,
   });
   const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>(migrate({
     original: {
@@ -36,7 +35,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
       },
       version: 1,
     },
-    override: session?.user.preloaded.teamAnalysisSetup,
+    override: preloadedSetup ?? {},
     migrators: teamAnalysisSetupMigrators,
   }));
 

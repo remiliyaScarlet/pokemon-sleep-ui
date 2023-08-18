@@ -2,7 +2,9 @@ import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import googleProvider from 'next-auth/providers/google';
 
-import {getUserPreloadedData, uploadUserData} from '@/controller/user/main';
+import {emptyLazyData, getUserLazyData} from '@/controller/user/lazyLoad';
+import {getUserPreloadedData} from '@/controller/user/preload';
+import {uploadUserData} from '@/controller/user/upload';
 import mongoPromise from '@/lib/mongodb';
 import {NextAuthSessionUser} from '@/types/auth';
 import {UserDataAction} from '@/types/userData/main';
@@ -49,18 +51,27 @@ export const authOptions: AuthOptions = {
       session.user = {
         id: userId,
         preloaded: await getUserPreloadedData(userId),
-        lazyLoaded: {},
+        lazyLoaded: emptyLazyData,
       } satisfies NextAuthSessionUser;
 
       if (trigger !== 'update' || !newSession) {
         return session;
       }
 
-      const action = newSession as UserDataAction;
+      const {action, options} = newSession as UserDataAction;
 
-      if (action.action === 'upload') {
-        await uploadUserData({userId, opts: action.options});
+      if (action === 'upload') {
+        await uploadUserData({userId, opts: options});
         session.user.preloaded = await getUserPreloadedData(userId);
+      } else if (action === 'load') {
+        const {type} = options;
+        session.user.lazyLoaded = await getUserLazyData({
+          initialData: session.user.lazyLoaded,
+          userId,
+          dataType: type,
+        });
+      } else {
+        console.error(`Unhandled user data action ${action satisfies never}`);
       }
 
       return session;

@@ -8,11 +8,15 @@ import {
   userDataRecipeLevel,
   userDataTeamAnalysisSetup,
 } from '@/controller/user/manager';
-import {UserPreloadedData} from '@/types/userData/main';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 
 
-export const uploadUserData = async ({userId, opts}: {userId: string, opts: UserDataUploadOpts}) => {
+type UploadUserDataOpts = {
+  userId: string,
+  opts: UserDataUploadOpts
+};
+
+export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   const {type, data} = opts;
 
   if (type === 'cooking' || type === 'potInfo') {
@@ -61,35 +65,4 @@ export const uploadUserData = async ({userId, opts}: {userId: string, opts: User
   }
 
   console.error(`Unhandled user data upload type: [${type satisfies never}]`);
-};
-
-export const getUserPreloadedData = async (userId: string): Promise<UserPreloadedData> => {
-  const [
-    mealType,
-    recipeLevel,
-    teamAnalysis,
-    pokedex,
-    pokeboxDisplay,
-    potCapacity,
-    ingredientCount,
-  ] = await Promise.all([
-    userDataMealType.getData(userId),
-    userDataRecipeLevel.getData(userId),
-    // FIXME: Move this to lazy load
-    userDataTeamAnalysisSetup.getData(userId),
-    userDataPokedex.getData(userId),
-    userDataPokeboxDisplay.getData(userId),
-    userDataPotCapacity.getData(userId),
-    userDataIngredientCount.getData(userId),
-  ]);
-
-  return {
-    mealType: mealType?.data,
-    recipeLevel: recipeLevel?.data,
-    teamAnalysisSetup: teamAnalysis?.data,
-    pokedex: pokedex?.data,
-    pokeboxDisplay: pokeboxDisplay?.data,
-    potCapacity: potCapacity?.data,
-    ingredientCount: ingredientCount?.data,
-  };
 };

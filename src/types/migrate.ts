@@ -14,7 +14,7 @@ export type Migrator<TMigratable extends Migratable> = {
 
 export type MigrateOpts<TMigratable extends Migratable> = {
   original: TMigratable,
-  override: DeepPartial<TMigratable> | undefined,
+  override: DeepPartial<TMigratable> | null,
   migrators: Migrator<TMigratable>[],
 };
 

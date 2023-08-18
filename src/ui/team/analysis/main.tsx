@@ -1,9 +1,5 @@
 import React from 'react';
 
-import {getServerSession} from 'next-auth';
-
-import {authOptions} from '@/const/auth';
-import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -12,8 +8,8 @@ import {getAllPokemonAsMap} from '@/controller/pokemon';
 import {getSnorlaxRank} from '@/controller/snorlaxRank';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {PageLayout} from '@/ui/base/layout';
-import {TeamAnalysisClient} from '@/ui/team/analysis/client';
-import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
+import {TeamAnalysisClient} from '@/ui/team/analysis/client/main';
+import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
 
 
 export const TeamAnalysis = () => {
@@ -23,24 +19,20 @@ export const TeamAnalysis = () => {
   const snorlaxRankData = React.use(getSnorlaxRank());
   const mapMeta = React.use(getAllMapMeta());
   const subSkillMap = React.use(getSubSkillMap());
-  const session = React.use(getServerSession(authOptions));
 
-  const props: TeamAnalysisDataProps = {
+  const props: TeamAnalysisServerDataProps = {
     pokedex,
     berryMap,
     ingredientMap,
     snorlaxRankData,
     mapMeta,
     subSkillMap,
-    session,
   };
 
   return (
     <PageLayout>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
-        <AuthProvider>
-          <TeamAnalysisClient {...props}/>
-        </AuthProvider>
+        <TeamAnalysisClient {...props}/>
       </I18nProvider>
     </PageLayout>
   );
