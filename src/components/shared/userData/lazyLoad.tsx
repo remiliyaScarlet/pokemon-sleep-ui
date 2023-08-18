@@ -1,10 +1,9 @@
-'use client';
 import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
 import {Failed} from '@/components/icons/failed';
-import {LoadingFullScreen} from '@/components/icons/loading';
+import {Loading} from '@/components/icons/loading';
 import {AuthProvider} from '@/contexts/auth';
 import {useUserDataActor} from '@/hooks/userData';
 import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
@@ -13,48 +12,65 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 
 type Props = {
   type: UserLazyLoadedDataType,
+  loadingText: string,
   content: (data: UserLazyLoadedData | null | undefined) => React.ReactNode,
-};
+  sessionOverride?: ReturnType<typeof useSession>,
+} & ({
+  actDeps: React.DependencyList,
+  toAct: () => boolean,
+} | {
+  actDeps?: never,
+  toAct?: never,
+});
 
-const UserDataLazyLoadInner = ({type, content}: Props) => {
-  const {act, status: actStatus} = useUserDataActor();
-  const {data, status} = useSession();
-  const [loaded, setLoaded] = React.useState(actStatus === 'completed');
+const UserDataLazyLoadInner = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
+  const {act, status, session} = useUserDataActor(sessionOverride);
+  const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    if (actStatus === 'completed') {
+    if (actDeps && !toAct()) {
+      return;
+    }
+
+    if (!loaded && act && session.status === 'authenticated' && status === 'waiting') {
+      act({action: 'load', options: {type}});
+    }
+  }, [session.status, ...(actDeps ?? [])]);
+
+  React.useEffect(() => {
+    if (status === 'completed') {
       setLoaded(true);
     }
-  }, [actStatus]);
+  }, [status]);
 
+  // Needs to check if the data is `loaded` because data upload will set `session.status` to `loading`
   if (!loaded) {
-    if (status === 'loading') {
-      return <LoadingFullScreen text="User"/>;
+    // Loading data through `update()` of the session sets the status to `loading`
+    // So this has to be placed before `session.status === `loading` to show correct loading text
+    if (status === 'processing') {
+      return <Loading text={loadingText}/>;
     }
 
-    if (status === 'unauthenticated') {
+    if (session.status === 'loading') {
+      return <Loading text="User"/>;
+    }
+
+    if (session.status === 'unauthenticated') {
       return <>{content(null)}</>;
     }
 
-    if (actStatus === 'waiting') {
-      if (act) {
-        act({action: 'load', options: {type}});
-        return <></>;
-      }
-
-      return <Failed text="User"/>;
+    if (status === 'failed') {
+      return <Failed text={loadingText}/>;
     }
 
-    if (actStatus === 'processing') {
-      return <LoadingFullScreen text="Team"/>;
-    }
-
-    if (actStatus === 'failed') {
-      return <Failed text="Team"/>;
+    // If not loaded but got an action to run later, don't show anything to prevent the UI blink
+    // between the gap of user getting authenticated and the action starts
+    if (status === 'waiting' && act) {
+      return <></>;
     }
   }
 
-  return <>{content(data?.user.lazyLoaded)}</>;
+  return <>{content(session.data?.user.lazyLoaded)}</>;
 };
 
 export const UserDataLazyLoad = (props: Props) => (

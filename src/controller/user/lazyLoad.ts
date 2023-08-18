@@ -1,3 +1,4 @@
+import {getUserPokebox} from '@/controller/pokebox';
 import {userDataTeamAnalysisSetup} from '@/controller/user/manager';
 import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
 import {UserLazyLoadedData} from '@/types/userData/main';
@@ -5,6 +6,7 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 
 export const emptyLazyData: UserLazyLoadedData = {
   teamAnalysisSetup: undefined,
+  pokebox: undefined,
 };
 
 type GetUserLazyDataOpts = {
@@ -16,6 +18,10 @@ type GetUserLazyDataOpts = {
 const loadData = async ({dataType, userId} : GetUserLazyDataOpts) => {
   if (dataType === 'teamAnalysisSetup') {
     return (await userDataTeamAnalysisSetup.getData(userId))?.data;
+  }
+
+  if (dataType === 'pokebox') {
+    return getUserPokebox(userId);
   }
 
   console.error(`Unknown data type ${dataType satisfies never} to load data`);

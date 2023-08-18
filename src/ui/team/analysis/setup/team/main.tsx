@@ -64,7 +64,16 @@ export const TeamAnalysisTeamView = (props: Props) => {
                 pokemon={pokemon}
                 {...props}
               /> :
-              <TeamAnalysisEmptySlot/>}
+              <TeamAnalysisEmptySlot
+                onPokeboxPicked={(member) => setSetup((original) => ({
+                  ...original,
+                  team: {
+                    ...original.team,
+                    [slotName]: member,
+                  },
+                }))}
+                {...props}
+              />}
           </Flex>
         );
       })}

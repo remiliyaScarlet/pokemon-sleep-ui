@@ -6,13 +6,13 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/mongo/pokemon';
 import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/details/main';
-import {PokeboxPokeInBoxFixedInfo} from '@/ui/team/pokebox/content/fixed';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 
@@ -71,7 +71,7 @@ export const PokeboxContentPokeInBox = (props: Props) => {
             </div>
           </div>
           <Flex direction="col" className="z-10 gap-1">
-            <PokeboxPokeInBoxFixedInfo {...pokeInBoxProps}/>
+            <PokeInBoxMeta {...pokeInBoxProps}/>
             <div className="mt-auto">
               <PokeboxPokeInBoxDetails {...pokeInBoxProps}/>
             </div>

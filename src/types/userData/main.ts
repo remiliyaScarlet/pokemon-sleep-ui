@@ -7,7 +7,7 @@ import {DeepPartialExceptKey} from '@/utils/type';
 
 export type UserPreloadedData = DeepPartialExceptKey<UserPreloadedContent>;
 
-export type UserLazyLoadedData = DeepPartialExceptKey<UserLazyLoadedContent>;
+export type UserLazyLoadedData = Partial<UserLazyLoadedContent>;
 
 export type UserDataActionStatus = 'waiting' | 'processing' | 'completed' | 'failed';
 

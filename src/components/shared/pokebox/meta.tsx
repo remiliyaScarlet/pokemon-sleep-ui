@@ -2,10 +2,16 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonNameSmall} from '@/components/shared/pokemon/name/small';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBox} from '@/types/game/pokebox';
+import {PokemonInfo} from '@/types/mongo/pokemon';
 
 
-export const PokeboxPokeInBoxFixedInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommonProps) => {
+type Props = {
+  pokeInBox: PokeInBox,
+  pokemon: PokemonInfo,
+};
+
+export const PokeInBoxMeta = ({pokemon, pokeInBox}: Props) => {
   const {name, level} = pokeInBox;
 
   return (
