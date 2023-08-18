@@ -73,6 +73,7 @@ export const PokeboxPokeInBoxUpdateLayout = ({
         </pre>
         <InputBox
           value={name ?? ''}
+          type="text"
           placeholder={t(`PokemonName.${pokemonId}`)}
           className="w-full"
           onChange={({target}) => setPokeInBox({

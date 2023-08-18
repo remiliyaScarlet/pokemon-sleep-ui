@@ -28,6 +28,7 @@ export const PokemonLevelSlider = ({level, maxLevel, setLevel, noSameLine}: Prop
         </div>
         <InputBox
           value={level.toString()}
+          type="number"
           className="w-12 text-center"
           onChange={({target}) => {
             const level = parseInt(target.value || '0');

@@ -29,7 +29,7 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
   return (
     <Flex direction="col" className="h-72 gap-1 overflow-x-hidden overflow-y-scroll pr-1 md:h-52">
       <InputRowWithTitle title={t2('Info.Name')}>
-        <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
+        <InputBox type="text" value={filter.name} onChange={({target}) => setFilter((original) => ({
           ...original,
           name: target.value,
         }))}/>

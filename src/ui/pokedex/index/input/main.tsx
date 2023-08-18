@@ -45,7 +45,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           })}
         />
         <InputRowWithTitle title={t('Info.Name')}>
-          <InputBox value={filter.name} onChange={({target}) => setFilter((original) => ({
+          <InputBox type="text" value={filter.name} onChange={({target}) => setFilter((original) => ({
             ...original,
             name: target.value,
           }))}/>
