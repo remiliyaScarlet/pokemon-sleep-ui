@@ -2,7 +2,9 @@ import React from 'react';
 
 import {PokeboxPokeInBoxInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
 import {PokeboxPokeInBoxProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
-import {PokeboxPokeInBoxProductionIngredient} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
+import {
+  PokeboxPokeInBoxProductionIngredient,
+} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
 import {PokeboxPokeInBoxProductionTotal} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionTotal';
 import {PokeboxPokeInBoxSkills} from '@/ui/team/pokebox/content/pokeInBox/grid/details/skills';
 import {PokeboxPokeInBoxStats} from '@/ui/team/pokebox/content/pokeInBox/grid/details/stats';
