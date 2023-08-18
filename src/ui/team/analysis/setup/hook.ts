@@ -7,8 +7,8 @@ import {
   TeamProducingStatsGrouped,
   TeamProducingStatsSingle,
   TeamProducingStatsTotal,
-} from '@/ui/team/analysis/result/type';
-import {groupProducingStats} from '@/ui/team/analysis/result/utils';
+} from '@/ui/team/analysis/setup/type';
+import {groupProducingStats} from '@/ui/team/analysis/setup/utils';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,

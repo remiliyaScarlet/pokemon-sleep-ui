@@ -7,8 +7,8 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {EnergyIcon} from '@/components/shared/icon/energy';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/result/summary/rank';
-import {TeamFinalEstimateInput} from '@/ui/team/analysis/result/type';
+import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/setup/summary/rank';
+import {TeamFinalEstimateInput} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 

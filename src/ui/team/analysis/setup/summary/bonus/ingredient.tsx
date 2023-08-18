@@ -4,8 +4,8 @@ import ChevronUpIcon from '@heroicons/react/24/solid/ChevronUpIcon';
 import {useTranslations} from 'next-intl';
 
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
-import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/result/summary/bonus/base';
-import {TeamAnalysisBonusProps} from '@/ui/team/analysis/result/summary/bonus/type';
+import {TeamAnalysisBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/base';
+import {TeamAnalysisBonusProps} from '@/ui/team/analysis/setup/summary/bonus/type';
 
 
 export const TeamAnalysisIngredientBonusSlider = ({bonus, setBonus}: TeamAnalysisBonusProps) => {

@@ -6,11 +6,11 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
-import {TeamAnalysisRateLayout} from '@/ui/team/analysis/result/common/rateLayout';
-import {TeamAnalysisIngredientBonusSlider} from '@/ui/team/analysis/result/summary/bonus/ingredient';
-import {TeamAnalysisOverallBonusSlider} from '@/ui/team/analysis/result/summary/bonus/overall';
-import {TeamAnalysisFinalEstimate} from '@/ui/team/analysis/result/summary/finalEstimate';
-import {TeamProducingStats} from '@/ui/team/analysis/result/type';
+import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
+import {TeamAnalysisIngredientBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/ingredient';
+import {TeamAnalysisOverallBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/overall';
+import {TeamAnalysisFinalEstimate} from '@/ui/team/analysis/setup/summary/finalEstimate';
+import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisBonus, TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 

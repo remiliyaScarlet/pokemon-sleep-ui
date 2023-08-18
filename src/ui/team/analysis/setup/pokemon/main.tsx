@@ -15,9 +15,9 @@ import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
 import {NatureId} from '@/types/game/producing/nature';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
-import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
-import {TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
+import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
+import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
+import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 

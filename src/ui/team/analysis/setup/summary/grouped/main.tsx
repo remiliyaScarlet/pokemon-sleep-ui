@@ -6,10 +6,10 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
-import {TeamAnalysisBerryRate} from '@/ui/team/analysis/result/common/berry';
-import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/result/common/ingredient';
-import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/result/summary/grouped/category';
-import {TeamProducingStatsGrouped} from '@/ui/team/analysis/result/type';
+import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
+import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
+import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/setup/summary/grouped/category';
+import {TeamProducingStatsGrouped} from '@/ui/team/analysis/setup/type';
 
 
 type Props = {

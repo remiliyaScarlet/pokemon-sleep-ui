@@ -4,8 +4,8 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisRateLayout, TeamAnalysisRateLayoutProps} from '@/ui/team/analysis/result/common/rateLayout';
-import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/result/common/type';
+import {TeamAnalysisRateLayout, TeamAnalysisRateLayoutProps} from '@/ui/team/analysis/setup/common/rateLayout';
+import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
 
 
 type Props = Pick<TeamAnalysisRateLayoutProps, 'icon'> & TeamAnalysisRateLayoutCommonProps & {

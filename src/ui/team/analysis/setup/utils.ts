@@ -1,4 +1,4 @@
-import {TeamProducingStatsGrouped, TeamProducingStatsSingle} from '@/ui/team/analysis/result/type';
+import {TeamProducingStatsGrouped, TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 
 
 type GroupProducingStatsOpts = {

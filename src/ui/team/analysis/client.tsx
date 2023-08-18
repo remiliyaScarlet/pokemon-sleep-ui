@@ -5,8 +5,8 @@ import {AdsUnit} from '@/components/ads/main';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSnorlaxFavorite} from '@/ui/team/analysis/input/snorlaxFavorite';
-import {TeamAnalysisResult} from '@/ui/team/analysis/result/main';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
+import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisDataProps, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {migrate} from '@/utils/migrate/main';
 import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';
@@ -52,7 +52,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisDataProps) => {
       </div>
       <AdsUnit/>
       <TeamAnalysisSnorlaxFavorite filter={filter} setFilter={setFilter} pokemon={pokemon} {...props}/>
-      <TeamAnalysisResult setup={setup} setSetup={setSetup} snorlaxFavorite={filter.snorlaxFavorite} {...props}/>
+      <TeamAnalysisSetupView setup={setup} setSetup={setSetup} snorlaxFavorite={filter.snorlaxFavorite} {...props}/>
     </>
   );
 };

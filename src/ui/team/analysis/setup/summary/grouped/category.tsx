@@ -3,7 +3,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisCategoryData} from '@/ui/team/analysis/result/summary/grouped/type';
+import {TeamAnalysisCategoryData} from '@/ui/team/analysis/setup/summary/grouped/type';
 
 
 type Props = {
