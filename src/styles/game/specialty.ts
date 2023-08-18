@@ -74,4 +74,4 @@ export const getSpecialtyTextClass = (specialty: PokemonSpecialtyId, isActive: b
   isActive ? specialtyTextClassActive[specialty] : specialtyTextClassInactive[specialty]
 );
 
-export const specialtyTextClassDefault = specialtyBgClassInactive;
+export const specialtyTextClassDefault = specialtyTextClassInactive;
