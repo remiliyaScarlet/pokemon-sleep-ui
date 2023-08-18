@@ -20,7 +20,7 @@ import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
-import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/details/utils';
+import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/grid/details/utils';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {toSum} from '@/utils/array';

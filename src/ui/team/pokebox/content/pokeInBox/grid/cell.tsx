@@ -10,7 +10,7 @@ import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/details/main';
+import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/pokeInBox/grid/details/main';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
