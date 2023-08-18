@@ -8,7 +8,7 @@ import {TeamAnalysisBonusProps} from '@/ui/team/analysis/setup/summary/bonus/typ
 
 export const TeamAnalysisOverallBonusSlider = ({bonus, setBonus}: TeamAnalysisBonusProps) => {
   return (
-    <TeamAnalysisBonusSlider bonus={bonus} setBonus={setBonus} id="ingredient-bonus" min={0} max={150}>
+    <TeamAnalysisBonusSlider bonus={bonus} setBonus={setBonus} id="ingredient-bonus" min={0} max={200}>
       <div className="h-6 w-6">
         <ChevronDoubleUpIcon/>
       </div>

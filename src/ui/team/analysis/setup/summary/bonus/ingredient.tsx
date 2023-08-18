@@ -12,7 +12,7 @@ export const TeamAnalysisIngredientBonusSlider = ({bonus, setBonus}: TeamAnalysi
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <TeamAnalysisBonusSlider bonus={bonus} setBonus={setBonus} id="ingredient-bonus" min={0} max={150}>
+    <TeamAnalysisBonusSlider bonus={bonus} setBonus={setBonus} id="ingredient-bonus" min={0} max={100}>
       <GenericIngredientIcon dimension="h-6 w-6" alt={t('Ingredient')}/>
       <div className="h-6 w-6">
         <ChevronUpIcon/>
