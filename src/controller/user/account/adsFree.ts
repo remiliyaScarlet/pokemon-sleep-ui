@@ -1,7 +1,7 @@
 import {ObjectId} from 'bson';
-import {Collection} from 'mongodb';
+import {Collection, MongoError} from 'mongodb';
 
-import {popActivationKey} from '@/controller/user/account/key';
+import {getActivationKey, removeActivationKey} from '@/controller/user/account/key';
 import mongoPromise from '@/lib/mongodb';
 import {UserAdsFreeData} from '@/types/mongo/user';
 
@@ -15,13 +15,23 @@ const getCollection = async (): Promise<Collection<UserAdsFreeData>> => {
 };
 
 export const activateAdsFree = async (userId: string, key: string): Promise<boolean> => {
-  const activationKey = await popActivationKey(key);
+  const activationKey = await getActivationKey(key);
 
   if (!activationKey) {
     return false;
   }
 
-  await (await getCollection()).insertOne({userId: new ObjectId(userId), ...activationKey});
+  try {
+    await (await getCollection()).insertOne({userId: new ObjectId(userId), ...activationKey});
+  } catch (e) {
+    if (e instanceof MongoError) {
+      return false;
+    }
+
+    throw e;
+  }
+
+  await removeActivationKey(activationKey.key);
   return true;
 };
 

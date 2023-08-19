@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
-import {redirect} from 'next-intl/server';
 
+import {SignIn} from '@/components/auth/signIn';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
 import {activateAdsFree} from '@/controller/user/account/adsFree';
@@ -14,7 +15,7 @@ const AccountActivate = async ({searchParams}: PageProps) => {
   const activationKey = searchParams?.key;
 
   if (!session) {
-    return <Failed text="Session"/>;
+    return <SignIn/>;
   }
 
   if (typeof activationKey !== 'string' || !activationKey) {

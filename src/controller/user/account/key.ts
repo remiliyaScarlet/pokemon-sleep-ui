@@ -29,11 +29,13 @@ export const generateActivationKey = async (executorUserId: string, expiry: stri
   return key;
 };
 
-export const popActivationKey = async (key: string): Promise<UserActivationKey | null> => {
-  const keyData = await (await getCollection()).findOneAndDelete({key});
+export const getActivationKey = async (key: string) => (
+  (await getCollection()).findOne({key})
+);
 
-  return keyData.value;
-};
+export const removeActivationKey = async (key: string) => (
+  (await getCollection()).deleteOne({key})
+);
 
 const addActivationKeyIndex = async () => {
   const collection = await getCollection();
