@@ -1,4 +1,7 @@
 {
+  "Auth": {
+    "EmailSent": "已發送登入用電子信件。"
+  },
   "Common": {
     "Candy": "糖果",
     "Day": "日",

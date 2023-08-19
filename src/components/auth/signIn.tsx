@@ -6,7 +6,7 @@ import {signIn} from 'next-auth/react';
 
 export const SignIn = () => {
   React.useEffect(() => {
-    void signIn('google');
+    void signIn();
   }, []);
 
   return <></>;

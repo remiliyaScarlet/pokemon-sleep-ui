@@ -14,6 +14,9 @@ type GameObjectIdToString = {[id in string]: string};
 
 declare interface IntlMessages extends UiMessages, GameMessages {
   UI: {
+    Auth: {
+      EmailSent: string,
+    },
     Common: {
       Candy: string,
       Day: string,

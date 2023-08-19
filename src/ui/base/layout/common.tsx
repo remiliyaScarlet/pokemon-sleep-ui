@@ -8,12 +8,12 @@ import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
 import {Flex} from '@/components/layout/flex';
 import {authOptions} from '@/const/auth';
-import {PageProps} from '@/ui/base/layout/type';
+import {UiPageProps} from '@/ui/base/layout/type';
 import {NavBar} from '@/ui/base/navbar/main';
 import {isProduction} from '@/utils/environment';
 
 
-export const PageLayout = ({announcement = true, children}: React.PropsWithChildren<PageProps>) => {
+export const PageLayout = ({announcement = true, noUserControl, children}: React.PropsWithChildren<UiPageProps>) => {
   const session = React.use(getServerSession(authOptions));
 
   return (
@@ -27,7 +27,7 @@ export const PageLayout = ({announcement = true, children}: React.PropsWithChild
           crossOrigin="anonymous"
         />}
       <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
-      <NavBar/>
+      <NavBar noUserControl={noUserControl}/>
       <Flex direction="col" className="gap-1.5 p-2">
         {announcement && <Announcements/>}
         {children}

@@ -1,3 +1,4 @@
-export type PageProps = {
+export type UiPageProps = {
   announcement?: boolean,
+  noUserControl?: boolean,
 };

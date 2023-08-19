@@ -5,7 +5,7 @@ export type PageParams = {
   locale: Locale,
 };
 
-export type PageProps = {
-  params: {},
+export type PageProps<TParams = {}> = {
+  params: TParams,
   searchParams?: {[key: string]: string | string[] | undefined},
 };

@@ -1,4 +1,7 @@
 {
+  "Auth": {
+    "EmailSent": "ログイン用メールを送信しました"
+  },
   "Common": {
     "Candy": "アメ",
     "Day": "日",

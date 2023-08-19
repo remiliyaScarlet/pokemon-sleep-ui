@@ -5,10 +5,10 @@ import {getServerSession} from 'next-auth';
 import {SignIn} from '@/components/auth/signIn';
 import {authOptions} from '@/const/auth';
 import {PageLayout} from '@/ui/base/layout/common';
-import {PageProps} from '@/ui/base/layout/type';
+import {UiPageProps} from '@/ui/base/layout/type';
 
 
-export const LoginRequiredPageLayout = ({announcement, children}: React.PropsWithChildren<PageProps>) => {
+export const LoginRequiredPageLayout = ({announcement, children}: React.PropsWithChildren<UiPageProps>) => {
   const session = React.use(getServerSession(authOptions));
 
   return (

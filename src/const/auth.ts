@@ -1,5 +1,6 @@
 import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
+import emailProvider from 'next-auth/providers/email';
 import googleProvider from 'next-auth/providers/google';
 
 import {isUserAdsFree} from '@/controller/user/account/adsFree';
@@ -27,7 +28,15 @@ export const authOptions: AuthOptions = {
     mongoPromise,
     {databaseName: 'auth'},
   ),
+  pages: {
+    signIn: '/auth/sign-in',
+    verifyRequest: '/auth/verify-request',
+  },
   providers: [
+    emailProvider({
+      server: process.env.NEXTAUTH_EMAIL_SERVER,
+      from: process.env.NEXTAUTH_EMAIL_FROM,
+    }),
     googleProvider({
       clientId: process.env.NEXTAUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.NEXTAUTH_GOOGLE_CLIENT_SECRET,

@@ -1,4 +1,7 @@
 {
+  "Auth": {
+    "EmailSent": "Email for login has been sent."
+  },
   "Common": {
     "Candy": "Candy",
     "Day": "Day",
