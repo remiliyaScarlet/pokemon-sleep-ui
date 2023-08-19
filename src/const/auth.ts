@@ -2,6 +2,7 @@ import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import googleProvider from 'next-auth/providers/google';
 
+import {isUserAdsFree} from '@/controller/user/account/adsFree';
 import {emptyLazyData, getUserLazyData} from '@/controller/user/lazyLoad';
 import {getUserPreloadedData} from '@/controller/user/preload';
 import {uploadUserData} from '@/controller/user/upload';
@@ -48,10 +49,15 @@ export const authOptions: AuthOptions = {
     session: async ({session, user, trigger, newSession}) => {
       const userId = user.id;
 
+      const [preloaded, isAdsFree] = await Promise.all([
+        getUserPreloadedData(userId),
+        isUserAdsFree(userId),
+      ]);
       session.user = {
         id: userId,
-        preloaded: await getUserPreloadedData(userId),
+        preloaded,
         lazyLoaded: emptyLazyData,
+        isAdsFree,
       } satisfies NextAuthSessionUser;
 
       if (trigger !== 'update' || !newSession) {

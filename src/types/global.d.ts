@@ -15,6 +15,8 @@ declare global {
       NEXTAUTH_SECRET: string;
       NEXTAUTH_GOOGLE_CLIENT_ID: string;
       NEXTAUTH_GOOGLE_CLIENT_SECRET: string;
+
+      NEXTAUTH_ADMIN_UID: string;
     }
   }
 }

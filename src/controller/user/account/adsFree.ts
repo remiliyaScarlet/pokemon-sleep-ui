@@ -1,0 +1,42 @@
+import {ObjectId} from 'bson';
+import {Collection} from 'mongodb';
+
+import {popActivationKey} from '@/controller/user/account/key';
+import mongoPromise from '@/lib/mongodb';
+import {UserAdsFreeData} from '@/types/mongo/user';
+
+
+const getCollection = async (): Promise<Collection<UserAdsFreeData>> => {
+  const client = await mongoPromise;
+
+  return client
+    .db('auth')
+    .collection<UserAdsFreeData>('adsFree');
+};
+
+export const activateAdsFree = async (userId: string, key: string): Promise<boolean> => {
+  const activationKey = await popActivationKey(key);
+
+  if (!activationKey) {
+    return false;
+  }
+
+  await (await getCollection()).insertOne({userId: new ObjectId(userId), ...activationKey});
+  return true;
+};
+
+export const isUserAdsFree = async (userId: string): Promise<boolean> => {
+  return !!await (await getCollection()).findOne({userId: new ObjectId(userId)});
+};
+
+const addAdsFreeDataIndex = async () => {
+  const collection = await getCollection();
+
+  return Promise.all([
+    collection.createIndex({userId: 1}, {unique: true}),
+    collection.createIndex({expiry: 1}, {expireAfterSeconds: 0}),
+  ]);
+};
+
+addAdsFreeDataIndex()
+  .catch((e) => console.error('MongoDB failed to add user ads free data index', e));
