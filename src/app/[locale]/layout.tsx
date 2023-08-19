@@ -7,7 +7,6 @@ import {notFound} from 'next/navigation';
 import Script from 'next/script';
 import {useLocale} from 'next-intl';
 
-import {adsClientId} from '@/components/ads/const';
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
 import {isProduction} from '@/utils/environment';
@@ -30,14 +29,6 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
 
   return (
     <html lang={locale} className="h-full" suppressHydrationWarning>
-      {/* Google AdSense */}
-      {isProduction() &&
-        <Script
-          async
-          strategy="lazyOnload"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClientId}`}
-          crossOrigin="anonymous"
-        />}
       {/* Google Analytics */}
       {isProduction() &&
         <>
