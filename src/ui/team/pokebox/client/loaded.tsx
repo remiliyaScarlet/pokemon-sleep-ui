@@ -15,11 +15,12 @@ type Props = PokeboxCommonProps & {
   initialPokebox: Pokebox,
 };
 
-export const PokeboxClient = ({initialPokebox, ...props}: Props) => {
+export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
   const {pokedexMap} = props;
 
-  const pokemon = Object.values(pokedexMap).filter(isNotNullish);
   const [pokebox, setPokebox] = React.useState(initialPokebox);
+
+  const pokemon = Object.values(pokedexMap).filter(isNotNullish);
 
   return (
     <Flex direction="col" className="gap-2">
