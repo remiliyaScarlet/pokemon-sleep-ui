@@ -6,6 +6,7 @@ import {Toaster} from 'react-hot-toast';
 
 import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
+import {LoadingFullScreen} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {authOptions} from '@/const/auth';
 import {UiPageProps} from '@/ui/base/layout/type';
@@ -17,21 +18,23 @@ export const PageLayout = ({announcement = true, noUserControl, children}: React
   const session = React.use(getServerSession(authOptions));
 
   return (
-    <main className="min-h-full w-full">
-      {/* Google AdSense */}
-      {isProduction() && !session?.user.isAdsFree &&
+    <React.Suspense fallback={<LoadingFullScreen/>}>
+      <main className="min-h-full w-full">
+        {/* Google AdSense */}
+        {isProduction() && !session?.user.isAdsFree &&
         <Script
           async
           strategy="lazyOnload"
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClientId}`}
           crossOrigin="anonymous"
         />}
-      <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
-      <NavBar noUserControl={noUserControl}/>
-      <Flex direction="col" className="gap-1.5 p-2">
-        {announcement && <Announcements/>}
-        {children}
-      </Flex>
-    </main>
+        <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
+        <NavBar noUserControl={noUserControl}/>
+        <Flex direction="col" className="gap-1.5 p-2">
+          {announcement && <Announcements/>}
+          {children}
+        </Flex>
+      </main>
+    </React.Suspense>
   );
 };
