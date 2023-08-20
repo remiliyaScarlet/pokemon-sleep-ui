@@ -3,7 +3,6 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
@@ -22,9 +21,7 @@ export const PotInfo = () => {
   return (
     <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.InPage.Cooking', 'UI.InPage.Info.Pot']}>
-        <AuthProvider>
-          <PotInfoClient {...props}/>
-        </AuthProvider>
+        <PotInfoClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>
   );

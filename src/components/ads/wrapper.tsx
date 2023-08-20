@@ -12,7 +12,7 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
   const {data, status} = useSession();
 
   if (status === 'loading' || (status === 'authenticated' && data?.user.isAdsFree)) {
-    return <div className="m-0.5"/>;
+    return <></>;
   }
 
   return (

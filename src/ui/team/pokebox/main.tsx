@@ -3,7 +3,6 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -28,9 +27,7 @@ export const Pokebox = () => {
   return (
     <LoginRequiredPageLayout>
       <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
-        <AuthProvider>
-          <PokeboxClient initialPokebox={initialPokebox} {...props}/>
-        </AuthProvider>
+        <PokeboxClient initialPokebox={initialPokebox} {...props}/>
       </I18nProvider>
     </LoginRequiredPageLayout>
   );

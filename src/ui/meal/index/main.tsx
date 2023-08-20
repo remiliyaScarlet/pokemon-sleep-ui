@@ -3,7 +3,6 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {AuthProvider} from '@/contexts/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllMeals} from '@/controller/meal';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -17,9 +16,7 @@ export const MealIndex = () => {
   return (
     <PublicPageLayout>
       <I18nProvider namespaces={['Game', 'UI.InPage.Cooking']}>
-        <AuthProvider>
-          <MealIndexClient data={data} session={session}/>
-        </AuthProvider>
+        <MealIndexClient data={data} session={session}/>
       </I18nProvider>
     </PublicPageLayout>
   );

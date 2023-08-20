@@ -4,7 +4,6 @@ import {useSession} from 'next-auth/react';
 
 import {Failed} from '@/components/icons/failed';
 import {Loading} from '@/components/icons/loading';
-import {AuthProvider} from '@/contexts/auth';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
 import {UserLazyLoadedData} from '@/types/userData/main';
@@ -23,7 +22,7 @@ type Props = {
   toAct?: never,
 });
 
-const UserDataLazyLoadInner = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
+export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
   const {act, status, session} = useUserDataActor(sessionOverride);
   const [loaded, setLoaded] = React.useState(false);
 
@@ -72,9 +71,3 @@ const UserDataLazyLoadInner = ({type, loadingText, content, sessionOverride, act
 
   return <>{content(session.data?.user.lazyLoaded)}</>;
 };
-
-export const UserDataLazyLoad = (props: Props) => (
-  <AuthProvider>
-    <UserDataLazyLoadInner {...props}/>
-  </AuthProvider>
-);

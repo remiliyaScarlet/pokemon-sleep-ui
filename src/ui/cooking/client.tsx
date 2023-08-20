@@ -32,7 +32,7 @@ export const CookingClient = ({meals, ingredientMap, session}: Props) => {
   const props: CookingCommonProps = {filter, setFilter, meals: validMeals, mealTypes, ingredientMap};
 
   return (
-    <Flex direction="col">
+    <Flex direction="col" className="gap-1">
       <CookingInputUI {...props}/>
       <AdsUnit/>
       <CookingResult {...props}/>
