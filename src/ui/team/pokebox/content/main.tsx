@@ -7,6 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -129,6 +130,12 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         {...props}
       />
       <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
+      <UserDataUploadControlRow
+        opts={{
+          type: 'pokebox',
+          data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType, viewType: filter.viewType}},
+        }}
+      />
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeboxPokeInBoxView
           filter={filter}
