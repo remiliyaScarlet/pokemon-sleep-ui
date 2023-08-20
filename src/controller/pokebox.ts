@@ -28,21 +28,20 @@ export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox
 };
 
 export const updateUserPokebox = async (owner: string, pokebox: Pokebox) => {
-  const session = (await mongoPromise).startSession();
-  const collection = await getCollection();
+  await (await mongoPromise).withSession(async (session) => {
+    await session.withTransaction(async () => {
+      const collection = await getCollection();
 
-  session.startTransaction();
-
-  await collection.deleteMany({owner}, {session});
-  const pokeboxAsArray = Object.values(pokebox).filter(isNotNullish);
-  if (pokeboxAsArray.length) {
-    await collection.insertMany(
-      pokeboxAsArray.map((pokemon): PokeInBoxData => ({...pokemon, owner})),
-      {session},
-    );
-  }
-
-  await session.commitTransaction();
+      await collection.deleteMany({owner}, {session});
+      const pokeboxAsArray = Object.values(pokebox).filter(isNotNullish);
+      if (pokeboxAsArray.length) {
+        await collection.insertMany(
+          pokeboxAsArray.map((pokemon): PokeInBoxData => ({...pokemon, owner})),
+          {session},
+        );
+      }
+    });
+  });
 };
 
 const addPokeboxIndex = async () => {
@@ -80,11 +79,15 @@ const addRandomIngredientMigration = async () => {
     bulkUpdate.push({
       updateOne: {
         filter: {_id: pokeInBox._id},
-        update: {$set: {randomIngredient: Object.entries(pokeInBox.randomIngredient).map(([lv, data]) => ({
-          level: parseInt(lv),
-          id: data.id,
-          quantity: data.quantity,
-        }))}},
+        update: {
+          $set: {
+            randomIngredient: Object.entries(pokeInBox.randomIngredient).map(([lv, data]) => ({
+              level: parseInt(lv),
+              id: data.id,
+              quantity: data.quantity,
+            })),
+          },
+        },
       },
     });
   }
