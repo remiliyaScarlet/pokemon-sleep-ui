@@ -93,27 +93,6 @@ export const PokeboxPokeInBoxUpdateLayout = ({
         />
       </Flex>
       <PokeboxPokeInBoxIngredientEditor {...props}/>
-      <Flex direction="col" className="gap-1.5 md:flex-row">
-        <Flex direction="col" className="h-8">
-          <PokemonNatureSelector
-            nature={nature}
-            setNature={(nature) => setPokeInBox({
-              ...pokeInBox,
-              nature,
-            })}
-          />
-        </Flex>
-        <Flex direction="col" className="h-8">
-          <PokemonSubSkillSelector
-            subSkill={subSkill}
-            subSkillMap={subSkillMap}
-            setSubSkill={(subSkill) => setPokeInBox({
-              ...pokeInBox,
-              subSkill,
-            })}
-          />
-        </Flex>
-      </Flex>
       <Flex direction="row" className="items-center justify-end gap-0.5">
         <PokemonDataIcon src="/images/generic/bag.png" alt={t2('Stats.MaxCarry')} invert/>
         <InputBox
@@ -134,6 +113,27 @@ export const PokeboxPokeInBoxUpdateLayout = ({
             <ArrowPathIcon/>
           </div>
         </button>
+      </Flex>
+      <Flex direction="col" className="gap-1.5 md:flex-row">
+        <Flex direction="col" className="h-8">
+          <PokemonSubSkillSelector
+            subSkill={subSkill}
+            subSkillMap={subSkillMap}
+            setSubSkill={(subSkill) => setPokeInBox({
+              ...pokeInBox,
+              subSkill,
+            })}
+          />
+        </Flex>
+        <Flex direction="col" className="h-8">
+          <PokemonNatureSelector
+            nature={nature}
+            setNature={(nature) => setPokeInBox({
+              ...pokeInBox,
+              nature,
+            })}
+          />
+        </Flex>
       </Flex>
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
