@@ -15,34 +15,28 @@ import {imageIconSizes} from '@/styles/image';
 export const MealLink = (props: MealLinkProps) => {
   const {meal, small} = props;
   const {id, type} = meal;
+
   const t = useTranslations('Game.Food');
 
   const mealName = t(id.toString());
 
-  // These 2 `<Flex>` need to be outside `<Link>` to avoid `<a>` in `<a>` DOM tree issue
   return (
-    <>
-      <Flex direction="col" noFullWidth className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
-        <MealLinkDetail {...props}/>
-      </Flex>
-      <Flex
-        direction="row" noFullWidth className={clsx(
-          'text-shadow-preset absolute left-1 top-1 z-10 items-center gap-0.5 whitespace-nowrap',
-          small && 'text-sm',
-        )}
-      >
-        {mealName}
-      </Flex>
-      <Link
-        href={`/meal/${id}`}
-        className={clsx('group inline-block h-full w-full rounded-lg', mealTypeBackgroundStyle[type])}
-      >
-        <Flex direction="row" className="h-full items-center justify-end gap-1.5">
-          <div className={clsx('relative opacity-40', small ? 'h-12 w-12' : 'h-16 w-16')}>
-            <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
-          </div>
+    <Link href={`/meal/${id}`} className={clsx(
+      'relative flex w-full flex-col items-end rounded-lg',
+      small ? 'h-16' : 'h-20',
+      mealTypeBackgroundStyle[type],
+    )}>
+      <div className={clsx('relative opacity-40', small ? 'h-16 w-16' : 'h-20 w-20')}>
+        <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
+      </div>
+      <Flex direction="col" className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
+        <div className={clsx('text-shadow-preset truncate text-left', small && 'text-sm')}>
+          {mealName}
+        </div>
+        <Flex direction="col" noFullWidth>
+          <MealLinkDetail {...props}/>
         </Flex>
-      </Link>
-    </>
+      </Flex>
+    </Link>
   );
 };

@@ -30,7 +30,10 @@ export const MealIndexClient = ({data, session}: Props) => {
     <>
       <MealInput data={data} {...props}/>
       <AdsUnit/>
-      <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <Grid className={clsx(
+        'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
+        '2xl:grid-cols-7',
+      )}>
         {data
           .map((meal) => ({
             meal,

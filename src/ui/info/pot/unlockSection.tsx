@@ -1,6 +1,7 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -29,7 +30,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
 
   return (
     <Flex direction="col" className="button-bg gap-1.5 rounded-lg p-2 md:flex-row md:items-center">
-      <Flex direction="row" center noFullWidth className="gap-1.5 md:w-1/6 md:flex-col">
+      <Flex direction="row" center noFullWidth className="gap-1.5 md:w-48 md:flex-col">
         <Flex direction="row" center noFullWidth className="gap-1">
           <div className="relative h-7 w-7">
             <NextImage src="/images/generic/pot.png" alt={t('Capacity')} sizes={imageSmallIconSizes}/>
@@ -41,9 +42,9 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
             <NextImage src="/images/generic/shard.png" alt={t('Expand')} sizes={imageSmallIconSizes}/>
           </div>
           {!capacity || capacity < potInfo.capacity ?
-            <Flex direction="row" className="gap-1 md:flex-col">
+            <Flex direction="col" noFullWidth className="gap-0.5">
               <div>{formatInt(cumulativeCost)}</div>
-              <div>(+{formatInt(potInfo.cost)})</div>
+              <div className="text-xs">(+{formatInt(potInfo.cost)})</div>
             </Flex> :
             <div>-</div>}
         </Flex>
@@ -51,17 +52,25 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
           <div className="relative h-7 w-7">
             <NextImage src="/images/generic/meal.png" alt={t('UnlockedRecipes')} sizes={imageSmallIconSizes}/>
           </div>
-          <div>{unlockedRecipes} (+{meals.length})</div>
+          <Flex direction="col" noFullWidth className="gap-0.5">
+            <div>{unlockedRecipes}</div>
+            <div className="text-xs">(+{meals.length})</div>
+          </Flex>
         </Flex>
       </Flex>
       <HorizontalSplitter className="block md:hidden"/>
       {meals.length ?
-        <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        <Grid className={clsx(
+          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
+          '2xl:grid-cols-7',
+        )}>
           {meals.map((meal) => <MealLink key={meal.id} meal={meal} small displayType={displayType}/>)}
         </Grid> :
-        <div className="m-auto h-10 w-10">
-          <XCircleIcon/>
-        </div>}
+        <Grid>
+          <div className="m-auto h-10 w-10">
+            <XCircleIcon/>
+          </div>
+        </Grid>}
     </Flex>
   );
 };

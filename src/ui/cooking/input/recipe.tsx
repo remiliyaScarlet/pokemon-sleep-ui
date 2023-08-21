@@ -2,7 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {CookingInputRecipeSingle} from '@/ui/cooking/input/recipeSingle';
 import {CookingCommonProps} from '@/ui/cooking/type';
 
@@ -11,18 +11,13 @@ export const CookingInputRecipe = (props: CookingCommonProps) => {
   const {meals, filter} = props;
 
   return (
-    <Flex direction="row" center wrap className="gap-1">
+    <Grid className={clsx(
+      'grid-cols-1 gap-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
+      '2xl:grid-cols-7',
+    )}>
       {meals
         .filter(({type}) => filter.type === type)
-        .map((data) => (
-          <div key={data.id} className={clsx(
-            'width-with-gap-xs xs:width-with-gap-2-items',
-            'sm:width-with-gap-3-items md:width-with-gap-4-items',
-            'lg:width-with-gap-5-items xl:width-with-gap-6-items',
-          )}>
-            <CookingInputRecipeSingle {...props} data={data}/>
-          </div>
-        ))}
-    </Flex>
+        .map((data) => <CookingInputRecipeSingle key={data.id} {...props} data={data}/>)}
+    </Grid>
   );
 };

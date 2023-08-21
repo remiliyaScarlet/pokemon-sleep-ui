@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {clsx} from 'clsx';
+
+import {Grid} from '@/components/layout/grid';
 import {CookingCookable} from '@/ui/cooking/cookable';
 import {CookingCommonProps, MealEnergyData} from '@/ui/cooking/type';
 import {getMealEnergyInfo} from '@/utils/game/meal';
@@ -22,7 +24,10 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
   );
 
   return (
-    <Flex direction="row" wrap center className="gap-1.5">
+    <Grid className={clsx(
+      'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
+      '2xl:grid-cols-7',
+    )}>
       {mealEnergyInfo
         .sort((a, b) => (b.energyInfo.atLevel.energy ?? 0) - (a.energyInfo.atLevel.energy ?? 0))
         .map((mealEnergyData) => (
@@ -32,6 +37,6 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
             {...mealEnergyData}
           />
         ))}
-    </Flex>
+    </Grid>
   );
 };
