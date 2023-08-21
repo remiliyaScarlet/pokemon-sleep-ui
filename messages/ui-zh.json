@@ -9,7 +9,8 @@
     "Exp": "經驗值",
     "Rank": "階級",
     "Rewards": "報酬",
-    "Shiny": "異色"
+    "Shiny": "異色",
+    "SnorlaxFavorite": "卡比獸喜歡的樹果"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep 攻略站",
@@ -176,7 +177,6 @@
     },
     "Team": {
       "CurrentEnergy": "能量",
-      "SnorlaxFavorite": "卡比獸喜歡的樹果",
       "SubSkill": "副技能",
       "Box": {
         "DisplayType": {

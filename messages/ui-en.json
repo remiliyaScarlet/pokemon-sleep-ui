@@ -9,7 +9,8 @@
     "Exp": "EXP",
     "Rank": "Rank",
     "Rewards": "Rewards",
-    "Shiny": "Shiny"
+    "Shiny": "Shiny",
+    "SnorlaxFavorite": "Snorlax's Favorite Berries"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep Info",
@@ -176,7 +177,6 @@
     },
     "Team": {
       "CurrentEnergy": "Strength",
-      "SnorlaxFavorite": "Snorlax's Favorite Berries",
       "SubSkill": "Sub Skill",
       "Box": {
         "DisplayType": {

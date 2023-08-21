@@ -3,31 +3,35 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {imageSmallIconSizes} from '@/styles/image';
+import {BerryId} from '@/types/mongo/berry';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokemonInfo} from '@/types/mongo/pokemon';
-import {TeamAnalysisFilter} from '@/ui/team/analysis/type';
 import {toUnique} from '@/utils/array';
+import {KeysOfType} from '@/utils/type';
 
 
-type Props = FilterInputProps<TeamAnalysisFilter> & {
+type Props<TFilter extends FilterWithInclusionMap<BerryId>> = FilterInputProps<TFilter> & {
+  filterKey: KeysOfType<TFilter, FilterInclusionMap<BerryId>>
   pokemon: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };
 
-export const TeamAnalysisSnorlaxFavorite = ({pokemon, mapMeta, ...props}: Props) => {
-  const {setFilter} = props;
+export const SnorlaxFavoriteInput = <
+  TFilter extends FilterWithInclusionMap<BerryId>,
+>({pokemon, mapMeta, ...props}: Props<TFilter>) => {
+  const {setFilter, filterKey} = props;
 
   const t = useTranslations('Game');
-  const t2 = useTranslations('UI.InPage.Team');
+  const t2 = useTranslations('UI.Common');
 
   return (
-    <Flex direction="col" className="gap-1">
+    <>
       <FilterIconInput
         title={
           <Flex direction="row" center>
@@ -42,10 +46,7 @@ export const TeamAnalysisSnorlaxFavorite = ({pokemon, mapMeta, ...props}: Props)
         idToAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         ids={toUnique(pokemon.map(({berry}) => berry.id)).sort((a, b) => a - b)}
-        {...getMultiSelectOnClickProps({
-          ...props,
-          filterKey: 'snorlaxFavorite',
-        })}
+        {...getMultiSelectOnClickProps(props)}
       />
       <PokemonMapFilter
         mapIds={Object.keys(mapMeta).map(Number)}
@@ -59,10 +60,10 @@ export const TeamAnalysisSnorlaxFavorite = ({pokemon, mapMeta, ...props}: Props)
 
           setFilter((original) => ({
             ...original,
-            snorlaxFavorite: Object.fromEntries(snorlaxFavorite.map((favorite) => [favorite, true])),
+            [filterKey]: Object.fromEntries(snorlaxFavorite.map((favorite) => [favorite, true])),
           }));
         }}
       />
-    </Flex>
+    </>
   );
 };

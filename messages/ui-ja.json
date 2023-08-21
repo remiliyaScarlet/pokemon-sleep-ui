@@ -9,7 +9,8 @@
     "Exp": "経験値",
     "Rank": "ランク",
     "Rewards": "報酬",
-    "Shiny": "色違い"
+    "Shiny": "色違い",
+    "SnorlaxFavorite": "カビゴンの好きなきのみ"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep 攻略",
@@ -176,7 +177,6 @@
     },
     "Team": {
       "CurrentEnergy": "エナジー",
-      "SnorlaxFavorite": "カビゴンの好きなきのみ",
       "SubSkill": "サブスキル",
       "Box": {
         "DisplayType": {

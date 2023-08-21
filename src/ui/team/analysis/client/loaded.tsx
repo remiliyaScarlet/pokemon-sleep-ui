@@ -1,9 +1,10 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {Flex} from '@/components/layout/flex';
+import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
-import {TeamAnalysisSnorlaxFavorite} from '@/ui/team/analysis/input/snorlaxFavorite';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisDataProps, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {migrate} from '@/utils/migrate/main';
@@ -49,7 +50,15 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
         setFilter={setFilter}
       />
       <AdsUnit/>
-      <TeamAnalysisSnorlaxFavorite filter={filter} setFilter={setFilter} pokemon={pokemon} {...props}/>
+      <Flex direction="col" className="gap-1">
+        <SnorlaxFavoriteInput
+          filter={filter}
+          setFilter={setFilter}
+          filterKey="snorlaxFavorite"
+          pokemon={pokemon}
+          {...props}
+        />
+      </Flex>
       <TeamAnalysisSetupView setup={setup} setSetup={setSetup} snorlaxFavorite={filter.snorlaxFavorite} {...props}/>
     </>
   );

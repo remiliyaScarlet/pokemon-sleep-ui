@@ -25,6 +25,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Rank: string,
       Rewards: string,
       Shiny: string,
+      SnorlaxFavorite: string,
     },
     Metadata: {
       SiteName: string,
@@ -118,7 +119,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       },
       Team: {
         CurrentEnergy: string,
-        SnorlaxFavorite: string,
         SubSkill: string,
         Box: {
           DisplayType: {
