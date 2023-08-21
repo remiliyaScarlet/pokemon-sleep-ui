@@ -41,6 +41,10 @@ const config: Config = {
       scale: {
         120: '1.2',
       },
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      },
       animation: {
         enter: 'fadeIn 300ms ease-out',
         leave: 'fadeOut 300ms ease-in forwards',

@@ -56,8 +56,8 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
 
   return (
     <>
-      <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
       <AdsUnit/>
+      <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
       <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <LazyLoad loading={loading}>
         <Flex direction="row" wrap className="gap-1.5">

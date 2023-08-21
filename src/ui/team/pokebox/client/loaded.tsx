@@ -23,7 +23,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
   const pokemon = Object.values(pokedexMap).filter(isNotNullish);
 
   return (
-    <Flex direction="col" className="gap-2">
+    <Flex direction="col" className="gap-1.5">
       <PokeboxPickerInput
         pokemon={pokemon}
         onClick={(id) => {

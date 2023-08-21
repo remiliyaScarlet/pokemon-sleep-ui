@@ -189,17 +189,16 @@
 
   /* region Info section styling (info-*) */
   
+  .info-section-bg {
+    @apply bg-gradient-to-br from-slate-200/80 to-slate-100/60 dark:from-black/60 dark:to-slate-950/75;
+  }
+  
   .info-in-image {
     @apply rounded-full bg-slate-400/80 dark:bg-slate-500/80;
   }
   
   .info-section {
-    @apply
-    gap-2 rounded-lg p-4 self-stretch
-    bg-gradient-to-br
-    from-slate-200/80 to-slate-100/60
-    dark:from-black/60 dark:to-slate-950/75
-    ;
+    @apply gap-2 rounded-lg p-4 self-stretch info-section-bg;
   }
   
   .info-section-md-fit {

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {clsx} from 'clsx';
@@ -11,7 +12,10 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getIconFilterButtonClass, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
+import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
+import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
@@ -37,55 +41,68 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
   const t2 = useTranslations('UI.InPage.Pokedex');
 
+  const collapsible = useCollapsible();
+
   return (
-    <Flex direction="col" className="h-72 gap-1 overflow-x-hidden overflow-y-scroll pr-1 md:h-52">
-      <InputRowWithTitle title={t2('Info.Name')}>
-        <InputBox type="text" value={filter.name} onChange={({target}) => setFilter((original) => ({
-          ...original,
-          name: target.value,
-        }))}/>
-      </InputRowWithTitle>
-      {pokemonInputType.map((type) => (
-        <PokemonFilter
-          key={type}
-          type={type}
-          pokemon={pokemon}
-          filterKey={type}
-          filter={filter}
-          setFilter={setFilter}
-          idPrefix="viewer-"
+    <Collapsible state={collapsible} className="h-72 md:h-52" button={
+      <Flex direction="row" center className="gap-0.5">
+        <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
+        <div className="h-6 w-6">
+          <EyeIcon/>
+        </div>
+        <div className="h-6 w-6">
+          <FunnelIcon/>
+        </div>
+      </Flex>
+    }>
+      <Flex direction="col" className="gap-1 pr-1">
+        <InputRowWithTitle title={t2('Info.Name')}>
+          <InputBox type="text" value={filter.name} onChange={({target}) => setFilter((original) => ({
+            ...original,
+            name: target.value,
+          }))}/>
+        </InputRowWithTitle>
+        {pokemonInputType.map((type) => (
+          <PokemonFilter
+            key={type}
+            type={type}
+            pokemon={pokemon}
+            filterKey={type}
+            filter={filter}
+            setFilter={setFilter}
+            idPrefix="viewer-"
+          />
+        ))}
+        <PokemonSortingPicker
+          sort={filter.sort}
+          updateSort={(sort) => setFilter((original) => ({...original, sort}))}
+          exclude={['friendshipPoint']}
         />
-      ))}
-      <PokemonSortingPicker
-        sort={filter.sort}
-        updateSort={(sort) => setFilter((original) => ({...original, sort}))}
-        exclude={['friendshipPoint']}
-      />
-      <FilterCategoryInput
-        title={
-          <Flex direction="col" center>
+        <FilterCategoryInput
+          title={
+            <Flex direction="col" center>
+              <div className="h-6 w-6">
+                <EyeIcon/>
+              </div>
+            </Flex>
+          }
+          ids={[...pokeboxViewType]}
+          idToButton={(type: PokeboxViewType) => (
             <div className="h-6 w-6">
-              <EyeIcon/>
+              {pokeboxViewTypeToIcon[type]}
             </div>
-          </Flex>
-        }
-        ids={[...pokeboxViewType]}
-        idToButton={(type: PokeboxViewType) => (
-          <div className="h-6 w-6">
-            {pokeboxViewTypeToIcon[type]}
-          </div>
-        )}
-        idToItemId={(type) => type}
-        getClassNames={getIconFilterButtonClass}
-        {...getSingleSelectOnClickProps({
-          filter,
-          setFilter,
-          filterKey: 'viewType',
-          allowNull: false,
-        })}
-      />
-      {
-        filter.viewType === 'grid' &&
+          )}
+          idToItemId={(type) => type}
+          getClassNames={getIconFilterButtonClass}
+          {...getSingleSelectOnClickProps({
+            filter,
+            setFilter,
+            filterKey: 'viewType',
+            allowNull: false,
+          })}
+        />
+        {
+          filter.viewType === 'grid' &&
         <FilterIconInput
           title={
             <Flex direction="col" center>
@@ -106,7 +123,8 @@ export const PokeboxViewerInput = ({filter, setFilter, pokemon}: Props) => {
             allowNull: false,
           })}
         />
-      }
-    </Flex>
+        }
+      </Flex>
+    </Collapsible>
   );
 };
