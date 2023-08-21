@@ -3,8 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {MealLinkProps} from '@/components/shared/meal/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
