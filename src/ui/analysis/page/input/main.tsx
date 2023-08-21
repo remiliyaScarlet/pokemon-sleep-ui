@@ -8,6 +8,7 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
@@ -17,7 +18,7 @@ type Props = FilterInputProps<AnalysisComparisonFilter> & AnalysisPageCommonProp
   maxLevel: number,
 };
 
-export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap}: Props) => {
+export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap, mapMeta}: Props) => {
   return (
     <Flex direction="col" className="gap-1">
       <PokemonMapFilter
@@ -50,6 +51,13 @@ export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepSt
           } satisfies AnalysisComparisonFilter))}/>
         </Flex>
       </InputRow>
+      <SnorlaxFavoriteInput
+        filter={filter}
+        setFilter={setFilter}
+        filterKey="snorlaxFavorite"
+        pokemon={pokedex}
+        mapMeta={mapMeta}
+      />
     </Flex>
   );
 };

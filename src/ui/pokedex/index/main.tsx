@@ -8,6 +8,7 @@ import {locales} from '@/const/website';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
+import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsCursor} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -33,6 +34,7 @@ export const Pokedex = () => {
   const maxLevel = React.use(getPokemonMaxLevelByBerry());
   const ingredientMap = React.use(getAllIngredients());
   const berryMap = React.use(getAllBerryData());
+  const mapMeta = React.use(getAllMapMeta());
   const session = React.use(getServerSession(authOptions));
 
   const props: PokedexClientCommonProps = {
@@ -40,6 +42,7 @@ export const Pokedex = () => {
     maxLevel,
     ingredientMap,
     berryMap,
+    mapMeta,
     session,
   };
 

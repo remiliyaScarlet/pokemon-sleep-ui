@@ -45,7 +45,7 @@ export const PokemonIconsBerryStats = ({data, level, berryData, berryDataMap}: P
           level,
           pokemon,
           ...defaultNeutralOpts,
-          isSnorlaxFavorite: false,
+          snorlaxFavorite: {},
           berryData: berryDataToUse,
         });
       }}

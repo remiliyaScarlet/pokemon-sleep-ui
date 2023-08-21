@@ -3,6 +3,7 @@ import {Session} from 'next-auth';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
+import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokedexMap} from '@/types/mongo/pokemon';
 
 
@@ -12,4 +13,5 @@ export type PokeboxCommonProps = {
   subSkillMap: SubSkillMap,
   ingredientMap: IngredientMap,
   berryMap: BerryDataMap,
+  mapMeta: FieldMetaMap,
 };

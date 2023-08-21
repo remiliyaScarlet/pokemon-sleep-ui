@@ -5,11 +5,27 @@ import {
   PokemonSortType,
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {BerryDataMap} from '@/types/mongo/berry';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 
+
+const getBerryRateSorter = (
+  key: keyof ProducingRate,
+  {berryData, snorlaxFavorite, ...opts}: PokemonSorterGetterOpts,
+) => {
+  if (!berryData) {
+    return 0;
+  }
+
+  return getBerryProducingRate({
+    snorlaxFavorite,
+    berryData,
+    ...opts,
+  })[key];
+};
 
 const sortInAsc: PokemonSortType[] = [
   'id',
@@ -21,33 +37,13 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   id: ({pokemon}) => pokemon.id,
   ingredientEnergy: (opts) => toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy)),
   ingredientCount: (opts) => toSum(getIngredientProducingRates(opts).map(({quantity}) => quantity)),
-  berryEnergy: ({berryData, ...opts}) => berryData ? getBerryProducingRate({
-    isSnorlaxFavorite: false,
-    berryData,
-    ...opts,
-  }).dailyEnergy : 0,
-  berryCount: ({berryData, ...opts}) => berryData ? getBerryProducingRate({
-    isSnorlaxFavorite: false,
-    berryData,
-    ...opts,
-  }).quantity : 0,
+  berryEnergy: (opts) => getBerryRateSorter('dailyEnergy', opts),
+  berryCount: (opts) => getBerryRateSorter('quantity', opts),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequency: ({pokemon}) => pokemon.stats.frequency,
-  totalEnergy: ({pokemon, berryData, ...opts}) => {
-    if (!berryData) {
-      return 0;
-    }
-
-    const berry = getBerryProducingRate({
-      isSnorlaxFavorite: false,
-      pokemon,
-      berryData,
-      ...opts,
-    }).dailyEnergy;
-    const ingredient = toSum(getIngredientProducingRates({
-      pokemon,
-      ...opts,
-    }).map(({dailyEnergy}) => dailyEnergy));
+  totalEnergy: (opts) => {
+    const berry = getBerryRateSorter('dailyEnergy', opts);
+    const ingredient = toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy));
 
     return berry + (ingredient ?? 0);
   },

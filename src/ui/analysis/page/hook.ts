@@ -17,6 +17,7 @@ export const useAnalysisFilter = ({data}: UseAnalysisFilterOpts) => {
       ...generatePokemonInputFilter(),
       level: 1,
       mapId: {},
+      snorlaxFavorite: {},
     },
     isDataIncluded: (filter, data) => {
       if (!isDataIncludingAllOfFilter({

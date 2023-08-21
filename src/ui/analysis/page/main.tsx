@@ -5,6 +5,7 @@ import {Failed} from '@/components/icons/failed';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
+import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
@@ -23,6 +24,7 @@ export const AnalysisPage = ({params}: Props) => {
   const ingredientMap = React.use(getAllIngredients());
   const berryDataMap = React.use(getAllBerryData());
   const sleepStyleMap = React.use(getPokemonSleepStyleMap());
+  const mapMeta = React.use(getAllMapMeta());
 
   if (!pokemon) {
     return <Failed text="Pokemon"/>;
@@ -38,6 +40,7 @@ export const AnalysisPage = ({params}: Props) => {
     ingredientMap,
     berryDataMap,
     sleepStyleMap,
+    mapMeta,
   };
 
   return (

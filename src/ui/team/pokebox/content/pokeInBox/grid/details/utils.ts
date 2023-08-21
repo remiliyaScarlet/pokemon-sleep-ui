@@ -30,7 +30,13 @@ export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): Produci
 };
 
 export const getRateOfBerry = (opts: PokeboxPokeInBoxCommonProps) => {
-  const {pokemon, pokeInBox, berryMap, subSkillMap} = opts;
+  const {
+    pokemon,
+    pokeInBox,
+    berryMap,
+    subSkillMap,
+    snorlaxFavorite,
+  } = opts;
   const {berry} = pokemon;
   const {level} = pokeInBox;
 
@@ -39,7 +45,7 @@ export const getRateOfBerry = (opts: PokeboxPokeInBoxCommonProps) => {
   return getBerryProducingRate({
     level,
     pokemon,
-    isSnorlaxFavorite: false,
+    snorlaxFavorite,
     berryData: berryMap[berry.id],
     ...singleParams,
   });

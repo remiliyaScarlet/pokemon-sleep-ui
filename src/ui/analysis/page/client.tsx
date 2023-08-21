@@ -29,6 +29,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     ...props,
     level: filter.level,
     pokemonToAnalyze: pokedex.filter(({id}) => isIncluded[id]),
+    snorlaxFavorite: filter.snorlaxFavorite,
     setStats,
     setLoading,
     calculateDeps: [filter],

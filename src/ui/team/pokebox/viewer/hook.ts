@@ -43,6 +43,7 @@ export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNam
     initialFilter: {
       ...generatePokemonInputFilter(),
       name: '',
+      snorlaxFavorite: {},
       ...merge({
         sort: 'id',
         displayType: 'productionTotal',

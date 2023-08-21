@@ -14,12 +14,13 @@ export const getAnalysisStatsOfProducingRate = ({
   pokemon,
   berryDataMap,
   ingredientMap,
+  snorlaxFavorite,
   level,
 }: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
   const currentRate = getPokemonProducingRate({
     berryData: berryDataMap[pokemon.berry.id],
     ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
-    isSnorlaxFavorite: false,
+    snorlaxFavorite,
     level,
     pokemon,
     ...defaultNeutralOpts,
@@ -30,7 +31,7 @@ export const getAnalysisStatsOfProducingRate = ({
     rate: getPokemonProducingRate({
       berryData: berryDataMap[pokemon.berry.id],
       ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
-      isSnorlaxFavorite: false,
+      snorlaxFavorite,
       level,
       pokemon,
       ...defaultNeutralOpts,

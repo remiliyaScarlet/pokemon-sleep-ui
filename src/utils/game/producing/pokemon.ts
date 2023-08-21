@@ -6,13 +6,13 @@ import {getIngredientProducingRate, GetIngredientProducingRateOpts} from '@/util
 type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRateOpts;
 
 export const getPokemonProducingRate = ({
-  isSnorlaxFavorite,
+  snorlaxFavorite,
   berryData,
   ...props
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
   return {
     berry: getBerryProducingRate({
-      isSnorlaxFavorite,
+      snorlaxFavorite: snorlaxFavorite,
       berryData,
       ...props,
     }),

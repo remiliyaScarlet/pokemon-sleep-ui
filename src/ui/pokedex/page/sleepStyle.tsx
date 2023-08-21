@@ -16,7 +16,6 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
   const t2 = useTranslations('UI.Common');
   const t3 = useTranslations(`Game.SleepFace.${pokemon.id}`);
   const t4 = useTranslations('Game.SleepFace.onSnorlax');
-  const t5 = useTranslations('UI.InPage.Pokedex.Info');
 
   if (sleepStyles.length === 0) {
     return <></>;
@@ -33,7 +32,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
               <Flex direction="row" center className="z-10 p-1.5">
                 <div>
                   <div className="relative h-9 w-9">
-                    <NextImage src="/images/generic/map_pin.png" alt={t5('Map')} sizes={imageSmallIconSizes}/>
+                    <NextImage src="/images/generic/map_pin.png" alt={t2('Map')} sizes={imageSmallIconSizes}/>
                   </div>
                 </div>
                 <div className="text-lg">

@@ -27,7 +27,7 @@ export const PokemonBerryMeta = ({pokemon, berryName, berryData, level}: Props) 
     pokemon,
     ...defaultNeutralOpts,
     berryData,
-    isSnorlaxFavorite: false,
+    snorlaxFavorite: {},
   });
 
   return (

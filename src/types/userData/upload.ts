@@ -1,6 +1,5 @@
-import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Pokebox} from '@/types/game/pokebox';
-import {BerryId} from '@/types/mongo/berry';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {MealTypeId} from '@/types/mongo/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -9,7 +8,7 @@ import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
 export type UploadOfTeamAnalysisSetup = TeamAnalysisTeamSetup & {
-  snorlaxFavorite: FilterInclusionMap<BerryId>
+  snorlaxFavorite: SnorlaxFavorite,
 };
 
 export type UploadOfPotInfo = {

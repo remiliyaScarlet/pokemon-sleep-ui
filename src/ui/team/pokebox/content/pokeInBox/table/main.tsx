@@ -28,6 +28,7 @@ export const PokeboxContentPokeInBoxTable = ({
             key={uuid}
             pokeInBox={source.extra}
             displayType={filter.displayType}
+            snorlaxFavorite={filter.snorlaxFavorite}
             onClick={() => setEditingUuid(uuid)}
             {...props}
           />

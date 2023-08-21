@@ -9,7 +9,7 @@ export type InputRowProps = {
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
 
-export type FilterWithInclusionMap<TId extends Indexable> = Record<TId, FilterInclusionMap<TId> | any>;
+export type FilterWithInclusionMap<TId extends Indexable> = Record<string, FilterInclusionMap<TId> | any>;
 
 export type FilterInputProps<TFilter> = {
   filter: TFilter,

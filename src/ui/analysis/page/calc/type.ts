@@ -1,4 +1,5 @@
 import {SnorlaxRank} from '@/types/game/rank';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
 import {
@@ -73,6 +74,7 @@ export type GetAnalysisStatsCommonOpts<TSample> = {
   getPokemonId: (sample: TSample) => PokemonId,
 };
 
-export type GetAnalysisStatsOpts = AnalysisPageCommonProps & {
+export type GetAnalysisStatsOpts = Omit<AnalysisPageCommonProps, 'mapMeta'> & {
   level: number,
+  snorlaxFavorite: SnorlaxFavorite,
 };

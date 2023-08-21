@@ -27,7 +27,7 @@ type Props = PokeboxCommonProps & {
 };
 
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
-  const {session, pokedexMap, subSkillMap} = props;
+  const {session, pokedexMap, subSkillMap, mapMeta} = props;
   const t = useTranslations('Game');
   const [loading, setLoading] = React.useState(false);
   const {
@@ -69,6 +69,7 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
       })
       .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
     sort: filter.sort,
+    snorlaxFavorite: filter.snorlaxFavorite,
     ...props,
     triggerDeps: [pokebox, filter],
     setLoading,
@@ -128,7 +129,7 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         }}
         {...props}
       />
-      <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon}/>
+      <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon} mapMeta={mapMeta}/>
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeboxPokeInBoxView
           filter={filter}

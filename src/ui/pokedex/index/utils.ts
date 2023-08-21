@@ -11,6 +11,7 @@ export const generateInitialFilter = (session: Session | null): PokedexFilter =>
     mapId: {},
     ...generatePokemonInputFilter(),
     level: 1,
+    snorlaxFavorite: {},
     ...merge({
       display: 'mainSkill',
       sort: 'id',

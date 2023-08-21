@@ -17,6 +17,7 @@ import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
+import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
 import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
@@ -80,6 +81,11 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
                 } satisfies PokedexInputProps['filter']))}/>
             </Flex>
           </InputRow>
+          <SnorlaxFavoriteInput
+            filterKey="snorlaxFavorite"
+            pokemon={pokedex}
+            {...props}
+          />
           <FilterTextInput
             onClick={(display) => setFilter((original) => ({
               ...original,

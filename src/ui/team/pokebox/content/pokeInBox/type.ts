@@ -16,8 +16,11 @@ export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
   sortedPokemonInfo: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 
-export type PokeInBoxViewUnitProps = PokeboxCommonProps & Pick<PokeboxPokeInBoxCommonProps, 'displayType'> & {
-  pokeInBox: PokeInBox,
-  pokedexMap: PokedexMap,
-  onClick: () => void,
-};
+export type PokeInBoxViewUnitProps =
+  PokeboxCommonProps &
+  Pick<PokeboxPokeInBoxCommonProps, 'displayType' | 'snorlaxFavorite'> &
+  {
+    pokeInBox: PokeInBox,
+    pokedexMap: PokedexMap,
+    onClick: () => void,
+  };

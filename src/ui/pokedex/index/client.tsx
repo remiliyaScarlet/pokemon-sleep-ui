@@ -50,6 +50,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     sort: filter.sort,
     ingredientMap,
     berryMap,
+    snorlaxFavorite: filter.snorlaxFavorite,
     triggerDeps: [filter],
     setLoading,
   });
@@ -61,7 +62,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <LazyLoad loading={loading}>
         <Flex direction="row" wrap className="gap-1.5">
-          {sortedData.map(({source}) => (
+          {sortedData.map(({source, sorter}) => (
             <div
               key={source.pokemon.id}
               className={clsx(
@@ -74,8 +75,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
               <PokedexLink
                 pokemon={source.pokemon}
                 display={filter.display}
-                level={filter.level}
-                {...props}
+                sorter={sorter}
               />
             </div>
           ))}

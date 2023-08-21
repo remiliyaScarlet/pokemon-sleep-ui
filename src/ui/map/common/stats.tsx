@@ -20,7 +20,7 @@ type Props = {
 
 export const MapStats = ({sleepStyles, meta}: Props) => {
   const t = useTranslations('UI.InPage.Map');
-  const t2 = useTranslations('UI.InPage.Team');
+  const t2 = useTranslations('UI.Common');
 
   const sleepStyleCount = sleepStyles?.length ?? 0;
   const pokemonCount = toUnique(sleepStyles?.map(({pokemonId}) => pokemonId) ?? []).length;

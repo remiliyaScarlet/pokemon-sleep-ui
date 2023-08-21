@@ -1,13 +1,15 @@
 import React from 'react';
 
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
-type Props = Omit<AnalysisPageCommonProps, 'pokedex'> & {
+type Props = Omit<AnalysisPageCommonProps, 'pokedex' | 'mapMeta'> & {
   level: number,
   pokemonToAnalyze: PokemonInfo[],
+  snorlaxFavorite: SnorlaxFavorite,
   setStats: (stats: AnalysisStats) => void,
   setLoading: (loading: boolean) => void,
   calculateDeps: React.DependencyList,
@@ -20,6 +22,7 @@ export const useCalculationWorker = ({
   sleepStyleMap,
   level,
   pokemonToAnalyze,
+  snorlaxFavorite,
   setStats,
   setLoading,
   calculateDeps,
@@ -46,6 +49,7 @@ export const useCalculationWorker = ({
       ingredientMap,
       berryDataMap,
       sleepStyleMap,
+      snorlaxFavorite,
     } satisfies GetAnalysisStatsOpts);
     setLoading(true);
   };

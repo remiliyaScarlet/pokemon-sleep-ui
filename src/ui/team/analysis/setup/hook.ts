@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {ProducingRateSingleParams, ProducingRate} from '@/types/game/producing/rate';
+import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {
   TeamProducingStats,
   TeamProducingStatsBySlot,
@@ -11,7 +12,6 @@ import {
 import {groupProducingStats} from '@/ui/team/analysis/setup/utils';
 import {
   TeamAnalysisDataProps,
-  TeamAnalysisFilter,
   TeamAnalysisSlotName,
   teamAnalysisSlotName,
   TeamAnalysisTeamSetup,
@@ -26,7 +26,7 @@ import {isNotNullish} from '@/utils/type';
 
 type UseProducingStatsOpts = TeamAnalysisDataProps & {
   setup: TeamAnalysisTeamSetup,
-  snorlaxFavorite: TeamAnalysisFilter['snorlaxFavorite'],
+  snorlaxFavorite: SnorlaxFavorite,
 };
 
 type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
@@ -74,7 +74,7 @@ const useProducingStatsOfSlot = ({
         level,
         pokemon,
         ...producingRateOpts,
-        isSnorlaxFavorite: snorlaxFavorite[berryData.id] ?? false,
+        snorlaxFavorite,
         berryData,
       })),
       ingredient: applyEnergyMultiplier(overallMultiplier * ingredientMultiplier, getIngredientProducingRate({

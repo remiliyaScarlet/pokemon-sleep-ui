@@ -1,14 +1,16 @@
 import React from 'react';
 
+import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
-import {FilterInclusionMap, FilterInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
+import {FilterInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {imageSmallIconSizes} from '@/styles/image';
+import {FilterWithSnorlaxFavorite, SnorlaxFavorite} from '@/types/game/snorlax';
 import {BerryId} from '@/types/mongo/berry';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -16,8 +18,8 @@ import {toUnique} from '@/utils/array';
 import {KeysOfType} from '@/utils/type';
 
 
-type Props<TFilter extends FilterWithInclusionMap<BerryId>> = FilterInputProps<TFilter> & {
-  filterKey: KeysOfType<TFilter, FilterInclusionMap<BerryId>>
+type Props<TFilter extends FilterWithSnorlaxFavorite> = FilterInputProps<TFilter> & {
+  filterKey: KeysOfType<TFilter, SnorlaxFavorite>
   pokemon: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };
@@ -49,20 +51,30 @@ export const SnorlaxFavoriteInput = <
         {...getMultiSelectOnClickProps(props)}
       />
       <PokemonMapFilter
+        idPrefix="SnorlaxFav-"
+        title={
+          <Flex direction="row" center className="gap-0.5">
+            <div className="relative h-7 w-7">
+              <NextImage
+                src="/images/generic/snorlax.png" alt={t2('SnorlaxFavorite')} sizes={imageSmallIconSizes}
+              />
+            </div>
+            <div className="h-6 w-6">
+              <PlusCircleIcon/>
+            </div>
+            <div className="relative h-7 w-7">
+              <NextImage
+                src="/images/generic/map.png" alt={t2('Map')} sizes={imageSmallIconSizes}
+              />
+            </div>
+          </Flex>
+        }
         mapIds={Object.keys(mapMeta).map(Number)}
         isActive={() => false}
-        isHidden={(id) => !mapMeta[id]?.berry?.length}
-        onClick={(mapId) => {
-          const snorlaxFavorite = mapMeta[mapId]?.berry;
-          if (!snorlaxFavorite) {
-            return;
-          }
-
-          setFilter((original) => ({
-            ...original,
-            [filterKey]: Object.fromEntries(snorlaxFavorite.map((favorite) => [favorite, true])),
-          }));
-        }}
+        onClick={(mapId) => setFilter((original) => ({
+          ...original,
+          [filterKey]: Object.fromEntries(mapMeta[mapId]?.berry?.map((favorite) => [favorite, true]) ?? []),
+        }))}
       />
     </>
   );

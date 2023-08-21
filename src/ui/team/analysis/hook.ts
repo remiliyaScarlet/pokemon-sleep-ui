@@ -1,7 +1,8 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
-import {SnorlaxFavorite, TeamAnalysisFilter} from '@/ui/team/analysis/type';
+import {TeamAnalysisFilter} from '@/ui/team/analysis/type';
 
 
 type UseTeamAnalysisPokemonFilterOpts = {

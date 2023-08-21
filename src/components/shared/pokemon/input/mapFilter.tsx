@@ -14,17 +14,19 @@ type Props = FilterInputOnClickProps<SleepMapId> & {
   mapIds: SleepMapId[],
   isHidden?: (mapId: SleepMapId) => boolean,
   highlight?: boolean,
+  idPrefix?: string,
+  title?: React.ReactNode,
 };
 
-export const PokemonMapFilter = ({mapIds, isHidden, highlight, ...props}: Props) => {
-  const t = useTranslations('UI.InPage.Pokedex');
+export const PokemonMapFilter = ({mapIds, isHidden, highlight, idPrefix, title, ...props}: Props) => {
+  const t = useTranslations('UI.Common');
   const t2 = useTranslations('Game');
 
   return (
     <FilterTextInput
       style={highlight ? 'highlight' : undefined}
-      title={t('Info.Map')}
-      idToItemId={(id) => `Map-${id}`}
+      title={title ?? t('Map')}
+      idToItemId={(id) => `${idPrefix ?? ''}-Map-${id}`}
       ids={mapIds}
       isHidden={(id) => (isHidden && isHidden(id)) ?? false}
       idToButton={(id) => {

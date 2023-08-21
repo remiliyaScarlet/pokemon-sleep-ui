@@ -1,5 +1,6 @@
 import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {BerryData} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {PokemonInfo} from '@/types/mongo/pokemon';
@@ -36,6 +37,7 @@ export type PokemonSorterGetterOpts = ProducingRateSingleParams & {
   ingredients: PokemonIngredientPick[],
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
+  snorlaxFavorite: SnorlaxFavorite,
 };
 
 export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;

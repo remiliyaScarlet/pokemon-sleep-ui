@@ -1,17 +1,15 @@
-import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {NatureId} from '@/types/game/producing/nature';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
-import {BerryDataMap, BerryId} from '@/types/mongo/berry';
+import {BerryDataMap} from '@/types/mongo/berry';
 import {IngredientMap} from '@/types/mongo/ingredient';
 import {FieldMetaMap} from '@/types/mongo/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
-
-export type SnorlaxFavorite = FilterInclusionMap<BerryId>;
 
 export type TeamAnalysisFilter = PokemonInputFilter & {
   snorlaxFavorite: SnorlaxFavorite,

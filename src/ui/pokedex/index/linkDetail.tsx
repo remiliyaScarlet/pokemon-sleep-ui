@@ -13,18 +13,13 @@ import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
-import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {formatFloat} from '@/utils/number';
 
 
 export const PokedexLinkDetail = React.memo(({
   pokemon,
   display,
-  level,
-  ingredientMap,
-  berryMap,
+  sorter,
 }: PokedexLinkProps) => {
   const {
     id,
@@ -33,7 +28,6 @@ export const PokedexLinkDetail = React.memo(({
     ingredients,
     specialty,
     sleepType,
-    stats,
   } = pokemon;
 
   const t = useTranslations('Game');
@@ -62,18 +56,18 @@ export const PokedexLinkDetail = React.memo(({
     return <PokemonIngredientIcons ingredients={ingredients}/>;
   }
 
-  if (display === 'specialty') {
-    return (
-      <Flex direction="row">
-        <PokemonSpecialty specialty={specialty}/>
-      </Flex>
-    );
-  }
-
   if (display === 'sleepType') {
     return (
       <Flex direction="row">
         <PokemonSleepType sleepType={sleepType}/>
+      </Flex>
+    );
+  }
+
+  if (display === 'specialty') {
+    return (
+      <Flex direction="row">
+        <PokemonSpecialty specialty={specialty}/>
       </Flex>
     );
   }
@@ -85,7 +79,7 @@ export const PokedexLinkDetail = React.memo(({
           <NextImage src="/images/generic/friendship.png" alt={t2('Stats.Friendship')} sizes={imageSmallIconSizes}/>
         </div>
         <div>
-          {stats.friendshipPoints}
+          {sorter}
         </div>
       </Flex>
     );
@@ -98,7 +92,7 @@ export const PokedexLinkDetail = React.memo(({
           <ClockIcon/>
         </div>
         <div>
-          {stats.frequency}
+          {sorter}
         </div>
       </Flex>
     );
@@ -119,91 +113,35 @@ export const PokedexLinkDetail = React.memo(({
       return <></>;
     }
 
-    const rate = getIngredientProducingRate({
-      level,
-      pokemon,
-      ingredient: ingredientMap[fixedIngredientId],
-      ...defaultNeutralOpts,
-    });
-
-    if (display === 'ingredientEnergy') {
-      return (
-        <Flex direction="row" className="gap-0.5">
-          <PokemonIngredientIcon id={fixedIngredientId}/>
-          <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
-          <div>
-            {formatFloat(rate?.dailyEnergy)}
-          </div>
-        </Flex>
-      );
-    }
-
-    if (display === 'ingredientCount') {
-      return (
-        <Flex direction="row" className="gap-0.5">
-          <PokemonIngredientIcon id={fixedIngredientId}/>
-          <div>
-            {formatFloat(rate?.quantity)}
-          </div>
-        </Flex>
-      );
-    }
+    return (
+      <Flex direction="row" className="gap-0.5">
+        <PokemonIngredientIcon id={fixedIngredientId}/>
+        {display === 'ingredientEnergy' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
+        <div>
+          {formatFloat(sorter)}
+        </div>
+      </Flex>
+    );
   }
 
   if (display === 'berryEnergy' || display === 'berryCount') {
-    const rate = getBerryProducingRate({
-      level,
-      pokemon,
-      ...defaultNeutralOpts,
-      isSnorlaxFavorite: false,
-      berryData: berryMap[berry.id],
-    });
-
-    if (display === 'berryEnergy') {
-      return (
-        <Flex direction="row" className="gap-0.5">
-          <PokemonBerryIcon id={berry.id}/>
-          <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
-          <div>
-            {formatFloat(rate?.dailyEnergy)}
-          </div>
-        </Flex>
-      );
-    }
-
-    if (display === 'berryCount') {
-      return (
-        <Flex direction="row" className="gap-0.5">
-          <PokemonBerryIcon id={berry.id}/>
-          <div>
-            {formatFloat(rate?.quantity)}
-          </div>
-        </Flex>
-      );
-    }
+    return (
+      <Flex direction="row" className="gap-0.5">
+        <PokemonBerryIcon id={berry.id}/>
+        {display === 'berryEnergy' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
+        <div>
+          {formatFloat(sorter)}
+        </div>
+      </Flex>
+    );
   }
 
   if (display === 'totalEnergy') {
-    const rateOfBerry = getBerryProducingRate({
-      level,
-      pokemon,
-      ...defaultNeutralOpts,
-      isSnorlaxFavorite: false,
-      berryData: berryMap[berry.id],
-    });
-
-    const rateOfIngredient = getIngredientProducingRate({
-      level,
-      pokemon,
-      ingredient: ingredients.fixed ? ingredientMap[ingredients.fixed] : undefined,
-      ...defaultNeutralOpts,
-    });
-
     return (
       <Flex direction="row" className="gap-0.5">
         <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
         <div>
-          {formatFloat(rateOfBerry.dailyEnergy + (rateOfIngredient?.dailyEnergy ?? 0))}
+          {formatFloat(sorter)}
         </div>
       </Flex>
     );

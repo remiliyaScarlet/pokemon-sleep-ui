@@ -1,6 +1,7 @@
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 
 
@@ -36,4 +37,5 @@ export type PokeboxViewerDisplay = {
 
 export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
   name: string,
+  snorlaxFavorite: SnorlaxFavorite,
 };
