@@ -201,10 +201,6 @@
     @apply gap-2 rounded-lg p-4 self-stretch info-section-bg;
   }
   
-  .info-section-md-fit {
-    @apply info-section md:w-fit;
-  }
-  
   /* endregion */
 
   /* region Image inverting (invert-*) */

@@ -19,7 +19,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
   const ingredientName = t(id.toString());
 
   return (
-    <Flex direction="col" center className="info-section-md-fit">
+    <Flex direction="col" center className="info-section md:w-fit">
       <div className="text-xl">
         {ingredientName}
       </div>
