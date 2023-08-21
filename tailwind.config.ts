@@ -46,8 +46,9 @@ const config: Config = {
         'spacing': 'margin, padding',
       },
       animation: {
-        enter: 'fadeIn 300ms ease-out',
-        leave: 'fadeOut 300ms ease-in forwards',
+        'enter': 'fadeIn 300ms ease-out',
+        'leave': 'fadeOut 300ms ease-in forwards',
+        'marquee-x': 'marqueeX 8000ms linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -64,6 +65,20 @@ const config: Config = {
           },
           '100%': {
             opacity: '0',
+          },
+        },
+        marqueeX: {
+          '0%': {
+            transform: 'translate(100%)',
+          },
+          '30%': {
+            transform: 'translate(0%)',
+          },
+          '70%': {
+            transform: 'translate(0%)',
+          },
+          '100%': {
+            transform: 'translate(-100%)',
           },
         },
       },
