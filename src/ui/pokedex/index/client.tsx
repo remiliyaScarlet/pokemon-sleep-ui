@@ -4,7 +4,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
@@ -61,25 +61,20 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
       <PokedexResultCount data={pokedex} inclusionMap={isIncluded}/>
       <LazyLoad loading={loading}>
-        <Flex direction="row" wrap className="gap-1.5">
+        <Grid className={clsx(
+          'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8',
+        )}>
           {sortedData.map(({source, sorter}) => (
-            <div
-              key={source.pokemon.id}
-              className={clsx(
-                'width-with-gap-sm width-with-gap-2-items xs:width-with-gap-3-items relative',
-                'sm:width-with-gap-4-items md:width-with-gap-5-items',
-                'lg:width-with-gap-6-items xl:width-with-gap-8-items',
-                !isIncluded[source.pokemon.id] && 'hidden',
-              )}
-            >
+            isIncluded[source.pokemon.id] ?
               <PokedexLink
+                key={source.pokemon.id}
                 pokemon={source.pokemon}
                 display={filter.display}
                 sorter={sorter}
-              />
-            </div>
+              /> :
+              <React.Fragment key={source.pokemon.id}/>
           ))}
-        </Flex>
+        </Grid>
       </LazyLoad>
       <AdsUnit/>
     </>

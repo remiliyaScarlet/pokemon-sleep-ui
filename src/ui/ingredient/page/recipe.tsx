@@ -5,8 +5,8 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
-import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {imageGallerySizes} from '@/styles/image';
 import {Meal} from '@/types/mongo/meal';
 import {getMealRequiredQuantity} from '@/utils/game/meal';

@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {MapLink} from '@/components/shared/map/link';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getSleepStyleByMaps} from '@/controller/sleepStyle';
@@ -21,27 +22,18 @@ export const MapIndex = () => {
     <PublicPageLayout>
       <Flex direction="col" className="gap-1.5 md:px-32 md:pt-32">
         <AdsUnit/>
-        <Flex direction="row" center wrap className="gap-1.5">
-          {Object.entries(data).map(([mapId, sleepStyles]) => {
-            const mapName = t(mapId.toString());
-
-            return (
-              <Flex
-                key={mapId} direction="col" noFullWidth
-                className="width-with-gap md:width-with-gap-2-items"
-              >
-                <MapLink mapId={mapId} className="h-40">
-                  <Flex direction="col" className="z-10 gap-4">
-                    <div className="text-2xl">
-                      {mapName}
-                    </div>
-                    <MapStats sleepStyles={sleepStyles} meta={mapMeta[Number(mapId)]}/>
-                  </Flex>
-                </MapLink>
+        <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2">
+          {Object.entries(data).map(([mapId, sleepStyles]) => (
+            <MapLink key={mapId} mapId={mapId} className="h-40">
+              <Flex direction="col" className="z-10 gap-4">
+                <div className="text-2xl">
+                  {t(mapId.toString())}
+                </div>
+                <MapStats sleepStyles={sleepStyles} meta={mapMeta[Number(mapId)]}/>
               </Flex>
-            );
-          })}
-        </Flex>
+            </MapLink>
+          ))}
+        </Grid>
         <AdsUnit/>
       </Flex>
     </PublicPageLayout>

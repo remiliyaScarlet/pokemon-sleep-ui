@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {getAllSubSkillData} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SubSkillInfoSingle} from '@/ui/info/subskill/single';
@@ -28,11 +28,11 @@ export const SubSkillInfo = () => {
 
   return (
     <PublicPageLayout>
-      <Flex direction="row" wrap className="gap-2">
+      <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedSubSkills.map((subSkill) => (
           <SubSkillInfoSingle key={subSkill.id} data={subSkill}/>
         ))}
-      </Flex>
+      </Grid>
     </PublicPageLayout>
   );
 };

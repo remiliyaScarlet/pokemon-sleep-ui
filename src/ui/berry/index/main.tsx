@@ -1,9 +1,7 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
-
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {getAllBerryData} from '@/controller/berry';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryLink} from '@/ui/berry/index/link';
@@ -15,19 +13,9 @@ export const BerryIndex = () => {
   return (
     <PublicPageLayout>
       <AdsUnit/>
-      <Flex direction="row" wrap center className="gap-2 p-3">
-        {Object.values(berryDataMap).map((berry) => (
-          <div
-            key={berry.id}
-            className={clsx(
-              'width-with-gap width-with-gap-2-items sm:width-with-gap-3-items relative',
-              'md:width-with-gap-5-items lg:width-with-gap-6-items xl:width-with-gap-8-items',
-            )}
-          >
-            <BerryLink berryData={berry}/>
-          </div>
-        ))}
-      </Flex>
+      <Grid center className="grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8">
+        {Object.values(berryDataMap).map((berry) => <BerryLink key={berry.id} berryData={berry}/>)}
+      </Grid>
       <AdsUnit/>
     </PublicPageLayout>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {MealLink} from '@/components/shared/meal/link';
@@ -55,24 +55,13 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
         </Flex>
       </Flex>
       <HorizontalSplitter className="block md:hidden"/>
-      <Flex direction="row" wrap className="gap-1.5">
-        {meals.length ?
-          meals
-            .map((meal) => (
-              <div
-                key={meal.id}
-                className={clsx(
-                  'width-with-gap-sm width-with-gap-2-items relative',
-                  'sm:width-with-gap-3-items md:width-with-gap-4-items lg:width-with-gap-5-items',
-                )}
-              >
-                <MealLink meal={meal} small displayType={displayType}/>
-              </div>
-            )) :
-          <div className="m-auto h-10 w-10">
-            <XCircleIcon/>
-          </div>}
-      </Flex>
+      {meals.length ?
+        <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+          {meals.map((meal) => <MealLink key={meal.id} meal={meal} small displayType={displayType}/>)}
+        </Grid> :
+        <div className="m-auto h-10 w-10">
+          <XCircleIcon/>
+        </div>}
     </Flex>
   );
 };

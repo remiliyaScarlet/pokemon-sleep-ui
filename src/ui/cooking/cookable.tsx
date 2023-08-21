@@ -4,8 +4,8 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {IngredientIcons} from '@/components/shared/food/ingredientIcons';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingFilterIngredientCount, MealEnergyData} from '@/ui/cooking/type';
 import {formatInt} from '@/utils/number';

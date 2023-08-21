@@ -4,6 +4,7 @@ import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
@@ -27,7 +28,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
   } = props;
 
   return (
-    <>
+    <Grid className="grid-cols-2 gap-1.5 md:grid-cols-3 lg:grid-cols-5">
       {teamAnalysisSlotName.map((slotName) => {
         const member = setup.team[slotName];
         const pokemon = member ? pokedex[member.pokemonId] : undefined;
@@ -38,7 +39,6 @@ export const TeamAnalysisTeamView = (props: Props) => {
         return (
           <Flex key={slotName} direction="col" center className={clsx(
             'button-bg relative h-[33rem] gap-1.5 rounded-lg p-3',
-            'width-with-gap-sm width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-5-items',
           )}>
             <button
               className={clsx(
@@ -77,6 +77,6 @@ export const TeamAnalysisTeamView = (props: Props) => {
           </Flex>
         );
       })}
-    </>
+    </Grid>
   );
 };

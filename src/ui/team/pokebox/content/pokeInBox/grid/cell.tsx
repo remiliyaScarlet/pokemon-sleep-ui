@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -43,19 +42,15 @@ export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
   };
 
   return (
-    <Flex direction="col" className={clsx(
-      'width-with-gap-sm relative',
-      'sm:width-with-gap-2-items md:width-with-gap-3-items lg:width-with-gap-4-items xl:width-with-gap-5-items',
-      '2xl:width-with-gap-7-items',
-    )}>
+    <div className="group relative w-full">
       <PokemonLinkPopup state={state} setState={setState}/>
       <button
-        className="button-clickable group absolute left-1 top-1 z-20 h-6 w-6 rounded-full"
+        className="button-clickable absolute left-1 top-1 z-20 h-6 w-6 rounded-full"
         onClick={() => showPokemon(pokemon)}
       >
         <GenericPokeballIcon alt={t2('Page.Title', {name: pokemonName})} noWrap/>
       </button>
-      <button onClick={onClick} className="button-clickable-bg group rounded-lg p-2">
+      <button onClick={onClick} className="button-clickable-bg w-full rounded-lg p-2">
         <Flex direction="row" className="relative h-24 gap-2">
           <div className="absolute bottom-0 right-0">
             <div className="relative h-16 w-16 opacity-50">
@@ -70,6 +65,6 @@ export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
           </Flex>
         </Flex>
       </button>
-    </Flex>
+    </div>
   );
 };

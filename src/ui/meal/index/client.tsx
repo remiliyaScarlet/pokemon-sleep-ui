@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {Session} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/mongo/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hook';
@@ -30,7 +30,7 @@ export const MealIndexClient = ({data, session}: Props) => {
     <>
       <MealInput data={data} {...props}/>
       <AdsUnit/>
-      <Flex direction="row" wrap className="gap-1.5">
+      <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {data
           .map((meal) => ({
             meal,
@@ -54,19 +54,11 @@ export const MealIndexClient = ({data, session}: Props) => {
             return 0;
           })
           .map(({meal}) => (
-            <div
-              key={meal.id}
-              className={clsx(
-                'width-with-gap-sm relative',
-                'sm:width-with-gap-2-items md:width-with-gap-3-items',
-                'lg:width-with-gap-4-items xl:width-with-gap-5-items',
-                !isIncluded[meal.id] && 'hidden',
-              )}
-            >
+            <div key={meal.id} className={clsx(!isIncluded[meal.id] && 'hidden')}>
               <MealLink meal={meal} displayType={filter.displayType}/>
             </div>
           ))}
-      </Flex>
+      </Grid>
       <AdsUnit/>
     </>
   );

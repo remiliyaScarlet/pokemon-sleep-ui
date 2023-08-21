@@ -26,8 +26,8 @@ export const BerryLink = ({berryData}: Props) => {
   const berryEnergyArray = berryData.energy.map(({energy}) => energy);
 
   return (
-    <Link href={`/berry/${id}`}>
-      <Flex key={id} direction="col" center noFullWidth className="button-clickable-bg gap-0.5 p-1">
+    <Link href={`/berry/${id}`} className="w-full">
+      <Flex key={id} direction="col" center className="button-clickable-bg gap-0.5 p-1">
         <Flex direction="col" center className="relative">
           <div className="absolute bottom-0 right-1">
             <div className="relative h-8 w-8">

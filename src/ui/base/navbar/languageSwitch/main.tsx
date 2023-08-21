@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {useLocale} from 'next-intl';
 import {usePathname, useRouter} from 'next-intl/client';
 
-import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
 import {localeName} from '@/const/website';
 import {isLocale} from '@/utils/i18n';
@@ -31,21 +31,21 @@ export const LanguageSwitch = () => {
         {isLocale(currentLocale) ? localeName[currentLocale] : `(${currentLocale})`}
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="row" center wrap className="w-48 gap-2">
+        <Grid center className="w-96 grid-cols-1 gap-2 sm:grid-cols-2">
           {Object.entries(localeName).map(([locale, name]) => (
             <button
               key={locale}
               disabled={isPending || currentLocale === locale}
               onClick={() => onClick(locale)}
               className={clsx(
-                'button-base width-with-gap sm:width-with-gap-2-items flex w-full justify-center p-5 text-xl',
-                'disabled:button-disabled-border enabled:button-clickable-bg',
+                'button-base flex w-full justify-center p-5 text-xl',
+                'enabled:button-clickable-bg disabled:button-disabled-border',
               )}
             >
               {name}
             </button>
           ))}
-        </Flex>
+        </Grid>
       </Popup>
     </>
   );

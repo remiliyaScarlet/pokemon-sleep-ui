@@ -2,6 +2,7 @@ import React from 'react';
 
 import {LoadingIcon} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {AnalysisStatsOfPokemonMeta} from '@/ui/analysis/page/stats/pokemon';
@@ -28,7 +29,7 @@ export const AnalysisStatsUI = ({pokemon, stats, loading}: Props) => {
   const props: AnalysisStatsUiProps = {pokemon, stats};
 
   return (
-    <Flex direction="row" wrap className="relative gap-1">
+    <Grid center className="relative grid-cols-2 gap-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
       {
         loading &&
         <Flex direction="col" center className="absolute z-10 h-full rounded-lg bg-slate-100/80 dark:bg-slate-800/80">
@@ -38,6 +39,6 @@ export const AnalysisStatsUI = ({pokemon, stats, loading}: Props) => {
       <AnalysisStatsOfPokemonMeta {...props}/>
       <AnalysisStatsOfProducingRate {...props}/>
       <AnalysisStatsOfSleepStyle {...props}/>
-    </Flex>
+    </Grid>
   );
 };

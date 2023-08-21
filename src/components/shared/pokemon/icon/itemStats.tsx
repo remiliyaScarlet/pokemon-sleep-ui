@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
@@ -39,7 +39,7 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
   return (
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
-      <Flex direction="row" wrap className="gap-1.5">
+      <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {data
           .map((pokemon) => ({
             pokemon,
@@ -50,11 +50,7 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
             const {id, specialty} = pokemon;
 
             return (
-              <Flex key={id} direction="col" className={clsx(
-                'button-clickable-bg relative',
-                'width-with-gap-sm width-with-gap-2-items sm:width-with-gap-3-items',
-                'md:width-with-gap-4-items lg:width-with-gap-5-items xl:width-with-gap-6-items',
-              )}>
+              <Flex key={id} direction="col" className="button-clickable-bg relative">
                 <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
                   <PokemonProducingRate
                     simplified
@@ -83,7 +79,7 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
               </Flex>
             );
           })}
-      </Flex>
+      </Grid>
     </>
   );
 };

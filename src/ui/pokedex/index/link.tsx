@@ -20,7 +20,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
 
   // This `<Flex>` needs to be outside `<Link>` to avoid `<a>` in `<a>` DOM tree issue
   return (
-    <>
+    <div className="relative">
       <PokemonLinkPopup state={state} setState={setState}/>
       <Flex direction="col" className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
         <PokedexLinkDetail {...props}/>
@@ -55,6 +55,6 @@ export const PokedexLink = (props: PokedexLinkProps) => {
           </div>
         </Flex>
       </button>
-    </>
+    </div>
   );
 };
