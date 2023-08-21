@@ -20,7 +20,6 @@ export const PokemonSubSkillSelected = ({level, selected, onClick}: Props) => {
   return (
     <button onClick={onClick} disabled={!selected || !selected?.rarity} className={clsx(
       'enabled:button-clickable rounded-lg p-1.5',
-      'width-with-gap width-with-gap-2-items md:width-with-gap-5-items',
       selected?.rarity ? subSkillRaritySectionBg[selected.rarity] : subSkillRarityDisabled,
     )}>
       <Flex direction="row" className="items-center gap-2 md:flex-col">

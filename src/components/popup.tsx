@@ -45,7 +45,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
               'bg-slate-200 ring-1 ring-inset ring-slate-400 dark:bg-gray-950 dark:ring-gray-600',
               className,
             )}>
-              <div className="max-h-[70vh] overflow-y-auto">
+              <div className="max-h-[70vh] w-full overflow-y-auto">
                 {children}
               </div>
             </Dialog.Panel>

@@ -31,14 +31,14 @@ export const LanguageSwitch = () => {
         {isLocale(currentLocale) ? localeName[currentLocale] : `(${currentLocale})`}
       </button>
       <Popup show={show} setShow={setShow}>
-        <Grid center className="w-96 grid-cols-1 gap-2 sm:grid-cols-2">
+        <Grid center className="grid-cols-1 gap-2 sm:grid-cols-2">
           {Object.entries(localeName).map(([locale, name]) => (
             <button
               key={locale}
               disabled={isPending || currentLocale === locale}
               onClick={() => onClick(locale)}
               className={clsx(
-                'button-base flex w-full justify-center p-5 text-xl',
+                'button-base flex w-full justify-center p-5 text-xl sm:w-48',
                 'enabled:button-clickable-bg disabled:button-disabled-border',
               )}
             >
