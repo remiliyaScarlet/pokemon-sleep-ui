@@ -25,7 +25,7 @@ export const NavEntryUI = ({href, imageSrc, disabled, alt}: Props) => {
 
   return (
     <Link
-      href={isCurrent ? {} : href}
+      href={isCurrent ? '#' : href}
       className={clsx(
         'nav-height button-base button-text relative inline-block w-8 p-0.5',
         isCurrent ? 'cursor-auto bg-slate-700/30 dark:bg-slate-300/30' : 'button-clickable group',
