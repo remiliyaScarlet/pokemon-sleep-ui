@@ -64,13 +64,15 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
         <Grid className={clsx(
           'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8',
         )}>
-          {sortedData.map(({source, sorter}) => (
+          {sortedData.map(({source}) => (
             isIncluded[source.pokemon.id] ?
               <PokedexLink
                 key={source.pokemon.id}
                 pokemon={source.pokemon}
                 display={filter.display}
-                sorter={sorter}
+                level={filter.level}
+                snorlaxFavorite={filter.snorlaxFavorite}
+                {...props}
               /> :
               <React.Fragment key={source.pokemon.id}/>
           ))}

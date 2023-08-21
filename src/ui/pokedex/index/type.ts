@@ -40,7 +40,7 @@ export type PokedexClientCommonProps = {
   session: Session | null,
 };
 
-export type PokedexLinkProps = Pick<PokedexFilter, 'display'> & {
+export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
   pokemon: PokemonInfoForPokedex,
-  sorter: number,
+  snorlaxFavorite: SnorlaxFavorite,
 };
