@@ -22,7 +22,7 @@ export const TeamAnalysisPokeboxView = ({pokebox, subSkillMap, onPokeboxPicked}:
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
 
-  if (!pokebox) {
+  if (!pokebox || !Object.values(pokebox).length) {
     return (
       <FeatureLinkImage
         href="/team/box"
