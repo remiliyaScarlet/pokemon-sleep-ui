@@ -12,37 +12,33 @@ import {
 
 
 type Props = {
-  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
+  setup: TeamAnalysisTeamSetup,
+  setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemon: PokemonInfo[],
 };
 
-export const TeamAnalysisSelectablePokemon = ({setSetup, isIncluded, pokemon}: Props) => {
+export const TeamAnalysisSelectablePokemon = ({setup, setMember, isIncluded, pokemon}: Props) => {
   const putOnTeam = (id: PokemonId) => {
-    setSetup((original) => {
-      let slotToInsert: TeamAnalysisSlotName | null = null;
+    let slotToInsert: TeamAnalysisSlotName | null = null;
 
-      for (const slotName of teamAnalysisSlotName) {
-        if (original.team[slotName]) {
-          continue;
-        }
-        slotToInsert = slotName;
-        break;
+    for (const slotName of teamAnalysisSlotName) {
+      if (setup.team[slotName]) {
+        continue;
       }
+      slotToInsert = slotName;
+      break;
+    }
 
-      return {
-        ...original,
-        team: {
-          ...original.team,
-          [slotToInsert ?? 'E']: {
-            pokemonId: id,
-            level: 1,
-            nature: null,
-            subSkill: {},
-          } satisfies TeamAnalysisMember,
-        },
-      };
-    });
+    setMember(
+      slotToInsert ?? 'E',
+      {
+        pokemonId: id,
+        level: 1,
+        nature: null,
+        subSkill: {},
+      },
+    );
   };
 
   return <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={putOnTeam}/>;
