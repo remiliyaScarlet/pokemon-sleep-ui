@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {Meal} from '@/types/mongo/meal';
 
@@ -13,9 +14,7 @@ const getCollection = async (): Promise<Collection<Meal>> => {
 };
 
 export const getAllMeals = async (): Promise<Meal[]> => {
-  return (await getCollection())
-    .find({}, {projection: {_id: false}})
-    .toArray();
+  return getDataAsArray(getCollection());
 };
 
 export const getSingleMeal = async (id: number) => {
@@ -27,7 +26,7 @@ export const getMealByIngredient = async (id: number | undefined): Promise<Meal[
     return [];
   }
 
-  return (await getCollection()).find({'ingredients.id': id}, {projection: {_id: false}}).toArray();
+  return getDataAsArray(getCollection(), {'ingredients.id': id});
 };
 
 const addMealDataIndex = async () => {

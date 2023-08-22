@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {BerryId} from '@/types/mongo/berry';
 import {BerryFavoriteInfo, BerryFavoriteType, FieldMetaMap, MapMeta} from '@/types/mongo/mapMeta';
@@ -15,13 +16,7 @@ const getCollection = async (): Promise<Collection<MapMeta>> => {
 };
 
 export const getAllMapMeta = async (): Promise<FieldMetaMap> => {
-  const ret: FieldMetaMap = {};
-
-  for await (const map of (await getCollection()).find({}, {projection: {_id: false}})) {
-    ret[map.mapId] = map;
-  }
-
-  return ret;
+  return getDataAsMap(getCollection(), ({mapId}) => mapId);
 };
 
 export const getMapMeta = async (mapId: SleepMapId): Promise<MapMeta | null> => (

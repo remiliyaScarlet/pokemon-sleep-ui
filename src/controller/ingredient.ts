@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {Ingredient, IngredientId, IngredientMap} from '@/types/mongo/ingredient';
 
@@ -17,10 +18,7 @@ export const getIngredientData = async (id: IngredientId): Promise<Ingredient | 
 };
 
 export const getAllIngredients = async (): Promise<IngredientMap> => {
-  return Object.fromEntries((await (await getCollection())
-    .find({}, {projection: {_id: false}})
-    .toArray())
-    .map((ingredient) => [ingredient.id, ingredient]));
+  return getDataAsMap(getCollection(), ({id}) => id);
 };
 
 const addIngredientDataIndex = async () => {

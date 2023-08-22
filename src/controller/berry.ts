@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {BerryData, BerryDataMap, BerryId} from '@/types/mongo/berry';
 
@@ -17,13 +18,7 @@ export const getBerryData = async (id: BerryId | undefined): Promise<BerryData |
 );
 
 export const getAllBerryData = async (): Promise<BerryDataMap> => {
-  const ret: BerryDataMap = {};
-
-  for await (const berryData of (await getCollection()).find({}, {projection: {_id: false}})) {
-    ret[berryData.id] = berryData;
-  }
-
-  return ret;
+  return getDataAsMap(getCollection(), ({id}) => id);
 };
 
 export const getPokemonMaxLevelByBerry = async (): Promise<number> => {

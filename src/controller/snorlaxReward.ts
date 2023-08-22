@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {SnorlaxReward} from '@/types/mongo/snorlax';
 
@@ -20,9 +21,9 @@ const addSnorlaxRewardIndex = async () => {
   ]);
 };
 
-export const getSnorlaxReward = async () => (
-  (await getCollection()).find({}, {projection: {_id: false}}).toArray()
-);
+export const getSnorlaxReward = async () => {
+  return getDataAsArray(getCollection());
+};
 
 addSnorlaxRewardIndex()
   .catch((e) => console.error('MongoDB failed to add Snorlax reward index', e));

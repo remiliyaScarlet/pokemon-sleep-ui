@@ -9,7 +9,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMapMeta} from '@/controller/mapMeta';
-import {getAllPokemonAsCursor} from '@/controller/pokemon';
+import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';
@@ -20,13 +20,12 @@ const getPokedexData = async (): Promise<PokedexData> => {
   const sleepStyleMap = await getPokemonSleepStyleMap();
   const translators = await Promise.all(locales.map((locale) => getTranslator(locale, 'Game.PokemonName')));
 
-  return (await getAllPokemonAsCursor())
+  return (await getAllPokemonAsArray())
     .map((pokemon) => ({
       ...pokemon,
       sleepStyles: sleepStyleMap[pokemon.id] ?? [],
       nameOfAllLocale: translators.map((t) => t(pokemon.id.toString())),
-    } satisfies PokemonInfoForPokedex))
-    .toArray();
+    } satisfies PokemonInfoForPokedex));
 };
 
 export const Pokedex = () => {

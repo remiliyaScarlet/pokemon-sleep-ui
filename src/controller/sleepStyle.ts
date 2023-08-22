@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/mongo/pokemon';
 import {
@@ -36,9 +37,9 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
   return ret;
 };
 
-export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyleData[]> => (
-  (await getCollection()).find({pokemonId}, {projection: {_id: false}}).toArray()
-);
+export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyleData[]> => {
+  return getDataAsArray(getCollection(), {pokemonId});
+};
 
 export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleFlattenedMap> => {
   const data = (await getCollection()).find({}, {projection: {_id: false}});

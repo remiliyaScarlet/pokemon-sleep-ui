@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {SleepMapId} from '@/types/mongo/sleepStyle';
 import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
@@ -13,9 +14,9 @@ const getCollection = async (): Promise<Collection<SnorlaxRankInMap>> => {
     .collection<SnorlaxRankInMap>('rank');
 };
 
-export const getSnorlaxRank = async () => (
-  (await getCollection()).find({}, {projection: {_id: false}}).toArray()
-);
+export const getSnorlaxRank = async () => {
+  return getDataAsArray(getCollection());
+};
 
 export const getSnorlaxRankOfMap = async (mapId: SleepMapId) => (
   (await getCollection()).findOne({mapId}, {projection: {_id: false}})

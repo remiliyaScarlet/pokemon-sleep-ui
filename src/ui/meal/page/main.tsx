@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSingleMeal} from '@/controller/meal';
-import {getAllPokemonAsMap, getPokemonByIngredients} from '@/controller/pokemon';
+import {getPokemonAsMap, getPokemonByIngredients} from '@/controller/pokemon';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealPokemonOfIngredient} from '@/ui/meal/page/pokemon';
@@ -23,7 +23,7 @@ export const MealPage = ({params}: Props) => {
   const meal = React.use(getSingleMeal(idNumber));
   const pokemonByIngredients = React.use(getPokemonByIngredients(meal?.ingredients.map(({id}) => id) ?? []));
   const ingredientMap = React.use(getAllIngredients());
-  const pokedex = React.use(getAllPokemonAsMap());
+  const pokedex = React.use(getPokemonAsMap());
   const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
   if (!meal) {

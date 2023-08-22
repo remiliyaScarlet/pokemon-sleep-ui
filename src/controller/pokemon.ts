@@ -1,5 +1,6 @@
-import {Collection, Filter, FindCursor, WithId} from 'mongodb';
+import {Collection} from 'mongodb';
 
+import {getDataAsArray, getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
@@ -26,30 +27,12 @@ export const getSinglePokemonInfo = async (id: number) => {
   return (await getCollection()).findOne({id}, {projection: {_id: false}});
 };
 
-export const getAllPokemonAsCursor = async (): Promise<FindCursor<WithId<PokemonInfo>>> => {
-  return (await getCollection()).find({}, {projection: {_id: false}});
-};
-
 export const getAllPokemonAsArray = async (): Promise<PokemonInfo[]> => {
-  return (await getAllPokemonAsCursor()).toArray();
+  return getDataAsArray(getCollection());
 };
 
-const pokemonInfoToMap = async (filter: Filter<PokemonInfo>): Promise<PokedexMap> => {
-  const ret: PokedexMap = {};
-
-  for await (const pokemon of (await getCollection()).find(filter, {projection: {_id: false}})) {
-    ret[pokemon.id] = pokemon;
-  }
-
-  return ret;
-};
-
-export const getAllPokemonAsMap = async (): Promise<PokedexMap> => {
-  return pokemonInfoToMap({});
-};
-
-export const getPokemonAsMap = async (ids: PokemonId[]): Promise<PokedexMap> => {
-  return pokemonInfoToMap({id: {$in: ids}});
+export const getPokemonAsMap = async (ids?: PokemonId[]): Promise<PokedexMap> => {
+  return getDataAsMap(getCollection(), ({id}) => id, ids ? {id: {$in: ids}} : {});
 };
 
 export const getPokemonByIngredient = async (
@@ -115,7 +98,7 @@ export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Pr
 };
 
 export const getPokemonByBerry = async (berryId: BerryId) => {
-  return (await getCollection()).find({'berry.id': berryId}, {projection: {_id: false}}).toArray();
+  return getDataAsArray(getCollection(), {'berry.id': berryId});
 };
 
 const addPokemonInfoIndex = async () => {
