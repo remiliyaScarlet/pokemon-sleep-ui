@@ -19,7 +19,7 @@ type Props = {
 export const PokemonEvolutionPortrait = ({pokemon, dimension, showPokemon}: Props) => {
   if (!pokemon) {
     return (
-      <Flex direction="col" center noFullWidth className={clsx('button-disabled', dimension)}>
+      <Flex direction="col" center noFullWidth className={clsx('button-disabled shrink-0', dimension)}>
         <UnavailableIcon/>
       </Flex>
     );
@@ -27,7 +27,7 @@ export const PokemonEvolutionPortrait = ({pokemon, dimension, showPokemon}: Prop
 
   return (
     <button className="button-clickable-bg" onClick={() => showPokemon(pokemon)}>
-      <div className={clsx('relative', dimension)}>
+      <div className={clsx('relative shrink-0', dimension)}>
         <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
       </div>
     </button>

@@ -26,7 +26,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
         pokemon={evolution.previous ? pokedex[evolution.previous] : undefined}
         showPokemon={showPokemon}
       />
-      <div className="h-7 w-7">
+      <div className="h-7 w-7 shrink-0">
         <ArrowDownIcon className="block lg:hidden"/>
         <ArrowRightIcon className="hidden lg:block"/>
       </div>
@@ -36,7 +36,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
       {
         !!evolution.next.length &&
         <>
-          <div className="h-7 w-7">
+          <div className="h-7 w-7 shrink-0">
             <ArrowDownIcon className="block lg:hidden"/>
             <ArrowRightIcon className="hidden lg:block"/>
           </div>
