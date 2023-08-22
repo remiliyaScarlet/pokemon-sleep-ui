@@ -2,8 +2,8 @@ import {Collection} from 'mongodb';
 
 import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {SleepMapId} from '@/types/mongo/sleepStyle';
-import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
+import {SleepMapId} from '@/types/game/sleepStyle';
+import {SnorlaxRankInMap} from '@/types/game/snorlax';
 
 
 const getCollection = async (): Promise<Collection<SnorlaxRankInMap>> => {

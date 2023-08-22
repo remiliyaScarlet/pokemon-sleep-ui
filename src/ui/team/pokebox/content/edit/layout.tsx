@@ -14,7 +14,7 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
-import {PokedexMap} from '@/types/mongo/pokemon';
+import {PokedexMap} from '@/types/game/pokemon';
 import {maxCarryLimit} from '@/ui/team/pokebox/content/edit/const';
 import {PokeboxPokeInBoxIngredientEditor} from '@/ui/team/pokebox/content/edit/ingredient';
 import {PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/type';

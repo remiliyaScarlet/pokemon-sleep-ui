@@ -10,7 +10,7 @@ import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingr
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonIngredientMap, PokemonIngredientType} from '@/types/mongo/pokemon';
+import {PokemonIngredientMap, PokemonIngredientType} from '@/types/game/pokemon';
 import {MealCommonProps} from '@/ui/meal/page/type';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';

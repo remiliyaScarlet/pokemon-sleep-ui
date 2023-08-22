@@ -1,7 +1,8 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {BerryId} from '@/types/mongo/berry';
-import {IngredientId} from '@/types/mongo/ingredient';
-import {PokemonSkillId, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/mongo/pokemon';
+import {EvolutionStage} from '@/types/game/pokemon/evolution';
+import {BerryId} from '@/types/game/berry';
+import {IngredientId} from '@/types/game/ingredient';
+import {PokemonSkillId, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/game/pokemon';
 
 
 export const pokemonInputType = [

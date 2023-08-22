@@ -3,8 +3,8 @@ import {v4} from 'uuid';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
-import {IngredientId} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {IngredientId} from '@/types/game/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 

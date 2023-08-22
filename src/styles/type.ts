@@ -1,5 +1,5 @@
-import {MealTypeId} from '@/types/mongo/meal';
-import {PokemonSleepTypeId, PokemonSpecialtyId} from '@/types/mongo/pokemon';
+import {MealTypeId} from '@/types/game/meal';
+import {PokemonSleepTypeId, PokemonSpecialtyId} from '@/types/game/pokemon';
 
 
 export type SleepTypeClassMap = {[id in PokemonSleepTypeId]: string};

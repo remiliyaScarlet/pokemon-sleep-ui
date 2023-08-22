@@ -8,7 +8,7 @@ import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props'
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {SleepStyleId} from '@/types/mongo/sleepStyle';
+import {SleepStyleId} from '@/types/game/sleepStyle';
 import {MapPageFilter} from '@/ui/map/page/type';
 
 

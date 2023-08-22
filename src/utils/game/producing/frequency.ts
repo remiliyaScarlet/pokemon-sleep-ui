@@ -1,6 +1,6 @@
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultLevel} from '@/utils/game/producing/const';
 

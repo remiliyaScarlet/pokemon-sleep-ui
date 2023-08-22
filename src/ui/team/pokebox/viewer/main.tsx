@@ -21,8 +21,8 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {FieldMetaMap} from '@/types/mongo/mapMeta';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {FieldMetaMap} from '@/types/game/mapMeta';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {
   pokeboxDisplayTypeToI18nId,
   pokeboxDisplayTypeToImageSrc,

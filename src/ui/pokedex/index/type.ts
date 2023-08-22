@@ -3,12 +3,12 @@ import {Session} from 'next-auth';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
+import {BerryDataMap} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
+import {FieldMetaMap} from '@/types/game/mapMeta';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {SleepMapId, SleepStyleData} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryDataMap} from '@/types/mongo/berry';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {FieldMetaMap} from '@/types/mongo/mapMeta';
-import {PokemonInfo} from '@/types/mongo/pokemon';
-import {SleepMapId, SleepStyleData} from '@/types/mongo/sleepStyle';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
 

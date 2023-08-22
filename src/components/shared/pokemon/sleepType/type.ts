@@ -1,4 +1,4 @@
-import {PokemonSleepTypeId} from '@/types/mongo/pokemon';
+import {PokemonSleepTypeId} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
 
 

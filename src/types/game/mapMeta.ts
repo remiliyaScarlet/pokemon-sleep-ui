@@ -1,5 +1,5 @@
-import {BerryId} from '@/types/mongo/berry';
-import {SleepMapId} from '@/types/mongo/sleepStyle';
+import {BerryId} from '@/types/game/berry';
+import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 export type MapUnlockCondition = null | {

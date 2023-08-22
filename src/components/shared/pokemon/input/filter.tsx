@@ -10,7 +10,7 @@ import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
 import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 

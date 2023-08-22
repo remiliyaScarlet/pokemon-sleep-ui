@@ -1,4 +1,4 @@
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 
 
 export const ingredientLevel = [

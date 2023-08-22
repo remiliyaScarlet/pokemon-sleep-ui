@@ -8,8 +8,8 @@ import {HorizontalSplitter, VerticalSplitter} from '@/components/shared/common/s
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageSmallIconSizes} from '@/styles/image';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {IngredientMap} from '@/types/game/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonIngredientLink} from '@/ui/pokedex/page/meta/ingredientLink';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';

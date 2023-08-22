@@ -8,7 +8,7 @@ import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
 
 

@@ -1,5 +1,5 @@
 import {ItemId} from '@/types/game/item';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 
 
 export type EvolutionCondition = {
@@ -26,7 +26,6 @@ export type EvolutionBranch = {
 };
 
 export type EvolutionData = {
-  pokemon: PokemonId,
   next: EvolutionBranch[],
 } & ({
   stage: 1,

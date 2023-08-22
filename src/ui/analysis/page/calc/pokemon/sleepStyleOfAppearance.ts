@@ -1,4 +1,4 @@
-import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {AnalysisStatsSleepStyleAppearance} from '@/ui/analysis/page/calc/type';
 import {getSnorlaxRankEquivalentNumber, isSameRank} from '@/utils/game/snorlax';

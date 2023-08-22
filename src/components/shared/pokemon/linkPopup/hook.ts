@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {PokemonLinkPopupState} from '@/components/shared/pokemon/linkPopup/type';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export const usePokemonLinkPopup = () => {

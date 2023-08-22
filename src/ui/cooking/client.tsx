@@ -5,8 +5,8 @@ import {Session} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal} from '@/types/mongo/meal';
+import {IngredientMap} from '@/types/game/ingredient';
+import {Meal} from '@/types/game/meal';
 import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';

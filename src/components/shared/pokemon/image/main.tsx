@@ -3,7 +3,7 @@ import React from 'react';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {imagePortraitSizes} from '@/styles/image';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 type Props = {

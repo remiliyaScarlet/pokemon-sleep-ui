@@ -10,7 +10,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {MealLink} from '@/components/shared/meal/link';
 import {imageSmallIconSizes} from '@/styles/image';
-import {Meal} from '@/types/mongo/meal';
+import {Meal} from '@/types/game/meal';
 import {PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';
 import {formatInt} from '@/utils/number';
 

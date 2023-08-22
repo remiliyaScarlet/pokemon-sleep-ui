@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
-import {PokemonIngredientType} from '@/types/mongo/pokemon';
+import {PokemonIngredientType} from '@/types/game/pokemon';
 
 
 type Props = {

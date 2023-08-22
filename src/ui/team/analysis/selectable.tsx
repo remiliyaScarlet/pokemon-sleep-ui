@@ -2,7 +2,7 @@ import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
   TeamAnalysisMember,
   TeamAnalysisSlotName,

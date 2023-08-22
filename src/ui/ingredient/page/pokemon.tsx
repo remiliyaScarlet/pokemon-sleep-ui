@@ -6,8 +6,8 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
-import {Ingredient} from '@/types/mongo/ingredient';
-import {pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/mongo/pokemon';
+import {Ingredient} from '@/types/game/ingredient';
+import {pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/game/pokemon';
 
 
 type Props = {

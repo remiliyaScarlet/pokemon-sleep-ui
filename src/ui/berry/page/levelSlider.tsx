@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {InfoSlider} from '@/components/shared/input/infoSlider';
-import {BerryData} from '@/types/mongo/berry';
+import {BerryData} from '@/types/game/berry';
 import {getBerryEnergyInfo} from '@/utils/game/berry';
 import {formatInt} from '@/utils/number';
 

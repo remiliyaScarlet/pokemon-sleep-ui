@@ -1,7 +1,7 @@
 import {clsx} from 'clsx';
 
 import {SpecialtyClassMap} from '@/styles/type';
-import {PokemonSpecialtyId} from '@/types/mongo/pokemon';
+import {PokemonSpecialtyId} from '@/types/game/pokemon';
 
 
 const specialtyBgClassInactive: SpecialtyClassMap = {

@@ -8,8 +8,8 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {MapMeta} from '@/types/mongo/mapMeta';
-import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {MapMeta} from '@/types/game/mapMeta';
+import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {toUnique} from '@/utils/array';
 
 

@@ -1,6 +1,6 @@
 import {maxSnorlaxRankByTitle} from '@/const/game/rank';
 import {SnorlaxRank} from '@/types/game/rank';
-import {SnorlaxRankData} from '@/types/mongo/snorlax';
+import {SnorlaxRankData} from '@/types/game/snorlax';
 
 
 type GetSnorlaxRankAtEnergyProps = {

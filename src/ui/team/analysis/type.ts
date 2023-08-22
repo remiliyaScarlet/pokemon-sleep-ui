@@ -1,13 +1,12 @@
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {BerryDataMap} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
+import {FieldMetaMap} from '@/types/game/mapMeta';
+import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
-import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
-import {BerryDataMap} from '@/types/mongo/berry';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {FieldMetaMap} from '@/types/mongo/mapMeta';
-import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
-import {SnorlaxRankInMap} from '@/types/mongo/snorlax';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
 

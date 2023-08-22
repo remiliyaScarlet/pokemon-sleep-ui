@@ -11,7 +11,7 @@ import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 

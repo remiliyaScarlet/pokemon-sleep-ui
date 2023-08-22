@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {BerryData, BerryDataMap, BerryId} from '@/types/mongo/berry';
+import {BerryData, BerryDataMap, BerryId} from '@/types/game/berry';
 
 
 const getCollection = async (): Promise<Collection<BerryData>> => {

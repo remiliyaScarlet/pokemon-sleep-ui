@@ -1,4 +1,4 @@
-import {BerryData} from '@/types/mongo/berry';
+import {BerryData} from '@/types/game/berry';
 
 
 type GetBerryEnergyInfoOpts = {

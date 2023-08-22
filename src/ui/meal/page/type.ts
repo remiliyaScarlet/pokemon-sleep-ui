@@ -1,6 +1,6 @@
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal} from '@/types/mongo/meal';
-import {PokedexMap} from '@/types/mongo/pokemon';
+import {IngredientMap} from '@/types/game/ingredient';
+import {Meal} from '@/types/game/meal';
+import {PokedexMap} from '@/types/game/pokemon';
 
 
 export type MealCommonProps = {

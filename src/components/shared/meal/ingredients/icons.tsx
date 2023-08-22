@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {dangerText} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
-import {Meal, MealIngredient} from '@/types/mongo/meal';
+import {Meal, MealIngredient} from '@/types/game/meal';
 
 
 type Props = {

@@ -1,7 +1,7 @@
-import {BerryData} from '@/types/mongo/berry';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
-import {SleepStyleData} from '@/types/mongo/sleepStyle';
+import {BerryData} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {SleepStyleData} from '@/types/game/sleepStyle';
 
 
 export type PokemonProps = {

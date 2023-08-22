@@ -1,4 +1,4 @@
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export type PokemonNameProps = {

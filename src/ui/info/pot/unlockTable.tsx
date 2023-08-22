@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import potCapacity from '@/data/potCapacity.json';
-import {Meal} from '@/types/mongo/meal';
+import {Meal} from '@/types/game/meal';
 import {PotInfoFilter} from '@/ui/info/pot/type';
 import {PotRecipeUnlockSection} from '@/ui/info/pot/unlockSection';
 import {getMealRequiredQuantity} from '@/utils/game/meal';

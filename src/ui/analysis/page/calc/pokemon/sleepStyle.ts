@@ -1,4 +1,4 @@
-import {SleepMapId, SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {SleepMapId, SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfMap} from '@/ui/analysis/page/calc/pokemon/sleepStyleOfMap';
 import {AnalysisStatsSleepStyle, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {sortBySnorlaxRankAsc} from '@/utils/game/snorlax';

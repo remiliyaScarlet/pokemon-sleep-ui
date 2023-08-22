@@ -3,7 +3,7 @@ import {Session} from 'next-auth';
 
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
-import {Meal, MealId} from '@/types/mongo/meal';
+import {Meal, MealId} from '@/types/game/meal';
 import {CookingFilter} from '@/ui/cooking/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 

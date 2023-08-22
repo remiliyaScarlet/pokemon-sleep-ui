@@ -1,5 +1,5 @@
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {Meal, MealLevel} from '@/types/mongo/meal';
+import {IngredientMap} from '@/types/game/ingredient';
+import {Meal, MealLevel} from '@/types/game/meal';
 import {toSum} from '@/utils/array';
 
 

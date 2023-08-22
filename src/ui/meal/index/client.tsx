@@ -7,7 +7,7 @@ import {Session} from 'next-auth';
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {MealLink} from '@/components/shared/meal/link';
-import {Meal} from '@/types/mongo/meal';
+import {Meal} from '@/types/game/meal';
 import {useFilteredMeals} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
 import {toSum} from '@/utils/array';

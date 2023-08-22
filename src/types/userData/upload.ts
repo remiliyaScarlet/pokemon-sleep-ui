@@ -1,6 +1,6 @@
+import {MealTypeId} from '@/types/game/meal';
 import {Pokebox} from '@/types/game/pokebox';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {MealTypeId} from '@/types/mongo/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';

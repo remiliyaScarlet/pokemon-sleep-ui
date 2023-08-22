@@ -6,8 +6,8 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
-import {BerryData, BerryDataMap} from '@/types/mongo/berry';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {BerryData, BerryDataMap} from '@/types/game/berry';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 

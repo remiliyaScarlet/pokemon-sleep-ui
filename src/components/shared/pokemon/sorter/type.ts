@@ -1,9 +1,9 @@
 import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryData} from '@/types/mongo/berry';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {BerryData} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export const pokemonSortType = [

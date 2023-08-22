@@ -2,8 +2,8 @@ import {Collection} from 'mongodb';
 
 import {getDataAsArray, getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {BerryId} from '@/types/mongo/berry';
-import {IngredientId} from '@/types/mongo/ingredient';
+import {BerryId} from '@/types/game/berry';
+import {IngredientId} from '@/types/game/ingredient';
 import {
   PokedexMap,
   PokemonId,
@@ -12,7 +12,7 @@ import {
   pokemonIngredientType,
   PokemonIngredientType,
   PokemonIngredientTypeMap,
-} from '@/types/mongo/pokemon';
+} from '@/types/game/pokemon';
 
 
 const getCollection = async (): Promise<Collection<PokemonInfo>> => {

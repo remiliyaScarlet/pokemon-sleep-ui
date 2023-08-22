@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {Ingredient, IngredientId, IngredientMap} from '@/types/mongo/ingredient';
+import {Ingredient, IngredientId, IngredientMap} from '@/types/game/ingredient';
 
 
 const getCollection = async (): Promise<Collection<Ingredient>> => {

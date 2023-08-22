@@ -2,7 +2,7 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/contexts/i18n';
-import {PokemonIngredientData, PokemonIngredientType} from '@/types/mongo/pokemon';
+import {PokemonIngredientData, PokemonIngredientType} from '@/types/game/pokemon';
 import {MealPokemonOfIngredientType} from '@/ui/meal/page/pokemonOfType';
 import {MealCommonProps} from '@/ui/meal/page/type';
 

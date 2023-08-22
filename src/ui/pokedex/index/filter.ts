@@ -3,7 +3,7 @@ import {Session} from 'next-auth';
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter, isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 import {PokedexData, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 import {generateInitialFilter} from '@/ui/pokedex/index/utils';
 

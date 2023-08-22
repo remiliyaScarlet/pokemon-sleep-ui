@@ -1,5 +1,5 @@
 import {ProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 
 

@@ -12,7 +12,7 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
-import {PokemonInfo, PokemonSpecialtyId} from '@/types/mongo/pokemon';
+import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 
 
 type Props = {

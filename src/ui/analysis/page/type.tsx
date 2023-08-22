@@ -1,11 +1,11 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {BerryDataMap} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
+import {FieldMetaMap} from '@/types/game/mapMeta';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonSleepDataMap, SleepMapId} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryDataMap} from '@/types/mongo/berry';
-import {IngredientMap} from '@/types/mongo/ingredient';
-import {FieldMetaMap} from '@/types/mongo/mapMeta';
-import {PokemonInfo} from '@/types/mongo/pokemon';
-import {PokemonSleepDataMap, SleepMapId} from '@/types/mongo/sleepStyle';
 
 
 export type AnalysisComparisonFilter = PokemonInputFilter & {

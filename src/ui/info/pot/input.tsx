@@ -19,7 +19,7 @@ import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {MealTypeId} from '@/types/mongo/meal';
+import {MealTypeId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 

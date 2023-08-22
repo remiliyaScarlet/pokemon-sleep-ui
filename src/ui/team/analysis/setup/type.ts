@@ -1,6 +1,6 @@
 import {ProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
-import {BerryId} from '@/types/mongo/berry';
-import {IngredientId} from '@/types/mongo/ingredient';
+import {BerryId} from '@/types/game/berry';
+import {IngredientId} from '@/types/game/ingredient';
 import {TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 

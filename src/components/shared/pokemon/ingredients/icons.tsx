@@ -3,7 +3,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
 
 

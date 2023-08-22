@@ -10,10 +10,10 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {imageSmallIconSizes} from '@/styles/image';
+import {BerryId} from '@/types/game/berry';
+import {FieldMetaMap} from '@/types/game/mapMeta';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {FilterWithSnorlaxFavorite, SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryId} from '@/types/mongo/berry';
-import {FieldMetaMap} from '@/types/mongo/mapMeta';
-import {PokemonInfo} from '@/types/mongo/pokemon';
 import {toUnique} from '@/utils/array';
 import {KeysOfType} from '@/utils/type';
 

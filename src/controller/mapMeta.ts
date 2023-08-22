@@ -2,9 +2,9 @@ import {Collection} from 'mongodb';
 
 import {getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {BerryId} from '@/types/mongo/berry';
-import {BerryFavoriteInfo, BerryFavoriteType, FieldMetaMap, MapMeta} from '@/types/mongo/mapMeta';
-import {SleepMapId} from '@/types/mongo/sleepStyle';
+import {BerryId} from '@/types/game/berry';
+import {BerryFavoriteInfo, BerryFavoriteType, FieldMetaMap, MapMeta} from '@/types/game/mapMeta';
+import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 const getCollection = async (): Promise<Collection<MapMeta>> => {

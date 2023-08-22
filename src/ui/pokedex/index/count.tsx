@@ -2,7 +2,7 @@ import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 import {PokedexData} from '@/ui/pokedex/index/type';
 
 

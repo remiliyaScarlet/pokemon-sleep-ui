@@ -1,6 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
-import {Meal, MealId} from '@/types/mongo/meal';
+import {Meal, MealId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 

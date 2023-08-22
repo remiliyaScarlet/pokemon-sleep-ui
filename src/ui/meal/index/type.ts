@@ -1,7 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {MealLinkDisplayType} from '@/components/shared/meal/type';
-import {IngredientId} from '@/types/mongo/ingredient';
-import {MealTypeId} from '@/types/mongo/meal';
+import {IngredientId} from '@/types/game/ingredient';
+import {MealTypeId} from '@/types/game/meal';
 
 
 export type MealFilter = {

@@ -1,6 +1,6 @@
 import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export const isPokemonIncludedFromFilter = (filter: PokemonInputFilter, pokemon: PokemonInfo) => {

@@ -6,8 +6,8 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
-import {Ingredient} from '@/types/mongo/ingredient';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {Ingredient} from '@/types/game/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 

@@ -1,6 +1,6 @@
+import {BerryId} from '@/types/game/berry';
+import {IngredientId} from '@/types/game/ingredient';
 import {IngredientChainId} from '@/types/game/pokemon/ingredient';
-import {BerryId} from '@/types/mongo/berry';
-import {IngredientId} from '@/types/mongo/ingredient';
 
 
 export type PokemonId = number;

@@ -7,7 +7,7 @@ import {FilterInputOnClickProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
-import {SleepMapId} from '@/types/mongo/sleepStyle';
+import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 type Props = FilterInputOnClickProps<SleepMapId> & {

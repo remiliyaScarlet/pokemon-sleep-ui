@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageSmallIconSizes} from '@/styles/image';
-import {IngredientId} from '@/types/mongo/ingredient';
+import {IngredientId} from '@/types/game/ingredient';
 
 
 type Props = {

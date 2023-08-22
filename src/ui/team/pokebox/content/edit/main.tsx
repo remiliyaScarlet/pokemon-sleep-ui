@@ -3,7 +3,7 @@ import React from 'react';
 import {Popup} from '@/components/popup';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
-import {PokedexMap} from '@/types/mongo/pokemon';
+import {PokedexMap} from '@/types/game/pokemon';
 import {PokeboxPokeInBoxUpdateLayout} from '@/ui/team/pokebox/content/edit/layout';
 
 

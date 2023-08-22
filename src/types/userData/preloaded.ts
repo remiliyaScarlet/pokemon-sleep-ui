@@ -1,4 +1,4 @@
-import {MealTypeId} from '@/types/mongo/meal';
+import {MealTypeId} from '@/types/game/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';

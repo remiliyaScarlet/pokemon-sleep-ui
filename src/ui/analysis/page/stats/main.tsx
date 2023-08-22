@@ -3,7 +3,7 @@ import React from 'react';
 import {LoadingIcon} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {AnalysisStatsOfPokemonMeta} from '@/ui/analysis/page/stats/pokemon';
 import {AnalysisStatsOfProducingRate} from '@/ui/analysis/page/stats/producingRate';

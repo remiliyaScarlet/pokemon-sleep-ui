@@ -14,7 +14,7 @@ import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {usePokeboxPickerFilter} from '@/ui/team/pokebox/filter/hook';
 import {showToast} from '@/utils/toast';
 

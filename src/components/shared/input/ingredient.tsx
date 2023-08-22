@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterInputOnClickProps} from '@/components/input/filter/type';
-import {IngredientId} from '@/types/mongo/ingredient';
+import {IngredientId} from '@/types/game/ingredient';
 
 
 type Props = FilterInputOnClickProps<IngredientId> & {

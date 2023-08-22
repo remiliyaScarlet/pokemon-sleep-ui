@@ -4,7 +4,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import LockClosedIcon from '@heroicons/react/24/solid/LockClosedIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 
-import {BerryFavoriteType} from '@/types/mongo/mapMeta';
+import {BerryFavoriteType} from '@/types/game/mapMeta';
 
 
 type Props = {

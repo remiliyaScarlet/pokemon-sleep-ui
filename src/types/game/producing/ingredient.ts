@@ -1,4 +1,4 @@
-import {IngredientId} from '@/types/mongo/ingredient';
+import {IngredientId} from '@/types/game/ingredient';
 
 
 export type PokemonIngredientPick = {

@@ -5,7 +5,7 @@ import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
-import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
+import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {isNotNullish} from '@/utils/type';
 

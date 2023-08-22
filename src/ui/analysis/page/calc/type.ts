@@ -1,15 +1,15 @@
-import {SnorlaxRank} from '@/types/game/rank';
-import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryId} from '@/types/mongo/berry';
-import {IngredientId} from '@/types/mongo/ingredient';
+import {BerryId} from '@/types/game/berry';
+import {IngredientId} from '@/types/game/ingredient';
 import {
   PokemonId,
   PokemonSkillId,
   PokemonSleepTypeId,
   PokemonSpecialtyId,
   PokemonTypeId,
-} from '@/types/mongo/pokemon';
-import {SleepMapId} from '@/types/mongo/sleepStyle';
+} from '@/types/game/pokemon';
+import {SnorlaxRank} from '@/types/game/rank';
+import {SleepMapId} from '@/types/game/sleepStyle';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 

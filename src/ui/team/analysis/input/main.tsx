@@ -13,7 +13,7 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
 import {
   TeamAnalysisFilter,

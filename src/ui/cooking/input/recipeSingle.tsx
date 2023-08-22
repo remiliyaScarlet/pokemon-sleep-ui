@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {Slider} from '@/components/input/slider';
 import {Flex} from '@/components/layout/flex';
-import {Meal} from '@/types/mongo/meal';
+import {Meal} from '@/types/game/meal';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 

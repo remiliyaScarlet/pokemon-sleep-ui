@@ -1,6 +1,6 @@
-import {BerryData} from '@/types/mongo/berry';
-import {BerryFavoriteInfo} from '@/types/mongo/mapMeta';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {BerryData} from '@/types/game/berry';
+import {BerryFavoriteInfo} from '@/types/game/mapMeta';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export type BerryPageCommonProps = {

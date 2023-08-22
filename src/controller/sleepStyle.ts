@@ -2,14 +2,14 @@ import {Collection} from 'mongodb';
 
 import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {PokemonId} from '@/types/mongo/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 import {
   FieldToSleepStyleFlattenedMap,
   PokemonSleepDataMap,
   SleepMapId,
   SleepStyleData,
   SleepStyleDataFlattened,
-} from '@/types/mongo/sleepStyle';
+} from '@/types/game/sleepStyle';
 
 
 const getCollection = async (): Promise<Collection<SleepStyleData>> => {

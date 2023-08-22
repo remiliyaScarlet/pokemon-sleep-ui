@@ -1,6 +1,6 @@
 import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
-import {IngredientId, IngredientMap} from '@/types/mongo/ingredient';
-import {Meal, MealId, MealTypeId} from '@/types/mongo/meal';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
+import {Meal, MealId, MealTypeId} from '@/types/game/meal';
 import {Dimension} from '@/types/style';
 import {MealEnergyInfo} from '@/utils/game/meal';
 

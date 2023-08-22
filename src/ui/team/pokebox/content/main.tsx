@@ -9,7 +9,7 @@ import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
 import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';

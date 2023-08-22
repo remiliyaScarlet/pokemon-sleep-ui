@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imageSmallIconSizes} from '@/styles/image';
-import {BerryData} from '@/types/mongo/berry';
+import {BerryData} from '@/types/game/berry';
 import {formatInt} from '@/utils/number';
 
 

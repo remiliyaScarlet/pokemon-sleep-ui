@@ -7,7 +7,7 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputOnClickProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {mealTypeDotStyle} from '@/styles/classes';
-import {MealTypeId} from '@/types/mongo/meal';
+import {MealTypeId} from '@/types/game/meal';
 
 
 type Props = FilterInputOnClickProps<MealTypeId> & {

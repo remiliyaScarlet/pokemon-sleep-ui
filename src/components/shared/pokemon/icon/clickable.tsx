@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId, PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 
 
 type Props = {

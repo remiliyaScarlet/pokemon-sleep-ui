@@ -1,5 +1,5 @@
 import {createUserDataManager} from '@/controller/user/common';
-import {MealTypeId} from '@/types/mongo/meal';
+import {MealTypeId} from '@/types/game/meal';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';

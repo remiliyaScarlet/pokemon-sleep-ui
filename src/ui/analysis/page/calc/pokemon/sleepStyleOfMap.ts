@@ -1,4 +1,4 @@
-import {SleepStyleDataFlattened} from '@/types/mongo/sleepStyle';
+import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfAppearance} from '@/ui/analysis/page/calc/pokemon/sleepStyleOfAppearance';
 import {AnalysisStatsSleepStyle} from '@/ui/analysis/page/calc/type';
 

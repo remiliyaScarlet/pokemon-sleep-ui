@@ -1,5 +1,5 @@
+import {PokemonId} from '@/types/game/pokemon';
 import {SnorlaxRank} from '@/types/game/rank';
-import {PokemonId} from '@/types/mongo/pokemon';
 
 
 export type SleepMapId = number;

@@ -1,7 +1,7 @@
 import {clsx} from 'clsx';
 
 import {SleepTypeClassMap} from '@/styles/type';
-import {PokemonSleepTypeId} from '@/types/mongo/pokemon';
+import {PokemonSleepTypeId} from '@/types/game/pokemon';
 
 
 const sleepTypeBgClassInactive: SleepTypeClassMap = {

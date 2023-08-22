@@ -9,7 +9,7 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 
 
 type Props = {

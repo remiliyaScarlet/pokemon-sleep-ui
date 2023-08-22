@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/setup/pokemon/main';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {

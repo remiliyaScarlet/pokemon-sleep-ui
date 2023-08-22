@@ -3,8 +3,8 @@ import {Session} from 'next-auth';
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {MealLinkDisplayType} from '@/components/shared/meal/type';
 import potCapacity from '@/data/potCapacity.json';
-import {IngredientId, IngredientMap} from '@/types/mongo/ingredient';
-import {Meal, MealTypeId} from '@/types/mongo/meal';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
+import {Meal, MealTypeId} from '@/types/game/meal';
 
 
 export type PotInfoCommonProps = {

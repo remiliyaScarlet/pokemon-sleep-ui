@@ -1,4 +1,4 @@
-import {Meal} from '@/types/mongo/meal';
+import {Meal} from '@/types/game/meal';
 
 
 export type MealLinkProps = {

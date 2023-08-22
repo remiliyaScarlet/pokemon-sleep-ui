@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
-import {PokemonInfo} from '@/types/mongo/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';

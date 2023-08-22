@@ -1,9 +1,9 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
-import {MapMeta} from '@/types/mongo/mapMeta';
-import {PokedexMap, PokemonId} from '@/types/mongo/pokemon';
-import {SleepStyleDataFlattened, SleepStyleId} from '@/types/mongo/sleepStyle';
-import {SnorlaxRankInMap, SnorlaxReward} from '@/types/mongo/snorlax';
+import {MapMeta} from '@/types/game/mapMeta';
+import {PokedexMap, PokemonId} from '@/types/game/pokemon';
+import {SleepStyleDataFlattened, SleepStyleId} from '@/types/game/sleepStyle';
+import {SnorlaxRankInMap, SnorlaxReward} from '@/types/game/snorlax';
 
 
 export const mapUnlockTableDisplayType = [
