@@ -8,7 +8,7 @@ export const natureEffectId = [
   5,
 ] as const;
 
-export type NatureEffectId = typeof natureEffectId[number] | null;
+export type NatureEffectId = typeof natureEffectId[number];
 
 export const natureEffectType = [
   'mainSkill',
@@ -22,6 +22,6 @@ export type NatureEffectType = typeof natureEffectType[number];
 
 export type NatureData = {
   id: NatureId,
-  buff: number | null,
-  nerf: number | null,
+  buff: NatureEffectId | null,
+  nerf: NatureEffectId | null,
 };

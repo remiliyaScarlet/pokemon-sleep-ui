@@ -19,7 +19,7 @@ export const TeamAnalysisImporter = ({show, setShow, ...props}: Props) => {
 
   return (
     <Popup show={show} setShow={setShow}>
-      <Flex direction="col" noFullWidth className="w-[70vw]">
+      <Flex direction="col" noFullWidth className="min-w-[50vw]">
         <UserDataLazyLoad
           type="pokebox"
           loadingText="Pokebox"

@@ -85,7 +85,7 @@ const config: Config = {
     },
   },
   plugins: [
-    plugin(({matchUtilities, theme}) => {
+    plugin(({addUtilities, matchUtilities, theme}) => {
       matchUtilities(
         {
           'text-shadow': (value) => ({
@@ -93,6 +93,24 @@ const config: Config = {
           }),
         },
         {values: theme('textShadow')},
+      );
+      addUtilities(
+        // https://codepen.io/sosuke/pen/Pjoqqp
+        // https://tailwind-color-filter-generator.vercel.app/
+        {
+          '.filter-subskill-slate-500': {
+            filter: 'brightness(0) saturate(100%) invert(47%) sepia(12%) ' +
+              'saturate(782%) hue-rotate(176deg) brightness(92%) contrast(88%)',
+          },
+          '.filter-subskill-sky-500': {
+            filter: 'brightness(0) saturate(100%) invert(50%) sepia(86%) ' +
+              'saturate(1306%) hue-rotate(166deg) brightness(93%) contrast(95%)',
+          },
+          '.filter-subskill-yellow-500': {
+            filter: 'brightness(0) saturate(100%) invert(68%) sepia(72%)' +
+              ' saturate(3539%) hue-rotate(9deg) brightness(89%) contrast(97%)',
+          },
+        },
       );
     }),
   ],

@@ -17,6 +17,8 @@ export type SubSkillBonus = {
   mainSkillProbability?: number, // 18 / 36 / 54?
 };
 
+export type SubSkillBonusCategory = keyof Required<SubSkillBonus>;
+
 export type SubSkillData = {
   id: SubSkillId,
   rarity: SubSkillRarity | null,

@@ -8,7 +8,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator';
+import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
 import {natureData} from '@/data/nature';
 import {useSearchableData} from '@/hooks/search';
@@ -18,9 +18,10 @@ import {NatureId} from '@/types/game/pokemon/nature';
 type Props = {
   nature: NatureId | null,
   setNature: (nature: NatureId | null) => void,
+  hideName?: boolean,
 };
 
-export const PokemonNatureSelector = ({nature, setNature}: Props) => {
+export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -48,10 +49,10 @@ export const PokemonNatureSelector = ({nature, setNature}: Props) => {
   return (
     <>
       <button
-        className="button-clickable-bg h-full w-full whitespace-nowrap px-1.5 text-sm"
+        className="button-clickable-bg group h-full w-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
-        <PokemonNatureIndicator nature={nature}/>
+        <PokemonNatureIndicator nature={nature} hideName={hideName}/>
       </button>
       <Popup show={show} setShow={setShow}>
         <Flex direction="col" className="max-w-2xl gap-2 pr-2">

@@ -78,7 +78,7 @@ export const TeamAnalysisPokemon = ({
         </Flex>
       </Flex>
       <Flex direction="col" className="h-14 gap-1.5">
-        <PokemonNatureSelector nature={member.nature} setNature={setNature}/>
+        <PokemonNatureSelector nature={member.nature} setNature={setNature} hideName/>
         <PokemonSubSkillSelector subSkill={member.subSkill} setSubSkill={setSubSkill} subSkillMap={subSkillMap}/>
       </Flex>
       <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>

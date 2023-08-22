@@ -7,6 +7,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {NatureEffectIcon} from '@/components/shared/pokemon/nature/effectIcon';
 import {NatureData} from '@/types/game/pokemon/nature';
 
 
@@ -37,25 +38,31 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
       'width-with-gap sm:width-with-gap-2-items group rounded-lg',
       'enabled:button-clickable-border disabled:button-bg',
     )}>
-      <Flex direction="col" center className="p-2">
-        <div className={!data?.buff || !data?.nerf ? natureStyleIfClean : ''}>
+      <Flex direction="row" center className="p-2">
+        <div className={clsx('whitespace-nowrap', !data?.buff && !data?.nerf && natureStyleIfClean)}>
           {data ? t(`Nature.${data.id}`) : <div className="h-6 w-6"><XCircleIcon/></div>}
         </div>
-        <Flex direction="row" className="text-sm">
-          <Flex direction="row" center className={clsx('gap-0.5', data?.buff && buffStyle)}>
+        <Flex direction="col" className="items-center text-sm">
+          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.buff && buffStyle)}>
             <div className="h-5 w-5">
               <ChevronUpIcon/>
             </div>
+            <div className="relative h-5 w-5">
+              <NatureEffectIcon effectId={data?.buff} showOnNull/>
+            </div>
             <div className="whitespace-nowrap">
-              {data?.buff ? t(`NatureEffect.${data.buff}`) : <div className="h-4 w-4"><XCircleIcon/></div>}
+              {data?.buff ? t(`NatureEffect.${data.buff}`) : <></>}
             </div>
           </Flex>
-          <Flex direction="row" center className={clsx('gap-0.5', data?.nerf && nerfStyle)}>
+          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.nerf && nerfStyle)}>
             <div className="h-5 w-5">
               <ChevronDownIcon/>
             </div>
+            <div className="relative h-5 w-5">
+              <NatureEffectIcon effectId={data?.nerf} showOnNull/>
+            </div>
             <div className="whitespace-nowrap">
-              {data?.nerf ? t(`NatureEffect.${data.nerf}`) : <div className="h-4 w-4"><XCircleIcon/></div>}
+              {data?.nerf ? t(`NatureEffect.${data.nerf}`) : <></>}
             </div>
           </Flex>
         </Flex>

@@ -14,7 +14,7 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/ico
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator';
+import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
@@ -159,10 +159,12 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
             <div>{pokemon.stats.frequency}</div>
           </Flex>
           {/* Skills */}
-          <Flex direction="row" center noFullWidth className="w-36">
+          <Flex direction="row" center noFullWidth className="w-56">
             <PokemonNatureIndicator nature={nature}/>
           </Flex>
-          <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
+          <Flex direction="row" center noFullWidth className="w-36">
+            <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
+          </Flex>
           <Flex direction="row" center noFullWidth className={clsx(
             'w-60 whitespace-nowrap p-1 text-sm',
             pokemon.specialty === specialtyIdMap.skill && 'bg-blink',

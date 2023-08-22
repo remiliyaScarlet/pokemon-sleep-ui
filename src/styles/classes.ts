@@ -28,10 +28,10 @@ export const subSkillRaritySectionBg: {[rarity in SubSkillRarity]: string} = {
   3: 'border border-transparent bg-amber-400/40 dark:bg-yellow-700/40',
 };
 
-export const subSkillRarityIconBg: {[rarity in SubSkillRarity]: string} = {
-  1: 'bg-slate-300 dark:bg-slate-500',
-  2: 'bg-sky-300 dark:bg-sky-500',
-  3: 'bg-yellow-300 dark:bg-yellow-500',
+export const subSkillRarityIconFilter: {[rarity in SubSkillRarity]: string} = {
+  1: 'filter-subskill-slate-500',
+  2: 'filter-subskill-sky-500',
+  3: 'filter-subskill-yellow-500',
 };
 
 export const subSkillRarityDisabled = 'border border-slate-500 text-slate-500';

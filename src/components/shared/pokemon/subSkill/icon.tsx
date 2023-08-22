@@ -1,9 +1,14 @@
 import React from 'react';
 
+import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {clsx} from 'clsx';
+import {useTranslations} from 'next-intl';
 
-import {subSkillRarityDisabled, subSkillRarityIconBg} from '@/styles/classes';
-import {SubSkillData} from '@/types/game/pokemon/subskill';
+import {NextImage} from '@/components/shared/common/image/main';
+import {subSkillBonusImageSrcMap} from '@/const/game/pokemon';
+import {subSkillRarityIconFilter} from '@/styles/classes';
+import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subskill';
 
 
 type Props = {
@@ -11,10 +16,35 @@ type Props = {
 };
 
 export const PokemonSubSkillIcon = ({subSkill}: Props) => {
+  const t = useTranslations('Game');
+
+  if (!subSkill) {
+    return (
+      <div className="h-5 w-5">
+        <XCircleIcon/>
+      </div>
+    );
+  }
+
+  const firstEffectiveBonus = Object.entries(subSkill?.bonus ?? {})
+    .filter(([_, value]) => value != 0)
+    .map(([key]) => key as SubSkillBonusCategory)
+    .at(0);
+
+  if (!firstEffectiveBonus) {
+    return (
+      <div className="relative h-5 w-5">
+        <QuestionMarkCircleIcon/>
+      </div>
+    );
+  }
+
   return (
-    <div className={clsx(
-      'h-4 w-4 rounded-full text-sm',
-      subSkill && subSkill.rarity ? subSkillRarityIconBg[subSkill.rarity] : subSkillRarityDisabled,
-    )}/>
+    <div className={clsx('relative h-6 w-6', subSkill.rarity && subSkillRarityIconFilter[subSkill.rarity])}>
+      <NextImage
+        src={subSkillBonusImageSrcMap[firstEffectiveBonus]}
+        alt={t(`SubSkill.Name.${subSkill?.id}`)}
+      />
+    </div>
   );
 };
