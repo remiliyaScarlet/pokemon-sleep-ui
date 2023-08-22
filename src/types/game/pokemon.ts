@@ -1,5 +1,6 @@
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
+import {EvolutionData} from '@/types/game/pokemon/evolution';
 import {IngredientChainId} from '@/types/game/pokemon/ingredient';
 
 
@@ -45,6 +46,7 @@ export type PokemonInfo = {
   },
   ingredientChain: IngredientChainId,
   skill: PokemonSkillId,
+  evolution: EvolutionData,
 };
 
 export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonId[]};

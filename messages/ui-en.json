@@ -119,6 +119,7 @@
     "Pokedex": {
       "Info": {
         "Berry": "Berry",
+        "Evolution": "Evolution Stage",
         "Ingredient": "Ingredient",
         "MainSkill": "Main Skill",
         "Name": "Name",

@@ -1,8 +1,14 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {EvolutionStage} from '@/types/game/pokemon/evolution';
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
-import {PokemonSkillId, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/game/pokemon';
+import {
+  PokemonInfo,
+  PokemonSkillId,
+  PokemonSleepTypeId,
+  PokemonSpecialtyId,
+  PokemonTypeId,
+} from '@/types/game/pokemon';
+import {EvolutionStage} from '@/types/game/pokemon/evolution';
 
 
 export const pokemonInputType = [
@@ -12,6 +18,7 @@ export const pokemonInputType = [
   'ingredientFixed',
   'ingredientRandom',
   'berry',
+  'evolutionStage',
   'mainSkill',
 ] as const;
 
@@ -24,6 +31,7 @@ export type PokemonInputFilterIdType = {
   ingredientFixed: IngredientId,
   ingredientRandom: IngredientId,
   berry: BerryId,
+  evolutionStage: EvolutionStage,
   mainSkill: PokemonSkillId,
 };
 
@@ -31,3 +39,10 @@ export type PokemonInputFilter = Record<
   PokemonInputType,
   FilterInclusionMap<PokemonInputFilterIdType[PokemonInputType]>
 >;
+
+type PokemonInputFilterCheckingOpts = {
+  filter: PokemonInputFilter,
+  pokemon: PokemonInfo,
+};
+
+export type PokemonInputFilterCheckExclusion = (opts: PokemonInputFilterCheckingOpts) => boolean;

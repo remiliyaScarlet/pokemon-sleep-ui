@@ -126,6 +126,17 @@ export const PokemonFilter = <
     );
   }
 
+  if (type === 'evolutionStage') {
+    return (
+      <FilterTextInput
+        idToItemId={(id) => `${idPrefix}EvolutionStage-${id}`}
+        idToButton={(id) => <div className="mx-1">{id}</div>}
+        ids={getIds(({evolution}) => evolution.stage as TId)}
+        {...commonProps}
+      />
+    );
+  }
+
   if (type === 'mainSkill') {
     return (
       <FilterTextInput
@@ -137,5 +148,5 @@ export const PokemonFilter = <
     );
   }
 
-  throw new Error(`Unhandled pokemon filter of type ${type}`);
+  throw new Error(`Unhandled pokemon filter of type ${type satisfies never}`);
 };

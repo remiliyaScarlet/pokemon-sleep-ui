@@ -119,6 +119,7 @@
     "Pokedex": {
       "Info": {
         "Berry": "나무열매",
+        "Evolution": "진화단계",
         "Ingredient": "식재료",
         "MainSkill": "메인 스킬",
         "Name": "이름",

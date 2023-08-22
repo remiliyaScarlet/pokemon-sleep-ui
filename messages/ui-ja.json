@@ -119,6 +119,7 @@
     "Pokedex": {
       "Info": {
         "Berry": "きのみ",
+        "Evolution": "進化階段",
         "Ingredient": "食材",
         "MainSkill": "メインスキル",
         "Name": "名前",

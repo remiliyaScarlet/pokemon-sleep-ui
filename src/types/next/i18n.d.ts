@@ -61,6 +61,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Pokedex: {
         Info: {
           Berry: string,
+          Evolution: string,
           Ingredient: string,
           MainSkill: string,
           Name: string,

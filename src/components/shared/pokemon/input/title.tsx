@@ -41,5 +41,9 @@ export const PokemonFilterTitle = ({type}: Props) => {
     return <>{t('MainSkill')}</>;
   }
 
-  throw new Error(`Unhandled pokemon filter title of type ${type}`);
+  if (type === 'evolutionStage') {
+    return <>{t('Evolution')}</>;
+  }
+
+  throw new Error(`Unhandled pokemon filter title of type ${type satisfies never}`);
 };
