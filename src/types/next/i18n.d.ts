@@ -22,11 +22,15 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Day: string,
       DreamShards: string,
       Exp: string,
+      Hour: string,
       Map: string,
       Rank: string,
       Rewards: string,
       Shiny: string,
       SnorlaxFavorite: string,
+    },
+    Evolution: {
+      SleepTime: string,
     },
     Metadata: {
       SiteName: string,
@@ -149,6 +153,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     Berry: GameObjectIdToString,
     Field: GameObjectIdToString,
     Food: GameObjectIdToString,
+    Item: GameObjectIdToString,
     MainSkill: {
       Name: GameObjectIdToString,
       Description: GameObjectIdToString,

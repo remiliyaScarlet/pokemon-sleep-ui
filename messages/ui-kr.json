@@ -7,11 +7,15 @@
     "Day": "일",
     "DreamShards": "꿈의조각",
     "Exp": "경험치",
+    "Hour": "시간",
     "Map": "맵",
     "Rank": "랭크",
     "Rewards": "보상",
     "Shiny":"색이 다른",
     "SnorlaxFavorite": "잠만보가 좋아하는 나무열매"
+  },
+  "Evolution": {
+    "SleepTime": "수면 시간"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep 위키",

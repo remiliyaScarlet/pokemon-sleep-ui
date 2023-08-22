@@ -7,11 +7,15 @@
     "Day": "Day",
     "DreamShards": "Dream Shards",
     "Exp": "EXP",
+    "Hour": "Hrs",
     "Map": "Map",
     "Rank": "Rank",
     "Rewards": "Rewards",
     "Shiny": "Shiny",
     "SnorlaxFavorite": "Snorlax's Favorite Berries"
+  },
+  "Evolution": {
+    "SleepTime": "Time Slept"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep Info",

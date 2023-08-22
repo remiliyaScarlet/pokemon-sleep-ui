@@ -7,11 +7,15 @@
     "Day": "日",
     "DreamShards": "ゆめのかけら",
     "Exp": "経験値",
+    "Hour": "時間",
     "Map": "マップ",
     "Rank": "ランク",
     "Rewards": "報酬",
     "Shiny": "色違い",
     "SnorlaxFavorite": "カビゴンの好きなきのみ"
+  },
+  "Evolution": {
+    "SleepTime": "睡眠時間"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep 攻略",

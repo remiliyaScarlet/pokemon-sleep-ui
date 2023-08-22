@@ -7,12 +7,14 @@ import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
-import {getSinglePokemonInfo} from '@/controller/pokemon';
+import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
+import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
+import {getRelatedPokemonIds} from '@/utils/game/pokemon';
 
 
 type Props = {
@@ -22,6 +24,7 @@ type Props = {
 export const Pokemon = ({params}: Props) => {
   const idNumber = Number(params.id);
   const pokemon = React.use(getSinglePokemonInfo(idNumber));
+  const pokedex = React.use(getPokemonAsMap(pokemon ? getRelatedPokemonIds(pokemon) : []));
   const sleepStyles = React.use(getPokemonSleepStyles(idNumber));
   const berryData = React.use(getBerryData(pokemon?.berry.id));
   const ingredientMap = React.use(getAllIngredients());
@@ -40,8 +43,10 @@ export const Pokemon = ({params}: Props) => {
     <PublicPageLayout>
       <Flex direction="col" center className="gap-2">
         <AdsUnit/>
-        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.Metadata']}>
+        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Evolution', 'UI.InPage.Pokedex', 'UI.Metadata']}>
           <PokemonMeta {...props}/>
+          <AdsUnit/>
+          <PokemonEvolution pokedex={pokedex} {...props}/>
         </I18nProvider>
         <AdsUnit/>
         <PokemonSleepStyles {...props}/>

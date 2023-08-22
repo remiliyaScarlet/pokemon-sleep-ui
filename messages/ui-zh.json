@@ -7,11 +7,15 @@
     "Day": "日",
     "DreamShards": "夢之碎片",
     "Exp": "經驗值",
+    "Hour": "小時",
     "Map": "地圖",
     "Rank": "階級",
     "Rewards": "報酬",
     "Shiny": "異色",
     "SnorlaxFavorite": "卡比獸喜歡的樹果"
+  },
+  "Evolution": {
+    "SleepTime": "睡眠時間"
   },
   "Metadata": {
     "SiteName": "Pokémon Sleep 攻略站",
