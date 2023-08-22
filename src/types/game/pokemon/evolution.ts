@@ -1,15 +1,16 @@
-import {PokemonId, PokemonTypeId} from '@/types/mongo/pokemon';
+import {ItemId} from '@/types/game/item';
+import {PokemonId} from '@/types/mongo/pokemon';
 
 
-export type PokemonEvolutionCondition = {
+export type EvolutionCondition = {
   type: 'level',
   level: number,
 } | {
   type: 'candy',
   count: number,
 } | {
-  type: 'stone',
-  element: PokemonTypeId,
+  type: 'item',
+  item: ItemId,
 } | {
   type: 'sleepTime',
   hours: number,
@@ -19,18 +20,20 @@ export type PokemonEvolutionCondition = {
   endHour: number,
 };
 
-export type PokemonEvolutionBranch = {
+export type EvolutionBranch = {
   id: PokemonId,
-  conditions: PokemonEvolutionCondition[],
+  conditions: EvolutionCondition[],
 };
 
-export type PokemonEvolutionStage = {
-  current: PokemonId,
-  next: PokemonEvolutionBranch[],
+export type EvolutionData = {
+  pokemon: PokemonId,
+  next: EvolutionBranch[],
 } & ({
   stage: 1,
   previous: null,
 } | {
-  stage: 2 | 3 | 4 | 5,
+  stage: 2 | 3,
   previous: PokemonId,
 });
+
+export type EvolutionStage = EvolutionData['stage'];

@@ -4,11 +4,6 @@ import {NatureId} from '@/types/game/producing/nature';
 import {PokemonId} from '@/types/mongo/pokemon';
 
 
-export const pokeInBoxIngredientLevel = [
-  30,
-  60,
-] as const;
-
 export type PokeInBox = {
   uuid: string,
   pokemon: PokemonId,

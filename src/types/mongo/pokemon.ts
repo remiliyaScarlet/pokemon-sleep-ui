@@ -1,3 +1,4 @@
+import {IngredientChainId} from '@/types/game/pokemon/ingredient';
 import {BerryId} from '@/types/mongo/berry';
 import {IngredientId} from '@/types/mongo/ingredient';
 
@@ -42,6 +43,7 @@ export type PokemonInfo = {
     fixed?: IngredientId,
     random?: IngredientId[],
   },
+  ingredientChain: IngredientChainId,
   skill: PokemonSkillId,
 };
 
