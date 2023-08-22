@@ -3,8 +3,8 @@ import React from 'react';
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {ProducingRate} from '@/types/game/producing/rate';
 import {IngredientId} from '@/types/game/ingredient';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/setup/common/rateLayoutWithQuantity';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
 

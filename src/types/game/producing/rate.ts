@@ -1,6 +1,6 @@
+import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
-import {PokemonInfo} from '@/types/game/pokemon';
 
 
 export type ProducingRate = {

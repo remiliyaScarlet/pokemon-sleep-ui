@@ -1,6 +1,6 @@
+import {BerryData} from '@/types/game/berry';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {BerryData} from '@/types/game/berry';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultBerryProbability, defaultHelperCount, defaultLevel} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';

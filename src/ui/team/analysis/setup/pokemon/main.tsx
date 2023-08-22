@@ -12,9 +12,9 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';

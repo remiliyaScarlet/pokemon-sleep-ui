@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {ProducingRate} from '@/types/game/producing/rate';
 import {BerryId} from '@/types/game/berry';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/setup/common/rateLayoutWithQuantity';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
 

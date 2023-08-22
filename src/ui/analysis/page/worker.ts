@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 

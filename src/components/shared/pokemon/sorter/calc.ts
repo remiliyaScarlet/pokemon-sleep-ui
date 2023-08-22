@@ -5,8 +5,8 @@ import {
   PokemonSortType,
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
-import {ProducingRate} from '@/types/game/producing/rate';
 import {BerryDataMap} from '@/types/game/berry';
+import {ProducingRate} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';

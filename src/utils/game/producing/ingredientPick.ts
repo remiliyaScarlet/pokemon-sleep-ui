@@ -1,6 +1,6 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 
 
 type GetIngredientPickOpts = {

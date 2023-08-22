@@ -1,8 +1,8 @@
 import groupBy from 'lodash/groupBy';
 
+import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
-import {IngredientMap} from '@/types/game/ingredient';
 import {toSum} from '@/utils/array';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {isNotNullish} from '@/utils/type';
