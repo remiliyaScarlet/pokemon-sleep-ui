@@ -1,5 +1,5 @@
+import {NatureEffectId, NatureEffectType} from '@/types/game/pokemon/nature';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
-import {NatureEffectId, NatureEffectType} from '@/types/game/producing/nature';
 import {PokemonSpecialtyId} from '@/types/mongo/pokemon';
 
 

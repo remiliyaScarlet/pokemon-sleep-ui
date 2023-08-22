@@ -1,5 +1,5 @@
+import {NatureId} from '@/types/game/pokemon/nature';
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
-import {NatureId} from '@/types/game/producing/nature';
 import {PokemonInfo} from '@/types/mongo/pokemon';
 
 

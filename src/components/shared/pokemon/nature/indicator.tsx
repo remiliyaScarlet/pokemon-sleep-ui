@@ -5,7 +5,7 @@ import ChevronUpDownIcon from '@heroicons/react/24/solid/ChevronUpDownIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NatureId} from '@/types/game/producing/nature';
+import {NatureId} from '@/types/game/pokemon/nature';
 
 
 type Props = {

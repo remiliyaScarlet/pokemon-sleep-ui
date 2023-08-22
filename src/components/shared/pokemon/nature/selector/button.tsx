@@ -7,7 +7,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NatureData} from '@/types/game/producing/nature';
+import {NatureData} from '@/types/game/pokemon/nature';
 
 
 const buffStyle = clsx(

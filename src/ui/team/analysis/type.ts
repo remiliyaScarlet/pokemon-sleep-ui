@@ -1,6 +1,6 @@
 import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
-import {NatureId} from '@/types/game/producing/nature';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 import {BerryDataMap} from '@/types/mongo/berry';

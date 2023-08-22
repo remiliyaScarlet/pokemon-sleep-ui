@@ -1,6 +1,6 @@
 import {natureEffectIdMap} from '@/const/game/pokemon';
 import {natureData} from '@/data/nature';
-import {NatureEffectType, NatureId} from '@/types/game/producing/nature';
+import {NatureEffectType, NatureId} from '@/types/game/pokemon/nature';
 
 
 type GetNatureMultiplierOpts = {

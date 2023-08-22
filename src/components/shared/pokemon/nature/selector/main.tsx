@@ -12,7 +12,7 @@ import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicat
 import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
 import {natureData} from '@/data/nature';
 import {useSearchableData} from '@/hooks/search';
-import {NatureId} from '@/types/game/producing/nature';
+import {NatureId} from '@/types/game/pokemon/nature';
 
 
 type Props = {
