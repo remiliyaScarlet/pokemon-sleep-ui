@@ -40,7 +40,7 @@ export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
 
   return (
     <>
-      <Collapsible state={pickerCollapsible} className="h-72 md:h-52" button={
+      <Collapsible state={pickerCollapsible} classNameForHeight="h-72 md:h-52" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
@@ -65,7 +65,7 @@ export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
           ))}
         </Flex>
       </Collapsible>
-      <Collapsible state={resultCollapsible} className="h-80 md:h-60 lg:h-40" appear button={
+      <Collapsible state={resultCollapsible} classNameForHeight="h-80 md:h-60 lg:h-40" appear button={
         <Flex direction="row" center className="group gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">

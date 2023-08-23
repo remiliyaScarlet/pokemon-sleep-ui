@@ -51,7 +51,7 @@ export const PokeboxViewerInput = (props: Props) => {
 
   return (
     <>
-      <Collapsible state={filterCollapsible} className="h-72 md:h-52" button={
+      <Collapsible state={filterCollapsible} classNameForHeight="h-72 md:h-52" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
@@ -82,7 +82,7 @@ export const PokeboxViewerInput = (props: Props) => {
           ))}
         </Flex>
       </Collapsible>
-      <Collapsible state={viewCollapsible} className="h-56 md:h-32" appear button={
+      <Collapsible state={viewCollapsible} classNameForHeight="h-56 md:h-32" appear button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">

@@ -8,12 +8,12 @@ import {Flex} from '@/components/layout/flex';
 
 type Props = {
   state: ReturnType<typeof useCollapsible>,
-  className: string,
+  classNameForHeight: string,
   button: React.ReactNode,
   appear?: boolean,
 };
 
-export const Collapsible = ({state, className, button, appear, children}: React.PropsWithChildren<Props>) => {
+export const Collapsible = ({state, button, appear, classNameForHeight, children}: React.PropsWithChildren<Props>) => {
   const {show, setShow} = state;
 
   React.useEffect(() => {
@@ -39,13 +39,12 @@ export const Collapsible = ({state, className, button, appear, children}: React.
       >
         <Transition.Child
           enterFrom="h-0"
-          enterTo={className}
-          leaveFrom={className}
+          enterTo={classNameForHeight}
+          leaveFrom={classNameForHeight}
           leaveTo="h-0"
           className="overflow-x-hidden overflow-y-scroll transition-[height] duration-300 ease-in-out"
         >
-          <Transition
-            show={show}
+          <Transition.Child
             enterFrom="opacity-0"
             enterTo="opacity-100"
             leaveFrom="opacity-100"
@@ -53,7 +52,7 @@ export const Collapsible = ({state, className, button, appear, children}: React.
             className="transition-opacity duration-300 ease-in-out"
           >
             {children}
-          </Transition>
+          </Transition.Child>
         </Transition.Child>
       </Transition>
     </Flex>
