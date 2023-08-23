@@ -13,7 +13,7 @@ export const PokeboxContentPokeInBoxGrid = ({
   ...props
 }: PokeInBoxViewCommonProps) => {
   return (
-    <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7">
+    <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
       {sortedPokemonInfo.map(({source}) => {
         const uuid = source.extra.uuid;
 
