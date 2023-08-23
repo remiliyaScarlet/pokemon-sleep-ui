@@ -1,0 +1,209 @@
+{
+  "Auth": {
+    "EmailSent": "Email für den Login wurde gesendet."
+  },
+  "Common": {
+    "Candy": "Bonbon",
+    "Day": "Tag",
+    "DreamShards": "Traumsplitter",
+    "Exp": "EP",
+    "Hour": "Std",
+    "Map": "Karte",
+    "Rank": "Rang",
+    "Rewards": "Belohnung",
+    "Shiny": "Schillernd",
+    "SnorlaxFavorite": "Lieblingsbeeren dieses Relaxo"
+  },
+  "Evolution": {
+    "SleepTime": "Gemeinsame Schlafdauer"
+  },
+  "Metadata": {
+    "SiteName": "Pokémon Sleep Info",
+    "Home": {
+      "Title": "Home"
+    },
+    "Pokedex": {
+      "Index": {
+        "Title": "Pokédex"
+      },
+      "Page": {
+        "Title": "Pokémon - {name}"
+      }
+    },
+    "Analysis": {
+      "Title": "Pokémon Analyse - {name}"
+    },
+    "Cooking": {
+      "Title": "Kochen"
+    },
+    "Meal": {
+      "Index": {
+        "Title": "Rezepteliste"
+      },
+      "Page": {
+        "Title": "Rezept - {name}"
+      }
+    },
+    "Ingredient": {
+      "Index": {
+        "Title": "Zutaten"
+      },
+      "Page": {
+        "Title": "Zutat - {name}"
+      }
+    },
+    "Berry": {
+      "Index": {
+        "Title": "Beeren"
+      },
+      "Page": {
+        "Title": "Beere - {name}"
+      }
+    },
+    "Map": {
+      "Index": {
+        "Title": "Karte"
+      },
+      "Page": {
+        "Title": "Karte - {name}"
+      }
+    },
+    "Team": {
+      "Box": {
+        "Title": "Pokémon Box"
+      },
+      "Calculate": {
+        "Title": "Stärkerechner"
+      },
+      "Index": {
+        "Title": "Team"
+      },
+      "Maker": {
+        "Title": "Teambau Hilfe"
+      }
+    },
+    "Info": {
+      "Index": {
+        "Title": "Anderes"
+      },
+      "Pot": {
+        "Title": "Topf"
+      },
+      "Nature": {
+        "Title": "Wesen"
+      },
+      "SubSkill": {
+        "Title": "Nebentalent"
+      }
+    },
+    "Skill": {
+      "Index": {
+        "Title": "Haupttalente"
+      },
+      "Page": {
+        "Title": "Haupttalent - {name}"
+      }
+    },
+    "Incense": {
+      "Index": {
+        "Title": "Rauch"
+      },
+      "Page": {
+        "Title": "Rauch - {name}"
+      }
+    },
+    "About": {
+      "Title": "Impressum"
+    }
+  },
+  "InPage": {
+    "Home": {
+      "Welcome": "Willkommen!"
+    },
+    "Pokedex": {
+      "Info": {
+        "Berry": "Beere",
+        "Evolution": "Entwicklungsstufe",
+        "Ingredient": "Zutat",
+        "MainSkill": "Haupttalent",
+        "Name": "Name",
+        "PokemonLevel": "Pokemon Level",
+        "PokemonType": "Pokemontyp",
+        "SleepType": "Schlaftyp",
+        "Specialty": "Spezialität",
+        "Stats": "Status"
+      },
+      "Stats": {
+        "Energy": {
+          "Daily": "Täglich",
+          "Name": "Stärke",
+          "Weekly": "Wöchentlich"
+        },
+        "Frequency": "Frequenz",
+        "Friendship": "Max. Freundespunkte",
+        "MaxCarry": "Tragelimit",
+        "Recruit": "Befreundet"
+      },
+      "Sort": {
+        "Id": "ID",
+        "IngredientEnergy": "Zutatenstärke",
+        "IngredientCount": "Zutatensuche",
+        "BerryEnergy": "Beerenstärke",
+        "BerryCount": "Beerensuche",
+        "FriendshipPoint": "Freundespunkte",
+        "TotalEnergy": "Gesamtstärke"
+      }
+    },
+    "Analysis": {
+      "FirstAppearance": "Erster Auftritt - {mapName}",
+      "LastSleepStyle": "Letzte Schlafpose - {mapName}"
+    },
+    "Cooking": {
+      "Energy": "Endstärke",
+      "Ingredient": "Zutaten",
+      "MealDisplayType": {
+        "EnergyRange": "Stärke",
+        "Ingredient": "Zutat"
+      },
+      "MealType": "Gericht",
+      "PotCapacity": "Max",
+      "RecipeLevel": "Rezeptlevel"
+    },
+    "Berry": {
+      "Energy": "Stärke"
+    },
+    "Ingredient": {
+      "Energy": "Stärke"
+    },
+    "Map": {
+      "Energy": "Stärke",
+      "Pokemon": "Pokémon",
+      "SleepStyle": "Schlafpose"
+    },
+    "Team": {
+      "CurrentEnergy": "Stärke",
+      "SubSkill": "Nebentalent",
+      "Box": {
+        "DisplayType": {
+          "Info": "Info",
+          "ProductionBerry": "Produktion (Beeren)",
+          "ProductionIngredient": "Produktion (Zutaten)",
+          "ProductionTotal": "Produktion (Gesamt)",
+          "Skills": "Talente",
+          "Stats": "Stats"
+        }
+      }
+    },
+    "Info": {
+      "Pot": {
+        "Capacity": "Aktuelle Kapazität",
+        "Expand": "Erweitern",
+        "UnlockedRecipes": "Rezept freigeschaltet"
+      }
+    }
+  },
+  "UserControl": {
+    "Login": "Login",
+    "Logout": "Logout"
+  }
+}
