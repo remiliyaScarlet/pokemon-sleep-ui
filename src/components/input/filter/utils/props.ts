@@ -9,6 +9,10 @@ import {
 import {Indexable, KeysOfType} from '@/utils/type';
 
 
+export const getToggleButtonClass = (isActive: boolean) => clsx(
+  isActive ? 'button-toggle-active' : 'button-toggle-inactive',
+);
+
 export const getTextFilterButtonClass = (isActive: boolean) => clsx(
   'whitespace-nowrap px-2 text-sm',
   getFilterInputButtonClass(isActive),
@@ -20,8 +24,6 @@ const getFilterInputButtonClass = (isActive: boolean) => clsx(
   'relative h-8 rounded-full',
   getToggleButtonClass(isActive),
 );
-
-const getToggleButtonClass = (isActive: boolean) => clsx(isActive ? 'button-toggle-active' : 'button-toggle-inactive');
 
 export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
   filterKey: KeysOfType<TFilter, TData | null>,
