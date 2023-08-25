@@ -42,8 +42,6 @@ export const useSortingWorker = <TExtra, TData extends PokemonInfoWithSortingPay
   }, triggerDeps);
 
   React.useEffect(() => {
-    triggerSort();
-
     return () => worker.terminate();
   }, []);
 
