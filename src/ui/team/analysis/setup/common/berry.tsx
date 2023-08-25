@@ -12,10 +12,10 @@ type Props = TeamAnalysisRateLayoutCommonProps & {
   rate: ProducingRate,
 };
 
-export const TeamAnalysisBerryRate = ({id, rate, highlight}: Props) => {
+export const TeamAnalysisBerryRate = ({id, rate, highlight, period}: Props) => {
   return (
-    <TeamAnalysisRateLayoutWithQuantity highlight={highlight} rate={rate} icon={
-      <PokemonBerryIcon id={id} dimension="h-8 w-8"/>
+    <TeamAnalysisRateLayoutWithQuantity highlight={highlight} period={period} rate={rate} icon={
+      <PokemonBerryIcon id={id} dimension="h-6 w-6"/>
     }/>
   );
 };

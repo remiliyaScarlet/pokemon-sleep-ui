@@ -1,4 +1,4 @@
-import {PokemonSubSkill, SubSkillBonus, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillBonus, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -9,9 +9,19 @@ type SubSkillCheckOpts = {
 };
 
 export const getEffectiveSubSkills = ({level, pokemonSubSkill, subSkillMap}: SubSkillCheckOpts) => {
-  return Object.entries(pokemonSubSkill)
-    .filter(([subSkillLv]) => level >= parseInt(subSkillLv))
-    .map(([_, subSkillId]) => subSkillId ? subSkillMap[subSkillId] : null)
+  return pokemonSubSkillLevel
+    .map((subSkillLv) => {
+      if (level < subSkillLv) {
+        return null;
+      }
+
+      const subSkillId = pokemonSubSkill[subSkillLv];
+      if (!subSkillId) {
+        return null;
+      }
+
+      return subSkillMap[subSkillId];
+    })
     .filter(isNotNullish);
 };
 

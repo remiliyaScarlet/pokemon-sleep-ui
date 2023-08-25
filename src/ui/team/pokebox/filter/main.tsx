@@ -16,21 +16,22 @@ import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {usePokeboxPickerFilter} from '@/ui/team/pokebox/filter/hook';
+import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {showToast} from '@/utils/toast';
 
 
-type Props = {
+type Props = PokeboxCommonProps & {
   pokemon: PokemonInfo[],
   onClick: (pokemonId: PokemonId) => void,
 };
 
-export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
+export const PokeboxPickerInput = ({pokemon, ingredientChainMap, onClick}: Props) => {
   const t = useTranslations('Game');
   const {
     filter,
     setFilter,
     isIncluded,
-  } = usePokeboxPickerFilter({data: pokemon});
+  } = usePokeboxPickerFilter({data: pokemon, ingredientChainMap});
   const pickerCollapsible = useCollapsible();
   const resultCollapsible = useCollapsible();
 
@@ -57,6 +58,7 @@ export const PokeboxPickerInput = ({pokemon, onClick}: Props) => {
               key={type}
               type={type}
               pokemon={pokemon}
+              ingredientChainMap={ingredientChainMap}
               filterKey={type}
               filter={filter}
               setFilter={setFilter}

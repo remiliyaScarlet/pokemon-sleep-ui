@@ -38,7 +38,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
 
         return (
           <Flex key={slotName} direction="col" center className={clsx(
-            'button-bg relative h-[33rem] gap-1.5 rounded-lg p-3',
+            'button-bg relative h-[30rem] gap-1.5 rounded-lg p-3',
           )}>
             <button
               className={clsx(

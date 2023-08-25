@@ -65,7 +65,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           {pokemonInputType.map((type) => (
             <PokemonFilter
               key={type}
-              style={type === 'sleepType' || type === 'ingredientFixed' ? 'highlight' : 'normal'}
+              style={type === 'sleepType' ? 'highlight' : 'normal'}
               type={type}
               filterKey={type}
               pokemon={pokedex}

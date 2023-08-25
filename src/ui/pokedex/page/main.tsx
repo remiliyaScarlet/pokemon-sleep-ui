@@ -7,11 +7,13 @@ import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
+import {PokemonProduction} from '@/ui/pokedex/page/production/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {getRelatedPokemonIds} from '@/utils/game/pokemon';
@@ -24,6 +26,7 @@ type Props = {
 export const Pokemon = ({params}: Props) => {
   const idNumber = Number(params.id);
   const pokemon = React.use(getSinglePokemonInfo(idNumber));
+  const ingredientChainMap = React.use(getIngredientChainMap());
   const pokedex = React.use(getPokemonAsMap(pokemon ? getRelatedPokemonIds(pokemon) : []));
   const sleepStyles = React.use(getPokemonSleepStyles(idNumber));
   const berryData = React.use(getBerryData(pokemon?.berry.id));
@@ -37,7 +40,7 @@ export const Pokemon = ({params}: Props) => {
     return <Failed text="Berry"/>;
   }
 
-  const props: PokemonProps = {pokemon, sleepStyles, berryData, ingredientMap};
+  const props: PokemonProps = {pokemon, ingredientChainMap, sleepStyles, berryData, ingredientMap};
 
   return (
     <PublicPageLayout>
@@ -45,6 +48,8 @@ export const Pokemon = ({params}: Props) => {
         <AdsUnit/>
         <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Evolution', 'UI.InPage.Pokedex', 'UI.Metadata']}>
           <PokemonMeta {...props}/>
+          <AdsUnit/>
+          <PokemonProduction {...props}/>
           <AdsUnit/>
           <PokemonEvolution pokedex={pokedex} {...props}/>
         </I18nProvider>

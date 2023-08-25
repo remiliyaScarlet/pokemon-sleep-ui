@@ -18,7 +18,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
-import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {pokemonInputType, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {FieldMetaMap} from '@/types/game/mapMeta';
@@ -36,13 +36,13 @@ import {
 } from '@/ui/team/pokebox/viewer/type';
 
 
-type Props = FilterInputProps<PokeboxViewerFilter> & {
+type Props = FilterInputProps<PokeboxViewerFilter> & UsePokemonFilterCommonData & {
   pokemon: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };
 
 export const PokeboxViewerInput = (props: Props) => {
-  const {filter, setFilter, pokemon} = props;
+  const {filter, setFilter} = props;
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
   const t2 = useTranslations('UI.InPage.Pokedex');
 
@@ -73,11 +73,9 @@ export const PokeboxViewerInput = (props: Props) => {
             <PokemonFilter
               key={type}
               type={type}
-              pokemon={pokemon}
               filterKey={type}
-              filter={filter}
-              setFilter={setFilter}
               idPrefix="viewer-"
+              {...props}
             />
           ))}
         </Flex>

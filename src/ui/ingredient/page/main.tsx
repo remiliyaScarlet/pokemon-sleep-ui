@@ -8,10 +8,10 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getIngredientData} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
-import {getPokemonByIngredient} from '@/controller/pokemon';
+import {getPokemonAsMap, getPokemonIngredientProduction} from '@/controller/pokemon';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
-import {IngredientObtainablePokemon} from '@/ui/ingredient/page/pokemon';
+import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
 import {IngredientCookableMeals} from '@/ui/ingredient/page/recipe';
 
 
@@ -22,7 +22,8 @@ type Props = {
 export const IngredientPage = ({params}: Props) => {
   const idNumber = Number(params.id);
   const ingredient = React.use(getIngredientData(idNumber));
-  const obtainablePokemon = React.use(getPokemonByIngredient(ingredient?.id));
+  const pokemonProduction = React.use(getPokemonIngredientProduction(ingredient?.id));
+  const pokedex = React.use(getPokemonAsMap());
   const cookableMeals = React.use(getMealByIngredient(ingredient?.id));
   const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
@@ -38,9 +39,10 @@ export const IngredientPage = ({params}: Props) => {
       </Flex>
       <AdsUnit/>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
-        <IngredientObtainablePokemon
+        <IngredientPokemonProduction
+          pokedex={pokedex}
           pokemonMaxLevel={pokemonMaxLevel}
-          obtainablePokemon={obtainablePokemon}
+          pokemonProduction={pokemonProduction}
           ingredient={ingredient}
         />
       </I18nProvider>

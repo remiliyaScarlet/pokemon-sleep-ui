@@ -5,7 +5,7 @@ import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 
 
-export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
+export const useMapFilter = ({sleepStyles, pokedexMap, ...filterData}: MapCommonProps) => {
   return useFilterInput<MapPageFilter, SleepStyleDataFlattened, MapInputInclusionKey>({
     data: sleepStyles,
     dataToId: ({pokemonId, style}) => `${pokemonId}-${style.style}`,
@@ -26,7 +26,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap}: MapCommonProps) => {
         return false;
       }
 
-      return isPokemonIncludedFromFilter(filter, pokemon);
+      return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});
     },
     deps: [pokedexMap],
   });

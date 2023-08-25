@@ -12,11 +12,10 @@ type Props = Pick<TeamAnalysisRateLayoutProps, 'icon'> & TeamAnalysisRateLayoutC
   rate: ProducingRate | null,
 };
 
-export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, highlight}: Props) => {
+export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, highlight, period}: Props) => {
   return (
     <Flex direction="col" className={clsx('p-1', highlight && 'bg-blink')}>
-      <TeamAnalysisRateLayout dailyRate={rate?.quantity ?? null} isEnergy={false} icon={icon}/>
-      <TeamAnalysisRateLayout dailyRate={rate?.dailyEnergy ?? null} isEnergy/>
+      <TeamAnalysisRateLayout period={period} showQuantity rate={rate} icon={icon}/>
     </Flex>
   );
 };

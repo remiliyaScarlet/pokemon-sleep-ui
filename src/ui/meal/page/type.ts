@@ -1,6 +1,7 @@
 import {IngredientMap} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal';
-import {PokedexMap} from '@/types/game/pokemon';
+import {PokedexMap, PokemonIngredientMap} from '@/types/game/pokemon';
+import {IngredientLevel} from '@/types/game/pokemon/ingredient';
 
 
 export type MealCommonProps = {
@@ -8,4 +9,10 @@ export type MealCommonProps = {
   ingredientMap: IngredientMap,
   pokedex: PokedexMap,
   pokemonMaxLevel: number,
+};
+
+export type MealPokemonOfIngredientLevelProps = {
+  show: boolean,
+  ingredientLevel: IngredientLevel,
+  pokeIngredientMap: PokemonIngredientMap,
 };

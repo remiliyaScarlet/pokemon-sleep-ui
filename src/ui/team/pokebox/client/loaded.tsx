@@ -27,17 +27,18 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
       <PokeboxPickerInput
         pokemon={pokemon}
         onClick={(id) => {
-          const pokeInfo = pokedexMap[id];
-          if (!pokeInfo) {
+          const pokemon = pokedexMap[id];
+          if (!pokemon) {
             return;
           }
 
-          const newPokeInBox = generateNewPokeInBox(pokeInfo);
+          const newPokeInBox = generateNewPokeInBox({pokemon, ...props});
           setPokebox((original) => ({
             ...original,
             [newPokeInBox.uuid]: newPokeInBox,
           }));
         }}
+        {...props}
       />
       <AdsUnit/>
       <PokeboxContent pokebox={pokebox} pokemon={pokemon} setPokebox={setPokebox} {...props}/>

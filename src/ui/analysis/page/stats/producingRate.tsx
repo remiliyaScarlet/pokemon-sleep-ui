@@ -8,15 +8,17 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
 import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
+import {AnalysisStatsLayout} from '@/ui/analysis/page/stats/layout';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
 import {formatFloat} from '@/utils/number';
 
 
 export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiProps) => {
-  const {berry, ingredients} = pokemon;
+  const {berry} = pokemon;
   const {producingRate} = stats;
 
   const t = useTranslations('UI.InPage.Pokedex');
@@ -29,7 +31,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   const textTotalEnergy = t(sortTypeToI18nId.totalEnergy);
 
   return (
-    <>
+    <AnalysisStatsLayout>
       <AnalysisStatsContinuousUI
         stats={producingRate.berry.count}
         title={
@@ -71,71 +73,102 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
           {formatFloat(producingRate.berry.energy.current)}
         </div>
       </AnalysisStatsContinuousUI>
-      {producingRate.ingredient && ingredients.fixed &&
-        <>
+      {producingRate.ingredient.individual.map((rate) => (
+        <React.Fragment key={rate.itemId}>
           <AnalysisStatsContinuousUI
-            stats={producingRate.ingredient.count}
+            stats={rate.count}
+            linkedIconKey={({data, pokemonId}) => (
+              `${pokemonId}-${data.productions.map(({id, qty}) => `${id}x${qty}`).join('-')}`
+            )}
             title={
               <Flex direction="row" center className="gap-1.5">
-                <PokemonIngredientIcon dimension="h-6 w-6" id={ingredients.fixed}/>
+                <PokemonIngredientIcon dimension="h-6 w-6" id={rate.itemId}/>
                 <div>{textIngredientCount}</div>
               </Flex>
             }
             threshold={percentileThreshold}
             renderData={({data}) => (
-              <Flex direction="row" center className="gap-1">
-                <GenericIngredientIcon alt={textIngredientCount}/>
-                <div>{formatFloat(data)}</div>
+              <Flex direction="col" center>
+                <PokemonIngredientIcons ingredients={[data.productions]}/>
+                <Flex direction="row" center className="gap-1">
+                  <GenericIngredientIcon alt={textIngredientCount}/>
+                  <div>{formatFloat(data.value)}</div>
+                </Flex>
               </Flex>
             )}
           >
             <div className="text-2xl">
-              {formatFloat(producingRate.ingredient.count.current)}
+              {formatFloat(rate.count.current)}
             </div>
           </AnalysisStatsContinuousUI>
           <AnalysisStatsContinuousUI
-            stats={producingRate.ingredient.energy}
+            stats={rate.energy}
+            linkedIconKey={({data, pokemonId}) => (
+              `${pokemonId}-${data.productions.map(({id, qty}) => `${id}x${qty}`).join('-')}`
+            )}
             title={
               <Flex direction="row" center className="gap-1.5">
-                <PokemonIngredientIcon dimension="h-6 w-6" id={ingredients.fixed}/>
+                <PokemonIngredientIcon dimension="h-6 w-6" id={rate.itemId}/>
                 <ColoredEnergyIcon alt={textIngredientEnergy}/>
                 {textIngredientEnergy}
               </Flex>
             }
             threshold={percentileThreshold}
             renderData={({data}) => (
-              <Flex direction="row" center className="gap-1 text-sm">
-                <ColoredEnergyIcon alt={textIngredientEnergy}/>
-                <div>{formatFloat(data)}</div>
+              <Flex direction="col" center>
+                <PokemonIngredientIcons ingredients={[data.productions]}/>
+                <Flex direction="row" center className="gap-1 text-sm">
+                  <ColoredEnergyIcon alt={textIngredientEnergy}/>
+                  <div>{formatFloat(data.value)}</div>
+                </Flex>
               </Flex>
             )}
           >
             <div className="text-2xl">
-              {formatFloat(producingRate.ingredient.energy.current)}
+              {formatFloat(rate.energy.current)}
             </div>
           </AnalysisStatsContinuousUI>
-
-          <AnalysisStatsContinuousUI
-            stats={producingRate.total}
-            title={
-              <Flex direction="row" center className="gap-1.5">
-                <ColoredEnergyIcon alt={textTotalEnergy}/>
-                {textTotalEnergy}
-              </Flex>
-            }
-            threshold={percentileThreshold}
-            renderData={({data}) => (
-              <Flex direction="row" center className="gap-1 text-sm">
-                <ColoredEnergyIcon alt={textTotalEnergy}/>
-                <div>{formatFloat(data)}</div>
-              </Flex>
-            )}
-          >
-            <div className="text-2xl">
-              {formatFloat(producingRate.total.current)}
-            </div>
-          </AnalysisStatsContinuousUI>
-        </>}
-    </>
+        </React.Fragment>))}
+      <AnalysisStatsContinuousUI
+        stats={producingRate.ingredient.overall}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <ColoredEnergyIcon alt={textIngredientEnergy}/>
+            {textIngredientEnergy}
+          </Flex>
+        }
+        threshold={percentileThreshold}
+        renderData={({data}) => (
+          <Flex direction="row" center className="gap-1 text-sm">
+            <ColoredEnergyIcon alt={textIngredientEnergy}/>
+            <div>{formatFloat(data)}</div>
+          </Flex>
+        )}
+      >
+        <div className="text-2xl">
+          {formatFloat(producingRate.ingredient.overall.current)}
+        </div>
+      </AnalysisStatsContinuousUI>
+      <AnalysisStatsContinuousUI
+        stats={producingRate.total}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <ColoredEnergyIcon alt={textTotalEnergy}/>
+            {textTotalEnergy}
+          </Flex>
+        }
+        threshold={percentileThreshold}
+        renderData={({data}) => (
+          <Flex direction="row" center className="gap-1 text-sm">
+            <ColoredEnergyIcon alt={textTotalEnergy}/>
+            <div>{formatFloat(data)}</div>
+          </Flex>
+        )}
+      >
+        <div className="text-2xl">
+          {formatFloat(producingRate.total.current)}
+        </div>
+      </AnalysisStatsContinuousUI>
+    </AnalysisStatsLayout>
   );
 };

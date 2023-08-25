@@ -9,10 +9,10 @@ type Props = BerryPageCommonProps & {
   level: number,
 };
 
-export const BerryProducingRatesOfPokemon = ({pokemonOfBerry, level, berryData}: Props) => {
+export const BerryProducingRatesOfPokemon = ({level, ...props}: Props) => {
   return (
     <Flex direction="row" wrap className="info-section">
-      <PokemonIconsBerryStats data={pokemonOfBerry} level={level} berryData={berryData}/>
+      <PokemonIconsBerryStats level={level} {...props}/>
     </Flex>
   );
 };

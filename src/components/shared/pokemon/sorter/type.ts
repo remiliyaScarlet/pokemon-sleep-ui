@@ -1,7 +1,7 @@
 import {BerryData} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
+import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
@@ -22,7 +22,7 @@ export type PokemonSortType = typeof pokemonSortType[number];
 export type PokemonInfoWithSortingPayload<TExtra> = ProducingRateSingleParams & {
   pokemon: PokemonInfo,
   level: number,
-  ingredients: PokemonIngredientPick[],
+  ingredients: IngredientProduction[],
   extra: TExtra,
 };
 
@@ -34,7 +34,7 @@ export type SortedPokemonInfo<TExtra, TSource extends PokemonInfoWithSortingPayl
 export type PokemonSorterGetterOpts = ProducingRateSingleParams & {
   pokemon: PokemonInfo,
   level: number,
-  ingredients: PokemonIngredientPick[],
+  ingredients: IngredientProduction[],
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
   snorlaxFavorite: SnorlaxFavorite,

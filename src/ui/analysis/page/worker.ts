@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {PokemonInfo} from '@/types/game/pokemon';
+import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
@@ -8,6 +9,7 @@ import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 type Props = Omit<AnalysisPageCommonProps, 'pokedex' | 'mapMeta'> & {
   level: number,
+  ingredients: IngredientProduction[],
   pokemonToAnalyze: PokemonInfo[],
   snorlaxFavorite: SnorlaxFavorite,
   setStats: (stats: AnalysisStats) => void,
@@ -17,7 +19,9 @@ type Props = Omit<AnalysisPageCommonProps, 'pokedex' | 'mapMeta'> & {
 
 export const useCalculationWorker = ({
   pokemon,
+  ingredients,
   ingredientMap,
+  ingredientChainMap,
   berryDataMap,
   sleepStyleMap,
   level,
@@ -46,6 +50,8 @@ export const useCalculationWorker = ({
       level,
       pokedex: pokemonToAnalyze,
       pokemon,
+      ingredients,
+      ingredientChainMap,
       ingredientMap,
       berryDataMap,
       sleepStyleMap,

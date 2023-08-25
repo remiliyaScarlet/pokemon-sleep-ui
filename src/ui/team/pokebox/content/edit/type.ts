@@ -1,11 +1,9 @@
 import {PokeInBox} from '@/types/game/pokebox';
-import {PokemonInfo} from '@/types/game/pokemon';
+import {PokeboxDataProps} from '@/ui/team/pokebox/type';
 
 
-export type PokeboxPokeInBoxUpdateCommonProps = {
-  pokeInBox: PokeInBox,
-  pokemon: PokemonInfo,
-  setPokeInBox: (newPokeInBox: PokeInBox) => void,
+export type PokeboxPokeInBoxEditCommonProps = PokeboxDataProps & {
+  onRemovePokeInBox: () => void,
 };
 
 export type PokeboxPokeInBoxActionProps = {

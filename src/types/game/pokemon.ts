@@ -1,7 +1,7 @@
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {EvolutionData} from '@/types/game/pokemon/evolution';
-import {IngredientChainId} from '@/types/game/pokemon/ingredient';
+import {IngredientChainId, IngredientLevel, IngredientProductionAtLevel} from '@/types/game/pokemon/ingredient';
 
 
 export type PokemonId = number;
@@ -11,10 +11,6 @@ export type PokemonTypeId = number;
 export type PokemonSleepTypeId = number;
 
 export type PokemonSkillId = number;
-
-export const pokemonIngredientType = ['fixed', 'random'] as const;
-
-export type PokemonIngredientType = typeof pokemonIngredientType[number];
 
 export type PokemonSpecialtyId = number;
 
@@ -40,21 +36,25 @@ export type PokemonInfo = {
   sleepType: PokemonSleepTypeId,
   stats: PokemonStats,
   berry: PokemonBerry,
-  ingredients: {
-    fixed?: IngredientId,
-    random?: IngredientId[],
-  },
   ingredientChain: IngredientChainId,
   skill: PokemonSkillId,
   evolution: EvolutionData,
 };
 
-export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonId[]};
+export type PokemonIngredientDropData = {
+  pokemon: PokemonId,
+  qty: number,
+};
 
-export type PokemonIngredientTypeMap = {[type in PokemonIngredientType]: PokemonInfo[]};
+export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonIngredientDropData[]};
+
+export type PokemonIngredientProduction = {
+  pokemon: PokemonId,
+  productions: IngredientProductionAtLevel[],
+};
 
 export type PokemonIngredientData = {
-  ingredient: {[type in PokemonIngredientType]: PokemonIngredientMap},
+  ingredient: {[level in IngredientLevel]: PokemonIngredientMap},
 };
 
 export type PokedexMap = {[id in PokemonId]?: PokemonInfo};

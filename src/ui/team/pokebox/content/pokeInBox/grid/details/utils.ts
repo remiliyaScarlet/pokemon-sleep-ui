@@ -1,4 +1,3 @@
-import {specialtyIdMap} from '@/const/game/pokemon';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
@@ -7,23 +6,20 @@ import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 
 
 export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): ProducingRateOfItem[] => {
-  const {pokemon, pokeInBox, ingredientMap, subSkillMap} = opts;
-  const {ingredients, specialty} = pokemon;
-  const {level, randomIngredient} = pokeInBox;
+  const {
+    pokemon,
+    pokeInBox,
+    ingredientMap,
+    subSkillMap,
+  } = opts;
+  const {level, ingredients} = pokeInBox;
 
   const singleParams = getProducingRateSingleParams({subSkillMap, ...pokeInBox});
 
   return getIngredientProducingRates({
     level,
     pokemon,
-    ingredients: [
-      ...(
-        ingredients.fixed ?
-          [{level, id: ingredients.fixed, quantity: specialty === specialtyIdMap.ingredient ? 2 : 1}] :
-          []
-      ),
-      ...randomIngredient,
-    ],
+    ingredients: Object.values(ingredients),
     ingredientMap,
     ...singleParams,
   });

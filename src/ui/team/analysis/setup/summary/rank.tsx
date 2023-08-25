@@ -4,6 +4,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
@@ -23,7 +24,7 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
   })), [energy]);
 
   return (
-    <Flex direction="row" className="gap-1.5">
+    <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2 lg:grid-cols-4">
       {snorlaxRank.map(({mapId, rank}) => {
         const mapName = t(mapId.toString());
 
@@ -44,6 +45,6 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
           </Flex>
         );
       })}
-    </Flex>
+    </Grid>
   );
 };

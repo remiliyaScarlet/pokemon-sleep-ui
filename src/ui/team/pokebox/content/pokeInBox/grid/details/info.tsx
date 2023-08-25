@@ -12,25 +12,22 @@ import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
 export const PokeboxPokeInBoxInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommonProps) => {
-  const {randomIngredient} = pokeInBox;
-  const {sleepType, specialty, berry, ingredients} = pokemon;
+  const {ingredients} = pokeInBox;
+  const {sleepType, specialty, berry} = pokemon;
 
   return (
     <Flex direction="row" className="items-center gap-2">
       <Flex direction="col" noFullWidth className="items-center gap-1">
-        <Flex
-          direction="row" noFullWidth
-          className={clsx('items-center gap-1 px-1', specialty === specialtyIdMap.berry && 'bg-blink')}
-        >
+        <Flex direction="row" noFullWidth className={clsx(
+          'items-center gap-1 px-1',
+          specialty === specialtyIdMap.berry && 'bg-blink',
+        )}>
           <PokemonBerryIcon id={berry.id}/>
           <div>{berry.quantity}</div>
         </Flex>
         <div className={clsx(specialty === specialtyIdMap.ingredient && 'bg-blink')}>
           <PokemonIngredientIcons
-            ingredients={{
-              fixed: ingredients.fixed,
-              random: randomIngredient.map(({id}) => id),
-            }}
+            ingredients={[Object.values(ingredients)]}
           />
         </div>
       </Flex>

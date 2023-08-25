@@ -18,7 +18,9 @@ import {
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
+import {groupIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
@@ -77,12 +79,16 @@ const useProducingStatsOfSlot = ({
         snorlaxFavorite,
         berryData,
       })),
-      ingredient: applyEnergyMultiplier(overallMultiplier * ingredientMultiplier, getIngredientProducingRate({
+      ingredient: getIngredientProducingRates({
         level,
         pokemon,
-        ingredient: pokemon.ingredients.fixed ? ingredientMap[pokemon.ingredients.fixed] : undefined,
+        ingredients: groupIngredientProductions(
+          getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
+        ),
+        ingredientMap,
         ...producingRateOpts,
-      })),
+      }).
+        map((rate) => applyEnergyMultiplier(overallMultiplier * ingredientMultiplier, rate)),
     };
   }, [setup.team[slotName], snorlaxFavorite, helperCount, setup.bonus]);
 };
@@ -121,8 +127,16 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
         quantity: toSum(stats.map(({berry}) => berry.quantity)),
       },
       ingredient: {
-        dailyEnergy: toSum(stats.map(({ingredient}) => ingredient?.dailyEnergy).filter(isNotNullish)),
-        quantity: toSum(stats.map(({ingredient}) => ingredient?.quantity).filter(isNotNullish)),
+        dailyEnergy: toSum(
+          stats
+            .flatMap(({ingredient}) => Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy))
+            .filter(isNotNullish),
+        ),
+        quantity: toSum(
+          stats
+            .flatMap(({ingredient}) => Object.values(ingredient).map(({quantity}) => quantity))
+            .filter(isNotNullish),
+        ),
       },
     };
   }, deps);
@@ -133,8 +147,8 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
       .filter(isNotNullish);
 
     return {
-      berry: groupProducingStats({stats, key: 'berry'}),
-      ingredient: groupProducingStats({stats, key: 'ingredient'}),
+      berry: groupProducingStats(stats.map(({berry}) => berry)),
+      ingredient: groupProducingStats(stats.flatMap(({ingredient}) => ingredient)),
     };
   }, deps);
 

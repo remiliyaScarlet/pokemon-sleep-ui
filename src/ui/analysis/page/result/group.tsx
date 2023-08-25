@@ -3,22 +3,21 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {AnalysisStatsGrouped} from '@/ui/analysis/page/calc/type';
 import {AnalysisLayout} from '@/ui/analysis/page/result/layout';
-import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
+import {AnalysisLayoutProps, AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {getMarkByThreshold} from '@/ui/analysis/page/result/utils';
 import {formatFloat} from '@/utils/number';
 
 
-type Props<TData> = {
+type Props<TData> = Pick<AnalysisLayoutProps<TData>, 'title'> & {
   stats: AnalysisStatsGrouped<TData>,
-  title: React.ReactNode,
   threshold?: AnalysisMarkThreshold,
 };
 
 export const AnalysisStatsGroupedUI = <TData, >({
   stats,
-  title,
   threshold,
   children,
+  ...props
 }: React.PropsWithChildren<Props<TData>>) => {
   const {totalCount, sharedCount} = stats;
 
@@ -30,7 +29,7 @@ export const AnalysisStatsGroupedUI = <TData, >({
   return (
     <AnalysisLayout
       linked={stats.linked}
-      title={title}
+      linkedIconKey={({pokemonId}) => pokemonId}
       mark={isAvailable ? getMarkByThreshold(rarity, threshold) : 'ordinary'}
       footer={
         <Flex direction="col" className="text-sm md:w-2/3">
@@ -50,6 +49,7 @@ export const AnalysisStatsGroupedUI = <TData, >({
           </Flex>
         </Flex>
       }
+      {...props}
     >
       {children}
     </AnalysisLayout>

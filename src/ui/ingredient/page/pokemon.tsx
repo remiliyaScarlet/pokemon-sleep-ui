@@ -4,51 +4,46 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
-import {PokemonIngredientTypeIcon} from '@/components/shared/pokemon/ingredients/typeIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {Ingredient} from '@/types/game/ingredient';
-import {pokemonIngredientType, PokemonIngredientTypeMap} from '@/types/game/pokemon';
+import {PokedexMap, PokemonIngredientDropData, PokemonIngredientProduction} from '@/types/game/pokemon';
+import {toSum} from '@/utils/array';
 
 
 type Props = {
+  pokedex: PokedexMap,
   pokemonMaxLevel: number,
-  obtainablePokemon: PokemonIngredientTypeMap,
+  pokemonProduction: PokemonIngredientProduction[],
   ingredient: Ingredient,
 };
 
-export const IngredientObtainablePokemon = ({
+export const IngredientPokemonProduction = ({
+  pokedex,
   pokemonMaxLevel,
-  obtainablePokemon,
+  pokemonProduction,
   ingredient,
 }: Props) => {
   const [level, setLevel] = React.useState(1);
+
+  const dropData: PokemonIngredientDropData[] = pokemonProduction.map(({pokemon, productions}) => {
+    return {
+      pokemon,
+      qty: toSum(productions
+        .filter((production) => level >= production.level)
+        .map(({qty}) => qty)),
+    };
+  });
 
   return (
     <Flex direction="col" className="info-section">
       <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel}/>
       <HorizontalSplitter/>
-      {pokemonIngredientType.map((type, idx) => {
-        return (
-          <React.Fragment key={type}>
-            <Flex direction="row" className="gap-3">
-              <Flex direction="col" center noFullWidth>
-                <div className="h-8 w-8">
-                  <PokemonIngredientTypeIcon type={type}/>
-                </div>
-                {type === 'random' && '(x1)'}
-              </Flex>
-              <Flex direction="col" center>
-                <PokemonIconsIngredientStats
-                  level={level}
-                  data={obtainablePokemon[type]}
-                  ingredient={ingredient}
-                />
-              </Flex>
-            </Flex>
-            {idx + 1 !== pokemonIngredientType.length && <HorizontalSplitter className="w-full"/>}
-          </React.Fragment>
-        );
-      })}
+      <PokemonIconsIngredientStats
+        level={level}
+        dropData={dropData}
+        pokedex={pokedex}
+        ingredient={ingredient}
+      />
     </Flex>
   );
 };

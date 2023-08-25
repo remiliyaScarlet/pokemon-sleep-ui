@@ -1,6 +1,8 @@
+import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
+import {Indexable} from '@/utils/type';
 
 
 export type ProducingRate = {
@@ -13,8 +15,8 @@ export type ProducingRateProportion = {
   picks: number,
 };
 
-export type ProducingRateOfItem = ProducingRate & {
-  id: number
+export type ProducingRateOfItem<TId extends Indexable = number> = ProducingRate & {
+  id: TId,
 };
 
 export type ProducingRateSingleParams = {
@@ -30,5 +32,5 @@ export type ProducingRateCommonParams = ProducingRateSingleParams & {
 
 export type PokemonProducingRate = {
   berry: ProducingRateOfItem,
-  ingredient: ProducingRateOfItem | null,
+  ingredient: {[ingredientId in IngredientId]: ProducingRateOfItem},
 };

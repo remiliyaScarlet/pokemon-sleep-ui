@@ -1,26 +1,31 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
-import {AnalysisStatsContinuous, AnalysisStatsLinkedData} from '@/ui/analysis/page/calc/type';
+import {AnalysisStatsContinuous} from '@/ui/analysis/page/calc/type';
 import {AnalysisLayout} from '@/ui/analysis/page/result/layout';
-import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
+import {AnalysisLayoutProps, AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {getMarkByThreshold} from '@/ui/analysis/page/result/utils';
 import {formatFloat, formatInt} from '@/utils/number';
+import {Optional, RequireKeys} from '@/utils/type';
 
 
-type Props<TData> = {
+type Props<TData> = Optional<
+  RequireKeys<
+    Pick<AnalysisLayoutProps<TData>, 'title' | 'renderData' | 'linkedIconKey'>,
+    'renderData'
+  >,
+  'linkedIconKey'
+> & {
   stats: AnalysisStatsContinuous<TData>,
-  title: React.ReactNode,
-  renderData: (data: AnalysisStatsLinkedData<TData>) => React.ReactNode,
   threshold?: AnalysisMarkThreshold,
 };
 
 export const AnalysisStatsContinuousUI = <TData, >({
   stats,
-  title,
-  renderData,
   threshold,
   children,
+  linkedIconKey,
+  ...props
 }: React.PropsWithChildren<Props<TData>>) => {
   const {percentage, percentile, rank, totalCount} = stats;
 
@@ -29,8 +34,7 @@ export const AnalysisStatsContinuousUI = <TData, >({
   return (
     <AnalysisLayout
       linked={stats.linked}
-      title={title}
-      renderData={renderData}
+      linkedIconKey={(data) => linkedIconKey ? linkedIconKey(data) : data.pokemonId}
       mark={percentile ? getMarkByThreshold(percentile, threshold) : 'ordinary'}
       footer={
         <Flex direction="col" className="text-sm md:w-2/3">
@@ -50,6 +54,7 @@ export const AnalysisStatsContinuousUI = <TData, >({
           </Flex>
         </Flex>
       }
+      {...props}
     >
       {children}
     </AnalysisLayout>

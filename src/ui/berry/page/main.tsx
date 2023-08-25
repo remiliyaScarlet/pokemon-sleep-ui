@@ -5,7 +5,7 @@ import {Failed} from '@/components/icons/failed';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
-import {getPokemonByBerry} from '@/controller/pokemon';
+import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageCommonProps} from '@/ui/berry/page/type';
@@ -20,12 +20,13 @@ export const BerryPage = ({params}: Props) => {
   const berryData = React.use(getBerryData(idNumber));
   const favoriteInfo = React.use(getFavoriteInfoOfBerry(idNumber));
   const pokemonOfBerry = React.use(getPokemonByBerry(idNumber));
+  const pokedex = React.use(getPokemonAsMap());
 
   if (!berryData) {
     return <Failed text="Berry"/>;
   }
 
-  const props: BerryPageCommonProps = {berryData, favoriteInfo, pokemonOfBerry};
+  const props: BerryPageCommonProps = {berryData, favoriteInfo, pokemonOfBerry, pokedex};
 
   return (
     <PublicPageLayout>

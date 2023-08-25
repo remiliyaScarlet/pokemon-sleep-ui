@@ -1,10 +1,17 @@
+import {ingredientLevels, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {getAnalysisStatsOfGrouped} from '@/ui/analysis/page/calc/grouped';
 import {getAnalysisStatsOfSleepStyle} from '@/ui/analysis/page/calc/pokemon/sleepStyle';
-import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
+import {AnalysisStats, AnalysisStatsGrouped, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 
 
 export const getAnalysisStatsOfPokemon = (opts: GetAnalysisStatsOpts): AnalysisStats['pokemon'] => {
-  const {pokedex, pokemon} = opts;
+  const {
+    pokedex,
+    pokemon,
+    ingredientChainMap,
+  } = opts;
+
+  const currentChain = ingredientChainMap[pokemon.ingredientChain];
 
   return {
     type: getAnalysisStatsOfGrouped({
@@ -22,18 +29,15 @@ export const getAnalysisStatsOfPokemon = (opts: GetAnalysisStatsOpts): AnalysisS
       isMatched: ({sleepType}) => sleepType === pokemon.sleepType,
       getLinkedData: ({sleepType}) => sleepType,
     }),
-    ingredient: {
-      fixed: getAnalysisStatsOfGrouped({
+    ingredient: Object.fromEntries(ingredientLevels.map((ingredientLevel) => [
+      ingredientLevel,
+      currentChain.ingredients[ingredientLevel].map((production) => getAnalysisStatsOfGrouped({
         samples: pokedex,
-        isMatched: ({ingredients}) => ingredients.fixed === pokemon.ingredients.fixed,
-        getLinkedData: ({ingredients}) => ingredients.fixed,
-      }),
-      random: pokemon.ingredients.random?.map((ingredient) => getAnalysisStatsOfGrouped({
-        samples: pokedex,
-        isMatched: ({ingredients}) => ingredients.random?.includes(ingredient) ?? false,
-        getLinkedData: () => ingredient,
-      })) ?? [],
-    },
+        isMatched: ({ingredientChain}) => ingredientChainMap[ingredientChain].ingredients[ingredientLevel]
+          .some(({id}) => id === production.id),
+        getLinkedData: () => production,
+      })) satisfies AnalysisStatsGrouped<IngredientProduction>[],
+    ])) as AnalysisStats['pokemon']['ingredient'],
     berry: getAnalysisStatsOfGrouped({
       samples: pokedex,
       isMatched: ({berry}) => berry.id === pokemon.berry.id,

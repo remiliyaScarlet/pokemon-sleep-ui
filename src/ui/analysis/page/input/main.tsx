@@ -1,8 +1,12 @@
 import React from 'react';
 
+import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
+
 import {InputRow} from '@/components/input/filter/row';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
+import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
@@ -18,46 +22,61 @@ type Props = FilterInputProps<AnalysisComparisonFilter> & AnalysisPageCommonProp
   maxLevel: number,
 };
 
-export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap, mapMeta}: Props) => {
+export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap, mapMeta, ...props}: Props) => {
+  const collapsible = useCollapsible();
+
   return (
-    <Flex direction="col" className="gap-1">
-      <PokemonMapFilter
-        mapIds={toUnique(Object
-          .values(sleepStyleMap)
-          .flatMap((sleepStyle) => sleepStyle?.map(({mapId}) => mapId))
-          .filter(isNotNullish)
-          .sort((a, b) => a - b))}
-        {...getMultiSelectOnClickProps({
-          filter,
-          setFilter,
-          filterKey: 'mapId',
-        })}
-      />
-      {pokemonInputType.map((type) => (
-        <PokemonFilter
-          key={type}
-          type={type}
-          filterKey={type}
-          pokemon={pokedex}
+    <Collapsible appear state={collapsible} classNameForHeight="h-72 md:h-52" button={
+      <Flex direction="row" center className="gap-0.5">
+        <div className="h-6 w-6">
+          <FunnelIcon/>
+        </div>
+      </Flex>
+    }>
+      <Flex direction="col" className="gap-1">
+        <PokemonMapFilter
+          mapIds={toUnique(Object
+            .values(sleepStyleMap)
+            .flatMap((sleepStyle) => sleepStyle?.map(({mapId}) => mapId))
+            .filter(isNotNullish)
+            .sort((a, b) => a - b))}
+          {...getMultiSelectOnClickProps({
+            filter,
+            setFilter,
+            filterKey: 'mapId',
+          })}
+        />
+        {pokemonInputType.map((type) => (
+          <PokemonFilter
+            {...props}
+            key={type}
+            type={type}
+            filterKey={type}
+            filter={filter}
+            setFilter={setFilter}
+            pokemon={pokedex}
+          />
+        ))}
+        <InputRow>
+          <Flex direction="col" className="p-1">
+            <PokemonLevelSlider
+              level={filter.level}
+              maxLevel={maxLevel}
+              setLevel={(level) => setFilter((original) => ({
+                ...original,
+                level,
+              } satisfies AnalysisComparisonFilter))}
+            />
+          </Flex>
+        </InputRow>
+        <SnorlaxFavoriteInput
           filter={filter}
           setFilter={setFilter}
+          filterKey="snorlaxFavorite"
+          pokemon={pokedex}
+          mapMeta={mapMeta}
         />
-      ))}
-      <InputRow>
-        <Flex direction="col" className="p-1">
-          <PokemonLevelSlider level={filter.level} maxLevel={maxLevel} setLevel={(level) => setFilter((original) => ({
-            ...original,
-            level,
-          } satisfies AnalysisComparisonFilter))}/>
-        </Flex>
-      </InputRow>
-      <SnorlaxFavoriteInput
-        filter={filter}
-        setFilter={setFilter}
-        filterKey="snorlaxFavorite"
-        pokemon={pokedex}
-        mapMeta={mapMeta}
-      />
-    </Flex>
+      </Flex>
+    </Collapsible>
   );
 };

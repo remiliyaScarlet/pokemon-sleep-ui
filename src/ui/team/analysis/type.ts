@@ -3,6 +3,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
+import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
@@ -34,6 +35,7 @@ export type TeamAnalysisSlotName = typeof teamAnalysisSlotName[number];
 export type TeamAnalysisMember = {
   level: number,
   pokemonId: PokemonId,
+  ingredients: IngredientProductionAtLevels,
   nature: NatureId | null,
   subSkill: PokemonSubSkill,
 };

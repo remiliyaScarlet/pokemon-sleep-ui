@@ -5,6 +5,7 @@ import {Failed} from '@/components/icons/failed';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
@@ -21,6 +22,7 @@ export const AnalysisPage = ({params}: Props) => {
   const idNumber = Number(params.id);
   const pokedex = React.use(getAllPokemonAsArray());
   const pokemon = pokedex.find(({id}) => id === idNumber);
+  const ingredientChainMap = React.use(getIngredientChainMap());
   const ingredientMap = React.use(getAllIngredients());
   const berryDataMap = React.use(getAllBerryData());
   const sleepStyleMap = React.use(getPokemonSleepStyleMap());
@@ -38,6 +40,7 @@ export const AnalysisPage = ({params}: Props) => {
     pokedex,
     pokemon,
     ingredientMap,
+    ingredientChainMap,
     berryDataMap,
     sleepStyleMap,
     mapMeta,

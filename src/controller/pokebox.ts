@@ -1,8 +1,15 @@
 import {AnyBulkWriteOperation, Collection} from 'mongodb';
-import {v4} from 'uuid';
 
+import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getPokemonAsMap} from '@/controller/pokemon';
 import mongoPromise from '@/lib/mongodb';
 import {Pokebox} from '@/types/game/pokebox';
+import {
+  IngredientChain,
+  IngredientLevel,
+  ingredientLevels,
+  IngredientProduction,
+} from '@/types/game/pokemon/ingredient';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
 import {isNotNullish} from '@/utils/type';
 
@@ -53,39 +60,74 @@ const addPokeboxIndex = async () => {
   ]);
 };
 
-const addUuidMigration = async () => {
-  const collection = await getCollection();
-
-  const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
-  for await (const pokeInBox of collection.find({uuid: {$exists: false}})) {
-    bulkUpdate.push({
-      updateOne: {
-        filter: {_id: pokeInBox._id},
-        update: {$set: {uuid: v4()}},
-      },
-    });
-  }
-
-  if (bulkUpdate.length) {
-    await collection.bulkWrite(bulkUpdate, {ordered: false});
-  }
-};
-
 const addRandomIngredientMigration = async () => {
+  type RandomIngredient = {level: IngredientLevel, id: number, quantity: number};
+
+  const randomIngredientToProduction = (
+    chain: IngredientChain,
+    level: IngredientLevel,
+    randomIngredient?: RandomIngredient,
+  ): IngredientProduction => {
+    if (!randomIngredient) {
+      const ret = chain.ingredients[level].at(0);
+
+      if (!ret) {
+        throw new Error(`Chain ID #${chain} doesn't have production at level ${level}`);
+      }
+
+      return ret;
+    }
+
+    const possibilities = chain.ingredients[randomIngredient.level];
+
+    const production = possibilities
+      .find(({id, qty}) => randomIngredient.id === id && randomIngredient.quantity === qty);
+
+    if (production) {
+      return production;
+    }
+
+    const productionOfSameId = possibilities
+      .find(({id}) => randomIngredient.id === id);
+
+    if (productionOfSameId) {
+      return productionOfSameId;
+    }
+
+    return possibilities[0];
+  };
+
   const collection = await getCollection();
+  const [pokedex, ingredientChainMap] = await Promise.all([
+    getPokemonAsMap(),
+    getIngredientChainMap(),
+  ]);
 
   const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
-  for await (const pokeInBox of collection.find({randomIngredient: {$not: {$type: 'array'}}})) {
+  for await (const pokeInBox of collection.find({})) {
+    // @ts-ignore
+    const randomIngredients = pokeInBox['randomIngredient'] as RandomIngredient[];
+    const pokemon = pokedex[pokeInBox.pokemon];
+
+    if (!randomIngredients.length || !pokemon) {
+      continue;
+    }
+
+    const chain = ingredientChainMap[pokemon.ingredientChain];
+
     bulkUpdate.push({
       updateOne: {
         filter: {_id: pokeInBox._id},
         update: {
           $set: {
-            randomIngredient: Object.entries(pokeInBox.randomIngredient).map(([lv, data]) => ({
-              level: parseInt(lv),
-              id: data.id,
-              quantity: data.quantity,
-            })),
+            ingredients: Object.fromEntries(ingredientLevels.map((level) => [
+              level,
+              randomIngredientToProduction(
+                chain,
+                level,
+                randomIngredients.find((random) => random.level === level),
+              ),
+            ])) as Record<IngredientLevel, IngredientProduction>,
           },
         },
       },
@@ -99,7 +141,6 @@ const addRandomIngredientMigration = async () => {
 
 const addMigrations = () => {
   return Promise.all([
-    addUuidMigration(),
     addRandomIngredientMigration(),
   ]);
 };

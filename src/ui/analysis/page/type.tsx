@@ -1,20 +1,17 @@
-import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilterExtended, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {PokemonSleepDataMap, SleepMapId} from '@/types/game/sleepStyle';
-import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
-export type AnalysisComparisonFilter = PokemonInputFilter & {
-  level: number,
-  mapId: FilterInclusionMap<SleepMapId>,
-  snorlaxFavorite: SnorlaxFavorite,
+export type AnalysisComparisonFilter = PokemonInputFilterExtended & {
+  ingredients: IngredientProductionAtLevels,
 };
 
-export type AnalysisPageCommonProps = {
+export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
   pokedex: PokemonInfo[],
   pokemon: PokemonInfo,
   ingredientMap: IngredientMap,

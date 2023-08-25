@@ -6,12 +6,13 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
+import {imageIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
@@ -43,7 +44,7 @@ export const TeamAnalysisPokemon = ({
 }: Props) => {
   const t = useTranslations('Game');
 
-  const {id, type, berry, ingredients, skill} = pokemon;
+  const {id, type, berry, skill} = pokemon;
   const berryData = berryMap[berry.id];
   const maxLevel = berryData.energy.length;
 
@@ -62,14 +63,13 @@ export const TeamAnalysisPokemon = ({
       </Flex>
       <Flex direction="row" center>
         <div className="relative h-28 w-28">
-          <NextImage
-            src={`/images/pokemon/portrait/${id}.png`} alt={t(`PokemonName.${id}`)} sizes={imagePortraitSizes}
-          />
+          <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
         </div>
       </Flex>
       <Flex direction="col" className="justify-end">
         <Flex direction="row" className="justify-end">
-          <PokemonIngredientIcons ingredients={ingredients}/>
+          {/* FIXME: Click to show popup to edit */}
+          <PokemonIngredientIcons ingredients={[Object.values(member.ingredients).map((production) => production)]}/>
         </Flex>
         <Flex direction="row" className="justify-end text-xs">
           <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
@@ -83,14 +83,21 @@ export const TeamAnalysisPokemon = ({
       </Flex>
       <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>
       <TeamAnalysisBerryRate
-        id={berryData.id} rate={producingStats.berry}
+        id={berryData.id}
+        rate={producingStats.berry}
         highlight={pokemon.specialty === specialtyIdMap.berry}
+        period="daily"
       />
       <HorizontalSplitter className="w-full"/>
-      <TeamAnalysisIngredientRate
-        id={ingredients.fixed} rate={producingStats.ingredient}
-        highlight={pokemon.specialty === specialtyIdMap.ingredient}
-      />
+      {producingStats.ingredient.map((rate) => (
+        <TeamAnalysisIngredientRate
+          key={rate.id}
+          id={rate.id}
+          rate={rate}
+          highlight={pokemon.specialty === specialtyIdMap.ingredient}
+          period="daily"
+        />
+      ))}
     </>
   );
 };

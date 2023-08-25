@@ -9,32 +9,29 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {PokeInBox} from '@/types/game/pokebox';
-import {PokedexMap} from '@/types/game/pokemon';
-import {pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
 import {maxCarryLimit} from '@/ui/team/pokebox/content/edit/const';
-import {PokeboxPokeInBoxIngredientEditor} from '@/ui/team/pokebox/content/edit/ingredient';
-import {PokeboxPokeInBoxUpdateCommonProps} from '@/ui/team/pokebox/content/edit/type';
+import {PokeboxPokeInBoxEditCommonProps} from '@/ui/team/pokebox/content/edit/type';
 
 
-type Props = {
+type Props = PokeboxPokeInBoxEditCommonProps & {
   pokeInBox: PokeInBox,
-  pokedexMap: PokedexMap,
-  subSkillMap: SubSkillMap,
   setPokeInBox: (newPokeInBox: PokeInBox) => void,
-  onRemovePokeInBox: () => void,
   onCopyPokeInBox: () => void,
 };
 
 export const PokeboxPokeInBoxUpdateLayout = ({
-  pokeInBox,
   pokedexMap,
+  ingredientChainMap,
   subSkillMap,
-  setPokeInBox,
   onRemovePokeInBox,
+  pokeInBox,
+  setPokeInBox,
   onCopyPokeInBox,
 }: Props) => {
   const {
@@ -58,12 +55,6 @@ export const PokeboxPokeInBoxUpdateLayout = ({
     ...pokeInBox,
     carryLimit: pokemon.stats.maxCarry,
   });
-
-  const props: PokeboxPokeInBoxUpdateCommonProps = {
-    pokeInBox,
-    setPokeInBox,
-    pokemon,
-  };
 
   return (
     <Flex direction="col" className="gap-2 pr-1.5 sm:pr-0">
@@ -92,7 +83,18 @@ export const PokeboxPokeInBoxUpdateLayout = ({
           })}
         />
       </Flex>
-      <PokeboxPokeInBoxIngredientEditor {...props}/>
+      <PokemonIngredientPicker
+        chain={ingredientChainMap[pokemon.ingredientChain]}
+        ingredients={pokeInBox.ingredients}
+        onSelect={(updated, ingredientLevel) => setPokeInBox({
+          ...pokeInBox,
+          ingredients: {
+            ...pokeInBox.ingredients,
+            [ingredientLevel]: updated,
+          },
+        })}
+        idPrefix={pokeInBox.uuid}
+      />
       <Flex direction="row" className="items-center justify-end gap-0.5">
         <PokemonDataIcon src="/images/generic/bag.png" alt={t2('Stats.MaxCarry')} invert/>
         <InputBox

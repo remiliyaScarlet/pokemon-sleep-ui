@@ -1,22 +1,23 @@
 import {useFilterInput} from '@/components/input/filter/hook';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {PokeboxPickerFilter} from '@/ui/team/pokebox/filter/type';
 
 
-type UsePokeboxPickerFilterOpts = {
+type UsePokeboxPickerFilterOpts = UsePokemonFilterCommonData & {
   data: PokemonInfo[],
 };
 
-export const usePokeboxPickerFilter = ({data}: UsePokeboxPickerFilterOpts) => {
+export const usePokeboxPickerFilter = ({data, ...filterData}: UsePokeboxPickerFilterOpts) => {
   return useFilterInput<PokeboxPickerFilter, PokemonInfo, PokemonId>({
     data,
     dataToId: ({id}) => id,
     initialFilter: {
       ...generatePokemonInputFilter(),
     },
-    isDataIncluded: (filter, data) => {
-      return isPokemonIncludedFromFilter(filter, data);
+    isDataIncluded: (filter, pokemon) => {
+      return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});
     },
   });
 };

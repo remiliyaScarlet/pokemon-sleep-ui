@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {natureEffectImageSrcMap} from '@/const/game/pokemon';
+import {imageSmallIconSizes} from '@/styles/image';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
 
 
@@ -28,6 +29,7 @@ export const NatureEffectIcon = ({effectId, showOnNull}: Props) => {
     <NextImage
       src={natureEffectImageSrcMap[effectId]}
       alt={t(`NatureEffect.${effectId}`)}
+      sizes={imageSmallIconSizes}
       className="invert-hoverable"
     />
   );

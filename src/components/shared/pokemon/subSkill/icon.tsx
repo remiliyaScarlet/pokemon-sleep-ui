@@ -8,6 +8,7 @@ import {useTranslations} from 'next-intl';
 import {NextImage} from '@/components/shared/common/image/main';
 import {subSkillBonusImageSrcMap} from '@/const/game/pokemon';
 import {subSkillRarityIconFilter} from '@/styles/classes';
+import {imageSmallIconSizes} from '@/styles/image';
 import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subskill';
 
 
@@ -44,6 +45,7 @@ export const PokemonSubSkillIcon = ({subSkill}: Props) => {
       <NextImage
         src={subSkillBonusImageSrcMap[firstEffectiveBonus]}
         alt={t(`SubSkill.Name.${subSkill?.id}`)}
+        sizes={imageSmallIconSizes}
       />
     </div>
   );

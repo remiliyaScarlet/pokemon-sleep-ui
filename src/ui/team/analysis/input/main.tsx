@@ -16,6 +16,7 @@ import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
 import {
+  TeamAnalysisDataProps,
   TeamAnalysisFilter,
   TeamAnalysisMember,
   TeamAnalysisSlotName,
@@ -24,7 +25,7 @@ import {
 import {showToast} from '@/utils/toast';
 
 
-type Props = FilterInputProps<TeamAnalysisFilter> & {
+type Props = FilterInputProps<TeamAnalysisFilter> & TeamAnalysisDataProps & {
   pokemon: PokemonInfo[],
   setup: TeamAnalysisTeamSetup,
   setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
@@ -107,6 +108,7 @@ export const TeamAnalysisPokemonFilter = ({pokemon, setup, setSetup, isIncluded,
           setMember={setMember}
           isIncluded={isIncluded}
           pokemon={pokemon}
+          {...props}
         />
       </Collapsible>
     </>

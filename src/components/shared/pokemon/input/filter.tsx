@@ -6,11 +6,18 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
+import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/filter';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
-import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {
+  pokemonIngredientInputToLevel,
+  PokemonInputFilterIdType,
+  PokemonInputType,
+} from '@/components/shared/pokemon/input/type';
+import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/input/utils';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
@@ -22,6 +29,7 @@ type Props<
 > = GetMultiSelectOnClickPropsOpts<TFilter, TId> & Pick<FilterCategoryInputProps<TId>, 'style'> & {
   type: TDisplayType,
   pokemon: PokemonInfo[],
+  ingredientChainMap: IngredientChainMap,
   idPrefix?: string,
 };
 
@@ -36,13 +44,14 @@ export const PokemonFilter = <
   style,
   type,
   pokemon,
+  ingredientChainMap,
   idPrefix,
 }: Props<TDisplayType, TId, TFilter>) => {
   const t = useTranslations('Game');
 
   const commonProps: Pick<FilterCategoryInputProps<TId>, 'style' | 'isActive' | 'onClick' | 'title'> = {
     style,
-    title: <PokemonFilterTitle type={type}/>,
+    title: <PokemonFilterTitle type={type} lvAsText/>,
     ...getMultiSelectOnClickProps({
       filter,
       setFilter,
@@ -90,25 +99,11 @@ export const PokemonFilter = <
     );
   }
 
-  if (type === 'ingredientFixed') {
+  if (isPokemonInputTypeOfIngredients(type)) {
     return (
-      <FilterIconInput
-        idToItemId={(id) => `${idPrefix}IngredientFixed-${id}`}
-        idToAlt={(id) => t(`Food.${id.toString()}`)}
-        idToImageSrc={(id) => `/images/ingredient/${id}.png`}
-        ids={getIds(({ingredients}) => ingredients.fixed as TId)}
-        {...commonProps}
-      />
-    );
-  }
-
-  if (type === 'ingredientRandom') {
-    return (
-      <FilterIconInput
-        idToItemId={(id) => `${idPrefix}IngredientRandom-${id}`}
-        idToAlt={(id) => t(`Food.${id.toString()}`)}
-        idToImageSrc={(id) => `/images/ingredient/${id}.png`}
-        ids={getIds(({ingredients}) => ingredients.random as TId[])}
+      <PokemonIngredientFilter
+        ingredientChainMap={ingredientChainMap}
+        level={pokemonIngredientInputToLevel[type]}
         {...commonProps}
       />
     );

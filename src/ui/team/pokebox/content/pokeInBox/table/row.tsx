@@ -39,7 +39,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
     pokemon: pokemonId,
     nature,
     subSkill,
-    randomIngredient,
+    ingredients,
   } = pokeInBox;
   const pokemon = pokedexMap[pokemonId];
 
@@ -57,7 +57,6 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
     sleepType,
     specialty,
     berry,
-    ingredients,
   } = pokemon;
   const pokemonName = t(`PokemonName.${pokemonId}`);
 
@@ -101,10 +100,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
           </Flex>
           <div className={clsx(specialty === specialtyIdMap.ingredient && 'bg-blink')}>
             <PokemonIngredientIcons
-              ingredients={{
-                fixed: ingredients.fixed,
-                random: randomIngredient.map(({id}) => id),
-              }}
+              ingredients={Object.values(ingredients).map((ingredient) => [ingredient])}
             />
           </div>
           {/* Berry */}

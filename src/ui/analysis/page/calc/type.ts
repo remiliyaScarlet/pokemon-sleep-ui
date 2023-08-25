@@ -7,6 +7,7 @@ import {
   PokemonSpecialtyId,
   PokemonTypeId,
 } from '@/types/game/pokemon';
+import {IngredientLevel, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SnorlaxRank} from '@/types/game/rank';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
@@ -34,9 +35,10 @@ export type AnalysisStatsContinuous<TData> = AnalysisStatsCommon<TData> & {
   current: number,
 };
 
-export type AnalysisStatsProducingRate = {
-  count: AnalysisStatsContinuous<number>,
-  energy: AnalysisStatsContinuous<number>,
+export type AnalysisStatsProducingRate<TItemId, TData> = {
+  itemId: TItemId,
+  count: AnalysisStatsContinuous<TData>,
+  energy: AnalysisStatsContinuous<TData>,
 };
 
 export type AnalysisStatsSleepStyleAppearance = AnalysisStatsContinuous<SnorlaxRank> & {
@@ -49,22 +51,27 @@ export type AnalysisStatsSleepStyle = {
   last: AnalysisStatsSleepStyleAppearance,
 };
 
+export type AnalysisIngredientStatsLinkedData = {
+  productions: IngredientProduction[],
+  value: number,
+};
+
 export type AnalysisStats = {
   pokemon: {
     type: AnalysisStatsGrouped<PokemonTypeId>,
     specialty: AnalysisStatsGrouped<PokemonSpecialtyId | null>,
     sleepType: AnalysisStatsGrouped<PokemonSleepTypeId>,
-    ingredient: {
-      fixed: AnalysisStatsGrouped<IngredientId | undefined>,
-      random: AnalysisStatsGrouped<IngredientId>[],
-    },
+    ingredient: {[level in IngredientLevel]: AnalysisStatsGrouped<IngredientProduction>[]},
     berry: AnalysisStatsGrouped<BerryId>,
     mainSkill: AnalysisStatsGrouped<PokemonSkillId>,
     sleepStyle: AnalysisStatsSleepStyle[],
   },
   producingRate: {
-    berry: AnalysisStatsProducingRate,
-    ingredient: AnalysisStatsProducingRate | null,
+    berry: AnalysisStatsProducingRate<BerryId, number>,
+    ingredient: {
+      individual: AnalysisStatsProducingRate<IngredientId, AnalysisIngredientStatsLinkedData>[],
+      overall: AnalysisStatsContinuous<number>,
+    },
     total: AnalysisStatsContinuous<number>,
   },
 };
@@ -76,5 +83,6 @@ export type GetAnalysisStatsCommonOpts<TSample> = {
 
 export type GetAnalysisStatsOpts = Omit<AnalysisPageCommonProps, 'mapMeta'> & {
   level: number,
+  ingredients: IngredientProduction[],
   snorlaxFavorite: SnorlaxFavorite,
 };

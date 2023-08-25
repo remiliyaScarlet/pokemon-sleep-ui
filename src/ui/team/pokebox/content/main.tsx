@@ -15,7 +15,6 @@ import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
-import {getIngredientPicks} from '@/utils/game/producing/ingredientPick';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {isNotNullish} from '@/utils/type';
 
@@ -27,7 +26,7 @@ type Props = PokeboxCommonProps & {
 };
 
 export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
-  const {session, pokedexMap, subSkillMap, mapMeta} = props;
+  const {pokedexMap, subSkillMap} = props;
   const t = useTranslations('Game');
   const [loading, setLoading] = React.useState(false);
   const {
@@ -35,14 +34,13 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
     setFilter,
     isIncluded,
   } = usePokeboxViewerFilter({
-    session,
     pokebox,
-    pokedexMap,
     pokemonNameMap: Object.fromEntries(
       Object.values(pokedexMap)
         .filter(isNotNullish)
         .map(({id}) => [id, t(`PokemonName.${id}`)]),
     ),
+    ...props,
   });
   const sortedPokemonInfo = useSortingWorker({
     data: Object.values(pokebox)
@@ -60,10 +58,7 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
           pokemon,
           level,
           extra: pokeInBox,
-          ingredients: getIngredientPicks({
-            pokemon,
-            randomIngredientPicks: pokeInBox.randomIngredient,
-          }),
+          ingredients: Object.values(pokeInBox.ingredients),
           ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
         };
       })
@@ -129,7 +124,12 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
         }}
         {...props}
       />
-      <PokeboxViewerInput filter={filter} setFilter={setFilter} pokemon={pokemon} mapMeta={mapMeta}/>
+      <PokeboxViewerInput
+        filter={filter}
+        setFilter={setFilter}
+        pokemon={pokemon}
+        {...props}
+      />
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeboxPokeInBoxView
           filter={filter}

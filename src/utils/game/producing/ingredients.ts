@@ -1,15 +1,15 @@
 import groupBy from 'lodash/groupBy';
 
 import {IngredientMap} from '@/types/game/ingredient';
-import {PokemonIngredientPick} from '@/types/game/producing/ingredient';
+import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {isNotNullish} from '@/utils/type';
 
 
-type GetIngredientProducingRatesOpts = ProducingRateCommonParams & {
-  ingredients: PokemonIngredientPick[],
+export type GetIngredientProducingRatesOpts = ProducingRateCommonParams & {
+  ingredients: IngredientProduction[],
   ingredientMap: IngredientMap,
 };
 
@@ -21,28 +21,22 @@ export const getIngredientProducingRates = ({
   ...opts
 }: GetIngredientProducingRatesOpts): ProducingRateOfItem[] => {
   const grouped = groupBy(
-    ingredients.map(({level: ingredientLevel, id, quantity}) => {
-      if (ingredientLevel > level) {
-        return null;
-      }
-
-      return getIngredientProducingRate({
+    ingredients
+      .map(({id, qty}) => getIngredientProducingRate({
         level,
         pokemon,
         ingredient: id ? ingredientMap[id] : undefined,
-        count: quantity,
-        picks: ingredients.filter((pick) => level >= pick.level).length,
+        count: qty,
+        picks: ingredients.length,
         ...opts,
-      });
-    }).filter(isNotNullish),
+      }))
+      .filter(isNotNullish),
     (item) => item.id,
   );
 
-  return Object.entries(grouped).map(([id, rates]) => {
-    return {
-      id: parseInt(id),
-      quantity: toSum(rates.map(({quantity}) => quantity)),
-      dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
-    } satisfies ProducingRateOfItem;
-  });
+  return Object.entries(grouped).map(([id, rates]): ProducingRateOfItem => ({
+    id: parseInt(id),
+    quantity: toSum(rates.map(({quantity}) => quantity)),
+    dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
+  }));
 };

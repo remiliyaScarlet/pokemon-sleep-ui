@@ -4,16 +4,15 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
+import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
-type Props = {
-  data: PokemonInfo[],
+type Props = PokemonBerryStatsCommonProps & {
   level: number,
 } & ({
   berryData: BerryData,
@@ -23,12 +22,16 @@ type Props = {
   berryDataMap: BerryDataMap,
 });
 
-export const PokemonIconsBerryStats = ({data, level, berryData, berryDataMap}: Props) => {
+export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, berryData, berryDataMap}: Props) => {
   const t = useTranslations('Game');
 
   return (
     <PokemonIconsItemStats
-      data={data}
+      pokedex={pokedex}
+      dropData={pokemonOfBerry.map(({id, berry}) => ({
+        pokemon: id,
+        qty: berry.quantity,
+      }))}
       getProducingRate={(pokemon) => {
         let berryDataToUse = null;
         if (pokemon.berry.id === berryData?.id) {

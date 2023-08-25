@@ -2,6 +2,7 @@ import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {ProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {Indexable} from '@/utils/type';
 
 
 export type IngredientProducingStats = {
@@ -9,20 +10,23 @@ export type IngredientProducingStats = {
   energy: ProducingRate,
 };
 
-export type TeamProducingStatsByItem<T> = {
-  berry: T,
-  ingredient: T | null,
+export type TeamProducingStatsTotal = {
+  berry: ProducingRate,
+  ingredient: ProducingRate | null,
 };
 
-export type TeamProducingStatsTotal = TeamProducingStatsByItem<ProducingRate>;
-
-export type TeamProducingStatsSingle = TeamProducingStatsByItem<ProducingRateOfItem>;
+export type TeamProducingStatsSingle = {
+  berry: ProducingRateOfItem,
+  ingredient: ProducingRateOfItem[],
+};
 
 export type TeamProducingStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProducingStatsSingle | null};
 
+export type TeamProducingStatsGroupedOfItem<TId extends Indexable> = {[id in TId]?: ProducingRate};
+
 export type TeamProducingStatsGrouped = {
-  berry: {[id in BerryId]?: ProducingRate},
-  ingredient: {[id in IngredientId]?: ProducingRate},
+  berry: TeamProducingStatsGroupedOfItem<BerryId>,
+  ingredient: TeamProducingStatsGroupedOfItem<IngredientId>,
 };
 
 export type TeamProducingStats = {

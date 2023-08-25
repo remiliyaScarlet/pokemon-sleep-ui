@@ -7,28 +7,29 @@ import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
+import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/rate/single';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {isNotNullish} from '@/utils/type';
 
 
-type Props = {
-  data: PokemonInfo[],
-  getProducingRate: (pokemon: PokemonInfo) => ProducingRateOfItem | null,
+type Props = PokemonIngredientStatsCommonProps & {
+  getProducingRate: (pokemon: PokemonInfo, qty: number) => ProducingRateOfItem | null,
   getIcon: (pokemon: PokemonInfo) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,
 };
 
-export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSpecialty}: Props) => {
+export const PokemonIconsItemStats = ({getProducingRate, getIcon, targetSpecialty, pokedex, dropData}: Props) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
-  if (!data.length) {
+  if (!dropData.length) {
     return (
       <div className="p-1.5">
         <UnavailableIcon/>
@@ -40,13 +41,25 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
       <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-        {data
-          .map((pokemon) => ({
-            pokemon,
-            rate: getProducingRate(pokemon),
-          }))
+        {dropData
+          .map(({pokemon, qty}) => {
+            const pokemonInfo = pokedex[pokemon];
+
+            if (!pokemonInfo) {
+              return null;
+            }
+
+            const rate = getProducingRate(pokemonInfo, qty);
+
+            return {pokemon: pokemonInfo, rate};
+          })
+          .filter(isNotNullish)
           .sort((a, b) => (b.rate?.dailyEnergy ?? 0) - (a.rate?.dailyEnergy ?? 0))
           .map(({pokemon, rate}) => {
+            if (!pokemon) {
+              return <></>;
+            }
+
             const {id, specialty} = pokemon;
 
             return (

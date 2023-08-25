@@ -6,6 +6,7 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {ProductionPeriod} from '@/types/game/producing/display';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
 import {TeamAnalysisIngredientBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/ingredient';
 import {TeamAnalysisOverallBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/overall';
@@ -18,9 +19,10 @@ type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
   bonus: TeamAnalysisBonus,
   setBonus: (newBonus: TeamAnalysisBonus) => void,
   stats: TeamProducingStats,
+  period: ProductionPeriod,
 };
 
-export const TeamAnalysisSummary = ({stats, snorlaxRankData, bonus, setBonus}: Props) => {
+export const TeamAnalysisSummary = ({snorlaxRankData, bonus, setBonus, stats, period}: Props) => {
   const {berry, ingredient} = stats.total;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
@@ -39,18 +41,18 @@ export const TeamAnalysisSummary = ({stats, snorlaxRankData, bonus, setBonus}: P
       </Flex>
       <Flex direction="col" className="gap-1.5">
         <Flex direction="col" className="lg:flex-row">
-          <Flex direction="row" noFullWidth className="justify-end gap-x-8 gap-y-1.5">
+          <Flex direction="row" noFullWidth className="justify-end gap-x-4 gap-y-1.5">
             <TeamAnalysisRateLayout
-              shrink isEnergy dailyRate={berry.dailyEnergy}
+              period={period} showQuantity={false} rate={berry}
               icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
             />
             <TeamAnalysisRateLayout
-              shrink isEnergy dailyRate={ingredient?.dailyEnergy ?? null}
+              period={period} showQuantity={false} rate={ingredient}
               icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
             />
           </Flex>
           <Flex direction="row" className="justify-end">
-            <TeamAnalysisRateLayout larger isEnergy dailyRate={stats.overall.dailyEnergy}/>
+            <TeamAnalysisRateLayout period={period} larger showQuantity={false} rate={stats.overall}/>
           </Flex>
         </Flex>
         <HorizontalSplitter/>

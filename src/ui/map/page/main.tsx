@@ -7,6 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {I18nProvider} from '@/contexts/i18n';
+import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon';
 import {getSleepStyleOfMap} from '@/controller/sleepStyle';
@@ -27,6 +28,7 @@ export const MapPage = ({params}: Props) => {
   const mapId = Number(params.id);
   const sleepStyles = React.use(getSleepStyleOfMap(mapId));
   const pokedexMap = React.use(getPokemonAsMap(toUnique(sleepStyles.map(({pokemonId}) => pokemonId))));
+  const ingredientChainMap = React.use(getIngredientChainMap());
   const snorlaxRank = React.use(getSnorlaxRankOfMap(mapId));
   const snorlaxReward = React.use(getSnorlaxReward());
   const mapMeta = React.use(getMapMeta(mapId));
@@ -42,6 +44,7 @@ export const MapPage = ({params}: Props) => {
     mapName: t(mapId.toString()),
     sleepStyles,
     pokedexMap,
+    ingredientChainMap,
     snorlaxRank,
     snorlaxReward,
     mapMeta,

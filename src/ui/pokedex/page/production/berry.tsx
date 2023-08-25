@@ -4,7 +4,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonProducingRate} from '@/components/shared/pokemon/rate/main';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/rate/single';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData} from '@/types/game/berry';
 import {PokemonInfo} from '@/types/game/pokemon';
@@ -19,7 +19,7 @@ type Props = {
   level: number,
 };
 
-export const PokemonBerryMeta = ({pokemon, berryName, berryData, level}: Props) => {
+export const PokemonBerryProduction = ({pokemon, berryName, berryData, level}: Props) => {
   const {berry} = pokemon;
 
   const atLevel = getBerryProducingRate({

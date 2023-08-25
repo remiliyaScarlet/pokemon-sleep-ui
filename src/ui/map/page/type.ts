@@ -1,5 +1,5 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {MapMeta} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {SleepStyleDataFlattened, SleepStyleId} from '@/types/game/sleepStyle';
@@ -20,7 +20,7 @@ export type MapPageFilter = PokemonInputFilter & {
   displayType: MapUnlockTableDisplayType,
 };
 
-export type MapCommonProps = {
+export type MapCommonProps = UsePokemonFilterCommonData & {
   mapId: number,
   mapName: string,
   sleepStyles: SleepStyleDataFlattened[],

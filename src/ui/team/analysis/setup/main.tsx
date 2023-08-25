@@ -40,13 +40,14 @@ export const TeamAnalysisSetupView = (props: Props) => {
         />
         <TeamAnalysisUploadSetup setup={setup} snorlaxFavorite={snorlaxFavorite}/>
         <AdsUnit/>
-        <TeamAnalysisGroupedSummary grouped={producingStats.grouped}/>
+        <TeamAnalysisGroupedSummary grouped={producingStats.grouped} period="weekly"/>
         <TeamAnalysisSummary
           bonus={setup.bonus}
           setBonus={(bonus) => setSetup((original) => ({
             ...original,
             bonus,
           }))}
+          period="weekly"
           stats={producingStats}
           snorlaxRankData={snorlaxRankData}
         />

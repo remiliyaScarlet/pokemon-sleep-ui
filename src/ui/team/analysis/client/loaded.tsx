@@ -13,12 +13,13 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
-  const {pokedex, preloadedSetup} = props;
+  const {pokedex, preloadedSetup, ingredientChainMap} = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
 
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
     snorlaxFavorite: preloadedSetup?.snorlaxFavorite,
+    ...props,
   });
   const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>(migrate({
     original: {
@@ -33,10 +34,11 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
         overall: 125,
         ingredient: 20,
       },
-      version: 1,
+      version: 2,
     },
     override: preloadedSetup ?? {},
     migrators: teamAnalysisSetupMigrators,
+    migrateParams: {pokedex, ingredientChainMap},
   }));
 
   return (
@@ -48,6 +50,7 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
         isIncluded={isIncluded}
         filter={filter}
         setFilter={setFilter}
+        {...props}
       />
       <AdsUnit/>
       <Flex direction="col" className="gap-1">

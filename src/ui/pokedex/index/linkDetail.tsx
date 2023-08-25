@@ -7,15 +7,14 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
-import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
+import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {formatFloat} from '@/utils/number';
 
 
@@ -23,6 +22,7 @@ export const PokedexLinkDetail = React.memo(({
   pokemon,
   display,
   level,
+  ingredients,
   ingredientMap,
   berryMap,
   snorlaxFavorite,
@@ -31,7 +31,6 @@ export const PokedexLinkDetail = React.memo(({
     id,
     berry,
     skill,
-    ingredients,
     specialty,
     sleepType,
   } = pokemon;
@@ -59,7 +58,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredient') {
-    return <PokemonIngredientIcons ingredients={ingredients}/>;
+    return <PokemonIngredientIcons ingredients={[ingredients]}/>;
   }
 
   if (display === 'sleepType') {
@@ -78,16 +77,13 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  const sorterOfDisplay = getPokemonSorter({
+  // Need to calculate here because display and sort could be different
+  const sorter = getPokemonSorter({
     type: display,
     pokemon,
     berryMap,
     ingredientMap,
-    ingredients: (
-      ingredients.fixed ?
-        [{level, id: ingredients.fixed, quantity: specialty === specialtyIdMap.ingredient ? 2 : 1}] :
-        []
-    ),
+    ingredients,
     level,
     snorlaxFavorite,
     ...defaultNeutralOpts,
@@ -100,7 +96,7 @@ export const PokedexLinkDetail = React.memo(({
           <NextImage src="/images/generic/friendship.png" alt={t2('Stats.Friendship')} sizes={imageSmallIconSizes}/>
         </div>
         <div>
-          {sorterOfDisplay}
+          {sorter}
         </div>
       </Flex>
     );
@@ -113,7 +109,7 @@ export const PokedexLinkDetail = React.memo(({
           <ClockIcon/>
         </div>
         <div>
-          {sorterOfDisplay}
+          {sorter}
         </div>
       </Flex>
     );
@@ -127,20 +123,45 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'ingredientEnergy' || display === 'ingredientCount') {
-    const fixedIngredientId = ingredients.fixed;
+  if (display === 'ingredientEnergy') {
+    return (
+      <Flex direction="col">
+        <div className="text-xs">
+          <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
+        </div>
+        <Flex direction="row" className="gap-0.5">
+          <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
+          <div>
+            {formatFloat(sorter)}
+          </div>
+        </Flex>
+      </Flex>
+    );
+  }
 
-    if (!fixedIngredientId) {
-      return <></>;
-    }
+  if (display === 'ingredientCount') {
+    const rates = getIngredientProducingRates({
+      ingredientMap,
+      ingredients,
+      level,
+      pokemon,
+      ...defaultNeutralOpts,
+    });
 
     return (
-      <Flex direction="row" className="gap-0.5">
-        <PokemonIngredientIcon id={fixedIngredientId}/>
-        {display === 'ingredientEnergy' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
-        <div>
-          {formatFloat(sorterOfDisplay)}
+      <Flex direction="col">
+        <div className="text-xs">
+          <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
         </div>
+        <PokemonIngredientIcons
+          ingredients={[rates
+            .sort((a, b) => b.quantity - a.quantity)
+            .map(({id, quantity}) => ({
+              id,
+              qty: parseFloat(formatFloat(quantity) || '-'),
+            })),
+          ]}
+        />
       </Flex>
     );
   }
@@ -151,7 +172,7 @@ export const PokedexLinkDetail = React.memo(({
         <PokemonBerryIcon id={berry.id}/>
         {display === 'berryEnergy' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
         <div>
-          {formatFloat(sorterOfDisplay)}
+          {formatFloat(sorter)}
         </div>
       </Flex>
     );
@@ -162,7 +183,7 @@ export const PokedexLinkDetail = React.memo(({
       <Flex direction="row" className="gap-0.5">
         <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
         <div>
-          {formatFloat(sorterOfDisplay)}
+          {formatFloat(sorter)}
         </div>
       </Flex>
     );

@@ -4,21 +4,30 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
+  TeamAnalysisDataProps,
   TeamAnalysisMember,
   TeamAnalysisSlotName,
   teamAnalysisSlotName,
   TeamAnalysisTeamSetup,
 } from '@/ui/team/analysis/type';
+import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
-type Props = {
+type Props = TeamAnalysisDataProps & {
   setup: TeamAnalysisTeamSetup,
   setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemon: PokemonInfo[],
 };
 
-export const TeamAnalysisSelectablePokemon = ({setup, setMember, isIncluded, pokemon}: Props) => {
+export const TeamAnalysisSelectablePokemon = ({
+  setup,
+  setMember,
+  isIncluded,
+  pokemon,
+  pokedex,
+  ingredientChainMap,
+}: Props) => {
   const putOnTeam = (id: PokemonId) => {
     let slotToInsert: TeamAnalysisSlotName | null = null;
 
@@ -30,6 +39,13 @@ export const TeamAnalysisSelectablePokemon = ({setup, setMember, isIncluded, pok
       break;
     }
 
+    const pokemon = pokedex[id];
+    if (!pokemon) {
+      return;
+    }
+
+    const chain = ingredientChainMap[pokemon.ingredientChain];
+
     setMember(
       slotToInsert ?? 'E',
       {
@@ -37,6 +53,7 @@ export const TeamAnalysisSelectablePokemon = ({setup, setMember, isIncluded, pok
         level: 1,
         nature: null,
         subSkill: {},
+        ingredients: generateIngredientProductionAtLevels(chain),
       },
     );
   };

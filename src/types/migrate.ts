@@ -7,17 +7,18 @@ export type Migratable = {
   version: MigrateVersion,
 };
 
-export type Migrator<TMigratable extends Migratable> = {
+export type Migrator<TMigratable extends Migratable, TParams> = {
   toVersion: MigrateVersion,
-  migrate: (old: TMigratable) => TMigratable,
+  migrate: (old: TMigratable, params: TParams) => TMigratable,
 };
 
-export type MigrateOpts<TMigratable extends Migratable> = {
+export type MigrateOpts<TMigratable extends Migratable, TParams> = {
   original: TMigratable,
   override: DeepPartial<TMigratable> | null,
-  migrators: Migrator<TMigratable>[],
+  migrators: Migrator<TMigratable, TParams>[],
+  migrateParams: TParams,
 };
 
-export type Migrate = <TMigratable extends Migratable>(
-  opts: MigrateOpts<TMigratable>
-) => MigrateOpts<TMigratable>['original'];
+export type Migrate = <TMigratable extends Migratable, TParams>(
+  opts: MigrateOpts<TMigratable, TParams>
+) => MigrateOpts<TMigratable, TParams>['original'];

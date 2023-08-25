@@ -4,6 +4,7 @@ import {MealPageParams} from '@/app/[locale]/meal/[id]/page';
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
+import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSingleMeal} from '@/controller/meal';
@@ -37,7 +38,9 @@ export const MealPage = ({params}: Props) => {
       <Flex direction="col" center className="gap-1.5">
         <MealMeta {...props}/>
         <AdsUnit/>
-        <MealPokemonOfIngredient pokemonByIngredients={pokemonByIngredients} {...props}/>
+        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
+          <MealPokemonOfIngredient pokemonByIngredients={pokemonByIngredients} {...props}/>
+        </I18nProvider>
       </Flex>
     </PublicPageLayout>
   );

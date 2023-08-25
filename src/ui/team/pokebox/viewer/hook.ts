@@ -3,6 +3,7 @@ import {Session} from 'next-auth';
 
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMatchingSearch} from '@/components/input/filter/utils/check';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
@@ -10,14 +11,20 @@ import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '
 import {isNotNullish} from '@/utils/type';
 
 
-type UsePokeboxViewerFilterOpts = {
+type UsePokeboxViewerFilterOpts = UsePokemonFilterCommonData & {
   session: Session | null,
   pokebox: Pokebox,
   pokedexMap: PokedexMap,
   pokemonNameMap: {[id in PokemonId]?: string},
 };
 
-export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNameMap}: UsePokeboxViewerFilterOpts) => {
+export const usePokeboxViewerFilter = ({
+  session,
+  pokebox,
+  pokedexMap,
+  pokemonNameMap,
+  ...filterData
+}: UsePokeboxViewerFilterOpts) => {
   return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, PokemonId>({
     data: Object.values(pokebox)
       .filter(isNotNullish)
@@ -60,7 +67,7 @@ export const usePokeboxViewerFilter = ({session, pokebox, pokedexMap, pokemonNam
         return false;
       }
 
-      return isPokemonIncludedFromFilter(filter, data.info);
+      return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
     },
   });
 };

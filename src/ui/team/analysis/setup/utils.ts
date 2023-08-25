@@ -1,27 +1,18 @@
-import {TeamProducingStatsGrouped, TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {TeamProducingStatsGroupedOfItem} from '@/ui/team/analysis/setup/type';
+import {Indexable} from '@/utils/type';
 
 
-type GroupProducingStatsOpts = {
-  stats: TeamProducingStatsSingle[],
-  key: keyof TeamProducingStatsSingle,
-};
+export const groupProducingStats = <TId extends Indexable>(
+  rates: ProducingRateOfItem<TId>[],
+): TeamProducingStatsGroupedOfItem<TId> => {
+  return rates.reduce((group, single) => {
+    const {id, quantity, dailyEnergy} = single;
 
-export const groupProducingStats = <K extends keyof TeamProducingStatsGrouped>({
-  stats,
-  key,
-}: GroupProducingStatsOpts) => {
-  return stats.reduce((group, single) => {
-    const singleStats = single[key];
-
-    if (!singleStats) {
-      return group;
-    }
-
-    const {id, quantity, dailyEnergy} = singleStats;
     group[id] = {
       quantity: (group[id]?.quantity ?? 0) + quantity,
       dailyEnergy: (group[id]?.dailyEnergy ?? 0) + dailyEnergy,
     };
     return group;
-  }, {} as TeamProducingStatsGrouped[K]);
+  }, {} as TeamProducingStatsGroupedOfItem<TId>);
 };
