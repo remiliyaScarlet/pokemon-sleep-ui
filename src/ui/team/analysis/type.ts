@@ -1,4 +1,4 @@
-import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
@@ -14,7 +14,7 @@ export type TeamAnalysisFilter = PokemonInputFilter & {
   snorlaxFavorite: SnorlaxFavorite,
 };
 
-export type TeamAnalysisServerDataProps = {
+export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedex: PokedexMap,
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
