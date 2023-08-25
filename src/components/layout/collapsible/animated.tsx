@@ -5,12 +5,14 @@ import {Transition} from '@headlessui/react';
 
 type Props = {
   show: boolean,
+  appear?: boolean,
 };
 
-export const AnimatedCollapse = ({show, children}: React.PropsWithChildren<Props>) => {
+export const AnimatedCollapse = ({show, appear, children}: React.PropsWithChildren<Props>) => {
   return (
     <Transition
       show={show}
+      appear={appear}
       enter="duration-1000"
       enterFrom="grid-rows-[0fr]"
       enterTo="grid-rows-[1fr]"
