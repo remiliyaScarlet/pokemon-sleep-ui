@@ -52,7 +52,7 @@ export const PokemonIconsItemStats = ({data, getProducingRate, getIcon, targetSp
             return (
               <Flex key={id} direction="col" className="button-clickable-bg relative">
                 <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
-                  <PokemonProducingRate
+                  <PokemonProducingRateSingle
                     simplified
                     rate={rate}
                     icon={getIcon(pokemon)}

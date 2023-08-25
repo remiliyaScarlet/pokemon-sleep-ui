@@ -1,0 +1,31 @@
+import React from 'react';
+
+import {clsx} from 'clsx';
+
+import {Flex} from '@/components/layout/flex';
+import {PokemonProducingRateContent} from '@/components/shared/pokemon/rate/content';
+import {PokemonProducingRateProps} from '@/components/shared/pokemon/rate/type';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {toSum} from '@/utils/array';
+
+
+type Props = PokemonProducingRateProps & {
+  rates: ProducingRateOfItem[],
+  getIcon: (rate: ProducingRateOfItem) => React.ReactNode,
+};
+
+export const PokemonProducingRateMultiple = ({rates, getIcon, horizontal, ...props}: Props) => {
+  const totalDaily = toSum(rates.map(({dailyEnergy}) => dailyEnergy));
+
+  return (
+    <Flex direction={horizontal ? 'row' : 'col'} className={clsx(
+      'gap-1',
+      horizontal ? 'items-center justify-end' : 'items-end justify-center',
+    )}>
+      {rates.map((rate) => (
+        <PokemonProducingRateContent key={rate.id} dailyRate={rate.quantity} icon={getIcon(rate)} {...props}/>
+      ))}
+      <PokemonProducingRateContent dailyRate={totalDaily} {...props}/>
+    </Flex>
+  );
+};

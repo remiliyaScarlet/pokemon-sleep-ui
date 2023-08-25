@@ -39,7 +39,9 @@ export const PokemonBerryMeta = ({pokemon, berryName, berryData, level}: Props) 
         </div>
       </Flex>
       <Flex direction="col" className="gap-1">
-        <PokemonProducingRate
+        <PokemonProducingRateSingle
+          simplified
+          horizontal
           rate={atLevel}
           icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}
         />
