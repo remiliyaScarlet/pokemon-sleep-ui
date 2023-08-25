@@ -23,6 +23,14 @@ export const getIngredientChainMap = async (): Promise<IngredientChainMap> => {
   return getDataAsMap(getCollection(), ({chainId}) => chainId);
 };
 
+export const getIngredientChainMapOfIngredient = async (ingredient: IngredientId) => {
+  return getDataAsMap(
+    getCollection(),
+    ({chainId}) => chainId,
+    {$or: ingredientLevels.map((level) => ({[`ingredients.${level}.id`]: ingredient}))},
+  );
+};
+
 export const getIngredientChainMapOfLevel = async (
   level: IngredientLevel,
   ids: IngredientId[],
