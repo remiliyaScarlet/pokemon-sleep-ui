@@ -13,9 +13,10 @@ type Props = {
   maxLevel: number,
   setLevel: (level: number) => void,
   noSameLine?: boolean,
+  minLevel?: number,
 };
 
-export const PokemonLevelSlider = ({level, maxLevel, setLevel, noSameLine}: Props) => {
+export const PokemonLevelSlider = ({level, minLevel = 1, maxLevel, setLevel, noSameLine}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
@@ -41,7 +42,7 @@ export const PokemonLevelSlider = ({level, maxLevel, setLevel, noSameLine}: Prop
           }}
         />
       </Flex>
-      <Slider id="PokemonLevel" value={level} setValue={setLevel} min={1} max={maxLevel}/>
+      <Slider id="PokemonLevel" value={level} setValue={setLevel} min={minLevel} max={maxLevel}/>
     </Flex>
   );
 };
