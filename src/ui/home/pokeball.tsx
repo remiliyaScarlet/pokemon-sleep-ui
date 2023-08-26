@@ -31,7 +31,7 @@ export const HomePokeball = () => {
 
   return (
     <Flex direction="col" center>
-      <div className="relative h-28 w-28 p-2">
+      <div className="relative">
         <div className="absolute bottom-0 right-0 z-10">
           <button className="button-clickable-bg p-1" onClick={() => setShow(false)} disabled={!show}>
             <div className="relative h-4 w-4">
@@ -47,6 +47,7 @@ export const HomePokeball = () => {
           leave="transition-opacity duration-200"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
+          className="relative h-28 w-28"
         >
           <NextImage src={`/images/rank/${type}.png`} alt="?" sizes={imageIconSizes} className="transform-gpu"/>
         </Transition>
