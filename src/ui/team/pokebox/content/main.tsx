@@ -1,75 +1,27 @@
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-import {v4} from 'uuid';
-
+import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
-import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
-import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {Pokebox, PokeInBox} from '@/types/game/pokebox';
+import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {PokeboxPokeInBoxUpdatePopup} from '@/ui/team/pokebox/content/edit/main';
 import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
+import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
-import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
-import {isNotNullish} from '@/utils/type';
+import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
 
-type Props = PokeboxCommonProps & {
+type Props = FilterInputProps<PokeboxViewerFilter> & PokeboxCommonProps & PokeInBoxViewCommonProps & {
   pokebox: Pokebox,
   pokemon: PokemonInfo[],
+  loading: boolean,
   setPokebox: React.Dispatch<React.SetStateAction<Pokebox>>,
 };
 
-export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) => {
-  const {pokedexMap, subSkillMap} = props;
-  const t = useTranslations('Game');
-  const [loading, setLoading] = React.useState(false);
-  const {
-    filter,
-    setFilter,
-    isIncluded,
-  } = usePokeboxViewerFilter({
-    pokebox,
-    pokemonNameMap: Object.fromEntries(
-      Object.values(pokedexMap)
-        .filter(isNotNullish)
-        .map(({id}) => [id, t(`PokemonName.${id}`)]),
-    ),
-    ...props,
-  });
-  const sortedPokemonInfo = useSortingWorker({
-    data: Object.values(pokebox)
-      .filter(isNotNullish)
-      .map((pokeInBox) => {
-        const pokemon = pokedexMap[pokeInBox.pokemon];
-
-        if (!pokemon) {
-          return null;
-        }
-
-        const {level} = pokeInBox;
-
-        return {
-          pokemon,
-          level,
-          extra: pokeInBox,
-          ingredients: Object.values(pokeInBox.ingredients),
-          ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
-        };
-      })
-      .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
-    sort: filter.sort,
-    snorlaxFavorite: filter.snorlaxFavorite,
-    ...props,
-    triggerDeps: [pokebox, filter],
-    setLoading,
-  });
-  const [editingUuid, setEditingUuid] = React.useState<string>();
+export const PokeboxContent = (props: Props) => {
+  const {pokebox, loading, filter} = props;
 
   useAutoUpload({
     opts: {
@@ -80,64 +32,11 @@ export const PokeboxContent = ({pokebox, pokemon, setPokebox, ...props}: Props) 
     delay: 0,
   });
 
-  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
-
   return (
     <Flex direction="col" className="gap-1.5">
-      <PokeboxPokeInBoxUpdatePopup
-        pokebox={Object.fromEntries(sortedPokebox.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]))}
-        editingUuid={editingUuid}
-        onUpdateCompleted={(pokeInBox) => {
-          if (editingUuid === undefined) {
-            return;
-          }
-          setPokebox((original) => ({
-            ...original,
-            [editingUuid]: pokeInBox,
-          }));
-          setEditingUuid(undefined);
-        }}
-        onCopyPokeInBox={(pokeInBox) => {
-          if (editingUuid === undefined) {
-            return;
-          }
-
-          const uuid = v4();
-          setPokebox((original) => ({
-            ...original,
-            [uuid]: {...pokeInBox, uuid},
-          }));
-          setEditingUuid(undefined);
-        }}
-        onRemovePokeInBox={() => {
-          if (editingUuid === undefined) {
-            return;
-          }
-
-          setPokebox((original) => {
-            const updated = {...original};
-            delete updated[editingUuid];
-
-            return updated;
-          });
-          setEditingUuid(undefined);
-        }}
-        {...props}
-      />
-      <PokeboxViewerInput
-        filter={filter}
-        setFilter={setFilter}
-        pokemon={pokemon}
-        {...props}
-      />
+      <PokeboxViewerInput {...props}/>
       <LazyLoad loading={loading} className="gap-1.5">
-        <PokeboxPokeInBoxView
-          filter={filter}
-          isIncluded={isIncluded}
-          setEditingUuid={setEditingUuid}
-          sortedPokemonInfo={sortedPokemonInfo}
-          {...props}
-        />
+        <PokeboxPokeInBoxView {...props}/>
       </LazyLoad>
     </Flex>
   );

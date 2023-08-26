@@ -12,7 +12,7 @@ import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
   isIncluded: FilterInclusionMap<PokemonId>,
-  setEditingUuid: React.Dispatch<React.SetStateAction<string | undefined>>,
+  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBox | undefined>>,
   sortedPokemonInfo: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 

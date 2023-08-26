@@ -8,7 +8,7 @@ import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type
 export const PokeboxContentPokeInBoxGrid = ({
   filter,
   isIncluded,
-  setEditingUuid,
+  setEditingPokeInBox,
   sortedPokemonInfo,
   ...props
 }: PokeInBoxViewCommonProps) => {
@@ -29,7 +29,7 @@ export const PokeboxContentPokeInBoxGrid = ({
             pokeInBox={source.extra}
             displayType={filter.displayType}
             snorlaxFavorite={filter.snorlaxFavorite}
-            onClick={() => setEditingUuid(uuid)}
+            onClick={() => setEditingPokeInBox(source.extra)}
             {...props}
           />
         );

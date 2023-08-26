@@ -15,8 +15,8 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
-import {maxCarryLimit} from '@/ui/team/pokebox/content/edit/const';
-import {PokeboxPokeInBoxEditCommonProps} from '@/ui/team/pokebox/content/edit/type';
+import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
+import {PokeboxPokeInBoxEditCommonProps} from '@/ui/team/pokebox/editor/type';
 
 
 type Props = PokeboxPokeInBoxEditCommonProps & {
@@ -25,7 +25,7 @@ type Props = PokeboxPokeInBoxEditCommonProps & {
   onCopyPokeInBox: () => void,
 };
 
-export const PokeboxPokeInBoxUpdateLayout = ({
+export const PokeboxPokeInBoxEditLayout = ({
   pokedexMap,
   ingredientChainMap,
   subSkillMap,
