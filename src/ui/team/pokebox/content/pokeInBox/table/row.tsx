@@ -98,9 +98,12 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
             <PokemonBerryIcon id={berry.id}/>
             <div>{berry.quantity}</div>
           </Flex>
-          <div className={clsx(specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+          <div className={clsx(
+            'rounded-lg px-2',
+            specialty === specialtyIdMap.ingredient ? 'bg-blink' : 'border border-slate-500/50',
+          )}>
             <PokemonIngredientIcons
-              ingredients={Object.values(ingredients).map((ingredient) => [ingredient])}
+              ingredients={[Object.values(ingredients).map((ingredient) => ingredient)]}
             />
           </div>
           {/* Berry */}
