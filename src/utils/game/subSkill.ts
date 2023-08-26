@@ -1,4 +1,11 @@
-import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillBonus, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {
+  PokemonSubSkill,
+  pokemonSubSkillLevel,
+  SubSkillBonus,
+  SubSkillData,
+  SubSkillMap,
+} from '@/types/game/pokemon/subskill';
+import {combineIterator, permuteIterator} from '@/utils/compute';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -41,8 +48,31 @@ export const getSubSkillBonus = (opts: SubSkillCheckOpts): SubSkillBonus => {
   return ret;
 };
 
-export const hasHelperSubSkill = (opts: SubSkillCheckOpts): boolean => {
-  const effectiveSubSkills = getEffectiveSubSkills(opts);
+export const hasHelperSubSkill = (opts: SubSkillCheckOpts): boolean => (
+  getEffectiveSubSkills(opts).some(({bonus}) => !!bonus.helper)
+);
 
-  return effectiveSubSkills.some(({bonus}) => !!bonus.helper);
+type GeneratePossiblePokemonSubSkillOpts = {
+  level: number,
+  subSkillData: SubSkillData[],
 };
+
+export function* generatePossiblePokemonSubSkills({
+  level,
+  subSkillData,
+}: GeneratePossiblePokemonSubSkillOpts): Generator<PokemonSubSkill> {
+  const validLevels = pokemonSubSkillLevel
+    .filter((subSkillLevel) => level >= subSkillLevel);
+
+  if (!validLevels.length) {
+    return {};
+  }
+
+  for (const combination of combineIterator(subSkillData, validLevels.length)) {
+    for (const permutation of permuteIterator(combination)) {
+      yield Object.fromEntries(
+        permutation.map((data, idx) => [validLevels[idx], data]),
+      );
+    }
+  }
+}

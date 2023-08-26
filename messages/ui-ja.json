@@ -33,6 +33,9 @@
     "Analysis": {
       "Title": "ポケモン分析 - {name}"
     },
+    "Rating": {
+      "Title": "個体評価"
+    },
     "Cooking": {
       "Title": "料理を作る"
     },

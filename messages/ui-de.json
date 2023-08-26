@@ -31,7 +31,10 @@
       }
     },
     "Analysis": {
-      "Title": "Pokémon Analyse - {name}"
+      "Title": "Pokémon Analysis - {name}"
+    },
+    "Rating": {
+      "Title": "Rate my Pokémon"
     },
     "Cooking": {
       "Title": "Kochen"

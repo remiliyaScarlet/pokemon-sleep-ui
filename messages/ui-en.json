@@ -33,6 +33,9 @@
     "Analysis": {
       "Title": "Pokémon Analysis - {name}"
     },
+    "Rating": {
+      "Title": "Rate my Pokémon"
+    },
     "Cooking": {
       "Title": "Cooking"
     },
