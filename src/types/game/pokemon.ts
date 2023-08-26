@@ -2,6 +2,7 @@ import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {EvolutionData} from '@/types/game/pokemon/evolution';
 import {IngredientChainId, IngredientLevel, IngredientProductionAtLevel} from '@/types/game/pokemon/ingredient';
+import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 export type PokemonId = number;
@@ -39,6 +40,11 @@ export type PokemonInfo = {
   ingredientChain: IngredientChainId,
   skill: PokemonSkillId,
   evolution: EvolutionData,
+};
+
+export type PokemonInfoWithMap = {
+  info: PokemonInfo,
+  mapsAvailable: SleepMapId[],
 };
 
 export type PokemonIngredientDropData = {

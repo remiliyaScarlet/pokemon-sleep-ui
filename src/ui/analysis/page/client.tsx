@@ -12,7 +12,7 @@ import {AnalysisMeta} from '@/ui/analysis/page/meta';
 import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {useCalculationWorker} from '@/ui/analysis/page/worker';
-import {toUnique} from '@/utils/array';
+import {getPokedexWithMap} from '@/utils/game/pokemon';
 import {groupIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 
@@ -29,10 +29,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   const [stats, setStats] = React.useState<AnalysisStats | null>(null);
   const [loading, setLoading] = React.useState(true);
   const {filter, setFilter, isIncluded} = useAnalysisFilter({
-    data: pokedex.map((pokemon) => ({
-      info: pokemon,
-      mapsAvailable: toUnique(sleepStyleMap[pokemon.id]?.map(({mapId}) => mapId) ?? []),
-    })),
+    data: getPokedexWithMap({pokedex, sleepStyleMap}),
     currentPokemon: pokemon,
     ...props,
   });

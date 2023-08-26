@@ -5,20 +5,20 @@ import {
   generatePokemonInputFilterExtended,
   isPokemonIncludedFromFilter,
 } from '@/components/shared/pokemon/input/utils';
-import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
-import {AnalysisComparisonFilter, AnalysisFilterPokemonData} from '@/ui/analysis/page/type';
+import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
+import {AnalysisComparisonFilter} from '@/ui/analysis/page/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
 type UseAnalysisFilterOpts = UsePokemonFilterCommonData & {
-  data: AnalysisFilterPokemonData[],
+  data: PokemonInfoWithMap[],
   currentPokemon: PokemonInfo,
 };
 
 export const useAnalysisFilter = ({data, currentPokemon, ...filterData}: UseAnalysisFilterOpts) => {
   const {ingredientChainMap} = filterData;
 
-  return useFilterInput<AnalysisComparisonFilter, AnalysisFilterPokemonData, PokemonId>({
+  return useFilterInput<AnalysisComparisonFilter, PokemonInfoWithMap, PokemonId>({
     data,
     dataToId: ({info}) => info.id,
     initialFilter: {

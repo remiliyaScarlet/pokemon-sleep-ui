@@ -1,4 +1,6 @@
-import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
+import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
+import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
+import {toUnique} from '@/utils/array';
 
 
 export const getRelatedPokemonIds = ({evolution}: PokemonInfo): PokemonId[] => {
@@ -9,4 +11,16 @@ export const getRelatedPokemonIds = ({evolution}: PokemonInfo): PokemonId[] => {
   }
 
   return relatedId;
+};
+
+type GetPokedexWithMapOpts = {
+  pokedex: PokemonInfo[],
+  sleepStyleMap: PokemonSleepDataMap,
+};
+
+export const getPokedexWithMap = ({pokedex, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {
+  return pokedex.map((pokemon) => ({
+    info: pokemon,
+    mapsAvailable: toUnique(sleepStyleMap[pokemon.id]?.map(({mapId}) => mapId) ?? []),
+  }));
 };
