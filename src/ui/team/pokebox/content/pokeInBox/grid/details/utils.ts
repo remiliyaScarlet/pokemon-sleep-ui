@@ -1,6 +1,7 @@
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 
@@ -19,7 +20,7 @@ export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): Produci
   return getIngredientProducingRates({
     level,
     pokemon,
-    ingredients: Object.values(ingredients),
+    ingredients: getEffectiveIngredientLevels(level).map((level) => ingredients[level]),
     ingredientMap,
     ...singleParams,
   });
