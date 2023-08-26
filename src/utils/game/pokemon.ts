@@ -18,7 +18,7 @@ type GetPokedexWithMapOpts = {
   sleepStyleMap: PokemonSleepDataMap,
 };
 
-export const getPokedexWithMap = ({pokedex, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {
+export const getPokedexWithField = ({pokedex, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {
   return pokedex.map((pokemon) => ({
     info: pokemon,
     mapsAvailable: toUnique(sleepStyleMap[pokemon.id]?.map(({mapId}) => mapId) ?? []),
