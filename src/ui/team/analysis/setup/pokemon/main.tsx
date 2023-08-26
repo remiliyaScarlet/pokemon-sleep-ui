@@ -87,6 +87,7 @@ export const TeamAnalysisPokemon = ({
           <Flex direction="row" className="justify-end">
             <PokemonIngredientIcons
               ingredients={[Object.values(member.ingredients).map((production) => production)]}
+              noLink
             />
           </Flex>
         </button>

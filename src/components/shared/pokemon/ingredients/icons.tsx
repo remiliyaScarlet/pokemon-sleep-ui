@@ -3,16 +3,15 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {IngredientIconCommonProps} from '@/components/shared/pokemon/ingredients/type';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
-import {Dimension} from '@/types/style';
 
 
-type Props = {
+type Props = IngredientIconCommonProps & {
   ingredients: IngredientProduction[][],
-  dimension?: Dimension,
 };
 
-export const PokemonIngredientIcons = ({ingredients, dimension}: Props) => {
+export const PokemonIngredientIcons = ({ingredients, ...props}: Props) => {
   return (
     <Flex direction="row" noFullWidth className="gap-0.5">
       {ingredients.map((data, idx) => (
@@ -20,7 +19,7 @@ export const PokemonIngredientIcons = ({ingredients, dimension}: Props) => {
           {idx !== 0 && <VerticalSplitter/>}
           {data.map(({id, qty}) => (
             <Flex key={`${id}x${qty}`} direction="row" center noFullWidth className="gap-1">
-              <PokemonIngredientIcon dimension={dimension} id={id}/>
+              <PokemonIngredientIcon id={id} {...props}/>
               <div>{qty}</div>
             </Flex>
           ))}

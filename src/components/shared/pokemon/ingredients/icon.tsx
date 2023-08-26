@@ -1,22 +1,18 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageSmallIconSizes} from '@/styles/image';
-import {Dimension} from '@/types/style';
+import {PokemonIngredientIconContent} from '@/components/shared/pokemon/ingredients/iconContent';
+import {IngredientIconCommonProps} from '@/components/shared/pokemon/ingredients/type';
 
 
-type Props = {
+type Props = IngredientIconCommonProps & {
   id: number | null,
-  dimension?: Dimension,
 };
 
-export const PokemonIngredientIcon = ({id, dimension}: Props) => {
-  const t = useTranslations('Game.Food');
+export const PokemonIngredientIcon = (props: Props) => {
+  const {dimension, noLink, id} = props;
 
   if (id === null) {
     return (
@@ -26,11 +22,13 @@ export const PokemonIngredientIcon = ({id, dimension}: Props) => {
     );
   }
 
+  if (noLink) {
+    return <PokemonIngredientIconContent {...props} id={id}/>;
+  }
+
   return (
     <Link href={`/ingredient/${id}`}>
-      <div className={clsx('button-clickable relative', dimension ?? 'h-5 w-5')}>
-        <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageSmallIconSizes}/>
-      </div>
+      <PokemonIngredientIconContent {...props} id={id}/>
     </Link>
   );
 };
