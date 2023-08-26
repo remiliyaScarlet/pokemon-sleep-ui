@@ -48,6 +48,14 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   const t = useTranslations('UI.Metadata.Pokedex');
   const t2 = useTranslations('Game.PokemonName');
 
+  // If Pokémon changes, `ingredients` has to be updated because it's Pokemon-dependent
+  React.useEffect(() => {
+    setSetup((setup) => ({
+      ...setup,
+      ingredients: generateIngredientProductionAtLevels(chain),
+    }));
+  }, [pokemon.id]);
+
   const {level, ingredients, subSkill, nature} = setup;
 
   return (
