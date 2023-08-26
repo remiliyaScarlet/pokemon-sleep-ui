@@ -19,6 +19,6 @@ export type MigrateOpts<TMigratable extends Migratable, TParams> = {
   migrateParams: TParams,
 };
 
-export type Migrate = <TMigratable extends Migratable, TParams>(
+export type MigrateCall = <TMigratable extends Migratable, TParams>(
   opts: MigrateOpts<TMigratable, TParams>
 ) => MigrateOpts<TMigratable, TParams>['original'];

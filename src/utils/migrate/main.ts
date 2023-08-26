@@ -1,15 +1,17 @@
 import merge from 'lodash/merge';
 
-import {Migratable, Migrate, MigrateOpts} from '@/types/migrate';
+import {Migratable, MigrateCall, MigrateOpts} from '@/types/migrate';
 
 
-export const migrate: Migrate = <TMigratable extends Migratable, TParams>({
+export const migrate: MigrateCall = <TMigratable extends Migratable, TParams>({
   original,
   override,
   migrators,
   migrateParams,
 }: MigrateOpts<TMigratable, TParams>) => {
-  let data: MigrateOpts<TMigratable, TParams>['original'] = merge(original, override);
+  // Has to have an empty object first, or `original` will be modified
+  // https://stackoverflow.com/a/28044419/11571888
+  let data: MigrateOpts<TMigratable, TParams>['original'] = merge({}, original, override);
 
   for (const singleMigrator of migrators.sort((a, b) => a.toVersion - b.toVersion)) {
     if ((override?.version ?? -1) >= singleMigrator.toVersion) {
@@ -21,6 +23,7 @@ export const migrate: Migrate = <TMigratable extends Migratable, TParams>({
 
   return {
     ...data,
+    // Force-write the version info from `original` - otherwise, version could be overwritten by `override`
     version: original.version,
   };
 };
