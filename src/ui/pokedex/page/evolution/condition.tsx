@@ -22,7 +22,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'level') {
     return (
       <Flex direction="row" className="gap-1">
-        <div>Lv</div>
+        <PokemonDataIcon src="/images/generic/lv.png" alt="Lv"/>
         <div>{condition.level}</div>
       </Flex>
     );
