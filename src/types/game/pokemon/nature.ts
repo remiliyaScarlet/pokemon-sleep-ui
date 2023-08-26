@@ -14,7 +14,7 @@ export const natureEffectType = [
   'mainSkill',
   'exp',
   'energy',
-  'frequencyOfIngredient',
+  'rateOfIngredient',
   'frequencyOfBase',
 ] as const;
 

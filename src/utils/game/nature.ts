@@ -8,6 +8,22 @@ type GetNatureMultiplierOpts = {
   effect: NatureEffectType,
 };
 
+const buffValueOfEffect: {[effect in NatureEffectType]: number} = {
+  mainSkill: 1,
+  exp: 1.2,
+  energy: 1.2,
+  rateOfIngredient: 1.1,
+  frequencyOfBase: 0.9,
+};
+
+const nerfValueOfEffect: {[effect in NatureEffectType]: number} = {
+  mainSkill: 1,
+  exp: 0.8,
+  energy: 0.8,
+  rateOfIngredient: 0.9,
+  frequencyOfBase: 1.1,
+};
+
 export const getNatureMultiplier = ({id, effect}: GetNatureMultiplierOpts): number => {
   if (!id) {
     return 1;
@@ -19,27 +35,12 @@ export const getNatureMultiplier = ({id, effect}: GetNatureMultiplierOpts): numb
     return 1;
   }
 
-  const isFrequencyEffect = effect === 'frequencyOfBase' || effect === 'frequencyOfIngredient';
-  const isExpOrStaminaEffect = effect === 'energy' || effect === 'exp';
-
   if (natureDataToUse.buff === natureEffectIdMap[effect]) {
-    if (isFrequencyEffect) {
-      return 0.9;
-    }
-
-    if (isExpOrStaminaEffect) {
-      return 0.8;
-    }
+    return buffValueOfEffect[effect];
   }
 
   if (natureDataToUse.nerf === natureEffectIdMap[effect]) {
-    if (isFrequencyEffect) {
-      return 1.1;
-    }
-
-    if (isExpOrStaminaEffect) {
-      return 1.2;
-    }
+    return nerfValueOfEffect[effect];
   }
 
   return 1;

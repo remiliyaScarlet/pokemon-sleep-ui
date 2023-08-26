@@ -2,7 +2,6 @@ import {BerryData} from '@/types/game/berry';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
-import {getNatureMultiplier} from '@/utils/game/nature';
 import {defaultHelperCount, defaultLevel} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
@@ -32,14 +31,12 @@ export const getBerryProducingRate = ({
     natureId,
   });
 
-  const probability = getProbabilitySplit({type: 'berry', subSkillBonus});
-  const ingredientNatureMultiplier = getNatureMultiplier({id: natureId, effect: 'frequencyOfIngredient'});
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
 
   return {
     id: pokemon.berry.id,
     ...getProducingRateBase({
-      frequency: baseFrequency / probability * ingredientNatureMultiplier,
+      frequency: baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus}),
       // Specialty handling is already included in `pokemon.berry.quantity`
       count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
       picks: 1,

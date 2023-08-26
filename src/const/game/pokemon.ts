@@ -20,7 +20,7 @@ export const natureEffectIdMap: {[type in NatureEffectType]: NatureEffectId} = {
   mainSkill: 1,
   exp: 2,
   energy: 3,
-  frequencyOfIngredient: 4,
+  rateOfIngredient: 4,
   frequencyOfBase: 5,
 };
 
