@@ -1,10 +1,10 @@
-import {AnalysisMarkStyle, AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
+import {TextMarkStyle, TextMarkThreshold} from '@/styles/text/mark/type';
 
 
 export const getMarkByThreshold = (
   value: number,
-  threshold: AnalysisMarkThreshold | undefined,
-): AnalysisMarkStyle | undefined => {
+  threshold: TextMarkThreshold | undefined,
+): TextMarkStyle | undefined => {
   if (threshold?.superRare && value > threshold.superRare) {
     return 'superRare';
   }

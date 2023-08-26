@@ -4,8 +4,8 @@ import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
+import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {AnalysisPokemonIcon} from '@/ui/analysis/page/result/icon';
-import {classOfMarkStyle} from '@/ui/analysis/page/result/style';
 import {AnalysisLayoutProps} from '@/ui/analysis/page/result/type';
 
 

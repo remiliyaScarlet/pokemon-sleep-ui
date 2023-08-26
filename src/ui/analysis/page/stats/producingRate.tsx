@@ -10,8 +10,8 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
+import {TextMarkThreshold} from '@/styles/text/mark/type';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
-import {AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
 import {AnalysisStatsLayout} from '@/ui/analysis/page/stats/layout';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
 import {formatFloat} from '@/utils/number';
@@ -22,7 +22,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   const {producingRate} = stats;
 
   const t = useTranslations('UI.InPage.Pokedex');
-  const percentileThreshold: AnalysisMarkThreshold = {superRare: 93, rare: 85, ordinary: 10};
+  const percentileThreshold: TextMarkThreshold = {superRare: 93, rare: 85, ordinary: 10};
 
   const textBerryCount = t(sortTypeToI18nId.berryCount);
   const textBerryEnergy = t(sortTypeToI18nId.berryEnergy);

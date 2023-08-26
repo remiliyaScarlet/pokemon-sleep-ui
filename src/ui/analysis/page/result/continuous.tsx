@@ -1,10 +1,11 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {TextMarkThreshold} from '@/styles/text/mark/type';
+import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {AnalysisStatsContinuous} from '@/ui/analysis/page/calc/type';
 import {AnalysisLayout} from '@/ui/analysis/page/result/layout';
-import {AnalysisLayoutProps, AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
-import {getMarkByThreshold} from '@/ui/analysis/page/result/utils';
+import {AnalysisLayoutProps} from '@/ui/analysis/page/result/type';
 import {formatFloat, formatInt} from '@/utils/number';
 import {Optional, RequireKeys} from '@/utils/type';
 
@@ -17,7 +18,7 @@ type Props<TData> = Optional<
   'linkedIconKey'
 > & {
   stats: AnalysisStatsContinuous<TData>,
-  threshold?: AnalysisMarkThreshold,
+  threshold?: TextMarkThreshold,
 };
 
 export const AnalysisStatsContinuousUI = <TData, >({

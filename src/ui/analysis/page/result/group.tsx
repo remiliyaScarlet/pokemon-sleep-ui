@@ -1,16 +1,17 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {TextMarkThreshold} from '@/styles/text/mark/type';
+import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {AnalysisStatsGrouped} from '@/ui/analysis/page/calc/type';
 import {AnalysisLayout} from '@/ui/analysis/page/result/layout';
-import {AnalysisLayoutProps, AnalysisMarkThreshold} from '@/ui/analysis/page/result/type';
-import {getMarkByThreshold} from '@/ui/analysis/page/result/utils';
+import {AnalysisLayoutProps} from '@/ui/analysis/page/result/type';
 import {formatFloat} from '@/utils/number';
 
 
 type Props<TData> = Pick<AnalysisLayoutProps<TData>, 'title'> & {
   stats: AnalysisStatsGrouped<TData>,
-  threshold?: AnalysisMarkThreshold,
+  threshold?: TextMarkThreshold,
 };
 
 export const AnalysisStatsGroupedUI = <TData, >({
