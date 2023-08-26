@@ -2,12 +2,12 @@ import React from 'react';
 
 import {Transition} from '@headlessui/react';
 
-import {useCollapsible} from '@/components/layout/collapsible/hook';
+import {CollapsibleState} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex';
 
 
 type Props = {
-  state: ReturnType<typeof useCollapsible>,
+  state: CollapsibleState,
   classNameForHeight: string,
   button: React.ReactNode,
   appear?: boolean,
