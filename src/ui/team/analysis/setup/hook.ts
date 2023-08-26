@@ -18,7 +18,6 @@ import {
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {groupIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
@@ -82,9 +81,7 @@ const useProducingStatsOfSlot = ({
       ingredient: getIngredientProducingRates({
         level,
         pokemon,
-        ingredients: groupIngredientProductions(
-          getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
-        ),
+        ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
         ingredientMap,
         ...producingRateOpts,
       }).
