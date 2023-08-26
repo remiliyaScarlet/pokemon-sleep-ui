@@ -34,7 +34,7 @@ export const pokemonSubSkillLevel = [
   50,
   75,
   100,
-];
+] as const;
 
 export type PokemonSubSkillLevel = typeof pokemonSubSkillLevel[number];
 
