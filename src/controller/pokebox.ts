@@ -106,10 +106,10 @@ const addRandomIngredientMigration = async () => {
   const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
   for await (const pokeInBox of collection.find({})) {
     // @ts-ignore
-    const randomIngredients = pokeInBox['randomIngredient'] as RandomIngredient[];
+    const randomIngredients = pokeInBox['randomIngredient'] as (RandomIngredient[] | undefined);
     const pokemon = pokedex[pokeInBox.pokemon];
 
-    if (!randomIngredients.length || !pokemon) {
+    if (!randomIngredients?.length || !pokemon) {
       continue;
     }
 
