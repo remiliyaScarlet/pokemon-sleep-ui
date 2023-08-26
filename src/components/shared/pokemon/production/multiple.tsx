@@ -3,8 +3,8 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
-import {PokemonProducingRateContent} from '@/components/shared/pokemon/rate/content';
-import {PokemonProducingRateProps} from '@/components/shared/pokemon/rate/type';
+import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
+import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 

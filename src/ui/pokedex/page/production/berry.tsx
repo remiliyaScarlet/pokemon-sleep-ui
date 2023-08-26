@@ -4,7 +4,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonProducingRateSingle} from '@/components/shared/pokemon/rate/single';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData} from '@/types/game/berry';
 import {PokemonInfo} from '@/types/game/pokemon';

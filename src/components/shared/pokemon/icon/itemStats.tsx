@@ -10,7 +10,7 @@ import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {PokemonProducingRateSingle} from '@/components/shared/pokemon/rate/single';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';

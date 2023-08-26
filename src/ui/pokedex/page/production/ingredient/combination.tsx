@@ -7,7 +7,7 @@ import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/rate/multiple';
+import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {PokemonIngredientIcon} from '@/ui/pokedex/page/production/ingredient/icon';
