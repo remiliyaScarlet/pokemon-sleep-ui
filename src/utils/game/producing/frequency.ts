@@ -2,7 +2,6 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SubSkillBonus} from '@/types/game/pokemon/subskill';
 import {getNatureMultiplier} from '@/utils/game/nature';
-import {defaultLevel} from '@/utils/game/producing/const';
 
 
 export type GetBaseFrequencyOpts = {
@@ -20,14 +19,12 @@ export const getBaseFrequency = ({
   subSkillBonusRate,
   helperCount,
 }: GetBaseFrequencyOpts) => {
-  const base = frequency * getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
+  frequency *= (1 - (level - 1) * 0.002);
+  frequency *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
+  frequency *= (1 - subSkillBonusRate);
+  frequency *= 0.95 ** helperCount;
 
-  const levelBonus = base * ((level ?? defaultLevel) - 1) * 0.002;
-  const subSkillBonus = base * subSkillBonusRate;
-  // 0.95 is the parameter on the helper sub-skill
-  const helperBonus = base * helperCount * 0.95 * 0.05;
-
-  return base - levelBonus - subSkillBonus - helperBonus;
+  return frequency;
 };
 
 export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCount' | 'natureId'> & {
