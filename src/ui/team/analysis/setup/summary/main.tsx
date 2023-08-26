@@ -40,8 +40,8 @@ export const TeamAnalysisSummary = ({snorlaxRankData, bonus, setBonus, stats, pe
         />
       </Flex>
       <Flex direction="col" className="gap-1.5">
-        <Flex direction="col" className="lg:flex-row">
-          <Flex direction="row" noFullWidth className="justify-end gap-x-4 gap-y-1.5">
+        <Flex direction="col" className="gap-1.5 lg:flex-row">
+          <Flex direction="row" wrap noFullWidth className="justify-end gap-x-4 gap-y-1.5">
             <TeamAnalysisRateLayout
               period={period} showQuantity={false} rate={berry}
               icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
-
 import {Flex} from '@/components/layout/flex';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisRateLayout, TeamAnalysisRateLayoutProps} from '@/ui/team/analysis/setup/common/rateLayout';
@@ -12,9 +10,9 @@ type Props = Pick<TeamAnalysisRateLayoutProps, 'icon'> & TeamAnalysisRateLayoutC
   rate: ProducingRate | null,
 };
 
-export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, highlight, period}: Props) => {
+export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, period}: Props) => {
   return (
-    <Flex direction="col" className={clsx('p-1', highlight && 'bg-blink')}>
+    <Flex direction="col" noFullWidth className="px-1 py-0.5 text-sm">
       <TeamAnalysisRateLayout period={period} showQuantity rate={rate} icon={icon}/>
     </Flex>
   );

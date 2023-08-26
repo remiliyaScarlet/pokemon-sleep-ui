@@ -48,7 +48,7 @@ export const TeamAnalysisPokemon = ({
   const maxLevel = berryData.energy.length;
 
   return (
-    <>
+    <Flex direction="row" className="gap-1 md:flex-col">
       <Popup show={show} setShow={setShow}>
         <PokemonIngredientPicker
           chain={ingredientChainMap[ingredientChain]}
@@ -66,69 +66,74 @@ export const TeamAnalysisPokemon = ({
           idPrefix={id.toString()}
         />
       </Popup>
-      <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
-        <div className="relative h-5 w-5">
-          <NextImage
-            src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
-            className="drop-shadow-thick" sizes={imageIconSizes}
+      <Flex direction="col" center className="gap-1">
+        <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
+          <div className="relative h-5 w-5">
+            <NextImage
+              src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
+              className="drop-shadow-thick" sizes={imageIconSizes}
+            />
+          </div>
+          <div>
+            {t(`PokemonName.${id}`)}
+          </div>
+        </Flex>
+        <Flex direction="row" center>
+          <div className="relative h-28 w-28">
+            <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+          </div>
+        </Flex>
+        <button className="button-clickable-bg px-1.5" onClick={() => setShow(true)}>
+          <Flex direction="row" className="justify-end">
+            <PokemonIngredientIcons
+              ingredients={[Object.values(member.ingredients).map((production) => production)]}
+            />
+          </Flex>
+        </button>
+        <Flex direction="row" className="justify-end text-xs">
+          <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
+            {t(`MainSkill.Name.${skill}`)}
+          </span>
+        </Flex>
+      </Flex>
+      <Flex direction="col" center className="gap-1">
+        <Flex direction="col" className="h-14 gap-1.5">
+          <PokemonNatureSelector
+            nature={member.nature}
+            setNature={(nature) => setMember(slotName, {nature})}
+            hideName
           />
-        </div>
-        <div>
-          {t(`PokemonName.${id}`)}
-        </div>
-      </Flex>
-      <Flex direction="row" center>
-        <div className="relative h-28 w-28">
-          <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
-        </div>
-      </Flex>
-      <button className="button-clickable-bg px-1.5" onClick={() => setShow(true)}>
-        <Flex direction="row" className="justify-end">
-          <PokemonIngredientIcons
-            ingredients={[Object.values(member.ingredients).map((production) => production)]}
+          <PokemonSubSkillSelector
+            subSkill={member.subSkill}
+            setSubSkill={(subSkill) => setMember(slotName, {subSkill})}
+            subSkillMap={subSkillMap}
           />
         </Flex>
-      </button>
-      <Flex direction="row" className="justify-end text-xs">
-        <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
-          {t(`MainSkill.Name.${skill}`)}
-        </span>
-      </Flex>
-      <Flex direction="col" className="h-14 gap-1.5">
-        <PokemonNatureSelector
-          nature={member.nature}
-          setNature={(nature) => setMember(slotName, {nature})}
-          hideName
+        <PokemonLevelSlider
+          level={member.level}
+          setLevel={(level) => setMember(slotName, {level})}
+          maxLevel={maxLevel}
+          noSameLine
         />
-        <PokemonSubSkillSelector
-          subSkill={member.subSkill}
-          setSubSkill={(subSkill) => setMember(slotName, {subSkill})}
-          subSkillMap={subSkillMap}
-        />
-      </Flex>
-      <PokemonLevelSlider
-        level={member.level}
-        setLevel={(level) => setMember(slotName, {level})}
-        maxLevel={maxLevel}
-        noSameLine
-      />
-      <TeamAnalysisBerryRate
-        id={berryData.id}
-        rate={producingStats.berry}
-        highlight={pokemon.specialty === specialtyIdMap.berry}
-        period="daily"
-      />
-      <HorizontalSplitter className="w-full"/>
-      <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
-        {producingStats.ingredient.map((rate) => (
-          <TeamAnalysisIngredientRate
-            key={rate.id}
-            id={rate.id}
-            rate={rate}
+        <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
+          <TeamAnalysisBerryRate
+            id={berryData.id}
+            rate={producingStats.berry}
             period="daily"
           />
-        ))}
+        </Flex>
+        <HorizontalSplitter className="w-full"/>
+        <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+          {producingStats.ingredient.map((rate) => (
+            <TeamAnalysisIngredientRate
+              key={rate.id}
+              id={rate.id}
+              rate={rate}
+              period="daily"
+            />
+          ))}
+        </Flex>
       </Flex>
-    </>
+    </Flex>
   );
 };

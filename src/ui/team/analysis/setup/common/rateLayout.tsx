@@ -31,6 +31,7 @@ export const TeamAnalysisRateLayout = ({
 
   const titleClass = clsx('whitespace-nowrap', !larger && 'text-xs');
   const textClass = clsx(larger && 'text-xl');
+  const dimension = larger ? 'h-6 w-6' : 'h-5 w-5';
 
   return (
     <Flex direction="row" noFullWidth center className="gap-0.5">
@@ -39,7 +40,7 @@ export const TeamAnalysisRateLayout = ({
       </div>
       {
         icon &&
-        <div className="relative h-6 w-6">
+        <div className={clsx('relative', dimension)}>
           {icon}
         </div>
       }
@@ -49,7 +50,7 @@ export const TeamAnalysisRateLayout = ({
           x{formatFloat(rate.quantity)}
         </div>
       }
-      <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Name')}/>
+      <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
       <div className={clsx(textClass, 'text-energy')}>
         {rate ? formatFloat(rate.dailyEnergy * productionMultiplierByPeriod[period]) : '-'}
       </div>

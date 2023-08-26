@@ -20,7 +20,7 @@ export const TeamAnalysisCategorySummary = ({icon, data, getReactNode}: Props) =
           {icon}
         </div>
       </Flex>
-      <Flex direction="row" center>
+      <Flex direction="row" wrap center>
         {data.length ?
           data
             .sort((a, b) => (a.rate?.dailyEnergy ?? 0) - (b.rate?.dailyEnergy ?? 0))

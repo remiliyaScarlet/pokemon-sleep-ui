@@ -27,7 +27,9 @@ export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
         icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
         data={Object.entries(grouped.berry).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => (
-          <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate} period={period}/>
+          <div className="px-4">
+            <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate} period={period}/>
+          </div>
         )}
       />
       <HorizontalSplitter/>
@@ -35,7 +37,9 @@ export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
         icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
         data={Object.entries(grouped.ingredient).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => (
-          <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate} period={period}/>
+          <div className="px-4">
+            <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate} period={period}/>
+          </div>
         )}
       />
     </Flex>

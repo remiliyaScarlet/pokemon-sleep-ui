@@ -28,7 +28,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
   } = props;
 
   return (
-    <Grid className="grid-cols-2 gap-1.5 md:grid-cols-3 lg:grid-cols-5">
+    <Grid className="grid-cols-1 gap-1.5 md:grid-cols-3 lg:grid-cols-5">
       {teamAnalysisSlotName.map((slotName) => {
         const member = setup.team[slotName];
         const pokemon = member ? pokedex[member.pokemonId] : undefined;
@@ -38,11 +38,11 @@ export const TeamAnalysisTeamView = (props: Props) => {
 
         return (
           <Flex key={slotName} direction="col" center className={clsx(
-            'button-bg relative h-[29rem] gap-1.5 rounded-lg p-3',
+            'button-bg relative gap-1.5 rounded-lg p-3',
           )}>
             <button
               className={clsx(
-                'absolute right-1 top-1 h-5 w-5 rounded-full',
+                'absolute right-1 top-1 z-10 h-5 w-5 rounded-full',
                 'enabled:button-clickable disabled:button-disabled-border',
               )}
               disabled={!member}
