@@ -38,7 +38,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
 
         return (
           <Flex key={slotName} direction="col" center className={clsx(
-            'button-bg relative h-[30rem] gap-1.5 rounded-lg p-3',
+            'button-bg relative h-[29rem] gap-1.5 rounded-lg p-3',
           )}>
             <button
               className={clsx(
@@ -58,13 +58,14 @@ export const TeamAnalysisTeamView = (props: Props) => {
             </button>
             {isAvailable ?
               <TeamAnalysisFilledSlot
+                {...props}
                 slotName={slotName}
                 member={member}
                 stats={stats}
                 pokemon={pokemon}
-                {...props}
               /> :
               <TeamAnalysisEmptySlot
+                {...props}
                 onPokeboxPicked={(member) => setSetup((original) => ({
                   ...original,
                   team: {
@@ -72,7 +73,6 @@ export const TeamAnalysisTeamView = (props: Props) => {
                     [slotName]: member,
                   },
                 }))}
-                {...props}
               />}
           </Flex>
         );

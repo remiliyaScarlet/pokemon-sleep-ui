@@ -4,52 +4,68 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {Popup} from '@/components/popup';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 
-type Props = Pick<TeamAnalysisDataProps, 'berryMap' | 'subSkillMap'> & {
-  setLevel: (newLevel: number) => void,
-  setNature: (nature: NatureId | null) => void,
-  setSubSkill: (subSkill: PokemonSubSkill) => void,
+type Props = TeamAnalysisDataProps & {
   slotName: TeamAnalysisSlotName,
-  member: TeamAnalysisMember,
   pokemon: PokemonInfo,
+  member: TeamAnalysisMember,
+  setMember: (slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => void,
   producingStats: TeamProducingStatsSingle,
 };
 
 export const TeamAnalysisPokemon = ({
-  setLevel,
-  setNature,
-  setSubSkill,
-  member,
-  pokemon,
-  producingStats,
   berryMap,
   subSkillMap,
+  ingredientChainMap,
+  slotName,
+  pokemon,
+  member,
+  setMember,
+  producingStats,
 }: Props) => {
   const t = useTranslations('Game');
+  const [show, setShow] = React.useState(false);
 
-  const {id, type, berry, skill} = pokemon;
+  const {id, type, berry, skill, ingredientChain} = pokemon;
   const berryData = berryMap[berry.id];
   const maxLevel = berryData.energy.length;
 
   return (
     <>
+      <Popup show={show} setShow={setShow}>
+        <PokemonIngredientPicker
+          chain={ingredientChainMap[ingredientChain]}
+          ingredients={member.ingredients}
+          onSelect={(updated, ingredientLevel) => setMember(
+            slotName,
+            {
+              ...member,
+              ingredients: {
+                ...member.ingredients,
+                [ingredientLevel]: updated,
+              },
+            },
+          )}
+          idPrefix={id.toString()}
+        />
+      </Popup>
       <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
         <div className="relative h-5 w-5">
           <NextImage
@@ -66,22 +82,36 @@ export const TeamAnalysisPokemon = ({
           <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
         </div>
       </Flex>
-      <Flex direction="col" className="justify-end">
+      <button className="button-clickable-bg px-1.5" onClick={() => setShow(true)}>
         <Flex direction="row" className="justify-end">
-          {/* FIXME: Click to show popup to edit */}
-          <PokemonIngredientIcons ingredients={[Object.values(member.ingredients).map((production) => production)]}/>
+          <PokemonIngredientIcons
+            ingredients={[Object.values(member.ingredients).map((production) => production)]}
+          />
         </Flex>
-        <Flex direction="row" className="justify-end text-xs">
-          <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
-            {t(`MainSkill.Name.${skill}`)}
-          </span>
-        </Flex>
+      </button>
+      <Flex direction="row" className="justify-end text-xs">
+        <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
+          {t(`MainSkill.Name.${skill}`)}
+        </span>
       </Flex>
       <Flex direction="col" className="h-14 gap-1.5">
-        <PokemonNatureSelector nature={member.nature} setNature={setNature} hideName/>
-        <PokemonSubSkillSelector subSkill={member.subSkill} setSubSkill={setSubSkill} subSkillMap={subSkillMap}/>
+        <PokemonNatureSelector
+          nature={member.nature}
+          setNature={(nature) => setMember(slotName, {nature})}
+          hideName
+        />
+        <PokemonSubSkillSelector
+          subSkill={member.subSkill}
+          setSubSkill={(subSkill) => setMember(slotName, {subSkill})}
+          subSkillMap={subSkillMap}
+        />
       </Flex>
-      <PokemonLevelSlider level={member.level} setLevel={setLevel} maxLevel={maxLevel} noSameLine/>
+      <PokemonLevelSlider
+        level={member.level}
+        setLevel={(level) => setMember(slotName, {level})}
+        maxLevel={maxLevel}
+        noSameLine
+      />
       <TeamAnalysisBerryRate
         id={berryData.id}
         rate={producingStats.berry}
@@ -89,15 +119,16 @@ export const TeamAnalysisPokemon = ({
         period="daily"
       />
       <HorizontalSplitter className="w-full"/>
-      {producingStats.ingredient.map((rate) => (
-        <TeamAnalysisIngredientRate
-          key={rate.id}
-          id={rate.id}
-          rate={rate}
-          highlight={pokemon.specialty === specialtyIdMap.ingredient}
-          period="daily"
-        />
-      ))}
+      <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+        {producingStats.ingredient.map((rate) => (
+          <TeamAnalysisIngredientRate
+            key={rate.id}
+            id={rate.id}
+            rate={rate}
+            period="daily"
+          />
+        ))}
+      </Flex>
     </>
   );
 };

@@ -14,7 +14,7 @@ import {
 } from '@/ui/team/analysis/type';
 
 
-type Props = Pick<TeamAnalysisDataProps, 'berryMap' | 'subSkillMap'> & {
+type Props = TeamAnalysisDataProps & {
   setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
   slotName: TeamAnalysisSlotName,
   member: TeamAnalysisMember,
@@ -24,14 +24,13 @@ type Props = Pick<TeamAnalysisDataProps, 'berryMap' | 'subSkillMap'> & {
 };
 
 export const TeamAnalysisFilledSlot = ({
-  berryMap,
-  subSkillMap,
   setSetup,
   slotName,
   member,
   stats,
   pokemon,
   showPokemon,
+  ...props
 }: Props) => {
   const t = useTranslations('UI.Metadata.Pokedex');
   const t2 = useTranslations('Game.PokemonName');
@@ -58,16 +57,13 @@ export const TeamAnalysisFilledSlot = ({
         <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
       </button>
       <TeamAnalysisPokemon
+        {...props}
         key={slotName}
         slotName={slotName}
-        member={member}
-        producingStats={stats}
-        setLevel={(level) => setTeamMember(slotName, {level})}
-        setNature={(nature) => setTeamMember(slotName, {nature})}
-        setSubSkill={(subSkill) => setTeamMember(slotName, {subSkill})}
         pokemon={pokemon}
-        berryMap={berryMap}
-        subSkillMap={subSkillMap}
+        member={member}
+        setMember={setTeamMember}
+        producingStats={stats}
       />
     </>
   );
