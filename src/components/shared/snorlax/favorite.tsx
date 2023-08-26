@@ -65,6 +65,7 @@ export const SnorlaxFavoriteInput = <
             <div className="relative h-7 w-7">
               <NextImage
                 src="/images/generic/map.png" alt={t2('Map')} sizes={imageSmallIconSizes}
+                className="invert-on-light"
               />
             </div>
           </Flex>
