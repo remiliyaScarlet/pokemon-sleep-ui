@@ -1,11 +1,15 @@
 import {
+  GroupedSubSkillBonus,
   PokemonSubSkill,
+  PokemonSubSkillLevel,
   pokemonSubSkillLevel,
   SubSkillBonus,
+  SubSkillBonusCategory,
   SubSkillData,
+  SubSkillId,
   SubSkillMap,
 } from '@/types/game/pokemon/subskill';
-import {combineIterator, permuteIterator} from '@/utils/compute';
+import {combineIterator} from '@/utils/compute';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -32,20 +36,31 @@ export const getEffectiveSubSkills = ({level, pokemonSubSkill, subSkillMap}: Sub
     .filter(isNotNullish);
 };
 
-export const getSubSkillBonus = (opts: SubSkillCheckOpts): SubSkillBonus => {
+export const getSubSkillBonus = (opts: SubSkillCheckOpts): GroupedSubSkillBonus => {
   const effectiveSubSkills = getEffectiveSubSkills(opts);
 
-  const ret: SubSkillBonus = {};
+  const ret: GroupedSubSkillBonus = {};
 
   for (const {bonus} of effectiveSubSkills) {
     for (const [bonusKeyString, bonusValue] of Object.entries(bonus)) {
       const bonusKey = bonusKeyString as keyof SubSkillBonus;
 
-      ret[bonusKey] = (ret[bonusKey] ?? 0) + bonusValue;
+      ret[bonusKey] = [...(ret[bonusKey] ?? []), bonusValue];
     }
   }
 
   return ret;
+};
+
+export const getSubSkillBonusValue = (
+  bonus: GroupedSubSkillBonus | null | undefined,
+  key: SubSkillBonusCategory,
+): number[] => {
+  if (!bonus) {
+    return [];
+  }
+
+  return bonus[key] ?? [];
 };
 
 export const hasHelperSubSkill = (opts: SubSkillCheckOpts): boolean => (
@@ -69,10 +84,11 @@ export function* generatePossiblePokemonSubSkills({
   }
 
   for (const combination of combineIterator(subSkillData, validLevels.length)) {
-    for (const permutation of permuteIterator(combination)) {
-      yield Object.fromEntries(
-        permutation.map((data, idx) => [validLevels[idx], data]),
-      );
-    }
+    yield Object.fromEntries(
+      combination.map((data, idx) => [
+        validLevels[idx] satisfies PokemonSubSkillLevel,
+        data.id satisfies SubSkillId,
+      ]),
+    );
   }
 }

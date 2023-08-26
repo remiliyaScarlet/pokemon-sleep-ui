@@ -1,7 +1,7 @@
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
-import {getSubSkillBonus} from '@/utils/game/subSkill';
+import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
 export type GetProducingRateSingleParamsOpts = {
@@ -19,7 +19,8 @@ export const getProducingRateSingleParams = ({
 }: GetProducingRateSingleParamsOpts): ProducingRateSingleParams => {
   const subSkillBonus = getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap});
   return {
-    helperCount: subSkillBonus.helper ? 1 : 0,
+    // Only care if `helper` exists on `subSkillBonus`
+    helperCount: getSubSkillBonusValue(subSkillBonus, 'helper').length > 0 ? 1 : 0,
     subSkillBonus,
     natureId: nature,
   };

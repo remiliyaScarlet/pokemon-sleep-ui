@@ -1,7 +1,7 @@
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {SubSkillBonus} from '@/types/game/pokemon/subskill';
+import {GroupedSubSkillBonus} from '@/types/game/pokemon/subskill';
 import {Indexable} from '@/utils/type';
 
 
@@ -21,7 +21,7 @@ export type ProducingRateOfItem<TId extends Indexable = number> = ProducingRate 
 
 export type ProducingRateSingleParams = {
   helperCount: number | null,
-  subSkillBonus: SubSkillBonus | null,
+  subSkillBonus: GroupedSubSkillBonus | null,
   natureId: NatureId | null,
 };
 

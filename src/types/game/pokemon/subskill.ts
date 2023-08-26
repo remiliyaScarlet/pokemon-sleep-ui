@@ -19,6 +19,8 @@ export type SubSkillBonus = {
 
 export type SubSkillBonusCategory = keyof Required<SubSkillBonus>;
 
+export type GroupedSubSkillBonus = {[category in SubSkillBonusCategory]?: number[]};
+
 export type SubSkillData = {
   id: SubSkillId,
   rarity: SubSkillRarity | null,
