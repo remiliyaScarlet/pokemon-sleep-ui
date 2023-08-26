@@ -1,7 +1,8 @@
-import {Rating} from '@/ui/rating/main';
-import {generatePageMeta} from '@/utils/meta';
+import {redirect} from 'next-intl/server';
 
 
-export const generateMetadata = generatePageMeta({key: 'Rating.Title'});
+const redirectToNewPath = () => {
+  redirect('/rating');
+};
 
-export default Rating;
+export default redirectToNewPath;
