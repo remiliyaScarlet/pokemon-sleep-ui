@@ -30,3 +30,18 @@ export function* permuteIterator<T>(permutation: T[]): Generator<T[]> {
     }
   }
 }
+
+export function* combineIterator<T>(arr: T[], count: number): Generator<T[]> {
+  if (count === 1) {
+    for (const a of arr) {
+      yield [a];
+    }
+    return;
+  }
+
+  for (let i = 0; i <= arr.length - count; i++) {
+    for (const c of combineIterator(arr.slice(i + 1), count - 1)) {
+      yield [arr[i], ...c];
+    }
+  }
+}
