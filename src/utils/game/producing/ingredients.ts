@@ -1,10 +1,11 @@
 import groupBy from 'lodash/groupBy';
 
 import {IngredientMap} from '@/types/game/ingredient';
-import {IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {IngredientProduction, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -40,3 +41,15 @@ export const getIngredientProducingRates = ({
     dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
   }));
 };
+
+type GetEffectiveIngredientProductionsOpts = {
+  level: number,
+  ingredients: IngredientProductionAtLevels,
+};
+
+export const getEffectiveIngredientProductions = ({
+  level,
+  ingredients,
+}: GetEffectiveIngredientProductionsOpts) => (
+  getEffectiveIngredientLevels(level).map((level) => ingredients[level])
+);

@@ -15,6 +15,7 @@ import {PokeboxPickerInput} from '@/ui/team/pokebox/filter/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {generateNewPokeInBox} from '@/ui/team/pokebox/utils';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {isNotNullish} from '@/utils/type';
 
@@ -60,7 +61,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
           pokemon,
           level,
           extra: pokeInBox,
-          ingredients: Object.values(pokeInBox.ingredients),
+          ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
           ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
         };
       })
