@@ -22,6 +22,8 @@ export const RatingClient = (props: RatingServerDataProps) => {
   } = props;
   const [pickedPokemonId, setPickedPokemonId] = React.useState<PokemonId>();
   const [loading, setLoading] = React.useState(false);
+  const setupRef = React.useRef<HTMLDivElement>(null);
+  const resultRef = React.useRef<HTMLDivElement>(null);
 
   const {result, rate} = useRatingWorker({
     setLoading,
@@ -38,14 +40,40 @@ export const RatingClient = (props: RatingServerDataProps) => {
     pokedex: Object.values(pokedexMap).filter(isNotNullish),
     ...props,
   };
+  const pokemon = pickedPokemonId ? pokedexMap[pickedPokemonId] : undefined;
+
+  const scrollToSetup = () => setupRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
+  const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
 
   return (
     <Flex direction="col" className="gap-1.5">
-      <RatingFilter {...data} onPokemonPicked={setPickedPokemonId}/>
-      <AnimatedCollapse show={!!pickedPokemonId}>
-        <RatingSetup {...data} pokemonId={pickedPokemonId} onInitiate={(setup) => rate(setup)}/>
-      </AnimatedCollapse>
-      <RatingResultUI loading={loading} result={result}/>
+      <Flex direction="col" className="gap-1.5 md:flex-row">
+        <RatingFilter {...data} onPokemonPicked={(pokemonId) => {
+          if (pickedPokemonId) {
+            scrollToSetup();
+          } else {
+            setTimeout(scrollToSetup, 500);
+          }
+
+          setPickedPokemonId(pokemonId);
+        }}/>
+        <AnimatedCollapse show={!!pickedPokemonId}>
+          {
+            pokemon &&
+            <RatingSetup ref={setupRef} {...data} pokemon={pokemon} onInitiate={(setup) => {
+              const {points} = result;
+              if (points.min || points.current || points.max) {
+                scrollToResult();
+              } else {
+                setTimeout(scrollToResult, 500);
+              }
+
+              rate(setup);
+            }}/>
+          }
+        </AnimatedCollapse>
+      </Flex>
+      <RatingResultUI ref={resultRef} loading={loading} result={result} subSkillMap={subSkillMap}/>
     </Flex>
   );
 };

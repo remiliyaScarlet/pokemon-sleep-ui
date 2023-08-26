@@ -31,7 +31,7 @@ export const RatingPokemonPicker = ({
   const t = useTranslations('Game');
 
   return (
-    <Collapsible state={collapsibleState} classNameForHeight="h-80 md:h-60 lg:h-40" appear button={
+    <Collapsible state={collapsibleState} classNameForHeight="h-80" appear button={
       <Flex direction="row" center className="group gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
         <div className="h-6 w-6">

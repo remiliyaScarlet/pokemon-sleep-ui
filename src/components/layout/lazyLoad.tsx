@@ -9,17 +9,23 @@ import {Flex} from '@/components/layout/flex';
 type Props = {
   loading: boolean,
   className?: string,
+  loadingFullHeight?: boolean,
 };
 
-export const LazyLoad = ({loading, className, children}: React.PropsWithChildren<Props>) => {
+export const LazyLoad = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Props>>(({
+  loading,
+  className,
+  loadingFullHeight,
+  children,
+}, ref) => {
   return (
-    <Flex direction="row" wrap className={clsx('relative', className, loading && 'min-h-[8rem]')}>
+    <Flex ref={ref} direction="row" wrap className={clsx('relative', className, loading && 'min-h-[8rem]')}>
       {
         loading &&
         <Flex direction="col" className={clsx(
           'absolute left-0 top-0 z-20 h-full rounded-lg bg-slate-100/80 dark:bg-slate-800/80',
         )}>
-          <Flex direction="col" className="h-40">
+          <Flex direction="col" className={clsx(loadingFullHeight ? 'h-full' : 'h-40')}>
             <LoadingIcon/>
           </Flex>
         </Flex>
@@ -27,4 +33,5 @@ export const LazyLoad = ({loading, className, children}: React.PropsWithChildren
       {children}
     </Flex>
   );
-};
+});
+LazyLoad.displayName = 'LazyLoad';

@@ -1,6 +1,7 @@
 import {natureData} from '@/data/nature';
 import {getDailyEnergyOfRate} from '@/ui/analysis/page/calc/producingRate/utils';
-import {RatingResult} from '@/ui/rating/result/type';
+import {initialResult} from '@/ui/rating/calc/const';
+import {RatingCombination, RatingDataPoint, RatingResult} from '@/ui/rating/result/type';
 import {RatingWorkerOpts} from '@/ui/rating/type';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
@@ -23,23 +24,19 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
   } = data;
 
   if (!pokemon) {
-    return {
-      samples: 1,
-      rank: 1,
-      percentage: 1,
-      percentile: 50,
-    };
+    return initialResult;
   }
 
   const chain = ingredientChainMap[pokemon.ingredientChain];
   const berryData = berryDataMap[pokemon.berry.id];
+  const currentProductions = getEffectiveIngredientProductions({level, ingredients});
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
 
   const currentRate = getPokemonProducingRate({
     ...data,
     pokemon,
     berryData,
-    ingredients: getEffectiveIngredientProductions({level, ingredients}),
+    ingredients: currentProductions,
     ...getProducingRateSingleParams({
       level,
       subSkill,
@@ -49,17 +46,15 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
   });
   const currentDaily = getDailyEnergyOfRate(currentRate);
 
-  const productions = generatePossibleIngredientProductions({level, chain});
-  const subSkills = generatePossiblePokemonSubSkills({level, subSkillData});
   const natureIds = natureData.map(({id}) => id);
 
   let samples = 1;
   let rank = 1;
-  let min = NaN;
-  let max = NaN;
+  let min: RatingDataPoint | null = null;
+  let max: RatingDataPoint | null = null;
 
-  for (const production of productions) {
-    for (const subSkill of subSkills) {
+  for (const productions of generatePossibleIngredientProductions({level, chain})) {
+    for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
       for (const natureId of natureIds) {
         samples++;
 
@@ -67,7 +62,7 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
           ...data,
           pokemon,
           berryData,
-          ingredients: production,
+          ingredients: productions,
           ...getProducingRateSingleParams({
             level,
             subSkill,
@@ -79,8 +74,14 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
           rank++;
         }
 
-        min = isNaN(min) ? dailyOfPossibility : Math.min(min, dailyOfPossibility);
-        max = isNaN(max) ? dailyOfPossibility : Math.max(max, dailyOfPossibility);
+        const combination: RatingCombination = {productions, natureId, subSkill};
+
+        if (!min || dailyOfPossibility < min.value) {
+          min = {value: dailyOfPossibility, combination};
+        }
+        if (!max || dailyOfPossibility > max.value) {
+          max = {value: dailyOfPossibility, combination};
+        }
       }
     }
   }
@@ -88,8 +89,20 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
   return {
     samples,
     rank,
-    percentage: Math.abs((currentDaily - min) / (max - min) * 100),
+    percentage: min && max ? Math.abs((currentDaily - min.value) / (max.value - min.value) * 100) : NaN,
     percentile: Math.abs((samples + 1 - rank) / (samples + 1) * 100),
+    points: {
+      min,
+      current: {
+        value: currentDaily,
+        combination: {
+          productions: currentProductions,
+          subSkill,
+          natureId: nature,
+        },
+      },
+      max,
+    },
   };
 };
 

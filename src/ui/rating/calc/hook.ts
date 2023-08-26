@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {initialResult} from '@/ui/rating/calc/const';
 import {RatingResult} from '@/ui/rating/result/type';
 import {RatingSetupData} from '@/ui/rating/setup/type';
 import {RatingOpts, RatingWorkerOpts} from '@/ui/rating/type';
@@ -11,12 +12,7 @@ type UseRatingWorkerOpts = {
 };
 
 export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
-  const [result, setResult] = React.useState<RatingResult>({
-    samples: 0,
-    rank: 0,
-    percentage: 0,
-    percentile: 0,
-  });
+  const [result, setResult] = React.useState<RatingResult>(initialResult);
   const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
 
   worker.onmessage = (event: MessageEvent<RatingResult>) => {

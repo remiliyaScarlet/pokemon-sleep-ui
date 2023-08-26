@@ -36,7 +36,7 @@ export const RatingFilter = (props: Props) => {
 
   return (
     <Flex direction="col" className="gap-1">
-      <Collapsible state={filterCollapsible} classNameForHeight="h-72 md:h-52" button={
+      <Collapsible state={filterCollapsible} classNameForHeight="h-72" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
