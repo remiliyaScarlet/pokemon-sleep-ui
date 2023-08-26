@@ -11,14 +11,14 @@ type Props = LayoutProps & {
   wrap?: boolean,
 };
 
-export const Flex = ({
+export const Flex = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Props>>(({
   direction,
   wrap,
   children,
   ...props
-}: React.PropsWithChildren<Props>) => {
+}, ref) => {
   return (
-    <div className={clsx(
+    <div ref={ref} className={clsx(
       'flex',
       direction === 'row' ? 'flex-row' : 'flex-col',
       wrap && 'flex-wrap',
@@ -27,4 +27,5 @@ export const Flex = ({
       {children}
     </div>
   );
-};
+});
+Flex.displayName = 'Flex';
