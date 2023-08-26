@@ -1,5 +1,5 @@
 import {natureEffectIdMap} from '@/const/game/pokemon';
-import {natureData} from '@/data/nature';
+import {natureDataMap} from '@/data/nature';
 import {NatureEffectType, NatureId} from '@/types/game/pokemon/nature';
 
 
@@ -13,14 +13,13 @@ export const getNatureMultiplier = ({id, effect}: GetNatureMultiplierOpts): numb
     return 1;
   }
 
-  const natureDataToUse = natureData.find((data) => data.id === id);
+  const natureDataToUse = natureDataMap[id];
 
   if (!natureDataToUse) {
     return 1;
   }
 
   const isFrequencyEffect = effect === 'frequencyOfBase' || effect === 'frequencyOfIngredient';
-
   const isExpOrStaminaEffect = effect === 'energy' || effect === 'exp';
 
   if (natureDataToUse.buff === natureEffectIdMap[effect]) {

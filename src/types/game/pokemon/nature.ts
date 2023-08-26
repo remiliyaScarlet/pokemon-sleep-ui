@@ -25,3 +25,5 @@ export type NatureData = {
   buff: NatureEffectId | null,
   nerf: NatureEffectId | null,
 };
+
+export type NatureDataMap = {[id in NatureId]?: NatureData};

@@ -9,7 +9,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NatureEffectIcon} from '@/components/shared/pokemon/nature/effectIcon';
 import {PokemonNatureIndicatorCommonProps} from '@/components/shared/pokemon/nature/indicator/type';
-import {natureData} from '@/data/nature';
+import {natureDataMap} from '@/data/nature';
 
 
 export const PokemonNatureIndicatorText = ({nature, hideName}: PokemonNatureIndicatorCommonProps) => {
@@ -23,8 +23,7 @@ export const PokemonNatureIndicatorText = ({nature, hideName}: PokemonNatureIndi
     );
   }
 
-  const dataOfNature = natureData.find(({id}) => id === nature);
-
+  const dataOfNature = natureDataMap[nature];
   if (!dataOfNature) {
     return (
       <div className="h-5 w-5">
