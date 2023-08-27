@@ -6,11 +6,9 @@ import {CollapsibleCommonProps} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex';
 
 
-type Props = CollapsibleCommonProps & {
-  classNameForHeight: string,
-};
+type Props = CollapsibleCommonProps;
 
-export const Collapsible = ({state, button, appear, classNameForHeight, children}: React.PropsWithChildren<Props>) => {
+export const CollapsibleFull = ({state, button, appear, children}: React.PropsWithChildren<Props>) => {
   const {show, setShow} = state;
 
   React.useEffect(() => {
@@ -35,18 +33,23 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
         className="transition-spacing duration-300 ease-in-out"
       >
         <Transition.Child
-          enterFrom="h-0"
-          enterTo={classNameForHeight}
-          leaveFrom={classNameForHeight}
-          leaveTo="h-0"
-          className="overflow-x-hidden overflow-y-scroll transition-[height] duration-300 ease-in-out"
+          appear={appear}
+          enter="duration-1000"
+          enterFrom="grid-rows-[0fr]"
+          enterTo="grid-rows-[1fr]"
+          leave="duration-1000"
+          leaveFrom="grid-rows-[1fr]"
+          leaveTo="grid-rows-[0fr]"
+          className="grid w-full transition-[grid-template-rows] ease-in-out"
         >
           <Transition.Child
+            enter="delay-300 duration-1000"
             enterFrom="opacity-0"
             enterTo="opacity-100"
+            leave="duration-1000"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            className="transition-opacity duration-300 ease-in-out"
+            className="overflow-hidden transition-opacity ease-in-out"
           >
             {children}
           </Transition.Child>
