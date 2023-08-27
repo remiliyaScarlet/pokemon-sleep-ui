@@ -64,7 +64,7 @@ export const toAnalysisIngredientProducingRate = <T>({
     energy: getContinuousIngredientStats({
       ...props,
       getComparer: (rates) => (
-        toSum(rates.map(({dailyEnergy}) => dailyEnergy))
+        toSum(rates.filter(({id}) => id === itemId).map(({dailyEnergy}) => dailyEnergy))
       ),
     }),
   };

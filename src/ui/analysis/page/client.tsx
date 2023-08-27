@@ -13,7 +13,6 @@ import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {useCalculationWorker} from '@/ui/analysis/page/worker';
 import {getPokedexWithField} from '@/utils/game/pokemon';
-import {groupIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 
 
@@ -33,10 +32,8 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     currentPokemon: pokemon,
     ...props,
   });
-  const ingredients = React.useMemo(() => groupIngredientProductions(
-    getEffectiveIngredientLevels(filter.level)
-      .map((level) => filter.ingredients[level]),
-  ), [filter]);
+  const ingredients = React.useMemo(() => getEffectiveIngredientLevels(filter.level)
+    .map((level) => filter.ingredients[level]), [filter]);
 
   useCalculationWorker({
     ...props,

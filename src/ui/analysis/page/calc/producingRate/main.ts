@@ -36,6 +36,7 @@ export const getAnalysisStatsOfProducingRate = ({
     pokemon,
     ...defaultNeutralOpts,
   });
+  const currentIngredientRates = Object.values(currentRate.ingredient);
 
   const rateOfAllPokemon = pokedex.flatMap((pokemon) => [...generatePossibleIngredientProductions({
     level,
@@ -63,7 +64,9 @@ export const getAnalysisStatsOfProducingRate = ({
 
   const ingredientRates: {[ingredientId in IngredientId]: ProducingRateOfIngredientsOnPokemon[]} = {};
   for (const {pokemon, productions, rate} of rateOfAllPokemon) {
-    for (const rateOfIngredient of Object.values(rate.ingredient)) {
+    const ratesOfIngredients = Object.values(rate.ingredient);
+
+    for (const rateOfIngredient of ratesOfIngredients) {
       if (!(rateOfIngredient.id in ingredientRates)) {
         ingredientRates[rateOfIngredient.id] = [];
       }
@@ -72,12 +75,12 @@ export const getAnalysisStatsOfProducingRate = ({
         pokemon,
         productions,
         productionsGrouped: groupIngredientProductions(productions),
-        rates: Object.values(rate.ingredient),
+        rates: ratesOfIngredients,
       });
     }
   }
 
-  const currentDailyTotalOfIngredient = getDailyEnergyOfItemRates(Object.values(currentRate.ingredient));
+  const currentDailyTotalOfIngredient = getDailyEnergyOfItemRates(currentIngredientRates);
   const currentDailyTotal = currentRate.berry.dailyEnergy + currentDailyTotalOfIngredient;
 
   return {
@@ -88,11 +91,12 @@ export const getAnalysisStatsOfProducingRate = ({
       samples: berryRates,
     }),
     ingredient: {
-      individual: ingredients.map(({id}) => toAnalysisIngredientProducingRate({
+      // Using `currentIngredientRates` for getting the ingredient IDs so it won't be duplicated
+      individual: currentIngredientRates.map(({id}) => toAnalysisIngredientProducingRate({
         itemId: id,
         pokemon,
         samples: ingredientRates[id],
-        currentRate: Object.values(currentRate.ingredient),
+        currentRate: currentIngredientRates,
         currentIngredients: ingredients,
       })),
       overall: getAnalysisStatsOfContinuous({
