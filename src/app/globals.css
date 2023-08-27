@@ -88,19 +88,15 @@
     
     @keyframes bg-blink-animation {
       0% {
-        background-color: var(--bg-highlight);
-      }
-      
-      50% {
-        background-color: transparent;
+        background-color: var(--twc-theme-bg-blink);
       }
       
       100% {
-        background-color: var(--bg-highlight);
+        background-color: transparent;
       }
     }
 
-    animation: bg-blink-animation 3s ease-in-out infinite;
+    animation: bg-blink-animation 1.5s ease-in-out infinite alternate;
   }
 }
 
@@ -357,32 +353,36 @@
     @apply text-amber-700 dark:text-amber-400;
   }
   
-  .text-rare {
-    @apply text-amber-600 dark:text-amber-400;
-  }
+  /* endregion */
   
-  .text-super-rare {
-    @apply text-rose-600 dark:text-rose-400;
-  }
+  /* region Rarity styling (rarity-*) */
   
-  .text-ordinary {
+  .rarity-0 {
     @apply text-slate-400 dark:text-slate-500;
+  }
+  
+  .rarity-1 {
+    @apply text-sky-600 dark:text-sky-300;
+  }
+  
+  .rarity-2 {
+    @apply text-purple-700 dark:text-purple-300;
   }
   
   /* endregion */
 
-  /* region Blink styling (bg-blink-on-*) */
+  /* region Blink styling (bg-blink-*) */
   
   .bg-blink-light {
     @apply bg-blink-base;
     
-    --bg-highlight: theme('colors.slate.300');
+    --twc-theme-bg-blink: theme('colors.slate.300');
   }
   
   .bg-blink-dark {
     @apply bg-blink-base;
     
-    --bg-highlight: theme('colors.slate.700');
+    --twc-theme-bg-blink: theme('colors.slate.700');
   }
   
   .bg-blink {
