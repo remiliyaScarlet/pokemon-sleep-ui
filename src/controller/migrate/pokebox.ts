@@ -1,24 +1,17 @@
-import {AnyBulkWriteOperation, Collection} from 'mongodb';
+import {Collection, Filter} from 'mongodb';
 
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap} from '@/controller/pokemon';
-import mongoPromise from '@/lib/mongodb';
+import {PokedexMap} from '@/types/game/pokemon';
 import {
   IngredientChain,
+  IngredientChainMap,
   IngredientLevel,
   ingredientLevels,
   IngredientProduction,
 } from '@/types/game/pokemon/ingredient';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
 
-
-const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
-  const client = await mongoPromise;
-
-  return client
-    .db('user')
-    .collection<PokeInBoxData>('pokebox');
-};
 
 type RandomIngredient = {
   level: IngredientLevel,
@@ -60,15 +53,20 @@ const randomIngredientToProduction = (
   return possibilities[0];
 };
 
-const addRandomIngredientMigration = async () => {
-  const collection = await getCollection();
-  const [pokedex, ingredientChainMap] = await Promise.all([
-    getPokemonAsMap(),
-    getIngredientChainMap(),
-  ]);
+type MigrateRandomIngredientsOpts = {
+  collection: Collection<PokeInBoxData>,
+  pokedex: PokedexMap,
+  ingredientChainMap: IngredientChainMap,
+  filter: Filter<PokeInBoxData>,
+};
 
-  const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
-  for await (const pokeInBox of collection.find({ingredients: {$exists: false}})) {
+const migrateRandomIngredients = async ({
+  collection,
+  pokedex,
+  ingredientChainMap,
+  filter,
+}: MigrateRandomIngredientsOpts) => {
+  for await (const pokeInBox of collection.find(filter)) {
     // @ts-ignore
     const randomIngredients = pokeInBox['randomIngredient'] as (RandomIngredient[] | undefined);
     const pokemon = pokedex[pokeInBox.pokemon];
@@ -79,35 +77,58 @@ const addRandomIngredientMigration = async () => {
 
     const chain = ingredientChainMap[pokemon.ingredientChain];
 
-    bulkUpdate.push({
-      updateOne: {
-        filter: {_id: pokeInBox._id},
-        update: {
-          $set: {
-            ingredients: Object.fromEntries(ingredientLevels.map((level) => [
+    await collection.updateOne(
+      {_id: pokeInBox._id},
+      {
+        $set: {
+          ingredients: Object.fromEntries(ingredientLevels.map((level) => [
+            level,
+            randomIngredientToProduction(
+              chain,
               level,
-              randomIngredientToProduction(
-                chain,
-                level,
-                randomIngredients.find((random) => random.level === level),
-              ),
-            ])) as Record<IngredientLevel, IngredientProduction>,
-          },
+              randomIngredients.find((random) => random.level === level),
+            ),
+          ])) as Record<IngredientLevel, IngredientProduction>,
         },
       },
-    });
-  }
-
-  if (bulkUpdate.length) {
-    await collection.bulkWrite(bulkUpdate, {ordered: false});
+    );
   }
 };
 
-const addMigrations = () => {
+const runRandomIngredientMigration = async (collection: Collection<PokeInBoxData>) => {
+  const [pokedex, ingredientChainMap] = await Promise.all([
+    getPokemonAsMap(),
+    getIngredientChainMap(),
+  ]);
+
+  const filter: Filter<PokeInBoxData> = {ingredients: {$exists: false}};
+
+  await migrateRandomIngredients({
+    collection,
+    pokedex,
+    ingredientChainMap,
+    filter,
+  });
+
+  const changeStream = collection.watch([{$match: filter}]);
+  for await (const change of changeStream) {
+    if (change.operationType === 'create' || change.operationType === 'modify') {
+      await migrateRandomIngredients({
+        collection,
+        pokedex,
+        ingredientChainMap,
+        filter,
+      });
+    }
+  }
+
+  await changeStream.close();
+};
+
+export const runPokeBoxMigrations = async (getCollection: () => Promise<Collection<PokeInBoxData>>) => {
+  const collection = await getCollection();
+
   return Promise.all([
-    addRandomIngredientMigration(),
+    runRandomIngredientMigration(collection),
   ]);
 };
-
-addMigrations()
-  .catch((e) => console.error('MongoDB failed to do random ingredient migrations', e));

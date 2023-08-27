@@ -1,5 +1,6 @@
 import {Collection} from 'mongodb';
 
+import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
@@ -54,3 +55,6 @@ const addPokeboxIndex = async () => {
 
 addPokeboxIndex()
   .catch((e) => console.error('MongoDB failed to add Pokebox index', e));
+
+runPokeBoxMigrations(getCollection)
+  .catch((e) => console.error('MongoDB failed to do run Pokebox migrations', e));
