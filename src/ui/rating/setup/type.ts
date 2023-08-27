@@ -9,7 +9,6 @@ export type RatingSetupBonus = {
 };
 
 export type RatingSetupData = {
-  level: number,
   snorlaxFavorite: SnorlaxFavorite,
   ingredients: IngredientProductionAtLevels,
   subSkill: PokemonSubSkill,

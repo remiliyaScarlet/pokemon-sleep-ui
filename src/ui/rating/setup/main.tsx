@@ -8,7 +8,6 @@ import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
@@ -35,7 +34,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   ingredientChainMap,
   subSkillMap,
   mapMeta,
-  pokemonMaxLevel,
   preloadSetupBonus,
 }, ref) => {
   const {ingredientChain} = pokemon;
@@ -43,7 +41,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
 
   const [setup, setSetup] = React.useState<RatingSetupData>(generateRatingSetup({
     chain,
-    pokemonMaxLevel,
     preloadSetupBonus,
   }));
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -59,7 +56,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   }, [pokemon.id]);
 
   const {
-    level,
     ingredients,
     subSkill,
     nature,
@@ -79,10 +75,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
       <div className="relative h-48 w-48">
         <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
       </div>
-      <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={(level) => setSetup({
-        ...setup,
-        level,
-      })}/>
       <SnorlaxFavoriteInput
         mapMeta={mapMeta}
         pokemon={pokedex}

@@ -4,37 +4,20 @@ import React from 'react';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {PokemonId} from '@/types/game/pokemon';
-import {useRatingWorker} from '@/ui/rating/calc/hook';
 import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingResultUI} from '@/ui/rating/result/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
-import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
+import {RatingDataProps, RatingRequest, RatingServerDataProps} from '@/ui/rating/type';
 import {isNotNullish} from '@/utils/type';
 
 
 export const RatingClient = (props: RatingServerDataProps) => {
-  const {
-    pokedexMap,
-    berryDataMap,
-    subSkillMap,
-    ingredientChainMap,
-    ingredientMap,
-  } = props;
+  const {pokedexMap} = props;
   const [pickedPokemonId, setPickedPokemonId] = React.useState<PokemonId>();
-  const [loading, setLoading] = React.useState(false);
+  const [request, setRequest] = React.useState<RatingRequest>();
+
   const setupRef = React.useRef<HTMLDivElement>(null);
   const resultRef = React.useRef<HTMLDivElement>(null);
-
-  const {result, rate} = useRatingWorker({
-    setLoading,
-    opts: {
-      pokemon: pickedPokemonId ? pokedexMap[pickedPokemonId] : undefined,
-      berryDataMap,
-      subSkillMap,
-      ingredientChainMap,
-      ingredientMap,
-    },
-  });
 
   const data: RatingDataProps = {
     pokedex: Object.values(pokedexMap).filter(isNotNullish),
@@ -43,7 +26,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const pokemon = pickedPokemonId ? pokedexMap[pickedPokemonId] : undefined;
 
   const scrollToSetup = () => setupRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
-  const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
+  const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
 
   return (
     <Flex direction="col" className="gap-1.5">
@@ -57,23 +40,22 @@ export const RatingClient = (props: RatingServerDataProps) => {
 
           setPickedPokemonId(pokemonId);
         }}/>
-        <AnimatedCollapse show={!!pickedPokemonId}>
+        <AnimatedCollapse show={!!pokemon}>
           {
             pokemon &&
             <RatingSetup ref={setupRef} {...data} pokemon={pokemon} onInitiate={(setup) => {
-              const {points} = result;
-              if (points.min || points.current || points.max) {
-                scrollToResult();
-              } else {
-                setTimeout(scrollToResult, 500);
-              }
-
-              rate(setup);
+              scrollToResult();
+              setRequest({
+                setup,
+                timestamp: Date.now(),
+              });
             }}/>
           }
         </AnimatedCollapse>
       </Flex>
-      <RatingResultUI ref={resultRef} loading={loading} result={result} subSkillMap={subSkillMap}/>
+      <AnimatedCollapse show={!!pokemon}>
+        {pokemon && <RatingResultUI ref={resultRef} request={request} pokemon={pokemon} {...data}/>}
+      </AnimatedCollapse>
     </Flex>
   );
 };

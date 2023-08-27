@@ -1,6 +1,8 @@
-import {IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {ingredientLevels, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
+import {RatingDataProps, RatingRequest} from '@/ui/rating/type';
 
 
 export type RatingCombination = {
@@ -14,7 +16,15 @@ export type RatingDataPoint = {
   combination: RatingCombination,
 };
 
-export type RatingResult = {
+export const ratingKeyLevels = [
+  ...pokemonSubSkillLevel,
+  ...ingredientLevels,
+] as const;
+
+export type RatingKeyLevel = typeof ratingKeyLevels[number];
+
+export type RatingResultOfLevel = {
+  level: RatingKeyLevel,
   samples: number,
   rank: number,
   percentage: number,
@@ -24,4 +34,9 @@ export type RatingResult = {
     current: RatingDataPoint | null,
     max: RatingDataPoint | null,
   },
+};
+
+export type RatingResultUiProps = RatingDataProps & {
+  pokemon: PokemonInfo,
+  request: RatingRequest | undefined,
 };

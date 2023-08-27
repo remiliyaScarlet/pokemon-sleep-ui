@@ -1,7 +1,7 @@
-import {RatingResult} from '@/ui/rating/result/type';
+import {RatingResultOfLevel} from '@/ui/rating/result/type';
 
 
-export const initialResult: RatingResult = {
+export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
   samples: NaN,
   rank: NaN,
   percentage: NaN,
