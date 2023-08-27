@@ -80,7 +80,8 @@ export function* generatePossiblePokemonSubSkills({
     .filter((subSkillLevel) => level >= subSkillLevel);
 
   if (!validLevels.length) {
-    return {};
+    yield {};
+    return;
   }
 
   for (const combination of combineIterator(subSkillData, validLevels.length)) {

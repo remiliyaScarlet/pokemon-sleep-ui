@@ -48,8 +48,8 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
 
   const natureIds = natureData.map(({id}) => id);
 
-  let samples = 1;
-  let rank = 1;
+  let samples = 0;
+  let rank = 0;
   let min: RatingDataPoint | null = null;
   let max: RatingDataPoint | null = null;
 
