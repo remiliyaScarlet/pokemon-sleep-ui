@@ -15,7 +15,7 @@ type GetUserLazyDataOpts = {
   dataType: UserLazyLoadedDataType,
 };
 
-const loadData = async ({dataType, userId} : GetUserLazyDataOpts) => {
+const loadData = async ({dataType, userId}: GetUserLazyDataOpts) => {
   if (dataType === 'teamAnalysisSetup') {
     return (await userDataTeamAnalysisSetup.getData(userId))?.data;
   }
