@@ -14,9 +14,11 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/ui/rating/setup/type';
+import {generateRatingSetup} from '@/ui/rating/setup/utils';
 import {RatingDataProps} from '@/ui/rating/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
@@ -34,17 +36,16 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   subSkillMap,
   mapMeta,
   pokemonMaxLevel,
+  preloadSetupBonus,
 }, ref) => {
   const {ingredientChain} = pokemon;
   const chain = ingredientChainMap[ingredientChain];
 
-  const [setup, setSetup] = React.useState<RatingSetupData>({
-    level: 1,
-    snorlaxFavorite: {},
-    ingredients: generateIngredientProductionAtLevels(chain),
-    subSkill: {},
-    nature: null,
-  });
+  const [setup, setSetup] = React.useState<RatingSetupData>(generateRatingSetup({
+    chain,
+    pokemonMaxLevel,
+    preloadSetupBonus,
+  }));
   const {state, setState, showPokemon} = usePokemonLinkPopup();
   const t = useTranslations('UI.Metadata.Pokedex');
   const t2 = useTranslations('Game.PokemonName');
@@ -57,7 +58,13 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
     }));
   }, [pokemon.id]);
 
-  const {level, ingredients, subSkill, nature} = setup;
+  const {
+    level,
+    ingredients,
+    subSkill,
+    nature,
+    bonus,
+  } = setup;
 
   return (
     <Flex ref={ref} direction="col" center className="relative gap-1.5">
@@ -109,6 +116,16 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           nature,
         })}/>
       </Flex>
+      <IngredientBonusSlider
+        value={bonus.ingredient}
+        setValue={(ingredient) => setSetup((setup) => ({
+          ...setup,
+          bonus: {
+            ...setup.bonus,
+            ingredient,
+          },
+        }))}
+      />
       <Flex direction="row" center>
         <button onClick={() => onInitiate(setup)} className={clsx(
           'button-base button-bg-hover w-2/3 p-1',

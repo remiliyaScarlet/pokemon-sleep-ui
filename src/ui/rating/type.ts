@@ -6,7 +6,7 @@ import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
-import {RatingSetupData} from '@/ui/rating/setup/type';
+import {RatingSetupBonus, RatingSetupData} from '@/ui/rating/setup/type';
 
 
 export type RatingServerDataProps = UsePokemonFilterCommonData & {
@@ -17,6 +17,7 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
   subSkillMap: SubSkillMap,
   mapMeta: FieldMetaMap,
   pokemonMaxLevel: number,
+  preloadSetupBonus: RatingSetupBonus | undefined,
 };
 
 export type RatingDataProps = RatingServerDataProps & {

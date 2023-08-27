@@ -21,6 +21,7 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
     ingredientChainMap,
     berryDataMap,
     subSkillMap,
+    bonus,
   } = data;
 
   if (!pokemon) {
@@ -37,6 +38,7 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
     pokemon,
     berryData,
     ingredients: currentProductions,
+    ingredientBonus: bonus.ingredient,
     ...getProducingRateSingleParams({
       level,
       subSkill,
@@ -63,6 +65,7 @@ const calculateRatingResult = (data: RatingWorkerOpts): RatingResult => {
           pokemon,
           berryData,
           ingredients: productions,
+          ingredientBonus: bonus.ingredient,
           ...getProducingRateSingleParams({
             level,
             subSkill,
