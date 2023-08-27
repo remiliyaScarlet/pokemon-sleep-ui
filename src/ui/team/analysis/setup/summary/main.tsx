@@ -6,10 +6,10 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
+import {OverallBonusSlider} from '@/components/shared/production/bonus/overall';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
-import {TeamAnalysisIngredientBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/ingredient';
-import {TeamAnalysisOverallBonusSlider} from '@/ui/team/analysis/setup/summary/bonus/overall';
 import {TeamAnalysisFinalEstimate} from '@/ui/team/analysis/setup/summary/finalEstimate';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisBonus, TeamAnalysisDataProps} from '@/ui/team/analysis/type';
@@ -30,13 +30,13 @@ export const TeamAnalysisSummary = ({snorlaxRankData, bonus, setBonus, stats, pe
   return (
     <Flex direction="col" className="button-bg items-center justify-end gap-4 rounded-lg p-2 md:flex-row">
       <Flex direction="col">
-        <TeamAnalysisIngredientBonusSlider
-          bonus={bonus.ingredient}
-          setBonus={(ingredient) => setBonus({...bonus, ingredient})}
+        <IngredientBonusSlider
+          value={bonus.ingredient}
+          setValue={(ingredient) => setBonus({...bonus, ingredient})}
         />
-        <TeamAnalysisOverallBonusSlider
-          bonus={bonus.overall}
-          setBonus={(overall) => setBonus({...bonus, overall})}
+        <OverallBonusSlider
+          value={bonus.overall}
+          setValue={(overall) => setBonus({...bonus, overall})}
         />
       </Flex>
       <Flex direction="col" className="gap-1.5">
