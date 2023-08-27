@@ -25,7 +25,7 @@ export const usePokeboxViewerFilter = ({
   pokemonNameMap,
   ...filterData
 }: UsePokeboxViewerFilterOpts) => {
-  return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, PokemonId>({
+  return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, string>({
     data: Object.values(pokebox)
       .filter(isNotNullish)
       .map((inBox) => {
@@ -46,7 +46,7 @@ export const usePokeboxViewerFilter = ({
         } satisfies PokeboxPokemonForView;
       })
       .filter(isNotNullish),
-    dataToId: ({info}) => info.id,
+    dataToId: ({inBox}) => inBox.uuid,
     initialFilter: {
       ...generatePokemonInputFilter(),
       name: '',
@@ -58,11 +58,6 @@ export const usePokeboxViewerFilter = ({
       } satisfies PokeboxViewerDisplay, session?.user.preloaded?.pokeboxDisplay),
     },
     isDataIncluded: (filter, data) => {
-      const filterName = filter.name.toUpperCase();
-      if (filter.name !== '' && !data.names.some((name) => name.toUpperCase().includes(filterName))) {
-        return false;
-      }
-
       if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {
         return false;
       }
