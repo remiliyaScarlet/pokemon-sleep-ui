@@ -9,7 +9,7 @@ type GenerateRatingSetupOpts = {
 
 export const generateRatingSetup = ({chain}: GenerateRatingSetupOpts): RatingSetupData => {
   return {
-    level: 1,
+    level: pokemonMaxLevel,
     snorlaxFavorite: {},
     ingredients: generateIngredientProductionAtLevels(chain),
     subSkill: {},
