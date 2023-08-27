@@ -22,7 +22,9 @@ export const PokeboxContentPokeInBoxGrid = ({
         {sortedPokemonInfo.map(({source}) => {
           const uuid = source.extra.uuid;
 
-          if (!isIncluded[uuid]) {
+          // Explicitly checking `false` because the data might not get into the filter data array for check,
+          // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
+          if (isIncluded[uuid] === false) {
             return <React.Fragment key={uuid}/>;
           }
 
