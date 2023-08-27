@@ -13,7 +13,7 @@ export const PokeboxContentPokeInBoxTable = ({
   ...props
 }: PokeInBoxViewCommonProps) => {
   return (
-    <Flex direction="col" className="max-h-[70vh] gap-1 overflow-auto">
+    <Flex direction="col" className="max-h-[70vh] min-h-[40vh] gap-1 overflow-auto">
       {sortedPokemonInfo.map(({source}) => {
         const uuid = source.extra.uuid;
 
