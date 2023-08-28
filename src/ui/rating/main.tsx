@@ -2,6 +2,7 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
+import {AdsUnit} from '@/components/ads/main';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
@@ -58,9 +59,11 @@ export const Rating = async () => {
 
   return (
     <PublicPageLayout>
+      <AdsUnit/>
       <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
         <RatingClient {...props}/>
       </I18nProvider>
+      <AdsUnit/>
     </PublicPageLayout>
   );
 };

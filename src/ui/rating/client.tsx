@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {PokemonId} from '@/types/game/pokemon';
@@ -41,6 +42,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
           setPickedPokemonId(pokemonId);
         }}/>
         <AnimatedCollapse show={!!pokemon}>
+        <AdsUnit className="block md:hidden"/>
           {
             pokemon &&
             <RatingSetup
@@ -60,6 +62,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
       </Flex>
       <AnimatedCollapse show={!!pokemon}>
         {pokemon && <RatingResultUI ref={resultRef} request={request} pokemon={pokemon} {...data}/>}
+      <AdsUnit/>
       </AnimatedCollapse>
     </Flex>
   );
