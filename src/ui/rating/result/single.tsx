@@ -12,12 +12,13 @@ import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {ProgressBar} from '@/components/progressBar';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {useRatingWorker} from '@/hooks/rating/main';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
-import {useRatingWorker} from '@/ui/rating/calc/hook';
+import {RatingKeyLevel} from '@/types/game/pokemon/rating';
 import {ratingMarkThreshold} from '@/ui/rating/result/const';
 import {RatingDataPointUI} from '@/ui/rating/result/point';
-import {RatingKeyLevel, RatingResultUiProps} from '@/ui/rating/result/type';
+import {RatingResultUiProps} from '@/ui/rating/result/type';
 import {formatFloat, formatInt} from '@/utils/number';
 
 

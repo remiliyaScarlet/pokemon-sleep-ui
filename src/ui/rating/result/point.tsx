@@ -8,8 +8,8 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
+import {RatingDataPoint} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
-import {RatingDataPoint} from '@/ui/rating/result/type';
 import {formatFloat} from '@/utils/number';
 
 

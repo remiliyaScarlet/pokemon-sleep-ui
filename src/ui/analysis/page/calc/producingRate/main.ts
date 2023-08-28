@@ -4,8 +4,6 @@ import {toAnalysisBerryProducingRate} from '@/ui/analysis/page/calc/producingRat
 import {toAnalysisIngredientProducingRate} from '@/ui/analysis/page/calc/producingRate/ingredient';
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
 import {
-  getDailyEnergyOfItemRates,
-  getDailyEnergyOfRate,
   isRateOfPokemonSame,
 } from '@/ui/analysis/page/calc/producingRate/utils';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
@@ -15,6 +13,7 @@ import {
   groupIngredientProductions,
 } from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 
 
 export const getAnalysisStatsOfProducingRate = ({

@@ -15,8 +15,8 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
+import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {RatingSetupExportButton} from '@/ui/rating/setup/export';
-import {RatingSetupData} from '@/ui/rating/setup/type';
 import {RatingDataProps} from '@/ui/rating/type';
 
 

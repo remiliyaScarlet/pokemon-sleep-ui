@@ -1,4 +1,4 @@
-import {RatingResultOfLevel} from '@/ui/rating/result/type';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
 
 
 export const initialResult: Omit<RatingResultOfLevel, 'level'> = {

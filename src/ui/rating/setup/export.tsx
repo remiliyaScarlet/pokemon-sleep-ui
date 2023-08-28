@@ -11,7 +11,7 @@ import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {RatingSetupData} from '@/ui/rating/setup/type';
+import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {toPokeInBox} from '@/ui/rating/setup/utils';
 
 

@@ -1,5 +1,5 @@
-import {calculateRatingResultOfLevel} from '@/ui/rating/calc/single';
-import {RatingWorkerOpts} from '@/ui/rating/type';
+import {calculateRatingResultOfLevel} from '@/hooks/rating/calc';
+import {RatingWorkerOpts} from '@/hooks/rating/type';
 
 
 const onMessage = (event: MessageEvent<RatingWorkerOpts>) => {

@@ -1,4 +1,10 @@
-import {ProducingRate, ProducingRateProportion} from '@/types/game/producing/rate';
+import {
+  PokemonProducingRate,
+  ProducingRate,
+  ProducingRateOfItem,
+  ProducingRateProportion,
+} from '@/types/game/producing/rate';
+import {toSum} from '@/utils/array';
 
 
 type GetProducingRateOpts = ProducingRateProportion & {
@@ -21,3 +27,11 @@ export const getProducingRateBase = ({
     quantity: quantity * proportion,
   };
 };
+
+export const getDailyEnergyOfItemRates = (rates: ProducingRateOfItem[]) => (
+  toSum(rates.map(({dailyEnergy}) => dailyEnergy))
+);
+
+export const getDailyEnergyOfRate = ({berry, ingredient}: PokemonProducingRate) => (
+  berry.dailyEnergy + getDailyEnergyOfItemRates(Object.values(ingredient))
+);

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {initialResult} from '@/ui/rating/calc/const';
-import {RatingResultOfLevel} from '@/ui/rating/result/type';
-import {RatingSetupData} from '@/ui/rating/setup/type';
-import {RatingOpts, RatingWorkerOpts} from '@/ui/rating/type';
+import {initialResult} from '@/hooks/rating/const';
+import {RatingOpts, RatingWorkerOpts} from '@/hooks/rating/type';
+import {RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
 
 
 type UseRatingWorkerOpts = {
@@ -17,7 +16,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     level,
     ...initialResult,
   });
-  const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('worker', import.meta.url)), []);
 
   worker.onmessage = (event: MessageEvent<RatingResultOfLevel>) => {
     setLoading(false);

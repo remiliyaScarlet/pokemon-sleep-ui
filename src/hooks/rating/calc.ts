@@ -1,11 +1,11 @@
 import {natureData} from '@/data/nature';
-import {getDailyEnergyOfRate} from '@/ui/analysis/page/calc/producingRate/utils';
-import {RatingCombination, RatingDataPoint, RatingKeyLevel, RatingResultOfLevel} from '@/ui/rating/result/type';
-import {RatingWorkerOpts} from '@/ui/rating/type';
+import {RatingWorkerOpts} from '@/hooks/rating/type';
+import {RatingCombination, RatingDataPoint, RatingKeyLevel, RatingResultOfLevel} from '@/types/game/pokemon/rating';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 

@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
+import {ratingKeyLevels} from '@/types/game/pokemon/rating';
 import {RatingResultOfLevelUI} from '@/ui/rating/result/single';
-import {ratingKeyLevels, RatingResultUiProps} from '@/ui/rating/result/type';
+import {RatingResultUiProps} from '@/ui/rating/result/type';
 
 
 export const RatingResultUI = React.forwardRef<HTMLDivElement, RatingResultUiProps>(({

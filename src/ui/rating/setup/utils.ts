@@ -4,8 +4,8 @@ import {v4} from 'uuid';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
+import {RatingSetupBonus, RatingSetupData} from '@/types/game/pokemon/rating';
 import {RatingFilterOnSelectOpts} from '@/ui/rating/filter/type';
-import {RatingSetupBonus, RatingSetupData} from '@/ui/rating/setup/type';
 import {RatingDataProps} from '@/ui/rating/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
