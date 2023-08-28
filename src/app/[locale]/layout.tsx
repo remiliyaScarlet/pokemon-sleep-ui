@@ -5,14 +5,19 @@ import React from 'react';
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
-import {useLocale} from 'next-intl';
 
+import {locales} from '@/const/website';
 import {LocaleLayoutProps} from '@/types/next/layout';
 import {Providers} from '@/ui/base/providers';
 import {isProduction} from '@/utils/environment';
+import {isLocale} from '@/utils/i18n';
 
 import '../globals.css';
 
+
+export const generateStaticParams = async () => {
+  return locales.map((locale) => ({locale}));
+};
 
 const font = Noto_Sans({
   weight: '400',
@@ -20,10 +25,10 @@ const font = Noto_Sans({
 });
 
 const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProps>) => {
-  const locale = useLocale();
+  const {locale} = params;
 
   // Show a 404 error if the user requests an unknown locale
-  if (params.locale !== locale) {
+  if (!isLocale(locale)) {
     notFound();
   }
 

@@ -3410,10 +3410,10 @@ next-auth@^4.23.1:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-next-intl@^3.0.0-beta.12:
-  version "3.0.0-beta.12"
-  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-3.0.0-beta.12.tgz#8fd101170631af203771912f4935f3644d82f6ae"
-  integrity sha512-M5kUwgY/qCij84Lq+A5zEdOh9dfFWgiC2gy0bdFWq1wOkimkGYx1CObrAlhB1kMXd1gikuuhL9mnMBHd7mdPuQ==
+next-intl@^3.0.0-beta.13:
+  version "3.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/next-intl/-/next-intl-3.0.0-beta.13.tgz#800e4a87daec65b3283b57502fe4d87882f8bd64"
+  integrity sha512-r0puHruQjcrQks8RHixFdA3KjM0HKHdSBwqIxqZ55nsOXCOYf3hlHDdTCk3Qs1sXrn2mstZUSrz8Y8oY3nVIaA==
   dependencies:
     "@formatjs/intl-localematcher" "^0.2.32"
     negotiator "^0.6.3"

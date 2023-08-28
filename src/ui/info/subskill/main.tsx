@@ -2,11 +2,13 @@ import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
 import {getAllSubSkillData} from '@/controller/subSkill';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SubSkillInfoSingle} from '@/ui/info/subskill/single';
 
 
-export const SubSkillInfo = () => {
+export const SubSkillInfo = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const subSkills = React.use(getAllSubSkillData());
 
   const sortedSubSkills = subSkills.sort((a, b) => {
@@ -27,7 +29,7 @@ export const SubSkillInfo = () => {
   });
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedSubSkills.map((subSkill) => (
           <SubSkillInfoSingle key={subSkill.id} data={subSkill}/>

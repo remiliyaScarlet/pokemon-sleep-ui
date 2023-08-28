@@ -2,19 +2,21 @@ import React from 'react';
 
 import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
 import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
-import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {DefaultPageProps} from '@/types/next/page';
 import {AboutSection} from '@/ui/about/section';
 import {PublicPageLayout} from '@/ui/base/layout/public';
+import {getI18nTranslator} from '@/utils/i18n';
 
 
-export const About = () => {
-  const t = useTranslations('UI.Metadata');
+export const About = async ({params}: DefaultPageProps) => {
+  const {locale} = params;
+  const t = await getI18nTranslator({locale, namespace: 'UI.Metadata'});
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center className="info-section !gap-8">
         <Flex direction="col" className="gap-2">
           <div className="text-2xl">

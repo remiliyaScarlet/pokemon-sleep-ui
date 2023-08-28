@@ -1,17 +1,17 @@
 import React from 'react';
 
-import {getTranslator} from 'next-intl/server';
-
 import {Flex} from '@/components/layout/flex';
-import {PageParams, PageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page';
 import {AuthLayout} from '@/ui/auth/common/layout';
+import {getI18nTranslator} from '@/utils/i18n';
 
 
-export const AuthVerifyRequest = async ({params}: PageProps<PageParams>) => {
-  const t = await getTranslator(params.locale, 'UI.Auth');
+export const AuthVerifyRequest = async ({params}: DefaultPageProps) => {
+  const {locale} = params;
+  const t = await getI18nTranslator({locale, namespace: 'UI.Auth'});
 
   return (
-    <AuthLayout>
+    <AuthLayout locale={locale}>
       <Flex direction="col" center className="info-section">
         {t('EmailSent')}
       </Flex>

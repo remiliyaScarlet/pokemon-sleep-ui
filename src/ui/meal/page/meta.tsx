@@ -14,9 +14,10 @@ import {MealCommonProps} from '@/ui/meal/page/type';
 
 
 export const MealMeta = (props: MealCommonProps) => {
-  const t = useTranslations('Game.Food');
-  const {meal} = props;
+  const {meal, locale} = props;
   const {id, type} = meal;
+
+  const t = useTranslations('Game.Food');
 
   const mealName = t(id.toString());
 
@@ -31,7 +32,7 @@ export const MealMeta = (props: MealCommonProps) => {
         </div>
       </Flex>
       <Flex direction="col" className="gap-2 lg:w-2/3">
-        <I18nProvider namespaces={['UI.InPage.Cooking']}>
+        <I18nProvider locale={locale} namespaces={['UI.InPage.Cooking']}>
           <MealExp {...props}/>
         </I18nProvider>
         <Flex direction="row" center className="gap-1.5">

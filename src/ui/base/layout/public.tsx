@@ -4,9 +4,9 @@ import {PageLayout} from '@/ui/base/layout/common';
 import {UiPageProps} from '@/ui/base/layout/type';
 
 
-export const PublicPageLayout = ({announcement, children}: React.PropsWithChildren<UiPageProps>) => {
+export const PublicPageLayout = ({children, ...props}: React.PropsWithChildren<UiPageProps>) => {
   return (
-    <PageLayout announcement={announcement}>
+    <PageLayout {...props}>
       {children}
     </PageLayout>
   );

@@ -24,7 +24,8 @@ type Props = {
 };
 
 export const Pokemon = ({params}: Props) => {
-  const idNumber = Number(params.id);
+  const {id, locale} = params;
+  const idNumber = Number(id);
   const pokemon = React.use(getSinglePokemonInfo(idNumber));
   const ingredientChainMap = React.use(getIngredientChainMap());
   const pokedex = React.use(getPokemonAsMap(pokemon ? getRelatedPokemonIds(pokemon) : []));
@@ -43,10 +44,16 @@ export const Pokemon = ({params}: Props) => {
   const props: PokemonProps = {pokemon, ingredientChainMap, sleepStyles, berryData, ingredientMap};
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center className="gap-2">
         <AdsUnit/>
-        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Evolution', 'UI.InPage.Pokedex', 'UI.Metadata']}>
+        <I18nProvider locale={locale} namespaces={[
+          'Game',
+          'UI.Common',
+          'UI.Evolution',
+          'UI.InPage.Pokedex',
+          'UI.Metadata',
+        ]}>
           <PokemonMeta {...props}/>
           <AdsUnit/>
           <PokemonProduction {...props}/>

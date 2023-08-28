@@ -14,7 +14,11 @@ import {NavBar} from '@/ui/base/navbar/main';
 import {isProduction} from '@/utils/environment';
 
 
-export const PageLayout = ({announcement = true, noUserControl, children}: React.PropsWithChildren<UiPageProps>) => {
+export const PageLayout = ({
+  announcement = true,
+  children,
+  ...props
+}: React.PropsWithChildren<UiPageProps>) => {
   const session = React.use(getServerSession(authOptions));
 
   return (
@@ -29,7 +33,7 @@ export const PageLayout = ({announcement = true, noUserControl, children}: React
           crossOrigin="anonymous"
         />}
         <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
-        <NavBar noUserControl={noUserControl}/>
+        <NavBar {...props}/>
         <Flex direction="col" className="gap-1.5 p-2">
           {announcement && <Announcements/>}
           {children}

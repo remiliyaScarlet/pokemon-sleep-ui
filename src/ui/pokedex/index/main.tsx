@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {getServerSession} from 'next-auth';
-import {getTranslator} from 'next-intl/server';
 
 import {authOptions} from '@/const/auth';
 import {locales} from '@/const/website';
@@ -12,14 +11,20 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';
 import {PokedexClientCommonProps, PokedexData, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
+import {getI18nTranslator, isLocale} from '@/utils/i18n';
 
 
 const getPokedexData = async (): Promise<PokedexData> => {
   const sleepStyleMap = await getPokemonSleepStyleMap();
-  const translators = await Promise.all(locales.map((locale) => getTranslator(locale, 'Game.PokemonName')));
+  const translators = await Promise.all(
+    locales
+      .filter(isLocale)
+      .map((locale) => getI18nTranslator({locale, namespace: 'Game.PokemonName'})),
+  );
 
   return (await getAllPokemonAsArray())
     .map((pokemon) => ({
@@ -29,7 +34,8 @@ const getPokedexData = async (): Promise<PokedexData> => {
     } satisfies PokemonInfoForPokedex));
 };
 
-export const Pokedex = () => {
+export const Pokedex = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const pokedex = React.use(getPokedexData());
   const maxLevel = React.use(getPokemonMaxLevelByBerry());
   const ingredientMap = React.use(getAllIngredients());
@@ -49,8 +55,8 @@ export const Pokedex = () => {
   };
 
   return (
-    <PublicPageLayout>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
+    <PublicPageLayout locale={locale}>
+      <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <PokedexClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>

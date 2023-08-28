@@ -8,14 +8,16 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {FeatureLink} from '@/components/shared/link/feature';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
-export const TeamIndex = () => {
+export const TeamIndex = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const t = useTranslations('UI.Metadata.Team');
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center>
         <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">

@@ -13,12 +13,14 @@ import {getPokemonAsMap} from '@/controller/pokemon';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {userDataTeamAnalysisSetup} from '@/controller/user/manager';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {RatingClient} from '@/ui/rating/client';
 import {RatingServerDataProps} from '@/ui/rating/type';
 
 
-export const Rating = async () => {
+export const Rating = async ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const [
     pokedexMap,
     sleepStyleMap,
@@ -58,9 +60,15 @@ export const Rating = async () => {
   };
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <AdsUnit/>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Pokedex', 'UI.InPage.Team', 'UI.Metadata']}>
+      <I18nProvider locale={locale} namespaces={[
+        'Game',
+        'UI.Common',
+        'UI.InPage.Pokedex',
+        'UI.InPage.Team',
+        'UI.Metadata',
+      ]}>
         <RatingClient {...props}/>
       </I18nProvider>
       <AdsUnit/>

@@ -10,12 +10,14 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon';
 import {getSubSkillMap} from '@/controller/subSkill';
+import {DefaultPageProps} from '@/types/next/page';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
 import {PokeboxClient} from '@/ui/team/pokebox/client/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 
 
-export const Pokebox = () => {
+export const Pokebox = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const session = React.use(getServerSession(authOptions));
   const pokedexMap = React.use(getPokemonAsMap());
   const ingredientChainMap = React.use(getIngredientChainMap());
@@ -35,8 +37,8 @@ export const Pokebox = () => {
   };
 
   return (
-    <LoginRequiredPageLayout>
-      <I18nProvider namespaces={[
+    <LoginRequiredPageLayout locale={locale}>
+      <I18nProvider locale={locale} namespaces={[
         'Game',
         'UI.Common',
         'UI.InPage.Pokedex',

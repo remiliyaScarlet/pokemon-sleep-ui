@@ -4,13 +4,14 @@ import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {PageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page';
 import {AuthLayout} from '@/ui/auth/common/layout';
 import {AuthSignInEmailForm} from '@/ui/auth/signIn/email';
 import {AuthSignInExternal} from '@/ui/auth/signIn/external';
 
 
-export const AuthSignIn = ({searchParams}: PageProps) => {
+export const AuthSignIn = ({params, searchParams}: DefaultPageProps) => {
+  const {locale} = params;
   const session = React.use(getServerSession(authOptions));
 
   if (session) {
@@ -24,7 +25,7 @@ export const AuthSignIn = ({searchParams}: PageProps) => {
   }
 
   return (
-    <AuthLayout>
+    <AuthLayout locale={locale}>
       <AuthSignInEmailForm/>
       <AuthSignInExternal/>
     </AuthLayout>

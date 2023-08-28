@@ -9,3 +9,5 @@ export type PageProps<TParams = {}> = {
   params: TParams,
   searchParams?: {[key: string]: string | string[] | undefined},
 };
+
+export type DefaultPageProps<TParams = PageParams> = PageProps<TParams>;

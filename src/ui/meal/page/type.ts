@@ -2,9 +2,11 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal';
 import {PokedexMap, PokemonIngredientMap} from '@/types/game/pokemon';
 import {IngredientLevel} from '@/types/game/pokemon/ingredient';
+import {Locale} from '@/types/next/locale';
 
 
 export type MealCommonProps = {
+  locale: Locale,
   meal: Meal,
   ingredientMap: IngredientMap,
   pokedex: PokedexMap,

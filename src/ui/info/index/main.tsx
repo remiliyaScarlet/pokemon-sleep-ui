@@ -5,14 +5,16 @@ import {useTranslations} from 'next-intl';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
-export const InfoIndex = () => {
+export const InfoIndex = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const t = useTranslations('UI.Metadata.Info');
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center>
         <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">

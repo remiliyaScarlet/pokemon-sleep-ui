@@ -25,7 +25,8 @@ type Props = {
 };
 
 export const MapPage = ({params}: Props) => {
-  const mapId = Number(params.id);
+  const {id, locale} = params;
+  const mapId = Number(id);
   const sleepStyles = React.use(getSleepStyleOfMap(mapId));
   const pokedexMap = React.use(getPokemonAsMap(toUnique(sleepStyles.map(({pokemonId}) => pokemonId))));
   const ingredientChainMap = React.use(getIngredientChainMap());
@@ -51,12 +52,17 @@ export const MapPage = ({params}: Props) => {
   };
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center>
         <Flex direction="col" className="gap-1.5 md:w-3/4">
           <MapMeta {...props}/>
           <AdsUnit/>
-          <I18nProvider namespaces={['Game', 'UI.InPage.Pokedex.Info', 'UI.InPage.Map', 'UI.Common']}>
+          <I18nProvider locale={locale} namespaces={[
+            'Game',
+            'UI.InPage.Pokedex.Info',
+            'UI.InPage.Map',
+            'UI.Common',
+          ]}>
             <MapInfo {...props}/>
           </I18nProvider>
           <AdsUnit/>

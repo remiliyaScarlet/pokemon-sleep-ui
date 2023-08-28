@@ -6,18 +6,20 @@ import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
+import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {CookingClient} from '@/ui/cooking/client';
 
 
-export const Cooking = () => {
+export const Cooking = ({params}: DefaultPageProps) => {
+  const {locale} = params;
   const meals = React.use(getAllMeals());
   const ingredientMap = React.use(getAllIngredients());
   const session = React.use(getServerSession(authOptions));
 
   return (
-    <PublicPageLayout>
-      <I18nProvider namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
+    <PublicPageLayout locale={locale}>
+      <I18nProvider locale={locale} namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
         <CookingClient meals={meals} ingredientMap={ingredientMap} session={session}/>
       </I18nProvider>
     </PublicPageLayout>

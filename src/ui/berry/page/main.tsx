@@ -16,7 +16,8 @@ type Props = {
 };
 
 export const BerryPage = ({params}: Props) => {
-  const idNumber = parseInt(params.id);
+  const {id, locale} = params;
+  const idNumber = parseInt(id);
   const berryData = React.use(getBerryData(idNumber));
   const favoriteInfo = React.use(getFavoriteInfoOfBerry(idNumber));
   const pokemonOfBerry = React.use(getPokemonByBerry(idNumber));
@@ -29,8 +30,8 @@ export const BerryPage = ({params}: Props) => {
   const props: BerryPageCommonProps = {berryData, favoriteInfo, pokemonOfBerry, pokedex};
 
   return (
-    <PublicPageLayout>
-      <I18nProvider namespaces={[
+    <PublicPageLayout locale={locale}>
+      <I18nProvider locale={locale} namespaces={[
         'Game.Berry',
         'Game.Field',
         'Game.PokemonName',

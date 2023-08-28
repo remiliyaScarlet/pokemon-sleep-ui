@@ -19,7 +19,8 @@ type Props = {
 };
 
 export const AnalysisPage = ({params}: Props) => {
-  const idNumber = Number(params.id);
+  const {id, locale} = params;
+  const idNumber = Number(id);
   const pokedex = React.use(getAllPokemonAsArray());
   const pokemon = pokedex.find(({id}) => id === idNumber);
   const ingredientChainMap = React.use(getIngredientChainMap());
@@ -47,8 +48,14 @@ export const AnalysisPage = ({params}: Props) => {
   };
 
   return (
-    <PublicPageLayout>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.InPage.Analysis', 'UI.InPage.Pokedex', 'UI.Metadata']}>
+    <PublicPageLayout locale={locale}>
+      <I18nProvider locale={locale} namespaces={[
+        'Game',
+        'UI.Common',
+        'UI.InPage.Analysis',
+        'UI.InPage.Pokedex',
+        'UI.Metadata',
+      ]}>
         <AnalysisPageClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>

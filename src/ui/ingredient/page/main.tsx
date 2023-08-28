@@ -20,7 +20,8 @@ type Props = {
 };
 
 export const IngredientPage = ({params}: Props) => {
-  const idNumber = Number(params.id);
+  const {id, locale} = params;
+  const idNumber = Number(id);
   const ingredient = React.use(getIngredientData(idNumber));
   const pokemonProduction = React.use(getPokemonIngredientProduction(ingredient?.id));
   const pokedex = React.use(getPokemonAsMap());
@@ -32,13 +33,13 @@ export const IngredientPage = ({params}: Props) => {
   }
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" className="gap-1.5 md:flex-row">
         <IngredientMeta {...ingredient}/>
         <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>
       <AdsUnit/>
-      <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
+      <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <IngredientPokemonProduction
           pokedex={pokedex}
           pokemonMaxLevel={pokemonMaxLevel}

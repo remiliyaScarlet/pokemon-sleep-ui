@@ -1,17 +1,19 @@
 import React from 'react';
 
-import {getServerSession} from 'next-auth';
-
-import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
+import {Locale} from '@/types/next/locale';
 import {UserControlClient} from '@/ui/base/navbar/user/client';
 
 
-export const UserControl = () => {
-  const session = React.use(getServerSession(authOptions));
+type Props = {
+  locale: Locale,
+};
+
+export const UserControl = ({locale}: Props) => {
+  const session = null;
 
   return (
-    <I18nProvider namespaces={['UI.UserControl']}>
+    <I18nProvider locale={locale} namespaces={['UI.UserControl']}>
       <UserControlClient session={session}/>
     </I18nProvider>
   );

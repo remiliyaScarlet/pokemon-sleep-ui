@@ -20,7 +20,8 @@ type Props = {
 };
 
 export const MealPage = ({params}: Props) => {
-  const idNumber = Number(params.id);
+  const {id, locale} = params;
+  const idNumber = Number(id);
   const meal = React.use(getSingleMeal(idNumber));
   const pokemonByIngredients = React.use(getPokemonByIngredients(meal?.ingredients.map(({id}) => id) ?? []));
   const ingredientMap = React.use(getAllIngredients());
@@ -31,14 +32,14 @@ export const MealPage = ({params}: Props) => {
     return <Failed text="Meal"/>;
   }
 
-  const props: MealCommonProps = {meal, ingredientMap, pokedex, pokemonMaxLevel};
+  const props: MealCommonProps = {meal, ingredientMap, pokedex, pokemonMaxLevel, locale};
 
   return (
-    <PublicPageLayout>
+    <PublicPageLayout locale={locale}>
       <Flex direction="col" center className="gap-1.5">
         <MealMeta {...props}/>
         <AdsUnit/>
-        <I18nProvider namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
+        <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
           <MealPokemonOfIngredient pokemonByIngredients={pokemonByIngredients} {...props}/>
         </I18nProvider>
       </Flex>
