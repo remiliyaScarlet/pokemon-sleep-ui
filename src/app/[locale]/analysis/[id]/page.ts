@@ -1,8 +1,13 @@
+import {getAllPokemonAsArray} from '@/controller/pokemon';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {AnalysisPage} from '@/ui/analysis/page/main';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMeta} from '@/utils/meta';
 
+
+export const generateStaticParams = async () => {
+  return (await getAllPokemonAsArray()).map(({id}) => id);
+};
 
 export type AnalysisPageParams = GenerateMetadataParams & {
   id: string
