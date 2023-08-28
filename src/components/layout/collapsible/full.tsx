@@ -1,14 +1,17 @@
 import React from 'react';
 
 import {Transition} from '@headlessui/react';
+import {clsx} from 'clsx';
 
 import {CollapsibleCommonProps} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex';
 
 
-type Props = CollapsibleCommonProps;
+type Props = CollapsibleCommonProps & {
+  disabled?: boolean,
+};
 
-export const CollapsibleFull = ({state, button, appear, children}: React.PropsWithChildren<Props>) => {
+export const CollapsibleFull = ({state, button, appear, disabled, children}: React.PropsWithChildren<Props>) => {
   const {show, setShow} = state;
 
   React.useEffect(() => {
@@ -20,7 +23,9 @@ export const CollapsibleFull = ({state, button, appear, children}: React.PropsWi
   return (
     <Flex direction="col" className="border-button-clickable rounded-lg border">
       <Flex direction="col">
-        <button className="button-clickable-bg group p-1" onClick={() => setShow(!show)}>
+        <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
+          'button-clickable-bg disabled:button-disabled group p-1',
+        )}>
           {button}
         </button>
       </Flex>
