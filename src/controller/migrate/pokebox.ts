@@ -1,11 +1,9 @@
-import {Collection, Filter} from 'mongodb';
+import {AnyBulkWriteOperation, Collection} from 'mongodb';
 
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap} from '@/controller/pokemon';
-import {PokedexMap} from '@/types/game/pokemon';
 import {
   IngredientChain,
-  IngredientChainMap,
   IngredientLevel,
   ingredientLevels,
   IngredientProduction,
@@ -55,18 +53,25 @@ const randomIngredientToProduction = (
 
 type MigrateRandomIngredientsOpts = {
   collection: Collection<PokeInBoxData>,
-  pokedex: PokedexMap,
-  ingredientChainMap: IngredientChainMap,
-  filter: Filter<PokeInBoxData>,
+  owner: string,
 };
 
 const migrateRandomIngredients = async ({
   collection,
-  pokedex,
-  ingredientChainMap,
-  filter,
+  owner,
 }: MigrateRandomIngredientsOpts) => {
-  for await (const pokeInBox of collection.find(filter)) {
+  const pokebox = await collection.find({ingredients: {$exists: false}, owner}).toArray();
+  if (!pokebox.length) {
+    return;
+  }
+
+  const [pokedex, ingredientChainMap] = await Promise.all([
+    getPokemonAsMap(),
+    getIngredientChainMap(),
+  ]);
+
+  const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
+  for await (const pokeInBox of pokebox) {
     // @ts-ignore
     const randomIngredients = pokeInBox['randomIngredient'] as (RandomIngredient[] | undefined);
     const pokemon = pokedex[pokeInBox.pokemon];
@@ -77,58 +82,34 @@ const migrateRandomIngredients = async ({
 
     const chain = ingredientChainMap[pokemon.ingredientChain];
 
-    await collection.updateOne(
-      {_id: pokeInBox._id},
-      {
-        $set: {
-          ingredients: Object.fromEntries(ingredientLevels.map((level) => [
-            level,
-            randomIngredientToProduction(
-              chain,
+    bulkUpdate.push({
+      updateOne: {
+        filter: {_id: pokeInBox._id},
+        update: {
+          $set: {
+            ingredients: Object.fromEntries(ingredientLevels.map((level) => [
               level,
-              randomIngredients.find((random) => random.level === level),
-            ),
-          ])) as Record<IngredientLevel, IngredientProduction>,
+              randomIngredientToProduction(
+                chain,
+                level,
+                randomIngredients.find((random) => random.level === level),
+              ),
+            ])) as Record<IngredientLevel, IngredientProduction>,
+          },
         },
       },
-    );
+    });
+  }
+
+  if (bulkUpdate.length) {
+    await collection.bulkWrite(bulkUpdate, {ordered: false});
   }
 };
 
-const runRandomIngredientMigration = async (collection: Collection<PokeInBoxData>) => {
-  const [pokedex, ingredientChainMap] = await Promise.all([
-    getPokemonAsMap(),
-    getIngredientChainMap(),
-  ]);
-
-  const filter: Filter<PokeInBoxData> = {ingredients: {$exists: false}};
-
-  await migrateRandomIngredients({
-    collection,
-    pokedex,
-    ingredientChainMap,
-    filter,
-  });
-
-  const changeStream = collection.watch([{$match: filter}]);
-  for await (const change of changeStream) {
-    if (change.operationType === 'create' || change.operationType === 'modify') {
-      await migrateRandomIngredients({
-        collection,
-        pokedex,
-        ingredientChainMap,
-        filter,
-      });
-    }
-  }
-
-  await changeStream.close();
-};
-
-export const runPokeBoxMigrations = async (getCollection: () => Promise<Collection<PokeInBoxData>>) => {
+export const runPokeBoxMigrations = async (getCollection: () => Promise<Collection<PokeInBoxData>>, owner: string) => {
   const collection = await getCollection();
 
   return Promise.all([
-    runRandomIngredientMigration(collection),
+    migrateRandomIngredients({collection, owner}),
   ]);
 };

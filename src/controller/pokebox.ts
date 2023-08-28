@@ -20,6 +20,8 @@ export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox
     return {};
   }
 
+  // Run migration first (will skip if nothing to migrate) before getting the Pokebox to avoid schema mismatch
+  await migratePokeboxOfUser(owner);
   const pokeboxArray = await (await getCollection())
     .find({owner}, {projection: {owner: false, _id: false}})
     .toArray();
@@ -49,6 +51,11 @@ export const addSinglePokeInBox = async (owner: string, pokeInBox: PokeInBox) =>
   ...pokeInBox,
 });
 
+export const migratePokeboxOfUser = async (owner: string) => {
+  runPokeBoxMigrations(getCollection, owner)
+    .catch((e) => console.error(`MongoDB failed to do run Pokebox migrations for ${owner}`, e));
+};
+
 const addPokeboxIndex = async () => {
   const collection = await getCollection();
 
@@ -60,6 +67,3 @@ const addPokeboxIndex = async () => {
 
 addPokeboxIndex()
   .catch((e) => console.error('MongoDB failed to add Pokebox index', e));
-
-runPokeBoxMigrations(getCollection)
-  .catch((e) => console.error('MongoDB failed to do run Pokebox migrations', e));
