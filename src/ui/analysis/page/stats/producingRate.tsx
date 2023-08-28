@@ -24,14 +24,34 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   const t = useTranslations('UI.InPage.Pokedex');
   const percentileThreshold: TextMarkThreshold = {superRare: 93, rare: 85, ordinary: 10};
 
+  const textTotalEnergy = t(sortTypeToI18nId.totalEnergy);
   const textBerryCount = t(sortTypeToI18nId.berryCount);
   const textBerryEnergy = t(sortTypeToI18nId.berryEnergy);
   const textIngredientCount = t(sortTypeToI18nId.ingredientCount);
   const textIngredientEnergy = t(sortTypeToI18nId.ingredientEnergy);
-  const textTotalEnergy = t(sortTypeToI18nId.totalEnergy);
 
   return (
     <AnalysisStatsLayout>
+      <AnalysisStatsContinuousUI
+        stats={producingRate.total}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <ColoredEnergyIcon alt={textTotalEnergy}/>
+            {textTotalEnergy}
+          </Flex>
+        }
+        threshold={percentileThreshold}
+        renderData={({data}) => (
+          <Flex direction="row" center className="gap-1 text-sm">
+            <ColoredEnergyIcon alt={textTotalEnergy}/>
+            <div>{formatFloat(data)}</div>
+          </Flex>
+        )}
+      >
+        <div className="text-2xl">
+          {formatFloat(producingRate.total.current)}
+        </div>
+      </AnalysisStatsContinuousUI>
       <AnalysisStatsContinuousUI
         stats={producingRate.berry.count}
         title={
@@ -147,26 +167,6 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
       >
         <div className="text-2xl">
           {formatFloat(producingRate.ingredient.overall.current)}
-        </div>
-      </AnalysisStatsContinuousUI>
-      <AnalysisStatsContinuousUI
-        stats={producingRate.total}
-        title={
-          <Flex direction="row" center className="gap-1.5">
-            <ColoredEnergyIcon alt={textTotalEnergy}/>
-            {textTotalEnergy}
-          </Flex>
-        }
-        threshold={percentileThreshold}
-        renderData={({data}) => (
-          <Flex direction="row" center className="gap-1 text-sm">
-            <ColoredEnergyIcon alt={textTotalEnergy}/>
-            <div>{formatFloat(data)}</div>
-          </Flex>
-        )}
-      >
-        <div className="text-2xl">
-          {formatFloat(producingRate.total.current)}
         </div>
       </AnalysisStatsContinuousUI>
     </AnalysisStatsLayout>
