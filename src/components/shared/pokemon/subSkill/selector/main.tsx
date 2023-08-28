@@ -75,7 +75,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
         </Flex>
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="max-w-2xl gap-2 pr-2">
+        <Flex direction="col" className="max-w-3xl gap-2 pr-2">
           <Grid className={clsx(
             'sticky top-0 z-10 gap-2 rounded-lg bg-slate-50/90 p-1.5 dark:bg-slate-950/90',
             'grid-cols-1 sm:grid-cols-2 md:grid-cols-5',

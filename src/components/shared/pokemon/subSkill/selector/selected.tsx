@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subskill';
 
@@ -26,8 +27,11 @@ export const PokemonSubSkillSelected = ({level, selected, onClick}: Props) => {
         <div className="text-sm">
           {level}
         </div>
-        <Flex direction="col" center className="text-sm">
-          {selected ? t(selected.id.toString()) : '-'}
+        <Flex direction="row" center className="gap-1 text-sm">
+          <PokemonSubSkillIcon subSkill={selected}/>
+          <div>
+            {selected ? t(selected.id.toString()) : '-'}
+          </div>
         </Flex>
       </Flex>
     </button>

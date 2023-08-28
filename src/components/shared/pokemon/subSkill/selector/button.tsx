@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {subSkillRaritySectionBg} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subskill';
 
@@ -24,8 +25,9 @@ export const PokemonSubSkillSelectionButton = ({data, onClick}: Props) => {
       'width-with-gap xs:width-with-gap-2-items sm:width-with-gap-3-items',
       data.rarity ? subSkillRaritySectionBg[data.rarity] : 'text-slate-500',
     )}>
-      <Flex direction="col" center>
-        {t(id.toString())}
+      <Flex direction="row" center className="gap-1">
+        <PokemonSubSkillIcon subSkill={data}/>
+        <div>{t(id.toString())}</div>
       </Flex>
     </button>
   );
