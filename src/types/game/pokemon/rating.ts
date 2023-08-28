@@ -1,7 +1,14 @@
+import {BerryDataMap} from '@/types/game/berry';
+import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {ingredientLevels, IngredientProduction, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
+import {
+  IngredientChainMap,
+  ingredientLevels,
+  IngredientProduction,
+  IngredientProductionAtLevels,
+} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill, pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
@@ -24,7 +31,7 @@ export type RatingDataPoint = {
 };
 
 export type RatingResultOfLevel = {
-  level: RatingKeyLevel,
+  level: number,
   samples: number,
   rank: number,
   percentage: number,
@@ -47,4 +54,15 @@ export type RatingSetupData = {
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   bonus: RatingBonus,
+};
+
+export type RatingWorkerOpts = RatingSetupData & RatingOpts;
+
+export type RatingOpts = {
+  level: number,
+  pokemon: PokemonInfo | undefined,
+  ingredientChainMap: IngredientChainMap,
+  ingredientMap: IngredientMap,
+  berryDataMap: BerryDataMap,
+  subSkillMap: SubSkillMap,
 };

@@ -29,6 +29,7 @@ export const PokeboxContentPokeInBoxTable = ({
             pokeInBox={source.extra}
             displayType={filter.displayType}
             snorlaxFavorite={filter.snorlaxFavorite}
+            bonus={filter.bonus}
             onClick={() => setEditingPokeInBox(source.extra)}
             {...props}
           />

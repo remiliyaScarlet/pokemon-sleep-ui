@@ -132,6 +132,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
             ProductionBerry: string,
             ProductionIngredient: string,
             ProductionTotal: string,
+            Rating: string,
             Skills: string,
             Stats: string,
           },

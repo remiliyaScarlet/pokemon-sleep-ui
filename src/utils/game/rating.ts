@@ -1,6 +1,10 @@
 import {natureData} from '@/data/nature';
-import {RatingWorkerOpts} from '@/hooks/rating/type';
-import {RatingCombination, RatingDataPoint, RatingKeyLevel, RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {
+  RatingCombination,
+  RatingDataPoint,
+  RatingResultOfLevel,
+  RatingWorkerOpts,
+} from '@/types/game/pokemon/rating';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
@@ -11,7 +15,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 type CalculateRatingResultOfLevelOpts = RatingWorkerOpts & {
-  level: RatingKeyLevel,
+  level: number,
 };
 
 export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelOpts): RatingResultOfLevel | null => {

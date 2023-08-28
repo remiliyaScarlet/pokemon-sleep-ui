@@ -1,20 +1,19 @@
 import merge from 'lodash/merge';
-import {Session} from 'next-auth';
 
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
-import {PokedexMap, PokemonId} from '@/types/game/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
+import {RatingBonus} from '@/types/game/pokemon/rating';
+import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {isNotNullish} from '@/utils/type';
 
 
-type UsePokeboxViewerFilterOpts = UsePokemonFilterCommonData & {
-  session: Session | null,
+type UsePokeboxViewerFilterOpts = UsePokemonFilterCommonData & PokeboxCommonProps & {
   pokebox: Pokebox,
-  pokedexMap: PokedexMap,
   pokemonNameMap: {[id in PokemonId]?: string},
 };
 
@@ -23,6 +22,7 @@ export const usePokeboxViewerFilter = ({
   pokebox,
   pokedexMap,
   pokemonNameMap,
+  preloadedRatingBonus,
   ...filterData
 }: UsePokeboxViewerFilterOpts) => {
   return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, string>({
@@ -51,6 +51,9 @@ export const usePokeboxViewerFilter = ({
       ...generatePokemonInputFilter(),
       name: '',
       snorlaxFavorite: {},
+      bonus: merge({
+        ingredient: 20,
+      } satisfies RatingBonus, preloadedRatingBonus),
       ...merge({
         sort: 'id',
         displayType: 'productionTotal',

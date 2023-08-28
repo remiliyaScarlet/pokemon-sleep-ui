@@ -1,5 +1,5 @@
-import {calculateRatingResultOfLevel} from '@/hooks/rating/calc';
-import {RatingWorkerOpts} from '@/hooks/rating/type';
+import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating';
 
 
 const onMessage = (event: MessageEvent<RatingWorkerOpts>) => {

@@ -192,6 +192,7 @@
           "ProductionBerry": "생산 (나무열매)",
           "ProductionIngredient": "생산 (식재료)",
           "ProductionTotal": "생산 (총합)",
+          "Rating": "평가",
           "Skills": "스킬",
           "Stats": "매개변수"
         }

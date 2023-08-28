@@ -1,8 +1,7 @@
 import React from 'react';
 
-import {initialResult} from '@/hooks/rating/const';
-import {RatingOpts, RatingWorkerOpts} from '@/hooks/rating/type';
-import {RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
+import {initialResult} from '@/const/game/rating';
+import {RatingOpts, RatingResultOfLevel, RatingSetupData, RatingWorkerOpts} from '@/types/game/pokemon/rating';
 
 
 type UseRatingWorkerOpts = {
