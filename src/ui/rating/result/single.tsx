@@ -36,7 +36,7 @@ export const RatingResultOfLevelUI = ({
 }: Props) => {
   const [loading, setLoading] = React.useState(false);
   const collapsible = useCollapsible();
-  const {result, rate} = useRatingWorker({
+  const {result, resetResult, rate} = useRatingWorker({
     setLoading,
     opts: {
       level,
@@ -47,6 +47,10 @@ export const RatingResultOfLevelUI = ({
       ingredientMap,
     },
   });
+
+  React.useEffect(() => {
+    resetResult();
+  }, [request]);
 
   React.useEffect(() => {
     if (!request) {
@@ -94,7 +98,7 @@ export const RatingResultOfLevelUI = ({
           </Flex>
         </Flex>
       </Flex>
-      <CollapsibleFull state={collapsible} button={
+      <CollapsibleFull state={collapsible} disabled={!points.min && !points.current && !points.max} button={
         <Flex direction="row" center className="gap-1">
           <div className="h-6 w-6">
             <HandThumbDownIcon/>

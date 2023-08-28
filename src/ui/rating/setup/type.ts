@@ -1,3 +1,4 @@
+import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
@@ -9,8 +10,9 @@ export type RatingSetupBonus = {
 };
 
 export type RatingSetupData = {
-  snorlaxFavorite: SnorlaxFavorite,
+  pokemon: PokemonInfo,
   ingredients: IngredientProductionAtLevels,
+  snorlaxFavorite: SnorlaxFavorite,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   bonus: RatingSetupBonus,

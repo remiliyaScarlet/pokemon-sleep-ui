@@ -4,24 +4,33 @@ import {v4} from 'uuid';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
+import {RatingFilterOnSelectOpts} from '@/ui/rating/filter/type';
 import {RatingSetupBonus, RatingSetupData} from '@/ui/rating/setup/type';
 import {RatingDataProps} from '@/ui/rating/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
-type GenerateRatingSetupOpts = Pick<RatingDataProps, 'preloadSetupBonus'> & {
+type GenerateRatingSetupOpts = RatingFilterOnSelectOpts & Pick<
+  RatingDataProps,
+  'ingredientChainMap' | 'preloadSetupBonus'
+> & {
   chain: IngredientChain,
 };
 
 export const generateRatingSetup = ({
+  pokemon,
+  ingredients,
+  subSkill,
+  nature,
   chain,
   preloadSetupBonus,
 }: GenerateRatingSetupOpts): RatingSetupData => {
   return {
+    pokemon,
     snorlaxFavorite: {},
-    ingredients: generateIngredientProductionAtLevels(chain),
-    subSkill: {},
-    nature: null,
+    ingredients: ingredients ?? generateIngredientProductionAtLevels(chain),
+    subSkill: subSkill ?? {},
+    nature: nature ?? null,
     bonus: merge({
       ingredient: 20,
     } satisfies RatingSetupBonus, preloadSetupBonus),

@@ -4,17 +4,22 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
-import {PokemonId} from '@/types/game/pokemon';
 import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingResultUI} from '@/ui/rating/result/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
+import {RatingSetupData} from '@/ui/rating/setup/type';
+import {generateRatingSetup} from '@/ui/rating/setup/utils';
 import {RatingDataProps, RatingRequest, RatingServerDataProps} from '@/ui/rating/type';
 import {isNotNullish} from '@/utils/type';
 
 
 export const RatingClient = (props: RatingServerDataProps) => {
-  const {pokedexMap} = props;
-  const [pickedPokemonId, setPickedPokemonId] = React.useState<PokemonId>();
+  const {
+    pokedexMap,
+    ingredientChainMap,
+    preloadSetupBonus,
+  } = props;
+  const [initialSetup, setInitialSetup] = React.useState<RatingSetupData>();
   const [request, setRequest] = React.useState<RatingRequest>();
 
   const setupRef = React.useRef<HTMLDivElement>(null);
@@ -24,30 +29,44 @@ export const RatingClient = (props: RatingServerDataProps) => {
     pokedex: Object.values(pokedexMap).filter(isNotNullish),
     ...props,
   };
-  const pokemon = pickedPokemonId ? pokedexMap[pickedPokemonId] : undefined;
 
-  const scrollToSetup = () => setupRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
-  const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
+  const scrollToSetup = () => setupRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
+  const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
 
   return (
     <Flex direction="col" className="gap-1.5">
       <Flex direction="col" className="gap-1.5 md:flex-row">
-        <RatingFilter {...data} onPokemonPicked={(pokemonId) => {
-          if (pickedPokemonId) {
+        <RatingFilter {...data} onPokemonPicked={(opts) => {
+          const {origin, pokemon} = opts;
+
+          if (initialSetup) {
             scrollToSetup();
           } else {
             setTimeout(scrollToSetup, 500);
           }
 
-          setPickedPokemonId(pokemonId);
+          const setup = generateRatingSetup({
+            ...opts,
+            chain: ingredientChainMap[pokemon.ingredientChain],
+            ingredientChainMap,
+            preloadSetupBonus,
+          });
+
+          setInitialSetup(setup);
+          if (origin === 'pokebox') {
+            setRequest({setup, timestamp: Date.now()});
+            scrollToResult();
+          } else if (origin === 'pokedex' && request) {
+            setRequest({...request, setup});
+          }
         }}/>
-        <AnimatedCollapse show={!!pokemon}>
         <AdsUnit className="block md:hidden"/>
+        <AnimatedCollapse show={!!initialSetup}>
           {
-            pokemon &&
+            initialSetup &&
             <RatingSetup
               ref={setupRef}
-              pokemon={pokemon}
+              initialSetup={initialSetup}
               onInitiate={(setup) => {
                 scrollToResult();
                 setRequest({
@@ -60,9 +79,9 @@ export const RatingClient = (props: RatingServerDataProps) => {
           }
         </AnimatedCollapse>
       </Flex>
-      <AnimatedCollapse show={!!pokemon}>
-        {pokemon && <RatingResultUI ref={resultRef} request={request} pokemon={pokemon} {...data}/>}
       <AdsUnit/>
+      <AnimatedCollapse show={!!initialSetup}>
+        {initialSetup && <RatingResultUI ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>}
       </AnimatedCollapse>
     </Flex>
   );

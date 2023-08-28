@@ -15,54 +15,39 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {RatingSetupExportButton} from '@/ui/rating/setup/export';
 import {RatingSetupData} from '@/ui/rating/setup/type';
-import {generateRatingSetup} from '@/ui/rating/setup/utils';
 import {RatingDataProps} from '@/ui/rating/type';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
 type Props = RatingDataProps & {
-  pokemon: PokemonInfo,
+  initialSetup: RatingSetupData,
   onInitiate: (setup: RatingSetupData) => void,
 };
 
 export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
-  pokemon,
+  initialSetup,
   onInitiate,
   pokedex,
   ingredientChainMap,
   subSkillMap,
   mapMeta,
-  preloadSetupBonus,
   pokemonMaxLevel,
 }, ref) => {
-  const {ingredientChain} = pokemon;
-  const chain = ingredientChainMap[ingredientChain];
-
-  const [setup, setSetup] = React.useState<RatingSetupData>(generateRatingSetup({
-    chain,
-    preloadSetupBonus,
-  }));
+  const [setup, setSetup] = React.useState<RatingSetupData>(initialSetup);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
   const t = useTranslations('UI.Metadata');
   const t2 = useTranslations('Game.PokemonName');
 
-  // If Pokémon changes, `ingredients` has to be updated because it's Pokemon-dependent
-  React.useEffect(() => {
-    setSetup((setup) => ({
-      ...setup,
-      ingredients: generateIngredientProductionAtLevels(chain),
-    }));
-  }, [pokemon.id]);
-
+  const {pokemon} = setup;
   const {
     ingredients,
     subSkill,
     nature,
     bonus,
   } = setup;
+
+  React.useEffect(() => setSetup(initialSetup), [initialSetup]);
 
   return (
     <Flex ref={ref} direction="col" center className="relative gap-1.5">
@@ -85,30 +70,30 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
         filterKey="snorlaxFavorite"
       />
       <PokemonIngredientPicker
-        chain={chain}
+        chain={ingredientChainMap[pokemon.ingredientChain]}
         ingredients={ingredients}
         idPrefix={pokemon.id.toString()}
-        onSelect={(production, level) => setSetup({
+        onSelect={(production, level) => setSetup((setup) => ({
           ...setup,
           ingredients: {
-            ...setup?.ingredients,
+            ...setup.ingredients,
             [level]: production,
           },
-        })}
+        }))}
       />
       <Flex direction="row" className="h-8 gap-1.5">
         <PokemonSubSkillSelector
           subSkill={subSkill}
-          setSubSkill={(subSkill) => setSetup({
+          setSubSkill={(subSkill) => setSetup((setup) => ({
             ...setup,
             subSkill,
-          })}
+          }))}
           subSkillMap={subSkillMap}
         />
-        <PokemonNatureSelector nature={nature} setNature={(nature) => setSetup({
+        <PokemonNatureSelector nature={nature} setNature={(nature) => setSetup((setup) => ({
           ...setup,
           nature,
-        })}/>
+        }))}/>
       </Flex>
       <IngredientBonusSlider
         value={bonus.ingredient}
@@ -131,7 +116,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
             </div>
           </Flex>
         </button>
-        <RatingSetupExportButton setup={setup} pokemon={pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
+        <RatingSetupExportButton setup={setup} pokemon={setup.pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
       </Flex>
     </Flex>
   );

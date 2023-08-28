@@ -36,12 +36,13 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     setLoading(true);
   };
 
+  const resetResult = () => {
+    setResult((original) => ({...original, ...initialResult}));
+  };
+
   React.useEffect(() => {
     return () => worker.terminate();
   }, []);
 
-  return {
-    result,
-    rate,
-  };
+  return {result, resetResult, rate};
 };

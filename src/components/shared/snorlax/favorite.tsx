@@ -19,7 +19,7 @@ import {KeysOfType} from '@/utils/type';
 
 
 type Props<TFilter extends FilterWithSnorlaxFavorite> = FilterInputProps<TFilter> & {
-  filterKey: KeysOfType<TFilter, SnorlaxFavorite>
+  filterKey: KeysOfType<TFilter, SnorlaxFavorite>,
   pokemon: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };

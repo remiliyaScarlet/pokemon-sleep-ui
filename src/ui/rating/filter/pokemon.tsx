@@ -1,7 +1,6 @@
 import React from 'react';
 
 import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon';
-import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
@@ -27,6 +26,7 @@ export const RatingPokemonPicker = ({
   onPokemonPicked,
   collapsibleState,
   isIncluded,
+  pokedexMap,
 }: Props) => {
   const t = useTranslations('Game');
 
@@ -40,10 +40,16 @@ export const RatingPokemonPicker = ({
       </Flex>
     }>
       <PokemonIconClickable pokemon={pokedex.filter(({id}) => isIncluded[id])} onClick={(id) => {
+        const pokemon = pokedexMap[id];
+
+        if (!pokemon) {
+          return;
+        }
+
         showToast({content: (
           <Flex direction="row" className="gap-1.5">
             <div className="relative h-9 w-9">
-              <PlusCircleIcon/>
+              <InboxArrowDownIcon/>
             </div>
             <div className="relative h-9 w-9">
               <NextImage
@@ -56,7 +62,7 @@ export const RatingPokemonPicker = ({
             </div>
           </Flex>
         )});
-        onPokemonPicked(id);
+        onPokemonPicked({origin: 'pokedex', pokemon});
       }}/>
     </Collapsible>
   );
