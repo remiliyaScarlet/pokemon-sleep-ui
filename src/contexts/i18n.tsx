@@ -3,9 +3,9 @@ import React from 'react';
 import {pick} from 'lodash';
 import {NextIntlClientProvider} from 'next-intl';
 
-import {getMessages} from '@/i18n';
 import {I18nNamespaces} from '@/types/i18n';
 import {Locale} from '@/types/next/locale';
+import {getMessages} from '@/utils/i18n';
 
 
 type Props = {
