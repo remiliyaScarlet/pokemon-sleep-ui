@@ -10,19 +10,18 @@ import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/t
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes} from '@/styles/image';
-import {Pokebox} from '@/types/game/pokebox';
-import {isNotNullish} from '@/utils/type';
+import {PokeInBox} from '@/types/game/pokebox';
 
 
 type Props = PokeboxImporterCommonProps & {
-  pokebox: Pokebox | undefined,
+  pokebox: PokeInBox[],
 };
 
 export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Props) => {
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
 
-  if (!pokebox || !Object.values(pokebox).length) {
+  if (!pokebox.length) {
     return (
       <FeatureLinkImage
         href="/team/box"
@@ -34,7 +33,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
 
   return (
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
-      {Object.values(pokebox).filter(isNotNullish).map((pokeInBox) => (
+      {pokebox.map((pokeInBox) => (
         <button
           key={pokeInBox.uuid} className="button-clickable-bg group p-1"
           onClick={() => onPokeboxPicked(pokeInBox)}

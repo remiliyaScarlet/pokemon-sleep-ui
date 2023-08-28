@@ -21,13 +21,13 @@ export const PokeboxImporter = ({show, setShow, ...props}: Props) => {
     <Popup show={show} setShow={setShow}>
       <Flex direction="col" noFullWidth className="min-w-[50vw]">
         <UserDataLazyLoad
-          type="pokebox"
+          type="pokeboxSorted"
           loadingText="Pokebox"
           sessionOverride={session}
           actDeps={[show]}
           toAct={() => show}
           content={(data) => (
-            <PokeboxImporterView pokebox={data?.pokebox} {...props}/>
+            <PokeboxImporterView pokebox={data?.pokeboxSorted ?? []} {...props}/>
           )}
         />
       </Flex>

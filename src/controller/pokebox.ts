@@ -15,16 +15,24 @@ const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
     .collection<PokeInBoxData>('pokebox');
 };
 
+export const getUserPokeboxSorted = async (owner: string | undefined): Promise<PokeInBox[]> => {
+  if (!owner) {
+    return [];
+  }
+
+  // Run migration first (will skip if nothing to migrate) before getting the Pokebox to avoid schema mismatch
+  await migratePokeboxOfUser(owner);
+  return await (await getCollection())
+    .find({owner}, {projection: {owner: false, _id: false}, sort: [['pokemon', 'asc'], ['level', 'desc']]})
+    .toArray();
+};
+
 export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox> => {
   if (!owner) {
     return {};
   }
 
-  // Run migration first (will skip if nothing to migrate) before getting the Pokebox to avoid schema mismatch
-  await migratePokeboxOfUser(owner);
-  const pokeboxArray = await (await getCollection())
-    .find({owner}, {projection: {owner: false, _id: false}})
-    .toArray();
+  const pokeboxArray = await getUserPokeboxSorted(owner);
 
   return Object.fromEntries(pokeboxArray.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]));
 };
