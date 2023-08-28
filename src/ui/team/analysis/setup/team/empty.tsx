@@ -5,17 +5,17 @@ import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
-import {TeamAnalysisImporter} from '@/ui/team/analysis/setup/team/importer/main';
-import {TeamAnalysisImporterCommonProps} from '@/ui/team/analysis/setup/team/importer/type';
+import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
+import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 
 
-export const TeamAnalysisEmptySlot = (props: TeamAnalysisImporterCommonProps) => {
+export const TeamAnalysisEmptySlot = (props: PokeboxImporterCommonProps) => {
   const [show, setShow] = React.useState(false);
   const {status} = useSession();
 
   return (
     <Flex direction="col" center className="gap-1.5">
-      <TeamAnalysisImporter show={show} setShow={setShow} {...props}/>
+      <PokeboxImporter show={show} setShow={setShow} {...props}/>
       <UnavailableIcon/>
       <button
         className="enabled:button-clickable-bg disabled:button-disabled p-1"

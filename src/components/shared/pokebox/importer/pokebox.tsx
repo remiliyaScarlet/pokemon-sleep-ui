@@ -6,20 +6,19 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
+import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes} from '@/styles/image';
 import {Pokebox} from '@/types/game/pokebox';
-import {TeamAnalysisImporterCommonProps} from '@/ui/team/analysis/setup/team/importer/type';
-import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/importer/utils';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = TeamAnalysisImporterCommonProps & {
+type Props = PokeboxImporterCommonProps & {
   pokebox: Pokebox | undefined,
 };
 
-export const TeamAnalysisPokeboxView = ({pokebox, subSkillMap, onPokeboxPicked}: Props) => {
+export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Props) => {
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
 
@@ -38,7 +37,7 @@ export const TeamAnalysisPokeboxView = ({pokebox, subSkillMap, onPokeboxPicked}:
       {Object.values(pokebox).filter(isNotNullish).map((pokeInBox) => (
         <button
           key={pokeInBox.uuid} className="button-clickable-bg group p-1"
-          onClick={() => onPokeboxPicked(toTeamAnalysisMember(pokeInBox))}
+          onClick={() => onPokeboxPicked(pokeInBox)}
         >
           <Flex direction="row" className="items-center gap-1.5">
             <IconWithInfo
