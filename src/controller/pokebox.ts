@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
-import {Pokebox} from '@/types/game/pokebox';
+import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
 import {isNotNullish} from '@/utils/type';
 
@@ -43,6 +43,11 @@ export const updateUserPokebox = async (owner: string, pokebox: Pokebox) => {
     });
   });
 };
+
+export const addSinglePokeInBox = async (owner: string, pokeInBox: PokeInBox) => (await getCollection()).insertOne({
+  owner,
+  ...pokeInBox,
+});
 
 const addPokeboxIndex = async () => {
   const collection = await getCollection();

@@ -16,6 +16,7 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {RatingSetupExportButton} from '@/ui/rating/setup/export';
 import {RatingSetupData} from '@/ui/rating/setup/type';
 import {generateRatingSetup} from '@/ui/rating/setup/utils';
 import {RatingDataProps} from '@/ui/rating/type';
@@ -35,6 +36,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   subSkillMap,
   mapMeta,
   preloadSetupBonus,
+  pokemonMaxLevel,
 }, ref) => {
   const {ingredientChain} = pokemon;
   const chain = ingredientChainMap[ingredientChain];
@@ -44,7 +46,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
     preloadSetupBonus,
   }));
   const {state, setState, showPokemon} = usePokemonLinkPopup();
-  const t = useTranslations('UI.Metadata.Pokedex');
+  const t = useTranslations('UI.Metadata');
   const t2 = useTranslations('Game.PokemonName');
 
   // If Pokémon changes, `ingredients` has to be updated because it's Pokemon-dependent
@@ -69,7 +71,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
         className="button-clickable group absolute left-1 top-1 h-8 w-8 rounded-full"
         onClick={() => showPokemon(pokemon)}
       >
-        <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
+        <GenericPokeballIcon alt={t('Pokedex.Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
       </button>
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-48 w-48">
@@ -118,9 +120,9 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           },
         }))}
       />
-      <Flex direction="row" center>
+      <Flex direction="row" center className="gap-1.5">
         <button onClick={() => onInitiate(setup)} className={clsx(
-          'button-base button-bg-hover w-2/3 p-1',
+          'button-base button-bg-hover w-full p-1',
           'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
         )}>
           <Flex direction="col" center>
@@ -129,6 +131,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
             </div>
           </Flex>
         </button>
+        <RatingSetupExportButton setup={setup} pokemon={pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
       </Flex>
     </Flex>
   );

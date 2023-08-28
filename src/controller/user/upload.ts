@@ -1,4 +1,4 @@
-import {updateUserPokebox} from '@/controller/pokebox';
+import {addSinglePokeInBox, updateUserPokebox} from '@/controller/pokebox';
 import {
   userDataIngredientCount,
   userDataMealType,
@@ -13,7 +13,7 @@ import {UserDataUploadOpts} from '@/types/userData/upload';
 
 type UploadUserDataOpts = {
   userId: string,
-  opts: UserDataUploadOpts
+  opts: UserDataUploadOpts,
 };
 
 export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
@@ -61,6 +61,13 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
       userDataPokeboxDisplay.setData(userId, data.display),
       updateUserPokebox(userId, data.pokebox),
     ]);
+    return;
+  }
+
+  if (type === 'pokeboxSingle') {
+    await addSinglePokeInBox(userId, {
+      ...opts.data,
+    });
     return;
   }
 

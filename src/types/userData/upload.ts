@@ -1,5 +1,5 @@
 import {MealTypeId} from '@/types/game/meal';
-import {Pokebox} from '@/types/game/pokebox';
+import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -32,6 +32,9 @@ export type UserDataUploadOpts = {
 } | {
   type: 'pokebox',
   data: UploadOfPokebox,
+} | {
+  type: 'pokeboxSingle',
+  data: PokeInBox,
 } | {
   type: 'teamAnalysisSetup',
   data: UploadOfTeamAnalysisSetup,

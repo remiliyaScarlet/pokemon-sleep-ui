@@ -43,13 +43,18 @@ export const RatingClient = (props: RatingServerDataProps) => {
         <AnimatedCollapse show={!!pokemon}>
           {
             pokemon &&
-            <RatingSetup ref={setupRef} {...data} pokemon={pokemon} onInitiate={(setup) => {
-              scrollToResult();
-              setRequest({
-                setup,
-                timestamp: Date.now(),
-              });
-            }}/>
+            <RatingSetup
+              ref={setupRef}
+              pokemon={pokemon}
+              onInitiate={(setup) => {
+                scrollToResult();
+                setRequest({
+                  setup,
+                  timestamp: Date.now(),
+                });
+              }}
+              {...data}
+            />
           }
         </AnimatedCollapse>
       </Flex>
