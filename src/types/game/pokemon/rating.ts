@@ -36,7 +36,7 @@ export type RatingResultOfLevel = {
   },
 };
 
-export type RatingSetupBonus = {
+export type RatingBonus = {
   ingredient: number,
 };
 
@@ -46,5 +46,5 @@ export type RatingSetupData = {
   snorlaxFavorite: SnorlaxFavorite,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
-  bonus: RatingSetupBonus,
+  bonus: RatingBonus,
 };

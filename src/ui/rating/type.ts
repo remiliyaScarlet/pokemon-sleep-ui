@@ -3,7 +3,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
-import {RatingSetupBonus, RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingBonus, RatingSetupData} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
 
@@ -16,7 +16,7 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
   subSkillMap: SubSkillMap,
   mapMeta: FieldMetaMap,
   pokemonMaxLevel: number,
-  preloadSetupBonus: RatingSetupBonus | undefined,
+  preloadSetupBonus: RatingBonus | undefined,
 };
 
 export type RatingDataProps = RatingServerDataProps & {
