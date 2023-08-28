@@ -5,6 +5,7 @@ import {getServerSession} from 'next-auth';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
+import {loadRatingBonusFromSession} from '@/controller/game/rating/bonus';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
@@ -16,15 +17,25 @@ import {PokeboxClient} from '@/ui/team/pokebox/client/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 
 
-export const Pokebox = ({params}: DefaultPageProps) => {
+export const Pokebox = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const session = React.use(getServerSession(authOptions));
-  const pokedexMap = React.use(getPokemonAsMap());
-  const ingredientChainMap = React.use(getIngredientChainMap());
-  const subSkillMap = React.use(getSubSkillMap());
-  const ingredientMap = React.use(getAllIngredients());
-  const berryMap = React.use(getAllBerryData());
-  const mapMeta = React.use(getAllMapMeta());
+  const [
+    session,
+    pokedexMap,
+    ingredientChainMap,
+    subSkillMap,
+    ingredientMap,
+    berryMap,
+    mapMeta,
+  ] = await Promise.all([
+    getServerSession(authOptions),
+    getPokemonAsMap(),
+    getIngredientChainMap(),
+    getSubSkillMap(),
+    getAllIngredients(),
+    getAllBerryData(),
+    getAllMapMeta(),
+  ]);
 
   const props: PokeboxCommonProps = {
     session,
@@ -34,6 +45,7 @@ export const Pokebox = ({params}: DefaultPageProps) => {
     ingredientMap,
     berryMap,
     mapMeta,
+    preloadedRatingBonus: await loadRatingBonusFromSession(session),
   };
 
   return (
