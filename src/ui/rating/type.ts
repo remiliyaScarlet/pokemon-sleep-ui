@@ -3,7 +3,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
-import {RatingBonus, RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingBonus} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subskill';
 import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
 
@@ -23,7 +23,3 @@ export type RatingDataProps = RatingServerDataProps & {
   pokedex: PokemonInfo[],
 };
 
-export type RatingRequest = {
-  setup: RatingSetupData,
-  timestamp: number,
-};

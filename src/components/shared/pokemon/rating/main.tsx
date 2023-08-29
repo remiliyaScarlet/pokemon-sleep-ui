@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
+import {PokemonRatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
+import {PokemonRatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {ratingKeyLevels} from '@/types/game/pokemon/rating';
-import {RatingResultOfLevelUI} from '@/ui/rating/result/single';
-import {RatingResultUiProps} from '@/ui/rating/result/type';
 
 
-export const RatingResultUI = React.forwardRef<HTMLDivElement, RatingResultUiProps>(({
+export const PokemonRatingResult = React.forwardRef<HTMLDivElement, PokemonRatingResultProps>(({
   pokemonMaxLevel,
   ...props
 }, ref) => {
@@ -16,10 +16,10 @@ export const RatingResultUI = React.forwardRef<HTMLDivElement, RatingResultUiPro
         .filter((level) => level <= pokemonMaxLevel)
         .sort((a, b) => a - b)
         .map((level) => (
-          <RatingResultOfLevelUI key={level} level={level} {...props}/>
+          <PokemonRatingResultOfLevelUI key={level} level={level} {...props}/>
         ))}
     </Grid>
   );
 });
 
-RatingResultUI.displayName = 'RatingResultUI';
+PokemonRatingResult.displayName = 'PokemonRatingResult';

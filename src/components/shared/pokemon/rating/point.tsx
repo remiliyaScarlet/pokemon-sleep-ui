@@ -20,7 +20,7 @@ type Props = {
   className: string,
 };
 
-export const RatingDataPointUI = ({point, subSkillMap, icon, className}: Props) => {
+export const PokemonRatingDataPointUI = ({point, subSkillMap, icon, className}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   if (!point) {

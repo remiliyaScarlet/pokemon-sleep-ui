@@ -56,6 +56,11 @@ export type RatingSetupData = {
   bonus: RatingBonus,
 };
 
+export type RatingRequest = {
+  setup: RatingSetupData,
+  timestamp: number,
+};
+
 export type RatingWorkerOpts = RatingSetupData & RatingOpts;
 
 export type RatingOpts = {
