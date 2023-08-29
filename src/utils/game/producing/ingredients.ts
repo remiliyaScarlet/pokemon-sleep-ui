@@ -6,12 +6,14 @@ import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/produ
 import {toSum} from '@/utils/array';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
 import {isNotNullish} from '@/utils/type';
 
 
 export type GetIngredientProducingRatesOpts = ProducingRateCommonParams & {
   ingredients: IngredientProduction[],
   ingredientMap: IngredientMap,
+  multiplier?: number,
 };
 
 export const getIngredientProducingRates = ({
@@ -19,6 +21,7 @@ export const getIngredientProducingRates = ({
   pokemon,
   ingredients,
   ingredientMap,
+  multiplier = 1,
   ...opts
 }: GetIngredientProducingRatesOpts): ProducingRateOfItem[] => {
   const grouped = groupBy(
@@ -35,11 +38,13 @@ export const getIngredientProducingRates = ({
     (item) => item.id,
   );
 
-  return Object.entries(grouped).map(([id, rates]): ProducingRateOfItem => ({
-    id: parseInt(id),
-    quantity: toSum(rates.map(({quantity}) => quantity)),
-    dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
-  }));
+  return Object.entries(grouped).map(([id, rates]): ProducingRateOfItem => (
+    applyEnergyMultiplier(multiplier, {
+      id: parseInt(id),
+      quantity: toSum(rates.map(({quantity}) => quantity)),
+      dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
+    })
+  ));
 };
 
 type GetEffectiveIngredientProductionsOpts = {

@@ -83,9 +83,9 @@ const useProducingStatsOfSlot = ({
         pokemon,
         ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
         ingredientMap,
+        multiplier: overallMultiplier * ingredientMultiplier,
         ...producingRateOpts,
-      }).
-        map((rate) => applyEnergyMultiplier(overallMultiplier * ingredientMultiplier, rate)),
+      }),
     };
   }, [setup.team[slotName], snorlaxFavorite, helperCount, setup.bonus]);
 };

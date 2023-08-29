@@ -11,6 +11,7 @@ export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): Produci
     pokeInBox,
     ingredientMap,
     subSkillMap,
+    bonus,
   } = opts;
   const {level, ingredients} = pokeInBox;
 
@@ -19,6 +20,7 @@ export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): Produci
     pokemon,
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
     ingredientMap,
+    multiplier: bonus.ingredient,
     ...getProducingRateSingleParams({subSkillMap, ...pokeInBox}),
   });
 };
