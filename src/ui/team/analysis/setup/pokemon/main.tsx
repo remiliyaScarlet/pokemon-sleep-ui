@@ -18,6 +18,7 @@ import {imageIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
+import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
@@ -116,6 +117,8 @@ export const TeamAnalysisPokemon = ({
           maxLevel={maxLevel}
           noSameLine
         />
+        <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={producingStats.total}/>
+        <HorizontalSplitter className="w-full"/>
         <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
           <TeamAnalysisBerryRate
             id={berryData.id}

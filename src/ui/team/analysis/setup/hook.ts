@@ -70,23 +70,28 @@ const useProducingStatsOfSlot = ({
     const overallMultiplier = 1 + (setup.bonus.overall / 100);
     const ingredientMultiplier = 1 + (setup.bonus.ingredient / 100);
 
-    return {
-      berry: applyEnergyMultiplier(overallMultiplier, getBerryProducingRate({
-        level,
-        pokemon,
-        ...producingRateOpts,
-        snorlaxFavorite,
-        berryData,
-      })),
-      ingredient: getIngredientProducingRates({
-        level,
-        pokemon,
-        ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
-        ingredientMap,
-        multiplier: overallMultiplier * ingredientMultiplier,
-        ...producingRateOpts,
-      }),
+    const berry = applyEnergyMultiplier(overallMultiplier, getBerryProducingRate({
+      level,
+      pokemon,
+      ...producingRateOpts,
+      snorlaxFavorite,
+      berryData,
+    }));
+    const ingredient = getIngredientProducingRates({
+      level,
+      pokemon,
+      ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
+      ingredientMap,
+      multiplier: overallMultiplier * ingredientMultiplier,
+      ...producingRateOpts,
+    });
+    const total = {
+      // Total doesn't and shouldn't care about the quantity
+      quantity: NaN,
+      dailyEnergy: berry.dailyEnergy + toSum(ingredient.map(({dailyEnergy}) => dailyEnergy)),
     };
+
+    return {berry, ingredient, total};
   }, [setup.team[slotName], snorlaxFavorite, helperCount, setup.bonus]);
 };
 

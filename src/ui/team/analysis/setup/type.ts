@@ -18,6 +18,7 @@ export type TeamProducingStatsTotal = {
 export type TeamProducingStatsSingle = {
   berry: ProducingRateOfItem,
   ingredient: ProducingRateOfItem[],
+  total: ProducingRate,
 };
 
 export type TeamProducingStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProducingStatsSingle | null};
