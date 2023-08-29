@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {Dimension} from '@/types/style';
 
 
 type Props = {
@@ -35,6 +36,23 @@ export const LoadingIcon = ({text}: Props) => {
   return (
     <Flex direction="col" center className="h-full gap-1">
       <div className="h-6 w-6">
+        <LoadingSvg/>
+      </div>
+      <div>
+        {text ?? 'Loading...'}
+      </div>
+    </Flex>
+  );
+};
+
+type LoadingTextProps = Props & {
+  dimension?: Dimension,
+};
+
+export const LoadingText = ({text, dimension}: LoadingTextProps) => {
+  return (
+    <Flex direction="row" noFullWidth center className="gap-1">
+      <div className={dimension ?? 'h-5 w-5'}>
         <LoadingSvg/>
       </div>
       <div>
