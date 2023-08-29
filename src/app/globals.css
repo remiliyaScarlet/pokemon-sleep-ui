@@ -358,15 +358,15 @@
   /* region Rarity styling (rarity-*) */
   
   .rarity-0 {
-    @apply text-slate-400 dark:text-slate-500;
+    @apply text-slate-400 dark:text-slate-500 group-hover:text-slate-500 group-hover:dark:text-slate-400;
   }
   
   .rarity-1 {
-    @apply text-sky-600 dark:text-sky-300;
+    @apply text-sky-600 dark:text-sky-300 group-hover:text-sky-300 group-hover:dark:text-sky-600;
   }
   
   .rarity-2 {
-    @apply text-purple-700 dark:text-purple-300;
+    @apply text-purple-700 dark:text-purple-300 group-hover:text-purple-300 group-hover:dark:text-purple-700;
   }
   
   /* endregion */
