@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/grid/details/utils';
+import {getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
 
