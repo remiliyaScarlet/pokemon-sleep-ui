@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 
 import {Grid} from '@/components/layout/grid';
 import {PokeboxContentPokeInBoxCell} from '@/ui/team/pokebox/content/pokeInBox/grid/cell';
-import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
 export const PokeboxContentPokeInBoxGrid = ({
@@ -13,7 +13,7 @@ export const PokeboxContentPokeInBoxGrid = ({
   setEditingPokeInBox,
   sortedPokemonInfo,
   ...props
-}: PokeInBoxViewCommonProps) => {
+}: PokeInBoxViewOfTypeProps) => {
   return (
     <div className="min-h-[40vh] w-full">
       <Grid className={clsx(

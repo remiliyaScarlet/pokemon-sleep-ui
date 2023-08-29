@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {PokeboxContentPokeInBoxRow} from '@/ui/team/pokebox/content/pokeInBox/table/row';
-import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
 export const PokeboxContentPokeInBoxTable = ({
@@ -11,7 +11,7 @@ export const PokeboxContentPokeInBoxTable = ({
   setEditingPokeInBox,
   sortedPokemonInfo,
   ...props
-}: PokeInBoxViewCommonProps) => {
+}: PokeInBoxViewOfTypeProps) => {
   return (
     <Flex direction="col" className="max-h-[70vh] min-h-[40vh] gap-1 overflow-auto">
       {sortedPokemonInfo.map(({source}) => {
