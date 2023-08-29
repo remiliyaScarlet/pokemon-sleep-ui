@@ -8,9 +8,9 @@ import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
 export const useCalculatePokeInBoxRating = (opts: PokeboxPokeInBoxCommonProps) => {
-  const {pokeInBox, ratingCache, setRatingCache} = opts;
+  const {pokeInBox} = opts;
   const [loading, setLoading] = React.useState(false);
-  const [result, setResult] = React.useState<RatingResultOfLevel>(ratingCache[pokeInBox.uuid] ?? {
+  const [result, setResult] = React.useState<RatingResultOfLevel>({
     ...initialResult,
     level: pokeInBox.level,
   });
@@ -23,7 +23,6 @@ export const useCalculatePokeInBoxRating = (opts: PokeboxPokeInBoxCommonProps) =
 
       if (calculatedResult) {
         setResult(calculatedResult);
-        setRatingCache(pokeInBox.uuid, calculatedResult);
       }
 
       setLoading(false);

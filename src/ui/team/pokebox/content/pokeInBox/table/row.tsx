@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
+import isEqual from 'lodash/isEqual';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -28,7 +29,7 @@ import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
+export const PokeboxContentPokeInBoxRow = React.memo((props: PokeInBoxViewUnitProps) => {
   const {
     pokeInBox,
     pokedexMap,
@@ -114,7 +115,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
           )}>
             <PokemonBerryIcon id={pokemon.berry.id}/>
             <div>
-                x{formatFloat(rateOfBerry.quantity)}
+              x{formatFloat(rateOfBerry.quantity)}
             </div>
             <ColoredEnergyIcon alt={t3('Stats.Energy.Name')}/>
             <div>
@@ -130,7 +131,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
               <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
                 <PokemonIngredientIcon id={id} dimension="h-3.5 w-3.5"/>
                 <div>
-                    x{formatFloat(quantity)}
+                  x{formatFloat(quantity)}
                 </div>
                 <ColoredEnergyIcon alt={t3('Stats.Energy.Name')} dimension="h-3 w-3"/>
                 <div>
@@ -145,7 +146,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
             <div>
               {formatFloat(
                 rateOfBerry.dailyEnergy +
-                  toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy)),
+                toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy)),
               )}
             </div>
           </Flex>
@@ -179,4 +180,6 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
       </button>
     </Flex>
   );
-};
+}, (prev, next) => isEqual(prev.pokeInBox, next.pokeInBox));
+
+PokeboxContentPokeInBoxRow.displayName = 'PokeboxContentPokeInBoxRow';
