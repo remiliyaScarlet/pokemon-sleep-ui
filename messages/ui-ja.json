@@ -72,11 +72,11 @@
       }
     },
     "Team": {
+      "Analysis": {
+        "Title": "チーム分析"
+      },
       "Box": {
         "Title": "ポケモンボックス"
-      },
-      "Calculate": {
-        "Title": "エナジー計算"
       },
       "Index": {
         "Title": "チーム"

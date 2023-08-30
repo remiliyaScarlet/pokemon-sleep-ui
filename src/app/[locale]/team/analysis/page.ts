@@ -8,7 +8,7 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   const t = await getI18nTranslator({locale, namespace: 'UI.Metadata'});
 
   return {
-    title: `${t('Team.Index.Title')} / ${t('Team.Calculate.Title')}`,
+    title: `${t('Team.Index.Title')} / ${t('Team.Analysis.Title')}`,
   };
 };
 

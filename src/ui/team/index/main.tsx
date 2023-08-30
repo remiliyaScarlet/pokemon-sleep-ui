@@ -33,7 +33,7 @@ export const TeamIndex = ({params}: DefaultPageProps) => {
               <FeatureLinkImage
                 href="/team/analysis"
                 imageSrc="/images/generic/pokeball.png"
-                text={t('Calculate.Title')}
+                text={t('Analysis.Title')}
               />
               <FeatureLink href="/team/maker" text={t('Maker.Title')} disabled>
                 <div className="h-10 w-10 p-1">

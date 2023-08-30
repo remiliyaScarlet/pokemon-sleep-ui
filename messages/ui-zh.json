@@ -72,11 +72,11 @@
       }
     },
     "Team": {
+      "Analysis": {
+        "Title": "隊伍分析"
+      },
       "Box": {
         "Title": "寶可夢盒"
-      },
-      "Calculate": {
-        "Title": "能量計算"
       },
       "Index": {
         "Title": "隊伍"

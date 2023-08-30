@@ -72,11 +72,11 @@
       }
     },
     "Team": {
+      "Analysis": {
+        "Title": "Team Analysis"
+      },
       "Box": {
         "Title": "Pokémon Box"
-      },
-      "Calculate": {
-        "Title": "Stärkerechner"
       },
       "Index": {
         "Title": "Team"

@@ -72,11 +72,11 @@
       }
     },
     "Team": {
+      "Analysis": {
+        "Title": "Team Analysis"
+      },
       "Box": {
         "Title": "Pokémon Box"
-      },
-      "Calculate": {
-        "Title": "Strength Calculator"
       },
       "Index": {
         "Title": "Team"
