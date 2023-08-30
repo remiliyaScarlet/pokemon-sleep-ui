@@ -19,8 +19,8 @@ export const getProducingRateSingleParams = ({
 }: GetProducingRateSingleParamsOpts): ProducingRateSingleParams => {
   const subSkillBonus = getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap});
   return {
-    // Only care if `helper` exists on `subSkillBonus`
-    helperCount: getSubSkillBonusValue(subSkillBonus, 'helper').length > 0 ? 1 : 0,
+    // 5 to account for full team bonus instead of "on self"
+    helperCount: getSubSkillBonusValue(subSkillBonus, 'helper').length > 0 ? 5 : 0,
     subSkillBonus,
     natureId: nature,
   };
