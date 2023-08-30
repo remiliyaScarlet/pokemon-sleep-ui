@@ -9,7 +9,13 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
 
 
-export type PokeboxPokeInBoxCommonProps = {
+export type PokeboxPokeInBoxChangeableProps = {
+  displayType: PokeboxDisplayType,
+  snorlaxFavorite: SnorlaxFavorite,
+  bonus: RatingBonus,
+};
+
+export type PokeboxPokeInBoxCommonProps = PokeboxPokeInBoxChangeableProps & {
   pokeInBox: PokeInBox,
   pokemon: PokemonInfo,
   pokedexMap: PokedexMap,
@@ -17,7 +23,4 @@ export type PokeboxPokeInBoxCommonProps = {
   berryMap: BerryDataMap,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
-  displayType: PokeboxDisplayType,
-  snorlaxFavorite: SnorlaxFavorite,
-  bonus: RatingBonus,
 };

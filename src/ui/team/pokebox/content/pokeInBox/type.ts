@@ -4,7 +4,7 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/game/pokemon';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeboxPokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
@@ -18,11 +18,8 @@ export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
 
 export type PokeInBoxViewOfTypeProps = PokeInBoxViewCommonProps;
 
-export type PokeInBoxViewUnitProps =
-  PokeboxCommonProps &
-  Pick<PokeboxPokeInBoxCommonProps, 'displayType' | 'snorlaxFavorite' | 'bonus'> &
-  {
-    pokeInBox: PokeInBox,
-    pokedexMap: PokedexMap,
-    onClick: () => void,
-  };
+export type PokeInBoxViewUnitProps = PokeboxCommonProps & PokeboxPokeInBoxChangeableProps & {
+  pokeInBox: PokeInBox,
+  pokedexMap: PokedexMap,
+  onClick: () => void,
+};
