@@ -81,7 +81,10 @@ export const RatingClient = (props: RatingServerDataProps) => {
       </Flex>
       <AdsUnit/>
       <AnimatedCollapse show={!!initialSetup}>
-        {initialSetup && <PokemonRatingResult ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>}
+        {
+          initialSetup &&
+          <PokemonRatingResult ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>
+        }
       </AnimatedCollapse>
     </Flex>
   );
