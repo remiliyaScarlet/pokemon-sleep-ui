@@ -397,6 +397,10 @@
     @apply border-slate-50/70 dark:border-slate-700/50;
   }
   
+  .border-link {
+    @apply border-b border-slate-500;
+  }
+  
   /* endregion */
   
   /* region Navbar styling (nav-*) */

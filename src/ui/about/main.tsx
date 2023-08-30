@@ -23,7 +23,7 @@ export const About = async ({params}: DefaultPageProps) => {
             {t('SiteName')}
           </div>
           <AboutSection title="Discord">
-            <Link href="https://discord.gg/t83mqYKEf5" className="border-b border-slate-500">
+            <Link href="https://discord.gg/t83mqYKEf5" className="border-link">
               https://discord.gg/t83mqYKEf5
             </Link>
           </AboutSection>
@@ -45,7 +45,7 @@ export const About = async ({params}: DefaultPageProps) => {
               <CurrencyDollarIcon/>
             </Flex>
             <AboutSection title="Patreon">
-              <Link href="https://patreon.com/RaenonX" className="border-b border-slate-500">
+              <Link href="https://patreon.com/RaenonX" className="border-link">
                 https://patreon.com/RaenonX
               </Link>
             </AboutSection>
