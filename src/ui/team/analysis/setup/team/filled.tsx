@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/setup/pokemon/main';
+import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {
   TeamAnalysisDataProps,
@@ -14,24 +15,21 @@ import {
 } from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & {
-  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
+type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
   slotName: TeamAnalysisSlotName,
   member: TeamAnalysisMember,
   stats: TeamProducingStatsSingle,
   pokemon: PokemonInfo,
-  showPokemon: (pokemon: PokemonInfo) => void,
 };
 
-export const TeamAnalysisFilledSlot = ({
-  setSetup,
-  slotName,
-  member,
-  stats,
-  pokemon,
-  showPokemon,
-  ...props
-}: Props) => {
+export const TeamAnalysisFilledSlot = (props: Props) => {
+  const {
+    setSetup,
+    stats,
+    pokemon,
+    showPokemon,
+  } = props;
+
   const t = useTranslations('UI.Metadata.Pokedex');
   const t2 = useTranslations('Game.PokemonName');
 
@@ -56,15 +54,8 @@ export const TeamAnalysisFilledSlot = ({
       >
         <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
       </button>
-      <TeamAnalysisPokemon
-        {...props}
-        key={slotName}
-        slotName={slotName}
-        pokemon={pokemon}
-        member={member}
-        setMember={setTeamMember}
-        producingStats={stats}
-      />
+      {/* `{...props}` has to be the first because some pass-through props has naming conflict */}
+      <TeamAnalysisPokemon {...props} setMember={setTeamMember} producingStats={stats}/>
     </>
   );
 };

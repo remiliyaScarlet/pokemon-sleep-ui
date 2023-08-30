@@ -5,19 +5,16 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
+import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, teamAnalysisSlotName, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & {
-  setup: TeamAnalysisTeamSetup,
-  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
+type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
   producingStats: TeamProducingStats,
-  showPokemon: (pokemon: PokemonInfo) => void,
 };
 
 export const TeamAnalysisTeamView = (props: Props) => {

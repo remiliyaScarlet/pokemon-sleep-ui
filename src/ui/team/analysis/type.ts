@@ -17,11 +17,12 @@ export type TeamAnalysisFilter = PokemonInputFilter & {
 
 export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedex: PokedexMap,
-  berryMap: BerryDataMap,
+  berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],
   mapMeta: FieldMetaMap,
   subSkillMap: SubSkillMap,
+  pokemonMaxLevel: number,
 };
 
 export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {

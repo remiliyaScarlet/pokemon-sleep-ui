@@ -8,15 +8,12 @@ import {useProducingStats} from '@/ui/team/analysis/setup/hook';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/setup/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/setup/summary/main';
 import {TeamAnalysisTeamView} from '@/ui/team/analysis/setup/team/main';
+import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamAnalysisUploadSetup} from '@/ui/team/analysis/setup/upload';
-import {TeamAnalysisDataProps, TeamAnalysisFilter, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & {
-  setup: TeamAnalysisTeamSetup,
-  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
-  snorlaxFavorite: TeamAnalysisFilter['snorlaxFavorite'],
-};
+type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledSlotProps, 'showPokemon'>;
 
 export const TeamAnalysisSetupView = (props: Props) => {
   const {

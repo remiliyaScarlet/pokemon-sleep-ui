@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {I18nProvider} from '@/contexts/i18n';
-import {getAllBerryData} from '@/controller/berry';
+import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
@@ -18,20 +18,22 @@ export const TeamAnalysis = ({params}: DefaultPageProps) => {
   const {locale} = params;
   const pokedex = React.use(getPokemonAsMap());
   const ingredientChainMap = React.use(getIngredientChainMap());
-  const berryMap = React.use(getAllBerryData());
+  const berryDataMap = React.use(getAllBerryData());
   const ingredientMap = React.use(getAllIngredients());
   const snorlaxRankData = React.use(getSnorlaxRank());
   const mapMeta = React.use(getAllMapMeta());
   const subSkillMap = React.use(getSubSkillMap());
+  const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
 
   const props: TeamAnalysisServerDataProps = {
     pokedex,
     ingredientChainMap,
-    berryMap,
+    berryDataMap,
     ingredientMap,
     snorlaxRankData,
     mapMeta,
     subSkillMap,
+    pokemonMaxLevel,
   };
 
   return (

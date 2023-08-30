@@ -7,11 +7,13 @@ import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {PokemonRatingResult} from '@/components/shared/pokemon/rating/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
@@ -19,11 +21,14 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
+import {AnalysisPokemonRatingState} from '@/ui/team/analysis/setup/pokemon/type';
+import {toRatingRequest} from '@/ui/team/analysis/setup/pokemon/utils';
+import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & {
+type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
   slotName: TeamAnalysisSlotName,
   pokemon: PokemonInfo,
   member: TeamAnalysisMember,
@@ -31,41 +36,57 @@ type Props = TeamAnalysisDataProps & {
   producingStats: TeamProducingStatsSingle,
 };
 
-export const TeamAnalysisPokemon = ({
-  berryMap,
-  subSkillMap,
-  ingredientChainMap,
-  slotName,
-  pokemon,
-  member,
-  setMember,
-  producingStats,
-}: Props) => {
+export const TeamAnalysisPokemon = (props: Props) => {
+  const {
+    setup,
+    berryDataMap,
+    subSkillMap,
+    ingredientChainMap,
+    slotName,
+    pokemon,
+    member,
+    setMember,
+    producingStats,
+    snorlaxFavorite,
+  } = props;
+
   const t = useTranslations('Game');
-  const [show, setShow] = React.useState(false);
+  const t2 = useTranslations('UI.Metadata');
+  const [showIngredientPicker, setShowIngredientPicker] = React.useState(false);
+  const [ratingControl, setRatingControl] = React.useState<AnalysisPokemonRatingState>({
+    show: false,
+    request: undefined,
+  });
 
   const {id, type, berry, skill, ingredientChain} = pokemon;
-  const berryData = berryMap[berry.id];
+  const berryData = berryDataMap[berry.id];
   const maxLevel = berryData.energy.length;
 
   return (
     <Flex direction="row" className="gap-1 md:flex-col">
-      <Popup show={show} setShow={setShow}>
-        <PokemonIngredientPicker
-          chain={ingredientChainMap[ingredientChain]}
-          ingredients={member.ingredients}
-          onSelect={(updated, ingredientLevel) => setMember(
-            slotName,
-            {
-              ...member,
-              ingredients: {
-                ...member.ingredients,
-                [ingredientLevel]: updated,
+      <Popup show={showIngredientPicker} setShow={setShowIngredientPicker}>
+        <Flex direction="col" noFullWidth className="sm:w-[70vw]">
+          <PokemonIngredientPicker
+            chain={ingredientChainMap[ingredientChain]}
+            ingredients={member.ingredients}
+            onSelect={(updated, ingredientLevel) => setMember(
+              slotName,
+              {
+                ...member,
+                ingredients: {
+                  ...member.ingredients,
+                  [ingredientLevel]: updated,
+                },
               },
-            },
-          )}
-          idPrefix={id.toString()}
-        />
+            )}
+            idPrefix={id.toString()}
+          />
+        </Flex>
+      </Popup>
+      <Popup show={ratingControl.show} setShow={(show) => setRatingControl((original) => ({...original, show}))}>
+        <Flex direction="col" noFullWidth className="sm:w-[70vw]">
+          <PokemonRatingResult request={ratingControl.request} {...props}/>
+        </Flex>
       </Popup>
       <Flex direction="col" center className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
@@ -84,18 +105,28 @@ export const TeamAnalysisPokemon = ({
             <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
           </div>
         </Flex>
-        <button className="button-clickable-bg px-1.5" onClick={() => setShow(true)}>
-          <Flex direction="row" className="justify-end">
-            <PokemonIngredientIcons
-              ingredients={[Object.values(member.ingredients).map((production) => production)]}
-              noLink
-            />
+        <Flex direction="row" className="items-center gap-1.5">
+          <Flex direction="col" noFullWidth>
+            <button className="button-clickable-bg group p-1" onClick={() => setRatingControl({
+              show: true,
+              request: toRatingRequest({member, pokemon, snorlaxFavorite, bonus: setup.bonus}),
+            })}>
+              <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
+            </button>
           </Flex>
-        </button>
-        <Flex direction="row" className="justify-end text-xs">
-          <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
-            {t(`MainSkill.Name.${skill}`)}
-          </span>
+          <Flex direction="col" center className="gap-1">
+            <button className="button-clickable-bg w-fit px-1.5" onClick={() => setShowIngredientPicker(true)}>
+              <PokemonIngredientIcons
+                ingredients={[Object.values(member.ingredients).map((production) => production)]}
+                noLink
+              />
+            </button>
+            <Flex direction="row" className="justify-end text-xs">
+              <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
+                {t(`MainSkill.Name.${skill}`)}
+              </span>
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
       <Flex direction="col" center className="gap-1">

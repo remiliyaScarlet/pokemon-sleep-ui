@@ -10,7 +10,13 @@ type UseRatingWorkerOpts = {
 };
 
 export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
-  const {level} = opts;
+  const {
+    level,
+    ingredientChainMap,
+    ingredientMap,
+    berryDataMap,
+    subSkillMap,
+  } = opts;
   const [result, setResult] = React.useState<RatingResultOfLevel>({
     level,
     ...initialResult,
@@ -30,7 +36,20 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
   };
 
   const rate = (setupData: RatingSetupData) => {
-    worker.postMessage({...opts, ...setupData} satisfies RatingWorkerOpts);
+    // Explicitly stating everything to make sure no additional props passed to the worker
+    worker.postMessage({
+      level,
+      pokemon: setupData.pokemon,
+      ingredients: setupData.ingredients,
+      snorlaxFavorite: setupData.snorlaxFavorite,
+      subSkill: setupData.subSkill,
+      nature: setupData.nature,
+      bonus: setupData.bonus,
+      ingredientChainMap,
+      ingredientMap,
+      berryDataMap,
+      subSkillMap,
+    } satisfies RatingWorkerOpts);
     setLoading(true);
   };
 

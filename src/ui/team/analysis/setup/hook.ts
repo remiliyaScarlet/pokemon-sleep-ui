@@ -41,7 +41,7 @@ const useProducingStatsOfSlot = ({
   slotName,
   helperCount,
   pokedex,
-  berryMap,
+  berryDataMap,
   ingredientMap,
   subSkillMap,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
@@ -56,7 +56,7 @@ const useProducingStatsOfSlot = ({
       return null;
     }
     const level = member.level;
-    const berryData = berryMap[pokemon.berry.id];
+    const berryData = berryDataMap[pokemon.berry.id];
     const producingRateOpts: ProducingRateSingleParams = {
       helperCount,
       subSkillBonus: getSubSkillBonus({
