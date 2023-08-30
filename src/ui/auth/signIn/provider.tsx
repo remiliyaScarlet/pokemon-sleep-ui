@@ -11,7 +11,7 @@ type Props = {
   text: React.ReactNode,
 };
 
-export const AuthSignInExternalProvider = ({provider, text}: Props) => {
+export const AuthSignInProvider = ({provider, text}: Props) => {
   return (
     <button className="button-clickable-bg w-1/2 p-2 md:w-1/3" onClick={() => signIn(provider)}>
       <Flex direction="row" noFullWidth center className="gap-1.5">

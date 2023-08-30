@@ -9,7 +9,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 
 
-export const AuthSignInEmailForm = () => {
+export const AuthSignInEmailClient = () => {
   const [email, setEmail] = React.useState('');
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
