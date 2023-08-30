@@ -180,6 +180,8 @@ export const PokeboxContentPokeInBoxRow = React.memo((props: PokeInBoxViewUnitPr
       </button>
     </Flex>
   );
-}, (prev, next) => isEqual(prev.pokeInBox, next.pokeInBox));
+}, (prev, next) => (
+  isEqual(prev.pokeInBox, next.pokeInBox) && isEqual(prev.snorlaxFavorite, next.snorlaxFavorite)
+));
 
 PokeboxContentPokeInBoxRow.displayName = 'PokeboxContentPokeInBoxRow';
