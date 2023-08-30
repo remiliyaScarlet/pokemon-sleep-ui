@@ -47,7 +47,7 @@ export const TeamAnalysisRateLayout = ({
       {
         showQuantity && rate &&
         <div className={textClass}>
-          x{formatFloat(rate.quantity)}
+          x{formatFloat(rate.quantity * productionMultiplierByPeriod[period])}
         </div>
       }
       <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
