@@ -1,6 +1,6 @@
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {GroupedSubSkillBonus} from '@/types/game/pokemon/subskill';
+import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 

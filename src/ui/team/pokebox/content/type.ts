@@ -4,7 +4,7 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {RatingBonus} from '@/types/game/pokemon/rating';
-import {SubSkillMap} from '@/types/game/pokemon/subskill';
+import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
 

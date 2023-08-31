@@ -1,5 +1,5 @@
 import {PokeInBox} from '@/types/game/pokebox';
-import {SubSkillMap} from '@/types/game/pokemon/subskill';
+import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
 export type PokeboxImporterCommonProps = {

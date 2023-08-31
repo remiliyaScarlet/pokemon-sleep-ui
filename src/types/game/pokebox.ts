@@ -1,7 +1,7 @@
 import {PokemonId} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
 
 
 export type PokeInBox = {

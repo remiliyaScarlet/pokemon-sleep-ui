@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {imageSmallIconSizes} from '@/styles/image';
-import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
 type Props = {

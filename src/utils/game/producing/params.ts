@@ -1,5 +1,5 @@
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill';
 

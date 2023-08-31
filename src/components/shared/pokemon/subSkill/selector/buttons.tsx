@@ -4,7 +4,7 @@ import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCirc
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonSubSkillSelectionButton} from '@/components/shared/pokemon/subSkill/selector/button';
-import {SubSkillData, SubSkillId} from '@/types/game/pokemon/subskill';
+import {SubSkillData, SubSkillId} from '@/types/game/pokemon/subSkill';
 
 
 type Props = {

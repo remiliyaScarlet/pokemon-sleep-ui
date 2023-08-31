@@ -1,7 +1,7 @@
 import {clsx} from 'clsx';
 
 import {MealTypeClassMap} from '@/styles/type';
-import {SubSkillRarity} from '@/types/game/pokemon/subskill';
+import {SubSkillRarity} from '@/types/game/pokemon/subSkill';
 
 
 export const mealTypeBackgroundStyle: MealTypeClassMap = {

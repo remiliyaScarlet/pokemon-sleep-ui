@@ -9,7 +9,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {subSkillBonusImageSrcMap, subSkillImageOverride} from '@/const/game/pokemon';
 import {subSkillRarityIconFilter} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
-import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subskill';
+import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subSkill';
 
 
 type Props = {

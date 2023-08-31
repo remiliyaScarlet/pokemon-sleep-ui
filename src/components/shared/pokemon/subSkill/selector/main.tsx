@@ -19,7 +19,7 @@ import {
   pokemonSubSkillLevel,
   SubSkillId,
   SubSkillMap,
-} from '@/types/game/pokemon/subskill';
+} from '@/types/game/pokemon/subSkill';
 import {isNotNullish} from '@/utils/type';
 
 

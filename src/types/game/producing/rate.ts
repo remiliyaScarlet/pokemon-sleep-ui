@@ -1,7 +1,7 @@
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {GroupedSubSkillBonus} from '@/types/game/pokemon/subskill';
+import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {Indexable} from '@/utils/type';
 
 

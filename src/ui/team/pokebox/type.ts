@@ -6,7 +6,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap} from '@/types/game/pokemon';
 import {RatingBonus} from '@/types/game/pokemon/rating';
-import {SubSkillMap} from '@/types/game/pokemon/subskill';
+import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
 export type PokeboxDataProps = UsePokemonFilterCommonData & {

@@ -9,7 +9,7 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {RatingDataPoint} from '@/types/game/pokemon/rating';
-import {SubSkillMap} from '@/types/game/pokemon/subskill';
+import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {formatFloat} from '@/utils/number';
 
 

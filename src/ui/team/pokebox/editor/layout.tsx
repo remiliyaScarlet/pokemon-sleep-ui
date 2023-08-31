@@ -15,7 +15,7 @@ import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {PokeInBox} from '@/types/game/pokebox';
-import {pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
+import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
 

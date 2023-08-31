@@ -8,7 +8,7 @@ import {
   IngredientProductionAtLevels,
 } from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subskill';
+import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 

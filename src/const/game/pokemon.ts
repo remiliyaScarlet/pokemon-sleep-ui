@@ -1,7 +1,7 @@
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {NatureEffectId, NatureEffectType} from '@/types/game/pokemon/nature';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
-import {SubSkillBonusCategory, SubSkillId} from '@/types/game/pokemon/subskill';
+import {SubSkillBonusCategory, SubSkillId} from '@/types/game/pokemon/subSkill';
 
 
 export const specialtyIdMap: {[name in SpecialtyType]: PokemonSpecialtyId} = {

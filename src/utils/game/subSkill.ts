@@ -8,7 +8,7 @@ import {
   SubSkillData,
   SubSkillId,
   SubSkillMap,
-} from '@/types/game/pokemon/subskill';
+} from '@/types/game/pokemon/subSkill';
 import {combineIterator} from '@/utils/compute';
 import {isNotNullish} from '@/utils/type';
 

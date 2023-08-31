@@ -8,7 +8,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/classes';
-import {SubSkillData} from '@/types/game/pokemon/subskill';
+import {SubSkillData} from '@/types/game/pokemon/subSkill';
 
 
 type Props = {
