@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -8,6 +9,7 @@ import {Popup} from '@/components/popup';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
@@ -39,20 +41,22 @@ type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
 export const TeamAnalysisPokemon = (props: Props) => {
   const {
     setup,
-    berryDataMap,
-    subSkillMap,
-    ingredientChainMap,
     slotName,
     pokemon,
     member,
     setMember,
     producingStats,
     snorlaxFavorite,
+    berryDataMap,
+    subSkillMap,
+    ingredientChainMap,
+    pokedex,
   } = props;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Metadata');
   const [showIngredientPicker, setShowIngredientPicker] = React.useState(false);
+  const [showEvolutionSelector, setShowEvolutionSelector] = React.useState(false);
   const ratingControl = useRatingPopup();
 
   const {id, type, berry, skill, ingredientChain} = pokemon;
@@ -80,6 +84,16 @@ export const TeamAnalysisPokemon = (props: Props) => {
           />
         </Flex>
       </Popup>
+      <Popup show={showEvolutionSelector} setShow={setShowEvolutionSelector}>
+        <PokemonEvolutionSelector
+          pokemon={pokemon}
+          pokedex={pokedex}
+          onClick={(pokemonId) => {
+            setMember(slotName, {pokemonId});
+            setShowEvolutionSelector(false);
+          }}
+        />
+      </Popup>
       <RatingResultPopup ratingControl={ratingControl} {...props}/>
       <Flex direction="col" center className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
@@ -98,8 +112,8 @@ export const TeamAnalysisPokemon = (props: Props) => {
             <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
           </div>
         </Flex>
-        <Flex direction="row" className="items-center gap-1.5">
-          <Flex direction="col" noFullWidth>
+        <Flex direction="row" className="items-center">
+          <Flex direction="row" center noFullWidth className="gap-1.5">
             <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
               pokemon,
@@ -108,19 +122,20 @@ export const TeamAnalysisPokemon = (props: Props) => {
             }))}>
               <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
             </button>
+            <button className="button-clickable-bg h-8 w-8 p-1" onClick={() => setShowEvolutionSelector(true)}>
+              <ArrowPathIcon/>
+            </button>
           </Flex>
-          <Flex direction="col" center className="gap-1">
+          <Flex direction="col" className="items-end gap-1">
             <button className="button-clickable-bg w-fit px-1.5" onClick={() => setShowIngredientPicker(true)}>
               <PokemonIngredientIcons
                 ingredients={[Object.values(member.ingredients).map((production) => production)]}
                 noLink
               />
             </button>
-            <Flex direction="row" className="justify-end text-xs">
-              <span className={clsx(pokemon.specialty === specialtyIdMap.skill && 'bg-blink', 'px-1.5 py-0.5')}>
-                {t(`MainSkill.Name.${skill}`)}
-              </span>
-            </Flex>
+            <div className={clsx('px-1.5 py-0.5 text-xs', pokemon.specialty === specialtyIdMap.skill && 'bg-blink')}>
+              {t(`MainSkill.Name.${skill}`)}
+            </div>
           </Flex>
         </Flex>
       </Flex>
