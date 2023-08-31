@@ -79,7 +79,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
           }
         </AnimatedCollapse>
       </Flex>
-      <AdsUnit/>
       <AnimatedCollapse show={!!initialSetup}>
         {
           initialSetup &&
