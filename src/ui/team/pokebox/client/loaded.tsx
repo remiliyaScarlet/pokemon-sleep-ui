@@ -52,7 +52,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
     ),
     ...props,
   });
-  const sortedPokemonInfo = useSortingWorker({
+  const sortedPokeInBox = useSortingWorker({
     data: Object.values(pokebox)
       .filter(isNotNullish)
       .map((pokeInBox) => {
@@ -104,7 +104,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
   }, [status]);
 
   const pokemon = Object.values(pokedexMap).filter(isNotNullish);
-  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
+  const sortedPokebox = sortedPokeInBox.map(({source}) => source.extra);
 
   return (
     <Flex direction="col" className="gap-1.5">
@@ -165,7 +165,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
         loading={loading}
         isIncluded={isIncluded}
         setEditingPokeInBox={setEditingPokeInBox}
-        sortedPokemonInfo={sortedPokemonInfo}
+        sortedPokeInBox={sortedPokeInBox}
         {...props}
       />
       <AdsUnit/>

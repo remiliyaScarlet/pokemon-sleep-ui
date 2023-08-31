@@ -14,7 +14,7 @@ export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
   isIncluded: FilterInclusionMap<string>,
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
-  sortedPokemonInfo: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
+  sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 
 export type PokeInBoxViewOfTypeProps = PokeInBoxViewCommonProps;

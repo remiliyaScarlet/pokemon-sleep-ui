@@ -12,18 +12,20 @@ export const PokeboxContentPokeInBoxTable = ({
   filter,
   isIncluded,
   setEditingPokeInBox,
-  sortedPokemonInfo,
+  sortedPokeInBox,
   ...props
 }: PokeInBoxViewOfTypeProps) => {
+  console.log(sortedPokeInBox.length);
+
   return (
     <Flex direction="col" className="h-[70vh] gap-1 overflow-auto">
       <AutoSizer>
         {({height, width}) => (
           <FixedSizeList
             height={height}
-            itemCount={sortedPokemonInfo.length}
+            itemCount={sortedPokeInBox.length}
             itemSize={51}
-            itemData={sortedPokemonInfo}
+            itemData={sortedPokeInBox}
             width={width}
           >
             {({style, data, index}) => {
