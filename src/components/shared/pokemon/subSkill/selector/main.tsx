@@ -48,13 +48,21 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
     ),
   });
 
+  const isAllSelected = (subSkill: PokemonSubSkill): boolean => {
+    return pokemonSubSkillLevel.every((level) => isNotNullish(subSkill[level]));
+  };
+
   const onSelect = (id: SubSkillId) => {
     const emptyLevel = pokemonSubSkillLevel.find((level) => !subSkill[level]) ?? pokemonSubSkillLevel[0];
-
-    setSubSkill({
+    const newSubSkill: PokemonSubSkill = {
       ...subSkill,
       [emptyLevel]: id,
-    } satisfies PokemonSubSkill);
+    };
+
+    setSubSkill(newSubSkill);
+    if (isAllSelected(newSubSkill)) {
+      setShow(false);
+    }
   };
 
   const onRemove = (level: PokemonSubSkillLevel) => {
