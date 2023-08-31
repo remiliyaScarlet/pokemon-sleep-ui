@@ -23,7 +23,7 @@ export const LazyLoad = React.forwardRef<HTMLDivElement, React.PropsWithChildren
       {
         loading &&
         <Flex direction="col" className={clsx(
-          'absolute left-0 top-0 z-20 h-full rounded-lg bg-slate-100/80 dark:bg-slate-800/80',
+          'absolute left-0 top-0 z-50 h-full rounded-lg bg-slate-100/80 dark:bg-slate-800/80',
         )}>
           <Flex direction="col" className={clsx(loadingFullHeight ? 'h-full' : 'h-40')}>
             <LoadingIcon/>
