@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import isEqual from 'lodash/isEqual';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -29,7 +28,7 @@ import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeboxContentPokeInBoxRow = React.memo((props: PokeInBoxViewUnitProps) => {
+export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
   const {
     pokeInBox,
     pokedexMap,
@@ -180,10 +179,4 @@ export const PokeboxContentPokeInBoxRow = React.memo((props: PokeInBoxViewUnitPr
       </button>
     </Flex>
   );
-}, (prev, next) => (
-  isEqual(prev.pokeInBox, next.pokeInBox) &&
-  isEqual(prev.snorlaxFavorite, next.snorlaxFavorite) &&
-  isEqual(prev.bonus, next.bonus)
-));
-
-PokeboxContentPokeInBoxRow.displayName = 'PokeboxContentPokeInBoxRow';
+};
