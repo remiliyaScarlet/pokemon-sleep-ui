@@ -2,7 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {AbsoluteInfoIcon} from '@/components/icons/info';
 import {NextImage} from '@/components/shared/common/image/main';
 import {Dimension} from '@/types/style';
 
@@ -18,13 +18,7 @@ type Props = {
 export const IconWithInfo = ({imageSrc, imageAlt, imageDimension, imageSizes, info}: Props) => {
   return (
     <div className={clsx('relative', imageDimension)}>
-      {info &&
-        <Flex
-          direction="col" center noFullWidth
-          className="info-in-image absolute bottom-0 right-0 z-10 h-5 w-5 text-xs"
-        >
-          {info}
-        </Flex>}
+      {info && <AbsoluteInfoIcon>{info}</AbsoluteInfoIcon>}
       <NextImage src={imageSrc} alt={imageAlt} sizes={imageSizes}/>
     </div>
   );
