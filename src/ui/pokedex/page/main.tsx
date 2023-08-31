@@ -23,19 +23,28 @@ type Props = {
   params: PokedexPageParams,
 };
 
-export const Pokemon = ({params}: Props) => {
+export const Pokemon = async ({params}: Props) => {
   const {id, locale} = params;
   const idNumber = Number(id);
-  const pokemon = React.use(getSinglePokemonInfo(idNumber));
-  const ingredientChainMap = React.use(getIngredientChainMap());
-  const pokedex = React.use(getPokemonAsMap(pokemon ? getRelatedPokemonIds(pokemon) : []));
-  const sleepStyles = React.use(getPokemonSleepStyles(idNumber));
-  const berryData = React.use(getBerryData(pokemon?.berry.id));
-  const ingredientMap = React.use(getAllIngredients());
+  const pokemon = await getSinglePokemonInfo(idNumber);
 
   if (!pokemon) {
     return <Failed text="Pokemon"/>;
   }
+
+  const [
+    ingredientChainMap,
+    pokedex,
+    sleepStyles,
+    berryData,
+    ingredientMap,
+  ] = await Promise.all([
+    getIngredientChainMap(),
+    getPokemonAsMap(getRelatedPokemonIds(pokemon)),
+    getPokemonSleepStyles(idNumber),
+    getBerryData(pokemon.berry.id),
+    getAllIngredients(),
+  ]);
 
   if (!berryData) {
     return <Failed text="Berry"/>;

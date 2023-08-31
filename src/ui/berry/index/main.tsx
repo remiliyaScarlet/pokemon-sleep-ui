@@ -8,9 +8,9 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryLink} from '@/ui/berry/index/link';
 
 
-export const BerryIndex = ({params}: DefaultPageProps) => {
+export const BerryIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const berryDataMap = React.use(getAllBerryData());
+  const berryDataMap = await getAllBerryData();
 
   return (
     <PublicPageLayout locale={locale}>

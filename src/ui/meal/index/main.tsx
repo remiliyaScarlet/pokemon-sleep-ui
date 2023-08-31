@@ -10,10 +10,15 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealIndexClient} from '@/ui/meal/index/client';
 
 
-export const MealIndex = ({params}: DefaultPageProps) => {
+export const MealIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const data = React.use(getAllMeals());
-  const session = React.use(getServerSession(authOptions));
+  const [
+    session,
+    data,
+  ] = await Promise.all([
+    getServerSession(authOptions),
+    getAllMeals(),
+  ]);
 
   return (
     <PublicPageLayout locale={locale}>

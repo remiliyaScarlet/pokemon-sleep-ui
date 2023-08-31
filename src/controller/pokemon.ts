@@ -37,12 +37,8 @@ export const getPokemonAsMap = async (ids?: PokemonId[]): Promise<PokedexMap> =>
 };
 
 export const getPokemonIngredientProduction = async (
-  ingredientId: IngredientId | undefined,
+  ingredientId: IngredientId,
 ): Promise<PokemonIngredientProduction[]> => {
-  if (!ingredientId) {
-    return Object.fromEntries(ingredientLevels.map(() => []));
-  }
-
   const [ingredientChainMap, pokemonArray] = await Promise.all([
     getIngredientChainMapOfIngredient(ingredientId),
     getAllPokemonAsArray(),

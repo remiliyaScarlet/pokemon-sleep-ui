@@ -18,16 +18,25 @@ type Props = {
   params: AnalysisPageParams,
 };
 
-export const AnalysisPage = ({params}: Props) => {
+export const AnalysisPage = async ({params}: Props) => {
   const {id, locale} = params;
-  const idNumber = Number(id);
-  const pokedex = React.use(getAllPokemonAsArray());
-  const pokemon = pokedex.find(({id}) => id === idNumber);
-  const ingredientChainMap = React.use(getIngredientChainMap());
-  const ingredientMap = React.use(getAllIngredients());
-  const berryDataMap = React.use(getAllBerryData());
-  const sleepStyleMap = React.use(getPokemonSleepStyleMap());
-  const mapMeta = React.use(getAllMapMeta());
+  const [
+    pokedex,
+    ingredientChainMap,
+    ingredientMap,
+    berryDataMap,
+    sleepStyleMap,
+    mapMeta,
+  ] = await Promise.all([
+    getAllPokemonAsArray(),
+    getIngredientChainMap(),
+    getAllIngredients(),
+    getAllBerryData(),
+    getPokemonSleepStyleMap(),
+    getAllMapMeta(),
+  ]);
+
+  const pokemon = pokedex.find((pokemon) => pokemon.id === Number(id));
 
   if (!pokemon) {
     return <Failed text="Pokemon"/>;

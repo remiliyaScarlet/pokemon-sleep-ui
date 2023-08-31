@@ -12,9 +12,9 @@ import {AuthLayout} from '@/ui/auth/common/layout';
 import {AuthSignInExternal} from '@/ui/auth/signIn/external';
 
 
-export const AuthSignIn = ({params, searchParams}: DefaultPageProps) => {
+export const AuthSignIn = async ({params, searchParams}: DefaultPageProps) => {
   const {locale} = params;
-  const session = React.use(getServerSession(authOptions));
+  const session = await getServerSession(authOptions);
 
   if (session) {
     const callbackUrl = searchParams?.callbackUrl;

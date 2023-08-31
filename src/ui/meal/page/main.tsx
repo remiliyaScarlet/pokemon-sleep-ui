@@ -19,18 +19,25 @@ type Props = {
   params: MealPageParams,
 };
 
-export const MealPage = ({params}: Props) => {
+export const MealPage = async ({params}: Props) => {
   const {id, locale} = params;
-  const idNumber = Number(id);
-  const meal = React.use(getSingleMeal(idNumber));
-  const pokemonByIngredients = React.use(getPokemonByIngredients(meal?.ingredients.map(({id}) => id) ?? []));
-  const ingredientMap = React.use(getAllIngredients());
-  const pokedex = React.use(getPokemonAsMap());
-  const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
+  const meal = await getSingleMeal(Number(id));
 
   if (!meal) {
     return <Failed text="Meal"/>;
   }
+
+  const [
+    pokemonByIngredients,
+    ingredientMap,
+    pokedex,
+    pokemonMaxLevel,
+  ] = await Promise.all([
+    getPokemonByIngredients(meal.ingredients.map(({id}) => id)),
+    getAllIngredients(),
+    getPokemonAsMap(),
+    getPokemonMaxLevelByBerry(),
+  ]);
 
   const props: MealCommonProps = {meal, ingredientMap, pokedex, pokemonMaxLevel, locale};
 

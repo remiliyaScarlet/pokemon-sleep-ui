@@ -7,9 +7,9 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SubSkillInfoSingle} from '@/ui/info/subskill/single';
 
 
-export const SubSkillInfo = ({params}: DefaultPageProps) => {
+export const SubSkillInfo = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const subSkills = React.use(getAllSubSkillData());
+  const subSkills = await getAllSubSkillData();
 
   const sortedSubSkills = subSkills.sort((a, b) => {
     const bonusA = Object.entries(a.bonus).at(0);

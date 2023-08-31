@@ -8,9 +8,9 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientLink} from '@/ui/ingredient/index/link';
 
 
-export const IngredientIndex = ({params}: DefaultPageProps) => {
+export const IngredientIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const data = React.use(getAllIngredients());
+  const data = await getAllIngredients();
 
   return (
     <PublicPageLayout locale={locale}>

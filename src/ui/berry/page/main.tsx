@@ -15,13 +15,21 @@ type Props = {
   params: BerryPageParams,
 };
 
-export const BerryPage = ({params}: Props) => {
+export const BerryPage = async ({params}: Props) => {
   const {id, locale} = params;
   const idNumber = parseInt(id);
-  const berryData = React.use(getBerryData(idNumber));
-  const favoriteInfo = React.use(getFavoriteInfoOfBerry(idNumber));
-  const pokemonOfBerry = React.use(getPokemonByBerry(idNumber));
-  const pokedex = React.use(getPokemonAsMap());
+
+  const [
+    berryData,
+    favoriteInfo,
+    pokemonOfBerry,
+    pokedex,
+  ] = await Promise.all([
+    getBerryData(idNumber),
+    getFavoriteInfoOfBerry(idNumber),
+    getPokemonByBerry(idNumber),
+    getPokemonAsMap(),
+  ]);
 
   if (!berryData) {
     return <Failed text="Berry"/>;

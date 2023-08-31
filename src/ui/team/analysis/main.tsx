@@ -14,16 +14,27 @@ import {TeamAnalysisClient} from '@/ui/team/analysis/client/main';
 import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
 
 
-export const TeamAnalysis = ({params}: DefaultPageProps) => {
+export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const pokedex = React.use(getPokemonAsMap());
-  const ingredientChainMap = React.use(getIngredientChainMap());
-  const berryDataMap = React.use(getAllBerryData());
-  const ingredientMap = React.use(getAllIngredients());
-  const snorlaxRankData = React.use(getSnorlaxRank());
-  const mapMeta = React.use(getAllMapMeta());
-  const subSkillMap = React.use(getSubSkillMap());
-  const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
+  const [
+    pokedex,
+    ingredientChainMap,
+    berryDataMap,
+    ingredientMap,
+    snorlaxRankData,
+    mapMeta,
+    subSkillMap,
+    pokemonMaxLevel,
+  ] = await Promise.all([
+    getPokemonAsMap(),
+    getIngredientChainMap(),
+    getAllBerryData(),
+    getAllIngredients(),
+    getSnorlaxRank(),
+    getAllMapMeta(),
+    getSubSkillMap(),
+    getPokemonMaxLevelByBerry(),
+  ]);
 
   const props: TeamAnalysisServerDataProps = {
     pokedex,

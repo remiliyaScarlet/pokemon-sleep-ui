@@ -13,8 +13,8 @@ const getCollection = async (): Promise<Collection<BerryData>> => {
     .collection<BerryData>('berry');
 };
 
-export const getBerryData = async (id: BerryId | undefined): Promise<BerryData | null> => (
-  id ? (await getCollection()).findOne({id}, {projection: {_id: false}}) : null
+export const getBerryData = async (id: BerryId): Promise<BerryData | null> => (
+  (await getCollection()).findOne({id}, {projection: {_id: false}})
 );
 
 export const getAllBerryData = async (): Promise<BerryDataMap> => {

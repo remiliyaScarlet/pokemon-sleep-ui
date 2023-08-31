@@ -19,18 +19,26 @@ type Props = {
   params: IngredientPageParams,
 };
 
-export const IngredientPage = ({params}: Props) => {
+export const IngredientPage = async ({params}: Props) => {
   const {id, locale} = params;
   const idNumber = Number(id);
-  const ingredient = React.use(getIngredientData(idNumber));
-  const pokemonProduction = React.use(getPokemonIngredientProduction(ingredient?.id));
-  const pokedex = React.use(getPokemonAsMap());
-  const cookableMeals = React.use(getMealByIngredient(ingredient?.id));
-  const pokemonMaxLevel = React.use(getPokemonMaxLevelByBerry());
+  const ingredient = await getIngredientData(idNumber);
 
   if (!ingredient) {
     return <Failed text="Ingredient"/>;
   }
+
+  const [
+    pokemonProduction,
+    pokedex,
+    cookableMeals,
+    pokemonMaxLevel,
+  ] = await Promise.all([
+    getPokemonIngredientProduction(ingredient.id),
+    getPokemonAsMap(),
+    getMealByIngredient(ingredient.id),
+    getPokemonMaxLevelByBerry(),
+  ]);
 
   return (
     <PublicPageLayout locale={locale}>

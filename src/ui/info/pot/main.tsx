@@ -12,11 +12,17 @@ import {PotInfoClient} from '@/ui/info/pot/client';
 import {PotInfoCommonProps} from '@/ui/info/pot/type';
 
 
-export const PotInfo = ({params}: DefaultPageProps) => {
+export const PotInfo = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const meals = React.use(getAllMeals());
-  const ingredients = React.use(getAllIngredients());
-  const session = React.use(getServerSession(authOptions));
+  const [
+    session,
+    meals,
+    ingredients,
+  ] = await Promise.all([
+    getServerSession(authOptions),
+    getAllMeals(),
+    getAllIngredients(),
+  ]);
 
   const props: PotInfoCommonProps = {meals, ingredients, session};
 

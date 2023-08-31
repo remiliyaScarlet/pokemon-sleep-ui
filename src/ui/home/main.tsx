@@ -8,9 +8,9 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {HomeClient} from '@/ui/home/client';
 
 
-export const Home = ({params}: DefaultPageProps) => {
+export const Home = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const userCount = React.use(getUserCount());
+  const userCount = await getUserCount();
 
   return (
     <PublicPageLayout locale={locale} announcement={false}>

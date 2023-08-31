@@ -11,11 +11,17 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {CookingClient} from '@/ui/cooking/client';
 
 
-export const Cooking = ({params}: DefaultPageProps) => {
+export const Cooking = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const meals = React.use(getAllMeals());
-  const ingredientMap = React.use(getAllIngredients());
-  const session = React.use(getServerSession(authOptions));
+  const [
+    session,
+    meals,
+    ingredientMap,
+  ] = await Promise.all([
+    getServerSession(authOptions),
+    getAllMeals(),
+    getAllIngredients(),
+  ]);
 
   return (
     <PublicPageLayout locale={locale}>

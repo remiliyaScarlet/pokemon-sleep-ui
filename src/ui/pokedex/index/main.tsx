@@ -34,15 +34,25 @@ const getPokedexData = async (): Promise<PokedexData> => {
     } satisfies PokemonInfoForPokedex));
 };
 
-export const Pokedex = ({params}: DefaultPageProps) => {
+export const Pokedex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const pokedex = React.use(getPokedexData());
-  const maxLevel = React.use(getPokemonMaxLevelByBerry());
-  const ingredientMap = React.use(getAllIngredients());
-  const ingredientChainMap = React.use(getIngredientChainMap());
-  const berryMap = React.use(getAllBerryData());
-  const mapMeta = React.use(getAllMapMeta());
-  const session = React.use(getServerSession(authOptions));
+  const [
+    session,
+    pokedex,
+    maxLevel,
+    ingredientMap,
+    ingredientChainMap,
+    berryMap,
+    mapMeta,
+  ] = await Promise.all([
+    getServerSession(authOptions),
+    getPokedexData(),
+    getPokemonMaxLevelByBerry(),
+    getAllIngredients(),
+    getIngredientChainMap(),
+    getAllBerryData(),
+    getAllMapMeta(),
+  ]);
 
   const props: PokedexClientCommonProps = {
     pokedex,
