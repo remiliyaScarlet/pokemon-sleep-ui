@@ -13,7 +13,8 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
-import {PokemonRatingResult} from '@/components/shared/pokemon/rating/main';
+import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
+import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
@@ -21,7 +22,6 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
-import {AnalysisPokemonRatingState} from '@/ui/team/analysis/setup/pokemon/type';
 import {toRatingRequest} from '@/ui/team/analysis/setup/pokemon/utils';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
@@ -53,10 +53,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Metadata');
   const [showIngredientPicker, setShowIngredientPicker] = React.useState(false);
-  const [ratingControl, setRatingControl] = React.useState<AnalysisPokemonRatingState>({
-    show: false,
-    request: undefined,
-  });
+  const ratingControl = useRatingPopup();
 
   const {id, type, berry, skill, ingredientChain} = pokemon;
   const berryData = berryDataMap[berry.id];
@@ -83,11 +80,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
           />
         </Flex>
       </Popup>
-      <Popup show={ratingControl.show} setShow={(show) => setRatingControl((original) => ({...original, show}))}>
-        <Flex direction="col" noFullWidth className="sm:w-[70vw]">
-          <PokemonRatingResult request={ratingControl.request} {...props}/>
-        </Flex>
-      </Popup>
+      <RatingResultPopup ratingControl={ratingControl} {...props}/>
       <Flex direction="col" center className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
           <div className="relative h-5 w-5">
@@ -107,10 +100,12 @@ export const TeamAnalysisPokemon = (props: Props) => {
         </Flex>
         <Flex direction="row" className="items-center gap-1.5">
           <Flex direction="col" noFullWidth>
-            <button className="button-clickable-bg group p-1" onClick={() => setRatingControl({
-              show: true,
-              request: toRatingRequest({member, pokemon, snorlaxFavorite, bonus: setup.bonus}),
-            })}>
+            <button className="button-clickable-bg group p-1" onClick={() => ratingControl.setRequest(toRatingRequest({
+              member,
+              pokemon,
+              snorlaxFavorite,
+              bonus: setup.bonus,
+            }))}>
               <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
             </button>
           </Flex>

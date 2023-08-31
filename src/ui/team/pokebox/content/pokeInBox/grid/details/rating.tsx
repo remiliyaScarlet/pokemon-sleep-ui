@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {LoadingText} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex';
 import {ProgressBar} from '@/components/progressBar';
-import {pokemonRatingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
+import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {useCalculatePokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/hook';
@@ -17,7 +17,7 @@ export const PokeInBoxRating = (props: PokeInBoxCommonProps) => {
   const {result, loading} = useCalculatePokeInBoxRating(props);
 
   const {percentage, percentile} = result;
-  const textMarkStyle = getMarkByThreshold(percentile, pokemonRatingMarkThresholdByPr);
+  const textMarkStyle = getMarkByThreshold(percentile, ratingMarkThresholdByPr);
 
   return (
     <Flex direction="row" className={clsx('gap-1.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>

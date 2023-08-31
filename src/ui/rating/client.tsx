@@ -4,7 +4,7 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
-import {PokemonRatingResult} from '@/components/shared/pokemon/rating/main';
+import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
 import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
@@ -83,7 +83,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
       <AnimatedCollapse show={!!initialSetup}>
         {
           initialSetup &&
-          <PokemonRatingResult ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>
+          <RatingResult ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>
         }
       </AnimatedCollapse>
     </Flex>

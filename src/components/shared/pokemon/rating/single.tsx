@@ -12,9 +12,9 @@ import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {ProgressBar} from '@/components/progressBar';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {pokemonRatingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
-import {PokemonRatingDataPointUI} from '@/components/shared/pokemon/rating/point';
-import {PokemonRatingResultProps} from '@/components/shared/pokemon/rating/type';
+import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
+import {RatingDataPointUI} from '@/components/shared/pokemon/rating/point';
+import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {useRatingWorker} from '@/hooks/rating/main';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
@@ -22,11 +22,11 @@ import {RatingKeyLevel} from '@/types/game/pokemon/rating';
 import {formatFloat, formatInt} from '@/utils/number';
 
 
-type Props = Omit<PokemonRatingResultProps, 'pokemonMaxLevel'> & {
+type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {
   level: RatingKeyLevel,
 };
 
-export const PokemonRatingResultOfLevelUI = ({
+export const RatingResultOfLevelUI = ({
   request,
   level,
   pokemon,
@@ -68,7 +68,7 @@ export const PokemonRatingResultOfLevelUI = ({
     percentile,
     points,
   } = result;
-  const textMarkStyle = getMarkByThreshold(percentile, pokemonRatingMarkThresholdByPr);
+  const textMarkStyle = getMarkByThreshold(percentile, ratingMarkThresholdByPr);
 
   return (
     <LazyLoad loading={loading} loadingFullHeight className="info-section relative gap-3">
@@ -110,19 +110,19 @@ export const PokemonRatingResultOfLevelUI = ({
         </Flex>
       }>
         <Grid className="grid-rows-3 gap-1.5">
-          <PokemonRatingDataPointUI
+          <RatingDataPointUI
             point={points.min}
             subSkillMap={subSkillMap}
             icon={<HandThumbDownIcon/>}
             className="bg-red-500/10"
           />
-          <PokemonRatingDataPointUI
+          <RatingDataPointUI
             point={points.current}
             subSkillMap={subSkillMap}
             icon={<BeakerIcon/>}
             className="bg-slate-500/10"
           />
-          <PokemonRatingDataPointUI
+          <RatingDataPointUI
             point={points.max}
             subSkillMap={subSkillMap}
             icon={<HandThumbUpIcon/>}
