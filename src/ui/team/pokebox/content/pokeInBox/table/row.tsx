@@ -24,7 +24,7 @@ import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
+export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
   const {
     pokeInBox,
     pokedexMap,

@@ -3,11 +3,11 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Grid} from '@/components/layout/grid';
-import {PokeboxContentPokeInBoxCell} from '@/ui/team/pokebox/content/pokeInBox/grid/cell';
+import {PokeInBoxGridCell} from '@/ui/team/pokebox/content/pokeInBox/grid/cell';
 import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
-export const PokeboxContentPokeInBoxGrid = ({
+export const PokeInBoxGrid = ({
   filter,
   setEditingPokeInBox,
   sortedPokeInBox,
@@ -22,7 +22,7 @@ export const PokeboxContentPokeInBoxGrid = ({
           const uuid = source.extra.uuid;
 
           return (
-            <PokeboxContentPokeInBoxCell
+            <PokeInBoxGridCell
               key={uuid}
               pokeInBox={source.extra}
               displayType={filter.displayType}

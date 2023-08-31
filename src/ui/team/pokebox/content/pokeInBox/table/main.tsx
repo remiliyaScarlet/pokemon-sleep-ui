@@ -4,11 +4,11 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {FixedSizeList} from 'react-window';
 
 import {Flex} from '@/components/layout/flex';
-import {PokeboxContentPokeInBoxRow} from '@/ui/team/pokebox/content/pokeInBox/table/row';
+import {PokeInBoxTableRow} from '@/ui/team/pokebox/content/pokeInBox/table/row';
 import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
-export const PokeboxContentPokeInBoxTable = ({
+export const PokeInBoxTable = ({
   filter,
   setEditingPokeInBox,
   sortedPokeInBox,
@@ -34,7 +34,7 @@ export const PokeboxContentPokeInBoxTable = ({
 
               return (
                 <div key={uuid} style={styleToUse}>
-                  <PokeboxContentPokeInBoxRow
+                  <PokeInBoxTableRow
                     pokeInBox={source.extra}
                     displayType={filter.displayType}
                     snorlaxFavorite={filter.snorlaxFavorite}
