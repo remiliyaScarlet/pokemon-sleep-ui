@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsMap} from '@/controller/common';
+import {getDataAsMap, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {BerryData, BerryDataMap, BerryId} from '@/types/game/berry';
 
@@ -14,7 +14,7 @@ const getCollection = async (): Promise<Collection<BerryData>> => {
 };
 
 export const getBerryData = async (id: BerryId): Promise<BerryData | null> => (
-  (await getCollection()).findOne({id}, {projection: {_id: false}})
+  getSingleData(getCollection(), {id})
 );
 
 export const getAllBerryData = async (): Promise<BerryDataMap> => {
@@ -22,7 +22,7 @@ export const getAllBerryData = async (): Promise<BerryDataMap> => {
 };
 
 export const getPokemonMaxLevelByBerry = async (): Promise<number> => {
-  const data = await (await getCollection()).findOne({});
+  const data = await getSingleData(getCollection(), {});
 
   if (!data) {
     throw new Error('No berry data available for getting max pokemon level');

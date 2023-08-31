@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import {Collection} from 'mongodb';
 
+import {getSingleData} from '@/controller/common';
 import {isAdmin} from '@/controller/user/account/common';
 import mongoPromise from '@/lib/mongodb';
 import {UserActivationKey} from '@/types/mongo/user';
@@ -30,7 +31,7 @@ export const generateActivationKey = async (executorUserId: string, expiry: stri
 };
 
 export const getActivationKey = async (key: string) => (
-  (await getCollection()).findOne({key})
+  getSingleData(getCollection(), {key})
 );
 
 export const removeActivationKey = async (key: string) => (

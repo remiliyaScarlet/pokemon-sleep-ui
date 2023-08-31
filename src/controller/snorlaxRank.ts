@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsArray} from '@/controller/common';
+import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {SnorlaxRankInMap} from '@/types/game/snorlax';
@@ -19,7 +19,7 @@ export const getSnorlaxRank = async () => {
 };
 
 export const getSnorlaxRankOfMap = async (mapId: SleepMapId) => (
-  (await getCollection()).findOne({mapId}, {projection: {_id: false}})
+  getSingleData(getCollection(), {mapId})
 );
 
 const addSnorlaxRankIndex = async () => {

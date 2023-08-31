@@ -1,6 +1,7 @@
 import {ObjectId} from 'bson';
 import {Collection, MongoError} from 'mongodb';
 
+import {getSingleData} from '@/controller/common';
 import {getActivationKey, removeActivationKey} from '@/controller/user/account/key';
 import mongoPromise from '@/lib/mongodb';
 import {UserAdsFreeData} from '@/types/mongo/user';
@@ -36,7 +37,7 @@ export const activateAdsFree = async (userId: string, key: string): Promise<bool
 };
 
 export const isUserAdsFree = async (userId: string): Promise<boolean> => {
-  return !!await (await getCollection()).findOne({userId: new ObjectId(userId)});
+  return !!await getSingleData(getCollection(), {userId: new ObjectId(userId)});
 };
 
 const addAdsFreeDataIndex = async () => {

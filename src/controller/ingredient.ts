@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsMap} from '@/controller/common';
+import {getDataAsMap, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {Ingredient, IngredientId, IngredientMap} from '@/types/game/ingredient';
 
@@ -13,9 +13,9 @@ const getCollection = async (): Promise<Collection<Ingredient>> => {
     .collection<Ingredient>('ingredient');
 };
 
-export const getIngredientData = async (id: IngredientId): Promise<Ingredient | null> => {
-  return (await getCollection()).findOne({id}, {projection: {_id: false}});
-};
+export const getIngredientData = async (id: IngredientId): Promise<Ingredient | null> => (
+  getSingleData(getCollection(), {id})
+);
 
 export const getAllIngredients = async (): Promise<IngredientMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);

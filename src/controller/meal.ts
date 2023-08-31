@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsArray} from '@/controller/common';
+import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {Meal} from '@/types/game/meal';
 
@@ -17,9 +17,9 @@ export const getAllMeals = async (): Promise<Meal[]> => {
   return getDataAsArray(getCollection());
 };
 
-export const getSingleMeal = async (id: number) => {
-  return (await getCollection()).findOne({id}, {projection: {_id: false}});
-};
+export const getSingleMeal = async (id: number) => (
+  getSingleData(getCollection(), {id})
+);
 
 export const getMealByIngredient = async (id: number): Promise<Meal[]> => (
   getDataAsArray(getCollection(), {'ingredients.id': id})

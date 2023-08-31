@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsArray, getDataAsMap} from '@/controller/common';
+import {getDataAsArray, getDataAsMap, getSingleData} from '@/controller/common';
 import {getIngredientChainMapOfIngredient, getIngredientChainMapOfLevel} from '@/controller/ingredientChain';
 import mongoPromise from '@/lib/mongodb';
 import {BerryId} from '@/types/game/berry';
@@ -24,9 +24,9 @@ const getCollection = async (): Promise<Collection<PokemonInfo>> => {
     .collection<PokemonInfo>('info');
 };
 
-export const getSinglePokemonInfo = async (id: number) => {
-  return (await getCollection()).findOne({id}, {projection: {_id: false}});
-};
+export const getSinglePokemonInfo = async (id: number) => (
+  getSingleData(getCollection(), {id})
+);
 
 export const getAllPokemonAsArray = async (): Promise<PokemonInfo[]> => {
   return getDataAsArray(getCollection());
