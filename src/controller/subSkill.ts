@@ -28,4 +28,4 @@ const addSubSkillIndex = async () => {
 };
 
 addSubSkillIndex()
-  .catch((e) => console.error('MongoDB failed to add sub skill index', e));
+  .catch((e) => console.error('MongoDB failed to initialize sub skill index', e));

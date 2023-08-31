@@ -40,4 +40,4 @@ const addBerryDataIndex = async () => {
 };
 
 addBerryDataIndex()
-  .catch((e) => console.error('MongoDB failed to add berry index', e));
+  .catch((e) => console.error('MongoDB failed to initialize berry index', e));

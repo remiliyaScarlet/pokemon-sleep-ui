@@ -48,4 +48,4 @@ const addIngredientChainIndex = async () => {
 };
 
 addIngredientChainIndex()
-  .catch((e) => console.error('MongoDB failed to add ingredient chain index', e));
+  .catch((e) => console.error('MongoDB failed to initialize ingredient chain index', e));

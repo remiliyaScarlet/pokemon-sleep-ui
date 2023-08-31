@@ -35,4 +35,4 @@ const addMealDataIndex = async () => {
 };
 
 addMealDataIndex()
-  .catch((e) => console.error('MongoDB failed to add meal index', e));
+  .catch((e) => console.error('MongoDB failed to initialize meal index', e));

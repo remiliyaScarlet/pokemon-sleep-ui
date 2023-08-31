@@ -31,4 +31,4 @@ const addSnorlaxRankIndex = async () => {
 };
 
 addSnorlaxRankIndex()
-  .catch((e) => console.error('MongoDB failed to add Snorlax rank index', e));
+  .catch((e) => console.error('MongoDB failed to initialize Snorlax rank index', e));

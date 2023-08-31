@@ -44,4 +44,4 @@ const addMapMetaIndex = async () => {
 };
 
 addMapMetaIndex()
-  .catch((e) => console.error('MongoDB failed to add map meta index', e));
+  .catch((e) => console.error('MongoDB failed to initialize map meta index', e));

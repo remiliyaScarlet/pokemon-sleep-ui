@@ -116,4 +116,4 @@ const addPokemonInfoIndex = async () => {
 };
 
 addPokemonInfoIndex()
-  .catch((e) => console.error('MongoDB failed to add pokemon info index', e));
+  .catch((e) => console.error('MongoDB failed to initialize pokemon info index', e));

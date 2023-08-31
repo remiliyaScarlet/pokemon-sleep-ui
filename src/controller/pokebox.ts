@@ -66,4 +66,4 @@ const addPokeboxIndex = async () => {
 };
 
 addPokeboxIndex()
-  .catch((e) => console.error('MongoDB failed to add Pokebox index', e));
+  .catch((e) => console.error('MongoDB failed to initialize Pokebox index', e));

@@ -26,4 +26,4 @@ export const getSnorlaxReward = async () => {
 };
 
 addSnorlaxRewardIndex()
-  .catch((e) => console.error('MongoDB failed to add Snorlax reward index', e));
+  .catch((e) => console.error('MongoDB failed to initialize Snorlax reward index', e));

@@ -47,4 +47,4 @@ const addActivationKeyIndex = async () => {
 };
 
 addActivationKeyIndex()
-  .catch((e) => console.error('MongoDB failed to add user activation key index', e));
+  .catch((e) => console.error('MongoDB failed to initialize user activation key index', e));

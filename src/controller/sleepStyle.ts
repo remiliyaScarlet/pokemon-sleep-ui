@@ -75,4 +75,4 @@ const addSleepStyleIndex = async () => {
 };
 
 addSleepStyleIndex()
-  .catch((e) => console.error('MongoDB failed to add sleep style index', e));
+  .catch((e) => console.error('MongoDB failed to initialize sleep style index', e));

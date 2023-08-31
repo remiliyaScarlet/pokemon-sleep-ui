@@ -49,4 +49,4 @@ const addAdsFreeDataIndex = async () => {
 };
 
 addAdsFreeDataIndex()
-  .catch((e) => console.error('MongoDB failed to add user ads free data index', e));
+  .catch((e) => console.error('MongoDB failed to initialize user ads free data index', e));
