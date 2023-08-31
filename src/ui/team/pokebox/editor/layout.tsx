@@ -9,6 +9,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
@@ -16,12 +17,10 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
 import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
-import {PokeInBoxEditCommonProps} from '@/ui/team/pokebox/editor/type';
+import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
 
 
-type Props = PokeInBoxEditCommonProps & {
-  pokeInBox: PokeInBox,
-  setPokeInBox: (newPokeInBox: PokeInBox) => void,
+type Props = PokeInBoxEditCommonProps & PokeInBoxEditStateProps & {
   onCopyPokeInBox: (original: PokeInBox) => void,
 };
 
@@ -73,6 +72,11 @@ export const PokeInBoxEditLayout = ({
           })}
         />
       </Flex>
+      <PokemonEvolutionSelector
+        pokemon={pokemon}
+        pokedex={pokedexMap}
+        onClick={(pokemon) => setPokeInBox({...pokeInBox, pokemon})}
+      />
       <Flex direction="col">
         <PokemonLevelSlider
           level={level}
