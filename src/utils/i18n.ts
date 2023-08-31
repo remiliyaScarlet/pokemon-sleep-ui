@@ -26,14 +26,17 @@ export const getMessages = async (locale: string) => {
   };
 };
 
-type GetI18nTranslatorOpts = {
+type GetI18nTranslatorOpts<TNamespace extends I18nNamespaces> = {
   locale: Locale,
-  namespace: I18nNamespaces,
+  namespace: TNamespace,
 };
 
-export const getI18nTranslator = async ({locale, namespace}: GetI18nTranslatorOpts) => {
+export const getI18nTranslator = async <TNamespace extends I18nNamespaces>({
+  locale,
+  namespace,
+}: GetI18nTranslatorOpts<TNamespace>) => {
   const messages = await getMessages(locale);
-  return createTranslator({
+  return createTranslator<TNamespace>({
     locale,
     messages,
     namespace,
