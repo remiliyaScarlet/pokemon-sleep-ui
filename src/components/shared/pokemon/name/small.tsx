@@ -13,7 +13,7 @@ export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="row" center className="justify-center gap-1 text-lg">
+    <Flex direction="row" noFullWidth className="items-center gap-1 text-lg">
       <div className="relative h-6 w-6">
         <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageSmallIconSizes}/>
       </div>
