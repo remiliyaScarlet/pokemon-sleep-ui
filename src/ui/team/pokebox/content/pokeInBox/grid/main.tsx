@@ -9,7 +9,6 @@ import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type
 
 export const PokeboxContentPokeInBoxGrid = ({
   filter,
-  isIncluded,
   setEditingPokeInBox,
   sortedPokeInBox,
   ...props
@@ -21,12 +20,6 @@ export const PokeboxContentPokeInBoxGrid = ({
       )}>
         {sortedPokeInBox.map(({source}) => {
           const uuid = source.extra.uuid;
-
-          // Explicitly checking `false` because the data might not get into the filter data array for check,
-          // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
-          if (isIncluded[uuid] === false) {
-            return <React.Fragment key={uuid}/>;
-          }
 
           return (
             <PokeboxContentPokeInBoxCell

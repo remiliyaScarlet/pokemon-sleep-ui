@@ -10,13 +10,10 @@ import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type
 
 export const PokeboxContentPokeInBoxTable = ({
   filter,
-  isIncluded,
   setEditingPokeInBox,
   sortedPokeInBox,
   ...props
 }: PokeInBoxViewOfTypeProps) => {
-  console.log(sortedPokeInBox.length);
-
   return (
     <Flex direction="col" className="h-[70vh] gap-1 overflow-auto">
       <AutoSizer>
@@ -31,12 +28,6 @@ export const PokeboxContentPokeInBoxTable = ({
             {({style, data, index}) => {
               const {source} = data[index];
               const uuid = source.extra.uuid;
-
-              // Explicitly checking `false` because the data might not get into the filter data array for check,
-              // therefore `isIncluded[pokeInBox.Pokémon]` will be undefined
-              if (isIncluded[uuid] === false) {
-                return <React.Fragment key={uuid}/>;
-              }
 
               // Extracting `width` out because it causes #187 (width not enough - sticky not in effect
               const {width, ...styleToUse} = style;

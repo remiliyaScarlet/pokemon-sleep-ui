@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/game/pokemon';
@@ -12,7 +11,6 @@ import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
 export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
-  isIncluded: FilterInclusionMap<string>,
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
   sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };

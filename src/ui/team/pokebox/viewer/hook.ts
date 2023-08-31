@@ -67,5 +67,6 @@ export const usePokeboxViewerFilter = ({
 
       return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
     },
+    deps: [pokebox],
   });
 };
