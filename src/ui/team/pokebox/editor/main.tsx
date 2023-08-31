@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Popup} from '@/components/popup';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
-import {PokeboxPokeInBoxEditLayout} from '@/ui/team/pokebox/editor/layout';
+import {PokeInBoxEditLayout} from '@/ui/team/pokebox/editor/layout';
 import {PokeInBoxEditCommonProps, PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {generateNewPokeInBox} from '@/ui/team/pokebox/utils';
 
@@ -15,7 +15,7 @@ type Props = PokeInBoxEditCommonProps & {
   onCopyPokeInBox: (original: PokeInBox) => void,
 };
 
-export const PokeboxPokeInBoxEditPopup = ({
+export const PokeInBoxEditPopup = ({
   pokebox,
   editingPokeInBox,
   setEditingPokeInBox,
@@ -60,7 +60,7 @@ export const PokeboxPokeInBoxEditPopup = ({
     <Popup show={editingPokeInBox !== undefined} setShow={() => pokeInBox && onUpdateCompleted(pokeInBox)}>
       {
         pokeInBox &&
-        <PokeboxPokeInBoxEditLayout
+        <PokeInBoxEditLayout
           pokeInBox={pokeInBox}
           setPokeInBox={setPokeInBox}
           onCopyPokeInBox={onCopyPokeInBox}

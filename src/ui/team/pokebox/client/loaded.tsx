@@ -12,7 +12,7 @@ import {useUserDataActor} from '@/hooks/userData/actor';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeboxContent} from '@/ui/team/pokebox/content/main';
-import {PokeboxPokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
+import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxEditUploadStatus} from '@/ui/team/pokebox/editor/uploadStatus';
 import {PokeboxPickerInput} from '@/ui/team/pokebox/filter/main';
@@ -108,7 +108,7 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
 
   return (
     <Flex direction="col" className="gap-1.5">
-      <PokeboxPokeInBoxEditPopup
+      <PokeInBoxEditPopup
         pokebox={Object.fromEntries(sortedPokebox.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]))}
         editingPokeInBox={editingPokeInBox}
         setEditingPokeInBox={setEditingPokeInBox}

@@ -8,11 +8,11 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeboxPokeInBoxProductionIngredient = (props: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxProductionIngredient = (props: PokeInBoxCommonProps) => {
   const {pokemon} = props;
   const t = useTranslations('UI.InPage.Pokedex');
 

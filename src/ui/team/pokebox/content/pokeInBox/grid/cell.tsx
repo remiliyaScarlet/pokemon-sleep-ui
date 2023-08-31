@@ -9,9 +9,9 @@ import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokeboxPokeInBoxDetails} from '@/ui/team/pokebox/content/pokeInBox/grid/details/main';
+import {PokeInBoxDetails} from '@/ui/team/pokebox/content/pokeInBox/grid/details/main';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
 export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
@@ -35,7 +35,7 @@ export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
 
   const pokemonName = t(`PokemonName.${pokemonId}`);
 
-  const pokeInBoxProps: PokeboxPokeInBoxCommonProps = {
+  const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
     pokemon,
     displayType,
@@ -60,7 +60,7 @@ export const PokeboxContentPokeInBoxCell = (props: PokeInBoxViewUnitProps) => {
           <Flex direction="col" className="z-10 gap-1">
             <PokeInBoxMeta {...pokeInBoxProps}/>
             <div className="mt-auto">
-              <PokeboxPokeInBoxDetails {...pokeInBoxProps}/>
+              <PokeInBoxDetails {...pokeInBoxProps}/>
             </div>
           </Flex>
         </Flex>

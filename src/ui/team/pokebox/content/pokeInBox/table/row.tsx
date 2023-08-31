@@ -20,10 +20,10 @@ import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
-import {PokeboxPokeInBoxRatingInRow} from '@/ui/team/pokebox/content/pokeInBox/table/rating';
+import {PokeInBoxRatingInRow} from '@/ui/team/pokebox/content/pokeInBox/table/rating';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
@@ -61,7 +61,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
   } = pokemon;
   const pokemonName = t(`PokemonName.${pokemonId}`);
 
-  const pokeInBoxProps: PokeboxPokeInBoxCommonProps = {
+  const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
     pokemon,
     displayType,
@@ -151,7 +151,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
           </Flex>
           {/* Rating */}
           <Flex direction="col" noFullWidth className="w-52">
-            <PokeboxPokeInBoxRatingInRow {...pokeInBoxProps}/>
+            <PokeInBoxRatingInRow {...pokeInBoxProps}/>
           </Flex>
           {/* Stats */}
           <Flex direction="row" center noFullWidth className="w-16 gap-0.5">

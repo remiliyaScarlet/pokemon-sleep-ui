@@ -9,12 +9,12 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeboxPokeInBoxProductionTotal = (props: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxProductionTotal = (props: PokeInBoxCommonProps) => {
   const {pokemon} = props;
 
   const t = useTranslations('UI.InPage.Pokedex');

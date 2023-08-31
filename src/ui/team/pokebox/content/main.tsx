@@ -5,7 +5,7 @@ import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
+import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
@@ -25,7 +25,7 @@ export const PokeboxContent = (props: Props) => {
     <Flex direction="col" className="gap-1.5">
       <PokeboxViewerInput {...props}/>
       <LazyLoad loading={loading} className="gap-1.5">
-        <PokeboxPokeInBoxView {...props}/>
+        <PokeInBoxView {...props}/>
       </LazyLoad>
     </Flex>
   );

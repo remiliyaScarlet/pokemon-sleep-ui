@@ -1,6 +1,6 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEffectiveIngredientProductions, getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
@@ -15,7 +15,7 @@ export const toRatingWorkerOpts = ({
   ingredientChainMap,
   subSkillMap,
   snorlaxFavorite,
-}: PokeboxPokeInBoxCommonProps): RatingWorkerOpts => {
+}: PokeInBoxCommonProps): RatingWorkerOpts => {
   const {
     level,
     ingredients,
@@ -38,7 +38,7 @@ export const toRatingWorkerOpts = ({
   };
 };
 
-export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): ProducingRateOfItem[] => {
+export const getRateOfIngredients = (opts: PokeInBoxCommonProps): ProducingRateOfItem[] => {
   const {
     pokemon,
     pokeInBox,
@@ -58,7 +58,7 @@ export const getRateOfIngredients = (opts: PokeboxPokeInBoxCommonProps): Produci
   });
 };
 
-export const getRateOfBerry = (opts: PokeboxPokeInBoxCommonProps) => {
+export const getRateOfBerry = (opts: PokeInBoxCommonProps) => {
   const {
     pokemon,
     pokeInBox,

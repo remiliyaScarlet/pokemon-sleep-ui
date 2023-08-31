@@ -7,10 +7,10 @@ import {Flex} from '@/components/layout/flex';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeboxPokeInBoxSkills = ({pokemon, pokeInBox, subSkillMap}: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBoxCommonProps) => {
   const {skill, specialty} = pokemon;
   const {nature, subSkill} = pokeInBox;
 

@@ -5,7 +5,7 @@ import {PokeboxContentPokeInBoxTable} from '@/ui/team/pokebox/content/pokeInBox/
 import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
-export const PokeboxPokeInBoxView = (props: PokeInBoxViewCommonProps) => {
+export const PokeInBoxView = (props: PokeInBoxViewCommonProps) => {
   const {filter} = props;
 
   if (filter.viewType === 'table') {

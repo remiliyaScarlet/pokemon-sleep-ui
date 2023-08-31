@@ -9,11 +9,11 @@ import {pokemonRatingMarkThresholdByPr} from '@/components/shared/pokemon/rating
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {useCalculatePokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/hook';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat, formatInt} from '@/utils/number';
 
 
-export const PokeboxPokeInBoxRating = (props: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxRating = (props: PokeInBoxCommonProps) => {
   const {result, loading} = useCalculatePokeInBoxRating(props);
 
   const {percentage, percentile} = result;

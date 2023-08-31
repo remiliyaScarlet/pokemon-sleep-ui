@@ -8,10 +8,10 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeboxPokeInBoxInfo = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxInfo = ({pokemon, pokeInBox}: PokeInBoxCommonProps) => {
   const {ingredients} = pokeInBox;
   const {sleepType, specialty, berry} = pokemon;
 

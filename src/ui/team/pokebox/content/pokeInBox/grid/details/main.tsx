@@ -1,46 +1,46 @@
 import React from 'react';
 
-import {PokeboxPokeInBoxInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
-import {PokeboxPokeInBoxProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
+import {PokeInBoxInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
+import {PokeInBoxProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
 import {
-  PokeboxPokeInBoxProductionIngredient,
+  PokeInBoxProductionIngredient,
 } from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
-import {PokeboxPokeInBoxProductionTotal} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionTotal';
-import {PokeboxPokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/grid/details/rating';
-import {PokeboxPokeInBoxSkills} from '@/ui/team/pokebox/content/pokeInBox/grid/details/skills';
-import {PokeboxPokeInBoxStats} from '@/ui/team/pokebox/content/pokeInBox/grid/details/stats';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxProductionTotal} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionTotal';
+import {PokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/grid/details/rating';
+import {PokeInBoxSkills} from '@/ui/team/pokebox/content/pokeInBox/grid/details/skills';
+import {PokeInBoxStats} from '@/ui/team/pokebox/content/pokeInBox/grid/details/stats';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeboxPokeInBoxDetails = (props: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxDetails = (props: PokeInBoxCommonProps) => {
   const {displayType} = props;
 
   if (displayType === 'productionTotal') {
-    return <PokeboxPokeInBoxProductionTotal {...props}/>;
+    return <PokeInBoxProductionTotal {...props}/>;
   }
 
   if (displayType === 'productionBerry') {
-    return <PokeboxPokeInBoxProductionBerry {...props}/>;
+    return <PokeInBoxProductionBerry {...props}/>;
   }
 
   if (displayType === 'productionIngredient') {
-    return <PokeboxPokeInBoxProductionIngredient {...props}/>;
+    return <PokeInBoxProductionIngredient {...props}/>;
   }
 
   if (displayType === 'rating') {
-    return <PokeboxPokeInBoxRating {...props}/>;
+    return <PokeInBoxRating {...props}/>;
   }
 
   if (displayType === 'skills') {
-    return <PokeboxPokeInBoxSkills {...props}/>;
+    return <PokeInBoxSkills {...props}/>;
   }
 
   if (displayType === 'stats') {
-    return <PokeboxPokeInBoxStats {...props}/>;
+    return <PokeInBoxStats {...props}/>;
   }
 
   if (displayType === 'info') {
-    return <PokeboxPokeInBoxInfo {...props}/>;
+    return <PokeInBoxInfo {...props}/>;
   }
 
   console.error(`Unhandled Pokebox poke-in-box details display type: ${displayType satisfies never}`);

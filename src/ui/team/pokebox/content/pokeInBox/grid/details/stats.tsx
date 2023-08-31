@@ -4,10 +4,10 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokeboxPokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeboxPokeInBoxStats = ({pokemon, pokeInBox}: PokeboxPokeInBoxCommonProps) => {
+export const PokeInBoxStats = ({pokemon, pokeInBox}: PokeInBoxCommonProps) => {
   const {stats} = pokemon;
   const {carryLimit} = pokeInBox;
 

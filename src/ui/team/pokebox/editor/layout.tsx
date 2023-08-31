@@ -25,7 +25,7 @@ type Props = PokeInBoxEditCommonProps & {
   onCopyPokeInBox: (original: PokeInBox) => void,
 };
 
-export const PokeboxPokeInBoxEditLayout = ({
+export const PokeInBoxEditLayout = ({
   pokedexMap,
   ingredientChainMap,
   subSkillMap,
