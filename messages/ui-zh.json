@@ -99,7 +99,7 @@
         "Title": "副技能"
       }
     },
-    "Skill": {
+    "MainSkill": {
       "Index": {
         "Title": "主技能"
       },

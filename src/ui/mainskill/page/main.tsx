@@ -1,6 +1,6 @@
 import React from 'react';
 
 
-export const SkillPage = () => {
+export const MainSkillPage = () => {
   return <></>;
 };

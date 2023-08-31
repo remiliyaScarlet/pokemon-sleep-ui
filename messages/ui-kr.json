@@ -99,7 +99,7 @@
         "Title": "서브 스킬"
       }
     },
-    "Skill": {
+    "MainSkill": {
       "Index": {
         "Title": "메인 스킬"
       },

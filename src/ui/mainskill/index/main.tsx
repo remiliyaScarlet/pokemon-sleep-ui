@@ -1,6 +1,6 @@
 import React from 'react';
 
 
-export const SkillIndex = () => {
+export const MainSkillIndex = () => {
   return <></>;
 };
