@@ -10,8 +10,8 @@ type Props = {
 export const Toast = ({visible, children}: React.PropsWithChildren<Props>) => {
   return (
     <div className={clsx(
-      'rounded-full border border-slate-400 px-6 py-4 shadow-lg dark:border-slate-500',
-      'bg-gradient-to-br from-slate-400 to-slate-100 dark:from-slate-500 dark:to-slate-800',
+      'rounded-full px-6 py-4',
+      'bg-slate-700/90 text-slate-300 dark:bg-slate-400/90 dark:text-slate-800',
       visible ? 'animate-enter' : 'animate-leave',
     )}>
       {children}
