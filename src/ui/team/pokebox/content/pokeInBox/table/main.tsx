@@ -36,8 +36,11 @@ export const PokeboxContentPokeInBoxTable = ({
                 return <React.Fragment key={uuid}/>;
               }
 
+              // Extracting `width` out because it causes #187 (width not enough - sticky not in effect
+              const {width, ...styleToUse} = style;
+
               return (
-                <div key={uuid} style={style}>
+                <div key={uuid} style={styleToUse}>
                   <PokeboxContentPokeInBoxRow
                     pokeInBox={source.extra}
                     displayType={filter.displayType}
