@@ -61,6 +61,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ingredientMap,
     berryMap,
     snorlaxFavorite: filter.snorlaxFavorite,
+    userBonus: {
+      ingredient: 0,
+      overall: 0,
+    },
     triggerDeps,
     setLoading,
   });

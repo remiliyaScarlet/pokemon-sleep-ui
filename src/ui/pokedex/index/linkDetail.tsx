@@ -86,6 +86,10 @@ export const PokedexLinkDetail = React.memo(({
     ingredients,
     level,
     snorlaxFavorite,
+    userBonus: {
+      ingredient: 0,
+      overall: 0,
+    },
     ...defaultNeutralOpts,
   });
 

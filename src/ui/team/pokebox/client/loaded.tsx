@@ -68,6 +68,10 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
       .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
     sort: filter.sort,
     snorlaxFavorite: filter.snorlaxFavorite,
+    userBonus: {
+      ingredient: filter.bonus.ingredient,
+      overall: 0,
+    },
     ...props,
     triggerDeps: [pokebox, filter],
     setLoading,

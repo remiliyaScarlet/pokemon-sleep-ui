@@ -1,4 +1,5 @@
 import {BerryData} from '@/types/game/berry';
+import {UserBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
@@ -38,6 +39,7 @@ export type PokemonSorterGetterOpts = ProducingRateSingleParams & {
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
   snorlaxFavorite: SnorlaxFavorite,
+  userBonus: UserBonus,
 };
 
 export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;
