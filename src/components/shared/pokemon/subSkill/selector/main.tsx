@@ -1,7 +1,6 @@
 import React from 'react';
 
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -11,7 +10,7 @@ import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
-import {PokemonSubSkillSelectionButton} from '@/components/shared/pokemon/subSkill/selector/button';
+import {PokemonSubSkillSelectionButtons} from '@/components/shared/pokemon/subSkill/selector/buttons';
 import {PokemonSubSkillSelected} from '@/components/shared/pokemon/subSkill/selector/selected';
 import {useSearchableData} from '@/hooks/search';
 import {
@@ -37,6 +36,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
   const t = useTranslations('Game.SubSkill.Name');
 
   const subSkills = Object.values(subSkillMap).filter(isNotNullish).filter(({rarity}) => !!rarity);
+  const selectedSubSkills = Object.values(subSkill);
 
   const matchingSubSkills = useSearchableData({
     search,
@@ -113,26 +113,20 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
           </Flex>
           {search ?
             <>
-              <Flex direction="row" center wrap className="gap-2">
-                {matchingSubSkills.length ?
-                  matchingSubSkills.map((data) => (
-                    <PokemonSubSkillSelectionButton
-                      key={data.id} data={data} onClick={() => onSelect(data.id)}
-                    />
-                  )) :
-                  <div className="h-9 w-9">
-                    <QuestionMarkCircleIcon/>
-                  </div>}
-              </Flex>
+              <PokemonSubSkillSelectionButtons
+                data={matchingSubSkills}
+                selectedSubSkills={selectedSubSkills}
+                onSelect={onSelect}
+              />
               <HorizontalSplitter className="my-2"/>
             </> :
             <></>}
           <Flex direction="row" center wrap className="gap-2">
-            {subSkills.map((data) => (
-              <PokemonSubSkillSelectionButton
-                key={data.id} data={data} onClick={() => onSelect(data.id)}
-              />
-            ))}
+            <PokemonSubSkillSelectionButtons
+              data={subSkills}
+              selectedSubSkills={selectedSubSkills}
+              onSelect={onSelect}
+            />
           </Flex>
         </Flex>
       </Popup>
