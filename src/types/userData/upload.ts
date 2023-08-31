@@ -1,5 +1,5 @@
 import {MealTypeId} from '@/types/game/meal';
-import {Pokebox, PokeInBox} from '@/types/game/pokebox';
+import {PokeInBox} from '@/types/game/pokebox';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -21,20 +21,18 @@ export type UploadOfCookingData = UploadOfPotInfo & {
   ingredientCount: CookingFilterIngredientCount,
 };
 
-export type UploadOfPokebox = {
-  pokebox: Pokebox,
-  display: PokeboxViewerDisplay,
-};
-
 export type UserDataUploadOpts = {
   type: 'pokedex',
   data: PokedexDisplay,
 } | {
-  type: 'pokebox',
-  data: UploadOfPokebox,
+  type: 'pokebox.display',
+  data: PokeboxViewerDisplay,
 } | {
-  type: 'pokeboxSingle',
+  type: 'pokebox.create' | 'pokebox.upsert',
   data: PokeInBox,
+} | {
+  type: 'pokebox.delete',
+  data: PokeInBox['uuid'],
 } | {
   type: 'teamAnalysisSetup',
   data: UploadOfTeamAnalysisSetup,

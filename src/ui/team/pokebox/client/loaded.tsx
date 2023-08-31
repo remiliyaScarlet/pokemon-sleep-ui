@@ -8,15 +8,19 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {useUserDataActor} from '@/hooks/userData/actor';
+import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeboxContent} from '@/ui/team/pokebox/content/main';
 import {PokeboxPokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
+import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
+import {PokeboxEditUploadStatus} from '@/ui/team/pokebox/editor/uploadStatus';
 import {PokeboxPickerInput} from '@/ui/team/pokebox/filter/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
-import {generateNewPokeInBox} from '@/ui/team/pokebox/utils';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -27,10 +31,13 @@ type Props = PokeboxCommonProps & {
 export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
   const {pokedexMap, subSkillMap} = props;
 
+  const {act, status} = useUserDataActor();
   const t = useTranslations('Game');
 
   const [loading, setLoading] = React.useState(false);
-  const [editingPokeInBox, setEditingPokeInBox] = React.useState<PokeInBox>();
+  const [editingPokeInBox, setEditingPokeInBox] = React.useState<PokeInBoxEditorState>();
+  // Keeping a local copy of the pokebox so no need to lazy load the whole box on every change
+  // Not doing so could potentially create large unnecessary I/Os for large Pokebox
   const [pokebox, setPokebox] = React.useState(initialPokebox);
   const {
     filter,
@@ -77,8 +84,27 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
     setLoading,
   });
 
-  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
+  useAutoUpload({
+    opts: {
+      type: 'pokebox.display',
+      data: {sort: filter.sort, displayType: filter.displayType, viewType: filter.viewType},
+    },
+    triggerDeps: [filter.sort, filter.displayType, filter.viewType],
+    delay: 0,
+  });
+  React.useEffect(() => {
+    if (status === 'completed') {
+      showToast({content: <PokeboxEditUploadStatus success/>});
+      return;
+    }
+    if (status === 'failed') {
+      showToast({content: <PokeboxEditUploadStatus success={false}/>});
+      return;
+    }
+  }, [status]);
+
   const pokemon = Object.values(pokedexMap).filter(isNotNullish);
+  const sortedPokebox = sortedPokemonInfo.map(({source}) => source.extra);
 
   return (
     <Flex direction="col" className="gap-1.5">
@@ -86,53 +112,48 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
         pokebox={Object.fromEntries(sortedPokebox.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]))}
         editingPokeInBox={editingPokeInBox}
         setEditingPokeInBox={setEditingPokeInBox}
-        onUpdateCompleted={() => {
-          if (editingPokeInBox === undefined) {
-            return;
+        onUpdateCompleted={(updated) => {
+          if (act) {
+            act({action: 'upload', options: {type: 'pokebox.upsert', data: updated}});
+            setPokebox((original) => ({
+              ...original,
+              [updated.uuid]: updated,
+            }));
           }
-          setPokebox((original) => ({
-            ...original,
-            [editingPokeInBox.uuid]: editingPokeInBox,
-          }));
           setEditingPokeInBox(undefined);
         }}
-        onCopyPokeInBox={() => {
-          if (editingPokeInBox === undefined) {
-            return;
-          }
+        onCopyPokeInBox={(copyBase) => {
+          if (act) {
+            const uuid = v4();
+            const duplicate = {...copyBase, uuid};
 
-          const uuid = v4();
-          setPokebox((original) => ({
-            ...original,
-            [uuid]: {...editingPokeInBox, uuid},
-          }));
+            act({action: 'upload', options: {type: 'pokebox.upsert', data: copyBase}});
+            act({action: 'upload', options: {type: 'pokebox.create', data: duplicate}});
+            setPokebox((original) => ({
+              ...original,
+              [copyBase.uuid]: copyBase,
+              [uuid]: duplicate,
+            }));
+          }
           setEditingPokeInBox(undefined);
         }}
-        onRemovePokeInBox={() => {
-          if (editingPokeInBox === undefined) {
-            return;
+        onRemovePokeInBox={(toRemove) => {
+          if (act) {
+            act({action: 'upload', options: {type: 'pokebox.delete', data: toRemove}});
+            setPokebox((original) => {
+              const updated = {...original};
+              delete updated[toRemove];
+
+              return updated;
+            });
           }
-
-          setPokebox((original) => {
-            const updated = {...original};
-            delete updated[editingPokeInBox.uuid];
-
-            return updated;
-          });
           setEditingPokeInBox(undefined);
         }}
         {...props}
       />
       <PokeboxPickerInput
         pokemon={pokemon}
-        onClick={(id) => {
-          const pokemon = pokedexMap[id];
-          if (!pokemon) {
-            return;
-          }
-
-          setEditingPokeInBox(generateNewPokeInBox({pokemon, ...props}));
-        }}
+        onClick={(pokemonId) => setEditingPokeInBox({action: 'create', pokemonId})}
         {...props}
       />
       <AdsUnit/>
@@ -142,7 +163,6 @@ export const PokeboxLoadedClient = ({initialPokebox, ...props}: Props) => {
         pokebox={pokebox}
         pokemon={pokemon}
         loading={loading}
-        setPokebox={setPokebox}
         isIncluded={isIncluded}
         setEditingPokeInBox={setEditingPokeInBox}
         sortedPokemonInfo={sortedPokemonInfo}

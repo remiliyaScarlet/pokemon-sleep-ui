@@ -4,7 +4,6 @@ import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
-import {isNotNullish} from '@/utils/type';
 
 
 const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
@@ -37,27 +36,20 @@ export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox
   return Object.fromEntries(pokeboxArray.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]));
 };
 
-export const updateUserPokebox = async (owner: string, pokebox: Pokebox) => {
-  await (await mongoPromise).withSession(async (session) => {
-    await session.withTransaction(async () => {
-      const collection = await getCollection();
-
-      await collection.deleteMany({owner}, {session});
-      const pokeboxAsArray = Object.values(pokebox).filter(isNotNullish);
-      if (pokeboxAsArray.length) {
-        await collection.insertMany(
-          pokeboxAsArray.map((pokemon): PokeInBoxData => ({...pokemon, owner})),
-          {session},
-        );
-      }
-    });
-  });
-};
-
 export const addSinglePokeInBox = async (owner: string, pokeInBox: PokeInBox) => (await getCollection()).insertOne({
   owner,
   ...pokeInBox,
 });
+
+export const upsertSinglePokeInBox = async (owner: string, pokeInBox: PokeInBox) => (await getCollection()).updateOne(
+  {owner, uuid: pokeInBox.uuid},
+  {$set: {owner, ...pokeInBox}},
+  {upsert: true},
+);
+
+export const deleteSinglePokeInBox = async (owner: string, uuid: PokeInBox['uuid']) => (
+  (await getCollection()).deleteOne({owner, uuid})
+);
 
 export const migratePokeboxOfUser = async (owner: string) => {
   runPokeBoxMigrations(getCollection, owner)

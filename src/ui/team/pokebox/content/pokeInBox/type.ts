@@ -5,6 +5,7 @@ import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/sha
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/game/pokemon';
 import {PokeboxPokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
+import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
@@ -12,7 +13,7 @@ import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
   isIncluded: FilterInclusionMap<string>,
-  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBox | undefined>>,
+  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
   sortedPokemonInfo: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 

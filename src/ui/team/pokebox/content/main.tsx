@@ -3,7 +3,6 @@ import React from 'react';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
-import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeboxPokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
@@ -17,20 +16,10 @@ type Props = FilterInputProps<PokeboxViewerFilter> & PokeboxCommonProps & PokeIn
   pokebox: Pokebox,
   pokemon: PokemonInfo[],
   loading: boolean,
-  setPokebox: React.Dispatch<React.SetStateAction<Pokebox>>,
 };
 
 export const PokeboxContent = (props: Props) => {
-  const {pokebox, loading, filter} = props;
-
-  useAutoUpload({
-    opts: {
-      type: 'pokebox',
-      data: {pokebox, display: {sort: filter.sort, displayType: filter.displayType, viewType: filter.viewType}},
-    },
-    triggerDeps: [pokebox, filter.sort, filter.displayType, filter.viewType],
-    delay: 0,
-  });
+  const {loading} = props;
 
   return (
     <Flex direction="col" className="gap-1.5">

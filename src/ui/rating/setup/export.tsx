@@ -59,7 +59,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
                 act({
                   action: 'upload',
                   options: {
-                    type: 'pokeboxSingle',
+                    type: 'pokebox.create',
                     data: toPokeInBox({
                       pokemon,
                       name,

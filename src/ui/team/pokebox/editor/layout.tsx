@@ -16,13 +16,13 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subskill';
 import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
-import {PokeboxPokeInBoxEditCommonProps} from '@/ui/team/pokebox/editor/type';
+import {PokeInBoxEditCommonProps} from '@/ui/team/pokebox/editor/type';
 
 
-type Props = PokeboxPokeInBoxEditCommonProps & {
+type Props = PokeInBoxEditCommonProps & {
   pokeInBox: PokeInBox,
   setPokeInBox: (newPokeInBox: PokeInBox) => void,
-  onCopyPokeInBox: () => void,
+  onCopyPokeInBox: (original: PokeInBox) => void,
 };
 
 export const PokeboxPokeInBoxEditLayout = ({
@@ -139,14 +139,14 @@ export const PokeboxPokeInBoxEditLayout = ({
       </Flex>
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
-        <button className="button-clickable-bg !rounded-full p-1" onClick={onCopyPokeInBox}>
+        <button className="button-clickable-bg !rounded-full p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
           <div className="h-5 w-5">
             <DocumentDuplicateIcon/>
           </div>
         </button>
         <button
           className="transform-smooth ml-auto rounded-full bg-red-500/40 p-1 hover:bg-red-500"
-          onClick={onRemovePokeInBox}
+          onClick={() => onRemovePokeInBox(uuid)}
         >
           <div className="h-5 w-5">
             <TrashIcon/>
