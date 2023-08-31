@@ -1,7 +1,7 @@
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {NatureEffectId, NatureEffectType} from '@/types/game/pokemon/nature';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
-import {SubSkillBonusCategory} from '@/types/game/pokemon/subskill';
+import {SubSkillBonusCategory, SubSkillId} from '@/types/game/pokemon/subskill';
 
 
 export const specialtyIdMap: {[name in SpecialtyType]: PokemonSpecialtyId} = {
@@ -44,4 +44,8 @@ export const subSkillBonusImageSrcMap: {[bonus in SubSkillBonusCategory]: string
   skillLevel: '/images/subSkill/skillLevel.png',
   ingredientProbability: '/images/subSkill/ingredientProbability.png',
   mainSkillProbability: '/images/subSkill/mainSkillProbability.png',
+};
+
+export const subSkillImageOverride: {[id in SubSkillId]?: string} = {
+  19: '/images/subSkill/inventory-2.png',
 };

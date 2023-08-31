@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
-import {subSkillBonusImageSrcMap} from '@/const/game/pokemon';
+import {subSkillBonusImageSrcMap, subSkillImageOverride} from '@/const/game/pokemon';
 import {subSkillRarityIconFilter} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
 import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subskill';
@@ -43,7 +43,7 @@ export const PokemonSubSkillIcon = ({subSkill}: Props) => {
   return (
     <div className={clsx('relative h-6 w-6', subSkill.rarity && subSkillRarityIconFilter[subSkill.rarity])}>
       <NextImage
-        src={subSkillBonusImageSrcMap[firstEffectiveBonus]}
+        src={subSkillImageOverride[subSkill.id] ?? subSkillBonusImageSrcMap[firstEffectiveBonus]}
         alt={t(`SubSkill.Name.${subSkill?.id}`)}
         sizes={imageSmallIconSizes}
       />
