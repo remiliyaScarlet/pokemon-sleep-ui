@@ -22,7 +22,15 @@ type Props = FilterInputProps<AnalysisComparisonFilter> & AnalysisPageCommonProp
   maxLevel: number,
 };
 
-export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepStyleMap, mapMeta, ...props}: Props) => {
+export const AnalysisPageInput = ({
+  filter,
+  setFilter,
+  maxLevel,
+  pokemonList,
+  sleepStyleMap,
+  mapMeta,
+  ...props
+}: Props) => {
   const collapsible = useCollapsible();
 
   return (
@@ -54,7 +62,7 @@ export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepSt
             filterKey={type}
             filter={filter}
             setFilter={setFilter}
-            pokemon={pokedex}
+            pokemonList={pokemonList}
           />
         ))}
         <InputRow>
@@ -73,7 +81,7 @@ export const AnalysisPageInput = ({filter, setFilter, maxLevel, pokedex, sleepSt
           filter={filter}
           setFilter={setFilter}
           filterKey="snorlaxFavorite"
-          pokemon={pokedex}
+          pokemonList={pokemonList}
           mapMeta={mapMeta}
         />
       </Flex>

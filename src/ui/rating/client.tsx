@@ -26,7 +26,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const resultRef = React.useRef<HTMLDivElement>(null);
 
   const data: RatingDataProps = {
-    pokedex: Object.values(pokedexMap).filter(isNotNullish),
+    pokemonList: Object.values(pokedexMap).filter(isNotNullish),
     ...props,
   };
 

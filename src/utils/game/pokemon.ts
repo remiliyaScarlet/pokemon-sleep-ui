@@ -14,12 +14,12 @@ export const getRelatedPokemonIds = ({evolution}: PokemonInfo): PokemonId[] => {
 };
 
 type GetPokedexWithMapOpts = {
-  pokedex: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   sleepStyleMap: PokemonSleepDataMap,
 };
 
-export const getPokedexWithField = ({pokedex, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {
-  return pokedex.map((pokemon) => ({
+export const getPokedexWithField = ({pokemonList, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {
+  return pokemonList.map((pokemon) => ({
     info: pokemon,
     mapsAvailable: toUnique(sleepStyleMap[pokemon.id]?.map(({mapId}) => mapId) ?? []),
   }));

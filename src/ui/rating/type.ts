@@ -20,6 +20,6 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
 };
 
 export type RatingDataProps = RatingServerDataProps & {
-  pokedex: PokemonInfo[],
+  pokemonList: PokemonInfo[],
 };
 

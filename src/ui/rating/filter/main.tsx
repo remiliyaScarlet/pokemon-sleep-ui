@@ -21,7 +21,7 @@ type Props = RatingFilterCommonProps;
 
 export const RatingFilter = (props: Props) => {
   const {
-    pokedex,
+    pokemonList,
     pokedexMap,
     sleepStyleMap,
     ingredientChainMap,
@@ -30,7 +30,7 @@ export const RatingFilter = (props: Props) => {
   } = props;
 
   const {filter, setFilter, isIncluded} = useRatingFilter({
-    data: getPokedexWithField({pokedex, sleepStyleMap}),
+    data: getPokedexWithField({pokemonList, sleepStyleMap}),
     ingredientChainMap,
   });
   const [show, setShow] = React.useState(false);
@@ -69,7 +69,7 @@ export const RatingFilter = (props: Props) => {
               setFilter={setFilter}
               type={type}
               filterKey={type}
-              pokemon={pokedex}
+              pokemonList={pokemonList}
               ingredientChainMap={ingredientChainMap}
             />
           ))}

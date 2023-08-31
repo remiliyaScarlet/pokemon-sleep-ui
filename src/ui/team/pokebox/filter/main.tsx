@@ -21,17 +21,17 @@ import {showToast} from '@/utils/toast';
 
 
 type Props = PokeboxCommonProps & {
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   onClick: (pokemonId: PokemonId) => void,
 };
 
-export const PokeboxPickerInput = ({pokemon, ingredientChainMap, onClick}: Props) => {
+export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: Props) => {
   const t = useTranslations('Game');
   const {
     filter,
     setFilter,
     isIncluded,
-  } = usePokeboxPickerFilter({data: pokemon, ingredientChainMap});
+  } = usePokeboxPickerFilter({data: pokemonList, ingredientChainMap});
   const pickerCollapsible = useCollapsible();
   const resultCollapsible = useCollapsible();
 
@@ -57,7 +57,7 @@ export const PokeboxPickerInput = ({pokemon, ingredientChainMap, onClick}: Props
             <PokemonFilter
               key={type}
               type={type}
-              pokemon={pokemon}
+              pokemonList={pokemonList}
               ingredientChainMap={ingredientChainMap}
               filterKey={type}
               filter={filter}
@@ -75,7 +75,7 @@ export const PokeboxPickerInput = ({pokemon, ingredientChainMap, onClick}: Props
           </div>
         </Flex>
       }>
-        <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={(id) => {
+        <PokemonIconClickable pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
           showToast({content: (
             <Flex direction="row" className="gap-1.5">
               <div className="relative h-9 w-9">

@@ -9,16 +9,16 @@ import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 
 
 type Props = {
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   onClick: (id: PokemonId) => void,
 };
 
-export const PokemonIconClickable = ({pokemon, onClick}: Props) => {
+export const PokemonIconClickable = ({pokemonList, onClick}: Props) => {
   const t = useTranslations('Game');
 
   return (
     <Flex direction="row" center wrap className="gap-1.5">
-      {pokemon.map(({id, type}) => (
+      {pokemonList.map(({id, type}) => (
         <button key={id} onClick={() => onClick(id)} className="button-clickable relative rounded-lg p-1">
           <div className="absolute left-0.5 top-0.5 z-10">
             <div className="relative h-5 w-5">

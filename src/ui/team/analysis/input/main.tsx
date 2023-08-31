@@ -26,13 +26,13 @@ import {showToast} from '@/utils/toast';
 
 
 type Props = FilterInputProps<TeamAnalysisFilter> & TeamAnalysisDataProps & {
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   setup: TeamAnalysisTeamSetup,
   setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
   isIncluded: FilterInclusionMap<PokemonId>,
 };
 
-export const TeamAnalysisPokemonFilter = ({pokemon, setup, setSetup, isIncluded, ...props}: Props) => {
+export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isIncluded, ...props}: Props) => {
   const {filter} = props;
 
   const t = useTranslations('Game');
@@ -89,7 +89,7 @@ export const TeamAnalysisPokemonFilter = ({pokemon, setup, setSetup, isIncluded,
               key={type}
               type={type}
               filterKey={type}
-              pokemon={pokemon}
+              pokemonList={pokemonList}
               {...props}
             />
           ))}
@@ -107,7 +107,7 @@ export const TeamAnalysisPokemonFilter = ({pokemon, setup, setSetup, isIncluded,
           setup={setup}
           setMember={setMember}
           isIncluded={isIncluded}
-          pokemon={pokemon}
+          pokemonList={pokemonList}
           {...props}
         />
       </Collapsible>

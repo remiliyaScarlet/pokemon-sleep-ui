@@ -20,13 +20,13 @@ import {KeysOfType} from '@/utils/type';
 
 type Props<TFilter extends FilterWithSnorlaxFavorite> = FilterInputProps<TFilter> & {
   filterKey: KeysOfType<TFilter, SnorlaxFavorite>,
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };
 
 export const SnorlaxFavoriteInput = <
   TFilter extends FilterWithInclusionMap<BerryId>,
->({pokemon, mapMeta, ...props}: Props<TFilter>) => {
+>({pokemonList, mapMeta, ...props}: Props<TFilter>) => {
   const {setFilter, filterKey} = props;
 
   const t = useTranslations('Game');
@@ -47,7 +47,7 @@ export const SnorlaxFavoriteInput = <
         idToItemId={(id) => `Snorlax-${id}`}
         idToAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
-        ids={toUnique(pokemon.map(({berry}) => berry.id)).sort((a, b) => a - b)}
+        ids={toUnique(pokemonList.map(({berry}) => berry.id)).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps(props)}
       />
       <PokemonMapFilter

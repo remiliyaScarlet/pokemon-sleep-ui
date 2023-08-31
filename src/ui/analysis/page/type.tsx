@@ -12,7 +12,7 @@ export type AnalysisComparisonFilter = PokemonInputFilterExtended & {
 };
 
 export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
-  pokedex: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   pokemon: PokemonInfo,
   ingredientMap: IngredientMap,
   berryDataMap: BerryDataMap,

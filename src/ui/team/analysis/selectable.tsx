@@ -17,14 +17,14 @@ type Props = TeamAnalysisDataProps & {
   setup: TeamAnalysisTeamSetup,
   setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
 };
 
 export const TeamAnalysisSelectablePokemon = ({
   setup,
   setMember,
   isIncluded,
-  pokemon,
+  pokemonList,
   pokedex,
   ingredientChainMap,
 }: Props) => {
@@ -58,5 +58,10 @@ export const TeamAnalysisSelectablePokemon = ({
     );
   };
 
-  return <PokemonIconClickable pokemon={pokemon.filter(({id}) => isIncluded[id])} onClick={putOnTeam}/>;
+  return (
+    <PokemonIconClickable
+      pokemonList={pokemonList.filter(({id}) => isIncluded[id])}
+      onClick={putOnTeam}
+    />
+  );
 };

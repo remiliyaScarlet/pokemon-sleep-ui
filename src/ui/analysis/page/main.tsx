@@ -21,7 +21,7 @@ type Props = {
 export const AnalysisPage = async ({params}: Props) => {
   const {id, locale} = params;
   const [
-    pokedex,
+    pokemonList,
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
@@ -36,7 +36,7 @@ export const AnalysisPage = async ({params}: Props) => {
     getAllMapMeta(),
   ]);
 
-  const pokemon = pokedex.find((pokemon) => pokemon.id === Number(id));
+  const pokemon = pokemonList.find((pokemon) => pokemon.id === Number(id));
 
   if (!pokemon) {
     return <Failed text="Pokemon"/>;
@@ -47,7 +47,7 @@ export const AnalysisPage = async ({params}: Props) => {
   }
 
   const props: AnalysisPageCommonProps = {
-    pokedex,
+    pokemonList,
     pokemon,
     ingredientMap,
     ingredientChainMap,

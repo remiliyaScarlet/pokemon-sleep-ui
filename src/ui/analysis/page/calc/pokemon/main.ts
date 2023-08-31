@@ -6,7 +6,7 @@ import {AnalysisStats, AnalysisStatsGrouped, GetAnalysisStatsOpts} from '@/ui/an
 
 export const getAnalysisStatsOfPokemon = (opts: GetAnalysisStatsOpts): AnalysisStats['pokemon'] => {
   const {
-    pokedex,
+    pokemonList,
     pokemon,
     ingredientChainMap,
   } = opts;
@@ -15,36 +15,36 @@ export const getAnalysisStatsOfPokemon = (opts: GetAnalysisStatsOpts): AnalysisS
 
   return {
     type: getAnalysisStatsOfGrouped({
-      samples: pokedex,
+      samples: pokemonList,
       isMatched: ({type}) => type === pokemon.type,
       getLinkedData: ({type}) => type,
     }),
     specialty: getAnalysisStatsOfGrouped({
-      samples: pokedex,
+      samples: pokemonList,
       isMatched: ({specialty}) => specialty === pokemon.specialty,
       getLinkedData: ({specialty}) => specialty,
     }),
     sleepType: getAnalysisStatsOfGrouped({
-      samples: pokedex,
+      samples: pokemonList,
       isMatched: ({sleepType}) => sleepType === pokemon.sleepType,
       getLinkedData: ({sleepType}) => sleepType,
     }),
     ingredient: Object.fromEntries(ingredientLevels.map((ingredientLevel) => [
       ingredientLevel,
       currentChain.ingredients[ingredientLevel].map((production) => getAnalysisStatsOfGrouped({
-        samples: pokedex,
+        samples: pokemonList,
         isMatched: ({ingredientChain}) => ingredientChainMap[ingredientChain].ingredients[ingredientLevel]
           .some(({id}) => id === production.id),
         getLinkedData: () => production,
       })) satisfies AnalysisStatsGrouped<IngredientProduction>[],
     ])) as AnalysisStats['pokemon']['ingredient'],
     berry: getAnalysisStatsOfGrouped({
-      samples: pokedex,
+      samples: pokemonList,
       isMatched: ({berry}) => berry.id === pokemon.berry.id,
       getLinkedData: ({berry}) => berry.id,
     }),
     mainSkill: getAnalysisStatsOfGrouped({
-      samples: pokedex,
+      samples: pokemonList,
       isMatched: ({skill}) => skill === pokemon.skill,
       getLinkedData: ({skill}) => skill,
     }),

@@ -28,7 +28,7 @@ type Props = RatingDataProps & {
 export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   initialSetup,
   onInitiate,
-  pokedex,
+  pokemonList,
   ingredientChainMap,
   subSkillMap,
   mapMeta,
@@ -64,7 +64,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
       </div>
       <SnorlaxFavoriteInput
         mapMeta={mapMeta}
-        pokemon={pokedex}
+        pokemonList={pokemonList}
         filter={setup}
         setFilter={setSetup}
         filterKey="snorlaxFavorite"

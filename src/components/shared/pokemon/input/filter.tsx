@@ -28,7 +28,7 @@ type Props<
   TFilter extends FilterWithInclusionMap<TId>,
 > = GetMultiSelectOnClickPropsOpts<TFilter, TId> & Pick<FilterCategoryInputProps<TId>, 'style'> & {
   type: TDisplayType,
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   ingredientChainMap: IngredientChainMap,
   idPrefix?: string,
 };
@@ -43,7 +43,7 @@ export const PokemonFilter = <
   filterKey,
   style,
   type,
-  pokemon,
+  pokemonList,
   ingredientChainMap,
   idPrefix,
 }: Props<TDisplayType, TId, TFilter>) => {
@@ -60,7 +60,7 @@ export const PokemonFilter = <
   };
 
   const getIds = (toId: (single: PokemonInfo) => TId | TId[] | undefined) => {
-    return toUnique(pokemon.flatMap(toId))
+    return toUnique(pokemonList.flatMap(toId))
       .filter(isNotNullish)
       .sort((a, b) => a - b);
   };

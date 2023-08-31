@@ -68,7 +68,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               style={type === 'sleepType' ? 'highlight' : 'normal'}
               type={type}
               filterKey={type}
-              pokemon={pokedex}
+              pokemonList={pokedex}
               {...props}
             />
           ))}
@@ -83,7 +83,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           </InputRow>
           <SnorlaxFavoriteInput
             filterKey="snorlaxFavorite"
-            pokemon={pokedex}
+            pokemonList={pokedex}
             {...props}
           />
           <FilterTextInput

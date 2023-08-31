@@ -22,7 +22,7 @@ type Props = RatingFilterCommonProps & {
 };
 
 export const RatingPokemonPicker = ({
-  pokedex,
+  pokemonList,
   onPokemonPicked,
   collapsibleState,
   isIncluded,
@@ -39,7 +39,7 @@ export const RatingPokemonPicker = ({
         </div>
       </Flex>
     }>
-      <PokemonIconClickable pokemon={pokedex.filter(({id}) => isIncluded[id])} onClick={(id) => {
+      <PokemonIconClickable pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
         const pokemon = pokedexMap[id];
 
         if (!pokemon) {

@@ -18,7 +18,7 @@ import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLev
 
 export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   const {
-    pokedex,
+    pokemonList,
     pokemon,
     berryDataMap,
     sleepStyleMap,
@@ -28,7 +28,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   const [stats, setStats] = React.useState<AnalysisStats | null>(null);
   const [loading, setLoading] = React.useState(true);
   const {filter, setFilter, isIncluded} = useAnalysisFilter({
-    data: getPokedexWithField({pokedex, sleepStyleMap}),
+    data: getPokedexWithField({pokemonList, sleepStyleMap}),
     currentPokemon: pokemon,
     ...props,
   });
@@ -39,7 +39,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     ...props,
     level: filter.level,
     ingredients,
-    pokemonToAnalyze: pokedex.filter(({id}) => isIncluded[id]),
+    pokemonToAnalyze: pokemonList.filter(({id}) => isIncluded[id]),
     snorlaxFavorite: filter.snorlaxFavorite,
     setStats,
     setLoading,

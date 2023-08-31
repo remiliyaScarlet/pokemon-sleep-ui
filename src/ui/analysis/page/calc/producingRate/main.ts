@@ -17,7 +17,7 @@ import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/prod
 
 
 export const getAnalysisStatsOfProducingRate = ({
-  pokedex,
+  pokemonList,
   pokemon,
   ingredients,
   berryDataMap,
@@ -37,7 +37,7 @@ export const getAnalysisStatsOfProducingRate = ({
   });
   const currentIngredientRates = Object.values(currentRate.ingredient);
 
-  const rateOfAllPokemon = pokedex.flatMap((pokemon) => [...generatePossibleIngredientProductions({
+  const rateOfAllPokemon = pokemonList.flatMap((pokemon) => [...generatePossibleIngredientProductions({
     level,
     chain: ingredientChainMap[pokemon.ingredientChain],
   })].map((ingredients) => ({

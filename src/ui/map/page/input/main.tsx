@@ -22,7 +22,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
           key={type}
           type={type}
           filterKey={type}
-          pokemon={Object.values(pokedexMap).filter(isNotNullish)}
+          pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
           {...props}
         />
       ))}

@@ -7,7 +7,7 @@ import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type'
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
-type Props = Omit<AnalysisPageCommonProps, 'pokedex' | 'mapMeta'> & {
+type Props = Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta'> & {
   level: number,
   ingredients: IngredientProduction[],
   pokemonToAnalyze: PokemonInfo[],
@@ -48,7 +48,7 @@ export const useCalculationWorker = ({
   const requestStats = () => {
     worker.postMessage({
       level,
-      pokedex: pokemonToAnalyze,
+      pokemonList: pokemonToAnalyze,
       pokemon,
       ingredients,
       ingredientChainMap,

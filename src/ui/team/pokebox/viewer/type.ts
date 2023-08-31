@@ -46,6 +46,6 @@ export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
 };
 
 export type PokeboxViewerInputCommonProps = FilterInputProps<PokeboxViewerFilter> & UsePokemonFilterCommonData & {
-  pokemon: PokemonInfo[],
+  pokemonList: PokemonInfo[],
   mapMeta: FieldMetaMap,
 };

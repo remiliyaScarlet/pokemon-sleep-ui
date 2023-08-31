@@ -44,7 +44,7 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
   return (
     <>
       <TeamAnalysisPokemonFilter
-        pokemon={pokemon}
+        pokemonList={pokemon}
         setup={setup}
         setSetup={setSetup}
         isIncluded={isIncluded}
@@ -58,7 +58,7 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
           filter={filter}
           setFilter={setFilter}
           filterKey="snorlaxFavorite"
-          pokemon={pokemon}
+          pokemonList={pokemon}
           {...props}
         />
       </Flex>
