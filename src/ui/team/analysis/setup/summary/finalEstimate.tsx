@@ -30,7 +30,9 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
     };
   });
   const {currentEnergy, endsAt} = estimateInput;
-  const finalEnergy = currentEnergy + energyRate.dailyEnergy * (new Date(endsAt).getTime() - Date.now()) / 86400000;
+  const finalEnergy = (
+    currentEnergy + energyRate.dailyEnergy * (new Date(`${endsAt}T04:00`).getTime() - Date.now()) / 86400000
+  );
 
   return (
     <Flex direction="col" center className="gap-2">
