@@ -11,6 +11,7 @@ import {useUserDataActor} from '@/hooks/userData/actor';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokeboxCount} from '@/ui/team/pokebox/content/count';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -62,7 +63,7 @@ export const PokeboxContent = (props: Props) => {
     ),
     ...props,
   });
-  const filteredSortedPokeInBox = useSortingWorker({
+  const filteredSortedPokebox = useSortingWorker({
     data: Object.values(pokebox)
       .filter(isNotNullish)
       .filter(({uuid}) => isIncluded[uuid])
@@ -119,7 +120,7 @@ export const PokeboxContent = (props: Props) => {
   return (
     <Flex direction="col" className="gap-1.5">
       <PokeInBoxEditPopup
-        pokebox={Object.fromEntries(filteredSortedPokeInBox.map(({source}) => [source.extra.uuid, source.extra]))}
+        pokebox={Object.fromEntries(filteredSortedPokebox.map(({source}) => [source.extra.uuid, source.extra]))}
         onUpdateCompleted={(updated) => {
           if (act) {
             act({action: 'upload', options: {type: 'pokebox.upsert', data: updated}});
@@ -160,8 +161,9 @@ export const PokeboxContent = (props: Props) => {
         {...props}
       />
       <PokeboxViewerInput {...props} filter={filter} setFilter={setFilter}/>
+      <PokeboxCount loading={loading} countToShow={filteredSortedPokebox.length} total={Object.keys(pokebox).length}/>
       <LazyLoad loading={loading} className="gap-1.5">
-        <PokeInBoxView {...props} filter={filter} sortedPokeInBox={filteredSortedPokeInBox}/>
+        <PokeInBoxView {...props} filter={filter} sortedPokeInBox={filteredSortedPokebox}/>
       </LazyLoad>
     </Flex>
   );
