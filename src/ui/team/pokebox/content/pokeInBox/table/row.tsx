@@ -4,22 +4,18 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
-import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {imageIconSizes} from '@/styles/image';
+import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table/header';
 import {PokeInBoxRatingInRow} from '@/ui/team/pokebox/content/pokeInBox/table/rating';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
@@ -45,10 +41,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
   const pokemon = pokedexMap[pokemonId];
 
   const t = useTranslations('Game');
-  const t2 = useTranslations('UI.Metadata.Pokedex');
-  const t3 = useTranslations('UI.InPage.Pokedex');
-
-  const {state, setState, showPokemon} = usePokemonLinkPopup();
+  const t2 = useTranslations('UI.InPage.Pokedex');
 
   if (!pokemon) {
     return <></>;
@@ -59,7 +52,6 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
     specialty,
     berry,
   } = pokemon;
-  const pokemonName = t(`PokemonName.${pokemonId}`);
 
   const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
@@ -72,18 +64,8 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
 
   return (
     <Flex direction="row" className="gap-1">
-      <PokemonLinkPopup state={state} setState={setState}/>
-      <Flex direction="row" center noFullWidth className={clsx(
-        'sticky left-0 z-10 rounded-lg bg-slate-100 p-1',
-        'shadow shadow-white dark:bg-slate-800 dark:shadow-black',
-      )}>
-        <button className="button-clickable group relative h-6 w-6 rounded-full" onClick={() => showPokemon(pokemon)}>
-          <GenericPokeballIcon alt={t2('Page.Title', {name: pokemonName})} noWrap/>
-        </button>
-        <div className="relative h-10 w-10">
-          <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={pokemonName} sizes={imageIconSizes}/>
-        </div>
-      </Flex>
+      {/* `pokemon` comes later because `props` from upstream could contain `pokemon` as list of Pokémon */}
+      <PokeInBoxTableRowHeader {...props} pokemon={pokemon}/>
       <button className="button-clickable-bg group rounded-lg p-1" onClick={onClick}>
         <Flex direction="row" noFullWidth className="items-center gap-1 [&>*]:shrink-0">
           <div className="w-72">
@@ -116,7 +98,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
             <div>
               x{formatFloat(rateOfBerry.quantity)}
             </div>
-            <ColoredEnergyIcon alt={t3('Stats.Energy.Name')}/>
+            <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>
             <div>
               {formatFloat(rateOfBerry.dailyEnergy)}
             </div>
@@ -132,7 +114,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
                 <div>
                   x{formatFloat(quantity)}
                 </div>
-                <ColoredEnergyIcon alt={t3('Stats.Energy.Name')} dimension="h-3 w-3"/>
+                <ColoredEnergyIcon alt={t2('Stats.Energy.Name')} dimension="h-3 w-3"/>
                 <div>
                   {formatFloat(dailyEnergy)}
                 </div>
@@ -141,7 +123,7 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
           </Flex>
           {/* Total */}
           <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
-            <ColoredEnergyIcon dimension="h-6 w-6" alt={t3('Stats.Energy.Name')}/>
+            <ColoredEnergyIcon dimension="h-6 w-6" alt={t2('Stats.Energy.Name')}/>
             <div>
               {formatFloat(
                 rateOfBerry.dailyEnergy +
@@ -155,11 +137,11 @@ export const PokeboxContentPokeInBoxRow = (props: PokeInBoxViewUnitProps) => {
           </Flex>
           {/* Stats */}
           <Flex direction="row" center noFullWidth className="w-16 gap-0.5">
-            <PokemonDataIcon src="/images/generic/bag.png" alt={t3('Stats.MaxCarry')} invert/>
+            <PokemonDataIcon src="/images/generic/bag.png" alt={t2('Stats.MaxCarry')} invert/>
             <div>{pokeInBox.carryLimit}</div>
           </Flex>
           <Flex direction="row" center noFullWidth className="w-20 gap-0.5">
-            <PokemonDataIcon src="/images/generic/clock.png" alt={t3('Stats.Frequency')} invert/>
+            <PokemonDataIcon src="/images/generic/clock.png" alt={t2('Stats.Frequency')} invert/>
             <div>{pokemon.stats.frequency}</div>
           </Flex>
           {/* Skills */}

@@ -22,7 +22,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
-import {toRatingRequest} from '@/ui/team/analysis/setup/pokemon/utils';
+import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
@@ -100,7 +100,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
         </Flex>
         <Flex direction="row" className="items-center gap-1.5">
           <Flex direction="col" noFullWidth>
-            <button className="button-clickable-bg group p-1" onClick={() => ratingControl.setRequest(toRatingRequest({
+            <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
               pokemon,
               snorlaxFavorite,

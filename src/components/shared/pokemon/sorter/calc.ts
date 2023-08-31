@@ -57,18 +57,18 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
 
 export type GetPokemonSorterOpts = Omit<PokemonSorterGetterOpts, 'berryData'> & {
   type: PokemonSortType,
-  berryMap: BerryDataMap,
+  berryDataMap: BerryDataMap,
 };
 
 export const getPokemonSorter = ({
   type,
   pokemon,
-  berryMap,
+  berryDataMap,
   ...opts
 }: GetPokemonSorterOpts): number => {
   return pokemonSorterGetterBySortType[type]({
     pokemon,
-    berryData: berryMap[pokemon.berry.id],
+    berryData: berryDataMap[pokemon.berry.id],
     ...opts,
   });
 };

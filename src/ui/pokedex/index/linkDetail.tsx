@@ -81,7 +81,7 @@ export const PokedexLinkDetail = React.memo(({
   const sorter = getPokemonSorter({
     type: display,
     pokemon,
-    berryMap,
+    berryDataMap: berryMap,
     ingredientMap,
     ingredients,
     level,

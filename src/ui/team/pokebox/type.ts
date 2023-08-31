@@ -13,11 +13,12 @@ export type PokeboxDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
   ingredientMap: IngredientMap,
+  pokemonMaxLevel: number,
   preloadedRatingBonus: RatingBonus | undefined,
 };
 
 export type PokeboxCommonProps = PokeboxDataProps & {
   session: Session | null,
-  berryMap: BerryDataMap,
+  berryDataMap: BerryDataMap,
   mapMeta: FieldMetaMap,
 };

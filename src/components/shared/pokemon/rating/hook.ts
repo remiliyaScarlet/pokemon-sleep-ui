@@ -12,7 +12,13 @@ export const useRatingPopup = (): RatingPopupControl => {
   return {
     state,
     setState,
-    setRequest: (request) => setState({show: true, request}),
+    sendRequest: (setup) => setState({
+      show: true,
+      request: {
+        timestamp: Date.now(),
+        setup,
+      },
+    }),
   };
 };
 

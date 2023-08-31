@@ -59,7 +59,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     data,
     sort: filter.sort,
     ingredientMap,
-    berryMap,
+    berryDataMap: berryMap,
     snorlaxFavorite: filter.snorlaxFavorite,
     userBonus: {
       ingredient: 0,

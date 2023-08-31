@@ -1,5 +1,5 @@
 import {PokemonInfo} from '@/types/game/pokemon';
-import {RatingBonus, RatingRequest} from '@/types/game/pokemon/rating';
+import {RatingBonus, RatingSetupData} from '@/types/game/pokemon/rating';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {TeamAnalysisMember} from '@/ui/team/analysis/type';
 
@@ -11,9 +11,4 @@ type ToRatingRequestOpts = {
   bonus: RatingBonus,
 };
 
-export const toRatingRequest = ({member, ...opts}: ToRatingRequestOpts): RatingRequest => {
-  return {
-    timestamp: Date.now(),
-    setup: {...member, ...opts},
-  };
-};
+export const toRatingSetup = ({member, ...opts}: ToRatingRequestOpts): RatingSetupData => ({...member, ...opts});

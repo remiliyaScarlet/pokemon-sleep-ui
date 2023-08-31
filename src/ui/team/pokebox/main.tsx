@@ -4,7 +4,7 @@ import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
-import {getAllBerryData} from '@/controller/berry';
+import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {loadRatingBonusFromSession} from '@/controller/game/rating/bonus';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
@@ -25,8 +25,9 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     subSkillMap,
     ingredientMap,
-    berryMap,
+    berryDataMap,
     mapMeta,
+    pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonAsMap(),
@@ -35,6 +36,7 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
     getAllBerryData(),
     getAllMapMeta(),
+    getPokemonMaxLevelByBerry(),
   ]);
 
   const props: PokeboxCommonProps = {
@@ -43,9 +45,10 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     subSkillMap,
     ingredientMap,
-    berryMap,
+    berryDataMap,
     mapMeta,
     preloadedRatingBonus: await loadRatingBonusFromSession(session),
+    pokemonMaxLevel,
   };
 
   return (

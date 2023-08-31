@@ -20,7 +20,7 @@ export type PokeInBoxCommonProps = PokeInBoxChangeableProps & {
   pokemon: PokemonInfo,
   pokedexMap: PokedexMap,
   subSkillMap: SubSkillMap,
-  berryMap: BerryDataMap,
+  berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
 };
