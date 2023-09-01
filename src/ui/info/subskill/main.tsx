@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {getAllSubSkillData} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page';
@@ -30,6 +31,7 @@ export const SubSkillInfo = async ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
+      <AdsUnit/>
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedSubSkills.map((subSkill) => (
           <SubSkillInfoSingle key={subSkill.id} data={subSkill}/>
