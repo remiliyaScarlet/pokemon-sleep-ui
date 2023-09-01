@@ -3,27 +3,19 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useLocale} from 'next-intl';
-import {usePathname, useRouter} from 'next-intl/client';
 
 import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
 import {localeName} from '@/const/website';
+import {useLanguageSwitch} from '@/ui/base/navbar/languageSwitch/hook';
 import {isLocale} from '@/utils/i18n';
 
 
 export const LanguageSwitch = () => {
   const [show, setShow] = React.useState(false);
-  const [isPending, startTransition] = React.useTransition();
+  const {isPending, onLocaleSwitch} = useLanguageSwitch();
 
   const currentLocale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const onClick = (nextLocale: string) => {
-    startTransition(() => {
-      router.push(pathname, {locale: nextLocale});
-    });
-  };
 
   return (
     <>
@@ -36,7 +28,7 @@ export const LanguageSwitch = () => {
             <button
               key={locale}
               disabled={isPending || currentLocale === locale}
-              onClick={() => onClick(locale)}
+              onClick={() => onLocaleSwitch(locale)}
               className={clsx(
                 'button-base flex w-full justify-center p-5 text-xl sm:w-48',
                 'enabled:button-clickable-bg disabled:button-disabled-border',

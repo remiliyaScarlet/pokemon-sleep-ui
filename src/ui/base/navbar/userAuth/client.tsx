@@ -15,7 +15,7 @@ type Props = {
   session: Session | null,
 };
 
-export const UserControlClient = ({session}: Props) => {
+export const UserAuthControlClient = ({session}: Props) => {
   const t = useTranslations('UI.UserControl');
 
   if (!session) {
