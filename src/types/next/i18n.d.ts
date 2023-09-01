@@ -32,6 +32,16 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     Evolution: {
       SleepTime: string,
     },
+    MainSkill: {
+      EffectType: {
+        Strength: string,
+        Shards: string,
+        Stamina: string,
+        Help: string,
+        Cooking: string,
+        Random: string,
+      },
+    },
     Metadata: {
       SiteName: string,
       Home: I18nMetadata,

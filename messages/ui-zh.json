@@ -17,6 +17,16 @@
   "Evolution": {
     "SleepTime": "睡眠時間"
   },
+  "MainSkill": {
+    "EffectType": {
+      "Strength": "能量",
+      "Shards": "夢之碎片",
+      "Stamina": "活力",
+      "Help": "幫忙",
+      "Cooking": "製作料理",
+      "Random": "隨機"
+    }
+  },
   "Metadata": {
     "SiteName": "Pokémon Sleep 攻略站",
     "Home": {

@@ -32,6 +32,8 @@ export type MainSkillEffectAtLevel = {
   type: 'random',
 };
 
+export type MainSkillEffectType = MainSkillEffectAtLevel['type'];
+
 export type MainSkillEffect = MainSkillEffectAtLevel & {
   level: number,
 };

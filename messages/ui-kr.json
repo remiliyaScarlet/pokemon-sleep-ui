@@ -17,6 +17,16 @@
   "Evolution": {
     "SleepTime": "수면 시간"
   },
+  "MainSkill": {
+    "EffectType": {
+      "Strength": "에너지",
+      "Shards": "꿈의조각",
+      "Stamina": "기력",
+      "Help": "도우미",
+      "Cooking": "요리하기",
+      "Random": "무작위의"
+    }
+  },
   "Metadata": {
     "SiteName": "Pokémon Sleep 위키",
     "Home": {

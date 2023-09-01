@@ -17,6 +17,16 @@
   "Evolution": {
     "SleepTime": "Gemeinsame Schlafdauer"
   },
+  "MainSkill": {
+    "EffectType": {
+      "Strength": "Stärke",
+      "Shards": "Traumsplitter",
+      "Stamina": "Energie",
+      "Help": "Helfer",
+      "Cooking": "Kochen",
+      "Random": "Zufällig"
+    }
+  },
   "Metadata": {
     "SiteName": "Pokémon Sleep Info",
     "Home": {
