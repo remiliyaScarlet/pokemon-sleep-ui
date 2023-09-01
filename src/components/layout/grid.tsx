@@ -13,10 +13,7 @@ export const Grid = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Pro
   ...props
 }, ref) => {
   return (
-    <div ref={ref} className={clsx(
-      'grid',
-      getLayoutClassNames(props),
-    )}>
+    <div ref={ref} className={clsx('grid', getLayoutClassNames(props))}>
       {children}
     </div>
   );
