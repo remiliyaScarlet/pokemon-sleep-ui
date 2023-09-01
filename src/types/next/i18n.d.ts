@@ -41,6 +41,11 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Cooking: string,
         Random: string,
       },
+      Target: {
+        Self: string,
+        Random: string,
+        Team: string,
+      },
     },
     Metadata: {
       SiteName: string,

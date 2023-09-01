@@ -25,6 +25,11 @@
       "Help": "幫忙",
       "Cooking": "製作料理",
       "Random": "隨機"
+    },
+    "Target": {
+      "Self": "自身",
+      "Random": "隨機隊內 1 名",
+      "Team": "全隊"
     }
   },
   "Metadata": {

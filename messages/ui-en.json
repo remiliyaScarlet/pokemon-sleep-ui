@@ -25,6 +25,11 @@
       "Help": "Helping",
       "Cooking": "Cooking",
       "Random": "Random"
+    },
+    "Target": {
+      "Self": "Self",
+      "Random": "1 random Pokémon",
+      "Team": "Team"
     }
   },
   "Metadata": {

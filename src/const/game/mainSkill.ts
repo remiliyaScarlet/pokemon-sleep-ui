@@ -1,4 +1,4 @@
-import {MainSkillEffectType} from '@/types/game/pokemon/mainSkill';
+import {MainSkillEffectType, MainSkillTarget} from '@/types/game/pokemon/mainSkill';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
@@ -20,4 +20,18 @@ export const mainSkillEffectTypeImageSrc: {[type in MainSkillEffectType]: string
   help: '/images/generic/speed.png',
   cooking: '/images/generic/pot.png',
   random: '/images/generic/flash.png',
+};
+
+export const mainSkillEffectTargetI18nId: {
+  [target in MainSkillTarget]: I18nMessageKeysOfNamespace<'UI.MainSkill.Target'>
+} = {
+  self: 'Self',
+  random: 'Random',
+  team: 'Team',
+};
+
+export const mainSkillEffectTargetImageSrc: {[target in MainSkillTarget]: string} = {
+  self: '/images/mainSkill/target/self.png',
+  random: '/images/mainSkill/target/random.png',
+  team: '/images/mainSkill/target/team.png',
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
+import {MainSkillTargetIcon} from '@/components/shared/pokemon/mainSkill/targetIcon';
 import {MainSkillEffectTypeIcon} from '@/components/shared/pokemon/mainSkill/typeIcon';
 import {MainSkillEffectValue} from '@/components/shared/pokemon/mainSkill/value';
 import {MainSkillEffectAtLevel} from '@/types/game/pokemon/mainSkill';
@@ -26,7 +27,12 @@ export const MainSkillEffectUI = ({effect}: Props) => {
   }
 
   if (effect.type === 'stamina') {
-    return <MainSkillEffectValue type={effect.type} value={effect.value}/>;
+    return (
+      <Flex direction="row" noFullWidth className="items-center gap-1">
+        <MainSkillTargetIcon target={effect.target}/>
+        <div>{effect.value}</div>
+      </Flex>
+    );
   }
 
   if (effect.type === 'help') {

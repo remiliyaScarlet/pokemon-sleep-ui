@@ -18,7 +18,7 @@ export const MainSkillValueTable = ({data}: Props) => {
 
   return (
     <Flex direction="col">
-      <Grid center className="info-section-bg grid-cols-2 gap-1 self-center rounded-lg p-3 text-lg md:w-60">
+      <Grid center className="grid-cols-2 gap-1 self-center rounded-lg text-lg md:w-60">
         <div>
           <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert/>
         </div>

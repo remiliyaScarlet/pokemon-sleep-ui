@@ -24,7 +24,12 @@
       "Stamina": "기력",
       "Help": "도우미",
       "Cooking": "요리하기",
-      "Random": "무작위의"
+      "Random": "랜덤"
+    },
+    "Target": {
+      "Self": "자신",
+      "Random": "랜덤 포켓몬 1마",
+      "Team": "팀"
     }
   },
   "Metadata": {
