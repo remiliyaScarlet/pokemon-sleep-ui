@@ -13,6 +13,7 @@ import {
   PokemonIngredientProduction,
 } from '@/types/game/pokemon';
 import {IngredientLevel, ingredientLevels} from '@/types/game/pokemon/ingredient';
+import {MainSkillId} from '@/types/game/pokemon/mainSkill';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -106,12 +107,17 @@ export const getPokemonByBerry = async (berryId: BerryId) => {
   return getDataAsArray(getCollection(), {'berry.id': berryId});
 };
 
+export const getPokemonByMainSkill = async (skill: MainSkillId) => {
+  return getDataAsArray(getCollection(), {skill});
+};
+
 const addPokemonInfoIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
     collection.createIndex({id: 1}, {unique: true}),
     collection.createIndex({'berry.id': 1}),
+    collection.createIndex({skill: 1}),
   ]);
 };
 

@@ -10,7 +10,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
+import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
@@ -75,7 +75,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           </div>
         </Flex>
       }>
-        <PokemonIconClickable pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
+        <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
           showToast({content: (
             <Flex direction="row" className="gap-1.5">
               <div className="relative h-9 w-9">

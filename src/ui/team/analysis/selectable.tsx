@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
+import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
   TeamAnalysisDataProps,
@@ -59,7 +59,7 @@ export const TeamAnalysisSelectablePokemon = ({
   };
 
   return (
-    <PokemonIconClickable
+    <PokemonClickableIcons
       pokemonList={pokemonList.filter(({id}) => isIncluded[id])}
       onClick={putOnTeam}
     />

@@ -9,7 +9,7 @@ import {CollapsibleState} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
+import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId} from '@/types/game/pokemon';
 import {RatingFilterCommonProps} from '@/ui/rating/filter/type';
@@ -39,7 +39,7 @@ export const RatingPokemonPicker = ({
         </div>
       </Flex>
     }>
-      <PokemonIconClickable pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
+      <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
         const pokemon = pokedexMap[id];
 
         if (!pokemon) {

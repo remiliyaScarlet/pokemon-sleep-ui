@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PokemonIconClickable} from '@/components/shared/pokemon/icon/clickable';
+import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokedexMap, PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
@@ -19,7 +19,7 @@ export const PokemonEvolutionSelector = ({pokemon, pokedex, onClick}: Props) => 
     .filter(isNotNullish);
 
   return (
-    <PokemonIconClickable
+    <PokemonClickableIcons
       pokemonList={relatedPokemon}
       onClick={onClick}
       isActive={(id) => id === pokemon.id}
