@@ -15,7 +15,7 @@ export const RatingResultPopup = ({ratingControl, ...props}: Props) => {
 
   return (
     <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
-      <Flex direction="col" noFullWidth className="sm:w-[70vw]">
+      <Flex direction="col" noFullWidth className="sm:w-[90vw]">
         <RatingResult request={state.request} {...props}/>
       </Flex>
     </Popup>
