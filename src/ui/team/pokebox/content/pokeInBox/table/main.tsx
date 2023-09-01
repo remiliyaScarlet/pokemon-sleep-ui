@@ -24,6 +24,7 @@ export const PokeInBoxTable = ({
             itemSize={51}
             itemData={sortedPokeInBox}
             width={width}
+            overscanCount={10}
           >
             {({style, data, index}) => {
               const {source} = data[index];

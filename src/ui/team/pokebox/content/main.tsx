@@ -5,13 +5,16 @@ import {v4} from 'uuid';
 
 import {Flex} from '@/components/layout/flex';
 import {LazyLoad} from '@/components/layout/lazyLoad';
-import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
-import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
+import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
+import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
+import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {Pokebox, PokeInBox} from '@/types/game/pokebox';
+import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeboxCount} from '@/ui/team/pokebox/content/count';
+import {useFilteredSortedPokebox} from '@/ui/team/pokebox/content/hook';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -19,8 +22,6 @@ import {PokeboxEditUploadStatus} from '@/ui/team/pokebox/editor/uploadStatus';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 
@@ -37,9 +38,6 @@ export const PokeboxContent = (props: Props) => {
     initialPokebox,
     setEditingPokeInBox,
     pokedexMap,
-    subSkillMap,
-    ingredientMap,
-    berryDataMap,
   } = props;
 
   const t = useTranslations('Game');
@@ -63,39 +61,15 @@ export const PokeboxContent = (props: Props) => {
     ),
     ...props,
   });
-  const filteredSortedPokebox = useSortingWorker({
-    data: Object.values(pokebox)
-      .filter(isNotNullish)
-      .filter(({uuid}) => isIncluded[uuid])
-      .map((pokeInBox) => {
-        const pokemon = pokedexMap[pokeInBox.pokemon];
-
-        if (!pokemon) {
-          return null;
-        }
-
-        const {level} = pokeInBox;
-
-        return {
-          pokemon,
-          level,
-          extra: pokeInBox,
-          ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
-          ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
-        };
-      })
-      .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
-    sort: filter.sort,
-    snorlaxFavorite: filter.snorlaxFavorite,
-    userBonus: {
-      ingredient: filter.bonus.ingredient,
-      overall: 0,
-    },
-    ingredientMap,
-    berryDataMap,
-    triggerDeps: [pokebox, filter],
+  const filteredSortedPokebox = useFilteredSortedPokebox({
+    ...props,
+    pokebox,
+    filter,
+    isIncluded,
     setLoading,
   });
+  const {state, setState, showPokemon} = usePokemonLinkPopup();
+  const ratingControl = useRatingPopup();
 
   useAutoUpload({
     opts: {
@@ -119,6 +93,12 @@ export const PokeboxContent = (props: Props) => {
 
   return (
     <Flex direction="col" className="gap-1.5">
+      <PokemonLinkPopup state={state} setState={setState}/>
+      <RatingResultPopup
+        pokemon={ratingControl.state.request?.setup.pokemon}
+        ratingControl={ratingControl}
+        {...props}
+      />
       <PokeInBoxEditPopup
         pokebox={Object.fromEntries(filteredSortedPokebox.map(({source}) => [source.extra.uuid, source.extra]))}
         onUpdateCompleted={(updated) => {
@@ -163,7 +143,13 @@ export const PokeboxContent = (props: Props) => {
       <PokeboxViewerInput {...props} filter={filter} setFilter={setFilter}/>
       <PokeboxCount loading={loading} countToShow={filteredSortedPokebox.length} total={Object.keys(pokebox).length}/>
       <LazyLoad loading={loading} className="gap-1.5">
-        <PokeInBoxView {...props} filter={filter} sortedPokeInBox={filteredSortedPokebox}/>
+        <PokeInBoxView
+          {...props}
+          filter={filter}
+          sortedPokeInBox={filteredSortedPokebox}
+          showPokemon={showPokemon}
+          setRatingPopupControl={ratingControl.sendRequest}
+        />
       </LazyLoad>
     </Flex>
   );

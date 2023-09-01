@@ -4,19 +4,20 @@ import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {RatingPopupControl, RatingResultProps} from '@/components/shared/pokemon/rating/type';
+import {Optional} from '@/utils/type';
 
 
-type Props = Omit<RatingResultProps, 'request'> & {
+type Props = Optional<Omit<RatingResultProps, 'request'>, 'pokemon'> & {
   ratingControl: RatingPopupControl,
 };
 
-export const RatingResultPopup = ({ratingControl, ...props}: Props) => {
+export const RatingResultPopup = ({ratingControl, pokemon, ...props}: Props) => {
   const {state, setState} = ratingControl;
 
   return (
     <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
       <Flex direction="col" noFullWidth className="sm:w-[90vw]">
-        <RatingResult request={state.request} {...props}/>
+        {pokemon && <RatingResult request={state.request} pokemon={pokemon} {...props}/>}
       </Flex>
     </Popup>
   );
