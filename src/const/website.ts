@@ -69,7 +69,7 @@ export const navEntries: NavEntry[] = [
   {
     href: '/skill',
     imageSrc: '/images/generic/skill.png',
-    i18nTextId: 'Skill.Index.Title',
+    i18nTextId: 'MainSkill.Index.Title',
     disabled: true,
   },
 ];
