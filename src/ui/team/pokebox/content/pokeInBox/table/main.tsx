@@ -16,14 +16,14 @@ export const PokeInBoxTable = ({
 }: PokeInBoxViewOfTypeProps) => {
   return (
     <Flex direction="col" className="h-[70vh] gap-1 overflow-auto">
-      <AutoSizer>
-        {({height, width}) => (
+      <AutoSizer disableWidth>
+        {({height}) => (
           <FixedSizeList
             height={height}
             itemCount={sortedPokeInBox.length}
             itemSize={51}
             itemData={sortedPokeInBox}
-            width={width}
+            width="100%"
             overscanCount={10}
           >
             {({style, data, index}) => {
