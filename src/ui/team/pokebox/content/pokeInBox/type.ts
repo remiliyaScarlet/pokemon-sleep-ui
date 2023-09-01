@@ -9,10 +9,13 @@ import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
 
-export type PokeInBoxViewCommonProps = PokeboxCommonProps & {
+export type PokeInBoxRefreshDependency = {
   filter: PokeboxViewerFilter,
-  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
   sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
+};
+
+export type PokeInBoxViewCommonProps = PokeboxCommonProps & PokeInBoxRefreshDependency & {
+  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
 };
 
 export type PokeInBoxViewOfTypeProps = PokeInBoxViewCommonProps;
