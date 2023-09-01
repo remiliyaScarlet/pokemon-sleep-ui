@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
@@ -68,7 +69,10 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
       <PokeInBoxTableRowHeader {...props} pokemon={pokemon}/>
       <button className="button-clickable-bg group rounded-lg p-1" onClick={onClick}>
         <Flex direction="row" noFullWidth className="items-center gap-1 [&>*]:shrink-0">
-          <div className="w-72">
+          <InfoIcon>
+            {pokeInBox.level}
+          </InfoIcon>
+          <div className="w-64">
             <PokeInBoxMeta {...pokeInBoxProps}/>
           </div>
           {/* Info */}
