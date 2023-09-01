@@ -110,16 +110,16 @@
       "Nature": {
         "Title": "Nature"
       },
+      "MainSkill": {
+        "Index": {
+          "Title": "Main Skill"
+        },
+        "Page": {
+          "Title": "Main Skill - {name}"
+        }
+      },
       "SubSkill": {
         "Title": "Sub Skill"
-      }
-    },
-    "MainSkill": {
-      "Index": {
-        "Title": "Main Skill"
-      },
-      "Page": {
-        "Title": "Main Skill - {name}"
       }
     },
     "Incense": {

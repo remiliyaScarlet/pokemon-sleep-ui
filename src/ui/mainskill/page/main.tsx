@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {MainSkillPageParams} from '@/app/[locale]/mainskill/[id]/page';
+import {MainSkillPageParams} from '@/app/[locale]/info/mainskill/[id]/page';
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';

@@ -20,7 +20,7 @@ export const MainSkillLink = ({data}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Link href={`/mainskill/${id}`} className="button-clickable-bg group p-2">
+    <Link href={`/mainskill/${id}`} className="button-clickable-bg group p-4">
       <Flex direction="col" center className="gap-1">
         <Flex direction="row" center className="gap-1 text-xl">
           <MainSkillEffectTypeIcon type={effects[0].type} dimension="h-7 w-7"/>

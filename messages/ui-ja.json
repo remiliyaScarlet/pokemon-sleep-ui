@@ -110,16 +110,16 @@
       "Nature": {
         "Title": "せいかく"
       },
+      "MainSkill": {
+        "Index": {
+          "Title": "メインスキル"
+        },
+        "Page": {
+          "Title": "メインスキル - {name}"
+        }
+      },
       "SubSkill": {
         "Title": "サブスキル"
-      }
-    },
-    "MainSkill": {
-      "Index": {
-        "Title": "メインスキル"
-      },
-      "Page": {
-        "Title": "メインスキル - {name}"
       }
     },
     "Incense": {

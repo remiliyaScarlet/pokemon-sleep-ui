@@ -27,8 +27,8 @@
       "Random": "Zufällig"
     },
     "Target": {
-      "Self": "Self",
-      "Random": "1 random Pokémon",
+      "Self": "Eigen",
+      "Random": "1 zufälliges Pokemon",
       "Team": "Team"
     }
   },
@@ -110,16 +110,16 @@
       "Nature": {
         "Title": "Wesen"
       },
+      "MainSkill": {
+        "Index": {
+          "Title": "Haupttalente"
+        },
+        "Page": {
+          "Title": "Haupttalent - {name}"
+        }
+      },
       "SubSkill": {
         "Title": "Nebentalent"
-      }
-    },
-    "MainSkill": {
-      "Index": {
-        "Title": "Haupttalente"
-      },
-      "Page": {
-        "Title": "Haupttalent - {name}"
       }
     },
     "Incense": {

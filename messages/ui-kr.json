@@ -110,16 +110,16 @@
       "Nature": {
         "Title": "성격"
       },
+      "MainSkill": {
+        "Index": {
+          "Title": "메인 스킬"
+        },
+        "Page": {
+          "Title": "메인 스킬 - {name}"
+        }
+      },
       "SubSkill": {
         "Title": "서브 스킬"
-      }
-    },
-    "MainSkill": {
-      "Index": {
-        "Title": "메인 스킬"
-      },
-      "Page": {
-        "Title": "메인 스킬 - {name}"
       }
     },
     "Incense": {

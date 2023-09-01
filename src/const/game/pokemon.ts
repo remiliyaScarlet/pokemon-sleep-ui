@@ -13,7 +13,7 @@ export const specialtyIdMap: {[name in SpecialtyType]: PokemonSpecialtyId} = {
 export const specialtyImageSrcMap: {[id in PokemonSpecialtyId]: string} = {
   1: '/images/generic/berry.png',
   2: '/images/generic/ingredient.png',
-  3: '/images/generic/skill.png',
+  3: '/images/generic/mainSkill.png',
 };
 
 export const natureEffectIdMap: {[type in NatureEffectType]: NatureEffectId} = {
@@ -25,7 +25,7 @@ export const natureEffectIdMap: {[type in NatureEffectType]: NatureEffectId} = {
 };
 
 export const natureEffectImageSrcMap: {[id in NatureEffectId]: string} = {
-  1: '/images/generic/skill.png',
+  1: '/images/generic/mainSkill.png',
   2: '/images/generic/exp.png',
   3: '/images/generic/mood.png',
   4: '/images/generic/ingredient.png',

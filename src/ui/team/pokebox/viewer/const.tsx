@@ -24,7 +24,7 @@ export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: st
   productionBerry: '/images/generic/berry.png',
   productionIngredient: '/images/generic/ingredient.png',
   rating: '/images/generic/search.png',
-  skills: '/images/generic/skill.png',
+  skills: '/images/generic/mainSkill.png',
   stats: '/images/generic/analysis.png',
   info: '/images/generic/info.png',
 };

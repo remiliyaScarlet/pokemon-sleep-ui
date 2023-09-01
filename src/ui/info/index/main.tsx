@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
+import {Grid} from '@/components/layout/grid';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -20,30 +21,29 @@ export const InfoIndex = ({params}: DefaultPageProps) => {
           <div className="w-full">
             <AdsUnit/>
           </div>
-          <Flex direction="row" wrap className="gap-2">
-            <div className="width-with-gap">
-              <FeatureLinkImage
-                href="/info/pot"
-                imageSrc="/images/generic/pot.png"
-                text={t('Pot.Title')}
-              />
-            </div>
-            <div className="width-with-gap xl:width-with-gap-2-items">
-              <FeatureLinkImage
-                href="/info/pot"
-                imageSrc="/images/generic/memo.png"
-                text={t('Nature.Title')}
-                disabled
-              />
-            </div>
-            <div className="width-with-gap xl:width-with-gap-2-items">
-              <FeatureLinkImage
-                href="/info/subskill"
-                imageSrc="/images/generic/subSkill.png"
-                text={t('SubSkill.Title')}
-              />
-            </div>
-          </Flex>
+          <Grid className="grid-cols-1 gap-2 xl:grid-cols-2">
+            <FeatureLinkImage
+              href="/info/pot"
+              imageSrc="/images/generic/pot.png"
+              text={t('Pot.Title')}
+            />
+            <FeatureLinkImage
+              href="/info/pot"
+              imageSrc="/images/generic/memo.png"
+              text={t('Nature.Title')}
+              disabled
+            />
+            <FeatureLinkImage
+              href="/info/mainskill"
+              imageSrc="/images/generic/mainSkill.png"
+              text={t('MainSkill.Index.Title')}
+            />
+            <FeatureLinkImage
+              href="/info/subskill"
+              imageSrc="/images/generic/subSkill.png"
+              text={t('SubSkill.Title')}
+            />
+          </Grid>
           <div className="w-full">
             <AdsUnit/>
           </div>

@@ -61,11 +61,6 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Info.Index.Title',
   },
   {
-    href: '/mainskill',
-    imageSrc: '/images/generic/skill.png',
-    i18nTextId: 'MainSkill.Index.Title',
-  },
-  {
     href: '/about',
     imageSrc: '/images/generic/globe.png',
     i18nTextId: 'About.Title',

@@ -18,7 +18,7 @@ export const generateMetadata: GenerateMetadata<MainSkillPageParams> = async ({p
   const {id, locale} = params;
   const t = await getI18nTranslator({locale, namespace: 'Game.MainSkill.Name'});
 
-  return generatePageMeta({key: 'MainSkill.Page.Title', values: {name: t(id)}})({params});
+  return generatePageMeta({key: 'Info.MainSkill.Page.Title', values: {name: t(id)}})({params});
 };
 
 export default MainSkillPage;

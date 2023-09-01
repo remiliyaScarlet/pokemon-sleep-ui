@@ -110,16 +110,16 @@
       "Nature": {
         "Title": "性格"
       },
+      "MainSkill": {
+        "Index": {
+          "Title": "主技能"
+        },
+        "Page": {
+          "Title": "主技能 - {name}"
+        }
+      },
       "SubSkill": {
         "Title": "副技能"
-      }
-    },
-    "MainSkill": {
-      "Index": {
-        "Title": "主技能"
-      },
-      "Page": {
-        "Title": "主技能 - {name}"
       }
     },
     "Incense": {
