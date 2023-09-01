@@ -12,7 +12,3 @@ export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
     max: null,
   },
 };
-
-export const isInitialResult = (result: RatingResultOfLevel): boolean => {
-  return isNaN(result.rank);
-};
