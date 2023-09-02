@@ -19,6 +19,10 @@ export const getAllMapMeta = async (): Promise<FieldMetaMap> => {
   return getDataAsMap(getCollection(), ({mapId}) => mapId);
 };
 
+export const getMapIds = async (): Promise<SleepMapId[]> => {
+  return (await getCollection()).find().map(({mapId}) => mapId).toArray();
+};
+
 export const getMapMeta = async (mapId: SleepMapId): Promise<MapMeta | null> => (
   getSingleData(getCollection(), {mapId})
 );
