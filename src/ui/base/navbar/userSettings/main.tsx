@@ -1,26 +1,48 @@
 import React from 'react';
 
 import Cog6ToothIcon from '@heroicons/react/24/outline/Cog6ToothIcon';
-import {clsx} from 'clsx';
 import {Session} from 'next-auth';
-import {useLocale} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
-import {localeName} from '@/const/website';
-import {useLanguageSwitch} from '@/ui/base/navbar/languageSwitch/hook';
+import {useUserDataActor} from '@/hooks/userData/actor';
+import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/bonus';
+import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/language';
+import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
+import {migrate} from '@/utils/migrate/main';
+import {userSettingsMigrators} from '@/utils/migrate/userSettings/migrators';
 
 
-type Props = {
+type Props = UserSettingsProps & {
   session: Session,
 };
 
-export const UserSettings = ({}: Props) => {
+export const UserSettingsUI = ({session, mapIds}: Props) => {
   const [show, setShow] = React.useState(false);
-  const {isPending, onLocaleSwitch} = useLanguageSwitch();
+  const [settings, setSettings] = React.useState<UserSettings>(migrate({
+    original: {
+      bonus: {
+        overall: 125,
+        map: {},
+        ingredient: 20,
+      },
+      currentMap: 1,
+      version: 1,
+    },
+    override: session.user.preloaded.settings ?? {},
+    migrators: userSettingsMigrators,
+    migrateParams: {},
+  }));
+  const {act} = useUserDataActor({showStatusToast: true});
 
-  const currentLocale = useLocale();
+  React.useEffect(() => {
+    if (show || !act) {
+      return;
+    }
+
+    act({action: 'upload', options: {type: 'settings', data: settings}});
+  }, [show]);
 
   return (
     <>
@@ -28,22 +50,21 @@ export const UserSettings = ({}: Props) => {
         <Cog6ToothIcon/>
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="gap-1 sm:w-[70vw]">
-          <Grid className="auto-cols-fr grid-cols-3 gap-2 lg:grid-flow-col lg:grid-cols-none lg:grid-rows-1">
-            {Object.entries(localeName).map(([locale, name]) => (
-              <button
-                key={locale}
-                disabled={isPending || currentLocale === locale}
-                onClick={() => onLocaleSwitch(locale)}
-                className={clsx(
-                  'button-base p-3',
-                  'enabled:button-clickable-bg disabled:button-disabled-border',
-                )}
-              >
-                {name}
-              </button>
-            ))}
-          </Grid>
+        <Flex direction="col" className="gap-1.5 sm:w-[70vw]">
+          <UserSettingsBonusUI
+            mapIds={mapIds}
+            bonus={settings.bonus}
+            setBonus={(bonus) => setSettings((original) => ({
+              ...original,
+              bonus,
+            }))}
+            currentMap={settings.currentMap}
+            setCurrentMap={(currentMap) => setSettings((original) => ({
+              ...original,
+              currentMap,
+            }))}
+          />
+          <UserSettingsLanguage/>
         </Flex>
       </Popup>
     </>

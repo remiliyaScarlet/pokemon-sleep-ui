@@ -11,14 +11,15 @@ import {ThemeSwitcher} from '@/ui/base/navbar/darkMode/main';
 import {NavEntryUI} from '@/ui/base/navbar/entry';
 import {NavHomepage} from '@/ui/base/navbar/home';
 import {LanguageSwitch} from '@/ui/base/navbar/languageSwitch/main';
-import {UserSettings} from '@/ui/base/navbar/userSettings/main';
+import {UserSettingsUI} from '@/ui/base/navbar/userSettings/main';
+import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 
 
-type Props = {
+type Props = UserSettingsProps & {
   session: Session | null,
 };
 
-export const NavBarClient = ({session}: Props) => {
+export const NavBarClient = ({session, ...props}: Props) => {
   const t = useTranslations('UI.Metadata');
 
   const entries = useNavEntries();
@@ -37,7 +38,7 @@ export const NavBarClient = ({session}: Props) => {
         ))}
       </Flex>
       <Flex direction="row" center noFullWidth className="ml-auto gap-1.5">
-        {session && <UserSettings session={session}/>}
+        {session && <UserSettingsUI session={session} {...props}/>}
         {!session && <LanguageSwitch/>}
         <ThemeSwitcher/>
       </Flex>
