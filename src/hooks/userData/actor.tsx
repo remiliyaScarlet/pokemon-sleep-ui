@@ -10,7 +10,8 @@ import {showToast} from '@/utils/toast';
 
 type UseUserDataActorOpts = {
   override?: ReturnType<typeof useSession>,
-  showStatusToast?: boolean,
+  statusToast?: boolean,
+  statusNoReset?: boolean,
 };
 
 type UseUserDataActorReturn = {
@@ -38,12 +39,16 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
       return;
     }
 
-    if (status === 'completed' && opts?.showStatusToast) {
+    if (status === 'completed' && opts?.statusToast) {
       showToast({content: <UserDataUploadStatus success/>});
     }
 
     if (status === 'failed') {
       showToast({content: <UserDataUploadStatus success={false}/>});
+    }
+
+    if (opts?.statusNoReset) {
+      return undefined;
     }
 
     const timeoutId = setTimeout(() => setStatus('waiting'), 2500);

@@ -27,7 +27,7 @@ export const UserSettingsUI = ({session, mapIds}: Props) => {
     migrators: userSettingsMigrators,
     migrateParams: {},
   }));
-  const {act} = useUserDataActor({showStatusToast: true});
+  const {act} = useUserDataActor({statusToast: true});
 
   React.useEffect(() => {
     if (show || !act) {

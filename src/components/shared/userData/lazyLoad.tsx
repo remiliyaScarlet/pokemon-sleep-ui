@@ -25,7 +25,10 @@ type Props = {
 export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
   const {act, status, session} = useUserDataActor({
     override: sessionOverride,
+    statusNoReset: true,
   });
+  // This is needed because `status` can't be used for evaluating if the data is loaded
+  // > `status` can be `waiting` on init or after data is loaded
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -69,6 +72,14 @@ export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, a
     if (status === 'waiting' && act) {
       return <></>;
     }
+
+    // There will be a gap where `status` is `completed` but `loaded` is still `false`
+    // Therefore rendering empty content and wait for the `useEffect()` hook to set `loaded` to true
+    if (status === 'completed') {
+      return <></>;
+    }
+
+    console.warn(`Uncaught lazy load status: Session: ${session.status} / User data action: ${status}`);
   }
 
   return <>{content(session.data?.user.lazyLoaded, session)}</>;
