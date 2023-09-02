@@ -12,7 +12,7 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 type Props = {
   type: UserLazyLoadedDataType,
   loadingText: string,
-  content: (data: UserLazyLoadedData | null | undefined) => React.ReactNode,
+  content: (data: UserLazyLoadedData | null | undefined, session: ReturnType<typeof useSession>) => React.ReactNode,
   sessionOverride?: ReturnType<typeof useSession>,
 } & ({
   actDeps: React.DependencyList,
@@ -57,7 +57,7 @@ export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, a
     }
 
     if (session.status === 'unauthenticated') {
-      return <>{content(null)}</>;
+      return <>{content(null, session)}</>;
     }
 
     if (status === 'failed') {
@@ -71,5 +71,5 @@ export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, a
     }
   }
 
-  return <>{content(session.data?.user.lazyLoaded)}</>;
+  return <>{content(session.data?.user.lazyLoaded, session)}</>;
 };
