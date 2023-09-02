@@ -37,7 +37,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
 
   return (
     <Flex direction="col" center className="gap-2">
-      <Flex direction="row" center className="gap-4">
+      <Flex direction="row" center wrap className="gap-2">
         <Flex direction="row" center noFullWidth className="gap-1">
           <div className="h-6 w-6">
             <ClockIcon/>
@@ -54,6 +54,8 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
             }))}
           />
           <div>(04:00)</div>
+        </Flex>
+        <Flex direction="row" center noFullWidth className="gap-1">
           <EnergyIcon alt={t('CurrentEnergy')} dimension="h-6 w-6"/>
           <InputBox
             id="currentEnergy"
