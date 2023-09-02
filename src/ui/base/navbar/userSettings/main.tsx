@@ -5,6 +5,7 @@ import {Session} from 'next-auth';
 
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
+import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/bonus';
@@ -21,15 +22,7 @@ type Props = UserSettingsProps & {
 export const UserSettingsUI = ({session, mapIds}: Props) => {
   const [show, setShow] = React.useState(false);
   const [settings, setSettings] = React.useState<UserSettings>(migrate({
-    original: {
-      bonus: {
-        overall: 125,
-        map: {},
-        ingredient: 20,
-      },
-      currentMap: 1,
-      version: 1,
-    },
+    original: defaultUserSettings,
     override: session.user.preloaded.settings ?? {},
     migrators: userSettingsMigrators,
     migrateParams: {},
