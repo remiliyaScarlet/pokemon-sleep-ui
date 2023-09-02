@@ -17,6 +17,7 @@ export const generatePageMeta = ({key, values}: GeneratePageMetaOpts): GenerateM
   const t = await getI18nTranslator({locale, namespace: 'UI.Metadata'});
 
   return {
-    title: `${t(key, values)} | ${t('SiteName')}`,
+    title: `${t(key, values)} | ${t('Site.Name')}`,
+    description: t('Site.Description'),
   };
 };

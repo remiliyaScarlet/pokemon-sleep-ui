@@ -33,7 +33,10 @@
     }
   },
   "Metadata": {
-    "SiteName": "Pokémon Sleep 攻略站",
+    "Site": {
+      "Name": "Pokémon Sleep 攻略站",
+      "Description": "Pokémon Sleep 攻略站提供 Pokemon Sleep 中的圖鑑、食譜、食材、樹果相關資訊。同時，本站也提供如隊伍分析、寶可夢盒...等工具。"
+    },
     "Home": {
       "Title": "首頁"
     },

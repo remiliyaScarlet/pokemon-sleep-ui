@@ -23,7 +23,7 @@ export const NavHomepage = () => {
         <NextImage src={`/images/rank/${rankBallId}.png`} alt={t('Home.Title')} sizes={imageSmallIconSizes}/>
       </div>
       <div className="whitespace-nowrap">
-        <span className="hidden md:block">{t('SiteName')}</span>
+        <span className="hidden md:block">{t('Site.Name')}</span>
         <span className="block md:hidden">
           <div className="h-6 w-6">
             <HomeIcon/>

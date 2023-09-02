@@ -33,7 +33,10 @@
     }
   },
   "Metadata": {
-    "SiteName": "Pokémon Sleep 위키",
+    "Site": {
+      "Name": "Pokémon Sleep 위키",
+      "Description": "Pokémon Sleep 위키."
+    },
     "Home": {
       "Title": "홈"
     },

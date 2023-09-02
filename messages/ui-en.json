@@ -33,7 +33,10 @@
     }
   },
   "Metadata": {
-    "SiteName": "Pokémon Sleep Info",
+    "Site": {
+      "Name": "Pokémon Sleep Info",
+      "Description": "Pokémon Sleep Info provides various info including Pokédex, recipes, ingredients, berries, as well as other tools such as Team Analysis and Pokebox analysis."
+    },
     "Home": {
       "Title": "Home"
     },
@@ -56,7 +59,7 @@
     },
     "Meal": {
       "Index": {
-        "Title": "Recipe List"
+        "Title": "Recipes"
       },
       "Page": {
         "Title": "Recipe - {name}"
@@ -64,7 +67,7 @@
     },
     "Ingredient": {
       "Index": {
-        "Title": "Ingredient"
+        "Title": "Ingredients"
       },
       "Page": {
         "Title": "Ingredient - {name}"
@@ -72,7 +75,7 @@
     },
     "Berry": {
       "Index": {
-        "Title": "Berry"
+        "Title": "Berries"
       },
       "Page": {
         "Title": "Berry - {name}"
@@ -80,7 +83,7 @@
     },
     "Map": {
       "Index": {
-        "Title": "Map"
+        "Title": "Maps"
       },
       "Page": {
         "Title": "Map - {name}"

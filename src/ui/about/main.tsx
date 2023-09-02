@@ -21,7 +21,7 @@ export const About = async ({params}: DefaultPageProps) => {
       <Flex direction="col" center className="info-section !gap-8">
         <Flex direction="col" className="gap-2">
           <div className="text-2xl">
-            {t('SiteName')}
+            {t('Site.Name')}
           </div>
           <AboutSection title="Discord">
             <Link href={discordLink} className="border-link">

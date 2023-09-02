@@ -33,7 +33,10 @@
     }
   },
   "Metadata": {
-    "SiteName": "Pokémon Sleep Info",
+    "Site": {
+      "Name": "Pokémon Sleep Info",
+      "Description": "Pokémon Sleep Info."
+    },
     "Home": {
       "Title": "Home"
     },
