@@ -1,12 +1,17 @@
 import React from 'react';
 
-import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircleIcon';
 import {useSession} from 'next-auth/react';
 
+import {UserDataUploadStatus} from '@/components/shared/userData/uploadStatus';
 import {useOverridableSession} from '@/hooks/session';
 import {UserDataActionStatus, UserDataActor} from '@/types/userData/main';
 import {showToast} from '@/utils/toast';
 
+
+type UseUserDataActorOpts = {
+  override?: ReturnType<typeof useSession>,
+  showStatusToast?: boolean,
+};
 
 type UseUserDataActorReturn = {
   act: UserDataActor | null,
@@ -14,9 +19,9 @@ type UseUserDataActorReturn = {
   session: ReturnType<typeof useSession>,
 };
 
-export const useUserDataActor = (override?: ReturnType<typeof useSession>): UseUserDataActorReturn => {
+export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorReturn => {
   const [status, setStatus] = React.useState<UserDataActionStatus>('waiting');
-  const session = useOverridableSession(override);
+  const session = useOverridableSession(opts?.override);
 
   const userDataActor: UserDataActor = (action) => {
     setStatus('processing');
@@ -33,12 +38,12 @@ export const useUserDataActor = (override?: ReturnType<typeof useSession>): UseU
       return;
     }
 
+    if (status === 'completed' && opts?.showStatusToast) {
+      showToast({content: <UserDataUploadStatus success/>});
+    }
+
     if (status === 'failed') {
-      showToast({content: (
-        <div className="relative h-9 w-9">
-          <ExclamationCircleIcon/>
-        </div>
-      )});
+      showToast({content: <UserDataUploadStatus success={false}/>});
     }
 
     const timeoutId = setTimeout(() => setStatus('waiting'), 2500);

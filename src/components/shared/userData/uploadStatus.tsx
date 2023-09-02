@@ -11,7 +11,7 @@ type Props = {
   success: boolean,
 };
 
-export const PokeboxEditUploadStatus = ({success}: Props) => {
+export const UserDataUploadStatus = ({success}: Props) => {
   return (
     <Flex direction="row" className="gap-1.5">
       <div className="relative h-8 w-8">

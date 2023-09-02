@@ -18,11 +18,9 @@ import {useFilteredSortedPokebox} from '@/ui/team/pokebox/content/hook';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
-import {PokeboxEditUploadStatus} from '@/ui/team/pokebox/editor/uploadStatus';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
-import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -47,7 +45,7 @@ export const PokeboxContent = (props: Props) => {
   const [pokebox, setPokebox] = React.useState(initialPokebox);
   const [loading, setLoading] = React.useState(false);
 
-  const {act, status} = useUserDataActor();
+  const {act} = useUserDataActor();
   const {
     filter,
     setFilter,
@@ -79,17 +77,6 @@ export const PokeboxContent = (props: Props) => {
     triggerDeps: [filter.sort, filter.displayType, filter.viewType],
     delay: 0,
   });
-
-  React.useEffect(() => {
-    if (status === 'completed') {
-      showToast({content: <PokeboxEditUploadStatus success/>});
-      return;
-    }
-    if (status === 'failed') {
-      showToast({content: <PokeboxEditUploadStatus success={false}/>});
-      return;
-    }
-  }, [status]);
 
   return (
     <Flex direction="col" className="gap-1.5">

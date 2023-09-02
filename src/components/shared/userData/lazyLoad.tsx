@@ -23,7 +23,9 @@ type Props = {
 });
 
 export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
-  const {act, status, session} = useUserDataActor(sessionOverride);
+  const {act, status, session} = useUserDataActor({
+    override: sessionOverride,
+  });
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
