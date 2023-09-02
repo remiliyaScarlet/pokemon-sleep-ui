@@ -45,11 +45,11 @@
         "Title": "ポケモン図鑑"
       },
       "Page": {
-        "Title": "ポケモン - {name}"
+        "Title": "{name} - ポケモン"
       }
     },
     "Analysis": {
-      "Title": "ポケモン分析 - {name}"
+      "Title": "{name} - ポケモン分析"
     },
     "Rating": {
       "Title": "個体評価"
@@ -62,7 +62,7 @@
         "Title": "レシピ一覧"
       },
       "Page": {
-        "Title": "レシピ - {name}"
+        "Title": "{name} - レシピ"
       }
     },
     "Ingredient": {
@@ -70,7 +70,7 @@
         "Title": "食材"
       },
       "Page": {
-        "Title": "食材 - {name}"
+        "Title": "{name} - 食材"
       }
     },
     "Berry": {
@@ -78,7 +78,7 @@
         "Title": "きのみ"
       },
       "Page": {
-        "Title": "きのみ - {name}"
+        "Title": "{name} - きのみ"
       }
     },
     "Map": {
@@ -86,7 +86,7 @@
         "Title": "マップ"
       },
       "Page": {
-        "Title": "マップ - {name}"
+        "Title": "{name} - マップ"
       }
     },
     "Team": {
@@ -118,7 +118,7 @@
           "Title": "メインスキル"
         },
         "Page": {
-          "Title": "メインスキル - {name}"
+          "Title": "{name} - メインスキル"
         }
       },
       "SubSkill": {
@@ -130,7 +130,7 @@
         "Title": "おこう"
       },
       "Page": {
-        "Title": "おこう - {name}"
+        "Title": "{name} - おこう"
       }
     },
     "About": {

@@ -45,11 +45,11 @@
         "Title": "Pokédex"
       },
       "Page": {
-        "Title": "Pokémon - {name}"
+        "Title": "{name} - Pokémon"
       }
     },
     "Analysis": {
-      "Title": "Pokémon Analysis - {name}"
+      "Title": "{name} - Pokémon Analysis"
     },
     "Rating": {
       "Title": "Rate my Pokémon"
@@ -62,7 +62,7 @@
         "Title": "Recipes"
       },
       "Page": {
-        "Title": "Recipe - {name}"
+        "Title": "{name} - Recipe"
       }
     },
     "Ingredient": {
@@ -70,7 +70,7 @@
         "Title": "Ingredients"
       },
       "Page": {
-        "Title": "Ingredient - {name}"
+        "Title": "{name} - Ingredient"
       }
     },
     "Berry": {
@@ -78,7 +78,7 @@
         "Title": "Berries"
       },
       "Page": {
-        "Title": "Berry - {name}"
+        "Title": "{name} - Berry"
       }
     },
     "Map": {
@@ -86,7 +86,7 @@
         "Title": "Maps"
       },
       "Page": {
-        "Title": "Map - {name}"
+        "Title": "{name} - Map"
       }
     },
     "Team": {
@@ -118,7 +118,7 @@
           "Title": "Main Skill"
         },
         "Page": {
-          "Title": "Main Skill - {name}"
+          "Title": "{name} - Main Skill"
         }
       },
       "SubSkill": {
@@ -130,7 +130,7 @@
         "Title": "Incense"
       },
       "Page": {
-        "Title": "Incense - {name}"
+        "Title": "{name} - Incense"
       }
     },
     "About": {

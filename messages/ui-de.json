@@ -45,11 +45,11 @@
         "Title": "Pokédex"
       },
       "Page": {
-        "Title": "Pokémon - {name}"
+        "Title": "{name} - Pokémon"
       }
     },
     "Analysis": {
-      "Title": "Pokémon Analysis - {name}"
+      "Title": "{name} - Pokémon Analysis"
     },
     "Rating": {
       "Title": "Bewertung"
@@ -62,7 +62,7 @@
         "Title": "Rezepteliste"
       },
       "Page": {
-        "Title": "Rezept - {name}"
+        "Title": "{name} - Rezept"
       }
     },
     "Ingredient": {
@@ -70,7 +70,7 @@
         "Title": "Zutaten"
       },
       "Page": {
-        "Title": "Zutat - {name}"
+        "Title": "{name} - Zutat"
       }
     },
     "Berry": {
@@ -78,7 +78,7 @@
         "Title": "Beeren"
       },
       "Page": {
-        "Title": "Beere - {name}"
+        "Title": "{name} - Beere"
       }
     },
     "Map": {
@@ -86,7 +86,7 @@
         "Title": "Karte"
       },
       "Page": {
-        "Title": "Karte - {name}"
+        "Title": "{name} - Karte"
       }
     },
     "Team": {
@@ -118,7 +118,7 @@
           "Title": "Haupttalente"
         },
         "Page": {
-          "Title": "Haupttalent - {name}"
+          "Title": "{name} - Haupttalent"
         }
       },
       "SubSkill": {
@@ -130,7 +130,7 @@
         "Title": "Rauch"
       },
       "Page": {
-        "Title": "Rauch - {name}"
+        "Title": "{name} - Rauch"
       }
     },
     "About": {

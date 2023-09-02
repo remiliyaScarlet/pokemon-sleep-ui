@@ -45,11 +45,11 @@
         "Title": "寶可夢圖鑑"
       },
       "Page": {
-        "Title": "寶可夢 - {name}"
+        "Title": "{name} - 寶可夢"
       }
     },
     "Analysis": {
-      "Title": "寶可夢分析 - {name}"
+      "Title": "{name} - 寶可夢分析"
     },
     "Rating": {
       "Title": "個體分析"
@@ -62,7 +62,7 @@
         "Title": "食譜一覽"
       },
       "Page": {
-        "Title": "食譜 - {name}"
+        "Title": "{name} - 食譜"
       }
     },
     "Ingredient": {
@@ -70,7 +70,7 @@
         "Title": "食材"
       },
       "Page": {
-        "Title": "食材 - {name}"
+        "Title": "{name} - 食材"
       }
     },
     "Berry": {
@@ -78,7 +78,7 @@
         "Title": "樹果"
       },
       "Page": {
-        "Title": "樹果 - {name}"
+        "Title": "{name} - 樹果"
       }
     },
     "Map": {
@@ -86,7 +86,7 @@
         "Title": "地圖"
       },
       "Page": {
-        "Title": "地圖 - {name}"
+        "Title": "{name} - 地圖"
       }
     },
     "Team": {
@@ -118,7 +118,7 @@
           "Title": "主技能"
         },
         "Page": {
-          "Title": "主技能 - {name}"
+          "Title": "{name} - 主技能"
         }
       },
       "SubSkill": {
@@ -130,7 +130,7 @@
         "Title": "薰香"
       },
       "Page": {
-        "Title": "薰香 - {name}"
+        "Title": "{name} - 薰香"
       }
     },
     "About": {

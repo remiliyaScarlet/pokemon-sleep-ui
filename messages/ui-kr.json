@@ -45,11 +45,11 @@
         "Title": "포켓몬 도감"
       },
       "Page": {
-        "Title": "포켓몬 - {name}"
+        "Title": "{name} - 포켓몬"
       }
     },
     "Analysis": {
-      "Title": "포켓몬 분석 - {name}"
+      "Title": "{name} - 포켓몬 분석"
     },
     "Rating": {
       "Title": "단독 평가"
@@ -62,7 +62,7 @@
         "Title": "레시피 일람"
       },
       "Page": {
-        "Title": "레시피 - {name}"
+        "Title": "{name} - 레시피"
       }
     },
     "Ingredient": {
@@ -70,7 +70,7 @@
         "Title": "식재료"
       },
       "Page": {
-        "Title": "식재료 - {name}"
+        "Title": "{name} - 식재료"
       }
     },
     "Berry": {
@@ -78,7 +78,7 @@
         "Title": "나무열매"
       },
       "Page": {
-        "Title": "나무열매 - {name}"
+        "Title": "{name} - 나무열매"
       }
     },
     "Map": {
@@ -86,7 +86,7 @@
         "Title": "맵"
       },
       "Page": {
-        "Title": "맵 - {name}"
+        "Title": "{name} - 맵"
       }
     },
     "Team": {
@@ -118,7 +118,7 @@
           "Title": "메인 스킬"
         },
         "Page": {
-          "Title": "메인 스킬 - {name}"
+          "Title": "{name} - 메인 스킬"
         }
       },
       "SubSkill": {
@@ -130,7 +130,7 @@
         "Title": "향로"
       },
       "Page": {
-        "Title": "향로 - {name}"
+        "Title": "{name} - 향로"
       }
     },
     "About": {
