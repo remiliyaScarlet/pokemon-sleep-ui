@@ -28,7 +28,7 @@ export const PokemonSleepStyles = ({pokemon, sleepStyles}: PokemonProps) => {
 
         return (
           <Flex key={mapId} direction="col" className="md:w-fit">
-            <MapLink mapId={mapId} className="p-1.5">
+            <MapLink mapId={mapId} className="p-1.5" noAbsolute>
               <Flex direction="row" center className="z-10 p-1.5">
                 <div>
                   <div className="relative h-9 w-9">

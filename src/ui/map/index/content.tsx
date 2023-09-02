@@ -19,7 +19,7 @@ export const MapIndexContent = ({data, mapMeta}: MapIndexCommonProps) => {
       <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2">
         {Object.entries(data).map(([mapId, sleepStyles]) => (
           <MapLink key={mapId} mapId={mapId} className="h-40">
-            <Flex direction="col" className="z-10 gap-4">
+            <Flex direction="col" className="gap-4">
               <div className="text-2xl">
                 {t(mapId.toString())}
               </div>

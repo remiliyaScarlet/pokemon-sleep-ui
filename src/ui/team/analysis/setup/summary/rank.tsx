@@ -31,16 +31,14 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
         return (
           <Flex key={mapId} direction="col">
             <MapLink mapId={mapId} className="h-16">
-              <Flex direction="row" center wrap className="absolute left-0 top-0 z-10 h-full gap-1.5">
-                <div className="whitespace-nowrap">
-                  {mapName}
-                </div>
-                {rank ?
-                  <SnorlaxRankUI rank={rank.rank}/> :
-                  <div className="h-6 w-6">
-                    <XCircleIcon/>
-                  </div>}
-              </Flex>
+              <div className="whitespace-nowrap">
+                {mapName}
+              </div>
+              {rank ?
+                <SnorlaxRankUI rank={rank.rank}/> :
+                <div className="h-6 w-6">
+                  <XCircleIcon/>
+                </div>}
             </MapLink>
           </Flex>
         );

@@ -28,14 +28,12 @@ export const BerryFavoriteInfoUi = ({berryData, favoriteInfo, level, setLevel}: 
 
           return (
             <MapLink key={mapId} mapId={mapId} className="h-24 w-64">
-              <Flex direction="col" center className="z-10 gap-1.5">
-                <div className="text-xl">
-                  {t(mapId)}
-                </div>
-                <div className="h-10 w-10">
-                  <BerryFavoriteInMapType type={type}/>
-                </div>
-              </Flex>
+              <div className="text-xl">
+                {t(mapId)}
+              </div>
+              <div className="h-10 w-10">
+                <BerryFavoriteInMapType type={type}/>
+              </div>
             </MapLink>
           );
         })}
