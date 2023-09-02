@@ -1,4 +1,5 @@
 import {MealTypeId} from '@/types/game/meal';
+import {UserSettings} from '@/types/userData/settings';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
@@ -11,4 +12,5 @@ export type UserPreloadedContent = {
   pokeboxDisplay: PokeboxViewerDisplay,
   potCapacity: number,
   ingredientCount: CookingFilterIngredientCount,
+  settings: UserSettings,
 };

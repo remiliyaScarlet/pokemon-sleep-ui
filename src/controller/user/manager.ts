@@ -1,5 +1,6 @@
 import {createUserDataManager} from '@/controller/user/common';
 import {MealTypeId} from '@/types/game/meal';
+import {UserSettings} from '@/types/userData/settings';
 import {UploadOfTeamAnalysisSetup} from '@/types/userData/upload';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -19,3 +20,5 @@ export const userDataMealType = createUserDataManager<MealTypeId>('mealType');
 export const userDataIngredientCount = createUserDataManager<CookingFilterIngredientCount>('ingredientCount');
 
 export const userDataPokeboxDisplay = createUserDataManager<PokeboxViewerDisplay>('pokeboxDisplay');
+
+export const userDataSettings = createUserDataManager<UserSettings>('settings');

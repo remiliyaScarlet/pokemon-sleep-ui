@@ -1,4 +1,5 @@
 import {
+  userDataSettings,
   userDataIngredientCount,
   userDataMealType,
   userDataPokeboxDisplay,
@@ -17,6 +18,7 @@ export const getUserPreloadedData = async (userId: string): Promise<UserPreloade
     pokeboxDisplay,
     potCapacity,
     ingredientCount,
+    settings,
   ] = await Promise.all([
     userDataMealType.getData(userId),
     userDataRecipeLevel.getData(userId),
@@ -24,6 +26,7 @@ export const getUserPreloadedData = async (userId: string): Promise<UserPreloade
     userDataPokeboxDisplay.getData(userId),
     userDataPotCapacity.getData(userId),
     userDataIngredientCount.getData(userId),
+    userDataSettings.getData(userId),
   ]);
 
   return {
@@ -33,5 +36,6 @@ export const getUserPreloadedData = async (userId: string): Promise<UserPreloade
     pokeboxDisplay: pokeboxDisplay?.data,
     potCapacity: potCapacity?.data,
     ingredientCount: ingredientCount?.data,
+    settings: settings?.data,
   };
 };

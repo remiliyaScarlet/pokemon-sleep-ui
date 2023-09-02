@@ -1,5 +1,6 @@
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {
+  userDataSettings,
   userDataIngredientCount,
   userDataMealType,
   userDataPokeboxDisplay,
@@ -62,17 +63,22 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   }
 
   if (type === 'pokebox.create') {
-    await addSinglePokeInBox(userId, opts.data);
+    await addSinglePokeInBox(userId, data);
     return;
   }
 
   if (type === 'pokebox.upsert') {
-    await upsertSinglePokeInBox(userId, opts.data);
+    await upsertSinglePokeInBox(userId, data);
     return;
   }
 
   if (type === 'pokebox.delete') {
-    await deleteSinglePokeInBox(userId, opts.data);
+    await deleteSinglePokeInBox(userId, data);
+    return;
+  }
+
+  if (type === 'settings') {
+    await userDataSettings.setData(userId, data);
     return;
   }
 

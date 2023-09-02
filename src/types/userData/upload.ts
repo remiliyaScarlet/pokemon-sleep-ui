@@ -1,6 +1,7 @@
 import {MealTypeId} from '@/types/game/meal';
 import {PokeInBox} from '@/types/game/pokebox';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {UserSettings} from '@/types/userData/settings';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
@@ -45,4 +46,7 @@ export type UserDataUploadOpts = {
 } | {
   type: 'cooking',
   data: UploadOfCookingData,
+} | {
+  type: 'settings',
+  data: UserSettings,
 };
