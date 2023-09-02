@@ -5,6 +5,7 @@ import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
+import {discordLink} from '@/const/external';
 import {DefaultPageProps} from '@/types/next/page';
 import {AboutSection} from '@/ui/about/section';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -23,8 +24,8 @@ export const About = async ({params}: DefaultPageProps) => {
             {t('SiteName')}
           </div>
           <AboutSection title="Discord">
-            <Link href="https://discord.gg/t83mqYKEf5" className="border-link">
-              https://discord.gg/t83mqYKEf5
+            <Link href={discordLink} className="border-link">
+              {discordLink}
             </Link>
           </AboutSection>
         </Flex>
