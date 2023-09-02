@@ -2,7 +2,6 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import {useLocale} from 'next-intl';
 
 import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
@@ -13,9 +12,7 @@ import {isLocale} from '@/utils/i18n';
 
 export const LanguageSwitch = () => {
   const [show, setShow] = React.useState(false);
-  const {isPending, onLocaleSwitch} = useLanguageSwitch();
-
-  const currentLocale = useLocale();
+  const {currentLocale, isPending, onLocaleSwitch} = useLanguageSwitch();
 
   return (
     <>

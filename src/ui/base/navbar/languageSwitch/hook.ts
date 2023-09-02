@@ -1,9 +1,11 @@
 import React from 'react';
 
+import {useLocale} from 'next-intl';
 import {usePathname, useRouter} from 'next-intl/client';
 
 
 export const useLanguageSwitch = () => {
+  const currentLocale = useLocale();
   const [isPending, startTransition] = React.useTransition();
 
   const router = useRouter();
@@ -15,5 +17,5 @@ export const useLanguageSwitch = () => {
     });
   };
 
-  return {isPending, onLocaleSwitch};
+  return {currentLocale, isPending, onLocaleSwitch};
 };
