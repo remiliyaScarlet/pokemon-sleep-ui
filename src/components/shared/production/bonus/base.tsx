@@ -10,9 +10,10 @@ type Props = BonusSliderProps & {
   id: string,
   min: number,
   max: number,
+  step?: number,
 };
 
-export const BonusSlider = ({id, min, max, value, setValue, children}: React.PropsWithChildren<Props>) => {
+export const BonusSlider = ({id, min, max, step, value, setValue, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex direction="col" className="gap-2 p-1">
       <Flex direction="row" className="items-center justify-end gap-2">
@@ -24,6 +25,7 @@ export const BonusSlider = ({id, min, max, value, setValue, children}: React.Pro
           type="number"
           min={min}
           max={max}
+          step={step ?? 1}
           className="w-16 text-center"
           value={value.toString()}
           onChange={({target}) => setValue(Number(target.value))}
@@ -32,7 +34,7 @@ export const BonusSlider = ({id, min, max, value, setValue, children}: React.Pro
           %
         </div>
       </Flex>
-      <Slider id={`${id}-slider`} value={value} setValue={setValue} min={min} max={max}/>
+      <Slider id={`${id}-slider`} value={value} setValue={setValue} min={min} max={max} step={step}/>
     </Flex>
   );
 };
