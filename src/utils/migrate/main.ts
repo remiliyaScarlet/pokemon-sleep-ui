@@ -1,6 +1,5 @@
-import merge from 'lodash/merge';
-
 import {Migratable, MigrateCall, MigrateOpts} from '@/types/migrate';
+import {cloneMerge} from '@/utils/object';
 
 
 export const migrate: MigrateCall = <TMigratable extends Migratable, TParams>({
@@ -9,9 +8,7 @@ export const migrate: MigrateCall = <TMigratable extends Migratable, TParams>({
   migrators,
   migrateParams,
 }: MigrateOpts<TMigratable, TParams>) => {
-  // Has to have an empty object first, or `original` will be modified
-  // https://stackoverflow.com/a/28044419/11571888
-  let data: MigrateOpts<TMigratable, TParams>['original'] = merge({}, original, override);
+  let data: MigrateOpts<TMigratable, TParams>['original'] = cloneMerge(original, override);
 
   for (const singleMigrator of migrators.sort((a, b) => a.toVersion - b.toVersion)) {
     if ((override?.version ?? -1) >= singleMigrator.toVersion) {
