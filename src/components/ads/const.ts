@@ -14,6 +14,6 @@ export const adsMessage: {[locale in Locale]: string} = {
     'ご支援については「このサイトについて」をご確認ください。',
   kr: 'Please allow ads, or check Discord/Patreon in the about page (/about) ' +
     'for subscription (US$3.33+) to activate ads-free.',
-  de: 'Please allow ads, or check Discord/Patreon in the about page (/about) ' +
-    'for subscription (US$3.33+) to activate ads-free.',
+  de: 'Bitte erlauben Sie Werbung oder überprüfen Sie Discord/Patreon auf der About-Seite (/about), ' +
+    'um ein Abonnement (ab 3,33 US-Dollar) zu erlangen, um die Seite werbefrei zu nutzen.',
 };
