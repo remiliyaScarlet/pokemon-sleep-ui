@@ -3,14 +3,11 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 import {useLocale} from 'next-intl';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 
-import {adsHeight, adsMessage} from '@/components/ads/const';
+import {AdsContent} from '@/components/ads/content';
 import {AdsUnitProps} from '@/components/ads/type';
-import {defaultLocale} from '@/const/website';
+import {Grid} from '@/components/layout/grid';
 import {Locale} from '@/types/next/locale';
-import {isProduction} from '@/utils/environment';
 
 
 export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUnitProps>) => {
@@ -34,23 +31,13 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
   }
 
   return (
-    <div className={clsx(
-      'relative w-full overflow-auto',
-      className,
-      adsHeight,
-      isProduction() ? 'text-red-600 dark:text-red-400' : 'border border-green-500',
-    )}>
-      {
-        !isAdsFree &&
-        <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(
-          'flex h-full w-full flex-col items-center justify-center text-center text-xl',
-        )}>
-          {adsMessage[locale as Locale] ?? adsMessage[defaultLocale]}
-        </ReactMarkdown>
-      }
-      <div className="absolute left-0 top-0 h-full w-full">
+    <Grid className="grid-cols-1 lg:grid-cols-2">
+      <AdsContent className={className} locale={locale as Locale}>
         {children}
-      </div>
-    </div>
+      </AdsContent>
+      <AdsContent className={clsx('hidden lg:block', className)} locale={locale as Locale}>
+        {children}
+      </AdsContent>
+    </Grid>
   );
 };
