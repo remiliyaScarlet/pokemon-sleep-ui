@@ -12,5 +12,4 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   };
 };
 
-
 export default Constructing;
