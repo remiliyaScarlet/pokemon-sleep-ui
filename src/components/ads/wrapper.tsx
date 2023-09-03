@@ -26,7 +26,10 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
     }
   }, [status]);
 
-  if (isAdsFree) {
+  // `isAdsFree` can be `null` indicating not loaded yet, which is falsy
+  // When `isAdsFree` is `null`, it shouldn't render anything because the app hasn't determined
+  // if the user is ads free yet
+  if (isAdsFree !== false) {
     return <></>;
   }
 
