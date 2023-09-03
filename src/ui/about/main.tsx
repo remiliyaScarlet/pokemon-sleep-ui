@@ -64,7 +64,6 @@ export const About = async ({params}: DefaultPageProps) => {
         <Flex direction="col" className="md:w-1/2 xl:w-1/3">
           <iframe
             src="https://discord.com/widget?id=1138701819464392744&theme=dark"
-            allowTransparency
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
             className="h-[40vh] rounded-lg"
           />
