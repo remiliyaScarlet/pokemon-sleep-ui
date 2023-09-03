@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
+import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
@@ -80,7 +81,9 @@ export const AnalysisStatsOfPokemonMeta = ({pokemon, stats, level}: AnalysisStat
       </AnalysisStatsGroupedUI>
       <AnalysisStatsGroupedUI stats={stats.pokemon.mainSkill} title={<PokemonFilterTitle type="mainSkill"/>}>
         <Flex direction="col" center className="h-12 text-2xl">
-          {t(`MainSkill.Name.${skill}`)}
+          <Link href={`/info/mainskill/${skill}`} className="button-clickable p-1 px-1.5">
+            {t(`MainSkill.Name.${skill}`)}
+          </Link>
         </Flex>
       </AnalysisStatsGroupedUI>
     </AnalysisStatsLayout>

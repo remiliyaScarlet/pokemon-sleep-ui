@@ -19,8 +19,8 @@ export const PokeInBoxProductionBerry = (props: PokeInBoxCommonProps) => {
   const rateOfBerry = getRateOfBerry(props);
 
   return (
-    <Flex direction="row" className={clsx(
-      'items-center gap-1 p-0',
+    <Flex direction="row" noFullWidth className={clsx(
+      'w-fit items-center gap-1 p-0 pr-1.5',
       pokemon.specialty === specialtyIdMap.berry && 'bg-blink',
     )}>
       <PokemonBerryIcon id={pokemon.berry.id}/>

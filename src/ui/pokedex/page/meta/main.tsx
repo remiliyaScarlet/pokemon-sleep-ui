@@ -3,6 +3,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
+import Link from 'next-intl/link';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
@@ -47,9 +48,11 @@ export const PokemonMeta = (props: PokemonProps) => {
           titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.skill && 'bg-blink')}
         >
           <Flex direction="col">
-            <div className="text-lg">
-              {t(`MainSkill.Name.${skill}`)}
-            </div>
+            <Flex direction="col" center className="h-12 text-lg">
+              <Link href={`/info/mainskill/${skill}`} className="button-clickable-bg p-1 px-2">
+                {t(`MainSkill.Name.${skill}`)}
+              </Link>
+            </Flex>
             <div className="text-xs text-slate-500 dark:text-slate-400">
               {t(`MainSkill.Description.${skill}`)}
             </div>

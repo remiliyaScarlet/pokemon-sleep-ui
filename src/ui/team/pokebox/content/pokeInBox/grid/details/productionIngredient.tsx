@@ -20,7 +20,7 @@ export const PokeInBoxProductionIngredient = (props: PokeInBoxCommonProps) => {
 
   return (
     <Flex direction="col" noFullWidth className={clsx(
-      'gap-0.5 text-sm',
+      'w-fit gap-0.5 pr-1.5 text-sm',
       pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
     )}>
       {rateOfIngredients.map(({id, quantity, dailyEnergy}) => (

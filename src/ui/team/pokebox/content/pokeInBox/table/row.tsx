@@ -2,6 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
+import Link from 'next-intl/link';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex';
@@ -155,12 +156,14 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
           <Flex direction="row" center noFullWidth className="w-36">
             <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
           </Flex>
-          <Flex direction="row" center noFullWidth className={clsx(
+          <Link href={`/info/mainskill/${pokemon.skill}`} className={clsx(
             'w-60 whitespace-nowrap p-1 text-sm',
             pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
           )}>
-            {t(`MainSkill.Name.${pokemon.skill}`)}
-          </Flex>
+            <Flex direction="row" center>
+              {t(`MainSkill.Name.${pokemon.skill}`)}
+            </Flex>
+          </Link>
         </Flex>
       </button>
     </Flex>
