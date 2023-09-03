@@ -1,9 +1,9 @@
-import {PokedexMap, PokemonInfo, PokemonIngredientDropData} from '@/types/game/pokemon';
+import {PokedexMap, PokemonInfo, PokemonItemDropData} from '@/types/game/pokemon';
 
 
 export type PokemonIngredientStatsCommonProps = {
   pokedex: PokedexMap,
-  dropData: PokemonIngredientDropData[],
+  dropData: PokemonItemDropData[],
 };
 
 export type PokemonBerryStatsCommonProps = {

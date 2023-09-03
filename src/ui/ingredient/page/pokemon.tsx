@@ -7,6 +7,7 @@ import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingr
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {Ingredient} from '@/types/game/ingredient';
 import {PokedexMap, PokemonIngredientDropData, PokemonIngredientProduction} from '@/types/game/pokemon';
+import {PokedexMap, PokemonItemDropData, PokemonIngredientProduction} from '@/types/game/pokemon';
 import {toSum} from '@/utils/array';
 
 
@@ -25,7 +26,7 @@ export const IngredientPokemonProduction = ({
 }: Props) => {
   const [level, setLevel] = React.useState(1);
 
-  const dropData: PokemonIngredientDropData[] = pokemonProduction.map(({pokemon, productions}) => {
+  const dropData: PokemonItemDropData[] = pokemonProduction.map(({pokemon, productions}) => {
     return {
       pokemon,
       qty: toSum(productions

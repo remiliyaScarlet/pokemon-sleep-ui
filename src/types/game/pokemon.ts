@@ -47,12 +47,12 @@ export type PokemonInfoWithMap = {
   mapsAvailable: SleepMapId[],
 };
 
-export type PokemonIngredientDropData = {
+export type PokemonItemDropData = {
   pokemon: PokemonId,
   qty: number,
 };
 
-export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonIngredientDropData[]};
+export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonItemDropData[]};
 
 export type PokemonIngredientProduction = {
   pokemon: PokemonId,
