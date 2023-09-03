@@ -5,8 +5,9 @@ import {Popup} from '@/components/popup';
 import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
-import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/bonus';
-import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/language';
+import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
+import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
+import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 import {migrate} from '@/utils/migrate/main';
 import {userSettingsMigrators} from '@/utils/migrate/userSettings/migrators';
@@ -37,6 +38,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
       setShow(show);
     }}>
       <Flex direction="col" className="gap-1.5 sm:w-[70vw]">
+        <UserSettingsAccountInfo session={session}/>
         <UserSettingsBonusUI
           mapIds={mapIds}
           bonus={settings.bonus}

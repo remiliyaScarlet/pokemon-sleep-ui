@@ -64,6 +64,7 @@ export const authOptions: AuthOptions = {
       ]);
       session.user = {
         id: userId,
+        email: user.email,
         preloaded,
         lazyLoaded: emptyLazyData,
         isAdsFree,

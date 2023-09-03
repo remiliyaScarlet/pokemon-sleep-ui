@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {Grid} from '@/components/layout/grid';
 import {localeName} from '@/const/website';
 import {useLanguageSwitch} from '@/ui/base/navbar/languageSwitch/hook';
-import {UserSettingsSection} from '@/ui/base/navbar/userSettings/section';
+import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 
 
 export const UserSettingsLanguage = () => {

@@ -13,7 +13,7 @@ import {OverallBonusSlider} from '@/components/shared/production/bonus/overall';
 import {discordLink} from '@/const/external';
 import {UserBonus} from '@/types/game/bonus';
 import {SleepMapId} from '@/types/game/sleepStyle';
-import {UserSettingsSection} from '@/ui/base/navbar/userSettings/section';
+import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 
 
 type Props = {
