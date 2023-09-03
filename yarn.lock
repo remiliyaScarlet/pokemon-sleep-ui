@@ -5185,6 +5185,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-custom-compare@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-custom-compare/-/use-custom-compare-1.4.0.tgz#3b750ae0487d3c8e8c38ed2da8b633450981e4e9"
+  integrity sha512-3VyBy9aUZgOdHKMVvECAW+o5SXVF1Ly9plXIoXZNBKnkiBz395Z0unTg6Q3SdLWp2RZHyyoG9GEo3HP3obz5Cw==
+
 use-intl@3.0.0-beta.3:
   version "3.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/use-intl/-/use-intl-3.0.0-beta.3.tgz#6e8fc168826ba32db77162cbeab2d86f24fc4e2d"

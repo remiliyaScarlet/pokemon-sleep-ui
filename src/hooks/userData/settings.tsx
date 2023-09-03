@@ -1,4 +1,5 @@
-import React from 'react';
+import isEqual from 'lodash/isEqual';
+import {useCustomCompareMemo} from 'use-custom-compare';
 
 import {EffectiveBonus} from '@/types/game/bonus';
 import {UserSettings} from '@/types/userData/settings';
@@ -13,8 +14,9 @@ type UseEffectiveBonusOpts = {
 };
 
 export const useEffectiveBonus = ({server, client}: UseEffectiveBonusOpts): EffectiveBonus => {
-  return React.useMemo(
+  return useCustomCompareMemo(
     () => toEffectiveBonus(cloneMerge(server, client)),
     [client],
+    (prev, next) => isEqual(prev, next),
   );
 };
