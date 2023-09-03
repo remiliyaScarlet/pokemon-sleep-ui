@@ -15,7 +15,7 @@ import {UserSettingsUI} from '@/ui/base/navbar/userSettings/main';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 
 
-type Props = UserSettingsProps & {
+type Props = Omit<UserSettingsProps, 'session'> & {
   session: Session | null,
 };
 
