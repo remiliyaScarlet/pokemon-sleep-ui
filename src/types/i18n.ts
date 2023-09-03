@@ -1,7 +1,4 @@
-import MessageKeys from 'use-intl/dist/core/utils/MessageKeys';
-import NamespaceKeys from 'use-intl/dist/core/utils/NamespaceKeys';
-import NestedKeyOf from 'use-intl/dist/core/utils/NestedKeyOf';
-import NestedValueOf from 'use-intl/dist/core/utils/NestedValueOf';
+import {MessageKeys, NamespaceKeys, NestedKeyOf, NestedValueOf} from 'next-intl';
 
 
 export type I18nNamespaces = NamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>;
