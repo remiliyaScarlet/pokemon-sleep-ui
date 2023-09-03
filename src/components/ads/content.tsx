@@ -21,7 +21,7 @@ export const AdsContent = ({className, locale, children}: React.PropsWithChildre
       'relative w-full overflow-auto',
       className,
       adsHeight,
-      isProduction() ? 'text-red-600 dark:text-red-400' : 'border border-green-500',
+      isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500',
     )}>
       <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(
         'flex h-full w-full flex-col items-center justify-center text-center text-xl',
