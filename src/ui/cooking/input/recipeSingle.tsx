@@ -49,7 +49,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
             onChange={({target}) => setLevel(Number(target.value))}
           />
         </Flex>
-        <div className="w-full self-end">
+        <div className="hidden w-full self-end md:block">
           <Slider
             id={`recipeLevel-${id}-slider`}
             min="1"
