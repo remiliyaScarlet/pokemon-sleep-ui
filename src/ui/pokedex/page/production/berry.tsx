@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
@@ -7,6 +6,7 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData} from '@/types/game/berry';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
@@ -14,12 +14,13 @@ import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 type Props = {
   pokemon: PokemonInfo,
+  level: number,
   berryName: string,
   berryData: BerryData,
-  level: number,
+  bonus: EffectiveBonus,
 };
 
-export const PokemonBerryProduction = ({pokemon, berryName, berryData, level}: Props) => {
+export const PokemonBerryProduction = ({pokemon, level, berryName, berryData, bonus}: Props) => {
   const {berry} = pokemon;
 
   const atLevel = getBerryProducingRate({
@@ -27,6 +28,7 @@ export const PokemonBerryProduction = ({pokemon, berryName, berryData, level}: P
     pokemon,
     ...defaultNeutralOpts,
     berryData,
+    bonus,
     snorlaxFavorite: {},
   });
 

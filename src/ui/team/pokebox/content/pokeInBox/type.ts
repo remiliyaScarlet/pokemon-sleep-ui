@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
@@ -21,6 +22,7 @@ export type PokeInBoxPopupProps = {
 };
 
 export type PokeInBoxViewCommonProps = PokeboxCommonProps & PokeInBoxPopupProps & PokeInBoxRefreshDependency & {
+  bonus: EffectiveBonus,
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
 };
 

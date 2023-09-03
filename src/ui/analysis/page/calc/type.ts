@@ -1,4 +1,5 @@
 import {BerryId} from '@/types/game/berry';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {
   PokemonId,
@@ -81,8 +82,9 @@ export type GetAnalysisStatsCommonOpts<TSample> = {
   getPokemonId: (sample: TSample) => PokemonId,
 };
 
-export type GetAnalysisStatsOpts = Omit<AnalysisPageCommonProps, 'mapMeta'> & {
+export type GetAnalysisStatsOpts = Omit<AnalysisPageCommonProps, 'mapMeta' | 'preloadedSettings'> & {
   level: number,
   ingredients: IngredientProduction[],
   snorlaxFavorite: SnorlaxFavorite,
+  bonus: EffectiveBonus,
 };

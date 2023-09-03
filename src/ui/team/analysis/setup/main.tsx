@@ -4,26 +4,39 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 import {useProducingStats} from '@/ui/team/analysis/setup/hook';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/setup/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/setup/summary/main';
 import {TeamAnalysisTeamView} from '@/ui/team/analysis/setup/team/main';
-import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
+import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamAnalysisUploadSetup} from '@/ui/team/analysis/setup/upload';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
+import {DeepPartial} from '@/utils/type';
 
 
-type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledSlotProps, 'showPokemon'>;
+type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'bonus'> & {
+  settings: DeepPartial<UserSettings> | undefined,
+};
 
 export const TeamAnalysisSetupView = (props: Props) => {
   const {
     setup,
-    setSetup,
     snorlaxRankData,
     snorlaxFavorite,
+    preloadedSettings,
+    settings,
   } = props;
 
-  const producingStats = useProducingStats(props);
+  const bonus = useEffectiveBonus({
+    server: preloadedSettings,
+    client: settings,
+  });
+  const statsOfTeam = useProducingStats({
+    ...props,
+    bonus,
+  });
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   return (
@@ -31,21 +44,17 @@ export const TeamAnalysisSetupView = (props: Props) => {
       <PokemonLinkPopup state={state} setState={setState}/>
       <Flex direction="col" className="gap-1.5">
         <TeamAnalysisTeamView
-          producingStats={producingStats}
           showPokemon={showPokemon}
+          statsOfTeam={statsOfTeam}
+          bonus={bonus}
           {...props}
         />
         <TeamAnalysisUploadSetup setup={setup} snorlaxFavorite={snorlaxFavorite}/>
         <AdsUnit/>
-        <TeamAnalysisGroupedSummary grouped={producingStats.grouped} period="weekly"/>
+        <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped} period="weekly"/>
         <TeamAnalysisSummary
-          bonus={setup.bonus}
-          setBonus={(bonus) => setSetup((original) => ({
-            ...original,
-            bonus,
-          }))}
           period="weekly"
-          stats={producingStats}
+          stats={statsOfTeam}
           snorlaxRankData={snorlaxRankData}
         />
         <AdsUnit/>

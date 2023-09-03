@@ -6,3 +6,9 @@ export type UserBonus = {
   map: {[id in SleepMapId]?: number},
   overall: number,
 };
+
+export type EffectiveBonus = {
+  ingredient: number,
+  map: number,
+  overall: number,
+};

@@ -35,10 +35,7 @@ const sortInAsc: PokemonSortType[] = [
 
 const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
-  ingredientEnergy: (opts) => toSum(getIngredientProducingRates({
-    ...opts,
-    multiplier: (1 + opts.userBonus.ingredient / 100),
-  }).map(({dailyEnergy}) => dailyEnergy)),
+  ingredientEnergy: (opts) => toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy)),
   ingredientCount: (opts) => toSum(getIngredientProducingRates(opts).map(({quantity}) => quantity)),
   berryEnergy: (opts) => getBerryRateSorter('dailyEnergy', opts),
   berryCount: (opts) => getBerryRateSorter('quantity', opts),
@@ -46,10 +43,7 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   frequency: ({pokemon}) => pokemon.stats.frequency,
   totalEnergy: (opts) => {
     const berry = getBerryRateSorter('dailyEnergy', opts);
-    const ingredient = toSum(getIngredientProducingRates({
-      ...opts,
-      multiplier: (1 + opts.userBonus.ingredient / 100),
-    }).map(({dailyEnergy}) => dailyEnergy));
+    const ingredient = toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy));
 
     return berry + (ingredient ?? 0);
   },

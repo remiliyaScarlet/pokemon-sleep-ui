@@ -24,7 +24,13 @@ type Props = PokemonIngredientStatsCommonProps & {
   targetSpecialty: PokemonSpecialtyId,
 };
 
-export const PokemonIconsItemStats = ({getProducingRate, getIcon, targetSpecialty, pokedex, dropData}: Props) => {
+export const PokemonIconsItemStats = ({
+  getProducingRate,
+  getIcon,
+  targetSpecialty,
+  pokedex,
+  dropData,
+}: Props) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   const t = useTranslations('Game');

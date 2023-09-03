@@ -1,10 +1,9 @@
 import merge from 'lodash/merge';
-import {Session} from 'next-auth';
 
 import {generatePokemonInputFilterExtended} from '@/components/shared/pokemon/input/utils';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
-import {PokedexFilter} from '@/ui/pokedex/index/type';
+import {PokedexDisplay, PokedexFilter} from '@/ui/pokedex/index/type';
 
 
 const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
@@ -27,13 +26,13 @@ export const toCalculateAllIngredientPossibilities = ({display, sort}: PokedexFi
   );
 };
 
-export const generateInitialFilter = (session: Session | null): PokedexFilter => {
+export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> | undefined): PokedexFilter => {
   return {
     name: '',
     ...generatePokemonInputFilterExtended(),
     ...merge({
       display: 'mainSkill',
       sort: 'id',
-    }, session?.user.preloaded.pokedex),
+    }, preloadedDisplay),
   };
 };

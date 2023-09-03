@@ -13,16 +13,14 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
-import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {RatingSetupExportButton} from '@/ui/rating/setup/export';
-import {RatingDataProps} from '@/ui/rating/type';
+import {RatingDataProps, RatingSetupInputs} from '@/ui/rating/type';
 
 
 type Props = RatingDataProps & {
-  initialSetup: RatingSetupData,
-  onInitiate: (setup: RatingSetupData) => void,
+  initialSetup: RatingSetupInputs,
+  onInitiate: (setup: RatingSetupInputs) => void,
 };
 
 export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
@@ -34,7 +32,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   mapMeta,
   pokemonMaxLevel,
 }, ref) => {
-  const [setup, setSetup] = React.useState<RatingSetupData>(initialSetup);
+  const [setup, setSetup] = React.useState(initialSetup);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
   const t = useTranslations('UI.Metadata');
   const t2 = useTranslations('Game.PokemonName');
@@ -44,7 +42,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
     ingredients,
     subSkill,
     nature,
-    bonus,
   } = setup;
 
   React.useEffect(() => setSetup(initialSetup), [initialSetup]);
@@ -95,16 +92,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           nature,
         }))}/>
       </Flex>
-      <IngredientBonusSlider
-        value={bonus.ingredient}
-        setValue={(ingredient) => setSetup((setup) => ({
-          ...setup,
-          bonus: {
-            ...setup.bonus,
-            ingredient,
-          },
-        }))}
-      />
       <Flex direction="row" center className="gap-1.5">
         <button onClick={() => onInitiate(setup)} className={clsx(
           'button-base button-bg-hover w-full p-1',

@@ -11,12 +11,12 @@ import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {toPokeInBox} from '@/ui/rating/setup/utils';
+import {RatingSetupInputs} from '@/ui/rating/type';
 
 
 type Props = {
-  setup: RatingSetupData,
+  setup: RatingSetupInputs,
   pokemon: PokemonInfo,
   pokemonMaxLevel: number,
 };

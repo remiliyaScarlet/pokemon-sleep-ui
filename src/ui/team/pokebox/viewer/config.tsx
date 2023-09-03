@@ -8,14 +8,12 @@ import {useTranslations} from 'next-intl';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterIconInput} from '@/components/input/filter/icon';
-import {InputRow} from '@/components/input/filter/row';
 import {getIconFilterButtonClass, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
-import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {
   pokeboxDisplayTypeToI18nId,
@@ -78,35 +76,29 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
             allowNull: false,
           })}
         />
-        {filter.viewType === 'grid' && <FilterIconInput
-          title={
-            <Flex direction="col" center>
-              <div className="h-6 w-6">
-                <InformationCircleIcon/>
-              </div>
-            </Flex>
-          }
-          ids={[...pokeboxDisplayType]}
-          idToItemId={(type) => type}
-          idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
-          idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
-          idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
-          {...getSingleSelectOnClickProps({
-            filter,
-            setFilter,
-            filterKey: 'displayType',
-            allowNull: false,
-          })}
-        />}
-        <InputRow>
-          <IngredientBonusSlider value={filter.bonus.ingredient} setValue={(ingredient) => setFilter((original) => ({
-            ...original,
-            bonus: {
-              ...original.bonus,
-              ingredient,
-            },
-          }))}/>
-        </InputRow>
+        {
+          filter.viewType === 'grid' &&
+          <FilterIconInput
+            title={
+              <Flex direction="col" center>
+                <div className="h-6 w-6">
+                  <InformationCircleIcon/>
+                </div>
+              </Flex>
+            }
+            ids={[...pokeboxDisplayType]}
+            idToItemId={(type) => type}
+            idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
+            idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
+            idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
+            {...getSingleSelectOnClickProps({
+              filter,
+              setFilter,
+              filterKey: 'displayType',
+              allowNull: false,
+            })}
+          />
+        }
       </Flex>
     </Collapsible>
   );

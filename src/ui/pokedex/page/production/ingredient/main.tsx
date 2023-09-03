@@ -4,12 +4,11 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientCombination} from '@/ui/pokedex/page/production/ingredient/combination';
 import {PokemonIngredientPossibilities} from '@/ui/pokedex/page/production/ingredient/possibility';
+import {PokemonIngredientCommonProps} from '@/ui/pokedex/page/production/ingredient/type';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
-type Props = PokemonProps & {
-  level: number,
-};
+type Props = PokemonProps & PokemonIngredientCommonProps;
 
 export const PokemonIngredientProduction = ({level, ...props}: Props) => {
   const {pokemon, ingredientChainMap} = props;

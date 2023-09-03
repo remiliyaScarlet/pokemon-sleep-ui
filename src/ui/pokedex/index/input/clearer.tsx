@@ -1,22 +1,22 @@
 import React from 'react';
 
 import {BackspaceIcon} from '@heroicons/react/24/outline';
-import {Session} from 'next-auth';
 
 import {PokedexInputProps} from '@/ui/pokedex/index/input/type';
+import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {generateInitialFilter} from '@/ui/pokedex/index/utils';
 
 
 type Props = {
   setFilter: PokedexInputProps['setFilter'],
-  session: Session | null,
+  preloadedDisplay: Partial<PokedexDisplay> | undefined,
 };
 
-export const PokedexInputClearer = ({setFilter, session}: Props) => {
+export const PokedexInputClearer = ({setFilter, preloadedDisplay}: Props) => {
   return (
     <button
       className="button-clickable-bg !rounded-full p-1.5"
-      onClick={() => setFilter(generateInitialFilter(session))}
+      onClick={() => setFilter(generateInitialFilter(preloadedDisplay))}
     >
       <div className="h-6 w-6">
         <BackspaceIcon/>

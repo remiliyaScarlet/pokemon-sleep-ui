@@ -1,13 +1,27 @@
+import {EffectiveBonus} from '@/types/game/bonus';
 import {ProducingRate} from '@/types/game/producing/rate';
 
 
-export const applyEnergyMultiplier = <T extends ProducingRate | null>(multiplier: number, data: T): T => {
+type ApplyBonusOpts<T extends ProducingRate | null> = {
+  bonus: EffectiveBonus,
+  data: T,
+  isIngredient: boolean,
+};
+
+export const applyBonus = <T extends ProducingRate | null>({bonus, data, isIngredient}: ApplyBonusOpts<T>): T => {
   if (!data) {
     return data;
   }
 
+  const {ingredient, map, overall} = bonus;
+
   return {
     ...data,
-    dailyEnergy: data.dailyEnergy * multiplier,
+    dailyEnergy: (
+      data.dailyEnergy *
+      (1 + (isIngredient ? (ingredient / 100) : 0)) *
+      (1 + map / 100) *
+      (1 + overall / 100)
+    ),
   };
 };

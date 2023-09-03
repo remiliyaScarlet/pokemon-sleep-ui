@@ -1,6 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
@@ -14,6 +15,7 @@ type Props = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
   isIncluded: FilterInclusionMap<PokeInBox['uuid']>,
   setLoading: (loading: boolean) => void,
+  bonus: EffectiveBonus,
 };
 
 export const useFilteredSortedPokebox = ({
@@ -21,6 +23,7 @@ export const useFilteredSortedPokebox = ({
   filter,
   isIncluded,
   setLoading,
+  bonus,
   pokedexMap,
   subSkillMap,
   ingredientMap,
@@ -50,13 +53,10 @@ export const useFilteredSortedPokebox = ({
       .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
     sort: filter.sort,
     snorlaxFavorite: filter.snorlaxFavorite,
-    userBonus: {
-      ingredient: filter.bonus.ingredient,
-      overall: 0,
-    },
+    bonus,
     ingredientMap,
     berryDataMap,
-    triggerDeps: [pokebox, filter],
+    triggerDeps: [pokebox, filter, bonus],
     setLoading,
   });
 };

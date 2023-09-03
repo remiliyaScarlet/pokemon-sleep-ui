@@ -1,4 +1,5 @@
 import {BerryDataMap} from '@/types/game/berry';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {
@@ -43,17 +44,13 @@ export type RatingResultOfLevel = {
   },
 };
 
-export type RatingBonus = {
-  ingredient: number,
-};
-
 export type RatingSetupData = {
   pokemon: PokemonInfo,
   ingredients: IngredientProductionAtLevels,
   snorlaxFavorite: SnorlaxFavorite,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
-  bonus: RatingBonus,
+  bonus: EffectiveBonus,
 };
 
 export type RatingRequest = {

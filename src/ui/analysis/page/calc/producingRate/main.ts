@@ -3,9 +3,7 @@ import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {toAnalysisBerryProducingRate} from '@/ui/analysis/page/calc/producingRate/berry';
 import {toAnalysisIngredientProducingRate} from '@/ui/analysis/page/calc/producingRate/ingredient';
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
-import {
-  isRateOfPokemonSame,
-} from '@/ui/analysis/page/calc/producingRate/utils';
+import {isRateOfPokemonSame} from '@/ui/analysis/page/calc/producingRate/utils';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {
@@ -16,40 +14,35 @@ import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 
 
-export const getAnalysisStatsOfProducingRate = ({
-  pokemonList,
-  pokemon,
-  ingredients,
-  berryDataMap,
-  ingredientMap,
-  ingredientChainMap,
-  snorlaxFavorite,
-  level,
-}: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
-  const currentRate = getPokemonProducingRate({
-    berryData: berryDataMap[pokemon.berry.id],
-    ingredients,
-    ingredientMap,
-    snorlaxFavorite,
+export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
+  const {
+    pokemonList,
     level,
     pokemon,
+    ingredients,
+    berryDataMap,
+    ingredientChainMap,
+  } = opts;
+
+  const currentRate = getPokemonProducingRate({
+    berryData: berryDataMap[pokemon.berry.id],
+    ...opts,
     ...defaultNeutralOpts,
   });
   const currentIngredientRates = Object.values(currentRate.ingredient);
 
-  const rateOfAllPokemon = pokemonList.flatMap((pokemon) => [...generatePossibleIngredientProductions({
+  const rateOfAllPokemon = pokemonList.flatMap((otherPokemon) => [...generatePossibleIngredientProductions({
     level,
-    chain: ingredientChainMap[pokemon.ingredientChain],
-  })].map((ingredients) => ({
-    pokemon,
-    productions: ingredients,
+    chain: ingredientChainMap[otherPokemon.ingredientChain],
+  })].map((otherIngredients) => ({
+    pokemon: otherPokemon,
+    productions: otherIngredients,
     rate: getPokemonProducingRate({
-      berryData: berryDataMap[pokemon.berry.id],
-      ingredients,
-      ingredientMap,
-      snorlaxFavorite,
-      level,
-      pokemon,
+      // `opts` has to be the first because `pokemon`, `berryData`, `ingredients` have to be overridden
+      ...opts,
+      pokemon: otherPokemon,
+      berryData: berryDataMap[otherPokemon.berry.id],
+      ingredients: otherIngredients,
       ...defaultNeutralOpts,
     }),
   })));

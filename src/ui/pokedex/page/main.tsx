@@ -1,9 +1,12 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
 import {PokedexPageParams} from '@/app/[locale]/pokedex/[id]/page';
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
+import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -17,6 +20,7 @@ import {PokemonProduction} from '@/ui/pokedex/page/production/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {getRelatedPokemonIds} from '@/utils/game/pokemon';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 type Props = {
@@ -33,12 +37,14 @@ export const Pokemon = async ({params}: Props) => {
   }
 
   const [
+    session,
     ingredientChainMap,
     pokedex,
     sleepStyles,
     berryData,
     ingredientMap,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getIngredientChainMap(),
     getPokemonAsMap(getRelatedPokemonIds(pokemon)),
     getPokemonSleepStyles(idNumber),
@@ -50,7 +56,14 @@ export const Pokemon = async ({params}: Props) => {
     return <Failed text="Berry"/>;
   }
 
-  const props: PokemonProps = {pokemon, ingredientChainMap, sleepStyles, berryData, ingredientMap};
+  const props: PokemonProps = {
+    pokemon,
+    ingredientChainMap,
+    sleepStyles,
+    berryData,
+    ingredientMap,
+    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
+  };
 
   return (
     <PublicPageLayout locale={locale}>

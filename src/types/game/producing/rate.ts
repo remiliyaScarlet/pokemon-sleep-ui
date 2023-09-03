@@ -1,3 +1,4 @@
+import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
@@ -28,6 +29,7 @@ export type ProducingRateSingleParams = {
 export type ProducingRateCommonParams = ProducingRateSingleParams & {
   level: number
   pokemon: PokemonInfo,
+  bonus: EffectiveBonus,
 };
 
 export type PokemonProducingRate = {

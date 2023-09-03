@@ -28,7 +28,6 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
     ingredientChainMap,
     berryDataMap,
     subSkillMap,
-    bonus,
   } = opts;
 
   if (!pokemon) {
@@ -45,13 +44,7 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
     pokemon,
     berryData,
     ingredients: currentProductions,
-    ingredientBonus: bonus.ingredient,
-    ...getProducingRateSingleParams({
-      level,
-      subSkill,
-      nature,
-      subSkillMap,
-    }),
+    ...getProducingRateSingleParams(opts),
   });
   const currentDaily = getDailyEnergyOfRate(currentRate);
 
@@ -72,7 +65,6 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
           pokemon,
           berryData,
           ingredients: productions,
-          ingredientBonus: bonus.ingredient,
           ...getProducingRateSingleParams({
             level,
             subSkill,

@@ -38,44 +38,36 @@ export const toRatingWorkerOpts = ({
   };
 };
 
-export const getRateOfIngredients = (opts: PokeInBoxCommonProps): ProducingRateOfItem[] => {
-  const {
-    pokemon,
-    pokeInBox,
-    ingredientMap,
-    subSkillMap,
-    bonus,
-  } = opts;
+export const getRateOfIngredients = ({
+  pokeInBox,
+  subSkillMap,
+  ...props
+}: PokeInBoxCommonProps): ProducingRateOfItem[] => {
   const {level, ingredients} = pokeInBox;
 
   return getIngredientProducingRates({
     level,
-    pokemon,
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
-    ingredientMap,
-    multiplier: 1 + bonus.ingredient / 100,
+    ...props,
     ...getProducingRateSingleParams({subSkillMap, ...pokeInBox}),
   });
 };
 
-export const getRateOfBerry = (opts: PokeInBoxCommonProps) => {
-  const {
-    pokemon,
-    pokeInBox,
-    berryDataMap,
-    subSkillMap,
-    snorlaxFavorite,
-  } = opts;
+export const getRateOfBerry = ({
+  pokeInBox,
+  berryDataMap,
+  subSkillMap,
+  ...props
+}: PokeInBoxCommonProps) => {
+  const {pokemon} = props;
   const {berry} = pokemon;
-  const {level} = pokeInBox;
 
   const singleParams = getProducingRateSingleParams({subSkillMap, ...pokeInBox});
 
   return getBerryProducingRate({
-    level,
-    pokemon,
-    snorlaxFavorite,
+    level: pokeInBox.level,
     berryData: berryDataMap[berry.id],
+    ...props,
     ...singleParams,
   });
 };

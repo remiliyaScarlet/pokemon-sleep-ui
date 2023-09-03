@@ -4,7 +4,6 @@ import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {RatingBonus} from '@/types/game/pokemon/rating';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
@@ -42,7 +41,6 @@ export type PokeboxViewerDisplay = {
 export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
   name: string,
   snorlaxFavorite: SnorlaxFavorite,
-  bonus: RatingBonus,
 };
 
 export type PokeboxViewerInputCommonProps = FilterInputProps<PokeboxViewerFilter> & UsePokemonFilterCommonData & {

@@ -7,14 +7,14 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
-import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
+import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
 import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, teamAnalysisSlotName, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
-  producingStats: TeamProducingStats,
+type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {
+  statsOfTeam: TeamProducingStats,
 };
 
 export const TeamAnalysisTeamView = (props: Props) => {
@@ -22,7 +22,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
     setup,
     setSetup,
     pokedex,
-    producingStats,
+    statsOfTeam,
   } = props;
 
   return (
@@ -30,7 +30,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
       {teamAnalysisSlotName.map((slotName) => {
         const member = setup.team[slotName];
         const pokemon = member ? pokedex[member.pokemonId] : undefined;
-        const stats = producingStats.bySlot[slotName];
+        const stats = statsOfTeam.bySlot[slotName];
 
         const isAvailable = member && pokemon && stats;
 

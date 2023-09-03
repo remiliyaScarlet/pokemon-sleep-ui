@@ -20,37 +20,31 @@ import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
 import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
-  slotName: TeamAnalysisSlotName,
-  pokemon: PokemonInfo,
-  member: TeamAnalysisMember,
   setMember: (slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => void,
-  producingStats: TeamProducingStatsSingle,
 };
 
 export const TeamAnalysisPokemon = (props: Props) => {
   const {
-    setup,
     slotName,
     pokemon,
     member,
     setMember,
-    producingStats,
+    stats,
     snorlaxFavorite,
     berryDataMap,
     subSkillMap,
     ingredientChainMap,
     pokedex,
+    bonus,
   } = props;
 
   const t = useTranslations('Game');
@@ -118,7 +112,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
               member,
               pokemon,
               snorlaxFavorite,
-              bonus: setup.bonus,
+              bonus,
             }))}>
               <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
             </button>
@@ -158,18 +152,18 @@ export const TeamAnalysisPokemon = (props: Props) => {
           maxLevel={maxLevel}
           noSameLine
         />
-        <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={producingStats.total}/>
+        <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
         <HorizontalSplitter className="w-full"/>
         <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
           <TeamAnalysisBerryRate
             id={berryData.id}
-            rate={producingStats.berry}
+            rate={stats.berry}
             period="daily"
           />
         </Flex>
         <HorizontalSplitter className="w-full"/>
         <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
-          {producingStats.ingredient.map((rate) => (
+          {stats.ingredient.map((rate) => (
             <TeamAnalysisIngredientRate
               key={rate.id}
               id={rate.id}

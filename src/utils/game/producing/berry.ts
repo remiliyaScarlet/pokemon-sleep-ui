@@ -6,6 +6,7 @@ import {defaultHelperCount, defaultLevel} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
 import {getProbabilitySplit} from '@/utils/game/producing/split';
+import {applyBonus} from '@/utils/game/producing/utils';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
@@ -20,6 +21,7 @@ export const getBerryProducingRate = ({
   subSkillBonus,
   helperCount,
   natureId,
+  bonus,
   snorlaxFavorite,
   berryData,
 }: GetBerryProducingRateOpts): ProducingRateOfItem => {
@@ -33,14 +35,18 @@ export const getBerryProducingRate = ({
 
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
 
-  return {
-    id: pokemon.berry.id,
-    ...getProducingRateBase({
-      frequency: baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus}),
-      // Specialty handling is already included in `pokemon.berry.quantity`
-      count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
-      picks: 1,
-      energyPerCount: (berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * (isSnorlaxFavorite ? 2 : 1),
-    }),
-  };
+  return applyBonus({
+    bonus,
+    data: {
+      id: pokemon.berry.id,
+      ...getProducingRateBase({
+        frequency: baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus}),
+        // Specialty handling is already included in `pokemon.berry.quantity`
+        count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
+        picks: 1,
+        energyPerCount: (berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * (isSnorlaxFavorite ? 2 : 1),
+      }),
+    },
+    isIngredient: false,
+  });
 };

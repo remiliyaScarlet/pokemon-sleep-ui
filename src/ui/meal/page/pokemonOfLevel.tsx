@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
+import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
@@ -10,6 +11,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
 
@@ -25,8 +27,15 @@ export const MealPokemonOfIngredientLevel = ({
   pokedex,
   pokemonLevel,
   pokemonOfIngredientLevel,
+  preloadedSettings,
 }: Props) => {
   const {ingredientLevel, pokeIngredientMap, show} = pokemonOfIngredientLevel;
+  const {data} = useSession();
+  const bonus = useEffectiveBonus({
+    server: preloadedSettings,
+    client: data?.user.preloaded.settings,
+  });
+
   const t = useTranslations('Game.Food');
 
   return (
@@ -53,6 +62,7 @@ export const MealPokemonOfIngredientLevel = ({
                 pokedex={pokedex}
                 dropData={pokeIngredientMap[id] ?? []}
                 ingredient={ingredientMap[id]}
+                bonus={bonus}
               />
             </Flex>
           </Flex>

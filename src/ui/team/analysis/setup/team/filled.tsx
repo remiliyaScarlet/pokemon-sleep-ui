@@ -3,10 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/setup/pokemon/main';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisMember,
@@ -15,12 +13,7 @@ import {
 } from '@/ui/team/analysis/type';
 
 
-type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
-  slotName: TeamAnalysisSlotName,
-  member: TeamAnalysisMember,
-  stats: TeamProducingStatsSingle,
-  pokemon: PokemonInfo,
-};
+type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps;
 
 export const TeamAnalysisFilledSlot = (props: Props) => {
   const {
@@ -55,7 +48,7 @@ export const TeamAnalysisFilledSlot = (props: Props) => {
         <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
       </button>
       {/* `{...props}` has to be the first because some pass-through props has naming conflict */}
-      <TeamAnalysisPokemon {...props} setMember={setTeamMember} producingStats={stats}/>
+      <TeamAnalysisPokemon {...props} setMember={setTeamMember} stats={stats}/>
     </>
   );
 };

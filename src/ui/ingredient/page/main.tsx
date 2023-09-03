@@ -1,9 +1,12 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
 import {IngredientPageParams} from '@/app/[locale]/ingredient/[id]/page';
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
+import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getIngredientData} from '@/controller/ingredient';
@@ -13,6 +16,7 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
 import {IngredientCookableMeals} from '@/ui/ingredient/page/recipe';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 type Props = {
@@ -29,11 +33,13 @@ export const IngredientPage = async ({params}: Props) => {
   }
 
   const [
+    session,
     pokemonProduction,
     pokedex,
     cookableMeals,
     pokemonMaxLevel,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getPokemonIngredientProduction(ingredient.id),
     getPokemonAsMap(),
     getMealByIngredient(ingredient.id),
@@ -53,6 +59,7 @@ export const IngredientPage = async ({params}: Props) => {
           pokemonMaxLevel={pokemonMaxLevel}
           pokemonProduction={pokemonProduction}
           ingredient={ingredient}
+          preloadedSettings={createUserSettings(session?.user.preloaded.settings)}
         />
       </I18nProvider>
       <AdsUnit/>

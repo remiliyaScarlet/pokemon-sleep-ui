@@ -28,7 +28,7 @@ import {toUnique} from '@/utils/array';
 type Props = PokedexInputProps & PokedexClientCommonProps;
 
 export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
-  const {filter, setFilter, session} = props;
+  const {filter, setFilter, preloaded} = props;
   const t = useTranslations('UI.InPage.Pokedex');
   const collapsible = useCollapsible();
 
@@ -42,7 +42,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
         </Flex>
       }>
         <div className="absolute bottom-2 right-6 z-10">
-          <PokedexInputClearer setFilter={setFilter} session={session}/>
+          <PokedexInputClearer setFilter={setFilter} preloadedDisplay={preloaded.display}/>
         </div>
         <Flex direction="col" className="gap-1 pr-1">
           <PokemonMapFilter

@@ -26,6 +26,7 @@ export const PokedexLinkDetail = React.memo(({
   ingredientMap,
   berryMap,
   snorlaxFavorite,
+  bonus,
 }: PokedexLinkProps) => {
   const {
     id,
@@ -86,10 +87,7 @@ export const PokedexLinkDetail = React.memo(({
     ingredients,
     level,
     snorlaxFavorite,
-    userBonus: {
-      ingredient: 0,
-      overall: 0,
-    },
+    bonus,
     ...defaultNeutralOpts,
   });
 
@@ -149,6 +147,7 @@ export const PokedexLinkDetail = React.memo(({
       ingredients,
       level,
       pokemon,
+      bonus,
       ...defaultNeutralOpts,
     });
 

@@ -1,15 +1,19 @@
 'use client';
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
-import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
-import {generateRatingSetup} from '@/ui/rating/setup/utils';
-import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
+import {generateRatingInputs} from '@/ui/rating/setup/utils';
+import {RatingDataProps, RatingServerDataProps, RatingSetupInputs} from '@/ui/rating/type';
+import {toRatingRequest} from '@/ui/rating/utils';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -17,10 +21,15 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const {
     pokedexMap,
     ingredientChainMap,
-    preloadSetupBonus,
+    preloadSettings,
   } = props;
-  const [initialSetup, setInitialSetup] = React.useState<RatingSetupData>();
+  const [initialSetup, setInitialSetup] = React.useState<RatingSetupInputs>();
   const [request, setRequest] = React.useState<RatingRequest>();
+  const {data: session} = useSession();
+  const bonus = useEffectiveBonus({
+    server: preloadSettings,
+    client: session?.user.preloaded.settings,
+  });
 
   const setupRef = React.useRef<HTMLDivElement>(null);
   const resultRef = React.useRef<HTMLDivElement>(null);
@@ -45,19 +54,20 @@ export const RatingClient = (props: RatingServerDataProps) => {
             setTimeout(scrollToSetup, 500);
           }
 
-          const setup = generateRatingSetup({
+          const setup = generateRatingInputs({
             ...opts,
             chain: ingredientChainMap[pokemon.ingredientChain],
             ingredientChainMap,
-            preloadSetupBonus,
+            bonus,
           });
 
           setInitialSetup(setup);
           if (origin === 'pokebox') {
-            setRequest({setup, timestamp: Date.now()});
+            setRequest(toRatingRequest({setup, bonus}));
             scrollToResult();
           } else if (origin === 'pokedex' && request) {
-            setRequest({...request, setup});
+            // This is for resetting the result layout
+            setRequest(toRatingRequest({setup, bonus, timestamp: request.timestamp}));
           }
         }}/>
         <AdsUnit className="block md:hidden"/>
@@ -69,10 +79,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
               initialSetup={initialSetup}
               onInitiate={(setup) => {
                 scrollToResult();
-                setRequest({
-                  setup,
-                  timestamp: Date.now(),
-                });
+                setRequest(toRatingRequest({setup, bonus}));
               }}
               {...data}
             />

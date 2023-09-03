@@ -16,6 +16,7 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';
 import {PokedexClientCommonProps, PokedexData, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 import {getI18nTranslator, isLocale} from '@/utils/i18n';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 const getPokedexData = async (): Promise<PokedexData> => {
@@ -61,7 +62,10 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     berryMap,
     mapMeta,
-    session,
+    preloaded: {
+      settings: createUserSettings(session?.user.preloaded.settings),
+      display: session?.user.preloaded.pokedex,
+    },
   };
 
   return (

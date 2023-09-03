@@ -3,17 +3,26 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
+import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisDataProps, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
 import {migrate} from '@/utils/migrate/main';
 import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';
-import {isNotNullish} from '@/utils/type';
+import {DeepPartial, isNotNullish} from '@/utils/type';
 
 
-export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
-  const {pokedex, preloadedSetup, ingredientChainMap} = props;
+type Props = TeamAnalysisDataProps & {
+  settings: DeepPartial<UserSettings> | undefined,
+};
+
+export const TeamAnalysisLoadedClient = (props: Props) => {
+  const {
+    pokedex,
+    preloadedSetup,
+    ingredientChainMap,
+  } = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
 
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
@@ -29,10 +38,6 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
         C: null,
         D: null,
         E: null,
-      },
-      bonus: {
-        overall: 125,
-        ingredient: 20,
       },
       version: 2,
     },
@@ -62,7 +67,12 @@ export const TeamAnalysisLoadedClient = (props: TeamAnalysisDataProps) => {
           {...props}
         />
       </Flex>
-      <TeamAnalysisSetupView setup={setup} setSetup={setSetup} snorlaxFavorite={filter.snorlaxFavorite} {...props}/>
+      <TeamAnalysisSetupView
+        setup={setup}
+        setSetup={setSetup}
+        snorlaxFavorite={filter.snorlaxFavorite}
+        {...props}
+      />
     </>
   );
 };

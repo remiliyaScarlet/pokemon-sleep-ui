@@ -1,24 +1,22 @@
-import {Session} from 'next-auth';
-
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter, isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {PokemonId} from '@/types/game/pokemon';
-import {PokedexData, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
+import {PokedexData, PokedexDisplay, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 import {generateInitialFilter} from '@/ui/pokedex/index/utils';
 
 
 type UseFilteredPokedexOpts = UsePokemonFilterCommonData & {
   data: PokedexData,
-  session: Session | null,
+  preloadedDisplay: Partial<PokedexDisplay> | undefined,
 };
 
-export const useFilteredPokedex = ({data, session, ...filterData}: UseFilteredPokedexOpts) => {
+export const useFilteredPokedex = ({data, preloadedDisplay, ...filterData}: UseFilteredPokedexOpts) => {
   return useFilterInput<PokedexFilter, PokemonInfoForPokedex, PokemonId>({
     data,
     dataToId: ({id}) => id,
-    initialFilter: generateInitialFilter(session),
+    initialFilter: generateInitialFilter(preloadedDisplay),
     isDataIncluded: (filter, pokemon) => {
       if (!isDataIncludingAllOfFilter({
         filter,

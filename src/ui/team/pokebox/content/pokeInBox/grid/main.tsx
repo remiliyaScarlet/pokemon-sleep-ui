@@ -27,7 +27,6 @@ export const PokeInBoxGrid = ({
               pokeInBox={source.extra}
               displayType={filter.displayType}
               snorlaxFavorite={filter.snorlaxFavorite}
-              bonus={filter.bonus}
               onClick={() => setEditingPokeInBox({action: 'update', uuid})}
               {...props}
             />

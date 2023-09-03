@@ -3,28 +3,19 @@ import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/pro
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
 
 
-type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRatesOpts & {
-  ingredientBonus?: number,
-};
+type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRatesOpts;
 
 export const getPokemonProducingRate = ({
   snorlaxFavorite,
   berryData,
-  ingredientBonus,
-  ...props
+  ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
   return {
     berry: getBerryProducingRate({
       snorlaxFavorite,
       berryData,
-      ...props,
+      ...opts,
     }),
-    ingredient: Object.fromEntries(
-      getIngredientProducingRates({
-        multiplier: 1 + ((ingredientBonus ?? 0) / 100),
-        ...props,
-      })
-        .map((rate) => [rate.id, rate]),
-    ),
+    ingredient: Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [rate.id, rate])),
   };
 };

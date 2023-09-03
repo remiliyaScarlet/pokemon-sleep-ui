@@ -11,6 +11,7 @@ import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeboxCount} from '@/ui/team/pokebox/content/count';
@@ -36,6 +37,7 @@ export const PokeboxContent = (props: Props) => {
     initialPokebox,
     setEditingPokeInBox,
     pokedexMap,
+    preloaded,
   } = props;
 
   const t = useTranslations('Game');
@@ -45,7 +47,12 @@ export const PokeboxContent = (props: Props) => {
   const [pokebox, setPokebox] = React.useState(initialPokebox);
   const [loading, setLoading] = React.useState(false);
 
-  const {act} = useUserDataActor();
+  const {act, session} = useUserDataActor();
+
+  const bonus = useEffectiveBonus({
+    server: preloaded.settings,
+    client: session.data?.user.preloaded.settings,
+  });
   const {
     filter,
     setFilter,
@@ -63,6 +70,7 @@ export const PokeboxContent = (props: Props) => {
     ...props,
     pokebox,
     filter,
+    bonus,
     isIncluded,
     setLoading,
   });
@@ -136,6 +144,7 @@ export const PokeboxContent = (props: Props) => {
           sortedPokeInBox={filteredSortedPokebox}
           showPokemon={showPokemon}
           setRatingPopupControl={ratingControl.sendRequest}
+          bonus={bonus}
         />
       </LazyLoad>
     </Flex>

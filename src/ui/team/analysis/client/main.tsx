@@ -11,8 +11,12 @@ export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
     <UserDataLazyLoad
       type="teamAnalysisSetup"
       loadingText="Team"
-      content={(data) => (
-        <TeamAnalysisLoadedClient preloadedSetup={data?.teamAnalysisSetup} {...props}/>
+      content={(data, session) => (
+        <TeamAnalysisLoadedClient
+          preloadedSetup={data?.teamAnalysisSetup}
+          settings={session.data?.user.preloaded.settings}
+          {...props}
+        />
       )}
     />
   );

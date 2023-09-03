@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
+import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
@@ -9,6 +10,7 @@ import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
@@ -20,11 +22,19 @@ import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingr
 
 
 export const PokedexClient = (props: PokedexClientCommonProps) => {
-  const {pokedex, ingredientChainMap, ingredientMap, berryMap} = props;
+  const {
+    pokedex,
+    ingredientChainMap,
+    ingredientMap,
+    berryMap,
+    preloaded,
+  } = props;
 
+  const {data: session} = useSession();
   const [loading, setLoading] = React.useState(false);
   const {filter, setFilter, isIncluded} = useFilteredPokedex({
     data: pokedex,
+    preloadedDisplay: preloaded.display,
     ...props,
   });
   useAutoUpload({
@@ -32,7 +42,11 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     triggerDeps: [filter.sort, filter.display],
   });
 
-  const triggerDeps = [filter];
+  const bonus = useEffectiveBonus({
+    server: preloaded.settings,
+    client: session?.user.preloaded.settings,
+  });
+  const sortingDeps = [filter, bonus];
 
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
@@ -54,18 +68,15 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       chain: ingredientChainMap[pokemon.ingredientChain],
     })]
       .map((ingredients) => ({...commonOpts, ingredients}));
-  }), triggerDeps);
+  }), sortingDeps);
   const sortedData = useSortingWorker({
     data,
     sort: filter.sort,
     ingredientMap,
     berryDataMap: berryMap,
     snorlaxFavorite: filter.snorlaxFavorite,
-    userBonus: {
-      ingredient: 0,
-      overall: 0,
-    },
-    triggerDeps,
+    bonus,
+    triggerDeps: sortingDeps,
     setLoading,
   });
 
@@ -93,6 +104,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
                 level={filter.level}
                 snorlaxFavorite={filter.snorlaxFavorite}
                 ingredients={source.ingredients}
+                bonus={bonus}
                 {...props}
               />
             );

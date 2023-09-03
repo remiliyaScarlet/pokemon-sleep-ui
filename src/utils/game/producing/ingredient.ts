@@ -5,6 +5,7 @@ import {defaultHelperCount} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
 import {getProbabilitySplit} from '@/utils/game/producing/split';
+import {applyBonus} from '@/utils/game/producing/utils';
 
 
 export type GetIngredientProducingRateOpts = ProducingRateCommonParams & {
@@ -23,6 +24,7 @@ export const getIngredientProducingRate = ({
   subSkillBonus,
   helperCount,
   natureId,
+  bonus,
   ingredient,
   count,
   picks,
@@ -39,13 +41,17 @@ export const getIngredientProducingRate = ({
     natureId,
   });
 
-  return {
-    id: ingredient.id,
-    ...getProducingRateBase({
-      frequency: baseFrequency / getProbabilitySplit({type: 'ingredient', natureId, subSkillBonus}),
-      count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
-      picks: picks ?? 1,
-      energyPerCount: ingredient.energy,
-    }),
-  };
+  return applyBonus({
+    bonus,
+    data: {
+      id: ingredient.id,
+      ...getProducingRateBase({
+        frequency: baseFrequency / getProbabilitySplit({type: 'ingredient', natureId, subSkillBonus}),
+        count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
+        picks: picks ?? 1,
+        energyPerCount: ingredient.energy,
+      }),
+    },
+    isIngredient: true,
+  });
 };

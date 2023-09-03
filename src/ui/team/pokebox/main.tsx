@@ -5,7 +5,6 @@ import {getServerSession} from 'next-auth';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {loadRatingBonusFromSession} from '@/controller/game/rating/bonus';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
@@ -15,6 +14,7 @@ import {DefaultPageProps} from '@/types/next/page';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
 import {PokeboxClient} from '@/ui/team/pokebox/client/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const Pokebox = async ({params}: DefaultPageProps) => {
@@ -40,14 +40,16 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
   ]);
 
   const props: PokeboxCommonProps = {
-    session,
     pokedexMap,
     ingredientChainMap,
     subSkillMap,
     ingredientMap,
     berryDataMap,
     mapMeta,
-    preloadedRatingBonus: await loadRatingBonusFromSession(session),
+    preloaded: {
+      settings: createUserSettings(session?.user.preloaded.settings),
+      display: session?.user.preloaded.pokeboxDisplay,
+    },
     pokemonMaxLevel,
   };
 

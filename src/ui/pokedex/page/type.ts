@@ -3,6 +3,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {SleepStyleData} from '@/types/game/sleepStyle';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type PokemonProps = {
@@ -11,4 +12,5 @@ export type PokemonProps = {
   berryData: BerryData,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
+  preloadedSettings: UserSettings,
 };

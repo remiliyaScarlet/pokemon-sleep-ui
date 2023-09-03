@@ -9,6 +9,7 @@ import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 import {UserLazyLoadedData} from '@/types/userData/main';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type TeamAnalysisFilter = PokemonInputFilter & {
@@ -23,6 +24,7 @@ export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   mapMeta: FieldMetaMap,
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,
+  preloadedSettings: UserSettings,
 };
 
 export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {
@@ -41,12 +43,6 @@ export type TeamAnalysisMember = {
   subSkill: PokemonSubSkill,
 };
 
-export type TeamAnalysisBonus = {
-  overall: number,
-  ingredient: number,
-};
-
 export type TeamAnalysisTeamSetup = Migratable & {
   team: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
-  bonus: TeamAnalysisBonus,
 };

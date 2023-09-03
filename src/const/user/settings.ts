@@ -2,6 +2,8 @@ import {UserBonus} from '@/types/game/bonus';
 import {UserSettings} from '@/types/userData/settings';
 
 
+export const defaultMapBonus = 0;
+
 export const defaultUserBonus: UserBonus = {
   overall: 125,
   map: {},

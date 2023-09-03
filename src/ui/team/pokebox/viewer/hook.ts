@@ -6,7 +6,6 @@ import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonId} from '@/types/game/pokemon';
-import {RatingBonus} from '@/types/game/pokemon/rating';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {isNotNullish} from '@/utils/type';
@@ -18,11 +17,10 @@ type UsePokeboxViewerFilterOpts = UsePokemonFilterCommonData & PokeboxCommonProp
 };
 
 export const usePokeboxViewerFilter = ({
-  session,
   pokebox,
   pokedexMap,
   pokemonNameMap,
-  preloadedRatingBonus,
+  preloaded,
   ...filterData
 }: UsePokeboxViewerFilterOpts) => {
   return useFilterInput<PokeboxViewerFilter, PokeboxPokemonForView, string>({
@@ -51,14 +49,11 @@ export const usePokeboxViewerFilter = ({
       ...generatePokemonInputFilter(),
       name: '',
       snorlaxFavorite: {},
-      bonus: merge({
-        ingredient: 20,
-      } satisfies RatingBonus, preloadedRatingBonus),
       ...merge({
         sort: 'id',
         displayType: 'productionTotal',
         viewType: 'table',
-      } satisfies PokeboxViewerDisplay, session?.user.preloaded?.pokeboxDisplay),
+      } satisfies PokeboxViewerDisplay, preloaded.display),
     },
     isDataIncluded: (filter, data) => {
       if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {

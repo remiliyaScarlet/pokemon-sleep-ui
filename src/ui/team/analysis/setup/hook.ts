@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {EffectiveBonus} from '@/types/game/bonus';
 import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {
@@ -20,14 +21,14 @@ import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
-import {applyEnergyMultiplier} from '@/utils/game/producing/utils';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
 
-type UseProducingStatsOpts = TeamAnalysisDataProps & {
+type UseProducingStatsOpts = Omit<TeamAnalysisDataProps, 'settings'> & {
   setup: TeamAnalysisTeamSetup,
   snorlaxFavorite: SnorlaxFavorite,
+  bonus: EffectiveBonus,
 };
 
 type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
@@ -44,6 +45,7 @@ const useProducingStatsOfSlot = ({
   berryDataMap,
   ingredientMap,
   subSkillMap,
+  bonus,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   return React.useMemo(() => {
     const member = setup.team[slotName];
@@ -67,23 +69,21 @@ const useProducingStatsOfSlot = ({
       natureId: member.nature,
     };
 
-    const overallMultiplier = 1 + (setup.bonus.overall / 100);
-    const ingredientMultiplier = 1 + (setup.bonus.ingredient / 100);
-
-    const berry = applyEnergyMultiplier(overallMultiplier, getBerryProducingRate({
+    const berry = getBerryProducingRate({
+      ...producingRateOpts,
       level,
       pokemon,
-      ...producingRateOpts,
+      bonus,
       snorlaxFavorite,
       berryData,
-    }));
+    });
     const ingredient = getIngredientProducingRates({
+      ...producingRateOpts,
       level,
       pokemon,
+      bonus,
       ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
       ingredientMap,
-      multiplier: overallMultiplier * ingredientMultiplier,
-      ...producingRateOpts,
     });
     const total = {
       // Total doesn't and shouldn't care about the quantity
@@ -92,11 +92,11 @@ const useProducingStatsOfSlot = ({
     };
 
     return {berry, ingredient, total};
-  }, [setup.team[slotName], snorlaxFavorite, helperCount, setup.bonus]);
+  }, [setup.team[slotName], snorlaxFavorite, helperCount, bonus]);
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
-  const {setup, snorlaxFavorite, subSkillMap} = opts;
+  const {setup, snorlaxFavorite, subSkillMap, bonus} = opts;
   const helperCount = Object.values(setup.team)
     .filter((member) => {
       if (!member) {
@@ -116,7 +116,7 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
     E: useProducingStatsOfSlot({slotName: 'E', helperCount, ...opts}),
   };
 
-  const deps: React.DependencyList = [setup, snorlaxFavorite];
+  const deps: React.DependencyList = [setup, snorlaxFavorite, bonus];
 
   const total: TeamProducingStatsTotal = React.useMemo(() => {
     const stats = teamAnalysisSlotName

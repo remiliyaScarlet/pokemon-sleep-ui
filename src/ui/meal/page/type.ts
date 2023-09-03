@@ -3,6 +3,7 @@ import {Meal} from '@/types/game/meal';
 import {PokedexMap, PokemonIngredientMap} from '@/types/game/pokemon';
 import {IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {Locale} from '@/types/next/locale';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type MealCommonProps = {
@@ -11,6 +12,7 @@ export type MealCommonProps = {
   ingredientMap: IngredientMap,
   pokedex: PokedexMap,
   pokemonMaxLevel: number,
+  preloadedSettings: UserSettings,
 };
 
 export type MealPokemonOfIngredientLevelProps = {

@@ -5,6 +5,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {PokemonSleepDataMap, SleepMapId} from '@/types/game/sleepStyle';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type AnalysisComparisonFilter = PokemonInputFilterExtended & {
@@ -18,6 +19,7 @@ export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
   berryDataMap: BerryDataMap,
   sleepStyleMap: PokemonSleepDataMap,
   mapMeta: FieldMetaMap,
+  preloadedSettings: UserSettings,
 };
 
 export type AnalysisFilterPokemonData = {

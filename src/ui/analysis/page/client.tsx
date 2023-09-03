@@ -1,10 +1,13 @@
 'use client';
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
+import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
 import {AnalysisPageInput} from '@/ui/analysis/page/input/main';
@@ -23,6 +26,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     berryDataMap,
     sleepStyleMap,
     ingredientChainMap,
+    preloadedSettings,
   } = props;
 
   const [stats, setStats] = React.useState<AnalysisStats | null>(null);
@@ -35,15 +39,22 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   const ingredients = React.useMemo(() => getEffectiveIngredientLevels(filter.level)
     .map((level) => filter.ingredients[level]), [filter]);
 
+  const {data: session} = useSession();
+  const bonus = useEffectiveBonus({
+    server: preloadedSettings,
+    client: session?.user.preloaded.settings,
+  });
+
   useCalculationWorker({
     ...props,
     level: filter.level,
     ingredients,
     pokemonToAnalyze: pokemonList.filter(({id}) => isIncluded[id]),
     snorlaxFavorite: filter.snorlaxFavorite,
+    bonus,
     setStats,
     setLoading,
-    calculateDeps: [filter],
+    calculateDeps: [filter, bonus],
   });
 
   return (

@@ -1,7 +1,10 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
 import {AnalysisPageParams} from '@/app/[locale]/analysis/[id]/page';
 import {Failed} from '@/components/icons/failed';
+import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -12,6 +15,7 @@ import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {PublicPageLayout} from '@/ui/base/layout/public';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 type Props = {
@@ -21,6 +25,7 @@ type Props = {
 export const AnalysisPage = async ({params}: Props) => {
   const {id, locale} = params;
   const [
+    session,
     pokemonList,
     ingredientChainMap,
     ingredientMap,
@@ -28,6 +33,7 @@ export const AnalysisPage = async ({params}: Props) => {
     sleepStyleMap,
     mapMeta,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getAllPokemonAsArray(),
     getIngredientChainMap(),
     getAllIngredients(),
@@ -54,6 +60,7 @@ export const AnalysisPage = async ({params}: Props) => {
     berryDataMap,
     sleepStyleMap,
     mapMeta,
+    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
   };
 
   return (

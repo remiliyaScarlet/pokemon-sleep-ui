@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {getServerSession} from 'next-auth';
+
+import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -12,11 +15,13 @@ import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {TeamAnalysisClient} from '@/ui/team/analysis/client/main';
 import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
+    session,
     pokedex,
     ingredientChainMap,
     berryDataMap,
@@ -26,6 +31,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     subSkillMap,
     pokemonMaxLevel,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getPokemonAsMap(),
     getIngredientChainMap(),
     getAllBerryData(),
@@ -45,6 +51,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     mapMeta,
     subSkillMap,
     pokemonMaxLevel,
+    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
   };
 
   return (

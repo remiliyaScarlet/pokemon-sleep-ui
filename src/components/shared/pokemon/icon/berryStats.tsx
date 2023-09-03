@@ -8,12 +8,14 @@ import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/typ
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
+import {EffectiveBonus} from '@/types/game/bonus';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
 type Props = PokemonBerryStatsCommonProps & {
   level: number,
+  bonus: EffectiveBonus,
 } & ({
   berryData: BerryData,
   berryDataMap?: never,
@@ -22,12 +24,13 @@ type Props = PokemonBerryStatsCommonProps & {
   berryDataMap: BerryDataMap,
 });
 
-export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, berryData, berryDataMap}: Props) => {
+export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, bonus, berryData, berryDataMap}: Props) => {
   const t = useTranslations('Game');
 
   return (
     <PokemonIconsItemStats
       pokedex={pokedex}
+      targetSpecialty={specialtyIdMap.berry}
       dropData={pokemonOfBerry.map(({id, berry}) => ({
         pokemon: id,
         qty: berry.quantity,
@@ -47,9 +50,10 @@ export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, berryDat
         return getBerryProducingRate({
           level,
           pokemon,
-          ...defaultNeutralOpts,
+          bonus,
           snorlaxFavorite: {},
           berryData: berryDataToUse,
+          ...defaultNeutralOpts,
         });
       }}
       getIcon={({berry}) => (
@@ -59,7 +63,6 @@ export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, berryDat
           sizes={imageSmallIconSizes}
         />
       )}
-      targetSpecialty={specialtyIdMap.berry}
     />
   );
 };

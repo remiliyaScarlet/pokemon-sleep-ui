@@ -6,7 +6,6 @@ import {AdsUnit} from '@/components/ads/main';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {loadRatingBonusFromSession} from '@/controller/game/rating/bonus';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
@@ -17,6 +16,7 @@ import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {RatingClient} from '@/ui/rating/client';
 import {RatingServerDataProps} from '@/ui/rating/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const Rating = async ({params}: DefaultPageProps) => {
@@ -52,7 +52,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     subSkillMap,
     mapMeta,
     pokemonMaxLevel,
-    preloadSetupBonus: await loadRatingBonusFromSession(session),
+    preloadSettings: createUserSettings(session?.user.preloaded.settings),
   };
 
   return (
