@@ -31,11 +31,11 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
   }
 
   return (
-    <Grid className="grid-cols-1 lg:grid-cols-2">
-      <AdsContent className={className} locale={locale as Locale}>
+    <Grid className={clsx('grid-cols-1 lg:grid-cols-2', className)}>
+      <AdsContent locale={locale as Locale}>
         {children}
       </AdsContent>
-      <AdsContent className={clsx('hidden lg:block', className)} locale={locale as Locale}>
+      <AdsContent className="hidden lg:block" locale={locale as Locale}>
         {children}
       </AdsContent>
     </Grid>
