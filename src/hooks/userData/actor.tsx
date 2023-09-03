@@ -5,7 +5,6 @@ import {useSession} from 'next-auth/react';
 import {UserDataUploadStatus} from '@/components/shared/userData/uploadStatus';
 import {useOverridableSession} from '@/hooks/session';
 import {UserDataActionStatus, UserDataActor} from '@/types/userData/main';
-import {isProduction} from '@/utils/environment';
 import {showToast} from '@/utils/toast';
 
 
@@ -28,14 +27,7 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
   const userDataActor: UserDataActor = (action) => {
     setStatus('processing');
     session.update(action)
-      .then((updated) => {
-        if (isProduction() && updated?.user.build !== process.env.NEXT_PUBLIC_BUILD_ID) {
-          window.location.reload();
-          return;
-        }
-
-        setStatus('completed');
-      })
+      .then(() => setStatus('completed'))
       .catch((err) => {
         console.error(`Failed to [${action.action}] user data of [${action.options.type}]`, err);
         setStatus('failed');
