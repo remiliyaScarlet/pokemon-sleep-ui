@@ -6,6 +6,7 @@ import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
+import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
 import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
@@ -53,6 +54,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
           }))}
         />
         <UserSettingsLanguage/>
+        <UserSettingsAppInfo/>
       </Flex>
     </Popup>
   );
