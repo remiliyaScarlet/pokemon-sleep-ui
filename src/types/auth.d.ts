@@ -8,6 +8,7 @@ export type NextAuthSessionUser = DefaultSession['user'] & {
   preloaded: UserPreloadedData,
   lazyLoaded: UserLazyLoadedData,
   isAdsFree: boolean,
+  build: string,
 };
 
 declare module 'next-auth' {
