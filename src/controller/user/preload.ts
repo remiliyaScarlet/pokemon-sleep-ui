@@ -1,16 +1,19 @@
+import {runUserSettingsMigrations} from '@/controller/migrate/userSettings';
 import {
-  userDataSettings,
   userDataIngredientCount,
   userDataMealType,
   userDataPokeboxDisplay,
   userDataPokedex,
   userDataPotCapacity,
   userDataRecipeLevel,
+  userDataSettings,
 } from '@/controller/user/manager';
 import {UserPreloadedData} from '@/types/userData/main';
 
 
 export const getUserPreloadedData = async (userId: string): Promise<UserPreloadedData> => {
+  await runUserSettingsMigrations(userId);
+
   const [
     mealType,
     recipeLevel,
