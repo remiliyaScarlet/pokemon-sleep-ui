@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {GenericIconBase} from '@/components/shared/icon/base';
+import {GenericIcon} from '@/components/shared/icon/main';
 import {IconProps} from '@/components/shared/icon/type';
 
 
 export const GenericIngredientIcon = (props: IconProps) => {
-  return <GenericIconBase src="/images/generic/ingredient.png" {...props}/>;
+  return <GenericIcon src="/images/generic/ingredient.png" {...props}/>;
 };

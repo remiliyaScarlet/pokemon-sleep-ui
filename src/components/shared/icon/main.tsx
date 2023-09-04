@@ -12,7 +12,7 @@ type Props = IconProps & {
   noInvert?: boolean,
 };
 
-export const GenericIconBase = ({alt, className, dimension, noWrap, src, noInvert}: Props) => {
+export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: Props) => {
   const imageClassName = className ?? (noInvert ? '' : 'invert-hoverable');
 
   if (noWrap) {
