@@ -5,6 +5,8 @@ import {Indexable} from '@/utils/type';
 
 export type InputRowProps = {
   style?: FilterRowBackgroundStyle,
+  ender?: React.ReactNode,
+  noFixedTitleWidth?: boolean,
 };
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
@@ -21,15 +23,13 @@ export type FilterInputOnClickProps<TId> = {
   isActive: (id: TId) => boolean,
 };
 
-export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & {
+export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & InputRowProps & {
   title: React.ReactNode,
   ids: TId[],
   idToButton: (id: TId, isActive: boolean) => React.ReactNode,
   idToItemId: (id: TId) => string,
   isHidden?: (id: TId) => boolean,
   getClassNames: (isActive: boolean, id: TId) => string,
-  style?: FilterRowBackgroundStyle,
-  ender?: React.ReactNode,
 };
 
 export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';

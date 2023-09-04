@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
@@ -17,16 +19,18 @@ export const FilterCategoryInput = <TId, >({
   getClassNames,
   style,
   ender,
+  noFixedTitleWidth,
 }: FilterCategoryInputProps<TId>) => {
   return (
     <InputRowWithTitle
       style={style}
       title={
-        <div className="w-32 whitespace-nowrap text-center text-sm">
+        <div className={clsx('whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
           {title}
         </div>
       }
       ender={ender}
+      noFixedTitleWidth={noFixedTitleWidth}
     >
       <Flex direction="row" className="gap-1 sm:justify-normal" center wrap>
         {ids.map((id) => {
