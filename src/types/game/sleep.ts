@@ -1,0 +1,22 @@
+export type SleepSessions<T> = {
+  primary: T,
+  secondary?: T,
+};
+
+export type SleepSessionTimes = {
+  start: number,
+  end: number,
+};
+
+export type SleepSessionInternal = {
+  adjustedTiming: SleepSessionTimes,
+  length: number,
+  recovery: number,
+};
+
+export type SleepSessionInfo = {
+  session: SleepSessions<SleepSessionInternal>,
+  duration: {
+    awake: number,
+  },
+};
