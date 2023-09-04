@@ -1,4 +1,4 @@
-import {durationOfDay} from '@/const/game/common';
+import {durationOfDay} from '@/const/common';
 import {efficiencyDuringSleep} from '@/const/game/efficiency';
 import {StaminaCalcConfig, StaminaEventLog} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
