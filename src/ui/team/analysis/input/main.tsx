@@ -72,7 +72,7 @@ export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isInclu
 
   return (
     <Flex direction="col" className="gap-1.5 lg:flex-row">
-      <Collapsible state={filterCollapsible} classNameForHeight="h-[25vh]" button={
+      <Collapsible state={filterCollapsible} classNameForHeight="h-60" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
@@ -95,7 +95,7 @@ export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isInclu
           ))}
         </Flex>
       </Collapsible>
-      <Collapsible state={pickerCollapsible} classNameForHeight="h-[25vh]" button={
+      <Collapsible state={pickerCollapsible} classNameForHeight="h-60" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">

@@ -21,21 +21,19 @@ export const CollapsibleFull = ({state, button, appear, disabled, children}: Rea
   }, []);
 
   return (
-    <Flex direction="col" className="border-button-clickable rounded-lg border">
-      <Flex direction="col">
-        <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
-          'button-clickable-bg disabled:button-disabled group p-1',
-        )}>
-          {button}
-        </button>
-      </Flex>
+    <Flex direction="col">
+      <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
+        'button-clickable-bg disabled:button-disabled group p-1',
+      )}>
+        {button}
+      </button>
       <Transition
         show={show}
         enterFrom="p-0"
         enterTo="p-1"
         leaveFrom="p-1"
         leaveTo="p-0"
-        className="transition-spacing duration-300 ease-in-out"
+        className="border-button-clickable rounded-b-lg border-x border-b transition-spacing duration-300 ease-in-out"
       >
         <Transition.Child
           appear={appear}

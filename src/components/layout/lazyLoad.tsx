@@ -19,7 +19,7 @@ export const LazyLoad = React.forwardRef<HTMLDivElement, React.PropsWithChildren
   children,
 }, ref) => {
   return (
-    <Flex ref={ref} direction="row" wrap className={clsx('relative', className, loading && 'min-h-[8rem]')}>
+    <Flex ref={ref} direction="col" className={clsx('relative', className, loading && 'min-h-[8rem]')}>
       {
         loading &&
         <Flex direction="col" className={clsx(
