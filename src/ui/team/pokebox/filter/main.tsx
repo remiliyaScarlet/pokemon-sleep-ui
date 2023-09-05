@@ -15,6 +15,7 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
+import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {usePokeboxPickerFilter} from '@/ui/team/pokebox/filter/hook';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {showToast} from '@/utils/toast';
@@ -40,8 +41,8 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
   }, [filter]);
 
   return (
-    <>
-      <Collapsible state={pickerCollapsible} classNameForHeight="h-72 md:h-52" button={
+    <Flex direction="col" className="gap-1.5">
+      <Collapsible state={pickerCollapsible} classNameForHeight={inputSectionHeight} button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
@@ -67,7 +68,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           ))}
         </Flex>
       </Collapsible>
-      <Collapsible state={resultCollapsible} classNameForHeight="h-80 md:h-60 lg:h-40" appear button={
+      <Collapsible state={resultCollapsible} classNameForHeight={inputSectionHeight} appear button={
         <Flex direction="row" center className="group gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
           <div className="h-6 w-6">
@@ -95,6 +96,6 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           onClick(id);
         }}/>
       </Collapsible>
-    </>
+    </Flex>
   );
 };

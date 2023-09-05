@@ -12,6 +12,7 @@ import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {PokeboxViewerInputCommonProps} from '@/ui/team/pokebox/viewer/type';
 
 
@@ -22,7 +23,7 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   return (
-    <Collapsible state={filterCollapsible} classNameForHeight="h-72 md:h-52" button={
+    <Collapsible state={filterCollapsible} classNameForHeight={inputSectionHeight} button={
       <Flex direction="row" center className="gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
         <div className="h-6 w-6">

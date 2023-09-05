@@ -15,6 +15,7 @@ import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
+import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
   pokeboxDisplayTypeToI18nId,
   pokeboxDisplayTypeToImageSrc,
@@ -35,7 +36,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
 
   return (
-    <Collapsible state={viewCollapsible} classNameForHeight="h-64 md:h-40" appear button={
+    <Collapsible state={viewCollapsible} classNameForHeight={inputSectionHeight} appear button={
       <Flex direction="row" center className="gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
         <div className="h-6 w-6">
