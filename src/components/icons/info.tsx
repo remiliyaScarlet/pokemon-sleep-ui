@@ -7,11 +7,16 @@ import {Flex} from '@/components/layout/flex';
 
 type Props = {
   className?: string,
+  warn?: boolean,
 };
 
-export const InfoIcon = ({children, className}: React.PropsWithChildren<Props>) => {
+export const InfoIcon = ({className, warn, children}: React.PropsWithChildren<Props>) => {
   return (
-    <Flex direction="col" center noFullWidth className={clsx('info-in-image h-5 w-5 text-xs', className)}>
+    <Flex direction="col" center noFullWidth className={clsx(
+      'h-5 w-5 text-xs',
+      warn ? 'info-icon-warn' : 'info-icon-normal',
+      className,
+    )}>
       {children}
     </Flex>
   );

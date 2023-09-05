@@ -183,18 +183,26 @@
   
   /* endregion */
 
-  /* region Info section styling (info-*) */
+  /* region Info section/icon styling (info-*) */
   
   .info-section-bg {
     @apply bg-gradient-to-br from-slate-200/80 to-slate-100/60 dark:from-black/60 dark:to-slate-950/75;
   }
   
-  .info-in-image {
-    @apply rounded-full bg-slate-400/80 dark:bg-slate-500/80;
-  }
-  
   .info-section {
     @apply gap-2 rounded-lg p-4 self-stretch info-section-bg;
+  }
+  
+  .info-icon-base {
+    @apply rounded-full;
+  }
+  
+  .info-icon-normal {
+    @apply info-icon-base bg-slate-400/80 dark:bg-slate-500/80;
+  }
+  
+  .info-icon-warn {
+    @apply info-icon-base bg-amber-400/80 dark:bg-yellow-700/80;
   }
   
   /* endregion */
