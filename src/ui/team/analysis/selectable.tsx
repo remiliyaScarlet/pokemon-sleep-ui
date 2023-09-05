@@ -6,22 +6,22 @@ import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
   TeamAnalysisDataProps,
   TeamAnalysisMember,
-  TeamAnalysisSlotName,
+  TeamAnalysisSingleTeam,
   teamAnalysisSlotName,
-  TeamAnalysisSetup,
+  TeamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
 type Props = TeamAnalysisDataProps & {
-  setup: TeamAnalysisSetup,
+  team: TeamAnalysisSingleTeam,
   setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemonList: PokemonInfo[],
 };
 
 export const TeamAnalysisSelectablePokemon = ({
-  setup,
+  team,
   setMember,
   isIncluded,
   pokemonList,
@@ -32,7 +32,7 @@ export const TeamAnalysisSelectablePokemon = ({
     let slotToInsert: TeamAnalysisSlotName | null = null;
 
     for (const slotName of teamAnalysisSlotName) {
-      if (setup.team[slotName]) {
+      if (team.members[slotName]) {
         continue;
       }
       slotToInsert = slotName;

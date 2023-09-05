@@ -17,6 +17,7 @@ import {
   teamAnalysisSlotName,
   TeamAnalysisSetup,
 } from '@/ui/team/analysis/type';
+import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
@@ -47,8 +48,10 @@ const useProducingStatsOfSlot = ({
   subSkillMap,
   bonus,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
+  const currentTeam = getCurrentTeam({setup});
+
   return React.useMemo(() => {
-    const member = setup.team[slotName];
+    const member = currentTeam.members[slotName];
     if (!member) {
       return null;
     }
@@ -92,12 +95,13 @@ const useProducingStatsOfSlot = ({
     };
 
     return {berry, ingredient, total};
-  }, [setup.team[slotName], snorlaxFavorite, helperCount, bonus]);
+  }, [currentTeam.members[slotName], snorlaxFavorite, helperCount, bonus]);
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
   const {setup, snorlaxFavorite, subSkillMap, bonus} = opts;
-  const helperCount = Object.values(setup.team)
+  const currentTeam = getCurrentTeam({setup});
+  const helperCount = Object.values(currentTeam.members)
     .filter((member) => {
       if (!member) {
         return false;

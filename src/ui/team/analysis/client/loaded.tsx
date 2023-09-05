@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {v4} from 'uuid';
+
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
@@ -25,6 +27,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
   } = props;
   const pokemon = Object.values(pokedex).filter(isNotNullish);
 
+  const initialCompUuid = React.useMemo(v4, []);
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
     snorlaxFavorite: preloadedSetup?.snorlaxFavorite,
@@ -32,16 +35,22 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
   });
   const [setup, setSetup] = React.useState<TeamAnalysisSetup>(migrate({
     original: {
-      team: {
-        A: null,
-        B: null,
-        C: null,
-        D: null,
-        E: null,
+      current: initialCompUuid,
+      teams: {
+        [initialCompUuid]: {
+          uuid: initialCompUuid,
+          members: {
+            A: null,
+            B: null,
+            C: null,
+            D: null,
+            E: null,
+          },
+        },
       },
-      version: 2,
+      version: 3,
     },
-    override: preloadedSetup ?? {},
+    override: preloadedSetup ?? null,
     migrators: teamAnalysisSetupMigrators,
     migrateParams: {pokedex, ingredientChainMap},
   }));

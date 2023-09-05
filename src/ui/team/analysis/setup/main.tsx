@@ -6,12 +6,12 @@ import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {UserSettings} from '@/types/userData/settings';
+import {TeamAnalysisSetupControl} from '@/ui/team/analysis/setup/control';
 import {useProducingStats} from '@/ui/team/analysis/setup/hook';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/setup/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/setup/summary/main';
 import {TeamAnalysisTeamView} from '@/ui/team/analysis/setup/team/main';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamAnalysisUploadSetup} from '@/ui/team/analysis/setup/upload';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {DeepPartial} from '@/utils/type';
 
@@ -49,7 +49,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
           bonus={bonus}
           {...props}
         />
-        <TeamAnalysisUploadSetup setup={setup} snorlaxFavorite={snorlaxFavorite}/>
+        <TeamAnalysisSetupControl setup={setup} snorlaxFavorite={snorlaxFavorite}/>
         <AdsUnit/>
         <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped} period="weekly"/>
         <TeamAnalysisSummary

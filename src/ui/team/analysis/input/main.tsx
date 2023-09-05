@@ -19,9 +19,10 @@ import {
   TeamAnalysisDataProps,
   TeamAnalysisFilter,
   TeamAnalysisMember,
-  TeamAnalysisSlotName,
   TeamAnalysisSetup,
+  TeamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
+import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {showToast} from '@/utils/toast';
 
 
@@ -47,11 +48,15 @@ export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isInclu
   const setMember = (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => {
     setSetup((original) => ({
       ...original,
-      team: {
-        ...original.team,
-        [slot]: member,
+      teams: {
+        ...original.teams,
+        [original.current]: getCurrentTeam({
+          setup: original,
+          overrideSlot: slot,
+          overrideMember: member,
+        }),
       },
-    }));
+    } satisfies TeamAnalysisSetup));
     showToast({content: (
       <Flex direction="row" className="gap-1.5">
         <div className="relative h-9 w-9">
@@ -104,7 +109,7 @@ export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isInclu
         </Flex>
       }>
         <TeamAnalysisSelectablePokemon
-          setup={setup}
+          team={getCurrentTeam({setup})}
           setMember={setMember}
           isIncluded={isIncluded}
           pokemonList={pokemonList}

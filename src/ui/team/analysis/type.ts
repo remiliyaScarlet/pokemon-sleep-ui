@@ -44,6 +44,12 @@ export type TeamAnalysisMember = {
   subSkill: PokemonSubSkill,
 };
 
+export type TeamAnalysisSingleTeam = {
+  uuid: string,
+  members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
+};
+
 export type TeamAnalysisSetup = Migratable & {
-  team: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
+  current: string,
+  teams: {[uuid in string]: TeamAnalysisSingleTeam},
 };

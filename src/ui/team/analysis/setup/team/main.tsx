@@ -10,7 +10,8 @@ import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
 import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
-import {TeamAnalysisDataProps, teamAnalysisSlotName, TeamAnalysisSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps, TeamAnalysisSetup, teamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {getCurrentTeam} from '@/ui/team/analysis/utils';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {
@@ -25,10 +26,12 @@ export const TeamAnalysisTeamView = (props: Props) => {
     statsOfTeam,
   } = props;
 
+  const currentTeam = getCurrentTeam({setup});
+
   return (
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-3 xl:grid-cols-5">
       {teamAnalysisSlotName.map((slotName) => {
-        const member = setup.team[slotName];
+        const member = currentTeam.members[slotName];
         const pokemon = member ? pokedex[member.pokemonId] : undefined;
         const stats = statsOfTeam.bySlot[slotName];
 
@@ -46,9 +49,13 @@ export const TeamAnalysisTeamView = (props: Props) => {
               disabled={!member}
               onClick={() => setSetup((original) => ({
                 ...original,
-                team: {
-                  ...original.team,
-                  [slotName]: null,
+                teams: {
+                  ...original.teams,
+                  [original.current]: getCurrentTeam({
+                    setup: original,
+                    overrideSlot: slotName,
+                    overrideMember: null,
+                  }),
                 },
               }))}
             >
@@ -66,9 +73,13 @@ export const TeamAnalysisTeamView = (props: Props) => {
                 {...props}
                 onPokeboxPicked={(member) => setSetup((original): TeamAnalysisSetup => ({
                   ...original,
-                  team: {
-                    ...original.team,
-                    [slotName]: toTeamAnalysisMember(member),
+                  teams: {
+                    ...original.teams,
+                    [original.current]: getCurrentTeam({
+                      setup: original,
+                      overrideSlot: slotName,
+                      overrideMember: toTeamAnalysisMember(member),
+                    }),
                   },
                 }))}
               />}
