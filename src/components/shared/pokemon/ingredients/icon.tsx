@@ -27,7 +27,7 @@ export const PokemonIngredientIcon = (props: Props) => {
   }
 
   return (
-    <Link href={`/ingredient/${id}`}>
+    <Link href={`/ingredient/${id}`} tabIndex={-1}>
       <PokemonIngredientIconContent {...props} id={id}/>
     </Link>
   );
