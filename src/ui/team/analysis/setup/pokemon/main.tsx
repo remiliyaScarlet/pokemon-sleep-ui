@@ -98,7 +98,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
             />
           </div>
           <div>
-            {t(`PokemonName.${id}`)}
+            {member.name ?? t(`PokemonName.${id}`)}
           </div>
         </Flex>
         <Flex direction="row" center>

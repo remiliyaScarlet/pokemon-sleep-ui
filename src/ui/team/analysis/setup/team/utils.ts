@@ -3,6 +3,7 @@ import {TeamAnalysisMember} from '@/ui/team/analysis/type';
 
 
 export const toTeamAnalysisMember = ({
+  name,
   level,
   pokemon,
   nature,
@@ -10,6 +11,7 @@ export const toTeamAnalysisMember = ({
   ingredients,
 }: PokeInBox): TeamAnalysisMember => {
   return {
+    name,
     level,
     pokemonId: pokemon,
     nature,

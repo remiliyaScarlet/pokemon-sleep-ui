@@ -36,6 +36,7 @@ export const teamAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;
 export type TeamAnalysisSlotName = typeof teamAnalysisSlotName[number];
 
 export type TeamAnalysisMember = {
+  name?: string | null,
   level: number,
   pokemonId: PokemonId,
   ingredients: IngredientProductionAtLevels,
