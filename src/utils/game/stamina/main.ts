@@ -41,29 +41,3 @@ export const getStaminaEfficiency = ({config}: GetStaminaEfficiencyOpts): number
 
   return getStaminaEfficiencyFromLogs(logs);
 };
-
-export const getStaminaEfficiencyExternalTest = () => {
-  return getStaminaEfficiency({
-    config: {
-      sleepSession: {
-        primary: {
-          // 23:00
-          start: 82800,
-          // 06:00 (7 hrs)
-          end: 21600,
-        },
-        secondary: {
-          // 13:00
-          start: 46800,
-          // 14:30 (1.5 hrs)
-          end: 52200,
-        },
-      },
-      skillRecovery: {
-        strategy: 'optimistic',
-        dailyCount: 3,
-        amount: 9,
-      },
-    },
-  });
-};

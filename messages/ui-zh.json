@@ -224,6 +224,18 @@
       }
     }
   },
+  "Stamina": {
+    "Title": "活力計算",
+    "SleepSession": "睡眠時間段",
+    "Strategy": {
+      "Optimistic": "樂觀",
+      "Conservative": "保守"
+    },
+    "SkillRecovery": {
+      "Amount": "單次回復量",
+      "DailyCount": "每日回復次數"
+    }
+  },
   "UserControl": {
     "Login": "登入",
     "Logout": "登出"

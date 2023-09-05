@@ -224,6 +224,18 @@
       }
     }
   },
+  "Stamina": {
+    "Title": "Energieberechnung",
+    "SleepSession": "Schlafsitzung",
+    "Strategy": {
+      "Optimistic": "Optimistisch",
+      "Conservative": "Konservativ"
+    },
+    "SkillRecovery": {
+      "Amount": "Erholung pro Fertigkeit",
+      "DailyCount": "Anzahl der täglichen Fertigkeitennutzung"
+    }
+  },
   "UserControl": {
     "Login": "Login",
     "Logout": "Logout"

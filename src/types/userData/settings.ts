@@ -1,9 +1,11 @@
 import {UserBonus} from '@/types/game/bonus';
+import {StaminaCalcConfig} from '@/types/game/producing/stamina';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {Migratable} from '@/types/migrate';
 
 
 export type UserSettings = Migratable & {
   bonus: UserBonus,
+  stamina: StaminaCalcConfig,
   currentMap: SleepMapId,
 };

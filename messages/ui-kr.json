@@ -224,6 +224,18 @@
       }
     }
   },
+  "Stamina": {
+    "Title": "기력 계산",
+    "SleepSession": "수면 시간",
+    "Strategy": {
+      "Optimistic": "낙관",
+      "Conservative": "보수"
+    },
+    "SkillRecovery": {
+      "Amount": "회복량",
+      "DailyCount": "빈도 (일)"
+    }
+  },
   "UserControl": {
     "Login": "로그인",
     "Logout": "로그아웃"

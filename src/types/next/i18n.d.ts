@@ -164,6 +164,18 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         },
       },
     },
+    Stamina: {
+      Title: string,
+      SleepSession: string,
+      Strategy: {
+        Optimistic: string,
+        Conservative: string,
+      },
+      SkillRecovery: {
+        Amount: string,
+        DailyCount: string,
+      },
+    },
     UserControl: {
       Login: string,
       Logout: string,

@@ -1,7 +1,12 @@
 import {SleepSessionTimes, SleepSessions} from '@/types/game/sleep';
 
 
-export type StaminaCalcSkillRecoveryStrategy = 'optimistic' | 'conservative';
+export const staminaCalcSkillRecoveryStrategies = [
+  'optimistic',
+  'conservative',
+];
+
+export type StaminaCalcSkillRecoveryStrategy = typeof staminaCalcSkillRecoveryStrategies[number];
 
 export type StaminaCalcSkillRecoveryConfig = {
   strategy: StaminaCalcSkillRecoveryStrategy,

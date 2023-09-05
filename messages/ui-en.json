@@ -224,6 +224,18 @@
       }
     }
   },
+  "Stamina": {
+    "Title": "Energy Calculation",
+    "SleepSession": "Sleep Session",
+    "Strategy": {
+      "Optimistic": "Optimistic",
+      "Conservative": "Conservative"
+    },
+    "SkillRecovery": {
+      "Amount": "Recovery per skill",
+      "DailyCount": "Daily skill usage count"
+    }
+  },
   "UserControl": {
     "Login": "Login",
     "Logout": "Logout"

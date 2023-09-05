@@ -8,6 +8,7 @@ import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
+import {UserSettingsEnergy} from '@/ui/base/navbar/userSettings/sections/energy/main';
 import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 import {migrate} from '@/utils/migrate/main';
@@ -38,8 +39,12 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
 
       setShow(show);
     }}>
-      <Flex direction="col" className="gap-1.5 sm:w-[70vw]">
+      <Flex direction="col" className="gap-1.5 pr-2 sm:w-[70vw]">
         <UserSettingsAccountInfo session={session}/>
+        <UserSettingsEnergy config={settings.stamina} setConfig={(stamina) => setSettings((original) => ({
+          ...original,
+          stamina,
+        }))}/>
         <UserSettingsBonusUI
           mapIds={mapIds}
           bonus={settings.bonus}
