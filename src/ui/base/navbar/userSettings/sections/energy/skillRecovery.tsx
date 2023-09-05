@@ -33,7 +33,7 @@ export const UserSettingsSkillRecovery = (props: UserSettingsEnergyProps) => {
         })}
         isActive={(strategy) => strategy === skillRecovery.strategy}
         ids={staminaCalcSkillRecoveryStrategies}
-        idToButton={(strategy) => staminaCalcStrategyI18nId[strategy]}
+        idToButton={(strategy) => t(`Strategy.${staminaCalcStrategyI18nId[strategy]}`)}
         idToItemId={(strategy) => strategy}
         noFixedTitleWidth
       />

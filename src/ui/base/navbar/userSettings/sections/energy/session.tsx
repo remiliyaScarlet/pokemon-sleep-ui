@@ -41,7 +41,7 @@ export const UserSettingsSleepSession = (props: Props) => {
   const active = onClick ? isActive : true;
 
   return (
-    <Flex direction="row" className="items-center justify-center gap-1.5 lg:justify-start">
+    <Flex direction="row" center className="gap-1.5">
       <button disabled={!onClick} onClick={onClick} className={clsx(
         'group flex flex-row rounded-full px-2 py-1',
         onClick ? getToggleButtonClass(active) : 'button-toggle-active-bg',
