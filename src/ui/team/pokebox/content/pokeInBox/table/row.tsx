@@ -4,7 +4,6 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
-import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
@@ -17,6 +16,7 @@ import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {PokeInBoxLevel} from '@/ui/team/pokebox/content/pokeInBox/common/level';
 import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table/header';
 import {PokeInBoxRatingInRow} from '@/ui/team/pokebox/content/pokeInBox/table/rating';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
@@ -31,6 +31,7 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
     pokeInBox,
     pokedexMap,
     displayType,
+    isLevelPreview,
     onClick,
     subSkillMap,
   } = props;
@@ -70,9 +71,7 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
       <PokeInBoxTableRowHeader {...props} pokemon={pokemon}/>
       <button className="button-clickable-bg group rounded-lg p-1" onClick={onClick}>
         <Flex direction="row" noFullWidth className="items-center gap-1 [&>*]:shrink-0">
-          <InfoIcon>
-            {pokeInBox.level}
-          </InfoIcon>
+          <PokeInBoxLevel viewType="table" level={pokeInBox.level} isLevelPreview={isLevelPreview}/>
           <div className="w-64">
             <PokeInBoxMeta {...pokeInBoxProps}/>
           </div>

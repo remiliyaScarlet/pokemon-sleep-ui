@@ -4,6 +4,8 @@ import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {ingredientLevels} from '@/types/game/pokemon/ingredient';
+import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
@@ -32,10 +34,18 @@ export type PokeboxPokemonForView = {
   names: string[],
 };
 
+export const pokeboxPreviewLevel = [
+  ...ingredientLevels,
+  ...pokemonSubSkillLevel,
+] as const;
+
+export type PokeboxPreviewLevel = typeof pokeboxPreviewLevel[number] | null;
+
 export type PokeboxViewerDisplay = {
   sort: PokemonSortType,
   viewType: PokeboxViewType,
   displayType: PokeboxDisplayType,
+  previewLevel: PokeboxPreviewLevel,
 };
 
 export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {

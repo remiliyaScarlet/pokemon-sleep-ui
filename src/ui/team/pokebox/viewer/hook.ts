@@ -53,6 +53,7 @@ export const usePokeboxViewerFilter = ({
         sort: 'id',
         displayType: 'productionTotal',
         viewType: 'table',
+        previewLevel: null,
       } satisfies PokeboxViewerDisplay, preloaded.display),
     },
     isDataIncluded: (filter, data) => {

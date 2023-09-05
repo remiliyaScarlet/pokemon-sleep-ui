@@ -12,6 +12,7 @@ import {isNotNullish} from '@/utils/type';
 
 type Props = PokeboxCommonProps & {
   pokebox: Pokebox,
+  pokeboxForCalc: Pokebox,
   filter: PokeboxViewerFilter,
   isIncluded: FilterInclusionMap<PokeInBox['uuid']>,
   setLoading: (loading: boolean) => void,
@@ -20,6 +21,7 @@ type Props = PokeboxCommonProps & {
 
 export const useFilteredSortedPokebox = ({
   pokebox,
+  pokeboxForCalc,
   filter,
   isIncluded,
   setLoading,
@@ -30,7 +32,7 @@ export const useFilteredSortedPokebox = ({
   berryDataMap,
 }: Props) => {
   return useSortingWorker({
-    data: Object.values(pokebox)
+    data: Object.values(pokeboxForCalc)
       .filter(isNotNullish)
       .filter(({uuid}) => isIncluded[uuid])
       .map((pokeInBox) => {

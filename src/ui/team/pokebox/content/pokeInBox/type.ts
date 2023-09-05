@@ -24,6 +24,7 @@ export type PokeInBoxPopupProps = {
 export type PokeInBoxViewCommonProps = PokeboxCommonProps & PokeInBoxPopupProps & PokeInBoxRefreshDependency & {
   bonus: EffectiveBonus,
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
+  isLevelPreview: boolean,
 };
 
 export type PokeInBoxViewOfTypeProps = PokeInBoxViewCommonProps;

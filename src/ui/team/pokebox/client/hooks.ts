@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useEffectiveBonus} from '@/hooks/userData/settings';
-import {Pokebox} from '@/types/game/pokebox';
+import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {useFilteredSortedPokebox} from '@/ui/team/pokebox/content/hook';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
@@ -22,6 +22,7 @@ export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
   const {
     pokedexMap,
     preloaded,
+    pokebox,
     session,
     setLoading,
   } = opts;
@@ -37,15 +38,23 @@ export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
     setFilter,
     isIncluded,
   } = usePokeboxViewerFilter({
+    ...opts,
     pokemonNameMap: Object.fromEntries(
       Object.values(pokedexMap)
         .filter(isNotNullish)
         .map(({id}) => [id, t(`PokemonName.${id}`)]),
     ),
-    ...opts,
   });
+
   const filteredSortedPokebox = useFilteredSortedPokebox({
     ...opts,
+    pokeboxForCalc: Object.fromEntries(Object.values(pokebox).filter(isNotNullish).map((pokeInBox) => [
+      pokeInBox.uuid,
+      {
+        ...pokeInBox,
+        level: filter.previewLevel ?? pokeInBox.level,
+      } satisfies PokeInBox,
+    ])),
     filter,
     bonus,
     isIncluded,
@@ -55,9 +64,15 @@ export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
   useAutoUpload({
     opts: {
       type: 'pokebox.display',
-      data: {sort: filter.sort, displayType: filter.displayType, viewType: filter.viewType},
+      data: {
+        // Explicit references here so no extra data get stored
+        sort: filter.sort,
+        displayType: filter.displayType,
+        viewType: filter.viewType,
+        previewLevel: filter.previewLevel,
+      },
     },
-    triggerDeps: [filter.sort, filter.displayType, filter.viewType],
+    triggerDeps: [filter.sort, filter.displayType, filter.viewType, filter.previewLevel],
     delay: 0,
   });
 

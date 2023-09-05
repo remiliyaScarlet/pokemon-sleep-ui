@@ -27,6 +27,7 @@ type Props = PokeboxCommonProps & {
 
 export const PokeboxContent = (props: Props) => {
   const {
+    filter,
     loading,
     totalPokeInBox,
     sortedPokeInBox,
@@ -49,6 +50,7 @@ export const PokeboxContent = (props: Props) => {
           {...props}
           showPokemon={showPokemon}
           setRatingPopupControl={ratingControl.sendRequest}
+          isLevelPreview={filter.previewLevel !== null}
         />
       </LazyLoad>
     </Flex>

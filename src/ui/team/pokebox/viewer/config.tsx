@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AdjustmentsHorizontalIcon from '@heroicons/react/24/outline/AdjustmentsHorizontalIcon';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {clsx} from 'clsx';
@@ -13,6 +14,7 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
@@ -23,6 +25,7 @@ import {
 } from '@/ui/team/pokebox/viewer/const';
 import {
   pokeboxDisplayType,
+  pokeboxPreviewLevel,
   PokeboxViewerInputCommonProps,
   PokeboxViewType,
   pokeboxViewType,
@@ -74,6 +77,32 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
             filter,
             setFilter,
             filterKey: 'viewType',
+            allowNull: false,
+          })}
+        />
+        <FilterCategoryInput
+          title={
+            <Flex direction="row" center className="gap-1.5">
+              <div className="h-6 w-6">
+                <EyeIcon/>
+              </div>
+              <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert/>
+            </Flex>
+          }
+          ids={[null, ...[...pokeboxPreviewLevel].sort((a, b) => a - b)]}
+          idToButton={(level) => (
+            level === null ?
+              <div className="h-7 w-7">
+                <XMarkIcon/>
+              </div> :
+              <>{level}</>
+          )}
+          idToItemId={(level) => `previewLevel-${level}`}
+          getClassNames={getIconFilterButtonClass}
+          {...getSingleSelectOnClickProps({
+            filter,
+            setFilter,
+            filterKey: 'previewLevel',
             allowNull: false,
           })}
         />
