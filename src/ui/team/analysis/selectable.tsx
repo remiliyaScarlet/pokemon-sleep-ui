@@ -8,13 +8,13 @@ import {
   TeamAnalysisMember,
   TeamAnalysisSlotName,
   teamAnalysisSlotName,
-  TeamAnalysisTeamSetup,
+  TeamAnalysisSetup,
 } from '@/ui/team/analysis/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
 type Props = TeamAnalysisDataProps & {
-  setup: TeamAnalysisTeamSetup,
+  setup: TeamAnalysisSetup,
   setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemonList: PokemonInfo[],

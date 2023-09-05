@@ -1,10 +1,10 @@
 import {Migrator} from '@/types/migrate';
-import {TeamAnalysisMember, teamAnalysisSlotName, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisMember, teamAnalysisSlotName, TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 import {TeamAnalysisMigrateParams} from '@/utils/migrate/teamAnalysisSetup/type';
 
 
-export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisTeamSetup, TeamAnalysisMigrateParams>[] = [
+export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysisMigrateParams>[] = [
   {
     toVersion: 1,
     migrate: (old) => ({
@@ -17,7 +17,7 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisTeamSetup, TeamAna
         }
 
         return [slot, {...member, subSkill: {}} satisfies TeamAnalysisMember];
-      })) as TeamAnalysisTeamSetup['team'],
+      })) as TeamAnalysisSetup['team'],
     }),
   },
   {
@@ -41,7 +41,7 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisTeamSetup, TeamAna
           slot,
           {...member, ingredients: generateIngredientProductionAtLevels(chain)} satisfies TeamAnalysisMember,
         ];
-      })) as TeamAnalysisTeamSetup['team'],
+      })) as TeamAnalysisSetup['team'],
     }),
   },
 ];

@@ -4,11 +4,11 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserSettings} from '@/types/userData/settings';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
-import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
-export type UploadOfTeamAnalysisSetup = TeamAnalysisTeamSetup & {
+export type UploadOfTeamAnalysisSetup = TeamAnalysisSetup & {
   snorlaxFavorite: SnorlaxFavorite,
 };
 

@@ -2,11 +2,11 @@ import React from 'react';
 
 import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
 
 
 type Props = {
-  setup: TeamAnalysisTeamSetup,
+  setup: TeamAnalysisSetup,
   snorlaxFavorite: SnorlaxFavorite,
 };
 

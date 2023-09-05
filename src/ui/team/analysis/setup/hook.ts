@@ -15,7 +15,7 @@ import {
   TeamAnalysisDataProps,
   TeamAnalysisSlotName,
   teamAnalysisSlotName,
-  TeamAnalysisTeamSetup,
+  TeamAnalysisSetup,
 } from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
@@ -26,7 +26,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 type UseProducingStatsOpts = Omit<TeamAnalysisDataProps, 'settings'> & {
-  setup: TeamAnalysisTeamSetup,
+  setup: TeamAnalysisSetup,
   snorlaxFavorite: SnorlaxFavorite,
   bonus: EffectiveBonus,
 };

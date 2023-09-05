@@ -7,7 +7,7 @@ import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
-import {TeamAnalysisDataProps, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps, TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {migrate} from '@/utils/migrate/main';
 import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';
 import {DeepPartial, isNotNullish} from '@/utils/type';
@@ -30,7 +30,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
     snorlaxFavorite: preloadedSetup?.snorlaxFavorite,
     ...props,
   });
-  const [setup, setSetup] = React.useState<TeamAnalysisTeamSetup>(migrate({
+  const [setup, setSetup] = React.useState<TeamAnalysisSetup>(migrate({
     original: {
       team: {
         A: null,

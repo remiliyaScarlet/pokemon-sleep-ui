@@ -10,7 +10,7 @@ import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
 import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
-import {TeamAnalysisDataProps, teamAnalysisSlotName, TeamAnalysisTeamSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps, teamAnalysisSlotName, TeamAnalysisSetup} from '@/ui/team/analysis/type';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {
@@ -64,7 +64,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
               /> :
               <TeamAnalysisEmptySlot
                 {...props}
-                onPokeboxPicked={(member) => setSetup((original): TeamAnalysisTeamSetup => ({
+                onPokeboxPicked={(member) => setSetup((original): TeamAnalysisSetup => ({
                   ...original,
                   team: {
                     ...original.team,

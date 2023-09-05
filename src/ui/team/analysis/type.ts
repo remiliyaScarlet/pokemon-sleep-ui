@@ -44,6 +44,6 @@ export type TeamAnalysisMember = {
   subSkill: PokemonSubSkill,
 };
 
-export type TeamAnalysisTeamSetup = Migratable & {
+export type TeamAnalysisSetup = Migratable & {
   team: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };

@@ -20,15 +20,15 @@ import {
   TeamAnalysisFilter,
   TeamAnalysisMember,
   TeamAnalysisSlotName,
-  TeamAnalysisTeamSetup,
+  TeamAnalysisSetup,
 } from '@/ui/team/analysis/type';
 import {showToast} from '@/utils/toast';
 
 
 type Props = FilterInputProps<TeamAnalysisFilter> & TeamAnalysisDataProps & {
   pokemonList: PokemonInfo[],
-  setup: TeamAnalysisTeamSetup,
-  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisTeamSetup>>,
+  setup: TeamAnalysisSetup,
+  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisSetup>>,
   isIncluded: FilterInclusionMap<PokemonId>,
 };
 

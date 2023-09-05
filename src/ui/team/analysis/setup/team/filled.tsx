@@ -9,7 +9,7 @@ import {
   TeamAnalysisDataProps,
   TeamAnalysisMember,
   TeamAnalysisSlotName,
-  TeamAnalysisTeamSetup,
+  TeamAnalysisSetup,
 } from '@/ui/team/analysis/type';
 
 
@@ -36,7 +36,7 @@ export const TeamAnalysisFilledSlot = (props: Props) => {
           ...update,
         },
       },
-    } satisfies TeamAnalysisTeamSetup));
+    } satisfies TeamAnalysisSetup));
   }, [setSetup]);
 
   return (
