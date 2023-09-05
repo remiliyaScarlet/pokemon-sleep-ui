@@ -1,8 +1,12 @@
 import merge from 'lodash/merge';
 
 import {useFilterInput} from '@/components/input/filter/hook';
-import {isFilterMatchingSearch} from '@/components/input/filter/utils/check';
-import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {isFilterMatchingSearch, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
+import {
+  pokemonIngredientInputToLevel,
+  pokemonInputTypeOfIngredients,
+  UsePokemonFilterCommonData,
+} from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonId} from '@/types/game/pokemon';
@@ -58,6 +62,14 @@ export const usePokeboxViewerFilter = ({
     },
     isDataIncluded: (filter, data) => {
       if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {
+        return false;
+      }
+
+      if (pokemonInputTypeOfIngredients.some((inputType) => isFilterMismatchOnSingle({
+        filter,
+        filterKey: inputType,
+        id: data.inBox.ingredients[pokemonIngredientInputToLevel[inputType]].id,
+      }))) {
         return false;
       }
 
