@@ -13,7 +13,7 @@ export const applyBonus = <T extends ProducingRate | null>({bonus, data, isIngre
     return data;
   }
 
-  const {ingredient, map, overall} = bonus;
+  const {ingredient, map, stamina, overall} = bonus;
 
   return {
     ...data,
@@ -21,7 +21,8 @@ export const applyBonus = <T extends ProducingRate | null>({bonus, data, isIngre
       data.dailyEnergy *
       (1 + (isIngredient ? (ingredient / 100) : 0)) *
       (1 + map / 100) *
-      (1 + overall / 100)
+      (1 + overall / 100) *
+      stamina
     ),
   };
 };

@@ -1,6 +1,7 @@
 export type SleepSessions<T> = {
   primary: T,
-  secondary?: T,
+  // Can't use `undefined` because `cloneMerge()` will not consider `null` as an actual value
+  secondary: T | null,
 };
 
 export type SleepSessionTimes = {

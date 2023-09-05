@@ -31,6 +31,7 @@ describe('Sleep Session Info', () => {
         start: 84600, // 23:30
         end: 21600, // 06:00
       },
+      secondary: null,
     });
 
     expect(session.primary.adjustedTiming.start).toBe(63000);
@@ -69,6 +70,7 @@ describe('Sleep Session Info', () => {
         start: 21600, // 06:00
         end: 46800, // 13:00
       },
+      secondary: null,
     });
 
     expect(session.primary.adjustedTiming.start).toBe(61200);

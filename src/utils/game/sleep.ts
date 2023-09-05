@@ -17,7 +17,7 @@ export const getSleepSessionExtraInfo = (session: SleepSessionTimes): Omit<Sleep
 
 const getSecondarySleepSessionInfo = ({primary, secondary}: StaminaCalcSleepSessionConfig) => {
   if (!secondary) {
-    return undefined;
+    return null;
   }
 
   const extra = getSleepSessionExtraInfo(secondary);
@@ -42,7 +42,7 @@ export const getSleepSessionInfo = (session: StaminaCalcSleepSessionConfig): Sle
       end: 0,
     },
   };
-  const secondaryWithInfo: SleepSessionInternal | undefined = getSecondarySleepSessionInfo(session);
+  const secondaryWithInfo: SleepSessionInternal | null = getSecondarySleepSessionInfo(session);
 
   const awakeDuration = durationOfDay - primaryWithInfo.length - (secondaryWithInfo?.length ?? 0);
 

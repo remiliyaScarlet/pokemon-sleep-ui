@@ -8,7 +8,7 @@ import {toSeconds, toTimeString} from '@/utils/time';
 
 type Props = UserSettingsEnergyProps & {
   session: keyof SleepSessions<never>,
-  times: SleepSessionTimes | undefined,
+  times: SleepSessionTimes | null,
   timing: keyof SleepSessionTimes,
 };
 

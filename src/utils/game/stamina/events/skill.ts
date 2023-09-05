@@ -7,7 +7,7 @@ import {offsetEventLogStamina} from '@/utils/game/stamina/events/utils';
 
 type GetSkillRecoveryTimingsOpts = {
   skillRecovery: StaminaCalcSkillRecoveryConfig,
-  session: SleepSessionInternal | undefined,
+  session: SleepSessionInternal | null,
   awakeDuration: number,
 };
 

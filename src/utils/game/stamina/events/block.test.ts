@@ -201,6 +201,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
         start: 84600, // 23:30
         end: 27000, // 07:30
       },
+      secondary: null,
     });
 
     const skillRecovery: StaminaCalcSkillRecoveryConfig = {

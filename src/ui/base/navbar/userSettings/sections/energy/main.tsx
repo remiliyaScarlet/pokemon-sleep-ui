@@ -34,7 +34,7 @@ export const UserSettingsEnergy = (props: UserSettingsEnergyProps) => {
               ...config,
               sleepSession: {
                 ...sleepSession,
-                secondary: sleepSession.secondary ? undefined : defaultStaminaCalcConfig.sleepSession.secondary,
+                secondary: sleepSession.secondary ? null : defaultStaminaCalcConfig.sleepSession.secondary,
               },
             })}
           />
