@@ -2,11 +2,13 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingFilterIngredientCount, MealEnergyData} from '@/ui/cooking/type';
+import {toSum} from '@/utils/array';
 import {formatInt} from '@/utils/number';
 
 
@@ -33,7 +35,10 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount}: Props) => {
       markGray={Object.values(isIngredientEnough).some((value) => value)}
     >
       <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
-        <Flex direction="row" className="gap-0.5">
+        <Flex direction="row" className="items-center gap-0.5">
+          <InfoIcon>
+            {toSum(meal.ingredients.map(({quantity}) => quantity))}
+          </InfoIcon>
           <IngredientIcons
             meal={meal} useTextShadow={false}
             markRed={(ingredient) => isIngredientEnough[ingredient.id]}
