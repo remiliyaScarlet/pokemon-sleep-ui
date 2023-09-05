@@ -225,15 +225,15 @@
     }
   },
   "Stamina": {
-    "Title": "Energy Calculation",
-    "SleepSession": "Sleep Session",
+    "Title": "げんき回復",
+    "SleepSession": "睡眠時間",
     "Strategy": {
-      "Optimistic": "Optimistic",
-      "Conservative": "Conservative"
+      "Optimistic": "楽観的",
+      "Conservative": "悲観的"
     },
     "SkillRecovery": {
-      "Amount": "Recovery per skill",
-      "DailyCount": "Daily skill usage count"
+      "Amount": "スキル回復量",
+      "DailyCount": "発動回数"
     }
   },
   "UserControl": {
