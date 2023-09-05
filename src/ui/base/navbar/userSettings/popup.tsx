@@ -24,7 +24,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
   const {act} = useUserDataActor({statusToast: true});
   const [settings, setSettings] = React.useState<UserSettings>(migrate({
     original: defaultUserSettings,
-    override: session.user.preloaded.settings ?? {},
+    override: session.user.preloaded.settings ?? null,
     migrators: userSettingsMigrators,
     migrateParams: {},
   }));

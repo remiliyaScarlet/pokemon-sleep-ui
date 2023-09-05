@@ -1,13 +1,19 @@
-import {Migratable, MigrateCall, MigrateOpts} from '@/types/migrate';
+import {Migratable, MigrateOpts} from '@/types/migrate';
 import {cloneMerge} from '@/utils/object';
 
 
-export const migrate: MigrateCall = <TMigratable extends Migratable, TParams>({
+export const migrate = <TMigratable extends Migratable, TParams>({
   original,
   override,
   migrators,
   migrateParams,
 }: MigrateOpts<TMigratable, TParams>) => {
+  if (override === null) {
+    // No need for migration if `override` is `null` because it will be just `original`,
+    // which is always the latest version
+    return original;
+  }
+
   let data: MigrateOpts<TMigratable, TParams>['original'] = cloneMerge(original, override);
 
   for (const singleMigrator of migrators.sort((a, b) => a.toVersion - b.toVersion)) {
@@ -22,5 +28,5 @@ export const migrate: MigrateCall = <TMigratable extends Migratable, TParams>({
     ...data,
     // Force-write the version info from `original` - otherwise, version could be overwritten by `override`
     version: original.version,
-  };
+  } satisfies MigrateOpts<TMigratable, TParams>['original'];
 };
