@@ -99,7 +99,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
                 </div>
               </Flex>
             }
-            ids={[...pokedexDisplayType]}
+            ids={[...pokedexDisplayType].filter((displayType) => displayType !== 'dateAdded')}
             idToButton={(display) => t(displayTypeToI18nId[display])}
             idToItemId={(display) => `displayType-${display}`}
           />
@@ -109,6 +109,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               ...original,
               sort,
             } satisfies PokedexInputProps['filter']))}
+            exclude={['dateAdded']}
           />
         </Flex>
       </Collapsible>

@@ -6,6 +6,7 @@ import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
 
 export type PokeInBox = {
   uuid: string,
+  dateAdded: number | null,
   pokemon: PokemonId,
   name: string | null,
   level: number,

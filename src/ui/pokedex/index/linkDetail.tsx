@@ -88,6 +88,7 @@ export const PokedexLinkDetail = React.memo(({
     level,
     snorlaxFavorite,
     bonus,
+    dateAdded: null,
     ...defaultNeutralOpts,
   });
 
@@ -190,6 +191,10 @@ export const PokedexLinkDetail = React.memo(({
         </div>
       </Flex>
     );
+  }
+
+  if (display === 'dateAdded') {
+    return <></>;
   }
 
   console.error(`Unhandled Pokedex display type: [${display satisfies never}]`);

@@ -167,6 +167,7 @@
       },
       "Sort": {
         "Id": "ID",
+        "DateRegistered": "등록일",
         "IngredientEnergy": "식재료 에너지",
         "IngredientCount": "식재료 수",
         "BerryEnergy": "나무열매 에너지",

@@ -167,6 +167,7 @@
       },
       "Sort": {
         "Id": "ID",
+        "DateRegistered": "Registrierungsdatum",
         "IngredientEnergy": "Zutatenstärke",
         "IngredientCount": "Zutatensuche",
         "BerryEnergy": "Beerenstärke",

@@ -1,6 +1,6 @@
 import {PokeInBox} from '@/types/game/pokebox';
 
 
-export type PokeInBoxData = PokeInBox & {
+export type PokeInBoxData = Omit<PokeInBox, 'dateAdded'> & {
   owner: string,
 };

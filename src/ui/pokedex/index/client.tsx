@@ -52,6 +52,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
       pokemon: pokemon,
       level: filter.level,
+      dateAdded: null,
       extra: null,
       ...defaultNeutralOpts,
     };

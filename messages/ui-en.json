@@ -167,10 +167,11 @@
       },
       "Sort": {
         "Id": "ID",
+        "DateRegistered": "Date Registered",
         "IngredientEnergy": "Ingredient Strength",
-        "IngredientCount": "Ingredient Finding",
+        "IngredientCount": "Ingredient Count",
         "BerryEnergy": "Berry Strength",
-        "BerryCount": "Berry Finding",
+        "BerryCount": "Berry Count",
         "FriendshipPoint": "Friendship Points",
         "TotalEnergy": "Total Strength"
       }

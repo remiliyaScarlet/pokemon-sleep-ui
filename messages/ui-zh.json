@@ -167,6 +167,7 @@
       },
       "Sort": {
         "Id": "ID",
+        "DateRegistered": "登錄日期",
         "IngredientEnergy": "食材能量",
         "IngredientCount": "食材產量",
         "BerryEnergy": "樹果能量",

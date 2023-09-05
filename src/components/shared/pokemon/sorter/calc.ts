@@ -35,6 +35,7 @@ const sortInAsc: PokemonSortType[] = [
 
 const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
+  dateAdded: ({dateAdded}) => dateAdded ?? 0,
   ingredientEnergy: (opts) => toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy)),
   ingredientCount: (opts) => toSum(getIngredientProducingRates(opts).map(({quantity}) => quantity)),
   berryEnergy: (opts) => getBerryRateSorter('dailyEnergy', opts),

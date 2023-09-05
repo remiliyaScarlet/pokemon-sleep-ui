@@ -107,6 +107,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         },
         Sort: {
           Id: string,
+          DateRegistered: string,
           IngredientEnergy: string,
           IngredientCount: string,
           BerryEnergy: string,

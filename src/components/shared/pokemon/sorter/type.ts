@@ -9,6 +9,7 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 export const pokemonSortType = [
   'id',
+  'dateAdded',
   'berryEnergy',
   'berryCount',
   'ingredientEnergy',
@@ -20,10 +21,14 @@ export const pokemonSortType = [
 
 export type PokemonSortType = typeof pokemonSortType[number];
 
-export type PokemonInfoWithSortingPayload<TExtra> = ProducingRateSingleParams & {
+export type PokemonSortingRequiredData = {
   pokemon: PokemonInfo,
   level: number,
   ingredients: IngredientProduction[],
+  dateAdded: number | null,
+};
+
+export type PokemonInfoWithSortingPayload<TExtra> = PokemonSortingRequiredData & ProducingRateSingleParams & {
   extra: TExtra,
 };
 
@@ -32,10 +37,7 @@ export type SortedPokemonInfo<TExtra, TSource extends PokemonInfoWithSortingPayl
   source: TSource,
 };
 
-export type PokemonSorterGetterOpts = ProducingRateSingleParams & {
-  pokemon: PokemonInfo,
-  level: number,
-  ingredients: IngredientProduction[],
+export type PokemonSorterGetterOpts = PokemonSortingRequiredData & ProducingRateSingleParams & {
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
   snorlaxFavorite: SnorlaxFavorite,

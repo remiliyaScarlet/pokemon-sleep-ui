@@ -17,6 +17,7 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
 
   return {
     uuid: v4(),
+    dateAdded: Date.now(),
     pokemon: id,
     name: null,
     level: 1,

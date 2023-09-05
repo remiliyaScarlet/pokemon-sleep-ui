@@ -46,6 +46,7 @@ export const toPokeInBox = ({pokemon, name, level, setup}: ToPokeInBoxOpts): Pok
 
   return {
     uuid: v4(),
+    dateAdded: Date.now(),
     pokemon: id,
     name,
     level,

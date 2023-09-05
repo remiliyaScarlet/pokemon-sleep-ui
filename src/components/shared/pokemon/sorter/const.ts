@@ -6,6 +6,7 @@ export const sortTypeToI18nId: {
   [sortType in PokemonSortType]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex'>
 } = {
   id: 'Sort.Id',
+  dateAdded: 'Sort.DateRegistered',
   berryEnergy: 'Sort.BerryEnergy',
   berryCount: 'Sort.BerryCount',
   ingredientEnergy: 'Sort.IngredientEnergy',

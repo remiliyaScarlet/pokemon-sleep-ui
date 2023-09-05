@@ -167,6 +167,7 @@
       },
       "Sort": {
         "Id": "ID",
+        "DateRegistered": "登録日",
         "IngredientEnergy": "食材のエナジー",
         "IngredientCount": "食材の数",
         "BerryEnergy": "きのみのエナジー",

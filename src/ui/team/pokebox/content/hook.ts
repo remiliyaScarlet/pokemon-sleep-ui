@@ -42,11 +42,12 @@ export const useFilteredSortedPokebox = ({
           return null;
         }
 
-        const {level} = pokeInBox;
+        const {level, dateAdded} = pokeInBox;
 
         return {
           pokemon,
           level,
+          dateAdded,
           extra: pokeInBox,
           ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
           ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
