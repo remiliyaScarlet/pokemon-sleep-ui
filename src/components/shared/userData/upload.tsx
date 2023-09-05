@@ -2,6 +2,7 @@ import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex';
+import {ClickableIconButton} from '@/components/shared/common/button/clickable';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserDataUploadOpts} from '@/types/userData/upload';
@@ -15,17 +16,12 @@ export const UserDataUploadButton = ({opts}: Props) => {
   const {act, status} = useUserDataActor();
 
   return (
-    <button
-      className="enabled:button-clickable-bg disabled:button-disabled relative h-8 w-14"
+    <ClickableIconButton
       disabled={!act || status === 'processing'}
       onClick={() => act ? act({action: 'upload', options: opts}) : undefined}
     >
-      <Flex direction="col" center>
-        <div className="h-7 w-7">
-          {actionStatusIcon[status]}
-        </div>
-      </Flex>
-    </button>
+      {actionStatusIcon[status]}
+    </ClickableIconButton>
   );
 };
 
