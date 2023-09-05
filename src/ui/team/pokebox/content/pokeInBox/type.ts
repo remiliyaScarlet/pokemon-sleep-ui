@@ -33,4 +33,5 @@ export type PokeInBoxViewUnitProps = PokeboxCommonProps & PokeInBoxPopupProps & 
   pokeInBox: PokeInBox,
   pokedexMap: PokedexMap,
   onClick: () => void,
+  isLevelPreview: boolean,
 };
