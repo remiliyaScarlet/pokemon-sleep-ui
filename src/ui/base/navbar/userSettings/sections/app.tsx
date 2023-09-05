@@ -11,7 +11,7 @@ export const UserSettingsAppInfo = () => {
       <div className="h-4 w-4">
         <WrenchIcon/>
       </div>
-      <div>
+      <div className="truncate">
         {process.env.NEXT_PUBLIC_BUILD_ID}
       </div>
     </Flex>
