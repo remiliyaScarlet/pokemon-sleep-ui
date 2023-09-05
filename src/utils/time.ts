@@ -10,6 +10,10 @@ export const toTimeString = (seconds: number): string => {
 };
 
 export const toSeconds = (time: string): number => {
+  if (!time) {
+    return 0;
+  }
+
   const [h, m] = time.split(':');
 
   return (+h) * 3600 + (+m) * 60;
