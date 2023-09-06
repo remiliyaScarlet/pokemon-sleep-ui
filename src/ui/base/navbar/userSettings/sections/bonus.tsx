@@ -40,6 +40,7 @@ export const UserSettingsBonusUI = ({mapIds, bonus, setBonus, currentMap, setCur
             setValue={(value) => setBonus({
               ...bonus,
               map: {
+                ...bonus.map,
                 [mapId]: value,
               },
             })}
