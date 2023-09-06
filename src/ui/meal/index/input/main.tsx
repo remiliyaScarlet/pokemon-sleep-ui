@@ -6,6 +6,7 @@ import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
+import {MealLevelSlider} from '@/components/shared/meal/levelSlider';
 import {UserDataUploadControlRow} from '@/components/shared/userData/upload';
 import {Meal} from '@/types/game/meal';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
@@ -28,6 +29,11 @@ export const MealInput = (props: Props) => {
           setFilter,
           filterKey: 'mealType',
         })}
+      />
+      <MealLevelSlider
+        level={filter.mealLevel}
+        maxLevel={Math.max(...data.map((meal) => Math.max(...meal.levels.map(({lv}) => lv))))}
+        setLevel={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
       />
       <PotCapacityInput
         {...getSingleSelectOnClickProps({

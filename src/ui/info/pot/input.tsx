@@ -18,16 +18,18 @@ import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
+import {MealLevelSlider} from '@/components/shared/meal/levelSlider';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {MealTypeId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
 type Props = FilterInputProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'ingredients'> & {
+  maxMealLevel: number,
   mealTypes: MealTypeId[],
 };
 
-export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props) => {
+export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, ingredients}: Props) => {
   const {showEmpty} = filter;
 
   return (
@@ -39,6 +41,11 @@ export const PotInfoInput = ({filter, setFilter, mealTypes, ingredients}: Props)
           setFilter,
           filterKey: 'mealType',
         })}
+      />
+      <MealLevelSlider
+        level={filter.mealLevel}
+        maxLevel={maxMealLevel}
+        setLevel={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
       />
       <IngredientInput
         ingredientIds={Object.keys(ingredients).map((id) => Number(id))}

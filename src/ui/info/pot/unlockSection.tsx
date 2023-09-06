@@ -24,7 +24,7 @@ type Props = {
 };
 
 export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, unlockedRecipes}: Props) => {
-  const {capacity, displayType} = filter;
+  const {mealLevel, capacity, displayType} = filter;
 
   const t = useTranslations('UI.InPage.Info.Pot');
 
@@ -64,7 +64,9 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
           'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
           '2xl:grid-cols-7',
         )}>
-          {meals.map((meal) => <MealLink key={meal.id} meal={meal} small displayType={displayType}/>)}
+          {meals.map((meal) => (
+            <MealLink key={meal.id} meal={meal} mealLevel={mealLevel} displayType={displayType}/>
+          ))}
         </Grid> :
         <Grid>
           <div className="m-auto h-10 w-10">

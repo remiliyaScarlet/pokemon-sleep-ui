@@ -3,7 +3,7 @@ import {Meal} from '@/types/game/meal';
 
 export type MealLinkProps = {
   meal: Meal,
-  small?: boolean,
+  mealLevel: number,
   displayType?: MealLinkDisplayType,
 };
 

@@ -13,7 +13,7 @@ import {imageIconSizes} from '@/styles/image';
 
 
 export const MealLink = (props: MealLinkProps) => {
-  const {meal, small} = props;
+  const {meal} = props;
   const {id, type} = meal;
 
   const t = useTranslations('Game.Food');
@@ -22,15 +22,14 @@ export const MealLink = (props: MealLinkProps) => {
 
   return (
     <Link href={`/meal/${id}`} className={clsx(
-      'relative flex w-full flex-col items-end rounded-lg',
-      small ? 'h-16' : 'h-20',
+      'relative flex h-20 w-full flex-col items-end rounded-lg',
       mealTypeBackgroundStyle[type],
     )}>
-      <div className={clsx('relative opacity-40', small ? 'h-16 w-16' : 'h-20 w-20')}>
+      <div className="relative h-20 w-20 opacity-40">
         <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
       </div>
       <Flex direction="col" className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
-        <div className={clsx('text-shadow-preset truncate text-left', small && 'text-sm')}>
+        <div className="text-shadow-preset truncate text-left">
           {mealName}
         </div>
         <Flex direction="col" noFullWidth>

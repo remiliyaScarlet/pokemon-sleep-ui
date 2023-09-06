@@ -58,7 +58,7 @@ export const MealIndexClient = ({data, session}: Props) => {
           })
           .map(({meal}) => (
             <div key={meal.id} className={clsx(!isIncluded[meal.id] && 'hidden')}>
-              <MealLink meal={meal} displayType={filter.displayType}/>
+              <MealLink meal={meal} mealLevel={filter.mealLevel} displayType={filter.displayType}/>
             </div>
           ))}
       </Grid>

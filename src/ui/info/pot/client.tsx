@@ -16,9 +16,17 @@ export const PotInfoClient = (props: PotInfoCommonProps) => {
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
+  const maxMealLevel = Math.max(...validMeals.map(({levels}) => Math.max(...levels.map(({lv}) => lv))));
+
   return (
     <>
-      <PotInfoInput filter={filter} setFilter={setFilter} mealTypes={mealTypes} ingredients={ingredients}/>
+      <PotInfoInput
+        filter={filter}
+        setFilter={setFilter}
+        maxMealLevel={maxMealLevel}
+        mealTypes={mealTypes}
+        ingredients={ingredients}
+      />
       <AdsUnit/>
       <PotRecipeUnlockTable filter={filter} meals={validMeals}/>
       <AdsUnit/>

@@ -17,6 +17,7 @@ export const useFilteredMeals = ({data, initialPotCapacity, initialMealType}: Us
     dataToId: ({id}) => id,
     initialFilter: {
       mealType: initialMealType ? {[initialMealType]: true} : {},
+      mealLevel: 1,
       ingredient: {},
       potCapacity: initialPotCapacity ?? null,
       displayType: 'ingredient',

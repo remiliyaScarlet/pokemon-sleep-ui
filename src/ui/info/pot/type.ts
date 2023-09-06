@@ -15,6 +15,7 @@ export type PotInfoCommonProps = {
 
 export type PotInfoFilter = {
   mealType: FilterInclusionMap<MealTypeId>,
+  mealLevel: number,
   ingredients: FilterInclusionMap<IngredientId>,
   displayType: MealLinkDisplayType,
   capacity: number | null,

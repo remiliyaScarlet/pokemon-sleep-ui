@@ -6,6 +6,7 @@ import {MealTypeId} from '@/types/game/meal';
 
 export type MealFilter = {
   mealType: FilterInclusionMap<MealTypeId>,
+  mealLevel: number,
   ingredient: FilterInclusionMap<IngredientId>,
   potCapacity: number | null,
   displayType: MealLinkDisplayType,
