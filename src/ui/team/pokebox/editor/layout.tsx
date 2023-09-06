@@ -149,7 +149,7 @@ export const PokeInBoxEditLayout = ({
           </div>
         </button>
         <button
-          className="transform-smooth ml-auto rounded-full bg-red-500/40 p-1 hover:bg-red-500"
+          className="transform-smooth button-alert-bg ml-auto rounded-full p-1"
           onClick={() => onRemovePokeInBox(uuid)}
         >
           <div className="h-5 w-5">
