@@ -34,3 +34,24 @@ export const getCurrentTeam = ({setup, overrideSlot, overrideMember}: GetCurrent
   };
 };
 
+export const getDefaultTeamName = (teamUuid: string): string => {
+  return teamUuid.substring(0, 8);
+};
+
+export const getTeamName = (team: TeamAnalysisSingleTeam): string => {
+  return team.name || getDefaultTeamName(team.uuid);
+};
+
+export const generateEmptyTeam = (uuid: string): TeamAnalysisSingleTeam => {
+  return {
+    uuid,
+    name: getDefaultTeamName(uuid),
+    members: {
+      A: null,
+      B: null,
+      C: null,
+      D: null,
+      E: null,
+    },
+  };
+};

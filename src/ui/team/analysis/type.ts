@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
@@ -46,10 +48,16 @@ export type TeamAnalysisMember = {
 
 export type TeamAnalysisSingleTeam = {
   uuid: string,
+  name: string,
   members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };
 
 export type TeamAnalysisSetup = Migratable & {
   current: string,
   teams: {[uuid in string]: TeamAnalysisSingleTeam},
+};
+
+export type TeamAnalysisSetupModifyingProps = {
+  setup: TeamAnalysisSetup,
+  setSetup: React.Dispatch<React.SetStateAction<TeamAnalysisSetup>>,
 };

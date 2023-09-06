@@ -2,6 +2,7 @@ import {v4} from 'uuid';
 
 import {Migrator} from '@/types/migrate';
 import {TeamAnalysisMember, TeamAnalysisSetup, teamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {getDefaultTeamName} from '@/ui/team/analysis/utils';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 import {TeamAnalysisMigrateParams} from '@/utils/migrate/teamAnalysisSetup/type';
 
@@ -64,6 +65,7 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
         teams: {
           [uuid]: {
             uuid,
+            name: getDefaultTeamName(uuid),
             // @ts-ignore
             members: old.team,
           },

@@ -23,6 +23,7 @@ type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon'
 export const TeamAnalysisSetupView = (props: Props) => {
   const {
     setup,
+    setSetup,
     snorlaxRankData,
     snorlaxFavorite,
     preloadedSettings,
@@ -49,7 +50,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
           bonus={bonus}
           {...props}
         />
-        <TeamAnalysisSetupControl setup={setup} snorlaxFavorite={snorlaxFavorite}/>
+        <TeamAnalysisSetupControl setup={setup} setSetup={setSetup} snorlaxFavorite={snorlaxFavorite}/>
         <AdsUnit/>
         <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped} period="weekly"/>
         <TeamAnalysisSummary
