@@ -66,10 +66,10 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
   };
 
   const onRemove = (level: PokemonSubSkillLevel) => {
-    setSubSkill({
-      ...subSkill,
-      [level]: undefined,
-    } satisfies PokemonSubSkill);
+    const updated = {...subSkill};
+    delete updated[level];
+
+    setSubSkill(updated);
   };
 
   return (

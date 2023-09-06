@@ -6,7 +6,6 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/setup/pokemon/main';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
-import {cloneMerge} from '@/utils/object';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps;
@@ -23,18 +22,23 @@ export const TeamAnalysisFilledSlot = (props: Props) => {
   const t2 = useTranslations('Game.PokemonName');
 
   const setTeamMember = React.useCallback((slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => {
-    setSetup((original) => cloneMerge(
-      original,
-      {
-        teams: {
-          [original.current]: {
-            members: {
-              [slotName]: update,
+    // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
+    setSetup((original) => ({
+      ...original,
+      teams: {
+        ...original.teams,
+        [original.current]: {
+          ...original.teams[original.current],
+          members: {
+            ...original.teams[original.current].members,
+            [slotName]: {
+              ...original.teams[original.current].members[slotName],
+              ...update,
             },
           },
         },
       },
-    ));
+    }));
   }, [setSetup]);
 
   return (
