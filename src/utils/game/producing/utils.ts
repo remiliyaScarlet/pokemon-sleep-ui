@@ -17,6 +17,7 @@ export const applyBonus = <T extends ProducingRate | null>({bonus, data, isIngre
 
   return {
     ...data,
+    quantity: data.quantity * stamina,
     dailyEnergy: (
       data.dailyEnergy *
       (1 + (isIngredient ? (ingredient / 100) : 0)) *
