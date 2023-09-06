@@ -125,12 +125,14 @@
         "Title": "副技能"
       }
     },
-    "Incense": {
-      "Index": {
-        "Title": "薰香"
-      },
-      "Page": {
-        "Title": "{name} - 薰香"
+    "Item": {
+      "Incense": {
+        "Index": {
+          "Title": "薰香"
+        },
+        "Page": {
+          "Title": "{name} - 薰香"
+        }
       }
     },
     "About": {

@@ -125,12 +125,14 @@
         "Title": "Sub Skill"
       }
     },
-    "Incense": {
-      "Index": {
-        "Title": "Incense"
-      },
-      "Page": {
-        "Title": "{name} - Incense"
+    "Item": {
+      "Incense": {
+        "Index": {
+          "Title": "Incense"
+        },
+        "Page": {
+          "Title": "{name} - Incense"
+        }
       }
     },
     "About": {

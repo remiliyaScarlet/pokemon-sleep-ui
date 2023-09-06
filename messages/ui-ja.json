@@ -125,12 +125,14 @@
         "Title": "サブスキル"
       }
     },
-    "Incense": {
-      "Index": {
-        "Title": "おこう"
-      },
-      "Page": {
-        "Title": "{name} - おこう"
+    "Item": {
+      "Incense": {
+        "Index": {
+          "Title": "おこう"
+        },
+        "Page": {
+          "Title": "{name} - おこう"
+        }
       }
     },
     "About": {

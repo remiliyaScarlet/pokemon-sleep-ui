@@ -125,12 +125,14 @@
         "Title": "Nebentalent"
       }
     },
-    "Incense": {
-      "Index": {
-        "Title": "Rauch"
-      },
-      "Page": {
-        "Title": "{name} - Rauch"
+    "Item": {
+      "Incense": {
+        "Index": {
+          "Title": "Rauch"
+        },
+        "Page": {
+          "Title": "{name} - Rauch"
+        }
       }
     },
     "About": {

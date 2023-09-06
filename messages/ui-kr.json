@@ -125,12 +125,14 @@
         "Title": "서브 스킬"
       }
     },
-    "Incense": {
-      "Index": {
-        "Title": "향로"
-      },
-      "Page": {
-        "Title": "{name} - 향로"
+    "Item": {
+      "Incense": {
+        "Index": {
+          "Title": "향로"
+        },
+        "Page": {
+          "Title": "{name} - 향로"
+        }
       }
     },
     "About": {
