@@ -54,7 +54,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     .filter(({pokemon}, idx) => pokemonIdsInRates.indexOf(pokemon.id) == idx)
     .map(({pokemon, rate}) => ({pokemon, rate: rate.berry}));
 
-  const ingredientRates: {[ingredientId in IngredientId]: ProducingRateOfIngredientsOnPokemon[]} = {};
+  const ingredientRates: {[ingredientId in IngredientId]?: ProducingRateOfIngredientsOnPokemon[]} = {};
   for (const {pokemon, productions, rate} of rateOfAllPokemon) {
     const ratesOfIngredients = Object.values(rate.ingredient);
 
@@ -63,7 +63,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
         ingredientRates[rateOfIngredient.id] = [];
       }
 
-      ingredientRates[rateOfIngredient.id].push({
+      ingredientRates[rateOfIngredient.id]?.push({
         pokemon,
         productions,
         productionsGrouped: groupIngredientProductions(productions),
@@ -83,11 +83,11 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       samples: berryRates,
     }),
     ingredient: {
-      // Using `currentIngredientRates` for getting the ingredient IDs so it won't be duplicated
+      // Using `currentIngredientRates` for getting the ingredient IDs, so it won't be duplicated
       individual: currentIngredientRates.map(({id}) => toAnalysisIngredientProducingRate({
         itemId: id,
         pokemon,
-        samples: ingredientRates[id],
+        samples: ingredientRates[id] ?? [],
         currentRate: currentIngredientRates,
         currentIngredients: ingredients,
       })),

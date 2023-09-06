@@ -56,24 +56,26 @@ export const AnalysisStatsOfPokemonMeta = ({pokemon, stats, level}: AnalysisStat
       </AnalysisStatsGroupedUI>
       {getEffectiveIngredientLevels(level).map((ingredientLevel) => (
         stats.pokemon.ingredient[ingredientLevel].map((stats, idx) => (
-          <AnalysisStatsGroupedUI
-            key={`Ingredient-${ingredientLevel}-${idx}`}
-            stats={stats}
-            threshold={{superRare: 9, rare: 7, ordinary: 3.5}}
-            title={
-              <Flex direction="row" center className="gap-1">
-                <PokemonFilterTitle type={ingredientLevelToPokemonInput[ingredientLevel]} lvAsText/>
-                <div>#{idx + 1}</div>
-              </Flex>
-            }
-          >
-            {/* All linked got the same ingredient ID, so `stats.linked[0]` is OK here */}
-            <PokemonIngredientIcon
-              key={`${ingredientLevel}-${stats.linked[0].data.id}`}
-              dimension="h-12 w-12"
-              id={stats.linked[0].data.id}
-            />
-          </AnalysisStatsGroupedUI>
+          stats.linked.length ?
+            <AnalysisStatsGroupedUI
+              key={`Ingredient-${ingredientLevel}-${idx}`}
+              stats={stats}
+              threshold={{superRare: 9, rare: 7, ordinary: 3.5}}
+              title={
+                <Flex direction="row" center className="gap-1">
+                  <PokemonFilterTitle type={ingredientLevelToPokemonInput[ingredientLevel]} lvAsText/>
+                  <div>#{idx + 1}</div>
+                </Flex>
+              }
+            >
+              {/* All linked got the same ingredient ID, so `stats.linked[0]` is OK here */}
+              <PokemonIngredientIcon
+                key={`${ingredientLevel}-${stats.linked[0].data.id}`}
+                dimension="h-12 w-12"
+                id={stats.linked[0].data.id}
+              />
+            </AnalysisStatsGroupedUI> :
+            <React.Fragment key={`Ingredient-${ingredientLevel}-${idx}`}/>
         ))
       ))}
       <AnalysisStatsGroupedUI stats={stats.pokemon.berry} title={<PokemonFilterTitle type="berry"/>}>

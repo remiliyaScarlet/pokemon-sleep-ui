@@ -36,7 +36,8 @@ export const useAnalysisFilter = ({data, currentPokemon, ...filterData}: UseAnal
         return false;
       }
 
-      return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
+      // `filterData` has name conflict of `pokemon`, so it has to be the first in the spread
+      return isPokemonIncludedFromFilter({...filterData, filter, pokemon: data.info});
     },
   });
 };
