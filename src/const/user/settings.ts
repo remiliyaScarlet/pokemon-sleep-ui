@@ -6,7 +6,7 @@ import {UserSettings} from '@/types/userData/settings';
 export const defaultMapBonus = 0;
 
 export const defaultUserBonus: UserBonus = {
-  overall: 125,
+  overall: 0,
   map: {},
   ingredient: 20,
 };
