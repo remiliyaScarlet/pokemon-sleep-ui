@@ -21,7 +21,8 @@ export const getCurrentTeam = ({setup, overrideSlot, overrideMember}: GetCurrent
 
   const currentTeam = teams[current];
 
-  if (!overrideMember) {
+  // Should not check `overrideMember` because it can be `null`, which is falsy
+  if (!overrideSlot) {
     return currentTeam;
   }
 
