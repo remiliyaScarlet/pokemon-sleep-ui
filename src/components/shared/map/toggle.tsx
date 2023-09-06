@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -29,7 +30,8 @@ export const MapToggle = ({mapId, isActive, onClick, className}: Props) => {
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
       />
-      <Flex direction="col" center className="absolute left-0 top-0 z-10 h-full">
+      <Flex direction="row" center className="absolute left-0 top-0 z-10 h-full gap-1">
+        {isActive && <div className="h-6 w-6"><CheckCircleIcon/></div>}
         {mapName}
       </Flex>
     </button>
