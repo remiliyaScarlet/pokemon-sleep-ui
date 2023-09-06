@@ -7,21 +7,23 @@ import {getLayoutClassNames} from '@/components/layout/util';
 
 
 type Props = LayoutProps & {
+  onClick: () => void,
   direction?: 'row' | 'col',
   wrap?: boolean,
-  onClick: () => void,
+  disabled?: boolean,
 };
 
 export const FlexButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<Props>>(({
+  onClick,
   direction = 'row',
   wrap,
+  disabled,
   children,
   noFullWidth = true,
-  onClick,
   ...props
 }, ref) => {
   return (
-    <button ref={ref} onClick={onClick} className={clsx(
+    <button ref={ref} onClick={onClick} disabled={disabled} className={clsx(
       'flex',
       direction === 'row' ? 'flex-row' : 'flex-col',
       wrap && 'flex-wrap',
