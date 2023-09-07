@@ -49,7 +49,11 @@ export const PokeboxLoadedClient = (props: Props) => {
   return (
     <Flex direction="col" className="gap-1.5">
       <PokeInBoxEditPopup
-        pokebox={Object.fromEntries(filteredSortedPokebox.map(({source}) => [source.extra.uuid, source.extra]))}
+        pokebox={Object.fromEntries(
+          // Using `source.extra.uuid` to get the original poke-in-box
+          // so the content opened in the edit popup won't have preview level, if active
+          filteredSortedPokebox.map(({source}) => [source.extra.uuid, pokebox[source.extra.uuid]]),
+        )}
         onUpdateCompleted={(updated) => {
           if (act) {
             act({action: 'upload', options: {type: 'pokebox.upsert', data: updated}});
