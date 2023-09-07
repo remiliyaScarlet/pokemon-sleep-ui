@@ -118,6 +118,7 @@ const addPokemonInfoIndex = async () => {
     collection.createIndex({id: 1}, {unique: true}),
     collection.createIndex({'berry.id': 1}),
     collection.createIndex({skill: 1}),
+    collection.createIndex({'evolution.next.conditions.type': 1, 'evolution.next.conditions.item': 1}, {sparse: true}),
   ]);
 };
 
