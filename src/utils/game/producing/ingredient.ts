@@ -41,12 +41,15 @@ export const getIngredientProducingRate = ({
     natureId,
   });
 
+  const frequency = baseFrequency / getProbabilitySplit({type: 'ingredient', natureId, subSkillBonus});
+
   return applyBonus({
     bonus,
     data: {
       id: ingredient.id,
+      frequency,
       ...getProducingRateBase({
-        frequency: baseFrequency / getProbabilitySplit({type: 'ingredient', natureId, subSkillBonus}),
+        frequency,
         count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
         picks: picks ?? 1,
         energyPerCount: ingredient.energy,

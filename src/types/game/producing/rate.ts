@@ -18,6 +18,7 @@ export type ProducingRateProportion = {
 
 export type ProducingRateOfItem<TId extends Indexable = number> = ProducingRate & {
   id: TId,
+  frequency: number,
 };
 
 export type ProducingRateSingleParams = {

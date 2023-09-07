@@ -34,13 +34,15 @@ export const getBerryProducingRate = ({
   });
 
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
+  const frequency = baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus});
 
   return applyBonus({
     bonus,
     data: {
       id: pokemon.berry.id,
+      frequency,
       ...getProducingRateBase({
-        frequency: baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus}),
+        frequency,
         // Specialty handling is already included in `pokemon.berry.quantity`
         count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
         picks: 1,

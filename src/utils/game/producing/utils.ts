@@ -1,14 +1,18 @@
 import {EffectiveBonus} from '@/types/game/bonus';
-import {ProducingRate} from '@/types/game/producing/rate';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
 
 
-type ApplyBonusOpts<T extends ProducingRate | null> = {
+type ApplyBonusOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
   data: T,
   isIngredient: boolean,
 };
 
-export const applyBonus = <T extends ProducingRate | null>({bonus, data, isIngredient}: ApplyBonusOpts<T>): T => {
+export const applyBonus = <T extends ProducingRateOfItem | null>({
+  bonus,
+  data,
+  isIngredient,
+}: ApplyBonusOpts<T>): T => {
   if (!data) {
     return data;
   }
