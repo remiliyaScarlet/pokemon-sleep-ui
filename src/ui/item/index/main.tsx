@@ -25,7 +25,7 @@ export const ItemIndex = ({params}: DefaultPageProps) => {
             <FeatureLinkImage
               href="/item/evolution"
               imageSrc="/images/generic/flash.png"
-              text={t('Evolution.Index.Title')}
+              text={t('Evolution.Title')}
             />
             <FeatureLinkImage
               href="/item/incense"
