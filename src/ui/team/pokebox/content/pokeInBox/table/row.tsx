@@ -144,9 +144,33 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
             <PokemonDataIcon src="/images/generic/bag.png" alt={t2('Stats.MaxCarry')} invert/>
             <div>{pokeInBox.carryLimit}</div>
           </Flex>
-          <Flex direction="row" center noFullWidth className="w-20 gap-0.5">
-            <PokemonDataIcon src="/images/generic/clock.png" alt={t2('Stats.Frequency')} invert/>
-            <div>{pokemon.stats.frequency}</div>
+          <Flex direction="row" center noFullWidth className="w-32 text-sm">
+            <PokemonDataIcon
+              src="/images/generic/clock.png"
+              alt={t2('Stats.Frequency')}
+              invert
+              dimension="h-8 w-8"
+            />
+            <Flex direction="col" noFullWidth>
+              <Flex direction="row" center noFullWidth className="gap-0.5">
+                <PokemonDataIcon
+                  src="/images/generic/berry.png"
+                  alt={t2('Info.Berry')}
+                  invert
+                  dimension="h-4 w-4"
+                />
+                <div>{formatFloat(rateOfBerry.frequency)}</div>
+              </Flex>
+              <Flex direction="row" center noFullWidth className="gap-0.5">
+                <PokemonDataIcon
+                  src="/images/generic/ingredient.png"
+                  alt={t2('Info.Ingredient')}
+                  invert
+                  dimension="h-4 w-4"
+                />
+                <div>{formatFloat(rateOfIngredients.at(0)?.frequency ?? 0)}</div>
+              </Flex>
+            </Flex>
           </Flex>
           {/* Skills */}
           <Flex direction="row" center noFullWidth className="w-56">
