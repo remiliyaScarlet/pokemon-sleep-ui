@@ -13,6 +13,7 @@ import {
   PokemonIngredientProduction,
 } from '@/types/game/pokemon';
 import {IngredientLevel, ingredientLevels} from '@/types/game/pokemon/ingredient';
+import {EvolutionItemMap} from '@/types/game/pokemon/item';
 import {MainSkillId} from '@/types/game/pokemon/mainSkill';
 import {isNotNullish} from '@/utils/type';
 
@@ -109,6 +110,29 @@ export const getPokemonByBerry = async (berryId: BerryId) => {
 
 export const getPokemonByMainSkill = async (skill: MainSkillId) => {
   return getDataAsArray(getCollection(), {skill});
+};
+
+export const getEvolutionItemMap = async (): Promise<EvolutionItemMap> => {
+  const ret: EvolutionItemMap = {};
+
+  for await (const pokemon of (await getCollection()).find({'evolution.next.conditions.type': 'item'})) {
+    for (const {conditions} of pokemon.evolution.next) {
+      for (const condition of conditions) {
+        if (condition.type !== 'item') {
+          continue;
+        }
+
+        const {item} = condition;
+        if (!(item in ret)) {
+          ret[item] = [];
+        }
+
+        ret[item].push(pokemon);
+      }
+    }
+  }
+
+  return ret;
 };
 
 const addPokemonInfoIndex = async () => {

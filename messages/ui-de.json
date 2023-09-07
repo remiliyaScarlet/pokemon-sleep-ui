@@ -126,6 +126,12 @@
       }
     },
     "Item": {
+      "Index": {
+        "Title": "Artikel"
+      },
+      "Evolution": {
+        "Title": "Evolutionsgegenstand"
+      },
       "Incense": {
         "Index": {
           "Title": "Rauch"

@@ -126,6 +126,12 @@
       }
     },
     "Item": {
+      "Index": {
+        "Title": "아이템"
+      },
+      "Evolution": {
+        "Title": "진화 아이템"
+      },
       "Incense": {
         "Index": {
           "Title": "향로"

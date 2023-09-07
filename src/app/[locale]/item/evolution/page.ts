@@ -1,7 +1,7 @@
-import {EvolutionItemIndex} from '@/ui/item/evolution/index/main';
+import {EvolutionItems} from '@/ui/item/evolution/main';
 import {generatePageMeta} from '@/utils/meta';
 
 
-export const generateMetadata = generatePageMeta({key: 'Item.Evolution.Index.Title'});
+export const generateMetadata = generatePageMeta({key: 'Item.Evolution.Title'});
 
-export default EvolutionItemIndex;
+export default EvolutionItems;

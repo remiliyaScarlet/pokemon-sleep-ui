@@ -126,6 +126,12 @@
       }
     },
     "Item": {
+      "Index": {
+        "Title": "Items"
+      },
+      "Evolution": {
+        "Title": "Evolution Item"
+      },
       "Incense": {
         "Index": {
           "Title": "Incense"

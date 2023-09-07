@@ -126,6 +126,12 @@
       }
     },
     "Item": {
+      "Index": {
+        "Title": "アイテム"
+      },
+      "Evolution": {
+        "Title": "進化アイテム"
+      },
       "Incense": {
         "Index": {
           "Title": "おこう"

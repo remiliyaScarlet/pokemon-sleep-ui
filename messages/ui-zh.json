@@ -126,6 +126,12 @@
       }
     },
     "Item": {
+      "Index": {
+        "Title": "道具"
+      },
+      "Evolution": {
+        "Title": "進化道具"
+      },
       "Incense": {
         "Index": {
           "Title": "薰香"

@@ -75,9 +75,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         SubSkill: I18nMetadata,
       },
       Item: {
-        // TODO: I18n
         Index: I18nMetadata,
-        Evolution: PageWithIndividual,
+        Evolution: I18nMetadata,
         Incense: PageWithIndividual,
       },
       About: I18nMetadata,
