@@ -18,7 +18,7 @@ export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts
     start: newLogs[0].stamina.after,
     duration: secondary.adjustedTiming.start,
   });
-  const wakeupStamina = Math.min(sleepStamina + secondary.recovery, 100);
+  const wakeupStamina = sleepStamina + secondary.recovery;
 
   newLogs.push(
     {

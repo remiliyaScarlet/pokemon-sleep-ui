@@ -36,10 +36,10 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs[1].stamina.before).toBe(85);
     expect(logs[2].type).toBe('wakeup');
     expect(logs[2].timing).toBe(30600);
-    expect(logs[2].stamina.after).toBe(100);
+    expect(logs[2].stamina.after).toBe(103);
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(63000);
-    expect(logs[3].stamina.before).toBe(46);
+    expect(logs[3].stamina.before).toBe(49);
     expect(logs.length).toBe(4);
   });
 
