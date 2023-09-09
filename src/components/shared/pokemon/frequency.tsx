@@ -10,11 +10,13 @@ import {formatFloat, formatInt} from '@/utils/number';
 type Props = {
   berryFrequency: number,
   ingredientFrequency: number,
+  singleLine?: boolean,
 };
 
 export const PokemonFrequency = ({
   berryFrequency,
   ingredientFrequency,
+  singleLine,
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
@@ -27,9 +29,9 @@ export const PokemonFrequency = ({
         src="/images/generic/clock.png"
         alt={t('Stats.Frequency')}
         invert
-        dimension="h-8 w-8"
+        dimension={singleLine ? 'h-4 w-4' : 'h-8 w-8'}
       />
-      <Flex direction="col" noFullWidth>
+      <Flex direction={singleLine ? 'row' : 'col'} noFullWidth className="gap-0.5">
         <Flex direction="row" center noFullWidth className="gap-0.5">
           <PokemonDataIcon
             src="/images/generic/berry.png"
