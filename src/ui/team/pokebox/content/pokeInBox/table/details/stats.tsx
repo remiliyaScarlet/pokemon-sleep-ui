@@ -23,7 +23,7 @@ export const PokeInBoxStatsInTable = (props: PokeInBoxTableDetailsProps) => {
         <PokemonDataIcon src="/images/generic/bag.png" alt={t('Stats.MaxCarry')} invert/>
         <div>{pokeInBox.carryLimit}</div>
       </Flex>
-      <Flex direction="col" center noFullWidth className="w-32">
+      <Flex direction="col" center noFullWidth className="w-40">
         <PokemonFrequency
           berryFrequency={rateOfBerry.frequency}
           ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? 0}

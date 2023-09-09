@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {formatFloat} from '@/utils/number';
+import {formatFloat, formatInt} from '@/utils/number';
 
 
 type Props = {
@@ -17,6 +17,9 @@ export const PokemonFrequency = ({
   ingredientFrequency,
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
+
+  const berryDailyCount = 86400 / berryFrequency;
+  const ingredientDailyCount = 86400 / ingredientFrequency;
 
   return (
     <Flex direction="row" center noFullWidth className="text-sm">
@@ -34,7 +37,8 @@ export const PokemonFrequency = ({
             invert
             dimension="h-4 w-4"
           />
-          <div>{formatFloat(berryFrequency)}</div>
+          <div>{formatInt(berryFrequency)}</div>
+          <div>({formatFloat(berryDailyCount)}x)</div>
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-0.5">
           <PokemonDataIcon
@@ -43,7 +47,8 @@ export const PokemonFrequency = ({
             invert
             dimension="h-4 w-4"
           />
-          <div>{formatFloat(ingredientFrequency)}</div>
+          <div>{formatInt(ingredientFrequency)}</div>
+          <div>({formatFloat(ingredientDailyCount)}x)</div>
         </Flex>
       </Flex>
     </Flex>
