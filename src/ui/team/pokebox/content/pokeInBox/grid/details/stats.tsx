@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency/all';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
@@ -25,7 +25,7 @@ export const PokeInBoxStats = (props: PokeInBoxCommonProps) => {
       </Flex>
       <PokemonFrequency
         berryFrequency={rateOfBerry.frequency}
-        ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? 0}
+        ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? NaN}
       />
     </Flex>
   );

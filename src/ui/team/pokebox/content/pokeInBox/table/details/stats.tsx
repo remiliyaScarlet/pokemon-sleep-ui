@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency/all';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
@@ -26,7 +26,7 @@ export const PokeInBoxStatsInTable = (props: PokeInBoxTableDetailsProps) => {
       <Flex direction="col" center noFullWidth className="w-40">
         <PokemonFrequency
           berryFrequency={rateOfBerry.frequency}
-          ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? 0}
+          ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? NaN}
         />
       </Flex>
     </>

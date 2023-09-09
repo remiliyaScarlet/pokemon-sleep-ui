@@ -10,7 +10,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency/all';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
@@ -155,7 +155,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
         />
         <PokemonFrequency
           berryFrequency={stats.berry.frequency}
-          ingredientFrequency={stats.ingredient.at(0)?.frequency ?? 0}
+          ingredientFrequency={stats.ingredient.at(0)?.frequency ?? NaN}
         />
         <HorizontalSplitter className="w-full"/>
         <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>

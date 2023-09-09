@@ -37,7 +37,7 @@ export const getIngredientProducingRates = ({
 
   return Object.entries(grouped).map(([id, rates]): ProducingRateOfItem => ({
     id: parseInt(id),
-    frequency: rates.at(0)?.frequency ?? 0,
+    frequency: rates.at(0)?.frequency ?? NaN,
     quantity: toSum(rates.map(({quantity}) => quantity)),
     dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
   }));
