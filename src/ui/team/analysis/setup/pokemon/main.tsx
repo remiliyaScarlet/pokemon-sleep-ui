@@ -10,7 +10,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/all';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';

@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/all';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
