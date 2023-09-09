@@ -8,6 +8,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SleepStyleData} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {Migratable} from '@/types/migrate';
 import {UserSettings} from '@/types/userData/settings';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
@@ -24,7 +25,7 @@ export type PokedexDisplay = {
   sort: PokemonSortType,
 };
 
-export type PokedexFilter = PokemonInputFilterExtended & PokedexDisplay & {
+export type PokedexFilter = Migratable & PokemonInputFilterExtended & PokedexDisplay & {
   name: string,
 };
 

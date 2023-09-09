@@ -1,9 +1,9 @@
-import merge from 'lodash/merge';
-
 import {generatePokemonInputFilterExtended} from '@/components/shared/pokemon/input/utils';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 import {PokedexDisplay, PokedexFilter} from '@/ui/pokedex/index/type';
+import {migrate} from '@/utils/migrate/main';
+import {pokedexMigrators} from '@/utils/migrate/pokedex/migrators';
 
 
 const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
@@ -29,12 +29,18 @@ export const toCalculateAllIngredientPossibilities = ({display, sort}: PokedexFi
 };
 
 export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> | undefined): PokedexFilter => {
-  return {
-    name: '',
-    ...generatePokemonInputFilterExtended(),
-    ...merge({
-      display: 'mainSkill',
+  return migrate({
+    original: {
+      name: '',
       sort: 'id',
-    }, preloadedDisplay),
-  };
+      display: 'mainSkill',
+      ...generatePokemonInputFilterExtended(),
+      version: 1,
+    },
+    override: preloadedDisplay ?? null,
+    migrators: pokedexMigrators,
+    migrateParams: {},
+  })
+
+  ;
 };
