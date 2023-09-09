@@ -13,5 +13,6 @@ export const sortTypeToI18nId: {
   ingredientCount: 'Sort.IngredientCount',
   totalEnergy: 'Sort.TotalEnergy',
   friendshipPoint: 'Sort.FriendshipPoint',
-  frequency: 'Stats.Frequency',
+  frequencyOfBerry: 'Sort.FrequencyOfBerry',
+  frequencyOfIngredient: 'Sort.FrequencyOfIngredient',
 };

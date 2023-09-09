@@ -6,14 +6,14 @@ import {
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/game/berry';
-import {ProducingRate} from '@/types/game/producing/rate';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 
 
 const getBerryRateSorter = (
-  key: keyof ProducingRate,
+  key: keyof ProducingRateOfItem,
   {berryData, snorlaxFavorite, ...opts}: PokemonSorterGetterOpts,
 ) => {
   if (!berryData) {
@@ -29,7 +29,8 @@ const getBerryRateSorter = (
 
 const sortInAsc: PokemonSortType[] = [
   'id',
-  'frequency',
+  'frequencyOfBerry',
+  'frequencyOfIngredient',
   'friendshipPoint',
 ];
 
@@ -41,7 +42,8 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   berryEnergy: (opts) => getBerryRateSorter('dailyEnergy', opts),
   berryCount: (opts) => getBerryRateSorter('quantity', opts),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
-  frequency: ({pokemon}) => pokemon.stats.frequency,
+  frequencyOfBerry: (opts) => getBerryRateSorter('frequency', opts),
+  frequencyOfIngredient: (opts) => getIngredientProducingRates(opts).at(0)?.frequency ?? NaN,
   totalEnergy: (opts) => {
     const berry = getBerryRateSorter('dailyEnergy', opts);
     const ingredient = toSum(getIngredientProducingRates(opts).map(({dailyEnergy}) => dailyEnergy));

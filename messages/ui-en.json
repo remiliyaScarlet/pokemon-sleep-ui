@@ -180,6 +180,8 @@
         "IngredientCount": "Ingredient Count",
         "BerryEnergy": "Berry Strength",
         "BerryCount": "Berry Count",
+        "FrequencyOfBerry": "Frequency (Berry)",
+        "FrequencyOfIngredient": "Frequency (Ingredient)",
         "FriendshipPoint": "Friendship Points",
         "TotalEnergy": "Total Strength"
       }

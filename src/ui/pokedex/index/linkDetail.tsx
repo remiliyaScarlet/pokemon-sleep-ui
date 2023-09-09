@@ -1,12 +1,12 @@
 import React from 'react';
 
-import ClockIcon from '@heroicons/react/24/solid/ClockIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
+import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc';
@@ -105,15 +105,10 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'frequency') {
+  if (display === 'frequencyOfBerry' || display === 'frequencyOfIngredient') {
     return (
-      <Flex direction="row" className="items-center gap-1">
-        <div className="h-5 w-5">
-          <ClockIcon/>
-        </div>
-        <div>
-          {sorter}
-        </div>
+      <Flex direction="row">
+        <PokemonFrequencySingle frequency={sorter}/>
       </Flex>
     );
   }

@@ -10,12 +10,14 @@ const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
   'ingredient',
   'ingredientCount',
   'ingredientEnergy',
+  'frequencyOfIngredient',
   'totalEnergy',
 ];
 
 const exhaustIngredientCombinationsIfSort: PokemonSortType[] = [
   'ingredientCount',
   'ingredientEnergy',
+  'frequencyOfIngredient',
   'totalEnergy',
 ];
 

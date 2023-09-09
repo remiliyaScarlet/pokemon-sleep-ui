@@ -180,6 +180,8 @@
         "IngredientCount": "食材產量",
         "BerryEnergy": "樹果能量",
         "BerryCount": "樹果產量",
+        "FrequencyOfBerry": "幫忙間隔 (樹果)",
+        "FrequencyOfIngredient": "幫忙間隔 (食材)",
         "FriendshipPoint": "友情點數",
         "TotalEnergy": "總能量"
       }

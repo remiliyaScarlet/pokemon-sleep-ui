@@ -180,6 +180,8 @@
         "IngredientCount": "食材の数",
         "BerryEnergy": "きのみのエナジー",
         "BerryCount": "きのみの数",
+        "FrequencyOfBerry": "おてつだい時間 (きのみ)",
+        "FrequencyOfIngredient": "おてつだい時間 (食材)",
         "FriendshipPoint": "フレンドポイント",
         "TotalEnergy": "総エナジー"
       }

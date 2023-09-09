@@ -180,6 +180,8 @@
         "IngredientCount": "Zutatensuche",
         "BerryEnergy": "Beerenstärke",
         "BerryCount": "Beerensuche",
+        "FrequencyOfBerry": "Frequenz (Beeren)",
+        "FrequencyOfIngredient": "Frequenz (Zutaten)",
         "FriendshipPoint": "Freundespunkte",
         "TotalEnergy": "Gesamtstärke"
       }
