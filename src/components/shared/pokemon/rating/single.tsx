@@ -111,10 +111,10 @@ export const RatingResultOfLevelUI = ({
       }>
         <Grid className="grid-rows-3 gap-1.5">
           <RatingDataPointUI
-            point={points.min}
+            point={points.max}
             subSkillMap={subSkillMap}
-            icon={<HandThumbDownIcon/>}
-            className="bg-red-500/10"
+            icon={<HandThumbUpIcon/>}
+            className="bg-green-500/10"
           />
           <RatingDataPointUI
             point={points.current}
@@ -123,10 +123,10 @@ export const RatingResultOfLevelUI = ({
             className="bg-slate-500/10"
           />
           <RatingDataPointUI
-            point={points.max}
+            point={points.min}
             subSkillMap={subSkillMap}
-            icon={<HandThumbUpIcon/>}
-            className="bg-green-500/10"
+            icon={<HandThumbDownIcon/>}
+            className="bg-red-500/10"
           />
         </Grid>
       </CollapsibleFull>
