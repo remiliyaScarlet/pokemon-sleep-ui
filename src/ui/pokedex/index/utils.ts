@@ -4,6 +4,7 @@ import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 import {PokedexDisplay, PokedexFilter} from '@/ui/pokedex/index/type';
 import {migrate} from '@/utils/migrate/main';
 import {pokedexMigrators} from '@/utils/migrate/pokedex/migrators';
+import {PokedexFilterMigrateParams} from '@/utils/migrate/pokedex/type';
 
 
 const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
@@ -29,7 +30,7 @@ export const toCalculateAllIngredientPossibilities = ({display, sort}: PokedexFi
 };
 
 export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> | undefined): PokedexFilter => {
-  return migrate({
+  return migrate<PokedexFilter, PokedexFilterMigrateParams>({
     original: {
       name: '',
       sort: 'id',
@@ -40,7 +41,5 @@ export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> 
     override: preloadedDisplay ?? null,
     migrators: pokedexMigrators,
     migrateParams: {},
-  })
-
-  ;
+  });
 };
