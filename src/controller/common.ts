@@ -1,4 +1,4 @@
-import {Collection, Document, Filter, WithId} from 'mongodb';
+import {Collection, Document, Filter, Sort, WithId} from 'mongodb';
 
 import {Indexable} from '@/utils/type';
 
@@ -17,8 +17,9 @@ export const getDataAsMap = async <TData extends Document>(
 export const getDataAsArray = async <TData extends Document>(
   collection: Promise<Collection<TData>>,
   filter?: Filter<TData>,
+  sort?: Sort,
 ) => {
-  return (await collection).find(filter ?? {}, {projection: {_id: false}}).toArray();
+  return (await collection).find(filter ?? {}, {projection: {_id: false}, sort}).toArray();
 };
 
 export const getSingleData = async <TData extends Document>(
