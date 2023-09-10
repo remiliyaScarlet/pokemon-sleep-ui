@@ -4,7 +4,7 @@ import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
-import {FilterInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
+import {FilterInputSetFromOriginalProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
@@ -18,7 +18,7 @@ import {toUnique} from '@/utils/array';
 import {KeysOfType} from '@/utils/type';
 
 
-type Props<TFilter extends FilterWithSnorlaxFavorite> = FilterInputProps<TFilter> & {
+type Props<TFilter extends FilterWithSnorlaxFavorite> = FilterInputSetFromOriginalProps<TFilter> & {
   filterKey: KeysOfType<TFilter, SnorlaxFavorite>,
   pokemonList: PokemonInfo[],
   mapMeta: FieldMetaMap,

@@ -56,6 +56,7 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
   {
     // Multi-comp addition
     toVersion: 3,
+    // @ts-ignore
     migrate: (old) => {
       const uuid = v4();
 
@@ -72,5 +73,16 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
         },
       };
     },
+  },
+  {
+    // Move `snorlaxFavorite` to team-comp dependent
+    toVersion: 4,
+    migrate: (old) => ({
+      ...old,
+      teams: Object.fromEntries(Object.values(old.teams).map((team) => [
+        team.uuid,
+        {...team, snorlaxFavorite: {}},
+      ])),
+    }),
   },
 ];

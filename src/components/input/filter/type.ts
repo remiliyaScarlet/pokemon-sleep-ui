@@ -18,6 +18,11 @@ export type FilterInputProps<TFilter> = {
   setFilter: React.Dispatch<React.SetStateAction<TFilter>>,
 };
 
+export type FilterInputSetFromOriginalProps<TFilter> = {
+  filter: TFilter,
+  setFilter: (getUpdated: (original: TFilter) => TFilter) => void,
+};
+
 export type FilterInputOnClickProps<TId> = {
   onClick: (id: TId) => void,
   isActive: (id: TId) => boolean,

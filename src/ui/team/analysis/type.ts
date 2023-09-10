@@ -49,6 +49,7 @@ export type TeamAnalysisMember = {
 export type TeamAnalysisSingleTeam = {
   uuid: string,
   name: string,
+  snorlaxFavorite: SnorlaxFavorite,
   members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };
 

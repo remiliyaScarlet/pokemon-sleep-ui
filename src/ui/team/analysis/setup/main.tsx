@@ -25,7 +25,6 @@ export const TeamAnalysisSetupView = (props: Props) => {
     setup,
     setSetup,
     snorlaxRankData,
-    snorlaxFavorite,
     preloadedSettings,
     settings,
   } = props;
@@ -50,7 +49,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
           bonus={bonus}
           {...props}
         />
-        <TeamAnalysisSetupControl setup={setup} setSetup={setSetup} snorlaxFavorite={snorlaxFavorite}/>
+        <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
         <AdsUnit/>
         <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped} period="weekly"/>
         <TeamAnalysisSummary

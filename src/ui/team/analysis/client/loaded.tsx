@@ -10,7 +10,7 @@ import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisDataProps, TeamAnalysisSetup} from '@/ui/team/analysis/type';
-import {generateEmptyTeam} from '@/ui/team/analysis/utils';
+import {generateEmptyTeam, getCurrentTeam} from '@/ui/team/analysis/utils';
 import {migrate} from '@/utils/migrate/main';
 import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';
 import {DeepPartial, isNotNullish} from '@/utils/type';
@@ -40,7 +40,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         teams: {
           [initialCompUuid]: generateEmptyTeam(initialCompUuid),
         },
-        version: 3,
+        version: 4,
       },
       override: preloadedSetup ?? null,
       migrators: teamAnalysisSetupMigrators,
@@ -53,12 +53,13 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
 
     return migrated;
   }, []);
+  const [setup, setSetup] = React.useState<TeamAnalysisSetup>(initialSetup);
+  const currentTeam = getCurrentTeam({setup});
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
     data: pokemon,
-    snorlaxFavorite: preloadedSetup?.snorlaxFavorite,
+    snorlaxFavorite: currentTeam.snorlaxFavorite,
     ...props,
   });
-  const [setup, setSetup] = React.useState<TeamAnalysisSetup>(initialSetup);
 
   return (
     <>
@@ -74,8 +75,18 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
       <AdsUnit/>
       <Flex direction="col" className="gap-1">
         <SnorlaxFavoriteInput
-          filter={filter}
-          setFilter={setFilter}
+          filter={currentTeam}
+          setFilter={(getUpdatedTeam) => setSetup((original) => {
+            const updated = getUpdatedTeam(getCurrentTeam({setup: original}));
+
+            return {
+              ...original,
+              teams: {
+                ...original.teams,
+                [updated.uuid]: updated,
+              },
+            };
+          })}
           filterKey="snorlaxFavorite"
           pokemonList={pokemon}
           {...props}
@@ -84,7 +95,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
       <TeamAnalysisSetupView
         setup={setup}
         setSetup={setSetup}
-        snorlaxFavorite={filter.snorlaxFavorite}
+        snorlaxFavorite={currentTeam.snorlaxFavorite}
         {...props}
       />
     </>

@@ -4,6 +4,7 @@ import {
   FilterInclusionMap,
   FilterInputOnClickProps,
   FilterInputProps,
+  FilterInputSetFromOriginalProps,
   FilterWithInclusionMap,
 } from '@/components/input/filter/type';
 import {Indexable, KeysOfType} from '@/utils/type';
@@ -46,7 +47,7 @@ export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
 export type GetMultiSelectOnClickPropsOpts<
   TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
-> = FilterInputProps<TFilter> & {
+> = FilterInputSetFromOriginalProps<TFilter> & {
   filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>
 };
 

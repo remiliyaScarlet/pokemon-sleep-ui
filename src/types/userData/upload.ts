@@ -1,16 +1,11 @@
 import {MealTypeId} from '@/types/game/meal';
 import {PokeInBox} from '@/types/game/pokebox';
-import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserSettings} from '@/types/userData/settings';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
-
-export type UploadOfTeamAnalysisSetup = TeamAnalysisSetup & {
-  snorlaxFavorite: SnorlaxFavorite,
-};
 
 export type UploadOfPotInfo = {
   type: MealTypeId | null,
@@ -36,7 +31,7 @@ export type UserDataUploadOpts = {
   data: PokeInBox['uuid'],
 } | {
   type: 'teamAnalysisSetup',
-  data: UploadOfTeamAnalysisSetup,
+  data: TeamAnalysisSetup,
 } | {
   type: 'potCapacity',
   data: number | null,

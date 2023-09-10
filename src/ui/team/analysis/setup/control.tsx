@@ -7,20 +7,13 @@ import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';
 import {TeamAnalysisSetupModifyingProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam, getTeamName} from '@/ui/team/analysis/utils';
 import {cloneMerge} from '@/utils/object';
 
 
-type Props = TeamAnalysisSetupModifyingProps & {
-  snorlaxFavorite: SnorlaxFavorite,
-};
-
-export const TeamAnalysisSetupControl = (props: Props) => {
-  const {setup, setSetup, snorlaxFavorite} = props;
-
+export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupModifyingProps) => {
   const {status} = useSession();
   const [setupSelector, setSetupSelector] = React.useState({
     show: false,
@@ -76,7 +69,7 @@ export const TeamAnalysisSetupControl = (props: Props) => {
           </div>
         </Flex>
       </button>
-      <UserDataUploadButton opts={{type: 'teamAnalysisSetup', data: {...setup, snorlaxFavorite}}}/>
+      <UserDataUploadButton opts={{type: 'teamAnalysisSetup', data: setup}}/>
     </InputRow>
   );
 };
