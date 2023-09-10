@@ -4,12 +4,11 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {
   IngredientChainMap,
-  ingredientLevels,
   IngredientProduction,
   IngredientProductionAtLevels,
 } from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
@@ -18,13 +17,6 @@ export type RatingCombination = {
   subSkill: PokemonSubSkill,
   natureId: NatureId | null,
 };
-
-export const ratingKeyLevels = [
-  ...pokemonSubSkillLevel,
-  ...ingredientLevels,
-] as const;
-
-export type RatingKeyLevel = typeof ratingKeyLevels[number];
 
 export type RatingDataPoint = {
   value: number,

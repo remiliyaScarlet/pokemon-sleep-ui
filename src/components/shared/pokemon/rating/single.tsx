@@ -18,12 +18,12 @@ import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {useRatingWorker} from '@/hooks/rating/main';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
-import {RatingKeyLevel} from '@/types/game/pokemon/rating';
+import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {formatFloat, formatInt} from '@/utils/number';
 
 
 type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {
-  level: RatingKeyLevel,
+  level: PokemonKeyLevel,
 };
 
 export const RatingResultOfLevelUI = ({
