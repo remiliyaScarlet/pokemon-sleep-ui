@@ -2,6 +2,6 @@
 
 @layer utilities {
   .home-link {
-    @apply block p-0.5 h-32 w-full overflow-hidden;
+    @apply block p-0.5 h-28 w-full overflow-hidden;
   }
 }
