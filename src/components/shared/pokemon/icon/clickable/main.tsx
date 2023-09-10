@@ -15,13 +15,15 @@ type Props = {
   onClick?: (id: PokemonId) => void,
   isActive?: (id: PokemonId) => boolean,
   dimension?: Dimension,
-  asButton?: boolean,
+  children?: (getClassName: (active: boolean) => string) => React.ReactNode,
 };
 
-export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension}: Props) => {
+export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension, children}: Props) => {
   return (
     <Flex direction="row" center wrap className="gap-1.5">
-      {pokemonList.map(({id, type}) => {
+      {pokemonList.map((pokemon) => {
+        const id = pokemon?.id ?? null;
+
         const className = clsx(
           'relative rounded-lg p-1',
           isActive ? getToggleButtonClass(isActive(id)) : 'button-clickable',
@@ -29,18 +31,22 @@ export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension
 
         if (onClick) {
           return (
-            <button key={id} onClick={() => onClick(id)} className={className}>
-              <PokemonClickableIconImage id={id} type={type} dimension={dimension}/>
+            <button key={id ?? NaN} onClick={() => onClick(id)} className={className}>
+              <PokemonClickableIconImage pokemon={pokemon} dimension={dimension}/>
             </button>
           );
         }
 
         return (
           <Link key={id} href={`/pokedex/${id}`} className={className}>
-            <PokemonClickableIconImage id={id} type={type} dimension={dimension}/>
+            <PokemonClickableIconImage pokemon={pokemon} dimension={dimension}/>
           </Link>
         );
       })}
+      {children && children((active) => clsx(
+        'relative rounded-lg p-1',
+        isActive ? getToggleButtonClass(active) : 'button-clickable',
+      ))}
     </Flex>
   );
 };

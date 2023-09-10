@@ -4,19 +4,26 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
+import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId, PokemonTypeId} from '@/types/game/pokemon';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
 
 
 export type Props = {
-  id: PokemonId,
-  type: PokemonTypeId,
+  pokemon: PokemonInfo | null,
   dimension?: Dimension,
 };
 
-export const PokemonClickableIconImage = ({id, type, dimension}: Props) => {
+export const PokemonClickableIconImage = ({pokemon, dimension}: Props) => {
   const t = useTranslations('Game');
+  dimension = dimension ?? 'h-14 w-14';
+
+  if (!pokemon) {
+    return <UnavailableIcon dimension={dimension}/>;
+  }
+
+  const {id, type} = pokemon;
 
   return (
     <>
@@ -28,7 +35,7 @@ export const PokemonClickableIconImage = ({id, type, dimension}: Props) => {
           />
         </div>
       </div>
-      <div className={clsx('relative', dimension ?? 'h-14 w-14')}>
+      <div className={clsx('relative', dimension)}>
         <NextImage
           src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
           sizes={imageIconSizes}
