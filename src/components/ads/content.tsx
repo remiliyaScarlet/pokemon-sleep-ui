@@ -16,18 +16,27 @@ type Props = {
 };
 
 export const AdsContent = ({className, locale, children}: React.PropsWithChildren<Props>) => {
+  const [showAdsMessage, setShowAdsMessage] = React.useState(false);
+
+  React.useEffect(() => {
+    setShowAdsMessage(!document.querySelectorAll('ins > div').length);
+  }, [document.querySelectorAll('ins > div').length]);
+
   return (
     <div className={clsx(
       'relative w-full overflow-auto',
       className,
       adsHeight,
-      isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500',
+      isProduction() ? (showAdsMessage && 'rounded-lg bg-red-500/40') : 'border border-green-500',
     )}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(
-        'flex h-full w-full flex-col items-center justify-center text-center text-xl',
-      )}>
-        {adsMessage[locale] ?? adsMessage[defaultLocale]}
-      </ReactMarkdown>
+      {
+        showAdsMessage &&
+        <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(
+          'flex h-full w-full flex-col items-center justify-center text-center text-xl',
+        )}>
+          {adsMessage[locale] ?? adsMessage[defaultLocale]}
+        </ReactMarkdown>
+      }
       <div className="absolute left-0 top-0 h-full w-full">
         {children}
       </div>
