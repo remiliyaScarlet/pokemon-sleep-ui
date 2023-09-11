@@ -75,7 +75,11 @@ export const PokemonExpCalculatorInputUI = ({
           currentLv,
         }))}
       />
-      <InputRowWithTitle title={t('ExpToNext')}>
+      <InputRowWithTitle noFixedTitleWidth title={
+        <div className="w-40">
+          {t('ExpToNext')}
+        </div>
+      }>
         <InputBox
           type="number"
           value={currentToNext.toString()}
@@ -85,7 +89,11 @@ export const PokemonExpCalculatorInputUI = ({
           }))}
         />
       </InputRowWithTitle>
-      <InputRowWithTitle title={t('OwnedCandies')}>
+      <InputRowWithTitle noFixedTitleWidth title={
+        <div className="w-40">
+          {t('OwnedCandies')}
+        </div>
+      }>
         <InputBox
           type="number"
           value={ownedCandies.toString()}
@@ -113,10 +121,10 @@ export const PokemonExpCalculatorInputUI = ({
             className={clsx('group', getTextFilterButtonClass(showNonBreakthroughLevel))}
           >
             <Flex direction="row" center noFullWidth className="gap-1.5 p-1">
-              <div className="h-7 w-7">
+              <div className="h-5 w-5">
                 {showNonBreakthroughLevel ? <EyeIcon/> : <EyeSlashIcon/>}
               </div>
-              <div className="h-7 w-7">
+              <div className="h-5 w-5">
                 <RocketLaunchIcon/>
               </div>
             </Flex>
