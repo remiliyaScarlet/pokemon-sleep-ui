@@ -16,6 +16,7 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
@@ -27,6 +28,7 @@ import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout
 import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
 import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {toSum} from '@/utils/array';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
@@ -159,6 +161,11 @@ export const TeamAnalysisPokemon = (props: Props) => {
         />
         <HorizontalSplitter className="w-full"/>
         <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
+        <PokemonProductionSplit
+          berry={stats.berry.dailyEnergy}
+          ingredient={toSum(stats.ingredient.map(({dailyEnergy}) => dailyEnergy))}
+          specialty={pokemon.specialty}
+        />
         <HorizontalSplitter className="w-full"/>
         <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
           <TeamAnalysisBerryRate

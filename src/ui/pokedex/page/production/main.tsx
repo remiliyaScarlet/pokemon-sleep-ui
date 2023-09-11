@@ -17,6 +17,8 @@ import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
 import {PokemonIngredientProduction} from '@/ui/pokedex/page/production/ingredient/main';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
+import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
 export const PokemonProduction = (props: PokemonProps) => {
@@ -37,6 +39,15 @@ export const PokemonProduction = (props: PokemonProps) => {
   const berryName = t(`Berry.${berry.id}`);
   const pokemonName = t(`PokemonName.${pokemon.id}`);
 
+  const berryRate = getBerryProducingRate({
+    level,
+    pokemon,
+    ...defaultNeutralOpts,
+    berryData,
+    bonus,
+    snorlaxFavorite: {},
+  });
+
   return (
     <Flex direction="col" center className="info-section gap-2">
       <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
@@ -46,17 +57,15 @@ export const PokemonProduction = (props: PokemonProps) => {
       >
         <PokemonBerryProduction
           pokemon={pokemon}
-          level={level}
-          berryData={berryData}
           berryName={berryName}
-          bonus={bonus}
+          rate={berryRate}
         />
       </PokemonMetaSection>
       <PokemonMetaSection
         title={t2('Info.Ingredient')}
         titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
       >
-        <PokemonIngredientProduction level={level} bonus={bonus} {...props}/>
+        <PokemonIngredientProduction level={level} bonus={bonus} berryRate={berryRate} {...props}/>
       </PokemonMetaSection>
       <Flex direction="col" className="items-end">
         <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">

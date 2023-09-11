@@ -5,32 +5,18 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {imageSmallIconSizes} from '@/styles/image';
-import {BerryData} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
 
 
 type Props = {
   pokemon: PokemonInfo,
-  level: number,
   berryName: string,
-  berryData: BerryData,
-  bonus: EffectiveBonus,
+  rate: ProducingRateOfItem,
 };
 
-export const PokemonBerryProduction = ({pokemon, level, berryName, berryData, bonus}: Props) => {
+export const PokemonBerryProduction = ({pokemon, berryName, rate}: Props) => {
   const {berry} = pokemon;
-
-  const atLevel = getBerryProducingRate({
-    level,
-    pokemon,
-    ...defaultNeutralOpts,
-    berryData,
-    bonus,
-    snorlaxFavorite: {},
-  });
 
   return (
     <Flex direction="col" center className="gap-1">
@@ -44,7 +30,7 @@ export const PokemonBerryProduction = ({pokemon, level, berryName, berryData, bo
         <PokemonProducingRateSingle
           simplified
           horizontal
-          rate={atLevel}
+          rate={rate}
           icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}
         />
       </Flex>

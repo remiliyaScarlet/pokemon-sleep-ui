@@ -1,13 +1,10 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {specialtyIdMap} from '@/const/game/pokemon';
+import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {toSum} from '@/utils/array';
@@ -22,38 +19,25 @@ export const PokeInBoxProductionTotal = (props: PokeInBoxCommonProps) => {
   const rateOfBerry = getRateOfBerry(props);
   const rateOfIngredients = getRateOfIngredients(props);
 
+  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy));
+
   return (
-    <Flex direction="col" noFullWidth className="justify-center">
-      <Flex direction="row" noFullWidth className={clsx(
-        'items-center gap-0.5 px-1 text-[0.8rem]',
-        pokemon.specialty === specialtyIdMap.berry && 'bg-blink',
-      )}>
-        <PokemonBerryIcon id={pokemon.berry.id}/>
-        <div>
-          {formatFloat(rateOfBerry.dailyEnergy)}
-        </div>
-      </Flex>
-      <Flex direction="row" noFullWidth className={clsx(
-        'items-center gap-0.5 px-1 text-[0.8rem]',
-        pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
-      )}>
-        {rateOfIngredients.map(({id, dailyEnergy}) => (
-          <React.Fragment key={id}>
-            <PokemonIngredientIcon id={id}/>
-            <div>
-              {formatFloat(dailyEnergy)}
-            </div>
-          </React.Fragment>
-        ))}
-      </Flex>
-      <Flex direction="row" className="items-center gap-0.5 px-1">
+    <Flex direction="col" noFullWidth className="justify-center gap-1">
+      <Flex direction="row" className="items-center gap-0.5 p-0.5">
         <ColoredEnergyIcon dimension="h-5 w-5" alt={t('Stats.Energy.Name')}/>
         <div>
           {formatFloat(
             rateOfBerry.dailyEnergy +
-            toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy)),
+            sumOfDailyIngredientEnergy,
           )}
         </div>
+      </Flex>
+      <Flex direction="col" noFullWidth className="w-3/4">
+        <PokemonProductionSplit
+          berry={rateOfBerry.dailyEnergy}
+          ingredient={sumOfDailyIngredientEnergy}
+          specialty={pokemon.specialty}
+        />
       </Flex>
     </Flex>
   );

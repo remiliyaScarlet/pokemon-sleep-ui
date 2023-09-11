@@ -7,6 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 import {toSum} from '@/utils/array';
@@ -21,6 +22,8 @@ export const PokeInBoxProductionInTable = (props: PokeInBoxTableDetailsProps) =>
   } = props;
 
   const t = useTranslations('UI.InPage.Pokedex');
+
+  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy));
 
   return (
     <>
@@ -57,11 +60,15 @@ export const PokeInBoxProductionInTable = (props: PokeInBoxTableDetailsProps) =>
       <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
         <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Stats.Energy.Name')}/>
         <div>
-          {formatFloat(
-            rateOfBerry.dailyEnergy +
-            toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy)),
-          )}
+          {formatFloat(rateOfBerry.dailyEnergy + sumOfDailyIngredientEnergy)}
         </div>
+      </Flex>
+      <Flex direction="col" noFullWidth className="w-40">
+        <PokemonProductionSplit
+          berry={rateOfBerry.dailyEnergy}
+          ingredient={sumOfDailyIngredientEnergy}
+          specialty={pokemon.specialty}
+        />
       </Flex>
     </>
   );

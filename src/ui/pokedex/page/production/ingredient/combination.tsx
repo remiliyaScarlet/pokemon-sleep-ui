@@ -8,11 +8,13 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
+import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {PokemonIngredientIcon} from '@/ui/pokedex/page/production/ingredient/icon';
 import {PokemonIngredientCommonProps} from '@/ui/pokedex/page/production/ingredient/type';
 import {PokemonProps} from '@/ui/pokedex/page/type';
+import {toSum} from '@/utils/array';
 import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
@@ -22,7 +24,7 @@ type Props = PokemonProps & PokemonIngredientCommonProps & {
   chain: IngredientChain,
 };
 
-export const PokemonIngredientCombination = ({level, chain, pokemon, bonus, ingredientMap}: Props) => {
+export const PokemonIngredientCombination = ({level, chain, pokemon, bonus, berryRate, ingredientMap}: Props) => {
   const t = useTranslations('Game');
 
   return (
@@ -49,6 +51,11 @@ export const PokemonIngredientCombination = ({level, chain, pokemon, bonus, ingr
                   <PokemonIngredientIcon key={`${productionKeys}-${production.qty}`} production={production}/>
                 ))}
               </Flex>
+              <PokemonProductionSplit
+                berry={berryRate.dailyEnergy}
+                ingredient={toSum(rates.map(({dailyEnergy}) => dailyEnergy))}
+                specialty={pokemon.specialty}
+              />
               <PokemonProducingRateMultiple
                 simplified
                 horizontal
