@@ -66,6 +66,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Item.Index.Title',
   },
   {
+    href: '/xp',
+    imageSrc: '/images/generic/candy_white.png',
+    i18nTextId: 'PokemonExp.Title',
+  },
+  {
     href: '/about',
     imageSrc: '/images/generic/globe.png',
     i18nTextId: 'About.Title',

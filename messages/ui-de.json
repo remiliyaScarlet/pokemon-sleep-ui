@@ -141,6 +141,9 @@
         }
       }
     },
+    "PokemonExp": {
+      "Title": "Pokemon EXP Calculator"
+    },
     "About": {
       "Title": "Impressum"
     }
@@ -233,6 +236,12 @@
         "Expand": "Erweitern",
         "UnlockedRecipes": "Rezept freigeschaltet"
       }
+    },
+    "PokemonExp": {
+      "ExpToNext": "Bis zum nächsten Level",
+      "OwnedCandies": "Eigene Süßigkeiten",
+      "NormalCandy": "Pokémon-Süßigkeiten",
+      "HandyCandy": "Universalbonbon"
     }
   },
   "Stamina": {

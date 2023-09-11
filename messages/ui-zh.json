@@ -141,6 +141,9 @@
         }
       }
     },
+    "PokemonExp": {
+      "Title": "寶可夢經驗計算"
+    },
     "About": {
       "Title": "關於"
     }
@@ -233,6 +236,12 @@
         "Expand": "擴充",
         "UnlockedRecipes": "已開放食譜"
       }
+    },
+    "PokemonExp": {
+      "ExpToNext": "距離下一等級",
+      "OwnedCandies": "擁有糖果",
+      "NormalCandy": "一般糖果",
+      "HandyCandy": "萬能糖果"
     }
   },
   "Stamina": {

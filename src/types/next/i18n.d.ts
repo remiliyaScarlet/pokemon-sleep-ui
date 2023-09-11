@@ -79,6 +79,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Evolution: I18nMetadata,
         Incense: PageWithIndividual,
       },
+      PokemonExp: I18nMetadata,
       About: I18nMetadata,
     },
     InPage: {
@@ -169,6 +170,12 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           Expand: string,
           UnlockedRecipes: string,
         },
+      },
+      PokemonExp: {
+        ExpToNext: string,
+        OwnedCandies: string,
+        NormalCandy: string,
+        HandyCandy: string,
       },
     },
     Stamina: {

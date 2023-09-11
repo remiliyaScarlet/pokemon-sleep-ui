@@ -141,6 +141,9 @@
         }
       }
     },
+    "PokemonExp": {
+      "Title": "포켓몬 EXP 계산"
+    },
     "About": {
       "Title": "소개"
     }
@@ -233,6 +236,12 @@
         "Expand": "확장",
         "UnlockedRecipes": "새로운 레시피 개방"
       }
+    },
+    "PokemonExp": {
+      "ExpToNext": "다음 레벨까지",
+      "OwnedCandies": "소유한 사탕",
+      "NormalCandy": "포켓몬 사탕",
+      "HandyCandy": "만능사탕"
     }
   },
   "Stamina": {

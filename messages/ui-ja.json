@@ -141,6 +141,9 @@
         }
       }
     },
+    "PokemonExp": {
+      "Title": "ポケモン経験計算"
+    },
     "About": {
       "Title": "サイトについて"
     }
@@ -233,6 +236,12 @@
         "Expand": "拡張",
         "UnlockedRecipes": "レシピ解放"
       }
+    },
+    "PokemonExp": {
+      "ExpToNext": "次のレベルまで",
+      "OwnedCandies": "所有しているアメ",
+      "NormalCandy": "ポケモンアメ",
+      "HandyCandy": "ばんのうアメ"
     }
   },
   "Stamina": {
