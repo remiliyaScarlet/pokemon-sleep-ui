@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
@@ -24,6 +25,7 @@ export const TeamAnalysisCompSelection = ({
   setup,
   onUpdated,
   onDeleted,
+  onCopied,
   team,
   onClick,
 }: Props) => {
@@ -55,6 +57,9 @@ export const TeamAnalysisCompSelection = ({
             },
           } satisfies TeamAnalysisSetup)}
         />
+        <button className="button-clickable-bg h-7 w-7 rounded-lg p-1" onClick={() => onCopied(team.uuid)}>
+          <DocumentDuplicateIcon/>
+        </button>
         {
           current !== team.uuid &&
           <button className="button-alert-bg h-7 w-7 rounded-lg p-1" onClick={() => onDeleted(team.uuid)}>

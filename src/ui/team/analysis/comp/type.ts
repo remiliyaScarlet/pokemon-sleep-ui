@@ -7,4 +7,5 @@ export type TeamAnalysisCompSelectorProps = {
   onUpdated: (updated: TeamAnalysisSetup) => void,
   onDeleted: (deletedUuid: string) => void,
   onAdded: (newTeam: TeamAnalysisSingleTeam) => void,
+  onCopied: (sourceUuid: string) => void,
 };
