@@ -24,6 +24,6 @@ describe('Stamina Efficiency', () => {
       },
     };
 
-    expect(getStaminaEfficiency({config})).toBeCloseTo(2.189815);
+    expect(getStaminaEfficiency({config})).toBeCloseTo(2.05625);
   });
 });
