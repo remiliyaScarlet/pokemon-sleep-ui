@@ -70,6 +70,7 @@ export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
         displayType: filter.displayType,
         viewType: filter.viewType,
         previewLevel: filter.previewLevel,
+        version: filter.version,
       },
     },
     triggerDeps: [filter.sort, filter.displayType, filter.viewType, filter.previewLevel],

@@ -1,5 +1,3 @@
-import merge from 'lodash/merge';
-
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMatchingSearch, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {
@@ -11,7 +9,9 @@ import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/compone
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
-import {PokeboxPokemonForView, PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxPokemonForView, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {migrate} from '@/utils/migrate/main';
+import {pokeboxDisplayMigrators} from '@/utils/migrate/pokeboxDisplay/migrators';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -53,12 +53,18 @@ export const usePokeboxViewerFilter = ({
       ...generatePokemonInputFilter(),
       name: '',
       snorlaxFavorite: {},
-      ...merge({
-        sort: 'id',
-        displayType: 'productionTotal',
-        viewType: 'table',
-        previewLevel: null,
-      } satisfies PokeboxViewerDisplay, preloaded.display),
+      ...migrate({
+        original: {
+          sort: 'id',
+          displayType: 'productionTotal',
+          viewType: 'table',
+          previewLevel: null,
+          version: 1,
+        },
+        override: preloaded.display ?? {},
+        migrators: pokeboxDisplayMigrators,
+        migrateParams: {},
+      }),
     },
     isDataIncluded: (filter, data) => {
       if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {

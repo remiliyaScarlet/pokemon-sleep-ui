@@ -7,6 +7,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {Migratable} from '@/types/migrate';
 
 
 export const pokeboxViewType = [
@@ -41,7 +42,7 @@ export const pokeboxPreviewLevel = [
 
 export type PokeboxPreviewLevel = typeof pokeboxPreviewLevel[number] | null;
 
-export type PokeboxViewerDisplay = {
+export type PokeboxViewerDisplay = Migratable & {
   sort: PokemonSortType,
   viewType: PokeboxViewType,
   displayType: PokeboxDisplayType,
