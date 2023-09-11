@@ -16,14 +16,16 @@ type Props = PokemonProducingRateProps & {
 
 export const PokemonProducingRateSingle = ({rate, icon, horizontal, ...props}: Props) => {
   return (
-    <Flex direction={horizontal ? 'row' : 'col'} className={clsx(
+    <Flex direction={horizontal ? 'row' : 'col'} wrap className={clsx(
       'gap-1',
-      horizontal && 'items-center justify-end md:flex-row md:gap-1',
+      horizontal && 'items-center justify-end md:flex-row',
       !horizontal && 'items-end justify-center',
     )}>
-      <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
       <PokemonFrequencySingle frequency={rate?.frequency ?? NaN}/>
-      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>
+      <Flex direction="row" noFullWidth className="gap-1">
+        <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
+        <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>
+      </Flex>
     </Flex>
   );
 };
