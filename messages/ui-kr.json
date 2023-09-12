@@ -196,10 +196,6 @@
     "Cooking": {
       "Energy": "최종 에너지",
       "Ingredient": "식재료",
-      "MealDisplayType": {
-        "EnergyRange": "에너지",
-        "Ingredient": "식재료"
-      },
       "MealType": "요리",
       "PotCapacity": "용량",
       "RecipeLevel": "레시피 레벨"

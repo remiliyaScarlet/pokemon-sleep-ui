@@ -2,6 +2,7 @@ import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/ty
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal';
 import {Dimension} from '@/types/style';
+import {UserPreloadedData} from '@/types/userData/main';
 import {MealEnergyInfo} from '@/utils/game/meal';
 
 
@@ -26,6 +27,7 @@ export type CookingCommonProps = FilterInputProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
   ingredientMap: IngredientMap,
+  preloaded: UserPreloadedData['cooking'],
 };
 
 export type CookingRecipeLayoutProps = {

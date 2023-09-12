@@ -196,10 +196,6 @@
     "Cooking": {
       "Energy": "Endstärke",
       "Ingredient": "Zutaten",
-      "MealDisplayType": {
-        "EnergyRange": "Stärke",
-        "Ingredient": "Zutat"
-      },
       "MealType": "Gericht",
       "PotCapacity": "Max",
       "RecipeLevel": "Rezeptlevel"

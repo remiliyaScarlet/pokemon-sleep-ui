@@ -196,10 +196,6 @@
     "Cooking": {
       "Energy": "最終エナジー",
       "Ingredient": "食材",
-      "MealDisplayType": {
-        "EnergyRange": "エナジー",
-        "Ingredient": "食材"
-      },
       "MealType": "料理",
       "PotCapacity": "容量",
       "RecipeLevel": "レシピレベル"

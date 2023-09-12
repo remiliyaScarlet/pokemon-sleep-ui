@@ -1,12 +1,9 @@
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {
-  userDataSettings,
-  userDataIngredientCount,
-  userDataMealType,
+  userDataCooking,
   userDataPokeboxDisplay,
   userDataPokedex,
-  userDataPotCapacity,
-  userDataRecipeLevel,
+  userDataSettings,
   userDataTeamAnalysisSetup,
 } from '@/controller/user/manager';
 import {UserDataUploadOpts} from '@/types/userData/upload';
@@ -20,24 +17,6 @@ type UploadUserDataOpts = {
 export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   const {type, data} = opts;
 
-  if (type === 'cooking' || type === 'potInfo') {
-    const promises: Promise<void>[] = [];
-
-    if (data.potCapacity) {
-      promises.push(userDataPotCapacity.setData(userId, data.potCapacity));
-    }
-    if (data.type) {
-      promises.push(userDataMealType.setData(userId, data.type));
-    }
-    if (type === 'cooking') {
-      promises.push(userDataRecipeLevel.setData(userId, data.level));
-      promises.push(userDataIngredientCount.setData(userId, data.ingredientCount));
-    }
-
-    await Promise.all(promises);
-    return;
-  }
-
   if (type === 'teamAnalysisSetup') {
     await userDataTeamAnalysisSetup.setData(userId, data);
     return;
@@ -45,15 +24,6 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'pokedex') {
     await userDataPokedex.setData(userId, data);
-    return;
-  }
-
-  if (type === 'potCapacity') {
-    if (!data) {
-      return;
-    }
-
-    await userDataPotCapacity.setData(userId, data);
     return;
   }
 
@@ -74,6 +44,11 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'pokebox.delete') {
     await deleteSinglePokeInBox(userId, data);
+    return;
+  }
+
+  if (type === 'cooking') {
+    await userDataCooking.setData(userId, data);
     return;
   }
 

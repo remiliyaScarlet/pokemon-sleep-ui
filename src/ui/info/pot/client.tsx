@@ -10,7 +10,7 @@ import {toUnique} from '@/utils/array';
 
 
 export const PotInfoClient = (props: PotInfoCommonProps) => {
-  const {meals, ingredients} = props;
+  const {meals, ingredients, preloaded} = props;
   const {filter, setFilter, isIncluded} = usePotInfoFilter(props);
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
@@ -26,6 +26,7 @@ export const PotInfoClient = (props: PotInfoCommonProps) => {
         maxMealLevel={maxMealLevel}
         mealTypes={mealTypes}
         ingredients={ingredients}
+        preloaded={preloaded}
       />
       <AdsUnit/>
       <PotRecipeUnlockTable filter={filter} meals={validMeals}/>

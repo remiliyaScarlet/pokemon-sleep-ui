@@ -1,29 +1,23 @@
-import {Session} from 'next-auth';
-
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {MealLinkDisplayType} from '@/components/shared/meal/type';
 import potCapacity from '@/data/potCapacity.json';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealTypeId} from '@/types/game/meal';
+import {UserPreloadedData} from '@/types/userData/main';
 
 
 export type PotInfoCommonProps = {
   meals: Meal[],
   ingredients: IngredientMap,
-  session: Session | null,
+  preloaded: UserPreloadedData['cooking'],
 };
 
 export type PotInfoFilter = {
   mealType: FilterInclusionMap<MealTypeId>,
   mealLevel: number,
   ingredients: FilterInclusionMap<IngredientId>,
-  displayType: MealLinkDisplayType,
   capacity: number | null,
   showEmpty: boolean,
-};
-
-export type PotInfoUnlockMealProps = {
-  meal: Meal,
+  showEnergy: boolean,
 };
 
 export type PotLevelInfo = typeof potCapacity[number];

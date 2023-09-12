@@ -24,7 +24,11 @@ export const PotInfo = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
   ]);
 
-  const props: PotInfoCommonProps = {meals, ingredients, session};
+  const props: PotInfoCommonProps = {
+    meals,
+    ingredients,
+    preloaded: session?.user.preloaded.cooking,
+  };
 
   return (
     <PublicPageLayout locale={locale}>

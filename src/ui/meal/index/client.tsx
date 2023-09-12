@@ -19,16 +19,17 @@ type Props = {
 };
 
 export const MealIndexClient = ({data, session}: Props) => {
-  const props = useFilteredMeals({
+  const preloaded = session?.user.preloaded.cooking;
+
+  const mealFilterProps = useFilteredMeals({
     data,
-    initialPotCapacity: session?.user.preloaded.potCapacity,
-    initialMealType: session?.user.preloaded.mealType,
+    preloaded,
   });
-  const {isIncluded, filter} = props;
+  const {isIncluded, filter} = mealFilterProps;
 
   return (
     <>
-      <MealInput data={data} {...props}/>
+      <MealInput data={data} preloaded={preloaded} {...mealFilterProps}/>
       <AdsUnit/>
       <Grid className={clsx(
         'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
@@ -58,7 +59,7 @@ export const MealIndexClient = ({data, session}: Props) => {
           })
           .map(({meal}) => (
             <div key={meal.id} className={clsx(!isIncluded[meal.id] && 'hidden')}>
-              <MealLink meal={meal} mealLevel={filter.mealLevel} displayType={filter.displayType}/>
+              <MealLink meal={meal} mealLevel={filter.mealLevel} showEnergy={filter.showEnergy}/>
             </div>
           ))}
       </Grid>

@@ -9,7 +9,6 @@ import {imageSmallIconSizes} from '@/styles/image';
 
 type Props = IconProps & {
   src: string,
-  noInvert?: boolean,
 };
 
 export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: Props) => {

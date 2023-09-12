@@ -1,11 +1,12 @@
-import merge from 'lodash/merge';
 import {Session} from 'next-auth';
 
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
+import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal';
 import {CookingFilter} from '@/ui/cooking/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
+import {cloneMerge} from '@/utils/object';
 
 
 type UseCookingFilterOpts = {
@@ -14,15 +15,17 @@ type UseCookingFilterOpts = {
 };
 
 export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
+  const preloaded = session?.user.preloaded.cooking;
+
   return useFilterInput<CookingFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: session?.user.preloaded?.mealType ?? 1,
-      recipeLevel: merge({}, session?.user.preloaded?.recipeLevel),
-      capacity: session?.user.preloaded.potCapacity ?? 15,
+      type: preloaded?.mealType ?? defaultCookingPreset.mealType,
+      capacity: preloaded?.potCapacity ?? defaultCookingPreset.potCapacity,
       ingredient: {},
-      ingredientCount: merge({}, session?.user.preloaded?.ingredientCount),
+      recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloaded?.recipeLevel),
+      ingredientCount: cloneMerge(defaultCookingPreset.ingredientCount, preloaded?.ingredientCount),
     },
     isDataIncluded: (filter, meal) => {
       if (filter.type !== meal.type) {

@@ -4,17 +4,17 @@ import {Meal, MealId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
-export const usePotInfoFilter = ({meals, session}: PotInfoCommonProps) => {
+export const usePotInfoFilter = ({meals, preloaded}: PotInfoCommonProps) => {
   return useFilterInput<PotInfoFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      mealType: session?.user.preloaded.mealType ? {[session?.user.preloaded.mealType]: true} : {},
+      mealType: {},
       mealLevel: 1,
       ingredients: {},
-      displayType: 'ingredient',
-      capacity: session?.user.preloaded.potCapacity ?? null,
+      capacity: preloaded?.potCapacity ?? null,
       showEmpty: false,
+      showEnergy: preloaded?.showEnergy ?? true,
     },
     isDataIncluded: (filter, meal) => {
       return !isFilterMismatchOnSingle({filter, filterKey: 'mealType', id: meal.type});

@@ -15,9 +15,9 @@ export const setUserData = async <TData>(
   collectionPromise: Promise<Collection<UserDataInDatabase<TData>>>,
   userId: string,
   data: TData,
-) => {
-  await (await collectionPromise).updateOne({userId}, {$set: {data}}, {upsert: true});
-};
+) => (
+  (await collectionPromise).updateOne({userId}, {$set: {data}}, {upsert: true})
+);
 
 export const addUserDataIndex = async <TData>(
   collectionPromise: Promise<Collection<UserDataInDatabase<TData>>>,

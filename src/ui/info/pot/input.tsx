@@ -1,37 +1,23 @@
 import React from 'react';
 
-import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
-import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
-import XMarkIcon from '@heroicons/react/24/solid/XMarkIcon';
-import {clsx} from 'clsx';
-
-import {InputRow} from '@/components/input/filter/row';
 import {FilterInputProps} from '@/components/input/filter/type';
-import {
-  getMultiSelectOnClickProps,
-  getSingleSelectOnClickProps,
-  getTextFilterButtonClass,
-} from '@/components/input/filter/utils/props';
-import {ToggleButton} from '@/components/input/toggleButton';
-import {Flex} from '@/components/layout/flex';
+import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
-import {MealLinkDisplayTypeInput} from '@/components/shared/meal/displayTypeInput';
+import {MealDisplayControl} from '@/components/shared/meal/control';
 import {MealLevelSlider} from '@/components/shared/meal/levelSlider';
-import {UserDataUploadButton} from '@/components/shared/userData/upload';
+import {defaultCookingPreset} from '@/const/user/cooking';
 import {MealTypeId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
-type Props = FilterInputProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'ingredients'> & {
+type Props = FilterInputProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'preloaded' | 'ingredients'> & {
   maxMealLevel: number,
   mealTypes: MealTypeId[],
 };
 
-export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, ingredients}: Props) => {
-  const {showEmpty} = filter;
-
+export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloaded, ingredients}: Props) => {
   return (
     <>
       <MealTypeInput
@@ -62,36 +48,20 @@ export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, ingred
           filterKey: 'capacity',
         })}
       />
-      <MealLinkDisplayTypeInput
-        displayType={filter.displayType}
-        setDisplayType={(displayType) => setFilter((original) => ({
+      <MealDisplayControl
+        showEnergy={filter.showEnergy}
+        setShowEnergy={(showEnergy) => setFilter((original) => ({
           ...original,
-          displayType,
+          showEnergy,
         } satisfies PotInfoFilter))}
+        uploadData={{
+          ...defaultCookingPreset,
+          ...preloaded,
+          ...(filter.capacity && {
+            potCapacity: filter.capacity,
+          }),
+        }}
       />
-      <InputRow>
-        <Flex direction="row" noFullWidth className="ml-auto gap-2">
-          <ToggleButton
-            id="showEmpty"
-            active={filter.showEmpty}
-            onClick={() => setFilter((original) => ({
-              ...original,
-              showEmpty: !original.showEmpty,
-            } satisfies PotInfoFilter))}
-            className={clsx('group', getTextFilterButtonClass(showEmpty))}
-          >
-            <Flex direction="row" center noFullWidth className="gap-1">
-              <div className="h-5 w-5">
-                {showEmpty ? <EyeIcon/> : <EyeSlashIcon/>}
-              </div>
-              <div className="h-7 w-7">
-                <XMarkIcon/>
-              </div>
-            </Flex>
-          </ToggleButton>
-          <UserDataUploadButton opts={{type: 'potCapacity', data: filter.capacity}}/>
-        </Flex>
-      </InputRow>
     </>
   );
 };

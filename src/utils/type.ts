@@ -8,6 +8,8 @@ export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export type Nullable<T> = {[K in keyof T]: T[K] | null};
 
+export type NonNullableRecord<T> = {[K in keyof T]: NonNullable<T[K]>};
+
 export type DeepPartial<T> = T extends object ? {[P in keyof T]?: DeepPartial<T[P]>} : T;
 
 export type DeepPartialExceptKey<T> = T extends object ? {[P in keyof T]: DeepPartial<T[P]> | undefined} : T;
