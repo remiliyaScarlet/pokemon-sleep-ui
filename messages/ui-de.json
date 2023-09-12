@@ -238,9 +238,9 @@
       }
     },
     "PokemonExp": {
-      "ExpToNext": "Bis zum nächsten Level",
-      "OwnedCandies": "Eigene Süßigkeiten",
-      "NormalCandy": "Pokémon-Süßigkeiten",
+      "ExpToNext": "EP bis zum nächsten Level",
+      "OwnedCandies": "Eigene Bonbons",
+      "NormalCandy": "Pokemon Bonbon",
       "HandyCandy": "Universalbonbon"
     }
   },
