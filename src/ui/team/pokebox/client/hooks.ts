@@ -67,13 +67,14 @@ export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
       data: {
         // Explicit references here so no extra data get stored
         sort: filter.sort,
-        displayType: filter.displayType,
+        displayOfGrid: filter.displayOfGrid,
+        displayOfTable: filter.displayOfTable,
         viewType: filter.viewType,
         previewLevel: filter.previewLevel,
         version: filter.version,
       },
     },
-    triggerDeps: [filter.sort, filter.displayType, filter.viewType, filter.previewLevel],
+    triggerDeps: [filter.sort, filter.displayOfGrid, filter.displayOfTable, filter.viewType, filter.previewLevel],
     delay: 0,
   });
 

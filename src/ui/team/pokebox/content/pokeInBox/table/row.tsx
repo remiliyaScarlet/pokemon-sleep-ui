@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
 import {PokeInBoxDetailsInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
 import {PokeInBoxProductionInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/production';
@@ -11,13 +12,18 @@ import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeboxDisplayType, PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
-export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
+type Props = PokeInBoxViewUnitProps & {
+  display: PokeboxViewerDisplay,
+};
+
+export const PokeInBoxTableRow = (props: Props) => {
   const {
     pokeInBox,
     pokedexMap,
-    displayType,
+    display,
     isLevelPreview,
     onClick,
   } = props;
@@ -30,7 +36,6 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
   const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
     pokemon,
-    displayType,
   };
 
   const rateOfBerry = getRateOfBerry(pokeInBoxProps);
@@ -41,6 +46,7 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
     isLevelPreview,
     rateOfBerry,
     rateOfIngredients,
+    display,
   };
 
   return (
@@ -49,11 +55,31 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
       <PokeInBoxTableRowHeader {...props} pokemon={pokemon}/>
       <button className="button-clickable-bg group rounded-lg p-1" onClick={onClick}>
         <Flex direction="row" noFullWidth className="items-center gap-1 [&>*]:shrink-0">
-          <PokeInBoxDetailsInTable {...detailProps}/>
-          <PokeInBoxProductionInTable {...detailProps}/>
-          <PokeInBoxRatingInTable {...detailProps}/>
-          <PokeInBoxStatsInTable {...detailProps}/>
-          <PokeInBoxSkillsInTable {...detailProps}/>
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['info'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxDetailsInTable {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['productionTotal', 'productionBerry', 'productionIngredient'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxProductionInTable {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['rating'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxRatingInTable {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['stats'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxStatsInTable {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['skills'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxSkillsInTable {...detailProps}/>}
         </Flex>
       </button>
     </Flex>

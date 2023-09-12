@@ -9,7 +9,11 @@ import {useTranslations} from 'next-intl';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterIconInput} from '@/components/input/filter/icon';
-import {getIconFilterButtonClass, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
+import {
+  getIconFilterButtonClass,
+  getMultiSelectOnClickProps,
+  getSingleSelectOnClickProps,
+} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
@@ -120,12 +124,34 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
             idToItemId={(type) => type}
             idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
             idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
-            idToImageClassName={(type) => clsx(type !== filter.displayType ? 'invert-on-light' : 'invert-on-dark')}
+            idToImageClassName={(type) => clsx(type === filter.displayOfGrid ? 'invert-on-dark' : 'invert-on-light')}
             {...getSingleSelectOnClickProps({
               filter,
               setFilter,
-              filterKey: 'displayType',
+              filterKey: 'displayOfGrid',
               allowNull: false,
+            })}
+          />
+        }
+        {
+          filter.viewType === 'table' &&
+          <FilterIconInput
+            title={
+              <Flex direction="col" center>
+                <div className="h-6 w-6">
+                  <InformationCircleIcon/>
+                </div>
+              </Flex>
+            }
+            ids={[...pokeboxDisplayType]}
+            idToItemId={(type) => type}
+            idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
+            idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
+            idToImageClassName={(type) => clsx(filter.displayOfTable[type] ? 'invert-on-dark' : 'invert-on-light')}
+            {...getMultiSelectOnClickProps({
+              filter,
+              setFilter,
+              filterKey: 'displayOfTable',
             })}
           />
         }

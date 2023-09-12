@@ -56,10 +56,11 @@ export const usePokeboxViewerFilter = ({
       ...migrate({
         original: {
           sort: 'id',
-          displayType: 'productionTotal',
+          displayOfGrid: 'productionTotal',
+          displayOfTable: {},
           viewType: 'table',
           previewLevel: null,
-          version: 1,
+          version: 2,
         },
         override: preloaded.display ?? {},
         migrators: pokeboxDisplayMigrators,

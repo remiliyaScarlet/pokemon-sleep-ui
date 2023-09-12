@@ -13,4 +13,14 @@ export const pokeboxDisplayMigrators: Migrator<PokeboxViewerDisplay, PokeboxView
       sort: sort === 'frequency' ? 'frequencyOfBerry' : sort,
     }),
   },
+  {
+    // `displayType` split to `displayOfGrid` / `displayOfTable`
+    toVersion: 2,
+    // @ts-ignore
+    migrate: ({sort, displayType, ...old}): PokeboxViewerDisplay => ({
+      ...old,
+      displayOfGrid: displayType,
+      displayOfTable: {},
+    }),
+  },
 ];

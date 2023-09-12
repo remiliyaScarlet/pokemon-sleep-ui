@@ -11,9 +11,14 @@ import {PokeInBoxGridPopUps} from '@/ui/team/pokebox/content/pokeInBox/grid/deco
 import {PokeInBoxDetails} from '@/ui/team/pokebox/content/pokeInBox/grid/details/main';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
-export const PokeInBoxGridCell = (props: PokeInBoxViewUnitProps) => {
+type Props = PokeInBoxViewUnitProps & {
+  displayType: PokeboxViewerDisplay['displayOfGrid'],
+};
+
+export const PokeInBoxGridCell = (props: Props) => {
   const {
     pokeInBox,
     pokedexMap,
@@ -35,7 +40,6 @@ export const PokeInBoxGridCell = (props: PokeInBoxViewUnitProps) => {
   const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
     pokemon,
-    displayType,
   };
 
   return (
@@ -52,7 +56,7 @@ export const PokeInBoxGridCell = (props: PokeInBoxViewUnitProps) => {
           <Flex direction="col" className="z-10 gap-1">
             <PokeInBoxMeta {...pokeInBoxProps}/>
             <div className="mt-auto">
-              <PokeInBoxDetails {...pokeInBoxProps}/>
+              <PokeInBoxDetails displayType={displayType} {...pokeInBoxProps}/>
             </div>
           </Flex>
         </Flex>

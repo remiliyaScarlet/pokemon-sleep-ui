@@ -2,17 +2,20 @@ import React from 'react';
 
 import {PokeInBoxInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
 import {PokeInBoxProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
-import {
-  PokeInBoxProductionIngredient,
-} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
+import {PokeInBoxProductionIngredient} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
 import {PokeInBoxProductionTotal} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionTotal';
 import {PokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/grid/details/rating';
 import {PokeInBoxSkills} from '@/ui/team/pokebox/content/pokeInBox/grid/details/skills';
 import {PokeInBoxStats} from '@/ui/team/pokebox/content/pokeInBox/grid/details/stats';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
-export const PokeInBoxDetails = (props: PokeInBoxCommonProps) => {
+type Props = PokeInBoxCommonProps & {
+  displayType: PokeboxViewerDisplay['displayOfGrid'],
+};
+
+export const PokeInBoxDetails = (props: Props) => {
   const {displayType} = props;
 
   if (displayType === 'productionTotal') {

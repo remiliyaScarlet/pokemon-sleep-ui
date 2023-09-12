@@ -1,4 +1,4 @@
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
@@ -45,7 +45,8 @@ export type PokeboxPreviewLevel = typeof pokeboxPreviewLevel[number] | null;
 export type PokeboxViewerDisplay = Migratable & {
   sort: PokemonSortType,
   viewType: PokeboxViewType,
-  displayType: PokeboxDisplayType,
+  displayOfGrid: PokeboxDisplayType,
+  displayOfTable: FilterInclusionMap<PokeboxDisplayType>,
   previewLevel: PokeboxPreviewLevel,
 };
 
