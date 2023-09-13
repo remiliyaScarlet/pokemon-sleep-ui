@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -18,6 +19,8 @@ type Props<TData> = {
   getPokemonId: (data: TData) => PokemonId,
   getInfo?: (data: TData) => React.ReactNode,
   getReactKey?: (data: TData) => React.Key,
+  getClassName?: (data: TData) => string,
+  onClickOverride?: (data: TData) => void,
   size?: Dimension,
 };
 
@@ -27,6 +30,8 @@ export const PokemonIconList = <TData, >({
   getPokemonId,
   getInfo,
   getReactKey,
+  getClassName,
+  onClickOverride,
   size,
 }: Props<TData>) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -59,8 +64,9 @@ export const PokemonIconList = <TData, >({
 
           return (
             <button
-              key={getReactKey ? getReactKey(data) : id} className="button-clickable p-1.5"
-              onClick={() => showPokemon(pokemon)}
+              key={getReactKey ? getReactKey(data) : id}
+              className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
+              onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
             >
               <IconWithInfo
                 imageSrc={`/images/pokemon/icons/${id}.png`}
