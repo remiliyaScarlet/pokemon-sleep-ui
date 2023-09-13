@@ -10,6 +10,8 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {SleepdexMarkedByMap} from '@/types/game/sleepdex';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {MapUnlockTableRow} from '@/ui/map/page/unlockTable/row';
+import {MapUnlockAccumulator} from '@/ui/map/page/unlockTable/type';
+import {getUpdatedAccumulator} from '@/ui/map/page/unlockTable/utils';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
 
@@ -22,7 +24,9 @@ type Props = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'sleepStyles' | 'snor
 
 export const MapUnlockTable = (props: Props) => {
   const {
+    pokedexMap,
     sleepStyles,
+    snorlaxRank,
     filter,
     isIncluded,
     initialSleepdex,
@@ -34,7 +38,14 @@ export const MapUnlockTable = (props: Props) => {
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('UI.InPage.Map');
 
-  let stylesAccumulated = 0;
+  let accumulator: MapUnlockAccumulator = {
+    unlocked: {},
+    unlockable: {},
+    energy: {
+      previous: null,
+      current: null,
+    },
+  };
 
   return (
     <table className="table-unlock">
@@ -71,14 +82,34 @@ export const MapUnlockTable = (props: Props) => {
             return <React.Fragment key={key}/>;
           }
 
-          stylesAccumulated += matchingStyles.length;
+          for (const data of matchingStyles) {
+            const {pokemonId} = data;
+            const pokemon = pokedexMap[pokemonId];
+
+            if (!pokemon) {
+              continue;
+            }
+
+            const {sleepType} = pokemon;
+
+            accumulator = getUpdatedAccumulator({
+              original: accumulator,
+              sleepType,
+              current: {
+                rank,
+                value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
+              },
+              data,
+              sleepdex,
+            });
+          }
 
           return (
             <MapUnlockTableRow
               key={key}
               rank={rank}
               matchingStyles={matchingStyles}
-              stylesAccumulated={stylesAccumulated}
+              accumulator={accumulator}
               sleepdex={sleepdex}
               setSleepdex={setSleepdex}
               {...props}
