@@ -81,11 +81,10 @@ export const authOptions: AuthOptions = {
         await uploadUserData({userId, opts: options});
         session.user.preloaded = await getUserPreloadedData(userId);
       } else if (action === 'load') {
-        const {type} = options;
         session.user.lazyLoaded = await getUserLazyData({
           initialData: session.user.lazyLoaded,
           userId,
-          dataType: type,
+          options,
         });
       } else {
         console.error(`Unhandled user data action ${action satisfies never}`);

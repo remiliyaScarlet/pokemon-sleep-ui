@@ -9,7 +9,7 @@ import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 export const PokeboxClient = (props: PokeboxCommonProps) => {
   return (
     <UserDataLazyLoad
-      type="pokebox"
+      options={{type: 'pokebox'}}
       loadingText="Pokebox"
       content={(data) => (
         <PokeboxLoadedClient initialPokebox={data?.pokebox ?? {}} {...props}/>

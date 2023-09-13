@@ -5,12 +5,12 @@ import {useSession} from 'next-auth/react';
 import {Failed} from '@/components/icons/failed';
 import {Loading} from '@/components/icons/loading';
 import {useUserDataActor} from '@/hooks/userData/actor';
-import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
+import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
 
 type Props = {
-  type: UserLazyLoadedDataType,
+  options: UserDataLoadingOpts,
   loadingText: string,
   content: (data: UserLazyLoadedData | null | undefined, session: ReturnType<typeof useSession>) => React.ReactNode,
   sessionOverride?: ReturnType<typeof useSession>,
@@ -22,7 +22,7 @@ type Props = {
   toAct?: never,
 });
 
-export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
+export const UserDataLazyLoad = ({options, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
   const {act, status, session} = useUserDataActor({
     override: sessionOverride,
     statusNoReset: true,
@@ -37,7 +37,7 @@ export const UserDataLazyLoad = ({type, loadingText, content, sessionOverride, a
     }
 
     if (!loaded && act && session.status === 'authenticated' && status === 'waiting') {
-      act({action: 'load', options: {type}});
+      act({action: 'load', options});
     }
   }, [session.status, ...(actDeps ?? [])]);
 

@@ -1,6 +1,6 @@
 import {getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {userDataTeamAnalysisSetup} from '@/controller/user/manager';
-import {UserLazyLoadedDataType} from '@/types/userData/lazyLoaded';
+import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
 
@@ -12,19 +12,21 @@ export const emptyLazyData: UserLazyLoadedData = {
 type GetUserLazyDataOpts = {
   initialData: UserLazyLoadedData,
   userId: string,
-  dataType: UserLazyLoadedDataType,
+  options: UserDataLoadingOpts,
 };
 
-const loadData = async ({dataType, userId}: GetUserLazyDataOpts) => {
-  if (dataType === 'teamAnalysisSetup') {
+const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
+  const {type, opts} = options;
+
+  if (type === 'teamAnalysisSetup') {
     return (await userDataTeamAnalysisSetup.getData(userId))?.data satisfies UserLazyLoadedData['teamAnalysisSetup'];
   }
 
-  if (dataType === 'pokebox') {
+  if (type === 'pokebox') {
     return await getUserPokebox(userId) satisfies UserLazyLoadedData['pokebox'];
   }
 
-  if (dataType === 'pokeboxSorted') {
+  if (type === 'pokeboxSorted') {
     return await getUserPokeboxSorted(userId) satisfies UserLazyLoadedData['pokeboxSorted'];
   }
 
@@ -33,11 +35,11 @@ const loadData = async ({dataType, userId}: GetUserLazyDataOpts) => {
 };
 
 export const getUserLazyData = async (opts: GetUserLazyDataOpts): Promise<UserLazyLoadedData> => {
-  const {initialData, dataType} = opts;
+  const {initialData, options} = opts;
 
   return {
     ...initialData,
     ...emptyLazyData,
-    [dataType]: await loadData(opts),
+    [options.type]: await loadData(opts),
   };
 };

@@ -21,7 +21,7 @@ export const PokeboxImporter = ({show, setShow, ...props}: Props) => {
     <Popup show={show} setShow={setShow}>
       <Flex direction="col" noFullWidth className="min-w-[50vw]">
         <UserDataLazyLoad
-          type="pokeboxSorted"
+          options={{type: 'pokeboxSorted'}}
           loadingText="Pokebox"
           sessionOverride={session}
           actDeps={[show]}

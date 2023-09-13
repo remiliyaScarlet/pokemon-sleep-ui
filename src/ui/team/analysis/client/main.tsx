@@ -9,7 +9,7 @@ import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
 export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
   return (
     <UserDataLazyLoad
-      type="teamAnalysisSetup"
+      options={{type: 'teamAnalysisSetup'}}
       loadingText="Team"
       content={(data, session) => (
         <TeamAnalysisLoadedClient
