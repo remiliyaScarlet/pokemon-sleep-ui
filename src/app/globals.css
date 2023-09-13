@@ -116,8 +116,8 @@
       }
     }
     
-    & > tbody > tr {
-      @apply border-b border-b-gray-700 py-1 last:border-b-0;
+    & > tbody > tr:has(td[colspan="100"]) {
+      @apply border-b border-b-gray-700 text-center last:border-b-0;
     }
   }
   
