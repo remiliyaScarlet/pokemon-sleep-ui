@@ -6,7 +6,7 @@ import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
-import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app';
+import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
 import {UserSettingsEnergy} from '@/ui/base/navbar/userSettings/sections/energy/main';
 import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
