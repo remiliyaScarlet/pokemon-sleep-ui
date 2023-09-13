@@ -1,4 +1,5 @@
 import {PokeInBox} from '@/types/game/pokebox';
+import {SleepdexData} from '@/types/game/sleepdex';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -18,6 +19,9 @@ export type UserDataUploadOpts = {
 } | {
   type: 'pokebox.delete',
   data: PokeInBox['uuid'],
+} | {
+  type: 'sleepdex.mark' | 'sleepdex.unmark',
+  data: SleepdexData,
 } | {
   type: 'teamAnalysisSetup',
   data: TeamAnalysisSetup,

@@ -1,4 +1,5 @@
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
+import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
 import {
   userDataCooking,
   userDataPokeboxDisplay,
@@ -44,6 +45,16 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'pokebox.delete') {
     await deleteSinglePokeInBox(userId, data);
+    return;
+  }
+
+  if (type === 'sleepdex.mark') {
+    await addSleepdexRecord(userId, data);
+    return;
+  }
+
+  if (type === 'sleepdex.unmark') {
+    await removeSleepdexRecord(userId, data);
     return;
   }
 

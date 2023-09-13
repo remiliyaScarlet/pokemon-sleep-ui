@@ -1,10 +1,24 @@
+import {PokemonId} from '@/types/game/pokemon';
+import {SleepMapId} from '@/types/game/sleepStyle';
+
+
 export type UserDataLoadingOpts = {
-  type: 'teamAnalysisSetup'
+  type: 'teamAnalysisSetup',
   opts?: never,
 } | {
-  type: 'pokebox'
+  type: 'pokebox',
   opts?: never,
 } | {
-  type: 'pokeboxSorted'
+  type: 'pokeboxSorted',
   opts?: never,
+} | {
+  type: 'sleepdexByMap',
+  opts: {
+    mapId: SleepMapId,
+  },
+} | {
+  type: 'sleepdexByPokemon',
+  opts: {
+    pokemonId: PokemonId,
+  },
 };
