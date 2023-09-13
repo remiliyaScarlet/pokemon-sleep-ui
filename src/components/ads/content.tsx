@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import {adsHeight, adsMessage} from '@/components/ads/const';
+import {useAdBlockDetector} from '@/components/ads/hook';
+import {AdBlockState} from '@/components/ads/type';
 import {defaultLocale} from '@/const/website';
 import {Locale} from '@/types/next/locale';
 import {isProduction} from '@/utils/environment';
@@ -16,28 +18,31 @@ type Props = {
 };
 
 export const AdsContent = ({className, locale, children}: React.PropsWithChildren<Props>) => {
-  const [showAdsMessage, setShowAdsMessage] = React.useState(false);
+  const [adblockState, setAdblockState] = React.useState<AdBlockState>({
+    adsFound: false,
+    isBlocked: false,
+  });
 
-  React.useEffect(() => {
-    setShowAdsMessage(!document.querySelectorAll('ins > div').length);
-  }, [document.querySelectorAll('ins > div').length]);
+  const adsRef = useAdBlockDetector({
+    setAdblockState,
+  });
 
   return (
     <div className={clsx(
       'relative w-full overflow-auto',
       className,
       adsHeight,
-      isProduction() ? (showAdsMessage && 'rounded-lg bg-red-500/40') : 'border border-green-500',
+      adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
     )}>
       {
-        showAdsMessage &&
+        adblockState.isBlocked &&
         <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(
           'flex h-full w-full flex-col items-center justify-center text-center text-xl',
         )}>
           {adsMessage[locale] ?? adsMessage[defaultLocale]}
         </ReactMarkdown>
       }
-      <div className="absolute left-0 top-0 h-full w-full">
+      <div ref={adsRef} className="absolute left-0 top-0 h-full w-full">
         {children}
       </div>
     </div>
