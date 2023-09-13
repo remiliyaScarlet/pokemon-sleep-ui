@@ -83,10 +83,10 @@
     },
     "Map": {
       "Index": {
-        "Title": "地圖"
+        "Title": "地圖、睡姿"
       },
       "Page": {
-        "Title": "{name} - 地圖"
+        "Title": "{name} - 地圖、睡姿"
       }
     },
     "Team": {

@@ -83,10 +83,10 @@
     },
     "Map": {
       "Index": {
-        "Title": "Maps"
+        "Title": "Maps / Sleep Styles"
       },
       "Page": {
-        "Title": "{name} - Map"
+        "Title": "{name} - Map / Sleep Styles"
       }
     },
     "Team": {

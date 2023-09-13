@@ -83,10 +83,10 @@
     },
     "Map": {
       "Index": {
-        "Title": "マップ"
+        "Title": "マップ / 寝顔"
       },
       "Page": {
-        "Title": "{name} - マップ"
+        "Title": "{name} - マップ / 寝顔"
       }
     },
     "Team": {

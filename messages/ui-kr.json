@@ -83,10 +83,10 @@
     },
     "Map": {
       "Index": {
-        "Title": "맵"
+        "Title": "맵 / 잠자는 모습"
       },
       "Page": {
-        "Title": "{name} - 맵"
+        "Title": "{name} - 맵 / 잠자는 모습"
       }
     },
     "Team": {

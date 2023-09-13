@@ -83,10 +83,10 @@
     },
     "Map": {
       "Index": {
-        "Title": "Karte"
+        "Title": "Karte / Schlafposen"
       },
       "Page": {
-        "Title": "{name} - Karte"
+        "Title": "{name} - Karte / Schlafposen"
       }
     },
     "Team": {
