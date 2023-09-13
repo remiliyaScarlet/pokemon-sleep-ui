@@ -1,30 +1,35 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
-import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {imageSmallIconSizes} from '@/styles/image';
+import {SleepdexMarkedByMap} from '@/types/game/sleepdex';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
-import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';
+import {MapUnlockTableRow} from '@/ui/map/page/unlockTable/row';
 import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
-import {formatInt} from '@/utils/number';
 
 
-type Props = Pick<MapCommonProps, 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
+type Props = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
+  initialSleepdex: SleepdexMarkedByMap,
 };
 
-export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxReward, filter, isIncluded}: Props) => {
-  const {showEmptyRank, displayType} = filter;
+export const MapUnlockTable = (props: Props) => {
+  const {
+    sleepStyles,
+    filter,
+    isIncluded,
+    initialSleepdex,
+  } = props;
+  const {showEmptyRank} = filter;
+
+  const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
 
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('UI.InPage.Map');
@@ -60,54 +65,24 @@ export const MapUnlockTable = ({pokedexMap, sleepStyles, snorlaxRank, snorlaxRew
             ));
 
           const toHide = !showEmptyRank && !matchingStyles.length;
+          const key = `${rank.title}-${rank.number}`;
+
+          if (toHide) {
+            return <React.Fragment key={key}/>;
+          }
 
           stylesAccumulated += matchingStyles.length;
 
           return (
-            <tr
-              key={`${rank.title}-${rank.number}`}
-              className={clsx(toHide ? 'hidden' : 'border-b border-b-gray-700 last:border-b-0')}
-            >
-              <td>
-                <Flex direction="col" center className="gap-1">
-                  <SnorlaxRankUI rank={rank} hideTextBelowMd/>
-                  <Flex direction="row" center className="gap-1">
-                    <ColoredEnergyIcon alt={t2('Energy')}/>
-                    <div>
-                      {formatInt(snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy)}
-                    </div>
-                  </Flex>
-                </Flex>
-              </td>
-              <td>
-                <Flex direction="col" center>
-                  <PokemonIconList
-                    dataWithPokemon={matchingStyles}
-                    getPokemon={({pokemonId}) => pokedexMap[pokemonId]}
-                    getPokemonId={({pokemonId}) => pokemonId}
-                    getInfo={(data) => (
-                      <MapTableInfoIcon data={data} pokedex={pokedexMap} displayType={displayType}/>
-                    )}
-                    getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
-                  />
-                </Flex>
-              </td>
-              <td className="whitespace-nowrap">
-                <Flex direction="col" center className="gap-1">
-                  <div>
-                    {stylesAccumulated}{matchingStyles.length ? ` (+${matchingStyles.length})` : ''}
-                  </div>
-                  <Flex direction="row" center>
-                    <div className="relative h-6 w-6">
-                      <NextImage src="/images/generic/shard.png" alt={t('DreamShards')} sizes={imageSmallIconSizes}/>
-                    </div>
-                    <div>
-                      {formatInt(snorlaxReward.find((reward) => isSameRank(reward.rank, rank))?.shard)}
-                    </div>
-                  </Flex>
-                </Flex>
-              </td>
-            </tr>
+            <MapUnlockTableRow
+              key={key}
+              rank={rank}
+              matchingStyles={matchingStyles}
+              stylesAccumulated={stylesAccumulated}
+              sleepdex={sleepdex}
+              setSleepdex={setSleepdex}
+              {...props}
+            />
           );
         })}
       </tbody>

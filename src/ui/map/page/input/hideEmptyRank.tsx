@@ -18,7 +18,7 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: FilterInputProps<Ma
   return (
     <ToggleButton
       id="showEmptyRank"
-      active={filter.showEmptyRank}
+      active={showEmptyRank}
       onClick={() => setFilter((original) => ({
         ...original,
         showEmptyRank: !original.showEmptyRank,

@@ -11,6 +11,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap, ...filterData}: MapCommon
     dataToId: ({pokemonId, style}) => `${pokemonId}-${style.style}`,
     initialFilter: {
       ...generatePokemonInputFilter(),
+      markingSleepdex: false,
       showEmptyRank: false,
       sleepStyle: {},
       displayType: 'sleepStyle',

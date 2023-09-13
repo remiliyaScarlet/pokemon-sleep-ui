@@ -6,6 +6,7 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {MapInputDisplayType} from '@/ui/map/page/input/displayType';
 import {MapInputEmptyRankToggle} from '@/ui/map/page/input/hideEmptyRank';
+import {MapInputMarkSleepdexToggle} from '@/ui/map/page/input/markSleepdex';
 import {MapInputSleepStyleToggle} from '@/ui/map/page/input/styleIndex';
 import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {toUnique} from '@/utils/array';
@@ -33,9 +34,10 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
       />
       <MapInputDisplayType filter={filter} setFilter={setFilter}/>
       <InputRow>
-        <div className="ml-auto">
+        <Flex direction="row" noFullWidth className="ml-auto gap-1.5">
+          <MapInputMarkSleepdexToggle {...props}/>
           <MapInputEmptyRankToggle {...props}/>
-        </div>
+        </Flex>
       </InputRow>
     </Flex>
   );
