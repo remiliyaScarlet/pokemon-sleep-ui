@@ -38,14 +38,15 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
   const filteredPokeBox = pokebox
     .map((pokeInBox) => ({
       ...pokeInBox,
-      name: pokeInBox.name ?? t2(`PokemonName.${pokeInBox.pokemon}`),
+      name: pokeInBox.name,
+      search: pokeInBox.name ?? t2(`PokemonName.${pokeInBox.pokemon}`),
     }))
-    .filter(({name}) => {
+    .filter((pokeInBox) => {
       if (!search) {
         return true;
       }
 
-      return name.includes(search);
+      return pokeInBox.search.includes(search);
     });
 
   return (
@@ -62,7 +63,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
         />
       </Flex>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
-        {filteredPokeBox.map((pokeInBox) => (
+        {filteredPokeBox.map(({search, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
             onClick={() => onPokeboxPicked(pokeInBox)}
