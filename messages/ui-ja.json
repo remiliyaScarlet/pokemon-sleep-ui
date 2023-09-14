@@ -216,13 +216,14 @@
       "SubSkill": "サブスキル",
       "Box": {
         "DisplayType": {
+          "Frequency": "おてつだい時間",
           "Info": "情報",
+          "MaxCarry": "最大所持数",
           "ProductionBerry": "生産 (きのみ)",
           "ProductionIngredient": "生産 (食材)",
           "ProductionTotal": "生産 (トータル)",
           "Rating": "評価",
-          "Skills": "スキル",
-          "Stats": "パラメーター"
+          "Skills": "スキル"
         }
       }
     },

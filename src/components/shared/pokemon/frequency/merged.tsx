@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -41,7 +42,7 @@ export const PokemonFrequency = ({
         <div>{formatInt(baseFrequency)}</div>
         <div>({formatFloat(dailyCount)}x)</div>
       </Flex>
-      <Flex direction={singleLine ? 'row' : 'col'} noFullWidth className="gap-0.5">
+      <Flex direction={singleLine ? 'row' : 'col'} noFullWidth className={clsx(singleLine && 'gap-0.5')}>
         <Flex direction="row" center noFullWidth className="gap-0.5">
           <PokemonDataIcon
             src="/images/generic/berry.png"

@@ -150,13 +150,14 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         SubSkill: string,
         Box: {
           DisplayType: {
+            Frequency: string,
             Info: string,
+            MaxCarry: string,
             ProductionBerry: string,
             ProductionIngredient: string,
             ProductionTotal: string,
             Rating: string,
             Skills: string,
-            Stats: string,
           },
         },
       },

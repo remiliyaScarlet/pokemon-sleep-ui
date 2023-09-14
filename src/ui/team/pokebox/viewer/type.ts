@@ -23,7 +23,8 @@ export const pokeboxDisplayType = [
   'productionIngredient',
   'rating',
   'skills',
-  'stats',
+  'frequency',
+  'maxCarry',
   'info',
 ] as const;
 

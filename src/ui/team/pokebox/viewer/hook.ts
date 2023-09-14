@@ -60,7 +60,7 @@ export const usePokeboxViewerFilter = ({
           displayOfTable: {},
           viewType: 'table',
           previewLevel: null,
-          version: 2,
+          version: 3,
         },
         override: preloaded.display ?? {},
         migrators: pokeboxDisplayMigrators,

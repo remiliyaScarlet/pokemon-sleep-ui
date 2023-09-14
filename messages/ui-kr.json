@@ -216,13 +216,14 @@
       "SubSkill": "서브 스킬",
       "Box": {
         "DisplayType": {
+          "Frequency": "도우미 시간",
           "Info": "정보",
+          "MaxCarry": "최대 소지 수",
           "ProductionBerry": "생산 (나무열매)",
           "ProductionIngredient": "생산 (식재료)",
           "ProductionTotal": "생산 (총합)",
           "Rating": "평가",
-          "Skills": "스킬",
-          "Stats": "매개변수"
+          "Skills": "스킬"
         }
       }
     },

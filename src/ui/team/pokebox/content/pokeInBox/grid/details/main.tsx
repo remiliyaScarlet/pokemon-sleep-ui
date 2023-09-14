@@ -1,12 +1,13 @@
 import React from 'react';
 
+import {PokeInBoxFrequencyInGrid} from '@/ui/team/pokebox/content/pokeInBox/grid/details/frequency';
 import {PokeInBoxInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
+import {PokeInBoxMaxCarryInGrid} from '@/ui/team/pokebox/content/pokeInBox/grid/details/maxCarry';
 import {PokeInBoxProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
 import {PokeInBoxProductionIngredient} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionIngredient';
 import {PokeInBoxProductionTotal} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionTotal';
 import {PokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/grid/details/rating';
 import {PokeInBoxSkills} from '@/ui/team/pokebox/content/pokeInBox/grid/details/skills';
-import {PokeInBoxStats} from '@/ui/team/pokebox/content/pokeInBox/grid/details/stats';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
@@ -38,8 +39,12 @@ export const PokeInBoxDetails = (props: Props) => {
     return <PokeInBoxSkills {...props}/>;
   }
 
-  if (displayType === 'stats') {
-    return <PokeInBoxStats {...props}/>;
+  if (displayType === 'frequency') {
+    return <PokeInBoxFrequencyInGrid {...props}/>;
+  }
+
+  if (displayType === 'maxCarry') {
+    return <PokeInBoxMaxCarryInGrid {...props}/>;
   }
 
   if (displayType === 'info') {

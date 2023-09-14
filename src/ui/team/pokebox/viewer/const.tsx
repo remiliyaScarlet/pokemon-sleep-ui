@@ -15,7 +15,8 @@ export const pokeboxDisplayTypeToI18nId: {
   productionIngredient: 'ProductionIngredient',
   rating: 'Rating',
   skills: 'Skills',
-  stats: 'Stats',
+  frequency: 'Frequency',
+  maxCarry: 'MaxCarry',
   info: 'Info',
 };
 
@@ -25,7 +26,8 @@ export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: st
   productionIngredient: '/images/generic/ingredient.png',
   rating: '/images/generic/search.png',
   skills: '/images/generic/mainSkill.png',
-  stats: '/images/generic/analysis.png',
+  frequency: '/images/generic/clock.png',
+  maxCarry: '/images/generic/bag.png',
   info: '/images/generic/info.png',
 };
 

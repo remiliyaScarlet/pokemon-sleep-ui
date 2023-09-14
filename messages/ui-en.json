@@ -216,13 +216,14 @@
       "SubSkill": "Sub Skill",
       "Box": {
         "DisplayType": {
+          "Frequency": "Frequency",
           "Info": "Info",
+          "MaxCarry": "Carry Limit",
           "ProductionBerry": "Production (Berry)",
           "ProductionIngredient": "Production (Ingredient)",
           "ProductionTotal": "Production (Total)",
           "Rating": "Rating",
-          "Skills": "Skills",
-          "Stats": "Stats"
+          "Skills": "Skills"
         }
       }
     },

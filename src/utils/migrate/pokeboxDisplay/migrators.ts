@@ -23,4 +23,25 @@ export const pokeboxDisplayMigrators: Migrator<PokeboxViewerDisplay, PokeboxView
       displayOfTable: {},
     }),
   },
+  {
+    // `displayOf*` changing `stats` to `maxCarry` or `frequency`
+    toVersion: 3,
+    migrate: ({displayOfGrid, displayOfTable, ...old}): PokeboxViewerDisplay => {
+      const displayOfTableClone = {...displayOfTable};
+
+      // @ts-ignore
+      if (displayOfTableClone['stats']) {
+        displayOfTableClone['frequency'] = true;
+        // @ts-ignore
+        delete displayOfTableClone['stats'];
+      }
+
+      return {
+        ...old,
+        // @ts-ignore
+        displayOfGrid: displayOfGrid === 'stats' ? 'frequency' : displayOfGrid,
+        displayOfTable: displayOfTableClone,
+      };
+    },
+  },
 ];
