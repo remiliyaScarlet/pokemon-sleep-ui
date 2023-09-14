@@ -26,7 +26,7 @@ export const MapUnlockTableStylesUnlocked = ({sleepType, unlocked, unlockable}: 
           </div>
       }
       {
-        !!unlocked && !!unlockable &&
+        unlocked !== undefined && unlockable !== undefined &&
         (
           unlocked !== unlockable ?
             <>
