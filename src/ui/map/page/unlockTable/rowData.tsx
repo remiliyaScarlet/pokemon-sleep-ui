@@ -23,7 +23,6 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const MapUnlockTableDataRow = ({
-  mapId,
   pokedexMap,
   snorlaxReward,
   filter,
@@ -51,7 +50,7 @@ export const MapUnlockTableDataRow = ({
 
     const sleepdexId = toSleepdexStyleId({pokemonId, styleId});
     const inSleepdex = isInSleepdex({data, sleepdex});
-    const sleepdexData: SleepdexData = {pokemonId, mapId, styleId};
+    const sleepdexData: SleepdexData = {pokemonId, styleId};
 
     act({
       action: 'upload',
