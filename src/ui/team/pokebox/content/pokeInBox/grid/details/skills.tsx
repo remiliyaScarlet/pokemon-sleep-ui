@@ -11,7 +11,7 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeInBoxSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBoxCommonProps) => {
+export const PokeInBoxGridSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBoxCommonProps) => {
   const {skill, specialty} = pokemon;
   const {nature, subSkill} = pokeInBox;
 

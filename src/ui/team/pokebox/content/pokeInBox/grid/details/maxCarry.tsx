@@ -7,7 +7,7 @@ import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeInBoxMaxCarryInGrid = (props: PokeInBoxCommonProps) => {
+export const PokeInBoxGridMaxCarry = (props: PokeInBoxCommonProps) => {
   const {pokeInBox} = props;
 
   const t = useTranslations('UI.InPage.Pokedex');

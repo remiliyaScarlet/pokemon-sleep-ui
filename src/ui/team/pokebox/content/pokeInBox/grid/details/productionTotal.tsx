@@ -11,7 +11,7 @@ import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeInBoxProductionTotal = (props: PokeInBoxCommonProps) => {
+export const PokeInBoxGridProductionTotal = (props: PokeInBoxCommonProps) => {
   const {pokemon} = props;
 
   const t = useTranslations('UI.InPage.Pokedex');

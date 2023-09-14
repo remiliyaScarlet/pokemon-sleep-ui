@@ -5,7 +5,7 @@ import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/ta
 import {PokeInBoxRatingInRow} from '@/ui/team/pokebox/content/pokeInBox/table/rating';
 
 
-export const PokeInBoxRatingInTable = (props: PokeInBoxTableDetailsProps) => {
+export const PokeInBoxTableRating = (props: PokeInBoxTableDetailsProps) => {
   return (
     <Flex direction="col" noFullWidth className="w-52">
       <PokeInBoxRatingInRow {...props}/>

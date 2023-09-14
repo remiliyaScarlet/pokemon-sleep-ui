@@ -5,7 +5,7 @@ import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/po
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeInBoxFrequencyInGrid = (props: PokeInBoxCommonProps) => {
+export const PokeInBoxGridFrequency = (props: PokeInBoxCommonProps) => {
   const {pokemon} = props;
 
   const rateOfBerry = getRateOfBerry(props);

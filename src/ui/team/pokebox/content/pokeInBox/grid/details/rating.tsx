@@ -13,7 +13,7 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat, formatInt} from '@/utils/number';
 
 
-export const PokeInBoxRating = (props: PokeInBoxCommonProps) => {
+export const PokeInBoxGridRating = (props: PokeInBoxCommonProps) => {
   const {result, loading} = useCalculatePokeInBoxRating(props);
 
   const {percentage, percentile} = result;

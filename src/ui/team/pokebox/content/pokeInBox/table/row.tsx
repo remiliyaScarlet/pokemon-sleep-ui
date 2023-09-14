@@ -2,12 +2,12 @@ import React from 'react';
 
 import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex';
-import {PokeInBoxFrequencyInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/frequency';
-import {PokeInBoxDetailsInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
-import {PokeInBoxMaxCarryInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/maxCarry';
-import {PokeInBoxProductionInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/production';
-import {PokeInBoxRatingInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/rating';
-import {PokeInBoxSkillsInTable} from '@/ui/team/pokebox/content/pokeInBox/table/details/skills';
+import {PokeInBoxTableFrequency} from '@/ui/team/pokebox/content/pokeInBox/table/details/frequency';
+import {PokeInBoxTableDetails} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
+import {PokeInBoxTableMaxCarry} from '@/ui/team/pokebox/content/pokeInBox/table/details/maxCarry';
+import {PokeInBoxTableProduction} from '@/ui/team/pokebox/content/pokeInBox/table/details/production';
+import {PokeInBoxTableRating} from '@/ui/team/pokebox/content/pokeInBox/table/details/rating';
+import {PokeInBoxTableSkills} from '@/ui/team/pokebox/content/pokeInBox/table/details/skills';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table/header';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
@@ -60,32 +60,32 @@ export const PokeInBoxTableRow = (props: Props) => {
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['info'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxDetailsInTable {...detailProps}/>}
+          }) && <PokeInBoxTableDetails {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['productionTotal', 'productionBerry', 'productionIngredient'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxProductionInTable {...detailProps}/>}
+          }) && <PokeInBoxTableProduction {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['rating'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxRatingInTable {...detailProps}/>}
+          }) && <PokeInBoxTableRating {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['frequency'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxFrequencyInTable {...detailProps}/>}
+          }) && <PokeInBoxTableFrequency {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['maxCarry'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxMaxCarryInTable {...detailProps}/>}
+          }) && <PokeInBoxTableMaxCarry {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['skills'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxSkillsInTable {...detailProps}/>}
+          }) && <PokeInBoxTableSkills {...detailProps}/>}
         </Flex>
       </button>
     </Flex>

@@ -12,7 +12,7 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeInBoxProductionIngredient = (props: PokeInBoxCommonProps) => {
+export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) => {
   const {pokemon} = props;
   const t = useTranslations('UI.InPage.Pokedex');
 

@@ -13,7 +13,7 @@ import {PokeInBoxLevel} from '@/ui/team/pokebox/content/pokeInBox/common/level';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
-export const PokeInBoxDetailsInTable = (props: PokeInBoxTableDetailsProps) => {
+export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
   const {
     pokeInBox,
     pokemon,

@@ -11,7 +11,7 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
-export const PokeInBoxSkillsInTable = (props: PokeInBoxTableDetailsProps) => {
+export const PokeInBoxTableSkills = (props: PokeInBoxTableDetailsProps) => {
   const {
     pokeInBox,
     pokemon,

@@ -11,7 +11,7 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
-export const PokeInBoxInfo = ({pokemon, pokeInBox}: PokeInBoxCommonProps) => {
+export const PokeInBoxGridInfo = ({pokemon, pokeInBox}: PokeInBoxCommonProps) => {
   const {ingredients} = pokeInBox;
   const {sleepType, specialty, berry} = pokemon;
 
