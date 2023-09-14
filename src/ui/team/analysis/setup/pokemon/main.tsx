@@ -109,7 +109,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
             <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
           </div>
         </Flex>
-        <Flex direction="row" className="items-center gap-1.5">
+        <Flex direction="col" className="items-center gap-1.5 sm:flex-row">
           <Flex direction="row" center noFullWidth className="gap-1.5">
             <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
