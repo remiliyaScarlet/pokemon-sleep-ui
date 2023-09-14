@@ -156,6 +156,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
           noSameLine
         />
         <PokemonFrequency
+          baseFrequency={pokemon.stats.frequency}
           berryFrequency={stats.berry.frequency}
           ingredientFrequency={stats.ingredient.at(0)?.frequency ?? NaN}
         />

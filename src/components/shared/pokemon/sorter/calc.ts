@@ -29,6 +29,7 @@ const getBerryRateSorter = (
 
 const sortInAsc: PokemonSortType[] = [
   'id',
+  'frequency',
   'frequencyOfBerry',
   'frequencyOfIngredient',
   'friendshipPoint',
@@ -42,6 +43,7 @@ const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGe
   berryEnergy: (opts) => getBerryRateSorter('dailyEnergy', opts),
   berryCount: (opts) => getBerryRateSorter('quantity', opts),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
+  frequency: ({pokemon}) => pokemon.stats.frequency,
   frequencyOfBerry: (opts) => getBerryRateSorter('frequency', opts),
   frequencyOfIngredient: (opts) => getIngredientProducingRates(opts).at(0)?.frequency ?? NaN,
   totalEnergy: (opts) => {

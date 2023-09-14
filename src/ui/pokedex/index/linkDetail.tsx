@@ -32,6 +32,7 @@ export const PokedexLinkDetail = React.memo(({
     id,
     berry,
     skill,
+    stats,
     specialty,
     sleepType,
   } = pokemon;
@@ -74,6 +75,14 @@ export const PokedexLinkDetail = React.memo(({
     return (
       <Flex direction="row">
         <PokemonSpecialty specialty={specialty}/>
+      </Flex>
+    );
+  }
+
+  if (display === 'frequency') {
+    return (
+      <Flex direction="row">
+        <PokemonFrequencySingle frequency={stats.frequency}/>
       </Flex>
     );
   }

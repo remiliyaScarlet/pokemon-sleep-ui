@@ -10,7 +10,7 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
 export const PokeInBoxStats = (props: PokeInBoxCommonProps) => {
-  const {pokeInBox} = props;
+  const {pokemon, pokeInBox} = props;
 
   const t = useTranslations('UI.InPage.Pokedex');
 
@@ -24,6 +24,7 @@ export const PokeInBoxStats = (props: PokeInBoxCommonProps) => {
         <div>{pokeInBox.carryLimit}</div>
       </Flex>
       <PokemonFrequency
+        baseFrequency={pokemon.stats.frequency}
         berryFrequency={rateOfBerry.frequency}
         ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? NaN}
       />
