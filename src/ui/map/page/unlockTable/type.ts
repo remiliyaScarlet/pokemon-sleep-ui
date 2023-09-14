@@ -2,7 +2,7 @@ import React from 'react';
 
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
 import {SnorlaxRank} from '@/types/game/rank';
-import {SleepdexMarkedByMap} from '@/types/game/sleepdex';
+import {SleepdexMap} from '@/types/game/sleepdex';
 import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {MapCommonProps, MapPageFilter} from '@/ui/map/page/type';
 
@@ -28,6 +28,6 @@ export type MapUnlockTableRowProps = Pick<MapCommonProps, 'mapId' | 'pokedexMap'
   rank: SnorlaxRank,
   matchingStyles: SleepStyleDataFlattened[],
   accumulator: MapUnlockAccumulator,
-  sleepdex: SleepdexMarkedByMap,
-  setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMarkedByMap>>,
+  sleepdex: SleepdexMap,
+  setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,
 };

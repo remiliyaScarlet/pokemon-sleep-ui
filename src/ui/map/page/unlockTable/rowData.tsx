@@ -16,7 +16,7 @@ import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';
 import {MapUnlockTableRowProps} from '@/ui/map/page/unlockTable/type';
 import {isInSleepdex} from '@/ui/map/page/unlockTable/utils';
 import {toSum} from '@/utils/array';
-import {toSleepdexByMapId} from '@/utils/game/sleepdex';
+import {toSleepdexStyleId} from '@/utils/game/sleepdex';
 import {isSameRank} from '@/utils/game/snorlax';
 import {formatInt} from '@/utils/number';
 import {isNotNullish} from '@/utils/type';
@@ -49,7 +49,7 @@ export const MapUnlockTableDataRow = ({
     const {pokemonId, style} = data;
     const styleId = style.style;
 
-    const sleepdexId = toSleepdexByMapId({pokemonId, styleId});
+    const sleepdexId = toSleepdexStyleId({pokemonId, styleId});
     const inSleepdex = isInSleepdex({data, sleepdex});
     const sleepdexData: SleepdexData = {pokemonId, mapId, styleId};
 
@@ -104,7 +104,7 @@ export const MapUnlockTableDataRow = ({
             )}
             getClassName={({pokemonId, style}) => clsx(
               'm-0.5',
-              sleepdex[toSleepdexByMapId({pokemonId, styleId: style.style})] &&
+              sleepdex[toSleepdexStyleId({pokemonId, styleId: style.style})] &&
               'bg-gradient-to-br from-transparent to-slate-500/80',
             )}
             getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}

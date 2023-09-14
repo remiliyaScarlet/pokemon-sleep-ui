@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {imageSmallIconSizes} from '@/styles/image';
-import {SleepdexMarkedByMap} from '@/types/game/sleepdex';
+import {SleepdexMap} from '@/types/game/sleepdex';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {MapUnlockTableRow} from '@/ui/map/page/unlockTable/row';
 import {MapUnlockAccumulator} from '@/ui/map/page/unlockTable/type';
@@ -19,7 +19,7 @@ import {isSameRank} from '@/utils/game/snorlax';
 type Props = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
-  initialSleepdex: SleepdexMarkedByMap,
+  initialSleepdex: SleepdexMap,
 };
 
 export const MapUnlockTable = (props: Props) => {

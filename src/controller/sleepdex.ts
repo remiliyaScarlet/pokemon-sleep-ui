@@ -2,10 +2,9 @@ import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/game/pokemon';
-import {SleepdexData, SleepdexMarkedByMap, SleepdexMarkedByPokemon} from '@/types/game/sleepdex';
-import {SleepMapId} from '@/types/game/sleepStyle';
+import {SleepdexData, SleepdexMap} from '@/types/game/sleepdex';
 import {SleepdexRecord} from '@/types/mongo/sleepdex';
-import {toSleepdexByMapId, toSleepdexByPokemonId} from '@/utils/game/sleepdex';
+import {toSleepdexStyleId} from '@/utils/game/sleepdex';
 
 
 const getCollection = async (): Promise<Collection<SleepdexRecord>> => {
@@ -16,22 +15,22 @@ const getCollection = async (): Promise<Collection<SleepdexRecord>> => {
     .collection<SleepdexRecord>('sleepdex');
 };
 
-export const getSleepdexByMap = async (userId: string, mapId: SleepMapId): Promise<SleepdexMarkedByMap> => {
+export const getSleepdexMap = async (userId: string): Promise<SleepdexMap> => {
   const collection = await getCollection();
 
   return Object.fromEntries(
-    await collection.find({userId, mapId})
-      .map((data) => [toSleepdexByMapId(data), true])
+    await collection.find({userId})
+      .map((data) => [toSleepdexStyleId(data), true])
       .toArray(),
   );
 };
 
-export const getSleepdexByPokemon = async (userId: string, pokemonId: PokemonId): Promise<SleepdexMarkedByPokemon> => {
+export const getSleepdexMapOfPokemon = async (userId: string, pokemonId: PokemonId): Promise<SleepdexMap> => {
   const collection = await getCollection();
 
   return Object.fromEntries(
     await collection.find({userId, pokemonId})
-      .map((data) => [toSleepdexByPokemonId(data), true])
+      .map((data) => [toSleepdexStyleId(data), true])
       .toArray(),
   );
 };
@@ -49,7 +48,7 @@ const addSleepdexIndex = async () => {
 
   return Promise.all([
     collection.createIndex({userId: 1}),
-    collection.createIndex([{userId: 1}, {pokemonId: 1}, {mapId: 1}, {styleId: 1}], {unique: true}),
+    collection.createIndex([{userId: 1}, {pokemonId: 1}, {styleId: 1}], {unique: true}),
   ]);
 };
 

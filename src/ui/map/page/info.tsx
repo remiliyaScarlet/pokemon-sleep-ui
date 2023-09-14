@@ -10,7 +10,6 @@ import {MapUnlockTable} from '@/ui/map/page/unlockTable/main';
 
 
 export const MapInfo = (props: MapCommonProps) => {
-  const {mapId} = props;
   const {filter, setFilter, isIncluded} = useMapFilter(props);
 
   return (
@@ -18,13 +17,13 @@ export const MapInfo = (props: MapCommonProps) => {
       <MapInfoInput filter={filter} setFilter={setFilter} {...props}/>
       <AdsUnit/>
       <UserDataLazyLoad
-        options={{type: 'sleepdexByMap', opts: {mapId}}}
+        options={{type: 'sleepdex'}}
         loadingText="Sleepdex"
         content={(data) => (
           <MapUnlockTable
             filter={filter}
             isIncluded={isIncluded}
-            initialSleepdex={data?.sleepdexByMap ?? {}}
+            initialSleepdex={data?.sleepdex ?? {}}
             {...props}
           />
         )}

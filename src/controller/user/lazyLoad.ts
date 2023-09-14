@@ -1,5 +1,5 @@
 import {getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
-import {getSleepdexByMap, getSleepdexByPokemon} from '@/controller/sleepdex';
+import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
 import {userDataTeamAnalysisSetup} from '@/controller/user/manager';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
@@ -31,12 +31,12 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     return await getUserPokeboxSorted(userId) satisfies UserLazyLoadedData['pokeboxSorted'];
   }
 
-  if (type === 'sleepdexByMap') {
-    return await getSleepdexByMap(userId, opts.mapId) satisfies UserLazyLoadedData['sleepdexByMap'];
+  if (type === 'sleepdex') {
+    return await getSleepdexMap(userId) satisfies UserLazyLoadedData['sleepdex'];
   }
 
-  if (type === 'sleepdexByPokemon') {
-    return await getSleepdexByPokemon(userId, opts.pokemonId) satisfies UserLazyLoadedData['sleepdexByPokemon'];
+  if (type === 'sleepdexOfPokemon') {
+    return await getSleepdexMapOfPokemon(userId, opts.pokemonId) satisfies UserLazyLoadedData['sleepdexOfPokemon'];
   }
 
   console.error(`Unknown data type ${type satisfies never} to load data`);
