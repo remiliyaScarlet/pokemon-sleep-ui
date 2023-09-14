@@ -109,7 +109,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
             <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
           </div>
         </Flex>
-        <Flex direction="row" className="items-center">
+        <Flex direction="row" className="items-center gap-1.5">
           <Flex direction="row" center noFullWidth className="gap-1.5">
             <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
@@ -155,11 +155,13 @@ export const TeamAnalysisPokemon = (props: Props) => {
           maxLevel={maxLevel}
           noSameLine
         />
-        <PokemonFrequency
-          baseFrequency={pokemon.stats.frequency}
-          berryFrequency={stats.berry.frequency}
-          ingredientFrequency={stats.ingredient.at(0)?.frequency ?? NaN}
-        />
+        <Flex direction="col" center>
+          <PokemonFrequency
+            baseFrequency={pokemon.stats.frequency}
+            berryFrequency={stats.berry.frequency}
+            ingredientFrequency={stats.ingredient.at(0)?.frequency ?? NaN}
+          />
+        </Flex>
         <HorizontalSplitter className="w-full"/>
         <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
         <PokemonProductionSplit

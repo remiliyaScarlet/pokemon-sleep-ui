@@ -1,5 +1,6 @@
 import React from 'react';
 
+import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -12,6 +13,7 @@ type Props = {
   ingredientFrequency: number,
   baseFrequency: number,
   singleLine?: boolean,
+  noIcon?: boolean,
 };
 
 export const PokemonFrequency = ({
@@ -19,6 +21,7 @@ export const PokemonFrequency = ({
   ingredientFrequency,
   baseFrequency,
   singleLine,
+  noIcon,
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
@@ -27,14 +30,14 @@ export const PokemonFrequency = ({
   const ingredientDailyCount = 86400 / ingredientFrequency;
 
   return (
-    <Flex direction="row" center noFullWidth className="gap-1.5 text-sm">
+    <Flex direction="row" noFullWidth wrap={singleLine} className="items-center gap-1.5 text-sm">
       <Flex direction="row" noFullWidth className="items-center gap-0.5">
-        <PokemonDataIcon
-          src="/images/generic/clock.png"
-          alt={t('Stats.Frequency')}
-          invert
-          dimension={singleLine ? 'h-4 w-4' : 'h-8 w-8'}
-        />
+        {
+          !noIcon &&
+          <div className={singleLine ? 'h-6 w-6' : 'h-6 w-6'}>
+            <ClockIcon/>
+          </div>
+        }
         <div>{formatInt(baseFrequency)}</div>
         <div>({formatFloat(dailyCount)}x)</div>
       </Flex>

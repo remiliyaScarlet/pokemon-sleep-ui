@@ -8,16 +8,20 @@ import {formatFloat, formatInt} from '@/utils/number';
 
 type Props = {
   frequency: number,
+  noIcon?: boolean,
 };
 
-export const PokemonFrequencySingle = ({frequency}: Props) => {
+export const PokemonFrequencySingle = ({frequency, noIcon}: Props) => {
   const dailyCount = 86400 / frequency;
 
   return (
     <Flex direction="row" center noFullWidth className="gap-0.5 text-sm">
-      <div className="relative h-4 w-4">
-        <ClockIcon/>
-      </div>
+      {
+        !noIcon &&
+        <div className="h-4 w-4">
+          <ClockIcon/>
+        </div>
+      }
       <div>{formatInt(frequency)}</div>
       <div>({formatFloat(dailyCount)}x)</div>
     </Flex>
