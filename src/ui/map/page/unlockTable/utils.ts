@@ -1,22 +1,8 @@
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
-import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {MapUnlockAccumulator, MapUnlockAccumulatorEnergy} from '@/ui/map/page/unlockTable/type';
-import {toSleepdexStyleId} from '@/utils/game/sleepdex';
 import {isSameRank} from '@/utils/game/snorlax';
+import {isInSleepdex, IsInSleepdexOpts} from '@/utils/sleepdex';
 
-
-type IsInSleepdexOpts = {
-  data: SleepStyleDataFlattened,
-  sleepdex: SleepdexMap,
-};
-
-export const isInSleepdex = ({data, sleepdex}: IsInSleepdexOpts) => {
-  const {pokemonId, style} = data;
-
-  const sleepdexId = toSleepdexStyleId({pokemonId, styleId: style.style});
-  return sleepdex[sleepdexId];
-};
 
 type GetUpdatedAccumulatorOpts = IsInSleepdexOpts & {
   original: MapUnlockAccumulator,

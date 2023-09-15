@@ -17,7 +17,7 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonProduction} from '@/ui/pokedex/page/production/main';
-import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle';
+import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle/main';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {getRelatedPokemonIds} from '@/utils/game/pokemon';
 import {createUserSettings} from '@/utils/user/settings';
@@ -81,9 +81,9 @@ export const Pokemon = async ({params}: Props) => {
           <PokemonProduction {...props}/>
           <AdsUnit/>
           <PokemonEvolution pokedex={pokedex} {...props}/>
+          <AdsUnit/>
+          <PokemonSleepStyles {...props}/>
         </I18nProvider>
-        <AdsUnit/>
-        <PokemonSleepStyles {...props}/>
         <AdsUnit/>
       </Flex>
     </PublicPageLayout>

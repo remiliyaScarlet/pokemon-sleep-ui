@@ -8,13 +8,10 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {imageSmallIconSizes} from '@/styles/image';
-import {SleepdexData} from '@/types/game/sleepdex';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';
 import {MapUnlockTableRowProps} from '@/ui/map/page/unlockTable/type';
-import {isInSleepdex} from '@/ui/map/page/unlockTable/utils';
 import {toSum} from '@/utils/array';
 import {toSleepdexStyleId} from '@/utils/game/sleepdex';
 import {isSameRank} from '@/utils/game/snorlax';
@@ -35,41 +32,10 @@ export const MapUnlockTableDataRow = ({
   const {displayType, markingSleepdex} = filter;
   const {energy} = accumulator;
 
-  const {act} = useUserDataActor({statusToast: true});
+  const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
 
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('UI.InPage.Map');
-
-  const onChangeSleepdexMark = (data: SleepStyleDataFlattened) => {
-    if (!act) {
-      return;
-    }
-
-    const {pokemonId, style} = data;
-    const styleId = style.style;
-
-    const sleepdexId = toSleepdexStyleId({pokemonId, styleId});
-    const inSleepdex = isInSleepdex({data, sleepdex});
-    const sleepdexData: SleepdexData = {pokemonId, styleId};
-
-    act({
-      action: 'upload',
-      options: {
-        type: inSleepdex ? 'sleepdex.unmark' : 'sleepdex.mark',
-        data: sleepdexData,
-      },
-    });
-    setSleepdex((original) => {
-      if (!inSleepdex) {
-        return {...original, [sleepdexId]: sleepdexData};
-      }
-
-      const updated = {...original};
-      delete updated[sleepdexId];
-
-      return updated;
-    });
-  };
 
   return (
     <tr>
@@ -107,7 +73,11 @@ export const MapUnlockTableDataRow = ({
               'bg-gradient-to-br from-transparent to-slate-500/80',
             )}
             getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
-            onClickOverride={markingSleepdex ? onChangeSleepdexMark : undefined}
+            onClickOverride={
+              markingSleepdex ?
+                ({pokemonId, style}) => updateSleepdex({pokemonId, styleId: style.style}) :
+                undefined
+            }
           />
         </Flex>
       </td>

@@ -18,7 +18,7 @@ export type SleepStyle = {
   rewards: SleepReward,
 };
 
-export type SleepStyleData = {
+export type SleepStyleOfMap = {
   pokemonId: PokemonId,
   mapId: SleepMapId,
   styles: SleepStyle[],
@@ -30,6 +30,6 @@ export type SleepStyleDataFlattened = {
   style: SleepStyle,
 };
 
-export type PokemonSleepDataMap = {[id in PokemonId]?: SleepStyleData[]};
+export type PokemonSleepDataMap = {[id in PokemonId]?: SleepStyleOfMap[]};
 
 export type FieldToSleepStyleFlattenedMap = {[id in SleepMapId]?: SleepStyleDataFlattened[]};

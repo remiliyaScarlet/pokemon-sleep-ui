@@ -7,17 +7,17 @@ import {
   FieldToSleepStyleFlattenedMap,
   PokemonSleepDataMap,
   SleepMapId,
-  SleepStyleData,
+  SleepStyleOfMap,
   SleepStyleDataFlattened,
 } from '@/types/game/sleepStyle';
 
 
-const getCollection = async (): Promise<Collection<SleepStyleData>> => {
+const getCollection = async (): Promise<Collection<SleepStyleOfMap>> => {
   const client = await mongoPromise;
 
   return client
     .db('pokemon')
-    .collection<SleepStyleData>('sleepStyle');
+    .collection<SleepStyleOfMap>('sleepStyle');
 };
 
 const getSleepStyles = async () => (
@@ -37,7 +37,7 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
   return ret;
 };
 
-export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyleData[]> => {
+export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyleOfMap[]> => {
   return getDataAsArray(getCollection(), {pokemonId});
 };
 

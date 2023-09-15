@@ -99,7 +99,8 @@ export const MapUnlockTable = (props: Props) => {
                 rank,
                 value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
               },
-              data,
+              pokemonId: data.pokemonId,
+              styleId: data.style.style,
               sleepdex,
             });
           }
