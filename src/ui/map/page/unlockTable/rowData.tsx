@@ -39,7 +39,7 @@ export const MapUnlockTableDataRow = ({
 
   return (
     <tr>
-      <td>
+      <td rowSpan={2}>
         <Flex direction="col" center className="gap-1 p-1">
           <SnorlaxRankUI rank={rank} hideTextBelowMd/>
           <Flex direction="col" center className="gap-0.5 md:flex-row">
