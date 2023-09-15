@@ -198,7 +198,8 @@
       "Ingredient": "식재료",
       "MealType": "요리",
       "PotCapacity": "용량",
-      "RecipeLevel": "레시피 레벨"
+      "RecipeLevel": "레시피 레벨",
+      "ToggleUnmakeable": "만들 수 없는 요리 표시/숨기기"
     },
     "Berry": {
       "Energy": "에너지"

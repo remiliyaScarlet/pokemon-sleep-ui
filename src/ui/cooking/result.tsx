@@ -11,6 +11,8 @@ import {getMealEnergyInfo} from '@/utils/game/meal';
 type Props = Omit<CookingCommonProps, 'setFilter'>;
 
 export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
+  const {showUnmakeableRecipe} = filter;
+
   const mealEnergyInfo: MealEnergyData[] = React.useMemo(
     () => meals.map((meal) => ({
       meal,
@@ -34,6 +36,7 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
           <CookingCookable
             key={mealEnergyData.meal.id}
             ingredientCount={filter.ingredientCount}
+            showUnmakeableRecipe={showUnmakeableRecipe}
             {...mealEnergyData}
           />
         ))}

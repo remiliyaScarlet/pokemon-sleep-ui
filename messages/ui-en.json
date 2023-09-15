@@ -198,7 +198,8 @@
       "Ingredient": "Ingredient",
       "MealType": "Meal",
       "PotCapacity": "Max",
-      "RecipeLevel": "Recipe Level"
+      "RecipeLevel": "Recipe Level",
+      "ToggleUnmakeable": "Show/Hide Unmakeable Dishes"
     },
     "Berry": {
       "Energy": "Strength"

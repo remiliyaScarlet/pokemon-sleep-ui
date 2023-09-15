@@ -26,6 +26,7 @@ export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
       ingredient: {},
       recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloaded?.recipeLevel),
       ingredientCount: cloneMerge(defaultCookingPreset.ingredientCount, preloaded?.ingredientCount),
+      showUnmakeableRecipe: preloaded?.showUnmakeableRecipe ?? defaultCookingPreset.showUnmakeableRecipe,
     },
     isDataIncluded: (filter, meal) => {
       if (filter.type !== meal.type) {

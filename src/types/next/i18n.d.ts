@@ -133,6 +133,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         MealType: string,
         PotCapacity: string,
         RecipeLevel: string,
+        ToggleUnmakeable: string,
       },
       Berry: {
         Energy: string,

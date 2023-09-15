@@ -7,6 +7,7 @@ export const defaultCookingPreset: NonNullableRecord<UserCookingPreset> = {
   potCapacity: 15,
   ingredients: {},
   showEnergy: true,
+  showUnmakeableRecipe: true,
   ingredientCount: {},
   recipeLevel: {},
 };

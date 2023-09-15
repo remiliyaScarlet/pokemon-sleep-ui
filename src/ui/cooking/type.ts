@@ -21,6 +21,7 @@ export type CookingFilter = {
   capacity: number,
   ingredient: FilterInclusionMap<IngredientId>,
   ingredientCount: CookingFilterIngredientCount,
+  showUnmakeableRecipe: boolean,
 };
 
 export type CookingCommonProps = FilterInputProps<CookingFilter> & {

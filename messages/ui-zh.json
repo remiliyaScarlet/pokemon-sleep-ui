@@ -198,7 +198,8 @@
       "Ingredient": "食材",
       "MealType": "料理",
       "PotCapacity": "容量",
-      "RecipeLevel": "食譜等級"
+      "RecipeLevel": "食譜等級",
+      "ToggleUnmakeable": "顯示/隱藏無法製作的料理"
     },
     "Berry": {
       "Energy": "能量"

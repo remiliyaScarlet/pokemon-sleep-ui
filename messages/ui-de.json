@@ -198,7 +198,8 @@
       "Ingredient": "Zutaten",
       "MealType": "Gericht",
       "PotCapacity": "Max",
-      "RecipeLevel": "Rezeptlevel"
+      "RecipeLevel": "Rezeptlevel",
+      "ToggleUnmakeable": "Unzubereitbare Gerichte ein-/ausblenden"
     },
     "Berry": {
       "Energy": "Stärke"

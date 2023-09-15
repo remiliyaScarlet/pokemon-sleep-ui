@@ -9,6 +9,7 @@ export type UserCookingPreset = {
   potCapacity: number,
   ingredients: FilterInclusionMap<IngredientId>,
   showEnergy: boolean,
+  showUnmakeableRecipe: boolean,
   ingredientCount: CookingFilterIngredientCount,
   recipeLevel: CookingFilterRecipeLevel,
 };
