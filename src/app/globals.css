@@ -129,6 +129,10 @@
     }
   }
   
+  .bg-corner-mark {
+    @apply bg-gradient-to-br from-transparent to-slate-500/80;
+  }
+  
   /* region Fixed count of element in row (width-with-gap-*) */
   
   .width-with-gap-xs {

@@ -3,10 +3,14 @@ import React from 'react';
 import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
+import {getToggleButtonClass} from '@/components/input/filter/utils/props';
+import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
@@ -14,6 +18,7 @@ import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/p
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
@@ -41,9 +46,11 @@ export const PokeInBoxEditLayout = ({
     carryLimit,
     subSkill,
     nature,
+    isShiny,
   } = pokeInBox;
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
+  const t3 = useTranslations('UI.Common');
 
   const pokemon = pokedexMap[pokemonId];
   if (!pokemon) {
@@ -55,22 +62,42 @@ export const PokeInBoxEditLayout = ({
     carryLimit: pokemon.stats.maxCarry,
   });
 
+  const isShinyActive = isShiny ?? false;
+
   return (
     <Flex direction="col" className="gap-2 pr-1.5 sm:pr-0">
-      <Flex direction="col" center className="gap-1.5 md:flex-row-reverse">
+      <Flex direction="col" className="gap-1.5 truncate md:flex-row-reverse md:items-center">
         <pre className="text-sm text-slate-500">
           {uuid}
         </pre>
-        <InputBox
-          value={name ?? ''}
-          type="text"
-          placeholder={t(`PokemonName.${pokemonId}`)}
-          className="w-full"
-          onChange={({target}) => setPokeInBox({
-            ...pokeInBox,
-            name: target.value || null,
-          })}
-        />
+        <Flex direction="row" className="gap-1.5">
+          <ToggleButton
+            id="markPokeInBoxShiny"
+            active={isShinyActive}
+            onClick={() => setPokeInBox({
+              ...pokeInBox,
+              isShiny: !pokeInBox.isShiny,
+            })}
+            className={clsx('group rounded-lg p-1', getToggleButtonClass(isShiny ?? false))}
+          >
+            <div className="group relative h-5 w-5">
+              <NextImage
+                src="/images/generic/flash.png" alt={t3('Shiny')}
+                sizes={imageSmallIconSizes} className={isShinyActive ? 'invert-on-dark' : 'invert-on-light'}
+              />
+            </div>
+          </ToggleButton>
+          <InputBox
+            value={name ?? ''}
+            type="text"
+            placeholder={t(`PokemonName.${pokemonId}`)}
+            className="w-full"
+            onChange={({target}) => setPokeInBox({
+              ...pokeInBox,
+              name: target.value || null,
+            })}
+          />
+        </Flex>
       </Flex>
       <PokemonEvolutionSelector
         pokemon={pokemon}

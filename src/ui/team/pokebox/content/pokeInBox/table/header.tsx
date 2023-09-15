@@ -26,26 +26,24 @@ export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupCon
   const pokemonName = t(`PokemonName.${pokemonId}`);
 
   return (
-    <>
-      <Flex direction="row" center noFullWidth className={clsx(
-        'sticky left-0 z-10 rounded-lg bg-slate-100 p-1',
-        'shadow shadow-white dark:bg-slate-800 dark:shadow-black',
-      )}>
-        <button className="button-clickable group relative h-6 w-6" onClick={() => showPokemon(pokemon)}>
-          <GenericPokeballIcon alt={t2('Pokedex.Page.Title', {name: pokemonName})} noWrap/>
-        </button>
-        <div className="relative h-10 w-10">
-          <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={pokemonName} sizes={imageIconSizes}/>
-        </div>
-        <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
-          ...pokeInBox,
-          pokemon,
-          snorlaxFavorite,
-          bonus,
-        })}>
-          <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
-        </button>
-      </Flex>
-    </>
+    <Flex direction="row" center noFullWidth className={clsx(
+      'sticky left-0 z-10 rounded-lg p-1 shadow shadow-white dark:shadow-black',
+      pokeInBox.isShiny ? 'bg-corner-mark' : 'bg-slate-100 dark:bg-slate-800',
+    )}>
+      <button className="button-clickable group relative h-6 w-6" onClick={() => showPokemon(pokemon)}>
+        <GenericPokeballIcon alt={t2('Pokedex.Page.Title', {name: pokemonName})} noWrap/>
+      </button>
+      <div className="relative h-10 w-10">
+        <NextImage src={`/images/pokemon/icons/${pokemonId}.png`} alt={pokemonName} sizes={imageIconSizes}/>
+      </div>
+      <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
+        ...pokeInBox,
+        pokemon,
+        snorlaxFavorite,
+        bonus,
+      })}>
+        <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
+      </button>
+    </Flex>
   );
 };

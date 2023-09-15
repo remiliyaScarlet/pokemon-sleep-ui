@@ -14,6 +14,7 @@ export type PokeInBox = {
   carryLimit: number,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
+  isShiny?: boolean,
 };
 
 export type Pokebox = {[uuid in string]?: PokeInBox};

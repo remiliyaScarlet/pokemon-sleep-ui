@@ -70,7 +70,7 @@ export const MapUnlockTableDataRow = ({
             getClassName={({pokemonId, style}) => clsx(
               'm-0.5',
               sleepdex[toSleepdexStyleId({pokemonId, styleId: style.style})] &&
-              'bg-gradient-to-br from-transparent to-slate-500/80',
+              'bg-corner-mark',
             )}
             getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
             onClickOverride={
