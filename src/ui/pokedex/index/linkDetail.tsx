@@ -11,9 +11,9 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {formatFloat} from '@/utils/number';
 

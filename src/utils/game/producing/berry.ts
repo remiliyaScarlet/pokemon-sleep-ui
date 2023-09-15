@@ -1,8 +1,8 @@
+import {defaultHelperCount, defaultLevel} from '@/const/game/production';
 import {BerryData} from '@/types/game/berry';
 import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
-import {defaultHelperCount, defaultLevel} from '@/utils/game/producing/const';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
 import {getProbabilitySplit} from '@/utils/game/producing/split';

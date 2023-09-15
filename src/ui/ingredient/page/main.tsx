@@ -12,7 +12,7 @@ import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getIngredientData} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
-import {getPokemonIngredientProduction} from '@/controller/pokemon/producing';
+import {getPokemonIngredientProduction} from '@/controller/pokemon/ingredient';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';

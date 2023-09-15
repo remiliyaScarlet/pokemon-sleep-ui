@@ -6,11 +6,11 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
 import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
 type Props = PokemonBerryStatsCommonProps & {

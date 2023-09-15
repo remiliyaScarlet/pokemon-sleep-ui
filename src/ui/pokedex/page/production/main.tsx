@@ -10,6 +10,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
@@ -18,7 +19,6 @@ import {PokemonIngredientProduction} from '@/ui/pokedex/page/production/ingredie
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 
 
 export const PokemonProduction = (props: PokemonProps) => {

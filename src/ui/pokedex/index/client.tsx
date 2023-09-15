@@ -9,6 +9,7 @@ import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
@@ -17,7 +18,6 @@ import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 
 

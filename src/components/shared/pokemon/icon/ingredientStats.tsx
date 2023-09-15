@@ -6,10 +6,10 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {Ingredient} from '@/types/game/ingredient';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 

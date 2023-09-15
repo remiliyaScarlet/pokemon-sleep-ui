@@ -1,3 +1,4 @@
+import {defaultNeutralOpts} from '@/const/game/production';
 import {IngredientId} from '@/types/game/ingredient';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {toAnalysisBerryProducingRate} from '@/ui/analysis/page/calc/producingRate/berry';
@@ -5,7 +6,6 @@ import {toAnalysisIngredientProducingRate} from '@/ui/analysis/page/calc/produci
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
 import {isRateOfPokemonSame} from '@/ui/analysis/page/calc/producingRate/utils';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {
   generatePossibleIngredientProductions,
   groupIngredientProductions,

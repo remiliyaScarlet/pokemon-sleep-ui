@@ -9,13 +9,13 @@ import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {PokemonIngredientIcon} from '@/ui/pokedex/page/production/ingredient/icon';
 import {PokemonIngredientCommonProps} from '@/ui/pokedex/page/production/ingredient/type';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toSum} from '@/utils/array';
-import {defaultNeutralOpts} from '@/utils/game/producing/const';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 
