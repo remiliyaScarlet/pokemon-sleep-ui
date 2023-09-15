@@ -78,7 +78,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
               />
               <Flex direction="col">
                 <div className="truncate">
-                  {pokeInBox.name}
+                  {search}
                 </div>
                 <Flex direction="col" className="items-end md:flex-row">
                   <PokemonNatureIndicator nature={pokeInBox.nature} hideName/>
