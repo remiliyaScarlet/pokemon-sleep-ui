@@ -31,7 +31,7 @@ export const getPokemonMaxLevelByBerry = async (): Promise<number> => {
   return data.energy.length;
 };
 
-const addBerryDataIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -39,5 +39,4 @@ const addBerryDataIndex = async () => {
   ]);
 };
 
-addBerryDataIndex()
-  .catch((e) => console.error('MongoDB failed to initialize berry index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize berry index', e));

@@ -22,7 +22,7 @@ export const getSnorlaxRankOfMap = async (mapId: SleepMapId) => (
   getSingleData(getCollection(), {mapId})
 );
 
-const addSnorlaxRankIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -30,5 +30,4 @@ const addSnorlaxRankIndex = async () => {
   ]);
 };
 
-addSnorlaxRankIndex()
-  .catch((e) => console.error('MongoDB failed to initialize Snorlax rank index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize Snorlax rank index', e));

@@ -38,7 +38,7 @@ export const removeActivationKey = async (key: string) => (
   (await getCollection()).deleteOne({key})
 );
 
-const addActivationKeyIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -47,5 +47,4 @@ const addActivationKeyIndex = async () => {
   ]);
 };
 
-addActivationKeyIndex()
-  .catch((e) => console.error('MongoDB failed to initialize user activation key index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize user activation key index', e));

@@ -20,7 +20,7 @@ export const getAllAnnouncements = async (locale: Locale | null): Promise<Announ
     .toArray();
 };
 
-const addAnnouncementDataValidation = async () => {
+const addValidation = async () => {
   // Needs to match the type of `Announcement`
   await (await mongoPromise)
     .db('announcement')
@@ -58,7 +58,7 @@ const addAnnouncementDataValidation = async () => {
     });
 };
 
-const addAnnouncementDataIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -68,8 +68,6 @@ const addAnnouncementDataIndex = async () => {
   ]);
 };
 
-addAnnouncementDataValidation()
-  .catch((e) => console.error('MongoDB failed to initialize announcement validation', e));
+addValidation().catch((e) => console.error('MongoDB failed to initialize announcement validation', e));
 
-addAnnouncementDataIndex()
-  .catch((e) => console.error('MongoDB failed to initialize announcement index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize announcement index', e));

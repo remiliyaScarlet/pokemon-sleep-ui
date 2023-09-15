@@ -19,7 +19,7 @@ export const setUserData = async <TData>(
   (await collectionPromise).updateOne({userId}, {$set: {data}}, {upsert: true})
 );
 
-export const addUserDataIndex = async <TData>(
+const addIndex = async <TData>(
   collectionPromise: Promise<Collection<UserDataInDatabase<TData>>>,
 ) => {
   const collection = await collectionPromise;
@@ -38,7 +38,7 @@ export const createUserDataManager = <TData>(collectionName: string) => {
       .collection<UserDataInDatabase<TData>>(collectionName);
   };
 
-  addUserDataIndex(getCollection())
+  addIndex(getCollection())
     .catch((e) => console.error(`MongoDB failed to initialize index of user data [${collectionName}]`, e));
 
   return {

@@ -60,7 +60,7 @@ export const migratePokeboxOfUser = async (owner: string) => {
     .catch((e) => console.error(`MongoDB failed to do run Pokebox migrations for ${owner}`, e));
 };
 
-const addPokeboxIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -69,5 +69,4 @@ const addPokeboxIndex = async () => {
   ]);
 };
 
-addPokeboxIndex()
-  .catch((e) => console.error('MongoDB failed to initialize Pokebox index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize Pokebox index', e));

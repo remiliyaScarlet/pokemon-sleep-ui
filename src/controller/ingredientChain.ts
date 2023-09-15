@@ -38,7 +38,7 @@ export const getIngredientChainMapOfLevel = async (
   return getDataAsMap(getCollection(), ({chainId}) => chainId, {[`ingredients.${level}.id`]: {$in: ids}});
 };
 
-const addIngredientChainIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -47,5 +47,4 @@ const addIngredientChainIndex = async () => {
   ]);
 };
 
-addIngredientChainIndex()
-  .catch((e) => console.error('MongoDB failed to initialize ingredient chain index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize ingredient chain index', e));

@@ -21,11 +21,10 @@ export const getAllIngredients = async (): Promise<IngredientMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };
 
-const addIngredientDataIndex = async () => {
+const addIndex = async () => {
   return Promise.all([
     (await getCollection()).createIndex({id: 1}, {unique: true}),
   ]);
 };
 
-addIngredientDataIndex()
-  .catch((e) => console.error('MongoDB failed to initialize ingredient index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize ingredient index', e));

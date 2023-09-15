@@ -13,7 +13,7 @@ const getCollection = async (): Promise<Collection<SnorlaxReward>> => {
     .collection<SnorlaxReward>('reward');
 };
 
-const addSnorlaxRewardIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -25,5 +25,4 @@ export const getSnorlaxReward = async () => {
   return getDataAsArray(getCollection());
 };
 
-addSnorlaxRewardIndex()
-  .catch((e) => console.error('MongoDB failed to initialize Snorlax reward index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize Snorlax reward index', e));

@@ -65,7 +65,7 @@ export const getSleepStyleOfMap = async (mapId: number): Promise<SleepStyleDataF
     ))
 );
 
-const addSleepStyleIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -74,5 +74,4 @@ const addSleepStyleIndex = async () => {
   ]);
 };
 
-addSleepStyleIndex()
-  .catch((e) => console.error('MongoDB failed to initialize sleep style index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize sleep style index', e));

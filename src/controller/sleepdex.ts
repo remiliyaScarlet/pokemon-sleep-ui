@@ -43,7 +43,7 @@ export const removeSleepdexRecord = async (userId: string, record: SleepdexData)
   (await getCollection()).deleteOne({userId, ...record})
 );
 
-const addSleepdexIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -52,5 +52,4 @@ const addSleepdexIndex = async () => {
   ]);
 };
 
-addSleepdexIndex()
-  .catch((e) => console.error('MongoDB failed to initialize Sleepdex index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize Sleepdex index', e));

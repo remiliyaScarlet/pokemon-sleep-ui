@@ -21,11 +21,10 @@ export const getSubSkillMap = async () => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };
 
-const addSubSkillIndex = async () => {
+const addIndex = async () => {
   return Promise.all([
     (await getCollection()).createIndex({id: 1}, {unique: true}),
   ]);
 };
 
-addSubSkillIndex()
-  .catch((e) => console.error('MongoDB failed to initialize sub skill index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize sub skill index', e));

@@ -21,11 +21,10 @@ export const getMainSkillData = async (id: MainSkillId) => (
   getSingleData(getCollection(), {id})
 );
 
-const addMainSkillIndex = async () => {
+const addIndex = async () => {
   return Promise.all([
     (await getCollection()).createIndex({id: 1}, {unique: true}),
   ]);
 };
 
-addMainSkillIndex()
-  .catch((e) => console.error('MongoDB failed to initialize main skill index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize main skill index', e));

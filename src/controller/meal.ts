@@ -25,7 +25,7 @@ export const getMealByIngredient = async (id: number): Promise<Meal[]> => (
   getDataAsArray(getCollection(), {'ingredients.id': id})
 );
 
-const addMealDataIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -34,5 +34,4 @@ const addMealDataIndex = async () => {
   ]);
 };
 
-addMealDataIndex()
-  .catch((e) => console.error('MongoDB failed to initialize meal index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize meal index', e));

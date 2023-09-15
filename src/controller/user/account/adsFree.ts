@@ -40,7 +40,7 @@ export const isUserAdsFree = async (userId: string): Promise<boolean> => {
   return !!await getSingleData(getCollection(), {userId: new ObjectId(userId)});
 };
 
-const addAdsFreeDataIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -49,5 +49,4 @@ const addAdsFreeDataIndex = async () => {
   ]);
 };
 
-addAdsFreeDataIndex()
-  .catch((e) => console.error('MongoDB failed to initialize user ads free data index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize user ads free data index', e));

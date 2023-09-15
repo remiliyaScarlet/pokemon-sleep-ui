@@ -39,7 +39,7 @@ export const getFavoriteInfoOfBerry = async (berry: BerryId): Promise<BerryFavor
     .toArray());
 };
 
-const addMapMetaIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -47,5 +47,4 @@ const addMapMetaIndex = async () => {
   ]);
 };
 
-addMapMetaIndex()
-  .catch((e) => console.error('MongoDB failed to initialize map meta index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize map meta index', e));
