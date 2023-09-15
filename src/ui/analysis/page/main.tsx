@@ -10,7 +10,7 @@ import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
-import {getAllPokemonAsArray} from '@/controller/pokemon';
+import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';

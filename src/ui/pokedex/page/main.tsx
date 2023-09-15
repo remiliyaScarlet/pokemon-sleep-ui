@@ -11,7 +11,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
-import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon';
+import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';

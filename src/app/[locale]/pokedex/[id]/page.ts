@@ -1,4 +1,4 @@
-import {getAllPokemonAsArray} from '@/controller/pokemon';
+import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {Pokemon} from '@/ui/pokedex/page/main';
 import {getI18nTranslator} from '@/utils/i18n';

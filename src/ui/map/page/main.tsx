@@ -4,7 +4,7 @@ import {MapPageParams} from '@/app/[locale]/map/[id]/page';
 import {Failed} from '@/components/icons/failed';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
-import {getPokemonAsMap} from '@/controller/pokemon';
+import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getSleepStyleOfMap} from '@/controller/sleepStyle';
 import {getSnorlaxRankOfMap} from '@/controller/snorlaxRank';
 import {getSnorlaxReward} from '@/controller/snorlaxReward';

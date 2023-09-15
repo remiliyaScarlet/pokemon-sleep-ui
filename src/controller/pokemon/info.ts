@@ -1,21 +1,13 @@
 import {Collection} from 'mongodb';
 
 import {getDataAsArray, getDataAsMap, getSingleData} from '@/controller/common';
-import {getIngredientChainMapOfIngredient, getIngredientChainMapOfLevel} from '@/controller/ingredientChain';
+import {getIngredientChainMapOfLevel} from '@/controller/ingredientChain';
 import mongoPromise from '@/lib/mongodb';
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
-import {
-  PokedexMap,
-  PokemonId,
-  PokemonInfo,
-  PokemonIngredientData,
-  PokemonIngredientProduction,
-} from '@/types/game/pokemon';
+import {PokedexMap, PokemonId, PokemonInfo, PokemonIngredientData} from '@/types/game/pokemon';
 import {IngredientLevel, ingredientLevels} from '@/types/game/pokemon/ingredient';
-import {EvolutionItemMap} from '@/types/game/pokemon/item';
 import {MainSkillId} from '@/types/game/pokemon/mainSkill';
-import {isNotNullish} from '@/utils/type';
 
 
 const getCollection = async (): Promise<Collection<PokemonInfo>> => {
@@ -38,34 +30,7 @@ export const getPokemonAsMap = async (ids?: PokemonId[]): Promise<PokedexMap> =>
   return getDataAsMap(getCollection(), ({id}) => id, ids ? {id: {$in: ids}} : {});
 };
 
-export const getPokemonIngredientProduction = async (
-  ingredientId: IngredientId,
-): Promise<PokemonIngredientProduction[]> => {
-  const [ingredientChainMap, pokemonArray] = await Promise.all([
-    getIngredientChainMapOfIngredient(ingredientId),
-    getAllPokemonAsArray(),
-  ]);
-
-  return pokemonArray
-    .map(({id, ingredientChain}) => {
-      const chain = ingredientChainMap[ingredientChain];
-
-      if (!chain) {
-        return null;
-      }
-
-      return {
-        pokemon: id,
-        productions: ingredientLevels.map((level) => chain.ingredients[level]
-          .filter(({id}) => id === ingredientId)
-          .map((production) => ({level, ...production})))
-          .flat(),
-      };
-    })
-    .filter(isNotNullish);
-};
-
-export const getPokemonByIngredients = async (ingredientIds: IngredientId[]): Promise<PokemonIngredientData> => {
+export const getPokemonIdsByIngredients = async (ingredientIds: IngredientId[]): Promise<PokemonIngredientData> => {
   const ret: PokemonIngredientData = {
     ingredient: {
       1: {},
@@ -112,30 +77,11 @@ export const getPokemonByMainSkill = async (skill: MainSkillId) => {
   return getDataAsArray(getCollection(), {skill});
 };
 
-export const getEvolutionItemMap = async (): Promise<EvolutionItemMap> => {
-  const ret: EvolutionItemMap = {};
+export const getPokemonRequiringItemToEvolve = async () => (
+  (await getCollection()).find({'evolution.next.conditions.type': 'item'})
+);
 
-  for await (const pokemon of (await getCollection()).find({'evolution.next.conditions.type': 'item'})) {
-    for (const {conditions} of pokemon.evolution.next) {
-      for (const condition of conditions) {
-        if (condition.type !== 'item') {
-          continue;
-        }
-
-        const {item} = condition;
-        if (!(item in ret)) {
-          ret[item] = [];
-        }
-
-        ret[item].push(pokemon);
-      }
-    }
-  }
-
-  return ret;
-};
-
-const addPokemonInfoIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -146,5 +92,4 @@ const addPokemonInfoIndex = async () => {
   ]);
 };
 
-addPokemonInfoIndex()
-  .catch((e) => console.error('MongoDB failed to initialize pokemon info index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize pokemon info index', e));

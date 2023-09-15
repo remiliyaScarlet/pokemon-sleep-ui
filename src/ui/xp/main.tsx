@@ -2,9 +2,9 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/contexts/i18n';
-import {getPokemonAsMap} from '@/controller/pokemon';
-import {getAllExpDataSorted} from '@/controller/pokemonExp';
-import {getAllExpMultiplierData} from '@/controller/pokemonExpMultiplier';
+import {getAllExpDataSorted} from '@/controller/pokemon/exp';
+import {getAllExpMultiplierData} from '@/controller/pokemon/expMultiplier';
+import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonExpCalculatorClient} from '@/ui/xp/client';

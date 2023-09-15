@@ -8,7 +8,7 @@ import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
-import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon';
+import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon/info';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageCommonProps} from '@/ui/berry/page/type';

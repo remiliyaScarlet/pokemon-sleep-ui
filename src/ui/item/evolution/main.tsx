@@ -3,7 +3,7 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
-import {getEvolutionItemMap} from '@/controller/pokemon';
+import {getEvolutionItemMap} from '@/controller/pokemon/evolution';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {EvolutionItemSingle} from '@/ui/item/evolution/item';

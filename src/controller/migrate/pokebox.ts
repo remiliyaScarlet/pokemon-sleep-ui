@@ -1,7 +1,7 @@
 import {AnyBulkWriteOperation, Collection} from 'mongodb';
 
 import {getIngredientChainMap} from '@/controller/ingredientChain';
-import {getPokemonAsMap} from '@/controller/pokemon';
+import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {
   IngredientChain,
   IngredientLevel,

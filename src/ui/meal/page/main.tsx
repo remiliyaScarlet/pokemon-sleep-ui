@@ -11,7 +11,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSingleMeal} from '@/controller/meal';
-import {getPokemonAsMap, getPokemonByIngredients} from '@/controller/pokemon';
+import {getPokemonAsMap, getPokemonIdsByIngredients} from '@/controller/pokemon/info';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealPokemonOfIngredient} from '@/ui/meal/page/pokemon';
@@ -39,7 +39,7 @@ export const MealPage = async ({params}: Props) => {
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokemonByIngredients(meal.ingredients.map(({id}) => id)),
+    getPokemonIdsByIngredients(meal.ingredients.map(({id}) => id)),
     getAllIngredients(),
     getPokemonAsMap(),
     getPokemonMaxLevelByBerry(),
