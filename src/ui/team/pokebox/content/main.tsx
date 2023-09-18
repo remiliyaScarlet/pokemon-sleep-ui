@@ -14,6 +14,7 @@ import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 type Props = PokeboxCommonProps & {
@@ -31,6 +32,7 @@ export const PokeboxContent = (props: Props) => {
     loading,
     totalPokeInBox,
     sortedPokeInBox,
+    pokemonProducingParamsMap,
   } = props;
 
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -39,11 +41,18 @@ export const PokeboxContent = (props: Props) => {
   return (
     <Flex direction="col" className="gap-1.5">
       <PokemonLinkPopup state={state} setState={setState}/>
-      <RatingResultPopup
-        pokemon={ratingControl.state.request?.setup.pokemon}
-        ratingControl={ratingControl}
-        {...props}
-      />
+      {
+        ratingControl.state.request &&
+        <RatingResultPopup
+          pokemon={ratingControl.state.request.setup.pokemon}
+          pokemonProducingParams={getPokemonProducingParams({
+            pokemonId: ratingControl.state.request.setup.pokemon.id,
+            pokemonProducingParamsMap,
+          })}
+          ratingControl={ratingControl}
+          {...props}
+        />
+      }
       <PokeboxCount loading={loading} countToShow={sortedPokeInBox.length} total={totalPokeInBox}/>
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeInBoxView

@@ -4,10 +4,9 @@ import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {RatingPopupControl, RatingResultProps} from '@/components/shared/pokemon/rating/type';
-import {Optional} from '@/utils/type';
 
 
-type Props = Optional<Omit<RatingResultProps, 'request'>, 'pokemon' | 'pokemonProducingParams'> & {
+type Props = Omit<RatingResultProps, 'request'> & {
   ratingControl: RatingPopupControl,
 };
 
