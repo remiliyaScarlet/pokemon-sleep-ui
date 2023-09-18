@@ -4,12 +4,14 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEffectiveIngredientProductions, getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 export const toRatingWorkerOpts = ({
   bonus,
   pokeInBox,
   pokemon,
+  pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
   ingredientChainMap,
@@ -26,6 +28,10 @@ export const toRatingWorkerOpts = ({
   return {
     bonus,
     pokemon,
+    pokemonProducingParams: getPokemonProducingParams({
+      pokemonId: pokemon.id,
+      pokemonProducingParamsMap,
+    }),
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
@@ -43,10 +49,15 @@ export const getRateOfIngredients = ({
   subSkillMap,
   ...props
 }: PokeInBoxCommonProps): ProducingRateOfItem[] => {
-  const {level, ingredients} = pokeInBox;
+  const {pokemonProducingParamsMap} = props;
+  const {pokemon, level, ingredients} = pokeInBox;
 
   return getIngredientProducingRates({
     level,
+    pokemonProducingParams: getPokemonProducingParams({
+      pokemonId: pokemon,
+      pokemonProducingParamsMap,
+    }),
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
     ...props,
     ...getProducingRateSingleParams({subSkillMap, ...pokeInBox}),
@@ -59,13 +70,17 @@ export const getRateOfBerry = ({
   subSkillMap,
   ...props
 }: PokeInBoxCommonProps) => {
-  const {pokemon} = props;
-  const {berry} = pokemon;
+  const {pokemon, pokemonProducingParamsMap} = props;
+  const {id, berry} = pokemon;
 
   const singleParams = getProducingRateSingleParams({subSkillMap, ...pokeInBox});
 
   return getBerryProducingRate({
     level: pokeInBox.level,
+    pokemonProducingParams: getPokemonProducingParams({
+      pokemonId: id,
+      pokemonProducingParamsMap,
+    }),
     berryData: berryDataMap[berry.id],
     ...props,
     ...singleParams,

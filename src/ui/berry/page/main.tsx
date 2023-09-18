@@ -9,6 +9,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getBerryData} from '@/controller/berry';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
 import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon/info';
+import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageCommonProps} from '@/ui/berry/page/type';
@@ -29,12 +30,14 @@ export const BerryPage = async ({params}: Props) => {
     favoriteInfo,
     pokemonOfBerry,
     pokedex,
+    pokemonProducingParamsMap,
   ] = await Promise.all([
     getServerSession(authOptions),
     getBerryData(idNumber),
     getFavoriteInfoOfBerry(idNumber),
     getPokemonByBerry(idNumber),
     getPokemonAsMap(),
+    getAllPokemonProducingParams(),
   ]);
 
   if (!berryData) {
@@ -46,6 +49,7 @@ export const BerryPage = async ({params}: Props) => {
     favoriteInfo,
     pokemonOfBerry,
     pokedex,
+    pokemonProducingParamsMap,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),
   };
 

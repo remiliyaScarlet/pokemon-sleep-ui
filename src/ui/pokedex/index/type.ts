@@ -6,6 +6,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SleepStyleOfMap} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
@@ -31,6 +32,7 @@ export type PokedexFilter = Migratable & PokemonInputFilterExtended & PokedexDis
 
 export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
   pokedex: PokedexData,
+  pokemonProducingParamsMap: PokemonProducingParamsMap,
   maxLevel: number,
   ingredientMap: IngredientMap,
   berryMap: BerryDataMap,
@@ -43,6 +45,7 @@ export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
 
 export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
   pokemon: PokemonInfo,
+  pokemonProducingParams: PokemonProducingParams,
   snorlaxFavorite: SnorlaxFavorite,
   ingredients: IngredientProduction[],
   bonus: EffectiveBonus,

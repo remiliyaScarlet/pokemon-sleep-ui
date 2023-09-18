@@ -12,6 +12,7 @@ import {EffectiveBonus} from '@/types/game/bonus';
 import {Ingredient} from '@/types/game/ingredient';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 type Props = PokemonIngredientStatsCommonProps & {
@@ -20,7 +21,13 @@ type Props = PokemonIngredientStatsCommonProps & {
   bonus: EffectiveBonus,
 };
 
-export const PokemonIconsIngredientStats = ({level, ingredient, bonus, ...props}: Props) => {
+export const PokemonIconsIngredientStats = ({
+  level,
+  ingredient,
+  pokemonProducingParamsMap,
+  bonus,
+  ...props
+}: Props) => {
   const t = useTranslations('Game');
 
   if (!ingredient) {
@@ -33,6 +40,10 @@ export const PokemonIconsIngredientStats = ({level, ingredient, bonus, ...props}
       getProducingRate={(pokemon, qty) => getIngredientProducingRate({
         level,
         pokemon,
+        pokemonProducingParams: getPokemonProducingParams({
+          pokemonId: pokemon.id,
+          pokemonProducingParamsMap,
+        }),
         ...defaultNeutralOpts,
         ingredient,
         bonus,

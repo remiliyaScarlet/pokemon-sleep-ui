@@ -9,6 +9,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
+import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSnorlaxRank} from '@/controller/snorlaxRank';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page';
@@ -23,6 +24,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   const [
     session,
     pokedex,
+    pokemonProducingParamsMap,
     ingredientChainMap,
     berryDataMap,
     ingredientMap,
@@ -33,6 +35,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonAsMap(),
+    getAllPokemonProducingParams(),
     getIngredientChainMap(),
     getAllBerryData(),
     getAllIngredients(),
@@ -44,6 +47,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
 
   const props: TeamAnalysisServerDataProps = {
     pokedex,
+    pokemonProducingParamsMap,
     ingredientChainMap,
     berryDataMap,
     ingredientMap,

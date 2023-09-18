@@ -10,6 +10,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
+import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -40,6 +41,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
   const [
     session,
     pokedex,
+    pokemonProducingParamsMap,
     maxLevel,
     ingredientMap,
     ingredientChainMap,
@@ -48,6 +50,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokedexData(),
+    getAllPokemonProducingParams(),
     getPokemonMaxLevelByBerry(),
     getAllIngredients(),
     getIngredientChainMap(),
@@ -57,6 +60,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
 
   const props: PokedexClientCommonProps = {
     pokedex,
+    pokemonProducingParamsMap,
     maxLevel,
     ingredientMap,
     ingredientChainMap,

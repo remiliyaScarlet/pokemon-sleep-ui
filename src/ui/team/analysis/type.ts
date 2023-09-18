@@ -7,6 +7,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
+import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
@@ -20,6 +21,7 @@ export type TeamAnalysisFilter = PokemonInputFilter & {
 
 export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedex: PokedexMap,
+  pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   snorlaxRankData: SnorlaxRankInMap[],

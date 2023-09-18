@@ -13,6 +13,7 @@ import {getIngredientData} from '@/controller/ingredient';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProduction} from '@/controller/pokemon/ingredient';
+import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
@@ -36,12 +37,14 @@ export const IngredientPage = async ({params}: Props) => {
   const [
     session,
     pokemonProduction,
+    pokemonProducingParamsMap,
     pokedex,
     cookableMeals,
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonIngredientProduction(ingredient.id),
+    getAllPokemonProducingParams(),
     getPokemonAsMap(),
     getMealByIngredient(ingredient.id),
     getPokemonMaxLevelByBerry(),
@@ -59,6 +62,7 @@ export const IngredientPage = async ({params}: Props) => {
           pokedex={pokedex}
           pokemonMaxLevel={pokemonMaxLevel}
           pokemonProduction={pokemonProduction}
+          pokemonProducingParamsMap={pokemonProducingParamsMap}
           ingredient={ingredient}
           preloadedSettings={createUserSettings(session?.user.preloaded.settings)}
         />

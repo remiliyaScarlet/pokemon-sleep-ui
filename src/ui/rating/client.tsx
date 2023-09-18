@@ -14,12 +14,14 @@ import {RatingSetup} from '@/ui/rating/setup/main';
 import {generateRatingInputs} from '@/ui/rating/setup/utils';
 import {RatingDataProps, RatingServerDataProps, RatingSetupInputs} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
 export const RatingClient = (props: RatingServerDataProps) => {
   const {
     pokedexMap,
+    pokemonProducingParamsMap,
     ingredientChainMap,
     preloadSettings,
   } = props;
@@ -89,7 +91,16 @@ export const RatingClient = (props: RatingServerDataProps) => {
       <AnimatedCollapse show={!!initialSetup}>
         {
           initialSetup &&
-          <RatingResult ref={resultRef} request={request} pokemon={initialSetup.pokemon} {...data}/>
+          <RatingResult
+            ref={resultRef}
+            request={request}
+            pokemon={initialSetup.pokemon}
+            pokemonProducingParams={getPokemonProducingParams({
+              pokemonId: initialSetup.pokemon.id,
+              pokemonProducingParamsMap,
+            })}
+            {...data}
+          />
         }
       </AnimatedCollapse>
     </Flex>

@@ -21,6 +21,7 @@ type Props = Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloade
 
 export const useCalculationWorker = ({
   pokemon,
+  pokemonProducingParamsMap,
   ingredients,
   ingredientMap,
   ingredientChainMap,
@@ -53,6 +54,7 @@ export const useCalculationWorker = ({
       level,
       pokemonList: pokemonToAnalyze,
       pokemon,
+      pokemonProducingParamsMap,
       ingredients,
       ingredientChainMap,
       ingredientMap,

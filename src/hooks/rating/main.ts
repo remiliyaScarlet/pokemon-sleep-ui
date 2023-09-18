@@ -12,6 +12,7 @@ type UseRatingWorkerOpts = {
 export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
   const {
     level,
+    pokemonProducingParams,
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
@@ -40,6 +41,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     worker.postMessage({
       level,
       pokemon: setupData.pokemon,
+      pokemonProducingParams,
       ingredients: setupData.ingredients,
       snorlaxFavorite: setupData.snorlaxFavorite,
       subSkill: setupData.subSkill,

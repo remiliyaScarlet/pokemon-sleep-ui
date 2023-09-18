@@ -21,6 +21,7 @@ export type GetIngredientProducingRateOpts = ProducingRateCommonParams & {
 export const getIngredientProducingRate = ({
   level,
   pokemon,
+  pokemonProducingParams,
   subSkillBonus,
   helperCount,
   natureId,
@@ -41,7 +42,12 @@ export const getIngredientProducingRate = ({
     natureId,
   });
 
-  const frequency = baseFrequency / getProbabilitySplit({type: 'ingredient', natureId, subSkillBonus});
+  const frequency = baseFrequency / getProbabilitySplit({
+    type: 'ingredient',
+    pokemonProducingParams,
+    natureId,
+    subSkillBonus,
+  });
 
   return applyBonus({
     bonus,

@@ -8,6 +8,7 @@ import {
   IngredientProductionAtLevels,
 } from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
+import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
@@ -55,6 +56,7 @@ export type RatingWorkerOpts = RatingSetupData & RatingOpts;
 export type RatingOpts = {
   level: number,
   pokemon: PokemonInfo | undefined,
+  pokemonProducingParams: PokemonProducingParams,
   ingredientChainMap: IngredientChainMap,
   ingredientMap: IngredientMap,
   berryDataMap: BerryDataMap,

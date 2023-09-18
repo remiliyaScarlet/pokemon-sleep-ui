@@ -1,7 +1,9 @@
 import {Collection} from 'mongodb';
 
+import {defaultProducingParams} from '@/const/game/production';
+import {getDataAsMap, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {PokemonProducingParams} from '@/types/game/pokemon/producing';
+import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 
 
 const getCollection = async (): Promise<Collection<PokemonProducingParams>> => {
@@ -11,6 +13,14 @@ const getCollection = async (): Promise<Collection<PokemonProducingParams>> => {
     .db('pokemon')
     .collection<PokemonProducingParams>('producing');
 };
+
+export const getSinglePokemonProducingParams = async (pokemonId: number): Promise<PokemonProducingParams> => {
+  return await getSingleData(getCollection(), {pokemonId}) ?? {pokemonId, ...defaultProducingParams};
+};
+
+export const getAllPokemonProducingParams = async (): Promise<PokemonProducingParamsMap> => (
+  getDataAsMap(getCollection(), ({pokemonId}) => pokemonId)
+);
 
 const addIndex = async () => {
   const collection = await getCollection();

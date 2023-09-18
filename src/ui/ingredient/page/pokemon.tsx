@@ -6,15 +6,16 @@ import {useSession} from 'next-auth/react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
+import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {useEffectiveBonus} from '@/hooks/userData/settings';
 import {Ingredient} from '@/types/game/ingredient';
-import {PokedexMap, PokemonItemDropData, PokemonIngredientProduction} from '@/types/game/pokemon';
+import {PokedexMap, PokemonIngredientProduction, PokemonItemDropData} from '@/types/game/pokemon';
 import {UserSettings} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 
 
-type Props = {
+type Props = Omit<PokemonIngredientStatsCommonProps, 'dropData'> & {
   pokedex: PokedexMap,
   pokemonMaxLevel: number,
   pokemonProduction: PokemonIngredientProduction[],
@@ -23,11 +24,11 @@ type Props = {
 };
 
 export const IngredientPokemonProduction = ({
-  pokedex,
   pokemonMaxLevel,
   pokemonProduction,
   ingredient,
   preloadedSettings,
+  ...props
 }: Props) => {
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
@@ -52,9 +53,9 @@ export const IngredientPokemonProduction = ({
       <PokemonIconsIngredientStats
         level={level}
         dropData={dropData}
-        pokedex={pokedex}
         ingredient={ingredient}
         bonus={bonus}
+        {...props}
       />
     </Flex>
   );

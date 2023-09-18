@@ -7,6 +7,7 @@ import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -27,6 +28,7 @@ export const useFilteredSortedPokebox = ({
   setLoading,
   bonus,
   pokedexMap,
+  pokemonProducingParamsMap,
   subSkillMap,
   ingredientMap,
   berryDataMap,
@@ -46,6 +48,10 @@ export const useFilteredSortedPokebox = ({
 
         return {
           pokemon,
+          pokemonProducingParams: getPokemonProducingParams({
+            pokemonId: pokemon.id,
+            pokemonProducingParamsMap,
+          }),
           level,
           dateAdded,
           extra: pokeInBox,

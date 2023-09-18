@@ -30,6 +30,7 @@ export const RatingResultOfLevelUI = ({
   request,
   level,
   pokemon,
+  pokemonProducingParams,
   berryDataMap,
   ingredientChainMap,
   ingredientMap,
@@ -42,6 +43,7 @@ export const RatingResultOfLevelUI = ({
     opts: {
       level,
       pokemon,
+      pokemonProducingParams,
       berryDataMap,
       subSkillMap,
       ingredientChainMap,

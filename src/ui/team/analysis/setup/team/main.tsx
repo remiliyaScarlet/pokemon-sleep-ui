@@ -12,6 +12,7 @@ import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps, TeamAnalysisSetup, teamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {
@@ -23,6 +24,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
     setup,
     setSetup,
     pokedex,
+    pokemonProducingParamsMap,
     statsOfTeam,
   } = props;
 
@@ -68,6 +70,10 @@ export const TeamAnalysisTeamView = (props: Props) => {
                 member={member}
                 stats={stats}
                 pokemon={pokemon}
+                pokemonProducingParams={getPokemonProducingParams({
+                  pokemonId: pokemon.id,
+                  pokemonProducingParamsMap,
+                })}
               /> :
               <TeamAnalysisEmptySlot
                 {...props}

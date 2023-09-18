@@ -12,6 +12,7 @@ import {getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getSingleMeal} from '@/controller/meal';
 import {getPokemonAsMap, getPokemonIdsByIngredients} from '@/controller/pokemon/info';
+import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealMeta} from '@/ui/meal/page/meta';
 import {MealPokemonOfIngredient} from '@/ui/meal/page/pokemon';
@@ -34,12 +35,14 @@ export const MealPage = async ({params}: Props) => {
   const [
     session,
     pokemonByIngredients,
+    pokemonProducingParamsMap,
     ingredientMap,
     pokedex,
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonIdsByIngredients(meal.ingredients.map(({id}) => id)),
+    getAllPokemonProducingParams(),
     getAllIngredients(),
     getPokemonAsMap(),
     getPokemonMaxLevelByBerry(),
@@ -49,6 +52,7 @@ export const MealPage = async ({params}: Props) => {
     meal,
     ingredientMap,
     pokedex,
+    pokemonProducingParamsMap,
     pokemonMaxLevel,
     locale,
     preloadedSettings: createUserSettings(session?.user.preloaded?.settings),

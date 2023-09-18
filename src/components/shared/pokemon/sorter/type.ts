@@ -3,6 +3,7 @@ import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
@@ -25,6 +26,7 @@ export type PokemonSortType = typeof pokemonSortType[number];
 
 export type PokemonSortingRequiredData = {
   pokemon: PokemonInfo,
+  pokemonProducingParams: PokemonProducingParams,
   level: number,
   ingredients: IngredientProduction[],
   dateAdded: number | null,

@@ -7,17 +7,25 @@ import {RatingPopupControl, RatingResultProps} from '@/components/shared/pokemon
 import {Optional} from '@/utils/type';
 
 
-type Props = Optional<Omit<RatingResultProps, 'request'>, 'pokemon'> & {
+type Props = Optional<Omit<RatingResultProps, 'request'>, 'pokemon' | 'pokemonProducingParams'> & {
   ratingControl: RatingPopupControl,
 };
 
-export const RatingResultPopup = ({ratingControl, pokemon, ...props}: Props) => {
+export const RatingResultPopup = ({ratingControl, pokemon, pokemonProducingParams, ...props}: Props) => {
   const {state, setState} = ratingControl;
 
   return (
     <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
       <Flex direction="col" noFullWidth className="sm:w-[90vw]">
-        {pokemon && <RatingResult request={state.request} pokemon={pokemon} {...props}/>}
+        {
+          pokemon && pokemonProducingParams &&
+          <RatingResult
+            request={state.request}
+            pokemon={pokemon}
+            pokemonProducingParams={pokemonProducingParams}
+            {...props}
+          />
+        }
       </Flex>
     </Popup>
   );

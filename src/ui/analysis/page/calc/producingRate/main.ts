@@ -10,15 +10,16 @@ import {
   generatePossibleIngredientProductions,
   groupIngredientProductions,
 } from '@/utils/game/producing/ingredientChain';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 
 
 export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
   const {
     pokemonList,
-    level,
     pokemon,
+    pokemonProducingParamsMap,
+    level,
     ingredients,
     berryDataMap,
     ingredientChainMap,
@@ -26,6 +27,10 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
 
   const currentRate = getPokemonProducingRate({
     berryData: berryDataMap[pokemon.berry.id],
+    pokemonProducingParams: getPokemonProducingParams({
+      pokemonId: pokemon.id,
+      pokemonProducingParamsMap,
+    }),
     ...opts,
     ...defaultNeutralOpts,
   });
@@ -41,6 +46,10 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       // `opts` has to be the first because `pokemon`, `berryData`, `ingredients` have to be overridden
       ...opts,
       pokemon: otherPokemon,
+      pokemonProducingParams: getPokemonProducingParams({
+        pokemonId: otherPokemon.id,
+        pokemonProducingParamsMap,
+      }),
       berryData: berryDataMap[otherPokemon.berry.id],
       ingredients: otherIngredients,
       ...defaultNeutralOpts,

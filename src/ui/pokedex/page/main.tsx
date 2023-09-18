@@ -12,6 +12,7 @@ import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
+import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
 import {getPokemonSleepStyles} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';
@@ -38,6 +39,7 @@ export const Pokemon = async ({params}: Props) => {
 
   const [
     session,
+    pokemonProducingParams,
     ingredientChainMap,
     pokedex,
     sleepStyles,
@@ -45,6 +47,7 @@ export const Pokemon = async ({params}: Props) => {
     ingredientMap,
   ] = await Promise.all([
     getServerSession(authOptions),
+    getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
     getPokemonAsMap(getRelatedPokemonIds(pokemon)),
     getPokemonSleepStyles(idNumber),
@@ -58,6 +61,7 @@ export const Pokemon = async ({params}: Props) => {
 
   const props: PokemonProps = {
     pokemon,
+    pokemonProducingParams,
     ingredientChainMap,
     sleepStyles,
     berryData,

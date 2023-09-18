@@ -18,6 +18,7 @@ export type GetBerryProducingRateOpts = ProducingRateCommonParams & {
 export const getBerryProducingRate = ({
   level,
   pokemon,
+  pokemonProducingParams,
   subSkillBonus,
   helperCount,
   natureId,
@@ -34,7 +35,12 @@ export const getBerryProducingRate = ({
   });
 
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
-  const frequency = baseFrequency / getProbabilitySplit({type: 'berry', natureId, subSkillBonus});
+  const frequency = baseFrequency / getProbabilitySplit({
+    type: 'berry',
+    pokemonProducingParams,
+    natureId,
+    subSkillBonus,
+  });
 
   return applyBonus({
     bonus,

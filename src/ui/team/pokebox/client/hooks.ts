@@ -18,7 +18,9 @@ type UseCalculatedDataOpts = PokeboxCommonProps & {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
-export const useCalculatedData = (opts: UseCalculatedDataOpts) => {
+export const useCalculatedData = (
+  opts: UseCalculatedDataOpts,
+) => {
   const {
     pokedexMap,
     preloaded,

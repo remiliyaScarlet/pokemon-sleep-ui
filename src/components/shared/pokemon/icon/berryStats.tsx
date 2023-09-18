@@ -11,6 +11,7 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 type Props = PokemonBerryStatsCommonProps & {
@@ -24,7 +25,15 @@ type Props = PokemonBerryStatsCommonProps & {
   berryDataMap: BerryDataMap,
 });
 
-export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, bonus, berryData, berryDataMap}: Props) => {
+export const PokemonIconsBerryStats = ({
+  pokedex,
+  pokemonProducingParamsMap,
+  pokemonOfBerry,
+  level,
+  bonus,
+  berryData,
+  berryDataMap,
+}: Props) => {
   const t = useTranslations('Game');
 
   return (
@@ -50,6 +59,10 @@ export const PokemonIconsBerryStats = ({pokedex, pokemonOfBerry, level, bonus, b
         return getBerryProducingRate({
           level,
           pokemon,
+          pokemonProducingParams: getPokemonProducingParams({
+            pokemonId: pokemon.id,
+            pokemonProducingParamsMap,
+          }),
           bonus,
           snorlaxFavorite: {},
           berryData: berryDataToUse,

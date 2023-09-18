@@ -22,7 +22,12 @@ import {getBerryProducingRate} from '@/utils/game/producing/berry';
 
 
 export const PokemonProduction = (props: PokemonProps) => {
-  const {pokemon, berryData, preloadedSettings} = props;
+  const {
+    pokemon,
+    pokemonProducingParams,
+    berryData,
+    preloadedSettings,
+  } = props;
   const {specialty, berry} = pokemon;
 
   const [level, setLevel] = React.useState(1);
@@ -42,6 +47,7 @@ export const PokemonProduction = (props: PokemonProps) => {
   const berryRate = getBerryProducingRate({
     level,
     pokemon,
+    pokemonProducingParams,
     ...defaultNeutralOpts,
     berryData,
     bonus,

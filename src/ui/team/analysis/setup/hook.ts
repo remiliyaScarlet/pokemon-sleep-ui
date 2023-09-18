@@ -13,15 +13,14 @@ import {
 import {groupProducingStats} from '@/ui/team/analysis/setup/utils';
 import {
   TeamAnalysisDataProps,
-  TeamAnalysisSlotName,
-  teamAnalysisSlotName,
   TeamAnalysisSetup,
+  teamAnalysisSlotName,
+  TeamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {toSum} from '@/utils/array';
-import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
-import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
+import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
@@ -43,6 +42,7 @@ const useProducingStatsOfSlot = ({
   slotName,
   helperCount,
   pokedex,
+  pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
   subSkillMap,
@@ -72,22 +72,22 @@ const useProducingStatsOfSlot = ({
       natureId: member.nature,
     };
 
-    const berry = getBerryProducingRate({
+    const {berry, ingredient: ingredientRateMap} = getPokemonProducingRate({
       ...producingRateOpts,
       level,
       pokemon,
       bonus,
+      pokemonProducingParams: getPokemonProducingParams({
+        pokemonId: pokemon.id,
+        pokemonProducingParamsMap,
+      }),
       snorlaxFavorite,
       berryData,
-    });
-    const ingredient = getIngredientProducingRates({
-      ...producingRateOpts,
-      level,
-      pokemon,
-      bonus,
       ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
       ingredientMap,
     });
+    const ingredient = Object.values(ingredientRateMap);
+
     const total = {
       // Total doesn't and shouldn't care about the quantity
       quantity: NaN,

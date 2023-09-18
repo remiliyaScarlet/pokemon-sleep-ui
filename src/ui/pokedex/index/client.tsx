@@ -19,11 +19,13 @@ import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 export const PokedexClient = (props: PokedexClientCommonProps) => {
   const {
     pokedex,
+    pokemonProducingParamsMap,
     ingredientChainMap,
     ingredientMap,
     berryMap,
@@ -51,6 +53,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
       pokemon: pokemon,
+      pokemonProducingParams: getPokemonProducingParams({
+        pokemonId: pokemon.id,
+        pokemonProducingParamsMap,
+      }),
       level: filter.level,
       dateAdded: null,
       extra: null,
@@ -91,9 +97,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
           'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8',
         )}>
           {sortedData.map(({source}) => {
-            const key = `${source.pokemon.id}-${source.ingredients.map(({id}) => id).join('-')}`;
+            const pokemonId = source.pokemon.id;
+            const key = `${pokemonId}-${source.ingredients.map(({id}) => id).join('-')}`;
 
-            if (!isIncluded[source.pokemon.id]) {
+            if (!isIncluded[pokemonId]) {
               return <React.Fragment key={key}/>;
             }
 
@@ -101,6 +108,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
               <PokedexLink
                 key={key}
                 pokemon={source.pokemon}
+                pokemonProducingParams={getPokemonProducingParams({
+                  pokemonId,
+                  pokemonProducingParamsMap,
+                })}
                 display={filter.display}
                 level={filter.level}
                 snorlaxFavorite={filter.snorlaxFavorite}

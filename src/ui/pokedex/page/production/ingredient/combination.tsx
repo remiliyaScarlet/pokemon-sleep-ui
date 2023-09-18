@@ -24,7 +24,15 @@ type Props = PokemonProps & PokemonIngredientCommonProps & {
   chain: IngredientChain,
 };
 
-export const PokemonIngredientCombination = ({level, chain, pokemon, bonus, berryRate, ingredientMap}: Props) => {
+export const PokemonIngredientCombination = ({
+  level,
+  chain,
+  pokemon,
+  pokemonProducingParams,
+  bonus,
+  berryRate,
+  ingredientMap,
+}: Props) => {
   const t = useTranslations('Game');
 
   return (
@@ -35,6 +43,7 @@ export const PokemonIngredientCombination = ({level, chain, pokemon, bonus, berr
         const rates = getIngredientProducingRates({
           level,
           pokemon,
+          pokemonProducingParams,
           ingredients: productions,
           ingredientMap,
           bonus,

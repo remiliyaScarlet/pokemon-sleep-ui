@@ -18,7 +18,7 @@ import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = PokemonIngredientStatsCommonProps & {
+type Props = Omit<PokemonIngredientStatsCommonProps, 'pokemonProducingParamsMap'> & {
   getProducingRate: (pokemon: PokemonInfo, qty: number) => ProducingRateOfItem | null,
   getIcon: (pokemon: PokemonInfo) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,

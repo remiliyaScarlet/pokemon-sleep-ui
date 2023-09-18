@@ -20,6 +20,7 @@ import {formatFloat} from '@/utils/number';
 
 export const PokedexLinkDetail = React.memo(({
   pokemon,
+  pokemonProducingParams,
   display,
   level,
   ingredients,
@@ -91,6 +92,7 @@ export const PokedexLinkDetail = React.memo(({
   const sorter = getPokemonSorter({
     type: display,
     pokemon,
+    pokemonProducingParams,
     berryDataMap: berryMap,
     ingredientMap,
     ingredients,
@@ -148,10 +150,11 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'ingredientCount') {
     const rates = getIngredientProducingRates({
-      ingredientMap,
-      ingredients,
       level,
       pokemon,
+      pokemonProducingParams,
+      ingredientMap,
+      ingredients,
       bonus,
       ...defaultNeutralOpts,
     });

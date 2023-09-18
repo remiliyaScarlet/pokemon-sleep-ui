@@ -24,10 +24,10 @@ type Props = MealCommonProps & {
 export const MealPokemonOfIngredientLevel = ({
   meal,
   ingredientMap,
-  pokedex,
   pokemonLevel,
   pokemonOfIngredientLevel,
   preloadedSettings,
+  ...props
 }: Props) => {
   const {ingredientLevel, pokeIngredientMap, show} = pokemonOfIngredientLevel;
   const {data} = useSession();
@@ -59,10 +59,10 @@ export const MealPokemonOfIngredientLevel = ({
             )}>
               <PokemonIconsIngredientStats
                 level={pokemonLevel}
-                pokedex={pokedex}
                 dropData={pokeIngredientMap[id] ?? []}
                 ingredient={ingredientMap[id]}
                 bonus={bonus}
+                {...props}
               />
             </Flex>
           </Flex>
