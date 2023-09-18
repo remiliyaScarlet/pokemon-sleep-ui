@@ -21,3 +21,15 @@ export const generatePageMeta = ({key, values}: GeneratePageMetaOpts): GenerateM
     description: t('Site.Description'),
   };
 };
+
+type generatePageMetaFromStringOpts = {
+  t: (key: I18nMessageKeysOfNamespace<'UI.Metadata'>) => string,
+  title: string,
+};
+
+export const generatePageMetaFromString = ({t, title}: generatePageMetaFromStringOpts) => {
+  return {
+    title: `${title} | ${t('Site.Name')}`,
+    description: t('Site.Description'),
+  };
+};
