@@ -86,14 +86,15 @@ export const PokemonIconsItemStats = ({
                         imageAlt={t(`PokemonName.${id}`)}
                         imageDimension="h-12 w-12"
                         imageSizes={imageIconSizes}
-                        info={specialty === targetSpecialty ?
+                        info={
+                          specialty === targetSpecialty &&
                           <div className="relative h-4 w-4">
                             <NextImage
                               src="/images/generic/flash.png" alt={t2('Specialty')}
                               sizes={imageSmallIconSizes} className="invert-on-light"
                             />
-                          </div> :
-                          undefined}
+                          </div>
+                        }
                       />
                     </Flex>
                   </button>

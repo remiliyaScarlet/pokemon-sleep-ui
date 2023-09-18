@@ -3,15 +3,17 @@ import React from 'react';
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
+import {NextImage} from '@/components/shared/common/image/main';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
-import {imageIconSizes} from '@/styles/image';
+import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 
 
@@ -22,6 +24,7 @@ type Props = PokeboxImporterCommonProps & {
 export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Props) => {
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
+  const t3 = useTranslations('UI.Common');
 
   const [search, setSearch] = React.useState('');
 
@@ -63,7 +66,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
         />
       </Flex>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
-        {filteredPokeBox.map(({search, ...pokeInBox}) => (
+        {filteredPokeBox.map(({search, isShiny, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
             onClick={() => onPokeboxPicked(pokeInBox)}
@@ -77,9 +80,22 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
                 info={pokeInBox.level}
               />
               <Flex direction="col">
-                <div className="truncate">
-                  {search}
-                </div>
+                <Flex direction="row" center className="gap-1">
+                  {
+                    isShiny &&
+                    <InfoIcon>
+                      <div className="relative h-4 w-4">
+                        <NextImage
+                          src="/images/generic/flash.png" alt={t3('Shiny')}
+                          sizes={imageSmallIconSizes} className="invert-on-light"
+                        />
+                      </div>
+                    </InfoIcon>
+                  }
+                  <div className="truncate">
+                    {search}
+                  </div>
+                </Flex>
                 <Flex direction="col" className="items-end md:flex-row">
                   <PokemonNatureIndicator nature={pokeInBox.nature} hideName/>
                   <div className="ml-auto">
