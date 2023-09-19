@@ -56,3 +56,16 @@ export const getSleepSessionInfo = (session: StaminaCalcSleepSessionConfig): Sle
     },
   };
 };
+
+export const getNoCollectDurationsFromSleepSession = ({
+  primary,
+  secondary,
+}: StaminaCalcSleepSessionConfig): number[] => {
+  const noCollectDurations = [rotateTime(primary.end - primary.start)];
+
+  if (secondary) {
+    noCollectDurations.push(rotateTime(secondary.end - secondary.start));
+  }
+
+  return noCollectDurations;
+};

@@ -3,6 +3,7 @@ import {useCustomCompareMemo} from 'use-custom-compare';
 
 import {EffectiveBonus} from '@/types/game/bonus';
 import {UserSettings} from '@/types/userData/settings';
+import {getNoCollectDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object';
 import {DeepPartial} from '@/utils/type';
 import {toEffectiveBonus} from '@/utils/user/settings';
@@ -15,6 +16,7 @@ type UseUserSettingsOpts = {
 
 type UseUserSettingsReturn = {
   bonus: EffectiveBonus,
+  noCollectDurations: number[],
 };
 
 export const useUserSettings = ({server, client}: UseUserSettingsOpts): UseUserSettingsReturn => {
@@ -24,6 +26,7 @@ export const useUserSettings = ({server, client}: UseUserSettingsOpts): UseUserS
 
       return {
         bonus: toEffectiveBonus(settings),
+        noCollectDurations: getNoCollectDurationsFromSleepSession(settings.stamina.sleepSession),
       };
     },
     [client],
