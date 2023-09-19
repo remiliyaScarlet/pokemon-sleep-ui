@@ -2,6 +2,7 @@ import crypto from 'crypto';
 
 import {Collection} from 'mongodb';
 
+import {durationOfDay} from '@/const/common';
 import {getSingleData} from '@/controller/common';
 import {isAdmin} from '@/controller/user/account/common';
 import mongoPromise from '@/lib/mongodb';
@@ -43,7 +44,7 @@ const addIndex = async () => {
 
   return Promise.all([
     collection.createIndex({key: 1}, {unique: true}),
-    collection.createIndex({generatedAt: 1}, {expireAfterSeconds: 86400}),
+    collection.createIndex({generatedAt: 1}, {expireAfterSeconds: durationOfDay}),
   ]);
 };
 

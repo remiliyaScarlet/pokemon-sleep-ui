@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {EnergyIcon} from '@/components/shared/icon/energy';
+import {durationOfDay} from '@/const/common';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/setup/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/setup/type';
@@ -31,7 +32,9 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
   });
   const {currentEnergy, endsAt} = estimateInput;
   const finalEnergy = (
-    currentEnergy + energyRate.dailyEnergy * (new Date(`${endsAt}T04:00`).getTime() - Date.now()) / 86400000
+    currentEnergy +
+    energyRate.dailyEnergy *
+    (new Date(`${endsAt}T04:00`).getTime() - Date.now()) / (durationOfDay * 1000)
   );
   const minDate = new Date(new Date().setDate(new Date().getDate() + 1));
 

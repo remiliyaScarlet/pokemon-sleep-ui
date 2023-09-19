@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {durationOfDay} from '@/const/common';
 import {formatFloat, formatInt} from '@/utils/number';
 
 
@@ -26,9 +27,9 @@ export const PokemonFrequency = ({
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const dailyCount = 86400 / baseFrequency;
-  const berryDailyCount = 86400 / berryFrequency;
-  const ingredientDailyCount = 86400 / ingredientFrequency;
+  const dailyCount = durationOfDay / baseFrequency;
+  const berryDailyCount = durationOfDay / berryFrequency;
+  const ingredientDailyCount = durationOfDay / ingredientFrequency;
 
   return (
     <Flex direction="row" noFullWidth wrap={singleLine} className="items-center gap-1.5 text-sm">

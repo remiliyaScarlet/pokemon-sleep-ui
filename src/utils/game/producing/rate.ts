@@ -1,3 +1,4 @@
+import {durationOfDay} from '@/const/common';
 import {
   PokemonProducingRate,
   ProducingRate,
@@ -18,7 +19,7 @@ export const getProducingRateBase = ({
   count,
   picks,
 }: GetProducingRateOpts): ProducingRate => {
-  const quantity = 86400 / frequency;
+  const quantity = durationOfDay / frequency;
   const dailyEnergy = quantity * energyPerCount;
   const proportion = count / picks;
 
