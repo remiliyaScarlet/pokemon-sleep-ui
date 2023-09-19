@@ -7,7 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
 import {AnalysisPageInput} from '@/ui/analysis/page/input/main';
@@ -40,7 +40,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     .map((level) => filter.ingredients[level]), [filter]);
 
   const {data: session} = useSession();
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });

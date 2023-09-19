@@ -11,7 +11,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {defaultNeutralOpts} from '@/const/game/production';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
@@ -32,7 +32,7 @@ export const PokemonProduction = (props: PokemonProps) => {
 
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

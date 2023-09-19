@@ -8,14 +8,24 @@ import {DeepPartial} from '@/utils/type';
 import {toEffectiveBonus} from '@/utils/user/settings';
 
 
-type UseEffectiveBonusOpts = {
+type UseUserSettingsOpts = {
   server: UserSettings,
   client: DeepPartial<UserSettings> | undefined,
 };
 
-export const useEffectiveBonus = ({server, client}: UseEffectiveBonusOpts): EffectiveBonus => {
+type UseUserSettingsReturn = {
+  bonus: EffectiveBonus,
+};
+
+export const useUserSettings = ({server, client}: UseUserSettingsOpts): UseUserSettingsReturn => {
   return useCustomCompareMemo(
-    () => toEffectiveBonus(cloneMerge(server, client)),
+    () => {
+      const settings = cloneMerge(server, client);
+
+      return {
+        bonus: toEffectiveBonus(settings),
+      };
+    },
     [client],
     (prev, next) => isEqual(prev, next),
   );

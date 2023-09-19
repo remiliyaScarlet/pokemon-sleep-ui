@@ -8,7 +8,7 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {Ingredient} from '@/types/game/ingredient';
 import {PokedexMap, PokemonIngredientProduction, PokemonItemDropData} from '@/types/game/pokemon';
 import {UserSettings} from '@/types/userData/settings';
@@ -32,7 +32,7 @@ export const IngredientPokemonProduction = ({
 }: Props) => {
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

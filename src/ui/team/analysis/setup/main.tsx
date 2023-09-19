@@ -4,7 +4,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {UserSettings} from '@/types/userData/settings';
 import {TeamAnalysisSetupControl} from '@/ui/team/analysis/setup/control';
 import {useProducingStats} from '@/ui/team/analysis/setup/hook';
@@ -29,7 +29,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
     settings,
   } = props;
 
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadedSettings,
     client: settings,
   });

@@ -11,7 +11,7 @@ import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {useFilteredPokedex} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
@@ -44,7 +44,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     triggerDeps: [filter.sort, filter.display],
   });
 
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloaded.settings,
     client: session?.user.preloaded.settings,
   });

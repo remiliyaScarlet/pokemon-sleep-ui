@@ -11,7 +11,7 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
 
@@ -31,7 +31,7 @@ export const MealPokemonOfIngredientLevel = ({
 }: Props) => {
   const {ingredientLevel, pokeIngredientMap, show} = pokemonOfIngredientLevel;
   const {data} = useSession();
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

@@ -7,7 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
-import {useEffectiveBonus} from '@/hooks/userData/settings';
+import {useUserSettings} from '@/hooks/userData/settings';
 import {RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
@@ -28,7 +28,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const [initialSetup, setInitialSetup] = React.useState<RatingSetupInputs>();
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
-  const bonus = useEffectiveBonus({
+  const {bonus} = useUserSettings({
     server: preloadSettings,
     client: session?.user.preloaded.settings,
   });
