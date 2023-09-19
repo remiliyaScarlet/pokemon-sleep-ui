@@ -73,6 +73,10 @@
     @apply hover:text-slate-200 dark:hover:text-slate-800;
   }
   
+  .button-text-group-hover {
+    @apply group-hover:text-slate-200 dark:group-hover:text-slate-800;
+  }
+  
   /* endregion */
   
   .invert-base {

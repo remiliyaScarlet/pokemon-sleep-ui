@@ -21,7 +21,7 @@ export const PokeInBoxGridSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBox
     <Flex direction="col" className="gap-1.5">
       <Flex direction="col" noFullWidth className="w-fit">
         <Link href={`/info/mainskill/${skill}`} className={clsx(
-          'button-clickable whitespace-nowrap p-1.5 text-start text-sm',
+          'button-clickable button-text-group-hover whitespace-nowrap p-1.5 text-start text-sm',
           specialty === specialtyIdMap.skill && 'bg-blink',
         )}>
           {t(`MainSkill.Name.${skill}`)}

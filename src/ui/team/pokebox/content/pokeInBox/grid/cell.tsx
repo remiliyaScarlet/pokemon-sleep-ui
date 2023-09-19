@@ -49,7 +49,7 @@ export const PokeInBoxGridCell = (props: Props) => {
       <PokeInBoxLevel viewType="grid" level={pokeInBox.level} isLevelPreview={isLevelPreview}/>
       <button onClick={onClick} className={clsx(
         'button-clickable-bg w-full rounded-lg p-2',
-        isShiny && 'bg-blink',
+        isShiny && '[&:not(:hover)]:bg-blink',
       )}>
         <Flex direction="row" className="relative h-24 gap-2">
           <div className="absolute bottom-0 right-0">
