@@ -82,9 +82,15 @@ const config: Config = {
           },
         },
       },
+      gridTemplateAreas: {
+        'inner-div': [
+          'inner-div',
+        ],
+      },
     },
   },
   plugins: [
+    require('@savvywombat/tailwindcss-grid-areas'),
     plugin(({addUtilities, matchUtilities, theme}) => {
       matchUtilities(
         {
