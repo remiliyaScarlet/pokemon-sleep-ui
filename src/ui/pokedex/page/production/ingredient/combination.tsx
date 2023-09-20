@@ -66,7 +66,6 @@ export const PokemonIngredientCombination = ({
                 specialty={pokemon.specialty}
               />
               <PokemonProducingRateMultiple
-                simplified
                 horizontal
                 rates={rates}
                 getIcon={(rate) => (

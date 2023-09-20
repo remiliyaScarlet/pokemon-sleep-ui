@@ -72,7 +72,6 @@ export const PokemonIconsItemStats = ({
               <Flex key={`${id}-${identifier}`} direction="col" className="button-clickable-bg relative">
                 <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
                   <PokemonProducingRateSingle
-                    simplified
                     rate={rate}
                     icon={getIcon(pokemon)}
                     additionalContents={[

@@ -28,7 +28,6 @@ export const PokemonBerryProduction = ({pokemon, berryName, rate}: Props) => {
       </Flex>
       <Flex direction="col" className="gap-1">
         <PokemonProducingRateSingle
-          simplified
           horizontal
           rate={rate}
           icon={<NextImage src={`/images/berry/${berry.id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>}

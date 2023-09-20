@@ -13,7 +13,7 @@ type Props = PokemonProducingRateProps & {
   icon?: React.ReactNode,
 };
 
-export const PokemonProducingRateContent = ({icon, dailyRate, simplified}: Props) => {
+export const PokemonProducingRateContent = ({icon, dailyRate}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   return (
@@ -21,14 +21,7 @@ export const PokemonProducingRateContent = ({icon, dailyRate, simplified}: Props
       {icon ?
         <div className="relative h-4 w-4">{icon}</div> :
         <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Stats.Energy.Name')}/>}
-      {!simplified && <div>{t('Stats.Energy.Daily')}</div>}
       <div>{dailyRate ? formatFloat(dailyRate) : '-'}</div>
-      {!simplified &&
-        <>
-          <div>/</div>
-          <div>{t('Stats.Energy.Weekly')}</div>
-          <div>{dailyRate ? formatFloat(dailyRate * 7) : '-'}</div>
-        </>}
     </Flex>
   );
 };
