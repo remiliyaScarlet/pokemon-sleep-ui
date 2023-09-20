@@ -6,10 +6,10 @@ import {Flex} from '@/components/layout/flex';
 import {BerryFavoriteInfoUi} from '@/ui/berry/page/favoriteInfo';
 import {BerryMeta} from '@/ui/berry/page/meta';
 import {BerryProducingRatesOfPokemon} from '@/ui/berry/page/pokemon';
-import {BerryPageCommonProps} from '@/ui/berry/page/type';
+import {BerryPageDataProps} from '@/ui/berry/page/type';
 
 
-type Props = BerryPageCommonProps;
+type Props = BerryPageDataProps;
 
 export const BerryPageClient = (props: Props) => {
   const [level, setLevel] = React.useState(1);

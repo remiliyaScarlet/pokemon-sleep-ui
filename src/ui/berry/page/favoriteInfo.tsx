@@ -6,10 +6,10 @@ import {Flex} from '@/components/layout/flex';
 import {MapLink} from '@/components/shared/map/link';
 import {BerryFavoriteInMapType} from '@/components/shared/pokemon/berry/favoriteType';
 import {BerryLevelSlider} from '@/ui/berry/page/levelSlider';
-import {BerryPageCommonProps} from '@/ui/berry/page/type';
+import {BerryPageDataProps} from '@/ui/berry/page/type';
 
 
-type Props = BerryPageCommonProps & {
+type Props = BerryPageDataProps & {
   level: number,
   setLevel: (level: number) => void,
 };

@@ -4,7 +4,7 @@ import {BerryFavoriteInfo} from '@/types/game/mapMeta';
 import {UserSettings} from '@/types/userData/settings';
 
 
-export type BerryPageCommonProps = PokemonBerryStatsCommonProps & {
+export type BerryPageDataProps = Omit<PokemonBerryStatsCommonProps, 'noCollectDurations'> & {
   berryData: BerryData,
   favoriteInfo: BerryFavoriteInfo,
   preloadedSettings: UserSettings,

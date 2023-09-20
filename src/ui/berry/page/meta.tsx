@@ -6,11 +6,11 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imagePortraitSizes} from '@/styles/image';
-import {BerryPageCommonProps} from '@/ui/berry/page/type';
+import {BerryPageDataProps} from '@/ui/berry/page/type';
 import {formatInt} from '@/utils/number';
 
 
-export const BerryMeta = ({berryData}: BerryPageCommonProps) => {
+export const BerryMeta = ({berryData}: BerryPageDataProps) => {
   const {id, energy} = berryData;
 
   const t = useTranslations('Game.Berry');
