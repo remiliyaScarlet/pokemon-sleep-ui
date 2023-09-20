@@ -10,9 +10,9 @@ import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {Ingredient} from '@/types/game/ingredient';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
-import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
+import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
 
 type Props = PokemonIngredientStatsCommonProps & {
@@ -22,9 +22,10 @@ type Props = PokemonIngredientStatsCommonProps & {
 };
 
 export const PokemonIconsIngredientStats = ({
+  pokemonProducingParamsMap,
+  berryDataMap,
   level,
   ingredient,
-  pokemonProducingParamsMap,
   bonus,
   ...props
 }: Props) => {
@@ -37,19 +38,37 @@ export const PokemonIconsIngredientStats = ({
   return (
     <PokemonIconsItemStats
       targetSpecialty={specialtyIdMap.ingredient}
-      getProducingRate={(pokemon, qty) => getIngredientProducingRate({
-        level,
-        pokemon,
-        pokemonProducingParams: getPokemonProducingParams({
-          pokemonId: pokemon.id,
-          pokemonProducingParamsMap,
-        }),
-        ...defaultNeutralOpts,
-        ingredient,
-        bonus,
-        count: qty,
-        picks: getEffectiveIngredientLevels(level).length,
-      })}
+      getProducingStats={(pokemon, chain) => {
+        if (!ingredient) {
+          return [];
+        }
+
+        return [...generatePossibleIngredientProductions({level, chain})]
+          .filter((ingredients) => ingredients.some(({id}) => id === ingredient.id))
+          .map((ingredients) => {
+            const pokemonRate = getPokemonProducingRate({
+              level,
+              pokemon,
+              pokemonProducingParams: getPokemonProducingParams({
+                pokemonId: pokemon.id,
+                pokemonProducingParamsMap,
+              }),
+              snorlaxFavorite: {},
+              ...defaultNeutralOpts,
+              bonus,
+              berryData: berryDataMap[pokemon.berry.id],
+              ingredients,
+              carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
+              ...props,
+            });
+
+            return {
+              rate: pokemonRate.ingredient[ingredient.id],
+              identifier: ingredients.map(({id}) => id).join('-'),
+              ingredients,
+            };
+          });
+      }}
       getIcon={() => (
         <NextImage
           src={`/images/ingredient/${ingredient.id}.png`}

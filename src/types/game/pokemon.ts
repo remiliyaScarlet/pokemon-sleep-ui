@@ -1,7 +1,7 @@
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {EvolutionData} from '@/types/game/pokemon/evolution';
-import {IngredientChainId, IngredientLevel, IngredientProductionAtLevel} from '@/types/game/pokemon/ingredient';
+import {IngredientChainId, IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {SleepMapId} from '@/types/game/sleepStyle';
 
 
@@ -55,8 +55,8 @@ export type PokemonItemDropData = {
 export type PokemonIngredientMap = {[ingredient in IngredientId]?: PokemonItemDropData[]};
 
 export type PokemonIngredientProduction = {
-  pokemon: PokemonId,
-  productions: IngredientProductionAtLevel[],
+  pokemonId: PokemonId,
+  ingredientChainId: IngredientChainId,
 };
 
 export type PokemonIngredientData = {

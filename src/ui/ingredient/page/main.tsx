@@ -8,16 +8,18 @@ import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
-import {getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {getIngredientData} from '@/controller/ingredient';
+import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
+import {getAllIngredients, getIngredientData} from '@/controller/ingredient';
+import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
-import {getPokemonIngredientProduction} from '@/controller/pokemon/ingredient';
+import {getPokemonIngredientProductionByIngredient} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
 import {IngredientCookableMeals} from '@/ui/ingredient/page/recipe';
+import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
 import {createUserSettings} from '@/utils/user/settings';
 
 
@@ -36,19 +38,34 @@ export const IngredientPage = async ({params}: Props) => {
 
   const [
     session,
-    pokemonProduction,
+    pokemonIngredientProduction,
     pokemonProducingParamsMap,
+    berryDataMap,
+    ingredientMap,
+    ingredientChainMap,
     pokedex,
     cookableMeals,
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokemonIngredientProduction(ingredient.id),
+    getPokemonIngredientProductionByIngredient(ingredient.id),
     getAllPokemonProducingParams(),
+    getAllBerryData(),
+    getAllIngredients(),
+    getIngredientChainMap(),
     getPokemonAsMap(),
     getMealByIngredient(ingredient.id),
     getPokemonMaxLevelByBerry(),
   ]);
+
+  const props: IngredientProductionDataProps = {
+    pokedex,
+    pokemonIngredientProduction,
+    pokemonProducingParamsMap,
+    berryDataMap,
+    ingredientMap,
+    ingredientChainMap,
+  };
 
   return (
     <PublicPageLayout locale={locale}>
@@ -59,12 +76,10 @@ export const IngredientPage = async ({params}: Props) => {
       <AdsUnit/>
       <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
         <IngredientPokemonProduction
-          pokedex={pokedex}
           pokemonMaxLevel={pokemonMaxLevel}
-          pokemonProduction={pokemonProduction}
-          pokemonProducingParamsMap={pokemonProducingParamsMap}
           ingredient={ingredient}
           preloadedSettings={createUserSettings(session?.user.preloaded.settings)}
+          {...props}
         />
       </I18nProvider>
       <AdsUnit/>
