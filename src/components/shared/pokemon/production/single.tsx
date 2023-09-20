@@ -2,6 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
+import {AnimatedSwitch} from '@/components/layout/animatedSwitch/main';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
 import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
@@ -21,7 +22,11 @@ export const PokemonProducingRateSingle = ({rate, icon, horizontal, ...props}: P
       horizontal && 'items-center justify-end md:flex-row',
       !horizontal && 'items-end justify-center',
     )}>
-      <PokemonFrequencySingle frequency={rate?.frequency ?? NaN}/>
+      {
+        additionalContents && additionalContents.length ?
+          <AnimatedSwitch contents={[frequency, ...additionalContents]} className="place-items-end"/> :
+          frequency
+      }
       <Flex direction="row" noFullWidth className="gap-1">
         <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
         <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>

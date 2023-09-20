@@ -7,6 +7,7 @@ import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonProducingStats} from '@/components/shared/pokemon/icon/type';
+import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
@@ -74,6 +75,9 @@ export const PokemonIconsItemStats = ({
                     simplified
                     rate={rate}
                     icon={getIcon(pokemon)}
+                    additionalContents={[
+                      <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
+                    ]}
                   />
                 </Flex>
                 <button className="button-clickable" onClick={() => showPokemon(pokemon)}>
