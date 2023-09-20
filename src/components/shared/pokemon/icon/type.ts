@@ -26,4 +26,5 @@ export type PokemonProducingStats = {
   rate: ProducingRateOfItem,
   identifier: string,
   ingredients: IngredientProduction[],
+  dailyTotalEnergy: number,
 };

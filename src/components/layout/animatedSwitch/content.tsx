@@ -3,32 +3,18 @@ import React from 'react';
 import {Transition} from '@headlessui/react';
 import {clsx} from 'clsx';
 
+import {AnimatedSwitchCommonProps} from '@/components/layout/animatedSwitch/type';
 import {Grid} from '@/components/layout/grid';
 
 
-type Props = {
-  contents: React.ReactNode[],
-  className?: string,
+type Props = AnimatedSwitchCommonProps & {
+  idx: number,
 };
 
-export const AnimatedSwitch = ({contents, className}: Props) => {
-  const [showingIdx, setShowingIdx] = React.useState(0);
-
-  const content = contents[showingIdx] as React.ReactNode | undefined;
-
-  React.useEffect(() => {
-    const intervalId = setInterval(
-      () => {
-        setShowingIdx((showingIdx) => (showingIdx + 1) % contents.length);
-      },
-      5000,
-    );
-
-    return () => clearInterval(intervalId);
-  }, []);
+export const AnimatedSwitchContent = ({contents, idx, className}: Props) => {
+  const content = contents[idx] as React.ReactNode | undefined;
 
   if (!content) {
-    setShowingIdx(0);
     return <></>;
   }
 
@@ -37,7 +23,7 @@ export const AnimatedSwitch = ({contents, className}: Props) => {
       {contents.map((content, contentIdx) => (
         <Transition
           key={contentIdx}
-          show={contentIdx === showingIdx}
+          show={contentIdx === idx}
           enter="duration-1000"
           enterFrom="opacity-0"
           enterTo="opacity-100"

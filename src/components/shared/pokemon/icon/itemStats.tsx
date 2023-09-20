@@ -62,11 +62,16 @@ export const PokemonIconsItemStats = ({
           })
           .filter(isNotNullish)
           .sort((a, b) => (
-            (b.stats.rate.dailyEnergy ?? 0) - (a.stats.rate.dailyEnergy ?? 0)
+            (b.stats.dailyTotalEnergy ?? 0) - (a.stats.dailyTotalEnergy ?? 0)
           ))
           .map(({pokemon, stats}) => {
             const {id, specialty} = pokemon;
-            const {rate, identifier} = stats;
+            const {
+              rate,
+              identifier,
+              ingredients,
+              dailyTotalEnergy,
+            } = stats;
 
             return (
               <Flex key={`${id}-${identifier}`} direction="col" className="button-clickable-bg relative">
@@ -77,6 +82,7 @@ export const PokemonIconsItemStats = ({
                     additionalContents={[
                       <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
                     ]}
+                    dailyTotalEnergy={dailyTotalEnergy}
                   />
                 </Flex>
                 <button className="button-clickable" onClick={() => showPokemon(pokemon)}>

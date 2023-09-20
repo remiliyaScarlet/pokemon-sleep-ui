@@ -2,20 +2,46 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {AnimatedSwitch} from '@/components/layout/animatedSwitch/main';
+import {AnimatedSwitchContent} from '@/components/layout/animatedSwitch/content';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
 import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
+import {useRotatingNumbers} from '@/hooks/rotatingNumbers';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 
 
 type Props = PokemonProducingRateProps & {
   rate: ProducingRateOfItem | null,
   icon: React.ReactNode,
+  additionalContents?: React.ReactNode[],
+  dailyTotalEnergy?: number,
 };
 
-export const PokemonProducingRateSingle = ({rate, icon, horizontal, ...props}: Props) => {
+export const PokemonProducingRateSingle = ({
+  horizontal,
+  rate,
+  icon,
+  additionalContents,
+  dailyTotalEnergy,
+  ...props
+}: Props) => {
+  const {idx} = useRotatingNumbers({
+    max: {
+      additionalContents: !!additionalContents?.length ? 2 : 1,
+      dailyTotalEnergy: dailyTotalEnergy ? 2 : 1,
+    },
+    interval: 5000,
+  });
+
+  const frequency = <PokemonFrequencySingle frequency={rate?.frequency ?? NaN}/>;
+  const rateInfo = (
+    <Flex direction="row" noFullWidth className="gap-1">
+      <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
+      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>
+    </Flex>
+  );
+
   return (
     <Flex direction={horizontal ? 'row' : 'col'} wrap className={clsx(
       'gap-1',
@@ -23,14 +49,26 @@ export const PokemonProducingRateSingle = ({rate, icon, horizontal, ...props}: P
       !horizontal && 'items-end justify-center',
     )}>
       {
-        additionalContents && additionalContents.length ?
-          <AnimatedSwitch contents={[frequency, ...additionalContents]} className="place-items-end"/> :
+        !!additionalContents?.length ?
+          <AnimatedSwitchContent
+            idx={idx.additionalContents}
+            contents={[frequency, ...additionalContents]}
+            className="place-items-end"
+          /> :
           frequency
       }
-      <Flex direction="row" noFullWidth className="gap-1">
-        <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
-        <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>
-      </Flex>
+      {
+        dailyTotalEnergy !== undefined ?
+          <AnimatedSwitchContent
+            idx={idx.dailyTotalEnergy}
+            contents={[
+              rateInfo,
+              <PokemonProducingRateContent key="dailyTotal" dailyRate={dailyTotalEnergy} {...props}/>,
+            ]}
+            className="place-items-end"
+          /> :
+          rateInfo
+      }
     </Flex>
   );
 };

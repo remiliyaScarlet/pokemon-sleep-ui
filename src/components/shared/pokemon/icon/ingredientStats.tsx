@@ -13,6 +13,7 @@ import {Ingredient} from '@/types/game/ingredient';
 import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 
 
 type Props = PokemonIngredientStatsCommonProps & {
@@ -66,6 +67,7 @@ export const PokemonIconsIngredientStats = ({
               rate: pokemonRate.ingredient[ingredient.id],
               identifier: ingredients.map(({id}) => id).join('-'),
               ingredients,
+              dailyTotalEnergy: getDailyEnergyOfRate(pokemonRate),
             };
           });
       }}
