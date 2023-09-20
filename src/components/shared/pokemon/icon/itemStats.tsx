@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
@@ -74,37 +75,39 @@ export const PokemonIconsItemStats = ({
             } = stats;
 
             return (
-              <Flex key={`${id}-${identifier}`} direction="col" className="button-clickable-bg relative">
-                <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
-                  <PokemonProducingRateSingle
-                    rate={rate}
-                    icon={getIcon(pokemon)}
-                    additionalContents={[
-                      <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
-                    ]}
-                    dailyTotalEnergy={dailyTotalEnergy}
-                  />
-                </Flex>
-                <button className="button-clickable" onClick={() => showPokemon(pokemon)}>
-                  <Flex direction="row" className="h-full items-center gap-1.5 p-1.5 opacity-70">
-                    <IconWithInfo
-                      imageSrc={`/images/pokemon/icons/${id}.png`}
-                      imageAlt={t(`PokemonName.${id}`)}
-                      imageDimension="h-12 w-12"
-                      imageSizes={imageIconSizes}
-                      info={
-                        specialty === targetSpecialty &&
-                        <div className="relative h-4 w-4">
-                          <NextImage
-                            src="/images/generic/flash.png" alt={t2('Specialty')}
-                            sizes={imageSmallIconSizes} className="invert-on-light"
-                          />
-                        </div>
-                      }
+              <AnimatedCollapse key={`${id}-${identifier}`} show appear>
+                <Flex direction="col" className="button-clickable-bg relative">
+                  <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
+                    <PokemonProducingRateSingle
+                      rate={rate}
+                      icon={getIcon(pokemon)}
+                      additionalContents={[
+                        <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
+                      ]}
+                      dailyTotalEnergy={dailyTotalEnergy}
                     />
                   </Flex>
-                </button>
-              </Flex>
+                  <button className="button-clickable" onClick={() => showPokemon(pokemon)}>
+                    <Flex direction="row" className="h-full items-center gap-1.5 p-1.5 opacity-70">
+                      <IconWithInfo
+                        imageSrc={`/images/pokemon/icons/${id}.png`}
+                        imageAlt={t(`PokemonName.${id}`)}
+                        imageDimension="h-12 w-12"
+                        imageSizes={imageIconSizes}
+                        info={
+                          specialty === targetSpecialty &&
+                          <div className="relative h-4 w-4">
+                            <NextImage
+                              src="/images/generic/flash.png" alt={t2('Specialty')}
+                              sizes={imageSmallIconSizes} className="invert-on-light"
+                            />
+                          </div>
+                        }
+                      />
+                    </Flex>
+                  </button>
+                </Flex>
+              </AnimatedCollapse>
             );
           })}
       </Grid>
