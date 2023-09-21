@@ -10,10 +10,6 @@ export const getPokemonRateSorter = ({
   calculatedSettings,
   ...opts
 }: PokemonSorterGetterOpts): PokemonProducingRate | null => {
-  if (!berryData) {
-    return null;
-  }
-
   return getPokemonProducingRate({
     ...opts,
     ...calculatedSettings,

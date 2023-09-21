@@ -43,7 +43,7 @@ export type SortedPokemonInfo<TExtra, TSource extends PokemonInfoWithSortingPayl
 
 export type PokemonSorterGetterOpts = PokemonSortingRequiredData & ProducingRateSingleParams & {
   ingredientMap: IngredientMap,
-  berryData: BerryData | null,
+  berryData: BerryData,
   snorlaxFavorite: SnorlaxFavorite,
   calculatedSettings: CalculatedUserSettings,
 };
