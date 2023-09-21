@@ -7,10 +7,10 @@ import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
-import {UserSettings} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 
 
-export type RatingSetupInputs = Omit<RatingSetupData, 'bonus'>;
+export type RatingSetupInputs = Omit<RatingSetupData, keyof CalculatedUserSettings>;
 
 export type RatingServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,

@@ -28,7 +28,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const [initialSetup, setInitialSetup] = React.useState<RatingSetupInputs>();
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
-  const {bonus} = useUserSettings({
+  const calculatedSettings = useUserSettings({
     server: preloadSettings,
     client: session?.user.preloaded.settings,
   });
@@ -58,18 +58,22 @@ export const RatingClient = (props: RatingServerDataProps) => {
 
           const setup = generateRatingInputs({
             ...opts,
+            ...calculatedSettings,
             chain: ingredientChainMap[pokemon.ingredientChain],
             ingredientChainMap,
-            bonus,
           });
 
           setInitialSetup(setup);
           if (origin === 'pokebox') {
-            setRequest(toRatingRequest({setup, bonus}));
+            setRequest(toRatingRequest({setup, calculatedSettings}));
             scrollToResult();
           } else if (origin === 'pokedex' && request) {
             // This is for resetting the result layout
-            setRequest(toRatingRequest({setup, bonus, timestamp: request.timestamp}));
+            setRequest(toRatingRequest({
+              setup,
+              calculatedSettings,
+              timestamp: request.timestamp,
+            }));
           }
         }}/>
         <AdsUnit className="block md:hidden"/>
@@ -81,7 +85,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
               initialSetup={initialSetup}
               onInitiate={(setup) => {
                 scrollToResult();
-                setRequest(toRatingRequest({setup, bonus}));
+                setRequest(toRatingRequest({setup, calculatedSettings}));
               }}
               {...data}
             />

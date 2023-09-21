@@ -9,6 +9,7 @@ import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 export const toRatingWorkerOpts = ({
   bonus,
+  noCollectDurations,
   pokeInBox,
   pokemon,
   pokemonProducingParamsMap,
@@ -25,8 +26,10 @@ export const toRatingWorkerOpts = ({
     nature,
   } = pokeInBox;
 
+  // Explicit to avoid passing unwanted property to worker
   return {
     bonus,
+    noCollectDurations,
     pokemon,
     pokemonProducingParams: getPokemonProducingParams({
       pokemonId: pokemon.id,

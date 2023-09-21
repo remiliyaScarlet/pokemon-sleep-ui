@@ -1,5 +1,4 @@
 import {BerryDataMap} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
@@ -7,11 +6,11 @@ import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
-export type PokeInBoxChangeableProps = {
+export type PokeInBoxChangeableProps = CalculatedUserSettings & {
   snorlaxFavorite: SnorlaxFavorite,
-  bonus: EffectiveBonus,
 };
 
 export type PokeInBoxCommonProps = PokeInBoxChangeableProps & {

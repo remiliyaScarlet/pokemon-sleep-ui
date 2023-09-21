@@ -1,19 +1,19 @@
-import {EffectiveBonus} from '@/types/game/bonus';
 import {RatingRequest} from '@/types/game/pokemon/rating';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {RatingSetupInputs} from '@/ui/rating/type';
 
 
 export type ToRatingSetupDataOpts = {
   setup: RatingSetupInputs,
-  bonus: EffectiveBonus,
+  calculatedSettings: CalculatedUserSettings,
   timestamp?: number,
 };
 
-export const toRatingRequest = ({setup, bonus, timestamp}: ToRatingSetupDataOpts): RatingRequest => {
+export const toRatingRequest = ({setup, calculatedSettings, timestamp}: ToRatingSetupDataOpts): RatingRequest => {
   return {
     setup: {
       ...setup,
-      bonus,
+      ...calculatedSettings,
     },
     timestamp: timestamp ?? Date.now(),
   };

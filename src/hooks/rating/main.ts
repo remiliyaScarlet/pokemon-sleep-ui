@@ -47,6 +47,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       subSkill: setupData.subSkill,
       nature: setupData.nature,
       bonus: setupData.bonus,
+      noCollectDurations: setupData.noCollectDurations,
       ingredientChainMap,
       ingredientMap,
       berryDataMap,
