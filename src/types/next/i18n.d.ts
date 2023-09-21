@@ -24,6 +24,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Exp: string,
       Hour: string,
       Map: string,
+      MaxCarry: string,
       Rank: string,
       Rewards: string,
       Shiny: string,
@@ -107,7 +108,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           },
           Frequency: string,
           Friendship: string,
-          MaxCarry: string,
           Recruit: string,
         },
         Sort: {

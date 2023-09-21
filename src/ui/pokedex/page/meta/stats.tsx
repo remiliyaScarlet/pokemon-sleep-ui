@@ -33,7 +33,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
         </tr>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/bag.png" alt={t('Stats.MaxCarry')} invert/>
+            <PokemonDataIcon src="/images/generic/bag.png" alt={t2('MaxCarry')} invert/>
           </td>
           <td>
             {stats.maxCarry}

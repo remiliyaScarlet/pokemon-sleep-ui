@@ -9,6 +9,7 @@
     "Exp": "EXP",
     "Hour": "Hrs",
     "Map": "Map",
+    "MaxCarry": "Carry Limit",
     "Rank": "Rank",
     "Rewards": "Rewards",
     "Shiny": "Shiny",
@@ -173,7 +174,6 @@
         },
         "Frequency": "Frequency",
         "Friendship": "Friendship Points",
-        "MaxCarry": "Carry Limit",
         "Recruit": "Partnered"
       },
       "Sort": {

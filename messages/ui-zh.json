@@ -9,6 +9,7 @@
     "Exp": "經驗值",
     "Hour": "小時",
     "Map": "地圖",
+    "MaxCarry": "持有上限",
     "Rank": "階級",
     "Rewards": "報酬",
     "Shiny": "異色",
@@ -173,7 +174,6 @@
         },
         "Frequency": "幫忙間隔",
         "Friendship": "友情點數",
-        "MaxCarry": "持有上限",
         "Recruit": "成為夥伴"
       },
       "Sort": {

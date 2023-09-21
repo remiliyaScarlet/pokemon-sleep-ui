@@ -9,6 +9,7 @@
     "Exp": "経験値",
     "Hour": "時間",
     "Map": "マップ",
+    "MaxCarry": "最大所持数",
     "Rank": "ランク",
     "Rewards": "報酬",
     "Shiny": "色違い",
@@ -173,7 +174,6 @@
         },
         "Frequency": "おてつだい時間",
         "Friendship": "フレンドポイント",
-        "MaxCarry": "最大所持数",
         "Recruit": "仲間になる"
       },
       "Sort": {

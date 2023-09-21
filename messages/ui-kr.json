@@ -9,6 +9,7 @@
     "Exp": "경험치",
     "Hour": "시간",
     "Map": "맵",
+    "MaxCarry": "최대 소지 수",
     "Rank": "랭크",
     "Rewards": "보상",
     "Shiny":"색이 다른",
@@ -173,7 +174,6 @@
         },
         "Frequency": "도우미 시간",
         "Friendship": "프렌드 포인트",
-        "MaxCarry": "최대 소지 수",
         "Recruit": "동료가 되어"
       },
       "Sort": {

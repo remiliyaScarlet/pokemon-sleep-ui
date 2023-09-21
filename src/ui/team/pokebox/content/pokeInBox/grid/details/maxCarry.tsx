@@ -10,11 +10,11 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 export const PokeInBoxGridMaxCarry = (props: PokeInBoxCommonProps) => {
   const {pokeInBox} = props;
 
-  const t = useTranslations('UI.InPage.Pokedex');
+  const t = useTranslations('UI.Common');
 
   return (
     <Flex direction="row" noFullWidth className="gap-0.5">
-      <PokemonDataIcon src="/images/generic/bag.png" alt={t('Stats.MaxCarry')} invert/>
+      <PokemonDataIcon src="/images/generic/bag.png" alt={t('MaxCarry')} invert/>
       <div>{pokeInBox.carryLimit}</div>
     </Flex>
   );

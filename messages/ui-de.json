@@ -9,6 +9,7 @@
     "Exp": "EP",
     "Hour": "Std",
     "Map": "Karte",
+    "MaxCarry": "Tragelimit",
     "Rank": "Rang",
     "Rewards": "Belohnung",
     "Shiny": "Schillernd",
@@ -173,7 +174,6 @@
         },
         "Frequency": "Frequenz",
         "Friendship": "Max. Freundespunkte",
-        "MaxCarry": "Tragelimit",
         "Recruit": "Befreundet"
       },
       "Sort": {

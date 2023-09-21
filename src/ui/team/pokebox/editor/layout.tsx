@@ -49,8 +49,7 @@ export const PokeInBoxEditLayout = ({
     isShiny,
   } = pokeInBox;
   const t = useTranslations('Game');
-  const t2 = useTranslations('UI.InPage.Pokedex');
-  const t3 = useTranslations('UI.Common');
+  const t2 = useTranslations('UI.Common');
 
   const pokemon = pokedexMap[pokemonId];
   if (!pokemon) {
@@ -82,7 +81,7 @@ export const PokeInBoxEditLayout = ({
           >
             <div className="group relative h-5 w-5">
               <NextImage
-                src="/images/generic/flash.png" alt={t3('Shiny')}
+                src="/images/generic/flash.png" alt={t2('Shiny')}
                 sizes={imageSmallIconSizes} className={isShinyActive ? 'invert-on-dark' : 'invert-on-light'}
               />
             </div>
@@ -127,7 +126,7 @@ export const PokeInBoxEditLayout = ({
         idPrefix={pokeInBox.uuid}
       />
       <Flex direction="row" className="items-center justify-end gap-0.5">
-        <PokemonDataIcon src="/images/generic/bag.png" alt={t2('Stats.MaxCarry')} invert/>
+        <PokemonDataIcon src="/images/generic/bag.png" alt={t2('MaxCarry')} invert/>
         <InputBox
           type="number"
           value={carryLimit.toString()}
