@@ -5,37 +5,30 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {Popup} from '@/components/popup';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
-import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
+import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup';
+import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
-import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {toSum} from '@/utils/array';
 
 
-type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
-  setMember: (slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => void,
-};
-
-export const TeamAnalysisPokemon = (props: Props) => {
+export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const {
     slotName,
     pokemon,
@@ -45,8 +38,6 @@ export const TeamAnalysisPokemon = (props: Props) => {
     snorlaxFavorite,
     berryDataMap,
     subSkillMap,
-    ingredientChainMap,
-    pokedex,
     calculatedSettings,
   } = props;
 
@@ -56,42 +47,20 @@ export const TeamAnalysisPokemon = (props: Props) => {
   const [showEvolutionSelector, setShowEvolutionSelector] = React.useState(false);
   const ratingControl = useRatingPopup();
 
-  const {id, type, berry, skill, ingredientChain} = pokemon;
+  const {id, type, berry, skill} = pokemon;
   const berryData = berryDataMap[berry.id];
   const maxLevel = berryData.energy.length;
 
   return (
     <Flex direction="row" className="gap-1 md:flex-col">
-      <Popup show={showIngredientPicker} setShow={setShowIngredientPicker}>
-        <Flex direction="col" noFullWidth className="sm:w-[70vw]">
-          <PokemonIngredientPicker
-            chain={ingredientChainMap[ingredientChain]}
-            ingredients={member.ingredients}
-            onSelect={(updated, ingredientLevel) => setMember(
-              slotName,
-              {
-                ...member,
-                ingredients: {
-                  ...member.ingredients,
-                  [ingredientLevel]: updated,
-                },
-              },
-            )}
-            idPrefix={id.toString()}
-          />
-        </Flex>
-      </Popup>
-      <Popup show={showEvolutionSelector} setShow={setShowEvolutionSelector}>
-        <PokemonEvolutionSelector
-          pokemon={pokemon}
-          pokedex={pokedex}
-          onClick={(pokemonId) => {
-            setMember(slotName, {pokemonId});
-            setShowEvolutionSelector(false);
-          }}
-        />
-      </Popup>
-      <RatingResultPopup ratingControl={ratingControl} {...props}/>
+      <TeamAnalysisPokemonPopup
+        showIngredientPicker={showIngredientPicker}
+        setShowIngredientPicker={setShowIngredientPicker}
+        showEvolutionSelector={showEvolutionSelector}
+        setShowEvolutionSelector={setShowEvolutionSelector}
+        ratingControl={ratingControl}
+        {...props}
+      />
       <Flex direction="col" center className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
           <div className="relative h-5 w-5">
@@ -154,6 +123,11 @@ export const TeamAnalysisPokemon = (props: Props) => {
           setLevel={(level) => setMember(slotName, {level})}
           maxLevel={maxLevel}
           noSameLine
+        />
+        <PokemonCarryLimitInput
+          carryLimit={member.carryLimit}
+          defaultCarryLimit={pokemon.stats.maxCarry}
+          setCarryLimit={(carryLimit) => setMember(slotName, {carryLimit})}
         />
         <Flex direction="col" center>
           <PokemonFrequency
