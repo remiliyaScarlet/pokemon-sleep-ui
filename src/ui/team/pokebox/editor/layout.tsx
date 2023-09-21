@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {clsx} from 'clsx';
@@ -12,7 +11,7 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
@@ -55,11 +54,6 @@ export const PokeInBoxEditLayout = ({
   if (!pokemon) {
     return <></>;
   }
-
-  const resetMaxCarry = () => setPokeInBox({
-    ...pokeInBox,
-    carryLimit: pokemon.stats.maxCarry,
-  });
 
   const isShinyActive = isShiny ?? false;
 
@@ -125,27 +119,14 @@ export const PokeInBoxEditLayout = ({
         })}
         idPrefix={pokeInBox.uuid}
       />
-      <Flex direction="row" className="items-center justify-end gap-0.5">
-        <PokemonDataIcon src="/images/generic/bag.png" alt={t2('MaxCarry')} invert/>
-        <InputBox
-          type="number"
-          value={carryLimit.toString()}
-          className="w-20 text-center"
-          onChange={({target}) => {
-            const carryLimit = parseInt(target.value);
-
-            setPokeInBox({
-              ...pokeInBox,
-              carryLimit: isNaN(carryLimit) ? 0 : Math.min(carryLimit, maxCarryLimit),
-            });
-          }}
-        />
-        <button className="button-clickable-bg !rounded-full p-1" onClick={resetMaxCarry}>
-          <div className="h-5 w-5">
-            <ArrowPathIcon/>
-          </div>
-        </button>
-      </Flex>
+      <PokemonCarryLimitInput
+        carryLimit={carryLimit}
+        setCarryLimit={(carryLimit) => setPokeInBox({
+          ...pokeInBox,
+          carryLimit: isNaN(carryLimit) ? 0 : Math.min(carryLimit, maxCarryLimit),
+        })}
+        defaultCarryLimit={pokemon.stats.maxCarry}
+      />
       <Flex direction="col" className="gap-1.5 md:flex-row">
         <Flex direction="col" className="h-8">
           <PokemonSubSkillSelector
