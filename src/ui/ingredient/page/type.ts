@@ -1,4 +1,4 @@
-import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/type';
+import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 
 
 export type IngredientProductionDataProps = Omit<PokemonIngredientStatsCommonProps, 'noCollectDurations'>;
