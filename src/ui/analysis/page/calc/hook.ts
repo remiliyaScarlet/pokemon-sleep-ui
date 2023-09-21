@@ -37,7 +37,7 @@ export const useCalculationWorker = ({
   setLoading,
   calculateDeps,
 }: Props) => {
-  const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
 
   worker.onmessage = (event) => {
     setLoading(false);

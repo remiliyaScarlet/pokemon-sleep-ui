@@ -15,7 +15,7 @@ import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
 import {RatingDataPointUI} from '@/components/shared/pokemon/rating/point';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
-import {useRatingWorker} from '@/hooks/rating/main';
+import {useRatingWorker} from '@/hooks/rating/hook';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';

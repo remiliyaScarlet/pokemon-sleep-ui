@@ -22,7 +22,7 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
     producingStats,
     setProducingStats,
   ] = React.useState<PokemonItemStatsWorkerReturn>([]);
-  const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
 
   worker.onmessage = (event: MessageEvent<PokemonItemStatsWorkerReturn>) => {
     setLoading(false);

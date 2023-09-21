@@ -18,7 +18,7 @@ export const useSortingWorker = <TExtra, TData extends PokemonInfoWithSortingPay
   ...opts
 }: UseSortingWorkerOpts<TExtra, TData>) => {
   const [sorted, setSorted] = React.useState<SortedPokemonInfo<TExtra, TData>[]>([]);
-  const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
 
   worker.onmessage = (event: MessageEvent<SortedPokemonInfo<TExtra, TData>[]>) => {
     setLoading(false);

@@ -22,7 +22,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     level,
     ...initialResult,
   });
-  const worker = React.useMemo(() => new Worker(new URL('worker', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
 
   worker.onmessage = (event: MessageEvent<RatingResultOfLevel>) => {
     setLoading(false);
