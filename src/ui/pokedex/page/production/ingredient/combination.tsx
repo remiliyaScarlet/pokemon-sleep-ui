@@ -17,38 +17,30 @@ import {PokemonIngredientCommonProps} from '@/ui/pokedex/page/production/ingredi
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toSum} from '@/utils/array';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
-import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
+import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
 
 type Props = PokemonProps & PokemonIngredientCommonProps & {
   chain: IngredientChain,
 };
 
-export const PokemonIngredientCombination = ({
-  level,
-  chain,
-  pokemon,
-  pokemonProducingParams,
-  bonus,
-  berryRate,
-  ingredientMap,
-}: Props) => {
+export const PokemonIngredientCombination = ({chain, ...props}: Props) => {
+  const {level, pokemon, calculatedSettings} = props;
   const t = useTranslations('Game');
 
   return (
     <Grid className="grid-cols-1 gap-1 lg:grid-cols-2">
-      {[...generatePossibleIngredientProductions({level, chain})].map((productions) => {
-        const productionKeys = productions.map(({id}) => id).join('-');
+      {[...generatePossibleIngredientProductions({level, chain})].map((ingredients) => {
+        const productionKeys = ingredients.map(({id}) => id).join('-');
 
-        const rates = getIngredientProducingRates({
-          level,
-          pokemon,
-          pokemonProducingParams,
-          ingredients: productions,
-          ingredientMap,
-          bonus,
+        const {berry, ingredient} = getPokemonProducingRate({
+          ingredients,
+          snorlaxFavorite: {},
           ...defaultNeutralOpts,
+          ...calculatedSettings,
+          ...props,
         });
+        const ingredientRates = Object.values(ingredient);
 
         return (
           <AnimatedCollapse key={productionKeys} show appear>
@@ -56,18 +48,18 @@ export const PokemonIngredientCombination = ({
               'gap-1.5 rounded-lg bg-slate-500/10 p-1.5',
             )}>
               <Flex direction="row" center wrap className="gap-1">
-                {productions.map((production) => (
+                {ingredients.map((production) => (
                   <PokemonIngredientIcon key={`${productionKeys}-${production.qty}`} production={production}/>
                 ))}
               </Flex>
               <PokemonProductionSplit
-                berry={berryRate.dailyEnergy}
-                ingredient={toSum(rates.map(({dailyEnergy}) => dailyEnergy))}
+                berry={berry.dailyEnergy}
+                ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy))}
                 specialty={pokemon.specialty}
               />
               <PokemonProducingRateMultiple
                 horizontal
-                rates={rates}
+                rates={ingredientRates}
                 getIcon={(rate) => (
                   <NextImage
                     src={`/images/ingredient/${rate.id}.png`}

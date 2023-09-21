@@ -32,7 +32,7 @@ export const PokemonProduction = (props: PokemonProps) => {
 
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const {bonus} = useUserSettings({
+  const calculatedSettings = useUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });
@@ -45,12 +45,12 @@ export const PokemonProduction = (props: PokemonProps) => {
   const pokemonName = t(`PokemonName.${pokemon.id}`);
 
   const berryRate = getBerryProducingRate({
+    ...calculatedSettings,
     level,
     pokemon,
     pokemonProducingParams,
     ...defaultNeutralOpts,
     berryData,
-    bonus,
     snorlaxFavorite: {},
   });
 
@@ -71,7 +71,7 @@ export const PokemonProduction = (props: PokemonProps) => {
         title={t2('Info.Ingredient')}
         titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
       >
-        <PokemonIngredientProduction level={level} bonus={bonus} berryRate={berryRate} {...props}/>
+        <PokemonIngredientProduction level={level} calculatedSettings={calculatedSettings} {...props}/>
       </PokemonMetaSection>
       <Flex direction="col" className="items-end">
         <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">
