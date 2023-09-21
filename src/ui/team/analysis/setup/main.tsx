@@ -16,7 +16,7 @@ import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {DeepPartial} from '@/utils/type';
 
 
-type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'bonus'> & {
+type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'calculatedSettings'> & {
   settings: DeepPartial<UserSettings> | undefined,
 };
 
@@ -29,13 +29,13 @@ export const TeamAnalysisSetupView = (props: Props) => {
     settings,
   } = props;
 
-  const {bonus} = useUserSettings({
+  const calculatedSettings = useUserSettings({
     server: preloadedSettings,
     client: settings,
   });
   const statsOfTeam = useProducingStats({
     ...props,
-    bonus,
+    calculatedSettings,
   });
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
@@ -46,7 +46,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
         <TeamAnalysisTeamView
           showPokemon={showPokemon}
           statsOfTeam={statsOfTeam}
-          bonus={bonus}
+          calculatedSettings={calculatedSettings}
           {...props}
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>

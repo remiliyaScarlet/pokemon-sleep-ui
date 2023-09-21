@@ -10,6 +10,7 @@ import {
   teamAnalysisSlotName,
   TeamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
+import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
@@ -54,6 +55,7 @@ export const TeamAnalysisSelectablePokemon = ({
         nature: null,
         subSkill: {},
         ingredients: generateIngredientProductionAtLevels(chain),
+        carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
       },
     );
   };

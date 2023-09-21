@@ -8,15 +8,16 @@ import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/ut
 
 
 type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRatesOpts & {
+  carryLimit?: number,
   noCollectDurations: number[],
 };
 
 export const getPokemonProducingRate = (opts: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon} = opts;
+  const {pokemon, carryLimit} = opts;
 
   return applyCarryLimit({
     ...opts,
-    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
+    carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
     rate: {
       berry: getBerryProducingRate(opts),
       ingredient: Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [rate.id, rate])),

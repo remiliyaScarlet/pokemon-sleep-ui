@@ -9,6 +9,7 @@ export const toTeamAnalysisMember = ({
   nature,
   subSkill,
   ingredients,
+  carryLimit,
 }: PokeInBox): TeamAnalysisMember => {
   return {
     name,
@@ -17,5 +18,6 @@ export const toTeamAnalysisMember = ({
     nature,
     subSkill,
     ingredients,
+    carryLimit,
   };
 };

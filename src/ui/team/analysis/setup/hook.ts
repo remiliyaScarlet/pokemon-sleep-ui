@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {EffectiveBonus} from '@/types/game/bonus';
 import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {
   TeamProducingStats,
   TeamProducingStatsBySlot,
@@ -28,7 +28,7 @@ import {isNotNullish} from '@/utils/type';
 type UseProducingStatsOpts = Omit<TeamAnalysisDataProps, 'settings'> & {
   setup: TeamAnalysisSetup,
   snorlaxFavorite: SnorlaxFavorite,
-  bonus: EffectiveBonus,
+  calculatedSettings: CalculatedUserSettings,
 };
 
 type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
@@ -46,7 +46,7 @@ const useProducingStatsOfSlot = ({
   berryDataMap,
   ingredientMap,
   subSkillMap,
-  bonus,
+  calculatedSettings,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   const currentTeam = getCurrentTeam({setup});
 
@@ -74,9 +74,9 @@ const useProducingStatsOfSlot = ({
 
     const {berry, ingredient: ingredientRateMap} = getPokemonProducingRate({
       ...producingRateOpts,
+      ...calculatedSettings,
       level,
       pokemon,
-      bonus,
       pokemonProducingParams: getPokemonProducingParams({
         pokemonId: pokemon.id,
         pokemonProducingParamsMap,
@@ -85,6 +85,7 @@ const useProducingStatsOfSlot = ({
       berryData,
       ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
       ingredientMap,
+      carryLimit: member.carryLimit,
     });
     const ingredient = Object.values(ingredientRateMap);
 
@@ -95,11 +96,11 @@ const useProducingStatsOfSlot = ({
     };
 
     return {berry, ingredient, total};
-  }, [currentTeam.members[slotName], snorlaxFavorite, helperCount, bonus]);
+  }, [currentTeam.members[slotName], snorlaxFavorite, helperCount, calculatedSettings]);
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
-  const {setup, snorlaxFavorite, subSkillMap, bonus} = opts;
+  const {setup, snorlaxFavorite, subSkillMap, calculatedSettings} = opts;
   const currentTeam = getCurrentTeam({setup});
   const helperCount = Object.values(currentTeam.members)
     .filter((member) => {
@@ -120,7 +121,7 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
     E: useProducingStatsOfSlot({slotName: 'E', helperCount, ...opts}),
   };
 
-  const deps: React.DependencyList = [setup, snorlaxFavorite, bonus];
+  const deps: React.DependencyList = [setup, snorlaxFavorite, calculatedSettings];
 
   const total: TeamProducingStatsTotal = React.useMemo(() => {
     const stats = teamAnalysisSlotName

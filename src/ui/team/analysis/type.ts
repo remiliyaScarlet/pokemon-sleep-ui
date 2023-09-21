@@ -46,6 +46,7 @@ export type TeamAnalysisMember = {
   ingredients: IngredientProductionAtLevels,
   nature: NatureId | null,
   subSkill: PokemonSubSkill,
+  carryLimit: number,
 };
 
 export type TeamAnalysisSingleTeam = {

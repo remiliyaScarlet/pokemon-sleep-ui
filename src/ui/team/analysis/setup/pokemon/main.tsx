@@ -47,7 +47,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
     subSkillMap,
     ingredientChainMap,
     pokedex,
-    bonus,
+    calculatedSettings,
   } = props;
 
   const t = useTranslations('Game');
@@ -115,7 +115,7 @@ export const TeamAnalysisPokemon = (props: Props) => {
               member,
               pokemon,
               snorlaxFavorite,
-              bonus,
+              ...calculatedSettings,
             }))}>
               <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
             </button>
