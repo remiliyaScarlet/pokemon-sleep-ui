@@ -3,9 +3,13 @@ import {getAnalysisStatsOfProducingRate} from '@/ui/analysis/page/calc/producing
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 
 
-export const getAnalysisStats = (opts: GetAnalysisStatsOpts): AnalysisStats => {
-  return {
-    pokemon: getAnalysisStatsOfPokemon(opts),
-    producingRate: getAnalysisStatsOfProducingRate(opts),
+const onMessage = ({data}: MessageEvent<GetAnalysisStatsOpts>) => {
+  const analysisStats: AnalysisStats = {
+    pokemon: getAnalysisStatsOfPokemon(data),
+    producingRate: getAnalysisStatsOfProducingRate(data),
   };
+
+  postMessage(analysisStats);
 };
+
+addEventListener('message', onMessage);

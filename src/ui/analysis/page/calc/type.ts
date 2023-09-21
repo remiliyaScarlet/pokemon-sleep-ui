@@ -12,6 +12,7 @@ import {IngredientLevel, IngredientProduction} from '@/types/game/pokemon/ingred
 import {SnorlaxRank} from '@/types/game/rank';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {UserSettings} from '@/types/userData/settings';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
@@ -87,4 +88,5 @@ export type GetAnalysisStatsOpts = Omit<AnalysisPageCommonProps, 'mapMeta' | 'pr
   ingredients: IngredientProduction[],
   snorlaxFavorite: SnorlaxFavorite,
   bonus: EffectiveBonus,
+  noCollectDurations: number[],
 };

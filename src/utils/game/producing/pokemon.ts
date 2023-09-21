@@ -14,11 +14,11 @@ type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProd
 
 export const getPokemonProducingRate = (opts: GetPokemonProducingRateOpts): PokemonProducingRate => {
   return applyCarryLimit({
+    ...opts,
     rate: {
       berry: getBerryProducingRate(opts),
       ingredient: Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [rate.id, rate])),
     },
-    ...opts,
   });
 };
 

@@ -8,13 +8,13 @@ import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculationWorker} from '@/ui/analysis/page/calc/hook';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
 import {AnalysisPageInput} from '@/ui/analysis/page/input/main';
 import {AnalysisMeta} from '@/ui/analysis/page/meta';
 import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
-import {useCalculationWorker} from '@/ui/analysis/page/worker';
 import {getPokedexWithField} from '@/utils/game/pokemon';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 
@@ -40,7 +40,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     .map((level) => filter.ingredients[level]), [filter]);
 
   const {data: session} = useSession();
-  const {bonus} = useUserSettings({
+  const settings = useUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });
@@ -51,10 +51,10 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     ingredients,
     pokemonToAnalyze: pokemonList.filter(({id}) => isIncluded[id]),
     snorlaxFavorite: filter.snorlaxFavorite,
-    bonus,
+    ...settings,
     setStats,
     setLoading,
-    calculateDeps: [filter, bonus],
+    calculateDeps: [filter, settings],
   });
 
   return (

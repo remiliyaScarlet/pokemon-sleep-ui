@@ -14,6 +14,7 @@ type Props = Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloade
   pokemonToAnalyze: PokemonInfo[],
   snorlaxFavorite: SnorlaxFavorite,
   bonus: EffectiveBonus,
+  noCollectDurations: number[],
   setStats: (stats: AnalysisStats) => void,
   setLoading: (loading: boolean) => void,
   calculateDeps: React.DependencyList,
@@ -31,11 +32,12 @@ export const useCalculationWorker = ({
   pokemonToAnalyze,
   snorlaxFavorite,
   bonus,
+  noCollectDurations,
   setStats,
   setLoading,
   calculateDeps,
 }: Props) => {
-  const worker = React.useMemo(() => new Worker(new URL('calc/worker', import.meta.url)), []);
+  const worker = React.useMemo(() => new Worker(new URL('main', import.meta.url)), []);
 
   worker.onmessage = (event) => {
     setLoading(false);
@@ -62,6 +64,7 @@ export const useCalculationWorker = ({
       sleepStyleMap,
       snorlaxFavorite,
       bonus,
+      noCollectDurations,
     } satisfies GetAnalysisStatsOpts);
     setLoading(true);
   };
