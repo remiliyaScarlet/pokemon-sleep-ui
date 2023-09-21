@@ -9,7 +9,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/ingredientStats';
+import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
@@ -23,15 +23,20 @@ type Props = MealCommonProps & {
 
 export const MealPokemonOfIngredientLevel = ({
   meal,
-  ingredientMap,
   pokemonLevel,
   pokemonOfIngredientLevel,
   preloadedSettings,
   ...props
 }: Props) => {
-  const {ingredientLevel, pokeIngredientMap, show} = pokemonOfIngredientLevel;
+  const {ingredientMap} = props;
+  const {
+    ingredientLevel,
+    pokemonIngredientProductionOfLevel,
+    show,
+  } = pokemonOfIngredientLevel;
+
   const {data} = useSession();
-  const {bonus} = useUserSettings({
+  const settings = useUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });
@@ -59,9 +64,9 @@ export const MealPokemonOfIngredientLevel = ({
             )}>
               <PokemonIconsIngredientStats
                 level={pokemonLevel}
-                dropData={pokeIngredientMap[id] ?? []}
                 ingredient={ingredientMap[id]}
-                bonus={bonus}
+                pokemonIngredientProduction={pokemonIngredientProductionOfLevel[id] ?? []}
+                {...settings}
                 {...props}
               />
             </Flex>
