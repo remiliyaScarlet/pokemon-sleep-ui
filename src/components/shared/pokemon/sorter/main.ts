@@ -1,4 +1,4 @@
-import {getPokemonSorter, GetPokemonSorterOpts, sortPokemon} from '@/components/shared/pokemon/sorter/calc';
+import {getPokemonSorter, GetPokemonSorterOpts, sortPokemon} from '@/components/shared/pokemon/sorter/calc/main';
 import {
   PokemonInfoWithSortingPayload,
   PokemonSortType,
@@ -8,7 +8,7 @@ import {
 
 export type GetSortedPokemonOpts<TExtra, TData extends PokemonInfoWithSortingPayload<TExtra>> = Pick<
   GetPokemonSorterOpts,
-  'bonus' | 'ingredientMap' | 'berryDataMap' | 'snorlaxFavorite'
+  'calculatedSettings' | 'ingredientMap' | 'berryDataMap' | 'snorlaxFavorite'
 > & {
   data: TData[],
   sort: PokemonSortType,

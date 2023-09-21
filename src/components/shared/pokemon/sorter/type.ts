@@ -1,11 +1,11 @@
 import {BerryData} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
 export const pokemonSortType = [
@@ -45,7 +45,7 @@ export type PokemonSorterGetterOpts = PokemonSortingRequiredData & ProducingRate
   ingredientMap: IngredientMap,
   berryData: BerryData | null,
   snorlaxFavorite: SnorlaxFavorite,
-  bonus: EffectiveBonus,
+  calculatedSettings: CalculatedUserSettings,
 };
 
 export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;

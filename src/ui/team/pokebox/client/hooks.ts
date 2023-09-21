@@ -58,7 +58,7 @@ export const useCalculatedData = (
       } satisfies PokeInBox,
     ])),
     filter,
-    bonus: calculatedSettings.bonus,
+    calculatedSettings,
     isIncluded,
     setLoading,
   });
