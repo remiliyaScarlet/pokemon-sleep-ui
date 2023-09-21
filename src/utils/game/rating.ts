@@ -5,7 +5,6 @@ import {
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
-import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
@@ -39,14 +38,12 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
   const berryData = berryDataMap[pokemon.berry.id];
   const currentProductions = getEffectiveIngredientProductions({level, ingredients});
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
-  const carryLimit = getCarryLimitFromPokemonInfo({pokemon});
 
   const currentRate = getPokemonProducingRate({
     ...opts,
     pokemon,
     berryData,
     ingredients: currentProductions,
-    carryLimit,
     ...getProducingRateSingleParams(opts),
   });
   const currentDaily = getDailyEnergyOfRate(currentRate);
@@ -68,7 +65,6 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
           pokemon,
           berryData,
           ingredients: productions,
-          carryLimit,
           ...getProducingRateSingleParams({
             level,
             subSkill,

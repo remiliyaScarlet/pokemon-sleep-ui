@@ -6,7 +6,6 @@ import {toAnalysisIngredientProducingRate} from '@/ui/analysis/page/calc/produci
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
 import {isRateOfPokemonSame} from '@/ui/analysis/page/calc/producingRate/utils';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
-import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {
   generatePossibleIngredientProductions,
   groupIngredientProductions,
@@ -33,7 +32,6 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       pokemonProducingParamsMap,
     }),
     berryData: berryDataMap[pokemon.berry.id],
-    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
     ...defaultNeutralOpts,
   });
   const currentIngredientRates = Object.values(currentRate.ingredient);
@@ -54,7 +52,6 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       }),
       berryData: berryDataMap[otherPokemon.berry.id],
       ingredients: otherIngredients,
-      carryLimit: getCarryLimitFromPokemonInfo({pokemon: otherPokemon}),
       ...defaultNeutralOpts,
     }),
   })));
