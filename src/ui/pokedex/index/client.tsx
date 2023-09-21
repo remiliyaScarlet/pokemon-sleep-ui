@@ -28,7 +28,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     pokemonProducingParamsMap,
     ingredientChainMap,
     ingredientMap,
-    berryMap,
+    berryDataMap,
     preloaded,
   } = props;
 
@@ -44,11 +44,11 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     triggerDeps: [filter.sort, filter.display],
   });
 
-  const {bonus} = useUserSettings({
+  const calculatedSettings = useUserSettings({
     server: preloaded.settings,
     client: session?.user.preloaded.settings,
   });
-  const sortingDeps = [filter, bonus];
+  const sortingDeps = [filter, calculatedSettings];
 
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
@@ -80,9 +80,9 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     data,
     sort: filter.sort,
     ingredientMap,
-    berryDataMap: berryMap,
+    berryDataMap,
     snorlaxFavorite: filter.snorlaxFavorite,
-    bonus,
+    calculatedSettings,
     triggerDeps: sortingDeps,
     setLoading,
   });
@@ -116,7 +116,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
                 level={filter.level}
                 snorlaxFavorite={filter.snorlaxFavorite}
                 ingredients={source.ingredients}
-                bonus={bonus}
+                calculatedSettings={calculatedSettings}
                 {...props}
               />
             );

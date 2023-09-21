@@ -1,7 +1,6 @@
 import {PokemonInputFilterExtended, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
@@ -10,7 +9,7 @@ import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/po
 import {SleepStyleOfMap} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
-import {UserSettings} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
 
@@ -35,7 +34,7 @@ export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   maxLevel: number,
   ingredientMap: IngredientMap,
-  berryMap: BerryDataMap,
+  berryDataMap: BerryDataMap,
   mapMeta: FieldMetaMap,
   preloaded: {
     display: Partial<PokedexDisplay> | undefined,
@@ -48,5 +47,5 @@ export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & Pokede
   pokemonProducingParams: PokemonProducingParams,
   snorlaxFavorite: SnorlaxFavorite,
   ingredients: IngredientProduction[],
-  bonus: EffectiveBonus,
+  calculatedSettings: CalculatedUserSettings,
 };

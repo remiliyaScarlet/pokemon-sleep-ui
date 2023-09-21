@@ -9,12 +9,12 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
-import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc';
+import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
-import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
+import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {formatFloat} from '@/utils/number';
 
 
@@ -25,9 +25,9 @@ export const PokedexLinkDetail = React.memo(({
   level,
   ingredients,
   ingredientMap,
-  berryMap,
+  berryDataMap,
   snorlaxFavorite,
-  bonus,
+  calculatedSettings,
 }: PokedexLinkProps) => {
   const {
     id,
@@ -93,12 +93,12 @@ export const PokedexLinkDetail = React.memo(({
     type: display,
     pokemon,
     pokemonProducingParams,
-    berryDataMap: berryMap,
+    berryDataMap,
     ingredientMap,
     ingredients,
     level,
     snorlaxFavorite,
-    bonus,
+    calculatedSettings,
     dateAdded: null,
     ...defaultNeutralOpts,
   });
@@ -149,13 +149,15 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredientCount') {
-    const rates = getIngredientProducingRates({
+    const {ingredient} = getPokemonProducingRate({
       level,
       pokemon,
       pokemonProducingParams,
       ingredientMap,
       ingredients,
-      bonus,
+      snorlaxFavorite: {},
+      berryData: berryDataMap[pokemon.berry.id],
+      ...calculatedSettings,
       ...defaultNeutralOpts,
     });
 
@@ -165,7 +167,7 @@ export const PokedexLinkDetail = React.memo(({
           <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
         </div>
         <PokemonIngredientIcons
-          ingredients={[rates
+          ingredients={[Object.values(ingredient)
             .sort((a, b) => b.quantity - a.quantity)
             .map(({id, quantity}) => ({
               id,

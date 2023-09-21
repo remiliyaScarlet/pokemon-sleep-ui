@@ -45,7 +45,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     maxLevel,
     ingredientMap,
     ingredientChainMap,
-    berryMap,
+    berryDataMap,
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
@@ -64,7 +64,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     maxLevel,
     ingredientMap,
     ingredientChainMap,
-    berryMap,
+    berryDataMap,
     mapMeta,
     preloaded: {
       settings: createUserSettings(session?.user.preloaded.settings),
