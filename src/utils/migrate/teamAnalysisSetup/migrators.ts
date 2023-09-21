@@ -1,7 +1,12 @@
 import {v4} from 'uuid';
 
 import {Migrator} from '@/types/migrate';
-import {TeamAnalysisMember, TeamAnalysisSetup, teamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {
+  TeamAnalysisMember,
+  TeamAnalysisSetup,
+  TeamAnalysisSingleTeam,
+  teamAnalysisSlotName,
+} from '@/ui/team/analysis/type';
 import {getDefaultTeamName} from '@/ui/team/analysis/utils';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 import {TeamAnalysisMigrateParams} from '@/utils/migrate/teamAnalysisSetup/type';
@@ -81,8 +86,38 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
       ...old,
       teams: Object.fromEntries(Object.values(old.teams).map((team) => [
         team.uuid,
-        {...team, snorlaxFavorite: {}},
+        {
+          ...team,
+          snorlaxFavorite: {},
+        },
       ])),
+    }),
+  },
+  {
+    // `carryLimit` addition
+    toVersion: 5,
+    migrate: (old, {pokedex}) => ({
+      ...old,
+      teams: Object.fromEntries(Object.values(old.teams).map((team) => {
+        const updatedMembers = Object.fromEntries(teamAnalysisSlotName.map((slot) => {
+          const member = team.members[slot];
+          if (!member) {
+            return [slot, null];
+          }
+
+          const pokemon = pokedex[member.pokemonId];
+          if (!pokemon) {
+            return [slot, null];
+          }
+
+          return [
+            slot,
+            {...member, carryLimit: pokemon.stats.maxCarry} satisfies TeamAnalysisMember,
+          ];
+        })) as TeamAnalysisSingleTeam['members'];
+
+        return [team.uuid, {...team, members: updatedMembers} satisfies TeamAnalysisSingleTeam];
+      })),
     }),
   },
 ];
