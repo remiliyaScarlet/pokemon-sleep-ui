@@ -2,8 +2,8 @@ import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {calculateRatingResultOfLevel} from '@/utils/game/rating';
 
 
-const onMessage = (event: MessageEvent<RatingWorkerOpts>) => {
-  postMessage(calculateRatingResultOfLevel(event.data));
+const onMessage = ({data}: MessageEvent<RatingWorkerOpts>) => {
+  postMessage(calculateRatingResultOfLevel(data));
 };
 
 addEventListener('message', onMessage);

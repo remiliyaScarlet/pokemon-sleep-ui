@@ -11,8 +11,7 @@ import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 import {isNotNullish} from '@/utils/type';
 
 
-const onMessage = (event: MessageEvent<PokemonItemStatsWorkerOpts>) => {
-  const {data} = event;
+const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
   const {
     pokedex,
     pokemonProducingParamsMap,
