@@ -17,7 +17,12 @@ type Props = PokeInBoxViewUnitProps & {
 };
 
 export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => {
-  const {pokeInBox, snorlaxFavorite, bonus, setRatingPopupControl} = props;
+  const {
+    pokeInBox,
+    snorlaxFavorite,
+    calculatedSettings,
+    setRatingPopupControl,
+  } = props;
 
   const t = useTranslations('UI.Metadata');
 
@@ -31,9 +36,9 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
       </button>
       <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
         ...pokeInBox,
+        ...calculatedSettings,
         pokemon,
         snorlaxFavorite,
-        bonus,
       })}>
         <PokemonDataIcon src="/images/generic/search.png" alt={t('Rating.Title')} invert/>
       </button>

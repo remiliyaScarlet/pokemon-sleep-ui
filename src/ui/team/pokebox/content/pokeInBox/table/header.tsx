@@ -18,7 +18,7 @@ type Props = PokeInBoxViewUnitProps & {
 };
 
 export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupControl, ...props}: Props) => {
-  const {pokeInBox, snorlaxFavorite, bonus} = props;
+  const {pokeInBox, snorlaxFavorite, calculatedSettings} = props;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Metadata');
@@ -52,9 +52,9 @@ export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupCon
       />
       <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
         ...pokeInBox,
+        ...calculatedSettings,
         pokemon,
         snorlaxFavorite,
-        bonus,
       })}>
         <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
       </button>

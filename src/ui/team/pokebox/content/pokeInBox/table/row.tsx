@@ -11,7 +11,7 @@ import {PokeInBoxTableSkills} from '@/ui/team/pokebox/content/pokeInBox/table/de
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table/header';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
-import {getRateOfBerry, getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
+import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {PokeboxDisplayType, PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
@@ -39,14 +39,12 @@ export const PokeInBoxTableRow = (props: Props) => {
     pokemon,
   };
 
-  const rateOfBerry = getRateOfBerry(pokeInBoxProps);
-  const rateOfIngredients = getRateOfIngredients(pokeInBoxProps);
+  const rateOfPokemon = getRateOfPokemon(pokeInBoxProps);
 
   const detailProps: PokeInBoxTableDetailsProps = {
     ...pokeInBoxProps,
     isLevelPreview,
-    rateOfBerry,
-    rateOfIngredients,
+    rateOfPokemon,
     display,
   };
 

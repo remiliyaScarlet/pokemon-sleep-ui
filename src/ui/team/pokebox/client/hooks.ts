@@ -31,7 +31,7 @@ export const useCalculatedData = (
 
   const t = useTranslations('Game');
 
-  const {bonus} = useUserSettings({
+  const calculatedSettings = useUserSettings({
     server: preloaded.settings,
     client: session.data?.user.preloaded.settings,
   });
@@ -58,7 +58,7 @@ export const useCalculatedData = (
       } satisfies PokeInBox,
     ])),
     filter,
-    bonus,
+    bonus: calculatedSettings.bonus,
     isIncluded,
     setLoading,
   });
@@ -81,7 +81,7 @@ export const useCalculatedData = (
   });
 
   return {
-    bonus,
+    calculatedSettings,
     filter,
     setFilter,
     filteredSortedPokebox,

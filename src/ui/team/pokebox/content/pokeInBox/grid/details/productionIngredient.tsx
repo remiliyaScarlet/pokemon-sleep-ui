@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {getRateOfIngredients} from '@/ui/team/pokebox/content/pokeInBox/utils';
+import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
 
@@ -16,14 +16,14 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
   const {pokemon} = props;
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const rateOfIngredients = getRateOfIngredients(props);
+  const {ingredient} = getRateOfPokemon(props);
 
   return (
     <Flex direction="col" noFullWidth className={clsx(
       'w-fit gap-0.5 pr-1.5 text-sm',
       pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
     )}>
-      {rateOfIngredients.map(({id, quantity, dailyEnergy}) => (
+      {Object.values(ingredient).map(({id, quantity, dailyEnergy}) => (
         <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
           <PokemonIngredientIcon id={id}/>
           <div>

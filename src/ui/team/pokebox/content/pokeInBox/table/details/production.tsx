@@ -19,10 +19,11 @@ import {formatFloat} from '@/utils/number';
 export const PokeInBoxTableProduction = (props: PokeInBoxTableDetailsProps) => {
   const {
     pokemon,
-    rateOfBerry,
-    rateOfIngredients,
+    rateOfPokemon,
     display,
   } = props;
+  const {berry, ingredient} = rateOfPokemon;
+  const rateOfIngredients = Object.values(ingredient);
 
   const t = useTranslations('UI.InPage.Pokedex');
 
@@ -42,11 +43,11 @@ export const PokeInBoxTableProduction = (props: PokeInBoxTableDetailsProps) => {
         )}>
           <PokemonBerryIcon id={pokemon.berry.id}/>
           <div>
-            x{formatFloat(rateOfBerry.quantity)}
+            x{formatFloat(berry.quantity)}
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(rateOfBerry.dailyEnergy)}
+            {formatFloat(berry.dailyEnergy)}
           </div>
         </Flex>
       }
@@ -83,13 +84,13 @@ export const PokeInBoxTableProduction = (props: PokeInBoxTableDetailsProps) => {
         <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
           <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(rateOfBerry.dailyEnergy + sumOfDailyIngredientEnergy)}
+            {formatFloat(berry.dailyEnergy + sumOfDailyIngredientEnergy)}
           </div>
         </Flex>
       }
       <Flex direction="col" noFullWidth className="w-40">
         <PokemonProductionSplit
-          berry={rateOfBerry.dailyEnergy}
+          berry={berry.dailyEnergy}
           ingredient={sumOfDailyIngredientEnergy}
           specialty={pokemon.specialty}
         />

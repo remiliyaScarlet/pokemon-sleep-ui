@@ -8,16 +8,16 @@ import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/ta
 export const PokeInBoxTableFrequency = (props: PokeInBoxTableDetailsProps) => {
   const {
     pokemon,
-    rateOfBerry,
-    rateOfIngredients,
+    rateOfPokemon,
   } = props;
+  const {berry, ingredient} = rateOfPokemon;
 
   return (
     <Flex direction="col" center noFullWidth className="w-60">
       <PokemonFrequency
         baseFrequency={pokemon.stats.frequency}
-        berryFrequency={rateOfBerry.frequency}
-        ingredientFrequency={rateOfIngredients.at(0)?.frequency ?? NaN}
+        berryFrequency={berry.frequency}
+        ingredientFrequency={Object.values(ingredient).at(0)?.frequency ?? NaN}
       />
     </Flex>
   );

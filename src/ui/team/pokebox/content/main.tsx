@@ -7,8 +7,8 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {PokeInBox} from '@/types/game/pokebox';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokeboxCount} from '@/ui/team/pokebox/content/count';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -20,7 +20,7 @@ import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 type Props = PokeboxCommonProps & {
   filter: PokeboxViewerFilter,
   loading: boolean,
-  bonus: EffectiveBonus,
+  calculatedSettings: CalculatedUserSettings,
   totalPokeInBox: number,
   sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,

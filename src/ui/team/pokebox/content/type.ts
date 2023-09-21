@@ -9,7 +9,8 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
-export type PokeInBoxChangeableProps = CalculatedUserSettings & {
+export type PokeInBoxChangeableProps = {
+  calculatedSettings: CalculatedUserSettings,
   snorlaxFavorite: SnorlaxFavorite,
 };
 
