@@ -1,8 +1,7 @@
 import isEqual from 'lodash/isEqual';
 import {useCustomCompareMemo} from 'use-custom-compare';
 
-import {EffectiveBonus} from '@/types/game/bonus';
-import {UserSettings} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {getNoCollectDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object';
 import {DeepPartial} from '@/utils/type';
@@ -14,12 +13,7 @@ type UseUserSettingsOpts = {
   client: DeepPartial<UserSettings> | undefined,
 };
 
-type UseUserSettingsReturn = {
-  bonus: EffectiveBonus,
-  noCollectDurations: number[],
-};
-
-export const useUserSettings = ({server, client}: UseUserSettingsOpts): UseUserSettingsReturn => {
+export const useUserSettings = ({server, client}: UseUserSettingsOpts): CalculatedUserSettings => {
   return useCustomCompareMemo(
     () => {
       const settings = cloneMerge(server, client);

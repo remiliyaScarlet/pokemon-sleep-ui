@@ -1,13 +1,13 @@
 import {BerryDataMap} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokedexMap, PokemonInfo, PokemonIngredientProduction} from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {PokemonProducingRate} from '@/types/game/producing/rate';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
-export type PokemonItemStatsWorkerOpts = {
+export type PokemonItemStatsWorkerOpts = CalculatedUserSettings & {
   pokedex: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   pokemonIngredientProduction: PokemonIngredientProduction[],
@@ -15,8 +15,6 @@ export type PokemonItemStatsWorkerOpts = {
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
   level: number,
-  bonus: EffectiveBonus,
-  noCollectDurations: number[],
 };
 
 export type PokemonItemStatsCalcResult = {

@@ -1,5 +1,4 @@
 import {BerryDataMap} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {
@@ -11,6 +10,7 @@ import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
 export type RatingCombination = {
@@ -37,13 +37,12 @@ export type RatingResultOfLevel = {
   },
 };
 
-export type RatingSetupData = {
+export type RatingSetupData = CalculatedUserSettings & {
   pokemon: PokemonInfo,
   ingredients: IngredientProductionAtLevels,
   snorlaxFavorite: SnorlaxFavorite,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
-  bonus: EffectiveBonus,
 };
 
 export type RatingRequest = {

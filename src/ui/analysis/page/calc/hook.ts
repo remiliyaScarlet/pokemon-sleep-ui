@@ -1,24 +1,24 @@
 import React from 'react';
 
-import {EffectiveBonus} from '@/types/game/bonus';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
-type Props = Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloadedSettings'> & {
-  level: number,
-  ingredients: IngredientProduction[],
-  pokemonToAnalyze: PokemonInfo[],
-  snorlaxFavorite: SnorlaxFavorite,
-  bonus: EffectiveBonus,
-  noCollectDurations: number[],
-  setStats: (stats: AnalysisStats) => void,
-  setLoading: (loading: boolean) => void,
-  calculateDeps: React.DependencyList,
-};
+type Props =
+  Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloadedSettings'> &
+  CalculatedUserSettings & {
+    level: number,
+    ingredients: IngredientProduction[],
+    pokemonToAnalyze: PokemonInfo[],
+    snorlaxFavorite: SnorlaxFavorite,
+    setStats: (stats: AnalysisStats) => void,
+    setLoading: (loading: boolean) => void,
+    calculateDeps: React.DependencyList,
+  };
 
 export const useCalculationWorker = ({
   pokemon,
