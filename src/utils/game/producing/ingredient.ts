@@ -1,7 +1,11 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {defaultHelperCount} from '@/const/game/production';
 import {Ingredient} from '@/types/game/ingredient';
-import {ProducingRateCommonParams, ProducingRateOfItem, ProducingRateProportion} from '@/types/game/producing/rate';
+import {
+  ProducingRateCommonParams,
+  ProducingRateOfItem,
+  ProducingRateProportion,
+} from '@/types/game/producing/rate';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
 import {getProbabilitySplit} from '@/utils/game/producing/split';

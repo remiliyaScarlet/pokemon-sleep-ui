@@ -4,7 +4,6 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
-import {Indexable} from '@/utils/type';
 
 
 export type ProducingRate = {
@@ -17,9 +16,14 @@ export type ProducingRateProportion = {
   picks: number,
 };
 
-export type ProducingRateOfItem<TId extends Indexable = number> = ProducingRate & {
-  id: TId,
+export type ProducingRateOfItem = ProducingRate & {
+  id: number,
   frequency: number,
+};
+
+export type ProducingRateOfItemOfSessions = {
+  sleep: ProducingRateOfItem,
+  awake: ProducingRateOfItem,
 };
 
 export type ProducingRateSingleParams = {
