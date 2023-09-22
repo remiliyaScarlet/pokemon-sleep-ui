@@ -7,6 +7,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
+import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subSkill';
 
@@ -27,8 +28,9 @@ export const SubSkillInfoSingle = ({data}: Props) => {
       'gap-1 rounded-lg p-2',
       rarity ? subSkillRaritySectionBg[rarity] : subSkillRarityDisabled,
     )}>
-      <Flex direction="row" className="items-end justify-center gap-1 text-lg">
-        <div className="text-sm text-slate-600 dark:text-slate-400">#{id}</div>
+      <Flex direction="row" center className="gap-1 text-lg">
+        <div className="self-end text-sm text-slate-600 dark:text-slate-400">#{id}</div>
+        <PokemonSubSkillIcon subSkill={data}/>
         <div>{t(`Name.${id}`)}</div>
       </Flex>
       <div className="text-sm text-slate-600 dark:text-slate-400">
