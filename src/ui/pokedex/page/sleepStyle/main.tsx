@@ -15,7 +15,7 @@ export const PokemonSleepStyles = (props: PokemonProps) => {
       loadingText="Sleepdex"
       content={(data) => (
         <PokemonSleepStylesLoaded
-          initialSleepdex={data?.sleepdex ?? {}}
+          initialSleepdex={data?.sleepdexOfPokemon ?? {}}
           {...props}
         />
       )}
