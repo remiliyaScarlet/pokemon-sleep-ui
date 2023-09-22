@@ -4,23 +4,42 @@ import {isSameRank} from '@/utils/game/snorlax';
 import {isInSleepdex, IsInSleepdexOpts} from '@/utils/sleepdex';
 
 
-type GetUpdatedAccumulatorOpts = IsInSleepdexOpts & {
+type GetUpdatedAccumulatorOpts = {
   original: MapUnlockAccumulator,
+  current: MapUnlockAccumulatorEnergy
+} & ({
   sleepType: PokemonSleepTypeId,
-  current: MapUnlockAccumulatorEnergy,
-};
+  inSleepdexOpts: IsInSleepdexOpts,
+} | {
+  sleepType?: never,
+  inSleepdexOpts?: never,
+});
 
 export const getUpdatedAccumulator = ({
   original,
   sleepType,
   current,
-  ...opts
+  inSleepdexOpts,
 }: GetUpdatedAccumulatorOpts): MapUnlockAccumulator => {
   const {unlockable, unlocked, energy} = original;
 
   return {
-    unlocked: {...unlocked, [sleepType]: (unlocked[sleepType] ?? 0) + (isInSleepdex(opts) ? 1 : 0)},
-    unlockable: {...unlockable, [sleepType]: (unlockable[sleepType] ?? 0) + 1},
+    unlocked: {
+      ...unlocked,
+      ...(
+        sleepType !== undefined ?
+          {[sleepType]: (unlocked[sleepType] ?? 0) + ((inSleepdexOpts && isInSleepdex(inSleepdexOpts)) ? 1 : 0)} :
+          {}
+      ),
+    },
+    unlockable: {
+      ...unlockable,
+      ...(
+        sleepType !== undefined ?
+          {[sleepType]: (unlockable[sleepType] ?? 0) + (inSleepdexOpts ? 1 : 0)} :
+          {}
+      ),
+    },
     energy: (
       energy.current && isSameRank(current.rank, energy.current?.rank) ?
         energy :

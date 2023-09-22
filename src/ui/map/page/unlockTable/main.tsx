@@ -78,9 +78,15 @@ export const MapUnlockTable = (props: Props) => {
           const toHide = !showEmptyRank && !matchingStyles.length;
           const key = `${rank.title}-${rank.number}`;
 
-          if (toHide) {
-            return <React.Fragment key={key}/>;
-          }
+          // Update accumulator outside once to update energy
+          // https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/issues/258
+          accumulator = getUpdatedAccumulator({
+            original: accumulator,
+            current: {
+              rank,
+              value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
+            },
+          });
 
           for (const data of matchingStyles) {
             const {pokemonId} = data;
@@ -99,10 +105,17 @@ export const MapUnlockTable = (props: Props) => {
                 rank,
                 value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
               },
-              pokemonId: data.pokemonId,
-              styleId: data.style.style,
-              sleepdex,
+              inSleepdexOpts: {
+                pokemonId: data.pokemonId,
+                styleId: data.style.style,
+                sleepdex,
+              },
             });
+          }
+
+          // Have to be after `getUpdatedAccumulator()` or the accumulation will be wrong
+          if (toHide) {
+            return <React.Fragment key={key}/>;
           }
 
           return (
