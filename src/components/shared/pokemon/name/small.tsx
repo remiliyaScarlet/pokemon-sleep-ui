@@ -19,8 +19,8 @@ export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
       <div className="relative h-6 w-6">
         <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageSmallIconSizes}/>
       </div>
-      <PokemonSleepTypeIcon sleepType={sleepType} dimension="h-4 w-4"/>
-      <PokemonSpecialtyIcon specialty={specialty} dimension="h-4 w-4"/>
+      <PokemonSleepTypeIcon sleepType={sleepType} dimension="h-4 w-4" className="invert-hoverable-dark"/>
+      <PokemonSpecialtyIcon specialty={specialty} dimension="h-4 w-4" className="invert-hoverable-dark"/>
       <div className="truncate">
         {override ?? t(`PokemonName.${id}`)}
       </div>

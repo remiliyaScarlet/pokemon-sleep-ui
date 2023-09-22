@@ -11,7 +11,11 @@ import {getSpecialtyBgClass} from '@/styles/game/specialty';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-export const PokemonSpecialtyIcon = ({specialty, dimension, active}: PokemonSpecialtyCommonProps) => {
+type Props = PokemonSpecialtyCommonProps & {
+  className?: string,
+};
+
+export const PokemonSpecialtyIcon = ({specialty, dimension, active, className}: Props) => {
   const t = useTranslations('Game');
 
   return (
@@ -21,7 +25,7 @@ export const PokemonSpecialtyIcon = ({specialty, dimension, active}: PokemonSpec
           <div className={clsx('relative', dimension ?? 'h-5 w-5')}>
             <NextImage
               src={specialtyImageSrcMap[specialty]} alt={t(`Specialty.${specialty}`)}
-              sizes={imageSmallIconSizes} className={active ? 'invert-on-light' : 'invert-on-dark'}
+              sizes={imageSmallIconSizes} className={clsx(className, active ? 'invert-on-light' : 'invert-on-dark')}
             />
           </div>
         </> :

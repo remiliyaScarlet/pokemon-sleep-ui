@@ -9,7 +9,11 @@ import {getSleepTypeBgClass} from '@/styles/game/sleepType';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-export const PokemonSleepTypeIcon = ({sleepType, dimension, active}: PokemonSleepTypeCommonProps) => {
+type Props = PokemonSleepTypeCommonProps & {
+  className?: string,
+};
+
+export const PokemonSleepTypeIcon = ({sleepType, dimension, active, className}: Props) => {
   const t = useTranslations('Game.SleepType');
 
   return (
@@ -17,7 +21,7 @@ export const PokemonSleepTypeIcon = ({sleepType, dimension, active}: PokemonSlee
       <div className={clsx('relative', dimension ?? 'h-5 w-5')}>
         <NextImage
           src={`/images/sleepType/${sleepType}.png`} alt={t(sleepType.toString())}
-          sizes={imageSmallIconSizes} className={active ? 'invert-on-light' : 'invert-on-dark'}
+          sizes={imageSmallIconSizes} className={clsx(className, active ? 'invert-on-light' : 'invert-on-dark')}
         />
       </div>
     </div>

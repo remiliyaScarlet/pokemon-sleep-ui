@@ -217,6 +217,10 @@
     @apply invert-on-light group-hover:invert-0 group-hover:dark:invert;
   }
   
+  .invert-hoverable-dark {
+    @apply invert-on-dark group-hover:invert group-hover:dark:invert-0;
+  }
+  
   /* endregion */
 
   /* region Button styling (button-*) */
