@@ -54,13 +54,8 @@ export const MapUnlockTableRankMeta = (props: MapUnlockTableRowProps) => {
           </div>
         </Flex>
         <Flex direction="row" center>
-          <GenericIcon
-            src="/images/generic/gift.png"
-            alt={t('DreamShards')}
-            dimension="h-6 w-6"
-            className="invert-on-light"
-          />
-          <GenericIcon src="/images/generic/shard.png" alt={t('DreamShards')} dimension="h-6 w-6"/>
+          <GenericIcon src="/images/generic/gift.png" alt={t('DreamShards')} dimension="h-6 w-6"/>
+          <GenericIcon src="/images/generic/shard.png" alt={t('DreamShards')} dimension="h-6 w-6" noInvert/>
           <div>
             {formatInt(snorlaxReward.find((reward) => isSameRank(reward.rank, rank))?.shard)}
           </div>
