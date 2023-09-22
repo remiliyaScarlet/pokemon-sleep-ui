@@ -38,11 +38,11 @@ export const AnnouncementsClient = ({larger, announcements}: Props) => {
 
   return (
     <>
-      <div className={clsx(commonClass, styles['announcement-animation'])}>
-        <div
-          className={clsx(commonClass, announcementTextClasses[level])}
-          onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
-        >
+      <div
+        className={clsx(commonClass, styles['announcement-animation'])}
+        onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
+      >
+        <div className={clsx(commonClass, announcementTextClasses[level])}>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {message}
           </ReactMarkdown>

@@ -21,16 +21,18 @@
     }
     
     & > div {
-      @apply rounded-none table-cell align-middle w-full transform-gpu;
-      
       animation: marquee 4s linear infinite;
     }
+    
+    @apply w-full transform-gpu;
   }
   
   div.announcement-common {
     & a {
       @apply before:content-['🔗'];
     }
+    
+    @apply flex items-center;
   }
   
   div.announcement {
