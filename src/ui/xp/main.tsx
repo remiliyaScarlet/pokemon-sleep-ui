@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {Failed} from '@/components/icons/failed';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllExpDataSorted} from '@/controller/pokemon/exp';
 import {getAllExpMultiplierData} from '@/controller/pokemon/expMultiplier';
@@ -24,10 +25,17 @@ export const PokemonExpCalculator = async ({params}: DefaultPageProps) => {
     getAllExpMultiplierData(),
   ]);
 
+  const maxLevel = xpData.at(-1)?.lv;
+
+  if (!maxLevel) {
+    return <Failed text="XP Data"/>;
+  }
+
   const props: PokemonExpCalculatorDataProps = {
     pokedexMap,
     xpData,
     xpMultiplier,
+    maxLevel,
   };
 
   return (

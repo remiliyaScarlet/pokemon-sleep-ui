@@ -7,6 +7,7 @@ export type PokemonExpCalculatorDataProps = {
   pokedexMap: PokedexMap,
   xpData: PokemonExpData[],
   xpMultiplier: PokemonExpMultiplierMap,
+  maxLevel: number,
 };
 
 export type PokemonExpCalculatorInput = {

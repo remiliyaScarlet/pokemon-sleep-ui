@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 
-import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex';
 import {PokemonExpCalculatorInputUI} from '@/ui/xp/input';
 import {PokemonExpCalculatorTable} from '@/ui/xp/results/table';
@@ -19,16 +18,10 @@ export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps)
     showNonBreakthroughLevel: false,
   });
 
-  const maxLevel = xpData.at(-1)?.lv;
-
-  if (!maxLevel) {
-    return <Failed text="XP Data"/>;
-  }
-
   return (
     <Flex direction="col" className="gap-1.5 md:flex-row">
-      <PokemonExpCalculatorInputUI filter={input} setFilter={setInput} maxLevel={maxLevel} {...props}/>
-      <PokemonExpCalculatorTable input={input} maxLevel={maxLevel} {...props}/>
+      <PokemonExpCalculatorInputUI filter={input} setFilter={setInput} {...props}/>
+      <PokemonExpCalculatorTable input={input} {...props}/>
     </Flex>
   );
 };
