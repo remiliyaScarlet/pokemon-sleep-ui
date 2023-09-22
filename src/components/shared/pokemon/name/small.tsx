@@ -5,11 +5,13 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonNameProps} from '@/components/shared/pokemon/name/type';
+import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
+import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
 export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
-  const {type, id} = pokemon;
+  const {id, type, sleepType, specialty} = pokemon;
   const t = useTranslations('Game');
 
   return (
@@ -17,7 +19,9 @@ export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
       <div className="relative h-6 w-6">
         <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageSmallIconSizes}/>
       </div>
-      <div>
+      <PokemonSleepTypeIcon sleepType={sleepType} dimension="h-4 w-4"/>
+      <PokemonSpecialtyIcon specialty={specialty} dimension="h-4 w-4"/>
+      <div className="truncate">
         {override ?? t(`PokemonName.${id}`)}
       </div>
       <div className="self-end text-xs text-slate-500">
