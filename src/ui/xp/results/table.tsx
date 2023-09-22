@@ -48,19 +48,19 @@ export const PokemonExpCalculatorTable = (props: Props) => {
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension}/>
+                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
                 <div>S</div>
               </Flex>
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension}/>
+                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
                 <div>M</div>
               </Flex>
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension}/>
+                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
                 <div>L</div>
               </Flex>
             </td>
