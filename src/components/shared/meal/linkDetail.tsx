@@ -19,13 +19,13 @@ export const MealLinkDetail = (props: MealLinkProps) => {
 
   return (
     <Flex direction="row" className="items-end gap-0.5 text-xs">
-      <Flex direction="row" noFullWidth center className="info-icon-normal text-shadow-preset h-6 w-6">
+      <Flex direction="col" noFullWidth center className="info-icon-normal text-shadow-preset h-6 w-6">
         {getMealRequiredQuantity(meal)}
       </Flex>
-      <Flex direction="col" className="gap-0.5">
+      <Flex direction="col" noFullWidth className="gap-0.5">
         {
           showEnergy &&
-          <Flex direction="row" noFullWidth className="items-end gap-1">
+          <Flex direction="row" noFullWidth className="items-end gap-0.5">
             <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
             <div>
               {formatInt(energyAtLevel?.energy)}
@@ -34,7 +34,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
             <div>Lv.{mealLevel}</div>
           </Flex>
         }
-        <Flex direction="row" className="items-end gap-0.5 text-xs">
+        <Flex direction="row" noFullWidth className="items-end gap-0.5 text-xs">
           <IngredientIcons meal={meal}/>
         </Flex>
       </Flex>
