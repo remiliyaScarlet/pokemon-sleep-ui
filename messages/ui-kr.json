@@ -210,7 +210,8 @@
     "Map": {
       "Energy": "에너지",
       "Pokemon": "포켓몬",
-      "SleepStyle": "잠자는 모습"
+      "SleepStyle": "잠자는 모습",
+      "SleepStylesUnlocked": "잠자는 모습 개방 수"
     },
     "Team": {
       "CurrentEnergy": "에너지",

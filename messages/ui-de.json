@@ -210,7 +210,8 @@
     "Map": {
       "Energy": "Stärke",
       "Pokemon": "Pokémon",
-      "SleepStyle": "Schlafpose"
+      "SleepStyle": "Schlafpose",
+      "SleepStylesUnlocked": "Schlafstile freigeschaltet"
     },
     "Team": {
       "CurrentEnergy": "Stärke",

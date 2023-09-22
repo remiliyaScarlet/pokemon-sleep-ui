@@ -109,20 +109,8 @@
     @apply transform-gpu transition-all;
   }
   
-  table.table-unlock {
-    @apply w-full;
-    
-    & > thead {
-      @apply sticky top-12 z-10;
-      
-      & > tr {
-        @apply bg-slate-400/90 dark:bg-slate-700/90;
-      }
-    }
-    
-    & > tbody > tr:has(td[colspan="100"]) {
-      @apply border-b border-b-gray-700 text-center last:border-b-0;
-    }
+  div.unlock-table-row {
+    @apply border-b border-b-gray-700 text-center last:border-b-0;
   }
   
   .scrollbar-hide {

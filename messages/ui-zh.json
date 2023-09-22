@@ -210,7 +210,8 @@
     "Map": {
       "Energy": "能量",
       "Pokemon": "寶可夢",
-      "SleepStyle": "睡姿"
+      "SleepStyle": "睡姿",
+      "SleepStylesUnlocked": "已解鎖睡姿"
     },
     "Team": {
       "CurrentEnergy": "能量",

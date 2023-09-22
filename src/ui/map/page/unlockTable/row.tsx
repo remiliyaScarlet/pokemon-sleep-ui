@@ -1,15 +1,20 @@
 import React from 'react';
 
-import {MapUnlockTableDataRow} from '@/ui/map/page/unlockTable/rowData';
-import {MapUnlockTableStatsRow} from '@/ui/map/page/unlockTable/rowStats';
+import {Flex} from '@/components/layout/flex';
+import {MapUnlockTablePokemonIcons} from '@/ui/map/page/unlockTable/pokemonIcons';
+import {MapUnlockTableRankMeta} from '@/ui/map/page/unlockTable/rankMeta';
+import {MapUnlockTableSleepdexStats} from '@/ui/map/page/unlockTable/sleepdexStats';
 import {MapUnlockTableRowProps} from '@/ui/map/page/unlockTable/type';
 
 
 export const MapUnlockTableRow = (props: MapUnlockTableRowProps) => {
   return (
-    <>
-      <MapUnlockTableDataRow {...props}/>
-      <MapUnlockTableStatsRow {...props}/>
-    </>
+    <Flex direction="col" className="unlock-table-row gap-2 xl:flex-row">
+      <MapUnlockTableRankMeta {...props}/>
+      <Flex direction="col">
+        <MapUnlockTablePokemonIcons {...props}/>
+        <MapUnlockTableSleepdexStats {...props}/>
+      </Flex>
+    </Flex>
   );
 };
