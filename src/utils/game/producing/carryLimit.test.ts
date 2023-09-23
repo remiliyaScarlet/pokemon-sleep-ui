@@ -8,7 +8,7 @@ describe('Pokemon Carry Limit', () => {
     const multiplier = getCarryLimitMultiplier({
       dailyCount: 104.47,
       carryLimit: 30,
-      noCollectDurations: [28800],
+      sleepDurations: [28800],
     });
 
     expect(multiplier).toBeCloseTo(0.86149);
@@ -18,7 +18,7 @@ describe('Pokemon Carry Limit', () => {
     const multiplier = getCarryLimitMultiplier({
       dailyCount: 104.47,
       carryLimit: 30,
-      noCollectDurations: [28800, 28800],
+      sleepDurations: [28800, 28800],
     });
 
     expect(multiplier).toBeCloseTo(0.43075);
@@ -29,7 +29,7 @@ describe('Pokemon Carry Limit', () => {
     const multiplier = getCarryLimitMultiplier({
       dailyCount: 106.97,
       carryLimit: 14,
-      noCollectDurations: [3600 * 7.5, 3600],
+      sleepDurations: [3600 * 7.5, 3600],
     });
 
     expect(multiplier).toBeCloseTo(0.36954);
@@ -40,7 +40,7 @@ describe('Pokemon Carry Limit', () => {
     const multiplier = getCarryLimitMultiplier({
       dailyCount: 106.97,
       carryLimit: 14,
-      noCollectDurations: [38700],
+      sleepDurations: [38700],
     });
 
     expect(multiplier).toBeCloseTo(0.29219);

@@ -57,17 +57,17 @@ export const getSleepSessionInfo = (session: StaminaCalcSleepSessionConfig): Sle
   };
 };
 
-export const getNoCollectDurationsFromSleepSession = ({
+export const getSleepDurationsFromSleepSession = ({
   primary,
   secondary,
 }: StaminaCalcSleepSessionConfig): number[] => {
-  const noCollectDurations = [rotateTime(primary.end - primary.start)];
+  const sleepDurations = [rotateTime(primary.end - primary.start)];
 
   if (secondary) {
-    noCollectDurations.push(rotateTime(secondary.end - secondary.start));
+    sleepDurations.push(rotateTime(secondary.end - secondary.start));
   }
 
-  return noCollectDurations;
+  return sleepDurations;
 };
 
 type SleepAwakeSplit = {

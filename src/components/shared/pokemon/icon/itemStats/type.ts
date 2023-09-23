@@ -12,7 +12,7 @@ export type PokemonProducingStatsCommonProps = {
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
-  noCollectDurations: number[],
+  sleepDurations: number[],
 };
 
 export type PokemonIngredientStatsCommonProps = PokemonProducingStatsCommonProps;

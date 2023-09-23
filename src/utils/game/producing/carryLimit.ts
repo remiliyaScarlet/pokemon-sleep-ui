@@ -3,15 +3,15 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {toSum} from '@/utils/array';
 
 
-type GetNoCollectDurationToFullPackOpts = {
+type GetTimeToFullPackInSleepOpts = {
   dailyCount: number,
   carryLimit: number,
 };
 
-export const getNoCollectToFullPackDuration = ({
+export const getTimeToFullPackInSleep = ({
   dailyCount,
   carryLimit,
-}: GetNoCollectDurationToFullPackOpts): number => {
+}: GetTimeToFullPackInSleepOpts): number => {
   return carryLimit / dailyCount * durationOfDay;
 };
 
@@ -28,17 +28,17 @@ export const getCarryLimitFromPokemonInfo = ({pokemon}: GetCarryLimitFromPokemon
 type GetCarryLimitMultiplierOpts = {
   dailyCount: number,
   carryLimit: number,
-  noCollectDurations: number[],
+  sleepDurations: number[],
 };
 
 export const getCarryLimitMultiplier = ({
   dailyCount,
   carryLimit,
-  noCollectDurations,
+  sleepDurations,
 }: GetCarryLimitMultiplierOpts) => {
-  const noCollectToFullPackDuration = getNoCollectToFullPackDuration({dailyCount, carryLimit});
+  const timeToFullPack = getTimeToFullPackInSleep({dailyCount, carryLimit});
   const fullPackDuration = toSum(
-    noCollectDurations.map((duration) => Math.max(duration - noCollectToFullPackDuration, 0)),
+    sleepDurations.map((duration) => Math.max(duration - timeToFullPack, 0)),
   );
 
   return (durationOfDay - fullPackDuration) / durationOfDay;

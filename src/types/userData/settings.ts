@@ -12,5 +12,5 @@ export type UserSettings = Migratable & {
 
 export type CalculatedUserSettings = {
   bonus: EffectiveBonus,
-  noCollectDurations: number[],
+  sleepDurations: number[],
 };

@@ -1,5 +1,4 @@
 import {BerryId} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {
   PokemonId,
@@ -89,6 +88,4 @@ export type GetAnalysisStatsOpts =
     level: number,
     ingredients: IngredientProduction[],
     snorlaxFavorite: SnorlaxFavorite,
-    bonus: EffectiveBonus,
-    noCollectDurations: number[],
   };

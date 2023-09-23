@@ -32,7 +32,7 @@ export const useCalculationWorker = ({
   pokemonToAnalyze,
   snorlaxFavorite,
   bonus,
-  noCollectDurations,
+  sleepDurations,
   setStats,
   setLoading,
   calculateDeps,
@@ -64,7 +64,7 @@ export const useCalculationWorker = ({
       sleepStyleMap,
       snorlaxFavorite,
       bonus,
-      noCollectDurations,
+      sleepDurations,
     } satisfies GetAnalysisStatsOpts);
     setLoading(true);
   };

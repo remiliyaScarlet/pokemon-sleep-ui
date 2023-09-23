@@ -2,7 +2,7 @@ import isEqual from 'lodash/isEqual';
 import {useCustomCompareMemo} from 'use-custom-compare';
 
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
-import {getNoCollectDurationsFromSleepSession} from '@/utils/game/sleep';
+import {getSleepDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object';
 import {DeepPartial} from '@/utils/type';
 import {toEffectiveBonus} from '@/utils/user/settings';
@@ -20,7 +20,7 @@ export const useUserSettings = ({server, client}: UseUserSettingsOpts): Calculat
 
       return {
         bonus: toEffectiveBonus(settings),
-        noCollectDurations: getNoCollectDurationsFromSleepSession(settings.stamina.sleepSession),
+        sleepDurations: getSleepDurationsFromSleepSession(settings.stamina.sleepSession),
       };
     },
     [client],

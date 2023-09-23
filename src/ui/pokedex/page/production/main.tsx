@@ -68,7 +68,7 @@ export const PokemonProduction = (props: PokemonProps) => {
           berryName={berryName}
           rate={getTotalRateOfItemOfSessions({
             rate: berryRate,
-            sleepDuration: toSum(calculatedSettings.noCollectDurations),
+            sleepDuration: toSum(calculatedSettings.sleepDurations),
           })}
         />
       </PokemonMetaSection>
