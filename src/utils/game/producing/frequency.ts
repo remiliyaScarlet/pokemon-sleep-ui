@@ -1,6 +1,8 @@
+import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
+import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
@@ -51,4 +53,20 @@ export const getFrequencyFromPokemon = ({
     helperCount,
     natureId,
   });
+};
+
+export type GetFrequencyFromItemRateOfSessionsOpts = {
+  rate: ProducingRateOfItemOfSessions,
+  sleepDuration: number,
+};
+
+export const getFrequencyFromItemRateOfSessions = ({
+  rate,
+  sleepDuration,
+}: GetFrequencyFromItemRateOfSessionsOpts): number => {
+  const {sleep, awake} = rate;
+
+  const awakeDuration = durationOfDay - sleepDuration;
+
+  return durationOfDay / ((sleepDuration / sleep.frequency) + (awakeDuration / awake.frequency));
 };

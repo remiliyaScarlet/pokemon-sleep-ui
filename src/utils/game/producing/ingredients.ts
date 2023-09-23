@@ -2,10 +2,10 @@ import groupBy from 'lodash/groupBy';
 
 import {IngredientMap} from '@/types/game/ingredient';
 import {IngredientProduction, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
-import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
-import {toSum} from '@/utils/array';
+import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getMergedRateOfItemOfSessions} from '@/utils/game/producing/utils';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -20,7 +20,7 @@ export const getIngredientProducingRates = ({
   ingredients,
   ingredientMap,
   ...opts
-}: GetIngredientProducingRatesOpts): ProducingRateOfItem[] => {
+}: GetIngredientProducingRatesOpts): ProducingRateOfItemOfSessions[] => {
   const grouped = groupBy(
     ingredients
       .map(({id, qty}) => getIngredientProducingRate({
@@ -35,12 +35,7 @@ export const getIngredientProducingRates = ({
     (item) => item.id,
   );
 
-  return Object.entries(grouped).map(([id, rates]): ProducingRateOfItem => ({
-    id: parseInt(id),
-    frequency: rates.at(0)?.frequency ?? NaN,
-    quantity: toSum(rates.map(({quantity}) => quantity)),
-    dailyEnergy: toSum(rates.map(({dailyEnergy}) => dailyEnergy)),
-  }));
+  return Object.values(grouped).map((rates) => getMergedRateOfItemOfSessions(rates));
 };
 
 type GetEffectiveIngredientProductionsOpts = {

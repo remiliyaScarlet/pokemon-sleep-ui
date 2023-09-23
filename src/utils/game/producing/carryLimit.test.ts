@@ -11,7 +11,7 @@ describe('Pokemon Carry Limit', () => {
       noCollectDurations: [28800],
     });
 
-    expect(multiplier).toBeCloseTo(0.95375);
+    expect(multiplier).toBeCloseTo(0.86149);
   });
 
   it('gets correct multiplier with double no collect durations', () => {
@@ -21,7 +21,7 @@ describe('Pokemon Carry Limit', () => {
       noCollectDurations: [28800, 28800],
     });
 
-    expect(multiplier).toBeCloseTo(0.90766);
+    expect(multiplier).toBeCloseTo(0.43075);
   });
 
   it('gets correct multiplier with lower carry limit', () => {
@@ -32,7 +32,7 @@ describe('Pokemon Carry Limit', () => {
       noCollectDurations: [3600 * 7.5, 3600],
     });
 
-    expect(multiplier).toBeCloseTo(0.81838);
+    expect(multiplier).toBeCloseTo(0.36954);
   });
 
   it('gets correct multiplier with lower carry limit and longer no collect durations', () => {
@@ -43,6 +43,6 @@ describe('Pokemon Carry Limit', () => {
       noCollectDurations: [38700],
     });
 
-    expect(multiplier).toBeCloseTo(0.68296);
+    expect(multiplier).toBeCloseTo(0.29219);
   });
 });

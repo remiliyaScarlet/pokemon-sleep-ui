@@ -18,7 +18,9 @@ import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
 import {PokemonIngredientProduction} from '@/ui/pokedex/page/production/ingredient/main';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
+import {toSum} from '@/utils/array';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
+import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/utils';
 
 
 export const PokemonProduction = (props: PokemonProps) => {
@@ -64,7 +66,10 @@ export const PokemonProduction = (props: PokemonProps) => {
         <PokemonBerryProduction
           pokemon={pokemon}
           berryName={berryName}
-          rate={berryRate}
+          rate={getTotalRateOfItemOfSessions({
+            rate: berryRate,
+            sleepDuration: toSum(calculatedSettings.noCollectDurations),
+          })}
         />
       </PokemonMetaSection>
       <PokemonMetaSection

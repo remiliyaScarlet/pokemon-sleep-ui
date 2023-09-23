@@ -2,9 +2,11 @@ import {defaultProducingParams} from '@/const/game/production';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {PokemonProducingRate} from '@/types/game/producing/rate';
+import {toSum} from '@/utils/array';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
-import {applyCarryLimit, getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
+import {getCarryLimitFromPokemonInfo, getCarryLimitMultiplier} from '@/utils/game/producing/carryLimit';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
+import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/utils';
 
 
 type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRatesOpts & {
@@ -12,17 +14,41 @@ type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProd
   noCollectDurations: number[],
 };
 
-export const getPokemonProducingRate = (opts: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon, carryLimit} = opts;
+export const getPokemonProducingRate = ({
+  carryLimit,
+  noCollectDurations,
+  ...opts
+}: GetPokemonProducingRateOpts): PokemonProducingRate => {
+  const {pokemon} = opts;
+  const sleepDuration = toSum(noCollectDurations);
 
-  return applyCarryLimit({
-    ...opts,
+  const berry = getBerryProducingRate(opts);
+  const ingredient = Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [
+    rate.id,
+    rate,
+  ]));
+
+  const dailyCountDuringSleep = (
+    berry.sleep.quantity +
+    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity))
+  );
+
+  const carryLimitMultiplier = getCarryLimitMultiplier({
     carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
-    rate: {
-      berry: getBerryProducingRate(opts),
-      ingredient: Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [rate.id, rate])),
-    },
+    dailyCount: dailyCountDuringSleep,
+    noCollectDurations,
   });
+
+  return {
+    berry: getTotalRateOfItemOfSessions({
+      rate: berry,
+      sleepDuration,
+    }),
+    ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
+      rate.id,
+      getTotalRateOfItemOfSessions({rate, carryLimitMultiplier, sleepDuration}),
+    ])),
+  };
 };
 
 type GetPokemonProducingParamsOpts = {

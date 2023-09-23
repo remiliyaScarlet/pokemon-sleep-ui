@@ -22,6 +22,7 @@ export type ProducingRateOfItem = ProducingRate & {
 };
 
 export type ProducingRateOfItemOfSessions = {
+  id: number,
   sleep: ProducingRateOfItem,
   awake: ProducingRateOfItem,
 };

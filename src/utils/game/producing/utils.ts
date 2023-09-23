@@ -1,33 +1,88 @@
 import {EffectiveBonus} from '@/types/game/bonus';
-import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateOfItem, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {toSum} from '@/utils/array';
+import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
+import {getSleepAwakeSplit} from '@/utils/game/sleep';
 
 
-type ApplyBonusOpts<T extends ProducingRateOfItem | null> = {
+type ApplyMultipliersAndBonusOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
   data: T,
+  typeOfStamina: keyof EffectiveBonus['stamina'],
   isIngredient: boolean,
 };
 
 export const applyBonus = <T extends ProducingRateOfItem | null>({
   bonus,
   data,
+  typeOfStamina,
   isIngredient,
-}: ApplyBonusOpts<T>): T => {
+}: ApplyMultipliersAndBonusOpts<T>): T => {
   if (!data) {
     return data;
   }
 
   const {ingredient, map, stamina, overall} = bonus;
+  const staminaBonus = stamina[typeOfStamina];
 
   return {
     ...data,
-    quantity: data.quantity * stamina,
+    frequency: data.frequency / staminaBonus,
+    quantity: data.quantity * staminaBonus,
     dailyEnergy: (
       data.dailyEnergy *
       (1 + (isIngredient ? (ingredient / 100) : 0)) *
       (1 + map / 100) *
       (1 + overall / 100) *
-      stamina
+      staminaBonus
     ),
+  };
+};
+
+type GetTotalRateOfItemOfSessionsOpts = {
+  rate: ProducingRateOfItemOfSessions,
+  sleepDuration: number,
+  carryLimitMultiplier?: number,
+};
+
+export const getTotalRateOfItemOfSessions = ({
+  rate,
+  sleepDuration,
+  carryLimitMultiplier = 1,
+}: GetTotalRateOfItemOfSessionsOpts): ProducingRateOfItem => {
+  const {id, sleep, awake} = rate;
+  const split = getSleepAwakeSplit(sleepDuration);
+
+  return {
+    id,
+    frequency: getFrequencyFromItemRateOfSessions({rate, sleepDuration}),
+    quantity: (sleep.quantity * split.sleep * carryLimitMultiplier + awake.quantity * split.awake),
+    dailyEnergy: (sleep.dailyEnergy * split.sleep * carryLimitMultiplier + awake.dailyEnergy * split.awake),
+  };
+};
+
+export const getMergedRateOfItemOfSessions = (
+  rates: ProducingRateOfItemOfSessions[],
+): ProducingRateOfItemOfSessions => {
+  const firstRate = rates.at(0);
+
+  if (!firstRate) {
+    throw new Error('Empty rate data for merging');
+  }
+
+  return {
+    id: firstRate.id,
+    sleep: {
+      id: firstRate.id,
+      frequency: firstRate.sleep.frequency,
+      quantity: toSum(rates.map(({sleep}) => sleep.quantity)),
+      dailyEnergy: toSum(rates.map(({sleep}) => sleep.dailyEnergy)),
+    },
+    awake: {
+      id: firstRate.id,
+      frequency: firstRate.awake.frequency,
+      quantity: toSum(rates.map(({awake}) => awake.quantity)),
+      dailyEnergy: toSum(rates.map(({awake}) => awake.dailyEnergy)),
+    },
   };
 };

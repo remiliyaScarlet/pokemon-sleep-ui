@@ -1,6 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {StaminaCalcConfig} from '@/types/game/producing/stamina';
+import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getStaminaEfficiency} from '@/utils/game/stamina/main';
 
 
@@ -23,7 +24,8 @@ describe('Stamina Efficiency', () => {
         amount: 9,
       },
     };
+    const sessionInfo = getSleepSessionInfo(config.sleepSession);
 
-    expect(getStaminaEfficiency({config})).toBeCloseTo(2.05625);
+    expect(getStaminaEfficiency({config, sessionInfo})).toBeCloseTo(2.05625);
   });
 });

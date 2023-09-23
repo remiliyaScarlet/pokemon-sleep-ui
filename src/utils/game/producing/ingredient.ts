@@ -3,7 +3,7 @@ import {defaultHelperCount} from '@/const/game/production';
 import {Ingredient} from '@/types/game/ingredient';
 import {
   ProducingRateCommonParams,
-  ProducingRateOfItem,
+  ProducingRateOfItemOfSessions,
   ProducingRateProportion,
 } from '@/types/game/producing/rate';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
@@ -33,7 +33,7 @@ export const getIngredientProducingRate = ({
   ingredient,
   count,
   picks,
-}: GetIngredientProducingRateOpts): ProducingRateOfItem | null => {
+}: GetIngredientProducingRateOpts): ProducingRateOfItemOfSessions | null => {
   if (!ingredient) {
     return null;
   }
@@ -52,19 +52,30 @@ export const getIngredientProducingRate = ({
     natureId,
     subSkillBonus,
   });
-
-  return applyBonus({
-    bonus,
-    data: {
-      id: ingredient.id,
+  const data = {
+    id: ingredient.id,
+    frequency,
+    ...getProducingRateBase({
       frequency,
-      ...getProducingRateBase({
-        frequency,
-        count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
-        picks: picks ?? 1,
-        energyPerCount: ingredient.energy,
-      }),
-    },
-    isIngredient: true,
-  });
+      count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
+      picks: picks ?? 1,
+      energyPerCount: ingredient.energy,
+    }),
+  };
+
+  return {
+    id: ingredient.id,
+    sleep: applyBonus({
+      bonus,
+      typeOfStamina: 'sleep',
+      data,
+      isIngredient: true,
+    }),
+    awake: applyBonus({
+      bonus,
+      typeOfStamina: 'awake',
+      data,
+      isIngredient: true,
+    }),
+  };
 };

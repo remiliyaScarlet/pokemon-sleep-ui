@@ -1,6 +1,5 @@
 import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {PokemonProducingRate} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 
 
@@ -43,31 +42,4 @@ export const getCarryLimitMultiplier = ({
   );
 
   return (durationOfDay - fullPackDuration) / durationOfDay;
-};
-
-type ApplyCarryLimitOpts = {
-  rate: PokemonProducingRate,
-  carryLimit: number,
-  noCollectDurations: number[],
-};
-
-export const applyCarryLimit = ({rate, ...opts}: ApplyCarryLimitOpts): PokemonProducingRate => {
-  const {berry, ingredient} = rate;
-  const ingredientRates = Object.values(ingredient);
-
-  const dailyCount = berry.quantity + toSum(ingredientRates.map(({quantity}) => quantity));
-  const multiplier = getCarryLimitMultiplier({dailyCount, ...opts});
-
-  return {
-    berry,
-    ingredient: Object.fromEntries(ingredientRates.map(({id, quantity, dailyEnergy, frequency}) => [
-      id,
-      {
-        id,
-        frequency,
-        dailyEnergy: dailyEnergy * multiplier,
-        quantity: quantity * multiplier,
-      },
-    ])),
-  };
 };

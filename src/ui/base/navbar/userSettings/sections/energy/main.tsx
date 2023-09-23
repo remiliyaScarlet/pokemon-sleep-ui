@@ -9,6 +9,7 @@ import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 import {UserSettingsSleepSession} from '@/ui/base/navbar/userSettings/sections/energy/session';
 import {UserSettingsSkillRecovery} from '@/ui/base/navbar/userSettings/sections/energy/skillRecovery';
 import {UserSettingsEnergyProps} from '@/ui/base/navbar/userSettings/sections/energy/type';
+import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getStaminaEfficiency} from '@/utils/game/stamina/main';
 
 
@@ -17,6 +18,8 @@ export const UserSettingsEnergy = (props: UserSettingsEnergyProps) => {
   const {sleepSession} = config;
 
   const t = useTranslations('UI.Stamina');
+
+  const sessionInfo = getSleepSessionInfo(sleepSession);
 
   return (
     <UserSettingsSection titleIcon={
@@ -42,7 +45,7 @@ export const UserSettingsEnergy = (props: UserSettingsEnergyProps) => {
         <UserSettingsSkillRecovery {...props}/>
       </Flex>
       <Flex direction="col" noFullWidth className="w-fit self-end rounded-lg border border-slate-500 px-2 py-1">
-        {getStaminaEfficiency({config}).toFixed(4)}x
+        {getStaminaEfficiency({config, sessionInfo}).toFixed(4)}x
       </Flex>
     </UserSettingsSection>
   );

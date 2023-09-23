@@ -1,6 +1,6 @@
 import {defaultHelperCount, defaultLevel} from '@/const/game/production';
 import {BerryData} from '@/types/game/berry';
-import {ProducingRateCommonParams, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
@@ -25,7 +25,7 @@ export const getBerryProducingRate = ({
   bonus,
   snorlaxFavorite,
   berryData,
-}: GetBerryProducingRateOpts): ProducingRateOfItem => {
+}: GetBerryProducingRateOpts): ProducingRateOfItemOfSessions => {
   const baseFrequency = getFrequencyFromPokemon({
     level,
     pokemon,
@@ -41,20 +41,31 @@ export const getBerryProducingRate = ({
     natureId,
     subSkillBonus,
   });
-
-  return applyBonus({
-    bonus,
-    data: {
-      id: pokemon.berry.id,
+  const data = {
+    id: pokemon.berry.id,
+    frequency,
+    ...getProducingRateBase({
       frequency,
-      ...getProducingRateBase({
-        frequency,
-        // Specialty handling is already included in `pokemon.berry.quantity`
-        count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
-        picks: 1,
-        energyPerCount: (berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * (isSnorlaxFavorite ? 2 : 1),
-      }),
-    },
-    isIngredient: false,
-  });
+      // Specialty handling is already included in `pokemon.berry.quantity`
+      count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
+      picks: 1,
+      energyPerCount: (berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * (isSnorlaxFavorite ? 2 : 1),
+    }),
+  };
+
+  return {
+    id: pokemon.berry.id,
+    sleep: applyBonus({
+      bonus,
+      typeOfStamina: 'sleep',
+      data,
+      isIngredient: false,
+    }),
+    awake: applyBonus({
+      bonus,
+      typeOfStamina: 'awake',
+      data,
+      isIngredient: false,
+    }),
+  };
 };

@@ -10,6 +10,9 @@ export type UserBonus = {
 export type EffectiveBonus = {
   ingredient: number,
   map: number,
-  stamina: number,
+  stamina: {
+    sleep: number,
+    awake: number,
+  },
   overall: number,
 };
