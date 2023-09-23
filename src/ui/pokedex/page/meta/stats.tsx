@@ -28,7 +28,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
             <PokemonDataIcon src="/images/generic/clock.png" alt={t('Stats.Frequency')} invert/>
           </td>
           <td>
-            <PokemonFrequencySingle frequency={stats.frequency} noIcon/>
+            <PokemonFrequencySingle frequency={stats.frequency} noIcon normalText/>
           </td>
         </tr>
         <tr>
