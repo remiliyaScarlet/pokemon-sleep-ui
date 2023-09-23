@@ -23,10 +23,10 @@ export const PokemonProducingRateMultiple = ({rates, getIcon, horizontal, ...pro
       'gap-1',
       horizontal ? 'items-center justify-end' : 'items-end justify-center',
     )}>
+      <PokemonFrequencySingle frequency={rates.at(0)?.frequency ?? NaN}/>
       {rates.map((rate) => (
         <PokemonProducingRateContent key={rate.id} dailyRate={rate.quantity} icon={getIcon(rate)} {...props}/>
       ))}
-      <PokemonFrequencySingle frequency={rates.at(0)?.frequency ?? NaN}/>
       <PokemonProducingRateContent dailyRate={totalDaily} {...props}/>
     </Flex>
   );
