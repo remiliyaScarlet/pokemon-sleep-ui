@@ -181,6 +181,7 @@
         "DateRegistered": "등록일",
         "IngredientEnergy": "식재료 에너지",
         "IngredientCount": "식재료 수",
+        "IngredientRate": "식재료 율",
         "BerryEnergy": "나무열매 에너지",
         "BerryCount": "나무열매 수",
         "FrequencyOfBerry": "도우미 시간 (나무열매)",

@@ -5,11 +5,10 @@ import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
-export const PokeInBoxTableFrequency = (props: PokeInBoxTableDetailsProps) => {
-  const {
-    pokemon,
-    rateOfPokemon,
-  } = props;
+export const PokeInBoxTableFrequency = ({
+  pokemon,
+  rateOfPokemon,
+}: PokeInBoxTableDetailsProps) => {
   const {berry, ingredient} = rateOfPokemon;
 
   return (

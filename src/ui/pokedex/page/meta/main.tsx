@@ -8,6 +8,7 @@ import Link from 'next-intl/link';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -20,7 +21,7 @@ import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
 export const PokemonMeta = (props: PokemonProps) => {
-  const {pokemon} = props;
+  const {pokemon, pokemonProducingParams} = props;
   const {specialty, sleepType, skill} = pokemon;
 
   const t = useTranslations('Game');
@@ -57,6 +58,12 @@ export const PokemonMeta = (props: PokemonProps) => {
               {t(`MainSkill.Description.${skill}`)}
             </div>
           </Flex>
+        </PokemonMetaSection>
+        <PokemonMetaSection
+          title={t2('Sort.IngredientRate')}
+          contentClassName="flex justify-center"
+        >
+          <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit} noIcon/>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Stats')}

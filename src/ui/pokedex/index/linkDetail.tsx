@@ -8,6 +8,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
@@ -37,6 +38,7 @@ export const PokedexLinkDetail = React.memo(({
     specialty,
     sleepType,
   } = pokemon;
+  const {ingredientSplit} = pokemonProducingParams;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
@@ -62,6 +64,14 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'ingredient') {
     return <PokemonIngredientIcons ingredients={[ingredients]}/>;
+  }
+
+  if (display === 'ingredientRate') {
+    return (
+      <Flex direction="row">
+        <PokemonIngredientRate split={ingredientSplit}/>
+      </Flex>
+    );
   }
 
   if (display === 'sleepType') {

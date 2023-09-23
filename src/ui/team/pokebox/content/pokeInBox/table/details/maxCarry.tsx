@@ -7,9 +7,7 @@ import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
-export const PokeInBoxTableMaxCarry = (props: PokeInBoxTableDetailsProps) => {
-  const {pokeInBox} = props;
-
+export const PokeInBoxTableMaxCarry = ({pokeInBox}: PokeInBoxTableDetailsProps) => {
   const t = useTranslations('UI.Common');
 
   return (

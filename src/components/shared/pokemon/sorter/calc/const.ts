@@ -19,6 +19,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   dateAdded: ({dateAdded}) => dateAdded ?? 0,
   ingredientEnergy: (opts) => getIngredientTotalRateSorter({key: 'dailyEnergy', opts}),
   ingredientCount: (opts) => getIngredientTotalRateSorter({key: 'quantity', opts}),
+  ingredientRate: ({pokemonProducingParams}) => pokemonProducingParams.ingredientSplit,
   berryEnergy: (opts) => getBerryRateSorter({key: 'dailyEnergy', opts}),
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,

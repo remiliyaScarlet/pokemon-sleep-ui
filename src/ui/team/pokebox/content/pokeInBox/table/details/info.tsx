@@ -6,6 +6,7 @@ import {Flex} from '@/components/layout/flex';
 import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxLevel} from '@/ui/team/pokebox/content/pokeInBox/common/level';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
@@ -15,13 +16,17 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
   const {
     pokeInBox,
     pokemon,
+    pokemonProducingParamsMap,
     isLevelPreview,
   } = props;
 
   const {
+    id,
     specialty,
     berry,
   } = pokemon;
+
+  const producingParams = pokemonProducingParamsMap[id];
 
   return (
     <>
@@ -44,6 +49,12 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
           ingredients={[Object.values(pokeInBox.ingredients).map((ingredient) => ingredient)]}
         />
       </div>
+      {
+        producingParams &&
+        <div className="w-40">
+          <PokemonIngredientRate split={producingParams.ingredientSplit}/>
+        </div>
+      }
     </>
   );
 };

@@ -181,6 +181,7 @@
         "DateRegistered": "Registrierungsdatum",
         "IngredientEnergy": "Zutatenstärke",
         "IngredientCount": "Zutatensuche",
+        "IngredientRate": "Zutatenwahrscheinlichkeit",
         "BerryEnergy": "Beerenstärke",
         "BerryCount": "Beerensuche",
         "FrequencyOfBerry": "Frequenz (Beeren)",

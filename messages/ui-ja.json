@@ -181,6 +181,7 @@
         "DateRegistered": "登録日",
         "IngredientEnergy": "食材のエナジー",
         "IngredientCount": "食材の数",
+        "IngredientRate": "食材確率",
         "BerryEnergy": "きのみのエナジー",
         "BerryCount": "きのみの数",
         "FrequencyOfBerry": "おてつだい時間 (きのみ)",

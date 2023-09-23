@@ -181,6 +181,7 @@
         "DateRegistered": "Date Registered",
         "IngredientEnergy": "Ingredient Strength",
         "IngredientCount": "Ingredient Count",
+        "IngredientRate": "Ingredient Rate",
         "BerryEnergy": "Berry Strength",
         "BerryCount": "Berry Count",
         "FrequencyOfBerry": "Frequency (Berry)",

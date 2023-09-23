@@ -16,12 +16,11 @@ import {toSum} from '@/utils/array';
 import {formatFloat} from '@/utils/number';
 
 
-export const PokeInBoxTableProduction = (props: PokeInBoxTableDetailsProps) => {
-  const {
-    pokemon,
-    rateOfPokemon,
-    display,
-  } = props;
+export const PokeInBoxTableProduction = ({
+  pokemon,
+  rateOfPokemon,
+  display,
+}: PokeInBoxTableDetailsProps) => {
   const {berry, ingredient} = rateOfPokemon;
   const rateOfIngredients = Object.values(ingredient);
 

@@ -11,6 +11,7 @@ export const sortTypeToI18nId: {
   berryCount: 'Sort.BerryCount',
   ingredientEnergy: 'Sort.IngredientEnergy',
   ingredientCount: 'Sort.IngredientCount',
+  ingredientRate: 'Sort.IngredientRate',
   totalEnergy: 'Sort.TotalEnergy',
   friendshipPoint: 'Sort.FriendshipPoint',
   frequency: 'Stats.Frequency',
