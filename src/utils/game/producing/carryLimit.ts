@@ -31,7 +31,7 @@ type GetCarryLimitMultiplierOpts = {
   sleepDurations: number[],
 };
 
-export const getCarryLimitMultiplier = ({
+export const getCarryLimitMultiplierOfDay = ({
   dailyCount,
   carryLimit,
   sleepDurations,

@@ -4,7 +4,7 @@ import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/po
 import {PokemonProducingRate} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
-import {getCarryLimitFromPokemonInfo, getCarryLimitMultiplier} from '@/utils/game/producing/carryLimit';
+import {getCarryLimitFromPokemonInfo, getCarryLimitMultiplierOfDay} from '@/utils/game/producing/carryLimit';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
 import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/utils';
 
@@ -33,7 +33,7 @@ export const getPokemonProducingRate = ({
     toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity))
   );
 
-  const carryLimitMultiplier = getCarryLimitMultiplier({
+  const carryLimitMultiplier = getCarryLimitMultiplierOfDay({
     carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
     dailyCount: dailyCountDuringSleep,
     sleepDurations: sleepDurations,
