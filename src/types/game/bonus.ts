@@ -1,3 +1,4 @@
+import {ProducingState} from '@/types/game/producing/state';
 import {SleepMapId} from '@/types/game/sleepStyle';
 
 
@@ -10,9 +11,6 @@ export type UserBonus = {
 export type EffectiveBonus = {
   ingredient: number,
   map: number,
-  stamina: {
-    sleep: number,
-    awake: number,
-  },
+  stamina: {[state in ProducingState]: number},
   overall: number,
 };

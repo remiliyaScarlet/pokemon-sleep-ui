@@ -4,6 +4,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
+import {ProducingState} from '@/types/game/producing/state';
 
 
 export type ProducingRate = {
@@ -21,10 +22,8 @@ export type ProducingRateOfItem = ProducingRate & {
   frequency: number,
 };
 
-export type ProducingRateOfItemOfSessions = {
+export type ProducingRateOfItemOfSessions = {[state in ProducingState]: ProducingRateOfItem} & {
   id: number,
-  sleep: ProducingRateOfItem,
-  awake: ProducingRateOfItem,
 };
 
 export type ProducingRateSingleParams = {

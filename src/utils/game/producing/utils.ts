@@ -1,5 +1,6 @@
 import {EffectiveBonus} from '@/types/game/bonus';
 import {ProducingRateOfItem, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {ProducingState} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 import {getSleepAwakeSplit} from '@/utils/game/sleep';
@@ -7,15 +8,15 @@ import {getSleepAwakeSplit} from '@/utils/game/sleep';
 
 type ApplyMultipliersAndBonusOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
+  producingState: ProducingState,
   data: T,
-  typeOfStamina: keyof EffectiveBonus['stamina'],
   isIngredient: boolean,
 };
 
 export const applyBonus = <T extends ProducingRateOfItem | null>({
   bonus,
+  producingState,
   data,
-  typeOfStamina,
   isIngredient,
 }: ApplyMultipliersAndBonusOpts<T>): T => {
   if (!data) {
