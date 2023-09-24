@@ -8,21 +8,9 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NatureEffectIcon} from '@/components/shared/pokemon/nature/effectIcon';
+import {natureStyle} from '@/styles/game/nature';
 import {NatureData} from '@/types/game/pokemon/nature';
 
-
-const buffStyle = clsx(
-  'transform-smooth text-green-800 group-enabled:group-hover:text-green-400',
-  'dark:text-green-400 dark:group-enabled:group-hover:text-green-800',
-);
-const nerfStyle = clsx(
-  'transform-smooth text-red-700 group-enabled:group-hover:text-red-400',
-  'dark:text-red-400 dark:group-enabled:group-hover:text-red-700',
-);
-const natureStyleIfClean = clsx(
-  'transform-smooth text-amber-700 group-enabled:group-hover:text-amber-400',
-  'dark:text-amber-400 dark:group-enabled:group-hover:text-amber-700',
-);
 
 type Props = {
   data: NatureData | null,
@@ -39,11 +27,11 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
       'enabled:button-clickable-border disabled:button-bg',
     )}>
       <Flex direction="row" center className="p-2">
-        <div className={clsx('whitespace-nowrap', !data?.buff && !data?.nerf && natureStyleIfClean)}>
+        <div className={clsx('whitespace-nowrap', !data?.buff && !data?.nerf && natureStyle.clean)}>
           {data ? t(`Nature.${data.id}`) : <div className="h-6 w-6"><XCircleIcon/></div>}
         </div>
         <Flex direction="col" className="items-center text-sm">
-          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.buff && buffStyle)}>
+          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.buff && natureStyle.buff)}>
             <div className="h-5 w-5">
               <ChevronUpIcon/>
             </div>
@@ -54,7 +42,7 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
               {data?.buff ? t(`NatureEffect.${data.buff}`) : <></>}
             </div>
           </Flex>
-          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.nerf && nerfStyle)}>
+          <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.nerf && natureStyle.nerf)}>
             <div className="h-5 w-5">
               <ChevronDownIcon/>
             </div>
