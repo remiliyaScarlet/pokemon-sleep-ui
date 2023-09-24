@@ -51,6 +51,7 @@ export const CookingInputControl = ({filter, setFilter, preloaded}: CookingCommo
             ...preloaded,
             potCapacity: filter.capacity,
             mealType: filter.type,
+            ingredients: filter.ingredient,
             ingredientCount: filter.ingredientCount,
             recipeLevel: filter.recipeLevel,
             showUnmakeableRecipe: filter.showUnmakeableRecipe,
