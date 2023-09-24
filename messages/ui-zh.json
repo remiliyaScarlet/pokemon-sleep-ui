@@ -162,6 +162,7 @@
         "Name": "名稱",
         "PokemonLevel": "寶可夢等級",
         "PokemonType": "寶可夢屬性",
+        "Production": "生產",
         "SleepType": "睡眠類型",
         "Specialty": "專長",
         "Stats": "能力"

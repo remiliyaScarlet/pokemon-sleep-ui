@@ -162,6 +162,7 @@
         "Name": "名前",
         "PokemonLevel": "ポケモンレベル",
         "PokemonType": "ポケモンタイプ",
+        "Production": "生産",
         "SleepType": "睡眠タイプ",
         "Specialty": "とくいなもの",
         "Stats": "能力"

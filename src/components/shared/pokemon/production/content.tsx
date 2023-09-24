@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
@@ -11,16 +12,18 @@ import {formatFloat} from '@/utils/number';
 type Props = PokemonProducingRateProps & {
   dailyRate: number | undefined,
   icon?: React.ReactNode,
+  normalSize?: boolean,
 };
 
-export const PokemonProducingRateContent = ({icon, dailyRate}: Props) => {
+export const PokemonProducingRateContent = ({dailyRate, icon, normalSize}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
+  const dimension = normalSize ? 'h-5 w-5' : 'h-4 w-4';
 
   return (
-    <Flex direction="row" noFullWidth className="items-center gap-0.5 text-sm">
+    <Flex direction="row" noFullWidth className={clsx('items-center gap-0.5', !normalSize && 'text-sm')}>
       {icon ?
-        <div className="relative h-4 w-4">{icon}</div> :
-        <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Stats.Energy.Name')}/>}
+        <div className={clsx('relative', dimension)}>{icon}</div> :
+        <ColoredEnergyIcon dimension={dimension} alt={t('Stats.Energy.Name')}/>}
       <div>{dailyRate ? formatFloat(dailyRate) : '-'}</div>
     </Flex>
   );

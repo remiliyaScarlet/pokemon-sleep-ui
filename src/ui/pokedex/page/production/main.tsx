@@ -14,7 +14,8 @@ import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
-import {PokemonIngredientProduction} from '@/ui/pokedex/page/production/ingredient/main';
+import {PokemonProductionCombination} from '@/ui/pokedex/page/production/combination';
+import {PokemonIngredientPossibilities} from '@/ui/pokedex/page/production/ingredient/possibility';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
@@ -23,9 +24,10 @@ export const PokemonProduction = (props: PokemonProps) => {
   const {
     pokemon,
     berryData,
+    ingredientChainMap,
     preloadedSettings,
   } = props;
-  const {specialty, berry} = pokemon;
+  const {specialty, berry, ingredientChain} = pokemon;
 
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
@@ -37,6 +39,8 @@ export const PokemonProduction = (props: PokemonProps) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
   const t3 = useTranslations('UI.Metadata');
+
+  const chain = ingredientChainMap[ingredientChain];
 
   return (
     <Flex direction="col" center className="info-section gap-2">
@@ -54,7 +58,18 @@ export const PokemonProduction = (props: PokemonProps) => {
         title={t2('Info.Ingredient')}
         titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
       >
-        <PokemonIngredientProduction level={level} calculatedSettings={calculatedSettings} {...props}/>
+        <PokemonIngredientPossibilities chain={chain}/>
+      </PokemonMetaSection>
+      <PokemonMetaSection
+        title={t2('Info.Production')}
+        titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
+      >
+        <PokemonProductionCombination
+          level={level}
+          chain={chain}
+          calculatedSettings={calculatedSettings}
+          {...props}
+        />
       </PokemonMetaSection>
       <Flex direction="col" className="items-end">
         <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">

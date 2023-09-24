@@ -162,6 +162,7 @@
         "Name": "Name",
         "PokemonLevel": "Pokemon Level",
         "PokemonType": "Pokemontyp",
+        "Production": "Produktion",
         "SleepType": "Schlaftyp",
         "Specialty": "Spezialität",
         "Stats": "Status"

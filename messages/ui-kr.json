@@ -162,6 +162,7 @@
         "Name": "이름",
         "PokemonLevel": "포켓몬 레벨",
         "PokemonType": "포켓몬 타입",
+        "Production": "생산",
         "SleepType": "수면 타입",
         "Specialty": "특기",
         "Stats": "능력"

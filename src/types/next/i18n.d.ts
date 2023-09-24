@@ -96,6 +96,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           Name: string,
           PokemonLevel: string,
           PokemonType: string,
+          Production: string,
           SleepType: string,
           Specialty: string,
           Stats: string,
