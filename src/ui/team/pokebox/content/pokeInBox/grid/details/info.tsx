@@ -8,13 +8,17 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
+import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
 export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox}: PokeInBoxCommonProps) => {
   const {ingredients} = pokeInBox;
   const {id, specialty, berry} = pokemon;
 
-  const pokemonProducingParams = pokemonProducingParamsMap[id];
+  const pokemonProducingParams = getPokemonProducingParams({
+    pokemonId: id,
+    pokemonProducingParamsMap,
+  });
 
   return (
     <Flex direction="col" noFullWidth className="gap-1">
@@ -30,12 +34,9 @@ export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox
           <PokemonIngredientIcons ingredients={[Object.values(ingredients)]} noLink/>
         </div>
       </Flex>
-      {
-        pokemonProducingParams &&
-        <div className="px-1">
-          <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit}/>
-        </div>
-      }
+      <div className="px-1">
+        <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit}/>
+      </div>
     </Flex>
   );
 };
