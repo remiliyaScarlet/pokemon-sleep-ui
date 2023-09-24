@@ -36,13 +36,13 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
     throw event;
   };
 
-  const triggerSort = () => {
+  const calculate = () => {
     worker.postMessage(opts satisfies PokemonItemStatsWorkerOpts);
     setLoading(true);
   };
 
   React.useEffect(() => {
-    triggerSort();
+    calculate();
   }, [level, bonus, sleepDurations, pokemonIngredientProduction]);
 
   React.useEffect(() => {

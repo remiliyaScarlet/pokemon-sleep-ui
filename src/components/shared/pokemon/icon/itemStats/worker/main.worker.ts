@@ -60,10 +60,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
           };
         });
     })
-    .filter(isNotNullish)
-    .sort((a, b) => (
-      (b.dailyTotalEnergy ?? 0) - (a.dailyTotalEnergy ?? 0)
-    ));
+    .filter(isNotNullish);
 
   postMessage(producingStats);
 };

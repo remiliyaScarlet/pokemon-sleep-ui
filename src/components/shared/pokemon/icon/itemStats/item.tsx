@@ -18,10 +18,11 @@ import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokemonItemStatsWorkerOpts & {
-  getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfItem,
+  getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfItem | undefined,
   getIcon: (pokemon: PokemonInfo) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,
   isProductionIncluded?: (productions: IngredientProduction[]) => boolean,
@@ -44,17 +45,29 @@ export const PokemonIconsItemStats = ({
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
+  const filteredStats = producingStats
+    .map((stats) => {
+      const itemRate = getItemRate(stats.pokemonRate);
+      if (!itemRate) {
+        return null;
+      }
+
+      return {...stats, itemRate};
+    })
+    .filter(isNotNullish)
+    .sort((a, b) => b.itemRate.quantity - a.itemRate.quantity);
+
   return (
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
       <LazyLoad loading={loading}>
         <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {producingStats.map(({
+          {filteredStats.map(({
             pokemon,
-            pokemonRate,
             identifier,
             ingredients,
             dailyTotalEnergy,
+            itemRate,
           }) => {
             const {id, specialty} = pokemon;
 
@@ -67,7 +80,7 @@ export const PokemonIconsItemStats = ({
                 <Flex direction="col" className="button-clickable-bg relative">
                   <Flex direction="col" noFullWidth className="absolute bottom-1 right-1 z-10">
                     <PokemonProducingRateSingle
-                      rate={getItemRate(pokemonRate)}
+                      rate={itemRate}
                       icon={getIcon(pokemon)}
                       additionalContents={[
                         <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
