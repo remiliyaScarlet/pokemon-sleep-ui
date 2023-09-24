@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 
 import {AnimatedSwitchContent} from '@/components/layout/animatedSwitch/content';
 import {Flex} from '@/components/layout/flex';
-import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
 import {useRotatingNumbers} from '@/hooks/rotatingNumbers';
@@ -20,6 +20,7 @@ type Props = PokemonProducingRateProps & {
 
 export const PokemonProducingRateSingle = ({
   horizontal,
+  hideFrequency,
   rate,
   icon,
   additionalContents,
@@ -34,7 +35,7 @@ export const PokemonProducingRateSingle = ({
     interval: 5000,
   });
 
-  const frequency = <PokemonFrequencySingle frequency={rate?.frequency ?? NaN}/>;
+  const frequency = !hideFrequency && <PokemonFrequency frequency={rate?.frequency ?? NaN}/>;
   const rateInfo = (
     <Flex direction="row" noFullWidth className="gap-1">
       <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>

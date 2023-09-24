@@ -70,6 +70,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 <Flex direction="col">
                   <PokemonProducingRateSingle
                     horizontal
+                    hideFrequency
                     rate={berry}
                     icon={
                       <NextImage
@@ -80,6 +81,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                   />
                   <PokemonProducingRateMultiple
                     horizontal
+                    hideFrequency
                     rates={ingredientRates}
                     getIcon={(rate) => (
                       <NextImage
