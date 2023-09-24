@@ -20,12 +20,12 @@ export type PokemonInfoForPokedex = PokemonInfo & {
 
 export type PokedexData = PokemonInfoForPokedex[];
 
-export type PokedexDisplay = {
+export type PokedexDisplay = Migratable & {
   display: PokedexDisplayType,
   sort: PokemonSortType,
 };
 
-export type PokedexFilter = Migratable & PokemonInputFilterExtended & PokedexDisplay & {
+export type PokedexFilter = PokemonInputFilterExtended & PokedexDisplay & {
   name: string,
 };
 

@@ -39,15 +39,12 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     preloadedDisplay: preloaded.display,
     ...props,
   });
-  useAutoUpload({
-    opts: {type: 'pokedex', data: {sort: filter.sort, display: filter.display}},
-    triggerDeps: [filter.sort, filter.display],
-  });
 
   const calculatedSettings = useUserSettings({
     server: preloaded.settings,
     client: session?.user.preloaded.settings,
   });
+
   const sortingDeps = [filter, calculatedSettings];
 
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
@@ -85,6 +82,18 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     calculatedSettings,
     triggerDeps: sortingDeps,
     setLoading,
+  });
+
+  useAutoUpload({
+    opts: {
+      type: 'pokedex',
+      data: {
+        sort: filter.sort,
+        display: filter.display,
+        version: filter.version,
+      },
+    },
+    triggerDeps: [filter.sort, filter.display],
   });
 
   return (
