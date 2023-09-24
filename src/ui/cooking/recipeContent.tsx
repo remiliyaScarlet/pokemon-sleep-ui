@@ -13,11 +13,12 @@ type Props = CookingRecipeLayoutProps & {
 };
 
 export const CookingRecipeContent = ({
+  imageDimension,
   clickable,
   mealId,
-  mealName,
-  imageDimension,
+  icon,
   markGray,
+  mealName,
   children,
 }: React.PropsWithChildren<Props>) => {
   return (
@@ -25,9 +26,12 @@ export const CookingRecipeContent = ({
       'button-toggle-inactive-bg relative w-full rounded-lg', clickable && 'button-clickable',
     )}>
       <Flex direction="col" className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
-        <div className={clsx('truncate text-left text-sm', markGray && 'text-slate-400 dark:text-slate-600')}>
-          {mealName}
-        </div>
+        <Flex direction="row" className="gap-1">
+          {icon}
+          <div className={clsx('truncate text-left text-sm', markGray && 'text-slate-400 dark:text-slate-600')}>
+            {mealName}
+          </div>
+        </Flex>
         {children}
       </Flex>
       <Flex direction="col" className="items-end">

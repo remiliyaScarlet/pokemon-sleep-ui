@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal';
@@ -35,5 +37,6 @@ export type CookingRecipeLayoutProps = {
   imageDimension: Dimension,
   clickable: boolean,
   mealId: number,
+  icon?: React.ReactNode,
   markGray?: boolean,
 };

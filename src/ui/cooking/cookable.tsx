@@ -21,21 +21,29 @@ type Props = MealEnergyData & {
 export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeableRecipe}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
-  const isIngredientEnough = Object.fromEntries(meal.ingredients.map(({id, quantity}) => {
+  const ingredientSetReady = Object.fromEntries(meal.ingredients.map(({id, quantity}) => {
     const filterIngredientCount = ingredientCount[id];
 
     if (filterIngredientCount == null) {
-      return [id, false];
+      return [id, 0];
     }
 
-    return [id, filterIngredientCount >= quantity];
+    return [id, filterIngredientCount / quantity];
   }));
 
-  const isMealMakeable = Object.values(isIngredientEnough).every((isEnough) => isEnough);
+  const isMealMakeable = Object.values(ingredientSetReady).every((set) => set >= 1);
+
+  const mealsReady = Math.min(...(meal.ingredients.length ? Object.values(ingredientSetReady) : [0]));
 
   return (
     <AnimatedCollapseQuick show={showUnmakeableRecipe || isMealMakeable}>
-      <CookingRecipeLayout mealId={meal.id} imageDimension="h-24 w-24" clickable markGray={!isMealMakeable}>
+      <CookingRecipeLayout
+        mealId={meal.id}
+        imageDimension="h-24 w-24"
+        clickable
+        markGray={!isMealMakeable}
+        icon={mealsReady > 2 && <InfoIcon>{Math.floor(mealsReady)}</InfoIcon>}
+      >
         <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
           <Flex direction="row" className="items-center gap-0.5">
             <InfoIcon>
@@ -43,7 +51,7 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
             </InfoIcon>
             <IngredientIcons
               meal={meal} useTextShadow={false}
-              markRed={(ingredient) => !isIngredientEnough[ingredient.id]}
+              markRed={(ingredient) => ingredientSetReady[ingredient.id] < 1}
             />
           </Flex>
           <Flex direction="row" className="items-center gap-1">
