@@ -1,5 +1,5 @@
 import {durationOfDay} from '@/const/common';
-import {efficiencyDuringSleep} from '@/const/game/efficiency';
+import {efficiencyInSleep} from '@/const/game/efficiency';
 import {StaminaCalcConfig, StaminaEventLog} from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
@@ -10,13 +10,13 @@ import {getLogsWithSkillRecovery} from '@/utils/game/stamina/events/skill';
 
 
 const getStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
-  let sumOfWeightedDuration = (durationOfDay - logs[logs.length - 1].timing) * efficiencyDuringSleep;
+  let sumOfWeightedDuration = (durationOfDay - logs[logs.length - 1].timing) * efficiencyInSleep;
 
   for (let i = 1; i < logs.length; i++) {
     const prev = logs[i - 1];
     const curr = logs[i];
 
-    const blockEfficiency = prev.type === 'sleep' ? efficiencyDuringSleep : getEfficiency(prev.stamina.after);
+    const blockEfficiency = prev.type === 'sleep' ? efficiencyInSleep : getEfficiency(prev.stamina.after);
     const duration = curr.timing - prev.timing;
 
     sumOfWeightedDuration += blockEfficiency * duration;

@@ -1,5 +1,5 @@
 import {durationOfDay} from '@/const/common';
-import {efficiencyDuringSleep} from '@/const/game/efficiency';
+import {efficiencyInSleep} from '@/const/game/efficiency';
 import {defaultMapBonus, defaultUserSettings} from '@/const/user/settings';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {UserSettings} from '@/types/userData/settings';
@@ -24,9 +24,9 @@ export const toEffectiveBonus = (settings: UserSettings): EffectiveBonus => {
     ingredient: bonus.ingredient,
     map: bonus.map[settings.currentMap] ?? defaultMapBonus,
     stamina: {
-      sleep: efficiencyDuringSleep,
+      sleep: efficiencyInSleep,
       awake: (
-        (staminaDailyAverage * durationOfDay - efficiencyDuringSleep * totalSleepDuration) /
+        (staminaDailyAverage * durationOfDay - efficiencyInSleep * totalSleepDuration) /
         (durationOfDay - totalSleepDuration)
       ),
     },

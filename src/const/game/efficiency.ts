@@ -8,4 +8,4 @@ export const efficiencyBeforeBreakPoint: {[breakPoint in EfficiencyBreakPoint]: 
   20: 1.3,
 };
 
-export const efficiencyDuringSleep = 2.2;
+export const efficiencyInSleep = 2.2;
