@@ -216,7 +216,7 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'dateAdded') {
+  if (display === 'dateAdded' || display === 'level') {
     return <></>;
   }
 

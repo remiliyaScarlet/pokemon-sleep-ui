@@ -10,6 +10,7 @@ import {CalculatedUserSettings} from '@/types/userData/settings';
 
 export const pokemonSortType = [
   'id',
+  'level',
   'dateAdded',
   'berryEnergy',
   'berryCount',

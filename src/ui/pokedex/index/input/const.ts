@@ -1,4 +1,5 @@
 import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
+import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
@@ -13,3 +14,5 @@ export const displayTypeToI18nId: {
   sleepType: 'Info.SleepType',
   specialty: 'Info.Specialty',
 };
+
+export const pokedexSortExclusions: PokemonSortType[] = ['dateAdded', 'level'];

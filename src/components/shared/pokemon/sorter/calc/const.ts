@@ -16,6 +16,7 @@ export const sortInAsc: PokemonSortType[] = [
 
 export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
+  level: ({level}) => level,
   dateAdded: ({dateAdded}) => dateAdded ?? 0,
   ingredientEnergy: (opts) => getIngredientTotalRateSorter({key: 'dailyEnergy', opts}),
   ingredientCount: (opts) => getIngredientTotalRateSorter({key: 'quantity', opts}),

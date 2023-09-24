@@ -17,9 +17,10 @@ import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
+import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
-import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
+import {displayTypeToI18nId, pokedexSortExclusions} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
@@ -99,7 +100,9 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
                 </div>
               </Flex>
             }
-            ids={[...pokedexDisplayType].filter((displayType) => displayType !== 'dateAdded')}
+            ids={[...pokedexDisplayType].filter((displayType) => (
+              pokedexSortExclusions.includes(displayType as PokemonSortType)
+            ))}
             idToButton={(display) => t(displayTypeToI18nId[display])}
             idToItemId={(display) => `displayType-${display}`}
           />
@@ -109,7 +112,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               ...original,
               sort,
             } satisfies PokedexInputProps['filter']))}
-            exclude={['dateAdded']}
+            exclude={pokedexSortExclusions}
           />
         </Flex>
       </Collapsible>
