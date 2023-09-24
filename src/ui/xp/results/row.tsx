@@ -31,11 +31,12 @@ export const PokemonExpCalculatorTableRow = ({input, multiplier, targetLv, xpDat
   }
 
   const expToNext = (
-    (xpData[targetLv - 1].totalGained - (xpData.at(currentLv)?.totalGained ?? 0) + currentToNext) *
-    multiplier
+    (xpData[targetLv - 1].totalGained - (xpData.at(currentLv)?.totalGained ?? 0) + currentToNext)
   );
   const candiesRequired = (
-    expToNext / (candyExpEquivalent * getNatureMultiplier({id: nature, effect: 'exp'})) - ownedCandies
+    expToNext *
+    multiplier /
+    (candyExpEquivalent * getNatureMultiplier({id: nature, effect: 'exp'})) - ownedCandies
   );
 
   return (
