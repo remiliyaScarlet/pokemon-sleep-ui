@@ -6,7 +6,8 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
+import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
@@ -34,7 +35,6 @@ export const PokedexLinkDetail = React.memo(({
     id,
     berry,
     skill,
-    stats,
     specialty,
     sleepType,
   } = pokemon;
@@ -90,14 +90,6 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'frequency') {
-    return (
-      <Flex direction="row">
-        <PokemonFrequencySingle frequency={stats.frequency}/>
-      </Flex>
-    );
-  }
-
   // Need to calculate here because display and sort could be different
   const sorter = getPokemonSorter({
     type: display,
@@ -129,7 +121,7 @@ export const PokedexLinkDetail = React.memo(({
   if (display === 'frequencyOfBerry' || display === 'frequencyOfIngredient') {
     return (
       <Flex direction="row">
-        <PokemonFrequencySingle frequency={sorter}/>
+        <PokemonFrequency frequency={sorter}/>
       </Flex>
     );
   }
@@ -158,8 +150,8 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'ingredientCount') {
-    const {ingredient} = getPokemonProducingRate({
+  if (display === 'ingredientCount' || display === 'frequency') {
+    const rate = getPokemonProducingRate({
       level,
       pokemon,
       pokemonProducingParams,
@@ -171,22 +163,34 @@ export const PokedexLinkDetail = React.memo(({
       ...defaultNeutralOpts,
     });
 
-    return (
-      <Flex direction="col">
-        <div className="text-xs">
-          <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
-        </div>
-        <PokemonIngredientIcons
-          ingredients={[Object.values(ingredient)
-            .sort((a, b) => b.quantity - a.quantity)
-            .map(({id, quantity}) => ({
-              id,
-              qty: parseFloat(formatFloat(quantity) || '-'),
-            })),
-          ]}
-        />
-      </Flex>
-    );
+    if (display === 'ingredientCount') {
+      const {ingredient} = rate;
+
+      return (
+        <Flex direction="col">
+          <div className="text-xs">
+            <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
+          </div>
+          <PokemonIngredientIcons
+            ingredients={[Object.values(ingredient)
+              .sort((a, b) => b.quantity - a.quantity)
+              .map(({id, quantity}) => ({
+                id,
+                qty: parseFloat(formatFloat(quantity) || '-'),
+              })),
+            ]}
+          />
+        </Flex>
+      );
+    }
+
+    if (display === 'frequency') {
+      return (
+        <Flex direction="row">
+          <PokemonFrequencyFromProducingRate pokemonRate={rate}/>
+        </Flex>
+      );
+    }
   }
 
   if (display === 'berryEnergy' || display === 'berryCount') {

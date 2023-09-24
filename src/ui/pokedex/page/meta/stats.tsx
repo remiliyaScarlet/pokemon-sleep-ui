@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequencySingle} from '@/components/shared/pokemon/frequency/single';
+import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
@@ -28,7 +28,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
             <PokemonDataIcon src="/images/generic/clock.png" alt={t('Stats.Frequency')} invert/>
           </td>
           <td>
-            <PokemonFrequencySingle frequency={stats.frequency} noIcon normalText/>
+            <PokemonFrequency frequency={stats.frequency} noIcon normalText/>
           </td>
         </tr>
         <tr>

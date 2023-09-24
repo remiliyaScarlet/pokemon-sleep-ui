@@ -60,10 +60,7 @@ export const PokemonProduction = (props: PokemonProps) => {
       >
         <PokemonIngredientPossibilities chain={chain}/>
       </PokemonMetaSection>
-      <PokemonMetaSection
-        title={t2('Info.Production')}
-        titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.ingredient && 'bg-blink')}
-      >
+      <PokemonMetaSection title={t2('Info.Production')} titleClassName={metaTitleClass}>
         <PokemonProductionCombination
           level={level}
           chain={chain}

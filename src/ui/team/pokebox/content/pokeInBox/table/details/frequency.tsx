@@ -1,23 +1,14 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
+import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 
 
-export const PokeInBoxTableFrequency = ({
-  pokemon,
-  rateOfPokemon,
-}: PokeInBoxTableDetailsProps) => {
-  const {berry, ingredient} = rateOfPokemon;
-
+export const PokeInBoxTableFrequency = ({rateOfPokemon}: PokeInBoxTableDetailsProps) => {
   return (
-    <Flex direction="col" center noFullWidth className="w-60">
-      <PokemonFrequency
-        baseFrequency={pokemon.stats.frequency}
-        berryFrequency={berry.frequency}
-        ingredientFrequency={Object.values(ingredient).at(0)?.frequency ?? NaN}
-      />
+    <Flex direction="col" center noFullWidth className="w-36">
+      <PokemonFrequencyFromProducingRate pokemonRate={rateOfPokemon} normalText/>
     </Flex>
   );
 };

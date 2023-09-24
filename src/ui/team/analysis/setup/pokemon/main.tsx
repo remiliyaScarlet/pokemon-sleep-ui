@@ -9,7 +9,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequency} from '@/components/shared/pokemon/frequency/merged';
+import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
@@ -129,13 +129,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
           defaultCarryLimit={pokemon.stats.maxCarry}
           setCarryLimit={(carryLimit) => setMember(slotName, {carryLimit})}
         />
-        <Flex direction="col" center>
-          <PokemonFrequency
-            baseFrequency={pokemon.stats.frequency}
-            berryFrequency={stats.berry.frequency}
-            ingredientFrequency={stats.ingredient.at(0)?.frequency ?? NaN}
-          />
-        </Flex>
+        <PokemonFrequencyFromProducingRate pokemonRate={stats}/>
         <HorizontalSplitter className="w-full"/>
         <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
         <PokemonProductionSplit

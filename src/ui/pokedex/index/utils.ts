@@ -7,25 +7,23 @@ import {pokedexMigrators} from '@/utils/migrate/pokedex/migrators';
 import {PokedexFilterMigrateParams} from '@/utils/migrate/pokedex/type';
 
 
-const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
-  'ingredient',
+const exhaustIngredientCombinationsIfSort: PokemonSortType[] = [
   'ingredientCount',
   'ingredientEnergy',
+  'frequency',
   'frequencyOfIngredient',
   'totalEnergy',
 ];
 
-const exhaustIngredientCombinationsIfSort: PokemonSortType[] = [
-  'ingredientCount',
-  'ingredientEnergy',
-  'frequencyOfIngredient',
-  'totalEnergy',
+const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
+  ...exhaustIngredientCombinationsIfSort,
+  'ingredient',
 ];
 
 export const toCalculateAllIngredientPossibilities = ({display, sort}: PokedexFilter): boolean => {
   return (
-    exhaustIngredientCombinationsIfDisplay.includes(display) ||
-    exhaustIngredientCombinationsIfSort.includes(sort)
+    exhaustIngredientCombinationsIfSort.includes(sort) ||
+    exhaustIngredientCombinationsIfDisplay.includes(display)
   );
 };
 

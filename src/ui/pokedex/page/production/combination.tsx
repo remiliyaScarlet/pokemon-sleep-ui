@@ -34,7 +34,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Grid className="grid-cols-1 gap-1 lg:grid-cols-2">
+    <Grid className="grid-cols-1 gap-1 lg:grid-cols-2 2xl:grid-cols-3">
       {[...generatePossibleIngredientProductions({level, chain})].map((ingredients) => {
         const productionKeys = ingredients.map(({id}) => id).join('-');
 
@@ -63,11 +63,9 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy))}
                 specialty={pokemon.specialty}
               />
-              <Flex direction="row">
-                <Flex direction="row" noFullWidth className="items-end">
-                  <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} normalSize/>
-                </Flex>
-                <Flex direction="col">
+              <Flex direction="row" className="items-end justify-between">
+                <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} normalSize/>
+                <Flex direction="col" noFullWidth>
                   <PokemonProducingRateSingle
                     horizontal
                     hideFrequency
