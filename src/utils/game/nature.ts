@@ -1,4 +1,4 @@
-import {natureEffectIdMap} from '@/const/game/pokemon';
+import {natureEffectIdMap} from '@/const/game/nature';
 import {natureDataMap} from '@/data/nature';
 import {NatureEffectType, NatureId} from '@/types/game/pokemon/nature';
 
@@ -9,7 +9,7 @@ type GetNatureMultiplierOpts = {
 };
 
 const buffValueOfEffect: {[effect in NatureEffectType]: number} = {
-  mainSkill: 1,
+  mainSkill: NaN,
   exp: 1.2,
   energy: 1.2,
   rateOfIngredient: 1.2,
@@ -17,7 +17,7 @@ const buffValueOfEffect: {[effect in NatureEffectType]: number} = {
 };
 
 const nerfValueOfEffect: {[effect in NatureEffectType]: number} = {
-  mainSkill: 1,
+  mainSkill: NaN,
   exp: 0.8,
   energy: 0.8,
   rateOfIngredient: 0.8,

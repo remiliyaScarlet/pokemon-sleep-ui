@@ -28,10 +28,9 @@ export const InfoIndex = ({params}: DefaultPageProps) => {
               text={t('Pot.Title')}
             />
             <FeatureLinkImage
-              href="/info/pot"
+              href="/info/nature"
               imageSrc="/images/generic/memo.png"
               text={t('Nature.Title')}
-              disabled
             />
             <FeatureLinkImage
               href="/info/mainskill"

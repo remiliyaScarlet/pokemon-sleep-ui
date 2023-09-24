@@ -20,10 +20,10 @@ export const natureEffectType = [
 
 export type NatureEffectType = typeof natureEffectType[number];
 
-export type NatureData = {
+export type NatureEffectDirection = 'buff' | 'nerf';
+
+export type NatureData = {[direction in NatureEffectDirection]: NatureEffectId | null} & {
   id: NatureId,
-  buff: NatureEffectId | null,
-  nerf: NatureEffectId | null,
 };
 
 export type NatureDataMap = {[id in NatureId]?: NatureData};

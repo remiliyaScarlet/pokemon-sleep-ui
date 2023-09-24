@@ -4,7 +4,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
-import {natureEffectImageSrcMap} from '@/const/game/pokemon';
+import {natureEffectImageSrcMap} from '@/const/game/nature';
 import {imageSmallIconSizes} from '@/styles/image';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
 
