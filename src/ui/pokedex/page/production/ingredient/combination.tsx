@@ -8,6 +8,7 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -56,6 +57,16 @@ export const PokemonIngredientCombination = ({chain, ...props}: Props) => {
                 berry={berry.dailyEnergy}
                 ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy))}
                 specialty={pokemon.specialty}
+              />
+              <PokemonProducingRateSingle
+                horizontal
+                rate={berry}
+                icon={
+                  <NextImage
+                    src={`/images/berry/${berry.id}.png`}
+                    alt={ t(`Berry.${berry.id}`)} sizes={imageSmallIconSizes}
+                  />
+                }
               />
               <PokemonProducingRateMultiple
                 horizontal

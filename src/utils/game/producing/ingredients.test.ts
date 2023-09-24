@@ -14,9 +14,7 @@ describe('Pokemon Ingredients Production', () => {
     const rate = getIngredientProducingRates({
       level: 30,
       pokemon: testPokemonData.absol,
-      subSkillBonus: {},
-      helperCount: 0,
-      natureId: null,
+      frequency: 2920.2,
       bonus,
       ingredients: [
         {id: 13, qty: 2}, {id: 5, qty: 8},

@@ -1,52 +1,81 @@
-import {defaultProducingParams} from '@/const/game/production';
+import {defaultHelperCount, defaultProducingParams} from '@/const/game/production';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
-import {PokemonProducingRate} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
-import {getCarryLimitFromPokemonInfo, getCarryLimitMultiplierOfDay} from '@/utils/game/producing/carryLimit';
+import {
+  getCarryLimitFromPokemonInfo,
+  getFullPackRatioInSleep,
+  getTheoreticalDailyQuantityInSleep,
+} from '@/utils/game/producing/carryLimit';
+import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
-import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/utils';
+import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/rateReducer';
+import {getProduceSplit} from '@/utils/game/producing/split';
 
 
-type GetPokemonProducingRateOpts = GetBerryProducingRateOpts & GetIngredientProducingRatesOpts & {
-  carryLimit?: number,
-  sleepDurations: number[],
-};
+type GetPokemonProducingRateOpts =
+  Omit<GetBerryProducingRateOpts, 'frequency'> &
+  Omit<GetIngredientProducingRatesOpts, 'frequency'> &
+  ProducingRateSingleParams & {
+    carryLimit?: number,
+    pokemonProducingParams: PokemonProducingParams,
+    sleepDurations: number[],
+  };
 
 export const getPokemonProducingRate = ({
   carryLimit,
   sleepDurations,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon} = opts;
+  const {pokemon, helperCount, subSkillBonus} = opts;
   const sleepDuration = toSum(sleepDurations);
 
-  const berry = getBerryProducingRate(opts);
-  const ingredient = Object.fromEntries(getIngredientProducingRates(opts).map((rate) => [
-    rate.id,
-    rate,
-  ]));
+  const frequency = getFrequencyFromPokemon({
+    ...opts,
+    subSkillBonus: subSkillBonus ?? {},
+    helperCount: helperCount ?? defaultHelperCount,
+  });
 
-  const dailyCountDuringSleep = (
-    berry.sleep.quantity +
-    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity))
-  );
+  const berry = getBerryProducingRate({
+    frequency,
+    ...opts,
+  });
+  const ingredient = getIngredientProducingRates({
+    frequency,
+    ...opts,
+  });
 
-  const carryLimitMultiplier = getCarryLimitMultiplierOfDay({
+  const produceSplit = getProduceSplit(opts);
+  const fullPackRatioInSleep = getFullPackRatioInSleep({
     carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
-    dailyCount: dailyCountDuringSleep,
+    dailyCount: getTheoreticalDailyQuantityInSleep({
+      rate: {berry, ingredient},
+      produceSplit,
+    }),
     sleepDurations: sleepDurations,
   });
 
   return {
     berry: getTotalRateOfItemOfSessions({
       rate: berry,
+      produceType: 'berry',
+      produceSplit,
       sleepDuration,
+      fullPackRatioInSleep,
+      ...opts,
     }),
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
       rate.id,
-      getTotalRateOfItemOfSessions({rate, carryLimitMultiplier, sleepDuration}),
+      getTotalRateOfItemOfSessions({
+        rate,
+        produceType: 'ingredient',
+        produceSplit,
+        sleepDuration,
+        fullPackRatioInSleep,
+        ...opts,
+      }),
     ])),
   };
 };

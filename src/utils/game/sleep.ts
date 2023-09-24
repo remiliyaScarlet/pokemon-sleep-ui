@@ -69,14 +69,3 @@ export const getSleepDurationsFromSleepSession = ({
 
   return sleepDurations;
 };
-
-type SleepAwakeSplit = {
-  sleep: number,
-  awake: number,
-};
-
-export const getSleepAwakeSplit = (sleepDuration: number): SleepAwakeSplit => {
-  const sleep = sleepDuration / durationOfDay;
-
-  return {sleep, awake: 1 - sleep};
-};

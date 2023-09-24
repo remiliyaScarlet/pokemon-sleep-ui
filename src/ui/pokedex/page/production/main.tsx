@@ -10,7 +10,6 @@ import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {defaultNeutralOpts} from '@/const/game/production';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
@@ -18,15 +17,11 @@ import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
 import {PokemonIngredientProduction} from '@/ui/pokedex/page/production/ingredient/main';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {toSum} from '@/utils/array';
-import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/utils';
 
 
 export const PokemonProduction = (props: PokemonProps) => {
   const {
     pokemon,
-    pokemonProducingParams,
     berryData,
     preloadedSettings,
   } = props;
@@ -43,19 +38,6 @@ export const PokemonProduction = (props: PokemonProps) => {
   const t2 = useTranslations('UI.InPage.Pokedex');
   const t3 = useTranslations('UI.Metadata');
 
-  const berryName = t(`Berry.${berry.id}`);
-  const pokemonName = t(`PokemonName.${pokemon.id}`);
-
-  const berryRate = getBerryProducingRate({
-    ...calculatedSettings,
-    level,
-    pokemon,
-    pokemonProducingParams,
-    ...defaultNeutralOpts,
-    berryData,
-    snorlaxFavorite: {},
-  });
-
   return (
     <Flex direction="col" center className="info-section gap-2">
       <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
@@ -65,11 +47,7 @@ export const PokemonProduction = (props: PokemonProps) => {
       >
         <PokemonBerryProduction
           pokemon={pokemon}
-          berryName={berryName}
-          rate={getTotalRateOfItemOfSessions({
-            rate: berryRate,
-            sleepDuration: toSum(calculatedSettings.sleepDurations),
-          })}
+          berryName={t(`Berry.${berry.id}`)}
         />
       </PokemonMetaSection>
       <PokemonMetaSection
@@ -81,7 +59,8 @@ export const PokemonProduction = (props: PokemonProps) => {
       <Flex direction="col" className="items-end">
         <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">
           <NextImage
-            src="/images/generic/analysis.png" alt={t3('Analysis.Title', {name: pokemonName})}
+            src="/images/generic/analysis.png"
+            alt={t3('Analysis.Title', {name: t(`PokemonName.${pokemon.id}`)})}
             sizes={imageIconSizes} className="invert-hoverable"
           />
         </Link>

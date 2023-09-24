@@ -1,15 +1,12 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {defaultHelperCount} from '@/const/game/production';
 import {Ingredient} from '@/types/game/ingredient';
 import {
   ProducingRateCommonParams,
   ProducingRateOfItemOfSessions,
   ProducingRateProportion,
 } from '@/types/game/producing/rate';
-import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
+import {applyBonus} from '@/utils/game/producing/bonus';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
-import {getProbabilitySplit} from '@/utils/game/producing/split';
-import {applyBonus} from '@/utils/game/producing/utils';
 
 
 export type GetIngredientProducingRateOpts = ProducingRateCommonParams & {
@@ -23,12 +20,8 @@ export type GetIngredientProducingRateOpts = ProducingRateCommonParams & {
 );
 
 export const getIngredientProducingRate = ({
-  level,
   pokemon,
-  pokemonProducingParams,
-  subSkillBonus,
-  helperCount,
-  natureId,
+  frequency,
   bonus,
   ingredient,
   count,
@@ -38,20 +31,6 @@ export const getIngredientProducingRate = ({
     return null;
   }
 
-  const baseFrequency = getFrequencyFromPokemon({
-    level,
-    pokemon,
-    subSkillBonus: subSkillBonus ?? {},
-    helperCount: helperCount ?? defaultHelperCount,
-    natureId,
-  });
-
-  const frequency = baseFrequency / getProbabilitySplit({
-    type: 'ingredient',
-    pokemonProducingParams,
-    natureId,
-    subSkillBonus,
-  });
   const data = {
     id: ingredient.id,
     frequency,
@@ -67,15 +46,15 @@ export const getIngredientProducingRate = ({
     id: ingredient.id,
     sleep: applyBonus({
       bonus,
+      produceType: 'ingredient',
       producingState: 'sleep',
       data,
-      isIngredient: true,
     }),
     awake: applyBonus({
       bonus,
+      produceType: 'ingredient',
       producingState: 'awake',
       data,
-      isIngredient: true,
     }),
   };
 };

@@ -1,5 +1,7 @@
 import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 
 
@@ -25,21 +27,41 @@ export const getCarryLimitFromPokemonInfo = ({pokemon}: GetCarryLimitFromPokemon
   return stats.maxCarry + (evolution.stage - 1) * 5;
 };
 
-type GetCarryLimitMultiplierOpts = {
+type GetFullPackRatioInSleepOpts = {
   dailyCount: number,
   carryLimit: number,
   sleepDurations: number[],
 };
 
-export const getCarryLimitMultiplierOfDay = ({
+export const getFullPackRatioInSleep = ({
   dailyCount,
   carryLimit,
   sleepDurations,
-}: GetCarryLimitMultiplierOpts) => {
+}: GetFullPackRatioInSleepOpts) => {
   const timeToFullPack = getTimeToFullPackInSleep({dailyCount, carryLimit});
   const fullPackDuration = toSum(
     sleepDurations.map((duration) => Math.max(duration - timeToFullPack, 0)),
   );
 
-  return (durationOfDay - fullPackDuration) / durationOfDay;
+  return fullPackDuration / toSum(sleepDurations);
+};
+
+type GetTheoreticalDailyQuantityInSleepOpts = {
+  rate: {
+    berry: ProducingRateOfItemOfSessions,
+    ingredient: ProducingRateOfItemOfSessions[],
+  },
+  produceSplit: ProduceSplit,
+};
+
+export const getTheoreticalDailyQuantityInSleep = ({
+  rate,
+  produceSplit,
+}: GetTheoreticalDailyQuantityInSleepOpts): number => {
+  const {berry, ingredient} = rate;
+
+  return (
+    berry.sleep.quantity * produceSplit.berry +
+    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity)) * produceSplit.ingredient
+  );
 };

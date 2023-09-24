@@ -14,9 +14,8 @@ describe('Pokemon Berry Production', () => {
     const rate = getBerryProducingRate({
       level: 30,
       pokemon: testPokemonData.absol,
+      frequency: 2920.2,
       subSkillBonus: {},
-      helperCount: 0,
-      natureId: null,
       bonus,
       snorlaxFavorite: {},
       berryData: testBerryData['16'],

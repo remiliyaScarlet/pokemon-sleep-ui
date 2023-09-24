@@ -19,13 +19,12 @@ export const getProducingRateBase = ({
   count,
   picks,
 }: GetProducingRateOpts): ProducingRate => {
-  const quantity = durationOfDay / frequency;
-  const dailyEnergy = quantity * energyPerCount;
+  const helpCount = durationOfDay / frequency;
   const proportion = count / picks;
 
   return {
-    dailyEnergy: dailyEnergy * proportion,
-    quantity: quantity * proportion,
+    dailyEnergy: helpCount * proportion * energyPerCount,
+    quantity: helpCount * proportion,
   };
 };
 

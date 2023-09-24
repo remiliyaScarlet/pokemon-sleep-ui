@@ -1,23 +1,23 @@
+import {durationOfDay} from '@/const/common';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
+import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
-type GetProbabilitySplitOpts = {
-  type: 'berry' | 'ingredient',
+export type GetProduceSplitOpts = {
   pokemonProducingParams: PokemonProducingParams,
   natureId: NatureId | null,
   subSkillBonus: GroupedSubSkillBonus | null,
 };
 
-export const getProbabilitySplit = ({
-  type,
+export const getProduceSplit = ({
   pokemonProducingParams,
   natureId,
   subSkillBonus,
-}: GetProbabilitySplitOpts): number => {
+}: GetProduceSplitOpts): ProduceSplit => {
   let ingredientSplit = pokemonProducingParams.ingredientSplit;
 
   for (const bonusValue of getSubSkillBonusValue(subSkillBonus, 'ingredientProbability')) {
@@ -25,13 +25,26 @@ export const getProbabilitySplit = ({
   }
   ingredientSplit *= getNatureMultiplier({id: natureId, effect: 'rateOfIngredient'});
 
-  if (type === 'berry') {
-    return 1 - ingredientSplit;
-  }
+  return {
+    berry: 1 - ingredientSplit,
+    ingredient: ingredientSplit,
+  };
+};
 
-  if (type === 'ingredient') {
-    return ingredientSplit;
-  }
+export type GetProducingSleepStateSplitOpts = {
+  sleepDuration: number,
+  fullPackRatioInSleep: number,
+};
 
-  throw new Error(`Unhandled split type of ${type satisfies never}`);
+export const getProducingSleepStateSplit = ({
+  sleepDuration,
+  fullPackRatioInSleep,
+}: GetProducingSleepStateSplitOpts): ProducingSleepStateSplit => {
+  const sleep = sleepDuration / durationOfDay;
+
+  return {
+    awake: 1 - sleep,
+    sleepVacant: sleep * (1 - fullPackRatioInSleep),
+    sleepFilled: sleep * fullPackRatioInSleep,
+  };
 };

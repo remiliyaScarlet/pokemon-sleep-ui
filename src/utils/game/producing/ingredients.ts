@@ -5,7 +5,7 @@ import {IngredientProduction, IngredientProductionAtLevels} from '@/types/game/p
 import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
-import {getMergedRateOfItemOfSessions} from '@/utils/game/producing/utils';
+import {getMergedRateOfItemOfSessions} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
 

@@ -2,7 +2,6 @@ import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProducingState} from '@/types/game/producing/state';
 
@@ -32,10 +31,10 @@ export type ProducingRateSingleParams = {
   natureId: NatureId | null,
 };
 
-export type ProducingRateCommonParams = ProducingRateSingleParams & {
+export type ProducingRateCommonParams = {
   level: number
   pokemon: PokemonInfo,
-  pokemonProducingParams: PokemonProducingParams,
+  frequency: number,
   bonus: EffectiveBonus,
 };
 

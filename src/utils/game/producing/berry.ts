@@ -1,16 +1,16 @@
-import {defaultHelperCount, defaultLevel} from '@/const/game/production';
+import {defaultLevel} from '@/const/game/production';
 import {BerryData} from '@/types/game/berry';
+import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
-import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
+import {applyBonus} from '@/utils/game/producing/bonus';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
-import {getProbabilitySplit} from '@/utils/game/producing/split';
-import {applyBonus} from '@/utils/game/producing/utils';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
 export type GetBerryProducingRateOpts = ProducingRateCommonParams & {
+  subSkillBonus: GroupedSubSkillBonus | null,
   snorlaxFavorite: SnorlaxFavorite,
   berryData: BerryData,
 };
@@ -18,29 +18,13 @@ export type GetBerryProducingRateOpts = ProducingRateCommonParams & {
 export const getBerryProducingRate = ({
   level,
   pokemon,
-  pokemonProducingParams,
-  subSkillBonus,
-  helperCount,
-  natureId,
+  frequency,
   bonus,
+  subSkillBonus,
   snorlaxFavorite,
   berryData,
 }: GetBerryProducingRateOpts): ProducingRateOfItemOfSessions => {
-  const baseFrequency = getFrequencyFromPokemon({
-    level,
-    pokemon,
-    subSkillBonus: subSkillBonus ?? {},
-    helperCount: helperCount ?? defaultHelperCount,
-    natureId,
-  });
-
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
-  const frequency = baseFrequency / getProbabilitySplit({
-    type: 'berry',
-    pokemonProducingParams,
-    natureId,
-    subSkillBonus,
-  });
   const data = {
     id: pokemon.berry.id,
     frequency,
@@ -57,15 +41,15 @@ export const getBerryProducingRate = ({
     id: pokemon.berry.id,
     sleep: applyBonus({
       bonus,
+      produceType: 'berry',
       producingState: 'sleep',
       data,
-      isIngredient: false,
     }),
     awake: applyBonus({
       bonus,
+      produceType: 'berry',
       producingState: 'awake',
       data,
-      isIngredient: false,
     }),
   };
 };
