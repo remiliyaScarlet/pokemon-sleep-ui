@@ -19,7 +19,7 @@ export const NatureInfoSingle = ({nature}: Props) => {
   const {id, buff, nerf} = nature;
 
   return (
-    <Flex direction="col" center className="info-section">
+    <Flex direction="col" center className="gap-2 rounded-lg bg-slate-500/20 p-4">
       <div className={clsx('whitespace-nowrap text-2xl', buff && nerf && natureStyle.clean)}>
         {t(`Nature.${id}`)}
       </div>
