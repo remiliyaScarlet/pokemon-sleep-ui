@@ -5,24 +5,24 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
+import {IngredientIconsCommonProps} from '@/components/shared/meal/ingredients/type';
 import {dangerText} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
-import {Meal, MealIngredient} from '@/types/game/meal';
+import {IngredientId} from '@/types/game/ingredient';
+import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 
 
-type Props = {
-  meal: Meal,
-  useTextShadow?: boolean,
-  markRed?: (ingredient: MealIngredient) => boolean,
+type Props = IngredientIconsCommonProps & {
+  ingredients: PokemonProducingItem<IngredientId>[],
 };
 
-export const IngredientIcons = ({meal, useTextShadow = true, markRed}: Props) => {
+export const IngredientIcons = ({ingredients, useTextShadow = true, markRed}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
-    <>
-      {meal.ingredients.map((ingredient) => {
-        const {id, quantity} = ingredient;
+    <Flex direction="row" noFullWidth className="items-end gap-0.5 text-xs">
+      {ingredients.map((ingredient) => {
+        const {id, qty} = ingredient;
 
         return (
           <Flex key={id} direction="row" noFullWidth wrap className="gap-0.5">
@@ -34,11 +34,11 @@ export const IngredientIcons = ({meal, useTextShadow = true, markRed}: Props) =>
               useTextShadow && 'text-shadow-preset',
               markRed && markRed(ingredient) && dangerText,
             )}>
-              {quantity}
+              {qty}
             </div>
           </Flex>
         );
       })}
-    </>
+    </Flex>
   );
 };

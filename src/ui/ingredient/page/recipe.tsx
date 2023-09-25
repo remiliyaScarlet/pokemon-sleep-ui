@@ -6,7 +6,7 @@ import Link from 'next-intl/link';
 import {Flex} from '@/components/layout/flex';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
+import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
 import {imageGallerySizes} from '@/styles/image';
 import {Meal} from '@/types/game/meal';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
@@ -38,9 +38,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
                 imageSizes={imageGallerySizes}
                 info={getMealRequiredQuantity(meal)}
               />
-              <Flex direction="row" center className="gap-0.5">
-                <IngredientIcons meal={meal} useTextShadow={false}/>
-              </Flex>
+              <IngredientIconsFromMeal meal={meal} useTextShadow={false}/>
               <Flex direction="row" center className="gap-0.5">
                 <ColoredEnergyIcon dimension="h-4 w-4" alt={t2('Energy')}/>
                 <div className="text-sm">

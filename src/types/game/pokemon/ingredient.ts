@@ -1,10 +1,8 @@
 import {IngredientId} from '@/types/game/ingredient';
+import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 
 
-export type IngredientProduction = {
-  id: IngredientId,
-  qty: number,
-};
+export type IngredientProduction = PokemonProducingItem<IngredientId>;
 
 export type IngredientProductionAtLevels = {[level in IngredientLevel]: IngredientProduction};
 
@@ -17,10 +15,6 @@ export const ingredientLevels = [
 export type IngredientLevel = typeof ingredientLevels[number];
 
 export type IngredientChainId = number;
-
-export type IngredientProductionAtLevel = IngredientProduction & {
-  level: number,
-};
 
 export type IngredientPossibilities = {[level in IngredientLevel]: IngredientProduction[]};
 

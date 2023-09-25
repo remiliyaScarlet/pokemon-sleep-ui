@@ -7,6 +7,9 @@ import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQui
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
+import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
+import {IngredientId} from '@/types/game/ingredient';
+import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingFilterIngredientCount, MealEnergyData} from '@/ui/cooking/type';
 import {toSum} from '@/utils/array';
@@ -30,6 +33,17 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
 
     return [id, filterIngredientCount / quantity];
   }));
+  const ingredientsMissing = meal.ingredients
+    .map(({id, quantity}): PokemonProducingItem<IngredientId> => {
+      const filterIngredientCount = ingredientCount[id];
+
+      if (filterIngredientCount == null) {
+        return {id, qty: 0};
+      }
+
+      return {id, qty: filterIngredientCount - quantity};
+    })
+    .filter(({qty}) => qty < 0);
 
   const isMealMakeable = Object.values(ingredientSetReady).every((set) => set >= 1);
 
@@ -45,14 +59,17 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
         icon={mealsReady > 2 && <InfoIcon>{Math.floor(mealsReady)}</InfoIcon>}
       >
         <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
-          <Flex direction="row" className="items-center gap-0.5">
+          <Flex direction="row" className="items-end gap-0.5">
             <InfoIcon>
               {toSum(meal.ingredients.map(({quantity}) => quantity))}
             </InfoIcon>
-            <IngredientIcons
-              meal={meal} useTextShadow={false}
-              markRed={(ingredient) => ingredientSetReady[ingredient.id] < 1}
-            />
+            <Flex direction="col" noFullWidth>
+              <IngredientIcons ingredients={ingredientsMissing} markRed={() => true} useTextShadow={false}/>
+              <IngredientIconsFromMeal
+                meal={meal} useTextShadow={false}
+                markRed={(ingredient) => ingredientSetReady[ingredient.id] < 1}
+              />
+            </Flex>
           </Flex>
           <Flex direction="row" className="items-center gap-1">
             <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>

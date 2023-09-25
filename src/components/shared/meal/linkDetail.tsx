@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
+import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
 import {MealLinkProps} from '@/components/shared/meal/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
 import {formatInt} from '@/utils/number';
@@ -34,9 +34,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
             <div>Lv.{mealLevel}</div>
           </Flex>
         }
-        <Flex direction="row" noFullWidth className="items-end gap-0.5 text-xs">
-          <IngredientIcons meal={meal}/>
-        </Flex>
+        <IngredientIconsFromMeal meal={meal}/>
       </Flex>
     </Flex>
   );
