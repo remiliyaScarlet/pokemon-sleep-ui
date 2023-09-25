@@ -101,7 +101,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               </Flex>
             }
             ids={[...pokedexDisplayType].filter((displayType) => (
-              pokedexSortExclusions.includes(displayType as PokemonSortType)
+              !pokedexSortExclusions.includes(displayType as PokemonSortType)
             ))}
             idToButton={(display) => t(displayTypeToI18nId[display])}
             idToItemId={(display) => `displayType-${display}`}
