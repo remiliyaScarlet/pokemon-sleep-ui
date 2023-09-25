@@ -24,10 +24,10 @@ export type PokemonInputTypeOfIngredients = typeof pokemonInputTypeOfIngredients
 
 export const pokemonInputType = [
   'pokemonType',
+  'berry',
   'specialty',
   'sleepType',
   ...pokemonInputTypeOfIngredients,
-  'berry',
   'evolutionStage',
   'mainSkill',
 ] as const;
