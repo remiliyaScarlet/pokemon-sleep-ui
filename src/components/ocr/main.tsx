@@ -73,6 +73,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
           id="ocrImage"
           onFileSelected={(data) => setImage(data)}
           className="cursor-pointer gap-1"
+          disabled={ocrRunning}
         />
         <FlexButton
           className="enabled:button-clickable-border disabled:button-disabled whitespace-nowrap px-4 py-1.5"

@@ -19,25 +19,16 @@ export const InputFile = ({id, accept, onFileSelected, onFileTypeIncorrect, ...p
   const {className} = props;
   const [filePath, setFilePath] = React.useState<string | null>(null);
 
+  // `<label>` cannot go first per tailwindcss doc:
+  // https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-sibling-state
   return (
     <>
-      <label htmlFor={id} className={clsx(
-        'button-clickable-bg flex w-full cursor-pointer flex-row items-center self-stretch overflow-auto p-1.5',
-        className,
-      )}>
-        <div className="h-6 w-6 shrink-0">
-          <DocumentArrowUpIcon/>
-        </div>
-        <div className="truncate">
-          {filePath || '-'}
-        </div>
-      </label>
       <input
         {...props}
         id={id}
         accept={accept.join(',')}
         type="file"
-        className="hidden"
+        className="peer hidden"
         onChange={({target}) => {
           const files = target.files;
 
@@ -55,6 +46,18 @@ export const InputFile = ({id, accept, onFileSelected, onFileTypeIncorrect, ...p
           onFileSelected(URL.createObjectURL(file));
         }}
       />
+      <label htmlFor={id} className={clsx(
+        'button-clickable-bg peer-disabled:button-disabled',
+        'flex w-full cursor-pointer flex-row items-center self-stretch overflow-auto p-1.5',
+        className,
+      )}>
+        <div className="h-6 w-6 shrink-0">
+          <DocumentArrowUpIcon/>
+        </div>
+        <div className="truncate">
+          {filePath || '-'}
+        </div>
+      </label>
     </>
   );
 };
