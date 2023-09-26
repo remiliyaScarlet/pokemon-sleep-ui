@@ -26,9 +26,10 @@ export const OcrPopup = <TData, >({noFullWidth, dimension, ...props}: Props<TDat
         </Flex>
       </Popup>
       <FlexButton
-        center
         className="button-clickable-bg p-1"
         onClick={() => setShow(true)}
+        center
+        stretch
         noFullWidth={noFullWidth}
       >
         <div className={dimension ?? 'h-8 w-8'}>

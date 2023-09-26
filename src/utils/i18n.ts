@@ -21,9 +21,19 @@ export const getMessages = async (locale: string): Promise<IntlMessages> => {
   ]);
 
   return {
+    Locale: locale,
     UI: UI.default,
     Game: Game.default,
   };
+};
+
+export const getMessagesOfLocales = async <TLocale extends Locale>(
+  locales: TLocale[],
+): Promise<{[locale in TLocale]: IntlMessages}> => {
+  return Object.fromEntries(
+    (await Promise.all(locales.map((locale) => getMessages(locale))))
+      .map((messages) => [messages.Locale, messages]),
+  ) as {[locale in TLocale]: IntlMessages};
 };
 
 type GetI18nTranslatorOpts<TNamespace extends I18nNamespaces> = {

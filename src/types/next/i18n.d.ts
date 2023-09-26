@@ -13,6 +13,7 @@ type PageWithIndividual = {
 type GameObjectIdToString = {[id in string]: string};
 
 declare interface IntlMessages extends UiMessages, GameMessages {
+  Locale: string,
   UI: {
     Auth: {
       EmailSent: string,

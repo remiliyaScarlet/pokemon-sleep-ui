@@ -9,13 +9,13 @@ import {OcrLocale} from '@/types/ocr/locale';
 
 
 type UseOcrOpts = {
-  ocrLang: OcrLocale,
+  ocrLocale: OcrLocale,
   ocrThreshold: number, // 0-255
   onError: (message: string) => void,
 };
 
 export const useOcr = ({
-  ocrLang,
+  ocrLocale,
   ocrThreshold,
   onError,
 }: UseOcrOpts): UseOcrReturn => {
@@ -74,7 +74,7 @@ export const useOcr = ({
     });
 
     setState({status: 'recognizing', progress: 0, text: null});
-    const tesseractLang = ocrLocaleToTesseract[ocrLang];
+    const tesseractLang = ocrLocaleToTesseract[ocrLocale];
     await worker.loadLanguage(tesseractLang);
     await worker.initialize(tesseractLang);
 

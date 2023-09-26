@@ -31,7 +31,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
     canvasRef,
     runOcr,
   } = useOcr({
-    ocrLang: 'ja',
+    ocrLocale: locale,
     ocrThreshold: 180,
     onError: (message) => showToast({
       isAlert: true,
