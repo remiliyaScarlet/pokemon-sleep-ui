@@ -86,7 +86,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
       </Flex>
       <ProgressBar percent={progress}/>
       <AnimatedCollapse show={!!text && status === 'completed'}>
-        {text && renderData(textToData(text, locale))}
+        {text && renderData(textToData(text, locale), image)}
       </AnimatedCollapse>
     </Flex>
   );

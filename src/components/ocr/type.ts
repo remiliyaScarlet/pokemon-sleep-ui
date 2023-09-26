@@ -22,7 +22,7 @@ export type OcrStatus = OcrState['status'];
 export type OcrCommonProps<TData> = {
   buttonText: string,
   textToData: (text: string, locale: OcrLocale) => TData,
-  renderData: (data: TData) => React.ReactNode,
+  renderData: (data: TData, image: string | null) => React.ReactNode,
 };
 
 export type UseOcrReturn = {

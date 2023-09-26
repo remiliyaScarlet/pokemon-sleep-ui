@@ -11,13 +11,13 @@ import {Dimension} from '@/types/style';
 
 
 type Props<TData> = OcrCommonProps<TData> & {
+  show: boolean,
+  setShow: React.Dispatch<React.SetStateAction<boolean>>,
   noFullWidth?: boolean,
   dimension?: Dimension,
 };
 
-export const OcrPopup = <TData, >({noFullWidth, dimension, ...props}: Props<TData>) => {
-  const [show, setShow] = React.useState(false);
-
+export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...props}: Props<TData>) => {
   return (
     <>
       <Popup show={show} setShow={setShow}>
@@ -26,7 +26,7 @@ export const OcrPopup = <TData, >({noFullWidth, dimension, ...props}: Props<TDat
         </Flex>
       </Popup>
       <FlexButton
-        className="button-clickable-bg p-1"
+        className="button-clickable-bg gap-0.5 px-1.5 py-1"
         onClick={() => setShow(true)}
         center
         stretch
@@ -34,6 +34,9 @@ export const OcrPopup = <TData, >({noFullWidth, dimension, ...props}: Props<TDat
       >
         <div className={dimension ?? 'h-8 w-8'}>
           <DocumentMagnifyingGlassIcon/>
+        </div>
+        <div className="text-lg">
+          OCR
         </div>
       </FlexButton>
     </>
