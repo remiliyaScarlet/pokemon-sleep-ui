@@ -2,7 +2,7 @@ import {ItemId} from '@/types/game/item';
 import {HandyCandySize} from '@/types/game/pokemon/xp';
 
 
-export const candyExpEquivalent = 21;
+export const candyExpEquivalent = 25;
 
 export const handyCandyItemId: {[size in HandyCandySize]: ItemId} = {
   small: 12,

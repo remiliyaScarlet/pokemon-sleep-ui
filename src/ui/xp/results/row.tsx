@@ -2,9 +2,10 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {candyExpEquivalent, handyCandyConversionRate, handyCandyItemId} from '@/const/game/xp';
+import {handyCandyConversionRate, handyCandyItemId} from '@/const/game/xp';
 import {PokemonKeyLevel, pokemonKeyLevels} from '@/types/game/pokemon/level';
 import {PokemonExpCalculatorCandyCount} from '@/ui/xp/results/candyCount';
+import {getCandiesRequired} from '@/ui/xp/results/utils';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {formatInt} from '@/utils/number';
@@ -33,10 +34,11 @@ export const PokemonExpCalculatorTableRow = ({input, multiplier, targetLv, xpDat
   const expToNext = (
     ((xpData[targetLv - 1].totalGained - (xpData.at(currentLv)?.totalGained ?? 0)) * multiplier + currentToNext)
   );
-  const candiesRequired = (
-    expToNext /
-    (candyExpEquivalent * getNatureMultiplier({id: nature, effect: 'exp'})) - ownedCandies
-  );
+  const candiesRequired = getCandiesRequired({
+    expToNext,
+    multiplier: getNatureMultiplier({id: nature, effect: 'exp'}),
+    ownedCandies,
+  });
 
   return (
     <tr className={clsx(isBreakthroughLevel && 'bg-blink')}>
