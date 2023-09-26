@@ -11,10 +11,13 @@ type Props = InputRowProps & {
   className?: string,
 };
 
-export const InputRow = ({style = 'normal', className, children}: React.PropsWithChildren<Props>) => {
+export const InputRow = ({style = 'normal', noRowPadding, className, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex direction="col" noFullWidth={style === 'none'} className={clsx(
-      'items-center gap-1 rounded-lg p-1 sm:flex-row', rowBackground[style], className,
+      'items-center gap-1 rounded-lg sm:flex-row',
+      !noRowPadding && 'p-1',
+      rowBackground[style],
+      className,
     )}>
       {children}
     </Flex>

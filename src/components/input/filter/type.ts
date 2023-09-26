@@ -7,6 +7,7 @@ export type InputRowProps = {
   style?: FilterRowBackgroundStyle,
   ender?: React.ReactNode,
   noFixedTitleWidth?: boolean,
+  noRowPadding?: boolean,
 };
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
@@ -35,6 +36,7 @@ export type FilterCategoryInputProps<TId> = FilterInputOnClickProps<TId> & Input
   idToItemId: (id: TId) => string,
   isHidden?: (id: TId) => boolean,
   getClassNames: (isActive: boolean, id: TId) => string,
+  noWrap?: boolean,
 };
 
 export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';
