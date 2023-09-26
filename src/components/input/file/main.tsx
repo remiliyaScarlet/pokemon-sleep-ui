@@ -1,0 +1,60 @@
+import React from 'react';
+
+import DocumentArrowUpIcon from '@heroicons/react/24/outline/DocumentArrowUpIcon';
+import {clsx} from 'clsx';
+
+import {InputFileCommonProps} from '@/components/input/file/type';
+import {MimeTypes} from '@/types/mime';
+
+
+type Props = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  'id' | 'accept' | 'type' | 'onChange'
+> & InputFileCommonProps & {
+  accept: MimeTypes[],
+  onFileTypeIncorrect: (fileType: string) => void,
+};
+
+export const InputFile = ({id, accept, onFileSelected, onFileTypeIncorrect, ...props}: Props) => {
+  const {className} = props;
+  const [filePath, setFilePath] = React.useState<string | null>(null);
+
+  return (
+    <>
+      <label htmlFor={id} className={clsx(
+        'button-clickable-bg flex w-full cursor-pointer flex-row items-center self-stretch overflow-auto p-1.5',
+        className,
+      )}>
+        <div className="h-6 w-6 shrink-0">
+          <DocumentArrowUpIcon/>
+        </div>
+        <div className="truncate">
+          {filePath || '-'}
+        </div>
+      </label>
+      <input
+        {...props}
+        id={id}
+        accept={accept.join(',')}
+        type="file"
+        className="hidden"
+        onChange={({target}) => {
+          const files = target.files;
+
+          if (!files) {
+            return onFileSelected(null);
+          }
+
+          const file = files[0];
+          if (!accept.includes(file.type as MimeTypes)) {
+            onFileTypeIncorrect(file.type);
+            return;
+          }
+
+          setFilePath(file.name);
+          onFileSelected(URL.createObjectURL(file));
+        }}
+      />
+    </>
+  );
+};
