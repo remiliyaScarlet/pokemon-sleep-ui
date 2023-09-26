@@ -11,7 +11,7 @@ import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {SleepStyle} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
-import {isInSleepdex} from '@/utils/sleepdex';
+import {isInSleepdex} from '@/utils/game/sleepdex';
 
 
 type Props = PokemonSleepStyleProps & {

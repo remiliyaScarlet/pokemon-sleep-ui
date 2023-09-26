@@ -1,7 +1,7 @@
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
 import {MapUnlockAccumulator, MapUnlockAccumulatorEnergy} from '@/ui/map/page/unlockTable/type';
+import {isInSleepdex, IsInSleepdexOpts} from '@/utils/game/sleepdex';
 import {isSameRank} from '@/utils/game/snorlax';
-import {isInSleepdex, IsInSleepdexOpts} from '@/utils/sleepdex';
 
 
 type GetUpdatedAccumulatorOpts = {

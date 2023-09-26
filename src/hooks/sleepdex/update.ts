@@ -4,8 +4,7 @@ import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonId} from '@/types/game/pokemon';
 import {SleepdexData, SleepdexMap} from '@/types/game/sleepdex';
 import {SleepStyleId} from '@/types/game/sleepStyle';
-import {toSleepdexStyleId} from '@/utils/game/sleepdex';
-import {isInSleepdex} from '@/utils/sleepdex';
+import {isInSleepdex, toSleepdexStyleId} from '@/utils/game/sleepdex';
 
 
 type UpdateSleepdexOpts = {

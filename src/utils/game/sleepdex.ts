@@ -1,5 +1,5 @@
 import {PokemonId} from '@/types/game/pokemon';
-import {SleepdexStyleId} from '@/types/game/sleepdex';
+import {SleepdexMap, SleepdexStyleId} from '@/types/game/sleepdex';
 import {SleepStyleId} from '@/types/game/sleepStyle';
 
 
@@ -11,3 +11,14 @@ type ToSleepdexByMapIdOpts = {
 export const toSleepdexStyleId = ({pokemonId, styleId}: ToSleepdexByMapIdOpts): SleepdexStyleId => (
   `${pokemonId}-${styleId}`
 );
+
+export type IsInSleepdexOpts = {
+  pokemonId: PokemonId,
+  styleId: SleepStyleId,
+  sleepdex: SleepdexMap,
+};
+
+export const isInSleepdex = ({pokemonId, styleId, sleepdex}: IsInSleepdexOpts) => {
+  const sleepdexId = toSleepdexStyleId({pokemonId, styleId});
+  return sleepdex[sleepdexId];
+};
