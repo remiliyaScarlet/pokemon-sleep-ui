@@ -11,13 +11,3 @@ export const cloneMerge = <TSource>(
   // https://stackoverflow.com/a/28044419/11571888
   return merge({}, source, ...others);
 };
-
-type KvSwapOpts<TValue> = {
-  source: {[key in string]: TValue},
-  keyToValue: (key: string) => TValue,
-  valueToKey: (value: TValue) => string,
-};
-
-export const kvSwap = <TValue>({source, keyToValue, valueToKey}: KvSwapOpts<TValue>) => (
-  Object.fromEntries(Object.entries(source).map(([k, v]) => [valueToKey(v), keyToValue(k)]))
-);

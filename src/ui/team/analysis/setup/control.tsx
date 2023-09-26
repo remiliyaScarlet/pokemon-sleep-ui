@@ -12,7 +12,7 @@ import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';
 import {TeamAnalysisSetupModifyingProps, TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
 import {getCurrentTeam, getDefaultTeamName, getTeamName} from '@/ui/team/analysis/utils';
-import {cloneMerge} from '@/utils/object';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
 export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupModifyingProps) => {

@@ -6,7 +6,7 @@ import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal';
 import {CookingFilter} from '@/ui/cooking/type';
 import {getMealRequiredQuantity} from '@/utils/game/meal';
-import {cloneMerge} from '@/utils/object';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
 type UseCookingFilterOpts = {

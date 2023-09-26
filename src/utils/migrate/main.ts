@@ -1,5 +1,5 @@
 import {Migratable, MigrateOpts} from '@/types/migrate';
-import {cloneMerge} from '@/utils/object';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
 export const migrate = <TMigratable extends Migratable, TParams>({

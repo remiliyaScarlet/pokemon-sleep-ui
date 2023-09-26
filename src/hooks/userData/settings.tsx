@@ -3,7 +3,7 @@ import {useCustomCompareMemo} from 'use-custom-compare';
 
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {getSleepDurationsFromSleepSession} from '@/utils/game/sleep';
-import {cloneMerge} from '@/utils/object';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 import {DeepPartial} from '@/utils/type';
 import {toEffectiveBonus} from '@/utils/user/settings';
 

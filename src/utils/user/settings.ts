@@ -5,7 +5,7 @@ import {EffectiveBonus} from '@/types/game/bonus';
 import {UserSettings} from '@/types/userData/settings';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getStaminaEfficiency} from '@/utils/game/stamina/main';
-import {cloneMerge} from '@/utils/object';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 import {DeepPartial} from '@/utils/type';
 
 
