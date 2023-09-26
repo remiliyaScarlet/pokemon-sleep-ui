@@ -179,6 +179,15 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         HandyCandy: string,
       },
     },
+    Ocr: {
+      Status: {
+        Ready: string,
+        Thresholding: string,
+        LoadingOcr: string,
+        Recognizing: string,
+        Completed: string,
+      },
+    },
     Stamina: {
       Title: string,
       SleepSession: string,

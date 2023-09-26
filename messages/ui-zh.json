@@ -245,6 +245,15 @@
       "HandyCandy": "萬能糖果"
     }
   },
+  "Ocr": {
+    "Status": {
+      "Ready": "就緒",
+      "Thresholding": "圖像二元化中",
+      "LoadingOcr": "OCR 初始化中",
+      "Recognizing": "文字辨認中",
+      "Completed": "完成"
+    }
+  },
   "Stamina": {
     "Title": "活力計算",
     "SleepSession": "睡眠時間段",

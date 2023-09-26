@@ -245,6 +245,15 @@
       "HandyCandy": "Universalbonbon"
     }
   },
+  "Ocr": {
+    "Status": {
+      "Ready": "bereit",
+      "Thresholding": "Grenzbild",
+      "LoadingOcr": "OCR wird geladen",
+      "Recognizing": "Text erkennen",
+      "Completed": "Vollendet"
+    }
+  },
   "Stamina": {
     "Title": "Energieberechnung",
     "SleepSession": "Schlafsitzung",

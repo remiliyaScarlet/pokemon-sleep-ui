@@ -245,6 +245,15 @@
       "HandyCandy": "Handy Candy"
     }
   },
+  "Ocr": {
+    "Status": {
+      "Ready": "Ready",
+      "Thresholding": "Thresholding Image",
+      "LoadingOcr": "Loading OCR",
+      "Recognizing": "Recognizing",
+      "Completed": "Completed"
+    }
+  },
   "Stamina": {
     "Title": "Energy Calculation",
     "SleepSession": "Sleep Session",

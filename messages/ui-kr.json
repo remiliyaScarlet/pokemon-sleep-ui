@@ -245,6 +245,15 @@
       "HandyCandy": "만능사탕"
     }
   },
+  "Ocr": {
+    "Status": {
+      "Ready": "준비된",
+      "Thresholding": "Thresholding Image",
+      "LoadingOcr": "Loading OCR",
+      "Recognizing": "인식중",
+      "Completed": "완료"
+    }
+  },
   "Stamina": {
     "Title": "기력 계산",
     "SleepSession": "수면 시간",

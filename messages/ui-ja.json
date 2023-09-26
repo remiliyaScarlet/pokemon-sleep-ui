@@ -245,6 +245,15 @@
       "HandyCandy": "ばんのうアメ"
     }
   },
+  "Ocr": {
+    "Status": {
+      "Ready": "Ready",
+      "Thresholding": "Thresholding Image",
+      "LoadingOcr": "Loading OCR",
+      "Recognizing": "Recognizing",
+      "Completed": "Completed"
+    }
+  },
   "Stamina": {
     "Title": "げんき回復",
     "SleepSession": "睡眠時間",
