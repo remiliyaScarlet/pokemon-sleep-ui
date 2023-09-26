@@ -17,6 +17,7 @@ import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {RatingClient} from '@/ui/rating/client';
 import {RatingServerDataProps} from '@/ui/rating/type';
+import {getOcrTranslationsForPokemonInfo} from '@/utils/ocr/translations/pokemon';
 import {createUserSettings} from '@/utils/user/settings';
 
 
@@ -33,6 +34,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     mapMeta,
     pokemonMaxLevel,
     session,
+    ocrTranslations,
   ] = await Promise.all([
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
@@ -44,6 +46,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     getAllMapMeta(),
     getPokemonMaxLevelByBerry(),
     getServerSession(authOptions),
+    getOcrTranslationsForPokemonInfo(),
   ]);
 
   const props: RatingServerDataProps = {
@@ -57,6 +60,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     mapMeta,
     pokemonMaxLevel,
     preloadSettings: createUserSettings(session?.user.preloaded.settings),
+    ocrTranslations,
   };
 
   return (
@@ -68,6 +72,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
         'UI.InPage.Pokedex',
         'UI.InPage.Team',
         'UI.Metadata',
+        'UI.Ocr',
       ]}>
         <RatingClient {...props}/>
       </I18nProvider>
