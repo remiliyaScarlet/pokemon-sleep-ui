@@ -19,8 +19,10 @@ export const PokemonSubSkillSelectionButtons = ({data, selectedSubSkills, onSele
       {data.length ?
         data.map((single) => (
           <PokemonSubSkillSelectionButton
-            key={single.id} data={single}
-            selectable={!selectedSubSkills.includes(single.id)} onClick={() => onSelect(single.id)}
+            key={single.id}
+            data={single}
+            selectable={!selectedSubSkills.includes(single.id)}
+            onClick={() => onSelect(single.id)}
           />
         )) :
         <div className="h-9 w-9">
