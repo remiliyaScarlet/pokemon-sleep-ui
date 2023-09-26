@@ -16,8 +16,9 @@ export const InputFileImageOnly = (props: InputFileCommonProps) => {
       {...props}
       accept={[...mimeTypesOfImage]}
       onFileTypeIncorrect={(fileType) => showToast({
+        isAlert: true,
         content: (
-          <Flex direction="row" className="items-center gap-1 text-red-300 dark:text-red-700">
+          <Flex direction="row" className="items-center gap-1">
             <div className="h-6 w-6">
               <ExclamationTriangleIcon/>
             </div>

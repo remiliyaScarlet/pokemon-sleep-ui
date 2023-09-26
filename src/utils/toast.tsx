@@ -6,9 +6,10 @@ import {Toast} from '@/components/toast';
 
 
 type ShowToastOpts = {
+  isAlert?: boolean,
   content: React.ReactNode,
 };
 
-export const showToast = ({content}: ShowToastOpts) => {
-  toast.custom(({visible}) => <Toast visible={visible}>{content}</Toast>);
+export const showToast = ({isAlert, content}: ShowToastOpts) => {
+  toast.custom(({visible}) => <Toast visible={visible} isAlert={isAlert}>{content}</Toast>);
 };
