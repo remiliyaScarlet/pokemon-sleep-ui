@@ -9,10 +9,10 @@ type Props = {
   onClick: () => void,
 };
 
-export const OcrImporterConfirmButton = ({onClick}: Props) => {
+export const OcrImporterConfirm = ({onClick}: Props) => {
   return (
     <FlexButton noFullWidth onClick={onClick} className="button-clickable-border w-fit self-end p-1">
-      <div className="h-7 w-7">
+      <div className="h-6 w-6">
         <CheckIcon/>
       </div>
     </FlexButton>
