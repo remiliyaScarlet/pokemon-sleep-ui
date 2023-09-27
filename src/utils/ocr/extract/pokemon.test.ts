@@ -15,6 +15,9 @@ describe('OCR / Extract Pokemon Info', () => {
     const extracted = ocrExtractPokemonInfo({
       text: ocrResult,
       translations: {
+        name: {
+          'Eevee': 5,
+        },
         subSkill: {
           'Berry Finding S': 7,
           'Helping Bonus': 8,
@@ -28,6 +31,7 @@ describe('OCR / Extract Pokemon Info', () => {
       },
     });
 
+    expect(extracted.pokemonId).toBe(5);
     expect(extracted.subSkills[0].id).toBe(7);
     expect(extracted.subSkills[0].level).toBe(10);
     expect(extracted.subSkills[1].id).toBe(8);
