@@ -10,7 +10,9 @@ const env = {
 };
 
 const azureRequesterIdToDiscordUid = {
-
+  '7b5961c4-6acb-4c84-be52-7627a62b90a2': '503484431437398016',
+  '00000002-0000-8888-8000-000000000000': '153943999185420288',
+  '0435d0c0-44f0-4fc6-abfc-6bc7d4a92571': '153943999185420288',
 };
 
 const getRequesterDiscordUid = (requesterId) => {
