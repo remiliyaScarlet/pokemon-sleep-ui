@@ -18,3 +18,11 @@ export const toSeconds = (time: string): number => {
 
   return (+h) * 3600 + (+m) * 60;
 };
+
+export const formatSeconds = (seconds: number): string => {
+  const h = Math.floor(seconds / 3600).toString();
+  const m = Math.floor(seconds % 3600 / 60).toString().padStart(2, '0');
+  const s = Math.floor(seconds % 3600 % 60).toString().padStart(2, '0');
+
+  return `${h}:${m}:${s}`;
+};
