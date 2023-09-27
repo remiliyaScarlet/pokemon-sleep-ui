@@ -6,6 +6,18 @@ const env = {
   title: 'AZ_DEVOPS_TITLE',
   status: 'AZ_DEVOPS_STATUS',
   url: 'AZ_DEVOPS_BUILD_URL',
+  requester: 'AZ_DEVOPS_REQUESTER_ID',
+};
+
+const azureRequesterIdToDiscordUid = {
+
+};
+
+const getRequesterDiscordUid = (requesterId) => {
+  const discordUid = azureRequesterIdToDiscordUid[requesterId];
+
+  // `503484431437398016` is the UID of `@raenonx`
+  return discordUid ?? '503484431437398016';
 };
 
 for (const [key, variableName] of Object.entries(env)) {
@@ -33,7 +45,7 @@ writeFile('devops-env.txt', JSON.stringify(env), (err) => {
 
 const discordData = {
   timestamp: Date.now(),
-  content: `**${env.status}** / ${env.title} <@503484431437398016>`,
+  content: `**${env.status}** / ${env.title} <@${getRequesterDiscordUid(env.requester)}>`,
   embeds: [
     {
       'title': env.title,
@@ -49,6 +61,15 @@ const discordData = {
     },
   ],
 };
+
+/* eslint-disable no-console */
+console.log(`Azure DevOps triggered at ${discordData.timestamp}`);
+console.log(`- Requester ID: ${env.requester}`);
+console.log(`- Status: ${env.status}`);
+console.log(`- Title: ${env.title}`);
+console.log(`- Content: ${discordData.content}`);
+/* eslint-enable no-console */
+
 
 fetch(
   env.webhookUrl,
