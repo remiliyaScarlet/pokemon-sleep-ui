@@ -9,7 +9,7 @@ export const isLocale = (locale: string): locale is Locale => {
   return locales.includes(locale);
 };
 
-export const getMessages = async (locale: string): Promise<IntlMessages> => {
+export const getMessages = async (locale: string) => {
   let localeToUse = locale;
   if (!isLocale(locale)) {
     localeToUse = defaultLocale satisfies Locale;
