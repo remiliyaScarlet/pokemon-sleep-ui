@@ -6,7 +6,8 @@ import {clsx} from 'clsx';
 import {Flex} from '@/components/layout/flex';
 import {PokemonFrequencyProps} from '@/components/shared/pokemon/frequency/type';
 import {durationOfDay} from '@/const/common';
-import {formatFloat, formatInt} from '@/utils/number';
+import {formatFloat} from '@/utils/number';
+import {formatSeconds} from '@/utils/time';
 
 
 type Props = PokemonFrequencyProps & {
@@ -24,7 +25,7 @@ export const PokemonFrequency = ({frequency, noIcon, normalText}: Props) => {
           <ClockIcon/>
         </div>
       }
-      <div>{formatInt(frequency)}</div>
+      <div>{formatSeconds(frequency)}</div>
       <div>({formatFloat(dailyCount)}x)</div>
     </Flex>
   );
