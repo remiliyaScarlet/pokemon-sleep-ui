@@ -173,8 +173,8 @@
           "Name": "Stärke",
           "Weekly": "Wöchentlich"
         },
-        "FrequencyBase": "Frequenz (Base)",
-        "FrequencyEquivalent": "Frequenz (Äquivalent)",
+        "FrequencyBase": "Basisfrequenz",
+        "FrequencyEquivalent": "verhältnismäßige Frequenz",
         "Frequency": "Frequenz",
         "Friendship": "Max. Freundespunkte",
         "Recruit": "Befreundet"
@@ -249,11 +249,11 @@
   },
   "Ocr": {
     "Status": {
-      "Ready": "bereit",
-      "Thresholding": "Grenzbild",
-      "LoadingOcr": "OCR wird geladen",
-      "Recognizing": "Text erkennen",
-      "Completed": "Vollendet"
+      "Ready": "Bereit",
+      "Thresholding": "Segmentiere Bild",
+      "LoadingOcr": "Initiiere Texterkennung",
+      "Recognizing": "Erkenne Text",
+      "Completed": "Abgeschlossen"
     }
   },
   "Stamina": {
