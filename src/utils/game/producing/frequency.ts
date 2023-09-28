@@ -82,3 +82,12 @@ export const getFrequencyFromItemRateOfSessions = ({
     )
   );
 };
+
+export const getEquivalentFrequencyFromPokemonRate = ({berry, ingredient}: PokemonProducingRate) => {
+  const dailyCount = (
+    durationOfDay / berry.frequency +
+    durationOfDay / (Object.values(ingredient).at(0)?.frequency ?? NaN)
+  );
+
+  return durationOfDay / dailyCount;
+};

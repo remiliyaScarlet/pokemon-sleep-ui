@@ -20,12 +20,14 @@ export const defaultLevel = 1;
 
 export const defaultHelperCount = 0;
 
+export const defaultSubSkillBonus = {};
+
 export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> = {
   ingredientSplit: 0.2,
 };
 
 export const defaultNeutralOpts: ProducingRateSingleParams = {
   helperCount: defaultHelperCount,
-  subSkillBonus: null,
+  subSkillBonus: defaultSubSkillBonus,
   natureId: null,
 };

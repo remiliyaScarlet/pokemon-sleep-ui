@@ -4,6 +4,9 @@ import {
   getIngredientTotalRateSorter,
 } from '@/components/shared/pokemon/sorter/calc/sorter';
 import {PokemonSorterGetter, PokemonSortType} from '@/components/shared/pokemon/sorter/type';
+import {defaultHelperCount, defaultSubSkillBonus} from '@/const/game/production';
+import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
+import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
 
 export const sortInAsc: PokemonSortType[] = [
@@ -26,7 +29,14 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequencyBase: ({pokemon}) => pokemon.stats.frequency,
-  frequency: ({pokemon}) => pokemon.stats.frequency,
+  frequency: ({helperCount, subSkillBonus, calculatedSettings, ...opts}) => (
+    getEquivalentFrequencyFromPokemonRate(getPokemonProducingRate({
+      helperCount: helperCount ?? defaultHelperCount,
+      subSkillBonus: subSkillBonus ?? defaultSubSkillBonus,
+      ...calculatedSettings,
+      ...opts,
+    }))
+  ),
   frequencyOfBerry: (opts) => getBerryRateSorter({key: 'frequency', opts}),
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),
   totalEnergy: (opts) => {

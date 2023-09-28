@@ -2,8 +2,8 @@ import React from 'react';
 
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonFrequencyProps} from '@/components/shared/pokemon/frequency/type';
-import {durationOfDay} from '@/const/common';
 import {PokemonProducingRate} from '@/types/game/producing/rate';
+import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
 
 
 type Props = PokemonFrequencyProps & {
@@ -11,12 +11,5 @@ type Props = PokemonFrequencyProps & {
 };
 
 export const PokemonFrequencyFromProducingRate = ({pokemonRate, ...props}: Props) => {
-  const {berry, ingredient} = pokemonRate;
-
-  const dailyCount = (
-    durationOfDay / berry.frequency +
-    durationOfDay / (Object.values(ingredient).at(0)?.frequency ?? NaN)
-  );
-
-  return <PokemonFrequency frequency={durationOfDay / dailyCount} {...props}/>;
+  return <PokemonFrequency frequency={getEquivalentFrequencyFromPokemonRate(pokemonRate)} {...props}/>;
 };
