@@ -8,6 +8,7 @@ import {PokemonSorterGetter, PokemonSortType} from '@/components/shared/pokemon/
 
 export const sortInAsc: PokemonSortType[] = [
   'id',
+  'frequencyBase',
   'frequency',
   'frequencyOfBerry',
   'frequencyOfIngredient',
@@ -24,6 +25,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   berryEnergy: (opts) => getBerryRateSorter({key: 'dailyEnergy', opts}),
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
+  frequencyBase: ({pokemon}) => pokemon.stats.frequency,
   frequency: ({pokemon}) => pokemon.stats.frequency,
   frequencyOfBerry: (opts) => getBerryRateSorter({key: 'frequency', opts}),
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),

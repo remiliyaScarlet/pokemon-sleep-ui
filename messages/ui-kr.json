@@ -173,7 +173,8 @@
           "Name": "에너지",
           "Weekly": "매주"
         },
-        "Frequency": "도우미 시간",
+        "FrequencyBase": "도우미 시간 (베이스)",
+        "FrequencyEquivalent": "도우미 시간 (동등)",
         "Friendship": "프렌드 포인트",
         "Recruit": "동료가 되어"
       },

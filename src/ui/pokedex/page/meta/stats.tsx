@@ -25,7 +25,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
         </tr>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/clock.png" alt={t('Stats.Frequency')} invert/>
+            <PokemonDataIcon src="/images/generic/clock.png" alt={t('Stats.FrequencyBase')} invert/>
           </td>
           <td>
             <PokemonFrequency frequency={stats.frequency} noIcon normalText/>

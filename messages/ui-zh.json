@@ -173,7 +173,8 @@
           "Name": "能量",
           "Weekly": "每周"
         },
-        "Frequency": "幫忙間隔",
+        "FrequencyBase": "幫忙間隔 (基礎)",
+        "FrequencyEquivalent": "幫忙間隔 (等效)",
         "Friendship": "友情點數",
         "Recruit": "成為夥伴"
       },

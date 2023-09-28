@@ -173,7 +173,8 @@
           "Name": "エナジー",
           "Weekly": "毎週"
         },
-        "Frequency": "おてつだい時間",
+        "FrequencyBase": "おてつだい時間 (ベース)",
+        "FrequencyEquivalent": "おてつだい時間 (同等)",
         "Friendship": "フレンドポイント",
         "Recruit": "仲間になる"
       },

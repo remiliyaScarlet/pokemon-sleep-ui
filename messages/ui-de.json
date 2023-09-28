@@ -173,6 +173,8 @@
           "Name": "Stärke",
           "Weekly": "Wöchentlich"
         },
+        "FrequencyBase": "Frequenz (Base)",
+        "FrequencyEquivalent": "Frequenz (Äquivalent)",
         "Frequency": "Frequenz",
         "Friendship": "Max. Freundespunkte",
         "Recruit": "Befreundet"

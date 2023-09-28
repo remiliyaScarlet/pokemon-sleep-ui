@@ -173,7 +173,8 @@
           "Name": "Strength",
           "Weekly": "Weekly"
         },
-        "Frequency": "Frequency",
+        "FrequencyBase": "Frequency (Base)",
+        "FrequencyEquivalent": "Frequency (Equivalent)",
         "Friendship": "Friendship Points",
         "Recruit": "Partnered"
       },
