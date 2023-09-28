@@ -9,7 +9,7 @@ import {
   getFullPackRatioInSleep,
   getTheoreticalDailyQuantityInSleep,
 } from '@/utils/game/producing/carryLimit';
-import {getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
+import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
 import {getTotalRateOfItemOfSessions} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit} from '@/utils/game/producing/split';
@@ -32,7 +32,7 @@ export const getPokemonProducingRate = ({
   const {pokemon, helperCount, subSkillBonus} = opts;
   const sleepDuration = toSum(sleepDurations);
 
-  const frequency = getFrequencyFromPokemon({
+  const frequency = getBaseFrequencyFromPokemon({
     ...opts,
     subSkillBonus: subSkillBonus ?? {},
     helperCount: helperCount ?? defaultHelperCount,

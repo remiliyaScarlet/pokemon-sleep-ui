@@ -1,12 +1,12 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {testPokemonData} from '@/tests/data/pokemon';
-import {getFrequencyFromItemRateOfSessions, getFrequencyFromPokemon} from '@/utils/game/producing/frequency';
+import {getFrequencyFromItemRateOfSessions, getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 
 
-describe('Pokemon Producing Frequency', () => {
+describe('Pokemon Base Producing Frequency', () => {
   it('is correct for clean Absol', () => {
-    const frequency = getFrequencyFromPokemon({
+    const frequency = getBaseFrequencyFromPokemon({
       level: 30,
       subSkillBonus: {},
       pokemon: testPokemonData.absol,

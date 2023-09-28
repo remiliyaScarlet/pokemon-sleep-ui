@@ -1,8 +1,9 @@
+import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProduceType} from '@/types/game/producing/common';
-import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
@@ -38,7 +39,7 @@ export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCoun
   pokemon: PokemonInfo,
 };
 
-export const getFrequencyFromPokemon = ({
+export const getBaseFrequencyFromPokemon = ({
   level,
   subSkillBonus,
   pokemon,
