@@ -25,21 +25,21 @@ export const PokeInBoxGridRating = (props: PokeInBoxCommonProps) => {
         <div>
           {
             loading ?
-              <LoadingText dimension="h-4 w-4" text="%"/> :
-              isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`
-          }
-        </div>
-        <ProgressBar className="w-full" percent={percentage}/>
-      </Flex>
-      <Flex direction="col" center className="gap-1">
-        <div>
-          {
-            loading ?
               <LoadingText dimension="h-4 w-4" text="PR"/> :
               isNaN(percentile) ? '-' : <>{formatInt(percentile)}<sup>th</sup></>
           }
         </div>
         <ProgressBar className="w-full" percent={percentile}/>
+      </Flex>
+      <Flex direction="col" center className="gap-1">
+        <div>
+          {
+            loading ?
+              <LoadingText dimension="h-4 w-4" text="%"/> :
+              isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`
+          }
+        </div>
+        <ProgressBar className="w-full" percent={percentage}/>
       </Flex>
     </Flex>
   );

@@ -81,23 +81,23 @@ export const RatingResultOfLevelUI = ({
         </Flex>
         <Flex direction="col" className="gap-3">
           <Flex direction="row" center className="text-6xl">
-            {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
+            {isNaN(percentile) ? '-' : <>{formatInt(percentile)}<sup>th</sup></>}
           </Flex>
           <Flex direction="col">
-            <ProgressBar percent={percentage}/>
+            <ProgressBar percent={percentile}/>
           </Flex>
           <Flex direction="row" className="items-end justify-center gap-1.5">
-            <Flex direction="row" className="items-end justify-center gap-1.5">
+            <Flex direction="row" className="items-end justify-center gap-1">
               <div className="text-4xl">{rank ? formatInt(rank) : '-'}</div>
               <div>/</div>
               <div>{isNaN(samples) ? '-' : formatInt(samples)}</div>
             </Flex>
-            <div className="text-3xl">
-              {isNaN(percentile) ? '-' : <>{formatInt(percentile)}<sup>th</sup></>}
+            <div className="text-2xl">
+              {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
             </div>
           </Flex>
           <Flex direction="col">
-            <ProgressBar percent={percentile}/>
+            <ProgressBar percent={percentage}/>
           </Flex>
         </Flex>
       </Flex>
