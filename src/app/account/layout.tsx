@@ -2,6 +2,7 @@
 import React from 'react';
 
 import '../globals.css';
+import '@/polyfills';
 
 
 const RootLayout = ({children}: React.PropsWithChildren) => {
