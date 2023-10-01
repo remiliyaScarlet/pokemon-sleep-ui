@@ -8,7 +8,7 @@ import {getSleepdexCompletionOfMap} from '@/ui/map/common/utils';
 import {MapCommonProps} from '@/ui/map/page/type';
 
 
-export const MapMeta = ({mapId, mapName, sleepStyles, sleepdexMap, mapMeta}: MapCommonProps) => {
+export const MapMeta = ({mapId, mapName, sleepStyles, sleepdexMap, mapMeta, isLoggedIn}: MapCommonProps) => {
   return (
     <Flex direction="col" className="relative h-52">
       <NextImage
@@ -23,6 +23,7 @@ export const MapMeta = ({mapId, mapName, sleepStyles, sleepdexMap, mapMeta}: Map
           sleepStyles={sleepStyles}
           sleepdexCompletionOfMap={getSleepdexCompletionOfMap({sleepStyles, sleepdexMap})}
           meta={mapMeta}
+          isLoggedIn={isLoggedIn}
         />
       </Flex>
     </Flex>

@@ -30,6 +30,7 @@ export const MapIndex = async ({params}: DefaultPageProps) => {
     data,
     sleepdexMap,
     mapMeta,
+    isLoggedIn: !!session,
   };
 
   return (

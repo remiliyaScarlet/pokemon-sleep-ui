@@ -20,9 +20,10 @@ type Props = {
   sleepStyles: SleepStyleDataFlattened[] | undefined,
   sleepdexCompletionOfMap: MapIndexSleepdexCompletionOfMap | undefined,
   meta: MapMeta | null | undefined,
+  isLoggedIn: boolean,
 };
 
-export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta}: Props) => {
+export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn}: Props) => {
   const t = useTranslations('UI.InPage.Map');
   const t2 = useTranslations('UI.Common');
 
@@ -50,7 +51,7 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta}: Props) =>
           </div>
         </Flex>
         {
-          sleepdexCompletionOfMap &&
+          isLoggedIn && sleepdexCompletionOfMap &&
           <Flex direction="row" center noFullWidth className="gap-1.5">
             <div className="h-6 w-6">
               <BookmarkIcon/>
