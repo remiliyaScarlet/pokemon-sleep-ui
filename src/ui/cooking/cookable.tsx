@@ -56,7 +56,7 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
         imageDimension="h-24 w-24"
         clickable
         markGray={!isMealMakeable}
-        icon={mealsReady > 2 && <InfoIcon>{Math.floor(mealsReady)}</InfoIcon>}
+        icon={mealsReady >= 2 && <InfoIcon>{Math.floor(mealsReady)}</InfoIcon>}
       >
         <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
           <Flex direction="row" className="items-end gap-0.5">
