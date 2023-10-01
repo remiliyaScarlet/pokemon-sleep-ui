@@ -1,19 +1,20 @@
 import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 
 
-type GetTimeToFullPackInSleepOpts = {
+type GetSecondsToFullPackInSleepOpts = {
   dailyCount: number,
   carryLimit: number,
 };
 
-export const getTimeToFullPackInSleep = ({
+export const getSecondsToFullPackInSleep = ({
   dailyCount,
   carryLimit,
-}: GetTimeToFullPackInSleepOpts): number => {
+}: GetSecondsToFullPackInSleepOpts): number => {
   return carryLimit / dailyCount * durationOfDay;
 };
 
@@ -33,17 +34,20 @@ type GetFullPackRatioInSleepOpts = {
   sleepDurations: number[],
 };
 
-export const getFullPackRatioInSleep = ({
+export const getFullPackStats = ({
   dailyCount,
   carryLimit,
   sleepDurations,
-}: GetFullPackRatioInSleepOpts) => {
-  const timeToFullPack = getTimeToFullPackInSleep({dailyCount, carryLimit});
+}: GetFullPackRatioInSleepOpts): FullPackStats => {
+  const secondsToFull = getSecondsToFullPackInSleep({dailyCount, carryLimit});
   const fullPackDuration = toSum(
-    sleepDurations.map((duration) => Math.max(duration - timeToFullPack, 0)),
+    sleepDurations.map((duration) => Math.max(duration - secondsToFull, 0)),
   );
 
-  return fullPackDuration / toSum(sleepDurations);
+  return {
+    secondsToFull,
+    ratio: fullPackDuration / toSum(sleepDurations),
+  };
 };
 
 type GetTheoreticalDailyQuantityInSleepOpts = {

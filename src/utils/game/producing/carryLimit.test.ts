@@ -1,49 +1,53 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {getFullPackRatioInSleep, getTheoreticalDailyQuantityInSleep} from '@/utils/game/producing/carryLimit';
+import {getFullPackStats, getTheoreticalDailyQuantityInSleep} from '@/utils/game/producing/carryLimit';
 
 
-describe('Pokemon Full Pack Ratio in Sleep', () => {
-  it('gets correct multiplier with single no collect duration', () => {
-    const multiplier = getFullPackRatioInSleep({
+describe('Pokemon Full Pack Stats', () => {
+  it('gets correct stats with single no collect duration', () => {
+    const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 104.47,
       carryLimit: 30,
       sleepDurations: [28800],
     });
 
-    expect(multiplier).toBeCloseTo(0.13851);
+    expect(secondsToFull).toBeCloseTo(24810.9505);
+    expect(ratio).toBeCloseTo(0.13851);
   });
 
-  it('gets correct multiplier with double no collect durations', () => {
-    const multiplier = getFullPackRatioInSleep({
+  it('gets correct stats with double no collect durations', () => {
+    const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 104.47,
       carryLimit: 30,
       sleepDurations: [28800, 28800],
     });
 
-    expect(multiplier).toBeCloseTo(0.13851);
+    expect(secondsToFull).toBeCloseTo(24810.9505);
+    expect(ratio).toBeCloseTo(0.13851);
   });
 
-  it('gets correct multiplier with lower carry limit', () => {
+  it('gets correct stats with lower carry limit', () => {
     // Absol at lv. 60 with Cocoa x 2 / Cocoa x 5 / Mushroom x 7
-    const multiplier = getFullPackRatioInSleep({
+    const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 106.97,
       carryLimit: 14,
       sleepDurations: [3600 * 7.5, 3600],
     });
 
-    expect(multiplier).toBeCloseTo(0.51282);
+    expect(secondsToFull).toBeCloseTo(11307.8433);
+    expect(ratio).toBeCloseTo(0.51282);
   });
 
-  it('gets correct multiplier with lower carry limit and longer no collect durations', () => {
+  it('gets correct stats with lower carry limit and longer no collect durations', () => {
     // Absol at lv. 60 with Cocoa x 2 / Cocoa x 5 / Mushroom x 7
-    const multiplier = getFullPackRatioInSleep({
+    const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 106.97,
       carryLimit: 14,
       sleepDurations: [38700],
     });
 
-    expect(multiplier).toBeCloseTo(0.70781);
+    expect(secondsToFull).toBeCloseTo(11307.8433);
+    expect(ratio).toBeCloseTo(0.70781);
   });
 });
 

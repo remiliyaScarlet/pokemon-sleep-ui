@@ -6,38 +6,24 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
-import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
-import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
-import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
-import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
-import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
-import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
+import {TeamAnalysisPokemonIndividualParams} from '@/ui/team/analysis/setup/pokemon/params';
 import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup';
+import {TeamAnalysisPokemonProduction} from '@/ui/team/analysis/setup/pokemon/production';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
-import {toSum} from '@/utils/array';
 
 
 export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const {
-    slotName,
     pokemon,
     member,
-    setMember,
-    stats,
     snorlaxFavorite,
-    berryDataMap,
-    subSkillMap,
     calculatedSettings,
   } = props;
 
@@ -47,9 +33,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const [showEvolutionSelector, setShowEvolutionSelector] = React.useState(false);
   const ratingControl = useRatingPopup();
 
-  const {id, type, berry, skill} = pokemon;
-  const berryData = berryDataMap[berry.id];
-  const maxLevel = berryData.energy.length;
+  const {id, type, skill} = pokemon;
 
   return (
     <Flex direction="row" className="gap-1 md:flex-col">
@@ -106,56 +90,8 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         </Flex>
       </Flex>
       <Flex direction="col" center className="gap-1">
-        <Flex direction="col" className="h-14 gap-1.5">
-          <PokemonNatureSelector
-            nature={member.nature}
-            setNature={(nature) => setMember(slotName, {nature})}
-            hideName
-          />
-          <PokemonSubSkillSelector
-            subSkill={member.subSkill}
-            setSubSkill={(subSkill) => setMember(slotName, {subSkill})}
-            subSkillMap={subSkillMap}
-          />
-        </Flex>
-        <PokemonLevelSlider
-          level={member.level}
-          setLevel={(level) => setMember(slotName, {level})}
-          maxLevel={maxLevel}
-          noSameLine
-        />
-        <PokemonCarryLimitInput
-          carryLimit={member.carryLimit}
-          defaultCarryLimit={pokemon.stats.maxCarry}
-          setCarryLimit={(carryLimit) => setMember(slotName, {carryLimit})}
-        />
-        <PokemonFrequencyFromProducingRate pokemonRate={stats}/>
-        <HorizontalSplitter className="w-full"/>
-        <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
-        <PokemonProductionSplit
-          berry={stats.berry.dailyEnergy}
-          ingredient={toSum(stats.ingredient.map(({dailyEnergy}) => dailyEnergy))}
-          specialty={pokemon.specialty}
-        />
-        <HorizontalSplitter className="w-full"/>
-        <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
-          <TeamAnalysisBerryRate
-            id={berryData.id}
-            rate={stats.berry}
-            period="daily"
-          />
-        </Flex>
-        <HorizontalSplitter className="w-full"/>
-        <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
-          {stats.ingredient.map((rate) => (
-            <TeamAnalysisIngredientRate
-              key={rate.id}
-              id={rate.id}
-              rate={rate}
-              period="daily"
-            />
-          ))}
-        </Flex>
+        <TeamAnalysisPokemonIndividualParams {...props}/>
+        <TeamAnalysisPokemonProduction {...props}/>
       </Flex>
     </Flex>
   );

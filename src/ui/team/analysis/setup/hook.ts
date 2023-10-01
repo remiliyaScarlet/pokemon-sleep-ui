@@ -72,7 +72,7 @@ const useProducingStatsOfSlot = ({
       natureId: member.nature,
     };
 
-    const {berry, ingredient: ingredientRateMap} = getPokemonProducingRate({
+    const pokemonProducingRate = getPokemonProducingRate({
       ...producingRateOpts,
       ...calculatedSettings,
       level,
@@ -87,15 +87,15 @@ const useProducingStatsOfSlot = ({
       ingredientMap,
       carryLimit: member.carryLimit,
     });
-    const ingredient = Object.values(ingredientRateMap);
+    const {berry, ingredient} = pokemonProducingRate;
 
     const total = {
       // Total doesn't and shouldn't care about the quantity
       quantity: NaN,
-      dailyEnergy: berry.dailyEnergy + toSum(ingredient.map(({dailyEnergy}) => dailyEnergy)),
+      dailyEnergy: berry.dailyEnergy + toSum(Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy)),
     };
 
-    return {berry, ingredient, total};
+    return {...pokemonProducingRate, total};
   }, [currentTeam.members[slotName], snorlaxFavorite, helperCount, calculatedSettings]);
 };
 
@@ -155,7 +155,7 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
 
     return {
       berry: groupProducingStats(stats.map(({berry}) => berry)),
-      ingredient: groupProducingStats(stats.flatMap(({ingredient}) => ingredient)),
+      ingredient: groupProducingStats(stats.flatMap(({ingredient}) => Object.values(ingredient))),
     };
   }, deps);
 

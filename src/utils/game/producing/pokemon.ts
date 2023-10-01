@@ -6,7 +6,7 @@ import {toSum} from '@/utils/array';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
   getCarryLimitFromPokemonInfo,
-  getFullPackRatioInSleep,
+  getFullPackStats,
   getTheoreticalDailyQuantityInSleep,
 } from '@/utils/game/producing/carryLimit';
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
@@ -48,7 +48,7 @@ export const getPokemonProducingRate = ({
   });
 
   const produceSplit = getProduceSplit(opts);
-  const fullPackRatioInSleep = getFullPackRatioInSleep({
+  const fullPackStats = getFullPackStats({
     carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
     dailyCount: getTheoreticalDailyQuantityInSleep({
       rate: {berry, ingredient},
@@ -58,12 +58,13 @@ export const getPokemonProducingRate = ({
   });
 
   return {
+    fullPackStats,
     berry: getTotalRateOfItemOfSessions({
       rate: berry,
       produceType: 'berry',
       produceSplit,
       sleepDuration,
-      fullPackRatioInSleep,
+      fullPackRatioInSleep: fullPackStats.ratio,
       ...opts,
     }),
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
@@ -73,7 +74,7 @@ export const getPokemonProducingRate = ({
         produceType: 'ingredient',
         produceSplit,
         sleepDuration,
-        fullPackRatioInSleep,
+        fullPackRatioInSleep: fullPackStats.ratio,
         ...opts,
       }),
     ])),

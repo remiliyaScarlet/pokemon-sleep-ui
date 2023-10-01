@@ -1,23 +1,16 @@
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
-import {ProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSlotName} from '@/ui/team/analysis/type';
 import {Indexable} from '@/utils/type';
 
-
-export type IngredientProducingStats = {
-  quantity: ProducingRate,
-  energy: ProducingRate,
-};
 
 export type TeamProducingStatsTotal = {
   berry: ProducingRate,
   ingredient: ProducingRate | null,
 };
 
-export type TeamProducingStatsSingle = {
-  berry: ProducingRateOfItem,
-  ingredient: ProducingRateOfItem[],
+export type TeamProducingStatsSingle = PokemonProducingRate & {
   total: ProducingRate,
 };
 
