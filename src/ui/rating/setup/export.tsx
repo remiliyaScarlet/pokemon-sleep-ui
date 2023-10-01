@@ -7,7 +7,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex';
 import {Popup} from '@/components/popup';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonInfo} from '@/types/game/pokemon';
@@ -38,7 +38,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
   return (
     <>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="min-w-[24rem] max-w-2xl gap-2 overflow-hidden">
+        <Flex direction="col" className="max-w-2xl gap-2 overflow-hidden sm:min-w-[24rem]">
           <InputBox
             value={name ?? ''}
             type="text"
@@ -46,7 +46,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
             className="w-full"
             onChange={({target}) => setName(target.value || null)}
           />
-          <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel}/>
+          <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel} noSameLine/>
           <Flex direction="col">
             <button
               className="button-clickable-bg disabled:button-disabled ml-auto p-1"

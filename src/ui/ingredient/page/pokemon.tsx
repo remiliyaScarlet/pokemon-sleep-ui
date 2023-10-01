@@ -6,7 +6,7 @@ import {useSession} from 'next-auth/react';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {Ingredient} from '@/types/game/ingredient';
 import {UserSettings} from '@/types/userData/settings';

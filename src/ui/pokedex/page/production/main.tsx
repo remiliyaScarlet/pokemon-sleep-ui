@@ -8,7 +8,7 @@ import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {imageIconSizes} from '@/styles/image';

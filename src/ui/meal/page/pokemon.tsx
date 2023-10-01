@@ -2,7 +2,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonIngredientProductionMap} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {MealPokemonOfIngredientLevel} from '@/ui/meal/page/pokemonOfLevel';

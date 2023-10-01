@@ -3,10 +3,10 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {LevelSlider} from '@/components/shared/input/levelSlider';
-import {LevelSliderProps} from '@/components/shared/input/type';
+import {LevelInputProps} from '@/components/shared/input/type';
 
 
-export const MealLevelSlider = (props: LevelSliderProps) => {
+export const MealLevelInput = (props: LevelInputProps) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (

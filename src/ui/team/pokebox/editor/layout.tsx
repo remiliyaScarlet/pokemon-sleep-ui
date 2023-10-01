@@ -14,7 +14,7 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {imageSmallIconSizes} from '@/styles/image';

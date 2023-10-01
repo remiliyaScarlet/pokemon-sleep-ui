@@ -1,7 +1,10 @@
-export type LevelSliderProps = {
+export type LevelInputProps = {
   level: number,
   maxLevel: number,
   setLevel: (level: number) => void,
-  noSameLine?: boolean,
   minLevel?: number,
+};
+
+export type LevelSliderProps = LevelInputProps & {
+  noSameLine?: boolean,
 };

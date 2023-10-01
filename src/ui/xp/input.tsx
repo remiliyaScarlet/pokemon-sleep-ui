@@ -15,7 +15,7 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
 import {isNotNullish} from '@/utils/type';

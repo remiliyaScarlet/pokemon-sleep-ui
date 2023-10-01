@@ -12,7 +12,7 @@ import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/levelSlider';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';

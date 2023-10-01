@@ -7,7 +7,7 @@ import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealDisplayControl} from '@/components/shared/meal/control';
-import {MealLevelSlider} from '@/components/shared/meal/levelSlider';
+import {MealLevelInput} from '@/components/shared/meal/level';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal} from '@/types/game/meal';
 import {UserPreloadedData} from '@/types/userData/main';
@@ -32,8 +32,8 @@ export const MealInput = ({data, filter, setFilter, preloaded}: Props) => {
           filterKey: 'mealType',
         })}
       />
-      <InputRow className="p-1">
-        <MealLevelSlider
+      <InputRow className="px-2 py-1">
+        <MealLevelInput
           level={filter.mealLevel}
           maxLevel={Math.max(...data.map((meal) => Math.max(...meal.levels.map(({lv}) => lv))))}
           setLevel={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
