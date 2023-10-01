@@ -2,6 +2,7 @@ import React from 'react';
 
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {SortingWorkerOpts} from '@/components/shared/pokemon/sorter/worker/type';
+import {useWorker} from '@/hooks/worker';
 
 
 type UseSortingWorkerOpts<
@@ -18,32 +19,24 @@ export const useSortingWorker = <TExtra, TData extends PokemonInfoWithSortingPay
   ...opts
 }: UseSortingWorkerOpts<TExtra, TData>) => {
   const [sorted, setSorted] = React.useState<SortedPokemonInfo<TExtra, TData>[]>([]);
-  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
-
-  worker.onmessage = (event: MessageEvent<SortedPokemonInfo<TExtra, TData>[]>) => {
-    setLoading(false);
-    setSorted(event.data);
-  };
-
-  worker.onerror = (event) => {
-    setLoading(false);
-    console.error('Error event occurred in sorting worker', event);
-
-    throw event;
-  };
+  const {work} = useWorker<SortingWorkerOpts<TExtra, TData>, SortedPokemonInfo<TExtra, TData>[]>({
+    workerName: 'Pokemon Sorter',
+    generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
+    onCompleted: (result) => {
+      setLoading(false);
+      setSorted(result);
+    },
+    onError: () => setLoading(false),
+  });
 
   const triggerSort = () => {
-    worker.postMessage(opts satisfies SortingWorkerOpts<TExtra, TData>);
+    work(opts);
     setLoading(true);
   };
 
   React.useEffect(() => {
     triggerSort();
   }, triggerDeps);
-
-  React.useEffect(() => {
-    return () => worker.terminate();
-  }, []);
 
   return sorted;
 };

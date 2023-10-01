@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {useWorker} from '@/hooks/worker';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
@@ -37,22 +38,18 @@ export const useCalculationWorker = ({
   setLoading,
   calculateDeps,
 }: Props) => {
-  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
-
-  worker.onmessage = (event) => {
-    setLoading(false);
-    setStats(event.data);
-  };
-
-  worker.onerror = (event) => {
-    setLoading(false);
-    console.error('Error event occurred in analysis worker', event);
-
-    throw event;
-  };
+  const {work} = useWorker<GetAnalysisStatsOpts, AnalysisStats>({
+    workerName: 'Analysis Calculator',
+    generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
+    onCompleted: (result) => {
+      setLoading(false);
+      setStats(result);
+    },
+    onError: () => setLoading(false),
+  });
 
   const requestStats = () => {
-    worker.postMessage({
+    work({
       level,
       pokemonList: pokemonToAnalyze,
       pokemon,
@@ -65,17 +62,11 @@ export const useCalculationWorker = ({
       snorlaxFavorite,
       bonus,
       sleepDurations,
-    } satisfies GetAnalysisStatsOpts);
+    });
     setLoading(true);
   };
 
   React.useEffect(() => {
     requestStats();
   }, calculateDeps);
-
-  React.useEffect(() => {
-    requestStats();
-
-    return () => worker.terminate();
-  }, []);
 };

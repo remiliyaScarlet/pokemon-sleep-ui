@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {initialResult} from '@/const/game/rating';
+import {useWorker} from '@/hooks/worker';
 import {RatingOpts, RatingResultOfLevel, RatingSetupData, RatingWorkerOpts} from '@/types/game/pokemon/rating';
 
 
@@ -22,23 +23,19 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     level,
     ...initialResult,
   });
-  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
-
-  worker.onmessage = (event: MessageEvent<RatingResultOfLevel>) => {
-    setLoading(false);
-    setResult(event.data);
-  };
-
-  worker.onerror = (event) => {
-    setLoading(false);
-    console.error('Error event occurred in sorting worker', event);
-
-    throw event;
-  };
+  const {work} = useWorker<RatingWorkerOpts, RatingResultOfLevel>({
+    workerName: 'Rating',
+    generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
+    onCompleted: (result) => {
+      setLoading(false);
+      setResult(result);
+    },
+    onError: () => setLoading(false),
+  });
 
   const rate = (setupData: RatingSetupData) => {
     // Explicitly stating everything to make sure no additional props passed to the worker
-    worker.postMessage({
+    work({
       level,
       pokemon: setupData.pokemon,
       pokemonProducingParams,
@@ -52,17 +49,13 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       ingredientMap,
       berryDataMap,
       subSkillMap,
-    } satisfies RatingWorkerOpts);
+    });
     setLoading(true);
   };
 
   const resetResult = () => {
     setResult((original) => ({...original, ...initialResult}));
   };
-
-  React.useEffect(() => {
-    return () => worker.terminate();
-  }, []);
 
   return {result, resetResult, rate};
 };
