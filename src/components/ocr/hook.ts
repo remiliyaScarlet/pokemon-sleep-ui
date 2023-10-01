@@ -80,9 +80,10 @@ export const useOcr = ({
     );
     await worker.setParameters({
       // 'S' could be mistakenly recognized as `$` in JP
+      // 'S' could be mistakenly recognized as `§` in EN
       // https://github.com/naptha/tesseract.js/issues/831
       // @ts-ignore
-      tessedit_char_blacklist: '$',
+      tessedit_char_blacklist: '$§',
     });
 
     setState({status: 'recognizing', progress: 0, text: null});
