@@ -78,13 +78,19 @@ export const useOcr = ({
         },
       },
     );
+    await worker.setParameters({
+      // 'S' could be mistakenly recognized as `$` in JP
+      // https://github.com/naptha/tesseract.js/issues/831
+      // @ts-ignore
+      tessedit_char_blacklist: '$',
+    });
 
     setState({status: 'recognizing', progress: 0, text: null});
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
     setState({status: 'completed', progress: 100, text});
     await worker.terminate();
-  }, []);
+  }, [ocrLocale, ocrThreshold]);
 
   return {state, canvasRef, imageRef, runOcr};
 };

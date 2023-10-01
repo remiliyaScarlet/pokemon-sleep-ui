@@ -27,6 +27,7 @@ export const OcrPokemonInfoImporter = ({
       setShow={setShowOcr}
       buttonText="OCR!"
       textToData={(text, locale) => ocrExtractPokemonInfo({
+        ocrLocale: locale,
         text,
         translations: ocrTranslations[locale],
       })}

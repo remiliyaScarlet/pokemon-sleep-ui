@@ -1,4 +1,5 @@
 import {OcrTranslationOfLocale} from '@/types/ocr/translation';
+import {OcrExtractCommonOpts} from '@/utils/ocr/extract/type';
 
 
 export type OcrExtractSingleOpts<TId> = {
@@ -20,4 +21,12 @@ export const ocrExtractSingle = <TId>({text, translations}: OcrExtractSingleOpts
   }
 
   return found;
+};
+
+export const ocrPreprocessText = ({ocrLocale, text}: OcrExtractCommonOpts) => {
+  if (ocrLocale === 'ja') {
+    return text.replaceAll(' ', '');
+  }
+
+  return text;
 };
