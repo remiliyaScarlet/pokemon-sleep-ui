@@ -4,6 +4,7 @@ import {
   PokemonItemStatsWorkerOpts,
   PokemonItemStatsWorkerReturn,
 } from '@/components/shared/pokemon/icon/itemStats/worker/type';
+import {useWorker} from '@/hooks/worker';
 
 
 type UsePokemonProducingStatsWorkerOpts = PokemonItemStatsWorkerOpts & {
@@ -22,32 +23,25 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
     producingStats,
     setProducingStats,
   ] = React.useState<PokemonItemStatsWorkerReturn>([]);
-  const worker = React.useMemo(() => new Worker(new URL('main.worker', import.meta.url)), []);
 
-  worker.onmessage = (event: MessageEvent<PokemonItemStatsWorkerReturn>) => {
-    setLoading(false);
-    setProducingStats(event.data);
-  };
-
-  worker.onerror = (event) => {
-    setLoading(false);
-    console.error('Error event occurred in sorting worker', event);
-
-    throw event;
-  };
+  const {work} = useWorker<PokemonItemStatsWorkerOpts, PokemonItemStatsWorkerReturn>({
+    workerName: 'Pokemon Stats Calculator',
+    generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
+    onCompleted: (result) => {
+      setLoading(false);
+      setProducingStats(result);
+    },
+    onError: () => setLoading(false),
+  });
 
   const calculate = () => {
-    worker.postMessage(opts satisfies PokemonItemStatsWorkerOpts);
+    work(opts);
     setLoading(true);
   };
 
   React.useEffect(() => {
     calculate();
   }, [level, bonus, sleepDurations, pokemonIngredientProduction]);
-
-  React.useEffect(() => {
-    return () => worker.terminate();
-  }, []);
 
   return producingStats;
 };

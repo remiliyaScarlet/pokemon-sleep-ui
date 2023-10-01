@@ -19,7 +19,7 @@ type Props = BonusSliderProps & {
 export const MapBonusSlider = ({mapId, isCurrent, onMapClicked, ...props}: Props) => {
   return (
     <Flex direction="row" className="gap-1">
-      <MapToggle mapId={mapId} className="w-64" isActive={isCurrent} onClick={onMapClicked}/>
+      <MapToggle mapId={mapId} className="w-72" isActive={isCurrent} onClick={onMapClicked}/>
       <BonusSlider id="map-bonus" min={0} max={100} step={5} {...props}>
         <div className="h-6 w-6">
           <MapPinIcon/>
