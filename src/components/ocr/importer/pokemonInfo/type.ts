@@ -1,8 +1,13 @@
-import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
+import {PokemonId} from '@/types/game/pokemon';
+import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {OcrExtractedPokemonInfo} from '@/types/ocr/extracted/pokemon';
 
 
-export type OcrPokemonInfoImportState = {
+export type OcrPokemonInfoImportState = Omit<OcrExtractedPokemonInfo, 'subSkills'> & {
   subSkill: PokemonSubSkill,
-  nature: NatureId | null,
+};
+
+export type OcrPokemonInfoImportCommonProps = {
+  subSkillMap: SubSkillMap,
+  onCompleteImport: (pokemonId: PokemonId, state: OcrPokemonInfoImportState) => void,
 };

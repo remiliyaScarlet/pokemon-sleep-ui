@@ -64,6 +64,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
           });
 
           setInitialSetup(setup);
+
           if (origin === 'pokebox') {
             setRequest(toRatingRequest({setup, calculatedSettings}));
             scrollToResult();

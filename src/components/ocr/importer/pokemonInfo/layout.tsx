@@ -2,33 +2,38 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex';
 import {OcrImporterControls} from '@/components/ocr/importer/controls/main';
-import {OcrPokemonInfoImportState} from '@/components/ocr/importer/pokemonInfo/type';
+import {
+  OcrPokemonInfoImportCommonProps,
+  OcrPokemonInfoImportState,
+} from '@/components/ocr/importer/pokemonInfo/type';
 import {toPokemonSubSkill} from '@/components/ocr/importer/pokemonInfo/utils';
+import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
-import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrExtractedPokemonInfo} from '@/types/ocr/extracted/pokemon';
 
 
-type Props = {
+type Props = OcrPokemonInfoImportCommonProps & {
   data: OcrExtractedPokemonInfo,
   image: string | null,
-  subSkillMap: SubSkillMap,
-  onCompleteImport: (state: OcrPokemonInfoImportState) => void,
 };
 
-export const OcrPokemonInfoImportLayout = ({data, image, subSkillMap, onCompleteImport}: Props) => {
+export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data, image}: Props) => {
   const [state, setState] = React.useState<OcrPokemonInfoImportState>({
     subSkill: toPokemonSubSkill(data.subSkills),
-    nature: data.nature,
+    ...data,
   });
+  const {pokemonId, subSkill, nature} = state;
 
   return (
     <Flex direction="col" className="gap-1.5 p-10">
+      <div className="relative h-20 w-20 self-center">
+        <PokemonImage pokemonId={pokemonId} image="icon" isShiny={false}/>
+      </div>
       <Flex direction="col" className="gap-1.5 md:flex-row">
         <Flex direction="col" className="h-8">
           <PokemonSubSkillSelector
-            subSkill={state.subSkill}
+            subSkill={subSkill}
             setSubSkill={(subSkill) => setState((original) => ({
               ...original,
               subSkill,
@@ -38,7 +43,7 @@ export const OcrPokemonInfoImportLayout = ({data, image, subSkillMap, onComplete
         </Flex>
         <Flex direction="col" className="h-8">
           <PokemonNatureSelector
-            nature={state.nature}
+            nature={nature}
             setNature={(nature) => setState((original) => ({
               ...original,
               nature,
@@ -48,7 +53,8 @@ export const OcrPokemonInfoImportLayout = ({data, image, subSkillMap, onComplete
       </Flex>
       <OcrImporterControls
         image={image}
-        onConfirm={() => onCompleteImport(state)}
+        onConfirm={() => pokemonId && onCompleteImport(pokemonId, state)}
+        disableConfirm={!pokemonId}
       />
     </Flex>
   );

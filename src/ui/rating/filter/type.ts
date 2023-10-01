@@ -11,15 +11,20 @@ export type RatingFilter = PokemonInputFilterExtended;
 export type RatingFilterOnSelectOpts = {
   pokemon: PokemonInfo,
 } & ({
-  origin: 'pokebox',
-  ingredients?: IngredientProductionAtLevels,
-  subSkill?: PokemonSubSkill,
-  nature?: NatureId | null,
-} | {
   origin: 'pokedex',
   ingredients?: never,
   subSkill?: never,
   nature?: never,
+} | {
+  origin: 'ocr',
+  ingredients?: never,
+  subSkill: PokemonSubSkill,
+  nature: NatureId | null,
+} | {
+  origin: 'pokebox',
+  ingredients?: IngredientProductionAtLevels,
+  subSkill?: PokemonSubSkill,
+  nature?: NatureId | null,
 });
 
 export type RatingFilterCommonProps = RatingDataProps & {

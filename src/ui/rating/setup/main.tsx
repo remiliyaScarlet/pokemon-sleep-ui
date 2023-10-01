@@ -5,7 +5,6 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
-import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
@@ -32,7 +31,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   subSkillMap,
   mapMeta,
   pokemonMaxLevel,
-  ocrTranslations,
 }, ref) => {
   const [setup, setSetup] = React.useState(initialSetup);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -99,15 +97,6 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
         />
       </Flex>
       <Flex direction="row" center className="gap-1.5">
-        <OcrPokemonInfoImporter
-          ocrTranslations={ocrTranslations}
-          onCompleteImport={({subSkill, nature}) => setSetup((original) => ({
-            ...original,
-            subSkill,
-            nature,
-          }))}
-          subSkillMap={subSkillMap}
-        />
         <button onClick={() => onInitiate(setup)} className={clsx(
           'button-base button-bg-hover w-full p-1',
           'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',

@@ -7,6 +7,7 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex';
 import {FlexButton} from '@/components/layout/flexButton';
+import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
@@ -27,6 +28,7 @@ export const RatingFilter = (props: Props) => {
     ingredientChainMap,
     subSkillMap,
     onPokemonPicked,
+    ocrTranslations,
   } = props;
 
   const {filter, setFilter, isIncluded} = useRatingFilter({
@@ -76,11 +78,32 @@ export const RatingFilter = (props: Props) => {
         </Flex>
       </Collapsible>
       <RatingPokemonPicker collapsibleState={resultCollapsible} isIncluded={isIncluded} {...props}/>
-      <FlexButton center className="button-clickable-bg p-1" onClick={() => setShow(true)}>
-        <div className="relative h-8 w-8">
-          <InboxArrowDownIcon/>
-        </div>
-      </FlexButton>
+      <Flex direction="row" center className="gap-1.5">
+        <FlexButton center noFullWidth={false} className="button-clickable-bg p-1" onClick={() => setShow(true)}>
+          <div className="relative h-8 w-8">
+            <InboxArrowDownIcon/>
+          </div>
+        </FlexButton>
+        <OcrPokemonInfoImporter
+          ocrTranslations={ocrTranslations}
+          onCompleteImport={(pokemonId, {subSkill, nature}) => {
+            const pokemon = pokedexMap[pokemonId];
+
+            if (!pokemon) {
+              return;
+            }
+
+            onPokemonPicked({
+              origin: 'ocr',
+              pokemon,
+              subSkill,
+              nature,
+            });
+          }}
+          subSkillMap={subSkillMap}
+          noFullWidth={false}
+        />
+      </Flex>
     </Flex>
   );
 };

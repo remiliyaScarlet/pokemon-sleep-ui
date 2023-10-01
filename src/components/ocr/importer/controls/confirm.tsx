@@ -1,19 +1,24 @@
 import React from 'react';
 
 import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 
 import {FlexButton} from '@/components/layout/flexButton';
 
 
 type Props = {
   onClick: () => void,
+  disabled?: boolean,
 };
 
-export const OcrImporterConfirm = ({onClick}: Props) => {
+export const OcrImporterConfirm = ({onClick, disabled}: Props) => {
   return (
-    <FlexButton noFullWidth onClick={onClick} className="button-clickable-border w-fit self-end p-1">
+    <FlexButton
+      className="enabled:button-clickable-border disabled:button-disabled w-fit self-end p-1"
+      noFullWidth disabled={disabled} onClick={onClick}
+    >
       <div className="h-6 w-6">
-        <CheckIcon/>
+        {disabled ? <XMarkIcon/> : <CheckIcon/>}
       </div>
     </FlexButton>
   );

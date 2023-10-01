@@ -1,24 +1,21 @@
 import React from 'react';
 
 import {OcrPokemonInfoImportLayout} from '@/components/ocr/importer/pokemonInfo/layout';
-import {OcrPokemonInfoImportState} from '@/components/ocr/importer/pokemonInfo/type';
+import {OcrPokemonInfoImportCommonProps} from '@/components/ocr/importer/pokemonInfo/type';
 import {OcrPopup} from '@/components/ocr/popup';
-import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrTranslationsForPokemonInfo} from '@/types/ocr/extracted/pokemon';
 import {ocrExtractPokemonInfo} from '@/utils/ocr/extract/pokemon';
 
 
-type Props = {
+type Props = OcrPokemonInfoImportCommonProps & {
   ocrTranslations: OcrTranslationsForPokemonInfo,
-  onCompleteImport: (state: OcrPokemonInfoImportState) => void,
-  subSkillMap: SubSkillMap,
   noFullWidth?: boolean,
 };
 
 export const OcrPokemonInfoImporter = ({
-  ocrTranslations,
-  onCompleteImport,
   subSkillMap,
+  onCompleteImport,
+  ocrTranslations,
   noFullWidth,
 }: Props) => {
   const [showOcr, setShowOcr] = React.useState(false);
@@ -38,8 +35,8 @@ export const OcrPokemonInfoImporter = ({
           data={data}
           image={image}
           subSkillMap={subSkillMap}
-          onCompleteImport={(state) => {
-            onCompleteImport(state);
+          onCompleteImport={(pokemonId, state) => {
+            onCompleteImport(pokemonId, state);
             setShowOcr(false);
           }}
         />
