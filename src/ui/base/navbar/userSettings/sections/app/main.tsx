@@ -22,6 +22,7 @@ export const UserSettingsAppInfo = () => {
       </Flex>
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <UserSettingsAppCompatibility title="Array.at()" result={typeof [].at === 'function'}/>
+        <UserSettingsAppCompatibility title="String.replaceAll()" result={typeof ''.replaceAll === 'function'}/>
       </Grid>
     </UserSettingsSection>
   );
