@@ -54,6 +54,18 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
   let rank = 1;
   let min: RatingDataPoint | null = null;
   let max: RatingDataPoint | null = null;
+  const dailyOfBase = getDailyEnergyOfRate(getPokemonProducingRate({
+    ...opts,
+    pokemon,
+    berryData,
+    ingredients: currentProductions,
+    ...getProducingRateSingleParams({
+      level,
+      subSkill: {},
+      nature: null,
+      subSkillMap,
+    }),
+  }));
 
   for (const productions of generatePossibleIngredientProductions({level, chain})) {
     for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
@@ -94,6 +106,7 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
     rank,
     percentage: min && max ? Math.abs((currentDaily - min.value) / (max.value - min.value) * 100) : NaN,
     percentile: Math.abs((samples + 1 - rank) / (samples + 1) * 100),
+    baseDiffPercent: (currentDaily / dailyOfBase - 1) * 100,
     points: {
       min,
       current: {

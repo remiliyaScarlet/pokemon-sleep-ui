@@ -30,6 +30,7 @@ export type RatingResultOfLevel = {
   rank: number,
   percentage: number,
   percentile: number,
+  baseDiffPercent: number,
   points: {
     min: RatingDataPoint | null,
     current: RatingDataPoint | null,

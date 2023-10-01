@@ -3,7 +3,7 @@ import React from 'react';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
-import {RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -34,4 +34,9 @@ export type PokeInBoxViewUnitProps = PokeboxCommonProps & PokeInBoxPopupProps & 
   pokedexMap: PokedexMap,
   onClick: () => void,
   isLevelPreview: boolean,
+};
+
+export type UseCalculatePokeInBoxRatingReturn = {
+  loading: boolean,
+  result: RatingResultOfLevel,
 };

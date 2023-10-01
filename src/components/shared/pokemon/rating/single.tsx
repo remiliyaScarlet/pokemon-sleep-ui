@@ -14,6 +14,7 @@ import {ProgressBar} from '@/components/progressBar';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
 import {RatingDataPointUI} from '@/components/shared/pokemon/rating/point';
+import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/relativeStrength';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {useRatingWorker} from '@/hooks/rating/hook';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
@@ -68,6 +69,7 @@ export const RatingResultOfLevelUI = ({
     rank,
     percentage,
     percentile,
+    baseDiffPercent,
     points,
   } = result;
   const textMarkStyle = getMarkByThreshold(percentile, ratingMarkThresholdByPr);
@@ -80,8 +82,15 @@ export const RatingResultOfLevelUI = ({
           <div className="text-xl">{level}</div>
         </Flex>
         <Flex direction="col" className="gap-3">
-          <Flex direction="row" className="items-end justify-center gap-1 text-6xl">
-            {isNaN(percentile) ? '-' : <><span className="text-2xl">PR</span>{formatInt(percentile)}</>}
+          <Flex direction="row" className="items-end justify-center gap-1.5">
+            <Flex direction="row" className="items-end justify-center gap-1 text-6xl">
+              {isNaN(percentile) ? '-' : <><span className="text-2xl">PR</span>{formatInt(percentile)}</>}
+            </Flex>
+            <PokemonRatingRelativeStrength
+              baseDiffPercent={baseDiffPercent}
+              iconDimension="h-7 w-7"
+              className="text-2xl"
+            />
           </Flex>
           <Flex direction="col">
             <ProgressBar percent={percentile}/>

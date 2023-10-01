@@ -6,6 +6,7 @@ export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
   rank: NaN,
   percentage: NaN,
   percentile: NaN,
+  baseDiffPercent: NaN,
   points: {
     min: null,
     current: null,
