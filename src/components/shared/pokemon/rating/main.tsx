@@ -15,7 +15,7 @@ export const RatingResult = React.forwardRef<HTMLDivElement, RatingResultProps>(
   return (
     <Flex direction="col" className="gap-2">
       <AdsUnit/>
-      <Grid ref={ref} className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+      <Grid ref={ref} className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
         {pokemonKeyLevels
           .filter((level) => level <= pokemonMaxLevel)
           .sort((a, b) => a - b)
