@@ -12,12 +12,14 @@ type Props = {
   ocrTranslations: OcrTranslationsForPokemonInfo,
   onCompleteImport: (state: OcrPokemonInfoImportState) => void,
   subSkillMap: SubSkillMap,
+  noFullWidth?: boolean,
 };
 
 export const OcrPokemonInfoImporter = ({
   ocrTranslations,
   onCompleteImport,
   subSkillMap,
+  noFullWidth,
 }: Props) => {
   const [showOcr, setShowOcr] = React.useState(false);
 
@@ -42,6 +44,7 @@ export const OcrPokemonInfoImporter = ({
           }}
         />
       )}
+      noFullWidth={noFullWidth}
     />
   );
 };
