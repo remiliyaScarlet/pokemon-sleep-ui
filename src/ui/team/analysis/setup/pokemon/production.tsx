@@ -5,6 +5,7 @@ import {clsx} from 'clsx';
 import {Flex} from '@/components/layout/flex';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
+import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
@@ -28,6 +29,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
   return (
     <>
       <PokemonFrequencyFromProducingRate pokemonRate={stats}/>
+      <PokemonTimeToFullPack timeToFullPack={stats.fullPackStats.secondsToFull}/>
       <HorizontalSplitter className="w-full"/>
       <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
       <PokemonProductionSplit

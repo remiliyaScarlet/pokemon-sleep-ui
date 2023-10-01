@@ -176,7 +176,8 @@
         "FrequencyBase": "おてつだい時間 (ベース)",
         "FrequencyEquivalent": "おてつだい時間 (同等)",
         "Friendship": "フレンドポイント",
-        "Recruit": "仲間になる"
+        "Recruit": "仲間になる",
+        "TimeToFullPack": "所持上限に達するまでの時間"
       },
       "Sort": {
         "Id": "ID",

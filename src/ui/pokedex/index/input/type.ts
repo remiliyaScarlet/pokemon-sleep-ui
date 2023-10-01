@@ -8,8 +8,8 @@ export type PokedexInputProps = FilterInputProps<PokedexFilter>;
 export const pokedexDisplayType = [
   ...pokemonSortType,
   'berry',
-  'mainSkill',
   'ingredient',
+  'mainSkill',
   'sleepType',
   'specialty',
 ] as const;

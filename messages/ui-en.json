@@ -176,7 +176,8 @@
         "FrequencyBase": "Frequency (Base)",
         "FrequencyEquivalent": "Frequency (Equivalent)",
         "Friendship": "Friendship Points",
-        "Recruit": "Partnered"
+        "Recruit": "Partnered",
+        "TimeToFullPack": "Time to Full Pack"
       },
       "Sort": {
         "Id": "ID",

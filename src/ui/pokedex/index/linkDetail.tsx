@@ -8,6 +8,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
+import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
@@ -131,6 +132,14 @@ export const PokedexLinkDetail = React.memo(({
     return (
       <Flex direction="row">
         <PokemonFrequency frequency={sorter}/>
+      </Flex>
+    );
+  }
+
+  if (display === 'timeToFullPack') {
+    return (
+      <Flex direction="row">
+        <PokemonTimeToFullPack timeToFullPack={sorter}/>
       </Flex>
     );
   }

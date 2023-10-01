@@ -19,4 +19,5 @@ export const sortTypeToI18nId: {
   frequency: 'Stats.FrequencyEquivalent',
   frequencyOfBerry: 'Sort.FrequencyOfBerry',
   frequencyOfIngredient: 'Sort.FrequencyOfIngredient',
+  timeToFullPack: 'Stats.TimeToFullPack',
 };

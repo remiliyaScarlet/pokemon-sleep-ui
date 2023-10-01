@@ -12,6 +12,7 @@ const exhaustIngredientCombinationsIfSort: PokemonSortType[] = [
   'ingredientEnergy',
   'frequency',
   'frequencyOfIngredient',
+  'timeToFullPack',
   'totalEnergy',
 ];
 

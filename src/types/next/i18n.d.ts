@@ -112,6 +112,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           FrequencyEquivalent: string,
           Friendship: string,
           Recruit: string,
+          TimeToFullPack: string,
         },
         Sort: {
           Id: string,

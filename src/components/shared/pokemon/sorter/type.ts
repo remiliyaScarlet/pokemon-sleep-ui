@@ -23,6 +23,7 @@ export const pokemonSortType = [
   'frequency',
   'frequencyOfBerry',
   'frequencyOfIngredient',
+  'timeToFullPack',
 ] as const;
 
 export type PokemonSortType = typeof pokemonSortType[number];

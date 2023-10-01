@@ -176,7 +176,8 @@
         "FrequencyBase": "도우미 시간 (베이스)",
         "FrequencyEquivalent": "도우미 시간 (동등)",
         "Friendship": "프렌드 포인트",
-        "Recruit": "동료가 되어"
+        "Recruit": "동료가 되어",
+        "TimeToFullPack": "가득 재고 필요한 시간"
       },
       "Sort": {
         "Id": "ID",

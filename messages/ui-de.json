@@ -177,7 +177,8 @@
         "FrequencyEquivalent": "verhältnismäßige Frequenz",
         "Frequency": "Frequenz",
         "Friendship": "Max. Freundespunkte",
-        "Recruit": "Befreundet"
+        "Recruit": "Befreundet",
+        "TimeToFullPack": "Zeit, voll zu packen"
       },
       "Sort": {
         "Id": "ID",
