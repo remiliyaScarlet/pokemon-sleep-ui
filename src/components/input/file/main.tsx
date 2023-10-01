@@ -33,10 +33,15 @@ export const InputFile = ({id, accept, onFileSelected, onFileTypeIncorrect, ...p
           const files = target.files;
 
           if (!files) {
-            return onFileSelected(null);
+            onFileSelected(null);
+            return;
           }
 
-          const file = files[0];
+          const file = files.item(0);
+          if (!file) {
+            return;
+          }
+
           if (!accept.includes(file.type as MimeTypes)) {
             onFileTypeIncorrect(file.type);
             return;
