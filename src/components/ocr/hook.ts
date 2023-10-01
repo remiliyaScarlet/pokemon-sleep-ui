@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {createWorker} from 'tesseract.js';
+import {createWorker, OEM} from 'tesseract.js';
 
 import {ocrLocaleToTesseract} from '@/components/ocr/const';
 import {OcrState, UseOcrReturn} from '@/components/ocr/type';
@@ -63,25 +63,26 @@ export const useOcr = ({
     const processedImage = ocrThresholdImage({imageData, threshold: ocrThreshold});
     ctx.putImageData(processedImage, 0, 0);
 
-    const worker = await createWorker({
-      logger: ({progress, status}) => {
-        if (status === 'recognizing text') {
-          setState({status: 'recognizing', progress: progress * 100, text: null});
-        } else {
-          setState({status: 'loadingOcr', progress: 0, text: null});
-        }
+    setState({status: 'loadingOcr', progress: 0, text: null});
+    const tesseractLang = ocrLocaleToTesseract[ocrLocale];
+    const worker = await createWorker(
+      tesseractLang,
+      OEM.DEFAULT,
+      {
+        logger: ({progress, status}) => {
+          if (status === 'recognizing text') {
+            setState({status: 'recognizing', progress: progress * 100, text: null});
+          } else {
+            setState({status: 'loadingOcr', progress: 0, text: null});
+          }
+        },
       },
-    });
+    );
 
     setState({status: 'recognizing', progress: 0, text: null});
-    const tesseractLang = ocrLocaleToTesseract[ocrLocale];
-    await worker.loadLanguage(tesseractLang);
-    await worker.initialize(tesseractLang);
-
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
     setState({status: 'completed', progress: 100, text});
-
     await worker.terminate();
   }, []);
 

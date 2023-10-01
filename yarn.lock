@@ -6514,15 +6514,15 @@ tar-stream@^3.1.5:
     fast-fifo "^1.2.0"
     streamx "^2.15.0"
 
-tesseract.js-core@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/tesseract.js-core/-/tesseract.js-core-4.0.4.tgz#6710744a02cb538a83fbb7aafc2e7be204f76eb3"
-  integrity sha512-MJ+vtktjAaT0681uPl6TDUPhbRbpD/S9emko5rtorgHRZpQo7R3BG7h+3pVHgn1KjfNf1bvnx4B7KxEK8YKqpg==
+tesseract.js-core@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/tesseract.js-core/-/tesseract.js-core-5.0.0.tgz#159089b2e8a8c6b1f285134b1f7da6fc56914225"
+  integrity sha512-lJur5LzjinW5VYMKlVNnBU2JPLpO+A9VqAYBeuV+ZgH0hKvsnm+536Yyp+/zRTBdLe7D6Kok0FN9g+TE4J8qGA==
 
-tesseract.js@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/tesseract.js/-/tesseract.js-4.1.4.tgz#e14567862655c1edf571cbe8157ad55e6f856c0e"
-  integrity sha512-iLjJjLWVNV4PApofEsd54Y1MbjhzpPxEzF8EjYmC2CLN4hrUqO5aTNTSbGA7/QjycKtAWHhn2YmDR+6GFwi2Zg==
+tesseract.js@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/tesseract.js/-/tesseract.js-5.0.0.tgz#a782c494f6e811c5f0a7d842495fba883f97dbd5"
+  integrity sha512-dveto1IstLTEVYSquddE/2iZgtVUElgmRzxwZ67ALZRCpgw0AHRCQ7GIVooNJygbUFDP1QOsBRO5r2c1eQwquw==
   dependencies:
     bmp-js "^0.1.0"
     idb-keyval "^6.2.0"
@@ -6531,7 +6531,7 @@ tesseract.js@^4.1.4:
     node-fetch "^2.6.9"
     opencollective-postinstall "^2.0.3"
     regenerator-runtime "^0.13.3"
-    tesseract.js-core "^4.0.4"
+    tesseract.js-core "^5.0.0"
     wasm-feature-detect "^1.2.11"
     zlibjs "^0.3.1"
 
