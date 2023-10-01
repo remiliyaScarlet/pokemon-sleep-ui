@@ -10,4 +10,5 @@ export type OcrPokemonInfoImportState = Omit<OcrExtractedPokemonInfo, 'subSkills
 export type OcrPokemonInfoImportCommonProps = {
   subSkillMap: SubSkillMap,
   onCompleteImport: (pokemonId: PokemonId, state: OcrPokemonInfoImportState) => void,
+  pokemonIdOverride?: PokemonId,
 };

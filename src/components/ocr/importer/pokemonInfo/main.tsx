@@ -13,10 +13,10 @@ type Props = OcrPokemonInfoImportCommonProps & {
 };
 
 export const OcrPokemonInfoImporter = ({
-  subSkillMap,
   onCompleteImport,
   ocrTranslations,
   noFullWidth,
+  ...props
 }: Props) => {
   const [showOcr, setShowOcr] = React.useState(false);
 
@@ -34,11 +34,11 @@ export const OcrPokemonInfoImporter = ({
         <OcrPokemonInfoImportLayout
           data={data}
           image={image}
-          subSkillMap={subSkillMap}
           onCompleteImport={(pokemonId, state) => {
             onCompleteImport(pokemonId, state);
             setShowOcr(false);
           }}
+          {...props}
         />
       )}
       noFullWidth={noFullWidth}

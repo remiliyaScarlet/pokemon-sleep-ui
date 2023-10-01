@@ -18,12 +18,13 @@ type Props = OcrPokemonInfoImportCommonProps & {
   image: string | null,
 };
 
-export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data, image}: Props) => {
+export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data, image, pokemonIdOverride}: Props) => {
   const [state, setState] = React.useState<OcrPokemonInfoImportState>({
     subSkill: toPokemonSubSkill(data.subSkills),
     ...data,
   });
-  const {pokemonId, subSkill, nature} = state;
+  const {subSkill, nature} = state;
+  const pokemonId = state.pokemonId ?? pokemonIdOverride ?? null;
 
   return (
     <Flex direction="col" className="gap-1.5 p-10">
