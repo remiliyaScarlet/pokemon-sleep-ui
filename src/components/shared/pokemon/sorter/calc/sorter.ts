@@ -9,7 +9,7 @@ export const getPokemonRateSorter = ({
   snorlaxFavorite,
   calculatedSettings,
   ...opts
-}: PokemonSorterGetterOpts): PokemonProducingRate | null => {
+}: PokemonSorterGetterOpts): PokemonProducingRate => {
   return getPokemonProducingRate({
     ...opts,
     ...calculatedSettings,
@@ -26,29 +26,17 @@ type GetPokemonItemRateSorterOpts = {
 export const getBerryRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
   const rateOfPokemon = getPokemonRateSorter(opts);
 
-  if (!rateOfPokemon) {
-    return 0;
-  }
-
   return rateOfPokemon.berry[key];
 };
 
 export const getIngredientTotalRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
   const rateOfPokemon = getPokemonRateSorter(opts);
 
-  if (!rateOfPokemon) {
-    return 0;
-  }
-
   return toSum(Object.values(rateOfPokemon.ingredient).map((rate) => rate[key]));
 };
 
 export const getIngredientFirstRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
   const rateOfPokemon = getPokemonRateSorter(opts);
-
-  if (!rateOfPokemon) {
-    return 0;
-  }
 
   const first = Object.values(rateOfPokemon.ingredient).at(0);
   if (!first) {
