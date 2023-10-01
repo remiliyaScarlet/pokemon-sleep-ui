@@ -80,8 +80,8 @@ export const RatingResultOfLevelUI = ({
           <div className="text-xl">{level}</div>
         </Flex>
         <Flex direction="col" className="gap-3">
-          <Flex direction="row" center className="text-6xl">
-            {isNaN(percentile) ? '-' : <>{formatInt(percentile)}<sup>th</sup></>}
+          <Flex direction="row" className="items-end justify-center gap-1 text-6xl">
+            {isNaN(percentile) ? '-' : <><span className="text-2xl">PR</span>{formatInt(percentile)}</>}
           </Flex>
           <Flex direction="col">
             <ProgressBar percent={percentile}/>

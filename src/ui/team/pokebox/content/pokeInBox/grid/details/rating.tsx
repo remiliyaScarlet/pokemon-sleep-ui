@@ -26,7 +26,7 @@ export const PokeInBoxGridRating = (props: PokeInBoxCommonProps) => {
           {
             loading ?
               <LoadingText dimension="h-4 w-4" text="PR"/> :
-              isNaN(percentile) ? '-' : <>{formatInt(percentile)}<sup>th</sup></>
+              isNaN(percentile) ? '-' : <>PR {formatInt(percentile)}</>
           }
         </div>
         <ProgressBar className="w-full" percent={percentile}/>

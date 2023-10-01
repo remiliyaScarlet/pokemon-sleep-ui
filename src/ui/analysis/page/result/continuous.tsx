@@ -47,7 +47,7 @@ export const AnalysisStatsContinuousUI = <TData, >({
           <Flex direction="row" noFullWidth className="justify-end gap-1">
             {isAvailable ?
               <>
-                <div>{formatInt(percentile)}<sup>th</sup></div>
+                <div>{formatInt(percentile)}<sub>PR</sub></div>
                 <div>/</div>
                 <div>{formatFloat(percentage)}%</div>
               </> :
