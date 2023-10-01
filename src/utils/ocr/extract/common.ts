@@ -1,14 +1,10 @@
-import {OcrTranslationOfLocale} from '@/types/ocr/translation';
-import {OcrExtractCommonOpts} from '@/utils/ocr/extract/type';
+import {OcrExtractCommonOpts, OcrExtractOpts, OcrExtractSingleResult} from '@/utils/ocr/extract/type';
 
 
-export type OcrExtractSingleOpts<TId> = {
-  text: string,
-  translations: OcrTranslationOfLocale<TId>,
-};
-
-export const ocrExtractSingle = <TId>({text, translations}: OcrExtractSingleOpts<TId>): TId | null => {
-  let found = null;
+export const ocrExtractSingle = <TId>({
+  text,
+  translations,
+}: OcrExtractOpts<TId>): OcrExtractSingleResult<TId> | null => {
   for (const [name, id] of Object.entries(translations)) {
     const index = text.indexOf(name);
 
@@ -16,11 +12,29 @@ export const ocrExtractSingle = <TId>({text, translations}: OcrExtractSingleOpts
       continue;
     }
 
-    found = id;
-    break;
+    return {id, index};
   }
 
-  return found;
+  return null;
+};
+
+export const ocrExtractMulti = <TId>({
+  text,
+  translations,
+}: OcrExtractOpts<TId>): OcrExtractSingleResult<TId>[] => {
+  const results: OcrExtractSingleResult<TId>[] = [];
+
+  for (const [name, id] of Object.entries(translations)) {
+    const index = text.indexOf(name);
+
+    if (index < 0) {
+      continue;
+    }
+
+    results.push({id, index});
+  }
+
+  return results;
 };
 
 export const ocrPreprocessText = ({ocrLocale, text}: OcrExtractCommonOpts) => {

@@ -1,6 +1,6 @@
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {OcrExtractedPokemonInfo, OcrTranslationsForPokemonInfoOfLocale} from '@/types/ocr/extracted/pokemon';
-import {ocrExtractSingle, ocrPreprocessText} from '@/utils/ocr/extract/common';
+import {ocrExtractMulti, ocrExtractSingle, ocrPreprocessText} from '@/utils/ocr/extract/common';
 import {OcrExtractCommonOpts} from '@/utils/ocr/extract/type';
 import {isNotNullish} from '@/utils/type';
 
@@ -13,19 +13,9 @@ export const ocrExtractPokemonInfo = ({translations, ...opts}: OcrExtractPokemon
   const text = ocrPreprocessText(opts);
 
   return {
-    pokemonId: ocrExtractSingle({text, translations: translations.name}),
-    nature: ocrExtractSingle({text, translations: translations.nature}),
-    subSkills: Object.entries(translations.subSkill)
-      .map(([name, id]) => {
-        const index = text.indexOf(name);
-
-        if (index < 0) {
-          return null;
-        }
-
-        return {id, index};
-      })
-      .filter(isNotNullish)
+    pokemonId: ocrExtractSingle({text, translations: translations.name})?.id ?? null,
+    nature: ocrExtractSingle({text, translations: translations.nature})?.id ?? null,
+    subSkills: ocrExtractMulti({text, translations: translations.subSkill})
       .sort((a, b) => a.index - b.index)
       .map(({id}, idx) => {
         const level = pokemonSubSkillLevel[idx];
