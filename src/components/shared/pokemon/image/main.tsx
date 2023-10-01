@@ -3,30 +3,28 @@ import React from 'react';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {imagePortraitSizes} from '@/styles/image';
-import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonId} from '@/types/game/pokemon';
 
 
 type Props = {
-  pokemon: PokemonInfo,
+  pokemonId: PokemonId,
   image: PokemonImageType,
   isShiny: boolean,
 };
 
-export const PokemonImage = ({pokemon, image, isShiny}: Props) => {
-  const {id} = pokemon;
-
+export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
   if (image === 'onSnorlax') {
     return (
       <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
     );
   }
 
-  const alt = `Pokemon #${id}`;
+  const alt = `Pokemon #${pokemonId}`;
 
   if (image === 'portrait') {
     return (
       <NextImage
-        src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${id}.png`} alt={alt}
+        src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${pokemonId}.png`} alt={alt}
         sizes={imagePortraitSizes}
       />
     );
@@ -34,7 +32,7 @@ export const PokemonImage = ({pokemon, image, isShiny}: Props) => {
 
   return (
     <NextImage
-      src={`/images/sleep/${image}/${isShiny ? 'shiny/' : ''}${id}.png`} alt={alt}
+      src={`/images/sleep/${image}/${isShiny ? 'shiny/' : ''}${pokemonId}.png`} alt={alt}
       sizes={imagePortraitSizes}
     />
   );

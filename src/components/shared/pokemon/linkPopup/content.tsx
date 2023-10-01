@@ -28,7 +28,7 @@ export const PokemonLinkPopupContent = ({pokemon}: Props) => {
     <Flex direction="col" center className="gap-2 md:w-96">
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-60 w-60">
-        <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+        <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
       <Flex direction="row" className="gap-2">
         <Flex direction="col">

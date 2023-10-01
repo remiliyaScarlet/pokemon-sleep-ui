@@ -74,7 +74,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               leaveTo="opacity-0"
               className={clsx('absolute', styles['gallery-size'])}
             >
-              <PokemonImage image={image} isShiny={imageShiny} {...props}/>
+              <PokemonImage pokemonId={pokemon.id} image={image} isShiny={imageShiny}/>
             </Transition>
           ))}
       </Flex>

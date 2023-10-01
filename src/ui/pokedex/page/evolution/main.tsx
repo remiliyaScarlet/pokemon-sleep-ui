@@ -31,7 +31,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
         <ArrowRightIcon className="hidden lg:block"/>
       </div>
       <div className="relative h-52 w-52">
-        <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+        <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
       {
         !!evolution.next.length &&

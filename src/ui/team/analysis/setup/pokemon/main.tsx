@@ -75,7 +75,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         </Flex>
         <Flex direction="row" center>
           <div className="relative h-28 w-28">
-            <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+            <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
           </div>
         </Flex>
         <Flex direction="col" className="items-center gap-1.5 sm:flex-row">

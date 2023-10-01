@@ -28,7 +28,7 @@ export const PokemonEvolutionPortrait = ({pokemon, dimension, showPokemon}: Prop
   return (
     <button className="button-clickable-bg" onClick={() => showPokemon(pokemon)}>
       <div className={clsx('relative shrink-0', dimension)}>
-        <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+        <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
     </button>
   );

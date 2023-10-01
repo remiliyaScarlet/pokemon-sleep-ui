@@ -60,7 +60,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
       </button>
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-48 w-48">
-        <PokemonImage pokemon={pokemon} image="portrait" isShiny={false}/>
+        <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
       <SnorlaxFavoriteInput
         mapMeta={mapMeta}
