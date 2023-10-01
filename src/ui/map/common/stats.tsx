@@ -1,5 +1,6 @@
 import React from 'react';
 
+import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 import {useTranslations} from 'next-intl';
 
@@ -10,15 +11,18 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapMeta} from '@/types/game/mapMeta';
 import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {MapSleepdexUnlockCount} from '@/ui/map/common/sleepdexUnlock';
+import {MapIndexSleepdexCompletionOfMap} from '@/ui/map/common/type';
 import {toUnique} from '@/utils/array';
 
 
 type Props = {
   sleepStyles: SleepStyleDataFlattened[] | undefined,
+  sleepdexCompletionOfMap: MapIndexSleepdexCompletionOfMap | undefined,
   meta: MapMeta | null | undefined,
 };
 
-export const MapStats = ({sleepStyles, meta}: Props) => {
+export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta}: Props) => {
   const t = useTranslations('UI.InPage.Map');
   const t2 = useTranslations('UI.Common');
 
@@ -45,6 +49,17 @@ export const MapStats = ({sleepStyles, meta}: Props) => {
             {pokemonCount}
           </div>
         </Flex>
+        {
+          sleepdexCompletionOfMap &&
+          <Flex direction="row" center noFullWidth className="gap-1.5">
+            <div className="h-6 w-6">
+              <BookmarkIcon/>
+            </div>
+            <div>
+              <MapSleepdexUnlockCount sleepdexCompletionOfMap={sleepdexCompletionOfMap}/>
+            </div>
+          </Flex>
+        }
       </Flex>
       <Flex direction="row" center className="gap-5">
         <div className="relative h-10 w-10">

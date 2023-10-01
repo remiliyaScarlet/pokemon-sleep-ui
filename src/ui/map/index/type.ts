@@ -1,8 +1,7 @@
 import {FieldMetaMap} from '@/types/game/mapMeta';
-import {FieldToSleepStyleFlattenedMap} from '@/types/game/sleepStyle';
+import {MapIndexSleepdexCompletionProps} from '@/ui/map/common/type';
 
 
-export type MapIndexCommonProps = {
-  data: FieldToSleepStyleFlattenedMap,
+export type MapIndexServerDataProps = MapIndexSleepdexCompletionProps & {
   mapMeta: FieldMetaMap,
 };

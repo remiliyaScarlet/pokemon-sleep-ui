@@ -7,26 +7,38 @@ import {Flex} from '@/components/layout/flex';
 import {Grid} from '@/components/layout/grid';
 import {MapLink} from '@/components/shared/map/link';
 import {MapStats} from '@/ui/map/common/stats';
-import {MapIndexCommonProps} from '@/ui/map/index/type';
+import {getSleepdexCompletion} from '@/ui/map/common/utils';
+import {MapIndexServerDataProps} from '@/ui/map/index/type';
 
 
-export const MapIndexContent = ({data, mapMeta}: MapIndexCommonProps) => {
+export const MapIndexContent = (props: MapIndexServerDataProps) => {
+  const {data, mapMeta} = props;
   const t = useTranslations('Game.Field');
+
+  const sleepdexCompletion = getSleepdexCompletion(props);
 
   return (
     <Flex direction="col" className="gap-1.5 md:px-32 md:pt-32">
       <AdsUnit/>
-      <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2">
-        {Object.entries(data).map(([mapId, sleepStyles]) => (
-          <MapLink key={mapId} mapId={mapId} className="h-40">
-            <Flex direction="col" className="gap-4">
-              <div className="text-2xl">
-                {t(mapId.toString())}
-              </div>
-              <MapStats sleepStyles={sleepStyles} meta={mapMeta[Number(mapId)]}/>
-            </Flex>
-          </MapLink>
-        ))}
+      <Grid className="grid-cols-1 gap-1.5 xl:grid-cols-2">
+        {Object.entries(data).map(([mapIdStr, sleepStyles]) => {
+          const mapId = Number(mapIdStr);
+
+          return (
+            <MapLink key={mapId} mapId={mapId} className="h-40">
+              <Flex direction="col" className="gap-4">
+                <div className="text-2xl">
+                  {t(mapIdStr)}
+                </div>
+                <MapStats
+                  sleepStyles={sleepStyles}
+                  sleepdexCompletionOfMap={sleepdexCompletion[mapId]}
+                  meta={mapMeta[mapId]}
+                />
+              </Flex>
+            </MapLink>
+          );
+        })}
       </Grid>
       <AdsUnit/>
     </Flex>

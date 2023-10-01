@@ -2,6 +2,7 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {MapMeta} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
+import {SleepdexMap} from '@/types/game/sleepdex';
 import {SleepStyleDataFlattened, SleepStyleId} from '@/types/game/sleepStyle';
 import {SnorlaxRankInMap, SnorlaxReward} from '@/types/game/snorlax';
 
@@ -22,14 +23,18 @@ export type MapPageFilter = PokemonInputFilter & {
   displayType: MapUnlockTableDisplayType,
 };
 
-export type MapCommonProps = UsePokemonFilterCommonData & {
+export type MapPageServerDataProps = UsePokemonFilterCommonData & {
   mapId: number,
-  mapName: string,
   sleepStyles: SleepStyleDataFlattened[],
   pokedexMap: PokedexMap,
   snorlaxRank: SnorlaxRankInMap,
   snorlaxReward: SnorlaxReward[],
   mapMeta: MapMeta | null,
+  sleepdexMap: SleepdexMap,
+};
+
+export type MapCommonProps = MapPageServerDataProps & {
+  mapName: string,
 };
 
 export type MapInputInclusionKey = `${PokemonId}-${SleepStyleId}`;

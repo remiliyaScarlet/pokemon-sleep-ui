@@ -14,7 +14,8 @@ import {isSameRank} from '@/utils/game/snorlax';
 type Props = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
-  initialSleepdex: SleepdexMap,
+  sleepdex: SleepdexMap,
+  setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,
 };
 
 export const MapUnlockTable = (props: Props) => {
@@ -24,11 +25,9 @@ export const MapUnlockTable = (props: Props) => {
     snorlaxRank,
     filter,
     isIncluded,
-    initialSleepdex,
+    sleepdex,
   } = props;
   const {showEmptyRank} = filter;
-
-  const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
 
   let accumulator: MapUnlockAccumulator = {
     unlocked: {},
@@ -97,8 +96,6 @@ export const MapUnlockTable = (props: Props) => {
             rank={rank}
             matchingStyles={matchingStyles}
             accumulator={accumulator}
-            sleepdex={sleepdex}
-            setSleepdex={setSleepdex}
             {...props}
           />
         );

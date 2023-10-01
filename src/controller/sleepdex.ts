@@ -15,7 +15,11 @@ const getCollection = async (): Promise<Collection<SleepdexRecord>> => {
     .collection<SleepdexRecord>('sleepdex');
 };
 
-export const getSleepdexMap = async (userId: string): Promise<SleepdexMap> => {
+export const getSleepdexMap = async (userId: string | undefined): Promise<SleepdexMap> => {
+  if (!userId) {
+    return {};
+  }
+
   const collection = await getCollection();
 
   return Object.fromEntries(
