@@ -9,7 +9,7 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex';
 import {FlexButton} from '@/components/layout/flexButton';
-import {ocrStatusToI18nId} from '@/components/ocr/const';
+import {ocrStatusToI18nId, ocrThreshold} from '@/components/ocr/const';
 import {useOcr} from '@/components/ocr/hook';
 import {OcrCommonProps} from '@/components/ocr/type';
 import {ProgressBar} from '@/components/progressBar';
@@ -32,7 +32,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
     runOcr,
   } = useOcr({
     ocrLocale: locale,
-    ocrThreshold: 200,
+    ocrThreshold,
     onError: (message) => showToast({
       isAlert: true,
       content: message,

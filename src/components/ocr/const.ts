@@ -16,3 +16,5 @@ export const ocrStatusToI18nId: {[status in OcrStatus]: I18nMessageKeysOfNamespa
   recognizing: 'Recognizing',
   completed: 'Completed',
 };
+
+export const ocrThreshold = 180;
