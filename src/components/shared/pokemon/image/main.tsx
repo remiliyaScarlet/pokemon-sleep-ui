@@ -7,13 +7,13 @@ import {PokemonId} from '@/types/game/pokemon';
 
 
 type Props = {
-  pokemonId: PokemonId,
+  pokemonId: PokemonId | null,
   image: PokemonImageType,
   isShiny: boolean,
 };
 
 export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
-  if (image === 'onSnorlax') {
+  if (image === 'onSnorlax' || !pokemonId) {
     return (
       <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
     );
@@ -25,6 +25,15 @@ export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
     return (
       <NextImage
         src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${pokemonId}.png`} alt={alt}
+        sizes={imagePortraitSizes}
+      />
+    );
+  }
+
+  if (image === 'icon') {
+    return (
+      <NextImage
+        src={`/images/pokemon/icons/${pokemonId}.png`} alt={alt}
         sizes={imagePortraitSizes}
       />
     );
