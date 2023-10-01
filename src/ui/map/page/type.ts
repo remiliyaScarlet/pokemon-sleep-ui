@@ -31,6 +31,7 @@ export type MapPageServerDataProps = UsePokemonFilterCommonData & {
   snorlaxReward: SnorlaxReward[],
   mapMeta: MapMeta | null,
   sleepdexMap: SleepdexMap,
+  isLoggedIn: boolean,
 };
 
 export type MapCommonProps = MapPageServerDataProps & {

@@ -59,6 +59,7 @@ export const MapPage = async ({params}: Props) => {
     snorlaxReward,
     mapMeta,
     sleepdexMap,
+    isLoggedIn: !!session,
   };
 
   return (

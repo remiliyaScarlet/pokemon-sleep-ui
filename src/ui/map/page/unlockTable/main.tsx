@@ -11,7 +11,10 @@ import {getPossibleRanks} from '@/ui/map/page/utils';
 import {isSameRank} from '@/utils/game/snorlax';
 
 
-type Props = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward'> & {
+type Props = Pick<
+  MapCommonProps,
+  'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward' | 'isLoggedIn'
+> & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
   sleepdex: SleepdexMap,

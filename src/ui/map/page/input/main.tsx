@@ -15,7 +15,12 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const MapInfoInput = (props: MapInputCommonProps) => {
-  const {filter, setFilter, pokedexMap, sleepStyles} = props;
+  const {
+    filter,
+    setFilter,
+    pokedexMap,
+    sleepStyles,
+  } = props;
 
   return (
     <Flex direction="col" className="gap-1">

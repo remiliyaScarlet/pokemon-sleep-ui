@@ -23,7 +23,10 @@ export type MapUnlockAccumulator = {
   },
 };
 
-export type MapUnlockTableRowProps = Pick<MapCommonProps, 'mapId' | 'pokedexMap' | 'snorlaxReward'> & {
+export type MapUnlockTableRowProps = Pick<
+  MapCommonProps,
+  'mapId' | 'pokedexMap' | 'snorlaxReward' | 'isLoggedIn'
+> & {
   filter: MapPageFilter,
   rank: SnorlaxRank,
   matchingStyles: SleepStyleDataFlattened[],

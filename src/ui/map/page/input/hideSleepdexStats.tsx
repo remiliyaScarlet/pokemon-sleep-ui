@@ -5,15 +5,19 @@ import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import {clsx} from 'clsx';
 
-import {FilterInputProps} from '@/components/input/filter/type';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex';
+import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {MapPageFilter} from '@/ui/map/page/type';
 
 
-export const MapInputSleepdexStatsToggle = ({filter, setFilter}: FilterInputProps<MapPageFilter>) => {
+export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: MapInputCommonProps) => {
   const {showSleepdexStats} = filter;
+
+  if (!isLoggedIn) {
+    return <></>;
+  }
 
   return (
     <ToggleButton
