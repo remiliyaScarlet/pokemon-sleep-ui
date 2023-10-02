@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import ArrowLeftCircleIcon from '@heroicons/react/24/outline/ArrowLeftCircleIcon';
@@ -15,7 +14,7 @@ type Props = {
   session: Session | null,
 };
 
-export const UserAuthControlClient = ({session}: Props) => {
+export const UserAuthControl = ({session}: Props) => {
   const t = useTranslations('UI.UserControl');
 
   if (!session) {

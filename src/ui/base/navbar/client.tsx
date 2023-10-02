@@ -7,19 +7,20 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex';
 import {useNavEntries} from '@/hooks/nav';
+import {UserAuthControl} from '@/ui/base/navbar/auth';
 import {ThemeSwitcher} from '@/ui/base/navbar/darkMode/main';
 import {NavEntryUI} from '@/ui/base/navbar/entry';
-import {NavHomepage} from '@/ui/base/navbar/home';
 import {LanguageSwitch} from '@/ui/base/navbar/languageSwitch/main';
+import {NavBarCommonProps} from '@/ui/base/navbar/type';
 import {UserSettingsUI} from '@/ui/base/navbar/userSettings/main';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 
 
-type Props = Omit<UserSettingsProps, 'session'> & {
+type Props = Omit<UserSettingsProps, 'session'> & Pick<NavBarCommonProps, 'noUserControl'> & {
   session: Session | null,
 };
 
-export const NavBarClient = ({session, ...props}: Props) => {
+export const NavBarClient = ({session, noUserControl, ...props}: Props) => {
   const t = useTranslations('UI.Metadata');
 
   const entries = useNavEntries();
@@ -41,6 +42,7 @@ export const NavBarClient = ({session, ...props}: Props) => {
         {session && <UserSettingsUI session={session} {...props}/>}
         {!session && <LanguageSwitch/>}
         <ThemeSwitcher/>
+        {noUserControl || <UserAuthControl session={session}/>}
       </Flex>
     </>
   );

@@ -8,7 +8,6 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getMapIds} from '@/controller/mapMeta';
 import {NavBarClient} from '@/ui/base/navbar/client';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';
-import {UserAuthControl} from '@/ui/base/navbar/userAuth/main';
 
 
 export const NavBar = ({noUserControl, locale}: NavBarCommonProps) => {
@@ -30,10 +29,10 @@ export const NavBar = ({noUserControl, locale}: NavBarCommonProps) => {
         'UI.InPage.Pokedex.Info',
         'UI.Metadata',
         'UI.Stamina',
+        'UI.UserControl',
       ]}>
-        <NavBarClient session={session} mapIds={mapIds}/>
+        <NavBarClient session={session} mapIds={mapIds} noUserControl={noUserControl}/>
       </I18nProvider>
-      {noUserControl || <UserAuthControl locale={locale} session={session}/>}
     </Flex>
   );
 };
