@@ -2,7 +2,11 @@
 import React from 'react';
 
 import {Dialog, Transition} from '@headlessui/react';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {clsx} from 'clsx';
+
+import {Flex} from '@/components/layout/flex';
+import {FlexButton} from '@/components/layout/flexButton';
 
 
 type Props = {
@@ -41,11 +45,18 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
             <Dialog.Panel className={clsx(
-              'flex w-full justify-center rounded-lg p-3 sm:w-fit',
-              'bg-slate-200 ring-1 ring-inset ring-slate-400 dark:bg-gray-950 dark:ring-gray-600',
+              'flex w-full flex-col justify-center rounded-lg sm:w-fit',
+              'border border-slate-400 bg-slate-200 dark:bg-gray-950 dark:ring-gray-600',
               className,
             )}>
-              <div className="max-h-[70vh] w-full overflow-y-auto">
+              <Flex direction="col" className="items-end rounded-t-lg bg-slate-500/20 p-2">
+                <FlexButton onClick={() => setShow && setShow(false)} className={clsx(
+                  'button-clickable-bg h-6 w-6',
+                )}>
+                  <XMarkIcon/>
+                </FlexButton>
+              </Flex>
+              <div className="max-h-[70vh] w-full overflow-y-auto p-2">
                 {children}
               </div>
             </Dialog.Panel>

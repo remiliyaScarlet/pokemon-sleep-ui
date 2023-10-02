@@ -58,7 +58,7 @@ export const PokeInBoxEditLayout = ({
   const isShinyActive = isShiny ?? false;
 
   return (
-    <Flex direction="col" className="gap-2 pr-1.5 sm:pr-0">
+    <Flex direction="col" className="gap-2">
       <Flex direction="col" className="gap-1.5 truncate md:flex-row-reverse md:items-center">
         <pre className="text-sm text-slate-500">
           {uuid}

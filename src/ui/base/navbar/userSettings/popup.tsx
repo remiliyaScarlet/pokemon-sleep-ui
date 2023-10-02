@@ -39,7 +39,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
 
       setShow(show);
     }}>
-      <Flex direction="col" className="gap-1.5 pr-2 sm:w-[70vw]">
+      <Flex direction="col" className="gap-1.5 sm:w-[70vw]">
         <UserSettingsAccountInfo session={session}/>
         <UserSettingsEnergy config={settings.stamina} setConfig={(stamina) => setSettings((original) => ({
           ...original,
