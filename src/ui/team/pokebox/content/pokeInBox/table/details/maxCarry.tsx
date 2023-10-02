@@ -16,7 +16,7 @@ export const PokeInBoxTableMaxCarry = (props: PokeInBoxTableDetailsProps) => {
   const {fullPackStats} = getRateOfPokemon(props);
 
   return (
-    <Flex direction="row">
+    <Flex direction="row" noFullWidth>
       <Flex direction="row" center noFullWidth className="w-14 gap-0.5">
         <PokemonDataIcon src="/images/generic/bag.png" alt={t('MaxCarry')} invert/>
         <div>{pokeInBox.carryLimit}</div>
