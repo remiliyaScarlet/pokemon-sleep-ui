@@ -12,7 +12,7 @@ type Props = {
 
 export const MainSkillAvailablePokemon = ({pokemonList}: Props) => {
   return (
-    <Flex direction="col" className="info-section">
+    <Flex className="info-section">
       <PokemonClickableIcons pokemonList={pokemonList} dimension="h-16 w-16"/>
     </Flex>
   );

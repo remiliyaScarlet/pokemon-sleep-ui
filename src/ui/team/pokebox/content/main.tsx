@@ -39,7 +39,7 @@ export const PokeboxContent = (props: Props) => {
   const ratingControl = useRatingPopup();
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <PokemonLinkPopup state={state} setState={setState}/>
       {
         ratingControl.state.request &&

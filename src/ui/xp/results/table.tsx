@@ -27,7 +27,7 @@ export const PokemonExpCalculatorTable = (props: Props) => {
   const multiplier = pokemon ? (xpMultiplier[pokemon]?.multiplier ?? 1) : 1;
 
   return (
-    <Flex direction="col" className="info-section">
+    <Flex className="info-section">
       <table className="-m-1 border-separate border-spacing-0.5 text-center">
         <thead>
           <tr>

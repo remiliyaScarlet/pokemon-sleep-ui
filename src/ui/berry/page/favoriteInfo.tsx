@@ -18,7 +18,7 @@ export const BerryFavoriteInfoUi = ({berryData, favoriteInfo, level, setLevel}: 
   const t = useTranslations('Game.Field');
 
   return (
-    <Flex direction="col" center className="info-section gap-1.5">
+    <Flex center className="info-section gap-1.5">
       <BerryLevelSlider berryData={berryData} level={level} setLevel={setLevel}/>
       <Flex direction="row" center wrap className="gap-1.5">
         {Object.entries(favoriteInfo).map(([mapId, type]) => {

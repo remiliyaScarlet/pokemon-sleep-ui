@@ -12,7 +12,7 @@ type Props = Pick<TeamAnalysisRateLayoutProps, 'icon'> & TeamAnalysisRateLayoutC
 
 export const TeamAnalysisRateLayoutWithQuantity = ({rate, icon, period}: Props) => {
   return (
-    <Flex direction="col" noFullWidth className="px-1 py-0.5 text-sm">
+    <Flex noFullWidth className="px-1 py-0.5 text-sm">
       <TeamAnalysisRateLayout period={period} showQuantity rate={rate} icon={icon}/>
     </Flex>
   );

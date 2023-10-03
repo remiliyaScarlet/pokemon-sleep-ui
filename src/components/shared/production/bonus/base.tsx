@@ -15,7 +15,7 @@ type Props = BonusSliderProps & {
 
 export const BonusSlider = ({id, min, max, step, value, setValue, children}: React.PropsWithChildren<Props>) => {
   return (
-    <Flex direction="col" className="gap-2 p-1">
+    <Flex className="gap-2 p-1">
       <Flex direction="row" className="items-center justify-end gap-2">
         <Flex direction="row" noFullWidth>
           {children}

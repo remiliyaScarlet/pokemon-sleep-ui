@@ -23,7 +23,7 @@ type Props = MealIndexInputProps & {
 
 export const MealInput = ({data, filter, setFilter, preloaded}: Props) => {
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       <MealTypeInput
         mealTypes={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps({

@@ -30,7 +30,7 @@ export const HomePokeball = () => {
   }, [show]);
 
   return (
-    <Flex direction="col" center>
+    <Flex center>
       <div className="relative">
         <div className="absolute bottom-0 right-0 z-10">
           <button className="button-clickable-bg p-1" onClick={() => setShow(false)} disabled={!show}>

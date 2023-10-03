@@ -38,7 +38,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
   return (
     <>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="max-w-2xl gap-2 overflow-hidden sm:min-w-[24rem]">
+        <Flex className="max-w-2xl gap-2 overflow-hidden sm:min-w-[24rem]">
           <InputBox
             value={name ?? ''}
             type="text"
@@ -47,7 +47,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
             onChange={({target}) => setName(target.value || null)}
           />
           <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel} noSameLine/>
-          <Flex direction="col">
+          <Flex>
             <button
               className="button-clickable-bg disabled:button-disabled ml-auto p-1"
               disabled={status === 'processing'}

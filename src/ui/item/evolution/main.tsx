@@ -19,8 +19,8 @@ export const EvolutionItems = async ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" center>
-        <Flex direction="col" center className="md:w-2/3 lg:w-1/2">
+      <Flex center>
+        <Flex center className="md:w-2/3 lg:w-1/2">
           <AdsUnit/>
           <Grid center className="grid-cols-1 gap-2 md:grid-cols-2">
             {Object.entries(evolutionItemMap).map(([itemId, pokemonList]) => (

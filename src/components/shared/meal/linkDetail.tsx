@@ -19,10 +19,10 @@ export const MealLinkDetail = (props: MealLinkProps) => {
 
   return (
     <Flex direction="row" className="items-end gap-0.5 text-xs">
-      <Flex direction="col" noFullWidth center className="info-icon-normal text-shadow-preset h-6 w-6">
+      <Flex noFullWidth center className="info-icon-normal text-shadow-preset h-6 w-6">
         {getMealRequiredQuantity(meal)}
       </Flex>
-      <Flex direction="col" noFullWidth className="gap-0.5">
+      <Flex noFullWidth className="gap-0.5">
         {
           showEnergy &&
           <Flex direction="row" noFullWidth className="items-end gap-0.5">

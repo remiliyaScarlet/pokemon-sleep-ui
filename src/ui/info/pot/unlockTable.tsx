@@ -28,7 +28,7 @@ export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
   let cumulativeCost = 0;
 
   return (
-    <Flex direction="col" center className="gap-1.5">
+    <Flex center className="gap-1.5">
       {potCapacity
         .sort((a, b) => a.level - b.level)
         .map((potInfo) => {

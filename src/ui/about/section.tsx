@@ -9,7 +9,7 @@ type Props = {
 
 export const AboutSection = ({title, children}: React.PropsWithChildren<Props>) => {
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       <div className="text-slate-500">
         {title}
       </div>

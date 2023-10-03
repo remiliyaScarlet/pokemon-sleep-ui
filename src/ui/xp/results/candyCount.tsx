@@ -15,7 +15,7 @@ export const PokemonExpCalculatorCandyCount = ({count}: Props) => {
   }
 
   return (
-    <Flex direction="col" center className="relative h-5">
+    <Flex center className="relative h-5">
       <CheckCircleIcon/>
     </Flex>
   );

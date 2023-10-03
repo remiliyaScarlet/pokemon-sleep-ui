@@ -113,7 +113,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           'button-base button-bg-hover w-full p-1',
           'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
         )}>
-          <Flex direction="col" center>
+          <Flex center>
             <div className="h-9 w-9">
               <BeakerIcon/>
             </div>

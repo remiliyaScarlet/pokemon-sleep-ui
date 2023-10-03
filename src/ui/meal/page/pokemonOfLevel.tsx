@@ -45,21 +45,21 @@ export const MealPokemonOfIngredientLevel = ({
 
   return (
     <AnimatedCollapse show={show}>
-      <Flex direction="col" center className="info-section">
+      <Flex center className="info-section">
         <div className="h-8 w-8">
           <PokemonIngredientLevelIcon level={ingredientLevel}/>
         </div>
         {meal.ingredients.map(({id, quantity}) => (
           <Flex key={id} direction="row" className="gap-2">
             <Link href={`/ingredient/${id}`} className="button-clickable-bg">
-              <Flex direction="col" center className="h-full">
+              <Flex center className="h-full">
                 <div className="relative h-12 w-12">
                   <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
                 </div>
                 <div>{quantity}</div>
               </Flex>
             </Link>
-            <Flex direction="col" center className={clsx(
+            <Flex center className={clsx(
               'border-button-clickable rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
             )}>
               <PokemonIconsIngredientStats

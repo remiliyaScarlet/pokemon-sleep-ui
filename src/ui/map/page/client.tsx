@@ -30,8 +30,8 @@ export const MapPageClient = ({locale, ...props}: Props) => {
   const [sleepdex, setSleepdex] = React.useState(sleepdexMap);
 
   return (
-    <Flex direction="col" center>
-      <Flex direction="col" className="gap-1.5 md:w-3/4">
+    <Flex center>
+      <Flex className="gap-1.5 md:w-3/4">
         <AdsUnit/>
         <MapMeta {...props} mapName={mapName} sleepdexMap={sleepdex}/>
         <AdsUnit/>

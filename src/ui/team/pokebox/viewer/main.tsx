@@ -8,7 +8,7 @@ import {PokeboxViewerInputCommonProps} from '@/ui/team/pokebox/viewer/type';
 
 export const PokeboxViewerInput = (props: PokeboxViewerInputCommonProps) => {
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <PokeboxViewerFilterUI {...props}/>
       <PokeboxViewerConfig {...props}/>
     </Flex>

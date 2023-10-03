@@ -21,7 +21,7 @@ export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox
   });
 
   return (
-    <Flex direction="col" noFullWidth className="gap-1">
+    <Flex noFullWidth className="gap-1">
       <Flex direction="row" noFullWidth className="items-center gap-1">
         <Flex direction="row" noFullWidth className={clsx(
           'items-center gap-1 px-1',

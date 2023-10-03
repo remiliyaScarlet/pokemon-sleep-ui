@@ -16,8 +16,8 @@ export const ItemIndex = ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" center>
-        <Flex direction="col" wrap center className="h-auto gap-2 md:w-1/2">
+      <Flex center>
+        <Flex wrap center className="h-auto gap-2 md:w-1/2">
           <div className="w-full">
             <AdsUnit/>
           </div>

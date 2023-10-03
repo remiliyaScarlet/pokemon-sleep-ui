@@ -19,7 +19,7 @@ export const MealPokemonOfIngredient = (props: Props) => {
 
   return (
     <>
-      <Flex direction="col" className="info-section">
+      <Flex className="info-section">
         <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel}/>
       </Flex>
       {ingredientLevels

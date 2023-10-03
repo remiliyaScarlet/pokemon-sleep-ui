@@ -34,7 +34,7 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
         </div>
       </Flex>
     }>
-      <Flex direction="col" className="gap-1 pr-1">
+      <Flex className="gap-1 pr-1">
         <InputRowWithTitle title={t('Info.Name')}>
           <InputBox type="text" value={filter.name} onChange={({target}) => setFilter((original) => ({
             ...original,

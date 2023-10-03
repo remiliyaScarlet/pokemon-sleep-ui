@@ -7,7 +7,7 @@ import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/ta
 
 export const PokeInBoxTableFrequency = ({rateOfPokemon}: PokeInBoxTableDetailsProps) => {
   return (
-    <Flex direction="col" center noFullWidth className="w-36">
+    <Flex center noFullWidth className="w-36">
       <PokemonFrequencyFromProducingRate pokemonRate={rateOfPokemon} normalText/>
     </Flex>
   );

@@ -44,7 +44,7 @@ export const PokemonExpCalculatorInputUI = ({
   const t = useTranslations('UI.InPage.PokemonExp');
 
   return (
-    <Flex direction="col" className="info-section gap-1.5">
+    <Flex className="info-section gap-1.5">
       <PokemonClickableIcons
         pokemonList={Object
           .values(xpMultiplier)
@@ -103,7 +103,7 @@ export const PokemonExpCalculatorInputUI = ({
           }))}
         />
       </InputRowWithTitle>
-      <Flex direction="col" className="h-8">
+      <Flex className="h-8">
         <PokemonNatureSelector nature={nature} setNature={(nature) => setFilter((original) => ({
           ...original,
           nature,

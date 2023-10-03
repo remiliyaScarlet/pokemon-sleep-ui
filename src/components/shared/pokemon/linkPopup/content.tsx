@@ -25,22 +25,22 @@ export const PokemonLinkPopupContent = ({pokemon}: Props) => {
   const name = t2(`PokemonName.${id}`);
 
   return (
-    <Flex direction="col" center className="gap-2 md:w-96">
+    <Flex center className="gap-2 md:w-96">
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-60 w-60">
         <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
       <Flex direction="row" className="gap-2">
-        <Flex direction="col">
+        <Flex>
           <Link href={`/pokedex/${id}`}>
-            <Flex direction="col" center className="button-clickable-bg group p-2">
+            <Flex center className="button-clickable-bg group p-2">
               <GenericPokeballIcon dimension="h-10 w-10" alt={t('Pokedex.Page.Title', {name})}/>
             </Flex>
           </Link>
         </Flex>
-        <Flex direction="col">
+        <Flex>
           <Link href={`/analysis/${id}`}>
-            <Flex direction="col" center className="button-clickable-bg group p-2">
+            <Flex center className="button-clickable-bg group p-2">
               <div className="relative h-10 w-10">
                 <NextImage
                   src="/images/generic/analysis.png" alt={t('Analysis.Title', {name})}

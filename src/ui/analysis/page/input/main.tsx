@@ -41,7 +41,7 @@ export const AnalysisPageInput = ({
         </div>
       </Flex>
     }>
-      <Flex direction="col" className="gap-1">
+      <Flex className="gap-1">
         <PokemonMapFilter
           mapIds={toUnique(Object
             .values(sleepStyleMap)
@@ -66,7 +66,7 @@ export const AnalysisPageInput = ({
           />
         ))}
         <InputRow>
-          <Flex direction="col" className="p-1">
+          <Flex className="p-1">
             <PokemonLevelSlider
               level={filter.level}
               maxLevel={maxLevel}

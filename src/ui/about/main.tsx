@@ -18,8 +18,8 @@ export const About = async ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" center className="info-section !gap-8">
-        <Flex direction="col" className="gap-2">
+      <Flex center className="info-section !gap-8">
+        <Flex className="gap-2">
           <div className="text-2xl">
             {t('Site.Name')}
           </div>
@@ -29,9 +29,9 @@ export const About = async ({params}: DefaultPageProps) => {
             </Link>
           </AboutSection>
         </Flex>
-        <Flex direction="col" className="gap-8 md:flex-row">
-          <Flex direction="col" className="gap-3">
-            <Flex direction="col" center className="relative h-10 w-10">
+        <Flex className="gap-8 md:flex-row">
+          <Flex className="gap-3">
+            <Flex center className="relative h-10 w-10">
               <UserCircleIcon/>
             </Flex>
             <AboutSection title="Discord">
@@ -41,8 +41,8 @@ export const About = async ({params}: DefaultPageProps) => {
               RaenonX
             </AboutSection>
           </Flex>
-          <Flex direction="col" className="gap-2">
-            <Flex direction="col" center className="relative h-10 w-10">
+          <Flex className="gap-2">
+            <Flex center className="relative h-10 w-10">
               <CurrencyDollarIcon/>
             </Flex>
             <AboutSection title="Patreon">
@@ -61,7 +61,7 @@ export const About = async ({params}: DefaultPageProps) => {
             </AboutSection>
           </Flex>
         </Flex>
-        <Flex direction="col" className="md:w-1/2 xl:w-1/3">
+        <Flex className="md:w-1/2 xl:w-1/3">
           <iframe
             src="https://discord.com/widget?id=1138701819464392744&theme=dark"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"

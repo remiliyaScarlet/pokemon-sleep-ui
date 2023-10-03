@@ -33,7 +33,7 @@ export const AnalysisStatsGroupedUI = <TData, >({
       linkedIconKey={({pokemonId}) => pokemonId}
       mark={isAvailable ? getMarkByThreshold(rarity, threshold) : 'ordinary'}
       footer={
-        <Flex direction="col" className="text-sm md:w-2/3">
+        <Flex className="text-sm md:w-2/3">
           <Flex direction="row" noFullWidth className="justify-end gap-1">
             <div>{sharedCount}</div>
             <div>/</div>

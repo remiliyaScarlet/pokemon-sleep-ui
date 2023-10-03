@@ -40,7 +40,7 @@ export const Popup = ({show, setShow, children, className}: React.PropsWithChild
               'border border-slate-400 bg-slate-200 dark:bg-gray-950 dark:ring-gray-600',
               className,
             )}>
-              <Flex direction="col" className="items-end rounded-t-lg bg-slate-500/20 p-2">
+              <Flex className="items-end rounded-t-lg bg-slate-500/20 p-2">
                 <FlexButton onClick={() => setShow && setShow(false)} className={clsx(
                   'button-clickable-bg h-6 w-6',
                 )}>

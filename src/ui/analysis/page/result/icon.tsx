@@ -25,7 +25,7 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
   const name = t(pokemonId.toString());
 
   return (
-    <Flex direction="col" center noFullWidth className={clsx(
+    <Flex center noFullWidth className={clsx(
       'button-bg relative w-24 gap-1.5 rounded-lg p-1',
     )}>
       <div className="relative h-14 w-14">
@@ -33,17 +33,17 @@ export const AnalysisPokemonIcon = <TData, >({linked, renderData}: Props<TData>)
       </div>
       {
         renderData &&
-        <Flex direction="col">
+        <Flex>
           {renderData(linked)}
         </Flex>
       }
       <Flex direction="row" className="gap-2">
-        <Flex direction="col" center>
+        <Flex center>
           <Link href={`/pokedex/${pokemonId}`} className="button-clickable group relative h-6 w-6">
             <GenericPokeballIcon alt={t2('Pokedex.Page.Title', {name})} noWrap/>
           </Link>
         </Flex>
-        <Flex direction="col" center>
+        <Flex center>
           <Link href={`/analysis/${pokemonId}`} className="button-clickable group relative h-6 w-6">
             <NextImage
               src="/images/generic/analysis.png" alt={t2('Analysis.Title', {name})}

@@ -14,7 +14,7 @@ type Props = {
 
 export const InfoSlider = ({title, id, level, setLevel, maxLevel, children}: React.PropsWithChildren<Props>) => {
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       <Flex direction="row" className="gap-1">
         <div className="whitespace-nowrap">
           {title}

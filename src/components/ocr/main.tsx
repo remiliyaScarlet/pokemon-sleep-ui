@@ -44,19 +44,19 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
   const ocrRunning = isOcrRunning(status);
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <div className="hidden">
         <NextImage ref={imageRef} src={image ?? ''} alt="OCR Origin"/>
         <canvas id="output" ref={canvasRef}/>
       </div>
       <AdsUnit/>
-      <Flex direction="col" className="items-center gap-1.5 md:flex-row">
+      <Flex className="items-center gap-1.5 md:flex-row">
         <FilterTextInput
           style="none"
           onClick={setLocale}
           isActive={(ocrLang) => ocrLang === locale}
           title={
-            <Flex direction="col" center className="px-2">
+            <Flex center className="px-2">
               <div className="h-6 w-6">
                 <LanguageIcon/>
               </div>

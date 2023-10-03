@@ -45,8 +45,8 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const scrollToResult = () => resultRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
 
   return (
-    <Flex direction="col" className="gap-1.5">
-      <Flex direction="col" className="gap-1.5 md:flex-row">
+    <Flex className="gap-1.5">
+      <Flex className="gap-1.5 md:flex-row">
         <RatingFilter {...data} onPokemonPicked={(opts) => {
           const {origin, pokemon} = opts;
 

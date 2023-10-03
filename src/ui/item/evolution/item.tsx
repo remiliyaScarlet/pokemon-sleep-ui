@@ -19,7 +19,7 @@ export const EvolutionItemSingle = ({itemId, pokemonList}: Props) => {
   const itemName = t(`Item.${itemId}`);
 
   return (
-    <Flex direction="col" center className="info-section-bg gap-1.5 rounded-lg p-2">
+    <Flex center className="info-section-bg gap-1.5 rounded-lg p-2">
       <Flex direction="row" center>
         <PokemonDataIcon
           src={`/images/item/${itemId}.png`}

@@ -41,7 +41,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
   }, [filter]);
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <Collapsible state={pickerCollapsible} classNameForHeight={inputSectionHeight} button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
@@ -53,7 +53,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           </div>
         </Flex>
       }>
-        <Flex direction="col" className="gap-1 pr-1">
+        <Flex className="gap-1 pr-1">
           {pokemonInputType.map((type) => (
             <PokemonFilter
               key={type}

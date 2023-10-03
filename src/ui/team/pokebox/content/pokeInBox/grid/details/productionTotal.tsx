@@ -21,7 +21,7 @@ export const PokeInBoxGridProductionTotal = (props: PokeInBoxCommonProps) => {
   const sumOfDailyIngredientEnergy = toSum(Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy));
 
   return (
-    <Flex direction="col" noFullWidth className="justify-center gap-1">
+    <Flex noFullWidth className="justify-center gap-1">
       <Flex direction="row" className="items-center gap-0.5 p-0.5">
         <ColoredEnergyIcon dimension="h-5 w-5" alt={t('Stats.Energy.Name')}/>
         <div>
@@ -31,7 +31,7 @@ export const PokeInBoxGridProductionTotal = (props: PokeInBoxCommonProps) => {
           )}
         </div>
       </Flex>
-      <Flex direction="col" noFullWidth className="w-3/4">
+      <Flex noFullWidth className="w-3/4">
         <PokemonProductionSplit
           berry={berry.dailyEnergy}
           ingredient={sumOfDailyIngredientEnergy}

@@ -22,7 +22,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
   return (
     <div className="relative">
       <PokemonLinkPopup state={state} setState={setState}/>
-      <Flex direction="col" noFullWidth className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
+      <Flex noFullWidth className="absolute bottom-1 left-1 z-10 gap-0.5 text-sm">
         <PokedexLinkDetail {...props}/>
       </Flex>
       <button

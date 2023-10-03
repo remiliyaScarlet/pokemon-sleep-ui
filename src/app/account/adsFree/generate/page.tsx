@@ -28,7 +28,7 @@ const AdsFreeGenerateKey = async ({searchParams}: PageProps) => {
   const activationKey = await generateActivationKey(executorUserId, expiryDateString);
 
   return (
-    <Flex direction="col" center className="h-screen">
+    <Flex center className="h-screen">
       <pre>{`${process.env.NEXTAUTH_URL}/account/adsFree/activate?key=${activationKey}`}</pre>
     </Flex>
   );

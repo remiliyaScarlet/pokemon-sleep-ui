@@ -38,7 +38,7 @@ export const AnalysisStatsContinuousUI = <TData, >({
       linkedIconKey={(data) => linkedIconKey ? linkedIconKey(data) : data.pokemonId}
       mark={percentile ? getMarkByThreshold(percentile, threshold) : 'ordinary'}
       footer={
-        <Flex direction="col" className="text-sm md:w-2/3">
+        <Flex className="text-sm md:w-2/3">
           <Flex direction="row" noFullWidth className="justify-end gap-1">
             <div>{isAvailable ? `#${rank}` : '-'}</div>
             <div>/</div>

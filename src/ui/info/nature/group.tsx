@@ -14,7 +14,7 @@ type Props = {
 
 export const NatureInfoGroup = ({buffEffectId, natures}: Props) => {
   return (
-    <Flex direction="col" className="info-section gap-2">
+    <Flex className="info-section gap-2">
       <div className="text-2xl">
         <NatureInfoEffectText direction="buff" effectId={buffEffectId} dimension="h-7 w-7"/>
       </div>

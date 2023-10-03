@@ -34,7 +34,7 @@ export const PageLayout = ({
         />}
         <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
         <NavBar {...props}/>
-        <Flex direction="col" className="gap-1.5 p-2">
+        <Flex className="gap-1.5 p-2">
           {announcement && <Announcements/>}
           {children}
         </Flex>

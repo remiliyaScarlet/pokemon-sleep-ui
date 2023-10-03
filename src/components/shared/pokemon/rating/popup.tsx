@@ -15,7 +15,7 @@ export const RatingResultPopup = ({ratingControl, pokemon, pokemonProducingParam
 
   return (
     <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
-      <Flex direction="col" noFullWidth className="sm:w-[90vw]">
+      <Flex noFullWidth className="sm:w-[90vw]">
         {
           pokemon && pokemonProducingParams &&
           <RatingResult

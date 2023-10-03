@@ -38,7 +38,7 @@ export const TeamAnalysisPokemonPopup = ({
   return (
     <>
       <Popup show={showIngredientPicker} setShow={setShowIngredientPicker}>
-        <Flex direction="col" noFullWidth className="sm:w-[70vw]">
+        <Flex noFullWidth className="sm:w-[70vw]">
           <PokemonIngredientPicker
             chain={ingredientChainMap[ingredientChain]}
             ingredients={member.ingredients}

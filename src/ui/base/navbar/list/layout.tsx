@@ -28,7 +28,7 @@ export const NavListLayout = ({open, setOpen}: NavListCommonProps) => {
           )}
         >
           <Dialog.Panel className="pointer-events-auto relative w-screen max-w-xs">
-            <Flex direction="col" noFullWidth className="absolute right-0 top-0 -mr-10 p-2">
+            <Flex noFullWidth className="absolute right-0 top-0 -mr-10 p-2">
               <FlexButton className="button-clickable" onClick={() => setOpen(false)}>
                 <XMarkIcon className="h-6 w-6"/>
               </FlexButton>

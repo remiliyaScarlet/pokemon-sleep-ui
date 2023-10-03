@@ -21,7 +21,7 @@ export const CollapsibleFull = ({state, button, appear, disabled, children}: Rea
   }, []);
 
   return (
-    <Flex direction="col">
+    <Flex>
       <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
         'button-clickable-bg disabled:button-disabled group p-1',
       )}>

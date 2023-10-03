@@ -20,7 +20,7 @@ export const AuthSignInEmailClient = () => {
 
   return (
     <form className="flex w-full flex-col gap-2" onSubmit={onSubmit}>
-      <Flex direction="col" center noFullWidth className="shrink-0">
+      <Flex center noFullWidth className="shrink-0">
         <div className="h-10 w-10">
           <EnvelopeIcon/>
         </div>
@@ -33,7 +33,7 @@ export const AuthSignInEmailClient = () => {
         onChange={({target}) => setEmail(target.value)}
         required
       />
-      <Flex direction="col" center>
+      <Flex center>
         <button type="submit" disabled={!email} className={clsx(
           'enabled:button-clickable-bg disabled:button-disabled w-1/2 p-2 md:w-1/3',
         )}>

@@ -42,7 +42,7 @@ export const MapUnlockTable = (props: Props) => {
   };
 
   return (
-    <Flex direction="col">
+    <Flex>
       {getPossibleRanks().map((rank) => {
         const matchingStyles = sleepStyles
           .filter(({pokemonId, style}) => (

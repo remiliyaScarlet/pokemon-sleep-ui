@@ -154,7 +154,7 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'ingredientEnergy') {
     return (
-      <Flex direction="col">
+      <Flex>
         <div className="text-xs">
           <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
         </div>
@@ -185,7 +185,7 @@ export const PokedexLinkDetail = React.memo(({
       const {ingredient} = rate;
 
       return (
-        <Flex direction="col">
+        <Flex>
           <div className="text-xs">
             <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
           </div>

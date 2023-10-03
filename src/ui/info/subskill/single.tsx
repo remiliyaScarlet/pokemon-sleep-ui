@@ -24,7 +24,7 @@ export const SubSkillInfoSingle = ({data}: Props) => {
   const bonusValue = Object.values(bonus).at(0) ?? '(?)';
 
   return (
-    <Flex direction="col" center className={clsx(
+    <Flex center className={clsx(
       'gap-1 rounded-lg p-2',
       rarity ? subSkillRaritySectionBg[rarity] : subSkillRarityDisabled,
     )}>

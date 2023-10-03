@@ -63,7 +63,7 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
             <InfoIcon>
               {toSum(meal.ingredients.map(({quantity}) => quantity))}
             </InfoIcon>
-            <Flex direction="col" noFullWidth>
+            <Flex noFullWidth>
               <IngredientIcons ingredients={ingredientsMissing} markRed={() => true} useTextShadow={false}/>
               <IngredientIconsFromMeal
                 meal={meal} useTextShadow={false}

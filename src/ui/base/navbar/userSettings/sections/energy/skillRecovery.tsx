@@ -17,7 +17,7 @@ export const UserSettingsSkillRecovery = (props: UserSettingsEnergyProps) => {
   const t = useTranslations('UI.Stamina');
 
   return (
-    <Flex direction="col" center className="gap-1.5">
+    <Flex center className="gap-1.5">
       <FilterTextInput
         title={
           <Flex direction="row" className="w-10">

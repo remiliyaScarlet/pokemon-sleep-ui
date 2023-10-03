@@ -24,7 +24,7 @@ export const TeamAnalysisPokemonIndividualParams = (props: TeamAnalysisPokemonPr
 
   return (
     <>
-      <Flex direction="col" className="h-14 gap-1.5">
+      <Flex className="h-14 gap-1.5">
         <PokemonNatureSelector
           nature={member.nature}
           setNature={(nature) => setMember(slotName, {nature})}

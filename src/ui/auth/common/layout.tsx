@@ -14,8 +14,8 @@ type Props = {
 export const AuthLayout = ({locale, children}: React.PropsWithChildren<Props>) => {
   return (
     <PageLayout noUserControl locale={locale}>
-      <Flex direction="col" center>
-        <Flex direction="col" center className="gap-5 sm:w-2/3 md:w-1/2 xl:w-1/3">
+      <Flex center>
+        <Flex center className="gap-5 sm:w-2/3 md:w-1/2 xl:w-1/3">
           <div className="relative h-36 w-36">
             <NextImage
               src="/images/rank/4.png"

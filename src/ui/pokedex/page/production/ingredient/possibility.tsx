@@ -13,7 +13,7 @@ type Props = {
 
 export const PokemonIngredientPossibilities = ({chain}: Props) => {
   return (
-    <Flex direction="col" className="justify-center gap-1 p-1.5 lg:flex-row">
+    <Flex className="justify-center gap-1 p-1.5 lg:flex-row">
       {ingredientLevels.map((ingredientLevel, idx) => {
         const productions = chain.ingredients[ingredientLevel];
         const productionKeys = productions.map(({id}) => id).join('-');

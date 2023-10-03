@@ -23,9 +23,9 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="col" className="button-bg items-center justify-end gap-3 rounded-lg p-2 md:flex-row">
+    <Flex className="button-bg items-center justify-end gap-3 rounded-lg p-2 md:flex-row">
       <TeamAnalysisFinalEstimate energyRate={stats.overall} snorlaxRankData={snorlaxRankData}/>
-      <Flex direction="col" className="justify-end gap-1.5 md:w-fit">
+      <Flex className="justify-end gap-1.5 md:w-fit">
         <Flex direction="row" noFullWidth wrap className="justify-end gap-x-4 gap-y-1.5">
           <TeamAnalysisRateLayout
             period={period} showQuantity={false} rate={berry}

@@ -14,7 +14,7 @@ export const TeamAnalysisEmptySlot = (props: PokeboxImporterCommonProps) => {
   const {status} = useSession();
 
   return (
-    <Flex direction="col" center className="gap-1.5">
+    <Flex center className="gap-1.5">
       <PokeboxImporter show={show} setShow={setShow} {...props}/>
       <UnavailableIcon/>
       <button

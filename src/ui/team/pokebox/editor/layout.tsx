@@ -58,8 +58,8 @@ export const PokeInBoxEditLayout = ({
   const isShinyActive = isShiny ?? false;
 
   return (
-    <Flex direction="col" className="gap-2">
-      <Flex direction="col" className="gap-1.5 truncate md:flex-row-reverse md:items-center">
+    <Flex className="gap-2">
+      <Flex className="gap-1.5 truncate md:flex-row-reverse md:items-center">
         <pre className="text-sm text-slate-500">
           {uuid}
         </pre>
@@ -97,7 +97,7 @@ export const PokeInBoxEditLayout = ({
         pokedex={pokedexMap}
         onClick={(pokemon) => setPokeInBox({...pokeInBox, pokemon})}
       />
-      <Flex direction="col">
+      <Flex>
         <PokemonLevelSlider
           level={level}
           maxLevel={Math.max(...pokemonSubSkillLevel)}
@@ -127,8 +127,8 @@ export const PokeInBoxEditLayout = ({
         })}
         defaultCarryLimit={pokemon.stats.maxCarry}
       />
-      <Flex direction="col" className="gap-1.5 md:flex-row">
-        <Flex direction="col" className="h-8">
+      <Flex className="gap-1.5 md:flex-row">
+        <Flex className="h-8">
           <PokemonSubSkillSelector
             subSkill={subSkill}
             subSkillMap={subSkillMap}
@@ -138,7 +138,7 @@ export const PokeInBoxEditLayout = ({
             })}
           />
         </Flex>
-        <Flex direction="col" className="h-8">
+        <Flex className="h-8">
           <PokemonNatureSelector
             nature={nature}
             setNature={(nature) => setPokeInBox({

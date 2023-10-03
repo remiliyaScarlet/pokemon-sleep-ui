@@ -15,7 +15,7 @@ export const ClickableIconButton = ({disabled, onClick, children}: React.PropsWi
       disabled={disabled}
       onClick={onClick}
     >
-      <Flex direction="col" center className="h-7">
+      <Flex center className="h-7">
         {children}
       </Flex>
     </button>

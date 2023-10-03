@@ -20,7 +20,7 @@ export const PokeInBoxRatingStats = ({loading, result}: Props) => {
 
   return (
     <Flex direction="row" className={clsx('gap-1.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>
-      <Flex direction="col" center className="gap-1">
+      <Flex center className="gap-1">
         <div>
           {
             loading ?
@@ -30,7 +30,7 @@ export const PokeInBoxRatingStats = ({loading, result}: Props) => {
         </div>
         <ProgressBar className="w-full" percent={percentile}/>
       </Flex>
-      <Flex direction="col" center className="gap-1">
+      <Flex center className="gap-1">
         <div>
           {
             loading ?

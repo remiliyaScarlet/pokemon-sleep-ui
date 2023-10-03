@@ -22,7 +22,7 @@ export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex direction="col" className="button-bg gap-2 rounded-lg p-2">
+    <Flex className="button-bg gap-2 rounded-lg p-2">
       <TeamAnalysisCategorySummary
         icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
         data={Object.entries(grouped.berry).map(([id, rate]) => ({id: Number(id), rate}))}

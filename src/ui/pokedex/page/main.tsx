@@ -71,7 +71,7 @@ export const Pokemon = async ({params}: Props) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" center className="gap-2">
+      <Flex center className="gap-2">
         <AdsUnit/>
         <I18nProvider locale={locale} namespaces={[
           'Game',

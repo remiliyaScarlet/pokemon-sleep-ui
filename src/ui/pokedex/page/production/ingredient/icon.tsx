@@ -22,7 +22,7 @@ export const PokemonIngredientIcon = ({production}: Props) => {
 
   return (
     <Link href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
-      <Flex direction="col" center className="gap-0.5">
+      <Flex center className="gap-0.5">
         <IconWithInfo
           imageSrc={`/images/ingredient/${id}.png`}
           imageAlt={ingredientName}

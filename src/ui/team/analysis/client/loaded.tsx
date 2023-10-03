@@ -73,7 +73,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         {...props}
       />
       <AdsUnit/>
-      <Flex direction="col" className="gap-1">
+      <Flex className="gap-1">
         <SnorlaxFavoriteInput
           filter={currentTeam}
           setFilter={(getUpdatedTeam) => setSetup((original) => {

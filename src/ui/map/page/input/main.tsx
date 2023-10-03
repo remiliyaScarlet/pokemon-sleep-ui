@@ -23,7 +23,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
   } = props;
 
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       {pokemonInputType.map((type) => (
         <PokemonFilter
           key={type}

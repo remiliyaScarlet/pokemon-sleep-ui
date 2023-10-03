@@ -17,7 +17,7 @@ export const NatureInfoPage = ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" className="gap-2">
+      <Flex className="gap-2">
         <NatureInfoGroup buffEffectId={null} natures={groupedNatures['null']}/>
         {natureEffectId.map((buffEffectId) => (
           <NatureInfoGroup key={buffEffectId} buffEffectId={buffEffectId} natures={groupedNatures[buffEffectId]}/>

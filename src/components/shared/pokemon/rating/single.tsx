@@ -77,11 +77,11 @@ export const RatingResultOfLevelUI = ({
   return (
     <LazyLoad loading={loading} loadingFullHeight className="info-section relative gap-3">
       <Flex direction="row" className={clsx('gap-0.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>
-        <Flex direction="col" center noFullWidth>
+        <Flex center noFullWidth>
           <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert dimension="h-10 w-10"/>
           <div className="text-xl">{level}</div>
         </Flex>
-        <Flex direction="col" className="gap-3">
+        <Flex className="gap-3">
           <Flex direction="row" className="items-end justify-center gap-1.5">
             <Flex direction="row" className="items-end justify-center gap-1 text-6xl">
               {isNaN(percentile) ? '-' : <><span className="text-2xl">PR</span>{formatInt(percentile)}</>}
@@ -92,7 +92,7 @@ export const RatingResultOfLevelUI = ({
               className="text-2xl"
             />
           </Flex>
-          <Flex direction="col">
+          <Flex>
             <ProgressBar percent={percentile}/>
           </Flex>
           <Flex direction="row" className="items-end justify-center gap-1.5">
@@ -105,7 +105,7 @@ export const RatingResultOfLevelUI = ({
               {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
             </div>
           </Flex>
-          <Flex direction="col">
+          <Flex>
             <ProgressBar percent={percentage}/>
           </Flex>
         </Flex>

@@ -58,7 +58,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
   });
 
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       <AnalysisMeta {...props}/>
       <PokemonIngredientPicker
         chain={ingredientChainMap[pokemon.ingredientChain]}

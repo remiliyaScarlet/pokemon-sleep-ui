@@ -34,7 +34,7 @@ export const RatingDataPointUI = ({point, subSkillMap, icon, className}: Props) 
       <div className="relative h-7 w-7">
         {icon}
       </div>
-      <Flex direction="col" center className="ml-auto">
+      <Flex center className="ml-auto">
         <Flex direction="row" noFullWidth className="text-energy items-center gap-0.5 p-2 text-3xl">
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')} dimension="h-7 w-7"/>
           <div>

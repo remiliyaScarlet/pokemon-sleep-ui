@@ -44,7 +44,7 @@ export const RatingFilter = (props: Props) => {
   }, [filter]);
 
   return (
-    <Flex direction="col" className="gap-1">
+    <Flex className="gap-1">
       <PokeboxImporter show={show} setShow={setShow} subSkillMap={subSkillMap} onPokeboxPicked={(pokeInBox) => {
         const pokemon = pokedexMap[pokeInBox.pokemon];
 
@@ -63,7 +63,7 @@ export const RatingFilter = (props: Props) => {
           </div>
         </Flex>
       }>
-        <Flex direction="col" className="gap-1">
+        <Flex className="gap-1">
           {pokemonInputType.map((type) => (
             <PokemonFilter
               key={type}

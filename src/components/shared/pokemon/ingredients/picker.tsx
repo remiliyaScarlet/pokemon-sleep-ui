@@ -33,7 +33,7 @@ export const PokemonIngredientPicker = ({
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="col" className="gap-1.5 md:flex-row">
+    <Flex className="gap-1.5 md:flex-row">
       {ingredientLevels.map((level) => {
         const current = ingredients[level];
         const productions = chain.ingredients[level];

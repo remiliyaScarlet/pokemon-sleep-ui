@@ -13,7 +13,7 @@ export const PokeInBoxGridRating = (props: PokeInBoxCommonProps) => {
   const {baseDiffPercent} = ratingReturn.result;
 
   return (
-    <Flex direction="col">
+    <Flex>
       <PokeInBoxRelativeStrength baseDiffPercent={baseDiffPercent}/>
       <PokeInBoxRatingStats {...ratingReturn}/>
     </Flex>

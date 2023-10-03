@@ -30,7 +30,7 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
         <div className={clsx('whitespace-nowrap', !data?.buff && !data?.nerf && natureStyle.clean)}>
           {data ? t(`Nature.${data.id}`) : <div className="h-6 w-6"><XCircleIcon/></div>}
         </div>
-        <Flex direction="col" className="items-center text-sm">
+        <Flex className="items-center text-sm">
           <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.buff && natureStyle.buff)}>
             <div className="h-5 w-5">
               <ChevronUpIcon/>

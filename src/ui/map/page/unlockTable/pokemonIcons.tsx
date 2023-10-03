@@ -22,7 +22,7 @@ export const MapUnlockTablePokemonIcons = ({
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
 
   return (
-    <Flex direction="col" center>
+    <Flex center>
       <PokemonIconList
         dataWithPokemon={matchingStyles}
         getPokemon={({pokemonId}) => pokedexMap[pokemonId]}

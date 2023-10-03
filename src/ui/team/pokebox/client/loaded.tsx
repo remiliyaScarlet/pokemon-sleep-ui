@@ -47,7 +47,7 @@ export const PokeboxLoadedClient = (props: Props) => {
   const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <PokeInBoxEditPopup
         pokebox={Object.fromEntries(
           // Using `source.extra.uuid` to get the original poke-in-box
@@ -95,7 +95,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         setEditingPokeInBox={setEditingPokeInBox}
         {...props}
       />
-      <Flex direction="col" className="gap-1.5 lg:flex-row">
+      <Flex className="gap-1.5 lg:flex-row">
         <PokeboxPickerInput
           pokemonList={pokemonList}
           onClick={(pokemonId) => setEditingPokeInBox({action: 'create', pokemonId})}

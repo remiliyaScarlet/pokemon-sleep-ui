@@ -19,7 +19,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   return (
-    <Flex direction="col" center className="info-section !gap-5 lg:flex-row">
+    <Flex center className="info-section !gap-5 lg:flex-row">
       <PokemonLinkPopup state={state} setState={setState}/>
       <PokemonEvolutionPortrait
         dimension="h-40 w-40"

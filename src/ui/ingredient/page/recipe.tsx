@@ -27,7 +27,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
         .sort((a, b) => (a.levels.at(-1)?.energy ?? 0) - (b.levels.at(-1)?.energy ?? 0))
         .map((meal) => (
           <Link key={meal.id} href={`/meal/${meal.id}`}>
-            <Flex direction="col" center className="button-clickable-bg gap-1 p-1.5">
+            <Flex center className="button-clickable-bg gap-1 p-1.5">
               <div className="text-sm">
                 {t(meal.id.toString())}
               </div>

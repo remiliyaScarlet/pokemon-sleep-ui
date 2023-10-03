@@ -20,7 +20,7 @@ export const MainSkillMeta = ({data}: Props) => {
   const uniqueEffects = toUnique(effects.map(({type}) => type));
 
   return (
-    <Flex direction="col" center className="gap-2 p-1.5">
+    <Flex center className="gap-2 p-1.5">
       <div className="text-3xl">
         {t(`MainSkill.Name.${id}`)}
       </div>

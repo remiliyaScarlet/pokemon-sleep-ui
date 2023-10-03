@@ -14,8 +14,8 @@ type Props = {
 
 export const TeamAnalysisCategorySummary = ({icon, data, getReactNode}: Props) => {
   return (
-    <Flex direction="col" className="gap-2 md:flex-row">
-      <Flex direction="col" center noFullWidth>
+    <Flex className="gap-2 md:flex-row">
+      <Flex center noFullWidth>
         <div className="relative h-10 w-10">
           {icon}
         </div>

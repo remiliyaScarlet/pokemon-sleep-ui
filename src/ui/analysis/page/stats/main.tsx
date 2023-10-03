@@ -20,7 +20,7 @@ type Props = Omit<AnalysisStatsUiProps, 'stats'> & {
 export const AnalysisStatsUI = ({stats, loading, ...rest}: Props) => {
   if (!stats) {
     return (
-      <Flex direction="col" center className="rounded-lg bg-slate-100/80 p-10 dark:bg-slate-800/80">
+      <Flex center className="rounded-lg bg-slate-100/80 p-10 dark:bg-slate-800/80">
         <LoadingIcon/>
       </Flex>
     );
@@ -32,7 +32,7 @@ export const AnalysisStatsUI = ({stats, loading, ...rest}: Props) => {
     <div className="relative">
       {
         loading &&
-        <Flex direction="col" className={clsx(
+        <Flex className={clsx(
           'absolute z-10 h-full rounded-lg bg-slate-100/80 p-10 dark:bg-slate-800/80',
         )}>
           <Loading/>

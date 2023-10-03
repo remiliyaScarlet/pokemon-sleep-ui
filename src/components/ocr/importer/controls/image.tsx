@@ -18,7 +18,7 @@ export const OcrImporterImagePreview = ({image}: Props) => {
   return (
     <>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" noFullWidth className="w-full p-2 sm:w-[60vw]">
+        <Flex noFullWidth className="w-full p-2 sm:w-[60vw]">
           {image && <NextImageAutoHeight src={image} alt="OCR"/>}
         </Flex>
       </Popup>

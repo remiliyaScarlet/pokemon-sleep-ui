@@ -29,14 +29,14 @@ export const AnalysisLayout = <TData, >({
           ))}
         </Flex>
       </Popup>
-      <Flex direction="col" className="info-section items-center justify-center gap-1">
+      <Flex className="info-section items-center justify-center gap-1">
         <div className="text-center text-sm text-slate-500">
           {title}
         </div>
-        <Flex direction="col" center className="h-16">
+        <Flex center className="h-16">
           {children}
         </Flex>
-        <Flex direction="col" center className={mark ? classOfMarkStyle[mark] : ''}>
+        <Flex center className={mark ? classOfMarkStyle[mark] : ''}>
           {footer}
         </Flex>
         <Flex direction="row" className="justify-end">

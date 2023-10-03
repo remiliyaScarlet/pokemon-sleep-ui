@@ -27,12 +27,12 @@ export const PokemonProductionSplit = ({berry, ingredient, specialty}: Props) =>
 
   return (
     <Flex direction="row" center className="gap-1">
-      <Flex direction="col" noFullWidth className={clsx(
+      <Flex noFullWidth className={clsx(
         iconCommonClass, specialty === specialtyIdMap.berry && 'bg-blink',
       )}>
         <GenericBerryIcon alt={t('Berry')}/>
       </Flex>
-      <Flex direction="col">
+      <Flex>
         <Flex direction="row" className="justify-between text-xs">
           <div>
             {formatFloat(berrySplit)}%
@@ -46,7 +46,7 @@ export const PokemonProductionSplit = ({berry, ingredient, specialty}: Props) =>
           <div className="transform-smooth h-2 rounded-r-lg bg-sky-500" style={{width: `${ingredientSplit}%`}}/>
         </Flex>
       </Flex>
-      <Flex direction="col" noFullWidth className={clsx(
+      <Flex noFullWidth className={clsx(
         iconCommonClass, specialty === specialtyIdMap.ingredient && 'bg-blink',
       )}>
         <GenericIngredientIcon alt={t('Ingredient')}/>

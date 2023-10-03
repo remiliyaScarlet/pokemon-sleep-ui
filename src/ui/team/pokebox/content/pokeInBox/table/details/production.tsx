@@ -87,7 +87,7 @@ export const PokeInBoxTableProduction = ({
           </div>
         </Flex>
       }
-      <Flex direction="col" noFullWidth className="w-40">
+      <Flex noFullWidth className="w-40">
         <PokemonProductionSplit
           berry={berry.dailyEnergy}
           ingredient={sumOfDailyIngredientEnergy}

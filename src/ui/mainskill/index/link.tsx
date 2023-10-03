@@ -21,7 +21,7 @@ export const MainSkillLink = ({data}: Props) => {
 
   return (
     <Link href={`/info/mainskill/${id}`} className="button-clickable-bg group p-4">
-      <Flex direction="col" center className="gap-1">
+      <Flex center className="gap-1">
         <Flex direction="row" center className="gap-1 text-xl">
           <MainSkillEffectTypeIcon type={effects[0].type} dimension="h-7 w-7"/>
           <div>
@@ -29,7 +29,7 @@ export const MainSkillLink = ({data}: Props) => {
           </div>
         </Flex>
         <HorizontalSplitter className="w-full"/>
-        <Flex direction="col" className={clsx(
+        <Flex className={clsx(
           'text-sm text-slate-600 group-hover:text-slate-400 dark:text-slate-400 dark:group-hover:text-slate-600',
         )}>
           {t(`MainSkill.Description.${id}`)}

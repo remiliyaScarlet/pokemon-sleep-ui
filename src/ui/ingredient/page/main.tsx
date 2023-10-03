@@ -69,7 +69,7 @@ export const IngredientPage = async ({params}: Props) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <Flex direction="col" className="gap-1.5 md:flex-row">
+      <Flex className="gap-1.5 md:flex-row">
         <IngredientMeta {...ingredient}/>
         <IngredientCookableMeals cookableMeals={cookableMeals}/>
       </Flex>

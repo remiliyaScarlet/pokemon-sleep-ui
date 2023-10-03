@@ -22,8 +22,8 @@ export const MealMeta = (props: MealCommonProps) => {
   const mealName = t(id.toString());
 
   return (
-    <Flex direction="col" center className="info-section md:flex-row md:gap-4">
-      <Flex direction="col" center noFullWidth className="gap-2">
+    <Flex center className="info-section md:flex-row md:gap-4">
+      <Flex center noFullWidth className="gap-2">
         <div className={clsx('text-lg', mealTypeTextStyle[type])}>
           {mealName}
         </div>
@@ -31,14 +31,14 @@ export const MealMeta = (props: MealCommonProps) => {
           <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imagePortraitSizes}/>
         </div>
       </Flex>
-      <Flex direction="col" className="gap-2 lg:w-2/3">
+      <Flex className="gap-2 lg:w-2/3">
         <I18nProvider locale={locale} namespaces={['UI.InPage.Cooking']}>
           <MealExp {...props}/>
         </I18nProvider>
         <Flex direction="row" center className="gap-1.5">
           {meal.ingredients.map(({id, quantity}) => (
             <Link key={id} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
-              <Flex direction="col" center>
+              <Flex center>
                 <div className="relative h-12 w-12">
                   <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
                 </div>

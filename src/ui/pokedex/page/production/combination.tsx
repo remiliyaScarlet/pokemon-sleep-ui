@@ -50,7 +50,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
 
         return (
           <AnimatedCollapse key={productionKeys} show appear>
-            <Flex direction="col" center noFullWidth className={clsx(
+            <Flex center noFullWidth className={clsx(
               'gap-1.5 rounded-lg bg-slate-500/10 p-1.5',
             )}>
               <Flex direction="row" center wrap className="gap-1">
@@ -65,7 +65,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
               />
               <Flex direction="row" className="items-end justify-between">
                 <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} normalSize/>
-                <Flex direction="col" noFullWidth>
+                <Flex noFullWidth>
                   <PokemonProducingRateSingle
                     horizontal
                     hideFrequency

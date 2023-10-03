@@ -38,7 +38,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         specialty={pokemon.specialty}
       />
       <HorizontalSplitter className="w-full"/>
-      <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
+      <Flex className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
         <TeamAnalysisBerryRate
           id={berryData.id}
           rate={stats.berry}
@@ -46,7 +46,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         />
       </Flex>
       <HorizontalSplitter className="w-full"/>
-      <Flex direction="col" className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+      <Flex className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
         {ingredientRates.map((rate) => (
           <TeamAnalysisIngredientRate
             key={rate.id}

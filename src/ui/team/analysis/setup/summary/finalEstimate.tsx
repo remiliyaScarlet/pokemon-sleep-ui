@@ -39,7 +39,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
   const minDate = new Date(new Date().setDate(new Date().getDate() + 1));
 
   return (
-    <Flex direction="col" center className="gap-2">
+    <Flex center className="gap-2">
       <Flex direction="row" center wrap className="gap-2">
         <Flex direction="row" center noFullWidth className="gap-1">
           <div className="h-6 w-6">

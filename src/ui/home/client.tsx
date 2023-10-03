@@ -21,8 +21,8 @@ export const HomeClient = ({userCount}: Props) => {
   const entries = useNavEntries();
 
   return (
-    <Flex direction="col" className="gap-2 md:h-full md:px-10">
-      <Flex direction="col" className="relative">
+    <Flex className="gap-2 md:h-full md:px-10">
+      <Flex className="relative">
         <HomePokeball/>
         <div className="absolute bottom-0 right-0">
           <HomeUserCount userCount={userCount}/>

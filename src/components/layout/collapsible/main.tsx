@@ -20,7 +20,7 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
   }, []);
 
   return (
-    <Flex direction="col">
+    <Flex>
       <button className="button-clickable-bg group p-1" onClick={() => setShow(!show)}>
         {button}
       </button>

@@ -31,7 +31,7 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn
   const pokemonCount = toUnique(sleepStyles?.map(({pokemonId}) => pokemonId) ?? []).length;
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <Flex direction="row" center className="gap-4 text-lg">
         <Flex direction="row" center noFullWidth className="gap-1.5">
           <div className="relative h-6 w-6">

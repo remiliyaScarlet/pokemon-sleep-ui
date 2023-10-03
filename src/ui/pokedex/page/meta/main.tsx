@@ -28,13 +28,13 @@ export const PokemonMeta = (props: PokemonProps) => {
   const t2 = useTranslations('UI.InPage.Pokedex');
 
   return (
-    <Flex direction="col" center className="info-section gap-2 lg:flex-row">
-      <Flex direction="col" className="gap-2 md:p-5 lg:p-8">
+    <Flex center className="info-section gap-2 lg:flex-row">
+      <Flex className="gap-2 md:p-5 lg:p-8">
         <PokemonNameBig pokemon={pokemon}/>
         <PokemonImageGallery {...props}/>
       </Flex>
       <AdsUnit className="my-2 lg:hidden"/>
-      <Flex direction="col" className="gap-y-3 md:p-5 lg:p-8">
+      <Flex className="gap-y-3 md:p-5 lg:p-8">
         <PokemonMetaSection title={t2('Info.SleepType')} contentClassName="text-lg">
           <PokemonSleepType sleepType={sleepType} dimension="h-7 w-7"/>
         </PokemonMetaSection>
@@ -48,8 +48,8 @@ export const PokemonMeta = (props: PokemonProps) => {
           title={t2('Info.MainSkill')}
           titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.skill && 'bg-blink')}
         >
-          <Flex direction="col">
-            <Flex direction="col" center className="h-12 text-lg">
+          <Flex>
+            <Flex center className="h-12 text-lg">
               <Link href={`/info/mainskill/${skill}`} className="button-clickable-bg p-1 px-2">
                 {t(`MainSkill.Name.${skill}`)}
               </Link>

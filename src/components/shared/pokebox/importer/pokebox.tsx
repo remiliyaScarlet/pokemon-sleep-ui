@@ -53,7 +53,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
     });
 
   return (
-    <Flex direction="col" className="gap-1.5">
+    <Flex className="gap-1.5">
       <Flex direction="row" center className="gap-1.5">
         <div className="h-6 w-6">
           <MagnifyingGlassIcon/>
@@ -79,7 +79,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
                 imageSizes={imageIconSizes}
                 info={pokeInBox.level}
               />
-              <Flex direction="col">
+              <Flex>
                 <Flex direction="row" center className="gap-1">
                   {
                     isShiny &&
@@ -96,7 +96,7 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
                     {name}
                   </div>
                 </Flex>
-                <Flex direction="col" className="items-end md:flex-row">
+                <Flex className="items-end md:flex-row">
                   <PokemonNatureIndicator nature={pokeInBox.nature} hideName/>
                   <div className="ml-auto">
                     <PokemonSubSkillIndicator subSkill={pokeInBox.subSkill} subSkillMap={subSkillMap}/>

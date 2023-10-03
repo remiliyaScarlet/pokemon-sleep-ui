@@ -14,7 +14,7 @@ export const PokemonBerryProduction = ({pokemon, berryName}: Props) => {
   const {berry} = pokemon;
 
   return (
-    <Flex direction="col" center className="gap-1">
+    <Flex center className="gap-1">
       <Flex direction="row" center className="gap-1">
         <PokemonBerryIcon id={berry.id} dimension="h-10 w-10"/>
         <div className="whitespace-nowrap text-lg">

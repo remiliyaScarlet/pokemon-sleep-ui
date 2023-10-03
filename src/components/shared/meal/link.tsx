@@ -28,11 +28,11 @@ export const MealLink = (props: MealLinkProps) => {
       <div className="relative h-20 w-20 opacity-40">
         <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
       </div>
-      <Flex direction="col" className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
+      <Flex className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
         <div className="text-shadow-preset truncate text-left">
           {mealName}
         </div>
-        <Flex direction="col" noFullWidth>
+        <Flex noFullWidth>
           <MealLinkDetail {...props}/>
         </Flex>
       </Flex>

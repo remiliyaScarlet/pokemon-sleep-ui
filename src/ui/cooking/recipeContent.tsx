@@ -25,7 +25,7 @@ export const CookingRecipeContent = ({
     <div className={clsx(
       'button-toggle-inactive-bg relative w-full rounded-lg', clickable && 'button-clickable',
     )}>
-      <Flex direction="col" className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
+      <Flex className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
         <Flex direction="row" className="gap-1">
           {icon}
           <div className={clsx('truncate text-left text-sm', markGray && 'text-slate-400 dark:text-slate-600')}>
@@ -34,7 +34,7 @@ export const CookingRecipeContent = ({
         </Flex>
         {children}
       </Flex>
-      <Flex direction="col" className="items-end">
+      <Flex className="items-end">
         <div className={clsx('relative', imageDimension)}>
           <NextImage
             src={`/images/meal/portrait/${mealId}.png`} alt={mealName} className="opacity-40" sizes={imageIconSizes}

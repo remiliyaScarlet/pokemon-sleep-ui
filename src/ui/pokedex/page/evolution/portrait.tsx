@@ -19,7 +19,7 @@ type Props = {
 export const PokemonEvolutionPortrait = ({pokemon, dimension, showPokemon}: Props) => {
   if (!pokemon) {
     return (
-      <Flex direction="col" center noFullWidth className={clsx('button-disabled shrink-0', dimension)}>
+      <Flex center noFullWidth className={clsx('button-disabled shrink-0', dimension)}>
         <UnavailableIcon/>
       </Flex>
     );

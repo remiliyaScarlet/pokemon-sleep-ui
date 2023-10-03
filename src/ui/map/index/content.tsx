@@ -18,7 +18,7 @@ export const MapIndexContent = (props: MapIndexServerDataProps) => {
   const sleepdexCompletion = getSleepdexCompletion(props);
 
   return (
-    <Flex direction="col" className="gap-1.5 md:px-32 md:pt-32">
+    <Flex className="gap-1.5 md:px-32 md:pt-32">
       <AdsUnit/>
       <Grid className="grid-cols-1 gap-1.5 xl:grid-cols-2">
         {Object.entries(data).map(([mapIdStr, sleepStyles]) => {
@@ -26,7 +26,7 @@ export const MapIndexContent = (props: MapIndexServerDataProps) => {
 
           return (
             <MapLink key={mapId} mapId={mapId} className="h-40">
-              <Flex direction="col" className="gap-4">
+              <Flex className="gap-4">
                 <div className="text-2xl">
                   {t(mapIdStr)}
                 </div>

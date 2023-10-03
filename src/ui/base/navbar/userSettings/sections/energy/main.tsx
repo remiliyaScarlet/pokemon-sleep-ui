@@ -25,8 +25,8 @@ export const UserSettingsEnergy = (props: UserSettingsEnergyProps) => {
     <UserSettingsSection titleIcon={
       <GenericIcon src="/images/generic/mood.png" noWrap alt={t('Title')}/>
     }>
-      <Flex direction="col" className="items-center gap-1.5 lg:flex-row">
-        <Flex direction="col" className="gap-1.5">
+      <Flex className="items-center gap-1.5 lg:flex-row">
+        <Flex className="gap-1.5">
           <UserSettingsSleepSession {...props} session="primary" num={1}/>
           <UserSettingsSleepSession
             {...props}
@@ -44,7 +44,7 @@ export const UserSettingsEnergy = (props: UserSettingsEnergyProps) => {
         </Flex>
         <UserSettingsSkillRecovery {...props}/>
       </Flex>
-      <Flex direction="col" noFullWidth className="w-fit self-end rounded-lg border border-slate-500 px-2 py-1">
+      <Flex noFullWidth className="w-fit self-end rounded-lg border border-slate-500 px-2 py-1">
         {getStaminaEfficiency({config, sessionInfo}).toFixed(4)}x
       </Flex>
     </UserSettingsSection>

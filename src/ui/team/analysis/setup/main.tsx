@@ -42,7 +42,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
   return (
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
-      <Flex direction="col" className="gap-1.5">
+      <Flex className="gap-1.5">
         <TeamAnalysisTeamView
           showPokemon={showPokemon}
           statsOfTeam={statsOfTeam}

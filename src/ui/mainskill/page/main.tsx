@@ -32,7 +32,7 @@ export const MainSkillPage = async ({params}: PageProps<MainSkillPageParams>) =>
   return (
     <PublicPageLayout locale={locale}>
       <AdsUnit/>
-      <Flex direction="col" className="info-section-bg gap-5 p-3 md:flex-row">
+      <Flex className="info-section-bg gap-5 p-3 md:flex-row">
         <MainSkillMeta data={mainSkillData}/>
         <MainSkillValueTable data={mainSkillData}/>
       </Flex>

@@ -51,7 +51,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
         </div>
       </Flex>
     }>
-      <Flex direction="col" className="gap-1 pr-1">
+      <Flex className="gap-1 pr-1">
         <PokemonSortingPicker
           sort={filter.sort}
           updateSort={(sort) => setFilter((original) => ({...original, sort}))}
@@ -63,7 +63,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
         />
         <FilterCategoryInput
           title={
-            <Flex direction="col" center>
+            <Flex center>
               <div className="h-6 w-6">
                 <EyeIcon/>
               </div>
@@ -114,7 +114,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
           filter.viewType === 'grid' &&
           <FilterIconInput
             title={
-              <Flex direction="col" center>
+              <Flex center>
                 <div className="h-6 w-6">
                   <InformationCircleIcon/>
                 </div>
@@ -137,7 +137,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
           filter.viewType === 'table' &&
           <FilterIconInput
             title={
-              <Flex direction="col" center>
+              <Flex center>
                 <div className="h-6 w-6">
                   <InformationCircleIcon/>
                 </div>

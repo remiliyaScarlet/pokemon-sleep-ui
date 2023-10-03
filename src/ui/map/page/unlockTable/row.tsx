@@ -11,9 +11,9 @@ export const MapUnlockTableRow = (props: MapUnlockTableRowProps) => {
   const {isLoggedIn} = props;
 
   return (
-    <Flex direction="col" className="unlock-table-row gap-2 xl:flex-row">
+    <Flex className="unlock-table-row gap-2 xl:flex-row">
       <MapUnlockTableRankMeta {...props}/>
-      <Flex direction="col">
+      <Flex>
         <MapUnlockTablePokemonIcons {...props}/>
         {isLoggedIn && <MapUnlockTableSleepdexStats {...props}/>}
       </Flex>

@@ -15,8 +15,8 @@ export const BerryPageClient = (props: Props) => {
   const [level, setLevel] = React.useState(1);
 
   return (
-    <Flex direction="col" className="gap-1.5">
-      <Flex direction="col" className="gap-1.5 lg:flex-row">
+    <Flex className="gap-1.5">
+      <Flex className="gap-1.5 lg:flex-row">
         <BerryMeta {...props}/>
         <AdsUnit className="lg:hidden"/>
         <BerryFavoriteInfoUi level={level} setLevel={setLevel} {...props}/>

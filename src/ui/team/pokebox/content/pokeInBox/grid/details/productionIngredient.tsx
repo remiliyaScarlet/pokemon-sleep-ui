@@ -19,7 +19,7 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
   const {ingredient} = getRateOfPokemon(props);
 
   return (
-    <Flex direction="col" noFullWidth className={clsx(
+    <Flex noFullWidth className={clsx(
       'w-fit gap-0.5 pr-1.5 text-sm',
       pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
     )}>

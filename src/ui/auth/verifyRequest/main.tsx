@@ -12,7 +12,7 @@ export const AuthVerifyRequest = async ({params}: DefaultPageProps) => {
 
   return (
     <AuthLayout locale={locale}>
-      <Flex direction="col" center className="info-section">
+      <Flex center className="info-section">
         {t('EmailSent')}
       </Flex>
     </AuthLayout>

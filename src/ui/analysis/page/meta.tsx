@@ -13,7 +13,7 @@ type Props = AnalysisPageCommonProps;
 
 export const AnalysisMeta = ({pokemon}: Props) => {
   return (
-    <Flex direction="col" center className="info-section">
+    <Flex center className="info-section">
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-60 w-60">
         <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>

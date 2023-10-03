@@ -78,12 +78,12 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
         className="button-clickable-bg group h-full w-full whitespace-nowrap px-1.5 text-sm"
         onClick={() => setShow(true)}
       >
-        <Flex direction="col" center>
+        <Flex center>
           <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
         </Flex>
       </button>
       <Popup show={show} setShow={setShow}>
-        <Flex direction="col" className="max-w-3xl gap-2">
+        <Flex className="max-w-3xl gap-2">
           <Grid className={clsx(
             'sticky -top-2 z-10 gap-2 rounded-lg bg-slate-50/90 p-1.5 dark:bg-slate-950/90',
             'grid-cols-1 sm:grid-cols-2 md:grid-cols-5',

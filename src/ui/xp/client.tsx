@@ -19,7 +19,7 @@ export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps)
   });
 
   return (
-    <Flex direction="col" className="gap-1.5 md:flex-row">
+    <Flex className="gap-1.5 md:flex-row">
       <PokemonExpCalculatorInputUI filter={input} setFilter={setInput} {...props}/>
       <PokemonExpCalculatorTable input={input} {...props}/>
     </Flex>

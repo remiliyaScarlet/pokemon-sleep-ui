@@ -45,7 +45,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
         <div className="absolute bottom-2 right-6 z-10">
           <PokedexInputClearer setFilter={setFilter} preloadedDisplay={preloaded.display}/>
         </div>
-        <Flex direction="col" className="gap-1 pr-1">
+        <Flex className="gap-1 pr-1">
           <PokemonMapFilter
             highlight
             mapIds={toUnique(pokedex
@@ -74,7 +74,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             />
           ))}
           <InputRow>
-            <Flex direction="col" className="p-1">
+            <Flex className="p-1">
               <PokemonLevelSlider
                 level={filter.level}
                 maxLevel={maxLevel}

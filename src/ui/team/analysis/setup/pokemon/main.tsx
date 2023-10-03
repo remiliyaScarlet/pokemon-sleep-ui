@@ -45,7 +45,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         ratingControl={ratingControl}
         {...props}
       />
-      <Flex direction="col" center className="gap-1">
+      <Flex center className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
           <div className="relative h-5 w-5">
             <NextImage
@@ -62,7 +62,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
             <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
           </div>
         </Flex>
-        <Flex direction="col" className="items-center gap-1.5 sm:flex-row">
+        <Flex className="items-center gap-1.5 sm:flex-row">
           <Flex direction="row" center noFullWidth className="gap-1.5">
             <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
@@ -76,7 +76,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
               <ArrowPathIcon/>
             </button>
           </Flex>
-          <Flex direction="col" className="items-end gap-1">
+          <Flex className="items-end gap-1">
             <button className="button-clickable-bg w-fit px-1.5" onClick={() => setShowIngredientPicker(true)}>
               <PokemonIngredientIcons
                 ingredients={[Object.values(member.ingredients).map((production) => production)]}
@@ -89,7 +89,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex direction="col" center className="gap-1">
+      <Flex center className="gap-1">
         <TeamAnalysisPokemonIndividualParams {...props}/>
         <TeamAnalysisPokemonProduction {...props}/>
       </Flex>

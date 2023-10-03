@@ -17,7 +17,7 @@ export const LevelSlider = (props: Props) => {
   const {id, level, minLevel = 1, maxLevel, setLevel, noSameLine} = props;
 
   return (
-    <Flex direction="col" className={clsx('items-center gap-1.5', !noSameLine && 'lg:flex-row')}>
+    <Flex className={clsx('items-center gap-1.5', !noSameLine && 'lg:flex-row')}>
       <LevelInput {...props} minLevel={minLevel}/>
       <Slider id={id} value={level} setValue={setLevel} min={minLevel} max={maxLevel}/>
     </Flex>

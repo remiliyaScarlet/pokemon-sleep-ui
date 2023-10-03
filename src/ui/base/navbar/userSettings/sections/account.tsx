@@ -11,7 +11,7 @@ type Props = {
 
 export const UserSettingsAccountInfo = ({session}: Props) => {
   return (
-    <Flex direction="col" className="rounded-lg border border-slate-500 p-2">
+    <Flex className="rounded-lg border border-slate-500 p-2">
       {session.user.email}
     </Flex>
   );

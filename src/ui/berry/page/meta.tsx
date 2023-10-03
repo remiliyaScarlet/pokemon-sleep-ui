@@ -20,7 +20,7 @@ export const BerryMeta = ({berryData}: BerryPageDataProps) => {
   const berryEnergyArray = energy.map(({energy}) => energy);
 
   return (
-    <Flex direction="col" center className="info-section lg:w-fit">
+    <Flex center className="info-section lg:w-fit">
       <div className="text-xl">
         {berryName}
       </div>

@@ -26,7 +26,7 @@ export const MapLink = ({mapId, className, noAbsolute, children}: React.PropsWit
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
       />
-      <Flex direction="col" center className={clsx('h-full gap-1.5', !noAbsolute && 'absolute left-0 top-0 z-10')}>
+      <Flex center className={clsx('h-full gap-1.5', !noAbsolute && 'absolute left-0 top-0 z-10')}>
         {children}
       </Flex>
     </Link>

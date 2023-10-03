@@ -28,7 +28,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
   const t = useTranslations('UI.InPage.Info.Pot');
 
   return (
-    <Flex direction="col" className="button-bg gap-1.5 rounded-lg p-2 md:flex-row md:items-center">
+    <Flex className="button-bg gap-1.5 rounded-lg p-2 md:flex-row md:items-center">
       <Flex direction="row" center noFullWidth className="gap-1.5 md:w-48 md:flex-col">
         <Flex direction="row" center noFullWidth className="gap-1">
           <GenericIcon src="/images/generic/pot.png" alt={t('Capacity')} dimension="h-7 w-7"/>
@@ -37,7 +37,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
         <Flex direction="row" center noFullWidth className="gap-1">
           <GenericIcon src="/images/generic/shard_white.png" alt={t('Expand')} dimension="h-7 w-7"/>
           {!capacity || capacity < potInfo.capacity ?
-            <Flex direction="col" noFullWidth className="gap-0.5">
+            <Flex noFullWidth className="gap-0.5">
               <div>{formatInt(cumulativeCost)}</div>
               <div className="text-xs">(+{formatInt(potInfo.cost)})</div>
             </Flex> :
@@ -45,7 +45,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
           <GenericIcon src="/images/generic/meal.png" alt={t('UnlockedRecipes')} dimension="h-7 w-7"/>
-          <Flex direction="col" noFullWidth className="gap-0.5">
+          <Flex noFullWidth className="gap-0.5">
             <div>{unlockedRecipes}</div>
             <div className="text-xs">(+{meals.length})</div>
           </Flex>

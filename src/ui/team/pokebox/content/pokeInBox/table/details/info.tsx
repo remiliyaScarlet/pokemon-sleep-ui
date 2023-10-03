@@ -53,7 +53,7 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
           ingredients={[Object.values(pokeInBox.ingredients).map((ingredient) => ingredient)]}
         />
       </div>
-      <Flex direction="col" noFullWidth center className="w-40">
+      <Flex noFullWidth center className="w-40">
         <PokemonIngredientRate split={producingParams.ingredientSplit}/>
       </Flex>
     </>
