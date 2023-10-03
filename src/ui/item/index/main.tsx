@@ -1,44 +1,10 @@
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-
-import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex/common';
-import {Grid} from '@/components/layout/grid';
-import {FeatureLinkImage} from '@/components/shared/link/featureImage';
+import {navEntryForItem} from '@/const/nav/item';
 import {DefaultPageProps} from '@/types/next/page';
-import {PublicPageLayout} from '@/ui/base/layout/public';
+import {PageIndex} from '@/ui/base/pageIndex';
 
 
-export const ItemIndex = ({params}: DefaultPageProps) => {
-  const {locale} = params;
-  const t = useTranslations('UI.Metadata.Item');
-
-  return (
-    <PublicPageLayout locale={locale}>
-      <Flex center>
-        <Flex wrap center className="h-auto gap-2 md:w-1/2">
-          <div className="w-full">
-            <AdsUnit/>
-          </div>
-          <Grid className="grid-rows-2 gap-2">
-            <FeatureLinkImage
-              href="/item/evolution"
-              imageSrc="/images/generic/flash.png"
-              text={t('Evolution.Title')}
-            />
-            <FeatureLinkImage
-              href="/item/incense"
-              imageSrc="/images/generic/incense.png"
-              text={t('Incense.Index.Title')}
-              disabled
-            />
-          </Grid>
-          <div className="w-full">
-            <AdsUnit/>
-          </div>
-        </Flex>
-      </Flex>
-    </PublicPageLayout>
-  );
+export const ItemIndex = (pageProps: DefaultPageProps) => {
+  return <PageIndex pageProps={pageProps} entries={navEntryForItem}/>;
 };
