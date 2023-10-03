@@ -9,9 +9,19 @@ import {Flex} from '@/components/layout/flex/common';
 
 type Props = CollapsibleCommonProps & {
   disabled?: boolean,
+  durationOverride?: `duration-${number}`,
+  delayOverride?: `delay-${number}`,
 };
 
-export const CollapsibleFull = ({state, button, appear, disabled, children}: React.PropsWithChildren<Props>) => {
+export const CollapsibleFull = ({
+  state,
+  button,
+  appear,
+  disabled,
+  durationOverride,
+  delayOverride,
+  children,
+}: React.PropsWithChildren<Props>) => {
   const {show, setShow} = state;
 
   React.useEffect(() => {
@@ -19,6 +29,9 @@ export const CollapsibleFull = ({state, button, appear, disabled, children}: Rea
       setShow(true);
     }
   }, []);
+
+  const duration = durationOverride ?? 'duration-1000';
+  const delay = delayOverride ?? 'delay-300';
 
   return (
     <Flex>
@@ -37,19 +50,19 @@ export const CollapsibleFull = ({state, button, appear, disabled, children}: Rea
       >
         <Transition.Child
           appear={appear}
-          enter="duration-1000"
+          enter={duration}
           enterFrom="grid-rows-[0fr]"
           enterTo="grid-rows-[1fr]"
-          leave="duration-1000"
+          leave={duration}
           leaveFrom="grid-rows-[1fr]"
           leaveTo="grid-rows-[0fr]"
           className="grid w-full transition-[grid-template-rows] ease-in-out"
         >
           <Transition.Child
-            enter="delay-300 duration-1000"
+            enter={`${delay} ${duration}`}
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="duration-1000"
+            leave={duration}
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
             className="overflow-hidden transition-opacity ease-in-out"
