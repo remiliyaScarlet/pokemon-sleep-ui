@@ -3,7 +3,7 @@ import React from 'react';
 import PuzzlePieceIcon from '@heroicons/react/24/outline/PuzzlePieceIcon';
 import WrenchIcon from '@heroicons/react/24/solid/WrenchIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';

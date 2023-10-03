@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {MapUnlockTableStylesUnlocked} from '@/ui/map/page/unlockTable/stylesUnlocked';
 import {MapUnlockTableRowProps} from '@/ui/map/page/unlockTable/type';
 import {toSum, toUnique} from '@/utils/array';

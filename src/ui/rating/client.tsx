@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {RatingRequest} from '@/types/game/pokemon/rating';

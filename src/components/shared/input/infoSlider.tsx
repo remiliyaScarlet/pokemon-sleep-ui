@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Slider} from '@/components/input/slider';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {

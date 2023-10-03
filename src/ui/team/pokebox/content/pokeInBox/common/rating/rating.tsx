@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {LoadingText} from '@/components/icons/loading';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {ProgressBar} from '@/components/progressBar';
 import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
 import {classOfMarkStyle} from '@/styles/text/mark/style';

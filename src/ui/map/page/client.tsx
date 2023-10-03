@@ -4,7 +4,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Locale} from '@/types/next/locale';
 import {useMapFilter} from '@/ui/map/page/hook';
 import {MapInfoInput} from '@/ui/map/page/input/main';

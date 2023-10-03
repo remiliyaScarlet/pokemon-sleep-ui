@@ -2,7 +2,7 @@ import React from 'react';
 
 import {InputBox} from '@/components/input/box';
 import {Slider} from '@/components/input/slider';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {BonusSliderProps} from '@/components/shared/production/bonus/type';
 
 

@@ -7,7 +7,7 @@ import {useTranslations} from 'next-intl';
 
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';

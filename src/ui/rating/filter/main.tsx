@@ -5,8 +5,8 @@ import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon';
 
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
-import {Flex} from '@/components/layout/flex';
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';

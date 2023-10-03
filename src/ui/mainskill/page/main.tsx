@@ -3,7 +3,7 @@ import React from 'react';
 import {MainSkillPageParams} from '@/app/[locale]/info/mainskill/[id]/page';
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {I18nProvider} from '@/contexts/i18n';
 import {getMainSkillData} from '@/controller/mainSkill';
 import {getPokemonByMainSkill} from '@/controller/pokemon/info';

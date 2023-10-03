@@ -2,7 +2,7 @@ import React from 'react';
 
 import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {MainSkillEffectUI} from '@/components/shared/pokemon/mainSkill/effect';

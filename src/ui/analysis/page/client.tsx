@@ -4,7 +4,7 @@ import React from 'react';
 import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {useUserSettings} from '@/hooks/userData/settings';

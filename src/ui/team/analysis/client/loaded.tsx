@@ -3,7 +3,7 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';

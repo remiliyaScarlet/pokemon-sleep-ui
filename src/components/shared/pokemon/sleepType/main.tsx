@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {PokemonSleepTypeCommonProps} from '@/components/shared/pokemon/sleepType/type';
 import {getSleepTypeTextClass} from '@/styles/game/sleepType';

@@ -3,7 +3,7 @@ import React from 'react';
 import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
 
 
 type Props = {

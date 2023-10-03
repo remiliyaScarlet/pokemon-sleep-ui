@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {FeatureLinkProps} from '@/components/shared/link/type';
 
 import styles from './main.module.css';

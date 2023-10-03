@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';

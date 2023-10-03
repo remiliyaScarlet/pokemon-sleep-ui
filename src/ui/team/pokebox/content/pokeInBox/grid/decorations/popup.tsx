@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';

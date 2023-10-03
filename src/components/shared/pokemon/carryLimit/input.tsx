@@ -4,7 +4,7 @@ import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
 

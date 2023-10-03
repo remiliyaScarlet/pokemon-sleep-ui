@@ -4,7 +4,7 @@ import WrenchScrewdriverIcon from '@heroicons/react/24/solid/WrenchScrewdriverIc
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {FeatureLink} from '@/components/shared/link/feature';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';

@@ -5,7 +5,7 @@ import ExclamationTriangleIcon from '@heroicons/react/24/outline/ExclamationTria
 
 import {InputFile} from '@/components/input/file/main';
 import {InputFileCommonProps} from '@/components/input/file/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {mimeTypesOfImage} from '@/types/mime';
 import {showToast} from '@/utils/toast';
 

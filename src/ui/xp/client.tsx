@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonExpCalculatorInputUI} from '@/ui/xp/input';
 import {PokemonExpCalculatorTable} from '@/ui/xp/results/table';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';

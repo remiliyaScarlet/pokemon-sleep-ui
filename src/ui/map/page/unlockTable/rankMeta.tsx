@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {GenericIcon} from '@/components/shared/icon/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';

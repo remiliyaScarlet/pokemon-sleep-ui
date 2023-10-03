@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {MapUnlockTablePokemonIcons} from '@/ui/map/page/unlockTable/pokemonIcons';
 import {MapUnlockTableRankMeta} from '@/ui/map/page/unlockTable/rankMeta';
 import {MapUnlockTableSleepdexStats} from '@/ui/map/page/unlockTable/sleepdexStats';

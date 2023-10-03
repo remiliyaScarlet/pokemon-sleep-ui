@@ -2,8 +2,8 @@ import React from 'react';
 
 import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
 
-import {Flex} from '@/components/layout/flex';
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {NextImageAutoHeight} from '@/components/shared/common/image/autoHeight';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/main';
 import {staminaCalcStrategyI18nId} from '@/const/game/stamina';
 import {staminaCalcSkillRecoveryStrategies} from '@/types/game/producing/stamina';

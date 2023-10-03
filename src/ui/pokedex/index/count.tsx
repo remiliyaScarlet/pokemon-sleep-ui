@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokemonId} from '@/types/game/pokemon';
 

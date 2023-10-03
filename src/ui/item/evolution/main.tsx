@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {getEvolutionItemMap} from '@/controller/pokemon/evolution';
 import {DefaultPageProps} from '@/types/next/page';

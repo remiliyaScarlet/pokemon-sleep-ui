@@ -3,7 +3,7 @@ import React from 'react';
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {PokemonSpecialtyCommonProps} from '@/components/shared/pokemon/specialty/type';
 import {getSpecialtyTextClass} from '@/styles/game/specialty';

@@ -3,7 +3,7 @@ import React from 'react';
 import ArrowTopRightOnSquareIcon from '@heroicons/react/24/outline/ArrowTopRightOnSquareIcon';
 import {signIn} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {

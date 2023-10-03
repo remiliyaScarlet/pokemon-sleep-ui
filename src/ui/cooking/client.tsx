@@ -4,7 +4,7 @@ import React from 'react';
 import {Session} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {IngredientMap} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal';
 import {useCookingFilter} from '@/ui/cooking/hook';

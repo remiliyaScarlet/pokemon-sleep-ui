@@ -4,7 +4,7 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {Pokebox} from '@/types/game/pokebox';
 import {useCalculatedData} from '@/ui/team/pokebox/client/hooks';

@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputOnClickProps} from '@/components/input/filter/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {mealTypeDotStyle} from '@/styles/classes';
 import {MealTypeId} from '@/types/game/meal';
 

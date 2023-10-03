@@ -2,7 +2,7 @@ import React from 'react';
 
 import groupBy from 'lodash/groupBy';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {natureData} from '@/data/nature';
 import {natureEffectId} from '@/types/game/pokemon/nature';
 import {DefaultPageProps} from '@/types/next/page';

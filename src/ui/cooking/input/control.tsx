@@ -7,7 +7,7 @@ import {useTranslations} from 'next-intl';
 import {InputRow} from '@/components/input/filter/row';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {defaultCookingPreset} from '@/const/user/cooking';

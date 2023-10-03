@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';

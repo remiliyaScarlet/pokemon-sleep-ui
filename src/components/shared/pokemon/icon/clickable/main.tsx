@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 import Link from 'next-intl/link';
 
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';

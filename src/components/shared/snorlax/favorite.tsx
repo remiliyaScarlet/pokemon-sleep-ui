@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterInputSetFromOriginalProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {imageSmallIconSizes} from '@/styles/image';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {MapIndexSleepdexCompletionOfMap} from '@/ui/map/common/type';
 import {formatFloat} from '@/utils/number';
 

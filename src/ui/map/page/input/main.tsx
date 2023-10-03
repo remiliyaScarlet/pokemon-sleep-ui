@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {MapInputDisplayType} from '@/ui/map/page/input/displayType';

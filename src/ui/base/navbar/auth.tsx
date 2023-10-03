@@ -7,7 +7,7 @@ import {Session} from 'next-auth';
 import {signIn, signOut} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {

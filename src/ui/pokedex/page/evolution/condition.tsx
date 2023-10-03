@@ -3,7 +3,7 @@ import React from 'react';
 import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {EvolutionCondition} from '@/types/game/pokemon/evolution';
 

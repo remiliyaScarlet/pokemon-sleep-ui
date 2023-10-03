@@ -2,7 +2,7 @@ import React from 'react';
 
 import UsersIcon from '@heroicons/react/24/outline/UsersIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {formatInt} from '@/utils/number';
 
 

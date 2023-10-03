@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {imageSmallIconSizes} from '@/styles/image';

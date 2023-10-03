@@ -8,7 +8,7 @@ import {useTranslations} from 'next-intl';
 import {InputRow} from '@/components/input/filter/row';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {EnergyIcon} from '@/components/shared/icon/energy';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {UserCookingPreset} from '@/types/userData/cooking';

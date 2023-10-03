@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';

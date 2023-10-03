@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokeInBoxTableFrequency} from '@/ui/team/pokebox/content/pokeInBox/table/details/frequency';
 import {PokeInBoxTableDetails} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
 import {PokeInBoxTableMaxCarry} from '@/ui/team/pokebox/content/pokeInBox/table/details/maxCarry';

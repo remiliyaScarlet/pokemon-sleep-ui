@@ -2,7 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonIconList} from '@/components/shared/pokemon/icon/list';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {MapTableInfoIcon} from '@/ui/map/page/unlockTable/infoIcon';

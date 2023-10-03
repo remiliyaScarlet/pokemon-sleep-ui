@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Slider} from '@/components/input/slider';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {LevelInput} from '@/components/shared/input/levelInput';
 import {LevelSliderProps} from '@/components/shared/input/type';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Loading, LoadingIcon} from '@/components/icons/loading';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {AnalysisStatsOfPokemonMeta} from '@/ui/analysis/page/stats/pokemon';

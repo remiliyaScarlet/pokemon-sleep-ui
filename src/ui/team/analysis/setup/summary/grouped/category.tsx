@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisCategoryData} from '@/ui/team/analysis/setup/summary/grouped/type';

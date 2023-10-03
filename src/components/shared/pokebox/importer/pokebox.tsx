@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';

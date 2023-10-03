@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {AuthSignInProvider} from '@/ui/auth/signIn/provider';
 
 

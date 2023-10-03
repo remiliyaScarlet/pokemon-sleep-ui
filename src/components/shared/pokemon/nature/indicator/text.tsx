@@ -6,7 +6,7 @@ import ChevronDownIcon from '@heroicons/react/24/solid/ChevronDownIcon';
 import ChevronUpIcon from '@heroicons/react/24/solid/ChevronUpIcon';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NatureEffectIcon} from '@/components/shared/pokemon/nature/effectIcon';
 import {PokemonNatureIndicatorCommonProps} from '@/components/shared/pokemon/nature/indicator/type';
 import {natureDataMap} from '@/data/nature';

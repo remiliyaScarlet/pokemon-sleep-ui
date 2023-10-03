@@ -2,7 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';

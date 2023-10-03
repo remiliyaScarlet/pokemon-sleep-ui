@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {natureStyle} from '@/styles/game/nature';
 import {NatureData} from '@/types/game/pokemon/nature';
 import {NatureInfoEffect} from '@/ui/info/nature/effect';

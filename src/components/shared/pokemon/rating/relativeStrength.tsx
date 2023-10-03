@@ -3,7 +3,7 @@ import React from 'react';
 import ArrowsUpDownIcon from '@heroicons/react/24/outline/ArrowsUpDownIcon';
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Dimension} from '@/types/style';
 import {formatFloat} from '@/utils/number';
 

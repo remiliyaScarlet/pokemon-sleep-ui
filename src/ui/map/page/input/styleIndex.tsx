@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {SleepStyleId} from '@/types/game/sleepStyle';

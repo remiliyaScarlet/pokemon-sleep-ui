@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Session} from 'next-auth';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {

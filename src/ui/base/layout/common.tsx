@@ -7,7 +7,7 @@ import {Toaster} from 'react-hot-toast';
 import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
 import {LoadingFullScreen} from '@/components/icons/loading';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavBar} from '@/ui/base/navbar/main';

@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInputProps} from '@/components/input/filter/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {displayTypeToI18nId} from '@/ui/map/page/input/const';
 import {MapPageFilter, mapUnlockTableDisplayType} from '@/ui/map/page/type';
 

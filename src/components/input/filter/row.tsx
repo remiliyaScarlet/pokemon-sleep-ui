@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 
 import {rowBackground} from '@/components/input/filter/const';
 import {InputRowProps} from '@/components/input/filter/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = InputRowProps & {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {TextMarkThreshold} from '@/styles/text/mark/type';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {AnalysisStatsGrouped} from '@/ui/analysis/page/calc/type';

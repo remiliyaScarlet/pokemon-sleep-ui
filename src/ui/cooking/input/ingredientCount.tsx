@@ -2,7 +2,7 @@ import React from 'react';
 
 import {InputBox} from '@/components/input/box';
 import {isFilterConditionActive} from '@/components/input/filter/utils/check';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {CookingCommonProps} from '@/ui/cooking/type';
 

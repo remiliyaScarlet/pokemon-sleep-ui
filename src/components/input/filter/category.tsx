@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 export const FilterCategoryInput = <TId, >({

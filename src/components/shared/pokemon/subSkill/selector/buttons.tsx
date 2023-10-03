@@ -2,7 +2,7 @@ import React from 'react';
 
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonSubSkillSelectionButton} from '@/components/shared/pokemon/subSkill/selector/button';
 import {SubSkillData, SubSkillId} from '@/types/game/pokemon/subSkill';
 

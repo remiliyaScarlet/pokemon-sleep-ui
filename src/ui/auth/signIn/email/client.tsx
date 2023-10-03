@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {signIn} from 'next-auth/react';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 export const AuthSignInEmailClient = () => {

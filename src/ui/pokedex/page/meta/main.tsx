@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';

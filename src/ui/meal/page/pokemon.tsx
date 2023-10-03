@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonIngredientProductionMap} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';

@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
 import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
 import {subSkillRaritySectionBg} from '@/styles/classes';
 import {SubSkillData} from '@/types/game/pokemon/subSkill';

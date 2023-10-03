@@ -4,7 +4,7 @@ import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';

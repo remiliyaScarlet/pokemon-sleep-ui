@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {NatureData, NatureEffectId} from '@/types/game/pokemon/nature';
 import {NatureInfoEffectText} from '@/ui/info/nature/effectText';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokedexMap} from '@/types/game/pokemon';
 import {EvolutionBranch} from '@/types/game/pokemon/evolution';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {appCompatibilityColor, appCompatibilityIcon} from '@/ui/base/navbar/userSettings/sections/app/const';
 
 

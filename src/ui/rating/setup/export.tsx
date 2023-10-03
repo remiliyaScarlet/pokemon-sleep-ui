@@ -4,7 +4,7 @@ import ArrowTopRightOnSquareIcon from '@heroicons/react/24/outline/ArrowTopRight
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';

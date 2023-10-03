@@ -4,7 +4,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {useNavEntries} from '@/hooks/nav';
 import {HomePokeball} from '@/ui/home/pokeball';

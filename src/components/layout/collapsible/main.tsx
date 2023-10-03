@@ -3,7 +3,7 @@ import React from 'react';
 import {Transition} from '@headlessui/react';
 
 import {CollapsibleCommonProps} from '@/components/layout/collapsible/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = CollapsibleCommonProps & {

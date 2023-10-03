@@ -16,7 +16,7 @@ import {
 } from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';

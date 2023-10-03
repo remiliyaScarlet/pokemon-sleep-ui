@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import potCapacity from '@/data/potCapacity.json';
 import {Meal} from '@/types/game/meal';
 import {PotInfoFilter} from '@/ui/info/pot/type';

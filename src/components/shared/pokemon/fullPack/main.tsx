@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {formatSeconds} from '@/utils/time';
 

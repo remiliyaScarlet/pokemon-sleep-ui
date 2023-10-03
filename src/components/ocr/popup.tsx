@@ -2,8 +2,8 @@ import React from 'react';
 
 import DocumentMagnifyingGlassIcon from '@heroicons/react/24/outline/DocumentMagnifyingGlassIcon';
 
-import {Flex} from '@/components/layout/flex';
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {Ocr} from '@/components/ocr/main';
 import {OcrCommonProps} from '@/components/ocr/type';
 import {Popup} from '@/components/popup';

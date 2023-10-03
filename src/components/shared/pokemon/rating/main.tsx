@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {RatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';

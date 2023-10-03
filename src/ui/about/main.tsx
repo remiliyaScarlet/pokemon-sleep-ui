@@ -4,7 +4,7 @@ import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
 import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {discordLink} from '@/const/external';
 import {DefaultPageProps} from '@/types/next/page';
 import {AboutSection} from '@/ui/about/section';

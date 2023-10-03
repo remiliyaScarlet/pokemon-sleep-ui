@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';

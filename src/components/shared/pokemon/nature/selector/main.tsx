@@ -5,7 +5,7 @@ import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCirc
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';

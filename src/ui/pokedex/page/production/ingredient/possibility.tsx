@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
 import {IngredientChain, ingredientLevels} from '@/types/game/pokemon/ingredient';

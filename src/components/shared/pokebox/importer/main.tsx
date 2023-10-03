@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {PokeboxImporterView} from '@/components/shared/pokebox/importer/pokebox';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';

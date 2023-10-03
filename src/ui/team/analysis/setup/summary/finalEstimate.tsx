@@ -4,7 +4,7 @@ import ClockIcon from '@heroicons/react/24/solid/ClockIcon';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {EnergyIcon} from '@/components/shared/icon/energy';
 import {durationOfDay} from '@/const/common';
 import {ProducingRate} from '@/types/game/producing/rate';

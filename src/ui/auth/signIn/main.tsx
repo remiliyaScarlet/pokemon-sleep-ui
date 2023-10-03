@@ -5,7 +5,7 @@ import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {DefaultPageProps} from '@/types/next/page';
 import {AuthLayout} from '@/ui/auth/common/layout';

@@ -7,7 +7,7 @@ import {clsx} from 'clsx';
 
 import {CollapsibleFull} from '@/components/layout/collapsible/full';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {ProgressBar} from '@/components/progressBar';

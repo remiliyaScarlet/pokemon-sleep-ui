@@ -2,7 +2,7 @@ import React from 'react';
 
 import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {

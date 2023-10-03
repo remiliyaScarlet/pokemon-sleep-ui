@@ -2,7 +2,7 @@ import React from 'react';
 
 import Bars3Icon from '@heroicons/react/24/outline/Bars3Icon';
 
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
 import {NavListCommonProps} from '@/ui/base/navbar/list/type';
 
 

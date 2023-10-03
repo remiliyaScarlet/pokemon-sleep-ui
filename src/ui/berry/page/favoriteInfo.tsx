@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {MapLink} from '@/components/shared/map/link';
 import {BerryFavoriteInMapType} from '@/components/shared/pokemon/berry/favoriteType';
 import {BerryLevelSlider} from '@/ui/berry/page/levelSlider';

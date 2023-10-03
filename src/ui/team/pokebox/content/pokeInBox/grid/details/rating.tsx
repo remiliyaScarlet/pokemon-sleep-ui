@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {PokeInBoxRatingStats} from '@/ui/team/pokebox/content/pokeInBox/common/rating/rating';
 import {PokeInBoxRelativeStrength} from '@/ui/team/pokebox/content/pokeInBox/common/rating/relativeStrength';
 import {useCalculatePokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/hook';

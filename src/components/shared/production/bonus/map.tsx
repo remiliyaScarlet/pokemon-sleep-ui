@@ -3,7 +3,7 @@ import React from 'react';
 import MapPinIcon from '@heroicons/react/24/outline/MapPinIcon';
 import ChevronUpIcon from '@heroicons/react/24/solid/ChevronUpIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {MapToggle} from '@/components/shared/map/toggle';
 import {BonusSlider} from '@/components/shared/production/bonus/base';
 import {BonusSliderProps} from '@/components/shared/production/bonus/type';

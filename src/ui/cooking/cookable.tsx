@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';

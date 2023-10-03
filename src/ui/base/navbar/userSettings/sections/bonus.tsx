@@ -5,7 +5,7 @@ import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {MapBonusSlider} from '@/components/shared/production/bonus/map';

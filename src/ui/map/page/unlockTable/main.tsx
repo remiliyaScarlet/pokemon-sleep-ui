@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {SleepdexMap} from '@/types/game/sleepdex';
 import {MapCommonProps, MapInputInclusionKey, MapPageFilter} from '@/ui/map/page/type';
 import {MapUnlockTableRow} from '@/ui/map/page/unlockTable/row';

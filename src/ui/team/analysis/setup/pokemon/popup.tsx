@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';

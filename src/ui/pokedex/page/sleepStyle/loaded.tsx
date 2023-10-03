@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {SleepdexMap} from '@/types/game/sleepdex';
 import {PokemonSleepStylesOfMap} from '@/ui/pokedex/page/sleepStyle/map';
 import {PokemonProps} from '@/ui/pokedex/page/type';

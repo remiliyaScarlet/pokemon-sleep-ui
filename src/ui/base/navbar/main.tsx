@@ -2,7 +2,7 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getMapIds} from '@/controller/mapMeta';

@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 import Link from 'next-intl/link';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imageSmallIconSizes} from '@/styles/image';

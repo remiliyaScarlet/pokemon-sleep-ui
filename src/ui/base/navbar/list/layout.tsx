@@ -4,8 +4,8 @@ import {Dialog, Transition} from '@headlessui/react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {clsx} from 'clsx';
 
-import {Flex} from '@/components/layout/flex';
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {PopupBlur} from '@/components/static/popupBlur';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavListCommonProps} from '@/ui/base/navbar/list/type';

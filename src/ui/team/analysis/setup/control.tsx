@@ -6,7 +6,7 @@ import {useSession} from 'next-auth/react';
 import {v4} from 'uuid';
 
 import {InputRow} from '@/components/input/filter/row';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';

@@ -3,7 +3,7 @@ import React from 'react';
 import {Transition} from '@headlessui/react';
 import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
 

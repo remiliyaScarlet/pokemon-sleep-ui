@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {RatingPopupControl, RatingResultProps} from '@/components/shared/pokemon/rating/type';

@@ -4,7 +4,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericIcon} from '@/components/shared/icon/main';

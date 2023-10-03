@@ -2,7 +2,7 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {BerryFavoriteInfoUi} from '@/ui/berry/page/favoriteInfo';
 import {BerryMeta} from '@/ui/berry/page/meta';
 import {BerryProducingRatesOfPokemon} from '@/ui/berry/page/pokemon';

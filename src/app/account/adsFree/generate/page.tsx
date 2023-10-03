@@ -3,7 +3,7 @@ import React from 'react';
 import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {isAdmin} from '@/controller/user/account/common';
 import {generateActivationKey} from '@/controller/user/account/key';

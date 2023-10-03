@@ -4,8 +4,8 @@ import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {v4} from 'uuid';
 
 import {InputBox} from '@/components/input/box';
-import {Flex} from '@/components/layout/flex';
-import {FlexButton} from '@/components/layout/flexButton';
+import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
 import {generateEmptyTeam, getTeamName} from '@/ui/team/analysis/utils';
 

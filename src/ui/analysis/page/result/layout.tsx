@@ -2,7 +2,7 @@ import React from 'react';
 
 import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 
-import {Flex} from '@/components/layout/flex';
+import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {AnalysisPokemonIcon} from '@/ui/analysis/page/result/icon';
