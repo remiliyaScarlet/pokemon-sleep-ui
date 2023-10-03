@@ -14,15 +14,13 @@ type Props = InputRowProps & {
 export const InputRow = ({
   style = 'normal',
   noRowPadding,
-  forceRow,
   className,
   children,
 }: React.PropsWithChildren<Props>) => {
   return (
     <Flex noFullWidth={style === 'none'} className={clsx(
-      'items-center gap-1 rounded-lg',
+      'items-center gap-1 rounded-lg sm:flex-row',
       !noRowPadding && 'p-1',
-      forceRow ? 'flex-row' : 'sm:flex-row',
       rowBackground[style],
       className,
     )}>

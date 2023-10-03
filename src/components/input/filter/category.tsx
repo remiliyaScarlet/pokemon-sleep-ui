@@ -20,7 +20,7 @@ export const FilterCategoryInput = <TId, >({
   noWrap,
   ...rowOpts
 }: FilterCategoryInputProps<TId>) => {
-  const {noFixedTitleWidth, forceRow} = rowOpts;
+  const {noFixedTitleWidth} = rowOpts;
 
   return (
     <InputRowWithTitle
@@ -31,10 +31,7 @@ export const FilterCategoryInput = <TId, >({
       }
       {...rowOpts}
     >
-      <Flex direction="row" center wrap={!noWrap} className={clsx(
-        'gap-1',
-        !forceRow && 'sm:justify-normal',
-      )}>
+      <Flex direction="row" center wrap={!noWrap} className="gap-1 sm:justify-normal">
         {ids.map((id) => {
           const active = isActive(id);
           const hidden = isHidden && isHidden(id);
