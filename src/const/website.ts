@@ -12,4 +12,3 @@ export const localeName = {
 export const defaultLocale: Locale = 'zh';
 
 export const locales = Object.keys(localeName);
-

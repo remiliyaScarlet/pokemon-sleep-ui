@@ -30,15 +30,17 @@ export const HomeClient = ({userCount}: Props) => {
       </Flex>
       <AdsUnit/>
       <Flex direction="row" center wrap className="h-auto gap-2">
-        {entries.map(({i18nTextId, showInHome, ...props}) => {
+        {entries.map((opts) => {
+          const {i18nTextId} = opts;
+
           // `showInHome` being `undefined` (falsy) should be treated as `true`
-          if (showInHome === false) {
+          if (opts.type === 'link' && opts.showInHome === false) {
             return <React.Fragment key={i18nTextId}/>;
           }
 
           return (
             <div key={i18nTextId} className="width-with-gap md:width-with-gap-2-items">
-              <FeatureLinkImage text={t(i18nTextId)} {...props}/>
+              <FeatureLinkImage text={t(i18nTextId)} {...opts}/>
             </div>
           );
         })}
