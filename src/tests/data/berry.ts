@@ -1,7 +1,7 @@
 import {BerryData, BerryId} from '@/types/game/berry';
 
 
-export const testBerryData: {[id in BerryId]: BerryData} = {
+export const testBerryDataMap: {[id in BerryId]: BerryData} = {
   16: {
     id: 16,
     energy: [

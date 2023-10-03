@@ -1,7 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {durationOfDay} from '@/const/common';
-import {testBerryData} from '@/tests/data/berry';
+import {testBerryDataMap} from '@/tests/data/berry';
 import {testBonus} from '@/tests/data/bonus';
 import {testPokemonData} from '@/tests/data/pokemon';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
@@ -18,7 +18,7 @@ describe('Pokemon Berry Production', () => {
       subSkillBonus: {},
       bonus,
       snorlaxFavorite: {},
-      berryData: testBerryData['16'],
+      berryData: testBerryDataMap['16'],
     });
 
     const awakeFreq = 2920.2 / bonus.stamina.awake;

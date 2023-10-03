@@ -2,7 +2,8 @@ import {describe, expect, it} from '@jest/globals';
 
 import {durationOfDay} from '@/const/common';
 import {testBonus} from '@/tests/data/bonus';
-import {testIngredientMap} from '@/tests/data/ingredient';
+import {testIngredientMap} from '@/tests/data/ingredient/data';
+import {testIngredientProductions} from '@/tests/data/ingredient/production';
 import {testPokemonData} from '@/tests/data/pokemon';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
@@ -16,9 +17,7 @@ describe('Pokemon Ingredients Production', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
-      ingredients: [
-        {id: 13, qty: 2}, {id: 5, qty: 8},
-      ],
+      ingredients: testIngredientProductions['1'],
       ingredientMap: testIngredientMap,
     });
 
