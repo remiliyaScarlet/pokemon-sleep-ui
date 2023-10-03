@@ -21,6 +21,7 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
+    carryLimit,
   } = pokeInBox;
 
   // Explicit to avoid passing unwanted property to worker
@@ -40,6 +41,7 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
+    carryLimit,
   };
 };
 

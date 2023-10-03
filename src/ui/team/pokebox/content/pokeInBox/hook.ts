@@ -10,6 +10,7 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 export const useCalculatePokeInBoxRating = (opts: PokeInBoxCommonProps): UseCalculatePokeInBoxRatingReturn => {
   const {pokeInBox} = opts;
+
   const [loading, setLoading] = React.useState(false);
   const [result, setResult] = React.useState<RatingResultOfLevel>({
     ...initialResult,

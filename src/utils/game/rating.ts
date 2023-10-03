@@ -5,6 +5,7 @@ import {
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
+import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
@@ -14,11 +15,7 @@ import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
 
-type CalculateRatingResultOfLevelOpts = RatingWorkerOpts & {
-  level: number,
-};
-
-export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelOpts): RatingResultOfLevel | null => {
+export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResultOfLevel | null => {
   const {
     level,
     pokemon,
@@ -47,15 +44,10 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
     ...getProducingRateSingleParams(opts),
   });
   const currentDaily = getDailyEnergyOfRate(currentRate);
-
-  const natureIds = natureData.map(({id}) => id);
-
-  let samples = 0;
-  let rank = 1;
-  let min: RatingDataPoint | null = null;
-  let max: RatingDataPoint | null = null;
-  const dailyOfBase = getDailyEnergyOfRate(getPokemonProducingRate({
+  const baseDaily = getDailyEnergyOfRate(getPokemonProducingRate({
     ...opts,
+    // Override `carryLimit` in `opts` to apply base carry limit of the Pokémon
+    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
     pokemon,
     berryData,
     ingredients: currentProductions,
@@ -66,6 +58,13 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
       subSkillMap,
     }),
   }));
+
+  const natureIds = natureData.map(({id}) => id);
+
+  let samples = 0;
+  let rank = 1;
+  let min: RatingDataPoint | null = null;
+  let max: RatingDataPoint | null = null;
 
   for (const productions of generatePossibleIngredientProductions({level, chain})) {
     for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
@@ -106,7 +105,7 @@ export const calculateRatingResultOfLevel = (opts: CalculateRatingResultOfLevelO
     rank,
     percentage: min && max ? Math.abs((currentDaily - min.value) / (max.value - min.value) * 100) : NaN,
     percentile: Math.abs((samples + 1 - rank) / (samples + 1) * 100),
-    baseDiffPercent: (currentDaily / dailyOfBase - 1) * 100,
+    baseDiffPercent: (currentDaily / baseDaily - 1) * 100,
     points: {
       min,
       current: {

@@ -6,6 +6,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {RatingFilterOnSelectOpts} from '@/ui/rating/filter/type';
 import {RatingDataProps, RatingSetupInputs} from '@/ui/rating/type';
+import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
@@ -30,6 +31,7 @@ export const generateRatingInputs = ({
     ingredients: ingredients ?? generateIngredientProductionAtLevels(chain),
     subSkill: subSkill ?? {},
     nature: nature ?? null,
+    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
   };
 };
 
