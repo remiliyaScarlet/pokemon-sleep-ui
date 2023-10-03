@@ -10,7 +10,7 @@ import {Grid} from '@/components/layout/grid';
 import {Locale} from '@/types/next/locale';
 
 
-export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUnitProps>) => {
+export const AdsWrapper = ({children, className, alwaysSingle}: React.PropsWithChildren<AdsUnitProps>) => {
   const {data, status} = useSession();
   // Running `update()` of `useSession` puts the status to `loading`,
   // which causes the ads to blink briefly for users with ads
@@ -34,13 +34,16 @@ export const AdsWrapper = ({children, className}: React.PropsWithChildren<AdsUni
   }
 
   return (
-    <Grid className={clsx('grid-cols-1 lg:grid-cols-2', className)}>
+    <Grid className={clsx('grid-cols-1', !alwaysSingle && 'lg:grid-cols-2', className)}>
       <AdsContent locale={locale as Locale}>
         {children}
       </AdsContent>
-      <AdsContent className="hidden lg:block" locale={locale as Locale}>
-        {children}
-      </AdsContent>
+      {
+        !alwaysSingle &&
+        <AdsContent className="hidden lg:block" locale={locale as Locale}>
+          {children}
+        </AdsContent>
+      }
     </Grid>
   );
 };

@@ -1,3 +1,6 @@
+import {AdsUnitProps} from '@/components/ads/type';
+
+
 // Do not allow style to avoid setting height
 // - https://stackoverflow.com/a/26340857/11571888
 export type AdSenseValue = {
@@ -6,7 +9,6 @@ export type AdSenseValue = {
   [theme: string]: string,
 };
 
-export type AdsTemplateUnitProps = {
+export type AdsTemplateUnitProps = AdsUnitProps & {
   slot: AdSenseValue,
-  className?: string,
 };

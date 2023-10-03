@@ -12,13 +12,13 @@ import {AdsWrapper} from '@/components/ads/wrapper';
 
 type Props = AdsTemplateUnitProps;
 
-export const AdsUnitMultiplex = ({slot, className}: Props) => {
+export const AdsUnitMultiplex = ({slot, ...props}: Props) => {
   const {theme} = useTheme();
 
   // About customization: https://support.google.com/adsense/answer/7533385?hl=en&ref_topic=9183242
   // This renders 1x4 in desktop, 2x2 in mobile
   return (
-    <AdsWrapper className={className}>
+    <AdsWrapper {...props}>
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}

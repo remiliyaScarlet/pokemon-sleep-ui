@@ -4,9 +4,9 @@ import {AdsUnitProps} from '@/components/ads/type';
 import {AdsUnitMultiplex} from '@/components/ads/unit/multiplex';
 
 
-export const AdsConfiguredMultiplex = ({className}: AdsUnitProps) => (
+export const AdsConfiguredMultiplex = (props: AdsUnitProps) => (
   <AdsUnitMultiplex
-    className={className}
+    {...props}
     slot={{
       light: '1981146258',
       dark: '8134710811',

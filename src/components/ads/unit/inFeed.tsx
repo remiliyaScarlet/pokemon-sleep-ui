@@ -15,11 +15,11 @@ type Props = AdsTemplateUnitProps & {
   layoutKey: AdSenseValue,
 };
 
-export const AdsUnitInFeed = ({slot, layoutKey, className}: Props) => {
+export const AdsUnitInFeed = ({slot, layoutKey, ...props}: Props) => {
   const {theme} = useTheme();
 
   return (
-    <AdsWrapper className={className}>
+    <AdsWrapper {...props}>
       <Adsense
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}

@@ -4,9 +4,9 @@ import {AdsUnitProps} from '@/components/ads/type';
 import {AdsUnitInFeed} from '@/components/ads/unit/inFeed';
 
 
-export const AdsConfiguredInFeed = ({className}: AdsUnitProps) => (
+export const AdsConfiguredInFeed = (props: AdsUnitProps) => (
   <AdsUnitInFeed
-    className={className}
+    {...props}
     slot={{
       light: '8843083404',
       dark: '4610009138',
