@@ -1,29 +1,16 @@
 import React from 'react';
 
-import clsx from 'clsx';
-
-import {LayoutProps} from '@/components/layout/type';
-import {getLayoutClassNames} from '@/components/layout/util';
+import {FlexCommonProps} from '@/components/layout/flex/type';
+import {getFlexStyles} from '@/components/layout/flex/utils';
 
 
-type Props = LayoutProps & {
-  direction: 'row' | 'col',
-  wrap?: boolean,
-};
-
-export const Flex = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Props>>(({
-  direction,
-  wrap,
+export const Flex = React.forwardRef<HTMLDivElement, React.PropsWithChildren<FlexCommonProps>>(({
+  direction = 'col',
   children,
   ...props
 }, ref) => {
   return (
-    <div ref={ref} className={clsx(
-      'flex',
-      direction === 'row' ? 'flex-row' : 'flex-col',
-      wrap && 'flex-wrap',
-      getLayoutClassNames(props),
-    )}>
+    <div ref={ref} className={getFlexStyles({direction, ...props})}>
       {children}
     </div>
   );

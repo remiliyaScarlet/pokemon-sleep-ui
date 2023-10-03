@@ -1,36 +1,29 @@
 import React from 'react';
 
-import clsx from 'clsx';
-
-import {LayoutProps} from '@/components/layout/type';
-import {getLayoutClassNames} from '@/components/layout/util';
+import {FlexCommonProps} from '@/components/layout/flex/type';
+import {getFlexStyles} from '@/components/layout/flex/utils';
 
 
-type Props = LayoutProps & {
+type Props = FlexCommonProps & {
   onClick: () => void,
-  direction?: 'row' | 'col',
-  wrap?: boolean,
   disabled?: boolean,
 };
 
 export const FlexButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<Props>>(({
-  onClick,
   direction = 'row',
-  wrap,
+  noFullWidth = true,
+  onClick,
   disabled,
   children,
-  noFullWidth = true,
   ...props
-}, ref) => {
-  return (
-    <button ref={ref} onClick={onClick} disabled={disabled} className={clsx(
-      'flex',
-      direction === 'row' ? 'flex-row' : 'flex-col',
-      wrap && 'flex-wrap',
-      getLayoutClassNames({noFullWidth, ...props}),
-    )}>
-      {children}
-    </button>
-  );
-});
+}, ref) => (
+  <button
+    ref={ref}
+    onClick={onClick}
+    disabled={disabled}
+    className={getFlexStyles({direction, noFullWidth, ...props})}
+  >
+    {children}
+  </button>
+));
 FlexButton.displayName = 'FlexButton';
