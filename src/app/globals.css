@@ -181,6 +181,10 @@
 
   /* region Info section/icon styling (info-*) */
   
+  .info-section-opaque {
+    @apply bg-gradient-to-br from-slate-200 to-slate-100 dark:from-black dark:to-slate-950;
+  }
+  
   .info-section-bg {
     @apply bg-gradient-to-br from-slate-200/80 to-slate-100/60 dark:from-black/60 dark:to-slate-950/75;
   }

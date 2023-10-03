@@ -11,6 +11,7 @@ import {UserAuthControl} from '@/ui/base/navbar/auth';
 import {ThemeSwitcher} from '@/ui/base/navbar/darkMode/main';
 import {NavEntryUI} from '@/ui/base/navbar/entry';
 import {LanguageSwitch} from '@/ui/base/navbar/languageSwitch/main';
+import {NavList} from '@/ui/base/navbar/list/main';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';
 import {UserSettingsUI} from '@/ui/base/navbar/userSettings/main';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
@@ -27,18 +28,18 @@ export const NavBarClient = ({session, noUserControl, ...props}: Props) => {
 
   return (
     <>
-      <NavHomepage/>
-      <Flex direction="row" className={clsx(
+      <Flex direction="row" noFullWidth className={clsx(
         'scrollbar-hide gap-1 overflow-x-auto overflow-y-hidden',
-        'text-center text-sm text-gray-400',
+        'shrink-0 p-2 text-center text-sm text-gray-400',
       )}>
+        <NavList/>
         {entries.map(({i18nTextId, ...props}) => (
           <div key={i18nTextId} className="nav-height">
             <NavEntryUI alt={t(i18nTextId)} {...props}/>
           </div>
         ))}
       </Flex>
-      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5">
+      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5 p-2">
         {session && <UserSettingsUI session={session} {...props}/>}
         {!session && <LanguageSwitch/>}
         <ThemeSwitcher/>
