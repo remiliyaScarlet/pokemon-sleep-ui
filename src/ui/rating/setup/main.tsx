@@ -7,6 +7,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
@@ -17,6 +18,7 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {RatingSetupExportButton} from '@/ui/rating/setup/export';
 import {RatingDataProps, RatingSetupInputs} from '@/ui/rating/type';
+import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
 
 
 type Props = RatingDataProps & {
@@ -45,6 +47,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
     ingredients,
     subSkill,
     nature,
+    carryLimit,
   } = setup;
 
   React.useEffect(() => setSetup(initialSetup), [initialSetup]);
@@ -98,6 +101,14 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           }))}
         />
       </Flex>
+      <PokemonCarryLimitInput
+        carryLimit={carryLimit}
+        setCarryLimit={(carryLimit) => setSetup((setup) => ({
+          ...setup,
+          carryLimit,
+        }))}
+        defaultCarryLimit={getCarryLimitFromPokemonInfo({pokemon})}
+      />
       <Flex direction="row" center className="gap-1.5">
         <OcrPokemonInfoImporter
           ocrTranslations={ocrTranslations}
