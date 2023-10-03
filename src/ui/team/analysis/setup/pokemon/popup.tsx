@@ -1,70 +1,28 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
-import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
-import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
+import {TeamAnalysisPokemonMemberConfig} from '@/ui/team/analysis/setup/pokemon/config';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 
 
 type Props = TeamAnalysisPokemonProps & {
-  showIngredientPicker: boolean,
-  setShowIngredientPicker: React.Dispatch<React.SetStateAction<boolean>>,
-  showEvolutionSelector: boolean,
-  setShowEvolutionSelector: React.Dispatch<React.SetStateAction<boolean>>,
+  showMemberConfig: boolean,
+  setShowMemberConfig: React.Dispatch<React.SetStateAction<boolean>>,
   ratingControl: RatingPopupControl,
 };
 
 export const TeamAnalysisPokemonPopup = ({
-  showIngredientPicker,
-  setShowIngredientPicker,
-  showEvolutionSelector,
-  setShowEvolutionSelector,
+  showMemberConfig,
+  setShowMemberConfig,
   ratingControl,
   ...props
 }: Props) => {
-  const {
-    slotName,
-    pokemon,
-    member,
-    setMember,
-    ingredientChainMap,
-    pokedex,
-  } = props;
-  const {id, ingredientChain} = pokemon;
-
   return (
     <>
-      <Popup show={showIngredientPicker} setShow={setShowIngredientPicker}>
-        <Flex noFullWidth className="sm:w-[70vw]">
-          <PokemonIngredientPicker
-            chain={ingredientChainMap[ingredientChain]}
-            ingredients={member.ingredients}
-            onSelect={(updated, ingredientLevel) => setMember(
-              slotName,
-              {
-                ...member,
-                ingredients: {
-                  ...member.ingredients,
-                  [ingredientLevel]: updated,
-                },
-              },
-            )}
-            idPrefix={id.toString()}
-          />
-        </Flex>
-      </Popup>
-      <Popup show={showEvolutionSelector} setShow={setShowEvolutionSelector}>
-        <PokemonEvolutionSelector
-          pokemon={pokemon}
-          pokedex={pokedex}
-          onClick={(pokemonId) => {
-            setMember(slotName, {pokemonId});
-            setShowEvolutionSelector(false);
-          }}
-        />
+      <Popup show={showMemberConfig} setShow={setShowMemberConfig}>
+        <TeamAnalysisPokemonMemberConfig {...props}/>
       </Popup>
       <RatingResultPopup ratingControl={ratingControl} {...props}/>
     </>

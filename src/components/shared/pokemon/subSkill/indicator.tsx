@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
@@ -12,13 +13,14 @@ import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/p
 type Props = {
   subSkill: PokemonSubSkill,
   subSkillMap: SubSkillMap,
+  className?: string,
 };
 
-export const PokemonSubSkillIndicator = ({subSkill, subSkillMap}: Props) => {
+export const PokemonSubSkillIndicator = ({subSkill, subSkillMap, className}: Props) => {
   const t = useTranslations('UI.InPage.Team');
 
   return (
-    <Flex direction="row" noFullWidth className="items-center gap-1 p-0.5">
+    <Flex direction="row" noFullWidth className={clsx('items-center gap-1 p-0.5', className)}>
       <div className="relative h-5 w-5">
         <NextImage
           src="/images/generic/subSkill.png" alt={t('SubSkill')}

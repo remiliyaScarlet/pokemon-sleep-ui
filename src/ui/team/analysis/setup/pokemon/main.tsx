@@ -1,18 +1,21 @@
 import React from 'react';
 
-import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
+import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
+import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
-import {TeamAnalysisPokemonIndividualParams} from '@/ui/team/analysis/setup/pokemon/params';
 import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup';
 import {TeamAnalysisPokemonProduction} from '@/ui/team/analysis/setup/pokemon/production';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
@@ -25,27 +28,26 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
     member,
     snorlaxFavorite,
     calculatedSettings,
+    subSkillMap,
   } = props;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Metadata');
-  const [showIngredientPicker, setShowIngredientPicker] = React.useState(false);
-  const [showEvolutionSelector, setShowEvolutionSelector] = React.useState(false);
+  const [showMemberConfig, setShowMemberConfig] = React.useState(false);
   const ratingControl = useRatingPopup();
 
   const {id, type, skill} = pokemon;
+  const {level, nature, subSkill} = member;
 
   return (
-    <Flex direction="row" className="gap-1 md:flex-col">
+    <Flex className="gap-1 sm:flex-row lg:flex-col">
       <TeamAnalysisPokemonPopup
-        showIngredientPicker={showIngredientPicker}
-        setShowIngredientPicker={setShowIngredientPicker}
-        showEvolutionSelector={showEvolutionSelector}
-        setShowEvolutionSelector={setShowEvolutionSelector}
+        showMemberConfig={showMemberConfig}
+        setShowMemberConfig={setShowMemberConfig}
         ratingControl={ratingControl}
         {...props}
       />
-      <Flex center className="gap-1">
+      <Flex className="gap-1">
         <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
           <div className="relative h-5 w-5">
             <NextImage
@@ -60,37 +62,50 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         <Flex direction="row" center>
           <div className="relative h-28 w-28">
             <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
+            <InfoIcon className="absolute bottom-0 right-0">
+              {level}
+            </InfoIcon>
           </div>
         </Flex>
-        <Flex className="items-center gap-1.5 sm:flex-row">
-          <Flex direction="row" center noFullWidth className="gap-1.5">
+        <Flex direction="row" className="items-center justify-between gap-1.5">
+          <Flex direction="row" noFullWidth>
             <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
               member,
               pokemon,
               snorlaxFavorite,
               ...calculatedSettings,
             }))}>
-              <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert/>
-            </button>
-            <button className="button-clickable-bg h-8 w-8 p-1" onClick={() => setShowEvolutionSelector(true)}>
-              <ArrowPathIcon/>
+              <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert dimension="h-5 w-5"/>
             </button>
           </Flex>
-          <Flex className="items-end gap-1">
-            <button className="button-clickable-bg w-fit px-1.5" onClick={() => setShowIngredientPicker(true)}>
-              <PokemonIngredientIcons
-                ingredients={[Object.values(member.ingredients).map((production) => production)]}
-                noLink
-              />
+          <Flex direction="row" noFullWidth>
+            <button className="button-clickable-bg p-1" onClick={() => setShowMemberConfig(true)}>
+              <PencilIcon className="h-5 w-5"/>
             </button>
-            <div className={clsx('px-1.5 py-0.5 text-xs', pokemon.specialty === specialtyIdMap.skill && 'bg-blink')}>
-              {t(`MainSkill.Name.${skill}`)}
-            </div>
           </Flex>
         </Flex>
       </Flex>
+      <Flex>
+        <Flex className={clsx(
+          'items-end px-2 py-1 text-sm',
+          pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+        )}>
+          <PokemonIngredientIcons
+            ingredients={[Object.values(member.ingredients).map((production) => production)]}
+          />
+        </Flex>
+        <div className={clsx(
+          'px-2 py-1 text-end text-sm',
+          pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
+        )}>
+          {t(`MainSkill.Name.${skill}`)}
+        </div>
+      </Flex>
+      <HorizontalSplitter/>
+      <PokemonNatureIndicator nature={nature}/>
+      <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
+      <HorizontalSplitter/>
       <Flex center className="gap-1">
-        <TeamAnalysisPokemonIndividualParams {...props}/>
         <TeamAnalysisPokemonProduction {...props}/>
       </Flex>
     </Flex>

@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonCarryLimit} from '@/components/shared/pokemon/carryLimit/main';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
@@ -29,7 +30,10 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
   return (
     <>
       <PokemonFrequencyFromProducingRate pokemonRate={stats}/>
-      <PokemonTimeToFullPack timeToFullPack={stats.fullPackStats.secondsToFull}/>
+      <Flex direction="row" className="justify-center gap-1.5">
+        <PokemonTimeToFullPack timeToFullPack={stats.fullPackStats.secondsToFull}/>
+        <PokemonCarryLimit carryLimit={stats.carryLimitInfo.final}/>
+      </Flex>
       <HorizontalSplitter className="w-full"/>
       <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
       <PokemonProductionSplit
