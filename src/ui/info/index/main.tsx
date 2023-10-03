@@ -12,6 +12,7 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 
 export const InfoIndex = ({params}: DefaultPageProps) => {
   const {locale} = params;
+
   const t = useTranslations('UI.Metadata.Info');
 
   return (
@@ -21,7 +22,7 @@ export const InfoIndex = ({params}: DefaultPageProps) => {
           <div className="w-full">
             <AdsUnit/>
           </div>
-          <Grid className="grid-cols-1 gap-2 xl:grid-cols-2">
+          <Grid className="grid-cols-1 gap-2">
             <FeatureLinkImage
               href="/info/pot"
               imageSrc="/images/generic/pot.png"
