@@ -8,6 +8,7 @@ import {
   teamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
 import {getDefaultTeamName} from '@/ui/team/analysis/utils';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 import {TeamAnalysisMigrateParams} from '@/utils/migrate/teamAnalysisSetup/type';
 
@@ -112,7 +113,35 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
 
           return [
             slot,
+            // @ts-ignore
             {...member, carryLimit: pokemon.stats.maxCarry} satisfies TeamAnalysisMember,
+          ];
+        })) as TeamAnalysisSingleTeam['members'];
+
+        return [team.uuid, {...team, members: updatedMembers} satisfies TeamAnalysisSingleTeam];
+      })),
+    }),
+  },
+  {
+    // `carryLimit` to `evolutionCount`
+    toVersion: 6,
+    migrate: (old, {pokedex}) => ({
+      ...old,
+      teams: Object.fromEntries(Object.values(old.teams).map((team) => {
+        const updatedMembers = Object.fromEntries(teamAnalysisSlotName.map((slot) => {
+          const member = team.members[slot];
+          if (!member) {
+            return [slot, null];
+          }
+
+          const pokemon = pokedex[member.pokemonId];
+          if (!pokemon) {
+            return [slot, null];
+          }
+
+          return [
+            slot,
+            {...member, evolutionCount: getEvolutionCountFromPokemonInfo({pokemon})} satisfies TeamAnalysisMember,
           ];
         })) as TeamAnalysisSingleTeam['members'];
 

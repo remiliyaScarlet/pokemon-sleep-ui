@@ -3,7 +3,7 @@ import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
-import {FullPackStats} from '@/types/game/producing/carryLimit';
+import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingState} from '@/types/game/producing/state';
 
 
@@ -41,6 +41,7 @@ export type ProducingRateCommonParams = {
 
 export type PokemonProducingRate = {
   fullPackStats: FullPackStats,
+  carryLimitInfo: CarryLimitInfo,
   berry: ProducingRateOfItem,
   ingredient: {[ingredientId in IngredientId]: ProducingRateOfItem},
 };

@@ -43,7 +43,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       snorlaxFavorite: setupData.snorlaxFavorite,
       subSkill: setupData.subSkill,
       nature: setupData.nature,
-      carryLimit: setupData.carryLimit,
+      evolutionCount: setupData.evolutionCount,
       bonus: setupData.bonus,
       sleepDurations: setupData.sleepDurations,
       ingredientChainMap,

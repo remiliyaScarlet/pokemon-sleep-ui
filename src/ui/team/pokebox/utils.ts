@@ -3,6 +3,7 @@ import {v4} from 'uuid';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
@@ -12,7 +13,7 @@ type GenerateNewPokeInBoxOpts = {
 };
 
 export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewPokeInBoxOpts): PokeInBox => {
-  const {id, stats, ingredientChain} = pokemon;
+  const {id, ingredientChain} = pokemon;
   const chain = ingredientChainMap[ingredientChain];
 
   return {
@@ -22,7 +23,7 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
     name: null,
     level: 1,
     ingredients: generateIngredientProductionAtLevels(chain),
-    carryLimit: stats.maxCarry,
+    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     subSkill: {},
     nature: null,
   };

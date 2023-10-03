@@ -10,16 +10,15 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 
 export const PokeInBoxGridMaxCarry = (props: PokeInBoxCommonProps) => {
-  const {pokeInBox} = props;
   const t = useTranslations('UI.Common');
 
-  const {fullPackStats} = getRateOfPokemon(props);
+  const {fullPackStats, carryLimitInfo} = getRateOfPokemon(props);
 
   return (
     <Flex noFullWidth className="gap-1">
       <Flex direction="row" noFullWidth className="gap-0.5">
         <PokemonDataIcon src="/images/generic/bag.png" alt={t('MaxCarry')} invert/>
-        <div>{pokeInBox.carryLimit}</div>
+        <div>{carryLimitInfo.final}</div>
       </Flex>
       <PokemonTimeToFullPack timeToFullPack={fullPackStats.secondsToFull} normalText/>
     </Flex>

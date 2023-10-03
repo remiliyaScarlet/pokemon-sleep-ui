@@ -11,7 +11,7 @@ export type PokeInBox = {
   name: string | null,
   level: number,
   ingredients: IngredientProductionAtLevels,
-  carryLimit: number,
+  evolutionCount: number,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   isShiny?: boolean,

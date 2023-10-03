@@ -17,25 +17,24 @@ export const FilterCategoryInput = <TId, >({
   onClick,
   isActive,
   getClassNames,
-  style,
-  ender,
-  noFixedTitleWidth,
-  noRowPadding,
   noWrap,
+  ...rowOpts
 }: FilterCategoryInputProps<TId>) => {
+  const {noFixedTitleWidth, forceRow} = rowOpts;
+
   return (
     <InputRowWithTitle
-      style={style}
       title={
         <div className={clsx('whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
           {title}
         </div>
       }
-      ender={ender}
-      noFixedTitleWidth={noFixedTitleWidth}
-      noRowPadding={noRowPadding}
+      {...rowOpts}
     >
-      <Flex direction="row" className="gap-1 sm:justify-normal" center wrap={!noWrap}>
+      <Flex direction="row" center wrap={!noWrap} className={clsx(
+        'gap-1',
+        !forceRow && 'sm:justify-normal',
+      )}>
         {ids.map((id) => {
           const active = isActive(id);
           const hidden = isHidden && isHidden(id);

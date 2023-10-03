@@ -6,7 +6,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {RatingFilterOnSelectOpts} from '@/ui/rating/filter/type';
 import {RatingDataProps, RatingSetupInputs} from '@/ui/rating/type';
-import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
@@ -31,7 +31,7 @@ export const generateRatingInputs = ({
     ingredients: ingredients ?? generateIngredientProductionAtLevels(chain),
     subSkill: subSkill ?? {},
     nature: nature ?? null,
-    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
+    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
   };
 };
 
@@ -43,9 +43,15 @@ type ToPokeInBoxOpts = {
 };
 
 export const toPokeInBox = ({pokemon, name, level, setup}: ToPokeInBoxOpts): PokeInBox => {
-  const {id, stats} = pokemon;
-  const {ingredients, nature, subSkill} = setup;
+  const {id} = pokemon;
+  const {
+    ingredients,
+    nature,
+    subSkill,
+    evolutionCount,
+  } = setup;
 
+  // Explicit assignments to avoid extra unwanted properties
   return {
     uuid: v4(),
     dateAdded: Date.now(),
@@ -53,7 +59,7 @@ export const toPokeInBox = ({pokemon, name, level, setup}: ToPokeInBoxOpts): Pok
     name,
     level,
     ingredients,
-    carryLimit: stats.maxCarry,
+    evolutionCount,
     subSkill,
     nature,
   };

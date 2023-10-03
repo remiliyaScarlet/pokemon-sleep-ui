@@ -28,5 +28,5 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
 
 export type RatingDataProps = RatingServerDataProps & {
   pokemonList: PokemonInfo[],
+  maxEvolutionCount: number,
 };
-

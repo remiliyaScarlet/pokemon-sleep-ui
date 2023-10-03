@@ -5,7 +5,7 @@ import {
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
-import {getCarryLimitFromPokemonInfo} from '@/utils/game/producing/carryLimit';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
@@ -46,8 +46,8 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   const currentDaily = getDailyEnergyOfRate(currentRate);
   const baseDaily = getDailyEnergyOfRate(getPokemonProducingRate({
     ...opts,
-    // Override `carryLimit` in `opts` to apply base carry limit of the Pokémon
-    carryLimit: getCarryLimitFromPokemonInfo({pokemon}),
+    // Override `evolutionCount` in `opts` to apply default evolution count of the Pokémon
+    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     pokemon,
     berryData,
     ingredients: currentProductions,

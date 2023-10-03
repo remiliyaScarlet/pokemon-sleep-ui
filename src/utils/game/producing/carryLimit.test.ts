@@ -1,7 +1,49 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {getFullPackStats, getTheoreticalDailyQuantityInSleep} from '@/utils/game/producing/carryLimit';
+import {testPokemonData} from '@/tests/data/pokemon';
+import {
+  getCarryLimitInfo,
+  getFullPackStats,
+  getTheoreticalDailyQuantityInSleep,
+} from '@/utils/game/producing/carryLimit';
 
+
+describe('Pokemon Carry Limit Info', () => {
+  it('gets correct info for clean Pokemon', () => {
+    const {base, final} = getCarryLimitInfo({
+      pokemon: testPokemonData.absol,
+      evolutionCount: 0,
+      subSkillBonus: {},
+    });
+
+    expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
+    expect(final).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
+  });
+
+  it('gets correct info for evolved Pokemon', () => {
+    const {base, final} = getCarryLimitInfo({
+      pokemon: testPokemonData.absol,
+      evolutionCount: 2,
+      subSkillBonus: {},
+    });
+
+    expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry + 2 * 5);
+    expect(final).toBeCloseTo(testPokemonData.absol.stats.maxCarry + 2 * 5);
+  });
+
+  it('gets correct info for Pokemon with carry limit subskill', () => {
+    const {base, final} = getCarryLimitInfo({
+      pokemon: testPokemonData.absol,
+      evolutionCount: 0,
+      subSkillBonus: {
+        inventory: [18],
+      },
+    });
+
+    expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
+    expect(final).toBeCloseTo(testPokemonData.absol.stats.maxCarry + 18);
+  });
+});
 
 describe('Pokemon Full Pack Stats', () => {
   it('gets correct stats with single no collect duration', () => {

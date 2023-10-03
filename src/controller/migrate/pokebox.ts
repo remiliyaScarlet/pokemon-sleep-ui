@@ -9,6 +9,7 @@ import {
   IngredientProduction,
 } from '@/types/game/pokemon/ingredient';
 import {PokeInBoxData} from '@/types/mongo/pokebox';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 
 
 type RandomIngredient = {
@@ -106,10 +107,52 @@ const migrateRandomIngredients = async ({
   }
 };
 
+const migrateCarryLimitToEvolutionCount = async ({
+  collection,
+  owner,
+}: MigrateRandomIngredientsOpts) => {
+  const pokebox = await collection.find({evolutionCount: {$exists: false}, owner}).toArray();
+  if (!pokebox.length) {
+    return;
+  }
+
+  const [pokedex] = await Promise.all([
+    getPokemonAsMap(),
+  ]);
+
+  const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];
+  for await (const pokeInBox of pokebox) {
+    const pokemon = pokedex[pokeInBox.pokemon];
+
+    if (!pokemon) {
+      continue;
+    }
+
+    bulkUpdate.push({
+      updateOne: {
+        filter: {_id: pokeInBox._id},
+        update: {
+          $set: {
+            evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+          },
+          $unset: {
+            carryLimit: true,
+          },
+        },
+      },
+    });
+  }
+
+  if (bulkUpdate.length) {
+    await collection.bulkWrite(bulkUpdate, {ordered: false});
+  }
+};
+
 export const runPokeBoxMigrations = async (getCollection: () => Promise<Collection<PokeInBoxData>>, owner: string) => {
   const collection = await getCollection();
 
   return Promise.all([
     migrateRandomIngredients({collection, owner}),
+    migrateCarryLimitToEvolutionCount({collection, owner}),
   ]);
 };

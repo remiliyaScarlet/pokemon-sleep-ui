@@ -85,7 +85,7 @@ const useProducingStatsOfSlot = ({
       berryData,
       ingredients: getEffectiveIngredientLevels(level).map((level) => member.ingredients[level]),
       ingredientMap,
-      carryLimit: member.carryLimit,
+      evolutionCount: member.evolutionCount,
     });
     const {berry, ingredient} = pokemonProducingRate;
 

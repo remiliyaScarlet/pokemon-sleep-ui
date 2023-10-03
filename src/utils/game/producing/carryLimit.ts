@@ -1,9 +1,11 @@
 import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {FullPackStats} from '@/types/game/producing/carryLimit';
+import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
+import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
 type GetSecondsToFullPackInSleepOpts = {
@@ -18,14 +20,19 @@ export const getSecondsToFullPackInSleep = ({
   return carryLimit / dailyCount * durationOfDay;
 };
 
-type GetCarryLimitFromPokemonInfoOpts = {
+type GetCarryLimitInfoOpts = {
   pokemon: PokemonInfo,
+  evolutionCount: number,
+  subSkillBonus: GroupedSubSkillBonus,
 };
 
-export const getCarryLimitFromPokemonInfo = ({pokemon}: GetCarryLimitFromPokemonInfoOpts) => {
-  const {stats, evolution} = pokemon;
+export const getCarryLimitInfo = ({pokemon, evolutionCount, subSkillBonus}: GetCarryLimitInfoOpts): CarryLimitInfo => {
+  const {stats} = pokemon;
 
-  return stats.maxCarry + (evolution.stage - 1) * 5;
+  const base = stats.maxCarry + evolutionCount * 5;
+  const final = base + toSum(getSubSkillBonusValue(subSkillBonus, 'inventory'));
+
+  return {base, final};
 };
 
 type GetFullPackRatioInSleepOpts = {

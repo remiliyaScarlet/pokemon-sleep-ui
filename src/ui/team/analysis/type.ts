@@ -33,6 +33,7 @@ export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
 
 export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {
   preloadedSetup: UserLazyLoadedData['teamAnalysisSetup'] | null | undefined,
+  maxEvolutionCount: number,
 };
 
 export const teamAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;
@@ -46,7 +47,7 @@ export type TeamAnalysisMember = {
   ingredients: IngredientProductionAtLevels,
   nature: NatureId | null,
   subSkill: PokemonSubSkill,
-  carryLimit: number,
+  evolutionCount: number,
 };
 
 export type TeamAnalysisSingleTeam = {

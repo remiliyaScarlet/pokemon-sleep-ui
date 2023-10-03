@@ -44,7 +44,7 @@ export type RatingSetupData = CalculatedUserSettings & {
   snorlaxFavorite: SnorlaxFavorite,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
-  carryLimit: number,
+  evolutionCount: number,
 };
 
 export type RatingRequest = {

@@ -40,7 +40,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         teams: {
           [initialCompUuid]: generateEmptyTeam(initialCompUuid),
         },
-        version: 5,
+        version: 6,
       },
       override: preloadedSetup ?? null,
       migrators: teamAnalysisSetupMigrators,

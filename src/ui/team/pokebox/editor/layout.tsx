@@ -11,7 +11,7 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
+import {PokemonEvolutionCountInput} from '@/components/shared/pokemon/evolution/countInput';
 import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/selector';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
@@ -20,8 +20,9 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
-import {maxCarryLimit} from '@/ui/team/pokebox/editor/const';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
+import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokeInBoxEditCommonProps & PokeInBoxEditStateProps & {
@@ -42,7 +43,7 @@ export const PokeInBoxEditLayout = ({
     pokemon: pokemonId,
     name,
     level,
-    carryLimit,
+    evolutionCount,
     subSkill,
     nature,
     isShiny,
@@ -56,6 +57,7 @@ export const PokeInBoxEditLayout = ({
   }
 
   const isShinyActive = isShiny ?? false;
+  const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
   return (
     <Flex className="gap-2">
@@ -119,13 +121,14 @@ export const PokeInBoxEditLayout = ({
         })}
         idPrefix={pokeInBox.uuid}
       />
-      <PokemonCarryLimitInput
-        carryLimit={carryLimit}
-        setCarryLimit={(carryLimit) => setPokeInBox({
+      <PokemonEvolutionCountInput
+        idPrefix="Pokebox"
+        evolutionCount={evolutionCount}
+        setEvolutionCount={(evolutionCount) => setPokeInBox({
           ...pokeInBox,
-          carryLimit: isNaN(carryLimit) ? 0 : Math.min(carryLimit, maxCarryLimit),
+          evolutionCount,
         })}
-        defaultCarryLimit={pokemon.stats.maxCarry}
+        maxEvolutionCount={maxEvolutionCount}
       />
       <Flex className="gap-1.5 md:flex-row">
         <Flex className="h-8">

@@ -14,6 +14,7 @@ import {RatingSetup} from '@/ui/rating/setup/main';
 import {generateRatingInputs} from '@/ui/rating/setup/utils';
 import {RatingDataProps, RatingServerDataProps, RatingSetupInputs} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
+import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {isNotNullish} from '@/utils/type';
 
@@ -36,8 +37,10 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const setupRef = React.useRef<HTMLDivElement>(null);
   const resultRef = React.useRef<HTMLDivElement>(null);
 
+  const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
   const data: RatingDataProps = {
-    pokemonList: Object.values(pokedexMap).filter(isNotNullish),
+    pokemonList,
+    maxEvolutionCount: getPokemonMaxEvolutionCount(pokemonList),
     ...props,
   };
 

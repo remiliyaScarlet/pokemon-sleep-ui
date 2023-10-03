@@ -38,6 +38,7 @@ export const PokemonEvolutionCountInput = ({
       ids={[...new Array(maxEvolutionCount).keys()]}
       onClick={setEvolutionCount}
       isActive={(id) => evolutionCount === id}
+      forceRow
     />
   );
 };

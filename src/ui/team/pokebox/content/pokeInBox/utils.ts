@@ -21,7 +21,7 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
-    carryLimit,
+    evolutionCount,
   } = pokeInBox;
 
   // Explicit to avoid passing unwanted property to worker
@@ -41,7 +41,7 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
-    carryLimit,
+    evolutionCount,
   };
 };
 
@@ -62,6 +62,7 @@ export const getRateOfPokemon = ({
     ...singleParams,
     ...calculatedSettings,
     level: pokeInBox.level,
+    evolutionCount: pokeInBox.evolutionCount,
     pokemonProducingParams: getPokemonProducingParams({
       pokemonId: id,
       pokemonProducingParamsMap,

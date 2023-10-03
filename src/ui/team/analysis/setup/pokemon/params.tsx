@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonCarryLimitInput} from '@/components/shared/pokemon/carryLimit/input';
+import {PokemonEvolutionCountInput} from '@/components/shared/pokemon/evolution/countInput';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
@@ -16,6 +16,7 @@ export const TeamAnalysisPokemonIndividualParams = (props: TeamAnalysisPokemonPr
     setMember,
     berryDataMap,
     subSkillMap,
+    maxEvolutionCount,
   } = props;
 
   const {berry} = pokemon;
@@ -42,10 +43,11 @@ export const TeamAnalysisPokemonIndividualParams = (props: TeamAnalysisPokemonPr
         maxLevel={maxLevel}
         noSameLine
       />
-      <PokemonCarryLimitInput
-        carryLimit={member.carryLimit}
-        defaultCarryLimit={pokemon.stats.maxCarry}
-        setCarryLimit={(carryLimit) => setMember(slotName, {carryLimit})}
+      <PokemonEvolutionCountInput
+        idPrefix="TeamAnalysis"
+        evolutionCount={member.evolutionCount}
+        setEvolutionCount={(evolutionCount) => setMember(slotName, {evolutionCount})}
+        maxEvolutionCount={maxEvolutionCount}
       />
     </>
   );

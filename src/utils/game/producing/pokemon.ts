@@ -3,9 +3,10 @@ import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
-  getCarryLimitFromPokemonInfo,
+  getCarryLimitInfo,
   getFullPackStats,
   getTheoreticalDailyQuantityInSleep,
 } from '@/utils/game/producing/carryLimit';
@@ -19,23 +20,30 @@ type GetPokemonProducingRateOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
   ProducingRateSingleParams & {
-    carryLimit?: number,
+    evolutionCount?: number,
     pokemonProducingParams: PokemonProducingParams,
     sleepDurations: number[],
   };
 
 export const getPokemonProducingRate = ({
-  carryLimit,
+  evolutionCount,
   sleepDurations,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon, helperCount, subSkillBonus} = opts;
+  const {pokemon, helperCount} = opts;
+
   const sleepDuration = toSum(sleepDurations);
+  const subSkillBonus = opts.subSkillBonus ?? {};
 
   const frequency = getBaseFrequencyFromPokemon({
     ...opts,
-    subSkillBonus: subSkillBonus ?? {},
+    subSkillBonus,
     helperCount: helperCount ?? defaultHelperCount,
+  });
+  const carryLimitInfo = getCarryLimitInfo({
+    pokemon,
+    evolutionCount: evolutionCount ?? getEvolutionCountFromPokemonInfo({pokemon}),
+    subSkillBonus,
   });
 
   const berry = getBerryProducingRate({
@@ -49,7 +57,7 @@ export const getPokemonProducingRate = ({
 
   const produceSplit = getProduceSplit(opts);
   const fullPackStats = getFullPackStats({
-    carryLimit: carryLimit ?? getCarryLimitFromPokemonInfo({pokemon}),
+    carryLimit: carryLimitInfo.final,
     dailyCount: getTheoreticalDailyQuantityInSleep({
       rate: {berry, ingredient},
       produceSplit,
@@ -59,6 +67,7 @@ export const getPokemonProducingRate = ({
 
   return {
     fullPackStats,
+    carryLimitInfo,
     berry: getTotalRateOfItemOfSessions({
       rate: berry,
       produceType: 'berry',
