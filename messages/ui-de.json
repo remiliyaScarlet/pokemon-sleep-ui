@@ -192,6 +192,9 @@
         "FrequencyOfIngredient": "Frequenz (Zutaten)",
         "FriendshipPoint": "Freundespunkte",
         "TotalEnergy": "Gesamtstärke"
+      },
+      "Input": {
+        "EvolutionCount": "Anzahl der Entwicklungen"
       }
     },
     "Analysis": {

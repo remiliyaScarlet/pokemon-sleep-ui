@@ -127,6 +127,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           FriendshipPoint: string,
           TotalEnergy: string,
         },
+        Input: {
+          EvolutionCount: string,
+        },
       },
       Analysis: {
         FirstAppearance: string,

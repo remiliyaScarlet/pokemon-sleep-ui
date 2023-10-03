@@ -191,6 +191,9 @@
         "FrequencyOfIngredient": "Frequency (Ingredient)",
         "FriendshipPoint": "Friendship Points",
         "TotalEnergy": "Total Strength"
+      },
+      "Input": {
+        "EvolutionCount": "Evolution Count"
       }
     },
     "Analysis": {

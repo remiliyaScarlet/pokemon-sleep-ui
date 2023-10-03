@@ -191,6 +191,9 @@
         "FrequencyOfIngredient": "幫忙間隔 (食材)",
         "FriendshipPoint": "友情點數",
         "TotalEnergy": "總能量"
+      },
+      "Input": {
+        "EvolutionCount": "進化次數"
       }
     },
     "Analysis": {

@@ -191,6 +191,9 @@
         "FrequencyOfIngredient": "おてつだい時間 (食材)",
         "FriendshipPoint": "フレンドポイント",
         "TotalEnergy": "総エナジー"
+      },
+      "Input": {
+        "EvolutionCount": "進化回数"
       }
     },
     "Analysis": {
