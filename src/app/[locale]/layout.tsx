@@ -1,6 +1,7 @@
 /* eslint-disable new-cap */
 import React from 'react';
 
+import {clsx} from 'clsx';
 // eslint-disable-next-line camelcase
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
@@ -49,7 +50,7 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
             `}
           </Script>
         </>}
-      <body className={font.className}>
+      <body className={clsx('h-full overflow-hidden', font.className)}>
         <Providers>
           {children}
         </Providers>

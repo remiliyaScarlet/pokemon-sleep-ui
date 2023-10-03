@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -11,7 +12,7 @@ export const NavListContent = () => {
   const entries = useNavEntries();
 
   return (
-    <Flex className="info-section-opaque h-full gap-1.5 overflow-y-scroll p-6">
+    <Flex noFullWidth className="info-section-opaque h-full gap-1.5 overflow-y-scroll p-4">
       <NavListHome/>
       <AdsUnit alwaysSingle/>
       {entries.map((entry) => <NavListEntry key={entry.i18nTextId} entry={entry}/>)}
