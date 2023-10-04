@@ -49,13 +49,14 @@
   },
   "dependenciesComments": {
     "semver": "https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/security/dependabot/1",
-    "systeminformation": "https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/security/dependabot/2"
+    "systeminformation": "https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/security/dependabot/2",
+    "@types/react": "Fixing version to `v18.2.23` because `<FixedSizeList/>` will fail at `v18.2.24`"
   },
   "devDependencies": {
     "@savvywombat/tailwindcss-grid-areas": "^3.1.0",
     "@types/lodash": "^4.14.199",
     "@types/node": "^20.8.2",
-    "@types/react": "^18.2.24",
+    "@types/react": "18.2.23",
     "@types/react-dom": "^18.2.10",
     "@types/react-window": "^1.8.6",
     "@types/uuid": "^9.0.4",
