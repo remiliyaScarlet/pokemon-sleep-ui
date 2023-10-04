@@ -30,7 +30,7 @@ export const PageLayout = ({
   return (
     <React.Suspense fallback={<LoadingFullScreen/>}>
       {/* Google AdSense */}
-      {!isProduction() && !session?.user.isAdsFree &&
+      {isProduction() && !session?.user.isAdsFree &&
         <Script
           async
           strategy="lazyOnload"
