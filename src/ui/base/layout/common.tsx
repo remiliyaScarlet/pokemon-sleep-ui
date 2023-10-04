@@ -26,17 +26,20 @@ export const PageLayout = ({
   const {locale} = props;
 
   const session = React.use(getServerSession(authOptions));
+  const shouldShowAds = !isProduction() && !session?.user.isAdsFree;
 
   return (
     <React.Suspense fallback={<LoadingFullScreen/>}>
       {/* Google AdSense */}
-      {isProduction() && !session?.user.isAdsFree &&
+      {
+        shouldShowAds &&
         <Script
           async
           strategy="lazyOnload"
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsClientId}`}
           crossOrigin="anonymous"
-        />}
+        />
+      }
       <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
       <Flex className="h-full">
         <Flex direction="row" stretch className={clsx(
@@ -59,7 +62,7 @@ export const PageLayout = ({
             </Flex>
           </div>
         </Flex>
-        <AnchorAdsUnit/>
+        {shouldShowAds && <AnchorAdsUnit/>}
       </Flex>
     </React.Suspense>
   );
