@@ -9,7 +9,7 @@ export const CookingInputRecipe = (props: CookingCommonProps) => {
   const {meals, filter} = props;
 
   return (
-    <Grid className="grid-cols-1 gap-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+    <Grid className="grid-cols-1 gap-1 xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {meals
         .filter(({type}) => filter.type === type)
         .map((data) => <CookingInputRecipeSingle key={data.id} {...props} data={data}/>)}
