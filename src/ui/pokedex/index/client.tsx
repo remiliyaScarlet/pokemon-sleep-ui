@@ -103,7 +103,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       <PokedexResultCount data={sortedData} inclusionMap={isIncluded}/>
       <LazyLoad loading={loading}>
         <Grid className={clsx(
-          'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8',
+          'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-6',
         )}>
           {sortedData.map(({source}) => {
             const pokemonId = source.pokemon.id;
