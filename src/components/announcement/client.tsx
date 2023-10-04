@@ -7,7 +7,6 @@ import remarkGfm from 'remark-gfm';
 
 import {announcementTextClasses} from '@/components/announcement/styles';
 import {AnnouncementProps} from '@/components/announcement/type';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {useLayout} from '@/hooks/layout/main';
 import {Announcement} from '@/types/mongo/announcement';
 
@@ -18,7 +17,7 @@ type Props = AnnouncementProps & {
   announcements: Announcement[],
 };
 
-export const AnnouncementsClient = ({larger, showOn, announcements}: Props) => {
+export const AnnouncementsClient = ({larger, showOn, height, announcements}: Props) => {
   const [idx, setIdx] = React.useState(0);
   const {isLandscape} = useLayout();
 
@@ -37,24 +36,20 @@ export const AnnouncementsClient = ({larger, showOn, announcements}: Props) => {
   }
 
   const {message, level} = announcement;
-  const commonClass = clsx(
-    styles['announcement-common'],
-    larger ? styles['announcement-lg'] : styles['announcement'],
-  );
+  const announcementClass = larger ? styles['announcement-lg'] : styles['announcement'];
 
   return (
-    <>
-      <div
-        className={clsx(commonClass, styles['announcement-animation'])}
-        onAnimationIteration={() => setIdx((idx + 1) % announcements.length)}
-      >
-        <div className={clsx(commonClass, announcementTextClasses[level])}>
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {message}
-          </ReactMarkdown>
-        </div>
+    <div onAnimationIteration={() => setIdx((idx + 1) % announcements.length)} className={clsx(
+      'flex-row items-stretch overflow-hidden',
+      height,
+      announcementClass,
+      styles['announcement-animation'])
+    }>
+      <div className={clsx('items-center', announcementClass, announcementTextClasses[level])}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {message}
+        </ReactMarkdown>
       </div>
-      <HorizontalSplitter/>
-    </>
+    </div>
   );
 };

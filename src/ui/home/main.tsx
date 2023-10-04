@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Announcements} from '@/components/announcement/main';
+import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {I18nProvider} from '@/contexts/i18n';
 import {getUserCount} from '@/controller/auth';
 import {DefaultPageProps} from '@/types/next/page';
@@ -14,9 +15,8 @@ export const Home = async ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale} announcement={false}>
-      <div className="md:px-10">
-        <Announcements showOn="always" larger/>
-      </div>
+      <Announcements showOn="always" larger height="h-24"/>
+      <HorizontalSplitter/>
       <I18nProvider locale={locale} namespaces={['UI.Metadata', 'UI.InPage.Home']}>
         <HomeClient userCount={userCount}/>
       </I18nProvider>

@@ -27,19 +27,19 @@
     @apply w-full transform-gpu;
   }
   
-  div.announcement-common {
+  .announcement-common {
     & a {
       @apply before:content-['🔗'];
     }
     
-    @apply flex items-center;
+    @apply flex;
   }
   
   div.announcement {
-    @apply h-10 overflow-hidden md:h-5 text-sm;
+    @apply announcement-common text-sm;
   }
   
   div.announcement-lg {
-    @apply h-40 overflow-hidden md:h-20 text-lg;
+    @apply announcement-common text-lg;
   }
 }

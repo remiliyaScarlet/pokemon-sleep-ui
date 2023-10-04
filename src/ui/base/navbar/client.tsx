@@ -25,8 +25,10 @@ export const NavBarClient = ({
 }: React.PropsWithChildren<Props>) => {
   return (
     <>
-      <Flex direction="row" noFullWidth className="shrink-0 items-center gap-1.5 p-2">
-        <NavList/>
+      <Flex direction="row" stretch noFullWidth className="shrink-0 gap-1.5 lg:px-2">
+        <div className="p-2 lg:hidden">
+          <NavList/>
+        </div>
         {children}
       </Flex>
       <Flex direction="row" center noFullWidth className="ml-auto gap-1.5 p-2">
