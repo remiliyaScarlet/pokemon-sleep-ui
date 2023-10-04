@@ -14,7 +14,6 @@ import {isProduction} from '@/utils/environment';
 import {isLocale} from '@/utils/i18n';
 
 import '../globals.css';
-import '@/polyfills';
 
 
 export const generateStaticParams = async () => {
