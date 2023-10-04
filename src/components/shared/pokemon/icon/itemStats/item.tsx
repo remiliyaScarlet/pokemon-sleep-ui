@@ -61,7 +61,7 @@ export const PokemonIconsItemStats = ({
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
       <LazyLoad loading={loading}>
-        <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+        <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {filteredStats.map(({
             pokemon,
             identifier,

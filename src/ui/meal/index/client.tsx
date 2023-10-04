@@ -32,8 +32,7 @@ export const MealIndexClient = ({data, session}: Props) => {
       <MealInput data={data} preloaded={preloaded} {...mealFilterProps}/>
       <AdsUnit/>
       <Grid className={clsx(
-        'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6',
-        '2xl:grid-cols-7',
+        'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
       )}>
         {data
           .map((meal) => ({
