@@ -84,28 +84,27 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
             </button>
           </Flex>
         </Flex>
-      </Flex>
-      <Flex>
-        <Flex className={clsx(
-          'items-end px-2 py-1 text-sm',
-          pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
-        )}>
-          <PokemonIngredientIcons
-            ingredients={[Object.values(member.ingredients).map((production) => production)]}
-          />
+        <Flex>
+          <Flex className={clsx(
+            'items-end px-2 py-1 text-sm',
+            pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+          )}>
+            <PokemonIngredientIcons
+              ingredients={[Object.values(member.ingredients).map((production) => production)]}
+            />
+          </Flex>
+          <div className={clsx(
+            'px-2 py-1 text-end text-sm',
+            pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
+          )}>
+            {t(`MainSkill.Name.${skill}`)}
+          </div>
         </Flex>
-        <div className={clsx(
-          'px-2 py-1 text-end text-sm',
-          pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
-        )}>
-          {t(`MainSkill.Name.${skill}`)}
-        </div>
       </Flex>
-      <HorizontalSplitter/>
-      <PokemonNatureIndicator nature={nature}/>
-      <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
-      <HorizontalSplitter/>
       <Flex center className="gap-1">
+        <PokemonNatureIndicator nature={nature}/>
+        <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
+        <HorizontalSplitter/>
         <TeamAnalysisPokemonProduction {...props}/>
       </Flex>
     </Flex>
