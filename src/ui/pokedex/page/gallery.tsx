@@ -15,14 +15,14 @@ import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
 
-import styles from './main.module.css';
-
 
 type Props = {
   pokemonId: PokemonId,
   image: PokemonImageType,
   isActive: boolean,
 };
+
+const gallerySize = 'h-72 w-72';
 
 const GalleryButton = ({pokemonId, image, isActive}: Props) => {
   const t = useTranslations(`Game.SleepFace.${pokemonId}`);
@@ -59,7 +59,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   return (
     <Flex center>
-      <Flex center noFullWidth className={styles['gallery-size']}>
+      <Flex center noFullWidth className={clsx('relative', gallerySize)}>
         {imageOptions
           .flatMap<[PokemonImageType, boolean]>((image) => [[image, true], [image, false]])
           .map(([image, imageShiny]) => (
@@ -72,7 +72,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               leave="transition-opacity duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
-              className={clsx('absolute', styles['gallery-size'])}
+              className={clsx('absolute', gallerySize)}
             >
               <PokemonImage pokemonId={pokemon.id} image={image} isShiny={imageShiny}/>
             </Transition>
