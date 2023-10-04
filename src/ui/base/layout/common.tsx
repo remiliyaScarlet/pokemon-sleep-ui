@@ -5,6 +5,7 @@ import Script from 'next/script';
 import {getServerSession} from 'next-auth';
 import {Toaster} from 'react-hot-toast';
 
+import {AnchorAdsUnit} from '@/components/ads/anchor';
 import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
 import {Loading, LoadingFullScreen} from '@/components/icons/loading';
@@ -29,7 +30,7 @@ export const PageLayout = ({
   return (
     <React.Suspense fallback={<LoadingFullScreen/>}>
       {/* Google AdSense */}
-      {isProduction() && !session?.user.isAdsFree &&
+      {!isProduction() && !session?.user.isAdsFree &&
         <Script
           async
           strategy="lazyOnload"
@@ -58,6 +59,7 @@ export const PageLayout = ({
             </Flex>
           </div>
         </Flex>
+        <AnchorAdsUnit/>
       </Flex>
     </React.Suspense>
   );
