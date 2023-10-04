@@ -15,7 +15,7 @@ export const Home = async ({params}: DefaultPageProps) => {
   return (
     <PublicPageLayout locale={locale} announcement={false}>
       <div className="md:px-10">
-        <Announcements larger/>
+        <Announcements showOn="always" larger/>
       </div>
       <I18nProvider locale={locale} namespaces={['UI.Metadata', 'UI.InPage.Home']}>
         <HomeClient userCount={userCount}/>
