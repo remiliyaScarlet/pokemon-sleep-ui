@@ -17,11 +17,17 @@ type Props = Omit<UserSettingsProps, 'session'> & Pick<NavBarCommonProps, 'noUse
   session: Session | null,
 };
 
-export const NavBarClient = ({session, noUserControl, ...props}: Props) => {
+export const NavBarClient = ({
+  noUserControl,
+  session,
+  children,
+  ...props
+}: React.PropsWithChildren<Props>) => {
   return (
     <>
-      <Flex direction="row" noFullWidth className="shrink-0 p-2">
+      <Flex direction="row" noFullWidth className="shrink-0 items-center gap-1.5 p-2">
         <NavList/>
+        {children}
       </Flex>
       <Flex direction="row" center noFullWidth className="ml-auto gap-1.5 p-2">
         {session && <UserSettingsUI session={session} {...props}/>}

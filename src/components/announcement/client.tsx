@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import {announcementTextClasses} from '@/components/announcement/styles';
 import {AnnouncementProps} from '@/components/announcement/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {useLayout} from '@/hooks/layout/main';
 import {Announcement} from '@/types/mongo/announcement';
 
 import styles from './main.module.css';
@@ -17,8 +18,13 @@ type Props = AnnouncementProps & {
   announcements: Announcement[],
 };
 
-export const AnnouncementsClient = ({larger, announcements}: Props) => {
+export const AnnouncementsClient = ({larger, showOn, announcements}: Props) => {
   const [idx, setIdx] = React.useState(0);
+  const {isLandscape} = useLayout();
+
+  if ((showOn === 'landscape' && !isLandscape) || (showOn === 'portrait' && isLandscape)) {
+    return <></>;
+  }
 
   // Could be `undefined` if `idx` goes out of bound
   // - This could happen if the user switch to the other language with less site alerts

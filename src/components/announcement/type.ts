@@ -1,3 +1,4 @@
 export type AnnouncementProps = {
-  larger?: boolean
+  showOn: 'landscape' | 'portrait',
+  larger?: boolean,
 };

@@ -42,7 +42,7 @@ export const PageLayout = ({
           'items-center gap-1.5',
           'border-b border-b-gray-700 bg-slate-300/90 dark:bg-slate-900/90',
         )}>
-          <NavBar {...props}/>
+          <NavBar announcement={announcement} {...props}/>
         </Flex>
         <Flex direction="row" className="grow overflow-hidden">
           <Flex className="hidden max-w-xs lg:flex">
@@ -52,7 +52,7 @@ export const PageLayout = ({
           </Flex>
           <div className="h-full w-full overflow-y-scroll">
             <Flex className="gap-1.5 p-2">
-              {announcement && <Announcements/>}
+              {announcement && <Announcements showOn="portrait"/>}
               <React.Suspense fallback={<Loading/>}>
                 {children}
               </React.Suspense>

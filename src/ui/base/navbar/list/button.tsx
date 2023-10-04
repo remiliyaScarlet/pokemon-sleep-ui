@@ -8,7 +8,7 @@ import {NavListCommonProps} from '@/ui/base/navbar/list/type';
 
 export const NavListButton = ({setOpen}: NavListCommonProps) => {
   return (
-    <FlexButton onClick={() => setOpen(true)} center className="button-clickable h-8 w-8 p-0.5">
+    <FlexButton onClick={() => setOpen(true)} center className="button-clickable h-8 w-8 shrink-0 p-0.5">
       <Bars3Icon/>
     </FlexButton>
   );
