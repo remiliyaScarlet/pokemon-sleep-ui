@@ -21,7 +21,7 @@ export const PokemonSubSkillIcon = ({subSkill}: Props) => {
 
   if (!subSkill) {
     return (
-      <div className="h-5 w-5">
+      <div className="h-6 w-6">
         <XCircleIcon/>
       </div>
     );
