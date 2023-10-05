@@ -51,7 +51,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
         <AdsUnit/>
-        <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped} period="weekly"/>
+        <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped}/>
         <TeamAnalysisSummary
           period="weekly"
           stats={statsOfTeam}

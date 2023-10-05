@@ -6,7 +6,6 @@ import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
-import {ProductionPeriod} from '@/types/game/producing/display';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/setup/summary/grouped/category';
@@ -15,10 +14,9 @@ import {TeamProducingStatsGrouped} from '@/ui/team/analysis/setup/type';
 
 type Props = {
   grouped: TeamProducingStatsGrouped,
-  period: ProductionPeriod,
 };
 
-export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
+export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
@@ -28,7 +26,7 @@ export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
         data={Object.entries(grouped.berry).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => (
           <div className="px-4">
-            <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate} period={period}/>
+            <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate}/>
           </div>
         )}
       />
@@ -38,7 +36,7 @@ export const TeamAnalysisGroupedSummary = ({grouped, period}: Props) => {
         data={Object.entries(grouped.ingredient).map(([id, rate]) => ({id: Number(id), rate}))}
         getReactNode={(id, rate) => (
           <div className="px-4">
-            <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate} period={period}/>
+            <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate}/>
           </div>
         )}
       />

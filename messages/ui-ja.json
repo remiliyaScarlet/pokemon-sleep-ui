@@ -221,6 +221,7 @@
       "SleepStylesUnlocked": "寝顔解放数"
     },
     "Team": {
+      "AnalysisPeriod": "分析周期",
       "CurrentEnergy": "エナジー",
       "SubSkill": "サブスキル",
       "Box": {

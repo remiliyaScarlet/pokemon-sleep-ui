@@ -7,6 +7,7 @@ import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilterUI} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
+import {TeamAnalysisCompDependentInput} from '@/ui/team/analysis/setup/team/input';
 import {TeamAnalysisDataProps, TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {generateEmptyTeam, getCurrentTeam} from '@/ui/team/analysis/utils';
 import {migrate} from '@/utils/migrate/main';
@@ -38,7 +39,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         teams: {
           [initialCompUuid]: generateEmptyTeam(initialCompUuid),
         },
-        version: 6,
+        version: 7,
       },
       override: preloadedSetup ?? null,
       migrators: teamAnalysisSetupMigrators,
@@ -54,8 +55,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
   const [setup, setSetup] = React.useState<TeamAnalysisSetup>(initialSetup);
   const currentTeam = getCurrentTeam({setup});
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
-    data: pokemon,
-    snorlaxFavorite: currentTeam.snorlaxFavorite,
+    data: pokemonList,
     ...props,
   });
 
@@ -71,29 +71,15 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         {...props}
       />
       <AdsUnit/>
-      <Flex className="gap-1">
-        <SnorlaxFavoriteInput
-          filter={currentTeam}
-          setFilter={(getUpdatedTeam) => setSetup((original) => {
-            const updated = getUpdatedTeam(getCurrentTeam({setup: original}));
-
-            return {
-              ...original,
-              teams: {
-                ...original.teams,
-                [updated.uuid]: updated,
-              },
-            };
-          })}
-          filterKey="snorlaxFavorite"
-          pokemonList={pokemon}
-          {...props}
-        />
-      </Flex>
+      <TeamAnalysisCompDependentInput
+        pokemonList={pokemonList}
+        currentTeam={currentTeam}
+        setSetup={setSetup}
+        {...props}
+      />
       <TeamAnalysisSetupView
         setup={setup}
         setSetup={setSetup}
-        snorlaxFavorite={currentTeam.snorlaxFavorite}
         {...props}
       />
     </>

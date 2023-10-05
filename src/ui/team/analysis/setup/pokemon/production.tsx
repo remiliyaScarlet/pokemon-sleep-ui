@@ -48,7 +48,6 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         <TeamAnalysisBerryRate
           id={berryData.id}
           rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
-          period="daily"
         />
       </Flex>
       <HorizontalSplitter className="w-full"/>
@@ -58,7 +57,6 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
             key={rate.id}
             id={rate.id}
             rate={toProducingRateOfState({rate, state: 'equivalent'})}
-            period="daily"
           />
         ))}
       </Flex>

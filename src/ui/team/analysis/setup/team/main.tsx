@@ -28,12 +28,12 @@ export const TeamAnalysisTeamView = (props: Props) => {
     statsOfTeam,
   } = props;
 
-  const currentTeam = getCurrentTeam({setup});
+  const {members, snorlaxFavorite} = getCurrentTeam({setup});
 
   return (
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-3 2xl:grid-cols-5">
       {teamAnalysisSlotName.map((slotName) => {
-        const member = currentTeam.members[slotName];
+        const member = members[slotName];
         const pokemon = member ? pokedex[member.pokemonId] : undefined;
         const stats = statsOfTeam.bySlot[slotName];
 
@@ -66,6 +66,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
             {isAvailable ?
               <TeamAnalysisFilledSlot
                 {...props}
+                snorlaxFavorite={snorlaxFavorite}
                 slotName={slotName}
                 member={member}
                 stats={stats}

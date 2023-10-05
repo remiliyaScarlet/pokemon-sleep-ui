@@ -6,10 +6,10 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImageProps} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {productionMultiplierByPeriod, productionStatsPeriodI18nId} from '@/const/game/production';
+import {productionStatsPeriodI18nId} from '@/const/game/production';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {toRateOfPeriod} from '@/utils/game/producing/convert';
+import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 import {formatFloat} from '@/utils/number';
 
 
@@ -34,7 +34,7 @@ export const TeamAnalysisRateLayout = ({
   const textClass = clsx(larger && 'text-xl');
   const dimension = larger ? 'h-6 w-6' : 'h-5 w-5';
 
-  const calculatedRate = rate && toRateOfPeriod({rate, period});
+  const calculatedRate = rate && toProducingRateOfPeriod({rate, period});
 
   return (
     <Flex direction="row" noFullWidth center className="gap-0.5">
@@ -50,12 +50,12 @@ export const TeamAnalysisRateLayout = ({
       {
         showQuantity && calculatedRate &&
         <div className={textClass}>
-          x{formatFloat(calculatedRate.quantity * productionMultiplierByPeriod[period])}
+          x{formatFloat(calculatedRate.quantity)}
         </div>
       }
       <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
       <div className={clsx('text-energy', textClass)}>
-        {calculatedRate ? formatFloat(calculatedRate.energy * productionMultiplierByPeriod[period]) : '-'}
+        {calculatedRate ? formatFloat(calculatedRate.energy) : '-'}
       </div>
     </Flex>
   );

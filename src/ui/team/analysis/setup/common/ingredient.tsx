@@ -6,7 +6,6 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/ico
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {IngredientId} from '@/types/game/ingredient';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {applyPeriodMultiplierToRate} from '@/utils/game/producing/apply';
 
 
 type Props = {
@@ -26,7 +25,7 @@ export const TeamAnalysisIngredientRate = ({id, rate}: Props) => {
 
   return (
     <ProducingRateUI
-      rate={applyPeriodMultiplierToRate(rate)}
+      rate={rate}
       getIcon={(dimension) => <PokemonIngredientIcon id={id} dimension={dimension}/>}
     />
   );

@@ -221,6 +221,7 @@
       "SleepStylesUnlocked": "已解鎖睡姿"
     },
     "Team": {
+      "AnalysisPeriod": "分析週期",
       "CurrentEnergy": "能量",
       "SubSkill": "副技能",
       "Box": {

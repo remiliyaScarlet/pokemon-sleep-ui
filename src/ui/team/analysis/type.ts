@@ -9,6 +9,7 @@ import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {ProductionPeriod} from '@/types/game/producing/display';
 import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 import {UserLazyLoadedData} from '@/types/userData/main';
@@ -52,6 +53,7 @@ export type TeamAnalysisSingleTeam = {
   uuid: string,
   name: string,
   snorlaxFavorite: SnorlaxFavorite,
+  analysisPeriod: ProductionPeriod,
   members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };
 

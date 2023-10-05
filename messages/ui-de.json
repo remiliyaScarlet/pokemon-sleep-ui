@@ -222,6 +222,7 @@
       "SleepStylesUnlocked": "Freigeschaltete Schlafstile"
     },
     "Team": {
+      "AnalysisPeriod": "Analysezeitraum",
       "CurrentEnergy": "Stärke",
       "SubSkill": "Nebentalent",
       "Box": {

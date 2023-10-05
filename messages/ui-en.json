@@ -221,6 +221,7 @@
       "SleepStylesUnlocked": "Sleep Styles Unlocked"
     },
     "Team": {
+      "AnalysisPeriod": "Analysis Period",
       "CurrentEnergy": "Strength",
       "SubSkill": "Sub Skill",
       "Box": {

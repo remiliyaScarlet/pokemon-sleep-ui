@@ -7,12 +7,12 @@ import {TeamAnalysisMember, TeamAnalysisSetupModifyingProps, TeamAnalysisSlotNam
 
 
 export type TeamAnalysisFilledProps = TeamAnalysisSetupModifyingProps & {
-  snorlaxFavorite: SnorlaxFavorite,
   showPokemon: (pokemon: PokemonInfo) => void,
   calculatedSettings: CalculatedUserSettings,
 };
 
 export type TeamAnalysisFilledSlotProps = TeamAnalysisFilledProps & {
+  snorlaxFavorite: SnorlaxFavorite,
   slotName: TeamAnalysisSlotName,
   member: TeamAnalysisMember,
   pokemon: PokemonInfo,

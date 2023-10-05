@@ -48,6 +48,7 @@ export const generateEmptyTeam = (uuid: string): TeamAnalysisSingleTeam => {
     uuid,
     name: getDefaultTeamName(uuid),
     snorlaxFavorite: {},
+    analysisPeriod: 'daily',
     members: {
       A: null,
       B: null,

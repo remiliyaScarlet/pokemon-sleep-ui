@@ -221,6 +221,7 @@
       "SleepStylesUnlocked": "잠자는 모습 개방 수"
     },
     "Team": {
+      "AnalysisPeriod": "분석주기",
       "CurrentEnergy": "에너지",
       "SubSkill": "서브 스킬",
       "Box": {

@@ -90,7 +90,7 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
         {
           ...team,
           snorlaxFavorite: {},
-        },
+        } satisfies TeamAnalysisSingleTeam,
       ])),
     }),
   },
@@ -147,6 +147,20 @@ export const teamAnalysisSetupMigrators: Migrator<TeamAnalysisSetup, TeamAnalysi
 
         return [team.uuid, {...team, members: updatedMembers} satisfies TeamAnalysisSingleTeam];
       })),
+    }),
+  },
+  {
+    // `analysisPeriod` addition
+    toVersion: 7,
+    migrate: (old) => ({
+      ...old,
+      teams: Object.fromEntries(Object.values(old.teams).map((team) => [
+        team.uuid,
+        {
+          ...team,
+          analysisPeriod: 'daily',
+        } satisfies TeamAnalysisSingleTeam,
+      ])),
     }),
   },
 ];
