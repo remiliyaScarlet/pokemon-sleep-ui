@@ -20,6 +20,18 @@ export const toSeconds = (time: string): number => {
 };
 
 export const formatSeconds = (seconds: number): string => {
+  if (seconds === Infinity) {
+    return '∞';
+  }
+
+  if (seconds === -Infinity) {
+    return '-∞';
+  }
+
+  if (isNaN(seconds)) {
+    return 'NaN';
+  }
+
   const h = Math.floor(seconds / 3600).toString();
   const m = Math.floor(seconds % 3600 / 60).toString().padStart(2, '0');
   const s = Math.floor(seconds % 3600 % 60).toString().padStart(2, '0');
