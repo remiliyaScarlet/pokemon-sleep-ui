@@ -1,4 +1,5 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
+import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {
   ProducingRateOfItem,
   ProducingRateOfItemOfSessions,
@@ -22,10 +23,17 @@ type GetTotalItemRateOfSessionsOpts =
   GetProducingSleepStateSplitOpts &
   GetItemRateOfSessionCommonOpts & {
     produceSplit: ProduceSplit,
+    ingredients: IngredientProduction[],
   };
 
 export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts): ProducingRateOfStates => {
-  const {period, rate, produceSplit, produceType} = opts;
+  const {
+    period,
+    rate,
+    produceType,
+    produceSplit,
+    ingredients,
+  } = opts;
   const {id} = rate;
   const sleepStateSplit = getProducingSleepStateSplit(opts);
 
@@ -36,6 +44,7 @@ export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts)
     period,
     frequency: getFrequencyFromItemRateOfSessions({
       ...opts,
+      multiplier: (produceType === 'ingredient' ? ingredients.length : 1),
       sleepStateSplit,
       produceItemSplit,
     }),

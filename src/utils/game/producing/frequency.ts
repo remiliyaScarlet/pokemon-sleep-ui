@@ -56,13 +56,18 @@ export const getBaseFrequencyFromPokemon = ({
   });
 };
 
+type GetFrequencyFromItemRateOfSessionsOpts = Omit<GetSpecificItemRateOfSessionCommonOpts, 'period'> & {
+  multiplier: number,
+};
+
 export const getFrequencyFromItemRateOfSessions = ({
   rate,
   produceType,
   produceItemSplit,
   sleepStateSplit,
-}: Omit<GetSpecificItemRateOfSessionCommonOpts, 'period'>): ProducingValueOfStates => {
-  const multiplier = 1 / produceItemSplit;
+  multiplier,
+}: GetFrequencyFromItemRateOfSessionsOpts): ProducingValueOfStates => {
+  multiplier /= produceItemSplit;
 
   const awake = multiplier * rate.awake.frequency;
   const sleepVacant = multiplier * rate.sleep.frequency;
@@ -79,7 +84,7 @@ export const getFrequencyFromItemRateOfSessions = ({
 export const getEquivalentFrequencyFromPokemonRate = ({berry, ingredient}: PokemonProducingRate) => {
   const dailyCount = (
     durationOfDay / berry.frequency.equivalent +
-    durationOfDay / (Object.values(ingredient).at(0)?.frequency.equivalent ?? NaN)
+    toSum(Object.values(ingredient).map(({frequency}) => durationOfDay / frequency.equivalent))
   );
 
   return durationOfDay / dailyCount;
