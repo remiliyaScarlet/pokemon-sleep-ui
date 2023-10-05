@@ -3,7 +3,7 @@ import sortBy from 'lodash/sortBy';
 
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
-import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateOfStates} from '@/types/game/producing/rate';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisIngredientStatsLinkedData, AnalysisStatsProducingRate} from '@/ui/analysis/page/calc/type';
@@ -12,10 +12,10 @@ import {toSum} from '@/utils/array';
 
 type GetContinuousIngredientStatsOpts = {
   samples: ProducingRateOfIngredientsOnPokemon[],
-  currentRate: ProducingRateOfItem[],
+  currentRate: ProducingRateOfStates[],
   currentIngredients: IngredientProduction[],
   pokemon: PokemonInfo,
-  getComparer: (rates: ProducingRateOfItem[]) => number,
+  getComparer: (rates: ProducingRateOfStates[]) => number,
 };
 
 const getContinuousIngredientStats = ({
@@ -58,13 +58,13 @@ export const toAnalysisIngredientProducingRate = <T>({
     count: getContinuousIngredientStats({
       ...props,
       getComparer: (rates) => (
-        toSum(rates.filter(({id}) => id === itemId).map(({quantity}) => quantity))
+        toSum(rates.filter(({id}) => id === itemId).map(({quantity}) => quantity.equivalent))
       ),
     }),
     energy: getContinuousIngredientStats({
       ...props,
       getComparer: (rates) => (
-        toSum(rates.filter(({id}) => id === itemId).map(({dailyEnergy}) => dailyEnergy))
+        toSum(rates.filter(({id}) => id === itemId).map(({dailyEnergy}) => dailyEnergy.equivalent))
       ),
     }),
   };

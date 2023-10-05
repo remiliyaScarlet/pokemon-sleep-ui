@@ -59,8 +59,8 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 ))}
               </Flex>
               <PokemonProductionSplit
-                berry={berry.dailyEnergy}
-                ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy))}
+                berry={berry.dailyEnergy.equivalent}
+                ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy.equivalent))}
                 specialty={pokemon.specialty}
               />
               <Flex direction="row" className="items-end justify-between">

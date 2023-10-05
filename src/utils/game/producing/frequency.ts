@@ -3,7 +3,11 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProduceType} from '@/types/game/producing/common';
-import {PokemonProducingRate, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {
+  PokemonProducingRate,
+  ProducingRateOfItemOfSessions,
+  ProducingValueOfStates,
+} from '@/types/game/producing/rate';
 import {ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
@@ -69,24 +73,25 @@ export const getFrequencyFromItemRateOfSessions = ({
   produceItemSplit,
   rate,
   sleepStateSplit,
-}: GetFrequencyFromItemRateOfSessionsOpts): number => {
-  const {sleep, awake} = rate;
+}: GetFrequencyFromItemRateOfSessionsOpts): ProducingValueOfStates => {
+  const multiplier = 1 / produceItemSplit;
 
-  return (
-    1 /
-    produceItemSplit /
-    (
-      (sleepStateSplit.awake / awake.frequency) +
-      (sleepStateSplit.sleepVacant / sleep.frequency) +
-      (produceType === 'berry' ? (sleepStateSplit.sleepFilled / sleep.frequency) : 0)
-    )
+  const awake = multiplier * rate.awake.frequency;
+  const sleepVacant = multiplier * rate.sleep.frequency;
+  const sleepFilled = produceType === 'berry' ? rate.sleep.frequency : Infinity;
+  const equivalent = 1 / (
+    sleepStateSplit.awake / awake +
+    sleepStateSplit.sleepVacant / sleepVacant +
+    sleepStateSplit.sleepFilled / sleepFilled
   );
+
+  return {awake, sleepVacant, sleepFilled, equivalent};
 };
 
 export const getEquivalentFrequencyFromPokemonRate = ({berry, ingredient}: PokemonProducingRate) => {
   const dailyCount = (
-    durationOfDay / berry.frequency +
-    durationOfDay / (Object.values(ingredient).at(0)?.frequency ?? NaN)
+    durationOfDay / berry.frequency.equivalent +
+    durationOfDay / (Object.values(ingredient).at(0)?.frequency.equivalent ?? NaN)
   );
 
   return durationOfDay / dailyCount;

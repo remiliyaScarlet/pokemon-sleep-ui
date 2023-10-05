@@ -1,5 +1,10 @@
 import {ProduceType} from '@/types/game/producing/common';
-import {ProducingRateOfItem, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
+import {
+  ProducingRateOfItem,
+  ProducingRateOfItemOfSessions,
+  ProducingRateOfStates,
+  ProducingValueOfStates,
+} from '@/types/game/producing/rate';
 import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
@@ -16,7 +21,7 @@ type GetTotalRateOfItemOfSessionsOpts = GetProduceSplitOpts & GetProducingSleepS
   produceSplit: ProduceSplit,
 };
 
-export const getTotalRateOfItemOfSessions = (opts: GetTotalRateOfItemOfSessionsOpts): ProducingRateOfItem => {
+export const getTotalRateOfItemOfSessions = (opts: GetTotalRateOfItemOfSessionsOpts): ProducingRateOfStates => {
   const {rate, produceSplit, produceType} = opts;
   const {id} = rate;
   const sleepStateSplit = getProducingSleepStateSplit(opts);
@@ -85,11 +90,15 @@ export const getValueAfterSplitFromItemSessionRate = ({
   sleepStateSplit,
   produceType,
   produceItemSplit,
-}: GetValueAfterSplitFromItemSessionRateOpts): number => {
-  const {sleep, awake} = rate;
-
-  return (
-    (awake[valueKey] * sleepStateSplit.awake + sleep[valueKey] * sleepStateSplit.sleepVacant) * produceItemSplit +
-    (produceType === 'berry' ? sleep[valueKey] * sleepStateSplit.sleepFilled : 0)
+}: GetValueAfterSplitFromItemSessionRateOpts): ProducingValueOfStates => {
+  const awake = rate.awake[valueKey] * produceItemSplit;
+  const sleepVacant = rate.sleep[valueKey] * produceItemSplit;
+  const sleepFilled = produceType === 'berry' ? rate.sleep[valueKey] : 0;
+  const equivalent = (
+    awake * sleepStateSplit.awake +
+    sleepVacant * sleepStateSplit.sleepVacant +
+    sleepFilled * sleepStateSplit.sleepFilled
   );
+
+  return {awake, sleepVacant, sleepFilled, equivalent};
 };

@@ -8,11 +8,11 @@ import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
 import {useRotatingNumbers} from '@/hooks/rotatingNumbers';
-import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateOfStates} from '@/types/game/producing/rate';
 
 
 type Props = PokemonProducingRateProps & {
-  rate: ProducingRateOfItem | null,
+  rate: ProducingRateOfStates | null,
   icon: React.ReactNode,
   additionalContents?: React.ReactNode[],
   dailyTotalEnergy?: number,
@@ -35,11 +35,11 @@ export const PokemonProducingRateSingle = ({
     interval: 5000,
   });
 
-  const frequency = !hideFrequency && <PokemonFrequency frequency={rate?.frequency ?? NaN}/>;
+  const frequency = !hideFrequency && <PokemonFrequency frequency={rate?.frequency.equivalent ?? NaN}/>;
   const rateInfo = (
     <Flex direction="row" noFullWidth className="gap-1">
-      <PokemonProducingRateContent dailyRate={rate?.quantity} icon={icon} {...props}/>
-      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy} {...props}/>
+      <PokemonProducingRateContent dailyRate={rate?.quantity.equivalent} icon={icon} {...props}/>
+      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy.equivalent} {...props}/>
     </Flex>
   );
 

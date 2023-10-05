@@ -12,8 +12,10 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
+import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toSum} from '@/utils/array';
+import {toProducingRateOfState} from '@/utils/game/producing/convert';
 
 
 export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) => {
@@ -37,15 +39,15 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       <HorizontalSplitter className="w-full"/>
       <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
       <PokemonProductionSplit
-        berry={stats.berry.dailyEnergy}
-        ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy))}
+        berry={stats.berry.dailyEnergy[stateOfRateToShow]}
+        ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]))}
         specialty={pokemon.specialty}
       />
       <HorizontalSplitter className="w-full"/>
       <Flex className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
         <TeamAnalysisBerryRate
           id={berryData.id}
-          rate={stats.berry}
+          rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
           period="daily"
         />
       </Flex>
@@ -55,7 +57,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
           <TeamAnalysisIngredientRate
             key={rate.id}
             id={rate.id}
-            rate={rate}
+            rate={toProducingRateOfState({rate, state: 'equivalent'})}
             period="daily"
           />
         ))}

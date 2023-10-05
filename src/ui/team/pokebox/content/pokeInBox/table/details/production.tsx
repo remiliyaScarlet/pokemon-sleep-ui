@@ -10,6 +10,7 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
 import {toSum} from '@/utils/array';
@@ -26,7 +27,7 @@ export const PokeInBoxTableProduction = ({
 
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy));
+  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]));
 
   return (
     <>
@@ -42,11 +43,11 @@ export const PokeInBoxTableProduction = ({
         )}>
           <PokemonBerryIcon id={pokemon.berry.id}/>
           <div>
-            x{formatFloat(berry.quantity)}
+            x{formatFloat(berry.quantity[stateOfRateToShow])}
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(berry.dailyEnergy)}
+            {formatFloat(berry.dailyEnergy[stateOfRateToShow])}
           </div>
         </Flex>
       }
@@ -64,11 +65,11 @@ export const PokeInBoxTableProduction = ({
             <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
               <PokemonIngredientIcon id={id} dimension="h-3.5 w-3.5"/>
               <div>
-                x{formatFloat(quantity)}
+                x{formatFloat(quantity[stateOfRateToShow])}
               </div>
               <ColoredEnergyIcon alt={t('Stats.Energy.Name')} dimension="h-3 w-3"/>
               <div>
-                {formatFloat(dailyEnergy)}
+                {formatFloat(dailyEnergy[stateOfRateToShow])}
               </div>
             </Flex>
           ))}
@@ -83,13 +84,13 @@ export const PokeInBoxTableProduction = ({
         <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
           <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(berry.dailyEnergy + sumOfDailyIngredientEnergy)}
+            {formatFloat(berry.dailyEnergy[stateOfRateToShow] + sumOfDailyIngredientEnergy)}
           </div>
         </Flex>
       }
       <Flex noFullWidth className="w-40">
         <PokemonProductionSplit
-          berry={berry.dailyEnergy}
+          berry={berry.dailyEnergy[stateOfRateToShow]}
           ingredient={sumOfDailyIngredientEnergy}
           specialty={pokemon.specialty}
         />

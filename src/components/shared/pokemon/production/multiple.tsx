@@ -6,26 +6,26 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
-import {ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateOfStates} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 
 
 type Props = PokemonProducingRateProps & {
-  rates: ProducingRateOfItem[],
-  getIcon: (rate: ProducingRateOfItem) => React.ReactNode,
+  rates: ProducingRateOfStates[],
+  getIcon: (rate: ProducingRateOfStates) => React.ReactNode,
 };
 
 export const PokemonProducingRateMultiple = ({horizontal, hideFrequency, rates, getIcon}: Props) => {
-  const totalDaily = toSum(rates.map(({dailyEnergy}) => dailyEnergy));
+  const totalDaily = toSum(rates.map(({dailyEnergy}) => dailyEnergy.equivalent));
 
   return (
     <Flex direction={horizontal ? 'row' : 'col'} wrap className={clsx(
       'gap-1',
       horizontal ? 'items-center justify-end' : 'items-end justify-center',
     )}>
-      {!hideFrequency && <PokemonFrequency frequency={rates.at(0)?.frequency ?? NaN}/>}
+      {!hideFrequency && <PokemonFrequency frequency={rates.at(0)?.frequency.equivalent ?? NaN}/>}
       {rates.map((rate) => (
-        <PokemonProducingRateContent key={rate.id} dailyRate={rate.quantity} icon={getIcon(rate)}/>
+        <PokemonProducingRateContent key={rate.id} dailyRate={rate.quantity.equivalent} icon={getIcon(rate)}/>
       ))}
       <PokemonProducingRateContent dailyRate={totalDaily}/>
     </Flex>

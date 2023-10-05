@@ -17,12 +17,12 @@ import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
-import {PokemonProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRateOfStates} from '@/types/game/producing/rate';
 import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokemonItemStatsWorkerOpts & {
-  getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfItem | undefined,
+  getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfStates | undefined,
   getIcon: (pokemon: PokemonInfo) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,
   isProductionIncluded?: (productions: IngredientProduction[]) => boolean,
@@ -55,7 +55,9 @@ export const PokemonIconsItemStats = ({
       return {...stats, itemRate};
     })
     .filter(isNotNullish)
-    .sort((a, b) => b.itemRate.quantity - a.itemRate.quantity);
+    .sort((a, b) => (
+      b.itemRate.quantity.equivalent - a.itemRate.quantity.equivalent
+    ));
 
   return (
     <>

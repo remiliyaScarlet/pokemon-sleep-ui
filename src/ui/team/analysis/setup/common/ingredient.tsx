@@ -17,13 +17,21 @@ type Props = TeamAnalysisRateLayoutCommonProps & {
 export const TeamAnalysisIngredientRate = ({id, rate, period}: Props) => {
   if (!id || !rate) {
     return (
-      <TeamAnalysisRateLayoutWithQuantity rate={null} period={period} icon={<XCircleIcon/>}/>
+      <TeamAnalysisRateLayoutWithQuantity
+        period={period}
+        rate={null}
+        icon={<XCircleIcon/>}
+      />
     );
   }
 
   return (
-    <TeamAnalysisRateLayoutWithQuantity rate={rate} period={period} icon={
-      <PokemonIngredientIcon id={id}/>
-    }/>
+    <TeamAnalysisRateLayoutWithQuantity
+      period={period}
+      rate={rate}
+      icon={
+        <PokemonIngredientIcon id={id}/>
+      }
+    />
   );
 };

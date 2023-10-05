@@ -190,11 +190,12 @@ export const PokedexLinkDetail = React.memo(({
             <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
           </div>
           <PokemonIngredientIcons
+            numberFormat="float"
             ingredients={[Object.values(ingredient)
-              .sort((a, b) => b.quantity - a.quantity)
+              .sort((a, b) => b.quantity.equivalent - a.quantity.equivalent)
               .map(({id, quantity}) => ({
                 id,
-                qty: parseFloat(formatFloat(quantity) || '-'),
+                qty: quantity.equivalent,
               })),
             ]}
           />

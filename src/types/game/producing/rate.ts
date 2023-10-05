@@ -4,12 +4,12 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
-import {ProducingState} from '@/types/game/producing/state';
+import {ProducingState, ProducingStateOfRate} from '@/types/game/producing/state';
 
 
-export type ProducingRate = {
-  quantity: number,
-  dailyEnergy: number,
+export type ProducingRate<T = number> = {
+  quantity: T,
+  dailyEnergy: T,
 };
 
 export type ProducingRateProportion = {
@@ -24,6 +24,13 @@ export type ProducingRateOfItem = ProducingRate & {
 
 export type ProducingRateOfItemOfSessions = {[state in ProducingState]: ProducingRateOfItem} & {
   id: number,
+};
+
+export type ProducingValueOfStates = {[state in ProducingStateOfRate]: number};
+
+export type ProducingRateOfStates = ProducingRate<ProducingValueOfStates> & {
+  id: number,
+  frequency: ProducingValueOfStates,
 };
 
 export type ProducingRateSingleParams = {
@@ -42,6 +49,6 @@ export type ProducingRateCommonParams = {
 export type PokemonProducingRate = {
   fullPackStats: FullPackStats,
   carryLimitInfo: CarryLimitInfo,
-  berry: ProducingRateOfItem,
-  ingredient: {[ingredientId in IngredientId]: ProducingRateOfItem},
+  berry: ProducingRateOfStates,
+  ingredient: {[ingredientId in IngredientId]: ProducingRateOfStates},
 };

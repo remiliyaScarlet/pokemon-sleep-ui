@@ -1,7 +1,8 @@
 import {PokemonSorterGetterOpts} from '@/components/shared/pokemon/sorter/type';
-import {PokemonProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRateOfStates, ProducingValueOfStates} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {KeysOfType} from '@/utils/type';
 
 
 export const getPokemonRateSorter = ({
@@ -19,20 +20,20 @@ export const getPokemonRateSorter = ({
 };
 
 type GetPokemonItemRateSorterOpts = {
-  key: keyof ProducingRateOfItem,
+  key: KeysOfType<ProducingRateOfStates, ProducingValueOfStates>,
   opts: PokemonSorterGetterOpts,
 };
 
 export const getBerryRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
   const rateOfPokemon = getPokemonRateSorter(opts);
 
-  return rateOfPokemon.berry[key];
+  return rateOfPokemon.berry[key].equivalent;
 };
 
 export const getIngredientTotalRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
   const rateOfPokemon = getPokemonRateSorter(opts);
 
-  return toSum(Object.values(rateOfPokemon.ingredient).map((rate) => rate[key]));
+  return toSum(Object.values(rateOfPokemon.ingredient).map((rate) => rate[key].equivalent));
 };
 
 export const getIngredientFirstRateSorter = ({key, opts}: GetPokemonItemRateSorterOpts): number => {
@@ -43,5 +44,5 @@ export const getIngredientFirstRateSorter = ({key, opts}: GetPokemonItemRateSort
     return NaN;
   }
 
-  return first[key];
+  return first[key].equivalent;
 };

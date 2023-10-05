@@ -7,6 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {formatFloat} from '@/utils/number';
@@ -27,11 +28,11 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
         <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
           <PokemonIngredientIcon id={id}/>
           <div>
-            x{formatFloat(quantity)}
+            x{formatFloat(quantity[stateOfRateToShow])}
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(dailyEnergy)}
+            {formatFloat(dailyEnergy[stateOfRateToShow])}
           </div>
         </Flex>
       ))}

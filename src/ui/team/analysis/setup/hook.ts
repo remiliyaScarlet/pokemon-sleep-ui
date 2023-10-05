@@ -3,6 +3,7 @@ import React from 'react';
 import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CalculatedUserSettings} from '@/types/userData/settings';
+import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {
   TeamProducingStats,
   TeamProducingStatsBySlot,
@@ -92,7 +93,10 @@ const useProducingStatsOfSlot = ({
     const total = {
       // Total doesn't and shouldn't care about the quantity
       quantity: NaN,
-      dailyEnergy: berry.dailyEnergy + toSum(Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy)),
+      dailyEnergy: (
+        berry.dailyEnergy[stateOfRateToShow] +
+        toSum(Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]))
+      ),
     };
 
     return {...pokemonProducingRate, total};
@@ -130,18 +134,22 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
 
     return {
       berry: {
-        dailyEnergy: toSum(stats.map(({berry}) => berry.dailyEnergy)),
-        quantity: toSum(stats.map(({berry}) => berry.quantity)),
+        dailyEnergy: toSum(stats.map(({berry}) => berry.dailyEnergy[stateOfRateToShow])),
+        quantity: toSum(stats.map(({berry}) => berry.quantity[stateOfRateToShow])),
       },
       ingredient: {
         dailyEnergy: toSum(
           stats
-            .flatMap(({ingredient}) => Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy))
+            .flatMap(({ingredient}) => (
+              Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow])
+            ))
             .filter(isNotNullish),
         ),
         quantity: toSum(
           stats
-            .flatMap(({ingredient}) => Object.values(ingredient).map(({quantity}) => quantity))
+            .flatMap(({ingredient}) => (
+              Object.values(ingredient).map(({quantity}) => quantity[stateOfRateToShow])
+            ))
             .filter(isNotNullish),
         ),
       },
