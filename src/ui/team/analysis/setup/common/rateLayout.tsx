@@ -9,21 +9,22 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {productionMultiplierByPeriod, productionStatsPeriodI18nId} from '@/const/game/production';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingRate} from '@/types/game/producing/rate';
+import {applyPeriodMultiplier} from '@/utils/game/producing/apply';
 import {formatFloat} from '@/utils/number';
 
 
 export type TeamAnalysisRateLayoutProps = {
+  rate: ProducingRate | null,
   period: ProductionPeriod,
   showQuantity: boolean,
-  rate: ProducingRate | null,
   larger?: boolean,
   icon?: React.ReactElement<NextImageProps>,
 };
 
 export const TeamAnalysisRateLayout = ({
+  rate,
   period,
   showQuantity,
-  rate,
   larger,
   icon,
 }: TeamAnalysisRateLayoutProps) => {
@@ -32,6 +33,8 @@ export const TeamAnalysisRateLayout = ({
   const titleClass = clsx('whitespace-nowrap', !larger && 'text-xs');
   const textClass = clsx(larger && 'text-xl');
   const dimension = larger ? 'h-6 w-6' : 'h-5 w-5';
+
+  const calculatedRate = applyPeriodMultiplier({rate, period});
 
   return (
     <Flex direction="row" noFullWidth center className="gap-0.5">
@@ -45,14 +48,14 @@ export const TeamAnalysisRateLayout = ({
         </div>
       }
       {
-        showQuantity && rate &&
+        showQuantity && calculatedRate &&
         <div className={textClass}>
-          x{formatFloat(rate.quantity * productionMultiplierByPeriod[period])}
+          x{formatFloat(calculatedRate.quantity * productionMultiplierByPeriod[period])}
         </div>
       }
       <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
       <div className={clsx('text-energy', textClass)}>
-        {rate ? formatFloat(rate.dailyEnergy * productionMultiplierByPeriod[period]) : '-'}
+        {calculatedRate ? formatFloat(calculatedRate.dailyEnergy * productionMultiplierByPeriod[period]) : '-'}
       </div>
     </Flex>
   );

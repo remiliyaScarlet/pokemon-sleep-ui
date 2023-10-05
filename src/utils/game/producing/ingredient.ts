@@ -5,7 +5,7 @@ import {
   ProducingRateOfItemOfSessions,
   ProducingRateProportion,
 } from '@/types/game/producing/rate';
-import {applyBonus} from '@/utils/game/producing/bonus';
+import {applyBonus} from '@/utils/game/producing/apply';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
 
 
