@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/game/meal';
 import {PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';

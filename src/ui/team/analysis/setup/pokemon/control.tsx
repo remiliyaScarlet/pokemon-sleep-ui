@@ -5,7 +5,7 @@ import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
@@ -39,7 +39,7 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
           snorlaxFavorite,
           ...calculatedSettings,
         }))}>
-          <PokemonDataIcon src="/images/generic/search.png" alt={t('Rating.Title')} invert dimension="h-5 w-5"/>
+          <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')} dimension="h-5 w-5"/>
         </button>
       </Flex>
       <Flex direction="row" noFullWidth className="gap-1.5">

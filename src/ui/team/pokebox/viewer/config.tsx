@@ -17,8 +17,8 @@ import {
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
@@ -90,7 +90,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
               <div className="h-6 w-6">
                 <EyeIcon/>
               </div>
-              <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert/>
+              <GenericIconLarger src="/images/generic/lv.png" alt="Lv"/>
             </Flex>
           }
           ids={[null, ...[...pokeboxPreviewLevel].sort((a, b) => a - b)]}

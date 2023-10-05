@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {defaultStaminaCalcConfig} from '@/const/user/settings';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 import {UserSettingsSleepSession} from '@/ui/base/navbar/userSettings/sections/energy/session';

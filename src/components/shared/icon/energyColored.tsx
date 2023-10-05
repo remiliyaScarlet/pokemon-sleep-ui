@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {IconProps} from '@/components/shared/icon/type';
 
 

@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
@@ -91,11 +91,10 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
               <div className="relative h-9 w-9">
                 <ArrowTopRightOnSquareIcon/>
               </div>
-              <PokemonDataIcon
+              <GenericIconLarger
                 src="/images/generic/pokemonbox.png"
                 alt={t('Team.Box.Title')}
                 dimension="h-9 w-9"
-                invert
               />
             </>}
         </Flex>

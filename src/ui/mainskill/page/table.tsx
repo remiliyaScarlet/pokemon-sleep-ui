@@ -4,7 +4,7 @@ import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {MainSkillEffectUI} from '@/components/shared/pokemon/mainSkill/effect';
 import {MainSkillData} from '@/types/game/pokemon/mainSkill';
 
@@ -20,7 +20,7 @@ export const MainSkillValueTable = ({data}: Props) => {
     <Flex>
       <Grid center className="grid-cols-2 gap-1 self-center rounded-lg text-lg md:w-60">
         <div>
-          <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert/>
+          <GenericIconLarger src="/images/generic/lv.png" alt="Lv"/>
         </div>
         <div className="h-6 w-6">
           <ChevronDoubleUpIcon/>

@@ -3,8 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonInfo} from '@/types/game/pokemon';
@@ -40,7 +40,7 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
         pokemon,
         snorlaxFavorite,
       })}>
-        <PokemonDataIcon src="/images/generic/search.png" alt={t('Rating.Title')} invert/>
+        <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>
       </button>
     </Flex>
   );

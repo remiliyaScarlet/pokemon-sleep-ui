@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {pokemonProducingStatsStateI18nId} from '@/components/shared/pokemon/production/stats/const';
 import {PokemonProducingStatsOfState} from '@/components/shared/pokemon/production/stats/state';
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';

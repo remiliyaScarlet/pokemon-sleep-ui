@@ -3,15 +3,11 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {NextImage} from '@/components/shared/common/image/main';
-import {IconProps} from '@/components/shared/icon/type';
+import {GenericIconCommonProps} from '@/components/shared/icon/common/type';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-type Props = IconProps & {
-  src: string,
-};
-
-export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: Props) => {
+export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: GenericIconCommonProps) => {
   const imageClassName = className ?? (noInvert ? '' : 'invert-hoverable');
 
   if (noWrap) {

@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {staminaCalcStrategyI18nId} from '@/const/game/stamina';
 import {staminaCalcSkillRecoveryStrategies} from '@/types/game/producing/stamina';
 import {UserSettingsSkillRecoveryInput} from '@/ui/base/navbar/userSettings/sections/energy/skillRecoveryInput';

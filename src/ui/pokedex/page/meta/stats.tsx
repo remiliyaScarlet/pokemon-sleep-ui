@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
@@ -17,7 +17,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
       <tbody>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/friendship.png" alt={t('Stats.Friendship')}/>
+            <GenericIconLarger src="/images/generic/friendship.png" alt={t('Stats.Friendship')} noInvert/>
           </td>
           <td>
             {stats.friendshipPoints}
@@ -25,7 +25,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
         </tr>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/clock.png" alt={t('Stats.FrequencyBase')} invert/>
+            <GenericIconLarger src="/images/generic/clock.png" alt={t('Stats.FrequencyBase')}/>
           </td>
           <td>
             <PokemonFrequency frequency={stats.frequency} noIcon normalText/>
@@ -33,7 +33,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
         </tr>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/bag.png" alt={t2('MaxCarry')} invert/>
+            <GenericIconLarger src="/images/generic/bag.png" alt={t2('MaxCarry')}/>
           </td>
           <td>
             {stats.maxCarry}
@@ -41,14 +41,14 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
         </tr>
         <tr>
           <td>
-            <PokemonDataIcon src="/images/generic/pokemonbox.png" alt={t('Stats.Recruit')} invert/>
+            <GenericIconLarger src="/images/generic/pokemonbox.png" alt={t('Stats.Recruit')}/>
           </td>
           <td>
             <table className="mx-4 border-separate border-spacing-0.5">
               <tbody>
                 <tr>
                   <td>
-                    <PokemonDataIcon src="/images/generic/research.png" alt={t2('Exp')}/>
+                    <GenericIconLarger src="/images/generic/research.png" alt={t2('Exp')} noInvert/>
                   </td>
                   <td>
                     {stats.recruit.exp}
@@ -56,7 +56,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
                 </tr>
                 <tr>
                   <td>
-                    <PokemonDataIcon src="/images/generic/shard.png" alt={t2('DreamShards')}/>
+                    <GenericIconLarger src="/images/generic/shard.png" alt={t2('DreamShards')} noInvert/>
                   </td>
                   <td>
                     {stats.recruit.shards}

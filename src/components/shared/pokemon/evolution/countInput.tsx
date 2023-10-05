@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 
 
 type Props = {
@@ -29,7 +29,7 @@ export const PokemonEvolutionCountInput = ({
       noFixedTitleWidth
       title={
         <Flex direction="row" className="items-center justify-end gap-0.5 px-2">
-          <PokemonDataIcon src="/images/generic/flash.png" alt={text} invert/>
+          <GenericIconLarger src="/images/generic/flash.png" alt={text}/>
           <div>{text}</div>
         </Flex>
       }

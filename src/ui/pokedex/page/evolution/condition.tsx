@@ -4,7 +4,7 @@ import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {EvolutionCondition} from '@/types/game/pokemon/evolution';
 
 
@@ -22,7 +22,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'level') {
     return (
       <Flex direction="row" className="gap-1">
-        <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert/>
+        <GenericIconLarger src="/images/generic/lv.png" alt="Lv"/>
         <div>{condition.level}</div>
       </Flex>
     );
@@ -31,7 +31,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'candy') {
     return (
       <Flex direction="row" className="gap-1">
-        <PokemonDataIcon src="/images/generic/candy.png" alt={t('Candy')}/>
+        <GenericIconLarger src="/images/generic/candy.png" alt={t('Candy')} noInvert/>
         <div>{condition.count}</div>
       </Flex>
     );
@@ -42,7 +42,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
 
     return (
       <Flex direction="row" className="gap-1">
-        <PokemonDataIcon src={`/images/item/${condition.item}.png`} alt={itemName}/>
+        <GenericIconLarger src={`/images/item/${condition.item}.png`} alt={itemName} noInvert/>
         <div>{itemName}</div>
       </Flex>
     );
@@ -51,7 +51,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'sleepTime') {
     return (
       <Flex direction="row" className="gap-1">
-        <PokemonDataIcon src="/images/generic/sleep.png" alt={t3('SleepTime')}/>
+        <GenericIconLarger src="/images/generic/sleep.png" alt={t3('SleepTime')} noInvert/>
         <div>{condition.hours}&nbsp;{t('Hour')}</div>
       </Flex>
     );

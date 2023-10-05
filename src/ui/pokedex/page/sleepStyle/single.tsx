@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {SleepStyle} from '@/types/game/sleepStyle';
@@ -50,21 +50,21 @@ export const PokemonSingleSleepStyle = ({pokemon, sleepStyle, sleepdex, setSleep
       <SnorlaxRankUI rank={rank}/>
       <Flex direction="row" center>
         <div>
-          <PokemonDataIcon src="/images/generic/gift.png" alt={t('Rewards')} invert/>
+          <GenericIconLarger src="/images/generic/gift.png" alt={t('Rewards')}/>
         </div>
         <div>
           <table className="border-separate border-spacing-0.5">
             <tbody>
               <tr>
-                <td><PokemonDataIcon src="/images/generic/research.png" alt={t('Exp')}/></td>
+                <td><GenericIconLarger src="/images/generic/research.png" alt={t('Exp')} noInvert/></td>
                 <td>{rewards.exp}</td>
               </tr>
               <tr>
-                <td><PokemonDataIcon src="/images/generic/shard.png" alt={t('DreamShards')}/></td>
+                <td><GenericIconLarger src="/images/generic/shard.png" alt={t('DreamShards')} noInvert/></td>
                 <td>{rewards.shards}</td>
               </tr>
               <tr>
-                <td><PokemonDataIcon src="/images/generic/candy.png" alt={t('Candy')}/></td>
+                <td><GenericIconLarger src="/images/generic/candy.png" alt={t('Candy')} noInvert/></td>
                 <td>{rewards.candy}</td>
               </tr>
             </tbody>

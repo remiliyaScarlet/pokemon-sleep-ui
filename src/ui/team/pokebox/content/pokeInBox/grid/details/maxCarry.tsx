@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
@@ -17,7 +17,7 @@ export const PokeInBoxGridMaxCarry = (props: PokeInBoxCommonProps) => {
   return (
     <Flex noFullWidth className="gap-1">
       <Flex direction="row" noFullWidth className="gap-0.5">
-        <PokemonDataIcon src="/images/generic/bag.png" alt={t('MaxCarry')} invert/>
+        <GenericIconLarger src="/images/generic/bag.png" alt={t('MaxCarry')}/>
         <div>{carryLimitInfo.final}</div>
       </Flex>
       <PokemonTimeToFullPack timeToFullPack={fullPackStats.secondsToFull} normalText/>

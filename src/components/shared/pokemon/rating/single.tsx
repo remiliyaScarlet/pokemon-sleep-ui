@@ -11,7 +11,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {ProgressBar} from '@/components/progressBar';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
 import {RatingDataPointUI} from '@/components/shared/pokemon/rating/point';
 import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/relativeStrength';
@@ -78,7 +78,7 @@ export const RatingResultOfLevelUI = ({
     <LazyLoad loading={loading} loadingFullHeight className="info-section relative gap-3">
       <Flex direction="row" className={clsx('gap-0.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>
         <Flex center noFullWidth>
-          <PokemonDataIcon src="/images/generic/lv.png" alt="Lv" invert dimension="h-10 w-10"/>
+          <GenericIconLarger src="/images/generic/lv.png" alt="Lv" dimension="h-10 w-10"/>
           <div className="text-xl">{level}</div>
         </Flex>
         <Flex className="gap-3">

@@ -9,7 +9,7 @@ import {useTranslations} from 'next-intl';
 
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {SleepSessions} from '@/types/game/sleep';
 import {UserSettingsSleepSessionTime} from '@/ui/base/navbar/userSettings/sections/energy/sessionTime';
 import {UserSettingsEnergyProps} from '@/ui/base/navbar/userSettings/sections/energy/type';

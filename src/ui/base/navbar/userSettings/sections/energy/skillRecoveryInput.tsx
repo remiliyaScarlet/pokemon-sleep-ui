@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {UserSettingsEnergyProps} from '@/ui/base/navbar/userSettings/sections/energy/type';

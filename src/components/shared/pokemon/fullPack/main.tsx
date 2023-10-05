@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonPackStatsCommonProps} from '@/components/shared/pokemon/type';
 import {getPackStatsStyle} from '@/components/shared/pokemon/utils';
 import {formatSeconds} from '@/utils/time';
@@ -19,11 +19,10 @@ export const PokemonTimeToFullPack = ({timeToFullPack, ...props}: Props) => {
 
   return (
     <Flex direction="row" noFullWidth className={getPackStatsStyle(props)}>
-      <PokemonDataIcon
+      <GenericIconLarger
         src="/images/generic/bag.png"
         alt={t('Stats.TimeToFullPack')}
         dimension={normalText ? 'h-6 w-6' : 'h-4 w-4'}
-        invert
       />
       <div>{formatSeconds(timeToFullPack)}</div>
     </Flex>
