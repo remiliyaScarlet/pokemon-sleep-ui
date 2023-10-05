@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
@@ -21,6 +22,7 @@ type Props<TData> = {
   getReactKey?: (data: TData) => React.Key,
   getClassName?: (data: TData) => string,
   onClickOverride?: (data: TData) => void,
+  showData: (data: TData) => boolean,
   size?: Dimension,
 };
 
@@ -32,6 +34,7 @@ export const PokemonIconList = <TData, >({
   getReactKey,
   getClassName,
   onClickOverride,
+  showData,
   size,
 }: Props<TData>) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -63,19 +66,28 @@ export const PokemonIconList = <TData, >({
           const {id} = pokemon;
 
           return (
-            <button
-              key={getReactKey ? getReactKey(data) : id}
-              className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
-              onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
-            >
-              <IconWithInfo
-                imageSrc={`/images/pokemon/icons/${id}.png`}
-                imageAlt={t(id.toString())}
-                imageDimension={dimension}
-                imageSizes={imageIconSizes}
-                info={getInfo && getInfo(data)}
-              />
-            </button>
+            showData(data) &&
+              <button
+                key={getReactKey ? getReactKey(data) : id}
+                className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
+                onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
+              >
+                <AnimatedCollapse
+                  key={dataWithPokemon.filter((row) => {
+                    return showData(row);
+                  }).length}
+                  show={true}
+                  appear
+                >
+                  <IconWithInfo
+                    imageSrc={`/images/pokemon/icons/${id}.png`}
+                    imageAlt={t(id.toString())}
+                    imageDimension={dimension}
+                    imageSizes={imageIconSizes}
+                    info={getInfo && getInfo(data)}
+                  />
+                </AnimatedCollapse>
+              </button>
           );
         })}
       </Flex>

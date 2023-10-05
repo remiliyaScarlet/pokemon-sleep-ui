@@ -13,6 +13,8 @@ import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
+import {MapInputUnlockedSleepStylesToggle} from './hideUnlockedSleepdexStyle';
+
 
 export const MapInfoInput = (props: MapInputCommonProps) => {
   const {
@@ -43,6 +45,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
         <Flex direction="row" noFullWidth className="ml-auto gap-1.5">
           <MapInputMarkSleepdexToggle {...props}/>
           <MapInputSleepdexStatsToggle {...props}/>
+          <MapInputUnlockedSleepStylesToggle {...props}/>
           <MapInputEmptyRankToggle {...props}/>
         </Flex>
       </InputRow>
