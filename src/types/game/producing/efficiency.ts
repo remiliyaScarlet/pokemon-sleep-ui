@@ -3,6 +3,7 @@ export const efficiencyBreakPoints = [
   60,
   40,
   20,
+  0,
 ] as const;
 
 export type EfficiencyBreakPoint = typeof efficiencyBreakPoints[number];
