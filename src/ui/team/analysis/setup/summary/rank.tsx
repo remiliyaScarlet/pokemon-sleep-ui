@@ -24,7 +24,7 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
   })), [energy]);
 
   return (
-    <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2 lg:grid-cols-4">
+    <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2 2xl:grid-cols-4">
       {snorlaxRank.map(({mapId, rank}) => {
         const mapName = t(mapId.toString());
 
