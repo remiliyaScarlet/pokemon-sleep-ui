@@ -15,9 +15,7 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 import {UserSettings} from '@/types/userData/settings';
 
 
-export type TeamAnalysisFilter = PokemonInputFilter & {
-  snorlaxFavorite: SnorlaxFavorite,
-};
+export type TeamAnalysisPokemonFilter = PokemonInputFilter;
 
 export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedex: PokedexMap,

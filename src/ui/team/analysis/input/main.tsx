@@ -17,8 +17,8 @@ import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
 import {
   TeamAnalysisDataProps,
-  TeamAnalysisFilter,
   TeamAnalysisMember,
+  TeamAnalysisPokemonFilter,
   TeamAnalysisSetup,
   TeamAnalysisSetupModifyingProps,
   TeamAnalysisSlotName,
@@ -27,12 +27,12 @@ import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {showToast} from '@/utils/toast';
 
 
-type Props = FilterInputProps<TeamAnalysisFilter> & TeamAnalysisDataProps & TeamAnalysisSetupModifyingProps & {
+type Props = FilterInputProps<TeamAnalysisPokemonFilter> & TeamAnalysisDataProps & TeamAnalysisSetupModifyingProps & {
   pokemonList: PokemonInfo[],
   isIncluded: FilterInclusionMap<PokemonId>,
 };
 
-export const TeamAnalysisPokemonFilter = ({pokemonList, setup, setSetup, isIncluded, ...props}: Props) => {
+export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isIncluded, ...props}: Props) => {
   const {filter} = props;
 
   const t = useTranslations('Game');

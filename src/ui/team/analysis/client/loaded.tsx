@@ -3,11 +3,9 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex/common';
-import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
-import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/input/main';
+import {TeamAnalysisPokemonFilterUI} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisDataProps, TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {generateEmptyTeam, getCurrentTeam} from '@/ui/team/analysis/utils';
@@ -26,7 +24,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
     preloadedSetup,
     ingredientChainMap,
   } = props;
-  const pokemon = Object.values(pokedex).filter(isNotNullish);
+  const pokemonList = Object.values(pokedex).filter(isNotNullish);
 
   const initialSetup = React.useMemo(() => {
     // Migrate first for older data version
@@ -63,8 +61,8 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
 
   return (
     <>
-      <TeamAnalysisPokemonFilter
-        pokemonList={pokemon}
+      <TeamAnalysisPokemonFilterUI
+        pokemonList={pokemonList}
         setup={setup}
         setSetup={setSetup}
         isIncluded={isIncluded}
