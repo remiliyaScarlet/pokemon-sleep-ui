@@ -1,7 +1,6 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
@@ -53,10 +52,7 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
       </Flex>
       <HorizontalSplitter className="block md:hidden"/>
       {meals.length ?
-        <Grid className={clsx(
-          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5',
-          '2xl:grid-cols-7',
-        )}>
+        <Grid className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
           {meals.map((meal) => (
             <MealLink key={meal.id} meal={meal} mealLevel={mealLevel} showEnergy={showEnergy}/>
           ))}
