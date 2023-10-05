@@ -7,7 +7,7 @@ import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {IngredientId} from '@/types/game/ingredient';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
-import {applyPeriodMultiplier} from '@/utils/game/producing/apply';
+import {applyPeriodMultiplierToRate} from '@/utils/game/producing/apply';
 
 
 type Props = TeamAnalysisRateLayoutCommonProps & {
@@ -27,7 +27,7 @@ export const TeamAnalysisIngredientRate = ({id, rate, period}: Props) => {
 
   return (
     <ProducingRateUI
-      rate={applyPeriodMultiplier({rate, period})}
+      rate={applyPeriodMultiplierToRate({rate, period})}
       getIcon={(dimension) =><PokemonIngredientIcon id={id} dimension={dimension}/>}
     />
   );

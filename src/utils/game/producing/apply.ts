@@ -37,16 +37,12 @@ export const applyBonus = <T extends ProducingRateOfItem | null>({
   };
 };
 
-type ApplyPeriodMultiplier = {
-  rate: ProducingRate | null,
+type ApplyPeriodMultiplierToRateOpts = {
+  rate: ProducingRate,
   period: ProductionPeriod,
 };
 
-export const applyPeriodMultiplier = ({rate, period}: ApplyPeriodMultiplier): ProducingRate | null => {
-  if (!rate) {
-    return null;
-  }
-
+export const applyPeriodMultiplierToRate = ({rate, period}: ApplyPeriodMultiplierToRateOpts): ProducingRate => {
   const {quantity, dailyEnergy} = rate;
 
   return {

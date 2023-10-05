@@ -5,7 +5,7 @@ import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {BerryId} from '@/types/game/berry';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
-import {applyPeriodMultiplier} from '@/utils/game/producing/apply';
+import {applyPeriodMultiplierToRate} from '@/utils/game/producing/apply';
 
 
 type Props = TeamAnalysisRateLayoutCommonProps & {
@@ -16,7 +16,7 @@ type Props = TeamAnalysisRateLayoutCommonProps & {
 export const TeamAnalysisBerryRate = ({id, rate, period}: Props) => {
   return (
     <ProducingRateUI
-      rate={applyPeriodMultiplier({rate, period})}
+      rate={applyPeriodMultiplierToRate({rate, period})}
       getIcon={(dimension) => <PokemonBerryIcon id={id} dimension={dimension}/>}
     />
   );
