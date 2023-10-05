@@ -1,4 +1,3 @@
-import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
@@ -90,9 +89,9 @@ type GetEquivalentFrequencyFromPokemonRateOpts = {
 export const getEquivalentFrequencyFromPokemonRate = ({rate, state}: GetEquivalentFrequencyFromPokemonRateOpts) => {
   const {berry, ingredient} = rate;
   const dailyCount = (
-    durationOfDay / berry.frequency[state] +
-    toSum(Object.values(ingredient).map(({frequency}) => durationOfDay / frequency[state]))
+    1 / berry.frequency[state] +
+    toSum(Object.values(ingredient).map(({frequency}) => 1 / frequency[state]))
   );
 
-  return durationOfDay / dailyCount;
+  return 1 / dailyCount;
 };
