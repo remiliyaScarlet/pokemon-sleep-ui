@@ -15,7 +15,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavBar} from '@/ui/base/navbar/main';
-import {isProduction} from '@/utils/environment';
+import {isAdsShouldShow} from '@/utils/environment';
 
 
 export const PageLayout = ({
@@ -26,13 +26,13 @@ export const PageLayout = ({
   const {locale} = props;
 
   const session = React.use(getServerSession(authOptions));
-  const shouldShowAds = isProduction() && !session?.user.isAdsFree;
+  const adsShouldShow = isAdsShouldShow(session);
 
   return (
     <React.Suspense fallback={<LoadingFullScreen/>}>
       {/* Google AdSense */}
       {
-        shouldShowAds &&
+        adsShouldShow &&
         <Script
           async
           strategy="lazyOnload"
@@ -62,7 +62,7 @@ export const PageLayout = ({
             </Flex>
           </div>
         </Flex>
-        {shouldShowAds && <AnchorAdsUnit/>}
+        {adsShouldShow && <AnchorAdsUnit/>}
       </Flex>
     </React.Suspense>
   );
