@@ -3,10 +3,11 @@ import React from 'react';
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {IngredientId} from '@/types/game/ingredient';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisRateLayoutWithQuantity} from '@/ui/team/analysis/setup/common/rateLayoutWithQuantity';
 import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
+import {applyPeriodMultiplier} from '@/utils/game/producing/apply';
 
 
 type Props = TeamAnalysisRateLayoutCommonProps & {
@@ -17,21 +18,17 @@ type Props = TeamAnalysisRateLayoutCommonProps & {
 export const TeamAnalysisIngredientRate = ({id, rate, period}: Props) => {
   if (!id || !rate) {
     return (
-      <TeamAnalysisRateLayoutWithQuantity
-        period={period}
+      <ProducingRateUI
         rate={null}
-        icon={<XCircleIcon/>}
+        getIcon={(dimension) => <XCircleIcon className={dimension}/>}
       />
     );
   }
 
   return (
-    <TeamAnalysisRateLayoutWithQuantity
-      period={period}
-      rate={rate}
-      icon={
-        <PokemonIngredientIcon id={id}/>
-      }
+    <ProducingRateUI
+      rate={applyPeriodMultiplier({rate, period})}
+      getIcon={(dimension) =><PokemonIngredientIcon id={id} dimension={dimension}/>}
     />
   );
 };

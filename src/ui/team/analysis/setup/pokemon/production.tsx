@@ -8,10 +8,10 @@ import {PokemonCarryLimit} from '@/components/shared/pokemon/carryLimit/main';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
-import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toSum} from '@/utils/array';
@@ -37,14 +37,14 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         <PokemonCarryLimit carryLimit={stats.carryLimitInfo.final}/>
       </Flex>
       <HorizontalSplitter className="w-full"/>
-      <TeamAnalysisRateLayout period="daily" showQuantity={false} rate={stats.total}/>
+      <ProducingRateUI rate={stats.total} hideQuantity/>
       <PokemonProductionSplit
         berry={stats.berry.dailyEnergy[stateOfRateToShow]}
         ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]))}
         specialty={pokemon.specialty}
       />
       <HorizontalSplitter className="w-full"/>
-      <Flex className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
+      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
         <TeamAnalysisBerryRate
           id={berryData.id}
           rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
@@ -52,7 +52,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         />
       </Flex>
       <HorizontalSplitter className="w-full"/>
-      <Flex className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
         {ingredientRates.map((rate) => (
           <TeamAnalysisIngredientRate
             key={rate.id}
