@@ -30,6 +30,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Rewards: string,
       Shiny: string,
       SnorlaxFavorite: string,
+      Stamina: string,
     },
     Evolution: {
       SleepTime: string,

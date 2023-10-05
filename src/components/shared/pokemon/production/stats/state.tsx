@@ -9,29 +9,44 @@ import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
-import {pokemonProducingStatsStateI18nId} from '@/components/shared/pokemon/production/stats/const';
 import {PokemonProducingStatsItemLayout} from '@/components/shared/pokemon/production/stats/item';
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
+import {applyStaminaMultiplierOpts} from '@/utils/game/producing/apply';
 import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
 type Props = PokemonProducingStatsCommonProps & {
+  title: React.ReactNode,
+} & ({
   state: ProducingStateOfRate,
-};
+  targetMultiplier?: never,
+} | {
+  state: 'awake',
+  targetMultiplier: number,
+});
 
-export const PokemonProducingStatsOfState = ({rate, specialty, state}: Props) => {
-  const {berry, ingredient} = rate;
+export const PokemonProducingStatsOfState = ({bonus, rate, specialty, title, state, targetMultiplier}: Props) => {
+  const original = bonus.stamina.awake;
+  const berry = targetMultiplier ?
+    applyStaminaMultiplierOpts({rate: rate.berry, multiplier: {original, target: targetMultiplier}}) :
+    rate.berry;
+  const ingredient = targetMultiplier ?
+    Object.values(rate.ingredient).map((rate) => applyStaminaMultiplierOpts({
+      rate,
+      multiplier: {original, target: targetMultiplier},
+    })) :
+    Object.values(rate.ingredient);
 
-
-  const t = useTranslations('UI.Producing');
-  const t2 = useTranslations('UI.InPage.Pokedex.Info');
+  const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
     <Flex className="gap-1 rounded-lg bg-slate-500/10 p-2">
-      <h3>{t(pokemonProducingStatsStateI18nId[state])}</h3>
+      <Flex className="text-lg">
+        {title}
+      </Flex>
       <Flex className="button-bg rounded-lg p-1">
         <PokemonFrequency
           normalText
@@ -39,7 +54,7 @@ export const PokemonProducingStatsOfState = ({rate, specialty, state}: Props) =>
         />
       </Flex>
       <Flex className="gap-1 md:flex-row">
-        <PokemonProducingStatsItemLayout icon={<GenericBerryIcon alt={t2('Berry')} noWrap/>}>
+        <PokemonProducingStatsItemLayout icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}>
           <PokemonProducingRateSingle
             key={berry.id}
             rate={berry}
@@ -47,7 +62,7 @@ export const PokemonProducingStatsOfState = ({rate, specialty, state}: Props) =>
             getIcon={(dimension) => <PokemonIngredientIcon id={berry.id} dimension={dimension}/>}
           />
         </PokemonProducingStatsItemLayout>
-        <PokemonProducingStatsItemLayout icon={<GenericIngredientIcon alt={t2('Ingredient')} dimension="h-10 w-10"/>}>
+        <PokemonProducingStatsItemLayout icon={<GenericIngredientIcon alt={t('Ingredient')} dimension="h-10 w-10"/>}>
           <Flex className="gap-1.5">
             {Object.values(ingredient).map((rate) => (
               <PokemonProducingRateSingle

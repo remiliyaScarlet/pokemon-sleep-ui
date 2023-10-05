@@ -1,5 +1,16 @@
 export type ProducingState = 'awake' | 'sleep';
 
-export type ProducingStateWithPack = 'awake' | 'sleepVacant' | 'sleepFilled';
+export const producingStateWithPack = [
+  'awake',
+  'sleepVacant',
+  'sleepFilled',
+] as const;
 
-export type ProducingStateOfRate = ProducingStateWithPack | 'equivalent';
+export type ProducingStateWithPack = typeof producingStateWithPack[number];
+
+export const producingStateOfRate = [
+  ...producingStateWithPack,
+  'equivalent',
+] as const;
+
+export type ProducingStateOfRate = typeof producingStateOfRate[number];

@@ -1,3 +1,4 @@
+import {EfficiencyBreakPoint} from '@/types/game/producing/efficiency';
 import {StaminaCalcSkillRecoveryStrategy} from '@/types/game/producing/stamina';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
@@ -13,4 +14,12 @@ export const staminaCalcStrategyI18nId: {
 } = {
   optimistic: 'Optimistic',
   conservative: 'Conservative',
+};
+
+export const staminaLevelImageSrc: {[breakPoint in EfficiencyBreakPoint]: string} = {
+  80: '/images/mood/80.png',
+  60: '/images/mood/60.png',
+  40: '/images/mood/40.png',
+  20: '/images/mood/20.png',
+  0: '/images/mood/0.png',
 };
