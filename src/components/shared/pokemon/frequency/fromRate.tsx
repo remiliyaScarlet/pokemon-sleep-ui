@@ -11,5 +11,10 @@ type Props = PokemonFrequencyProps & {
 };
 
 export const PokemonFrequencyFromProducingRate = ({pokemonRate, ...props}: Props) => {
-  return <PokemonFrequency frequency={getEquivalentFrequencyFromPokemonRate(pokemonRate)} {...props}/>;
+  return (
+    <PokemonFrequency
+      frequency={getEquivalentFrequencyFromPokemonRate({rate: pokemonRate, state: 'equivalent'})}
+      {...props}
+    />
+  );
 };

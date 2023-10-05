@@ -3,6 +3,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {PokemonProducingRate, ProducingValueOfStates} from '@/types/game/producing/rate';
+import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
@@ -81,10 +82,16 @@ export const getFrequencyFromItemRateOfSessions = ({
   return {awake, sleepVacant, sleepFilled, equivalent};
 };
 
-export const getEquivalentFrequencyFromPokemonRate = ({berry, ingredient}: PokemonProducingRate) => {
+type GetEquivalentFrequencyFromPokemonRateOpts = {
+  rate: PokemonProducingRate,
+  state: ProducingStateOfRate,
+};
+
+export const getEquivalentFrequencyFromPokemonRate = ({rate, state}: GetEquivalentFrequencyFromPokemonRateOpts) => {
+  const {berry, ingredient} = rate;
   const dailyCount = (
-    durationOfDay / berry.frequency.equivalent +
-    toSum(Object.values(ingredient).map(({frequency}) => durationOfDay / frequency.equivalent))
+    durationOfDay / berry.frequency[state] +
+    toSum(Object.values(ingredient).map(({frequency}) => durationOfDay / frequency[state]))
   );
 
   return durationOfDay / dailyCount;

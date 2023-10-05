@@ -30,12 +30,15 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequencyBase: ({pokemon}) => pokemon.stats.frequency,
   frequency: ({helperCount, subSkillBonus, calculatedSettings, ...opts}) => (
-    getEquivalentFrequencyFromPokemonRate(getPokemonProducingRate({
-      helperCount: helperCount ?? defaultHelperCount,
-      subSkillBonus: subSkillBonus ?? defaultSubSkillBonus,
-      ...calculatedSettings,
-      ...opts,
-    }))
+    getEquivalentFrequencyFromPokemonRate({
+      state: 'equivalent',
+      rate: getPokemonProducingRate({
+        helperCount: helperCount ?? defaultHelperCount,
+        subSkillBonus: subSkillBonus ?? defaultSubSkillBonus,
+        ...calculatedSettings,
+        ...opts,
+      }),
+    })
   ),
   frequencyOfBerry: (opts) => getBerryRateSorter({key: 'frequency', opts}),
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),
