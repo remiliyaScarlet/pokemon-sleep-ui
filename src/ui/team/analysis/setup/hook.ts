@@ -21,6 +21,7 @@ import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {toSum} from '@/utils/array';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
@@ -90,17 +91,11 @@ const useProducingStatsOfSlot = ({
       ingredientMap,
       evolutionCount: member.evolutionCount,
     });
-    const {berry, ingredient} = pokemonProducingRate;
 
-    const total: ProducingRate = {
-      period: analysisPeriod,
-      // Total doesn't and shouldn't care about the quantity
-      quantity: NaN,
-      energy: (
-        berry.energy[stateOfRateToShow] +
-        toSum(Object.values(ingredient).map(({energy}) => energy[stateOfRateToShow]))
-      ),
-    };
+    const total: ProducingRate = getTotalOfPokemonProducingRate({
+      rate: pokemonProducingRate,
+      state: stateOfRateToShow,
+    });
 
     return {...pokemonProducingRate, total};
   }, [snorlaxFavorite, analysisPeriod, members[slotName], helperCount, calculatedSettings]);

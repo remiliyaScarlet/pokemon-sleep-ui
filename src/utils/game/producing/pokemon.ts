@@ -69,6 +69,7 @@ export const getPokemonProducingRate = ({
   });
 
   return {
+    period,
     fullPackStats,
     carryLimitInfo,
     berry: getTotalItemRateOfSessions({

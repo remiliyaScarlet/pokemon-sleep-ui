@@ -49,6 +49,7 @@ export type ProducingRateCommonParams = {
 };
 
 export type PokemonProducingRate = {
+  period: ProductionPeriod,
   fullPackStats: FullPackStats,
   carryLimitInfo: CarryLimitInfo,
   berry: ProducingRateOfStates,

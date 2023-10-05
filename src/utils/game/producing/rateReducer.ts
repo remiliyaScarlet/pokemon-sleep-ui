@@ -1,12 +1,15 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {
+  PokemonProducingRate,
+  ProducingRate,
   ProducingRateOfItem,
   ProducingRateOfItemOfSessions,
   ProducingRateOfStates,
   ProducingValueOfStates,
 } from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
+import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 import {
@@ -111,4 +114,28 @@ export const getValueAfterSplitFromItemRateOfSessions = ({
   );
 
   return {awake, sleepVacant, sleepFilled, equivalent};
+};
+
+type GetTotalOfPokemonProducingRateOpts = {
+  rate: PokemonProducingRate,
+  state: ProducingStateOfRate,
+};
+
+export const getTotalOfPokemonProducingRate = ({
+  rate,
+  state,
+}: GetTotalOfPokemonProducingRateOpts): ProducingRate => {
+  const {period, berry, ingredient} = rate;
+
+  return {
+    period,
+    quantity: (
+      berry.quantity[state] +
+      toSum(Object.values(ingredient).map(({quantity}) => quantity[state]))
+    ),
+    energy: (
+      berry.energy[state] +
+      toSum(Object.values(ingredient).map(({energy}) => energy[state]))
+    ),
+  };
 };
