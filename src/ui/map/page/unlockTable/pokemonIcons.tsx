@@ -17,24 +17,21 @@ export const MapUnlockTablePokemonIcons = ({
   sleepdex,
   setSleepdex,
 }: MapUnlockTableRowProps) => {
-  const {displayType, markingSleepdex} = filter;
+  const {displayType, markingSleepdex, showLockedOnly} = filter;
 
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
-
-  const showMatchingStyles = filter.showUnlockedSleepStyles ?
-    (matchingStyles.map((data) => ({...data, show: true}))) :
-    (matchingStyles.map((data) => ({...data, show: (
-      !isInSleepdex({
-        pokemonId: data.pokemonId,
-        styleId: data.style.style,
-        sleepdex,
-      }) === true)})));
-
 
   return (
     <Flex center>
       <PokemonIconList
-        dataWithPokemon={showMatchingStyles}
+        dataWithPokemon={matchingStyles.map((data) => ({
+          ...data,
+          show: showLockedOnly || !isInSleepdex({
+            pokemonId: data.pokemonId,
+            styleId: data.style.style,
+            sleepdex,
+          }),
+        }))}
         getPokemon={({pokemonId}) => pokedexMap[pokemonId]}
         getPokemonId={({pokemonId}) => pokemonId}
         getInfo={(data) => (
@@ -42,16 +39,15 @@ export const MapUnlockTablePokemonIcons = ({
         )}
         getClassName={({pokemonId, style}) => clsx(
           'm-0.5',
-          sleepdex[toSleepdexStyleId({pokemonId, styleId: style.style})] &&
-          'bg-corner-mark',
+          sleepdex[toSleepdexStyleId({pokemonId, styleId: style.style})] && 'bg-corner-mark',
         )}
+        getShow={({show}) => !!show}
         getReactKey={({pokemonId, style}) => `${pokemonId}-${style.style}`}
         onClickOverride={
           markingSleepdex ?
             ({pokemonId, style}) => updateSleepdex({pokemonId, styleId: style.style}) :
             undefined
         }
-        showData={({show}) => show}
       />
     </Flex>
   );
