@@ -18,7 +18,7 @@ export const PokemonProducingStats = (props: PokemonProducingStatsCommonProps) =
   const t2 = useTranslations('UI.Common');
 
   return (
-    <Flex noFullWidth className="gap-1 sm:w-[60vw]">
+    <Flex className="gap-1">
       <AdsUnit/>
       <PokemonProducingStatsOfState
         {...props}
