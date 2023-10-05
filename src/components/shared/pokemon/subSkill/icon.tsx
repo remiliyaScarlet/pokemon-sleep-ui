@@ -20,11 +20,7 @@ export const PokemonSubSkillIcon = ({subSkill}: Props) => {
   const t = useTranslations('Game');
 
   if (!subSkill) {
-    return (
-      <div className="h-6 w-6">
-        <XCircleIcon/>
-      </div>
-    );
+    return <XCircleIcon className="h-6 w-6"/>;
   }
 
   const firstEffectiveBonus = Object.entries(subSkill?.bonus ?? {})
