@@ -5,18 +5,16 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
+import {ProducingRateContentCommonProps} from '@/components/shared/production/rate/type';
 import {formatFloat} from '@/utils/number';
 
 
-type Props = PokemonProducingRateProps & {
+type Props = ProducingRateContentCommonProps & {
   dailyRate: number | undefined,
   isEnergy?: boolean,
-  icon?: React.ReactNode,
-  normalSize?: boolean,
 };
 
-export const PokemonProducingRateContent = ({dailyRate, isEnergy, icon, normalSize}: Props) => {
+export const ProducingRateContent = ({icon, normalSize, dailyRate, isEnergy}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
   const dimension = normalSize ? 'h-5 w-5' : 'h-4 w-4';
 

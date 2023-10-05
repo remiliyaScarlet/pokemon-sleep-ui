@@ -7,10 +7,10 @@ import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
@@ -64,7 +64,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 specialty={pokemon.specialty}
               />
               <Flex direction="row" className="items-end justify-between">
-                <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} isEnergy normalSize/>
+                <ProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} isEnergy normalSize/>
                 <Flex noFullWidth>
                   <PokemonProducingRateSingle
                     horizontal

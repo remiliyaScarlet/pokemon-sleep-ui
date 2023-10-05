@@ -5,10 +5,12 @@ import {clsx} from 'clsx';
 import {AnimatedSwitchContent} from '@/components/layout/animatedSwitch/content';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
-import {PokemonProducingRateContent} from '@/components/shared/pokemon/production/content';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
+import {ProducingRateContent} from '@/components/shared/production/rate/content';
+import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {useRotatingNumbers} from '@/hooks/rotatingNumbers';
 import {ProducingRateOfStates} from '@/types/game/producing/rate';
+import {toProducingRateOfState} from '@/utils/game/producing/convert';
 
 
 type Props = PokemonProducingRateProps & {
@@ -25,7 +27,6 @@ export const PokemonProducingRateSingle = ({
   icon,
   additionalContents,
   dailyTotalEnergy,
-  ...props
 }: Props) => {
   const {idx} = useRotatingNumbers({
     max: {
@@ -37,10 +38,10 @@ export const PokemonProducingRateSingle = ({
 
   const frequency = !hideFrequency && <PokemonFrequency frequency={rate?.frequency.equivalent ?? NaN}/>;
   const rateInfo = (
-    <Flex direction="row" noFullWidth className="gap-1">
-      <PokemonProducingRateContent dailyRate={rate?.quantity.equivalent} icon={icon} {...props}/>
-      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy.equivalent} isEnergy {...props}/>
-    </Flex>
+    <ProducingRateUI
+      rate={rate && toProducingRateOfState({rate, state: 'equivalent'})}
+      icon={icon}
+    />
   );
 
   return (
@@ -64,7 +65,7 @@ export const PokemonProducingRateSingle = ({
             idx={idx.dailyTotalEnergy}
             contents={[
               rateInfo,
-              <PokemonProducingRateContent key="dailyTotal" dailyRate={dailyTotalEnergy} isEnergy {...props}/>,
+              <ProducingRateContent key="dailyTotal" dailyRate={dailyTotalEnergy} isEnergy/>,
             ]}
             className="place-items-end"
           /> :
