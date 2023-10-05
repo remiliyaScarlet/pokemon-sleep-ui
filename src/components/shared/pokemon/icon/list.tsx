@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
@@ -20,6 +21,7 @@ type Props<TData> = {
   getInfo?: (data: TData) => React.ReactNode,
   getReactKey?: (data: TData) => React.Key,
   getClassName?: (data: TData) => string,
+  getShow?: (data: TData) => boolean,
   onClickOverride?: (data: TData) => void,
   size?: Dimension,
 };
@@ -31,6 +33,7 @@ export const PokemonIconList = <TData, >({
   getInfo,
   getReactKey,
   getClassName,
+  getShow,
   onClickOverride,
   size,
 }: Props<TData>) => {
@@ -63,19 +66,25 @@ export const PokemonIconList = <TData, >({
           const {id} = pokemon;
 
           return (
-            <button
+            <AnimatedCollapse
               key={getReactKey ? getReactKey(data) : id}
-              className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
-              onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
+              show={getShow ? getShow(data) : true}
+              appear
+              noFullWidth
             >
-              <IconWithInfo
-                imageSrc={`/images/pokemon/icons/${id}.png`}
-                imageAlt={t(id.toString())}
-                imageDimension={dimension}
-                imageSizes={imageIconSizes}
-                info={getInfo && getInfo(data)}
-              />
-            </button>
+              <button
+                className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
+                onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
+              >
+                <IconWithInfo
+                  imageSrc={`/images/pokemon/icons/${id}.png`}
+                  imageAlt={t(id.toString())}
+                  imageDimension={dimension}
+                  imageSizes={imageIconSizes}
+                  info={getInfo && getInfo(data)}
+                />
+              </button>
+            </AnimatedCollapse>
           );
         })}
       </Flex>

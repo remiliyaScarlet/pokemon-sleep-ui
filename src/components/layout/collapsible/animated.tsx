@@ -1,14 +1,16 @@
 import React from 'react';
 
 import {Transition} from '@headlessui/react';
+import {clsx} from 'clsx';
 
 
 type Props = {
   show: boolean,
   appear?: boolean,
+  noFullWidth?: boolean,
 };
 
-export const AnimatedCollapse = ({show, appear, children}: React.PropsWithChildren<Props>) => {
+export const AnimatedCollapse = ({show, appear, noFullWidth, children}: React.PropsWithChildren<Props>) => {
   return (
     <Transition
       show={show}
@@ -19,7 +21,7 @@ export const AnimatedCollapse = ({show, appear, children}: React.PropsWithChildr
       leave="duration-1000"
       leaveFrom="grid-rows-[1fr]"
       leaveTo="grid-rows-[0fr]"
-      className="grid w-full transition-[grid-template-rows] ease-in-out"
+      className={clsx('grid transition-[grid-template-rows] ease-in-out', !noFullWidth && 'w-full')}
     >
       <Transition.Child
         enter="delay-500 duration-1000"

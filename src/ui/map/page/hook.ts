@@ -13,6 +13,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap, ...filterData}: MapCommon
       ...generatePokemonInputFilter(),
       showEmptyRank: false,
       showSleepdexStats: true,
+      showLockedOnly: true,
       markingSleepdex: false,
       sleepStyle: {},
       displayType: 'sleepStyle',
