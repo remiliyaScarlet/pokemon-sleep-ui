@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -8,7 +7,6 @@ import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonDataIcon} from '@/components/shared/pokemon/dataIcon';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
@@ -16,23 +14,20 @@ import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
+import {TeamAnalysisPokemonControl} from '@/ui/team/analysis/setup/pokemon/control';
 import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup';
 import {TeamAnalysisPokemonProduction} from '@/ui/team/analysis/setup/pokemon/production';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
-import {toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
 
 
 export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const {
     pokemon,
     member,
-    snorlaxFavorite,
-    calculatedSettings,
     subSkillMap,
   } = props;
 
   const t = useTranslations('Game');
-  const t2 = useTranslations('UI.Metadata');
   const [showMemberConfig, setShowMemberConfig] = React.useState(false);
   const ratingControl = useRatingPopup();
 
@@ -67,23 +62,11 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
             </InfoIcon>
           </div>
         </Flex>
-        <Flex direction="row" className="items-center justify-between gap-1.5">
-          <Flex direction="row" noFullWidth>
-            <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
-              member,
-              pokemon,
-              snorlaxFavorite,
-              ...calculatedSettings,
-            }))}>
-              <PokemonDataIcon src="/images/generic/search.png" alt={t2('Rating.Title')} invert dimension="h-5 w-5"/>
-            </button>
-          </Flex>
-          <Flex direction="row" noFullWidth>
-            <button className="button-clickable-bg p-1" onClick={() => setShowMemberConfig(true)}>
-              <PencilIcon className="h-5 w-5"/>
-            </button>
-          </Flex>
-        </Flex>
+        <TeamAnalysisPokemonControl
+          ratingControl={ratingControl}
+          onEditClick={() => setShowMemberConfig(true)}
+          {...props}
+        />
         <Flex>
           <Flex className={clsx(
             'items-end px-2 py-1 text-sm',
