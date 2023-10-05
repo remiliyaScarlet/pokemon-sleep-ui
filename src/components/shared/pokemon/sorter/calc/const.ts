@@ -22,10 +22,10 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   id: ({pokemon}) => pokemon.id,
   level: ({level}) => level,
   dateAdded: ({dateAdded}) => dateAdded ?? 0,
-  ingredientEnergy: (opts) => getIngredientTotalRateSorter({key: 'dailyEnergy', opts}),
+  ingredientEnergy: (opts) => getIngredientTotalRateSorter({key: 'energy', opts}),
   ingredientCount: (opts) => getIngredientTotalRateSorter({key: 'quantity', opts}),
   ingredientRate: ({pokemonProducingParams}) => pokemonProducingParams.ingredientSplit,
-  berryEnergy: (opts) => getBerryRateSorter({key: 'dailyEnergy', opts}),
+  berryEnergy: (opts) => getBerryRateSorter({key: 'energy', opts}),
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequencyBase: ({pokemon}) => pokemon.stats.frequency,
@@ -41,8 +41,8 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),
   timeToFullPack: (opts) => getPokemonRateSorter(opts).fullPackStats.secondsToFull,
   totalEnergy: (opts) => {
-    const berry = getBerryRateSorter({key: 'dailyEnergy', opts});
-    const ingredient = getIngredientTotalRateSorter({key: 'dailyEnergy', opts});
+    const berry = getBerryRateSorter({key: 'energy', opts});
+    const ingredient = getIngredientTotalRateSorter({key: 'energy', opts});
 
     return berry + ingredient;
   },

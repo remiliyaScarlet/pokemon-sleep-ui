@@ -17,7 +17,7 @@ type Props = PokemonProducingRateProps & {
 };
 
 export const PokemonProducingRateMultiple = ({horizontal, hideFrequency, rates, getIcon}: Props) => {
-  const totalDaily = toSum(rates.map(({dailyEnergy}) => dailyEnergy.equivalent));
+  const totalDaily = toSum(rates.map(({energy}) => energy.equivalent));
 
   return (
     <Flex direction={horizontal ? 'row' : 'col'} wrap className={clsx(

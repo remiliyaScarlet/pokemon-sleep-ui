@@ -1,3 +1,4 @@
+import {productionMultiplierByPeriod} from '@/const/game/production';
 import {
   ProducingRateOfItem,
   ProducingRateOfItemOfSessions,
@@ -13,6 +14,7 @@ import {
   GetProducingSleepStateSplitOpts,
 } from '@/utils/game/producing/split';
 import {GetItemRateOfSessionCommonOpts, GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
+import {KeysOfType} from '@/utils/type';
 
 
 type GetTotalItemRateOfSessionsOpts =
@@ -23,7 +25,7 @@ type GetTotalItemRateOfSessionsOpts =
   };
 
 export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts): ProducingRateOfStates => {
-  const {rate, produceSplit, produceType} = opts;
+  const {period, rate, produceSplit, produceType} = opts;
   const {id} = rate;
   const sleepStateSplit = getProducingSleepStateSplit(opts);
 
@@ -31,6 +33,7 @@ export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts)
 
   return {
     id,
+    period,
     frequency: getFrequencyFromItemRateOfSessions({
       ...opts,
       sleepStateSplit,
@@ -42,9 +45,9 @@ export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts)
       sleepStateSplit,
       produceItemSplit,
     }),
-    dailyEnergy: getValueAfterSplitFromItemRateOfSessions({
+    energy: getValueAfterSplitFromItemRateOfSessions({
       ...opts,
-      valueKey: 'dailyEnergy',
+      valueKey: 'energy',
       sleepStateSplit,
       produceItemSplit,
     }),
@@ -63,34 +66,35 @@ export const getMergedItemRateOfSessions = (
   return {
     id: firstRate.id,
     sleep: {
-      id: firstRate.id,
-      frequency: firstRate.sleep.frequency,
+      ...firstRate.sleep,
       quantity: toSum(rates.map(({sleep}) => sleep.quantity)),
-      dailyEnergy: toSum(rates.map(({sleep}) => sleep.dailyEnergy)),
+      energy: toSum(rates.map(({sleep}) => sleep.energy)),
     },
     awake: {
-      id: firstRate.id,
-      frequency: firstRate.awake.frequency,
+      ...firstRate.awake,
       quantity: toSum(rates.map(({awake}) => awake.quantity)),
-      dailyEnergy: toSum(rates.map(({awake}) => awake.dailyEnergy)),
+      energy: toSum(rates.map(({awake}) => awake.energy)),
     },
   };
 };
 
 type GetValueAfterSplitFromItemSessionRateOpts = GetSpecificItemRateOfSessionCommonOpts & {
-  valueKey: keyof ProducingRateOfItem,
+  valueKey: KeysOfType<ProducingRateOfItem, number>,
 };
 
 export const getValueAfterSplitFromItemRateOfSessions = ({
+  period,
   rate,
   produceType,
   produceItemSplit,
   sleepStateSplit,
   valueKey,
 }: GetValueAfterSplitFromItemSessionRateOpts): ProducingValueOfStates => {
-  const awake = rate.awake[valueKey] * produceItemSplit;
-  const sleepVacant = rate.sleep[valueKey] * produceItemSplit;
-  const sleepFilled = produceType === 'berry' ? rate.sleep[valueKey] : 0;
+  const periodMultiplier = productionMultiplierByPeriod[period];
+
+  const awake = periodMultiplier * rate.awake[valueKey] * produceItemSplit;
+  const sleepVacant = periodMultiplier * rate.sleep[valueKey] * produceItemSplit;
+  const sleepFilled = periodMultiplier * (produceType === 'berry' ? rate.sleep[valueKey] : 0);
   const equivalent = (
     awake * sleepStateSplit.awake +
     sleepVacant * sleepStateSplit.sleepVacant +

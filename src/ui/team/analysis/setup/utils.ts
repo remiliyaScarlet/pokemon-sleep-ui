@@ -1,17 +1,25 @@
+import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingRateOfStates} from '@/types/game/producing/rate';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamProducingStatsGroupedOfItem} from '@/ui/team/analysis/setup/type';
 
 
-export const groupProducingStats = (
+type GroupProducingStatsOpts = {
+  period: ProductionPeriod,
   rates: ProducingRateOfStates[],
-): TeamProducingStatsGroupedOfItem<number> => {
+};
+
+export const groupProducingStats = ({
+  period,
+  rates,
+}: GroupProducingStatsOpts): TeamProducingStatsGroupedOfItem<number> => {
   return rates.reduce((group, single) => {
-    const {id, quantity, dailyEnergy} = single;
+    const {id, quantity, energy} = single;
 
     group[id] = {
+      period,
       quantity: (group[id]?.quantity ?? 0) + quantity[stateOfRateToShow],
-      dailyEnergy: (group[id]?.dailyEnergy ?? 0) + dailyEnergy[stateOfRateToShow],
+      energy: (group[id]?.energy ?? 0) + energy[stateOfRateToShow],
     };
     return group;
   }, {} as TeamProducingStatsGroupedOfItem<number>);

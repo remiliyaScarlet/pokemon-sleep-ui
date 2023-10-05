@@ -1,6 +1,7 @@
 import {defaultHelperCount, defaultProducingParams} from '@/const/game/production';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
+import {ProductionPeriod} from '@/types/game/producing/display';
 import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
@@ -20,8 +21,9 @@ type GetPokemonProducingRateOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
   ProducingRateSingleParams & {
-    evolutionCount?: number,
     pokemonProducingParams: PokemonProducingParams,
+    period?: ProductionPeriod,
+    evolutionCount?: number,
     sleepDurations: number[],
   };
 
@@ -32,6 +34,7 @@ export const getPokemonProducingRate = ({
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
   const {pokemon, helperCount} = opts;
 
+  const period = opts.period ?? 'daily';
   const sleepDuration = toSum(sleepDurations);
   const subSkillBonus = opts.subSkillBonus ?? {};
 
@@ -69,6 +72,7 @@ export const getPokemonProducingRate = ({
     fullPackStats,
     carryLimitInfo,
     berry: getTotalItemRateOfSessions({
+      period,
       rate: berry,
       produceType: 'berry',
       produceSplit,
@@ -79,6 +83,7 @@ export const getPokemonProducingRate = ({
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
       rate.id,
       getTotalItemRateOfSessions({
+        period,
         rate,
         produceType: 'ingredient',
         produceSplit,

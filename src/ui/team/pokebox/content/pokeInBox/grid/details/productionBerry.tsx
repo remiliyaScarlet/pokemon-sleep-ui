@@ -30,7 +30,7 @@ export const PokeInBoxGridProductionBerry = (props: PokeInBoxCommonProps) => {
       </div>
       <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
       <div>
-        {formatFloat(berry.dailyEnergy[stateOfRateToShow])}
+        {formatFloat(berry.energy[stateOfRateToShow])}
       </div>
     </Flex>
   );

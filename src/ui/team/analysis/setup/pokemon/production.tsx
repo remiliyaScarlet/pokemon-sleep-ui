@@ -39,8 +39,8 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       <HorizontalSplitter className="w-full"/>
       <ProducingRateUI rate={stats.total} hideQuantity/>
       <PokemonProductionSplit
-        berry={stats.berry.dailyEnergy[stateOfRateToShow]}
-        ingredient={toSum(ingredientRates.map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]))}
+        berry={stats.berry.energy[stateOfRateToShow]}
+        ingredient={toSum(ingredientRates.map(({energy}) => energy[stateOfRateToShow]))}
         specialty={pokemon.specialty}
       />
       <HorizontalSplitter className="w-full"/>

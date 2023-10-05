@@ -82,7 +82,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
   }
 
   const currentDailyTotalOfIngredient = getDailyEnergyOfItemRates(currentIngredientRates);
-  const currentDailyTotal = currentRate.berry.dailyEnergy.equivalent + currentDailyTotalOfIngredient;
+  const currentDailyTotal = currentRate.berry.energy.equivalent + currentDailyTotalOfIngredient;
 
   return {
     berry: toAnalysisBerryProducingRate({

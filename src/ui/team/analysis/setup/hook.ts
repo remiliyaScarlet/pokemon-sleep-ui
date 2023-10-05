@@ -52,7 +52,8 @@ const useProducingStatsOfSlot = ({
   const currentTeam = getCurrentTeam({setup});
 
   return React.useMemo(() => {
-    const member = currentTeam.members[slotName];
+    const {analysisPeriod, members} = currentTeam;
+    const member = members[slotName];
     if (!member) {
       return null;
     }
@@ -76,6 +77,7 @@ const useProducingStatsOfSlot = ({
     const pokemonProducingRate = getPokemonProducingRate({
       ...producingRateOpts,
       ...calculatedSettings,
+      period: analysisPeriod,
       level,
       pokemon,
       pokemonProducingParams: getPokemonProducingParams({
@@ -105,8 +107,8 @@ const useProducingStatsOfSlot = ({
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
   const {setup, snorlaxFavorite, subSkillMap, calculatedSettings} = opts;
-  const currentTeam = getCurrentTeam({setup});
-  const helperCount = Object.values(currentTeam.members)
+  const {analysisPeriod, members} = getCurrentTeam({setup});
+  const helperCount = Object.values(members)
     .filter((member) => {
       if (!member) {
         return false;
@@ -134,14 +136,16 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
 
     return {
       berry: {
-        dailyEnergy: toSum(stats.map(({berry}) => berry.dailyEnergy[stateOfRateToShow])),
+        period: analysisPeriod,
+        energy: toSum(stats.map(({berry}) => berry.energy[stateOfRateToShow])),
         quantity: toSum(stats.map(({berry}) => berry.quantity[stateOfRateToShow])),
       },
       ingredient: {
-        dailyEnergy: toSum(
+        period: analysisPeriod,
+        energy: toSum(
           stats
             .flatMap(({ingredient}) => (
-              Object.values(ingredient).map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow])
+              Object.values(ingredient).map(({energy}) => energy[stateOfRateToShow])
             ))
             .filter(isNotNullish),
         ),
@@ -162,13 +166,20 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
       .filter(isNotNullish);
 
     return {
-      berry: groupProducingStats(stats.map(({berry}) => berry)),
-      ingredient: groupProducingStats(stats.flatMap(({ingredient}) => Object.values(ingredient))),
+      berry: groupProducingStats({
+        period: analysisPeriod,
+        rates: stats.map(({berry}) => berry),
+      }),
+      ingredient: groupProducingStats({
+        period: analysisPeriod,
+        rates: stats.flatMap(({ingredient}) => Object.values(ingredient)),
+      }),
     };
   }, deps);
 
   const overall: ProducingRate = React.useMemo(() => ({
-    dailyEnergy: toSum(Object.values(total).flatMap((rate) => rate?.dailyEnergy).filter(isNotNullish)),
+    period: analysisPeriod,
+    energy: toSum(Object.values(total).flatMap((rate) => rate?.energy).filter(isNotNullish)),
     quantity: toSum(Object.values(total).flatMap((rate) => rate?.quantity).filter(isNotNullish)),
   }), deps);
 

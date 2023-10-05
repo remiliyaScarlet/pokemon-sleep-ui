@@ -23,15 +23,16 @@ export const getProducingRateBase = ({
   const proportion = count / picks;
 
   return {
-    dailyEnergy: helpCount * proportion * energyPerCount,
+    period: 'daily',
+    energy: helpCount * proportion * energyPerCount,
     quantity: helpCount * proportion,
   };
 };
 
 export const getDailyEnergyOfItemRates = (rates: ProducingRateOfStates[]): number => (
-  toSum(rates.map(({dailyEnergy}) => dailyEnergy.equivalent))
+  toSum(rates.map(({energy}) => energy.equivalent))
 );
 
 export const getDailyEnergyOfRate = ({berry, ingredient}: PokemonProducingRate): number => (
-  berry.dailyEnergy.equivalent + getDailyEnergyOfItemRates(Object.values(ingredient))
+  berry.energy.equivalent + getDailyEnergyOfItemRates(Object.values(ingredient))
 );

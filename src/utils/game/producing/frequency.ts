@@ -61,7 +61,7 @@ export const getFrequencyFromItemRateOfSessions = ({
   produceType,
   produceItemSplit,
   sleepStateSplit,
-}: GetSpecificItemRateOfSessionCommonOpts): ProducingValueOfStates => {
+}: Omit<GetSpecificItemRateOfSessionCommonOpts, 'period'>): ProducingValueOfStates => {
   const multiplier = 1 / produceItemSplit;
 
   const awake = multiplier * rate.awake.frequency;

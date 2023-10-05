@@ -27,14 +27,16 @@ describe('Item Rate of Sessions Frequency', () => {
         id: NaN, // Ignored
         awake: {
           id: NaN, // Ignored
+          period: 'daily',
           frequency: 1600,
-          dailyEnergy: NaN, // Ignored
+          energy: NaN, // Ignored
           quantity: NaN, // Ignored
         },
         sleep: {
           id: NaN,
+          period: 'daily',
           frequency: 2400, // Ignored
-          dailyEnergy: NaN, // Ignored
+          energy: NaN, // Ignored
           quantity: NaN, // Ignored
         },
       },
@@ -59,14 +61,16 @@ describe('Item Rate of Sessions Frequency', () => {
         id: NaN, // Ignored
         awake: {
           id: NaN, // Ignored
+          period: 'daily',
           frequency: 1600,
-          dailyEnergy: NaN, // Ignored
+          energy: NaN, // Ignored
           quantity: NaN, // Ignored
         },
         sleep: {
           id: NaN,
+          period: 'daily',
           frequency: 2400, // Ignored
-          dailyEnergy: NaN, // Ignored
+          energy: NaN, // Ignored
           quantity: NaN, // Ignored
         },
       },
@@ -76,7 +80,6 @@ describe('Item Rate of Sessions Frequency', () => {
         sleepFilled: 2 / 24,
       },
     });
-
 
     expect(awake).toBeCloseTo(8000);
     expect(sleepVacant).toBeCloseTo(12000);

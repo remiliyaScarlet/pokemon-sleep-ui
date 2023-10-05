@@ -4,12 +4,14 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
+import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingState, ProducingStateOfRate} from '@/types/game/producing/state';
 
 
 export type ProducingRate<T = number> = {
+  period: ProductionPeriod,
   quantity: T,
-  dailyEnergy: T,
+  energy: T,
 };
 
 export type ProducingRateProportion = {

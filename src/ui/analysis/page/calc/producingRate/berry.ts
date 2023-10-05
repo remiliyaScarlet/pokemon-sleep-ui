@@ -44,7 +44,7 @@ export const toAnalysisBerryProducingRate = <T>({
       ...props,
     }),
     energy: getContinuousBerryStats({
-      getComparer: (rate) => rate.dailyEnergy.equivalent,
+      getComparer: (rate) => rate.energy.equivalent,
       ...props,
     }),
   };

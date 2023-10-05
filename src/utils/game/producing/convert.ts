@@ -8,10 +8,11 @@ type GetProducingRateOfStateOpts = {
 };
 
 export const toProducingRateOfState = ({rate, state}: GetProducingRateOfStateOpts): ProducingRate => {
-  const {dailyEnergy, quantity} = rate;
+  const {period, energy, quantity} = rate;
 
   return {
-    dailyEnergy: dailyEnergy[state],
+    period,
+    energy: energy[state],
     quantity: quantity[state],
   };
 };

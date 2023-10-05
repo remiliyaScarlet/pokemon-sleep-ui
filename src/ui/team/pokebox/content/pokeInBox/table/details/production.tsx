@@ -27,7 +27,7 @@ export const PokeInBoxTableProduction = ({
 
   const t = useTranslations('UI.InPage.Pokedex');
 
-  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({dailyEnergy}) => dailyEnergy[stateOfRateToShow]));
+  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({energy}) => energy[stateOfRateToShow]));
 
   return (
     <>
@@ -47,7 +47,7 @@ export const PokeInBoxTableProduction = ({
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(berry.dailyEnergy[stateOfRateToShow])}
+            {formatFloat(berry.energy[stateOfRateToShow])}
           </div>
         </Flex>
       }
@@ -61,7 +61,7 @@ export const PokeInBoxTableProduction = ({
           'w-72 gap-x-3 gap-y-0.5 p-0.5 text-xs',
           pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
         )}>
-          {rateOfIngredients.map(({id, quantity, dailyEnergy}) => (
+          {rateOfIngredients.map(({id, quantity, energy}) => (
             <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
               <PokemonIngredientIcon id={id} dimension="h-3.5 w-3.5"/>
               <div>
@@ -69,7 +69,7 @@ export const PokeInBoxTableProduction = ({
               </div>
               <ColoredEnergyIcon alt={t('Stats.Energy.Name')} dimension="h-3 w-3"/>
               <div>
-                {formatFloat(dailyEnergy[stateOfRateToShow])}
+                {formatFloat(energy[stateOfRateToShow])}
               </div>
             </Flex>
           ))}
@@ -84,13 +84,13 @@ export const PokeInBoxTableProduction = ({
         <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
           <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(berry.dailyEnergy[stateOfRateToShow] + sumOfDailyIngredientEnergy)}
+            {formatFloat(berry.energy[stateOfRateToShow] + sumOfDailyIngredientEnergy)}
           </div>
         </Flex>
       }
       <Flex noFullWidth className="w-40">
         <PokemonProductionSplit
-          berry={berry.dailyEnergy[stateOfRateToShow]}
+          berry={berry.energy[stateOfRateToShow]}
           ingredient={sumOfDailyIngredientEnergy}
           specialty={pokemon.specialty}
         />

@@ -33,7 +33,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
   const {currentEnergy, endsAt} = estimateInput;
   const finalEnergy = (
     currentEnergy +
-    energyRate.dailyEnergy *
+    energyRate.energy *
     (new Date(`${endsAt}T04:00`).getTime() - Date.now()) / (durationOfDay * 1000)
   );
   const minDate = new Date(new Date().setDate(new Date().getDate() + 1));

@@ -30,10 +30,10 @@ describe('Pokemon Berry Production', () => {
     expect(rate.awake.id).toBe(testPokemonData.absol.berry.id);
     expect(rate.awake.frequency).toBeCloseTo(awakeFreq);
     expect(rate.awake.quantity).toBeCloseTo(durationOfDay / awakeFreq);
-    expect(rate.awake.dailyEnergy).toBeCloseTo(durationOfDay / awakeFreq * berryEnergy * energyMultiplier);
+    expect(rate.awake.energy).toBeCloseTo(durationOfDay / awakeFreq * berryEnergy * energyMultiplier);
     expect(rate.sleep.id).toBe(testPokemonData.absol.berry.id);
     expect(rate.sleep.frequency).toBeCloseTo(sleepFreq);
     expect(rate.sleep.quantity).toBeCloseTo(durationOfDay / sleepFreq);
-    expect(rate.sleep.dailyEnergy).toBeCloseTo(durationOfDay / sleepFreq * berryEnergy * energyMultiplier);
+    expect(rate.sleep.energy).toBeCloseTo(durationOfDay / sleepFreq * berryEnergy * energyMultiplier);
   });
 });

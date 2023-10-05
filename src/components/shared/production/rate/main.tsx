@@ -21,7 +21,7 @@ export const ProducingRateUI = ({rate, hideQuantity, ...props}: Props) => {
   return (
     <Flex direction="row" noFullWidth className="gap-1">
       {!hideQuantity && <ProducingRateContent dailyRate={rate?.quantity} {...props}/>}
-      <ProducingRateContent dailyRate={rate?.dailyEnergy} isEnergy {...props}/>
+      <ProducingRateContent dailyRate={rate?.energy} isEnergy {...props}/>
     </Flex>
   );
 };

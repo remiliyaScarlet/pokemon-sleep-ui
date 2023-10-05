@@ -1,4 +1,5 @@
 import {durationOfDay} from '@/const/common';
+import {productionMultiplierByPeriod} from '@/const/game/production';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
@@ -70,9 +71,13 @@ export const getTheoreticalDailyQuantityInSleep = ({
   produceSplit,
 }: GetTheoreticalDailyQuantityInSleepOpts): number => {
   const {berry, ingredient} = rate;
-
-  return (
-    berry.sleep.quantity * produceSplit.berry +
-    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity)) * produceSplit.ingredient
+  const berryDailyQuantity = (
+    berry.sleep.quantity * produceSplit.berry / productionMultiplierByPeriod[berry.sleep.period]
   );
+  const ingredientDailyQuantity = (
+    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity / productionMultiplierByPeriod[sleep.period])) *
+    produceSplit.ingredient
+  );
+
+  return berryDailyQuantity + ingredientDailyQuantity;
 };

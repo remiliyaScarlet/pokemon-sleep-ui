@@ -6,16 +6,15 @@ import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/ico
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {IngredientId} from '@/types/game/ingredient';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisRateLayoutCommonProps} from '@/ui/team/analysis/setup/common/type';
 import {applyPeriodMultiplierToRate} from '@/utils/game/producing/apply';
 
 
-type Props = TeamAnalysisRateLayoutCommonProps & {
+type Props = {
   id: IngredientId | undefined,
   rate: ProducingRate | null,
 };
 
-export const TeamAnalysisIngredientRate = ({id, rate, period}: Props) => {
+export const TeamAnalysisIngredientRate = ({id, rate}: Props) => {
   if (!id || !rate) {
     return (
       <ProducingRateUI
@@ -27,8 +26,8 @@ export const TeamAnalysisIngredientRate = ({id, rate, period}: Props) => {
 
   return (
     <ProducingRateUI
-      rate={applyPeriodMultiplierToRate({rate, period})}
-      getIcon={(dimension) =><PokemonIngredientIcon id={id} dimension={dimension}/>}
+      rate={applyPeriodMultiplierToRate(rate)}
+      getIcon={(dimension) => <PokemonIngredientIcon id={id} dimension={dimension}/>}
     />
   );
 };

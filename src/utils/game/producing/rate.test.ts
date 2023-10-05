@@ -7,22 +7,25 @@ import {getValueAfterSplitFromItemRateOfSessions} from '@/utils/game/producing/r
 describe('Pokemon Production Value After Split', () => {
   it('is correct for berry', () => {
     const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
+      period: 'daily',
       rate: {
         id: NaN, // Ignored
         sleep: {
           id: NaN,
+          period: 'daily',
           frequency: NaN, // Ignored
-          dailyEnergy: 500, // Ignored
+          energy: 500, // Ignored
           quantity: NaN, // Ignored
         },
         awake: {
           id: NaN, // Ignored
+          period: 'daily',
           frequency: NaN, // Ignored
-          dailyEnergy: 300, // Ignored
+          energy: 300, // Ignored
           quantity: NaN, // Ignored
         },
       },
-      valueKey: 'dailyEnergy',
+      valueKey: 'energy',
       sleepStateSplit: {
         awake: 16 / 24,
         sleepVacant: 6 / 24,
@@ -40,22 +43,25 @@ describe('Pokemon Production Value After Split', () => {
 
   it('is correct for ingredient', () => {
     const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
+      period: 'daily',
       rate: {
         id: NaN, // Ignored
         sleep: {
           id: NaN,
+          period: 'daily',
           frequency: NaN, // Ignored
-          dailyEnergy: 500, // Ignored
+          energy: 500, // Ignored
           quantity: NaN, // Ignored
         },
         awake: {
           id: NaN, // Ignored
+          period: 'daily',
           frequency: NaN, // Ignored
-          dailyEnergy: 300, // Ignored
+          energy: 300, // Ignored
           quantity: NaN, // Ignored
         },
       },
-      valueKey: 'dailyEnergy',
+      valueKey: 'energy',
       sleepStateSplit: {
         awake: 16 / 24,
         sleepVacant: 6 / 24,

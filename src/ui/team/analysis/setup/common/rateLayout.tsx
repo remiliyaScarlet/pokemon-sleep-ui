@@ -34,7 +34,7 @@ export const TeamAnalysisRateLayout = ({
   const textClass = clsx(larger && 'text-xl');
   const dimension = larger ? 'h-6 w-6' : 'h-5 w-5';
 
-  const calculatedRate = rate && applyPeriodMultiplierToRate({rate, period});
+  const calculatedRate = rate && applyPeriodMultiplierToRate(rate);
 
   return (
     <Flex direction="row" noFullWidth center className="gap-0.5">
@@ -55,7 +55,7 @@ export const TeamAnalysisRateLayout = ({
       }
       <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
       <div className={clsx('text-energy', textClass)}>
-        {calculatedRate ? formatFloat(calculatedRate.dailyEnergy * productionMultiplierByPeriod[period]) : '-'}
+        {calculatedRate ? formatFloat(calculatedRate.energy * productionMultiplierByPeriod[period]) : '-'}
       </div>
     </Flex>
   );

@@ -24,7 +24,7 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
       'w-fit gap-0.5 pr-1.5 text-sm',
       pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
     )}>
-      {Object.values(ingredient).map(({id, quantity, dailyEnergy}) => (
+      {Object.values(ingredient).map(({id, quantity, energy}) => (
         <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
           <PokemonIngredientIcon id={id}/>
           <div>
@@ -32,7 +32,7 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
           </div>
           <ColoredEnergyIcon alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(dailyEnergy[stateOfRateToShow])}
+            {formatFloat(energy[stateOfRateToShow])}
           </div>
         </Flex>
       ))}

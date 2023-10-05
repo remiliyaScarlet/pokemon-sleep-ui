@@ -23,7 +23,7 @@ export const TeamAnalysisCategorySummary = ({icon, data, getReactNode}: Props) =
       <Flex direction="row" wrap center>
         {data.length ?
           data
-            .sort((a, b) => (a.rate?.dailyEnergy ?? 0) - (b.rate?.dailyEnergy ?? 0))
+            .sort((a, b) => (a.rate?.energy ?? 0) - (b.rate?.energy ?? 0))
             .map(({id, rate}) => {
               if (!rate) {
                 return <React.Fragment key={id}/>;
