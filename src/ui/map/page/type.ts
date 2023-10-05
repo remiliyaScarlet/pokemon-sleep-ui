@@ -18,7 +18,7 @@ export type MapUnlockTableDisplayType = typeof mapUnlockTableDisplayType[number]
 export type MapPageFilter = PokemonInputFilter & {
   showEmptyRank: boolean,
   showSleepdexStats: boolean,
-  showUnlockedSleepStyles: boolean,
+  showLockedOnly: boolean,
   markingSleepdex: boolean,
   sleepStyle: FilterInclusionMap<SleepStyleId>,
   displayType: MapUnlockTableDisplayType,

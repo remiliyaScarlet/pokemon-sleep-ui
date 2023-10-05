@@ -5,15 +5,14 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {MapInputDisplayType} from '@/ui/map/page/input/displayType';
-import {MapInputEmptyRankToggle} from '@/ui/map/page/input/hideEmptyRank';
-import {MapInputSleepdexStatsToggle} from '@/ui/map/page/input/hideSleepdexStats';
 import {MapInputMarkSleepdexToggle} from '@/ui/map/page/input/markSleepdex';
 import {MapInputSleepStyleToggle} from '@/ui/map/page/input/styleIndex';
+import {MapInputEmptyRankToggle} from '@/ui/map/page/input/toggleOfEmptyRank';
+import {MapInputLockedOnlyToggle} from '@/ui/map/page/input/toggleOfLockedOnly';
+import {MapInputSleepdexStatsToggle} from '@/ui/map/page/input/toggleOfSleepdexStats';
 import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
-
-import {MapInputUnlockedSleepStylesToggle} from './hideUnlockedSleepdexStyle';
 
 
 export const MapInfoInput = (props: MapInputCommonProps) => {
@@ -45,7 +44,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
         <Flex direction="row" noFullWidth className="ml-auto gap-1.5">
           <MapInputMarkSleepdexToggle {...props}/>
           <MapInputSleepdexStatsToggle {...props}/>
-          <MapInputUnlockedSleepStylesToggle {...props}/>
+          <MapInputLockedOnlyToggle {...props}/>
           <MapInputEmptyRankToggle {...props}/>
         </Flex>
       </InputRow>

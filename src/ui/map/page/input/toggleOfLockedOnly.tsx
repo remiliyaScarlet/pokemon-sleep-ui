@@ -12,8 +12,8 @@ import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {MapPageFilter} from '@/ui/map/page/type';
 
 
-export const MapInputUnlockedSleepStylesToggle = ({filter, setFilter, isLoggedIn}: MapInputCommonProps) => {
-  const {showUnlockedSleepStyles} = filter;
+export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInputCommonProps) => {
+  const {showLockedOnly} = filter;
 
   if (!isLoggedIn) {
     return <></>;
@@ -21,17 +21,17 @@ export const MapInputUnlockedSleepStylesToggle = ({filter, setFilter, isLoggedIn
 
   return (
     <ToggleButton
-      id="showUnlockedSleepStyles"
-      active={showUnlockedSleepStyles}
+      id="toggleUnlocked"
+      active={showLockedOnly}
       onClick={() => setFilter((original) => ({
         ...original,
-        showUnlockedSleepStyles: !original.showUnlockedSleepStyles,
+        showLockedOnly: !original.showLockedOnly,
       } satisfies MapPageFilter))}
-      className={clsx('group', getTextFilterButtonClass(showUnlockedSleepStyles))}
+      className={clsx('group', getTextFilterButtonClass(showLockedOnly))}
     >
       <Flex direction="row" center noFullWidth className="gap-1">
         <div className="h-5 w-5">
-          {showUnlockedSleepStyles ? <EyeIcon/> : <EyeSlashIcon/>}
+          {showLockedOnly ? <EyeIcon/> : <EyeSlashIcon/>}
         </div>
         <div className="h-5 w-5">
           <LockOpenIcon/>
