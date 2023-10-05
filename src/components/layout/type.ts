@@ -1,6 +1,13 @@
 export type LayoutProps = {
-  center?: boolean,
-  stretch?: boolean,
   noFullWidth?: boolean,
   className?: string,
-};
+} & ({
+  center: true,
+  stretch?: never,
+} | {
+  center?: never,
+  stretch: true,
+} | {
+  center?: undefined,
+  stretch?: undefined,
+});

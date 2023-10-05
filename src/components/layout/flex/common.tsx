@@ -10,7 +10,7 @@ export const Flex = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Fle
   ...props
 }, ref) => {
   return (
-    <div ref={ref} className={getFlexStyles({direction, ...props})}>
+    <div ref={ref} className={getFlexStyles(direction, props)}>
       {children}
     </div>
   );

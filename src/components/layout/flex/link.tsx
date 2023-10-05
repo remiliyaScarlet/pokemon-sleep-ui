@@ -19,7 +19,7 @@ export const FlexLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChild
   children,
   ...props
 }, ref) => (
-  <Link ref={ref} href={href} className={getFlexStyles({direction, noFullWidth, ...props})}>
+  <Link ref={ref} href={href} className={getFlexStyles(direction, {noFullWidth, ...props})}>
     {children}
   </Link>
 ));

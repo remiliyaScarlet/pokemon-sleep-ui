@@ -78,7 +78,6 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
         <FlexButton
           className="enabled:button-clickable-border disabled:button-disabled whitespace-nowrap px-4 py-1.5"
           onClick={runOcr}
-          stretch
           center
           disabled={!image || ocrRunning}
         >

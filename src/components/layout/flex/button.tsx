@@ -21,7 +21,7 @@ export const FlexButton = React.forwardRef<HTMLButtonElement, React.PropsWithChi
     ref={ref}
     onClick={onClick}
     disabled={disabled}
-    className={getFlexStyles({direction, noFullWidth, ...props})}
+    className={getFlexStyles(direction, {noFullWidth, ...props})}
   >
     {children}
   </button>

@@ -29,7 +29,6 @@ export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...pro
         className="button-clickable-bg gap-0.5 px-1.5 py-1"
         onClick={() => setShow(true)}
         center
-        stretch
         noFullWidth={noFullWidth}
       >
         <div className={dimension ?? 'h-8 w-8'}>
