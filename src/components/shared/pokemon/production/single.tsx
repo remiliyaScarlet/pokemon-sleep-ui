@@ -39,7 +39,7 @@ export const PokemonProducingRateSingle = ({
   const rateInfo = (
     <Flex direction="row" noFullWidth className="gap-1">
       <PokemonProducingRateContent dailyRate={rate?.quantity.equivalent} icon={icon} {...props}/>
-      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy.equivalent} {...props}/>
+      <PokemonProducingRateContent dailyRate={rate?.dailyEnergy.equivalent} isEnergy {...props}/>
     </Flex>
   );
 
@@ -64,7 +64,7 @@ export const PokemonProducingRateSingle = ({
             idx={idx.dailyTotalEnergy}
             contents={[
               rateInfo,
-              <PokemonProducingRateContent key="dailyTotal" dailyRate={dailyTotalEnergy} {...props}/>,
+              <PokemonProducingRateContent key="dailyTotal" dailyRate={dailyTotalEnergy} isEnergy {...props}/>,
             ]}
             className="place-items-end"
           /> :

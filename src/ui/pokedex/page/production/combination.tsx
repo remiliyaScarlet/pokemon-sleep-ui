@@ -64,7 +64,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 specialty={pokemon.specialty}
               />
               <Flex direction="row" className="items-end justify-between">
-                <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} normalSize/>
+                <PokemonProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} isEnergy normalSize/>
                 <Flex noFullWidth>
                   <PokemonProducingRateSingle
                     horizontal

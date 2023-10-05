@@ -51,7 +51,7 @@ export const TeamAnalysisRateLayout = ({
         </div>
       }
       <ColoredEnergyIcon dimension={dimension} alt={t('Name')}/>
-      <div className={clsx(textClass, 'text-energy')}>
+      <div className={clsx('text-energy', textClass)}>
         {rate ? formatFloat(rate.dailyEnergy * productionMultiplierByPeriod[period]) : '-'}
       </div>
     </Flex>

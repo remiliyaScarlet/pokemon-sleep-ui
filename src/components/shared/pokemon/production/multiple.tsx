@@ -27,7 +27,7 @@ export const PokemonProducingRateMultiple = ({horizontal, hideFrequency, rates, 
       {rates.map((rate) => (
         <PokemonProducingRateContent key={rate.id} dailyRate={rate.quantity.equivalent} icon={getIcon(rate)}/>
       ))}
-      <PokemonProducingRateContent dailyRate={totalDaily}/>
+      <PokemonProducingRateContent dailyRate={totalDaily} isEnergy/>
     </Flex>
   );
 };
