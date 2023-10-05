@@ -66,6 +66,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
         'UI.InPage.Pokedex',
         'UI.InPage.Team',
         'UI.Metadata',
+        'UI.Producing',
       ]}>
         <TeamAnalysisClient {...props}/>
       </I18nProvider>

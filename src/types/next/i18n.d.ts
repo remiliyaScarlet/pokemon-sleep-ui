@@ -195,6 +195,14 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Completed: string,
       },
     },
+    Producing: {
+      State: {
+        Awake: string,
+        AsleepUnfilled: string,
+        AsleepFilled: string,
+      },
+      Total: string,
+    },
     Stamina: {
       Title: string,
       SleepSession: string,

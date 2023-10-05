@@ -260,6 +260,14 @@
       "Completed": "Completed"
     }
   },
+  "Producing": {
+    "State": {
+      "Awake": "非睡眠",
+      "AsleepUnfilled": "睡眠中・空き有",
+      "AsleepFilled": "睡眠中・満杯"
+    },
+    "Total": "計"
+  },
   "Stamina": {
     "Title": "げんき回復",
     "SleepSession": "睡眠時間",

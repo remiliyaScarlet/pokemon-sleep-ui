@@ -261,6 +261,14 @@
       "Completed": "Abgeschlossen"
     }
   },
+  "Producing": {
+    "State": {
+      "Awake": "Wach",
+      "AsleepUnfilled": "Eingeschlafen (Inventar nicht gefüllt)",
+      "AsleepFilled": "Eingeschlafen (Inventar gefüllt)"
+    },
+    "Total": "Gesamt"
+  },
   "Stamina": {
     "Title": "Energieberechnung",
     "SleepSession": "Schlafsitzung",

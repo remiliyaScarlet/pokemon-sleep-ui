@@ -260,6 +260,14 @@
       "Completed": "完成"
     }
   },
+  "Producing": {
+    "State": {
+      "Awake": "清醒",
+      "AsleepUnfilled": "睡著 (未滿包)",
+      "AsleepFilled": "睡著 (已滿包)"
+    },
+    "Total": "總計"
+  },
   "Stamina": {
     "Title": "活力計算",
     "SleepSession": "睡眠時間段",

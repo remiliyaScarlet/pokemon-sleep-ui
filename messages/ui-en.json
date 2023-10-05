@@ -260,6 +260,14 @@
       "Completed": "Completed"
     }
   },
+  "Producing": {
+    "State": {
+      "Awake": "Awake",
+      "AsleepUnfilled": "Asleep (Pack Unfilled)",
+      "AsleepFilled": "Asleep (Pack Filled)"
+    },
+    "Total": "Total"
+  },
   "Stamina": {
     "Title": "Energy Calculation",
     "SleepSession": "Sleep Session",

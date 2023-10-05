@@ -17,7 +17,7 @@ import {GetItemRateOfSessionCommonOpts, GetSpecificItemRateOfSessionCommonOpts} 
 import {KeysOfType} from '@/utils/type';
 
 
-type GetTotalItemRateOfSessionsOpts =
+type GetProducingRateOfStatesOpts =
   GetProduceSplitOpts &
   GetItemRateOfSessionCommonOpts & {
     produceSplit: ProduceSplit,
@@ -25,7 +25,7 @@ type GetTotalItemRateOfSessionsOpts =
     ingredients: IngredientProduction[],
   };
 
-export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts): ProducingRateOfStates => {
+export const getProducingRateOfStates = (opts: GetProducingRateOfStatesOpts): ProducingRateOfStates => {
   const {
     period,
     rate,
@@ -100,14 +100,16 @@ export const getValueAfterSplitFromItemRateOfSessions = ({
 }: GetValueAfterSplitFromItemSessionRateOpts): ProducingValueOfStates => {
   const periodMultiplier = productionMultiplierByPeriod[period];
 
-  const awake = periodMultiplier * rate.awake[valueKey] * produceItemSplit;
-  const sleepVacant = periodMultiplier * rate.sleep[valueKey] * produceItemSplit;
-  const sleepFilled = periodMultiplier * (produceType === 'berry' ? rate.sleep[valueKey] : 0);
-  const equivalent = (
-    awake * sleepStateSplit.awake +
-    sleepVacant * sleepStateSplit.sleepVacant +
-    sleepFilled * sleepStateSplit.sleepFilled
+  const awake = (
+    periodMultiplier * rate.awake[valueKey] * produceItemSplit * sleepStateSplit.awake
   );
+  const sleepVacant = (
+    periodMultiplier * rate.sleep[valueKey] * produceItemSplit * sleepStateSplit.sleepVacant
+  );
+  const sleepFilled = (
+    periodMultiplier * (produceType === 'berry' ? rate.sleep[valueKey] : 0) * sleepStateSplit.sleepFilled
+  );
+  const equivalent = awake + sleepVacant + sleepFilled;
 
   return {awake, sleepVacant, sleepFilled, equivalent};
 };

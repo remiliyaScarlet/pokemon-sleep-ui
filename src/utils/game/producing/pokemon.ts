@@ -13,7 +13,7 @@ import {
 } from '@/utils/game/producing/carryLimit';
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
-import {getTotalItemRateOfSessions} from '@/utils/game/producing/rateReducer';
+import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 
 
@@ -77,7 +77,7 @@ export const getPokemonProducingRate = ({
     fullPackStats,
     sleepStateSplit,
     carryLimitInfo,
-    berry: getTotalItemRateOfSessions({
+    berry: getProducingRateOfStates({
       period,
       rate: berry,
       produceType: 'berry',
@@ -87,7 +87,7 @@ export const getPokemonProducingRate = ({
     }),
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
       rate.id,
-      getTotalItemRateOfSessions({
+      getProducingRateOfStates({
         period,
         rate,
         produceType: 'ingredient',

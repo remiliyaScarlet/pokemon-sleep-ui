@@ -260,6 +260,14 @@
       "Completed": "완료"
     }
   },
+  "Producing": {
+    "State": {
+      "Awake": "깨우다",
+      "AsleepUnfilled": "잠들어 (가득 안 재고)",
+      "AsleepFilled": "잠들어 (가득 재고)"
+    },
+    "Total": "총합"
+  },
   "Stamina": {
     "Title": "기력 계산",
     "SleepSession": "수면 시간",
