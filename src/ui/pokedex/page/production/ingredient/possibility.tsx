@@ -4,7 +4,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
 import {IngredientChain, ingredientLevels} from '@/types/game/pokemon/ingredient';
-import {PokemonIngredientIcon} from '@/ui/pokedex/page/production/ingredient/icon';
+import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 
 
 type Props = {
@@ -25,7 +25,7 @@ export const PokemonIngredientPossibilities = ({chain}: Props) => {
               <PokemonIngredientLevelIcon level={ingredientLevel}/>
               <Flex direction="row" center wrap className="gap-1">
                 {productions.map((production) => (
-                  <PokemonIngredientIcon
+                  <PokemonProductionIngredientLink
                     key={`${ingredientLevel}-${production.id}-${production.qty}`}
                     production={production}
                   />

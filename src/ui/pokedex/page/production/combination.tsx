@@ -15,7 +15,7 @@ import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
-import {PokemonIngredientIcon} from '@/ui/pokedex/page/production/ingredient/icon';
+import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toSum} from '@/utils/array';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
@@ -55,7 +55,10 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
             )}>
               <Flex direction="row" center wrap className="gap-1">
                 {ingredients.map((production) => (
-                  <PokemonIngredientIcon key={`${productionKeys}-${production.qty}`} production={production}/>
+                  <PokemonProductionIngredientLink
+                    key={`${productionKeys}-${production.qty}`}
+                    production={production}
+                  />
                 ))}
               </Flex>
               <PokemonProductionSplit

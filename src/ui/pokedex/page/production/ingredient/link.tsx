@@ -13,7 +13,7 @@ type Props = {
   production: IngredientProduction,
 };
 
-export const PokemonIngredientIcon = ({production}: Props) => {
+export const PokemonProductionIngredientLink = ({production}: Props) => {
   const {id, qty} = production;
 
   const t = useTranslations('Game.Food');
