@@ -34,7 +34,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Grid className="grid-cols-1 gap-1 lg:grid-cols-2 2xl:grid-cols-3">
+    <Grid className="grid-cols-1 gap-1 xl:grid-cols-2">
       {[...generatePossibleIngredientProductions({level, chain})].map((ingredients) => {
         const productionKeys = ingredients.map(({id}) => id).join('-');
 
