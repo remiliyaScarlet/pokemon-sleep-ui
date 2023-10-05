@@ -59,6 +59,7 @@ export const PokemonProducingStats = (props: PokemonProducingStatsCommonProps) =
           targetMultiplier={getEfficiency(breakPoint + 1)}
         />
       ))}
+      <AdsUnit/>
     </Flex>
   );
 };

@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
@@ -59,7 +60,7 @@ export const PokemonProducingStatsOfState = ({bonus, rate, specialty, title, sta
             key={berry.id}
             rate={berry}
             state={state}
-            getIcon={(dimension) => <PokemonIngredientIcon id={berry.id} dimension={dimension}/>}
+            getIcon={(dimension) => <PokemonBerryIcon id={berry.id} dimension={dimension}/>}
           />
         </PokemonProducingStatsItemLayout>
         <PokemonProducingStatsItemLayout icon={<GenericIngredientIcon alt={t('Ingredient')} dimension="h-10 w-10"/>}>
