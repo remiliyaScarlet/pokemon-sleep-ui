@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
@@ -89,9 +89,9 @@ export const PokeInBoxTableProduction = ({
         </Flex>
       }
       <Flex noFullWidth className="w-40">
-        <PokemonProductionSplit
-          berry={berry.energy[stateOfRateToShow]}
-          ingredient={sumOfDailyIngredientEnergy}
+        <PokemonProductionSplitFromPokemonRate
+          rate={rateOfPokemon}
+          state={stateOfRateToShow}
           specialty={pokemon.specialty}
         />
       </Flex>

@@ -9,14 +9,13 @@ import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
-import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {toSum} from '@/utils/array';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
@@ -59,9 +58,9 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                   />
                 ))}
               </Flex>
-              <PokemonProductionSplit
-                berry={berry.energy.equivalent}
-                ingredient={toSum(ingredientRates.map(({energy}) => energy.equivalent))}
+              <PokemonProductionSplitFromPokemonRate
+                rate={rate}
+                state="equivalent"
                 specialty={pokemon.specialty}
               />
               <Flex direction="row" className="items-end justify-between">

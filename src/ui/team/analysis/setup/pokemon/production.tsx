@@ -7,14 +7,13 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonCarryLimit} from '@/components/shared/pokemon/carryLimit/main';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
-import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
+import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
-import {toSum} from '@/utils/array';
 import {toProducingRateOfState} from '@/utils/game/producing/convert';
 
 
@@ -38,9 +37,9 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       </Flex>
       <HorizontalSplitter className="w-full"/>
       <ProducingRateUI rate={stats.total} hideQuantity/>
-      <PokemonProductionSplit
-        berry={stats.berry.energy[stateOfRateToShow]}
-        ingredient={toSum(ingredientRates.map(({energy}) => energy[stateOfRateToShow]))}
+      <PokemonProductionSplitFromPokemonRate
+        rate={stats}
+        state={stateOfRateToShow}
         specialty={pokemon.specialty}
       />
       <HorizontalSplitter className="w-full"/>
