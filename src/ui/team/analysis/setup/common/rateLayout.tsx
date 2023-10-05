@@ -9,7 +9,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {productionMultiplierByPeriod, productionStatsPeriodI18nId} from '@/const/game/production';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingRate} from '@/types/game/producing/rate';
-import {applyPeriodMultiplierToRate} from '@/utils/game/producing/apply';
+import {toRateOfPeriod} from '@/utils/game/producing/convert';
 import {formatFloat} from '@/utils/number';
 
 
@@ -34,7 +34,7 @@ export const TeamAnalysisRateLayout = ({
   const textClass = clsx(larger && 'text-xl');
   const dimension = larger ? 'h-6 w-6' : 'h-5 w-5';
 
-  const calculatedRate = rate && applyPeriodMultiplierToRate(rate);
+  const calculatedRate = rate && toRateOfPeriod({rate, period});
 
   return (
     <Flex direction="row" noFullWidth center className="gap-0.5">

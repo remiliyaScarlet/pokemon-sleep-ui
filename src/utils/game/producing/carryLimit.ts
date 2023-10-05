@@ -1,11 +1,11 @@
 import {durationOfDay} from '@/const/common';
-import {productionMultiplierByPeriod} from '@/const/game/production';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
+import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
@@ -71,11 +71,10 @@ export const getTheoreticalDailyQuantityInSleep = ({
   produceSplit,
 }: GetTheoreticalDailyQuantityInSleepOpts): number => {
   const {berry, ingredient} = rate;
-  const berryDailyQuantity = (
-    berry.sleep.quantity * produceSplit.berry / productionMultiplierByPeriod[berry.sleep.period]
-  );
+
+  const berryDailyQuantity = toProducingRateOfPeriod({rate: berry.sleep, period: 'daily'}).quantity * produceSplit.berry;
   const ingredientDailyQuantity = (
-    toSum(Object.values(ingredient).map(({sleep}) => sleep.quantity / productionMultiplierByPeriod[sleep.period])) *
+    toSum(Object.values(ingredient).map(({sleep}) => toProducingRateOfPeriod({rate: sleep, period: 'daily'}).quantity)) *
     produceSplit.ingredient
   );
 

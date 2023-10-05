@@ -1,7 +1,6 @@
-import {productionMultiplierByPeriod} from '@/const/game/production';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {ProduceType} from '@/types/game/producing/common';
-import {ProducingRate, ProducingRateOfItem} from '@/types/game/producing/rate';
+import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {ProducingState} from '@/types/game/producing/state';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
@@ -33,15 +32,5 @@ export const applyBonus = <T extends ProducingRateOfItem | null>({
     frequency: data.frequency / staminaBonus,
     quantity: data.quantity * staminaBonus,
     energy: data.energy * staminaBonus * energyMultiplier,
-  };
-};
-
-export const applyPeriodMultiplierToRate = (rate: ProducingRate): ProducingRate => {
-  const {period, quantity, energy} = rate;
-
-  return {
-    period,
-    quantity: quantity * productionMultiplierByPeriod[period],
-    energy: energy * productionMultiplierByPeriod[period],
   };
 };
