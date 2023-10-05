@@ -14,7 +14,7 @@ import {PokemonProducingStatsItemLayout} from '@/components/shared/pokemon/produ
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
-import {applyStaminaMultiplierOpts} from '@/utils/game/producing/apply';
+import {applyStaminaMultiplierToPokemonRate} from '@/utils/game/producing/apply';
 import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
@@ -30,16 +30,17 @@ type Props = PokemonProducingStatsCommonProps & {
 });
 
 export const PokemonProducingStatsOfState = ({bonus, rate, specialty, title, state, targetMultiplier}: Props) => {
-  const original = bonus.stamina.awake;
-  const berry = targetMultiplier ?
-    applyStaminaMultiplierOpts({rate: rate.berry, multiplier: {original, target: targetMultiplier}}) :
-    rate.berry;
-  const ingredient = targetMultiplier ?
-    Object.values(rate.ingredient).map((rate) => applyStaminaMultiplierOpts({
+  if (targetMultiplier) {
+    rate = applyStaminaMultiplierToPokemonRate({
       rate,
-      multiplier: {original, target: targetMultiplier},
-    })) :
-    Object.values(rate.ingredient);
+      multiplier: {
+        original: bonus.stamina.awake,
+        target: targetMultiplier,
+      },
+    });
+  }
+
+  const {berry, ingredient} = rate;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
 

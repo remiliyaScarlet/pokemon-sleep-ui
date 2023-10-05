@@ -1,6 +1,11 @@
 import {EffectiveBonus} from '@/types/game/bonus';
 import {ProduceType} from '@/types/game/producing/common';
-import {ProducingRateOfItem, ProducingRateOfStates, ProducingValueOfStates} from '@/types/game/producing/rate';
+import {
+  PokemonProducingRate,
+  ProducingRateOfItem,
+  ProducingRateOfStates,
+  ProducingValueOfStates,
+} from '@/types/game/producing/rate';
 import {ProducingState, producingStateOfRate} from '@/types/game/producing/state';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
@@ -51,7 +56,7 @@ export const applyMultiplierToProducingValueOfStates = ({
   );
 };
 
-type ApplyStaminaMultiplierOpts = {
+type ApplyStaminaMultiplierToRateOfStatesOpts = {
   rate: ProducingRateOfStates,
   multiplier: {
     original: number,
@@ -59,7 +64,10 @@ type ApplyStaminaMultiplierOpts = {
   },
 };
 
-export const applyStaminaMultiplierOpts = ({rate, multiplier}: ApplyStaminaMultiplierOpts): ProducingRateOfStates => {
+export const applyStaminaMultiplierToRateOfStates = ({
+  rate,
+  multiplier,
+}: ApplyStaminaMultiplierToRateOfStatesOpts): ProducingRateOfStates => {
   const {original, target} = multiplier;
   const multiplierToApply = target / original;
 
@@ -77,5 +85,28 @@ export const applyStaminaMultiplierOpts = ({rate, multiplier}: ApplyStaminaMulti
       values: rate.energy,
       multiplier: multiplierToApply,
     }),
+  };
+};
+
+type ApplyStaminaMultiplierToPokemonRateOpts = {
+  rate: PokemonProducingRate,
+  multiplier: {
+    original: number,
+    target: number,
+  },
+};
+
+export const applyStaminaMultiplierToPokemonRate = ({
+  rate,
+  multiplier,
+}: ApplyStaminaMultiplierToPokemonRateOpts): PokemonProducingRate => {
+  const berry = applyStaminaMultiplierToRateOfStates({rate: rate.berry, multiplier});
+  const ingredient = Object.values(rate.ingredient)
+    .map((rate) => applyStaminaMultiplierToRateOfStates({rate, multiplier}));
+
+  return {
+    ...rate,
+    berry,
+    ingredient,
   };
 };
