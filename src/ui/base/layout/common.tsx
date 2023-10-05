@@ -26,7 +26,7 @@ export const PageLayout = ({
   const {locale} = props;
 
   const session = React.use(getServerSession(authOptions));
-  const shouldShowAds = !isProduction() && !session?.user.isAdsFree;
+  const shouldShowAds = isProduction() && !session?.user.isAdsFree;
 
   return (
     <React.Suspense fallback={<LoadingFullScreen/>}>
