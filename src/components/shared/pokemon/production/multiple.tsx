@@ -7,12 +7,13 @@ import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonProducingRateProps} from '@/components/shared/pokemon/production/type';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {ProducingRateOfStates} from '@/types/game/producing/rate';
+import {Dimension} from '@/types/style';
 import {toSum} from '@/utils/array';
 
 
 type Props = PokemonProducingRateProps & {
   rates: ProducingRateOfStates[],
-  getIcon: (rate: ProducingRateOfStates) => React.ReactNode,
+  getIcon: (rate: ProducingRateOfStates, dimension: Dimension) => React.ReactNode,
 };
 
 export const PokemonProducingRateMultiple = ({horizontal, hideFrequency, rates, getIcon}: Props) => {
@@ -25,7 +26,11 @@ export const PokemonProducingRateMultiple = ({horizontal, hideFrequency, rates, 
     )}>
       {!hideFrequency && <PokemonFrequency frequency={rates.at(0)?.frequency.equivalent ?? NaN}/>}
       {rates.map((rate) => (
-        <ProducingRateContent key={rate.id} dailyRate={rate.quantity.equivalent} icon={getIcon(rate)}/>
+        <ProducingRateContent
+          key={rate.id}
+          dailyRate={rate.quantity.equivalent}
+          getIcon={(dimension) => getIcon(rate, dimension)}
+        />
       ))}
       <ProducingRateContent dailyRate={totalDaily} isEnergy/>
     </Flex>

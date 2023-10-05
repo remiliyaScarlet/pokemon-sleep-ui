@@ -10,12 +10,13 @@ import {ProducingRateContent} from '@/components/shared/production/rate/content'
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {useRotatingNumbers} from '@/hooks/rotatingNumbers';
 import {ProducingRateOfStates} from '@/types/game/producing/rate';
+import {Dimension} from '@/types/style';
 import {toProducingRateOfState} from '@/utils/game/producing/convert';
 
 
 type Props = PokemonProducingRateProps & {
   rate: ProducingRateOfStates | null,
-  icon: React.ReactNode,
+  getIcon: (dimension: Dimension) => React.ReactNode,
   additionalContents?: React.ReactNode[],
   dailyTotalEnergy?: number,
 };
@@ -24,7 +25,7 @@ export const PokemonProducingRateSingle = ({
   horizontal,
   hideFrequency,
   rate,
-  icon,
+  getIcon,
   additionalContents,
   dailyTotalEnergy,
 }: Props) => {
@@ -40,7 +41,7 @@ export const PokemonProducingRateSingle = ({
   const rateInfo = (
     <ProducingRateUI
       rate={rate && toProducingRateOfState({rate, state: 'equivalent'})}
-      icon={icon}
+      getIcon={getIcon}
     />
   );
 

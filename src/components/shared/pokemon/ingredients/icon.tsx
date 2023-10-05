@@ -27,6 +27,7 @@ export const PokemonIngredientIcon = (props: Props) => {
   }
 
   return (
+    // `tabIndex` -1 to avoid tab selecting
     <Link href={`/ingredient/${id}`} tabIndex={-1}>
       <PokemonIngredientIconContent {...props} id={id} clickableStyle/>
     </Link>

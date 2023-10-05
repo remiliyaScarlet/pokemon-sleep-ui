@@ -1,18 +1,17 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
 
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
-import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
+import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {defaultNeutralOpts} from '@/const/game/production';
-import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
@@ -31,7 +30,6 @@ type Props = PokemonProps & {
 
 export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const {level, pokemon, calculatedSettings} = props;
-  const t = useTranslations('Game');
 
   return (
     <Grid className="grid-cols-1 gap-1 xl:grid-cols-2">
@@ -73,23 +71,16 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                     horizontal
                     hideFrequency
                     rate={berry}
-                    icon={
-                      <NextImage
-                        src={`/images/berry/${berry.id}.png`}
-                        alt={ t(`Berry.${berry.id}`)} sizes={imageSmallIconSizes}
-                      />
-                    }
+                    getIcon={(dimension) => (
+                      <PokemonBerryIcon id={berry.id} dimension={dimension}/>
+                    )}
                   />
                   <PokemonProducingRateMultiple
                     horizontal
                     hideFrequency
                     rates={ingredientRates}
-                    getIcon={(rate) => (
-                      <NextImage
-                        src={`/images/ingredient/${rate.id}.png`}
-                        alt={t(`Food.${rate.id}`)}
-                        sizes={imageSmallIconSizes}
-                      />
+                    getIcon={(rate, dimension) => (
+                      <PokemonIngredientIcon id={rate.id} dimension={dimension}/>
                     )}
                   />
                 </Flex>

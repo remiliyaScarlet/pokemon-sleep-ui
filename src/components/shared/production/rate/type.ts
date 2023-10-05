@@ -1,7 +1,9 @@
 import React from 'react';
 
+import {Dimension} from '@/types/style';
+
 
 export type ProducingRateContentCommonProps = {
-  icon?: React.ReactNode,
+  getIcon?: (dimension: Dimension) => React.ReactNode,
   normalSize?: boolean,
 };

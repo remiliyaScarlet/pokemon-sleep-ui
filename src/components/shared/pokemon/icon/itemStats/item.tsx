@@ -18,12 +18,13 @@ import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingRate, ProducingRateOfStates} from '@/types/game/producing/rate';
+import {Dimension} from '@/types/style';
 import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokemonItemStatsWorkerOpts & {
   getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfStates | undefined,
-  getIcon: (pokemon: PokemonInfo) => React.ReactNode,
+  getIcon: (pokemon: PokemonInfo, dimension: Dimension) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,
   isProductionIncluded?: (productions: IngredientProduction[]) => boolean,
 };
@@ -83,7 +84,7 @@ export const PokemonIconsItemStats = ({
                   <Flex noFullWidth className="absolute bottom-1 right-1 z-10">
                     <PokemonProducingRateSingle
                       rate={itemRate}
-                      icon={getIcon(pokemon)}
+                      getIcon={(dimension) => getIcon(pokemon, dimension)}
                       additionalContents={[
                         <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
                       ]}
