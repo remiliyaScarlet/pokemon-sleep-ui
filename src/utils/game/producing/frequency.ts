@@ -2,15 +2,10 @@ import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
-import {ProduceType} from '@/types/game/producing/common';
-import {
-  PokemonProducingRate,
-  ProducingRateOfItemOfSessions,
-  ProducingValueOfStates,
-} from '@/types/game/producing/rate';
-import {ProducingSleepStateSplit} from '@/types/game/producing/split';
+import {PokemonProducingRate, ProducingValueOfStates} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
+import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill';
 
 
@@ -61,19 +56,12 @@ export const getBaseFrequencyFromPokemon = ({
   });
 };
 
-export type GetFrequencyFromItemRateOfSessionsOpts = {
-  produceType: ProduceType,
-  produceItemSplit: number,
-  rate: ProducingRateOfItemOfSessions,
-  sleepStateSplit: ProducingSleepStateSplit,
-};
-
 export const getFrequencyFromItemRateOfSessions = ({
+  rate,
   produceType,
   produceItemSplit,
-  rate,
   sleepStateSplit,
-}: GetFrequencyFromItemRateOfSessionsOpts): ProducingValueOfStates => {
+}: GetSpecificItemRateOfSessionCommonOpts): ProducingValueOfStates => {
   const multiplier = 1 / produceItemSplit;
 
   const awake = multiplier * rate.awake.frequency;

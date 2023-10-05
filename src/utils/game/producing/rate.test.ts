@@ -1,12 +1,12 @@
 import {describe, expect, it} from '@jest/globals';
 
 
-import {getValueAfterSplitFromItemSessionRate} from '@/utils/game/producing/rateReducer';
+import {getValueAfterSplitFromItemRateOfSessions} from '@/utils/game/producing/rateReducer';
 
 
 describe('Pokemon Production Value After Split', () => {
   it('is correct for berry', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemSessionRate({
+    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
       rate: {
         id: NaN, // Ignored
         sleep: {
@@ -39,7 +39,7 @@ describe('Pokemon Production Value After Split', () => {
   });
 
   it('is correct for ingredient', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemSessionRate({
+    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
       rate: {
         id: NaN, // Ignored
         sleep: {

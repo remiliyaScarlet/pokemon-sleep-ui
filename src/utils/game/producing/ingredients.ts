@@ -5,7 +5,7 @@ import {IngredientProduction, IngredientProductionAtLevels} from '@/types/game/p
 import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
-import {getMergedRateOfItemOfSessions} from '@/utils/game/producing/rateReducer';
+import {getMergedItemRateOfSessions} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -35,7 +35,7 @@ export const getIngredientProducingRates = ({
     (item) => item.id,
   );
 
-  return Object.values(grouped).map((rates) => getMergedRateOfItemOfSessions(rates));
+  return Object.values(grouped).map((rates) => getMergedItemRateOfSessions(rates));
 };
 
 type GetEffectiveIngredientProductionsOpts = {

@@ -1,11 +1,10 @@
-import {ProduceType} from '@/types/game/producing/common';
 import {
   ProducingRateOfItem,
   ProducingRateOfItemOfSessions,
   ProducingRateOfStates,
   ProducingValueOfStates,
 } from '@/types/game/producing/rate';
-import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
+import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 import {
@@ -13,15 +12,17 @@ import {
   getProducingSleepStateSplit,
   GetProducingSleepStateSplitOpts,
 } from '@/utils/game/producing/split';
+import {GetItemRateOfSessionCommonOpts, GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
 
 
-type GetTotalRateOfItemOfSessionsOpts = GetProduceSplitOpts & GetProducingSleepStateSplitOpts & {
-  rate: ProducingRateOfItemOfSessions,
-  produceType: ProduceType,
-  produceSplit: ProduceSplit,
-};
+type GetTotalItemRateOfSessionsOpts =
+  GetProduceSplitOpts &
+  GetProducingSleepStateSplitOpts &
+  GetItemRateOfSessionCommonOpts & {
+    produceSplit: ProduceSplit,
+  };
 
-export const getTotalRateOfItemOfSessions = (opts: GetTotalRateOfItemOfSessionsOpts): ProducingRateOfStates => {
+export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts): ProducingRateOfStates => {
   const {rate, produceSplit, produceType} = opts;
   const {id} = rate;
   const sleepStateSplit = getProducingSleepStateSplit(opts);
@@ -35,13 +36,13 @@ export const getTotalRateOfItemOfSessions = (opts: GetTotalRateOfItemOfSessionsO
       sleepStateSplit,
       produceItemSplit,
     }),
-    quantity: getValueAfterSplitFromItemSessionRate({
+    quantity: getValueAfterSplitFromItemRateOfSessions({
       ...opts,
       valueKey: 'quantity',
       sleepStateSplit,
       produceItemSplit,
     }),
-    dailyEnergy: getValueAfterSplitFromItemSessionRate({
+    dailyEnergy: getValueAfterSplitFromItemRateOfSessions({
       ...opts,
       valueKey: 'dailyEnergy',
       sleepStateSplit,
@@ -50,7 +51,7 @@ export const getTotalRateOfItemOfSessions = (opts: GetTotalRateOfItemOfSessionsO
   };
 };
 
-export const getMergedRateOfItemOfSessions = (
+export const getMergedItemRateOfSessions = (
   rates: ProducingRateOfItemOfSessions[],
 ): ProducingRateOfItemOfSessions => {
   const firstRate = rates.at(0);
@@ -76,20 +77,16 @@ export const getMergedRateOfItemOfSessions = (
   };
 };
 
-type GetValueAfterSplitFromItemSessionRateOpts = {
-  rate: ProducingRateOfItemOfSessions,
+type GetValueAfterSplitFromItemSessionRateOpts = GetSpecificItemRateOfSessionCommonOpts & {
   valueKey: keyof ProducingRateOfItem,
-  sleepStateSplit: ProducingSleepStateSplit,
-  produceType: ProduceType,
-  produceItemSplit: number,
 };
 
-export const getValueAfterSplitFromItemSessionRate = ({
+export const getValueAfterSplitFromItemRateOfSessions = ({
   rate,
-  valueKey,
-  sleepStateSplit,
   produceType,
   produceItemSplit,
+  sleepStateSplit,
+  valueKey,
 }: GetValueAfterSplitFromItemSessionRateOpts): ProducingValueOfStates => {
   const awake = rate.awake[valueKey] * produceItemSplit;
   const sleepVacant = rate.sleep[valueKey] * produceItemSplit;
