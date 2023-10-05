@@ -21,13 +21,13 @@ export const PokemonSubSkillSelectionButton = ({data, selectable, onClick}: Prop
   const t = useTranslations('Game.SubSkill.Name');
 
   return (
-    <FlexButton onClick={onClick} center stretch disabled={!data.rarity || !selectable} className={clsx(
+    <FlexButton onClick={onClick} stretch disabled={!data.rarity || !selectable} className={clsx(
       'enabled:button-clickable disabled:button-disabled gap-1 rounded-lg p-1.5',
       'width-with-gap xs:width-with-gap-2-items sm:width-with-gap-3-items',
       data.rarity ? subSkillRaritySectionBg[data.rarity] : 'text-slate-500',
     )}>
       <PokemonSubSkillIcon subSkill={data}/>
-      <div>{t(id.toString())}</div>
+      <div className="text-start">{t(id.toString())}</div>
     </FlexButton>
   );
 };
