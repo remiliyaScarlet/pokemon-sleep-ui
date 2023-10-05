@@ -21,8 +21,8 @@ type Props<TData> = {
   getInfo?: (data: TData) => React.ReactNode,
   getReactKey?: (data: TData) => React.Key,
   getClassName?: (data: TData) => string,
+  getShow?: (data: TData) => boolean,
   onClickOverride?: (data: TData) => void,
-  showData: (data: TData) => boolean,
   size?: Dimension,
 };
 
@@ -33,8 +33,8 @@ export const PokemonIconList = <TData, >({
   getInfo,
   getReactKey,
   getClassName,
+  getShow,
   onClickOverride,
-  showData,
   size,
 }: Props<TData>) => {
   const {state, setState, showPokemon} = usePokemonLinkPopup();
@@ -66,28 +66,25 @@ export const PokemonIconList = <TData, >({
           const {id} = pokemon;
 
           return (
-            showData(data) &&
+            <AnimatedCollapse
+              key={getReactKey ? getReactKey(data) : id}
+              show={getShow ? getShow(data) : true}
+              appear
+              noFullWidth
+            >
               <button
-                key={getReactKey ? getReactKey(data) : id}
                 className={clsx('button-clickable p-1.5', getClassName && getClassName(data))}
                 onClick={() => onClickOverride ? onClickOverride(data) : showPokemon(pokemon)}
               >
-                <AnimatedCollapse
-                  key={dataWithPokemon.filter((row) => {
-                    return showData(row);
-                  }).length}
-                  show={true}
-                  appear
-                >
-                  <IconWithInfo
-                    imageSrc={`/images/pokemon/icons/${id}.png`}
-                    imageAlt={t(id.toString())}
-                    imageDimension={dimension}
-                    imageSizes={imageIconSizes}
-                    info={getInfo && getInfo(data)}
-                  />
-                </AnimatedCollapse>
+                <IconWithInfo
+                  imageSrc={`/images/pokemon/icons/${id}.png`}
+                  imageAlt={t(id.toString())}
+                  imageDimension={dimension}
+                  imageSizes={imageIconSizes}
+                  info={getInfo && getInfo(data)}
+                />
               </button>
+            </AnimatedCollapse>
           );
         })}
       </Flex>
