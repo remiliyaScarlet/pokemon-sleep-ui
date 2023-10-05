@@ -15,7 +15,8 @@ import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/ind
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {imageIconSizes} from '@/styles/image';
 import {TeamAnalysisPokemonControl} from '@/ui/team/analysis/setup/pokemon/control';
-import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup';
+import {useTeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup/hook';
+import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup/main';
 import {TeamAnalysisPokemonProduction} from '@/ui/team/analysis/setup/pokemon/production';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 
@@ -28,7 +29,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   } = props;
 
   const t = useTranslations('Game');
-  const [showMemberConfig, setShowMemberConfig] = React.useState(false);
+  const pokemonPopup = useTeamAnalysisPokemonPopup();
   const ratingControl = useRatingPopup();
 
   const {id, type, skill} = pokemon;
@@ -37,8 +38,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   return (
     <Flex className="gap-1 sm:flex-row lg:flex-col">
       <TeamAnalysisPokemonPopup
-        showMemberConfig={showMemberConfig}
-        setShowMemberConfig={setShowMemberConfig}
+        state={pokemonPopup}
         ratingControl={ratingControl}
         {...props}
       />
@@ -64,7 +64,8 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         </Flex>
         <TeamAnalysisPokemonControl
           ratingControl={ratingControl}
-          onEditClick={() => setShowMemberConfig(true)}
+          onEditClick={() => pokemonPopup.show('memberConfig')}
+          onDetailsClick={() => pokemonPopup.show('detailedStats')}
           {...props}
         />
         <Flex>

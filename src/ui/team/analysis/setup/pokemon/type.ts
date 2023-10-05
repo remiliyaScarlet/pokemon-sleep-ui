@@ -5,3 +5,5 @@ import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@
 export type TeamAnalysisPokemonProps = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
   setMember: (slotName: TeamAnalysisSlotName, update: Partial<TeamAnalysisMember>) => void,
 };
+
+export type TeamAnalysisPokemonPopupType = 'memberConfig' | 'detailedStats';
