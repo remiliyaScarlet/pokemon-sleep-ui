@@ -17,10 +17,10 @@ type Props = ProducingRateContentCommonProps & {
   getIcon: (dimension: Dimension) => React.ReactNode,
 });
 
-export const ProducingRateUI = ({rate, hideQuantity, ...props}: Props) => {
+export const ProducingRateUI = ({rate, hideQuantity, getIcon, ...props}: Props) => {
   return (
     <Flex direction="row" noFullWidth className="gap-1">
-      {!hideQuantity && <ProducingRateContent dailyRate={rate?.quantity} {...props}/>}
+      {!hideQuantity && <ProducingRateContent dailyRate={rate?.quantity} getIcon={getIcon} {...props}/>}
       <ProducingRateContent dailyRate={rate?.energy} isEnergy {...props}/>
     </Flex>
   );

@@ -12,8 +12,13 @@ import {formatFloat} from '@/utils/number';
 
 type Props = ProducingRateContentCommonProps & {
   dailyRate: number | undefined,
-  isEnergy?: boolean,
-};
+} & ({
+  isEnergy: true,
+  getIcon?: never,
+} | {
+  isEnergy?: false,
+  getIcon: (dimension: Dimension) => React.ReactNode,
+});
 
 export const ProducingRateContent = ({getIcon, normalSize, dailyRate, isEnergy}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
