@@ -6,27 +6,26 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {PokemonProductionSplitCommonProps} from '@/components/shared/pokemon/production/split/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {formatFloat} from '@/utils/number';
 
 
-type Props = {
+type Props = PokemonProductionSplitCommonProps & {
   berry: number,
   ingredient: number,
-  specialty: PokemonSpecialtyId | null,
 };
 
 const iconCommonClass = 'rounded-lg p-0.5';
 
-export const PokemonProductionSplit = ({berry, ingredient, specialty}: Props) => {
+export const PokemonProductionSplit = ({specialty, className, berry, ingredient}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   const berrySplit = berry / (berry + ingredient) * 100;
   const ingredientSplit = 100 - berrySplit;
 
   return (
-    <Flex direction="row" center className="gap-1">
+    <Flex direction="row" center className={clsx('gap-1', className)}>
       <Flex noFullWidth className={clsx(
         iconCommonClass, specialty === specialtyIdMap.berry && 'bg-blink',
       )}>
