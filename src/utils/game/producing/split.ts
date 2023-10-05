@@ -31,7 +31,7 @@ export const getProduceSplit = ({
   };
 };
 
-export type GetProducingSleepStateSplitOpts = {
+type GetProducingSleepStateSplitOpts = {
   sleepDuration: number,
   fullPackRatioInSleep: number,
 };

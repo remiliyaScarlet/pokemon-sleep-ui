@@ -5,6 +5,7 @@ import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProductionPeriod} from '@/types/game/producing/display';
+import {ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {ProducingState, ProducingStateOfRate} from '@/types/game/producing/state';
 
 
@@ -51,6 +52,7 @@ export type ProducingRateCommonParams = {
 export type PokemonProducingRate = {
   period: ProductionPeriod,
   fullPackStats: FullPackStats,
+  sleepStateSplit: ProducingSleepStateSplit,
   carryLimitInfo: CarryLimitInfo,
   berry: ProducingRateOfStates,
   ingredient: {[ingredientId in IngredientId]: ProducingRateOfStates},

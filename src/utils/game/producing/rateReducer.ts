@@ -8,24 +8,20 @@ import {
   ProducingRateOfStates,
   ProducingValueOfStates,
 } from '@/types/game/producing/rate';
-import {ProduceSplit} from '@/types/game/producing/split';
+import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
-import {
-  GetProduceSplitOpts,
-  getProducingSleepStateSplit,
-  GetProducingSleepStateSplitOpts,
-} from '@/utils/game/producing/split';
+import {GetProduceSplitOpts} from '@/utils/game/producing/split';
 import {GetItemRateOfSessionCommonOpts, GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
 import {KeysOfType} from '@/utils/type';
 
 
 type GetTotalItemRateOfSessionsOpts =
   GetProduceSplitOpts &
-  GetProducingSleepStateSplitOpts &
   GetItemRateOfSessionCommonOpts & {
     produceSplit: ProduceSplit,
+    sleepStateSplit: ProducingSleepStateSplit,
     ingredients: IngredientProduction[],
   };
 
@@ -35,10 +31,10 @@ export const getTotalItemRateOfSessions = (opts: GetTotalItemRateOfSessionsOpts)
     rate,
     produceType,
     produceSplit,
+    sleepStateSplit,
     ingredients,
   } = opts;
   const {id} = rate;
-  const sleepStateSplit = getProducingSleepStateSplit(opts);
 
   const produceItemSplit = produceSplit[produceType];
 

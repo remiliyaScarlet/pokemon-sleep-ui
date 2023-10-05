@@ -14,7 +14,7 @@ import {
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
 import {getTotalItemRateOfSessions} from '@/utils/game/producing/rateReducer';
-import {getProduceSplit} from '@/utils/game/producing/split';
+import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 
 
 type GetPokemonProducingRateOpts =
@@ -67,18 +67,22 @@ export const getPokemonProducingRate = ({
     }),
     sleepDurations: sleepDurations,
   });
+  const sleepStateSplit = getProducingSleepStateSplit({
+    sleepDuration,
+    fullPackRatioInSleep: fullPackStats.ratio,
+  });
 
   return {
     period,
     fullPackStats,
+    sleepStateSplit,
     carryLimitInfo,
     berry: getTotalItemRateOfSessions({
       period,
       rate: berry,
       produceType: 'berry',
       produceSplit,
-      sleepDuration,
-      fullPackRatioInSleep: fullPackStats.ratio,
+      sleepStateSplit,
       ...opts,
     }),
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
@@ -88,8 +92,7 @@ export const getPokemonProducingRate = ({
         rate,
         produceType: 'ingredient',
         produceSplit,
-        sleepDuration,
-        fullPackRatioInSleep: fullPackStats.ratio,
+        sleepStateSplit,
         ...opts,
       }),
     ])),
