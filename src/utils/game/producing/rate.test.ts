@@ -35,9 +35,9 @@ describe('Pokemon Production Value After Split', () => {
       produceItemSplit: 0.8,
     });
 
-    expect(awake).toBeCloseTo(300 * 0.8);
-    expect(sleepVacant).toBeCloseTo(500 * 0.8);
-    expect(sleepFilled).toBeCloseTo(500);
+    expect(awake).toBeCloseTo(300 * 0.8 * (16 / 24));
+    expect(sleepVacant).toBeCloseTo(500 * 0.8 * (6 / 24));
+    expect(sleepFilled).toBeCloseTo(500 * (2 / 24));
     expect(equivalent).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.8 + (500 * 2 / 24));
   });
 
@@ -72,8 +72,8 @@ describe('Pokemon Production Value After Split', () => {
     });
 
 
-    expect(awake).toBeCloseTo(300 * 0.2);
-    expect(sleepVacant).toBeCloseTo(500 * 0.2);
+    expect(awake).toBeCloseTo(300 * 0.2 * (16 / 24));
+    expect(sleepVacant).toBeCloseTo(500 * 0.2 * (6 / 24));
     expect(sleepFilled).toBeCloseTo(0);
     expect(equivalent).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.2);
   });
