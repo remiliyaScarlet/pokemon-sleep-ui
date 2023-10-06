@@ -8,7 +8,7 @@ import {Toaster} from 'react-hot-toast';
 import {AnchorAdsUnit} from '@/components/ads/anchor';
 import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
-import {Loading, LoadingFullScreen} from '@/components/icons/loading';
+import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
@@ -29,7 +29,7 @@ export const PageLayout = ({
   const adsShouldShow = isAdsShouldShow(session);
 
   return (
-    <React.Suspense fallback={<LoadingFullScreen/>}>
+    <>
       {/* Google AdSense */}
       {
         adsShouldShow &&
@@ -64,6 +64,6 @@ export const PageLayout = ({
         </Flex>
         {adsShouldShow && <AnchorAdsUnit/>}
       </Flex>
-    </React.Suspense>
+    </>
   );
 };
