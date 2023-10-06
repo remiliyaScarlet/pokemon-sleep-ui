@@ -146,6 +146,9 @@
     "PokemonExp": {
       "Title": "寶可夢經驗計算"
     },
+    "Stamina": {
+      "Title": "活力曲線分析"
+    },
     "About": {
       "Title": "關於"
     }

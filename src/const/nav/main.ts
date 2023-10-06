@@ -76,6 +76,12 @@ export const navEntries: NavEntry[] = [
   },
   {
     type: 'link',
+    href: '/energy',
+    imageSrc: '/images/generic/mood.png',
+    i18nTextId: 'Stamina.Title',
+  },
+  {
+    type: 'link',
     href: '/about',
     imageSrc: '/images/generic/globe.png',
     i18nTextId: 'About.Title',

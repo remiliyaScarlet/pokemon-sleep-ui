@@ -146,6 +146,9 @@
     "PokemonExp": {
       "Title": "Pokemon EXP Calculator"
     },
+    "Stamina": {
+      "Title": "Energiekurvenanalyse"
+    },
     "About": {
       "Title": "Impressum"
     }

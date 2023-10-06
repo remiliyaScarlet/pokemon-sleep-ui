@@ -1,8 +1,7 @@
-import {redirect} from 'next-intl/server';
+import {EnergyAnalysis} from '@/ui/energy/main';
+import {generatePageMeta} from '@/utils/meta';
 
 
-const redirectToNewPath = () => {
-  redirect('/team');
-};
+export const generateMetadata = generatePageMeta({key: 'Stamina.Title'});
 
-export default redirectToNewPath;
+export default EnergyAnalysis;

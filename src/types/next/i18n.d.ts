@@ -83,6 +83,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Incense: PageWithIndividual,
       },
       PokemonExp: I18nMetadata,
+      Stamina: I18nMetadata,
       About: I18nMetadata,
     },
     InPage: {

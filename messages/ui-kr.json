@@ -146,6 +146,9 @@
     "PokemonExp": {
       "Title": "포켓몬 EXP 계산"
     },
+    "Stamina": {
+      "Title": "기력 곡선 분석"
+    },
     "About": {
       "Title": "소개"
     }

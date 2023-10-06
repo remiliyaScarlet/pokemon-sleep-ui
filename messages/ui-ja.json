@@ -146,6 +146,9 @@
     "PokemonExp": {
       "Title": "ポケモン経験値計算"
     },
+    "Stamina": {
+      "Title": "げんき曲線分析"
+    },
     "About": {
       "Title": "サイトについて"
     }
