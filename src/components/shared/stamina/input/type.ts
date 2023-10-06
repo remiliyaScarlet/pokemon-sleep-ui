@@ -1,7 +1,7 @@
 import {StaminaCalcConfig} from '@/types/game/producing/stamina';
 
 
-export type UserSettingsEnergyProps = {
+export type StaminaConfigProps = {
   config: StaminaCalcConfig,
   setConfig: (updated: StaminaCalcConfig) => void,
 };

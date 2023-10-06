@@ -10,12 +10,12 @@ import {useTranslations} from 'next-intl';
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {StaminaConfigSleepTime} from '@/components/shared/stamina/input/sleepTime';
+import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
 import {SleepSessions} from '@/types/game/sleep';
-import {UserSettingsSleepSessionTime} from '@/ui/base/navbar/userSettings/sections/energy/sessionTime';
-import {UserSettingsEnergyProps} from '@/ui/base/navbar/userSettings/sections/energy/type';
 
 
-type Props = UserSettingsEnergyProps & {
+type Props = StaminaConfigProps & {
   session: keyof SleepSessions<never>,
   num: number,
 } & ({
@@ -26,7 +26,7 @@ type Props = UserSettingsEnergyProps & {
   isActive: boolean,
 });
 
-export const UserSettingsSleepSession = (props: Props) => {
+export const StaminaConfigSleepSession = (props: Props) => {
   const {
     config,
     session,
@@ -64,11 +64,11 @@ export const UserSettingsSleepSession = (props: Props) => {
           {num}
         </div>
       </button>
-      <UserSettingsSleepSessionTime {...props} times={times} timing="start"/>
+      <StaminaConfigSleepTime {...props} times={times} timing="start"/>
       <div className="relative h-6 w-6">
         <ArrowRightIcon/>
       </div>
-      <UserSettingsSleepSessionTime {...props} times={times} timing="end"/>
+      <StaminaConfigSleepTime {...props} times={times} timing="end"/>
     </Flex>
   );
 };

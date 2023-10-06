@@ -5,13 +5,13 @@ import {useTranslations} from 'next-intl';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {StaminaConfigSkillRecoveryInput} from '@/components/shared/stamina/input/skillRecovery/input';
+import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
 import {staminaCalcStrategyI18nId} from '@/const/game/stamina';
 import {staminaCalcSkillRecoveryStrategies} from '@/types/game/producing/stamina';
-import {UserSettingsSkillRecoveryInput} from '@/ui/base/navbar/userSettings/sections/energy/skillRecoveryInput';
-import {UserSettingsEnergyProps} from '@/ui/base/navbar/userSettings/sections/energy/type';
 
 
-export const UserSettingsSkillRecovery = (props: UserSettingsEnergyProps) => {
+export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
   const {config, setConfig} = props;
   const {skillRecovery} = config;
   const t = useTranslations('UI.Stamina');
@@ -38,14 +38,14 @@ export const UserSettingsSkillRecovery = (props: UserSettingsEnergyProps) => {
         noFixedTitleWidth
       />
       <Flex direction="row" className="justify-center gap-1.5">
-        <UserSettingsSkillRecoveryInput
+        <StaminaConfigSkillRecoveryInput
           {...props}
           id="energyAmount"
           iconI18nId="Amount"
           iconSrc="/images/mainSkill/target/team.png"
           configTarget="amount"
         />
-        <UserSettingsSkillRecoveryInput
+        <StaminaConfigSkillRecoveryInput
           {...props}
           id="energySkillDailyCount"
           iconI18nId="DailyCount"
