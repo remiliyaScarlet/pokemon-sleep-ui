@@ -9,6 +9,22 @@ import {getLogsWithSecondarySleep} from '@/utils/game/stamina/events/secondary';
 import {getLogsWithSkillRecovery} from '@/utils/game/stamina/events/skill';
 
 
+type GetStaminaEventLogOpts = {
+  config: StaminaCalcConfig,
+  sessionInfo: SleepSessionInfo,
+};
+
+export const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): StaminaEventLog[] => {
+  const {skillRecovery} = config;
+
+  let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
+  logs = getLogsWithSecondarySleep({sessionInfo, logs});
+  logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+  logs = getLogsWithEfficiencyBlock({logs});
+
+  return logs;
+};
+
 const getStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
   let sumOfWeightedDuration = (durationOfDay - logs[logs.length - 1].timing) * efficiencyInSleep;
 
@@ -25,19 +41,6 @@ const getStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
   return sumOfWeightedDuration / durationOfDay;
 };
 
-
-type GetStaminaEfficiencyOpts = {
-  config: StaminaCalcConfig,
-  sessionInfo: SleepSessionInfo,
-};
-
-export const getStaminaEfficiency = ({config, sessionInfo}: GetStaminaEfficiencyOpts): number => {
-  const {skillRecovery} = config;
-
-  let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
-  logs = getLogsWithSecondarySleep({sessionInfo, logs});
-  logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
-  logs = getLogsWithEfficiencyBlock({logs});
-
-  return getStaminaEfficiencyFromLogs(logs);
+export const getStaminaEfficiency = (opts: GetStaminaEventLogOpts): number => {
+  return getStaminaEfficiencyFromLogs(getStaminaEventLogs(opts));
 };
