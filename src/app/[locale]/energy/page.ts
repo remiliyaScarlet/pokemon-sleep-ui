@@ -1,7 +1,7 @@
-import {EnergyAnalysis} from '@/ui/energy/main';
+import {StaminaAnalysis} from '@/ui/stamina/main';
 import {generatePageMeta} from '@/utils/meta';
 
 
 export const generateMetadata = generatePageMeta({key: 'Stamina.Title'});
 
-export default EnergyAnalysis;
+export default StaminaAnalysis;
