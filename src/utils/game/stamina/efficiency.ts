@@ -1,13 +1,7 @@
 import {efficiencyBeforeBreakPoint} from '@/const/game/efficiency';
-import {efficiencyBreakPoints} from '@/types/game/producing/efficiency';
+import {getStaminaBreakpoint} from '@/utils/game/stamina/utils';
 
 
 export const getEfficiency = (stamina: number): number => {
-  for (const breakPoint of efficiencyBreakPoints) {
-    if (stamina > breakPoint) {
-      return efficiencyBeforeBreakPoint[breakPoint];
-    }
-  }
-
-  return 1;
+  return efficiencyBeforeBreakPoint[getStaminaBreakpoint(stamina)];
 };
