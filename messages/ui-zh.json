@@ -292,6 +292,11 @@
       "EfficiencyBlock": "效率變更",
       "Sleep": "睡覺",
       "Wakeup": "起床"
+    },
+    "State": {
+      "Asleep": "睡覺中",
+      "Average": "平均",
+      "Awake": "清醒中"
     }
   },
   "UserControl": {

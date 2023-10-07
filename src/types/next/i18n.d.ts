@@ -226,6 +226,11 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Sleep: string,
         Wakeup: string,
       },
+      State: {
+        Asleep: string,
+        Average: string,
+        Awake: string,
+      },
     },
     UserControl: {
       Login: string,

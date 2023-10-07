@@ -293,6 +293,11 @@
       "EfficiencyBlock": "Effizienz-Breakpoint",
       "Sleep": "Schlafen",
       "Wakeup": "Aufwachen"
+    },
+    "State": {
+      "Asleep": "Eingeschlafen",
+      "Average": "Durchschnitt",
+      "Awake": "Wach"
     }
   },
   "UserControl": {

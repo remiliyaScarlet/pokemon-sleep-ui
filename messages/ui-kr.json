@@ -292,6 +292,11 @@
       "EfficiencyBlock": "효율 변화",
       "Sleep": "잠",
       "Wakeup": "깨우다"
+    },
+    "State": {
+      "Asleep": "잠들어",
+      "Average": "평균",
+      "Awake": "깨우다"
     }
   },
   "UserControl": {

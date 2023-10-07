@@ -292,6 +292,11 @@
       "EfficiencyBlock": "効率変更点",
       "Sleep": "寝る",
       "Wakeup": "起きる"
+    },
+    "State": {
+      "Asleep": "睡眠中",
+      "Average": "平均",
+      "Awake": "非睡眠"
     }
   },
   "UserControl": {
