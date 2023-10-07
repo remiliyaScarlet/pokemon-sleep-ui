@@ -2,8 +2,8 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {StaminaEfficiencyUI} from '@/components/shared/stamina/efficiency/main';
 import {StaminaConfig} from '@/components/shared/stamina/input/main';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
@@ -24,9 +24,7 @@ export const UserSettingsStamina = (props: StaminaConfigProps) => {
       <GenericIcon src="/images/generic/mood.png" noWrap alt={t('Title')}/>
     }>
       <StaminaConfig {...props}/>
-      <Flex noFullWidth className="w-fit self-end rounded-lg border border-slate-500 px-2 py-1">
-        {getStaminaEfficiency({config, sessionInfo}).toFixed(4)}x
-      </Flex>
+      <StaminaEfficiencyUI efficiency={getStaminaEfficiency({config, sessionInfo})}/>
     </UserSettingsSection>
   );
 };

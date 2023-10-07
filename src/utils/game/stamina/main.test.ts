@@ -26,6 +26,6 @@ describe('Stamina Efficiency', () => {
     };
     const sessionInfo = getSleepSessionInfo(config.sleepSession);
 
-    expect(getStaminaEfficiency({config, sessionInfo})).toBeCloseTo(2.05625);
+    expect(getStaminaEfficiency({config, sessionInfo}).average).toBeCloseTo(2.05625);
   });
 });
