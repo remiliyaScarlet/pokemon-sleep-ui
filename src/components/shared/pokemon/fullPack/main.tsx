@@ -24,7 +24,7 @@ export const PokemonTimeToFullPack = ({timeToFullPack, ...props}: Props) => {
         alt={t('Stats.TimeToFullPack')}
         dimension={normalText ? 'h-6 w-6' : 'h-4 w-4'}
       />
-      <div>{formatSeconds(timeToFullPack)}</div>
+      <div>{formatSeconds({seconds: timeToFullPack})}</div>
     </Flex>
   );
 };

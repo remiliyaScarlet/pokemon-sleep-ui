@@ -25,7 +25,7 @@ export const PokemonFrequency = ({frequency, noIcon, normalText}: Props) => {
           <ClockIcon/>
         </div>
       }
-      <div>{formatSeconds(frequency)}</div>
+      <div>{formatSeconds({seconds: frequency})}</div>
       <div>({formatFloat(dailyCount)}x)</div>
     </Flex>
   );
