@@ -14,7 +14,7 @@ type GetStaminaEventLogOpts = {
   sessionInfo: SleepSessionInfo,
 };
 
-export const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): StaminaEventLog[] => {
+const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): StaminaEventLog[] => {
   const {skillRecovery} = config;
 
   let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
@@ -25,7 +25,7 @@ export const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpt
   return logs;
 };
 
-const getStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
+const getDailyAverageStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
   let sumOfWeightedDuration = (durationOfDay - logs[logs.length - 1].timing) * efficiencyInSleep;
 
   for (let i = 1; i < logs.length; i++) {
@@ -44,10 +44,12 @@ const getStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
 export const getStaminaEfficiency = (opts: GetStaminaEventLogOpts): StaminaEfficiency => {
   const {sessionInfo} = opts;
 
-  const staminaDailyAverage = getStaminaEfficiencyFromLogs(getStaminaEventLogs(opts));
+  const logs = getStaminaEventLogs(opts);
+  const staminaDailyAverage = getDailyAverageStaminaEfficiencyFromLogs(logs);
   const totalSleepDuration = durationOfDay - sessionInfo.duration.awake;
 
   return {
+    logs,
     average: staminaDailyAverage,
     sleep: efficiencyInSleep,
     awake: (

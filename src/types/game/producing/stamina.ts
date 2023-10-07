@@ -33,6 +33,7 @@ export type StaminaEventLog = {
 };
 
 export type StaminaEfficiency = {
+  logs: StaminaEventLog[],
   average: number,
   awake: number,
   sleep: number,
