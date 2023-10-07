@@ -1,5 +1,5 @@
 import {StaminaCalcSkillRecoveryConfig, StaminaEventLog} from '@/types/game/producing/stamina';
-import {SleepSessionInternal} from '@/types/game/sleep';
+import {SleepSessionInfo} from '@/types/game/sleep';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
 import {offsetEventLogStamina} from '@/utils/game/stamina/events/utils';
@@ -7,22 +7,22 @@ import {offsetEventLogStamina} from '@/utils/game/stamina/events/utils';
 
 type GetSkillRecoveryTimingsOpts = {
   skillRecovery: StaminaCalcSkillRecoveryConfig,
-  session: SleepSessionInternal | null,
+  secondarySession: SleepSessionInfo['session']['secondary'],
   awakeDuration: number,
 };
 
 export const getSkillRecoveryTimings = ({
   skillRecovery,
-  session,
+  secondarySession,
   awakeDuration,
-}: GetSkillRecoveryTimingsOpts) => {
+}: GetSkillRecoveryTimingsOpts): number[] => {
   const {dailyCount} = skillRecovery;
 
   return [...new Array(dailyCount).keys()].map((idx) => {
-    let expectedTiming = (idx + 1) / (dailyCount + 1) * awakeDuration;
+    let expectedTiming = awakeDuration * (idx + 1) / (dailyCount + 1);
 
-    if (session && expectedTiming >= session.adjustedTiming.start) {
-      expectedTiming += session.length;
+    if (secondarySession && expectedTiming >= secondarySession.adjustedTiming.start) {
+      expectedTiming += secondarySession.length;
     }
 
     return expectedTiming;
@@ -50,7 +50,7 @@ export const getLogsWithSkillRecovery = ({
   const newLogs: StaminaEventLog[] = [logs[0]];
   const skillTimings = getSkillRecoveryTimings({
     skillRecovery,
-    session: secondary,
+    secondarySession: secondary,
     awakeDuration: duration.awake,
   });
   let skillUsedCount = 0;
