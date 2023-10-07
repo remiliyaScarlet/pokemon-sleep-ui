@@ -275,6 +275,10 @@
   "Stamina": {
     "Title": "기력 계산",
     "SleepSession": "수면 시간",
+    "Chart": {
+      "Stamina": "기력",
+      "Efficiency": "효율"
+    },
     "Strategy": {
       "Optimistic": "낙관",
       "Conservative": "보수"

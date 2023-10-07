@@ -275,6 +275,10 @@
   "Stamina": {
     "Title": "Energy Calculation",
     "SleepSession": "Sleep Session",
+    "Chart": {
+      "Stamina": "Energy",
+      "Efficiency": "Efficiency"
+    },
     "Strategy": {
       "Optimistic": "Optimistic",
       "Conservative": "Conservative"

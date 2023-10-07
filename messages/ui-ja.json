@@ -275,6 +275,10 @@
   "Stamina": {
     "Title": "げんき回復",
     "SleepSession": "睡眠時間",
+    "Chart": {
+      "Stamina": "げんき",
+      "Efficiency": "効率"
+    },
     "Strategy": {
       "Optimistic": "楽観的",
       "Conservative": "悲観的"

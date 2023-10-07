@@ -276,6 +276,10 @@
   "Stamina": {
     "Title": "Energieberechnung",
     "SleepSession": "Schlafsitzung",
+    "Chart": {
+      "Stamina": "Energie",
+      "Efficiency": "Effizienz"
+    },
     "Strategy": {
       "Optimistic": "Optimistisch",
       "Conservative": "Konservativ"
