@@ -12,7 +12,7 @@ import {staminaCalcSkillRecoveryStrategies} from '@/types/game/producing/stamina
 
 
 export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
-  const {config, setConfig} = props;
+  const {config, setConfig, idPrefix} = props;
   const {skillRecovery} = config;
   const t = useTranslations('UI.Stamina');
 
@@ -40,14 +40,14 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
       <Flex direction="row" className="justify-center gap-1.5">
         <StaminaConfigSkillRecoveryInput
           {...props}
-          id="energyAmount"
+          id={`${idPrefix}-energyAmount`}
           iconI18nId="Amount"
           iconSrc="/images/mainSkill/target/team.png"
           configTarget="amount"
         />
         <StaminaConfigSkillRecoveryInput
           {...props}
-          id="energySkillDailyCount"
+          id={`${idPrefix}-energySkillDailyCount`}
           iconI18nId="DailyCount"
           iconSrc="/images/generic/flash.png"
           configTarget="dailyCount"

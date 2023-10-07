@@ -41,10 +41,14 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
     }}>
       <Flex className="gap-1.5 sm:w-[70vw]">
         <UserSettingsAccountInfo session={session}/>
-        <UserSettingsStamina config={settings.stamina} setConfig={(stamina) => setSettings((original) => ({
-          ...original,
-          stamina,
-        }))}/>
+        <UserSettingsStamina
+          idPrefix="userSettings"
+          config={settings.stamina}
+          setConfig={(stamina) => setSettings((original) => ({
+            ...original,
+            stamina,
+          }))}
+        />
         <UserSettingsBonusUI
           mapIds={mapIds}
           bonus={settings.bonus}
