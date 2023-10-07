@@ -1,5 +1,5 @@
 import {EfficiencyBreakPoint} from '@/types/game/producing/efficiency';
-import {StaminaCalcSkillRecoveryStrategy} from '@/types/game/producing/stamina';
+import {StaminaCalcSkillRecoveryStrategy, StaminaEventType} from '@/types/game/producing/stamina';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
@@ -22,4 +22,13 @@ export const staminaLevelImageSrc: {[breakPoint in EfficiencyBreakPoint]: string
   40: '/images/mood/40.png',
   20: '/images/mood/20.png',
   0: '/images/mood/0.png',
+};
+
+export const staminaEventTypeI18nId: {
+  [eventType in StaminaEventType]: I18nMessageKeysOfNamespace<'UI.Stamina.EventType'>
+} = {
+  skillRecovery: 'SkillRecovery',
+  efficiencyBlock: 'EfficiencyBlock',
+  sleep: 'Sleep',
+  wakeup: 'Wakeup',
 };

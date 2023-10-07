@@ -21,9 +21,11 @@ export type StaminaCalcConfig = {
   skillRecovery: StaminaCalcSkillRecoveryConfig,
 };
 
+export type StaminaEventType = 'skillRecovery' | 'efficiencyBlock' | 'sleep' | 'wakeup';
+
 export type StaminaEventLog = {
   timing: number,
-  type: 'skillRecovery' | 'efficiencyBlock' | 'sleep' | 'wakeup',
+  type: StaminaEventType,
   stamina: {
     before: number,
     after: number,

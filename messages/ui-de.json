@@ -283,6 +283,12 @@
     "SkillRecovery": {
       "Amount": "Erholung pro Fertigkeit",
       "DailyCount": "Anzahl der täglichen Fertigkeitennutzung"
+    },
+    "EventType": {
+      "SkillRecovery": "Fähigkeitswiederherstellung",
+      "EfficiencyBlock": "Effizienz-Breakpoint",
+      "Sleep": "Schlafen",
+      "Wakeup": "Aufwachen"
     }
   },
   "UserControl": {

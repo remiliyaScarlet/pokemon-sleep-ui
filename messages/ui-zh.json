@@ -282,6 +282,12 @@
     "SkillRecovery": {
       "Amount": "單次回復量",
       "DailyCount": "每日回復次數"
+    },
+    "EventType": {
+      "SkillRecovery": "技能回復",
+      "EfficiencyBlock": "效率變更",
+      "Sleep": "睡覺",
+      "Wakeup": "起床"
     }
   },
   "UserControl": {

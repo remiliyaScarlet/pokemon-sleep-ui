@@ -282,6 +282,12 @@
     "SkillRecovery": {
       "Amount": "Recovery per skill",
       "DailyCount": "Daily skill usage count"
+    },
+    "EventType": {
+      "SkillRecovery": "Skill Recovery",
+      "EfficiencyBlock": "Efficiency Breakpoint",
+      "Sleep": "Sleep",
+      "Wakeup": "Wake Up"
     }
   },
   "UserControl": {

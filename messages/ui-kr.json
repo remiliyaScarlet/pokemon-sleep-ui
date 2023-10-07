@@ -282,6 +282,12 @@
     "SkillRecovery": {
       "Amount": "회복량",
       "DailyCount": "빈도 (일)"
+    },
+    "EventType": {
+      "SkillRecovery": "스킬 회복",
+      "EfficiencyBlock": "효율 변화",
+      "Sleep": "잠",
+      "Wakeup": "깨우다"
     }
   },
   "UserControl": {

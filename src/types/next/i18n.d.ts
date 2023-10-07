@@ -216,6 +216,12 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Amount: string,
         DailyCount: string,
       },
+      EventType: {
+        SkillRecovery: string,
+        EfficiencyBlock: string,
+        Sleep: string,
+        Wakeup: string,
+      },
     },
     UserControl: {
       Login: string,
