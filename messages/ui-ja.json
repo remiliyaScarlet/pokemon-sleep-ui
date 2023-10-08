@@ -288,7 +288,7 @@
       "DailyCount": "発動回数"
     },
     "EventType": {
-      "SkillRecovery": "スキル回復",
+      "SkillRecovery": "スキルで回復",
       "EfficiencyBlock": "効率変更点",
       "Sleep": "寝る",
       "Wakeup": "起きる"
