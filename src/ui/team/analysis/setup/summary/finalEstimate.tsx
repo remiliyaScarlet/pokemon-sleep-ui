@@ -11,6 +11,7 @@ import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/setup/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
+import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 
 
 type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
@@ -33,8 +34,11 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
   const {currentEnergy, endsAt} = estimateInput;
   const finalEnergy = (
     currentEnergy +
-    energyRate.energy *
-    (new Date(`${endsAt}T04:00`).getTime() - Date.now()) / (durationOfDay * 1000)
+    (
+      toProducingRateOfPeriod({rate: energyRate, period: 'daily'}).energy *
+      (new Date(`${endsAt}T04:00`).getTime() - Date.now()) /
+      (durationOfDay * 1000)
+    )
   );
   const minDate = new Date(new Date().setDate(new Date().getDate() + 1));
 
