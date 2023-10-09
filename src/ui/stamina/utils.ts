@@ -1,26 +1,44 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
-import {StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaAtEvent, StaminaEventLog} from '@/types/game/producing/stamina';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 import {formatSeconds, rotateTime} from '@/utils/time';
 
 
+type GetStaminaOfLogOpts = {
+  log: StaminaEventLog,
+  key: keyof StaminaAtEvent,
+};
+
+const toFlattenedStaminaEventLog = ({log, key}: GetStaminaOfLogOpts): StaminaEventLogFlattened => {
+  const {stamina, staminaUnderlying} = log;
+
+  return {
+    ...log,
+    stamina: stamina[key],
+    staminaUnderlying: staminaUnderlying[key],
+  };
+};
+
 const expandStaminaEventLog = (log: StaminaEventLog): StaminaEventLogFlattened[] => {
-  const {type, stamina} = log;
+  const {type} = log;
 
   if (type === 'sleep') {
-    return [{...log, stamina: stamina.before}];
+    return [toFlattenedStaminaEventLog({log, key: 'before'})];
   }
 
   if (type === 'wakeup') {
-    return [{...log, stamina: stamina.after}];
+    return [toFlattenedStaminaEventLog({log, key: 'after'})];
   }
 
   if (type === 'efficiencyBlock') {
-    return [{...log, stamina: stamina.before}];
+    return [toFlattenedStaminaEventLog({log, key: 'before'})];
   }
 
   if (type === 'skillRecovery') {
-    return [{...log, stamina: stamina.before}, {...log, stamina: stamina.after}];
+    return [
+      toFlattenedStaminaEventLog({log, key: 'before'}),
+      toFlattenedStaminaEventLog({log, key: 'after'}),
+    ];
   }
 
   throw new Error(`Failed to flatten the stamina event log of type [${type satisfies never}]`);
@@ -31,15 +49,19 @@ export const toFlattenedStaminaEventLogs = (logs: StaminaEventLog[]): StaminaEve
   const originalFlattened = logs.flatMap(expandStaminaEventLog);
   const flattened: StaminaEventLogFlattened[] = [originalFlattened[0]];
 
+  console.log('logs', logs);
+  console.log(originalFlattened);
+
   for (let i = 1; i < originalFlattened.length; i++) {
     const curr = originalFlattened[i];
     let last = flattened.at(-1);
 
-    while (last && last.stamina - curr.stamina > 1) {
+    while (last && last.staminaUnderlying - curr.staminaUnderlying > 1) {
       flattened.push({
         type: null,
         timing: last.timing + staminaDepleteInterval,
-        stamina: last.stamina - 1,
+        stamina: Math.max(0, last.stamina - 1),
+        staminaUnderlying: last.staminaUnderlying - 1,
       });
 
       last = flattened.at(-1);
