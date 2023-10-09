@@ -21,7 +21,7 @@ export const getSkillRecoveryTimings = ({
   return [...new Array(dailyCount).keys()].map((idx) => {
     let expectedTiming = awakeDuration * (idx + 1) / (dailyCount + 1);
 
-    if (secondarySession && expectedTiming >= secondarySession.adjustedTiming.start) {
+    if (secondarySession && expectedTiming > secondarySession.adjustedTiming.start) {
       expectedTiming += secondarySession.length;
     }
 

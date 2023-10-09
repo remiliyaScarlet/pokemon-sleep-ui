@@ -215,6 +215,51 @@ describe('Stamina Event Log (+Skill)', () => {
     expect(logs.length).toBe(4);
   });
 
+  it('is correct with secondary sleep happening at the same time of skill trigger', () => {
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 75600, // 21:00
+        end: 0, // 00:00
+      },
+      secondary: {
+        start: 46800, // 13:00
+        end: 52200, // 14:30
+      },
+    });
+
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 2,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(23400);
+    expect(logs[1].stamina.before).toBe(61);
+    expect(logs[1].stamina.after).toBe(70);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(46800);
+    expect(logs[2].stamina.before).toBe(31);
+    expect(logs[2].stamina.after).toBe(40);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(46800);
+    expect(logs[3].stamina.before).toBe(40);
+    expect(logs[4].type).toBe('wakeup');
+    expect(logs[4].timing).toBe(52200);
+    expect(logs[4].stamina.after).toBe(58);
+    expect(logs[5].type).toBe('sleep');
+    expect(logs[5].timing).toBe(75600);
+    expect(logs[5].stamina.before).toBe(19);
+    expect(logs.length).toBe(6);
+  });
+
   it('is correct with secondary sleep happened at low energy', () => {
     const sessionInfo = getSleepSessionInfo({
       primary: {
