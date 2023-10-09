@@ -109,7 +109,7 @@ export const PokeboxImporterView = ({
           ))}
         </Flex>
       </Collapsible>
-      <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2">
+      <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
         {pokebox.filter(({uuid}) => isIncluded[uuid]).map(({name, isShiny, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
@@ -122,6 +122,7 @@ export const PokeboxImporterView = ({
                 imageDimension="h-12 w-12"
                 imageSizes={imageIconSizes}
                 info={pokeInBox.level}
+                className="shrink-0"
               />
               <Flex>
                 <Flex direction="row" center className="gap-1">

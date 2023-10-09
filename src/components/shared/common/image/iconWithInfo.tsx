@@ -13,11 +13,12 @@ type Props = {
   imageDimension: Dimension,
   imageSizes: string,
   info?: React.ReactNode,
+  className?: string,
 };
 
-export const IconWithInfo = ({imageSrc, imageAlt, imageDimension, imageSizes, info}: Props) => {
+export const IconWithInfo = ({imageSrc, imageAlt, imageDimension, imageSizes, info, className}: Props) => {
   return (
-    <div className={clsx('relative', imageDimension)}>
+    <div className={clsx('relative', imageDimension, className)}>
       {info && <InfoIcon className="absolute bottom-0 right-0 z-10">{info}</InfoIcon>}
       <NextImage src={imageSrc} alt={imageAlt} sizes={imageSizes}/>
     </div>

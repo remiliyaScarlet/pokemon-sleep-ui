@@ -19,7 +19,7 @@ export const PokeboxImporter = ({show, setShow, ...props}: Props) => {
 
   return (
     <Popup show={show} setShow={setShow}>
-      <Flex className="lg:w-[60vw]">
+      <Flex className="sm:w-[60vw]">
         <UserDataLazyLoad
           options={{type: 'pokeboxSorted'}}
           loadingText="Pokebox"
