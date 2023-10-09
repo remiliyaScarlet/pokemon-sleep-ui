@@ -26,8 +26,9 @@ const getBaseFrequency = ({
 }: GetBaseFrequencyOpts) => {
   frequency *= (1 - (level - 1) * 0.002);
   frequency *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
-  frequency *= (1 - toSum(subSkillBonusRates) / 100);
-  frequency *= 0.95 ** helperCount;
+  // https://x.com/emuptea/status/1711238322780266825
+  // 0.35 is the mandatory cap from the officials
+  frequency *= (1 - Math.min(0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
 
   return frequency;
 };

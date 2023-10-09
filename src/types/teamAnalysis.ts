@@ -23,6 +23,8 @@ export type TeamAnalysisMember = {
 
 export type TeamAnalysisSetup = Migratable & {
   current: string,
+};
+
 export type TeamAnalysisSingleTeam = Migratable & {
   uuid: string,
   name: string,
@@ -30,5 +32,8 @@ export type TeamAnalysisSingleTeam = Migratable & {
   analysisPeriod: ProductionPeriod,
   members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };
+
+export type TeamAnalysisSetup = {
+  global: TeamAnalysisGlobalConfig,
   teams: {[uuid in string]: TeamAnalysisSingleTeam},
 };
