@@ -40,7 +40,7 @@ const useProducingStatsOfSlot = ({
   setup,
   slotName,
   helperCount,
-  pokedex,
+  pokedexMap,
   pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
@@ -59,7 +59,7 @@ const useProducingStatsOfSlot = ({
       return null;
     }
 
-    const pokemon = pokedex[member.pokemonId];
+    const pokemon = pokedexMap[member.pokemonId];
     if (!pokemon) {
       return null;
     }

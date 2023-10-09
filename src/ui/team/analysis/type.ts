@@ -19,7 +19,7 @@ import {UserSettings} from '@/types/userData/settings';
 export type TeamAnalysisPokemonFilter = PokemonInputFilter;
 
 export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
-  pokedex: PokedexMap,
+  pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,

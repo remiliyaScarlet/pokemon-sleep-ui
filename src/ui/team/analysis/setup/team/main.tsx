@@ -23,7 +23,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
   const {
     setup,
     setSetup,
-    pokedex,
+    pokedexMap,
     pokemonProducingParamsMap,
     statsOfTeam,
   } = props;
@@ -34,7 +34,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-3 2xl:grid-cols-5">
       {teamAnalysisSlotName.map((slotName) => {
         const member = members[slotName];
-        const pokemon = member ? pokedex[member.pokemonId] : undefined;
+        const pokemon = member ? pokedexMap[member.pokemonId] : undefined;
         const stats = statsOfTeam.bySlot[slotName];
 
         const isAvailable = member && pokemon && stats;

@@ -9,9 +9,9 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
-  const {pokedex} = props;
+  const {pokedexMap} = props;
 
-  const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedex).filter(isNotNullish));
+  const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
   return (
     <UserDataLazyLoad

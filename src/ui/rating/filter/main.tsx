@@ -45,16 +45,21 @@ export const RatingFilter = (props: Props) => {
 
   return (
     <Flex className="gap-1">
-      <PokeboxImporter show={show} setShow={setShow} subSkillMap={subSkillMap} onPokeboxPicked={(pokeInBox) => {
-        const pokemon = pokedexMap[pokeInBox.pokemon];
+      <PokeboxImporter
+        {...props}
+        show={show}
+        setShow={setShow}
+        onPokeboxPicked={(pokeInBox) => {
+          const pokemon = pokedexMap[pokeInBox.pokemon];
 
-        if (!pokemon) {
-          return;
-        }
+          if (!pokemon) {
+            return;
+          }
 
-        onPokemonPicked({...pokeInBox, origin: 'pokebox', pokemon});
-        setShow(false);
-      }}/>
+          onPokemonPicked({...pokeInBox, origin: 'pokebox', pokemon});
+          setShow(false);
+        }}
+      />
       <Collapsible state={filterCollapsible} classNameForHeight="h-72" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>

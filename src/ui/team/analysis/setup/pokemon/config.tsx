@@ -16,7 +16,7 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
     pokemon,
     member,
     setMember,
-    pokedex,
+    pokedexMap,
     ingredientChainMap,
     berryDataMap,
     subSkillMap,
@@ -31,7 +31,7 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
     <Flex noFullWidth className="gap-1.5 sm:w-[60vw]">
       <PokemonEvolutionSelector
         pokemon={pokemon}
-        pokedex={pokedex}
+        pokedex={pokedexMap}
         onClick={(pokemonId) => setMember(slotName, {pokemonId})}
       />
       <PokemonIngredientPicker

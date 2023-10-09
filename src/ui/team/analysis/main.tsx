@@ -23,7 +23,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
     session,
-    pokedex,
+    pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
     berryDataMap,
@@ -46,7 +46,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
   ]);
 
   const props: TeamAnalysisServerDataProps = {
-    pokedex,
+    pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
     berryDataMap,

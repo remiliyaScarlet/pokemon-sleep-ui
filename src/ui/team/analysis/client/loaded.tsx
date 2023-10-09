@@ -21,11 +21,11 @@ type Props = TeamAnalysisDataProps & {
 
 export const TeamAnalysisLoadedClient = (props: Props) => {
   const {
-    pokedex,
+    pokedexMap,
     preloadedSetup,
     ingredientChainMap,
   } = props;
-  const pokemonList = Object.values(pokedex).filter(isNotNullish);
+  const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
 
   const initialSetup = React.useMemo(() => {
     // Migrate first for older data version
@@ -43,7 +43,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
       },
       override: preloadedSetup ?? null,
       migrators: teamAnalysisSetupMigrators,
-      migrateParams: {pokedex, ingredientChainMap},
+      migrateParams: {pokedex: pokedexMap, ingredientChainMap},
     });
 
     if (migrated.current !== initialCompUuid) {

@@ -26,7 +26,7 @@ export const TeamAnalysisSelectablePokemon = ({
   setMember,
   isIncluded,
   pokemonList,
-  pokedex,
+  pokedexMap,
   ingredientChainMap,
 }: Props) => {
   const putOnTeam = (id: PokemonId) => {
@@ -40,7 +40,7 @@ export const TeamAnalysisSelectablePokemon = ({
       break;
     }
 
-    const pokemon = pokedex[id];
+    const pokemon = pokedexMap[id];
     if (!pokemon) {
       return;
     }
