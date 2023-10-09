@@ -9,8 +9,9 @@ import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
+import {TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';
-import {TeamAnalysisSetupModifyingProps, TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetupModifyingProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam, getDefaultTeamName, getTeamName} from '@/ui/team/analysis/utils';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 

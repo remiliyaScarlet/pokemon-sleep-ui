@@ -1,8 +1,8 @@
 import {createUserDataManager} from '@/controller/user/common';
+import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
-import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 // Lazy-load

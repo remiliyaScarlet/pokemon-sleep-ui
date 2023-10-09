@@ -6,7 +6,7 @@ import {v4} from 'uuid';
 import {InputBox} from '@/components/input/box';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
+import {TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
 import {generateEmptyTeam, getTeamName} from '@/ui/team/analysis/utils';
 
 

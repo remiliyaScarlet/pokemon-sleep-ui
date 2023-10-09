@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {TeamAnalysisSetup, teamAnalysisSlotName, TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {
@@ -11,12 +12,7 @@ import {
   TeamProducingStatsTotal,
 } from '@/ui/team/analysis/setup/type';
 import {groupProducingStats} from '@/ui/team/analysis/setup/utils';
-import {
-  TeamAnalysisDataProps,
-  TeamAnalysisSetup,
-  teamAnalysisSlotName,
-  TeamAnalysisSlotName,
-} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {toSum} from '@/utils/array';
 import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';

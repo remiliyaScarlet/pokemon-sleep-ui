@@ -14,14 +14,12 @@ import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
+import {TeamAnalysisMember, TeamAnalysisSetup, TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {TeamAnalysisSelectablePokemon} from '@/ui/team/analysis/selectable';
 import {
   TeamAnalysisDataProps,
-  TeamAnalysisMember,
   TeamAnalysisPokemonFilter,
-  TeamAnalysisSetup,
   TeamAnalysisSetupModifyingProps,
-  TeamAnalysisSlotName,
 } from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {showToast} from '@/utils/toast';

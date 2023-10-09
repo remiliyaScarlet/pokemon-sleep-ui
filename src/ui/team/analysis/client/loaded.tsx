@@ -3,12 +3,13 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
+import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilterUI} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
 import {TeamAnalysisCompDependentInput} from '@/ui/team/analysis/setup/team/input';
-import {TeamAnalysisDataProps, TeamAnalysisSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {generateEmptyTeam, getCurrentTeam} from '@/ui/team/analysis/utils';
 import {migrate} from '@/utils/migrate/main';
 import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';

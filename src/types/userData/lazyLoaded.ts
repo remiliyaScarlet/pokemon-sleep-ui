@@ -1,6 +1,6 @@
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 
 
 export type UserLazyLoadedContent = {

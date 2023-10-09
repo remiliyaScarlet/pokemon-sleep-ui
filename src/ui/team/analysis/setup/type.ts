@@ -1,7 +1,7 @@
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingRate, ProducingRate} from '@/types/game/producing/rate';
-import {TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {Indexable} from '@/utils/type';
 
 

@@ -4,12 +4,12 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
-  TeamAnalysisDataProps,
   TeamAnalysisMember,
   TeamAnalysisSingleTeam,
   teamAnalysisSlotName,
   TeamAnalysisSlotName,
-} from '@/ui/team/analysis/type';
+} from '@/types/teamAnalysis';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 

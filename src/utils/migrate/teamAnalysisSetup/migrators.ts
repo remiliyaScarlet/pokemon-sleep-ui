@@ -6,7 +6,7 @@ import {
   TeamAnalysisSetup,
   TeamAnalysisSingleTeam,
   teamAnalysisSlotName,
-} from '@/ui/team/analysis/type';
+} from '@/types/teamAnalysis';
 import {getDefaultTeamName} from '@/ui/team/analysis/utils';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';

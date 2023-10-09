@@ -8,7 +8,8 @@ import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {productionStatsPeriodI18nId} from '@/const/game/production';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {productionPeriod} from '@/types/game/producing/display';
-import {TeamAnalysisDataProps, TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 
 

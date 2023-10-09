@@ -11,8 +11,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageIconSizes} from '@/styles/image';
+import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelectorProps} from '@/ui/team/analysis/comp/type';
-import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
 import {getTeamName} from '@/ui/team/analysis/utils';
 
 

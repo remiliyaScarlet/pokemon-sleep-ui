@@ -3,9 +3,10 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {TeamAnalysisMember, TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {TeamAnalysisPokemon} from '@/ui/team/analysis/setup/pokemon/main';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps;

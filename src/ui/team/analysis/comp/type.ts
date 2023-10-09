@@ -1,4 +1,4 @@
-import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/ui/team/analysis/type';
+import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
 
 
 export type TeamAnalysisCompSelectorProps = {

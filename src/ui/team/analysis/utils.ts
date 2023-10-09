@@ -3,7 +3,7 @@ import {
   TeamAnalysisSetup,
   TeamAnalysisSingleTeam,
   TeamAnalysisSlotName,
-} from '@/ui/team/analysis/type';
+} from '@/types/teamAnalysis';
 
 
 type GetCurrentTeamOpts = {

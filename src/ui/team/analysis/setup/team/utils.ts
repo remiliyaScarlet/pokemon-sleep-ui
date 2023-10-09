@@ -1,5 +1,5 @@
 import {PokeInBox} from '@/types/game/pokebox';
-import {TeamAnalysisMember} from '@/ui/team/analysis/type';
+import {TeamAnalysisMember} from '@/types/teamAnalysis';
 
 
 export const toTeamAnalysisMember = ({

@@ -1,8 +1,8 @@
 import {PokemonInfo} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {TeamAnalysisMember} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
-import {TeamAnalysisMember} from '@/ui/team/analysis/type';
 
 
 type ToRatingRequestOpts = CalculatedUserSettings & {

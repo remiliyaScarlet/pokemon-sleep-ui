@@ -1,9 +1,9 @@
 import {PokeInBox} from '@/types/game/pokebox';
 import {SleepdexData} from '@/types/game/sleepdex';
+import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
-import {TeamAnalysisSetup} from '@/ui/team/analysis/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 

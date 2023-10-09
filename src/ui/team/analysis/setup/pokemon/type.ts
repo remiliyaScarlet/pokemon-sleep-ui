@@ -1,5 +1,6 @@
+import {TeamAnalysisMember, TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {TeamAnalysisFilledSlotProps} from '@/ui/team/analysis/setup/team/type';
-import {TeamAnalysisDataProps, TeamAnalysisMember, TeamAnalysisSlotName} from '@/ui/team/analysis/type';
+import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 
 export type TeamAnalysisPokemonProps = TeamAnalysisDataProps & TeamAnalysisFilledSlotProps & {
