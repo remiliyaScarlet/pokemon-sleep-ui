@@ -1,32 +1,69 @@
 import React from 'react';
 
-import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
+import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {InputBox} from '@/components/input/box';
+import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
+import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
-import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
+import {useFilteredPokeboxImporter} from '@/components/shared/pokebox/importer/filter';
+import {PokeboxImporterCommonProps, PokeInBoxForFilter} from '@/components/shared/pokebox/importer/type';
+import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
+import {pokemonInputType} from '@/components/shared/pokemon/input/type';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokeboxImporterCommonProps & {
   pokebox: PokeInBox[],
 };
 
-export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Props) => {
+export const PokeboxImporterView = ({
+  pokedexMap,
+  subSkillMap,
+  ingredientChainMap,
+  onPokeboxPicked,
+  pokebox,
+}: Props) => {
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
   const t3 = useTranslations('UI.Common');
+  const t4 = useTranslations('UI.InPage.Pokedex');
 
-  const [search, setSearch] = React.useState('');
+  const {
+    filter,
+    setFilter,
+    isIncluded,
+  } = useFilteredPokeboxImporter({
+    data: pokebox
+      .map(({pokemon, ...pokeInBox}): PokeInBoxForFilter | null => {
+        const pokemonInfo = pokedexMap[pokemon];
+
+        if (!pokemonInfo) {
+          return null;
+        }
+
+        return {
+          ...pokeInBox,
+          name: pokeInBox.name ?? t2(`PokemonName.${pokemon}`),
+          search: [t2(`PokemonName.${pokemon}`), pokeInBox.name].filter(isNotNullish),
+          pokemon: pokemonInfo,
+        };
+      })
+      .filter(isNotNullish),
+    ingredientChainMap,
+  });
+  const collapsible = useCollapsible();
 
   if (!pokebox.length) {
     return (
@@ -38,35 +75,42 @@ export const PokeboxImporterView = ({pokebox, subSkillMap, onPokeboxPicked}: Pro
     );
   }
 
-  const filteredPokeBox = pokebox
-    .map((pokeInBox) => ({
-      ...pokeInBox,
-      name: pokeInBox.name ?? t2(`PokemonName.${pokeInBox.pokemon}`),
-      search: `${t2(`PokemonName.${pokeInBox.pokemon}`)} ${pokeInBox.name ?? ''}`,
-    }))
-    .filter((pokeInBox) => {
-      if (!search) {
-        return true;
-      }
-
-      return pokeInBox.search.includes(search);
-    });
-
   return (
     <Flex className="gap-1.5">
-      <Flex direction="row" center className="gap-1.5">
-        <div className="h-6 w-6">
-          <MagnifyingGlassIcon/>
-        </div>
-        <InputBox
-          type="text"
-          value={search}
-          onChange={({target}) => setSearch(target.value)}
-          className="w-full"
-        />
-      </Flex>
-      <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
-        {filteredPokeBox.map(({search, name, isShiny, ...pokeInBox}) => (
+      <Collapsible state={collapsible} classNameForHeight="h-72 md:h-56" button={
+        <Flex direction="row" center className="gap-0.5">
+          <div className="h-6 w-6">
+            <FunnelIcon/>
+          </div>
+        </Flex>
+      }>
+        <Flex noFullWidth className="gap-1 pr-1">
+          <InputRowWithTitle title={t4('Info.Name')}>
+            <InputBox
+              type="text"
+              value={filter.name}
+              onChange={({target}) => setFilter((original) => ({
+                ...original,
+                name: target.value,
+              }))}
+            />
+          </InputRowWithTitle>
+          {pokemonInputType.map((type) => (
+            <PokemonFilter
+              key={type}
+              style={type === 'sleepType' ? 'highlight' : 'normal'}
+              type={type}
+              filterKey={type}
+              pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
+              filter={filter}
+              setFilter={setFilter}
+              ingredientChainMap={ingredientChainMap}
+            />
+          ))}
+        </Flex>
+      </Collapsible>
+      <Grid className="grid-cols-1 gap-1.5 md:grid-cols-2">
+        {pokebox.filter(({uuid}) => isIncluded[uuid]).map(({name, isShiny, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
             onClick={() => onPokeboxPicked({name, ...pokeInBox})}
