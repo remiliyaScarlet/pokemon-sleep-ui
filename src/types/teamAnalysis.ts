@@ -37,3 +37,8 @@ export type TeamAnalysisSetup = {
   config: TeamAnalysisConfig,
   comps: {[uuid in string]: TeamAnalysisComp},
 };
+
+export type TeamMemberIdData = {
+  uuid: string,
+  slotName: TeamAnalysisSlotName,
+};
