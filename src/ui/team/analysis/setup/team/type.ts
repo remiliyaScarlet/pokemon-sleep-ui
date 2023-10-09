@@ -1,7 +1,7 @@
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {TeamAnalysisMember, TeamAnalysisSlotName} from '@/types/teamAnalysis';
+import {TeamAnalysisComp, TeamAnalysisMember, TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {TeamProducingStatsSingle} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisSetupModifyingProps} from '@/ui/team/analysis/type';
@@ -9,6 +9,7 @@ import {TeamAnalysisSetupModifyingProps} from '@/ui/team/analysis/type';
 
 export type TeamAnalysisFilledProps = TeamAnalysisSetupModifyingProps & {
   showPokemon: (pokemon: PokemonInfo) => void,
+  currentTeam: TeamAnalysisComp,
   calculatedSettings: CalculatedUserSettings,
 };
 

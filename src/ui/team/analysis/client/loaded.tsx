@@ -85,6 +85,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
       <TeamAnalysisSetupView
         setup={setup}
         setSetup={setSetup}
+        currentTeam={currentTeam}
         {...props}
       />
     </>
