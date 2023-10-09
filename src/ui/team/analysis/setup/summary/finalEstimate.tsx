@@ -28,7 +28,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
 
     return {
       currentEnergy: 0,
-      endsAt: endsAt.toISOString().slice(0, 10),
+      endsAt: `${endsAt.toISOString().slice(0, 10)}T04:00`,
     };
   });
   const {currentEnergy, endsAt} = estimateInput;
@@ -36,11 +36,10 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
     currentEnergy +
     (
       toProducingRateOfPeriod({rate: energyRate, period: 'daily'}).energy *
-      (new Date(`${endsAt}T04:00`).getTime() - Date.now()) /
+      (new Date(endsAt).getTime() - Date.now()) /
       (durationOfDay * 1000)
     )
   );
-  const minDate = new Date(new Date().setDate(new Date().getDate() + 1));
 
   return (
     <Flex center className="gap-2">
@@ -51,8 +50,8 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
           </div>
           <InputBox
             id="endsAt"
-            type="date"
-            min={minDate.toISOString().slice(0, 10)}
+            type="datetime-local"
+            min={`${new Date().toISOString().slice(0, 10)}T00:00`}
             className="text-center"
             value={endsAt}
             onChange={({target}) => setEstimateInput((original) => ({
@@ -60,7 +59,6 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
               endsAt: target.value,
             }))}
           />
-          <div>(04:00)</div>
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
           <EnergyIcon alt={t('CurrentEnergy')} dimension="h-6 w-6"/>
