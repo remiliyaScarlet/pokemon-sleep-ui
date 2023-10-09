@@ -5,6 +5,11 @@ export type UserDataLoadingOpts = {
   type: 'teamAnalysis',
   opts?: never,
 } | {
+  type: 'teamAnalysisMember',
+  opts: {
+    teamMemberId: string,
+  },
+} | {
   type: 'pokebox',
   opts?: never,
 } | {

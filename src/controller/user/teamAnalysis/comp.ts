@@ -1,9 +1,9 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsArray} from '@/controller/common';
+import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {TeamAnalysisCompData} from '@/types/mongo/teamAnalysis';
-import {TeamAnalysisComp} from '@/types/teamAnalysis';
+import {TeamAnalysisComp, TeamAnalysisMember, TeamMemberIdData} from '@/types/teamAnalysis';
 
 
 const getCollection = async (): Promise<Collection<TeamAnalysisCompData>> => {
@@ -12,6 +12,16 @@ const getCollection = async (): Promise<Collection<TeamAnalysisCompData>> => {
   return client
     .db('user')
     .collection<TeamAnalysisCompData>('teamAnalysis/comp');
+};
+
+export const getTeamMemberById = async ({uuid, slotName}: TeamMemberIdData): Promise<TeamAnalysisMember | null> => {
+  const comp = await getSingleData(getCollection(), {uuid});
+
+  if (!comp) {
+    return null;
+  }
+
+  return comp.members[slotName];
 };
 
 export const getTeamAnalysisCompsOfUser = (userId: string): Promise<TeamAnalysisCompData[]> => (

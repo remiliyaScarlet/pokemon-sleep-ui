@@ -1,9 +1,10 @@
 import {getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
-import {getTeamAnalysisCompsOfUser} from '@/controller/user/teamAnalysis/comp';
+import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
+import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
 export const emptyLazyData: UserLazyLoadedData = {
@@ -31,6 +32,20 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     }
 
     return {config, comps} satisfies UserLazyLoadedData['teamAnalysis'];
+  }
+
+  if (type === 'teamAnalysisMember') {
+    const teamMemberId = extractTeamMemberId(opts.teamMemberId);
+    if (!teamMemberId) {
+      return undefined;
+    }
+
+    const member = await getTeamMemberById(teamMemberId);
+    if (!member) {
+      return undefined;
+    }
+
+    return member satisfies UserLazyLoadedData['teamAnalysisMember'];
   }
 
   if (type === 'pokebox') {
