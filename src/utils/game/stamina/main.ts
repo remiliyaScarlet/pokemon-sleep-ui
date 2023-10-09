@@ -32,7 +32,7 @@ const getDailyAverageStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): numb
     const prev = logs[i - 1];
     const curr = logs[i];
 
-    const blockEfficiency = prev.type === 'sleep' ? efficiencyInSleep : getEfficiency(prev.stamina.after);
+    const blockEfficiency = getEfficiency({type: prev.type, stamina: prev.stamina.after});
     const duration = curr.timing - prev.timing;
 
     sumOfWeightedDuration += blockEfficiency * duration;
