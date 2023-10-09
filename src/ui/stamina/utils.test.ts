@@ -10,26 +10,31 @@ describe('Stamina Analysis / Event Log Flattening', () => {
         type: 'wakeup',
         timing: 0,
         stamina: {before: 4, after: 100},
+        staminaUnderlying: {before: 4, after: 100},
       },
       {
         type: 'efficiencyBlock',
         timing: 12000,
         stamina: {before: 80, after: 80},
+        staminaUnderlying: {before: 80, after: 80},
       },
       {
         type: 'skillRecovery',
         timing: 19200,
         stamina: {before: 68, after: 86},
+        staminaUnderlying: {before: 68, after: 86},
       },
       {
         type: 'efficiencyBlock',
         timing: 22800,
         stamina: {before: 80, after: 80},
+        staminaUnderlying: {before: 80, after: 80},
       },
       {
         type: 'sleep',
         timing: 34200,
         stamina: {before: 61, after: 61},
+        staminaUnderlying: {before: 61, after: 61},
       },
     ]);
     expect(logs[0].type).toBe('wakeup');

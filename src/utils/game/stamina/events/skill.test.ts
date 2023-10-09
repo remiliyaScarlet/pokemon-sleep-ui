@@ -142,4 +142,121 @@ describe('Stamina Event Log (+Skill)', () => {
     expect(logs[3].stamina.before).toBe(49);
     expect(logs.length).toBe(4);
   });
+
+  it('is correct if the energy at the end of the day is 0', () => {
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 75600, // 21:00
+        end: 79200, // 22:00
+      },
+      secondary: null,
+    });
+
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 2,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(27600);
+    expect(logs[1].stamina.before).toBe(54);
+    expect(logs[1].stamina.after).toBe(63);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(55200);
+    expect(logs[2].stamina.before).toBe(17);
+    expect(logs[2].stamina.after).toBe(26);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(82800);
+    expect(logs[3].stamina.before).toBe(0);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct if the energy at the end of the day is low', () => {
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 61200, // 17:00
+        end: 79200, // 22:00
+      },
+      secondary: null,
+    });
+
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 2,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(22800);
+    expect(logs[1].stamina.before).toBe(62);
+    expect(logs[1].stamina.after).toBe(71);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(45600);
+    expect(logs[2].stamina.before).toBe(33);
+    expect(logs[2].stamina.after).toBe(42);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(68400);
+    expect(logs[3].stamina.before).toBe(4);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with secondary sleep happened at low energy', () => {
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 75600, // 21:00
+        end: 0, // 00:00
+      },
+      secondary: {
+        start: 68400, // 19:00
+        end: 72000, // 20:00
+      },
+    });
+
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 2,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(24000);
+    expect(logs[1].stamina.before).toBe(60);
+    expect(logs[1].stamina.after).toBe(69);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(48000);
+    expect(logs[2].stamina.before).toBe(29);
+    expect(logs[2].stamina.after).toBe(38);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(68400);
+    expect(logs[3].stamina.before).toBe(4);
+    expect(logs[4].type).toBe('wakeup');
+    expect(logs[4].timing).toBe(72000);
+    expect(logs[4].stamina.after).toBe(16);
+    expect(logs[5].type).toBe('sleep');
+    expect(logs[5].timing).toBe(75600);
+    expect(logs[5].stamina.before).toBe(10);
+    expect(logs.length).toBe(6);
+  });
 });

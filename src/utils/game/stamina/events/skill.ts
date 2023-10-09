@@ -2,7 +2,7 @@ import {StaminaCalcSkillRecoveryConfig, StaminaEventLog} from '@/types/game/prod
 import {SleepSessionInfo} from '@/types/game/sleep';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
-import {offsetEventLogStamina} from '@/utils/game/stamina/events/utils';
+import {offsetEventLogStamina, updateLogStaminaFromLast} from '@/utils/game/stamina/events/utils';
 
 
 type GetSkillRecoveryTimingsOpts = {
@@ -69,17 +69,30 @@ export const getLogsWithSkillRecovery = ({
         type: 'skillRecovery',
         timing: skillTimingHead,
         stamina: {
-          before: staminaBefore,
-          after: staminaBefore + amount,
+          before: staminaBefore.inGame,
+          after: staminaBefore.inGame + amount,
+        },
+        staminaUnderlying: {
+          before: staminaBefore.inGame,
+          after: staminaBefore.inGame + amount,
         },
       });
       skillUsedCount += 1;
       skillTimingHead = skillTimings[skillUsedCount];
     }
 
-    newLogs.push(offsetEventLogStamina({
-      log,
-      offset: skillUsedCount * amount,
+    // Using indexer to guarantee the last log is returned
+    // This shouldn't fail because `newLogs` already have something inside at the beginning
+    const lastLog = newLogs[newLogs.length - 1];
+
+    if (!skillUsedCount || lastLog.type !== 'skillRecovery') {
+      newLogs.push(offsetEventLogStamina({log, offset: skillUsedCount * amount}));
+      continue;
+    }
+
+    newLogs.push(updateLogStaminaFromLast({
+      source: log,
+      last: lastLog,
     }));
   }
 

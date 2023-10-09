@@ -1,11 +1,24 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
 
 
-type GetStaminaAfterDuration = {
+type GetStaminaAfterDurationOpts = {
   start: number,
   duration: number,
 };
 
-export const getStaminaAfterDuration = ({start, duration}: GetStaminaAfterDuration): number => {
-  return Math.max(0, start - (duration / staminaDepleteInterval));
+type StaminaAfterDurationReturn = {
+  inGame: number,
+  actual: number,
+};
+
+export const getStaminaAfterDuration = ({
+  start,
+  duration,
+}: GetStaminaAfterDurationOpts): StaminaAfterDurationReturn => {
+  const actual = start - (duration / staminaDepleteInterval);
+
+  return {
+    inGame: Math.max(0, actual),
+    actual,
+  };
 };

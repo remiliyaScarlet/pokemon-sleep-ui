@@ -19,7 +19,7 @@ export const getLogsWithEfficiencyBlock = ({logs}: GetLogsWithEfficiencyBlockOpt
       continue;
     }
 
-    for (const breakPoint of efficiencyBreakPoints) {
+    for (const breakPoint of [...efficiencyBreakPoints].sort((a, b) => b - a)) {
       if (breakPoint < curr.stamina.before) {
         break;
       }
@@ -32,6 +32,7 @@ export const getLogsWithEfficiencyBlock = ({logs}: GetLogsWithEfficiencyBlockOpt
         type: 'efficiencyBlock',
         timing: prev.timing + (prev.stamina.after - breakPoint) * staminaDepleteInterval,
         stamina: {before: breakPoint, after: breakPoint},
+        staminaUnderlying: {before: breakPoint, after: breakPoint},
       });
     }
 

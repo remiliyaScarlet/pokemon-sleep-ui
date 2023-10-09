@@ -2,6 +2,36 @@ import {StaminaEventLog} from '@/types/game/producing/stamina';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 
 
+type UpdateLogStaminaFromLastOpts = {
+  source: StaminaEventLog,
+  last: StaminaEventLog,
+};
+
+export const updateLogStaminaFromLast = ({source, last}: UpdateLogStaminaFromLastOpts): StaminaEventLog => {
+  const duration = source.timing - last.timing;
+
+  const stamina = getStaminaAfterDuration({
+    start: last.stamina.after,
+    duration,
+  });
+  const staminaUnderlying = getStaminaAfterDuration({
+    start: last.staminaUnderlying.after,
+    duration,
+  });
+
+  return {
+    ...source,
+    stamina: {
+      before: stamina.inGame,
+      after: stamina.inGame,
+    },
+    staminaUnderlying: {
+      before: staminaUnderlying.actual,
+      after: staminaUnderlying.actual,
+    },
+  };
+};
+
 type GenerateSleepEventFromLastOpts = {
   newLogs: StaminaEventLog[],
   sleepLog: StaminaEventLog,
@@ -9,18 +39,8 @@ type GenerateSleepEventFromLastOpts = {
 
 export const generateSleepEventFromLast = ({newLogs, sleepLog}: GenerateSleepEventFromLastOpts): StaminaEventLog => {
   const last = newLogs[newLogs.length - 1];
-  const sleepTiming = sleepLog.timing;
 
-  const stamina = getStaminaAfterDuration({
-    start: last.stamina.after,
-    duration: sleepTiming - last.timing,
-  });
-
-  return {
-    type: 'sleep',
-    timing: sleepTiming,
-    stamina: {before: stamina, after: stamina},
-  };
+  return updateLogStaminaFromLast({source: sleepLog, last});
 };
 
 type OffsetEventLogStaminaOpts = {
@@ -29,13 +49,17 @@ type OffsetEventLogStaminaOpts = {
 };
 
 export const offsetEventLogStamina = ({log, offset}: OffsetEventLogStaminaOpts): StaminaEventLog => {
-  const {before, after} = log.stamina;
+  const {staminaUnderlying} = log;
 
   return {
     ...log,
     stamina: {
-      before: before + offset,
-      after: after + offset,
+      before: Math.max(0, staminaUnderlying.before + offset),
+      after: Math.max(0, staminaUnderlying.after + offset),
+    },
+    staminaUnderlying: {
+      before: staminaUnderlying.before + offset,
+      after: staminaUnderlying.after + offset,
     },
   };
 };

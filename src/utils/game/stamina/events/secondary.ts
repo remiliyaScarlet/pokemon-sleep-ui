@@ -18,18 +18,31 @@ export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts
     start: newLogs[0].stamina.after,
     duration: secondary.adjustedTiming.start,
   });
-  const wakeupStamina = sleepStamina + secondary.recovery;
 
   newLogs.push(
     {
       type: 'sleep',
       timing: secondary.adjustedTiming.start,
-      stamina: {before: sleepStamina, after: wakeupStamina},
+      stamina: {
+        before: sleepStamina.inGame,
+        after: sleepStamina.inGame + secondary.recovery,
+      },
+      staminaUnderlying: {
+        before: sleepStamina.actual,
+        after: sleepStamina.actual + secondary.recovery,
+      },
     },
     {
       type: 'wakeup',
       timing: secondary.adjustedTiming.end,
-      stamina: {before: sleepStamina, after: wakeupStamina},
+      stamina: {
+        before: sleepStamina.inGame,
+        after: sleepStamina.inGame + secondary.recovery,
+      },
+      staminaUnderlying: {
+        before: sleepStamina.actual,
+        after: sleepStamina.actual + secondary.recovery,
+      },
     },
   );
 
