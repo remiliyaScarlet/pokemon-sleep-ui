@@ -1,4 +1,4 @@
-import {staminaDepleteInterval} from '@/const/game/stamina';
+import {staminaDepleteInterval, staminaRecoveryInterval} from '@/const/game/stamina';
 import {StaminaAtEvent, StaminaEventLog} from '@/types/game/producing/stamina';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 import {formatSeconds, rotateTime} from '@/utils/time';
@@ -49,23 +49,37 @@ export const toFlattenedStaminaEventLogs = (logs: StaminaEventLog[]): StaminaEve
   const originalFlattened = logs.flatMap(expandStaminaEventLog);
   const flattened: StaminaEventLogFlattened[] = [originalFlattened[0]];
 
-  console.log('logs', logs);
-  console.log(originalFlattened);
-
   for (let i = 1; i < originalFlattened.length; i++) {
     const curr = originalFlattened[i];
     let last = flattened.at(-1);
 
-    while (last && last.staminaUnderlying - curr.staminaUnderlying > 1) {
-      flattened.push({
-        type: null,
-        timing: last.timing + staminaDepleteInterval,
-        stamina: Math.max(0, last.stamina - 1),
-        staminaUnderlying: last.staminaUnderlying - 1,
-      });
+    while (last) {
+      let newLog: StaminaEventLogFlattened | undefined = undefined;
 
-      last = flattened.at(-1);
+      if (curr.staminaUnderlying - last.staminaUnderlying < -1) {
+        newLog = {
+          type: null,
+          timing: last.timing + staminaDepleteInterval,
+          stamina: Math.max(0, last.stamina - 1),
+          staminaUnderlying: last.staminaUnderlying - 1,
+        };
+      } else if (curr.staminaUnderlying - last.staminaUnderlying > 1 && curr.type === 'wakeup') {
+        newLog = {
+          // `type` can't be `null` as the efficiency will be incorrect
+          type: 'sleep',
+          timing: last.timing + staminaRecoveryInterval,
+          stamina: last.stamina + 1,
+          staminaUnderlying: last.staminaUnderlying + 1,
+        };
+      }
+
+      if (newLog) {
+        flattened.push(newLog);
+      }
+
+      last = newLog;
     }
+
     flattened.push(curr);
   }
 

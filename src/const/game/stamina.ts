@@ -7,7 +7,9 @@ export const staminaStartingDefault = 100;
 
 export const staminaDepleteInterval = 600;
 
-export const maxSleepDuration = 8.5 * 3600; // 8.5 hrs
+const maxSleepDuration = 8.5 * 3600; // 8.5 hrs
+
+export const staminaRecoveryInterval = maxSleepDuration / 100;
 
 export const staminaCalcStrategyI18nId: {
   [strategy in StaminaCalcSkillRecoveryStrategy]: I18nMessageKeysOfNamespace<'UI.Stamina.Strategy'>

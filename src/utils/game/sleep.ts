@@ -1,5 +1,5 @@
 import {durationOfDay} from '@/const/common';
-import {maxSleepDuration} from '@/const/game/stamina';
+import {staminaRecoveryInterval} from '@/const/game/stamina';
 import {StaminaCalcSleepSessionConfig} from '@/types/game/producing/stamina';
 import {SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
 import {rotateTime} from '@/utils/time';
@@ -11,7 +11,7 @@ export const getSleepSessionExtraInfo = (session: SleepSessionTimes): Omit<Sleep
 
   return {
     length,
-    recovery: Math.ceil(length / (maxSleepDuration / 100)),
+    recovery: Math.ceil(length / staminaRecoveryInterval),
   };
 };
 
