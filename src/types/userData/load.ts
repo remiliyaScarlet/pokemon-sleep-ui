@@ -2,7 +2,7 @@ import {PokemonId} from '@/types/game/pokemon';
 
 
 export type UserDataLoadingOpts = {
-  type: 'teamAnalysisSetup',
+  type: 'teamAnalysis',
   opts?: never,
 } | {
   type: 'pokebox',

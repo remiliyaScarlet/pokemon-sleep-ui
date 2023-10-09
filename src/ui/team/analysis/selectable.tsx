@@ -5,7 +5,7 @@ import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
   TeamAnalysisMember,
-  TeamAnalysisSingleTeam,
+  TeamAnalysisComp,
   teamAnalysisSlotName,
   TeamAnalysisSlotName,
 } from '@/types/teamAnalysis';
@@ -15,7 +15,7 @@ import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingre
 
 
 type Props = TeamAnalysisDataProps & {
-  team: TeamAnalysisSingleTeam,
+  team: TeamAnalysisComp,
   setMember: (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => void,
   isIncluded: FilterInclusionMap<PokemonId>,
   pokemonList: PokemonInfo[],

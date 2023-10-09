@@ -52,9 +52,9 @@ export const TeamAnalysisTeamView = (props: Props) => {
               disabled={!member}
               onClick={() => setSetup((original) => ({
                 ...original,
-                teams: {
-                  ...original.teams,
-                  [original.current]: getCurrentTeam({
+                comps: {
+                  ...original.comps,
+                  [original.config.current]: getCurrentTeam({
                     setup: original,
                     overrideSlot: slotName,
                     overrideMember: null,
@@ -81,9 +81,9 @@ export const TeamAnalysisTeamView = (props: Props) => {
                 {...props}
                 onPokeboxPicked={(member) => setSetup((original): TeamAnalysisSetup => ({
                   ...original,
-                  teams: {
-                    ...original.teams,
-                    [original.current]: getCurrentTeam({
+                  comps: {
+                    ...original.comps,
+                    [original.config.current]: getCurrentTeam({
                       setup: original,
                       overrideSlot: slotName,
                       overrideMember: toTeamAnalysisMember(member),

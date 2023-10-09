@@ -45,9 +45,9 @@ export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isInc
   const setMember = (slot: TeamAnalysisSlotName, member: TeamAnalysisMember) => {
     setSetup((original) => ({
       ...original,
-      teams: {
-        ...original.teams,
-        [original.current]: getCurrentTeam({
+      comps: {
+        ...original.comps,
+        [original.config.current]: getCurrentTeam({
           setup: original,
           overrideSlot: slot,
           overrideMember: member,

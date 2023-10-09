@@ -28,7 +28,7 @@ export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
 };
 
 export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {
-  preloadedSetup: UserLazyLoadedData['teamAnalysisSetup'] | null | undefined,
+  preloaded: UserLazyLoadedData['teamAnalysis'],
   maxEvolutionCount: number,
 };
 

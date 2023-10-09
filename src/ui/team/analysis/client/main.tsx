@@ -15,11 +15,11 @@ export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
 
   return (
     <UserDataLazyLoad
-      options={{type: 'teamAnalysisSetup'}}
+      options={{type: 'teamAnalysis'}}
       loadingText="Team"
       content={(data, session) => (
         <TeamAnalysisLoadedClient
-          preloadedSetup={data?.teamAnalysisSetup}
+          preloaded={data?.teamAnalysis}
           maxEvolutionCount={maxEvolutionCount}
           settings={session.data?.user.preloaded.settings}
           {...props}

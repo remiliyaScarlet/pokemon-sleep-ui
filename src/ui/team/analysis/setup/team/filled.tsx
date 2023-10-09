@@ -26,14 +26,14 @@ export const TeamAnalysisFilledSlot = (props: Props) => {
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
     setSetup((original) => ({
       ...original,
-      teams: {
-        ...original.teams,
-        [original.current]: {
-          ...original.teams[original.current],
+      comps: {
+        ...original.comps,
+        [original.config.current]: {
+          ...original.comps[original.config.current],
           members: {
-            ...original.teams[original.current].members,
+            ...original.comps[original.config.current].members,
             [slotName]: {
-              ...original.teams[original.current].members[slotName],
+              ...original.comps[original.config.current].members[slotName],
               ...update,
             },
           },

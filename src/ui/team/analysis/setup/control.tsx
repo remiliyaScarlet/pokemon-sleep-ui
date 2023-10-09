@@ -9,7 +9,7 @@ import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisComp} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';
 import {TeamAnalysisSetupModifyingProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam, getDefaultTeamName, getTeamName} from '@/ui/team/analysis/utils';
@@ -26,9 +26,13 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
   const currentTeam = getCurrentTeam({setup});
 
   const onSelect = (selected?: string) => {
+    // Not using `() => value` state updater because data should be taken from `setupSelector` instead
     setSetup({
       ...setupSelector.setup,
-      current: selected ?? setupSelector.setup.current,
+      config: {
+        ...setupSelector.setup.config,
+        current: selected ?? setupSelector.setup.config.current,
+      },
     });
     setSetupSelector((original) => ({
       ...original,
@@ -48,25 +52,25 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
           onPicked={onSelect}
           onDeleted={(deleted) => setSetupSelector((original) => {
             const setup = {...original.setup};
-            delete setup.teams[deleted];
+            delete setup.comps[deleted];
 
             return {show: true, setup};
           })}
           onAdded={(newTeam) => setSetupSelector((original) => cloneMerge(
             original,
-            {setup: {teams: {[newTeam.uuid]: newTeam}}},
+            {setup: {comps: {[newTeam.uuid]: newTeam}}},
           ))}
           onCopied={(sourceUuid) => setSetupSelector((original) => {
             const uuid = v4();
-            const newTeam: TeamAnalysisSingleTeam = {
-              ...cloneDeep(original.setup.teams[sourceUuid]),
+            const newTeam: TeamAnalysisComp = {
+              ...cloneDeep(original.setup.comps[sourceUuid]),
               uuid,
               name: getDefaultTeamName(uuid),
             };
 
             return cloneMerge(
               original,
-              {setup: {teams: {[uuid]: newTeam}}},
+              {setup: {comps: {[uuid]: newTeam}}},
             );
           })}
         />
@@ -85,7 +89,14 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
           </div>
         </Flex>
       </button>
-      <UserDataUploadButton opts={{type: 'teamAnalysisSetup', data: setup}}/>
+      <UserDataUploadButton
+        opts={{
+          type: 'teamAnalysis',
+          data: {
+            config: setup.config,
+            comps: Object.values(setup.comps),
+          },
+        }}/>
     </InputRow>
   );
 };

@@ -6,12 +6,12 @@ import {v4} from 'uuid';
 import {InputBox} from '@/components/input/box';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisComp} from '@/types/teamAnalysis';
 import {generateEmptyTeam, getTeamName} from '@/ui/team/analysis/utils';
 
 
 type Props = {
-  onAdded: (team: TeamAnalysisSingleTeam) => void,
+  onAdded: (team: TeamAnalysisComp) => void,
 };
 
 export const TeamAnalysisCompAddition = ({onAdded}: React.PropsWithChildren<Props>) => {

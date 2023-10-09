@@ -11,13 +11,13 @@ import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageIconSizes} from '@/styles/image';
-import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisSetup, TeamAnalysisComp} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelectorProps} from '@/ui/team/analysis/comp/type';
 import {getTeamName} from '@/ui/team/analysis/utils';
 
 
 type Props = TeamAnalysisCompSelectorProps & {
-  team: TeamAnalysisSingleTeam,
+  team: TeamAnalysisComp,
   onClick: () => void,
 };
 
@@ -29,11 +29,11 @@ export const TeamAnalysisCompSelection = ({
   team,
   onClick,
 }: Props) => {
-  const {current, teams} = setup;
+  const {config, comps} = setup;
 
   const t = useTranslations('Game');
 
-  const isCurrent = current === team.uuid;
+  const isCurrent = config.current === team.uuid;
 
   return (
     <Flex center direction="col" className={clsx(
@@ -48,8 +48,8 @@ export const TeamAnalysisCompSelection = ({
           className="w-full"
           onChange={({target}) => onUpdated({
             ...setup,
-            teams: {
-              ...teams,
+            comps: {
+              ...comps,
               [team.uuid]: {
                 ...team,
                 name: target.value,
@@ -61,7 +61,7 @@ export const TeamAnalysisCompSelection = ({
           <DocumentDuplicateIcon/>
         </button>
         {
-          current !== team.uuid &&
+          config.current !== team.uuid &&
           <button className="button-alert-bg h-7 w-7 rounded-lg p-1" onClick={() => onDeleted(team.uuid)}>
             <TrashIcon/>
           </button>

@@ -3,7 +3,7 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
-import {TeamAnalysisSetup} from '@/types/teamAnalysis';
+import {TeamAnalysisComp, TeamAnalysisConfig, TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserSettings} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilterUI} from '@/ui/team/analysis/input/main';
@@ -12,7 +12,8 @@ import {TeamAnalysisCompDependentInput} from '@/ui/team/analysis/setup/team/inpu
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {generateEmptyTeam, getCurrentTeam} from '@/ui/team/analysis/utils';
 import {migrate} from '@/utils/migrate/main';
-import {teamAnalysisSetupMigrators} from '@/utils/migrate/teamAnalysisSetup/migrators';
+import {teamAnalysisCompMigrators} from '@/utils/migrate/teamAnalysis/comp/migrators';
+import {teamAnalysisConfigMigrators} from '@/utils/migrate/teamAnalysis/config/migrators';
 import {DeepPartial, isNotNullish} from '@/utils/type';
 
 
@@ -23,35 +24,38 @@ type Props = TeamAnalysisDataProps & {
 export const TeamAnalysisLoadedClient = (props: Props) => {
   const {
     pokedexMap,
-    preloadedSetup,
-    ingredientChainMap,
+    preloaded,
   } = props;
   const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
 
-  const initialSetup = React.useMemo(() => {
+  const initialSetup = React.useMemo((): TeamAnalysisSetup => {
     // Migrate first for older data version
     // If the user is not logged in or new, they won't have `preloadedSetup` so they need an initial comp
-    // Therefore generate the initial comp for migration, then remove it if it's not needed
+    // Therefore generate the initial comp for migration, then ignore it if it's not needed
     const initialCompUuid = v4();
 
-    const migrated = migrate({
+    const config: TeamAnalysisConfig = migrate({
       original: {
         current: initialCompUuid,
-        teams: {
-          [initialCompUuid]: generateEmptyTeam(initialCompUuid),
-        },
-        version: 7,
+        version: 1,
       },
-      override: preloadedSetup ?? null,
-      migrators: teamAnalysisSetupMigrators,
-      migrateParams: {pokedex: pokedexMap, ingredientChainMap},
+      override: preloaded?.config ?? null,
+      migrators: teamAnalysisConfigMigrators,
+      migrateParams: {},
     });
 
-    if (migrated.current !== initialCompUuid) {
-      delete migrated.teams[initialCompUuid];
-    }
+    const compsToMigrate = preloaded?.comps ?? [generateEmptyTeam(initialCompUuid)];
+    const comps: TeamAnalysisComp[] = compsToMigrate.map((team) => migrate({
+      original: generateEmptyTeam(team.uuid),
+      override: team,
+      migrators: teamAnalysisCompMigrators,
+      migrateParams: {},
+    }));
 
-    return migrated;
+    return {
+      config,
+      comps: Object.fromEntries(comps.map((team) => [team.uuid, team])),
+    };
   }, []);
   const [setup, setSetup] = React.useState<TeamAnalysisSetup>(initialSetup);
   const currentTeam = getCurrentTeam({setup});

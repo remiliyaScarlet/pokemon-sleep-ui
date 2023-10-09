@@ -5,8 +5,9 @@ import {
   userDataPokeboxDisplay,
   userDataPokedex,
   userDataSettings,
-  userDataTeamAnalysisSetup,
 } from '@/controller/user/manager';
+import {updateTeamAnalysisComps} from '@/controller/user/teamAnalysis/comp';
+import {updateTeamAnalysisConfig} from '@/controller/user/teamAnalysis/config';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 
 
@@ -18,8 +19,13 @@ type UploadUserDataOpts = {
 export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   const {type, data} = opts;
 
-  if (type === 'teamAnalysisSetup') {
-    await userDataTeamAnalysisSetup.setData(userId, data);
+  if (type === 'teamAnalysis') {
+    const {config, comps} = data;
+
+    await Promise.all([
+      updateTeamAnalysisConfig({userId, config}),
+      updateTeamAnalysisComps({userId, comps}),
+    ]);
     return;
   }
 

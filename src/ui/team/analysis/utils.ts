@@ -1,9 +1,10 @@
 import {
   TeamAnalysisMember,
   TeamAnalysisSetup,
-  TeamAnalysisSingleTeam,
+  TeamAnalysisComp,
   TeamAnalysisSlotName,
 } from '@/types/teamAnalysis';
+import {teamAnalysisCompVersion} from '@/ui/team/analysis/const';
 
 
 type GetCurrentTeamOpts = {
@@ -16,10 +17,10 @@ type GetCurrentTeamOpts = {
   overrideMember?: never,
 });
 
-export const getCurrentTeam = ({setup, overrideSlot, overrideMember}: GetCurrentTeamOpts): TeamAnalysisSingleTeam => {
-  const {current, teams} = setup;
+export const getCurrentTeam = ({setup, overrideSlot, overrideMember}: GetCurrentTeamOpts): TeamAnalysisComp => {
+  const {config, comps} = setup;
 
-  const currentTeam = teams[current];
+  const currentTeam = comps[config.current];
 
   // Should not check `overrideMember` because it can be `null`, which is falsy
   if (!overrideSlot) {
@@ -39,11 +40,11 @@ export const getDefaultTeamName = (teamUuid: string): string => {
   return teamUuid.substring(0, 8);
 };
 
-export const getTeamName = (team: TeamAnalysisSingleTeam): string => {
+export const getTeamName = (team: TeamAnalysisComp): string => {
   return team.name || getDefaultTeamName(team.uuid);
 };
 
-export const generateEmptyTeam = (uuid: string): TeamAnalysisSingleTeam => {
+export const generateEmptyTeam = (uuid: string): TeamAnalysisComp => {
   return {
     uuid,
     name: getDefaultTeamName(uuid),
@@ -56,5 +57,6 @@ export const generateEmptyTeam = (uuid: string): TeamAnalysisSingleTeam => {
       D: null,
       E: null,
     },
+    version: teamAnalysisCompVersion,
   };
 };

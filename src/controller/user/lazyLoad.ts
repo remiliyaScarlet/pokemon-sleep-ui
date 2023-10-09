@@ -1,12 +1,13 @@
 import {getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
-import {userDataTeamAnalysisSetup} from '@/controller/user/manager';
+import {getTeamAnalysisCompsOfUser} from '@/controller/user/teamAnalysis/comp';
+import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
 
 export const emptyLazyData: UserLazyLoadedData = {
-  teamAnalysisSetup: undefined,
+  teamAnalysis: undefined,
   pokebox: undefined,
 };
 
@@ -19,8 +20,17 @@ type GetUserLazyDataOpts = {
 const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
   const {type, opts} = options;
 
-  if (type === 'teamAnalysisSetup') {
-    return (await userDataTeamAnalysisSetup.getData(userId))?.data satisfies UserLazyLoadedData['teamAnalysisSetup'];
+  if (type === 'teamAnalysis') {
+    const [config, comps] = await Promise.all([
+      getTeamAnalysisConfigOfUser(userId),
+      getTeamAnalysisCompsOfUser(userId),
+    ]);
+
+    if (!config) {
+      return undefined;
+    }
+
+    return {config, comps} satisfies UserLazyLoadedData['teamAnalysis'];
   }
 
   if (type === 'pokebox') {

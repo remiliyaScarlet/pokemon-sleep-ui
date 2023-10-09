@@ -1,4 +1,4 @@
-import {TeamAnalysisSetup, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisSetup, TeamAnalysisComp} from '@/types/teamAnalysis';
 
 
 export type TeamAnalysisCompSelectorProps = {
@@ -6,6 +6,6 @@ export type TeamAnalysisCompSelectorProps = {
   onPicked: (selectedUuid: string) => void,
   onUpdated: (updated: TeamAnalysisSetup) => void,
   onDeleted: (deletedUuid: string) => void,
-  onAdded: (newTeam: TeamAnalysisSingleTeam) => void,
+  onAdded: (newTeam: TeamAnalysisComp) => void,
   onCopied: (sourceUuid: string) => void,
 };

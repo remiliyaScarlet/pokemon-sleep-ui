@@ -1,6 +1,10 @@
-import {TeamAnalysisGlobalConfig, TeamAnalysisSingleTeam} from '@/types/teamAnalysis';
+import {TeamAnalysisConfig, TeamAnalysisComp} from '@/types/teamAnalysis';
 
 
-export type TeamAnalysisGlobalConfigData = TeamAnalysisGlobalConfig;
+export type TeamAnalysisDataCommonOpts = {
+  userId: string,
+};
 
-export type TeamAnalysisSingleTeamData = TeamAnalysisSingleTeam;
+export type TeamAnalysisConfigData = TeamAnalysisDataCommonOpts & TeamAnalysisConfig;
+
+export type TeamAnalysisCompData = TeamAnalysisDataCommonOpts & TeamAnalysisComp;

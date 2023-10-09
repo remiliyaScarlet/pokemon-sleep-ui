@@ -21,11 +21,11 @@ export type TeamAnalysisMember = {
   evolutionCount: number,
 };
 
-export type TeamAnalysisSetup = Migratable & {
+export type TeamAnalysisConfig = Migratable & {
   current: string,
 };
 
-export type TeamAnalysisSingleTeam = Migratable & {
+export type TeamAnalysisComp = Migratable & {
   uuid: string,
   name: string,
   snorlaxFavorite: SnorlaxFavorite,
@@ -34,6 +34,6 @@ export type TeamAnalysisSingleTeam = Migratable & {
 };
 
 export type TeamAnalysisSetup = {
-  global: TeamAnalysisGlobalConfig,
-  teams: {[uuid in string]: TeamAnalysisSingleTeam},
+  config: TeamAnalysisConfig,
+  comps: {[uuid in string]: TeamAnalysisComp},
 };

@@ -1,5 +1,4 @@
 import {migrateUserCookingData} from '@/controller/migrate/userCooking';
-import {runUserSettingsMigrations} from '@/controller/migrate/userSettings';
 import {
   userDataCooking,
   userDataPokeboxDisplay,
@@ -22,8 +21,6 @@ const getUserCookingData = async (userId: string) => {
 };
 
 export const getUserPreloadedData = async (userId: string): Promise<UserPreloadedData> => {
-  await runUserSettingsMigrations(userId);
-
   const [
     cooking,
     pokedex,
