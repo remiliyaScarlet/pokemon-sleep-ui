@@ -88,9 +88,7 @@ export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props
               {actionStatusIcon[status]}
             </div> :
             <>
-              <div className="relative h-9 w-9">
-                <ArrowTopRightOnSquareIcon/>
-              </div>
+              <ArrowTopRightOnSquareIcon className="h-9 w-9"/>
               <GenericIconLarger
                 src="/images/generic/pokemonbox.png"
                 alt={t('Team.Box.Title')}
