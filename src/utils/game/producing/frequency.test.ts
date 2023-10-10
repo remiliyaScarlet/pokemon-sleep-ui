@@ -1,7 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {testPokemonData} from '@/tests/data/pokemon';
-import {getFrequencyFromItemRateOfSessions, getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
+import {getBaseFrequencyFromPokemon, getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 
 
 describe('Pokemon Base Producing Frequency', () => {
