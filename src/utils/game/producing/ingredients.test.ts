@@ -10,14 +10,14 @@ import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 
 describe('Pokemon Ingredients Production', () => {
-  it('is correct for Absol of Cocoa x 2; Apple x 8', () => {
+  it('is correct using general test data', () => {
     const bonus = testBonus['1'];
     const rate = getIngredientProducingRates({
       level: 30,
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
-      ingredients: testIngredientProductions['1'],
+      ingredients: testIngredientProductions.general,
       ingredientMap: testIngredientMap,
     });
 
@@ -25,26 +25,189 @@ describe('Pokemon Ingredients Production', () => {
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
     const energyMultiplier = getEnergyMultiplier({produceType: 'ingredient', bonus});
 
-    const first = rate[0];
-    const second = rate[1];
+    expect(rate[0].id).toBe(5);
+    expect(rate[0].awake.id).toBe(5);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq * 2);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 8);
+    expect(rate[0].awake.energy).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 8 * 90 * energyMultiplier);
+    expect(rate[0].sleep.id).toBe(5);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq * 2);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 8);
+    expect(rate[0].sleep.energy).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 8 * 90 * energyMultiplier);
+    expect(rate[1].id).toBe(13);
+    expect(rate[1].awake.id).toBe(13);
+    expect(rate[1].awake.frequency).toBeCloseTo(awakeFreq * 2);
+    expect(rate[1].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 2);
+    expect(rate[1].awake.energy).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 2 * 151 * energyMultiplier);
+    expect(rate[1].sleep.id).toBe(13);
+    expect(rate[1].sleep.frequency).toBeCloseTo(sleepFreq * 2);
+    expect(rate[1].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 2);
+    expect(rate[1].sleep.energy).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 2 * 151 * energyMultiplier);
+  });
 
-    expect(first.id).toBe(5);
-    expect(first.awake.id).toBe(5);
-    expect(first.awake.frequency).toBeCloseTo(awakeFreq);
-    expect(first.awake.quantity).toBeCloseTo(durationOfDay / awakeFreq * (8 / 2));
-    expect(first.awake.energy).toBeCloseTo(durationOfDay / awakeFreq * (8 / 2) * 90 * energyMultiplier);
-    expect(first.sleep.id).toBe(5);
-    expect(first.sleep.frequency).toBeCloseTo(sleepFreq);
-    expect(first.sleep.quantity).toBeCloseTo(durationOfDay / sleepFreq * (8 / 2));
-    expect(first.sleep.energy).toBeCloseTo(durationOfDay / sleepFreq * (8 / 2) * 90 * energyMultiplier);
-    expect(second.id).toBe(13);
-    expect(second.awake.id).toBe(13);
-    expect(second.awake.frequency).toBeCloseTo(awakeFreq);
-    expect(second.awake.quantity).toBeCloseTo(durationOfDay / awakeFreq * (2 / 2));
-    expect(second.awake.energy).toBeCloseTo(durationOfDay / awakeFreq * (2 / 2) * 151 * energyMultiplier);
-    expect(second.sleep.id).toBe(13);
-    expect(second.sleep.frequency).toBeCloseTo(sleepFreq);
-    expect(second.sleep.quantity).toBeCloseTo(durationOfDay / sleepFreq * (2 / 2));
-    expect(second.sleep.energy).toBeCloseTo(durationOfDay / sleepFreq * (2 / 2) * 151 * energyMultiplier);
+  it('has correct frequency for Absol of (A1) Cocoa x 2', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 1,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a1,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(13);
+    expect(rate[0].awake.id).toBe(13);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / awakeFreq * 2);
+    expect(rate[0].sleep.id).toBe(13);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / sleepFreq * 2);
+  });
+
+  it('has correct frequency for Absol of (A2) Cocoa x 2; Cocoa x 5', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 30,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a2,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(13);
+    expect(rate[0].awake.id).toBe(13);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 7);
+    expect(rate[0].sleep.id).toBe(13);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 7);
+  });
+
+  it('has correct frequency for Absol of (A1B1) Cocoa x 2; Apple x 8', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 30,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a1b1,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(5);
+    expect(rate[0].awake.id).toBe(5);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq * 2);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 8);
+    expect(rate[0].sleep.id).toBe(5);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq * 2);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 8);
+    expect(rate[1].id).toBe(13);
+    expect(rate[1].awake.id).toBe(13);
+    expect(rate[1].awake.frequency).toBeCloseTo(awakeFreq * 2);
+    expect(rate[1].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 2) * 2);
+    expect(rate[1].sleep.id).toBe(13);
+    expect(rate[1].sleep.frequency).toBeCloseTo(sleepFreq * 2);
+    expect(rate[1].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 2) * 2);
+  });
+
+  it('has correct frequency for Absol of (A3) Cocoa x 2; Cocoa x 5; Cocoa x 7', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 30,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a3,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(13);
+    expect(rate[0].awake.id).toBe(13);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 14);
+    expect(rate[0].sleep.id).toBe(13);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 14);
+  });
+
+  it('has correct frequency for Absol of (A2B1) Cocoa x 2; Cocoa x 5; Apple x 12', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 30,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a2b1,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(5);
+    expect(rate[0].awake.id).toBe(5);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq * 3);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 12);
+    expect(rate[0].sleep.id).toBe(5);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq * 3);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 12);
+    expect(rate[1].id).toBe(13);
+    expect(rate[1].awake.id).toBe(13);
+    expect(rate[1].awake.frequency).toBeCloseTo(awakeFreq * (3 / 2));
+    expect(rate[1].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 7);
+    expect(rate[1].sleep.id).toBe(13);
+    expect(rate[1].sleep.frequency).toBeCloseTo(sleepFreq * (3 / 2));
+    expect(rate[1].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 7);
+  });
+
+  it('has correct frequency for Absol of (A1B1C1) Cocoa x 2; Apple x 8; Mushroom x 7', () => {
+    const bonus = testBonus['1'];
+    const rate = getIngredientProducingRates({
+      level: 30,
+      pokemon: testPokemonData.absol,
+      frequency: 2920.2,
+      bonus,
+      ingredients: testIngredientProductions.a1b1c1,
+      ingredientMap: testIngredientMap,
+    });
+
+    const awakeFreq = 2920.2 / bonus.stamina.awake;
+    const sleepFreq = 2920.2 / bonus.stamina.sleep;
+
+    expect(rate[0].id).toBe(2);
+    expect(rate[0].awake.id).toBe(2);
+    expect(rate[0].awake.frequency).toBeCloseTo(awakeFreq * 3);
+    expect(rate[0].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 7);
+    expect(rate[0].sleep.id).toBe(2);
+    expect(rate[0].sleep.frequency).toBeCloseTo(sleepFreq * 3);
+    expect(rate[0].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 7);
+    expect(rate[1].id).toBe(5);
+    expect(rate[1].awake.id).toBe(5);
+    expect(rate[1].awake.frequency).toBeCloseTo(awakeFreq * 3);
+    expect(rate[1].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 8);
+    expect(rate[1].sleep.id).toBe(5);
+    expect(rate[1].sleep.frequency).toBeCloseTo(sleepFreq * 3);
+    expect(rate[1].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 8);
+    expect(rate[2].id).toBe(13);
+    expect(rate[2].awake.id).toBe(13);
+    expect(rate[2].awake.frequency).toBeCloseTo(awakeFreq * 3);
+    expect(rate[2].awake.quantity).toBeCloseTo(durationOfDay / (awakeFreq * 3) * 2);
+    expect(rate[2].sleep.id).toBe(13);
+    expect(rate[2].sleep.frequency).toBeCloseTo(sleepFreq * 3);
+    expect(rate[2].sleep.quantity).toBeCloseTo(durationOfDay / (sleepFreq * 3) * 2);
   });
 });

@@ -1,5 +1,4 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
-import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {
   PokemonProducingRate,
   ProducingRate,
@@ -22,7 +21,6 @@ type GetProducingRateOfStatesOpts =
   GetItemRateOfSessionCommonOpts & {
     produceSplit: ProduceSplit,
     sleepStateSplit: ProducingSleepStateSplit,
-    ingredients: IngredientProduction[],
   };
 
 export const getProducingRateOfStates = (opts: GetProducingRateOfStatesOpts): ProducingRateOfStates => {
@@ -32,7 +30,6 @@ export const getProducingRateOfStates = (opts: GetProducingRateOfStatesOpts): Pr
     produceType,
     produceSplit,
     sleepStateSplit,
-    ingredients,
   } = opts;
   const {id} = rate;
 
@@ -43,7 +40,6 @@ export const getProducingRateOfStates = (opts: GetProducingRateOfStatesOpts): Pr
     period,
     frequency: getFrequencyFromItemRateOfSessions({
       ...opts,
-      multiplier: (produceType === 'ingredient' ? ingredients.length : 1),
       sleepStateSplit,
       produceItemSplit,
     }),
@@ -62,9 +58,15 @@ export const getProducingRateOfStates = (opts: GetProducingRateOfStatesOpts): Pr
   };
 };
 
-export const getMergedItemRateOfSessions = (
+type GetMergedItemRateOfSessionsOpts = {
   rates: ProducingRateOfItemOfSessions[],
-): ProducingRateOfItemOfSessions => {
+  frequencyMultiplier: number,
+};
+
+export const getMergedItemRateOfSessions = ({
+  rates,
+  frequencyMultiplier,
+}: GetMergedItemRateOfSessionsOpts): ProducingRateOfItemOfSessions => {
   const firstRate = rates.at(0);
 
   if (!firstRate) {
@@ -75,11 +77,13 @@ export const getMergedItemRateOfSessions = (
     id: firstRate.id,
     sleep: {
       ...firstRate.sleep,
+      frequency: firstRate.sleep.frequency * (frequencyMultiplier / rates.length),
       quantity: toSum(rates.map(({sleep}) => sleep.quantity)),
       energy: toSum(rates.map(({sleep}) => sleep.energy)),
     },
     awake: {
       ...firstRate.awake,
+      frequency: firstRate.awake.frequency * (frequencyMultiplier / rates.length),
       quantity: toSum(rates.map(({awake}) => awake.quantity)),
       energy: toSum(rates.map(({awake}) => awake.energy)),
     },

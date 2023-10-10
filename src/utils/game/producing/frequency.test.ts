@@ -23,7 +23,6 @@ describe('Item Rate of Sessions Frequency', () => {
     const {awake, sleepVacant, sleepFilled, equivalent} = getFrequencyFromItemRateOfSessions({
       produceType: 'berry',
       produceItemSplit: 0.8,
-      multiplier: 1,
       rate: {
         id: NaN, // Ignored
         awake: {
@@ -58,7 +57,6 @@ describe('Item Rate of Sessions Frequency', () => {
     const {awake, sleepVacant, sleepFilled, equivalent} = getFrequencyFromItemRateOfSessions({
       produceType: 'ingredient',
       produceItemSplit: 0.2,
-      multiplier: 1,
       rate: {
         id: NaN, // Ignored
         awake: {
@@ -87,40 +85,5 @@ describe('Item Rate of Sessions Frequency', () => {
     expect(sleepVacant).toBeCloseTo(12000);
     expect(sleepFilled).toBeCloseTo(Infinity);
     expect(equivalent).toBeCloseTo(9600);
-  });
-
-  it('applies multiplier', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getFrequencyFromItemRateOfSessions({
-      produceType: 'ingredient',
-      produceItemSplit: 0.2,
-      multiplier: 2,
-      rate: {
-        id: NaN, // Ignored
-        awake: {
-          id: NaN, // Ignored
-          period: 'daily',
-          frequency: 1600,
-          energy: NaN, // Ignored
-          quantity: NaN, // Ignored
-        },
-        sleep: {
-          id: NaN,
-          period: 'daily',
-          frequency: 2400, // Ignored
-          energy: NaN, // Ignored
-          quantity: NaN, // Ignored
-        },
-      },
-      sleepStateSplit: {
-        awake: 16 / 24,
-        sleepVacant: 6 / 24,
-        sleepFilled: 2 / 24,
-      },
-    });
-
-    expect(awake).toBeCloseTo(16000);
-    expect(sleepVacant).toBeCloseTo(24000);
-    expect(sleepFilled).toBeCloseTo(Infinity);
-    expect(equivalent).toBeCloseTo(19200);
   });
 });

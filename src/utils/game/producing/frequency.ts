@@ -56,18 +56,15 @@ export const getBaseFrequencyFromPokemon = ({
   });
 };
 
-type GetFrequencyFromItemRateOfSessionsOpts = Omit<GetSpecificItemRateOfSessionCommonOpts, 'period'> & {
-  multiplier: number,
-};
+type GetFrequencyFromItemRateOfSessionsOpts = Omit<GetSpecificItemRateOfSessionCommonOpts, 'period'>;
 
 export const getFrequencyFromItemRateOfSessions = ({
   rate,
   produceType,
   produceItemSplit,
   sleepStateSplit,
-  multiplier,
 }: GetFrequencyFromItemRateOfSessionsOpts): ProducingValueOfStates => {
-  multiplier /= produceItemSplit;
+  const multiplier = 1 / produceItemSplit;
 
   const awake = multiplier * rate.awake.frequency;
   const sleepVacant = multiplier * rate.sleep.frequency;

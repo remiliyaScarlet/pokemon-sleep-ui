@@ -14,6 +14,8 @@ export type GetIngredientProducingRatesOpts = ProducingRateCommonParams & {
   ingredientMap: IngredientMap,
 };
 
+// Note that `ingredients` does not care about `level`
+// Even if `level` is 1, if `ingredients` got 2 elements, it still calculates as if 2 ingredients are unlocked
 export const getIngredientProducingRates = ({
   level,
   pokemon,
@@ -35,7 +37,10 @@ export const getIngredientProducingRates = ({
     (item) => item.id,
   );
 
-  return Object.values(grouped).map((rates) => getMergedItemRateOfSessions(rates));
+  return Object.values(grouped).map((rates) => getMergedItemRateOfSessions({
+    rates,
+    frequencyMultiplier: ingredients.length,
+  }));
 };
 
 type GetEffectiveIngredientProductionsOpts = {
