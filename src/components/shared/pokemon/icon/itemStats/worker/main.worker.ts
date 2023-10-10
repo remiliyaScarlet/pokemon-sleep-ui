@@ -34,9 +34,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
         return null;
       }
 
-      const productions = [...generatePossibleIngredientProductions({level, chain})];
-
-      return productions
+      return [...generatePossibleIngredientProductions({level, chain})]
         .map((ingredients): PokemonItemStatsCalcResult => {
           const pokemonRate = getPokemonProducingRate({
             pokemon,
