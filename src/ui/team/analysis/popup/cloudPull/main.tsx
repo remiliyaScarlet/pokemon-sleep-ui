@@ -4,12 +4,16 @@ import CloudArrowDownIcon from '@heroicons/react/24/outline/CloudArrowDownIcon';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
-import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
+import {TeamAnalysisMember} from '@/types/teamAnalysis';
 
 
-export const TeamAnalysisCloudPull = ({onCloudPulled}: PokeboxImporterCommonProps) => {
+type Props = {
+  onCloudPulled: (member: TeamAnalysisMember) => void,
+};
+
+export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
   const [memberId, setMemberId] = React.useState('');
   const {actAsync, status} = useUserDataActor();
 

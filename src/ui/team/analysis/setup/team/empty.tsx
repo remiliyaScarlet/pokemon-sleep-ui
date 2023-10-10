@@ -9,11 +9,16 @@ import {Popup} from '@/components/popup';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
+import {TeamAnalysisMember} from '@/types/teamAnalysis';
 import {TeamAnalysisCloudPull} from '@/ui/team/analysis/popup/cloudPull/main';
 import {TeamAnalysisEmptySlotPopupType} from '@/ui/team/analysis/setup/team/type';
 
 
-export const TeamAnalysisEmptySlot = (props: PokeboxImporterCommonProps) => {
+type Props = PokeboxImporterCommonProps & {
+  onCloudPulled: (member: TeamAnalysisMember) => void,
+};
+
+export const TeamAnalysisEmptySlot = (props: Props) => {
   const [popup, setPopup] = React.useState<TeamAnalysisEmptySlotPopupType | null>(null);
   const {status} = useSession();
 
