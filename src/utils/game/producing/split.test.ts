@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
+import {defaultProducingParams} from '@/const/game/production';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 
 
@@ -7,6 +8,7 @@ describe('Pokemon Producing Split', () => {
   it('is correct', () => {
     const split = getProduceSplit({
       pokemonProducingParams: {
+        ...defaultProducingParams,
         pokemonId: 1,
         ingredientSplit: 0.25631,
       },

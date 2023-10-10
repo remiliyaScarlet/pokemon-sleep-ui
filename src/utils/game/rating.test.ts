@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
+import {defaultProducingParams} from '@/const/game/production';
 import {testBerryDataMap} from '@/tests/data/berry';
 import {testBonus} from '@/tests/data/bonus';
 import {testIngredientChainMap} from '@/tests/data/ingredient/chain';
@@ -20,6 +21,7 @@ describe('Rating', () => {
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
+        ...defaultProducingParams,
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
@@ -44,6 +46,7 @@ describe('Rating', () => {
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
+        ...defaultProducingParams,
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
@@ -68,6 +71,7 @@ describe('Rating', () => {
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
+        ...defaultProducingParams,
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
