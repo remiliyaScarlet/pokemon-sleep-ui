@@ -1,9 +1,12 @@
 import {Collection} from 'mongodb';
 
+import {teamAnalysisCompVersion} from '@/const/user/teamAnalysis';
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {TeamAnalysisCompData} from '@/types/mongo/teamAnalysis';
 import {TeamAnalysisComp, TeamAnalysisMember, TeamMemberIdData} from '@/types/teamAnalysis';
+import {migrate} from '@/utils/migrate/main';
+import {teamAnalysisCompMigrators} from '@/utils/migrate/teamAnalysis/comp/migrators';
 
 
 const getCollection = async (): Promise<Collection<TeamAnalysisCompData>> => {
@@ -17,11 +20,19 @@ const getCollection = async (): Promise<Collection<TeamAnalysisCompData>> => {
 export const getTeamMemberById = async ({uuid, slotName}: TeamMemberIdData): Promise<TeamAnalysisMember | null> => {
   const comp = await getSingleData(getCollection(), {uuid});
 
-  if (!comp) {
+  if (!comp || comp.version !== teamAnalysisCompVersion) {
     return null;
   }
 
-  return comp.members[slotName];
+  // Migrate to ensure the data structure is the latest
+  const migratedComp = migrate({
+    original: comp,
+    override: comp,
+    migrators: teamAnalysisCompMigrators,
+    migrateParams: {},
+  });
+
+  return migratedComp.members[slotName];
 };
 
 export const getTeamAnalysisCompsOfUser = (userId: string): Promise<TeamAnalysisCompData[]> => (
