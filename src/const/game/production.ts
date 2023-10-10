@@ -23,7 +23,13 @@ export const defaultHelperCount = 0;
 export const defaultSubSkillBonus = {};
 
 export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> = {
+  dataCount: NaN,
   ingredientSplit: 0.2,
+  skillValue: NaN,
+  confidence: {
+    ingredient: null,
+    skill: null,
+  },
 };
 
 export const defaultNeutralOpts: ProducingRateSingleParams = {

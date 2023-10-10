@@ -19,7 +19,7 @@ export const pokemonProducingParamsConfidenceLevel = [
 export type PokemonProducingParamsConfidenceLevel = typeof pokemonProducingParamsConfidenceLevel[number];
 
 export type PokemonProducingParamsConfidence = {
-  [key in PokemonProducingParamsType]: PokemonProducingParamsConfidenceLevel
+  [key in PokemonProducingParamsType]: PokemonProducingParamsConfidenceLevel | null
 };
 
 export type PokemonProducingParams = {
