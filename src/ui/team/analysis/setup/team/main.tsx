@@ -5,7 +5,12 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
-import {TeamAnalysisSetup, teamAnalysisSlotName} from '@/types/teamAnalysis';
+import {
+  TeamAnalysisMember,
+  TeamAnalysisSetup,
+  TeamAnalysisSlotName,
+  teamAnalysisSlotName,
+} from '@/types/teamAnalysis';
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
@@ -30,6 +35,21 @@ export const TeamAnalysisTeamView = (props: Props) => {
   } = props;
 
   const {members, snorlaxFavorite} = getCurrentTeam({setup});
+
+  const setMember = React.useCallback((
+    slotName: TeamAnalysisSlotName,
+    member: TeamAnalysisMember,
+  ) => setSetup((original): TeamAnalysisSetup => ({
+    ...original,
+    comps: {
+      ...original.comps,
+      [original.config.current]: getCurrentTeam({
+        setup: original,
+        overrideSlot: slotName,
+        overrideMember: member,
+      }),
+    },
+  })), [setSetup, getCurrentTeam]);
 
   return (
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-3 2xl:grid-cols-5">
@@ -79,17 +99,8 @@ export const TeamAnalysisTeamView = (props: Props) => {
               /> :
               <TeamAnalysisEmptySlot
                 {...props}
-                onPokeboxPicked={(member) => setSetup((original): TeamAnalysisSetup => ({
-                  ...original,
-                  comps: {
-                    ...original.comps,
-                    [original.config.current]: getCurrentTeam({
-                      setup: original,
-                      overrideSlot: slotName,
-                      overrideMember: toTeamAnalysisMember(member),
-                    }),
-                  },
-                }))}
+                onPokeboxPicked={(pokeInBox) => setMember(slotName, toTeamAnalysisMember(pokeInBox))}
+                onCloudPulled={(member) => setMember(slotName, member)}
               />}
           </Flex>
         );

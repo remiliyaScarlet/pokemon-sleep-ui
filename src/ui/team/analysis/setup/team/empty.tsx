@@ -1,31 +1,44 @@
 import React from 'react';
 
 import {InboxArrowDownIcon} from '@heroicons/react/24/outline';
+import CloudArrowDownIcon from '@heroicons/react/24/outline/CloudArrowDownIcon';
 import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
+import {Popup} from '@/components/popup';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
+import {TeamAnalysisCloudPull} from '@/ui/team/analysis/popup/cloudPull/main';
+import {TeamAnalysisEmptySlotPopupType} from '@/ui/team/analysis/setup/team/type';
 
 
 export const TeamAnalysisEmptySlot = (props: PokeboxImporterCommonProps) => {
-  const [show, setShow] = React.useState(false);
+  const [popup, setPopup] = React.useState<TeamAnalysisEmptySlotPopupType | null>(null);
   const {status} = useSession();
+
+  const buttonClass = 'enabled:button-clickable-bg disabled:button-disabled p-1 h-9 w-9';
+  const buttonDisabled = status !== 'authenticated';
 
   return (
     <Flex center className="gap-1.5">
-      <PokeboxImporter show={show} setShow={setShow} {...props}/>
+      <PokeboxImporter
+        show={popup === 'pokebox'}
+        setShow={(show) => setPopup(show ? 'pokebox' : null)}
+        {...props}
+      />
+      <Popup show={popup === 'cloudPull'} setShow={(show) => setPopup(show ? 'cloudPull' : null)}>
+        <TeamAnalysisCloudPull {...props}/>
+      </Popup>
       <UnavailableIcon/>
-      <button
-        className="enabled:button-clickable-bg disabled:button-disabled p-1"
-        onClick={() => setShow(true)}
-        disabled={status !== 'authenticated'}
-      >
-        <div className="h-7 w-7">
+      <Flex direction="row" center className="gap-1.5">
+        <button className={buttonClass} disabled={buttonDisabled} onClick={() => setPopup('pokebox')}>
           <InboxArrowDownIcon/>
-        </div>
-      </button>
+        </button>
+        <button className={buttonClass} disabled={buttonDisabled} onClick={() => setPopup('cloudPull')}>
+          <CloudArrowDownIcon/>
+        </button>
+      </Flex>
     </Flex>
   );
 };

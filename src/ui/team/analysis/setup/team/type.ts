@@ -21,3 +21,5 @@ export type TeamAnalysisFilledSlotProps = TeamAnalysisFilledProps & {
   pokemonProducingParams: PokemonProducingParams,
   stats: TeamProducingStatsSingle,
 };
+
+export type TeamAnalysisEmptySlotPopupType = 'pokebox' | 'cloudPull';

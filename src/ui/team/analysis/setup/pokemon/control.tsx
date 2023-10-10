@@ -2,16 +2,19 @@ import React from 'react';
 
 import ArrowTopRightOnSquareIcon from '@heroicons/react/24/outline/ArrowTopRightOnSquareIcon';
 import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
+import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
-import {useTranslations} from 'next-intl';
+import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
 
+import {Copyable} from '@/components/layout/copyable/main';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIconLarger} from '@/components/shared/icon/common/larger';
+import {Popup} from '@/components/popup';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toPokeInBox, toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
+import {getTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
 type Props = TeamAnalysisPokemonProps & {
@@ -23,6 +26,8 @@ type Props = TeamAnalysisPokemonProps & {
 export const TeamAnalysisPokemonControl = (props: Props) => {
   const {
     member,
+    currentTeam,
+    slotName,
     pokemon,
     snorlaxFavorite,
     calculatedSettings,
@@ -31,24 +36,17 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
     onDetailsClick,
   } = props;
 
-  const t = useTranslations('UI.Metadata');
+  const [showId, setShowId] = React.useState(false);
   const {act, status} = useUserDataActor();
 
   const commonButtonStyle = 'button-clickable-bg h-7 w-7 p-1';
 
   return (
     <Flex direction="row" className="items-center justify-between">
-      <Flex direction="row" noFullWidth>
-        <button className="button-clickable-bg group p-1" onClick={() => ratingControl.sendRequest(toRatingSetup({
-          member,
-          pokemon,
-          snorlaxFavorite,
-          ...calculatedSettings,
-        }))}>
-          <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')} dimension="h-5 w-5"/>
-        </button>
-      </Flex>
-      <Flex direction="row" noFullWidth className="gap-1.5">
+      <Popup show={showId} setShow={setShowId}>
+        <Copyable content={getTeamMemberId({uuid: currentTeam.uuid, slotName})}/>
+      </Popup>
+      <Flex direction="row" noFullWidth className="gap-1">
         <button className={commonButtonStyle} onClick={() => {
           if (!act) {
             return;
@@ -63,6 +61,19 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
           });
         }}>
           {status !== 'waiting' ? actionStatusIcon[status] : <ArrowTopRightOnSquareIcon/>}
+        </button>
+        <button className={commonButtonStyle} onClick={() => setShowId(true)}>
+          <ShareIcon/>
+        </button>
+      </Flex>
+      <Flex direction="row" noFullWidth className="gap-1">
+        <button className={commonButtonStyle} onClick={() => ratingControl.sendRequest(toRatingSetup({
+          member,
+          pokemon,
+          snorlaxFavorite,
+          ...calculatedSettings,
+        }))}>
+          <MagnifyingGlassIcon/>
         </button>
         <button className={commonButtonStyle} onClick={onDetailsClick}>
           <ChartBarIcon/>
