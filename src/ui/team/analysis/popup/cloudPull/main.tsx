@@ -4,6 +4,7 @@ import CloudArrowDownIcon from '@heroicons/react/24/outline/CloudArrowDownIcon';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
+import {FlexForm} from '@/components/layout/flex/form';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
@@ -22,7 +23,7 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
   }
 
   return (
-    <Flex className="gap-1.5 sm:w-96">
+    <FlexForm className="gap-1.5 sm:w-96">
       <Flex>
         <InputBox
           type="text"
@@ -31,7 +32,7 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
         />
       </Flex>
       <Flex className="items-end">
-        <button className="button-clickable-bg h-9 w-9 p-1" onClick={async () => {
+        <button type="submit" className="button-clickable-bg h-9 w-9 p-1" onClick={async () => {
           const updated = await actAsync({
             action: 'load',
             options: {
@@ -58,6 +59,6 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
           {status !== 'waiting' ? actionStatusIcon[status] : <CloudArrowDownIcon/>}
         </button>
       </Flex>
-    </Flex>
+    </FlexForm>
   );
 };
