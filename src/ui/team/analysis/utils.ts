@@ -1,5 +1,5 @@
+import {teamAnalysisCompVersion} from '@/const/user/teamAnalysis';
 import {TeamAnalysisComp, TeamAnalysisMember, TeamAnalysisSetup, TeamAnalysisSlotName} from '@/types/teamAnalysis';
-import {teamAnalysisCompVersion} from '@/ui/team/analysis/const';
 
 
 type GetCurrentTeamOpts = {
