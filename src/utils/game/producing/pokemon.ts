@@ -22,9 +22,10 @@ type GetPokemonProducingRateOpts =
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
   ProducingRateSingleParams & {
     pokemonProducingParams: PokemonProducingParams,
+    sleepDurations: number[],
     period?: ProductionPeriod,
     evolutionCount?: number,
-    sleepDurations: number[],
+    noCap?: boolean,
   };
 
 export const getPokemonProducingRate = ({

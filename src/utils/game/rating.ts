@@ -35,6 +35,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   const berryData = berryDataMap[pokemon.berry.id];
   const currentProductions = getEffectiveIngredientProductions({level, ingredients});
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
+  const noCap = true;
 
   const currentRate = getPokemonProducingRate({
     ...opts,
@@ -42,6 +43,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     berryData,
     ingredients: currentProductions,
     ...getProducingRateSingleParams(opts),
+    noCap,
   });
   const currentDaily = getDailyEnergyOfRate(currentRate);
   const baseDaily = getDailyEnergyOfRate(getPokemonProducingRate({
@@ -57,6 +59,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
       nature: null,
       subSkillMap,
     }),
+    noCap,
   }));
 
   const natureIds = natureData.map(({id}) => id);
@@ -82,6 +85,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
             nature: natureId,
             subSkillMap,
           }),
+          noCap,
         }));
         if (dailyOfPossibility > currentDaily) {
           rank++;

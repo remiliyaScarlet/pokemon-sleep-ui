@@ -15,6 +15,7 @@ type GetBaseFrequencyOpts = {
   natureId: NatureId | null,
   subSkillBonusRates: number[],
   helperCount: number,
+  noCap?: boolean,
 };
 
 const getBaseFrequency = ({
@@ -23,37 +24,35 @@ const getBaseFrequency = ({
   natureId,
   subSkillBonusRates,
   helperCount,
+  noCap,
 }: GetBaseFrequencyOpts) => {
   frequency *= (1 - (level - 1) * 0.002);
   frequency *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
   // https://x.com/emuptea/status/1711238322780266825
   // 0.35 is the mandatory cap from the officials
-  frequency *= (1 - Math.min(0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
+  // -- No Cap is used in rating, because rating applies 5 stacks of helper count, which won't really happen in game
+  frequency *= (1 - Math.min(noCap ? Infinity : 0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
 
   return frequency;
 };
 
-export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCount' | 'natureId'> & {
+export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCount' | 'natureId' | 'noCap'> & {
   level: number,
   subSkillBonus: GroupedSubSkillBonus,
   pokemon: PokemonInfo,
 };
 
 export const getBaseFrequencyFromPokemon = ({
-  level,
   subSkillBonus,
   pokemon,
-  helperCount,
-  natureId,
+  ...opts
 }: GetFrequencyFromPokemonOpts): number => {
   const {stats} = pokemon;
 
   return getBaseFrequency({
-    level,
     frequency: stats.frequency,
     subSkillBonusRates: getSubSkillBonusValue(subSkillBonus, 'frequency'),
-    helperCount,
-    natureId,
+    ...opts,
   });
 };
 
