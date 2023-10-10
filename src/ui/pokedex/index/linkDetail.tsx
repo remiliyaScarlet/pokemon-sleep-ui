@@ -13,6 +13,7 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc/main';
+import {isPokedexSortExclusion} from '@/components/shared/pokemon/sorter/utils';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
@@ -235,7 +236,7 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'dateAdded' || display === 'level') {
+  if (isPokedexSortExclusion(display)) {
     return <></>;
   }
 

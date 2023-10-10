@@ -8,10 +8,16 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
-export const pokemonSortType = [
-  'id',
-  'level',
+export const pokedexSortExclusion = [
   'dateAdded',
+  'level',
+] as const;
+
+export type PokedexSortExclusion = typeof pokedexSortExclusion[number];
+
+export const pokemonSortType = [
+  ...pokedexSortExclusion,
+  'id',
   'berryEnergy',
   'berryCount',
   'ingredientEnergy',
