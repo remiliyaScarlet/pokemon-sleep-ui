@@ -2,6 +2,11 @@ import {IngredientMap} from '@/types/game/ingredient';
 
 
 export const testIngredientMap: IngredientMap = {
+  2: {
+    id: 2,
+    price: 7,
+    energy: 167,
+  },
   5: {
     id: 5,
     price: 4,
