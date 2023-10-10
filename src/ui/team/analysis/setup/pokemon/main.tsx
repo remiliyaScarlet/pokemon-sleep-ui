@@ -88,7 +88,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
       <Flex center className="gap-1">
         <PokemonNatureIndicator nature={nature}/>
         <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
-        <HorizontalSplitter/>
+        <HorizontalSplitter className="w-full"/>
         <TeamAnalysisPokemonProduction {...props}/>
       </Flex>
     </Flex>
