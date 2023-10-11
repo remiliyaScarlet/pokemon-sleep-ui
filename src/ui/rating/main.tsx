@@ -55,7 +55,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     subSkillMap,
     mapMeta,
     pokemonMaxLevel,
-    preloadSettings: createUserSettings(session?.user.preloaded.settings),
+    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
     ocrTranslations,
   };
 

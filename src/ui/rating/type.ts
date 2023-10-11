@@ -20,7 +20,7 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
   subSkillMap: SubSkillMap,
   mapMeta: FieldMetaMap,
   pokemonMaxLevel: number,
-  preloadSettings: UserSettings,
+  preloadedSettings: UserSettings,
   ocrTranslations: OcrTranslationsForPokemonInfo,
 };
 

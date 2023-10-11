@@ -24,13 +24,13 @@ export const RatingClient = (props: RatingServerDataProps) => {
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
-    preloadSettings,
+    preloadedSettings,
   } = props;
   const [initialSetup, setInitialSetup] = React.useState<RatingSetupInputs>();
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
   const calculatedSettings = useUserSettings({
-    server: preloadSettings,
+    server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });
 
