@@ -53,10 +53,10 @@ export const PokemonExpCalculatorInputUI = ({
           .map(({pokemon}) => pokedexMap[pokemon])
           .filter(isNotNullish)}
         isActive={(id) => id === pokemon}
-        onClick={(pokemon) => setFilter((original) => ({
+        onClick={({id}) => setFilter((original) => ({
           ...original,
-          pokemon,
-        }))}
+          pokemon: id,
+        } satisfies PokemonExpCalculatorInput))}
       >
         {(getClassName) => (
           <button className={getClassName(pokemon === null)} onClick={() => setFilter((original) => ({

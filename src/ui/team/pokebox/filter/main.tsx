@@ -76,7 +76,9 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           </div>
         </Flex>
       }>
-        <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
+        <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(pokemon) => {
+          const {id} = pokemon;
+
           showToast({content: (
             <Flex direction="row" className="gap-1.5">
               <div className="relative h-9 w-9">

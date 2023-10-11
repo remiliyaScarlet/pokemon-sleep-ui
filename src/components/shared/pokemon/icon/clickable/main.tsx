@@ -12,7 +12,7 @@ import {Dimension} from '@/types/style';
 
 type Props = {
   pokemonList: PokemonInfo[],
-  onClick?: (id: PokemonId) => void,
+  onClick?: (pokemon: PokemonInfo) => void,
   isActive?: (id: PokemonId) => boolean,
   dimension?: Dimension,
   children?: (getClassName: (active: boolean) => string) => React.ReactNode,
@@ -31,7 +31,7 @@ export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension
 
         if (onClick) {
           return (
-            <button key={id ?? NaN} onClick={() => onClick(id)} className={className}>
+            <button key={id ?? NaN} onClick={() => onClick(pokemon)} className={className}>
               <PokemonClickableIconImage pokemon={pokemon} dimension={dimension}/>
             </button>
           );

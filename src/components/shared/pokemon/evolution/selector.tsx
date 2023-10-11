@@ -21,7 +21,7 @@ export const PokemonEvolutionSelector = ({pokemon, pokedex, onClick}: Props) => 
   return (
     <PokemonClickableIcons
       pokemonList={relatedPokemon}
-      onClick={onClick}
+      onClick={({id}) => onClick(id)}
       isActive={(id) => id === pokemon.id}
     />
   );

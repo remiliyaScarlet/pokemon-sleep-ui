@@ -26,7 +26,6 @@ export const RatingPokemonPicker = ({
   onPokemonPicked,
   collapsibleState,
   isIncluded,
-  pokedexMap,
 }: Props) => {
   const t = useTranslations('Game');
 
@@ -39,12 +38,8 @@ export const RatingPokemonPicker = ({
         </div>
       </Flex>
     }>
-      <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(id) => {
-        const pokemon = pokedexMap[id];
-
-        if (!pokemon) {
-          return;
-        }
+      <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(pokemon) => {
+        const {id} = pokemon;
 
         showToast({content: (
           <Flex direction="row" className="gap-1.5">

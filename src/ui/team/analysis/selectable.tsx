@@ -26,10 +26,9 @@ export const TeamAnalysisSelectablePokemon = ({
   setMember,
   isIncluded,
   pokemonList,
-  pokedexMap,
   ingredientChainMap,
 }: Props) => {
-  const putOnTeam = (id: PokemonId) => {
+  const putOnTeam = (pokemon: PokemonInfo) => {
     let slotToInsert: TeamAnalysisSlotName | null = null;
 
     for (const slotName of teamAnalysisSlotName) {
@@ -40,17 +39,12 @@ export const TeamAnalysisSelectablePokemon = ({
       break;
     }
 
-    const pokemon = pokedexMap[id];
-    if (!pokemon) {
-      return;
-    }
-
     const chain = ingredientChainMap[pokemon.ingredientChain];
 
     setMember(
       slotToInsert ?? 'E',
       {
-        pokemonId: id,
+        pokemonId: pokemon.id,
         level: 1,
         nature: null,
         subSkill: {},
