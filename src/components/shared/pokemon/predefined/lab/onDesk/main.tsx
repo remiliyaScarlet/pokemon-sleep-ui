@@ -14,18 +14,19 @@ import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {PokemonOnDeskExportButton} from '@/components/shared/pokemon/predefined/lab/onDesk/export';
+import {PokemonOnDeskDataProps, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {RatingSetupExportButton} from '@/ui/rating/setup/export';
-import {RatingDataProps, RatingSetupInputs} from '@/ui/rating/type';
 
 
-type Props = RatingDataProps & {
-  initialSetup: RatingSetupInputs,
-  onInitiate: (setup: RatingSetupInputs) => void,
+export type PokemonOnDeskProps = PokemonOnDeskDataProps & {
+  initialSetup: PokemonOnDeskState,
+  onRun: (setup: PokemonOnDeskState) => void,
+  immediateUpdate?: boolean,
 };
 
-export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
+export const PokemonOnDesk = React.forwardRef<HTMLDivElement, PokemonOnDeskProps>(({
   ingredientChainMap,
   subSkillMap,
   mapMeta,
@@ -34,12 +35,13 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
   pokemonList,
   maxEvolutionCount,
   initialSetup,
-  onInitiate,
+  onRun,
+  immediateUpdate,
 }, ref) => {
   const [setup, setSetup] = React.useState(initialSetup);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
-  const t = useTranslations('UI.Metadata');
+  const t = useTranslations('UI.Metadata.Pokedex');
   const t2 = useTranslations('Game.PokemonName');
 
   const {pokemon} = setup;
@@ -50,7 +52,13 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
     evolutionCount,
   } = setup;
 
+  // This allows this component to trigger an update if `initialSetup` is changed
   React.useEffect(() => setSetup(initialSetup), [initialSetup]);
+  React.useEffect(() => {
+    if (immediateUpdate) {
+      onRun(setup);
+    }
+  }, [setup]);
 
   return (
     <Flex ref={ref} direction="col" center className="relative gap-1.5">
@@ -59,7 +67,7 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
         className="button-clickable group absolute left-1 top-1 h-8 w-8 rounded-full"
         onClick={() => showPokemon(pokemon)}
       >
-        <GenericPokeballIcon alt={t('Pokedex.Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
+        <GenericPokeballIcon alt={t('Page.Title', {name: t2(pokemon.id.toString())})} noWrap/>
       </button>
       <PokemonNameBig pokemon={pokemon}/>
       <div className="relative h-48 w-48">
@@ -121,19 +129,22 @@ export const RatingSetup = React.forwardRef<HTMLDivElement, Props>(({
           subSkillMap={subSkillMap}
           pokemonIdOverride={pokemon.id}
         />
-        <button onClick={() => onInitiate(setup)} className={clsx(
-          'button-base button-bg-hover w-full p-1',
-          'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
-        )}>
-          <Flex center>
-            <div className="h-9 w-9">
-              <BeakerIcon/>
-            </div>
-          </Flex>
-        </button>
-        <RatingSetupExportButton setup={setup} pokemon={setup.pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
+        {
+          !immediateUpdate &&
+          <button onClick={() => onRun(setup)} className={clsx(
+            'button-base button-bg-hover w-full p-1',
+            'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
+          )}>
+            <Flex center>
+              <div className="h-9 w-9">
+                <BeakerIcon/>
+              </div>
+            </Flex>
+          </button>
+        }
+        <PokemonOnDeskExportButton setup={setup} pokemon={setup.pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
       </Flex>
     </Flex>
   );
 });
-RatingSetup.displayName = 'RatingSetup';
+PokemonOnDesk.displayName = 'PokemonLab';

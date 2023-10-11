@@ -4,17 +4,12 @@ import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon';
 
 import {FlexButton} from '@/components/layout/flex/button';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
+import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokeInBox} from '@/types/game/pokebox';
-import {PokedexMap} from '@/types/game/pokemon';
-import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
-import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {Dimension} from '@/types/style';
 
 
-type Props = {
-  pokedexMap: PokedexMap,
-  subSkillMap: SubSkillMap,
-  ingredientChainMap: IngredientChainMap,
+type Props = Omit<PokeboxImporterCommonProps, 'onPokeboxPicked'> & {
   onPokeboxPicked: (pokeInBox: PokeInBox) => void,
   noFullWidth?: boolean,
   dimension?: Dimension,

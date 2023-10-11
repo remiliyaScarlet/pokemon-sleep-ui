@@ -12,12 +12,12 @@ import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/p
 
 export const PokemonComplexFilter = (props: PokemonComplexFilterCommonProps) => {
   const {
+    ingredientChainMap,
     pokemonList,
     pokedexMap,
-    ingredientChainMap,
     subSkillMap,
-    onPokemonPicked,
     ocrTranslations,
+    onPokemonPicked,
   } = props;
 
   const {filter, setFilter, isIncluded} = usePokemonComplexPickerFilter({

@@ -8,20 +8,20 @@ import {Flex} from '@/components/layout/flex/common';
 import {Popup} from '@/components/popup';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
+import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
+import {toPokeInBox} from '@/components/shared/pokemon/predefined/lab/onDesk/utils';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {toPokeInBox} from '@/ui/rating/setup/utils';
-import {RatingSetupInputs} from '@/ui/rating/type';
 
 
 type Props = {
-  setup: RatingSetupInputs,
+  setup: PokemonOnDeskState,
   pokemon: PokemonInfo,
   pokemonMaxLevel: number,
 };
 
-export const RatingSetupExportButton = ({setup, pokemon, pokemonMaxLevel}: Props) => {
+export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Props) => {
   const [level, setLevel] = React.useState(1);
   const [name, setName] = React.useState<string | null>(null);
   const [show, setShow] = React.useState(false);
