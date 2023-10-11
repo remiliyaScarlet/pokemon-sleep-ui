@@ -8,7 +8,7 @@ import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
-import {generateRatingInputs, toRatingRequest} from '@/ui/rating/utils';
+import {toRatingRequest} from '@/ui/rating/utils';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {isNotNullish} from '@/utils/type';
@@ -18,7 +18,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const {
     pokedexMap,
     pokemonProducingParamsMap,
-    ingredientChainMap,
     preloadedSettings,
   } = props;
   const [request, setRequest] = React.useState<RatingRequest>();
@@ -61,13 +60,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
         scrollToResult();
         setRequest(toRatingRequest({setup, calculatedSettings}));
       }}
-      getDeskOnPokemonPicked={({pokemon, ...opts}) => generateRatingInputs({
-        ...opts,
-        ...calculatedSettings,
-        pokemon,
-        chain: ingredientChainMap[pokemon.ingredientChain],
-        ingredientChainMap,
-      })}
       renderResult={({pokemon}) => (
         <RatingResult
           ref={resultRef}
