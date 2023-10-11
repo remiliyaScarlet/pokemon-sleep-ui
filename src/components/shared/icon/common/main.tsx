@@ -7,8 +7,11 @@ import {GenericIconCommonProps} from '@/components/shared/icon/common/type';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: GenericIconCommonProps) => {
-  const imageClassName = className ?? (noInvert ? '' : 'invert-hoverable');
+export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert, noShrink}: GenericIconCommonProps) => {
+  const imageClassName = className ?? clsx(
+    !noInvert && 'invert-hoverable',
+    noShrink && 'shrink-0',
+  );
 
   if (noWrap) {
     return (
@@ -17,7 +20,7 @@ export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert}: 
   }
 
   return (
-    <div className={clsx('relative', dimension ?? 'h-5 w-5')}>
+    <div className={clsx('relative', dimension ?? 'h-5 w-5', noShrink && 'shrink-0')}>
       <NextImage src={src} alt={alt} sizes={imageSmallIconSizes} className={imageClassName}/>
     </div>
   );
