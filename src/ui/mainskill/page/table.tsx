@@ -5,7 +5,7 @@ import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
-import {MainSkillEffectUI} from '@/components/shared/pokemon/mainSkill/effect';
+import {MainSkillEffectUI} from '@/components/shared/pokemon/mainSkill/effect/main';
 import {MainSkillData} from '@/types/game/pokemon/mainSkill';
 
 

@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {MainSkillEffectTypeIcon} from '@/components/shared/pokemon/mainSkill/typeIcon';
+import {MainSkillEffectTypeIcon} from '@/components/shared/pokemon/mainSkill/icon/type';
 import {MainSkillData} from '@/types/game/pokemon/mainSkill';
 import {toUnique} from '@/utils/array';
 
