@@ -5,16 +5,15 @@ import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
+import {PokemonNameSimple} from '@/components/shared/pokemon/name/simple';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {imageIconSizes} from '@/styles/image';
 import {TeamAnalysisPokemonControl} from '@/ui/team/analysis/setup/pokemon/control';
 import {useTeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup/hook';
 import {TeamAnalysisPokemonPopup} from '@/ui/team/analysis/setup/pokemon/popup/main';
@@ -33,7 +32,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const pokemonPopup = useTeamAnalysisPokemonPopup();
   const ratingControl = useRatingPopup();
 
-  const {id, type, skill} = pokemon;
+  const {skill} = pokemon;
   const {level, nature, subSkill} = member;
 
   return (
@@ -44,17 +43,7 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         {...props}
       />
       <Flex className="gap-1">
-        <Flex direction="row" center className="gap-0.5 whitespace-nowrap">
-          <div className="relative h-5 w-5">
-            <NextImage
-              src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
-              className="drop-shadow-thick" sizes={imageIconSizes}
-            />
-          </div>
-          <div>
-            {member.name ?? t(`PokemonName.${id}`)}
-          </div>
-        </Flex>
+        <PokemonNameSimple pokemon={pokemon} override={member.name}/>
         <Flex direction="row" center>
           <div className="relative h-28 w-28">
             <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>

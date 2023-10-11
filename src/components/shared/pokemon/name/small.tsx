@@ -20,6 +20,7 @@ export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
         src={`/images/type/${type}.png`}
         dimension="h-6 w-6"
         noInvert
+        noShrink
         dropShadow
       />
       <PokemonSleepTypeIcon sleepType={sleepType} dimension="h-4 w-4" className="invert-hoverable-dark"/>

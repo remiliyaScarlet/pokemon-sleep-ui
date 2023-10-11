@@ -7,16 +7,16 @@ import {GenericIcon} from '@/components/shared/icon/common/main';
 import {PokemonNameProps} from '@/components/shared/pokemon/name/type';
 
 
-export const PokemonNameBig = ({pokemon, override}: PokemonNameProps) => {
+export const PokemonNameSimple = ({pokemon, override}: PokemonNameProps) => {
   const {type, id} = pokemon;
   const t = useTranslations('Game');
 
   return (
-    <Flex direction="row" center className="gap-1 p-2.5 text-2xl">
+    <Flex direction="row" center className="gap-0.5">
       <GenericIcon
         alt={t(`PokemonType.${type}`)}
         src={`/images/type/${type}.png`}
-        dimension="h-8 w-8"
+        dimension="h-5 w-5"
         noInvert
         noShrink
         dropShadow
