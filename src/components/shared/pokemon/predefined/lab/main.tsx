@@ -52,7 +52,6 @@ export const PokemonLab = (props: Props) => {
           const setup = toOnDeskState({
             ...opts,
             ...calculatedSettings,
-            pokemon,
             chain: ingredientChainMap[pokemon.ingredientChain],
           });
 

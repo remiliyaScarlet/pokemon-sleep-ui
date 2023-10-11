@@ -8,5 +8,6 @@ type GetMainSkillTriggerValueOpts = {
 };
 
 export const getMainSkillTriggerValue = ({rate, skillValue}: GetMainSkillTriggerValueOpts): number => (
+  // FIXME: this should address nature and subskill effects
   getDailyHelpsOfStateFromPokemonRate({rate, state: 'unfilledOnly'}) * skillValue
 );

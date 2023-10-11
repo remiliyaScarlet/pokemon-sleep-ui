@@ -1,4 +1,3 @@
-import {BerryDataMap} from '@/types/game/berry';
 import {PokedexMap, PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
