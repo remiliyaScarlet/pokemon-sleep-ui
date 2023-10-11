@@ -182,8 +182,8 @@
         "Friendship": "フレンドポイント",
         "Recruit": "仲間になる",
         "TimeToFullPack": "所持上限に達するまでの時間",
-        "MainSkillValue": "TODO: Skill Value",
-        "MainSkillTriggerValue": "TODO: Skill Trigger Value"
+        "MainSkillValue": "スキル指数",
+        "MainSkillTriggerValue": "スキル生産指数"
       },
       "Sort": {
         "Id": "ID",
