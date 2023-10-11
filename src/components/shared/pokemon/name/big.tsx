@@ -13,7 +13,13 @@ export const PokemonNameBig = ({pokemon, override}: PokemonNameProps) => {
 
   return (
     <Flex direction="row" center className="gap-1 p-2.5 text-2xl">
-      <GenericIcon alt={t(`PokemonType.${type}`)} src={`/images/type/${type}.png`} dimension="h-8 w-8"/>
+      <GenericIcon
+        alt={t(`PokemonType.${type}`)}
+        src={`/images/type/${type}.png`}
+        dimension="h-8 w-8"
+        noInvert
+        dropShadow
+      />
       <div>
         {override ?? t(`PokemonName.${id}`)}
       </div>

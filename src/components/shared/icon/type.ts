@@ -6,6 +6,7 @@ export type IconProps = {
   noInvert?: boolean,
   noShrink?: boolean,
   isActive?: boolean,
+  dropShadow?: boolean,
 } & ({
   dimension?: Dimension,
   noWrap?: false,

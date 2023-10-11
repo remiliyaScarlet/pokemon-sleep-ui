@@ -15,7 +15,13 @@ export const PokemonNameSmall = ({pokemon, override}: PokemonNameProps) => {
 
   return (
     <Flex direction="row" noFullWidth className="items-center gap-1 text-lg">
-      <GenericIcon alt={t(`PokemonType.${type}`)} src={`/images/type/${type}.png`} dimension="h-6 w-6"/>
+      <GenericIcon
+        alt={t(`PokemonType.${type}`)}
+        src={`/images/type/${type}.png`}
+        dimension="h-6 w-6"
+        noInvert
+        dropShadow
+      />
       <PokemonSleepTypeIcon sleepType={sleepType} dimension="h-4 w-4" className="invert-hoverable-dark"/>
       <PokemonSpecialtyIcon specialty={specialty} dimension="h-4 w-4" className="invert-hoverable-dark"/>
       <div className="truncate">
