@@ -183,8 +183,8 @@
         "Friendship": "Max. Freundespunkte",
         "Recruit": "Befreundet",
         "TimeToFullPack": "Zeit bis Inventar voll ist",
-        "MainSkillValue": "TODO: Skill Value",
-        "MainSkillTriggerValue": "TODO: Skill Trigger Value"
+        "MainSkillValue": "Talentwert",
+        "MainSkillTriggerValue": "Talent-Auslösefrequenzwert"
       },
       "Sort": {
         "Id": "ID",
