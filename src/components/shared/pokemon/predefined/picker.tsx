@@ -11,17 +11,18 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {imageIconSizes} from '@/styles/image';
-import {PokemonId} from '@/types/game/pokemon';
-import {RatingFilterCommonProps} from '@/ui/rating/filter/type';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {showToast} from '@/utils/toast';
 
 
-type Props = RatingFilterCommonProps & {
+type Props = {
+  pokemonList: PokemonInfo[],
+  onPokemonPicked: (opts: PokemonInfo) => void,
   collapsibleState: CollapsibleState,
   isIncluded: FilterInclusionMap<PokemonId>,
 };
 
-export const RatingPokemonPicker = ({
+export const PokemonCollapsiblePicker = ({
   pokemonList,
   onPokemonPicked,
   collapsibleState,
@@ -57,7 +58,7 @@ export const RatingPokemonPicker = ({
             </div>
           </Flex>
         )});
-        onPokemonPicked({origin: 'pokedex', pokemon});
+        onPokemonPicked(pokemon);
       }}/>
     </Collapsible>
   );

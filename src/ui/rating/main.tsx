@@ -11,7 +11,6 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
-import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -26,7 +25,6 @@ export const Rating = async ({params}: DefaultPageProps) => {
   const [
     pokedexMap,
     pokemonProducingParamsMap,
-    sleepStyleMap,
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
@@ -38,7 +36,6 @@ export const Rating = async ({params}: DefaultPageProps) => {
   ] = await Promise.all([
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
-    getPokemonSleepStyleMap(),
     getIngredientChainMap(),
     getAllIngredients(),
     getAllBerryData(),
@@ -52,7 +49,6 @@ export const Rating = async ({params}: DefaultPageProps) => {
   const props: RatingServerDataProps = {
     pokedexMap,
     pokemonProducingParamsMap,
-    sleepStyleMap,
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
