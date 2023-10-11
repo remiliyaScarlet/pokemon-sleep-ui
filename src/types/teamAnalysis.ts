@@ -1,7 +1,4 @@
-import {PokemonId} from '@/types/game/pokemon';
-import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
-import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
+import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
@@ -11,14 +8,8 @@ export const teamAnalysisSlotName = ['A', 'B', 'C', 'D', 'E'] as const;
 
 export type TeamAnalysisSlotName = typeof teamAnalysisSlotName[number];
 
-export type TeamAnalysisMember = {
+export type TeamAnalysisMember = PokemonConfigPokemonData & {
   name?: string | null,
-  level: number,
-  pokemonId: PokemonId,
-  ingredients: IngredientProductionAtLevels,
-  nature: NatureId | null,
-  subSkill: PokemonSubSkill,
-  evolutionCount: number,
 };
 
 export type TeamAnalysisConfig = Migratable & {
