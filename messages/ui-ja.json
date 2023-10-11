@@ -103,6 +103,9 @@
       },
       "Maker": {
         "Title": "おまかせ編成"
+      },
+      "SkillTriggerComparer": {
+        "Title": "スキル発動比較"
       }
     },
     "Info": {

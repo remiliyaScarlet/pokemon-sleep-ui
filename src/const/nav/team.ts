@@ -16,6 +16,12 @@ export const navEntriesForTeam: NavEntryLink[] = [
   },
   {
     type: 'link',
+    href: '/team/mainskill',
+    imageSrc: '/images/generic/mainskill.png',
+    i18nTextId: 'Team.SkillTriggerComparer.Title',
+  },
+  {
+    type: 'link',
     href: '/team/maker',
     imageSrc: '/images/generic/wrenches.png',
     i18nTextId: 'Team.Maker.Title',

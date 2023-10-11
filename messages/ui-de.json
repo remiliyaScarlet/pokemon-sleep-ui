@@ -103,6 +103,9 @@
       },
       "Maker": {
         "Title": "Teambau Hilfe"
+      },
+      "SkillTriggerComparer": {
+        "Title": "Talent-Auslösefrequenz Vergleicher"
       }
     },
     "Info": {

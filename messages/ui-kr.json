@@ -103,6 +103,9 @@
       },
       "Maker": {
         "Title": "자동 편성"
+      },
+      "SkillTriggerComparer": {
+        "Title": "스킬 방아쇠 비교"
       }
     },
     "Info": {

@@ -103,6 +103,9 @@
       },
       "Maker": {
         "Title": "Team Building Help"
+      },
+      "SkillTriggerComparer": {
+        "Title": "Skill Trigger Comparer"
       }
     },
     "Info": {
