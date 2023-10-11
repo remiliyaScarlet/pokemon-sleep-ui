@@ -3,9 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {PokemonNameProps} from '@/components/shared/pokemon/name/type';
-import {imageSmallIconSizes} from '@/styles/image';
 
 
 export const PokemonNameBig = ({pokemon, override}: PokemonNameProps) => {
@@ -14,9 +13,7 @@ export const PokemonNameBig = ({pokemon, override}: PokemonNameProps) => {
 
   return (
     <Flex direction="row" center className="gap-1 p-2.5 text-2xl">
-      <div className="relative h-8 w-8">
-        <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageSmallIconSizes}/>
-      </div>
+      <GenericIcon alt={t(`PokemonType.${type}`)} src={`/images/type/${type}.png`} dimension="h-8 w-8"/>
       <div>
         {override ?? t(`PokemonName.${id}`)}
       </div>
