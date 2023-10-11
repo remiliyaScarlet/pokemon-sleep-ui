@@ -1,5 +1,7 @@
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {MapCommonProps, MapPageFilter} from '@/ui/map/page/type';
 
 
-export type MapInputCommonProps = FilterInputProps<MapPageFilter> & MapCommonProps;
+export type MapInputCommonProps = FilterWithUpdaterProps<MapPageFilter>;
+
+export type MapInputWithDataProps = MapInputCommonProps & MapCommonProps;

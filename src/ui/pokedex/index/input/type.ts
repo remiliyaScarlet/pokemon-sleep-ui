@@ -1,9 +1,9 @@
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {pokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {PokedexFilter} from '@/ui/pokedex/index/type';
 
 
-export type PokedexInputProps = FilterInputProps<PokedexFilter>;
+export type PokedexInputProps = FilterWithUpdaterProps<PokedexFilter>;
 
 export const pokedexDisplayType = [
   ...pokemonSortType,

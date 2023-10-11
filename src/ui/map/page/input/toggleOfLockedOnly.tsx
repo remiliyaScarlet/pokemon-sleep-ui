@@ -8,11 +8,11 @@ import {clsx} from 'clsx';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
-import {MapInputCommonProps} from '@/ui/map/page/input/type';
+import {MapInputWithDataProps} from '@/ui/map/page/input/type';
 import {MapPageFilter} from '@/ui/map/page/type';
 
 
-export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInputCommonProps) => {
+export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInputWithDataProps) => {
   const {showLockedOnly} = filter;
 
   if (!isLoggedIn) {

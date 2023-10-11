@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal';
 import {Dimension} from '@/types/style';
@@ -26,7 +26,7 @@ export type CookingFilter = {
   showUnmakeableRecipe: boolean,
 };
 
-export type CookingCommonProps = FilterInputProps<CookingFilter> & {
+export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
   ingredientMap: IngredientMap,

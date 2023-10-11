@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {Indexable} from '@/utils/type';
 
 
@@ -17,6 +18,11 @@ export type FilterWithInclusionMap<TId extends Indexable> = Record<string, Filte
 export type FilterInputProps<TFilter> = {
   filter: TFilter,
   setFilter: React.Dispatch<React.SetStateAction<TFilter>>,
+};
+
+export type FilterWithUpdaterProps<TFilter> = {
+  filter: TFilter,
+  setFilter: ReactStateUpdaterFromOriginal<TFilter>,
 };
 
 export type FilterInputSetFromOriginalProps<TFilter> = {

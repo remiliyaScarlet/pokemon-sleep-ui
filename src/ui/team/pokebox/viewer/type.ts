@@ -1,4 +1,4 @@
-import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
@@ -56,7 +56,9 @@ export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
   snorlaxFavorite: SnorlaxFavorite,
 };
 
-export type PokeboxViewerInputCommonProps = FilterInputProps<PokeboxViewerFilter> & UsePokemonFilterCommonData & {
-  pokemonList: PokemonInfo[],
-  mapMeta: FieldMetaMap,
-};
+export type PokeboxViewerInputCommonProps =
+  FilterWithUpdaterProps<PokeboxViewerFilter> &
+  UsePokemonFilterCommonData & {
+    pokemonList: PokemonInfo[],
+    mapMeta: FieldMetaMap,
+  };

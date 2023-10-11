@@ -3,7 +3,7 @@ import React from 'react';
 import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 
 import {InputRow} from '@/components/input/filter/row';
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
@@ -18,7 +18,7 @@ import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = FilterInputProps<AnalysisComparisonFilter> & AnalysisPageCommonProps & {
+type Props = FilterWithUpdaterProps<AnalysisComparisonFilter> & AnalysisPageCommonProps & {
   maxLevel: number,
 };
 

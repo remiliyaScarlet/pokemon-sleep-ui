@@ -4,17 +4,13 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
-import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex/common';
 import {displayTypeToI18nId} from '@/ui/map/page/input/const';
+import {MapInputCommonProps} from '@/ui/map/page/input/type';
 import {MapPageFilter, mapUnlockTableDisplayType} from '@/ui/map/page/type';
 
 
-type Props = FilterInputProps<MapPageFilter>;
-
-export const MapInputDisplayType = (props: Props) => {
-  const {filter, setFilter} = props;
-
+export const MapInputDisplayType = ({filter, setFilter}: MapInputCommonProps) => {
   const t = useTranslations('UI.InPage');
 
   return (

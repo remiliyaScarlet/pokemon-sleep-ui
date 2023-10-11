@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
-import {FilterInputProps} from '@/components/input/filter/type';
+import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
@@ -13,7 +13,7 @@ import {MealTypeId} from '@/types/game/meal';
 import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
-type Props = FilterInputProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'preloaded' | 'ingredients'> & {
+type Props = FilterWithUpdaterProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'preloaded' | 'ingredients'> & {
   maxMealLevel: number,
   mealTypes: MealTypeId[],
 };

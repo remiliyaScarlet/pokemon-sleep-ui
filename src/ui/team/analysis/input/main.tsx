@@ -4,7 +4,7 @@ import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {useTranslations} from 'next-intl';
 
-import {FilterInclusionMap, FilterInputProps} from '@/components/input/filter/type';
+import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
@@ -25,10 +25,13 @@ import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {showToast} from '@/utils/toast';
 
 
-type Props = FilterInputProps<TeamAnalysisPokemonFilter> & TeamAnalysisDataProps & TeamAnalysisSetupModifyingProps & {
-  pokemonList: PokemonInfo[],
-  isIncluded: FilterInclusionMap<PokemonId>,
-};
+type Props =
+  FilterWithUpdaterProps<TeamAnalysisPokemonFilter> &
+  TeamAnalysisDataProps &
+  TeamAnalysisSetupModifyingProps & {
+    pokemonList: PokemonInfo[],
+    isIncluded: FilterInclusionMap<PokemonId>,
+  };
 
 export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isIncluded, ...props}: Props) => {
   const {filter} = props;

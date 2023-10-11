@@ -3,9 +3,9 @@ import {clsx} from 'clsx';
 import {
   FilterInclusionMap,
   FilterInputOnClickProps,
-  FilterInputProps,
   FilterInputSetFromOriginalProps,
   FilterWithInclusionMap,
+  FilterWithUpdaterProps,
 } from '@/components/input/filter/type';
 import {Indexable, KeysOfType} from '@/utils/type';
 
@@ -26,7 +26,7 @@ const getFilterInputButtonClass = (isActive: boolean) => clsx(
   getToggleButtonClass(isActive),
 );
 
-export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterInputProps<TFilter> & {
+export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterWithUpdaterProps<TFilter> & {
   filterKey: KeysOfType<TFilter, TData | null>,
   allowNull?: boolean,
 };

@@ -10,12 +10,12 @@ import {MapInputSleepStyleToggle} from '@/ui/map/page/input/styleIndex';
 import {MapInputEmptyRankToggle} from '@/ui/map/page/input/toggleOfEmptyRank';
 import {MapInputLockedOnlyToggle} from '@/ui/map/page/input/toggleOfLockedOnly';
 import {MapInputSleepdexStatsToggle} from '@/ui/map/page/input/toggleOfSleepdexStats';
-import {MapInputCommonProps} from '@/ui/map/page/input/type';
+import {MapInputWithDataProps} from '@/ui/map/page/input/type';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
 
-export const MapInfoInput = (props: MapInputCommonProps) => {
+export const MapInfoInput = (props: MapInputWithDataProps) => {
   const {
     filter,
     setFilter,
@@ -45,7 +45,7 @@ export const MapInfoInput = (props: MapInputCommonProps) => {
           <MapInputMarkSleepdexToggle {...props}/>
           <MapInputSleepdexStatsToggle {...props}/>
           <MapInputLockedOnlyToggle {...props}/>
-          <MapInputEmptyRankToggle {...props}/>
+          <MapInputEmptyRankToggle filter={filter} setFilter={setFilter}/>
         </Flex>
       </InputRow>
     </Flex>

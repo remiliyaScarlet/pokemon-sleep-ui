@@ -8,11 +8,11 @@ import {clsx} from 'clsx';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
-import {MapInputCommonProps} from '@/ui/map/page/input/type';
+import {MapInputWithDataProps} from '@/ui/map/page/input/type';
 import {MapPageFilter} from '@/ui/map/page/type';
 
 
-export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: MapInputCommonProps) => {
+export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: MapInputWithDataProps) => {
   const {showSleepdexStats} = filter;
 
   if (!isLoggedIn) {
