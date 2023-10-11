@@ -15,7 +15,7 @@ import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/prod
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {applyStaminaMultiplierToPokemonRate} from '@/utils/game/producing/apply';
-import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
+import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
@@ -52,7 +52,7 @@ export const PokemonProducingStatsOfState = ({bonus, rate, specialty, title, sta
       <Flex className="button-bg rounded-lg p-1">
         <PokemonFrequency
           normalText
-          frequency={getEquivalentFrequencyFromPokemonRate({rate, state})}
+          frequency={getFrequencyOfStateFromPokemonRate({rate, state})}
         />
       </Flex>
       <Flex className="gap-1 md:flex-row">

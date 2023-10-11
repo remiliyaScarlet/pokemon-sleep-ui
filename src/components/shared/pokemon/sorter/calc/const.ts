@@ -5,10 +5,8 @@ import {
   getPokemonRateSorter,
 } from '@/components/shared/pokemon/sorter/calc/sorter';
 import {PokemonSorterGetter, PokemonSortType} from '@/components/shared/pokemon/sorter/type';
-import {defaultHelperCount, defaultSubSkillBonus} from '@/const/game/production';
 import {getMainSkillTriggerValue} from '@/utils/game/mainSkill/utils';
-import {getEquivalentFrequencyFromPokemonRate} from '@/utils/game/producing/frequency';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 
 
 export const sortInAsc: PokemonSortType[] = [
@@ -19,18 +17,6 @@ export const sortInAsc: PokemonSortType[] = [
   'frequencyOfIngredient',
   'friendshipPoint',
 ];
-
-const getFrequency: PokemonSorterGetter = ({helperCount, subSkillBonus, calculatedSettings, ...opts}) => (
-  getEquivalentFrequencyFromPokemonRate({
-    state: 'equivalent',
-    rate: getPokemonProducingRate({
-      helperCount: helperCount ?? defaultHelperCount,
-      subSkillBonus: subSkillBonus ?? defaultSubSkillBonus,
-      ...calculatedSettings,
-      ...opts,
-    }),
-  })
-);
 
 export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonSorterGetter} = {
   id: ({pokemon}) => pokemon.id,
@@ -43,7 +29,10 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
   frequencyBase: ({pokemon}) => pokemon.stats.frequency,
-  frequency: getFrequency,
+  frequency: (opts) => getFrequencyOfStateFromPokemonRate({
+    state: 'equivalent',
+    rate: getPokemonRateSorter(opts),
+  }),
   frequencyOfBerry: (opts) => getBerryRateSorter({key: 'frequency', opts}),
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),
   timeToFullPack: (opts) => getPokemonRateSorter(opts).fullPackStats.secondsToFull,
@@ -56,8 +45,10 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   mainSkillValue: ({pokemonProducingParams}) => pokemonProducingParams.skillValue,
   mainSkillTriggerValue: (opts) => {
     const {pokemonProducingParams} = opts;
-    const frequency = getFrequency(opts);
 
-    return getMainSkillTriggerValue({skillValue: pokemonProducingParams.skillValue, frequency});
+    return getMainSkillTriggerValue({
+      rate: getPokemonRateSorter(opts),
+      skillValue: pokemonProducingParams.skillValue,
+    });
   },
 };

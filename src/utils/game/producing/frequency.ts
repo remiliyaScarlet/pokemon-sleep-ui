@@ -78,17 +78,19 @@ export const getFrequencyFromItemRateOfSessions = ({
   return {awake, sleepVacant, sleepFilled, equivalent};
 };
 
-type GetEquivalentFrequencyFromPokemonRateOpts = {
+type GetHelpingCountFromPokemonRateOpts = {
   rate: PokemonProducingRate,
   state: ProducingStateOfRate,
 };
 
-export const getEquivalentFrequencyFromPokemonRate = ({rate, state}: GetEquivalentFrequencyFromPokemonRateOpts) => {
+export const getDailyHelpsOfStateFromPokemonRate = ({rate, state}: GetHelpingCountFromPokemonRateOpts) => {
   const {berry, ingredient} = rate;
-  const dailyCount = (
+  return (
     1 / berry.frequency[state] +
     toSum(Object.values(ingredient).map(({frequency}) => 1 / frequency[state]))
   );
+};
 
-  return 1 / dailyCount;
+export const getFrequencyOfStateFromPokemonRate = (opts: GetHelpingCountFromPokemonRateOpts) => {
+  return 1 / getDailyHelpsOfStateFromPokemonRate(opts);
 };
