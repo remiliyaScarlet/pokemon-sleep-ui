@@ -6,10 +6,10 @@ import {useSession} from 'next-auth/react';
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
+import {PokemonComplexFilter} from '@/components/shared/pokemon/predefined/complexPicker/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {RatingRequest} from '@/types/game/pokemon/rating';
-import {RatingFilter} from '@/ui/rating/filter/main';
 import {RatingSetup} from '@/ui/rating/setup/main';
 import {generateRatingInputs} from '@/ui/rating/setup/utils';
 import {RatingDataProps, RatingServerDataProps, RatingSetupInputs} from '@/ui/rating/type';
@@ -50,7 +50,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   return (
     <Flex className="gap-1.5">
       <Flex className="gap-1.5 md:flex-row">
-        <RatingFilter {...data} onPokemonPicked={(opts) => {
+        <PokemonComplexFilter {...data} onPokemonPicked={(opts) => {
           const {origin, pokemon} = opts;
 
           if (initialSetup) {

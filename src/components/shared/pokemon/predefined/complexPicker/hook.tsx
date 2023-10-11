@@ -1,16 +1,16 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {PokemonComplexFilter} from '@/components/shared/pokemon/predefined/complexPicker/type';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
-import {RatingFilter} from '@/ui/rating/filter/type';
 
 
-type UseRatingFilterOpts = UsePokemonFilterCommonData & {
+type UsePokemonComplexPickerFilterOpts = UsePokemonFilterCommonData & {
   data: PokemonInfo[],
 };
 
-export const useRatingFilter = ({data, ...filterData}: UseRatingFilterOpts) => {
-  return useFilterInput<RatingFilter, PokemonInfo, PokemonId>({
+export const usePokemonComplexPickerFilter = ({data, ...filterData}: UsePokemonComplexPickerFilterOpts) => {
+  return useFilterInput<PokemonComplexFilter, PokemonInfo, PokemonId>({
     data,
     dataToId: ({id}) => id,
     initialFilter: generatePokemonInputFilter(),

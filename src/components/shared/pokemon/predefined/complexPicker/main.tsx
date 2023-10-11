@@ -4,13 +4,13 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
 import {PokeboxImporterButton} from '@/components/shared/pokebox/importer/button';
+import {usePokemonComplexPickerFilter} from '@/components/shared/pokemon/predefined/complexPicker/hook';
+import {PokemonComplexFilterCommonProps} from '@/components/shared/pokemon/predefined/complexPicker/type';
 import {PokemonCollapsibleFilter} from '@/components/shared/pokemon/predefined/filter';
 import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/picker';
-import {useRatingFilter} from '@/ui/rating/filter/hook';
-import {RatingFilterCommonProps} from '@/ui/rating/filter/type';
 
 
-export const RatingFilter = (props: RatingFilterCommonProps) => {
+export const PokemonComplexFilter = (props: PokemonComplexFilterCommonProps) => {
   const {
     pokemonList,
     pokedexMap,
@@ -20,7 +20,7 @@ export const RatingFilter = (props: RatingFilterCommonProps) => {
     ocrTranslations,
   } = props;
 
-  const {filter, setFilter, isIncluded} = useRatingFilter({
+  const {filter, setFilter, isIncluded} = usePokemonComplexPickerFilter({
     data: pokemonList,
     ingredientChainMap,
   });
