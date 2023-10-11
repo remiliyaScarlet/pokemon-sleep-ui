@@ -20,4 +20,6 @@ export const sortTypeToI18nId: {
   frequencyOfBerry: 'Sort.FrequencyOfBerry',
   frequencyOfIngredient: 'Sort.FrequencyOfIngredient',
   timeToFullPack: 'Stats.TimeToFullPack',
+  mainSkillValue: 'Stats.MainSkillValue',
+  mainSkillTriggerValue: 'Stats.MainSkillTriggerValue',
 };
