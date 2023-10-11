@@ -7,9 +7,12 @@ import {GenericIconCommonProps} from '@/components/shared/icon/common/type';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-export const GenericIcon = ({alt, className, dimension, noWrap, src, noInvert, noShrink}: GenericIconCommonProps) => {
-  const imageClassName = className ?? clsx(
-    !noInvert && 'invert-hoverable',
+export const GenericIcon = ({alt, noInvert, noShrink, isActive, dimension, noWrap, src}: GenericIconCommonProps) => {
+  const imageClassName = clsx(
+    // The inversion should only be active when `isActive` is explicitly used by supplying boolean value
+    // Therefore `isActive` is getting explicit check
+    isActive !== undefined && (isActive ? 'invert-on-dark' : 'invert-on-light'),
+    isActive === undefined && !noInvert && 'invert-hoverable',
     noShrink && 'shrink-0',
   );
 

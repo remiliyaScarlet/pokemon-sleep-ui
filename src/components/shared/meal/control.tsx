@@ -36,7 +36,7 @@ export const MealDisplayControl = ({showEnergy, setShowEnergy, uploadData}: Prop
             <div className="h-5 w-5">
               {showEnergy ? <EyeIcon/> : <EyeSlashIcon/>}
             </div>
-            <EnergyIcon alt={t('Energy')} noInvert className={showEnergy ? 'invert-on-dark' : 'invert-on-light'}/>
+            <EnergyIcon alt={t('Energy')} noInvert isActive={showEnergy}/>
           </Flex>
         </ToggleButton>
         <UserDataUploadButton opts={{type: 'cooking', data: uploadData}}/>

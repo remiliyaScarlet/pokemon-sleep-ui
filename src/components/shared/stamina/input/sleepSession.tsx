@@ -60,7 +60,7 @@ export const StaminaConfigSleepSession = (props: Props) => {
             noWrap
             noInvert
             alt={t('SleepSession')}
-            className={active ? 'invert-on-dark' : 'invert-on-light'}
+            isActive={active}
           />
         </div>
         <div>

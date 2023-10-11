@@ -3,8 +3,9 @@ import {Dimension} from '@/types/style';
 
 export type IconProps = {
   alt: string,
-  className?: string,
   noInvert?: boolean,
+  noShrink?: boolean,
+  isActive?: boolean,
 } & ({
   dimension?: Dimension,
   noWrap?: false,

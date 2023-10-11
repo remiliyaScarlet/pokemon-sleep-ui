@@ -40,7 +40,7 @@ export const CookingInputControl = ({filter, setFilter, preloaded}: CookingCommo
               alt={t('ToggleUnmakeable')}
               dimension="h-5 w-5"
               noInvert
-              className={showUnmakeableRecipe ? 'invert-on-dark' : 'invert-on-light'}
+              isActive={showUnmakeableRecipe}
             />
           </Flex>
         </ToggleButton>

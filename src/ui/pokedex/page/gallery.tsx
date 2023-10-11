@@ -34,12 +34,7 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
   }
 
   if (image === 'portrait') {
-    return (
-      <GenericPokeballIcon
-        alt={t3(pokemonId.toString())}
-        className={isActive ? 'invert-on-dark' : 'invert-on-light'}
-      />
-    );
+    return <GenericPokeballIcon alt={t3(pokemonId.toString())} isActive={isActive}/>;
   }
 
   return t(image.toString());
