@@ -1,5 +1,6 @@
 import {generatePokemonInputFilterExtended} from '@/components/shared/pokemon/input/utils';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
+import {defaultPokemonSort} from '@/const/filter';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 import {PokedexDisplay, PokedexFilter} from '@/ui/pokedex/index/type';
 import {migrate} from '@/utils/migrate/main';
@@ -32,7 +33,7 @@ export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> 
   return migrate<PokedexFilter, PokedexFilterMigrateParams>({
     original: {
       name: '',
-      sort: 'id',
+      sort: defaultPokemonSort,
       display: 'mainSkill',
       ...generatePokemonInputFilterExtended(),
       version: 1,

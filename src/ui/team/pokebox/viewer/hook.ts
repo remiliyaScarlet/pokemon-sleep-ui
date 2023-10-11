@@ -6,6 +6,8 @@ import {
   UsePokemonFilterCommonData,
 } from '@/components/shared/pokemon/input/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {enforceFilterWithSkillValue} from '@/components/shared/pokemon/sorter/enforcer/skillValue';
+import {defaultPokemonSort} from '@/const/filter';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
@@ -83,5 +85,18 @@ export const usePokeboxViewerFilter = ({
       return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
     },
     deps: [pokebox],
+    onSetFilter: (original, updated) => enforceFilterWithSkillValue<
+      PokeboxViewerFilter,
+      PokeboxViewerFilter['sort']
+    >({
+      original,
+      updated,
+      config: {
+        mainSkill: {key: 'mainSkill', defaultValue: {[Object.values(pokedexMap).filter(isNotNullish)[0].skill]: true}},
+        sort: [
+          {key: 'sort', defaultValue: defaultPokemonSort},
+        ],
+      },
+    }),
   });
 };

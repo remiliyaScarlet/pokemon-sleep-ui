@@ -2,6 +2,8 @@ import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter, isFilterMatchingSearch} from '@/components/input/filter/utils/check';
 import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {enforceFilterWithSkillValue} from '@/components/shared/pokemon/sorter/enforcer/skillValue';
+import {defaultPokemonSort} from '@/const/filter';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokedexData, PokedexDisplay, PokedexFilter, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 import {generateInitialFilter} from '@/ui/pokedex/index/utils';
@@ -34,5 +36,19 @@ export const useFilteredPokedex = ({data, preloadedDisplay, ...filterData}: UseF
 
       return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});
     },
+    onSetFilter: (original, updated) => enforceFilterWithSkillValue<
+      PokedexFilter,
+      PokedexFilter['sort'] | PokedexFilter['display']
+    >({
+      original,
+      updated,
+      config: {
+        mainSkill: {key: 'mainSkill', defaultValue: {[data[0].skill]: true}},
+        sort: [
+          {key: 'sort', defaultValue: defaultPokemonSort},
+          {key: 'display', defaultValue: defaultPokemonSort},
+        ],
+      },
+    }),
   });
 };
