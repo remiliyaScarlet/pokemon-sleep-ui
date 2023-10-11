@@ -6,7 +6,13 @@ import {getValueAfterSplitFromItemRateOfSessions} from '@/utils/game/producing/r
 
 describe('Pokemon Production Value After Split', () => {
   it('is correct for berry', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
+    const {
+      awake,
+      sleepVacant,
+      sleepFilled,
+      equivalent,
+      unfilledOnly,
+    } = getValueAfterSplitFromItemRateOfSessions({
       period: 'daily',
       rate: {
         id: NaN, // Ignored
@@ -39,10 +45,17 @@ describe('Pokemon Production Value After Split', () => {
     expect(sleepVacant).toBeCloseTo(500 * 0.8 * (6 / 24));
     expect(sleepFilled).toBeCloseTo(500 * (2 / 24));
     expect(equivalent).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.8 + (500 * 2 / 24));
+    expect(unfilledOnly).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.8);
   });
 
   it('is correct for ingredient', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getValueAfterSplitFromItemRateOfSessions({
+    const {
+      awake,
+      sleepVacant,
+      sleepFilled,
+      equivalent,
+      unfilledOnly,
+    } = getValueAfterSplitFromItemRateOfSessions({
       period: 'daily',
       rate: {
         id: NaN, // Ignored
@@ -76,5 +89,6 @@ describe('Pokemon Production Value After Split', () => {
     expect(sleepVacant).toBeCloseTo(500 * 0.2 * (6 / 24));
     expect(sleepFilled).toBeCloseTo(0);
     expect(equivalent).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.2);
+    expect(unfilledOnly).toBeCloseTo((300 * 16 / 24 + 500 * 6 / 24) * 0.2);
   });
 });

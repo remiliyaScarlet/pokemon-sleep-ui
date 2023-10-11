@@ -275,6 +275,9 @@
       "AsleepUnfilled": "睡著 (未滿包)",
       "AsleepFilled": "睡著 (已滿包)"
     },
+    "Preset": {
+      "UnfilledOnly": "未滿包"
+    },
     "Total": "總計"
   },
   "Stamina": {

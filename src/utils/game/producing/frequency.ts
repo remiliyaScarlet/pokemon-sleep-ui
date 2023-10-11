@@ -69,13 +69,16 @@ export const getFrequencyFromItemRateOfSessions = ({
   const awake = multiplier * rate.awake.frequency;
   const sleepVacant = multiplier * rate.sleep.frequency;
   const sleepFilled = produceType === 'berry' ? rate.sleep.frequency : Infinity;
-  const equivalent = 1 / (
+
+  const unfilledOnlyDivisor = (
     sleepStateSplit.awake / awake +
-    sleepStateSplit.sleepVacant / sleepVacant +
-    sleepStateSplit.sleepFilled / sleepFilled
+    sleepStateSplit.sleepVacant / sleepVacant
   );
 
-  return {awake, sleepVacant, sleepFilled, equivalent};
+  const unfilledOnly = 1 / unfilledOnlyDivisor;
+  const equivalent = 1 / (unfilledOnlyDivisor + sleepStateSplit.sleepFilled / sleepFilled);
+
+  return {awake, sleepVacant, sleepFilled, equivalent, unfilledOnly};
 };
 
 type GetHelpingCountFromPokemonRateOpts = {

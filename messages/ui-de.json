@@ -276,6 +276,9 @@
       "AsleepUnfilled": "Eingeschlafen (Inventar nicht gefüllt)",
       "AsleepFilled": "Eingeschlafen (Inventar gefüllt)"
     },
+    "Preset": {
+      "UnfilledOnly": "Inventar nicht gefüllt"
+    },
     "Total": "Gesamt"
   },
   "Stamina": {

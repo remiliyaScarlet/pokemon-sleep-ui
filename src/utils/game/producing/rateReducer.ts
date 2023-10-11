@@ -113,9 +113,10 @@ export const getValueAfterSplitFromItemRateOfSessions = ({
   const sleepFilled = (
     periodMultiplier * (produceType === 'berry' ? rate.sleep[valueKey] : 0) * sleepStateSplit.sleepFilled
   );
-  const equivalent = awake + sleepVacant + sleepFilled;
+  const unfilledOnly = awake + sleepVacant;
+  const equivalent = unfilledOnly + sleepFilled;
 
-  return {awake, sleepVacant, sleepFilled, equivalent};
+  return {awake, sleepVacant, sleepFilled, equivalent, unfilledOnly};
 };
 
 type GetTotalOfPokemonProducingRateOpts = {

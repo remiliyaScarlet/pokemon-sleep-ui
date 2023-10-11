@@ -275,6 +275,9 @@
       "AsleepUnfilled": "잠들어 (가득 안 재고)",
       "AsleepFilled": "잠들어 (가득 재고)"
     },
+    "Preset": {
+      "UnfilledOnly": "가득 안 재고"
+    },
     "Total": "총합"
   },
   "Stamina": {

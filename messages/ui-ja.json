@@ -275,6 +275,9 @@
       "AsleepUnfilled": "睡眠中・空き有",
       "AsleepFilled": "睡眠中・満杯"
     },
+    "Preset": {
+      "UnfilledOnly": "空き有"
+    },
     "Total": "計"
   },
   "Stamina": {

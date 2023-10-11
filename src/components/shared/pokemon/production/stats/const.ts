@@ -9,4 +9,5 @@ export const pokemonProducingStatsStateI18nId: {
   sleepFilled: 'State.AsleepFilled',
   sleepVacant: 'State.AsleepUnfilled',
   equivalent: 'Total',
+  unfilledOnly: 'Preset.UnfilledOnly',
 };

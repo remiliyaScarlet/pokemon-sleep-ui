@@ -1,11 +1,12 @@
-import {durationOfDay} from '@/const/common';
+import {PokemonProducingRate} from '@/types/game/producing/rate';
+import {getDailyHelpsOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 
 
 type GetMainSkillTriggerValueOpts = {
+  rate: PokemonProducingRate,
   skillValue: number,
-  frequency: number,
 };
 
-export const getMainSkillTriggerValue = ({skillValue, frequency}: GetMainSkillTriggerValueOpts): number => (
-  (durationOfDay / frequency) * skillValue
+export const getMainSkillTriggerValue = ({rate, skillValue}: GetMainSkillTriggerValueOpts): number => (
+  getDailyHelpsOfStateFromPokemonRate({rate, state: 'unfilledOnly'}) * skillValue
 );

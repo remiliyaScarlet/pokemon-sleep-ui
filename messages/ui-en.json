@@ -275,6 +275,9 @@
       "AsleepUnfilled": "Asleep (Pack Unfilled)",
       "AsleepFilled": "Asleep (Pack Filled)"
     },
+    "Preset": {
+      "UnfilledOnly": "Pack Unfilled"
+    },
     "Total": "Total"
   },
   "Stamina": {

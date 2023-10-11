@@ -206,6 +206,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         AsleepUnfilled: string,
         AsleepFilled: string,
       },
+      Preset: {
+        UnfilledOnly: string,
+      },
       Total: string,
     },
     Stamina: {

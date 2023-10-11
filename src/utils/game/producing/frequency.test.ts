@@ -20,7 +20,13 @@ describe('Pokemon Base Producing Frequency', () => {
 
 describe('Item Rate of Sessions Frequency', () => {
   it('is correct for berry', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getFrequencyFromItemRateOfSessions({
+    const {
+      awake,
+      sleepVacant,
+      sleepFilled,
+      equivalent,
+      unfilledOnly,
+    } = getFrequencyFromItemRateOfSessions({
       produceType: 'berry',
       produceItemSplit: 0.8,
       rate: {
@@ -51,10 +57,17 @@ describe('Item Rate of Sessions Frequency', () => {
     expect(sleepVacant).toBeCloseTo(3000);
     expect(sleepFilled).toBeCloseTo(2400);
     expect(equivalent).toBeCloseTo(2215.38);
+    expect(unfilledOnly).toBeCloseTo(2400);
   });
 
   it('is correct for ingredient', () => {
-    const {awake, sleepVacant, sleepFilled, equivalent} = getFrequencyFromItemRateOfSessions({
+    const {
+      awake,
+      sleepVacant,
+      sleepFilled,
+      equivalent,
+      unfilledOnly,
+    } = getFrequencyFromItemRateOfSessions({
       produceType: 'ingredient',
       produceItemSplit: 0.2,
       rate: {
@@ -85,5 +98,6 @@ describe('Item Rate of Sessions Frequency', () => {
     expect(sleepVacant).toBeCloseTo(12000);
     expect(sleepFilled).toBeCloseTo(Infinity);
     expect(equivalent).toBeCloseTo(9600);
+    expect(unfilledOnly).toBeCloseTo(9600);
   });
 });
