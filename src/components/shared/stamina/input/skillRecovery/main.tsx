@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/common/main';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/common';
 import {StaminaConfigSkillRecoveryInput} from '@/components/shared/stamina/input/skillRecovery/input';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
 import {staminaCalcStrategyI18nId} from '@/const/game/stamina';
@@ -21,7 +21,7 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
       <FilterTextInput
         title={
           <Flex direction="row" className="w-10">
-            <GenericIcon alt={t('Title')} src="/images/generic/mainSkill.png" dimension="h-7 w-7"/>
+            <MainSkillIcon alt={t('Title')} dimension="h-7 w-7"/>
           </Flex>
         }
         onClick={(strategy) => setConfig({
