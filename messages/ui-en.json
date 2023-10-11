@@ -181,7 +181,9 @@
         "FrequencyEquivalent": "Frequency (Equivalent)",
         "Friendship": "Friendship Points",
         "Recruit": "Partnered",
-        "TimeToFullPack": "Time to Full Pack"
+        "TimeToFullPack": "Time to Full Pack",
+        "MainSkillValue": "Skill Value",
+        "MainSkillTriggerValue": "Skill Trigger Value"
       },
       "Sort": {
         "Id": "ID",

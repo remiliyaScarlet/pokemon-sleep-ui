@@ -181,7 +181,9 @@
         "FrequencyEquivalent": "幫忙間隔 (等效)",
         "Friendship": "友情點數",
         "Recruit": "成為夥伴",
-        "TimeToFullPack": "滿包所需時長"
+        "TimeToFullPack": "滿包所需時長",
+        "MainSkillValue": "技能值",
+        "MainSkillTriggerValue": "技能觸發值"
       },
       "Sort": {
         "Id": "ID",
