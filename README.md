@@ -36,3 +36,7 @@ Discord: https://discord.gg/eeveesleep
 
 - Every Discord subscribers
 - Every Patreon subscribers
+
+### Video Tutorial (Traditional Chinese)
+
+- Discord `yuhsin#5108`
