@@ -8,12 +8,12 @@ import {migrate} from '@/utils/migrate/main';
 import {mealFilterMigrators} from '@/utils/migrate/mealFilter/migrators';
 
 
-type UseFilteredMealsOpts = {
+type UseMealFilterOpts = {
   data: Meal[],
   preloaded: UserPreloadedData['cooking'],
 };
 
-export const useFilteredMeals = ({data, preloaded}: UseFilteredMealsOpts) => {
+export const useMealFilter = ({data, preloaded}: UseMealFilterOpts) => {
   return useFilterInput<MealFilter, Meal, MealId>({
     data,
     dataToId: ({id}) => id,

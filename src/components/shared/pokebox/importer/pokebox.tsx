@@ -13,7 +13,7 @@ import {Grid} from '@/components/layout/grid';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
-import {useFilteredPokeboxImporter} from '@/components/shared/pokebox/importer/filter';
+import {usePokeboxImporterFilter} from '@/components/shared/pokebox/importer/filter';
 import {PokeboxImporterCommonProps, PokeInBoxForFilter} from '@/components/shared/pokebox/importer/type';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
@@ -44,7 +44,7 @@ export const PokeboxImporterView = ({
     filter,
     setFilter,
     isIncluded,
-  } = useFilteredPokeboxImporter({
+  } = usePokeboxImporterFilter({
     data: pokebox
       .map(({pokemon, ...pokeInBox}): PokeInBoxForFilter | null => {
         const pokemonInfo = pokedexMap[pokemon];

@@ -8,7 +8,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/game/meal';
-import {useFilteredMeals} from '@/ui/meal/index/hook';
+import {useMealFilter} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
 import {toSum} from '@/utils/array';
 
@@ -21,7 +21,7 @@ type Props = {
 export const MealIndexClient = ({data, session}: Props) => {
   const preloaded = session?.user.preloaded.cooking;
 
-  const mealFilterProps = useFilteredMeals({
+  const mealFilterProps = useMealFilter({
     data,
     preloaded,
   });

@@ -9,12 +9,12 @@ import {PokedexData, PokedexDisplay, PokedexFilter, PokemonInfoForPokedex} from 
 import {generateInitialFilter} from '@/ui/pokedex/index/utils';
 
 
-type UseFilteredPokedexOpts = UsePokemonFilterCommonData & {
+type UsePokedexFilterOpts = UsePokemonFilterCommonData & {
   data: PokedexData,
   preloadedDisplay: Partial<PokedexDisplay> | undefined,
 };
 
-export const useFilteredPokedex = ({data, preloadedDisplay, ...filterData}: UseFilteredPokedexOpts) => {
+export const usePokedexFilter = ({data, preloadedDisplay, ...filterData}: UsePokedexFilterOpts) => {
   return useFilterInput<PokedexFilter, PokemonInfoForPokedex, PokemonId>({
     data,
     dataToId: ({id}) => id,

@@ -5,14 +5,14 @@ import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
 
 
-type UseFilteredPokeboxImporterOpts = UsePokemonFilterCommonData & {
+type UsePokeboxImporterFilterOpts = UsePokemonFilterCommonData & {
   data: PokeInBoxForFilter[],
 };
 
-export const useFilteredPokeboxImporter = ({
+export const usePokeboxImporterFilter = ({
   data,
   ...filterData
-}: UseFilteredPokeboxImporterOpts) => {
+}: UsePokeboxImporterFilterOpts) => {
   return useFilterInput<PokeboxImporterFilter, PokeInBoxForFilter, string>({
     data,
     dataToId: ({uuid}) => uuid,

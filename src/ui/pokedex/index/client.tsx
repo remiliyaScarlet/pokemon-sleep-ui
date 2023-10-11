@@ -13,7 +13,7 @@ import {defaultNeutralOpts} from '@/const/game/production';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
-import {useFilteredPokedex} from '@/ui/pokedex/index/filter';
+import {usePokedexFilter} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
@@ -34,7 +34,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
 
   const {data: session} = useSession();
   const [loading, setLoading] = React.useState(false);
-  const {filter, setFilter, isIncluded} = useFilteredPokedex({
+  const {filter, setFilter, isIncluded} = usePokedexFilter({
     data: pokedex,
     preloadedDisplay: preloaded.display,
     ...props,
