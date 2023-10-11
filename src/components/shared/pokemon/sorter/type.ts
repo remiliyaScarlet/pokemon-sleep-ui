@@ -15,9 +15,16 @@ export const pokedexSortExclusion = [
 
 export type PokedexSortExclusion = typeof pokedexSortExclusion[number];
 
+export const pokemonSortTypeOfSkillValue = [
+  'mainSkillValue',
+  'mainSkillTriggerValue',
+] as const;
+
+export type PokemonSortTypeOfSkillValue = typeof pokemonSortTypeOfSkillValue[number];
+
 export const pokemonSortType = [
-  ...pokedexSortExclusion,
   'id',
+  ...pokedexSortExclusion,
   'berryEnergy',
   'berryCount',
   'ingredientEnergy',
@@ -30,8 +37,7 @@ export const pokemonSortType = [
   'frequencyOfBerry',
   'frequencyOfIngredient',
   'timeToFullPack',
-  'mainSkillValue',
-  'mainSkillTriggerValue',
+  ...pokemonSortTypeOfSkillValue,
 ] as const;
 
 export type PokemonSortType = typeof pokemonSortType[number];
