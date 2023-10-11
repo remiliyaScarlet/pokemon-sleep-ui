@@ -9,6 +9,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
@@ -68,21 +69,24 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
           onDetailsClick={() => pokemonPopup.show('detailedStats')}
           {...props}
         />
-        <Flex>
-          <Flex className={clsx(
+        <Flex direction="row" className="items-center justify-between">
+          <Flex direction="row" noFullWidth className={clsx(
+            'items-center gap-1.5 truncate px-2 py-1 text-sm',
+            pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
+          )}>
+            <MainSkillIcon id={skill} dimension="h-5 w-5"/>
+            <div className="truncate">{t(`MainSkill.Name.${skill}`)}</div>
+          </Flex>
+          <Flex noFullWidth className={clsx(
             'items-end px-2 py-1 text-sm',
             pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
           )}>
             <PokemonIngredientIcons
               ingredients={[Object.values(member.ingredients).map((production) => production)]}
+              dimension="h-5 w-5"
+              className="gap-1"
             />
           </Flex>
-          <div className={clsx(
-            'px-2 py-1 text-end text-sm',
-            pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
-          )}>
-            {t(`MainSkill.Name.${skill}`)}
-          </div>
         </Flex>
       </Flex>
       <Flex center className="gap-1">

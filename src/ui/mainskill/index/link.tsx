@@ -2,11 +2,11 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
 import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {MainSkillEffectTypeIcon} from '@/components/shared/pokemon/mainSkill/icon/type';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {MainSkillData} from '@/types/game/pokemon/mainSkill';
 
 
@@ -15,19 +15,17 @@ type Props = {
 };
 
 export const MainSkillLink = ({data}: Props) => {
-  const {id, effects} = data;
+  const {id} = data;
 
   const t = useTranslations('Game');
 
   return (
-    <Link href={`/info/mainskill/${id}`} className="button-clickable-bg group p-4">
+    <FlexLink direction="row" center href={`/info/mainskill/${id}`} className="button-clickable-bg group gap-2 p-4">
+      <MainSkillIcon id={id} dimension="h-12 w-12"/>
       <Flex center className="gap-1">
-        <Flex direction="row" center className="gap-1 text-xl">
-          <MainSkillEffectTypeIcon type={effects[0].type} dimension="h-7 w-7"/>
-          <div>
-            {t(`MainSkill.Name.${id}`)}
-          </div>
-        </Flex>
+        <div className="text-center text-xl">
+          {t(`MainSkill.Name.${id}`)}
+        </div>
         <HorizontalSplitter className="w-full"/>
         <Flex className={clsx(
           'text-sm text-slate-600 group-hover:text-slate-400 dark:text-slate-400 dark:group-hover:text-slate-600',
@@ -35,6 +33,6 @@ export const MainSkillLink = ({data}: Props) => {
           {t(`MainSkill.Description.${id}`)}
         </Flex>
       </Flex>
-    </Link>
+    </FlexLink>
   );
 };

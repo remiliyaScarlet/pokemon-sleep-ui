@@ -6,10 +6,10 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonMainSkillValue} from '@/components/shared/pokemon/mainSkill/value/base';
 import {PokemonMainSkillTriggerValue} from '@/components/shared/pokemon/mainSkill/value/trigger';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
@@ -61,9 +61,10 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'mainSkill') {
     return (
-      <div className="text-sm">
+      <Flex direction="row" className="items-end gap-0.5 text-sm">
+        <MainSkillIcon id={skill} dimension="h-6 w-6"/>
         {t(`MainSkill.Name.${skill}`)}
-      </div>
+      </Flex>
     );
   }
 
@@ -72,35 +73,19 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredientRate') {
-    return (
-      <Flex direction="row">
-        <PokemonIngredientRate split={ingredientSplit}/>
-      </Flex>
-    );
+    return <PokemonIngredientRate split={ingredientSplit}/>;
   }
 
   if (display === 'sleepType') {
-    return (
-      <Flex direction="row">
-        <PokemonSleepType sleepType={sleepType}/>
-      </Flex>
-    );
+    return <PokemonSleepType sleepType={sleepType}/>;
   }
 
   if (display === 'specialty') {
-    return (
-      <Flex direction="row">
-        <PokemonSpecialty specialty={specialty}/>
-      </Flex>
-    );
+    return <PokemonSpecialty specialty={specialty}/>;
   }
 
   if (display === 'frequencyBase') {
-    return (
-      <Flex direction="row">
-        <PokemonFrequency frequency={stats.frequency}/>
-      </Flex>
-    );
+    return <PokemonFrequency frequency={stats.frequency}/>;
   }
 
   if (display === 'mainSkillValue') {
@@ -136,27 +121,15 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'frequencyOfBerry' || display === 'frequencyOfIngredient') {
-    return (
-      <Flex direction="row">
-        <PokemonFrequency frequency={sorter}/>
-      </Flex>
-    );
+    return <PokemonFrequency frequency={sorter}/>;
   }
 
   if (display === 'timeToFullPack') {
-    return (
-      <Flex direction="row">
-        <PokemonTimeToFullPack timeToFullPack={sorter}/>
-      </Flex>
-    );
+    return <PokemonTimeToFullPack timeToFullPack={sorter}/>;
   }
 
   if (display === 'id') {
-    return (
-      <div className="text-xs">
-        #{id}
-      </div>
-    );
+    return <>#{id}</>;
   }
 
   if (display === 'ingredientEnergy') {
@@ -175,8 +148,8 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
-  if (display === 'ingredientCount' || display === 'frequency') {
-    const rate = getPokemonProducingRate({
+  if (display === 'ingredientCount') {
+    const {ingredient} = getPokemonProducingRate({
       level,
       pokemon,
       pokemonProducingParams,
@@ -188,35 +161,27 @@ export const PokedexLinkDetail = React.memo(({
       ...defaultNeutralOpts,
     });
 
-    if (display === 'ingredientCount') {
-      const {ingredient} = rate;
+    return (
+      <Flex>
+        <div className="text-xs">
+          <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
+        </div>
+        <PokemonIngredientIcons
+          numberFormat="float"
+          ingredients={[Object.values(ingredient)
+            .sort((a, b) => b.quantity.equivalent - a.quantity.equivalent)
+            .map(({id, quantity}) => ({
+              id,
+              qty: quantity.equivalent,
+            })),
+          ]}
+        />
+      </Flex>
+    );
+  }
 
-      return (
-        <Flex>
-          <div className="text-xs">
-            <PokemonIngredientIcons ingredients={[ingredients]} dimension="h-4 w-4"/>
-          </div>
-          <PokemonIngredientIcons
-            numberFormat="float"
-            ingredients={[Object.values(ingredient)
-              .sort((a, b) => b.quantity.equivalent - a.quantity.equivalent)
-              .map(({id, quantity}) => ({
-                id,
-                qty: quantity.equivalent,
-              })),
-            ]}
-          />
-        </Flex>
-      );
-    }
-
-    if (display === 'frequency') {
-      return (
-        <Flex direction="row">
-          <PokemonFrequencyFromProducingRate pokemonRate={rate}/>
-        </Flex>
-      );
-    }
+  if (display === 'frequency') {
+    return <PokemonFrequency frequency={sorter}/>;
   }
 
   if (display === 'berryEnergy' || display === 'berryCount') {

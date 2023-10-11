@@ -3,10 +3,11 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
@@ -48,12 +49,13 @@ export const PokemonMeta = (props: PokemonProps) => {
           title={t2('Info.MainSkill')}
           titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.skill && 'bg-blink')}
         >
-          <Flex>
-            <Flex center className="h-12 text-lg">
-              <Link href={`/info/mainskill/${skill}`} className="button-clickable-bg p-1 px-2">
-                {t(`MainSkill.Name.${skill}`)}
-              </Link>
-            </Flex>
+          <Flex className="gap-1" noFullWidth>
+            <FlexLink href={`/info/mainskill/${skill}`} center className={clsx(
+              'button-clickable-bg group gap-2 p-1 px-2 text-lg',
+            )}>
+              <MainSkillIcon id={skill} dimension="h-6 w-6"/>
+              <div>{t(`MainSkill.Name.${skill}`)}</div>
+            </FlexLink>
             <div className="text-xs text-slate-500 dark:text-slate-400">
               {t(`MainSkill.Description.${skill}`)}
             </div>

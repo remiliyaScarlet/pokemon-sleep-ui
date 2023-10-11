@@ -19,7 +19,7 @@ export const MainSkillIndex = async ({params}: DefaultPageProps) => {
   return (
     <PublicPageLayout locale={locale}>
       <AdsUnit/>
-      <Grid className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <Grid className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
         {mainSkills.map((data) => (
           <MainSkillLink key={data.id} data={data}/>
         ))}

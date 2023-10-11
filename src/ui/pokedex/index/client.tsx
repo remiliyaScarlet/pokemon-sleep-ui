@@ -103,7 +103,12 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       <PokedexResultCount data={sortedData} inclusionMap={isIncluded}/>
       <LazyLoad loading={loading}>
         <Grid className={clsx(
-          'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-6',
+          filter.display === 'mainSkill' ?
+            // Main skill is the only content with long words that's unable to truncate,
+            // therefore the column breakpoints should be specialized
+            // to avoid making all the other display type having a lot of spaces
+            'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-5' :
+            'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-6',
         )}>
           {sortedData.map(({source}) => {
             const pokemonId = source.pokemon.id;

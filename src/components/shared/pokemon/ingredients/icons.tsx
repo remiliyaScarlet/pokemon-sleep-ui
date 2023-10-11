@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {Flex} from '@/components/layout/flex/common';
 import {VerticalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
@@ -12,11 +14,12 @@ import {formatNumber} from '@/utils/number';
 type Props = IngredientIconCommonProps & {
   ingredients: IngredientProduction[][],
   numberFormat?: NumberFormat,
+  className?: string,
 };
 
-export const PokemonIngredientIcons = ({ingredients, numberFormat = 'int', ...props}: Props) => {
+export const PokemonIngredientIcons = ({ingredients, numberFormat = 'int', className, ...props}: Props) => {
   return (
-    <Flex direction="row" noFullWidth className="gap-0.5">
+    <Flex direction="row" noFullWidth className={clsx(className ?? 'gap-0.5')}>
       {ingredients.map((data, idx) => (
         <React.Fragment key={data.map(({id, qty}) => `${id}x${qty}`).join('-')}>
           {idx !== 0 && <VerticalSplitter/>}
