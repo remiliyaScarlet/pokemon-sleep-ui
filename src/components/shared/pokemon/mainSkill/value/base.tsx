@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/common';
+import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
 import {formatFloat} from '@/utils/number';
 
 
@@ -16,7 +16,7 @@ export const PokemonMainSkillValue = ({value}: Props) => {
 
   return (
     <Flex direction="row" noFullWidth className="items-center gap-1">
-      <MainSkillIcon alt={t('MainSkillValue')}/>
+      <GenericMainSkillIcon alt={t('MainSkillValue')}/>
       <div>{formatFloat(value)}</div>
     </Flex>
   );

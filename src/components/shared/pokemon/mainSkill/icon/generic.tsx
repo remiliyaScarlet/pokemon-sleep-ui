@@ -9,7 +9,7 @@ type Props = {
   dimension?: Dimension,
 };
 
-export const MainSkillIcon = ({alt, dimension}: Props) => {
+export const GenericMainSkillIcon = ({alt, dimension}: Props) => {
   return (
     <GenericIcon
       src="/images/generic/mainSkill.png"
