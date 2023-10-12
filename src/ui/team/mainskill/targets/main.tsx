@@ -79,7 +79,7 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
           {...props}
         />
         <Grid className={clsx(
-          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
+          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6',
         )}>
           {units.map((unit) => {
             const {id, pokemonId} = unit;
