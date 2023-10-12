@@ -3,9 +3,14 @@ import {SkillTriggerAnalysisState, SkillTriggerAnalysisUnit} from '@/ui/team/mai
 import {GenerateSkillTriggerAnalysisUnitOpts} from '@/ui/team/mainskill/utils';
 
 
+type SkillTriggerAnalysisTargetStateSetBaseOpts = {
+  unit: SkillTriggerAnalysisUnit,
+  clearTarget: boolean
+};
+
 export type UseSkillTriggerAnalysisTargetStateReturn = {
   state: SkillTriggerAnalysisState,
-  setBase: (unit: SkillTriggerAnalysisUnit) => void,
+  setBase: ({unit, clearTarget}: SkillTriggerAnalysisTargetStateSetBaseOpts) => void,
   createUnit: (opts: GenerateSkillTriggerAnalysisUnitOpts) => void,
   updateUnit: (id: string, update: Partial<PokemonConfigPokemonData>) => void,
   deleteUnit: (id: string) => void,

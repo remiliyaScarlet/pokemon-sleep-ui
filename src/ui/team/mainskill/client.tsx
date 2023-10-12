@@ -47,8 +47,14 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   return (
     <PokemonLab
       {...data}
-      onPokemonPicked={(setup) => setBase(toSkillTriggerAnalysisUnit(setup))}
-      onRun={(setup: SkillTriggerOnDeskState) => setBase(toSkillTriggerAnalysisUnit(setup))}
+      onPokemonPicked={(setup) => setBase({
+        unit: toSkillTriggerAnalysisUnit(setup),
+        clearTarget: true,
+      })}
+      onRun={(setup: SkillTriggerOnDeskState) => setBase({
+        unit: toSkillTriggerAnalysisUnit(setup),
+        clearTarget: false,
+      })}
       toState={(onDeskState) => ({...onDeskState, level: 1})}
       immediateUpdate
       renderResult={({pokemon}) => (

@@ -70,9 +70,10 @@ export const useSkillTriggerAnalysisTargetState = ({
 
   return {
     state,
-    setBase: (base) => setState((original) => ({
+    setBase: ({unit, clearTarget}) => setState((original) => ({
       ...original,
-      base,
+      base: unit,
+      targets: clearTarget ? {} : original.targets,
     })),
     createUnit,
     updateUnit,
