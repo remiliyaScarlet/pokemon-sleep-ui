@@ -19,13 +19,14 @@ import {PokemonConfig} from '@/components/shared/pokemon/predefined/config/main'
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisTriggerValue} from '@/ui/team/mainskill/targets/triggerValue';
+import {SkillTriggerAnalysisCalculatedUnit, SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
 import {SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 
 
 type Props = SkillTriggerAnalysisCommonProps & {
   pokemon: PokemonInfo,
-  unit: SkillTriggerAnalysisUnit,
+  unit: SkillTriggerAnalysisCalculatedUnit,
   updateUnit: (update: Partial<SkillTriggerAnalysisUnit>) => void,
   deleteUnit: () => void,
   copyUnit: () => void,
@@ -43,11 +44,17 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
 
   const [show, setShow] = React.useState(false);
 
+  const {
+    level,
+    nature,
+    subSkill,
+    ingredients,
+  } = unit;
   const {skill} = pokemon;
 
   return (
     <AnimatedCollapseQuick show appear>
-      <Flex center className="h-100 relative gap-1 rounded-lg bg-slate-500/10 p-2">
+      <Flex center className="relative h-full gap-1 rounded-lg bg-slate-500/10 p-2">
         <button onClick={deleteUnit} className="button-clickable absolute right-1 top-1 z-10 h-5 w-5 rounded-full">
           <XMarkIcon/>
         </button>
@@ -66,7 +73,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
             <div className="relative h-28 w-28">
               <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
               <InfoIcon className="absolute bottom-0 right-0">
-                {unit.level}
+                {level}
               </InfoIcon>
             </div>
           </Flex>
@@ -91,17 +98,16 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
                 pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
               )}>
                 <PokemonIngredientIcons
-                  ingredients={[Object.values(unit.ingredients).map((production) => production)]}
+                  ingredients={[Object.values(ingredients).map((production) => production)]}
                   className="gap-1"
                 />
               </Flex>
             </Flex>
           </Flex>
         </Flex>
-        <Flex center className="gap-1">
-          <PokemonNatureIndicator nature={unit.nature}/>
-          <PokemonSubSkillIndicator subSkill={unit.subSkill} subSkillMap={subSkillMap} className="justify-center"/>
-        </Flex>
+        <PokemonNatureIndicator nature={nature}/>
+        <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
+        <SkillTriggerAnalysisTriggerValue unit={unit}/>
       </Flex>
     </AnimatedCollapseQuick>
   );

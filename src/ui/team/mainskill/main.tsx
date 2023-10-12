@@ -5,7 +5,8 @@ import {getServerSession} from 'next-auth';
 import {AdsUnit} from '@/components/ads/main';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
-import {getPokemonMaxLevelByBerry} from '@/controller/berry';
+import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -24,6 +25,8 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
+    berryDataMap,
+    ingredientMap,
     subSkillMap,
     pokemonMaxLevel,
     session,
@@ -32,6 +35,8 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
     getIngredientChainMap(),
+    getAllBerryData(),
+    getAllIngredients(),
     getSubSkillMap(),
     getPokemonMaxLevelByBerry(),
     getServerSession(authOptions),
@@ -42,6 +47,8 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
+    berryDataMap,
+    ingredientMap,
     subSkillMap,
     pokemonMaxLevel,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),
@@ -54,7 +61,9 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
       <I18nProvider locale={locale} namespaces={[
         'Game',
         'UI.InPage.Pokedex',
+        'UI.InPage.Team',
         'UI.Metadata.Pokedex',
+        'UI.Metadata.Team',
         'UI.Ocr',
       ]}>
         <SkillTriggerAnalysisClient {...props}/>

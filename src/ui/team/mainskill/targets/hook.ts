@@ -12,7 +12,7 @@ type UseSkillTriggerAnalysisOpts = {
   initial: SkillTriggerAnalysisState,
 };
 
-export const useSkillTriggerAnalysisTargets = ({initial}: UseSkillTriggerAnalysisOpts) => {
+export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAnalysisOpts) => {
   const [state, setState] = React.useState<SkillTriggerAnalysisTargetsState>({
     ...initial,
     targets: {},

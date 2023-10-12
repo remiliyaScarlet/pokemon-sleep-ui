@@ -1,3 +1,4 @@
+import {durationOfDay} from '@/const/common';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
@@ -88,12 +89,13 @@ type GetHelpingCountFromPokemonRateOpts = {
 
 export const getDailyHelpsOfStateFromPokemonRate = ({rate, state}: GetHelpingCountFromPokemonRateOpts) => {
   const {berry, ingredient} = rate;
-  return (
+
+  return durationOfDay * (
     1 / berry.frequency[state] +
     toSum(Object.values(ingredient).map(({frequency}) => 1 / frequency[state]))
   );
 };
 
 export const getFrequencyOfStateFromPokemonRate = (opts: GetHelpingCountFromPokemonRateOpts) => {
-  return 1 / getDailyHelpsOfStateFromPokemonRate(opts);
+  return durationOfDay / getDailyHelpsOfStateFromPokemonRate(opts);
 };

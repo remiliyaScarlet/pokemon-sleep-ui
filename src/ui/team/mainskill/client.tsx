@@ -39,6 +39,7 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   const data: SkillTriggerAnalysisDataProps = {
     pokemonList,
     maxEvolutionCount: getPokemonMaxEvolutionCount(pokemonList),
+    calculatedSettings,
     ...props,
   };
 

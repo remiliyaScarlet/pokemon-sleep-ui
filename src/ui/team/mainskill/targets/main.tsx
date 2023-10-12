@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -8,7 +9,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/picker';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {useSkillTriggerAnalysisTargets} from '@/ui/team/mainskill/targets/hook';
+import {useSkillTriggerAnalysisCalculated} from '@/ui/team/mainskill/targets/calc';
+import {useSkillTriggerAnalysisTargetState} from '@/ui/team/mainskill/targets/hook';
 import {SkillTriggerAnalysisTarget} from '@/ui/team/mainskill/targets/target';
 import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
 import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
@@ -34,8 +36,13 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
     updateUnit,
     deleteUnit,
     copyUnit,
-  } = useSkillTriggerAnalysisTargets(props);
+  } = useSkillTriggerAnalysisTargetState(props);
   const collapsiblePicker = useCollapsible();
+
+  const {units, sort} = useSkillTriggerAnalysisCalculated({
+    ...props,
+    state,
+  });
 
   return (
     <Flex className="gap-1.5">
@@ -57,11 +64,18 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
         }}
         classNameForHeight="h-80 md:h-60 lg:h-40"
       />
+      <Flex className="items-end">
+        <button onClick={sort} disabled={!units.length} className={clsx(
+          'enabled:button-clickable-bg disabled:button-disabled h-9 w-9 p-1',
+        )}>
+          <Bars3BottomLeftIcon/>
+        </button>
+      </Flex>
       <Grid className={clsx(
         'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
       )}>
-        {Object.entries(state.targets).map(([id, target]) => {
-          const {pokemonId} = target;
+        {units.map((unit) => {
+          const {id, pokemonId} = unit;
           const pokemon = pokedexMap[pokemonId];
 
           if (!pokemon) {
@@ -73,7 +87,7 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
               {...props}
               key={id}
               pokemon={pokemon}
-              unit={target}
+              unit={unit}
               updateUnit={(update) => updateUnit(id, update)}
               deleteUnit={() => deleteUnit(id)}
               copyUnit={() => copyUnit(id)}
