@@ -99,16 +99,14 @@ export const PokeInBoxEditLayout = ({
         pokedex={pokedexMap}
         onClick={(pokemon) => setPokeInBox({...pokeInBox, pokemon})}
       />
-      <Flex>
-        <PokemonLevelSlider
-          level={level}
-          maxLevel={Math.max(...pokemonSubSkillLevel)}
-          setLevel={(level) => setPokeInBox({
-            ...pokeInBox,
-            level,
-          })}
-        />
-      </Flex>
+      <PokemonLevelSlider
+        level={level}
+        maxLevel={Math.max(...pokemonSubSkillLevel)}
+        setLevel={(level) => setPokeInBox({
+          ...pokeInBox,
+          level,
+        })}
+      />
       <PokemonIngredientPicker
         chain={ingredientChainMap[pokemon.ingredientChain]}
         ingredients={pokeInBox.ingredients}

@@ -2,7 +2,6 @@ import React from 'react';
 
 import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 
-import {InputRow} from '@/components/input/filter/row';
 import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
@@ -11,7 +10,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
+import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {toUnique} from '@/utils/array';
@@ -65,18 +64,14 @@ export const AnalysisPageInput = ({
             pokemonList={pokemonList}
           />
         ))}
-        <InputRow>
-          <Flex className="p-1">
-            <PokemonLevelSlider
-              level={filter.level}
-              maxLevel={maxLevel}
-              setLevel={(level) => setFilter((original) => ({
-                ...original,
-                level,
-              } satisfies AnalysisComparisonFilter))}
-            />
-          </Flex>
-        </InputRow>
+        <PokemonLevelSliderRow
+          level={filter.level}
+          maxLevel={maxLevel}
+          setLevel={(level) => setFilter((original) => ({
+            ...original,
+            level,
+          } satisfies AnalysisComparisonFilter))}
+        />
         <SnorlaxFavoriteInput
           filter={filter}
           setFilter={setFilter}

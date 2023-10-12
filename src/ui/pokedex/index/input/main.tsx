@@ -5,7 +5,6 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
-import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
@@ -15,7 +14,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
+import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {pokedexSortExclusion} from '@/components/shared/pokemon/sorter/type';
 import {isPokedexSortExclusion} from '@/components/shared/pokemon/sorter/utils';
@@ -74,18 +73,14 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               {...props}
             />
           ))}
-          <InputRow>
-            <Flex className="p-1">
-              <PokemonLevelSlider
-                level={filter.level}
-                maxLevel={maxLevel}
-                setLevel={(level) => setFilter((original) => ({
-                  ...original,
-                  level,
-                } satisfies PokedexInputProps['filter']))}
-              />
-            </Flex>
-          </InputRow>
+          <PokemonLevelSliderRow
+            level={filter.level}
+            maxLevel={maxLevel}
+            setLevel={(level) => setFilter((original) => ({
+              ...original,
+              level,
+            } satisfies PokedexInputProps['filter']))}
+          />
           <SnorlaxFavoriteInput
             filterKey="snorlaxFavorite"
             pokemonList={pokedex}
