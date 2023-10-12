@@ -29,6 +29,7 @@ export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {
             <TeamAnalysisBerryRate key={id} id={Number(id)} rate={rate}/>
           </div>
         )}
+        showQuantity={false}
       />
       <HorizontalSplitter/>
       <TeamAnalysisCategorySummary
@@ -39,6 +40,7 @@ export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {
             <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate}/>
           </div>
         )}
+        showQuantity
       />
     </Flex>
   );
