@@ -9,7 +9,7 @@ type GetNatureMultiplierOpts = {
 };
 
 const buffValueOfEffect: {[effect in NatureEffectType]: number} = {
-  mainSkill: NaN, // 20%
+  mainSkill: 1.2,
   exp: 1.18,
   energy: 1.2,
   rateOfIngredient: 1.2,
@@ -17,7 +17,7 @@ const buffValueOfEffect: {[effect in NatureEffectType]: number} = {
 };
 
 const nerfValueOfEffect: {[effect in NatureEffectType]: number} = {
-  mainSkill: NaN, // 20%
+  mainSkill: 0.8,
   exp: 0.82,
   energy: 0.8,
   rateOfIngredient: 0.8,

@@ -47,6 +47,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
     const {pokemonProducingParams} = opts;
 
     return getSkillTriggerValue({
+      ...opts,
       rate: getPokemonRateSorter(opts),
       skillValue: pokemonProducingParams.skillValue,
     });
