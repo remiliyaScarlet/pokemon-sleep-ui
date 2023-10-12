@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split/main';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {TeamAnalysisRateLayout} from '@/ui/team/analysis/setup/common/rateLayout';
 import {TeamAnalysisFinalEstimate} from '@/ui/team/analysis/setup/summary/finalEstimate';
@@ -36,6 +37,11 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
             icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
           />
         </Flex>
+        <PokemonProductionSplit
+          specialty={null}
+          berry={berry.energy}
+          ingredient={ingredient?.energy ?? 0}
+        />
         <Flex direction="row" noFullWidth className="justify-end">
           <TeamAnalysisRateLayout period={period} larger showQuantity={false} rate={stats.overall}/>
         </Flex>
