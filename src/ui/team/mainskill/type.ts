@@ -15,11 +15,12 @@ export type SkillTriggerOnDeskState = PokemonOnDeskState & {
   level: number,
 };
 
-export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData;
-
 export type SkillTriggerAnalysisState = CalculatedUserSettings & {
   base: SkillTriggerAnalysisUnit | null,
+  targets: {[id in string]: SkillTriggerAnalysisUnit},
 };
+
+export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData;
 
 export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,

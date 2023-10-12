@@ -3,20 +3,26 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
-import {SkillTriggerAnalysisTargetsState} from '@/ui/team/mainskill/targets/type';
+import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UseSkillTriggerAnalysisTargetStateReturn} from '@/ui/team/mainskill/state/type';
 import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
 import {generateSkillTriggerAnalysisUnit, GenerateSkillTriggerAnalysisUnitOpts} from '@/ui/team/mainskill/utils';
 
 
 type UseSkillTriggerAnalysisOpts = {
-  initial: SkillTriggerAnalysisState,
+  calculatedSettings: CalculatedUserSettings,
 };
 
-export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAnalysisOpts) => {
-  const [state, setState] = React.useState<SkillTriggerAnalysisTargetsState>({
-    ...initial,
+export const useSkillTriggerAnalysisTargetState = ({
+  calculatedSettings,
+}: UseSkillTriggerAnalysisOpts): UseSkillTriggerAnalysisTargetStateReturn => {
+  const [state, setState] = React.useState<SkillTriggerAnalysisState>({
+    ...calculatedSettings,
+    base: null,
     targets: {},
   });
+
+  const funcDeps: React.DependencyList = [setState];
 
   const targetBottomRef = React.useRef<HTMLDivElement>(null);
 
@@ -24,7 +30,7 @@ export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAna
 
   const createUnit = React.useCallback((opts: GenerateSkillTriggerAnalysisUnitOpts) => {
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
-    setState((original): SkillTriggerAnalysisTargetsState => ({
+    setState((original): SkillTriggerAnalysisState => ({
       ...original,
       targets: {
         ...original.targets,
@@ -32,11 +38,11 @@ export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAna
       },
     }));
     scrollToBottom();
-  }, [setState]);
+  }, funcDeps);
 
   const updateUnit = React.useCallback((id: string, update: Partial<PokemonConfigPokemonData>) => (
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
-    setState((original): SkillTriggerAnalysisTargetsState => ({
+    setState((original): SkillTriggerAnalysisState => ({
       ...original,
       targets: {
         ...original.targets,
@@ -46,19 +52,19 @@ export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAna
         },
       },
     }))
-  ), [setState]);
+  ), funcDeps);
 
   const deleteUnit = React.useCallback((id: string) => (
-    setState((original): SkillTriggerAnalysisTargetsState => {
+    setState((original): SkillTriggerAnalysisState => {
       const updated = {...original};
       delete updated.targets[id];
 
       return updated;
     })
-  ), [setState]);
+  ), funcDeps);
 
   const copyUnit = React.useCallback((id: string) => {
-    setState((original): SkillTriggerAnalysisTargetsState => ({
+    setState((original): SkillTriggerAnalysisState => ({
       ...original,
       targets: {
         ...original.targets,
@@ -66,10 +72,18 @@ export const useSkillTriggerAnalysisTargetState = ({initial}: UseSkillTriggerAna
       },
     }));
     scrollToBottom();
-  }, [setState]);
+  }, funcDeps);
 
-  // If `initial` changes, reset the comparison targets
-  React.useEffect(() => setState({...initial, targets: {}}), [initial]);
-
-  return {targetBottomRef, state, createUnit, updateUnit, deleteUnit, copyUnit};
+  return {
+    targetBottomRef,
+    state,
+    setBase: (base) => setState((original) => ({
+      ...original,
+      base,
+    })),
+    createUnit,
+    updateUnit,
+    deleteUnit,
+    copyUnit,
+  };
 };

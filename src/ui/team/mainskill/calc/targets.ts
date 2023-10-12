@@ -4,13 +4,14 @@ import {getSkillTriggerValueOfUnit} from '@/ui/team/mainskill/calc/single';
 import {GetSkillTriggerValueCommonOpts} from '@/ui/team/mainskill/calc/type';
 import {
   SkillTriggerAnalysisCalculatedUnit,
-  SkillTriggerAnalysisTargetsState,
+
 } from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
 import {isNotNullish} from '@/utils/type';
 
 
 export type GetSkillTriggerValueOfTargetsOpts = GetSkillTriggerValueCommonOpts & {
-  state: SkillTriggerAnalysisTargetsState,
+  state: SkillTriggerAnalysisState,
 };
 
 export const getSkillTriggerValueOfTargets = ({

@@ -6,11 +6,11 @@ import {useSession} from 'next-auth/react';
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {useUserSettings} from '@/hooks/userData/settings';
+import {useSkillTriggerAnalysisTargetState} from '@/ui/team/mainskill/state/hook';
 import {SkillTriggerAnalysisTargets} from '@/ui/team/mainskill/targets/main';
 import {
   SkillTriggerAnalysisDataProps,
   SkillTriggerAnalysisServerDataProps,
-  SkillTriggerAnalysisState,
   SkillTriggerOnDeskState,
 } from '@/ui/team/mainskill/type';
 import {toSkillTriggerAnalysisUnit} from '@/ui/team/mainskill/utils';
@@ -30,10 +30,11 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });
-  const [state, setState] = React.useState<SkillTriggerAnalysisState>({
-    ...calculatedSettings,
-    base: null,
+  const stateControl = useSkillTriggerAnalysisTargetState({
+    calculatedSettings,
   });
+
+  const {setBase} = stateControl;
 
   const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
   const data: SkillTriggerAnalysisDataProps = {
@@ -46,21 +47,15 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   return (
     <PokemonLab
       {...data}
-      onPokemonPicked={(setup) => setState((original) => ({
-        ...original,
-        base: toSkillTriggerAnalysisUnit(setup),
-      }))}
-      onRun={(setup: SkillTriggerOnDeskState) => setState((original) => ({
-        ...original,
-        base: toSkillTriggerAnalysisUnit(setup),
-      }))}
+      onPokemonPicked={(setup) => setBase(toSkillTriggerAnalysisUnit(setup))}
+      onRun={(setup: SkillTriggerOnDeskState) => setBase(toSkillTriggerAnalysisUnit(setup))}
       toState={(onDeskState) => ({...onDeskState, level: 1})}
       immediateUpdate
       renderResult={({pokemon}) => (
         <SkillTriggerAnalysisTargets
           {...data}
-          initial={state}
           selectedPokemon={pokemon}
+          stateControl={stateControl}
         />
       )}
       renderAdditional={({level}, setOnDesk) => (
