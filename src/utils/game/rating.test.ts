@@ -32,6 +32,7 @@ describe('Rating', () => {
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
       subSkillMap: {},
+      basis: 'totalProduction',
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -57,6 +58,7 @@ describe('Rating', () => {
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
+      basis: 'totalProduction',
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -82,6 +84,7 @@ describe('Rating', () => {
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
+      basis: 'totalProduction',
     });
 
     expect(result?.baseDiffPercent).toBe(0);

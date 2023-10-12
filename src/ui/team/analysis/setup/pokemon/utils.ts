@@ -1,5 +1,6 @@
 import {v4} from 'uuid';
 
+import {defaultRatingBasis} from '@/const/game/rating';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
@@ -17,6 +18,7 @@ type ToRatingRequestOpts = CalculatedUserSettings & {
 export const toRatingSetup = ({member, ...opts}: ToRatingRequestOpts): RatingSetupData => ({
   ...member,
   ...opts,
+  basis: defaultRatingBasis,
 });
 
 export const toPokeInBox = ({pokemonId, name, ...member}: TeamAnalysisMember): PokeInBox => {

@@ -1,4 +1,5 @@
-import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingBasis, RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
 export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
@@ -13,3 +14,14 @@ export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
     max: null,
   },
 };
+
+export const ratingBasisI18nId: {
+  [basis in RatingBasis]: I18nMessageKeysOfNamespace<'UI.InPage.Pokedex'>
+} = {
+  totalProduction: 'Sort.TotalEnergy',
+  ingredientCount: 'Sort.IngredientCount',
+  ingredientProduction: 'Sort.IngredientEnergy',
+  skillTriggerValue: 'Stats.MainSkillTriggerValue',
+};
+
+export const defaultRatingBasis: RatingBasis = 'totalProduction';

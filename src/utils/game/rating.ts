@@ -1,10 +1,15 @@
 import {natureData} from '@/data/nature';
+import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {
+  RatingBasis,
   RatingCombination,
   RatingDataPoint,
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
+import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {toSum} from '@/utils/array';
+import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
@@ -14,6 +19,42 @@ import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
 import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
+
+type GetRatingBasisValueOpts = {
+  rate: PokemonProducingRate,
+  basis: RatingBasis,
+  pokemonProducingParams: PokemonProducingParams,
+  singleParams: ProducingRateSingleParams,
+};
+
+const getRatingBasisValue = ({
+  rate,
+  basis,
+  pokemonProducingParams,
+  singleParams,
+}: GetRatingBasisValueOpts): number => {
+  if (basis === 'totalProduction') {
+    return getDailyEnergyOfRate(rate);
+  }
+
+  if (basis === 'ingredientCount') {
+    return toSum(Object.values(rate.ingredient).map(({quantity}) => quantity.equivalent));
+  }
+
+  if (basis === 'ingredientProduction') {
+    return toSum(Object.values(rate.ingredient).map(({energy}) => energy.equivalent));
+  }
+
+  if (basis === 'skillTriggerValue') {
+    return getSkillTriggerValue({
+      rate,
+      skillValue: pokemonProducingParams.skillValue,
+      ...singleParams,
+    });
+  }
+
+  throw new Error(`Unhandled rating basis - ${basis satisfies never}`);
+};
 
 export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResultOfLevel | null => {
   const {
@@ -37,30 +78,40 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
   const noCap = true;
 
-  const currentRate = getPokemonProducingRate({
+  const singleParamsOfCurrent = getProducingRateSingleParams(opts);
+  const valueOfCurrent = getRatingBasisValue({
     ...opts,
-    pokemon,
-    berryData,
-    ingredients: currentProductions,
-    ...getProducingRateSingleParams(opts),
-    noCap,
-  });
-  const currentDaily = getDailyEnergyOfRate(currentRate);
-  const baseDaily = getDailyEnergyOfRate(getPokemonProducingRate({
-    ...opts,
-    // Override `evolutionCount` in `opts` to apply default evolution count of the Pokémon
-    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
-    pokemon,
-    berryData,
-    ingredients: currentProductions,
-    ...getProducingRateSingleParams({
-      level,
-      subSkill: {},
-      nature: null,
-      subSkillMap,
+    rate: getPokemonProducingRate({
+      ...opts,
+      pokemon,
+      berryData,
+      ingredients: currentProductions,
+      ...singleParamsOfCurrent,
+      noCap,
     }),
-    noCap,
-  }));
+    singleParams: singleParamsOfCurrent,
+  });
+
+  const singleParamsOfBase = getProducingRateSingleParams({
+    level,
+    subSkill: {},
+    nature: null,
+    subSkillMap,
+  });
+  const valueOfBase = getRatingBasisValue({
+    ...opts,
+    rate: getPokemonProducingRate({
+      ...opts,
+      // Override `evolutionCount` in `opts` to apply default evolution count of the Pokémon
+      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+      pokemon,
+      berryData,
+      ingredients: currentProductions,
+      ...singleParamsOfBase,
+      noCap,
+    }),
+    singleParams: singleParamsOfBase,
+  });
 
   const natureIds = natureData.map(({id}) => id);
 
@@ -74,30 +125,35 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
       for (const natureId of natureIds) {
         samples++;
 
-        const dailyOfPossibility = getDailyEnergyOfRate(getPokemonProducingRate({
+        const singleParamsOfPossibility = getProducingRateSingleParams({
+          level,
+          subSkill,
+          nature: natureId,
+          subSkillMap,
+        });
+        const valueOfPossibility = getRatingBasisValue({
           ...opts,
-          pokemon,
-          berryData,
-          ingredients: productions,
-          ...getProducingRateSingleParams({
-            level,
-            subSkill,
-            nature: natureId,
-            subSkillMap,
+          rate: getPokemonProducingRate({
+            ...opts,
+            pokemon,
+            berryData,
+            ingredients: productions,
+            ...singleParamsOfPossibility,
+            noCap,
           }),
-          noCap,
-        }));
-        if (dailyOfPossibility > currentDaily) {
+          singleParams: singleParamsOfPossibility,
+        });
+        if (valueOfPossibility > valueOfCurrent) {
           rank++;
         }
 
         const combination: RatingCombination = {productions, natureId, subSkill};
 
-        if (!min || dailyOfPossibility < min.value) {
-          min = {value: dailyOfPossibility, combination};
+        if (!min || valueOfPossibility < min.value) {
+          min = {value: valueOfPossibility, combination};
         }
-        if (!max || dailyOfPossibility > max.value) {
-          max = {value: dailyOfPossibility, combination};
+        if (!max || valueOfPossibility > max.value) {
+          max = {value: valueOfPossibility, combination};
         }
       }
     }
@@ -107,13 +163,13 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     level,
     samples,
     rank,
-    percentage: min && max ? Math.abs((currentDaily - min.value) / (max.value - min.value) * 100) : NaN,
+    percentage: min && max ? Math.abs((valueOfCurrent - min.value) / (max.value - min.value) * 100) : NaN,
     percentile: Math.abs((samples + 1 - rank) / (samples + 1) * 100),
-    baseDiffPercent: (currentDaily / baseDaily - 1) * 100,
+    baseDiffPercent: (valueOfCurrent / valueOfBase - 1) * 100,
     points: {
       min,
       current: {
-        value: currentDaily,
+        value: valueOfCurrent,
         combination: {
           productions: currentProductions,
           subSkill,

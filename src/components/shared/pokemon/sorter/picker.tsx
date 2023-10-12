@@ -23,10 +23,8 @@ export const PokemonSortingPicker = ({sort, updateSort, exclude}: Props) => {
       onClick={(sort) => updateSort(sort)}
       isActive={(sortOfInput) => sortOfInput === sort}
       title={
-        <Flex direction="row" center>
-          <div className="h-6 w-6">
-            <Bars3BottomLeftIcon/>
-          </div>
+        <Flex center>
+          <Bars3BottomLeftIcon className="h-6 w-6"/>
         </Flex>
       }
       ids={[...pokemonSortType].filter((sortType) => !exclude?.includes(sortType))}

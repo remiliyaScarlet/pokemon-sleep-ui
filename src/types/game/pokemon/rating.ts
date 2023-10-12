@@ -10,6 +10,15 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 
 
+export const ratingBasis = [
+  'totalProduction',
+  'ingredientCount',
+  'ingredientProduction',
+  'skillTriggerValue',
+] as const;
+
+export type RatingBasis = typeof ratingBasis[number];
+
 export type RatingCombination = {
   productions: IngredientProduction[],
   subSkill: PokemonSubSkill,
@@ -37,6 +46,7 @@ export type RatingResultOfLevel = {
 
 export type RatingOnDeskState = PokemonOnDeskState & {
   snorlaxFavorite: SnorlaxFavorite,
+  basis: RatingBasis,
 };
 
 export type RatingSetupData = RatingOnDeskState & CalculatedUserSettings;

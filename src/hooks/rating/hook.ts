@@ -46,6 +46,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       evolutionCount: setupData.evolutionCount,
       bonus: setupData.bonus,
       sleepDurations: setupData.sleepDurations,
+      basis: setupData.basis,
       ingredientChainMap,
       ingredientMap,
       berryDataMap,

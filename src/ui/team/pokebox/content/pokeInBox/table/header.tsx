@@ -8,6 +8,7 @@ import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {defaultRatingBasis} from '@/const/game/rating';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
@@ -55,6 +56,7 @@ export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupCon
         ...calculatedSettings,
         pokemon,
         snorlaxFavorite,
+        basis: defaultRatingBasis,
       })}>
         <GenericIconLarger src="/images/generic/search.png" alt={t2('Rating.Title')}/>
       </button>
