@@ -20,9 +20,12 @@ export const useSkillTriggerAnalysisCalculated = (
   React.useEffect(() => setUnits(getSkillTriggerValueOfTargets(opts)), [state]);
 
   const sort = React.useCallback(
-    () => setUnits((original) => original.sort((a, b) => (
-      b.skillTriggerValue.actual - a.skillTriggerValue.actual
-    ))),
+    () => setUnits((original) => [
+      // Recreating an array to trigger rerender
+      ...original.sort((a, b) => (
+        b.skillTriggerValue.actual - a.skillTriggerValue.actual
+      )),
+    ]),
     [units, state],
   );
 
