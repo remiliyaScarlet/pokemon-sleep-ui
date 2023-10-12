@@ -26,7 +26,7 @@ export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...pro
         </Flex>
       </Popup>
       <FlexButton
-        className="button-clickable-bg gap-0.5 px-1.5 py-1"
+        className="button-clickable-bg gap-0.5 self-stretch px-1.5 py-1"
         onClick={() => setShow(true)}
         center
         noFullWidth={noFullWidth}

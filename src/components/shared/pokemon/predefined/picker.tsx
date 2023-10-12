@@ -17,7 +17,7 @@ import {showToast} from '@/utils/toast';
 
 type Props = {
   pokemonList: PokemonInfo[],
-  onPokemonPicked: (opts: PokemonInfo) => void,
+  onPokemonPicked: (pokemon: PokemonInfo) => void,
   collapsibleState: CollapsibleState,
   isIncluded: FilterInclusionMap<PokemonId>,
 };

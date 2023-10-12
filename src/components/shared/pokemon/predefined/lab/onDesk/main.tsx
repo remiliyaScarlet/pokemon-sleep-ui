@@ -118,6 +118,7 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
           }))}
           subSkillMap={subSkillMap}
           pokemonIdOverride={pokemon.id}
+          noFullWidth={!immediateUpdate}
         />
         {
           !immediateUpdate &&
