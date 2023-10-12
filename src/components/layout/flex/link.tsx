@@ -12,15 +12,16 @@ type Props = FlexCommonProps & {
   href: string | UrlObject,
 };
 
-export const FlexLink = React.forwardRef<HTMLAnchorElement, React.PropsWithChildren<Props>>(({
+const FlexLinkInternal = ({
   direction = 'row',
   noFullWidth = true,
   href,
   children,
   ...props
-}, ref) => (
+}: React.PropsWithChildren<Props>, ref: React.ForwardedRef<HTMLAnchorElement>) => (
   <Link ref={ref} href={href} className={getFlexStyles(direction, {noFullWidth, ...props})}>
     {children}
   </Link>
-));
-FlexLink.displayName = 'FlexLink';
+);
+
+export const FlexLink = React.forwardRef(FlexLinkInternal);

@@ -8,12 +8,12 @@ type Props = FlexCommonProps & {
   onSubmit?: () => void,
 };
 
-export const FlexForm = React.forwardRef<HTMLFormElement, React.PropsWithChildren<Props>>(({
+const FlexFormInternal = ({
   direction = 'col',
   children,
   onSubmit,
   ...props
-}, ref) => {
+}: React.PropsWithChildren<Props>, ref: React.ForwardedRef<HTMLFormElement>) => {
   return (
     <form ref={ref} className={getFlexStyles(direction, props)} onSubmit={(e) => {
       e.preventDefault();
@@ -25,5 +25,6 @@ export const FlexForm = React.forwardRef<HTMLFormElement, React.PropsWithChildre
       {children}
     </form>
   );
-});
-FlexForm.displayName = 'FlexForm';
+};
+
+export const FlexForm = React.forwardRef(FlexFormInternal);

@@ -9,14 +9,14 @@ type Props = FlexCommonProps & {
   disabled?: boolean,
 };
 
-export const FlexButton = React.forwardRef<HTMLButtonElement, React.PropsWithChildren<Props>>(({
+const FlexButtonInternal = ({
   direction = 'row',
   noFullWidth = true,
   onClick,
   disabled,
   children,
   ...props
-}, ref) => (
+}: React.PropsWithChildren<Props>, ref: React.ForwardedRef<HTMLButtonElement>) => (
   <button
     ref={ref}
     onClick={onClick}
@@ -25,5 +25,6 @@ export const FlexButton = React.forwardRef<HTMLButtonElement, React.PropsWithChi
   >
     {children}
   </button>
-));
-FlexButton.displayName = 'FlexButton';
+);
+
+export const FlexButton = React.forwardRef(FlexButtonInternal);

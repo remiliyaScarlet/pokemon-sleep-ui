@@ -8,10 +8,10 @@ import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {pokemonKeyLevels} from '@/types/game/pokemon/level';
 
 
-export const RatingResult = React.forwardRef<HTMLDivElement, RatingResultProps>(({
+const RatingResultInternal = ({
   pokemonMaxLevel,
   ...props
-}, ref) => {
+}: RatingResultProps, ref: React.ForwardedRef<HTMLDivElement>) => {
   return (
     <Flex className="gap-2">
       <AdsUnit/>
@@ -25,6 +25,6 @@ export const RatingResult = React.forwardRef<HTMLDivElement, RatingResultProps>(
       </Grid>
     </Flex>
   );
-});
+};
 
-RatingResult.displayName = 'RatingResult';
+export const RatingResult = React.forwardRef(RatingResultInternal);

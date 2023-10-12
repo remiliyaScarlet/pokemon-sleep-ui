@@ -6,12 +6,13 @@ import Image, {ImageProps} from 'next/image';
 
 export type NextImageProps = Omit<ImageProps, 'fill' | 'title'>;
 
-export const NextImage = React.forwardRef<HTMLImageElement, React.PropsWithChildren<NextImageProps>>(({
+const NextImageInternal = ({
   src,
   alt,
   sizes,
   className,
-}, ref) => (
+}: React.PropsWithChildren<NextImageProps>, ref: React.ForwardedRef<HTMLImageElement>) => (
   <Image ref={ref} src={src} alt={alt} fill title={alt} sizes={sizes} className={clsx('object-cover', className)}/>
-));
-NextImage.displayName = 'NextImage';
+);
+
+export const NextImage = React.forwardRef(NextImageInternal);

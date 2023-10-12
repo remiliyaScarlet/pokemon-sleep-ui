@@ -4,15 +4,16 @@ import {FlexCommonProps} from '@/components/layout/flex/type';
 import {getFlexStyles} from '@/components/layout/flex/utils';
 
 
-export const Flex = React.forwardRef<HTMLDivElement, React.PropsWithChildren<FlexCommonProps>>(({
+const FlexInternal = ({
   direction = 'col',
   children,
   ...props
-}, ref) => {
+}: React.PropsWithChildren<FlexCommonProps>, ref: React.ForwardedRef<HTMLDivElement>) => {
   return (
     <div ref={ref} className={getFlexStyles(direction, props)}>
       {children}
     </div>
   );
-});
-Flex.displayName = 'Flex';
+};
+
+export const Flex = React.forwardRef(FlexInternal);

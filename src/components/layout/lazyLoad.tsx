@@ -12,12 +12,12 @@ type Props = {
   loadingFullHeight?: boolean,
 };
 
-export const LazyLoad = React.forwardRef<HTMLDivElement, React.PropsWithChildren<Props>>(({
+const LazyLoadInternal = ({
   loading,
   className,
   loadingFullHeight,
   children,
-}, ref) => {
+}: React.PropsWithChildren<Props>, ref: React.ForwardedRef<HTMLDivElement>) => {
   return (
     <Flex ref={ref} direction="col" className={clsx('relative', className, loading && 'min-h-[8rem]')}>
       {
@@ -33,5 +33,6 @@ export const LazyLoad = React.forwardRef<HTMLDivElement, React.PropsWithChildren
       {children}
     </Flex>
   );
-});
-LazyLoad.displayName = 'LazyLoad';
+};
+
+export const LazyLoad = React.forwardRef(LazyLoadInternal);
