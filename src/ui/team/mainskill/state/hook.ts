@@ -5,7 +5,7 @@ import {v4} from 'uuid';
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {UseSkillTriggerAnalysisTargetStateReturn} from '@/ui/team/mainskill/state/type';
-import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
+import {SkillTriggerAnalysisState, SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 import {generateSkillTriggerAnalysisUnit, GenerateSkillTriggerAnalysisUnitOpts} from '@/ui/team/mainskill/utils';
 
 
@@ -31,6 +31,17 @@ export const useSkillTriggerAnalysisTargetState = ({
       targets: {
         ...original.targets,
         [v4()]: generateSkillTriggerAnalysisUnit(opts),
+      },
+    }));
+  }, funcDeps);
+
+  const createUnitDirect = React.useCallback((unit: SkillTriggerAnalysisUnit) => {
+    // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
+    setState((original): SkillTriggerAnalysisState => ({
+      ...original,
+      targets: {
+        ...original.targets,
+        [v4()]: unit,
       },
     }));
   }, funcDeps);
@@ -88,6 +99,7 @@ export const useSkillTriggerAnalysisTargetState = ({
       targets: clearTarget ? {} : original.targets,
     })),
     createUnit,
+    createUnitDirect,
     updateUnit,
     deleteUnit,
     copyUnit,

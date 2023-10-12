@@ -13,6 +13,7 @@ import {useSkillTriggerAnalysisCalculated} from '@/ui/team/mainskill/targets/cal
 import {SkillTriggerAnalysisTargetControl} from '@/ui/team/mainskill/targets/control';
 import {SkillTriggerAnalysisTarget} from '@/ui/team/mainskill/targets/target';
 import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
+import {toSkillTriggerAnalysisUnitFromPokeInBox} from '@/ui/team/mainskill/targets/utils';
 
 
 type Props = SkillTriggerAnalysisCommonProps & {
@@ -32,6 +33,7 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
   const {
     state,
     createUnit,
+    createUnitDirect,
     updateUnit,
     deleteUnit,
     copyUnit,
@@ -65,7 +67,17 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
           }}
           classNameForHeight="h-80 md:h-60 lg:h-40"
         />
-        <SkillTriggerAnalysisTargetControl onSort={sort} disableSort={!units.length}/>
+        <SkillTriggerAnalysisTargetControl
+          disableSort={!units.length}
+          onSort={sort}
+          onPokeInBoxPicked={(pokeInBox) => (
+            createUnitDirect(toSkillTriggerAnalysisUnitFromPokeInBox(pokeInBox))
+          )}
+          isPokeInBoxIncluded={(pokeInBox) => (
+            pokedexMap[pokeInBox.pokemon]?.skill === selectedPokemon.skill
+          )}
+          {...props}
+        />
         <Grid className={clsx(
           'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
         )}>

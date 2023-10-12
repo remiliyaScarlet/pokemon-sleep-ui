@@ -48,13 +48,8 @@ export const getSkillTriggerValueOfUnit = ({
   const subSkillBonus = getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap});
 
   const rate = getPokemonProducingRate({
-    pokemon,
+    // `unit` could have `pokemon` from Poke-in-box, therefore it should always be at the top
     ...unit,
-    snorlaxFavorite: {},
-    berryData: berryDataMap[berry.id],
-    ingredients: getEffectiveIngredientProductions({level, ingredients}),
-    ingredientMap,
-    pokemonProducingParams,
     ...getProducingRateSingleParams({
       level,
       subSkill,
@@ -62,6 +57,12 @@ export const getSkillTriggerValueOfUnit = ({
       subSkillMap,
     }),
     ...calculatedSettings,
+    pokemon,
+    snorlaxFavorite: {},
+    berryData: berryDataMap[berry.id],
+    ingredientMap,
+    pokemonProducingParams,
+    ingredients: getEffectiveIngredientProductions({level, ingredients}),
   });
 
   const actual = getSkillTriggerValue({

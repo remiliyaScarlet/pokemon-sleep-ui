@@ -60,6 +60,7 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
       <AdsUnit/>
       <I18nProvider locale={locale} namespaces={[
         'Game',
+        'UI.Common',
         'UI.InPage.Pokedex',
         'UI.InPage.Team',
         'UI.Metadata.Pokedex',

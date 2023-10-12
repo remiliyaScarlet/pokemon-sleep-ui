@@ -7,14 +7,16 @@ import {Popup} from '@/components/popup';
 import {PokeboxImporterView} from '@/components/shared/pokebox/importer/pokebox';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {PokeInBox} from '@/types/game/pokebox';
 
 
 type Props = PokeboxImporterCommonProps & {
   show: boolean,
   setShow: (show: boolean) => void,
+  isPokeInBoxIncluded?: (pokeInBox: PokeInBox) => boolean,
 };
 
-export const PokeboxImporter = ({show, setShow, ...props}: Props) => {
+export const PokeboxImporter = ({show, setShow, isPokeInBoxIncluded, ...props}: Props) => {
   const session = useSession();
 
   return (
@@ -27,7 +29,11 @@ export const PokeboxImporter = ({show, setShow, ...props}: Props) => {
           actDeps={[show]}
           toAct={() => show}
           content={(data) => (
-            <PokeboxImporterView pokebox={data?.pokeboxSorted ?? []} {...props}/>
+            <PokeboxImporterView
+              pokebox={(data?.pokeboxSorted ?? [])
+                .filter((pokeInBox) => isPokeInBoxIncluded ? isPokeInBoxIncluded(pokeInBox) : true)}
+              {...props}
+            />
           )}
         />
       </Flex>
