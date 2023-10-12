@@ -7,6 +7,7 @@ import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
 import {Popup} from '@/components/popup';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
@@ -66,27 +67,28 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
             </InfoIcon>
           </div>
         </Flex>
-        <Flex direction="row" className="items-center justify-end">
-          <button className="button-clickable-bg h-7 w-7 p-1" onClick={() => setShow(true)}>
-            <PencilIcon/>
-          </button>
-        </Flex>
-        <Flex direction="row" noFullWidth className={clsx(
-          'items-center gap-1.5 truncate px-2 py-1 text-sm',
-          pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
-        )}>
-          <MainSkillIcon id={skill} dimension="h-6 w-6"/>
-          <div className="truncate">{t(`MainSkill.Name.${skill}`)}</div>
-        </Flex>
-        <Flex noFullWidth className={clsx(
-          'items-end px-2 py-1 text-sm',
-          pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
-        )}>
-          <PokemonIngredientIcons
-            ingredients={[Object.values(unit.ingredients).map((production) => production)]}
-            dimension="h-4 w-4"
-            className="gap-1"
-          />
+        <Flex direction="row" className="items-center justify-between">
+          <FlexLink
+            href={`/info/mainskill/${skill}`}
+            className={clsx('p-1', pokemon.specialty === specialtyIdMap.skill && 'bg-blink')}
+          >
+            <MainSkillIcon id={skill} dimension="h-9 w-9"/>
+          </FlexLink>
+          <Flex className="items-end">
+            <button className="button-clickable-bg h-7 w-7 p-1" onClick={() => setShow(true)}>
+              <PencilIcon/>
+            </button>
+            <Flex noFullWidth className={clsx(
+              'px-2 py-1 text-sm',
+              pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+            )}>
+              <PokemonIngredientIcons
+                ingredients={[Object.values(unit.ingredients).map((production) => production)]}
+                dimension="h-4 w-4"
+                className="gap-1"
+              />
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
       <Flex center className="gap-1">
