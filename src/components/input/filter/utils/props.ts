@@ -3,7 +3,6 @@ import {clsx} from 'clsx';
 import {
   FilterInclusionMap,
   FilterInputOnClickProps,
-  FilterInputSetFromOriginalProps,
   FilterWithInclusionMap,
   FilterWithUpdaterProps,
 } from '@/components/input/filter/type';
@@ -47,7 +46,7 @@ export const getSingleSelectOnClickProps = <TFilter, TData, TId>({
 export type GetMultiSelectOnClickPropsOpts<
   TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
-> = FilterInputSetFromOriginalProps<TFilter> & {
+> = FilterWithUpdaterProps<TFilter> & {
   filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>
 };
 
