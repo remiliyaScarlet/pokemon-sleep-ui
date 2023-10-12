@@ -13,6 +13,19 @@ export const SubSkillInfo = async ({params}: DefaultPageProps) => {
   const subSkills = await getAllSubSkillData();
 
   const sortedSubSkills = subSkills.sort((a, b) => {
+    // Check if the rarity of both are available for sorting
+    // > If not, use ID to sort
+    if (!a.rarity || !b.rarity) {
+      return a.id - b.id;
+    }
+
+    // Check if the rarity of both are the same
+    const rarityDiff = b.rarity - a.rarity;
+    if (rarityDiff) {
+      return rarityDiff;
+    }
+
+    // Compare lexicographically based on the active bonus name
     const bonusA = Object.entries(a.bonus).at(0);
     const bonusB = Object.entries(b.bonus).at(0);
 
