@@ -20,7 +20,9 @@ export type SkillTriggerAnalysisState = CalculatedUserSettings & {
   targets: {[id in string]: SkillTriggerAnalysisUnit},
 };
 
-export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData;
+export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData & {
+  show: boolean,
+};
 
 export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,

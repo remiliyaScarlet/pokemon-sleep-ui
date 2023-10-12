@@ -49,14 +49,26 @@ export const useSkillTriggerAnalysisTargetState = ({
     }))
   ), funcDeps);
 
-  const deleteUnit = React.useCallback((id: string) => (
-    setState((original): SkillTriggerAnalysisState => {
+  const deleteUnit = React.useCallback((id: string) => {
+    setState((original): SkillTriggerAnalysisState => ({
+      ...original,
+      targets: {
+        ...original.targets,
+        [id]: {
+          ...original.targets[id],
+          show: false,
+        },
+      },
+    }));
+
+    // Delaying the actual data deletion to let the deletion animation completes
+    setTimeout(() => setState((original): SkillTriggerAnalysisState => {
       const updated = {...original};
       delete updated.targets[id];
 
       return updated;
-    })
-  ), funcDeps);
+    }), 1000);
+  }, funcDeps);
 
   const copyUnit = React.useCallback((id: string) => {
     setState((original): SkillTriggerAnalysisState => ({

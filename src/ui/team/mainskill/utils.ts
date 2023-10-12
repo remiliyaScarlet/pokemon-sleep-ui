@@ -9,6 +9,7 @@ export const toSkillTriggerAnalysisUnit = ({pokemon, ...data}: SkillTriggerOnDes
   return {
     ...data,
     pokemonId: pokemon.id,
+    show: true,
   };
 };
 
@@ -30,5 +31,6 @@ export const generateSkillTriggerAnalysisUnit = ({
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     subSkill: {},
     nature: null,
+    show: true,
   };
 };
