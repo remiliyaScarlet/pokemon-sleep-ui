@@ -1,11 +1,8 @@
+import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {
-  IngredientChainMap,
-  IngredientProduction,
-  IngredientProductionAtLevels,
-} from '@/types/game/pokemon/ingredient';
+import {IngredientChainMap, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -38,14 +35,11 @@ export type RatingResultOfLevel = {
   },
 };
 
-export type RatingSetupData = CalculatedUserSettings & {
-  pokemon: PokemonInfo,
-  ingredients: IngredientProductionAtLevels,
+export type RatingOnDeskState = PokemonOnDeskState & {
   snorlaxFavorite: SnorlaxFavorite,
-  subSkill: PokemonSubSkill,
-  nature: NatureId | null,
-  evolutionCount: number,
 };
+
+export type RatingSetupData = RatingOnDeskState & CalculatedUserSettings;
 
 export type RatingRequest = {
   setup: RatingSetupData,

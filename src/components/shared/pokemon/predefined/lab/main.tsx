@@ -1,37 +1,33 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/react';
-
 import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonComplexFilter} from '@/components/shared/pokemon/predefined/complexPicker/main';
 import {PokemonComplexFilterOnSelectOpts} from '@/components/shared/pokemon/predefined/complexPicker/type';
-import {PokemonOnDesk, PokemonOnDeskProps} from '@/components/shared/pokemon/predefined/lab/onDesk/main';
-import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
+import {PokemonOnDesk} from '@/components/shared/pokemon/predefined/lab/onDesk/main';
+import {PokemonOnDeskCommonProps, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {PokemonLabDataProps} from '@/components/shared/pokemon/predefined/lab/type';
 import {toOnDeskState} from '@/components/shared/pokemon/predefined/lab/utils';
-import {useUserSettings} from '@/hooks/userData/settings';
 
 
-type Props = PokemonLabDataProps & Pick<PokemonOnDeskProps, 'onRun' | 'immediateUpdate'> & {
-  renderResult: (initialSetup: PokemonOnDeskState) => React.ReactNode,
-  onPokemonPicked: (setup: PokemonOnDeskState, opts: PokemonComplexFilterOnSelectOpts) => void,
-};
+type Props<TOnDesk extends PokemonOnDeskState> =
+  PokemonLabDataProps &
+  PokemonOnDeskCommonProps<TOnDesk> &
+  {
+    renderResult: (initialSetup: TOnDesk) => React.ReactNode,
+    onPokemonPicked: (setup: TOnDesk, opts: PokemonComplexFilterOnSelectOpts) => void,
+    toState: (onDeskState: PokemonOnDeskState) => TOnDesk,
+  };
 
-export const PokemonLab = (props: Props) => {
+export const PokemonLab = <TOnDesk extends PokemonOnDeskState>(props: Props<TOnDesk>) => {
   const {
-    preloadedSettings,
     ingredientChainMap,
     renderResult,
     onPokemonPicked,
+    toState,
   } = props;
-  const [initialSetup, setInitialSetup] = React.useState<PokemonOnDeskState>();
-  const {data: session} = useSession();
-  const calculatedSettings = useUserSettings({
-    server: preloadedSettings,
-    client: session?.user.preloaded.settings,
-  });
+  const [initialSetup, setInitialSetup] = React.useState<TOnDesk>();
 
   const onDeskRef = React.useRef<HTMLDivElement>(null);
 
@@ -49,11 +45,10 @@ export const PokemonLab = (props: Props) => {
             setTimeout(scrollToSetup, 500);
           }
 
-          const setup = toOnDeskState({
+          const setup = toState(toOnDeskState({
             ...opts,
-            ...calculatedSettings,
             chain: ingredientChainMap[pokemon.ingredientChain],
-          });
+          }));
 
           setInitialSetup(setup);
 

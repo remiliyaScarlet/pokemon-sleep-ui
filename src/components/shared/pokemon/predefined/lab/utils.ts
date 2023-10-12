@@ -18,7 +18,6 @@ export const toOnDeskState = ({
 }: ToOnDeskStateOpts): PokemonOnDeskState => {
   return {
     pokemon,
-    snorlaxFavorite: {},
     ingredients: ingredients ?? generateIngredientProductionAtLevels(chain),
     subSkill: subSkill ?? {},
     nature: nature ?? null,

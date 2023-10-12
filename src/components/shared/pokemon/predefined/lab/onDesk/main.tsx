@@ -15,29 +15,25 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonOnDeskExportButton} from '@/components/shared/pokemon/predefined/lab/onDesk/export';
-import {PokemonOnDeskDataProps, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
+import {PokemonOnDeskCommonProps, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
-import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 
 
-export type PokemonOnDeskProps = PokemonOnDeskDataProps & {
-  initialSetup: PokemonOnDeskState,
-  onRun: (setup: PokemonOnDeskState) => void,
-  immediateUpdate?: boolean,
+export type PokemonOnDeskProps<TOnDesk extends PokemonOnDeskState> = PokemonOnDeskCommonProps<TOnDesk> & {
+  initialSetup: TOnDesk,
 };
 
-export const PokemonOnDesk = React.forwardRef<HTMLDivElement, PokemonOnDeskProps>(({
+const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
   ingredientChainMap,
   subSkillMap,
-  mapMeta,
   pokemonMaxLevel,
   ocrTranslations,
-  pokemonList,
   maxEvolutionCount,
-  initialSetup,
   onRun,
   immediateUpdate,
-}, ref) => {
+  renderAdditional,
+  initialSetup,
+}: PokemonOnDeskProps<TOnDesk>, ref: React.ForwardedRef<HTMLDivElement>) => {
   const [setup, setSetup] = React.useState(initialSetup);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
@@ -73,13 +69,6 @@ export const PokemonOnDesk = React.forwardRef<HTMLDivElement, PokemonOnDeskProps
       <div className="relative h-48 w-48">
         <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
-      <SnorlaxFavoriteInput
-        mapMeta={mapMeta}
-        pokemonList={pokemonList}
-        filter={setup}
-        setFilter={setSetup}
-        filterKey="snorlaxFavorite"
-      />
       <PokemonIngredientPicker
         chain={ingredientChainMap[pokemon.ingredientChain]}
         ingredients={ingredients}
@@ -118,6 +107,7 @@ export const PokemonOnDesk = React.forwardRef<HTMLDivElement, PokemonOnDeskProps
         }))}
         maxEvolutionCount={maxEvolutionCount}
       />
+      {renderAdditional && renderAdditional(setup, setSetup)}
       <Flex direction="row" center className="gap-1.5">
         <OcrPokemonInfoImporter
           ocrTranslations={ocrTranslations}
@@ -146,5 +136,6 @@ export const PokemonOnDesk = React.forwardRef<HTMLDivElement, PokemonOnDeskProps
       </Flex>
     </Flex>
   );
-});
-PokemonOnDesk.displayName = 'PokemonLab';
+};
+
+export const PokemonOnDesk = React.forwardRef(PokemonOnDeskInternal);

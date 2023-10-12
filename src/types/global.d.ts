@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {MongoClient} from 'mongodb';
 
 
@@ -23,4 +25,12 @@ declare global {
       NEXT_PUBLIC_BUILD_ID: string;
     }
   }
+}
+
+declare module 'react' {
+  // Has to redeclare for generic of `forwardRef()` to work
+  // https://fettblog.eu/typescript-react-generic-forward-refs/
+  function forwardRef<T, P = {}>(
+    render: (props: P, ref: React.Ref<T>) => React.ReactNode | null
+  ): (props: P & React.RefAttributes<T>) => React.ReactNode | null;
 }

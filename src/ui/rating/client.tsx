@@ -5,8 +5,9 @@ import {useSession} from 'next-auth/react';
 
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
+import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettings} from '@/hooks/userData/settings';
-import {RatingRequest} from '@/types/game/pokemon/rating';
+import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
@@ -18,6 +19,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
   const {
     pokedexMap,
     pokemonProducingParamsMap,
+    mapMeta,
     preloadedSettings,
   } = props;
   const [request, setRequest] = React.useState<RatingRequest>();
@@ -56,10 +58,20 @@ export const RatingClient = (props: RatingServerDataProps) => {
           }));
         }
       }}
-      onRun={(setup) => {
+      onRun={(setup: RatingOnDeskState) => {
         scrollToResult();
         setRequest(toRatingRequest({setup, calculatedSettings}));
       }}
+      toState={(onDeskState) => ({...onDeskState, snorlaxFavorite: {}})}
+      renderAdditional={(onDesk, setOnDesk) => (
+        <SnorlaxFavoriteInput
+          pokemonList={pokemonList}
+          mapMeta={mapMeta}
+          filter={onDesk}
+          setFilter={setOnDesk}
+          filterKey="snorlaxFavorite"
+        />
+      )}
       renderResult={({pokemon}) => (
         <RatingResult
           ref={resultRef}
