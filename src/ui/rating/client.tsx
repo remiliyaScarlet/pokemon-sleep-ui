@@ -9,8 +9,9 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
+import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {ratingBasisI18nId} from '@/const/game/rating';
+import {ratingBasisI18nId, ratingBasisSpecialty} from '@/const/game/rating';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {ratingBasis, RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
@@ -92,7 +93,14 @@ export const RatingClient = (props: RatingServerDataProps) => {
               </Flex>
             }
             ids={[...ratingBasis]}
-            idToButton={(basis) => t(ratingBasisI18nId[basis])}
+            idToButton={(basis, isActive) => (
+              <Flex direction="row" center className="gap-1">
+                {ratingBasisSpecialty[basis].map((specialty) => (
+                  <PokemonSpecialtyIcon key={specialty} specialty={specialty} active={isActive}/>
+                ))}
+                {t(ratingBasisI18nId[basis])}
+              </Flex>
+            )}
             idToItemId={(basis) => basis}
           />
         </Flex>

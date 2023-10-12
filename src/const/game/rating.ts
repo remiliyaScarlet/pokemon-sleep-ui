@@ -1,3 +1,5 @@
+import {specialtyIdMap} from '@/const/game/pokemon';
+import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {RatingBasis, RatingResultOfLevel} from '@/types/game/pokemon/rating';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
@@ -13,6 +15,13 @@ export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
     current: null,
     max: null,
   },
+};
+
+export const ratingBasisSpecialty: {[basis in RatingBasis]: PokemonSpecialtyId[]} = {
+  totalProduction: [specialtyIdMap.berry, specialtyIdMap.ingredient],
+  ingredientCount: [specialtyIdMap.ingredient],
+  ingredientProduction: [specialtyIdMap.ingredient],
+  skillTriggerValue: [specialtyIdMap.skill],
 };
 
 export const ratingBasisI18nId: {
