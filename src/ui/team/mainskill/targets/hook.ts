@@ -23,14 +23,12 @@ export const useSkillTriggerAnalysisTargets = ({initial}: UseSkillTriggerAnalysi
   const scrollToBottom = () => targetBottomRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
 
   const createUnit = React.useCallback((opts: GenerateSkillTriggerAnalysisUnitOpts) => {
-    const id = v4();
-
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
     setState((original): SkillTriggerAnalysisTargetsState => ({
       ...original,
       targets: {
         ...original.targets,
-        [id]: generateSkillTriggerAnalysisUnit(opts),
+        [v4()]: generateSkillTriggerAnalysisUnit(opts),
       },
     }));
     scrollToBottom();
@@ -59,8 +57,19 @@ export const useSkillTriggerAnalysisTargets = ({initial}: UseSkillTriggerAnalysi
     })
   ), [setState]);
 
+  const copyUnit = React.useCallback((id: string) => {
+    setState((original): SkillTriggerAnalysisTargetsState => ({
+      ...original,
+      targets: {
+        ...original.targets,
+        [v4()]: {...original.targets[id]},
+      },
+    }));
+    scrollToBottom();
+  }, [setState]);
+
   // If `initial` changes, reset the comparison targets
   React.useEffect(() => setState({...initial, targets: {}}), [initial]);
 
-  return {analysisBottomRef: targetBottomRef, state, createUnit, updateUnit, deleteUnit};
+  return {targetBottomRef, state, createUnit, updateUnit, deleteUnit, copyUnit};
 };

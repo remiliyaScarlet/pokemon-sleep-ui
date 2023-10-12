@@ -152,9 +152,7 @@ export const PokeInBoxEditLayout = ({
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
         <button className="button-clickable-bg !rounded-full p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
-          <div className="h-5 w-5">
-            <DocumentDuplicateIcon/>
-          </div>
+          <DocumentDuplicateIcon className="h-5 w-5"/>
         </button>
         <button
           className="transform-smooth button-alert-bg ml-auto rounded-full p-1"

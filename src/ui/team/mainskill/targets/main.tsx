@@ -3,7 +3,6 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
-import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
@@ -29,11 +28,12 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
   } = props;
 
   const {
-    analysisBottomRef,
+    targetBottomRef,
     state,
     createUnit,
     updateUnit,
     deleteUnit,
+    copyUnit,
   } = useSkillTriggerAnalysisTargets(props);
   const collapsiblePicker = useCollapsible();
 
@@ -69,18 +69,18 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
           }
 
           return (
-            <AnimatedCollapseQuick key={id} show appear>
-              <SkillTriggerAnalysisTarget
-                {...props}
-                pokemon={pokemon}
-                unit={target}
-                updateUnit={(update) => updateUnit(id, update)}
-                deleteUnit={() => deleteUnit(id)}
-              />
-            </AnimatedCollapseQuick>
+            <SkillTriggerAnalysisTarget
+              {...props}
+              key={id}
+              pokemon={pokemon}
+              unit={target}
+              updateUnit={(update) => updateUnit(id, update)}
+              deleteUnit={() => deleteUnit(id)}
+              copyUnit={() => copyUnit(id)}
+            />
           );
         })}
-        <div ref={analysisBottomRef}/>
+        <div ref={targetBottomRef}/>
       </Grid>
     </Flex>
   );
