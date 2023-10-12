@@ -24,10 +24,6 @@ export const useSkillTriggerAnalysisTargetState = ({
 
   const funcDeps: React.DependencyList = [setState];
 
-  const targetBottomRef = React.useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => targetBottomRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
-
   const createUnit = React.useCallback((opts: GenerateSkillTriggerAnalysisUnitOpts) => {
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
     setState((original): SkillTriggerAnalysisState => ({
@@ -37,7 +33,6 @@ export const useSkillTriggerAnalysisTargetState = ({
         [v4()]: generateSkillTriggerAnalysisUnit(opts),
       },
     }));
-    scrollToBottom();
   }, funcDeps);
 
   const updateUnit = React.useCallback((id: string, update: Partial<PokemonConfigPokemonData>) => (
@@ -71,11 +66,9 @@ export const useSkillTriggerAnalysisTargetState = ({
         [v4()]: {...original.targets[id]},
       },
     }));
-    scrollToBottom();
   }, funcDeps);
 
   return {
-    targetBottomRef,
     state,
     setBase: (base) => setState((original) => ({
       ...original,

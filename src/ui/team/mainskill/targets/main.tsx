@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -11,6 +10,7 @@ import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/p
 import {PokemonInfo} from '@/types/game/pokemon';
 import {UseSkillTriggerAnalysisTargetStateReturn} from '@/ui/team/mainskill/state/type';
 import {useSkillTriggerAnalysisCalculated} from '@/ui/team/mainskill/targets/calc';
+import {SkillTriggerAnalysisTargetControl} from '@/ui/team/mainskill/targets/control';
 import {SkillTriggerAnalysisTarget} from '@/ui/team/mainskill/targets/target';
 import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
 
@@ -30,7 +30,6 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
   } = props;
 
   const {
-    targetBottomRef,
     state,
     createUnit,
     updateUnit,
@@ -48,55 +47,50 @@ export const SkillTriggerAnalysisTargets = (props: Props) => {
   return (
     <Flex className="gap-1.5">
       <AdsUnit/>
-      <PokemonCollapsiblePicker
-        pokemonList={pokemonList}
-        collapsibleState={collapsiblePicker}
-        isIncluded={Object.fromEntries(pokemonList.map(({id, skill}) => [
-          id, selectedPokemon.skill === skill,
-        ]))}
-        onPokemonPicked={(pokemon) => {
-          const chain = ingredientChainMap[pokemon.ingredientChain];
+      <Flex className="gap-1.5 lg:flex-col-reverse">
+        <PokemonCollapsiblePicker
+          pokemonList={pokemonList}
+          collapsibleState={collapsiblePicker}
+          isIncluded={Object.fromEntries(pokemonList.map(({id, skill}) => [
+            id, selectedPokemon.skill === skill,
+          ]))}
+          onPokemonPicked={(pokemon) => {
+            const chain = ingredientChainMap[pokemon.ingredientChain];
 
-          if (!chain) {
-            return;
-          }
+            if (!chain) {
+              return;
+            }
 
-          createUnit({pokemon, chain});
-        }}
-        classNameForHeight="h-80 md:h-60 lg:h-40"
-      />
-      <Flex className="items-end">
-        <button onClick={sort} disabled={!units.length} className={clsx(
-          'enabled:button-clickable-bg disabled:button-disabled h-9 w-9 p-1',
+            createUnit({pokemon, chain});
+          }}
+          classNameForHeight="h-80 md:h-60 lg:h-40"
+        />
+        <SkillTriggerAnalysisTargetControl onSort={sort} disableSort={!units.length}/>
+        <Grid className={clsx(
+          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
         )}>
-          <Bars3BottomLeftIcon/>
-        </button>
+          {units.map((unit) => {
+            const {id, pokemonId} = unit;
+            const pokemon = pokedexMap[pokemonId];
+
+            if (!pokemon) {
+              return null;
+            }
+
+            return (
+              <SkillTriggerAnalysisTarget
+                {...props}
+                key={id}
+                pokemon={pokemon}
+                unit={unit}
+                updateUnit={(update) => updateUnit(id, update)}
+                deleteUnit={() => deleteUnit(id)}
+                copyUnit={() => copyUnit(id)}
+              />
+            );
+          })}
+        </Grid>
       </Flex>
-      <Grid className={clsx(
-        'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
-      )}>
-        {units.map((unit) => {
-          const {id, pokemonId} = unit;
-          const pokemon = pokedexMap[pokemonId];
-
-          if (!pokemon) {
-            return null;
-          }
-
-          return (
-            <SkillTriggerAnalysisTarget
-              {...props}
-              key={id}
-              pokemon={pokemon}
-              unit={unit}
-              updateUnit={(update) => updateUnit(id, update)}
-              deleteUnit={() => deleteUnit(id)}
-              copyUnit={() => copyUnit(id)}
-            />
-          );
-        })}
-        <div ref={targetBottomRef}/>
-      </Grid>
     </Flex>
   );
 };
