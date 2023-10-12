@@ -4,6 +4,7 @@ import ArrowsUpDownIcon from '@heroicons/react/24/outline/ArrowsUpDownIcon';
 import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex/common';
+import {getNumberStyles} from '@/styles/text/number';
 import {Dimension} from '@/types/style';
 import {formatFloat} from '@/utils/number';
 
@@ -18,8 +19,7 @@ export const PokemonRatingRelativeStrength = ({baseDiffPercent, iconDimension, c
   return (
     <Flex direction="row" center noFullWidth className={clsx(
       'gap-1 whitespace-nowrap',
-      baseDiffPercent > 0 && 'text-green-700 dark:text-green-300',
-      baseDiffPercent < 0 && 'text-red-700 dark:text-red-300',
+      getNumberStyles({num: baseDiffPercent}),
       className,
     )}>
       <div className={iconDimension ?? 'h-4 w-4'}>
