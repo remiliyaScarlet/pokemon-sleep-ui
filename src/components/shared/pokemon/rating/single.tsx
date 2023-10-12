@@ -73,6 +73,7 @@ export const RatingResultOfLevelUI = ({
     points,
   } = result;
   const textMarkStyle = getMarkByThreshold(percentile, ratingMarkThresholdByPr);
+  const basis = request?.setup.basis;
 
   return (
     <LazyLoad loading={loading} loadingFullHeight className="info-section relative gap-3">
@@ -125,18 +126,21 @@ export const RatingResultOfLevelUI = ({
             point={points.max}
             subSkillMap={subSkillMap}
             icon={<HandThumbUpIcon/>}
+            basis={basis}
             className="bg-green-500/10"
           />
           <RatingDataPointUI
             point={points.current}
             subSkillMap={subSkillMap}
             icon={<BeakerIcon/>}
+            basis={basis}
             className="bg-slate-500/10"
           />
           <RatingDataPointUI
             point={points.min}
             subSkillMap={subSkillMap}
             icon={<HandThumbDownIcon/>}
+            basis={basis}
             className="bg-red-500/10"
           />
         </Grid>

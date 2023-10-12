@@ -1,14 +1,13 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
+import {RatingBasisIcon} from '@/components/shared/pokemon/rating/basisIcon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
-import {RatingDataPoint} from '@/types/game/pokemon/rating';
+import {RatingBasis, RatingDataPoint} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {formatFloat} from '@/utils/number';
 
@@ -17,12 +16,11 @@ type Props = {
   point: RatingDataPoint | null,
   subSkillMap: SubSkillMap,
   icon: React.ReactNode,
+  basis: RatingBasis | undefined,
   className: string,
 };
 
-export const RatingDataPointUI = ({point, subSkillMap, icon, className}: Props) => {
-  const t = useTranslations('UI.InPage.Pokedex');
-
+export const RatingDataPointUI = ({point, subSkillMap, icon, basis, className}: Props) => {
   if (!point) {
     return <></>;
   }
@@ -35,8 +33,11 @@ export const RatingDataPointUI = ({point, subSkillMap, icon, className}: Props) 
         {icon}
       </div>
       <Flex center className="ml-auto">
-        <Flex direction="row" noFullWidth className="text-energy items-center gap-0.5 p-2 text-3xl">
-          <ColoredEnergyIcon alt={t('Stats.Energy.Name')} dimension="h-7 w-7"/>
+        <Flex direction="row" noFullWidth className={clsx(
+          'items-center gap-0.5 p-2 text-3xl',
+          basis === 'totalProduction' && 'text-energy',
+        )}>
+          {basis && <RatingBasisIcon basis={basis}/>}
           <div>
             {formatFloat(value)}
           </div>
