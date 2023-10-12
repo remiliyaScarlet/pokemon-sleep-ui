@@ -3,7 +3,6 @@ import React from 'react';
 import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
@@ -18,14 +17,14 @@ import {PokemonConfig} from '@/components/shared/pokemon/predefined/config/main'
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/analysis/type';
-import {SkillTriggerCompareUnit} from '@/ui/team/mainskill/type';
+import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 
 
 type Props = SkillTriggerAnalysisCommonProps & {
   pokemon: PokemonInfo,
-  unit: SkillTriggerCompareUnit,
-  updateUnit: (update: Partial<SkillTriggerCompareUnit>) => void,
+  unit: SkillTriggerAnalysisUnit,
+  updateUnit: (update: Partial<SkillTriggerAnalysisUnit>) => void,
   deleteUnit: () => void,
 };
 
@@ -38,7 +37,6 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
     deleteUnit,
   } = props;
 
-  const t = useTranslations('Game');
   const [show, setShow] = React.useState(false);
 
   const {skill} = pokemon;

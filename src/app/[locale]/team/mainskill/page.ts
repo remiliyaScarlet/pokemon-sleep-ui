@@ -1,5 +1,5 @@
 import {GenerateMetadata} from '@/types/next/metadata';
-import {SkillTriggerComparer} from '@/ui/team/mainskill/main';
+import {SkillTriggerAnalysis} from '@/ui/team/mainskill/main';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMetaFromString} from '@/utils/meta';
 
@@ -10,8 +10,8 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
 
   return generatePageMetaFromString({
     t,
-    title: `${t('Team.Index.Title')} / ${t('Team.SkillTriggerComparer.Title')}`,
+    title: `${t('Team.Index.Title')} / ${t('Team.SkillTriggerAnalysis.Title')}`,
   });
 };
 
-export default SkillTriggerComparer;
+export default SkillTriggerAnalysis;

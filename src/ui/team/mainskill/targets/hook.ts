@@ -3,34 +3,34 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
-import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/analysis/type';
-import {SkillTriggerComparerState} from '@/ui/team/mainskill/type';
-import {generateSkillTriggerCompareUnit, GenerateSkillTriggerCompareUnitOpts} from '@/ui/team/mainskill/utils';
+import {SkillTriggerAnalysisTargetsState} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
+import {generateSkillTriggerAnalysisUnit, GenerateSkillTriggerAnalysisUnitOpts} from '@/ui/team/mainskill/utils';
 
 
 type UseSkillTriggerAnalysisOpts = {
-  initial: SkillTriggerComparerState,
+  initial: SkillTriggerAnalysisState,
 };
 
-export const useSkillTriggerAnalysis = ({initial}: UseSkillTriggerAnalysisOpts) => {
-  const [state, setState] = React.useState<SkillTriggerAnalysisState>({
+export const useSkillTriggerAnalysisTargets = ({initial}: UseSkillTriggerAnalysisOpts) => {
+  const [state, setState] = React.useState<SkillTriggerAnalysisTargetsState>({
     ...initial,
     targets: {},
   });
 
-  const analysisBottomRef = React.useRef<HTMLDivElement>(null);
+  const targetBottomRef = React.useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = () => analysisBottomRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
+  const scrollToBottom = () => targetBottomRef.current?.scrollIntoView({behavior: 'smooth', block: 'center'});
 
-  const createUnit = React.useCallback((opts: GenerateSkillTriggerCompareUnitOpts) => {
+  const createUnit = React.useCallback((opts: GenerateSkillTriggerAnalysisUnitOpts) => {
     const id = v4();
 
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
-    setState((original): SkillTriggerAnalysisState => ({
+    setState((original): SkillTriggerAnalysisTargetsState => ({
       ...original,
       targets: {
         ...original.targets,
-        [id]: generateSkillTriggerCompareUnit(opts),
+        [id]: generateSkillTriggerAnalysisUnit(opts),
       },
     }));
     scrollToBottom();
@@ -38,7 +38,7 @@ export const useSkillTriggerAnalysis = ({initial}: UseSkillTriggerAnalysisOpts) 
 
   const updateUnit = React.useCallback((id: string, update: Partial<PokemonConfigPokemonData>) => (
     // `merge()` keeps the original value if the `update` is undefined, but `update` should overwrite it
-    setState((original): SkillTriggerAnalysisState => ({
+    setState((original): SkillTriggerAnalysisTargetsState => ({
       ...original,
       targets: {
         ...original.targets,
@@ -51,7 +51,7 @@ export const useSkillTriggerAnalysis = ({initial}: UseSkillTriggerAnalysisOpts) 
   ), [setState]);
 
   const deleteUnit = React.useCallback((id: string) => (
-    setState((original): SkillTriggerAnalysisState => {
+    setState((original): SkillTriggerAnalysisTargetsState => {
       const updated = {...original};
       delete updated.targets[id];
 
@@ -62,5 +62,5 @@ export const useSkillTriggerAnalysis = ({initial}: UseSkillTriggerAnalysisOpts) 
   // If `initial` changes, reset the comparison targets
   React.useEffect(() => setState({...initial, targets: {}}), [initial]);
 
-  return {analysisBottomRef, state, createUnit, updateUnit, deleteUnit};
+  return {analysisBottomRef: targetBottomRef, state, createUnit, updateUnit, deleteUnit};
 };

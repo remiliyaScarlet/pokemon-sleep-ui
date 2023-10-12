@@ -69,7 +69,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Box: I18nMetadata,
         Index: I18nMetadata,
         Maker: I18nMetadata,
-        SkillTriggerComparer: I18nMetadata,
+        SkillTriggerAnalysis: I18nMetadata,
       },
       Info: {
         Index: I18nMetadata,

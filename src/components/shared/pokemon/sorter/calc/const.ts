@@ -5,7 +5,7 @@ import {
   getPokemonRateSorter,
 } from '@/components/shared/pokemon/sorter/calc/sorter';
 import {PokemonSorterGetter, PokemonSortType} from '@/components/shared/pokemon/sorter/type';
-import {getMainSkillTriggerValue} from '@/utils/game/mainSkill/utils';
+import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 
 
@@ -46,7 +46,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   mainSkillTriggerValue: (opts) => {
     const {pokemonProducingParams} = opts;
 
-    return getMainSkillTriggerValue({
+    return getSkillTriggerValue({
       rate: getPokemonRateSorter(opts),
       skillValue: pokemonProducingParams.skillValue,
     });

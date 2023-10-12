@@ -9,18 +9,18 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/picker';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {useSkillTriggerAnalysis} from '@/ui/team/mainskill/analysis/hook';
-import {SkillTriggerAnalysisTarget} from '@/ui/team/mainskill/analysis/target';
-import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/analysis/type';
-import {SkillTriggerComparerState} from '@/ui/team/mainskill/type';
+import {useSkillTriggerAnalysisTargets} from '@/ui/team/mainskill/targets/hook';
+import {SkillTriggerAnalysisTarget} from '@/ui/team/mainskill/targets/target';
+import {SkillTriggerAnalysisCommonProps} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
 
 
 type Props = SkillTriggerAnalysisCommonProps & {
-  initial: SkillTriggerComparerState,
+  initial: SkillTriggerAnalysisState,
   selectedPokemon: PokemonInfo,
 };
 
-export const SkillTriggerAnalysis = (props: Props) => {
+export const SkillTriggerAnalysisTargets = (props: Props) => {
   const {
     pokedexMap,
     ingredientChainMap,
@@ -34,7 +34,7 @@ export const SkillTriggerAnalysis = (props: Props) => {
     createUnit,
     updateUnit,
     deleteUnit,
-  } = useSkillTriggerAnalysis(props);
+  } = useSkillTriggerAnalysisTargets(props);
   const collapsiblePicker = useCollapsible();
 
   return (

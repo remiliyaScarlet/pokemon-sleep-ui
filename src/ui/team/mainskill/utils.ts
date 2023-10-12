@@ -1,26 +1,26 @@
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
-import {SkillTriggerCompareUnit, SkillTriggerOnDeskState} from '@/ui/team/mainskill/type';
+import {SkillTriggerAnalysisUnit, SkillTriggerOnDeskState} from '@/ui/team/mainskill/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
 
 
-export const toSkillTriggerCompareUnit = ({pokemon, ...data}: SkillTriggerOnDeskState): SkillTriggerCompareUnit => {
+export const toSkillTriggerAnalysisUnit = ({pokemon, ...data}: SkillTriggerOnDeskState): SkillTriggerAnalysisUnit => {
   return {
     ...data,
     pokemonId: pokemon.id,
   };
 };
 
-export type GenerateSkillTriggerCompareUnitOpts = {
+export type GenerateSkillTriggerAnalysisUnitOpts = {
   pokemon: PokemonInfo,
   chain: IngredientChain,
 };
 
-export const generateSkillTriggerCompareUnit = ({
+export const generateSkillTriggerAnalysisUnit = ({
   pokemon,
   chain,
-}: GenerateSkillTriggerCompareUnitOpts): SkillTriggerCompareUnit => {
+}: GenerateSkillTriggerAnalysisUnitOpts): SkillTriggerAnalysisUnit => {
   const {id} = pokemon;
 
   return {

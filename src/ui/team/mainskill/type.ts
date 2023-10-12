@@ -13,13 +13,13 @@ export type SkillTriggerOnDeskState = PokemonOnDeskState & {
   level: number,
 };
 
-export type SkillTriggerCompareUnit = PokemonConfigPokemonData;
+export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData;
 
-export type SkillTriggerComparerState = CalculatedUserSettings & {
-  base: SkillTriggerCompareUnit | null,
+export type SkillTriggerAnalysisState = CalculatedUserSettings & {
+  base: SkillTriggerAnalysisUnit | null,
 };
 
-export type SkillTriggerComparerServerDataProps = UsePokemonFilterCommonData & {
+export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   subSkillMap: SubSkillMap,
@@ -28,7 +28,7 @@ export type SkillTriggerComparerServerDataProps = UsePokemonFilterCommonData & {
   ocrTranslations: OcrTranslationsForPokemonInfo,
 };
 
-export type SkillTriggerComparerDataProps =
-  SkillTriggerComparerServerDataProps &
+export type SkillTriggerAnalysisDataProps =
+  SkillTriggerAnalysisServerDataProps &
   PokemonComplexFilterDataProps &
   PokemonOnDeskDataProps;

@@ -104,8 +104,8 @@
       "Maker": {
         "Title": "自動組隊"
       },
-      "SkillTriggerComparer": {
-        "Title": "主技能觸發比較"
+      "SkillTriggerAnalysis": {
+        "Title": "主技能觸發分析"
       }
     },
     "Info": {
