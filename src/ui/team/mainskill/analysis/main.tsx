@@ -2,6 +2,7 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
+import {AdsUnit} from '@/components/ads/main';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
@@ -38,6 +39,7 @@ export const SkillTriggerAnalysis = (props: Props) => {
 
   return (
     <Flex className="gap-1.5">
+      <AdsUnit/>
       <PokemonCollapsiblePicker
         pokemonList={pokemonList}
         collapsibleState={collapsiblePicker}
