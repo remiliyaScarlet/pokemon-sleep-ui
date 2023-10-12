@@ -20,6 +20,7 @@ type Props = {
   onPokemonPicked: (pokemon: PokemonInfo) => void,
   collapsibleState: CollapsibleState,
   isIncluded: FilterInclusionMap<PokemonId>,
+  classNameForHeight?: string,
 };
 
 export const PokemonCollapsiblePicker = ({
@@ -27,11 +28,12 @@ export const PokemonCollapsiblePicker = ({
   onPokemonPicked,
   collapsibleState,
   isIncluded,
+  classNameForHeight,
 }: Props) => {
   const t = useTranslations('Game');
 
   return (
-    <Collapsible state={collapsibleState} classNameForHeight="h-80" appear button={
+    <Collapsible state={collapsibleState} classNameForHeight={classNameForHeight ?? 'h-80'} appear button={
       <Flex direction="row" center className="group gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
         <div className="h-6 w-6">
