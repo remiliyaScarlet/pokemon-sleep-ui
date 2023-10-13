@@ -76,7 +76,7 @@ export const PokemonExpCalculatorInputUI = ({
         }))}
       />
       <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-40">
+        <div className="w-60">
           {t('ExpToNext')}
         </div>
       }>
@@ -90,7 +90,7 @@ export const PokemonExpCalculatorInputUI = ({
         />
       </InputRowWithTitle>
       <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-40">
+        <div className="w-60">
           {t('OwnedCandies')}
         </div>
       }>
