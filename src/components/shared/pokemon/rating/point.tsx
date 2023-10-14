@@ -7,12 +7,14 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {RatingBasisIcon} from '@/components/shared/pokemon/rating/basisIcon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
+import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {RatingBasis, RatingDataPoint} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {formatFloat} from '@/utils/number';
 
 
 type Props = {
+  level: PokemonKeyLevel,
   point: RatingDataPoint | null,
   subSkillMap: SubSkillMap,
   icon: React.ReactNode,
@@ -20,7 +22,7 @@ type Props = {
   className: string,
 };
 
-export const RatingDataPointUI = ({point, subSkillMap, icon, basis, className}: Props) => {
+export const RatingDataPointUI = ({level, point, subSkillMap, icon, basis, className}: Props) => {
   if (!point) {
     return <></>;
   }
@@ -49,7 +51,7 @@ export const RatingDataPointUI = ({point, subSkillMap, icon, basis, className}: 
           <PokemonNatureIndicator nature={combination.natureId}/>
         </div>
         <div className="h-8">
-          <PokemonSubSkillIndicator subSkill={combination.subSkill} subSkillMap={subSkillMap}/>
+          <PokemonSubSkillIndicator subSkill={combination.subSkill} subSkillMap={subSkillMap} level={level}/>
         </div>
       </Flex>
     </Flex>

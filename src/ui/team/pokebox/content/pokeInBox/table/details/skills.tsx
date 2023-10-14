@@ -18,6 +18,7 @@ export const PokeInBoxTableSkills = ({
   subSkillMap,
 }: PokeInBoxTableDetailsProps) => {
   const {
+    level,
     nature,
     subSkill,
   } = pokeInBox;
@@ -30,7 +31,7 @@ export const PokeInBoxTableSkills = ({
         <PokemonNatureIndicator nature={nature}/>
       </Flex>
       <Flex direction="row" center noFullWidth className="w-36">
-        <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
+        <PokemonSubSkillIndicator level={level} subSkill={subSkill} subSkillMap={subSkillMap}/>
       </Flex>
       <FlexLink direction="row" center href={`/info/mainskill/${pokemon.skill}`} className={clsx(
         'w-60 gap-1 whitespace-nowrap p-1 text-sm',

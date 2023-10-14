@@ -125,6 +125,7 @@ export const RatingResultOfLevelUI = ({
       }>
         <Grid className="grid-rows-3 gap-1.5">
           <RatingDataPointUI
+            level={level}
             point={points.max}
             subSkillMap={subSkillMap}
             icon={<HandThumbUpIcon/>}
@@ -132,6 +133,7 @@ export const RatingResultOfLevelUI = ({
             className="bg-green-500/10"
           />
           <RatingDataPointUI
+            level={level}
             point={points.current}
             subSkillMap={subSkillMap}
             icon={<BeakerIcon/>}
@@ -139,6 +141,7 @@ export const RatingResultOfLevelUI = ({
             className="bg-slate-500/10"
           />
           <RatingDataPointUI
+            level={level}
             point={points.min}
             subSkillMap={subSkillMap}
             icon={<HandThumbDownIcon/>}

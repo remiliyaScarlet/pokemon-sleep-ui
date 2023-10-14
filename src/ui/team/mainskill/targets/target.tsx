@@ -106,7 +106,12 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
           </Flex>
         </Flex>
         <PokemonNatureIndicator nature={nature}/>
-        <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="justify-center"/>
+        <PokemonSubSkillIndicator
+          level={level}
+          subSkill={subSkill}
+          subSkillMap={subSkillMap}
+          className="justify-center"
+        />
         <SkillTriggerAnalysisTriggerValue unit={unit}/>
       </Flex>
     </AnimatedCollapseQuick>

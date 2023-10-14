@@ -144,7 +144,11 @@ export const PokeboxImporterView = ({
                 <Flex className="items-end md:flex-row">
                   <PokemonNatureIndicator nature={pokeInBox.nature} hideName/>
                   <div className="ml-auto">
-                    <PokemonSubSkillIndicator subSkill={pokeInBox.subSkill} subSkillMap={subSkillMap}/>
+                    <PokemonSubSkillIndicator
+                      subSkill={pokeInBox.subSkill}
+                      subSkillMap={subSkillMap}
+                      level={pokeInBox.level}
+                    />
                   </div>
                 </Flex>
               </Flex>

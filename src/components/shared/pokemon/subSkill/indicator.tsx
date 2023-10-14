@@ -13,10 +13,11 @@ import {PokemonSubSkill, pokemonSubSkillLevel, SubSkillMap} from '@/types/game/p
 type Props = {
   subSkill: PokemonSubSkill,
   subSkillMap: SubSkillMap,
+  level?: number,
   className?: string,
 };
 
-export const PokemonSubSkillIndicator = ({subSkill, subSkillMap, className}: Props) => {
+export const PokemonSubSkillIndicator = ({subSkill, subSkillMap, level, className}: Props) => {
   const t = useTranslations('UI.InPage.Team');
 
   return (
@@ -28,11 +29,15 @@ export const PokemonSubSkillIndicator = ({subSkill, subSkillMap, className}: Pro
         />
       </div>
       <Flex direction="row" noFullWidth className="items-center">
-        {pokemonSubSkillLevel.map((level) => {
-          const subSkillId = subSkill[level];
+        {pokemonSubSkillLevel.map((subSkillLevel) => {
+          const subSkillId = subSkill[subSkillLevel];
 
           return (
-            <PokemonSubSkillIcon key={level} subSkill={subSkillId ? subSkillMap[subSkillId] : undefined}/>
+            <PokemonSubSkillIcon
+              key={subSkillLevel}
+              subSkill={subSkillId ? subSkillMap[subSkillId] : undefined}
+              isInactive={!!level && subSkillLevel > level}
+            />
           );
         })}
       </Flex>

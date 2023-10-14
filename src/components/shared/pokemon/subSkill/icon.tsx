@@ -14,13 +14,16 @@ import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subSkill
 
 type Props = {
   subSkill: SubSkillData | undefined,
+  isInactive?: boolean,
 };
 
-export const PokemonSubSkillIcon = ({subSkill}: Props) => {
+export const PokemonSubSkillIcon = ({subSkill, isInactive}: Props) => {
   const t = useTranslations('Game');
 
+  const opacity = isInactive && 'opacity-40';
+
   if (!subSkill) {
-    return <XCircleIcon className="h-6 w-6"/>;
+    return <XCircleIcon className={clsx('h-6 w-6', opacity)}/>;
   }
 
   const firstEffectiveBonus = Object.entries(subSkill?.bonus ?? {})
@@ -29,15 +32,15 @@ export const PokemonSubSkillIcon = ({subSkill}: Props) => {
     .at(0);
 
   if (!firstEffectiveBonus) {
-    return (
-      <div className="relative h-5 w-5">
-        <QuestionMarkCircleIcon/>
-      </div>
-    );
+    return <QuestionMarkCircleIcon className={clsx('h-5 w-5', opacity)}/>;
   }
 
   return (
-    <div className={clsx('relative h-6 w-6', subSkill.rarity && subSkillRarityIconFilter[subSkill.rarity])}>
+    <div className={clsx(
+      'relative h-6 w-6',
+      subSkill.rarity && subSkillRarityIconFilter[subSkill.rarity],
+      opacity,
+    )}>
       <NextImage
         src={subSkillImageOverride[subSkill.id] ?? subSkillBonusImageSrcMap[firstEffectiveBonus]}
         alt={t(`SubSkill.Name.${subSkill?.id}`)}

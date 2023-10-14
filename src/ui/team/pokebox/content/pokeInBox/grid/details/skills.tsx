@@ -13,7 +13,7 @@ import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
 export const PokeInBoxGridSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBoxCommonProps) => {
   const {skill, specialty} = pokemon;
-  const {nature, subSkill} = pokeInBox;
+  const {level, nature, subSkill} = pokeInBox;
 
   return (
     <Flex direction="row" noFullWidth className="gap-1.5">
@@ -25,7 +25,7 @@ export const PokeInBoxGridSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBox
       </FlexLink>
       <Flex noFullWidth className="gap-1.5">
         <PokemonNatureIndicator nature={nature} hideName/>
-        <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
+        <PokemonSubSkillIndicator level={level} subSkill={subSkill} subSkillMap={subSkillMap}/>
       </Flex>
     </Flex>
   );
