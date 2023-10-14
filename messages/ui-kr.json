@@ -105,7 +105,7 @@
         "Title": "자동 편성"
       },
       "SkillTriggerAnalysis": {
-        "Title": "스킬 방아쇠 분석"
+        "Title": "스킬 사용 횟수 분석"
       }
     },
     "Info": {
@@ -150,7 +150,7 @@
       "Title": "포켓몬 EXP 계산"
     },
     "Stamina": {
-      "Title": "기력 곡선 분석"
+      "Title": "기력 커브 분석"
     },
     "About": {
       "Title": "소개"
@@ -158,7 +158,7 @@
   },
   "InPage": {
     "Home": {
-      "Welcome": "환영합니다!"
+      "Welcome": "환영합니다"
     },
     "Pokedex": {
       "Info": {
@@ -172,7 +172,7 @@
         "Production": "생산",
         "SleepType": "수면 타입",
         "Specialty": "특기",
-        "Stats": "능력"
+        "Stats": "능력치"
       },
       "Stats": {
         "Energy": {
@@ -180,24 +180,24 @@
           "Name": "에너지",
           "Weekly": "매주"
         },
-        "FrequencyBase": "도우미 시간 (베이스)",
-        "FrequencyEquivalent": "도우미 시간 (동등)",
+        "FrequencyBase": "기본 도우미 시간",
+        "FrequencyEquivalent": "도우미 시간",
         "Friendship": "프렌드 포인트",
         "Recruit": "동료가 되어",
-        "TimeToFullPack": "가득 재고 필요한 시간",
+        "TimeToFullPack": "주머니가 꽉 찰 떄 까지 필요한 시간",
         "MainSkillValue": "스킬 밸류",
-        "MainSkillTriggerValue": "스킬 방아쇠 밸류"
+        "MainSkillTriggerValue": "스킬 트리거 밸류"
       },
       "Sort": {
         "Id": "ID",
         "DateRegistered": "등록일",
         "IngredientEnergy": "식재료 에너지",
-        "IngredientCount": "식재료 수",
-        "IngredientRate": "식재료 율",
+        "IngredientCount": "식재료",
+        "IngredientRate": "나무열매:식재료 비율",
         "BerryEnergy": "나무열매 에너지",
-        "BerryCount": "나무열매 수",
-        "FrequencyOfBerry": "도우미 시간 (나무열매)",
-        "FrequencyOfIngredient": "도우미 시간 (식재료)",
+        "BerryCount": "나무열매",
+        "FrequencyOfBerry": "나무열매 도우미 시간",
+        "FrequencyOfIngredient": "식재료 도우미 시간",
         "FriendshipPoint": "프렌드 포인트",
         "TotalEnergy": "총 에너지"
       },
@@ -227,10 +227,10 @@
       "Energy": "에너지",
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습",
-      "SleepStylesUnlocked": "잠자는 모습 개방 수"
+      "SleepStylesUnlocked": "개방된 잠자는 모습의 수"
     },
     "Team": {
-      "AnalysisPeriod": "분석주기",
+      "AnalysisPeriod": "분석 주기",
       "CurrentEnergy": "에너지",
       "SubSkill": "서브 스킬",
       "Box": {
@@ -262,21 +262,21 @@
   },
   "Ocr": {
     "Status": {
-      "Ready": "준비된",
+      "Ready": "준비됨",
       "Thresholding": "Thresholding Image",
-      "LoadingOcr": "Loading OCR",
+      "LoadingOcr": "ocr 로딩중",
       "Recognizing": "인식중",
       "Completed": "완료"
     }
   },
   "Producing": {
     "State": {
-      "Awake": "깨우다",
-      "AsleepUnfilled": "잠들어 (가득 안 재고)",
-      "AsleepFilled": "잠들어 (가득 재고)"
+      "Awake": "깨 있을 때",
+      "AsleepUnfilled": "주머니를 비우고 잤을 떄",
+      "AsleepFilled": "주머니가 가득찬 상태로 잤을 때"
     },
     "Preset": {
-      "UnfilledOnly": "가득 안 재고"
+      "UnfilledOnly": "주머니가 비었을 때"
     },
     "Total": "총합"
   },
@@ -288,23 +288,23 @@
       "Efficiency": "효율"
     },
     "Strategy": {
-      "Optimistic": "낙관",
-      "Conservative": "보수"
+      "Optimistic": "몰려 있는",
+      "Conservative": "고르게"
     },
     "SkillRecovery": {
       "Amount": "회복량",
       "DailyCount": "빈도 (일)"
     },
     "EventType": {
-      "SkillRecovery": "스킬 회복",
-      "EfficiencyBlock": "효율 변화",
-      "Sleep": "잠",
-      "Wakeup": "깨우다"
+      "SkillRecovery": "스킬 사용",
+      "EfficiencyBlock": "도우미 속도 변화",
+      "Sleep": "자는 중",
+      "Wakeup": "일어남"
     },
     "State": {
-      "Asleep": "잠들어",
+      "Asleep": "자는 중",
       "Average": "평균",
-      "Awake": "깨우다"
+      "Awake": "깨 있을 때"
     }
   },
   "UserControl": {
