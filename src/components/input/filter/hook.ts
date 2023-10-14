@@ -22,7 +22,9 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
   deps,
   onSetFilter,
 }: UseFilterInputOpts<TFilter, TData, TId>) => {
-  const [filter, setFilterInternal] = React.useState<TFilter>(initialFilter);
+  const [filter, setFilterInternal] = React.useState<TFilter>(
+    onSetFilter ? onSetFilter(initialFilter, initialFilter): initialFilter,
+  );
   const isIncluded = React.useMemo((): FilterInclusionMap<TId> => (
     Object.fromEntries(data.map((single) => (
       [dataToId(single), isDataIncluded(filter, single)]
