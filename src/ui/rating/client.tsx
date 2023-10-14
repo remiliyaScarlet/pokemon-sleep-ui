@@ -3,15 +3,13 @@ import React from 'react';
 
 import MagnifyingGlassCircleIcon from '@heroicons/react/24/outline/MagnifyingGlassCircleIcon';
 import {useSession} from 'next-auth/react';
-import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
+import {RatingBasisUI} from '@/components/shared/pokemon/rating/basis';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
-import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {ratingBasisI18nId, ratingBasisSpecialty} from '@/const/game/rating';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {ratingBasis, RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
@@ -30,7 +28,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
     preloadedSettings,
   } = props;
 
-  const t = useTranslations('UI.InPage.Pokedex');
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
   const calculatedSettings = useUserSettings({
@@ -95,12 +92,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
             }
             ids={[...ratingBasis]}
             idToButton={(basis, isActive) => (
-              <Flex direction="row" center className="gap-1">
-                {ratingBasisSpecialty[basis].map((specialty) => (
-                  <PokemonSpecialtyIcon key={specialty} specialty={specialty} active={isActive}/>
-                ))}
-                {t(ratingBasisI18nId[basis])}
-              </Flex>
+              <RatingBasisUI basis={basis} isActive={isActive}/>
             )}
             idToItemId={(basis) => basis}
           />
