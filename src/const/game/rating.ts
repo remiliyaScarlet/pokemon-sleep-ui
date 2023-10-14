@@ -1,6 +1,7 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {RatingBasis, RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
@@ -34,3 +35,9 @@ export const ratingBasisI18nId: {
 };
 
 export const defaultRatingBasis: RatingBasis = 'totalProduction';
+
+export const defaultRatingBasisOfSpecialty: {[specialty in SpecialtyType]: RatingBasis} = {
+  berry: 'totalProduction',
+  ingredient: 'ingredientCount',
+  skill: 'skillTriggerValue',
+};

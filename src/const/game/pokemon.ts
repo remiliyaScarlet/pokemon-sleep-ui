@@ -9,6 +9,12 @@ export const specialtyIdMap: {[name in SpecialtyType]: PokemonSpecialtyId} = {
   skill: 3,
 };
 
+export const specialtyIdToType: {[id in PokemonSpecialtyId]: SpecialtyType} = {
+  [specialtyIdMap.berry]: 'berry',
+  [specialtyIdMap.ingredient]: 'ingredient',
+  [specialtyIdMap.skill]: 'skill',
+};
+
 export const specialtyImageSrcMap: {[id in PokemonSpecialtyId]: string} = {
   1: '/images/generic/berry.png',
   2: '/images/generic/ingredient.png',

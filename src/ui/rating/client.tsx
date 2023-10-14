@@ -18,6 +18,7 @@ import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -73,7 +74,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
       toState={(onDeskState): RatingOnDeskState => ({
         ...onDeskState,
         snorlaxFavorite: {},
-        basis: 'totalProduction',
+        basis: getDefaultRatingBasis(onDeskState.pokemon.specialty),
       })}
       renderAdditional={(onDesk, setOnDesk) => (
         <Flex className="gap-1.5">
