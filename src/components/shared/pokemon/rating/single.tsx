@@ -20,7 +20,7 @@ import {useRatingWorker} from '@/hooks/rating/hook';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
-import {formatFloat, formatInt} from '@/utils/number';
+import {formatFloat, formatInt, formatToAbbreviation} from '@/utils/number';
 
 
 type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {
@@ -98,11 +98,13 @@ export const RatingResultOfLevelUI = ({
           </Flex>
           <Flex direction="row" className="items-end justify-center gap-1.5">
             <Flex direction="row" className="items-end justify-center gap-1">
-              <div className="text-4xl">{rank ? formatInt(rank) : '-'}</div>
+              <div className="text-2xl">{rank ? formatInt(rank) : '-'}</div>
               <div>/</div>
-              <div>{isNaN(samples) ? '-' : formatInt(samples)}</div>
+              <div className="whitespace-nowrap">
+                {isNaN(samples) ? '-' : formatToAbbreviation({num: samples})}
+              </div>
             </Flex>
-            <div className="text-2xl">
+            <div className="text-xl">
               {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
             </div>
           </Flex>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
@@ -9,17 +10,27 @@ import {RatingBasis} from '@/types/game/pokemon/rating';
 
 
 type Props = {
-  basis: RatingBasis,
+  basis: RatingBasis | undefined,
   isActive?: boolean,
+  larger?: boolean,
 };
 
-export const RatingBasisUI = ({basis, isActive}: Props) => {
+export const RatingBasisUI = ({basis, isActive, larger}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
+  if (!basis) {
+    return <></>;
+  }
+
   return (
-    <Flex direction="row" center className="gap-1">
+    <Flex direction="row" center className={clsx('gap-1', larger && 'text-2xl')}>
       {ratingBasisSpecialty[basis].map((specialty) => (
-        <PokemonSpecialtyIcon key={specialty} specialty={specialty} active={isActive}/>
+        <PokemonSpecialtyIcon
+          key={specialty}
+          specialty={specialty}
+          active={isActive}
+          dimension={larger ? 'h-8 w-8' : undefined}
+        />
       ))}
       {t(ratingBasisI18nId[basis])}
     </Flex>
