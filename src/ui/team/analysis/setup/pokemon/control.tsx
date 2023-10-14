@@ -71,6 +71,7 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
           member,
           pokemon,
           snorlaxFavorite,
+          specialtyId: pokemon.specialty,
           ...calculatedSettings,
         }))}>
           <MagnifyingGlassIcon/>

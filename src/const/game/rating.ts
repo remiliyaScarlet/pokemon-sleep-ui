@@ -34,8 +34,6 @@ export const ratingBasisI18nId: {
   skillTriggerValue: 'Stats.MainSkillTriggerValue',
 };
 
-export const defaultRatingBasis: RatingBasis = 'totalProduction';
-
 export const defaultRatingBasisOfSpecialty: {[specialty in SpecialtyType]: RatingBasis} = {
   berry: 'totalProduction',
   ingredient: 'ingredientCount',

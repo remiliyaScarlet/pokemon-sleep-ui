@@ -1,9 +1,9 @@
-import {defaultRatingBasis} from '@/const/game/rating';
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 
 
 export const toRatingWorkerOpts = ({
@@ -43,7 +43,7 @@ export const toRatingWorkerOpts = ({
     subSkill,
     nature,
     evolutionCount,
-    basis: defaultRatingBasis,
+    basis: getDefaultRatingBasis(pokemon.specialty),
   };
 };
 

@@ -7,9 +7,9 @@ import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {defaultRatingBasis} from '@/const/game/rating';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 
 
 type Props = PokeInBoxViewUnitProps & {
@@ -40,7 +40,7 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
         ...calculatedSettings,
         pokemon,
         snorlaxFavorite,
-        basis: defaultRatingBasis,
+        basis: getDefaultRatingBasis(pokemon.specialty),
       })}>
         <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>
       </button>
