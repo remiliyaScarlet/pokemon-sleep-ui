@@ -10,11 +10,14 @@ export type PokemonExpCalculatorDataProps = {
   maxLevel: number,
 };
 
-export type PokemonExpCalculatorInput = {
+export type PokemonExpCalculatorParams = {
+  xpToNext: number,
+  currentLv: number,
+  ownedCandies: number,
+};
+
+export type PokemonExpCalculatorInput = PokemonExpCalculatorParams & {
   pokemon: PokemonId | null,
   nature: NatureId | null,
-  currentLv: number,
-  currentToNext: number,
-  ownedCandies: number,
   showNonBreakthroughLevel: boolean,
 };

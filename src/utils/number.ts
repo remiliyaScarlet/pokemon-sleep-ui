@@ -44,3 +44,31 @@ export const formatNumber = ({format, num}: FormatNumberOpts): string | null => 
 
   return formatter[format].format(num);
 };
+
+type FormatToAbbreviationOpts = {
+  num: number | undefined,
+  decimals?: number
+};
+
+export const formatToAbbreviation = ({num, decimals}: FormatToAbbreviationOpts): string => {
+  if (!num) {
+    return '-';
+  }
+
+  const numForCheck = Math.abs(num); // Need check the case of negative
+  decimals = decimals ?? 2;
+
+  if (numForCheck >= 1E9) {
+    return `${(num / 1E9).toFixed(decimals)} B`;
+  }
+
+  if (numForCheck >= 1E6) {
+    return `${(num / 1E6).toFixed(decimals)} M`;
+  }
+
+  if (numForCheck >= 1E3) {
+    return `${(num / 1E3).toFixed(decimals)} K`;
+  }
+
+  return parseFloat(num.toFixed(decimals)).toString();
+};

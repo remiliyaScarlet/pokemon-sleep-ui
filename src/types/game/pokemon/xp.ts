@@ -4,6 +4,7 @@ import {PokemonId} from '@/types/game/pokemon';
 export type PokemonExpData = {
   lv: number,
   toNext: number,
+  shardPerCandy: number | null,
   totalGained: number,
 };
 

@@ -34,7 +34,7 @@ export const PokemonExpCalculatorInputUI = ({
 }: Props) => {
   const {
     currentLv,
-    currentToNext,
+    xpToNext,
     ownedCandies,
     pokemon,
     nature,
@@ -82,10 +82,10 @@ export const PokemonExpCalculatorInputUI = ({
       }>
         <InputBox
           type="number"
-          value={currentToNext.toString()}
+          value={xpToNext.toString()}
           onChange={({target}) => setFilter((original) => ({
             ...original,
-            currentToNext: parseInt(target.value || '0'),
+            xpToNext: parseInt(target.value || '0'),
           }))}
         />
       </InputRowWithTitle>

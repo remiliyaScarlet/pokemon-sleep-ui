@@ -13,13 +13,13 @@ export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps)
     pokemon: null,
     nature: null,
     currentLv: 1,
-    currentToNext: xpData.at(0)?.toNext ?? NaN,
+    xpToNext: xpData.at(0)?.toNext ?? NaN,
     ownedCandies: 0,
     showNonBreakthroughLevel: false,
   });
 
   return (
-    <Flex className="gap-1.5 md:flex-row">
+    <Flex className="gap-1.5 xl:flex-row">
       <PokemonExpCalculatorInputUI filter={input} setFilter={setInput} {...props}/>
       <PokemonExpCalculatorTable input={input} {...props}/>
     </Flex>

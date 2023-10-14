@@ -42,6 +42,7 @@ export const PokemonExpCalculator = async ({params}: DefaultPageProps) => {
     <PublicPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={[
         'Game',
+        'UI.Common',
         'UI.InPage.Pokedex.Info',
         'UI.InPage.PokemonExp',
       ]}>
