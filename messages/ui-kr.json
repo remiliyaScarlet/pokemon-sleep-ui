@@ -105,7 +105,7 @@
         "Title": "자동 편성"
       },
       "SkillTriggerAnalysis": {
-        "Title": "스킬 사용 횟수 분석"
+        "Title": "스킬 확률 분석"
       }
     },
     "Info": {
@@ -186,7 +186,7 @@
         "Recruit": "동료가 되어",
         "TimeToFullPack": "주머니가 꽉 찰 떄 까지 필요한 시간",
         "MainSkillValue": "스킬 밸류",
-        "MainSkillTriggerValue": "스킬 트리거 밸류"
+        "MainSkillTriggerValue": "스킬 확률 밸류"
       },
       "Sort": {
         "Id": "ID",
