@@ -56,7 +56,7 @@ export const formatToAbbreviation = ({num, decimals}: FormatToAbbreviationOpts):
   }
 
   const numForCheck = Math.abs(num); // Need check the case of negative
-  decimals = decimals ?? 2;
+  decimals = decimals ?? 1;
 
   if (numForCheck >= 1E9) {
     return `${(num / 1E9).toFixed(decimals)} B`;

@@ -41,7 +41,7 @@ export const PokemonExpCalculatorTableRow = ({input, data}: Props) => {
         <PokemonExpCalculatorCandyCount count={candy / handyCandyConversionRate[handyCandyItemId.large]}/>
       </td>
       <td className="whitespace-nowrap">
-        {formatToAbbreviation({num: shard, decimals: 1})}
+        {formatToAbbreviation({num: shard})}
       </td>
     </tr>
   );
