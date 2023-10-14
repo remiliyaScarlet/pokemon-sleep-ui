@@ -8,10 +8,10 @@ import {testIngredientMap} from '@/tests/data/ingredient/data';
 import {testIngredientProductionAtLevels} from '@/tests/data/ingredient/productionAtLevel';
 import {testPokemonData} from '@/tests/data/pokemon';
 import {testSubSkillMap} from '@/tests/data/subSkill';
-import {calculateRatingResultOfLevel} from '@/utils/game/rating';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
 
 
-describe('Rating', () => {
+describe('Rating / Calculate', () => {
   it('factors in carry limit if the evolution count is changed', () => {
     const result = calculateRatingResultOfLevel({
       level: 30,

@@ -1,5 +1,5 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
-import {calculateRatingResultOfLevel} from '@/utils/game/rating';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
 
 
 const onMessage = ({data}: MessageEvent<RatingWorkerOpts>) => {
