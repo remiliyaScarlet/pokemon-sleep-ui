@@ -90,10 +90,11 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       data: {
         sort: filter.sort,
         display: filter.display,
+        mainSkill: filter.mainSkill,
         version: filter.version,
       },
     },
-    triggerDeps: [filter.sort, filter.display],
+    triggerDeps: [filter.sort, filter.display, filter.mainSkill],
   });
 
   return (

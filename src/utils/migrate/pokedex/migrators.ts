@@ -5,7 +5,7 @@ import {PokedexFilterMigrateParams} from '@/utils/migrate/pokedex/type';
 
 export const pokedexMigrators: Migrator<PokedexFilter, PokedexFilterMigrateParams>[] = [
   {
-    // `frequency` sort type split to `frequencyOfBerry`/`frequencyOfIngredient` addition
+    // `frequency` sort type split to `frequencyOfBerry` / `frequencyOfIngredient` addition
     toVersion: 1,
     migrate: ({sort, display, ...old}): PokedexFilter => ({
       ...old,
@@ -13,6 +13,14 @@ export const pokedexMigrators: Migrator<PokedexFilter, PokedexFilterMigrateParam
       sort: sort === 'frequency' ? 'frequencyOfBerry' : sort,
       // @ts-ignore
       display: display === 'frequency' ? 'frequencyOfBerry' : display,
+    }),
+  },
+  {
+    // `mainSkill` addition
+    toVersion: 2,
+    migrate: (old): PokedexFilter => ({
+      ...old,
+      mainSkill: {},
     }),
   },
 ];

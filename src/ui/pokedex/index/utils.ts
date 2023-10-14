@@ -36,7 +36,7 @@ export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> 
       sort: defaultPokemonSort,
       display: 'mainSkill',
       ...generatePokemonInputFilterExtended(),
-      version: 1,
+      version: 2,
     },
     override: preloadedDisplay ?? null,
     migrators: pokedexMigrators,

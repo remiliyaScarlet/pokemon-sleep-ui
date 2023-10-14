@@ -1,4 +1,8 @@
-import {PokemonInputFilterExtended, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {
+  PokemonInputFilter,
+  PokemonInputFilterExtended,
+  UsePokemonFilterCommonData,
+} from '@/components/shared/pokemon/input/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
@@ -20,9 +24,9 @@ export type PokemonInfoForPokedex = PokemonInfo & {
 
 export type PokedexData = PokemonInfoForPokedex[];
 
-export type PokedexDisplay = Migratable & {
-  display: PokedexDisplayType,
+export type PokedexDisplay = Migratable & Pick<PokemonInputFilter, 'mainSkill'> & {
   sort: PokemonSortType,
+  display: PokedexDisplayType,
 };
 
 export type PokedexFilter = PokemonInputFilterExtended & PokedexDisplay & {
