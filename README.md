@@ -32,6 +32,10 @@ Discord: https://discord.gg/eeveesleep
 - Discord `@earthoul`
 - Discord `@yusi3`
 
+#### Korean
+
+- Discord `@bbambba`
+
 ### Financials
 
 - Every Discord subscribers
