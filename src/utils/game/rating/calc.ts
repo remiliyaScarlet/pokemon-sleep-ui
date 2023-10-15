@@ -58,6 +58,7 @@ const getRatingBasisValue = ({
 
 export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResultOfLevel | null => {
   const {
+    basis,
     level,
     pokemon,
     ingredients,
@@ -120,7 +121,12 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   let min: RatingDataPoint | null = null;
   let max: RatingDataPoint | null = null;
 
-  for (const productions of generatePossibleIngredientProductions({level, chain})) {
+  // `ingredientCount` should only get compared within the same combination
+  const ingredientProductions = basis == 'ingredientCount' ?
+    [getEffectiveIngredientProductions({level, ingredients})] :
+    generatePossibleIngredientProductions({level, chain});
+
+  for (const productions of ingredientProductions) {
     for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
       for (const natureId of natureIds) {
         samples++;
