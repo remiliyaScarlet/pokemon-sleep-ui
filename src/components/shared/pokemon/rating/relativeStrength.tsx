@@ -18,7 +18,7 @@ type Props = {
 export const PokemonRatingRelativeStrength = ({baseDiffPercent, iconDimension, className}: Props) => {
   return (
     <Flex direction="row" center noFullWidth className={clsx(
-      'gap-1 whitespace-nowrap',
+      'group gap-1 whitespace-nowrap',
       getNumberStyles({num: baseDiffPercent}),
       className,
     )}>
