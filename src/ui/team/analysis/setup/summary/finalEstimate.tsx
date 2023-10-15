@@ -11,6 +11,7 @@ import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSnorlaxRank} from '@/ui/team/analysis/setup/summary/rank';
 import {TeamFinalEstimateInput} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
+import {toIsoDateString} from '@/utils/date';
 import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 
 
@@ -28,7 +29,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
 
     return {
       currentEnergy: 0,
-      endsAt: `${endsAt.toISOString().slice(0, 10)}T04:00`,
+      endsAt: `${toIsoDateString(endsAt)}T04:00`,
     };
   });
   const {currentEnergy, endsAt} = estimateInput;
@@ -51,7 +52,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
           <InputBox
             id="endsAt"
             type="datetime-local"
-            min={`${new Date().toISOString().slice(0, 10)}T00:00`}
+            min={`${toIsoDateString(new Date())}T00:00`}
             className="text-center"
             value={endsAt}
             onChange={({target}) => setEstimateInput((original) => ({
