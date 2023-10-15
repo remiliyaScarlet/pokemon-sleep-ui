@@ -15,7 +15,7 @@ import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingr
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
+import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill';
 import {isNotNullish} from '@/utils/type';
 
@@ -34,7 +34,7 @@ const getRatingBasisValue = ({
   singleParams,
 }: GetRatingBasisValueOpts): number => {
   if (basis === 'totalProduction') {
-    return getDailyEnergyOfRate(rate);
+    return getTotalEnergyOfPokemonProducingRate(rate);
   }
 
   if (basis === 'ingredientCount') {

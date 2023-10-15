@@ -8,6 +8,7 @@ import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisIngredientStatsLinkedData, AnalysisStatsProducingRate} from '@/ui/analysis/page/calc/type';
 import {toSum} from '@/utils/array';
+import {getTotalOfItemRates} from '@/utils/game/producing/rateReducer';
 
 
 type GetContinuousIngredientStatsOpts = {

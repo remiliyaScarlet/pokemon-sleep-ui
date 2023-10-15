@@ -119,6 +119,16 @@ export const getValueAfterSplitFromItemRateOfSessions = ({
   return {awake, sleepVacant, sleepFilled, equivalent, unfilledOnly};
 };
 
+type GetTotalOfItemRatesOpts = {
+  rates: ProducingRateOfStates[],
+  target: KeysOfType<ProducingRate, number>,
+  state: ProducingStateOfRate,
+};
+
+export const getTotalOfItemRates = ({rates, target, state}: GetTotalOfItemRatesOpts): number => (
+  toSum(rates.map((rate) => rate[target][state]))
+);
+
 type GetTotalOfPokemonProducingRateOpts = {
   rate: PokemonProducingRate,
   state: ProducingStateOfRate,
@@ -134,11 +144,15 @@ export const getTotalOfPokemonProducingRate = ({
     period,
     quantity: (
       berry.quantity[state] +
-      toSum(Object.values(ingredient).map(({quantity}) => quantity[state]))
+      getTotalOfItemRates({rates: Object.values(ingredient), target: 'quantity', state})
     ),
     energy: (
       berry.energy[state] +
-      toSum(Object.values(ingredient).map(({energy}) => energy[state]))
+      getTotalOfItemRates({rates: Object.values(ingredient), target: 'energy', state})
     ),
   };
+};
+
+export const getTotalEnergyOfPokemonProducingRate = (rate: PokemonProducingRate): number => {
+  return getTotalOfPokemonProducingRate({rate, state: 'equivalent'}).energy;
 };

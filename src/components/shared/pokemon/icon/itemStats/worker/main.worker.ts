@@ -6,7 +6,7 @@ import {
 import {defaultNeutralOpts} from '@/const/game/production';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
+import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -54,7 +54,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
             pokemonRate,
             identifier: ingredients.map(({id}) => id).join('-'),
             ingredients,
-            dailyTotalEnergy: getDailyEnergyOfRate(pokemonRate),
+            dailyTotalEnergy: getTotalEnergyOfPokemonProducingRate(pokemonRate),
           };
         });
     })

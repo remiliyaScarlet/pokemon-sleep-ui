@@ -18,7 +18,7 @@ import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingr
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getDailyEnergyOfRate} from '@/utils/game/producing/rate';
+import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
 type Props = PokemonProps & {
@@ -64,7 +64,11 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                 specialty={pokemon.specialty}
               />
               <Flex direction="row" className="items-end justify-between">
-                <ProducingRateContent dailyRate={getDailyEnergyOfRate(rate)} isEnergy normalSize/>
+                <ProducingRateContent
+                  dailyRate={getTotalEnergyOfPokemonProducingRate(rate)}
+                  isEnergy
+                  normalSize
+                />
                 <Flex noFullWidth>
                   <PokemonProducingRateSingle
                     horizontal

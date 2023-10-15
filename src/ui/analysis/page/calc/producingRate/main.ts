@@ -12,6 +12,7 @@ import {
 } from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/producing/rate';
+import {getTotalOfItemRates} from '@/utils/game/producing/rateReducer';
 
 
 export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
@@ -81,8 +82,13 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     }
   }
 
-  const currentDailyTotalOfIngredient = getDailyEnergyOfItemRates(currentIngredientRates);
-  const currentDailyTotal = currentRate.berry.energy.equivalent + currentDailyTotalOfIngredient;
+  const currentDailyTotalOfIngredient = getTotalOfItemRates(currentIngredientRates);
+  const currentSkillTriggerValue = getSkillTriggerValue({
+    ...opts,
+    ...defaultNeutralOpts,
+    rate: rateOfPokemon.rate,
+    skillValue: pokemonProducingParams.skillValue,
+  })
 
   return {
     berry: toAnalysisBerryProducingRate({
@@ -104,7 +110,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
         samples: rateOfAllPokemon
           .map((rateOfPokemon) => ({
             ...rateOfPokemon,
-            totalEnergy: getDailyEnergyOfItemRates(Object.values(rateOfPokemon.rate.ingredient)),
+            totalEnergy: getTotalOfItemRates(Object.values(rateOfPokemon.rate.ingredient)),
           })),
         getPokemonId: ({pokemon}) => pokemon.id,
         getValue: ({totalEnergy}) => totalEnergy,
