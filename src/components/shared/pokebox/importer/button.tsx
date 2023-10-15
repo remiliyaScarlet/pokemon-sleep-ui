@@ -35,9 +35,7 @@ export const PokeboxImporterButton = ({onPokeboxPicked, noFullWidth, dimension, 
         className="button-clickable-bg p-1"
         onClick={() => setShow(true)}
       >
-        <div className={dimension ?? 'h-8 w-8'}>
-          <InboxArrowDownIcon/>
-        </div>
+        <InboxArrowDownIcon className={dimension ?? 'h-8 w-8'}/>
       </FlexButton>
     </>
   );
