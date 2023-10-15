@@ -13,7 +13,7 @@ export const Announcements = (props: AnnouncementProps) => {
   const announcements = React.use(getAllAnnouncements(isLocale(locale) ? locale : null));
 
   if (!announcements.length) {
-    return <></>;
+    return null;
   }
 
   return <AnnouncementsClient announcements={announcements} {...props}/>;

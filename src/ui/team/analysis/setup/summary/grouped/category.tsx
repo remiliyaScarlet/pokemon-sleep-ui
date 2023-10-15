@@ -40,7 +40,7 @@ export const TeamAnalysisCategorySummary = ({icon, data, getReactNode, showQuant
             .sort((a, b) => (a.rate?.energy ?? 0) - (b.rate?.energy ?? 0))
             .map(({id, rate}) => {
               if (!rate) {
-                return <React.Fragment key={id}/>;
+                return null;
               }
 
               return (

@@ -16,7 +16,7 @@ export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInp
   const {showLockedOnly} = filter;
 
   if (!isLoggedIn) {
-    return <></>;
+    return null;
   }
 
   return (

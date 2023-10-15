@@ -29,7 +29,7 @@ export const MapTableInfoIcon = ({data, pokedex, displayType}: Props) => {
       );
     }
 
-    return <>#{style.style}</>;
+    return `#${style.style}`;
   }
 
   const pokemon = pokedex[data.pokemonId];

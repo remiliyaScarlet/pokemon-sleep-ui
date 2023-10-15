@@ -19,7 +19,7 @@ export const RatingBasisUI = ({basis, isActive, larger}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   if (!basis) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -31,7 +31,7 @@ export const PokeInBoxTableRow = (props: Props) => {
   const pokemon = pokedexMap[pokeInBox.pokemon];
 
   if (!pokemon) {
-    return <></>;
+    return null;
   }
 
   const pokeInBoxProps: PokeInBoxCommonProps = {

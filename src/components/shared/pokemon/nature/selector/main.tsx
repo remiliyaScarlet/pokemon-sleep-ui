@@ -67,7 +67,8 @@ export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
               className="w-full"
             />
           </Flex>
-          {search ?
+          {
+            search &&
             <>
               <Flex direction="row" center wrap className="gap-2">
                 {matchingNatureData.length ?
@@ -81,8 +82,8 @@ export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
                   </div>}
               </Flex>
               <HorizontalSplitter className="my-2"/>
-            </> :
-            <></>}
+            </>
+          }
           <Flex direction="row" center wrap className="gap-2">
             <PokemonNatureSelectorButton data={null} active={nature === null} onClick={() => onClick(null)}/>
             {natureData.map((data) => (

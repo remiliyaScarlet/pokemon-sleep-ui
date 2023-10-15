@@ -16,7 +16,7 @@ export const StaminaChartTooltip = ({active, payload, label, logs, start, getInf
   const t = useTranslations('UI.Stamina.EventType');
 
   if (!active || !payload || !payload.length) {
-    return <></>;
+    return null;
   }
 
   const data = payload[0];
@@ -24,7 +24,7 @@ export const StaminaChartTooltip = ({active, payload, label, logs, start, getInf
 
   // `data.value` could be `0`, therefore explicitly checking here
   if (!log || data.value === undefined) {
-    return <></>;
+    return null;
   }
 
   const timing = label as number;

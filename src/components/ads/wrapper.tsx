@@ -30,7 +30,7 @@ export const AdsWrapper = ({children, className, alwaysSingle}: React.PropsWithC
   // When `isAdsFree` is `null`, it shouldn't render anything because the app hasn't determined
   // if the user is ads free yet
   if (isAdsFree !== false) {
-    return <></>;
+    return null;
   }
 
   return (

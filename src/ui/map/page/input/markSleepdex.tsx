@@ -13,7 +13,7 @@ export const MapInputMarkSleepdexToggle = ({filter, setFilter, isLoggedIn}: MapI
   const {markingSleepdex} = filter;
 
   if (!isLoggedIn) {
-    return <></>;
+    return null;
   }
 
   return (

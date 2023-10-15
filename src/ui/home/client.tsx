@@ -35,7 +35,7 @@ export const HomeClient = ({userCount}: Props) => {
 
           // `showInHome` being `undefined` (falsy) should be treated as `true`
           if (opts.type === 'link' && opts.showInHome === false) {
-            return <React.Fragment key={i18nTextId}/>;
+            return null;
           }
 
           return (

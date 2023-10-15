@@ -99,7 +99,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
               <div className="h-7 w-7">
                 <XMarkIcon/>
               </div> :
-              <>{level}</>
+              level
           )}
           idToItemId={(level) => `previewLevel-${level}`}
           getClassNames={getIconFilterButtonClass}

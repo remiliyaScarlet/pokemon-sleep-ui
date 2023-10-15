@@ -38,7 +38,7 @@ export const FilterCategoryInput = <TId, >({
           const itemId = idToItemId(id);
 
           if (hidden) {
-            return <React.Fragment key={itemId}/>;
+            return null;
           }
 
           return (

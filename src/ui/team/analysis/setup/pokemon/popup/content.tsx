@@ -30,7 +30,7 @@ export const TeamAnalysisPokemonPopupContent = ({
   }
 
   if (type === null) {
-    return <></>;
+    return null;
   }
 
   throw new Error(`Unhandled Team Analysis Pokemon popup type [${type satisfies never}]`);

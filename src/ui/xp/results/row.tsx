@@ -21,7 +21,7 @@ export const PokemonExpCalculatorTableRow = ({input, data}: Props) => {
   const isBreakthroughLevel = pokemonKeyLevels.includes(lv as PokemonKeyLevel);
 
   if (!showNonBreakthroughLevel && !isBreakthroughLevel) {
-    return <></>;
+    return null;
   }
 
   return (

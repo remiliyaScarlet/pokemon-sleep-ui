@@ -19,7 +19,7 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
   const {actAsync, status} = useUserDataActor();
 
   if (!actAsync) {
-    return <></>;
+    return null;
   }
 
   return (

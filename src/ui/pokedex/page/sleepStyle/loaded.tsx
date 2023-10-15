@@ -15,7 +15,7 @@ export const PokemonSleepStylesLoaded = ({pokemon, sleepStyles, initialSleepdex}
   const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
 
   if (sleepStyles.length === 0) {
-    return <></>;
+    return null;
   }
 
   return (

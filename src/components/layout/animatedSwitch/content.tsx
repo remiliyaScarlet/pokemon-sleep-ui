@@ -15,7 +15,7 @@ export const AnimatedSwitchContent = ({contents, idx, className}: Props) => {
   const content = contents[idx] as React.ReactNode | undefined;
 
   if (!content) {
-    return <></>;
+    return null;
   }
 
   return (

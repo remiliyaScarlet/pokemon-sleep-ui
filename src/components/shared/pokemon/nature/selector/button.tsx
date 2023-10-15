@@ -39,7 +39,7 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
               <NatureEffectIcon effectId={data?.buff} showOnNull/>
             </div>
             <div className="whitespace-nowrap">
-              {data?.buff ? t(`NatureEffect.${data.buff}`) : <></>}
+              {data?.buff && t(`NatureEffect.${data.buff}`)}
             </div>
           </Flex>
           <Flex direction="row" className={clsx('items-center justify-end gap-0.5', data?.nerf && natureStyle.nerf)}>
@@ -50,7 +50,7 @@ export const PokemonNatureSelectorButton = ({data, active, onClick}: Props) => {
               <NatureEffectIcon effectId={data?.nerf} showOnNull/>
             </div>
             <div className="whitespace-nowrap">
-              {data?.nerf ? t(`NatureEffect.${data.nerf}`) : <></>}
+              {data?.nerf && t(`NatureEffect.${data.nerf}`)}
             </div>
           </Flex>
         </Flex>

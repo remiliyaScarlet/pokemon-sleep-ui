@@ -16,7 +16,7 @@ export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: Map
   const {showSleepdexStats} = filter;
 
   if (!isLoggedIn) {
-    return <></>;
+    return null;
   }
 
   return (

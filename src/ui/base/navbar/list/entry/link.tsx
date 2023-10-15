@@ -28,7 +28,7 @@ export const NavListEntryLink = ({entry}: Props) => {
   const isCurrent = href === pathname;
 
   if (disabled) {
-    return <></>;
+    return null;
   }
 
   const text = t(i18nTextId);

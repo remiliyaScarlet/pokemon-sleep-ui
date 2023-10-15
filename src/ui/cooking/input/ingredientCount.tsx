@@ -10,13 +10,13 @@ import {CookingCommonProps} from '@/ui/cooking/type';
 export const CookingInputIngredientCount = ({filter, setFilter, ingredientMap}: CookingCommonProps) => {
   return (
     <Flex direction="row" wrap center className="gap-1">
-      {Object.values(ingredientMap).map((ingredient, idx) => {
+      {Object.values(ingredientMap).map((ingredient) => {
         if (
           !ingredient ||
           isFilterConditionActive({filter, filterKey: 'ingredient'}) &&
           !filter.ingredient[ingredient.id]
         ) {
-          return <React.Fragment key={`Hidden-${idx}`}/>;
+          return null;
         }
 
         const id = ingredient.id;

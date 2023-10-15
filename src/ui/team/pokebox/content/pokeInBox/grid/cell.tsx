@@ -33,7 +33,7 @@ export const PokeInBoxGridCell = (props: Props) => {
   const t = useTranslations('Game');
 
   if (!pokemon) {
-    return <></>;
+    return null;
   }
 
   const pokemonName = t(`PokemonName.${pokemonId}`);

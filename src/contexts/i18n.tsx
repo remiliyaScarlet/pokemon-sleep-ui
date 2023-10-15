@@ -17,7 +17,7 @@ export const I18nProvider = async ({locale, namespaces, children}: React.PropsWi
   const messages = await getMessages(locale);
 
   if (!messages) {
-    return <></>;
+    return null;
   }
 
   return (

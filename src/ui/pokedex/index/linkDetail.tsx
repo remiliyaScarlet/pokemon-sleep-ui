@@ -129,7 +129,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'id') {
-    return <>#{id}</>;
+    return `#${id}`;
   }
 
   if (display === 'ingredientEnergy') {
@@ -212,7 +212,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (isPokedexSortExclusion(display)) {
-    return <></>;
+    return null;
   }
 
   console.error(`Unhandled Pokedex display type: [${display satisfies never}]`);

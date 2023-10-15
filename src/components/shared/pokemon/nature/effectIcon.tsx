@@ -22,7 +22,7 @@ export const NatureEffectIcon = ({effectId, showOnNull}: Props) => {
       return <XCircleIcon/>;
     }
 
-    return <></>;
+    return null;
   }
 
   return (

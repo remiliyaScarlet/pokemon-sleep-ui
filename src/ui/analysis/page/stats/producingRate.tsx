@@ -148,7 +148,8 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
               {formatFloat(rate.energy.current)}
             </div>
           </AnalysisStatsContinuousUI>
-        </React.Fragment>))}
+        </React.Fragment>
+      ))}
       <AnalysisStatsContinuousUI
         stats={producingRate.ingredient.overall}
         title={

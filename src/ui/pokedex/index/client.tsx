@@ -116,7 +116,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
             const key = `${pokemonId}-${source.ingredients.map(({id}) => id).join('-')}`;
 
             if (!isIncluded[pokemonId]) {
-              return <React.Fragment key={key}/>;
+              return null;
             }
 
             return (

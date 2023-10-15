@@ -9,5 +9,5 @@ export const SignIn = () => {
     void signIn();
   }, []);
 
-  return <></>;
+  return null;
 };

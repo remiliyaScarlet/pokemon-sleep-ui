@@ -24,7 +24,7 @@ type Props = {
 
 export const RatingDataPointUI = ({level, point, subSkillMap, icon, basis, className}: Props) => {
   if (!point) {
-    return <></>;
+    return null;
   }
 
   const {value, combination} = point;

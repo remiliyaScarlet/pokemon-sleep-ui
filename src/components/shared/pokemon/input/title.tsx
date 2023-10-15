@@ -16,19 +16,19 @@ export const PokemonFilterTitle = ({type, lvAsText}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   if (type === 'pokemonType') {
-    return <>{t('PokemonType')}</>;
+    return t('PokemonType');
   }
 
   if (type === 'sleepType') {
-    return <>{t('SleepType')}</>;
+    return t('SleepType');
   }
 
   if (type === 'specialty') {
-    return <>{t('Specialty')}</>;
+    return t('Specialty');
   }
 
   if (type === 'berry') {
-    return <>{t('Berry')}</>;
+    return t('Berry');
   }
 
   if (isPokemonInputTypeOfIngredients(type)) {
@@ -36,11 +36,11 @@ export const PokemonFilterTitle = ({type, lvAsText}: Props) => {
   }
 
   if (type === 'mainSkill') {
-    return <>{t('MainSkill')}</>;
+    return t('MainSkill');
   }
 
   if (type === 'evolutionStage') {
-    return <>{t('Evolution')}</>;
+    return t('Evolution');
   }
 
   throw new Error(`Unhandled pokemon filter title of type ${type satisfies never}`);

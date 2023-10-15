@@ -11,7 +11,7 @@ type Props = {
 
 export const PokemonExpCalculatorCandyCount = ({count}: Props) => {
   if (count > 0) {
-    return <>{Math.ceil(count)}</>;
+    return Math.ceil(count);
   }
 
   return (

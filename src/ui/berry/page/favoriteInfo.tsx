@@ -23,7 +23,7 @@ export const BerryFavoriteInfoUi = ({berryData, favoriteInfo, level, setLevel}: 
       <Flex direction="row" center wrap className="gap-1.5">
         {Object.entries(favoriteInfo).map(([mapId, type]) => {
           if (!type) {
-            return <React.Fragment key={mapId}/>;
+            return null;
           }
 
           return (

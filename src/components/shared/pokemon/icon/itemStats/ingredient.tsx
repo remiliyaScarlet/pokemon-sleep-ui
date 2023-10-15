@@ -19,7 +19,7 @@ export const PokemonIconsIngredientStats = ({
   ...props
 }: Props) => {
   if (!ingredient) {
-    return <></>;
+    return null;
   }
 
   return (

@@ -90,7 +90,7 @@ export const MapUnlockTable = (props: Props) => {
 
         // Have to be after `getUpdatedAccumulator()` or the accumulation will be wrong
         if (toHide) {
-          return <React.Fragment key={key}/>;
+          return null;
         }
 
         return (

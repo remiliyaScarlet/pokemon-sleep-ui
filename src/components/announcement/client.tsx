@@ -22,7 +22,7 @@ export const AnnouncementsClient = ({larger, showOn, height, announcements}: Pro
   const {isLandscape} = useLayout();
 
   if ((showOn === 'landscape' && !isLandscape) || (showOn === 'portrait' && isLandscape)) {
-    return <></>;
+    return null;
   }
 
   // Could be `undefined` if `idx` goes out of bound
@@ -32,7 +32,7 @@ export const AnnouncementsClient = ({larger, showOn, height, announcements}: Pro
 
   if (!announcement) {
     setIdx(0);
-    return <></>;
+    return null;
   }
 
   const {message, level} = announcement;

@@ -47,7 +47,7 @@ export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
           }
 
           if (!showEmpty && capacity && (!unlockedMeals.length || potInfo.capacity <= capacity)) {
-            return <React.Fragment key={potInfo.capacity}/>;
+            return null;
           }
 
           return (

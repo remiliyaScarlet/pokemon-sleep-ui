@@ -13,9 +13,7 @@ type Props = {
 export const PokemonLinkPopup = ({state, setState}: Props) => {
   return (
     <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
-      {state.pokemon ?
-        <PokemonLinkPopupContent pokemon={state.pokemon}/> :
-        <></>}
+      {state.pokemon && <PokemonLinkPopupContent pokemon={state.pokemon}/>}
     </Popup>
   );
 };

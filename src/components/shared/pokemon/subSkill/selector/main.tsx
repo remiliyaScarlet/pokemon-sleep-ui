@@ -111,7 +111,8 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
               className="w-full"
             />
           </Flex>
-          {search ?
+          {
+            search &&
             <>
               <PokemonSubSkillSelectionButtons
                 data={matchingSubSkills}
@@ -119,8 +120,8 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
                 onSelect={onSelect}
               />
               <HorizontalSplitter className="my-2"/>
-            </> :
-            <></>}
+            </>
+          }
           <Flex direction="row" center wrap className="gap-2">
             <PokemonSubSkillSelectionButtons
               data={subSkills}

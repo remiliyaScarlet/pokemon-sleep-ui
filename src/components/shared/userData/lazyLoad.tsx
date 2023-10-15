@@ -60,7 +60,7 @@ export const UserDataLazyLoad = ({options, loadingText, content, sessionOverride
     }
 
     if (session.status === 'unauthenticated') {
-      return <>{content(null, session)}</>;
+      return content(null, session);
     }
 
     if (status === 'failed') {
@@ -70,17 +70,17 @@ export const UserDataLazyLoad = ({options, loadingText, content, sessionOverride
     // If not loaded but got an action to run later, don't show anything to prevent the UI blink
     // between the gap of user getting authenticated and the action starts
     if (status === 'waiting' && act) {
-      return <></>;
+      return null;
     }
 
     // There will be a gap where `status` is `completed` but `loaded` is still `false`
     // Therefore rendering empty content and wait for the `useEffect()` hook to set `loaded` to true
     if (status === 'completed') {
-      return <></>;
+      return null;
     }
 
     console.warn(`Uncaught lazy load status: Session: ${session.status} / User data action: ${status}`);
   }
 
-  return <>{content(session.data?.user.lazyLoaded, session)}</>;
+  return content(session.data?.user.lazyLoaded, session);
 };

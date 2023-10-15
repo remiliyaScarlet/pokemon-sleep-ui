@@ -22,21 +22,17 @@ export const PokeInBoxRatingStats = ({loading, result}: Props) => {
     <Flex direction="row" className={clsx('gap-1.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>
       <Flex center className="gap-1">
         <div>
-          {
-            loading ?
-              <LoadingText dimension="h-4 w-4" text="PR"/> :
-              isNaN(percentile) ? '-' : <>PR {formatInt(percentile)}</>
-          }
+          {loading ?
+            <LoadingText dimension="h-4 w-4" text="PR"/> :
+            isNaN(percentile) ? '-' : `PR ${formatInt(percentile)}`}
         </div>
         <ProgressBar className="w-full" percent={percentile}/>
       </Flex>
       <Flex center className="gap-1">
         <div>
-          {
-            loading ?
-              <LoadingText dimension="h-4 w-4" text="%"/> :
-              isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`
-          }
+          {loading ?
+            <LoadingText dimension="h-4 w-4" text="%"/> :
+            isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
         </div>
         <ProgressBar className="w-full" percent={percentage}/>
       </Flex>

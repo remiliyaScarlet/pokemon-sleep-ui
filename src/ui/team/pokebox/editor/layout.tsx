@@ -55,7 +55,7 @@ export const PokeInBoxEditLayout = ({
 
   const pokemon = pokedexMap[pokemonId];
   if (!pokemon) {
-    return <></>;
+    return null;
   }
 
   const isShinyActive = isShiny ?? false;
