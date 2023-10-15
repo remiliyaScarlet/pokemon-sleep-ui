@@ -22,7 +22,7 @@ export const PokeInBoxGridProductionBerry = (props: PokeInBoxCommonProps) => {
   return (
     <Flex direction="row" noFullWidth className={clsx(
       'w-fit items-center gap-1 p-0 pr-1.5',
-      pokemon.specialty === specialtyIdMap.berry && 'bg-blink',
+      pokemon.specialty === specialtyIdMap.berry && 'info-highlight',
     )}>
       <PokemonBerryIcon id={pokemon.berry.id}/>
       <div>

@@ -24,13 +24,13 @@ export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox
     <Flex noFullWidth className="gap-1">
       <Flex direction="row" noFullWidth className="items-center gap-1">
         <Flex direction="row" noFullWidth className={clsx(
-          'items-center gap-1 px-1',
-          specialty === specialtyIdMap.berry && 'bg-blink',
+          'items-center gap-1 px-1.5',
+          specialty === specialtyIdMap.berry && 'info-highlight',
         )}>
           <PokemonBerryIcon id={berry.id}/>
           <div>{berry.quantity}</div>
         </Flex>
-        <div className={clsx('px-2', specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+        <div className={clsx('px-2', specialty === specialtyIdMap.ingredient && 'info-highlight')}>
           <PokemonIngredientIcons ingredients={[Object.values(ingredients)]} noLink/>
         </div>
       </Flex>

@@ -40,14 +40,14 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
       </div>
       <Flex
         direction="row" center noFullWidth
-        className={clsx('items-center gap-1 px-1', specialty === specialtyIdMap.berry && 'bg-blink')}
+        className={clsx('items-center gap-1 px-1.5', specialty === specialtyIdMap.berry && 'info-highlight')}
       >
         <PokemonBerryIcon id={berry.id}/>
         <div>{berry.quantity}</div>
       </Flex>
       <div className={clsx(
-        'rounded-lg border border-slate-500/50 px-2',
-        specialty === specialtyIdMap.ingredient && 'bg-blink',
+        'rounded-lg px-2',
+        specialty === specialtyIdMap.ingredient && 'info-highlight',
       )}>
         <PokemonIngredientIcons
           ingredients={[Object.values(pokeInBox.ingredients).map((ingredient) => ingredient)]}

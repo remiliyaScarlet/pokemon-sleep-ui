@@ -38,8 +38,8 @@ export const PokeInBoxTableProduction = ({
           ids: ['productionBerry'] satisfies PokeboxDisplayType[],
         }) &&
         <Flex direction="row" center noFullWidth className={clsx(
-          'w-48 gap-1 p-0',
-          pokemon.specialty === specialtyIdMap.berry && 'bg-blink',
+          'w-52 gap-1',
+          pokemon.specialty === specialtyIdMap.berry && 'info-highlight',
         )}>
           <PokemonBerryIcon id={pokemon.berry.id}/>
           <div>
@@ -59,7 +59,7 @@ export const PokeInBoxTableProduction = ({
         }) &&
         <Flex direction="row" wrap center noFullWidth className={clsx(
           'w-72 gap-x-3 gap-y-0.5 p-0.5 text-xs',
-          pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+          pokemon.specialty === specialtyIdMap.ingredient && 'info-highlight',
         )}>
           {rateOfIngredients.map(({id, quantity, energy}) => (
             <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
@@ -93,6 +93,7 @@ export const PokeInBoxTableProduction = ({
           rate={rateOfPokemon}
           state={stateOfRateToShow}
           specialty={pokemon.specialty}
+          noBlink
         />
       </Flex>
     </>

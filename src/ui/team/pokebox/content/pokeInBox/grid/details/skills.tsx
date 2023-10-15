@@ -19,7 +19,7 @@ export const PokeInBoxGridSkills = ({pokemon, pokeInBox, subSkillMap}: PokeInBox
     <Flex direction="row" noFullWidth className="gap-1.5">
       <FlexLink noFullWidth href={`/info/mainskill/${skill}`} className={clsx(
         'items-center gap-1.5 p-1.5 text-sm',
-        specialty === specialtyIdMap.skill && 'bg-blink',
+        specialty === specialtyIdMap.skill && 'info-highlight',
       )}>
         <MainSkillIcon id={pokemon.skill} dimension="h-9 w-9"/>
       </FlexLink>

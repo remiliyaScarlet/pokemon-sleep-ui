@@ -35,7 +35,7 @@ export const PokeInBoxTableSkills = ({
       </Flex>
       <FlexLink direction="row" center href={`/info/mainskill/${pokemon.skill}`} className={clsx(
         'w-60 gap-1 whitespace-nowrap p-1 text-sm',
-        pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
+        pokemon.specialty === specialtyIdMap.skill && 'info-highlight',
       )}>
         <MainSkillIcon id={pokemon.skill} dimension="h-6 w-6"/>
         <div>{t(`MainSkill.Name.${pokemon.skill}`)}</div>

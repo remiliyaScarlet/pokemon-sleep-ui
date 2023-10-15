@@ -22,7 +22,7 @@ export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) =
   return (
     <Flex noFullWidth className={clsx(
       'w-fit gap-0.5 pr-1.5 text-sm',
-      pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+      pokemon.specialty === specialtyIdMap.ingredient && 'info-highlight',
     )}>
       {Object.values(ingredient).map(({id, quantity, energy}) => (
         <Flex key={id} direction="row" noFullWidth className="items-center gap-0.5">
