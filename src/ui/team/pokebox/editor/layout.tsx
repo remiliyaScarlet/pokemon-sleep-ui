@@ -8,6 +8,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
+import {CopyButton} from '@/components/layout/copyable/button';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
@@ -20,6 +21,7 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
+import {Dimension} from '@/types/style';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
@@ -57,14 +59,18 @@ export const PokeInBoxEditLayout = ({
   }
 
   const isShinyActive = isShiny ?? false;
+  const iconDimension: Dimension = 'h-5 w-5';
   const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
   return (
     <Flex className="gap-2">
       <Flex className="gap-1.5 truncate md:flex-row-reverse md:items-center">
-        <pre className="text-sm text-slate-500">
-          {uuid}
-        </pre>
+        <Flex direction="row" center>
+          <pre className="text-sm text-slate-500">
+            {uuid}
+          </pre>
+          <CopyButton data={uuid} dimension="h-7 w-7"/>
+        </Flex>
         <Flex direction="row" className="gap-1.5">
           <ToggleButton
             id="markPokeInBoxShiny"
@@ -151,14 +157,14 @@ export const PokeInBoxEditLayout = ({
       </Flex>
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
-        <button className="button-clickable-bg !rounded-full p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
-          <DocumentDuplicateIcon className="h-5 w-5"/>
+        <button className="button-clickable-bg p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
+          <DocumentDuplicateIcon className={iconDimension}/>
         </button>
         <button
-          className="transform-smooth button-alert-bg ml-auto rounded-full p-1"
+          className="transform-smooth button-alert-bg ml-auto rounded-lg p-1"
           onClick={() => onRemovePokeInBox(uuid)}
         >
-          <div className="h-5 w-5">
+          <div className={iconDimension}>
             <TrashIcon/>
           </div>
         </button>
