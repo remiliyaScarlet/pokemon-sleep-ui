@@ -1,4 +1,4 @@
-import {Collection} from 'mongodb';
+import {Collection, WithId} from 'mongodb';
 
 import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
@@ -14,6 +14,11 @@ const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
     .collection<PokeInBoxData>('pokebox');
 };
 
+const pokeInBoxDataToPokeInBox = ({_id, ...rest}: WithId<PokeInBoxData>): PokeInBox => ({
+  dateAdded: _id.getTimestamp().getTime(),
+  ...rest,
+});
+
 export const getUserPokeboxSorted = async (owner: string | undefined): Promise<PokeInBox[]> => {
   if (!owner) {
     return [];
@@ -23,10 +28,7 @@ export const getUserPokeboxSorted = async (owner: string | undefined): Promise<P
   await migratePokeboxOfUser(owner);
   return await (await getCollection())
     .find({owner}, {projection: {owner: false}, sort: [['pokemon', 'asc'], ['level', 'desc']]})
-    .map(({_id, ...rest}): PokeInBox => ({
-      dateAdded: _id.getTimestamp().getTime(),
-      ...rest,
-    }))
+    .map(pokeInBoxDataToPokeInBox)
     .toArray();
 };
 
@@ -38,6 +40,16 @@ export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox
   const pokeboxArray = await getUserPokeboxSorted(owner);
 
   return Object.fromEntries(pokeboxArray.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]));
+};
+
+export const getSinglePokeInBox = async (uuid: string): Promise<PokeInBox | null> => {
+  const data = await (await getCollection()).findOne({uuid});
+
+  if (!data) {
+    return null;
+  }
+
+  return pokeInBoxDataToPokeInBox(data);
 };
 
 export const addSinglePokeInBox = async (owner: string, pokeInBox: PokeInBox) => (await getCollection()).insertOne({

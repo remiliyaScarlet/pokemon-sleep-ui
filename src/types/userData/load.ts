@@ -13,6 +13,11 @@ export type UserDataLoadingOpts = {
   type: 'pokebox',
   opts?: never,
 } | {
+  type: 'pokeboxSingle',
+  opts: {
+    pokeInBoxUuid: string,
+  },
+} | {
   type: 'pokeboxSorted',
   opts?: never,
 } | {

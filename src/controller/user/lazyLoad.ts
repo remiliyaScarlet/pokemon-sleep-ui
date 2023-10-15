@@ -1,4 +1,4 @@
-import {getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
+import {getSinglePokeInBox, getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
 import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
@@ -50,6 +50,10 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
 
   if (type === 'pokebox') {
     return await getUserPokebox(userId) satisfies UserLazyLoadedData['pokebox'];
+  }
+
+  if (type === 'pokeboxSingle') {
+    return (await getSinglePokeInBox(opts.pokeInBoxUuid) ?? undefined) satisfies UserLazyLoadedData['pokeboxSingle'];
   }
 
   if (type === 'pokeboxSorted') {

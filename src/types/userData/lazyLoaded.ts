@@ -9,6 +9,7 @@ export type UserLazyLoadedContent = {
   teamAnalysis: UserTeamAnalysisContent,
   teamAnalysisMember: TeamAnalysisMember,
   pokebox: Pokebox,
+  pokeboxSingle: PokeInBox,
   pokeboxSorted: PokeInBox[],
   sleepdex: SleepdexMap,
   sleepdexOfPokemon: SleepdexMap,
