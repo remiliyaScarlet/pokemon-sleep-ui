@@ -14,9 +14,9 @@ const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
     .collection<PokeInBoxData>('pokebox');
 };
 
-const pokeInBoxDataToPokeInBox = ({_id, ...rest}: WithId<PokeInBoxData>): PokeInBox => ({
-  dateAdded: _id.getTimestamp().getTime(),
+const pokeInBoxDataToPokeInBox = ({_id, dateAdded, ...rest}: WithId<PokeInBoxData>): PokeInBox => ({
   ...rest,
+  dateAdded: dateAdded ?? _id.getTimestamp().getTime(),
 });
 
 export const getUserPokeboxSorted = async (owner: string | undefined): Promise<PokeInBox[]> => {

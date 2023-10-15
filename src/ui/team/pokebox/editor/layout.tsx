@@ -6,6 +6,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
+import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {CopyButton} from '@/components/layout/copyable/button';
@@ -23,6 +24,7 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {Dimension} from '@/types/style';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
+import {toIsoDateString} from '@/utils/date';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
@@ -42,6 +44,7 @@ export const PokeInBoxEditLayout = ({
 }: Props) => {
   const {
     uuid,
+    dateAdded,
     pokemon: pokemonId,
     name,
     level,
@@ -52,6 +55,7 @@ export const PokeInBoxEditLayout = ({
   } = pokeInBox;
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Common');
+  const t3 = useTranslations('UI.InPage.Pokedex');
 
   const pokemon = pokedexMap[pokemonId];
   if (!pokemon) {
@@ -63,7 +67,7 @@ export const PokeInBoxEditLayout = ({
   const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
   return (
-    <Flex className="gap-2">
+    <Flex className="gap-1.5">
       <Flex className="gap-1.5 truncate md:flex-row-reverse md:items-center">
         <Flex direction="row" center>
           <pre className="text-sm text-slate-500">
@@ -155,6 +159,18 @@ export const PokeInBoxEditLayout = ({
           />
         </Flex>
       </Flex>
+      <InputRowWithTitle title={t3('Sort.DateRegistered')}>
+        <InputBox
+          id="dateAdded"
+          type="date"
+          className="text-center"
+          value={toIsoDateString(new Date(dateAdded))}
+          onChange={({target}) => setPokeInBox({
+            ...pokeInBox,
+            dateAdded: new Date(target.value).getTime(),
+          })}
+        />
+      </InputRowWithTitle>
       <HorizontalSplitter/>
       <Flex direction="row" className="items-center">
         <button className="button-clickable-bg p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
