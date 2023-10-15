@@ -18,6 +18,7 @@ export type RatingResultProps = {
   ingredientMap: IngredientMap,
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,
+  setRequest?: (updated: RatingRequest) => void,
 };
 
 export type RatingPopupControlState = {

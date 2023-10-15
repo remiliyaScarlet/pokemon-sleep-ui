@@ -20,6 +20,7 @@ export const RatingResultPopup = ({ratingControl, pokemon, pokemonProducingParam
           pokemon && pokemonProducingParams &&
           <RatingResult
             request={state.request}
+            setRequest={(request) => setState((original) => ({...original, request}))}
             pokemon={pokemon}
             pokemonProducingParams={pokemonProducingParams}
             {...props}
