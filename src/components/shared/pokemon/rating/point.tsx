@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
-import {RatingBasisIcon} from '@/components/shared/pokemon/rating/basisIcon';
+import {RatingBasisIcon} from '@/components/shared/pokemon/rating/basis/icon';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {RatingBasis, RatingDataPoint} from '@/types/game/pokemon/rating';

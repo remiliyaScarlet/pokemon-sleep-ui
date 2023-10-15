@@ -7,7 +7,7 @@ import {useSession} from 'next-auth/react';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
-import {RatingBasisUI} from '@/components/shared/pokemon/rating/basis';
+import {RatingBasisTitle} from '@/components/shared/pokemon/rating/basis/title';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettings} from '@/hooks/userData/settings';
@@ -92,7 +92,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
             }
             ids={[...ratingBasis]}
             idToButton={(basis, isActive) => (
-              <RatingBasisUI basis={basis} isActive={isActive}/>
+              <RatingBasisTitle basis={basis} isActive={isActive}/>
             )}
             idToItemId={(basis) => basis}
           />

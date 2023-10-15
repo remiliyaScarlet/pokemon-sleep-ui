@@ -15,7 +15,7 @@ type Props = {
   larger?: boolean,
 };
 
-export const RatingBasisUI = ({basis, isActive, larger}: Props) => {
+export const RatingBasisTitle = ({basis, isActive, larger}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   if (!basis) {
