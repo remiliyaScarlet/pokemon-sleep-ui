@@ -1,17 +1,15 @@
 'use client';
 import React from 'react';
 
-import MagnifyingGlassCircleIcon from '@heroicons/react/24/outline/MagnifyingGlassCircleIcon';
 import {useSession} from 'next-auth/react';
 
-import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
-import {RatingBasisTitle} from '@/components/shared/pokemon/rating/basis/title';
+import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettings} from '@/hooks/userData/settings';
-import {ratingBasis, RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
+import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
@@ -82,19 +80,9 @@ export const RatingClient = (props: RatingServerDataProps) => {
             setFilter={setOnDesk}
             filterKey="snorlaxFavorite"
           />
-          <FilterTextInput
-            onClick={(basis) => setOnDesk((original) => ({...original, basis}))}
-            isActive={(basis) => basis === onDesk.basis}
-            title={
-              <Flex center>
-                <MagnifyingGlassCircleIcon className="h-6 w-6"/>
-              </Flex>
-            }
-            ids={[...ratingBasis]}
-            idToButton={(basis, isActive) => (
-              <RatingBasisTitle basis={basis} isActive={isActive}/>
-            )}
-            idToItemId={(basis) => basis}
+          <RatingBasisSelection
+            current={onDesk.basis}
+            onSelect={(basis) => setOnDesk((original) => ({...original, basis}))}
           />
         </Flex>
       )}
