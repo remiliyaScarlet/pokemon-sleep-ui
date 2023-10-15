@@ -29,6 +29,11 @@ export const getLevelUpRequirementsOfEachLevel = ({
   xpData,
   multiplier,
 }: GetItemsRequiredOpts): PokemonLevelUpRequirements[] => {
+  // `currentLv` could be `0` if current level is deleted
+  if (!currentLv) {
+    return [];
+  }
+
   const expDataCurrentLevel = xpData[currentLv - 1];
   const expToNextCurrent = expDataCurrentLevel.toNext - xpToNext;
   const expDataInRange: PokemonExpData[] = [
