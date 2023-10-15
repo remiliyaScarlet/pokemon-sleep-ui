@@ -73,6 +73,7 @@ export type AnalysisStats = {
       individual: AnalysisStatsProducingRate<IngredientId, AnalysisIngredientStatsLinkedData>[],
       overall: AnalysisStatsContinuous<number>,
     },
+    skillTrigger: AnalysisStatsContinuous<number>,
     total: AnalysisStatsContinuous<number>,
   },
 };

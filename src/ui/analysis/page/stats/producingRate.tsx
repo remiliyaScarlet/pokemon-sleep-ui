@@ -9,6 +9,7 @@ import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
+import {MainSkillTriggerValueIcon} from '@/components/shared/pokemon/mainSkill/icon/trigger';
 import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
 import {TextMarkThreshold} from '@/styles/text/mark/type';
 import {AnalysisStatsContinuousUI} from '@/ui/analysis/page/result/continuous';
@@ -29,6 +30,7 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
   const textBerryEnergy = t(sortTypeToI18nId.berryEnergy);
   const textIngredientCount = t(sortTypeToI18nId.ingredientCount);
   const textIngredientEnergy = t(sortTypeToI18nId.ingredientEnergy);
+  const textSkillTriggerValue = t(sortTypeToI18nId.mainSkillTriggerValue);
 
   return (
     <AnalysisStatsLayout>
@@ -168,6 +170,26 @@ export const AnalysisStatsOfProducingRate = ({stats, pokemon}: AnalysisStatsUiPr
       >
         <div className="text-2xl">
           {formatFloat(producingRate.ingredient.overall.current)}
+        </div>
+      </AnalysisStatsContinuousUI>
+      <AnalysisStatsContinuousUI
+        stats={producingRate.skillTrigger}
+        title={
+          <Flex direction="row" center className="gap-1.5">
+            <MainSkillTriggerValueIcon alt={textSkillTriggerValue}/>
+            {textSkillTriggerValue}
+          </Flex>
+        }
+        threshold={percentileThreshold}
+        renderData={({data}) => (
+          <Flex direction="row" center className="gap-1 text-sm">
+            <MainSkillTriggerValueIcon alt={textSkillTriggerValue}/>
+            <div>{formatFloat(data)}</div>
+          </Flex>
+        )}
+      >
+        <div className="text-2xl">
+          {formatFloat(producingRate.skillTrigger.current)}
         </div>
       </AnalysisStatsContinuousUI>
     </AnalysisStatsLayout>

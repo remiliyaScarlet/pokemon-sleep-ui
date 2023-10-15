@@ -1,18 +1,12 @@
 import {defaultNeutralOpts} from '@/const/game/production';
-import {IngredientId} from '@/types/game/ingredient';
-import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {toAnalysisBerryProducingRate} from '@/ui/analysis/page/calc/producingRate/berry';
-import {toAnalysisIngredientProducingRate} from '@/ui/analysis/page/calc/producingRate/ingredient';
-import {ProducingRateOfIngredientsOnPokemon} from '@/ui/analysis/page/calc/producingRate/type';
-import {isRateOfPokemonSame} from '@/ui/analysis/page/calc/producingRate/utils';
+import {toAnalysisIngredientProducingStats} from '@/ui/analysis/page/calc/producingRate/ingredient';
+import {toAnalysisSkillTriggerProducingStats} from '@/ui/analysis/page/calc/producingRate/skill';
+import {toAnalysisTotalProducingStats} from '@/ui/analysis/page/calc/producingRate/total';
+import {PokemonAnalysisRateInfo} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
-import {
-  generatePossibleIngredientProductions,
-  groupIngredientProductions,
-} from '@/utils/game/producing/ingredientChain';
+import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getDailyEnergyOfItemRates, getDailyEnergyOfRate} from '@/utils/game/producing/rate';
-import {getTotalOfItemRates} from '@/utils/game/producing/rateReducer';
 
 
 export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
@@ -26,21 +20,21 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     ingredientChainMap,
   } = opts;
 
+  const currentPokemonProducingParams = getPokemonProducingParams({
+    pokemonId: pokemon.id,
+    pokemonProducingParamsMap,
+  });
   const currentRate = getPokemonProducingRate({
     ...opts,
-    pokemonProducingParams: getPokemonProducingParams({
-      pokemonId: pokemon.id,
-      pokemonProducingParamsMap,
-    }),
+    pokemonProducingParams: currentPokemonProducingParams,
     berryData: berryDataMap[pokemon.berry.id],
     ...defaultNeutralOpts,
   });
-  const currentIngredientRates = Object.values(currentRate.ingredient);
 
   const rateOfAllPokemon = pokemonList.flatMap((otherPokemon) => [...generatePossibleIngredientProductions({
     level,
     chain: ingredientChainMap[otherPokemon.ingredientChain],
-  })].map((otherIngredients) => ({
+  })].map((otherIngredients): PokemonAnalysisRateInfo => ({
     pokemon: otherPokemon,
     productions: otherIngredients,
     rate: getPokemonProducingRate({
@@ -57,81 +51,29 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     }),
   })));
 
-  const pokemonIdsInRates = rateOfAllPokemon.map(({pokemon}) => pokemon.id);
-  // `.filter().map()` to make sure `berryRates` only have Pokémon in Pokédex
-  // because `rateOfAllPokemon` contains all ingredient possibilities
-  const berryRates = rateOfAllPokemon
-    .filter(({pokemon}, idx) => pokemonIdsInRates.indexOf(pokemon.id) == idx)
-    .map(({pokemon, rate}) => ({pokemon, rate: rate.berry}));
-
-  const ingredientRates: {[ingredientId in IngredientId]?: ProducingRateOfIngredientsOnPokemon[]} = {};
-  for (const {pokemon, productions, rate} of rateOfAllPokemon) {
-    const ratesOfIngredients = Object.values(rate.ingredient);
-
-    for (const rateOfIngredient of ratesOfIngredients) {
-      if (!(rateOfIngredient.id in ingredientRates)) {
-        ingredientRates[rateOfIngredient.id] = [];
-      }
-
-      ingredientRates[rateOfIngredient.id]?.push({
-        pokemon,
-        productions,
-        productionsGrouped: groupIngredientProductions(productions),
-        rates: ratesOfIngredients,
-      });
-    }
-  }
-
-  const currentDailyTotalOfIngredient = getTotalOfItemRates(currentIngredientRates);
-  const currentSkillTriggerValue = getSkillTriggerValue({
-    ...opts,
-    ...defaultNeutralOpts,
-    rate: rateOfPokemon.rate,
-    skillValue: pokemonProducingParams.skillValue,
-  })
-
   return {
     berry: toAnalysisBerryProducingRate({
-      itemId: pokemon.berry.id,
       pokemon,
       currentRate: currentRate.berry,
-      samples: berryRates,
+      itemId: pokemon.berry.id,
+      rateOfAllPokemon,
     }),
-    ingredient: {
-      // Using `currentIngredientRates` for getting the ingredient IDs, so it won't be duplicated
-      individual: currentIngredientRates.map(({id}) => toAnalysisIngredientProducingRate({
-        itemId: id,
-        pokemon,
-        samples: ingredientRates[id] ?? [],
-        currentRate: currentIngredientRates,
-        currentIngredients: ingredients,
-      })),
-      overall: getAnalysisStatsOfContinuous({
-        samples: rateOfAllPokemon
-          .map((rateOfPokemon) => ({
-            ...rateOfPokemon,
-            totalEnergy: getTotalOfItemRates(Object.values(rateOfPokemon.rate.ingredient)),
-          })),
-        getPokemonId: ({pokemon}) => pokemon.id,
-        getValue: ({totalEnergy}) => totalEnergy,
-        getLinkedData: ({totalEnergy}) => totalEnergy,
-        isLinked: ({totalEnergy}) => totalEnergy > currentDailyTotalOfIngredient,
-        isCurrentRank: (sample) => isRateOfPokemonSame(sample, {pokemon, rate: currentRate}),
-        currentValue: currentDailyTotalOfIngredient,
-      }),
-    },
-    total: getAnalysisStatsOfContinuous({
-      samples: rateOfAllPokemon
-        .map((rateOfPokemon) => ({
-          ...rateOfPokemon,
-          dailyTotal: getDailyEnergyOfRate(rateOfPokemon.rate),
-        })),
-      getPokemonId: ({pokemon}) => pokemon.id,
-      getValue: ({dailyTotal}) => dailyTotal,
-      getLinkedData: ({dailyTotal}) => dailyTotal,
-      isLinked: ({dailyTotal}) => dailyTotal > currentDailyTotal,
-      isCurrentRank: (sample) => isRateOfPokemonSame(sample, {pokemon, rate: currentRate}),
-      currentValue: currentDailyTotal,
+    ingredient: toAnalysisIngredientProducingStats({
+      pokemon,
+      ingredients,
+      current: currentRate,
+      rateOfAllPokemon,
+    }),
+    skillTrigger: toAnalysisSkillTriggerProducingStats({
+      pokemonProducingParamsMap,
+      pokemon,
+      current: currentRate,
+      rateOfAllPokemon,
+    }),
+    total: toAnalysisTotalProducingStats({
+      pokemon,
+      current: currentRate,
+      rateOfAllPokemon,
     }),
   };
 };

@@ -20,3 +20,9 @@ export type ProducingRateOfIngredientsOnPokemon = {
   productionsGrouped: IngredientProduction[],
   rates: ProducingRateOfStates[],
 };
+
+export type PokemonAnalysisRateInfo = {
+  pokemon: PokemonInfo,
+  productions: IngredientProduction[],
+  rate: PokemonProducingRate,
+};
