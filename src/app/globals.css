@@ -205,6 +205,10 @@
     @apply info-icon-base bg-amber-400/80 dark:bg-yellow-700/80;
   }
   
+  .info-highlight {
+    @apply rounded-lg ring-1 ring-inset ring-slate-700/50 dark:ring-slate-300/70;
+  }
+  
   /* endregion */
 
   /* region Image inverting (invert-*) */
