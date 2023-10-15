@@ -18,16 +18,18 @@ type Props = PokemonProductionSplitCommonProps & {
 
 const iconCommonClass = 'rounded-lg p-0.5';
 
-export const PokemonProductionSplit = ({specialty, className, berry, ingredient}: Props) => {
+export const PokemonProductionSplit = ({specialty, className, berry, ingredient, noBlink}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   const berrySplit = berry / (berry + ingredient) * 100;
   const ingredientSplit = 100 - berrySplit;
 
+  const highlightClass = noBlink ? 'info-highlight' : 'bg-blink';
+
   return (
     <Flex direction="row" center className={clsx('gap-1', className)}>
       <Flex noFullWidth className={clsx(
-        iconCommonClass, specialty === specialtyIdMap.berry && 'bg-blink',
+        iconCommonClass, specialty === specialtyIdMap.berry && highlightClass,
       )}>
         <GenericBerryIcon alt={t('Berry')}/>
       </Flex>
@@ -46,7 +48,7 @@ export const PokemonProductionSplit = ({specialty, className, berry, ingredient}
         </Flex>
       </Flex>
       <Flex noFullWidth className={clsx(
-        iconCommonClass, specialty === specialtyIdMap.ingredient && 'bg-blink',
+        iconCommonClass, specialty === specialtyIdMap.ingredient && highlightClass,
       )}>
         <GenericIngredientIcon alt={t('Ingredient')}/>
       </Flex>
