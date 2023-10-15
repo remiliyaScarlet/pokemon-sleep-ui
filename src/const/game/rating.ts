@@ -36,6 +36,6 @@ export const ratingBasisI18nId: {
 
 export const defaultRatingBasisOfSpecialty: {[specialty in SpecialtyType]: RatingBasis} = {
   berry: 'totalProduction',
-  ingredient: 'ingredientCount',
+  ingredient: 'ingredientProduction',
   skill: 'skillTriggerValue',
 };
