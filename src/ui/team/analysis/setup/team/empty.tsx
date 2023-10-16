@@ -5,7 +5,7 @@ import CloudArrowDownIcon from '@heroicons/react/24/outline/CloudArrowDownIcon';
 import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
@@ -32,9 +32,9 @@ export const TeamAnalysisEmptySlot = (props: Props) => {
         setShow={(show) => setPopup(show ? 'pokebox' : null)}
         {...props}
       />
-      <Popup show={popup === 'cloudPull'} setShow={(show) => setPopup(show ? 'cloudPull' : null)}>
+      <PopupCommon show={popup === 'cloudPull'} setShow={(show) => setPopup(show ? 'cloudPull' : null)}>
         <TeamAnalysisCloudPull {...props}/>
-      </Popup>
+      </PopupCommon>
       <UnavailableIcon/>
       <Flex direction="row" center className="gap-1.5">
         <button className={buttonClass} disabled={buttonDisabled} onClick={() => setPopup('pokebox')}>

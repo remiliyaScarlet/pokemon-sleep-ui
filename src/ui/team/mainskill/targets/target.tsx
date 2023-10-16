@@ -9,7 +9,7 @@ import {InfoIcon} from '@/components/icons/info';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexLink} from '@/components/layout/flex/link';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
@@ -58,7 +58,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
         <button onClick={deleteUnit} className="button-clickable absolute right-1 top-1 z-10 h-5 w-5 rounded-full">
           <XMarkIcon/>
         </button>
-        <Popup show={show} setShow={setShow}>
+        <PopupCommon show={show} setShow={setShow}>
           <Flex noFullWidth className="sm:w-[60vw]">
             <PokemonConfig
               {...props}
@@ -66,7 +66,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
               onDataUpdated={(update) => updateUnit(update)}
             />
           </Flex>
-        </Popup>
+        </PopupCommon>
         <Flex className="gap-1">
           <PokemonNameSimple pokemon={pokemon}/>
           <Flex direction="row" center>

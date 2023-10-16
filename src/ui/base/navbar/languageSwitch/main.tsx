@@ -4,7 +4,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Grid} from '@/components/layout/grid';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {localeName} from '@/const/website';
 import {useLanguageSwitch} from '@/ui/base/navbar/languageSwitch/hook';
 import {isLocale} from '@/utils/i18n';
@@ -19,7 +19,7 @@ export const LanguageSwitch = () => {
       <button className="nav-button-text" onClick={() => setShow(true)} disabled={isPending}>
         {isLocale(currentLocale) ? localeName[currentLocale] : `(${currentLocale})`}
       </button>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Grid center className="grid-cols-1 gap-2 sm:grid-cols-2">
           {Object.entries(localeName).map(([locale, name]) => (
             <button
@@ -35,7 +35,7 @@ export const LanguageSwitch = () => {
             </button>
           ))}
         </Grid>
-      </Popup>
+      </PopupCommon>
     </>
   );
 };

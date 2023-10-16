@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {RatingPopupControl, RatingResultProps} from '@/components/shared/pokemon/rating/type';
 
@@ -14,7 +14,7 @@ export const RatingResultPopup = ({ratingControl, pokemon, pokemonProducingParam
   const {state, setState} = ratingControl;
 
   return (
-    <Popup show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
+    <PopupCommon show={state.show} setShow={(show) => setState((original) => ({...original, show}))}>
       <Flex noFullWidth className="sm:w-[90vw]">
         {
           pokemon && pokemonProducingParams &&
@@ -27,6 +27,6 @@ export const RatingResultPopup = ({ratingControl, pokemon, pokemonProducingParam
           />
         }
       </Flex>
-    </Popup>
+    </PopupCommon>
   );
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {AnalysisPokemonIcon} from '@/ui/analysis/page/result/icon';
 import {AnalysisLayoutProps} from '@/ui/analysis/page/result/type';
@@ -22,13 +22,13 @@ export const AnalysisLayout = <TData, >({
 
   return (
     <>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex direction="row" center wrap className="items-center gap-1">
           {linked.map((linkedData) => (
             <AnalysisPokemonIcon key={linkedIconKey(linkedData)} linked={linkedData} renderData={renderData}/>
           ))}
         </Flex>
-      </Popup>
+      </PopupCommon>
       <Flex className="info-section items-center justify-center gap-1">
         <div className="text-center text-sm text-slate-500">
           {title}

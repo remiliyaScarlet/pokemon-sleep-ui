@@ -7,7 +7,7 @@ import {v4} from 'uuid';
 
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {TeamAnalysisComp} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelector} from '@/ui/team/analysis/comp/main';
@@ -42,7 +42,7 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
 
   return (
     <InputRow className="justify-end gap-1.5">
-      <Popup show={setupSelector.show} setShow={() => onSelect()}>
+      <PopupCommon show={setupSelector.show} setShow={() => onSelect()}>
         <TeamAnalysisCompSelector
           setup={setupSelector.setup}
           onUpdated={(setup) => setSetupSelector((original) => ({
@@ -74,7 +74,7 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
             );
           })}
         />
-      </Popup>
+      </PopupCommon>
       <button
         className="enabled:button-clickable-bg disabled:button-disabled relative h-8 px-2"
         disabled={status !== 'authenticated'}

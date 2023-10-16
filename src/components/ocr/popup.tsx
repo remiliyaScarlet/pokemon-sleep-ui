@@ -6,7 +6,7 @@ import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {Ocr} from '@/components/ocr/main';
 import {OcrCommonProps} from '@/components/ocr/type';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {Dimension} from '@/types/style';
 
 
@@ -20,11 +20,11 @@ type Props<TData> = OcrCommonProps<TData> & {
 export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...props}: Props<TData>) => {
   return (
     <>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex noFullWidth className="w-full sm:w-[70vw]">
           <Ocr {...props}/>
         </Flex>
-      </Popup>
+      </PopupCommon>
       <FlexButton
         className="button-clickable-bg gap-0.5 self-stretch px-1.5 py-1"
         onClick={() => setShow(true)}

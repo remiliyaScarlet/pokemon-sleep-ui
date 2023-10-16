@@ -7,7 +7,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokemonSubSkillSelectionButtons} from '@/components/shared/pokemon/subSkill/selector/buttons';
@@ -82,7 +82,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
           <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
         </Flex>
       </button>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-3xl gap-2">
           <Grid className={clsx(
             'sticky -top-2 z-10 gap-2 rounded-lg bg-slate-50/90 p-1.5 dark:bg-slate-950/90',
@@ -130,7 +130,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
             />
           </Flex>
         </Flex>
-      </Popup>
+      </PopupCommon>
     </>
   );
 };

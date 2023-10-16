@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
@@ -37,7 +37,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
 
   return (
     <>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-2xl gap-2 overflow-hidden sm:min-w-[24rem]">
           <InputBox
             value={name ?? ''}
@@ -76,7 +76,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
             </button>
           </Flex>
         </Flex>
-      </Popup>
+      </PopupCommon>
       <button
         className="button-clickable-bg disabled:button-disabled w-32 p-1"
         disabled={!act || status === 'processing'}

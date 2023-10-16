@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {PokeInBoxEditLayout} from '@/ui/team/pokebox/editor/layout';
 import {PokeInBoxEditCommonProps, PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -57,7 +57,7 @@ export const PokeInBoxEditPopup = ({
   }, [!editingPokeInBox]);
 
   return (
-    <Popup show={editingPokeInBox !== undefined} setShow={() => pokeInBox && onUpdateCompleted(pokeInBox)}>
+    <PopupCommon show={editingPokeInBox !== undefined} setShow={() => pokeInBox && onUpdateCompleted(pokeInBox)}>
       {
         pokeInBox &&
         <PokeInBoxEditLayout
@@ -67,6 +67,6 @@ export const PokeInBoxEditPopup = ({
           {...props}
         />
       }
-    </Popup>
+    </PopupCommon>
   );
 };

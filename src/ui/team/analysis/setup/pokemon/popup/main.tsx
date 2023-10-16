@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {TeamAnalysisPokemonPopupContent} from '@/ui/team/analysis/setup/pokemon/popup/content';
 import {TeamAnalysisPokemonPopupCommonProps} from '@/ui/team/analysis/setup/pokemon/popup/type';
@@ -12,9 +12,9 @@ export const TeamAnalysisPokemonPopup = (props: TeamAnalysisPokemonPopupCommonPr
 
   return (
     <>
-      <Popup show={control.show} setShow={hide}>
+      <PopupCommon show={control.show} setShow={hide}>
         <TeamAnalysisPokemonPopupContent {...props}/>
-      </Popup>
+      </PopupCommon>
       <RatingResultPopup {...props}/>
     </>
   );

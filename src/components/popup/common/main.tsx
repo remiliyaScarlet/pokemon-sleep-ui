@@ -7,7 +7,7 @@ import {clsx} from 'clsx';
 
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {PopupBlur} from '@/components/static/popupBlur';
+import {PopupBlur} from '@/components/popup/shared/blur';
 
 
 type Props = {
@@ -20,7 +20,7 @@ type Props = {
   setShow?: never,
 });
 
-export const Popup = ({show, setShow, children, className}: React.PropsWithChildren<Props>) => {
+export const PopupCommon = ({show, setShow, children, className}: React.PropsWithChildren<Props>) => {
   return (
     <Transition.Root show={show ?? true} as={React.Fragment}>
       <Dialog as="div" className="relative z-50" onClose={() => setShow ? setShow(false) : void 0}>

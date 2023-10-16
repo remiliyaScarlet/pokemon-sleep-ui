@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
@@ -30,7 +30,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
   }));
 
   return (
-    <Popup show={show} setShow={(show) => {
+    <PopupCommon show={show} setShow={(show) => {
       if (show || !act) {
         return;
       }
@@ -65,6 +65,6 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
         <UserSettingsLanguage/>
         <UserSettingsAppInfo/>
       </Flex>
-    </Popup>
+    </PopupCommon>
   );
 };

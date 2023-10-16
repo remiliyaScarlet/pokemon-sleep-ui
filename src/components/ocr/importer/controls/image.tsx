@@ -4,7 +4,7 @@ import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
 
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {NextImageAutoHeight} from '@/components/shared/common/image/autoHeight';
 
 
@@ -17,11 +17,11 @@ export const OcrImporterImagePreview = ({image}: Props) => {
 
   return (
     <>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex noFullWidth className="w-full p-2 sm:w-[60vw]">
           {image && <NextImageAutoHeight src={image} alt="OCR"/>}
         </Flex>
-      </Popup>
+      </PopupCommon>
       <FlexButton
         noFullWidth
         onClick={() => setShow(true)}

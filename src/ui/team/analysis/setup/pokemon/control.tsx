@@ -8,7 +8,7 @@ import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
 
 import {Copyable} from '@/components/layout/copyable/main';
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {useUserDataActor} from '@/hooks/userData/actor';
@@ -43,9 +43,9 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
 
   return (
     <Flex direction="row" className="items-center justify-between">
-      <Popup show={showId} setShow={setShowId}>
+      <PopupCommon show={showId} setShow={setShowId}>
         <Copyable content={getTeamMemberId({uuid: currentTeam.uuid, slotName})}/>
-      </Popup>
+      </PopupCommon>
       <Flex direction="row" noFullWidth className="gap-1">
         <button className={commonButtonStyle} onClick={() => {
           if (!act) {

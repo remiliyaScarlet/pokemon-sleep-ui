@@ -3,7 +3,7 @@ import React from 'react';
 import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {PokeboxImporterView} from '@/components/shared/pokebox/importer/pokebox';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokeboxImporterViaUuid} from '@/components/shared/pokebox/importer/uuid';
@@ -21,7 +21,7 @@ export const PokeboxImporter = ({show, setShow, isPokeInBoxIncluded, ...props}: 
   const session = useSession();
 
   return (
-    <Popup show={show} setShow={setShow}>
+    <PopupCommon show={show} setShow={setShow}>
       <Flex className="gap-1.5 sm:w-[60vw]">
         <PokeboxImporterViaUuid {...props}/>
         <UserDataLazyLoad
@@ -39,6 +39,6 @@ export const PokeboxImporter = ({show, setShow, isPokeInBoxIncluded, ...props}: 
           )}
         />
       </Flex>
-    </Popup>
+    </PopupCommon>
   );
 };

@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {PopupBlur} from '@/components/static/popupBlur';
+import {PopupBlur} from '@/components/popup/shared/blur';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavListCommonProps} from '@/ui/base/navbar/list/type';
 

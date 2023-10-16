@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
-import {Popup} from '@/components/popup';
+import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
@@ -54,7 +54,7 @@ export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
       >
         <PokemonNatureIndicator nature={nature} hideName={hideName}/>
       </button>
-      <Popup show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-2xl gap-2">
           <Flex direction="row" center className="gap-1.5">
             <div className="h-6 w-6">
@@ -93,7 +93,7 @@ export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
             ))}
           </Flex>
         </Flex>
-      </Popup>
+      </PopupCommon>
     </>
   );
 };
