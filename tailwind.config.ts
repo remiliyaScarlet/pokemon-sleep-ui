@@ -41,6 +41,9 @@ const config: Config = {
       scale: {
         120: '1.2',
       },
+      zIndex: {
+        'ultimate': '1000',
+      },
       transitionProperty: {
         'height': 'height',
         'spacing': 'margin, padding',
