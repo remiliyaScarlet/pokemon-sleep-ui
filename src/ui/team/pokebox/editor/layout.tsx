@@ -159,7 +159,11 @@ export const PokeInBoxEditLayout = ({
           />
         </Flex>
       </Flex>
-      <InputRowWithTitle title={t3('Sort.DateRegistered')}>
+      <InputRowWithTitle noFixedTitleWidth title={
+        <div className="px-2">
+          {t3('Sort.DateRegistered')}
+        </div>
+      }>
         <InputBox
           id="dateAdded"
           type="date"
