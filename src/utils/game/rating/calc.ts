@@ -101,7 +101,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     subSkill: {},
     nature: null,
     subSkillMap,
-    helpingBonusSimulateOnSelf: true,
+    helpingBonusSimulateOnSelf: basis !== 'skillTriggerValue',
   });
   const valueOfBase = getRatingBasisValue({
     ...opts,
