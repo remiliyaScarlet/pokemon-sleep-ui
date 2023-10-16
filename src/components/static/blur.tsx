@@ -2,8 +2,10 @@ import React from 'react';
 
 import {Transition} from '@headlessui/react';
 
+import {blurStyle} from '@/styles/classes';
 
-export const PopupBlur = () => {
+
+export const Blur = () => {
   return (
     <Transition.Child
       as={React.Fragment}
@@ -14,7 +16,7 @@ export const PopupBlur = () => {
       leaveFrom="opacity-100"
       leaveTo="opacity-0"
     >
-      <div className="fixed inset-0 bg-white/75 dark:bg-black/75"/>
+      <div className={blurStyle}/>
     </Transition.Child>
   );
 };

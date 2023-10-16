@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {PopupBlur} from '@/components/popup/shared/blur';
+import {Blur} from '@/components/static/blur';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavListCommonProps} from '@/ui/base/navbar/list/type';
 
@@ -15,7 +15,7 @@ export const NavListLayout = ({open, setOpen}: NavListCommonProps) => {
   return (
     <Transition.Root show={open} as={React.Fragment}>
       <Dialog as="div" className="relative z-40" onClose={setOpen}>
-        <PopupBlur/>
+        <Blur/>
         <Transition.Child
           enter="duration-300"
           enterFrom="-translate-x-full"

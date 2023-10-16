@@ -2,10 +2,10 @@ import React from 'react';
 
 import {Dialog, Transition} from '@headlessui/react';
 
-import {popupWindowStyle} from '@/components/popup/const';
-import {PopupBlur} from '@/components/popup/shared/blur';
+import {popupOverlayStyle, popupWindowStyle} from '@/components/popup/const';
 import {PopupContent} from '@/components/popup/shared/content';
 import {PopupProps} from '@/components/popup/type';
+import {Blur} from '@/components/static/blur';
 
 
 export const PopupCommon = (props: React.PropsWithChildren<PopupProps>) => {
@@ -14,8 +14,8 @@ export const PopupCommon = (props: React.PropsWithChildren<PopupProps>) => {
   return (
     <Transition.Root show={show ?? true} as={React.Fragment}>
       <Dialog as="div" className="relative z-50" onClose={() => setShow ? setShow(false) : void 0}>
-        <PopupBlur/>
-        <div className="transform-smooth fixed inset-0 flex items-center justify-center p-4 text-center">
+        <Blur/>
+        <div className={popupOverlayStyle}>
           <Transition.Child
             as={React.Fragment}
             enter="ease-out duration-300"
