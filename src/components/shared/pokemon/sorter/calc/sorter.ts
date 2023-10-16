@@ -16,6 +16,7 @@ export const getPokemonRateSorter = ({
     ...calculatedSettings,
     snorlaxFavorite,
     berryData,
+    noCap: true,
   });
 };
 

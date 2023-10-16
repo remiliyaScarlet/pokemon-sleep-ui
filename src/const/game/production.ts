@@ -20,6 +20,8 @@ export const defaultLevel = 1;
 
 export const defaultHelperCount = 0;
 
+export const helpingBonusStackOfFullTeam = 5;
+
 export const defaultSubSkillBonus = {};
 
 export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> = {

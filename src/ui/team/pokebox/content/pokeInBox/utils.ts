@@ -57,7 +57,11 @@ export const getRateOfPokemon = ({
   const {level, ingredients} = pokeInBox;
   const {id, berry} = pokemon;
 
-  const singleParams = getProducingRateSingleParams({subSkillMap, ...pokeInBox});
+  const singleParams = getProducingRateSingleParams({
+    subSkillMap,
+    ...pokeInBox,
+    helpingBonusSimulateOnSelf: true,
+  });
 
   return getPokemonProducingRate({
     ...props,
@@ -71,5 +75,6 @@ export const getRateOfPokemon = ({
     }),
     berryData: berryDataMap[berry.id],
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
+    noCap: true,
   });
 };

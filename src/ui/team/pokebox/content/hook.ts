@@ -56,7 +56,11 @@ export const useFilteredSortedPokebox = ({
           dateAdded,
           extra: pokeInBox,
           ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
-          ...getProducingRateSingleParams({...pokeInBox, subSkillMap}),
+          ...getProducingRateSingleParams({
+            ...pokeInBox,
+            subSkillMap,
+            helpingBonusSimulateOnSelf: true,
+          }),
         };
       })
       .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],

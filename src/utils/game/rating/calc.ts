@@ -79,7 +79,10 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
   const noCap = true;
 
-  const singleParamsOfCurrent = getProducingRateSingleParams(opts);
+  const singleParamsOfCurrent = getProducingRateSingleParams({
+    ...opts,
+    helpingBonusSimulateOnSelf: true,
+  });
   const valueOfCurrent = getRatingBasisValue({
     ...opts,
     rate: getPokemonProducingRate({
@@ -98,6 +101,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     subSkill: {},
     nature: null,
     subSkillMap,
+    helpingBonusSimulateOnSelf: true,
   });
   const valueOfBase = getRatingBasisValue({
     ...opts,
@@ -136,6 +140,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
           subSkill,
           nature: natureId,
           subSkillMap,
+          helpingBonusSimulateOnSelf: true,
         });
         const valueOfPossibility = getRatingBasisValue({
           ...opts,
