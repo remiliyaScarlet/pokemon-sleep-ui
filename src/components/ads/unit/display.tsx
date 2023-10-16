@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import {Adsense} from '@ctrl/react-adsense';
@@ -21,7 +20,7 @@ export const AdsUnitDisplay = ({slot, ...props}: Props) => {
         client={adsClientId}
         slot={getAdSenseValue({value: slot, theme})}
         className="block"
-        format="horizontal"
+        format="auto"
         responsive="true"
       />
     </AdsWrapper>
