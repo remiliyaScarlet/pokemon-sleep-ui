@@ -1,4 +1,8 @@
 {
+  "Ads": {
+    "AdBlockActive": "Bitte erlauben Sie Werbung oder überprüfen Sie Discord/Patreon auf der About-Seite (/about), um ein Abonnement (ab 3,33 US-Dollar) zu erlangen, um die Seite werbefrei zu nutzen.",
+    "Popup": "Ads can close after 5 secs from showing. Check Discord/Patreon in the [about](/about) page for subscription (US$3.33+) to support us and browse ads-free!"
+  },
   "Auth": {
     "EmailSent": "Email für den Login wurde gesendet."
   },

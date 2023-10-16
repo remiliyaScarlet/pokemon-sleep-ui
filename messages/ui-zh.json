@@ -1,4 +1,8 @@
 {
+  "Ads": {
+    "AdBlockActive": "請解除封鎖廣告，或到關於頁面 (/about) 中的 Discord / Patreon 訂閱網站 (US$3.33+) 以啟用無廣告。",
+    "Popup": "歡迎到 [關於頁面](/about) 中的 Discord / Patreon 訂閱網站 (US$3.33+) 以支持本網站，並啟用無廣告！"
+  },
   "Auth": {
     "EmailSent": "已發送登入用電子信件。"
   },

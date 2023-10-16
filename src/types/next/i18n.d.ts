@@ -15,6 +15,10 @@ type GameObjectIdToString = {[id in string]: string};
 declare interface IntlMessages extends UiMessages, GameMessages {
   Locale: string,
   UI: {
+    Ads: {
+      AdBlockActive: string,
+      Popup: string,
+    },
     Auth: {
       EmailSent: string,
     },

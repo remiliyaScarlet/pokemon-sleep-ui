@@ -21,7 +21,8 @@ export const I18nProvider = async ({locale, namespaces, children}: React.PropsWi
   }
 
   return (
-    <NextIntlClientProvider locale={locale} messages={pick(messages, ...namespaces)}>
+    // Default to attach ads messages
+    <NextIntlClientProvider locale={locale} messages={pick(messages, 'UI.Ads', ...namespaces)}>
       {children}
     </NextIntlClientProvider>
   );

@@ -1,4 +1,8 @@
 {
+  "Ads": {
+    "AdBlockActive": "Please allow ads, or check Discord/Patreon in the about page (/about) for subscription (US$3.33+) to activate ads-free.",
+    "Popup": "Ads can close after 5 secs from showing. Check Discord/Patreon in the [about](/about) page for subscription (US$3.33+) to support us and browse ads-free!"
+  },
   "Auth": {
     "EmailSent": "로그인 이메일이 발송되었습니다."
   },

@@ -2,12 +2,10 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
-import {useLocale} from 'next-intl';
 
 import {AdsContent} from '@/components/ads/content';
 import {AdsUnitProps} from '@/components/ads/type';
 import {Flex} from '@/components/layout/flex/common';
-import {Locale} from '@/types/next/locale';
 
 
 export const AdsWrapper = ({
@@ -21,7 +19,6 @@ export const AdsWrapper = ({
   // which causes the ads to blink briefly for users with ads
   // Therefore caching the ads-free status when the session loading is settled
   const [isAdsFree, setIsAdsFree] = React.useState<boolean | null>(null);
-  const locale = useLocale() as Locale;
 
   React.useEffect(() => {
     if (status === 'unauthenticated') {
@@ -40,12 +37,12 @@ export const AdsWrapper = ({
 
   return (
     <Flex direction="row" className={clsx(fullHeight && 'h-full', className)}>
-      <AdsContent locale={locale} fullHeight={fullHeight}>
+      <AdsContent fullHeight={fullHeight}>
         {children}
       </AdsContent>
       {
         !alwaysSingle &&
-        <AdsContent className="hidden lg:block" locale={locale} fullHeight={fullHeight}>
+        <AdsContent className="hidden lg:block" fullHeight={fullHeight}>
           {children}
         </AdsContent>
       }
