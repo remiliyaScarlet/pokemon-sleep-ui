@@ -24,6 +24,10 @@ const PopupUltimateContentInternal = ({
   } = usePopupUltimate(props);
   const ref = useMergeRefs([refs.setFloating, refExternal]);
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <FloatingPortal>
       <FloatingOverlay hidden={!context.open && !isMounted} lockScroll style={styles} className={clsx(
