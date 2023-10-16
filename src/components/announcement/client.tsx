@@ -46,7 +46,7 @@ export const AnnouncementsClient = ({larger, showOn, height, announcements}: Pro
       styles['announcement-animation'])
     }>
       <div className={clsx('items-center', announcementClass, announcementTextClasses[level])}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown">
           {message}
         </ReactMarkdown>
       </div>
