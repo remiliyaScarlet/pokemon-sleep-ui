@@ -6,17 +6,22 @@ import {useLocale} from 'next-intl';
 
 import {AdsContent} from '@/components/ads/content';
 import {AdsUnitProps} from '@/components/ads/type';
-import {Grid} from '@/components/layout/grid';
+import {Flex} from '@/components/layout/flex/common';
 import {Locale} from '@/types/next/locale';
 
 
-export const AdsWrapper = ({children, className, alwaysSingle}: React.PropsWithChildren<AdsUnitProps>) => {
+export const AdsWrapper = ({
+  alwaysSingle,
+  fullHeight,
+  className,
+  children,
+}: React.PropsWithChildren<AdsUnitProps>) => {
   const {data, status} = useSession();
   // Running `update()` of `useSession` puts the status to `loading`,
   // which causes the ads to blink briefly for users with ads
   // Therefore caching the ads-free status when the session loading is settled
   const [isAdsFree, setIsAdsFree] = React.useState<boolean | null>(null);
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
 
   React.useEffect(() => {
     if (status === 'unauthenticated') {
@@ -34,16 +39,16 @@ export const AdsWrapper = ({children, className, alwaysSingle}: React.PropsWithC
   }
 
   return (
-    <Grid className={clsx('grid-cols-1', !alwaysSingle && 'lg:grid-cols-2', className)}>
-      <AdsContent locale={locale as Locale}>
+    <Flex direction="row" className={clsx(fullHeight && 'h-full', className)}>
+      <AdsContent locale={locale} fullHeight={fullHeight}>
         {children}
       </AdsContent>
       {
         !alwaysSingle &&
-        <AdsContent className="hidden lg:block" locale={locale as Locale}>
+        <AdsContent className="hidden lg:block" locale={locale} fullHeight={fullHeight}>
           {children}
         </AdsContent>
       }
-    </Grid>
+    </Flex>
   );
 };
