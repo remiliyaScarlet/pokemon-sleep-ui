@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import {adsHeight} from '@/components/ads/const';
+import {adsHeight, adsHeightAdBlockActive} from '@/components/ads/const';
 import {useAdBlockDetector} from '@/components/ads/hook';
 import {AdBlockState} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
@@ -30,7 +30,7 @@ export const AdsContent = ({className, fullHeight, children}: React.PropsWithChi
   return (
     <div className={clsx(
       'relative w-full overflow-auto',
-      fullHeight ? 'h-full' : adsHeight,
+      fullHeight ? 'h-full' : (adblockState.isBlocked ? adsHeightAdBlockActive : adsHeight),
       adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
       className,
     )}>

@@ -1,7 +1,7 @@
 {
   "Ads": {
-    "AdBlockActive": "Bitte erlauben Sie Werbung oder überprüfen Sie Discord/Patreon auf der About-Seite (/about), um ein Abonnement (ab 3,33 US-Dollar) zu erlangen, um die Seite werbefrei zu nutzen.",
-    "Popup": "Ads can close after 5 secs from showing. Check Discord/Patreon in the [about](/about) page for subscription (US$3.33+) to support us and browse ads-free!"
+    "AdBlockActive": "Mit dem Nutzen eines Ad-Blockers schadest du diesem unabhängigen Projekt finanziell.\n\nBitte erlaube Werbung oder besuche Discord/Patreon über die About-Seite (/about) für ein Abonnement (ab 3,33 US-Dollar), um uns zu unterstützen und die Seite werbefrei nutzen zu können.",
+    "Popup": "Werbung kann nach 5 Sekunden geschlossen werden.\n\nBesuche Discord/Patreon über die [About-Seite](/about) für ein Abonnement (ab 3,33 US-Dollar), um uns zu unterstützen und die Seite werbefrei nutzen zu können! :D"
   },
   "Auth": {
     "EmailSent": "Email für den Login wurde gesendet."
