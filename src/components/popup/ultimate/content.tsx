@@ -16,6 +16,14 @@ const PopupUltimateContentInternal = ({
   ...props
 }: Props, refExternal: React.ForwardedRef<HTMLDivElement>) => {
   const {
+    show,
+    setShow,
+    closeDisabled,
+    // This is needed to avoid passing any non-React DOM props into `floatingProps`
+    ...floatingProps
+  } = props;
+
+  const {
     context,
     refs,
     getFloatingProps,
@@ -35,7 +43,7 @@ const PopupUltimateContentInternal = ({
       )}>
         <FloatingFocusManager context={context}>
           <div className={clsx('z-ultimate', popupOverlayStyle)}>
-            <div ref={ref} {...getFloatingProps(props)}>
+            <div ref={ref} {...getFloatingProps(floatingProps)}>
               {children}
             </div>
           </div>
