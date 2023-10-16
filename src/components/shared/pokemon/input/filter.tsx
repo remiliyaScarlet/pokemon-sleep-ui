@@ -102,6 +102,7 @@ export const PokemonFilter = <
   if (isPokemonInputTypeOfIngredients(type)) {
     return (
       <PokemonIngredientFilter
+        idPrefix={idPrefix}
         ingredientChainMap={ingredientChainMap}
         level={pokemonIngredientInputToLevel[type]}
         {...commonProps}
