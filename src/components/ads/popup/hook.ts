@@ -17,16 +17,15 @@ export const useAdsPopup = (): AdsPopupControl => {
     })), adsPopupLockDurationMs),
     [],
   );
-  const scheduleShow = React.useCallback(
-    () => {
-      setTimeout(() => setState({
+  const scheduleShow = React.useCallback(() => {
+    setTimeout(() => {
+      setState({
         show: true,
         locked: true,
-      }), adsPopupShowIntervalMs);
+      });
       scheduleUnlock();
-    },
-    [],
-  );
+    }, adsPopupShowIntervalMs);
+  }, []);
 
   // Schedule on initial load
   React.useEffect(scheduleShow, []);
