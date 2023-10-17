@@ -6,15 +6,13 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterTextInput} from '@/components/input/filter/text';
-import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
-import {PokemonSubSkillText} from '@/components/shared/pokemon/subSkill/text';
+import {PokemonSubSkillFilter} from '@/components/shared/pokemon/subSkill/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {PokeboxViewerInputCommonProps} from '@/ui/team/pokebox/viewer/type';
 
@@ -23,13 +21,10 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
   const {
     filter,
     setFilter,
-    subSkillMap,
-    subSkillList,
   } = props;
 
   const filterCollapsible = useCollapsible();
   const t = useTranslations('UI.InPage.Pokedex');
-  const t2 = useTranslations('UI.InPage.Team');
 
   return (
     <Collapsible state={filterCollapsible} classNameForHeight={inputSectionHeight} button={
@@ -59,16 +54,10 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
             {...props}
           />
         ))}
-        <FilterTextInput
-          title={t2('SubSkill')}
-          idToItemId={(id) => `SubSkill-${id}`}
-          idToButton={(id) => <PokemonSubSkillText subSkill={subSkillMap[id]}/>}
-          ids={subSkillList.map(({id}) => id)}
-          {...getMultiSelectOnClickProps({
-            filter,
-            setFilter,
-            filterKey: 'subSkill',
-          })}
+        <PokemonSubSkillFilter
+          {...props}
+          idPrefix="PokeboxViewer"
+          filterKey="subSkill"
         />
       </Flex>
     </Collapsible>
