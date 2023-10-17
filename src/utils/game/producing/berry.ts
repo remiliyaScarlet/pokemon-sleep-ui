@@ -6,7 +6,7 @@ import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
 import {applyBonus} from '@/utils/game/producing/apply';
 import {getProducingRateBase} from '@/utils/game/producing/rate';
-import {getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 export type GetBerryProducingRateOpts = ProducingRateCommonParams & {

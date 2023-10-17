@@ -2,7 +2,7 @@ import {helpingBonusStackOfFullTeam} from '@/const/game/production';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
-import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 type GetHelpingBonusStackOpts = {

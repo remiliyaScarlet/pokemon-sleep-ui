@@ -18,7 +18,7 @@ import {toSum} from '@/utils/array';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
-import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill';
+import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill/effect';
 import {isNotNullish} from '@/utils/type';
 
 

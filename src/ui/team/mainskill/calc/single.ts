@@ -5,7 +5,7 @@ import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getSubSkillBonus} from '@/utils/game/subSkill';
+import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 
 
 type GetSkillTriggerValueOfUnitOpts = GetSkillTriggerValueCommonOpts & {

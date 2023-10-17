@@ -4,7 +4,7 @@ import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {getNatureMultiplier} from '@/utils/game/nature';
-import {getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 export type GetProduceSplitOpts = {

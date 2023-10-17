@@ -1,7 +1,7 @@
 import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
-import {getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 export type GetSkillTriggerRateMultiplierOpts = Pick<ProducingRateSingleParams, 'natureId' | 'subSkillBonus'>;

@@ -6,7 +6,7 @@ import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
 import {toSum} from '@/utils/array';
 import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
-import {getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 type GetSecondsToFullPackInSleepOpts = {

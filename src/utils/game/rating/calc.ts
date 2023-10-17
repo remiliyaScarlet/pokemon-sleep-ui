@@ -16,7 +16,7 @@ import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredie
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
-import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill';
+import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill/generate';
 import {isNotNullish} from '@/utils/type';
 
 

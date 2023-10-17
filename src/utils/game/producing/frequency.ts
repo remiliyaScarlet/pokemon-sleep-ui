@@ -7,7 +7,7 @@ import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
-import {getSubSkillBonusValue} from '@/utils/game/subSkill';
+import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 type GetBaseFrequencyOpts = {
