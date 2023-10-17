@@ -5,3 +5,5 @@ export const adsHeight = 'h-48 lg:h-32';
 export const adsHeightAdBlockActive = 'min-h-[15rem] lg:min-h-[12rem]';
 
 export const anchorAdsAutoHideMs = 5000;
+
+export const adsRefreshIntervalMs = 90000; // 1.5 min
