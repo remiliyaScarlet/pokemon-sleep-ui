@@ -5,15 +5,14 @@ import Script from 'next/script';
 import {getServerSession} from 'next-auth';
 import {Toaster} from 'react-hot-toast';
 
-import {AnchorAdsUnit} from '@/components/ads/anchor';
 import {adsClientId} from '@/components/ads/const';
-import {AdsPopup} from '@/components/ads/popup/main';
 import {Announcements} from '@/components/announcement/main';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {setLocale} from '@/ui/base/context';
+import {AdsOfLayout} from '@/ui/base/layout/ads';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavBar} from '@/ui/base/navbar/main';
@@ -66,12 +65,7 @@ export const PageLayout = ({
             </Flex>
           </div>
         </Flex>
-        {adsShouldShow && (
-          <>
-            <AnchorAdsUnit/>
-            <AdsPopup/>
-          </>
-        )}
+        <AdsOfLayout adsShouldShow={adsShouldShow}/>
       </Flex>
     </>
   );

@@ -28,10 +28,8 @@ export const useAdsPopup = (): AdsPopupControl => {
     [],
   );
 
-  // Schedule lock on initial load
-  React.useEffect(() => {
-    scheduleShow();
-  }, []);
+  // Schedule on initial load
+  React.useEffect(scheduleShow, []);
 
   return {
     state,
