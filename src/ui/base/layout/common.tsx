@@ -7,6 +7,7 @@ import {Toaster} from 'react-hot-toast';
 
 import {AnchorAdsUnit} from '@/components/ads/anchor';
 import {adsClientId} from '@/components/ads/const';
+import {AdsPopup} from '@/components/ads/popup/main';
 import {Announcements} from '@/components/announcement/main';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
@@ -65,7 +66,12 @@ export const PageLayout = ({
             </Flex>
           </div>
         </Flex>
-        {adsShouldShow && <AnchorAdsUnit/>}
+        {adsShouldShow && (
+          <>
+            <AnchorAdsUnit/>
+            <AdsPopup/>
+          </>
+        )}
       </Flex>
     </>
   );

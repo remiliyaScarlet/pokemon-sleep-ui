@@ -1,52 +1,50 @@
 import React from 'react';
 
-import {adsPopupLockDurationMs} from '@/components/ads/popup/const';
+import {adsPopupLockDurationMs, adsPopupShowIntervalMs} from '@/components/ads/popup/const';
 import {AdsPopupControl, AdsPopupState} from '@/components/ads/popup/type';
 
 
-type UseAdsPopupOpts = {
-  showInterval: number,
-};
-
-export const useAdsPopup = ({showInterval}: UseAdsPopupOpts): AdsPopupControl => {
+export const useAdsPopup = (): AdsPopupControl => {
   const [state, setState] = React.useState<AdsPopupState>({
-    counterWhenShowed: 0,
     show: false,
     locked: false,
   });
-  const counter = React.useRef(0);
 
-  if (!state.locked) {
-    counter.current = counter.current + 1;
-  }
-
-  React.useEffect(() => {
-    if (counter.current - state.counterWhenShowed < showInterval) {
-      return;
-    }
-
-    setState({
-      show: true,
-      locked: true,
-      counterWhenShowed: counter.current,
-    });
-
-    setTimeout(() => setState((original) => ({
+  const scheduleUnlock = React.useCallback(
+    () => setTimeout(() => setState((original) => ({
       ...original,
       locked: false,
-    })), adsPopupLockDurationMs);
-  }, [counter.current]);
+    })), adsPopupLockDurationMs),
+    [],
+  );
+  const scheduleShow = React.useCallback(
+    () => {
+      setTimeout(() => setState({
+        show: true,
+        locked: true,
+      }), adsPopupShowIntervalMs);
+      scheduleUnlock();
+    },
+    [],
+  );
+
+  // Schedule lock on initial load
+  React.useEffect(() => {
+    scheduleShow();
+  }, []);
 
   return {
     state,
     setShow: (show) => setState((original): AdsPopupState => {
-      if (original.locked) {
-        return {...original, show: true};
+      if (!show) {
+        if (original.locked) {
+          return {...original, show: true};
+        }
+
+        scheduleShow();
       }
 
       return {...original, show};
     }),
-    counter: counter.current,
-    increaseCounter: (count) => counter.current += count,
   };
 };

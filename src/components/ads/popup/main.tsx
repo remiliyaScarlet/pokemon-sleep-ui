@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
@@ -5,17 +6,13 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import {AdsConfiguredDisplay} from '@/components/ads/configured/display';
-import {AdsPopupControl} from '@/components/ads/popup/type';
+import {useAdsPopup} from '@/components/ads/popup/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {PopupUltimate} from '@/components/popup/ultimate/main';
 
 
-type Props = {
-  control: AdsPopupControl,
-};
-
-export const AdsPopup = ({control}: Props) => {
-  const {state, setShow} = control;
+export const AdsPopup = () => {
+  const {state, setShow} = useAdsPopup();
   const {show, locked} = state;
 
   const t = useTranslations('UI.Ads');
