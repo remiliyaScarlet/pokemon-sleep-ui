@@ -204,15 +204,15 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
     expect(expItemsRequired[0].lv).toBe(2);
     expect(expItemsRequired[0].xp).toBe(54);
     expect(expItemsRequired[0].candy).toBe(0);
-    expect(expItemsRequired[0].shard).toBe(0);
+    expect(expItemsRequired[0].shard).toBe(3 * 14);
     expect(expItemsRequired[1].lv).toBe(3);
     expect(expItemsRequired[1].xp).toBe(71);
     expect(expItemsRequired[1].candy).toBe(0);
-    expect(expItemsRequired[1].shard).toBe(0);
+    expect(expItemsRequired[1].shard).toBe(2 * 18);
     expect(expItemsRequired[2].lv).toBe(4);
     expect(expItemsRequired[2].xp).toBe(108);
     expect(expItemsRequired[2].candy).toBe(0);
-    expect(expItemsRequired[2].shard).toBe(0);
+    expect(expItemsRequired[2].shard).toBe(5 * 22);
     expect(expItemsRequired[3].lv).toBe(5);
     expect(expItemsRequired[3].xp).toBe(128);
     expect(expItemsRequired[3].candy).toBe(5);

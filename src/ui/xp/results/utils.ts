@@ -63,7 +63,7 @@ export const getLevelUpRequirementsOfEachLevel = ({
       lv: lv + 1,
       xp: toNext,
       candy: candySpent,
-      shard: candySpent * (shardPerCandy ?? NaN),
+      shard: candyActual * (shardPerCandy ?? NaN),
     });
 
     overfeedExp = candyActual * actualCandyExpEquivalent - expToNextActual;
