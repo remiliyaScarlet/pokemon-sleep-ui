@@ -6,18 +6,14 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonSubSkillUiProps} from '@/components/shared/pokemon/subSkill/type';
 import {subSkillBonusImageSrcMap, subSkillImageOverride} from '@/const/game/pokemon';
 import {subSkillRarityIconFilter} from '@/styles/classes';
 import {imageSmallIconSizes} from '@/styles/image';
-import {SubSkillBonusCategory, SubSkillData} from '@/types/game/pokemon/subSkill';
+import {SubSkillBonusCategory} from '@/types/game/pokemon/subSkill';
 
 
-type Props = {
-  subSkill: SubSkillData | undefined,
-  isInactive?: boolean,
-};
-
-export const PokemonSubSkillIcon = ({subSkill, isInactive}: Props) => {
+export const PokemonSubSkillIcon = ({subSkill, isInactive}: PokemonSubSkillUiProps) => {
   const t = useTranslations('Game');
 
   const opacity = isInactive && 'opacity-40';
@@ -43,7 +39,7 @@ export const PokemonSubSkillIcon = ({subSkill, isInactive}: Props) => {
     )}>
       <NextImage
         src={subSkillImageOverride[subSkill.id] ?? subSkillBonusImageSrcMap[firstEffectiveBonus]}
-        alt={t(`SubSkill.Name.${subSkill?.id}`)}
+        alt={t(`SubSkill.Name.${subSkill.id}`)}
         sizes={imageSmallIconSizes}
       />
     </div>
