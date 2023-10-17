@@ -20,7 +20,7 @@ export const AdsPopup = () => {
   return (
     <PopupUltimate show={show} setShow={setShow} closeDisabled={locked}>
       <Flex className="h-[70vh] gap-1.5 md:w-[60vw] lg:w-[50vw]">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown text-xl">
           {t('Popup')}
         </ReactMarkdown>
         <AdsConfiguredDisplay alwaysSingle/>
