@@ -12,6 +12,7 @@ import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
+import {setLocale} from '@/ui/base/context';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavBar} from '@/ui/base/navbar/main';
@@ -24,6 +25,8 @@ export const PageLayout = ({
   ...props
 }: React.PropsWithChildren<UiPageProps>) => {
   const {locale} = props;
+
+  setLocale(locale);
 
   const session = React.use(getServerSession(authOptions));
   const adsShouldShow = isAdsShouldShow(session);
