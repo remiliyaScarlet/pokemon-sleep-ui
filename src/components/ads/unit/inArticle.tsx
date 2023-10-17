@@ -10,9 +10,7 @@ import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
 
 
-type Props = AdsTemplateUnitProps;
-
-export const AdsUnitInArticle = ({slot, ...props}: Props) => {
+export const AdsUnitInArticle = ({slot, ...props}: AdsTemplateUnitProps) => {
   const {theme} = useTheme();
 
   return (

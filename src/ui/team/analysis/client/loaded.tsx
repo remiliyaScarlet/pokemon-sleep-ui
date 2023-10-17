@@ -66,6 +66,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
 
   return (
     <>
+      <AdsUnit/>
       <TeamAnalysisPokemonFilterUI
         pokemonList={pokemonList}
         setup={setup}
@@ -75,7 +76,6 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         setFilter={setFilter}
         {...props}
       />
-      <AdsUnit/>
       <TeamAnalysisCompDependentInput
         pokemonList={pokemonList}
         currentTeam={currentTeam}

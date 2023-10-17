@@ -10,9 +10,7 @@ import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
 
 
-type Props = AdsTemplateUnitProps;
-
-export const AdsUnitMultiplex = ({slot, ...props}: Props) => {
+export const AdsUnitMultiplex = ({slot, ...props}: AdsTemplateUnitProps) => {
   const {theme} = useTheme();
 
   // About customization: https://support.google.com/adsense/answer/7533385?hl=en&ref_topic=9183242

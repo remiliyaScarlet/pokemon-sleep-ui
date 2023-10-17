@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 
 import {Adsense} from '@ctrl/react-adsense';
@@ -9,9 +10,7 @@ import {getAdSenseValue} from '@/components/ads/unit/utils';
 import {AdsWrapper} from '@/components/ads/wrapper';
 
 
-type Props = AdsTemplateUnitProps;
-
-export const AdsUnitDisplay = ({slot, ...props}: Props) => {
+export const AdsUnitDisplay = ({slot, ...props}: AdsTemplateUnitProps) => {
   const {theme} = useTheme();
 
   return (
