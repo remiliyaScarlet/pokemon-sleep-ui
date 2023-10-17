@@ -27,8 +27,8 @@ export const MapUnlockTableRankMeta = (props: MapUnlockTableRowProps) => {
   const t2 = useTranslations('UI.InPage.Map');
 
   return (
-    <Flex direction="row" noFullWidth className="justify-between gap-2">
-      <Flex direction="row" center noFullWidth className="gap-1 p-1 xl:w-52 xl:flex-col">
+    <Flex noFullWidth className="justify-between gap-1 sm:flex-row">
+      <Flex direction="row" center noFullWidth className="gap-1 xl:w-52 xl:flex-col">
         <SnorlaxRankUI rank={rank} hideTextBelowMd/>
         <Flex direction="row" center noFullWidth className="gap-0.5">
           <ColoredEnergyIcon alt={t2('Energy')}/>
