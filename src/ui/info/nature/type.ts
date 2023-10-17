@@ -6,4 +6,5 @@ export type NatureInfoEffectProps = {
   direction: NatureEffectDirection,
   effectId: NatureEffectId | null,
   dimension?: Dimension,
+  isActive?: boolean,
 };

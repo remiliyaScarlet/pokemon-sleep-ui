@@ -12,9 +12,10 @@ import {NatureEffectId} from '@/types/game/pokemon/nature';
 type Props = {
   effectId: NatureEffectId | null | undefined,
   showOnNull?: boolean,
+  isActive?: boolean,
 };
 
-export const NatureEffectIcon = ({effectId, showOnNull}: Props) => {
+export const NatureEffectIcon = ({effectId, showOnNull, isActive}: Props) => {
   const t = useTranslations('Game');
 
   if (!effectId) {
@@ -30,7 +31,7 @@ export const NatureEffectIcon = ({effectId, showOnNull}: Props) => {
       src={natureEffectImageSrcMap[effectId]}
       alt={t(`NatureEffect.${effectId}`)}
       sizes={imageSmallIconSizes}
-      className="invert-hoverable"
+      className={isActive ? 'invert-hoverable-dark' : 'invert-hoverable'}
     />
   );
 };

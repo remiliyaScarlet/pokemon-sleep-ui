@@ -9,7 +9,7 @@ import {natureEffectIconMap} from '@/const/game/nature';
 import {NatureInfoEffectProps} from '@/ui/info/nature/type';
 
 
-export const NatureInfoEffectText = ({direction, effectId, dimension}: NatureInfoEffectProps) => {
+export const NatureInfoEffectText = ({direction, effectId, dimension, isActive}: NatureInfoEffectProps) => {
   const t = useTranslations('Game');
 
   dimension = dimension ?? 'h-5 w-5';
@@ -21,7 +21,7 @@ export const NatureInfoEffectText = ({direction, effectId, dimension}: NatureInf
         {natureEffectIconMap[direction]}
       </div>
       <div className={clsx('relative', dimension)}>
-        <NatureEffectIcon effectId={effectId} showOnNull/>
+        <NatureEffectIcon effectId={effectId} showOnNull isActive={isActive}/>
       </div>
       <div className="whitespace-nowrap">
         {hasEffect && `${t(`NatureEffect.${effectId}`)}`}
