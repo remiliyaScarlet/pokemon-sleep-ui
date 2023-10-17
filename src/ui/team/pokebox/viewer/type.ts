@@ -5,7 +5,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
-import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
+import {pokemonSubSkillLevel, SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 
@@ -54,11 +54,14 @@ export type PokeboxViewerDisplay = Migratable & {
 export type PokeboxViewerFilter = PokemonInputFilter & PokeboxViewerDisplay & {
   name: string,
   snorlaxFavorite: SnorlaxFavorite,
+  subSkill: FilterInclusionMap<SubSkillId>,
 };
 
 export type PokeboxViewerInputCommonProps =
   FilterWithUpdaterProps<PokeboxViewerFilter> &
   UsePokemonFilterCommonData & {
     pokemonList: PokemonInfo[],
+    subSkillMap: SubSkillMap,
+    subSkillList: SubSkillData[],
     mapMeta: FieldMetaMap,
   };

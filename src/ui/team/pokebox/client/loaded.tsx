@@ -14,6 +14,7 @@ import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxPickerInput} from '@/ui/team/pokebox/filter/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerInput} from '@/ui/team/pokebox/viewer/main';
+import {getSortedSubSkills} from '@/utils/game/subSkill/sort';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -22,7 +23,7 @@ type Props = PokeboxCommonProps & {
 };
 
 export const PokeboxLoadedClient = (props: Props) => {
-  const {pokedexMap, initialPokebox} = props;
+  const {pokedexMap, subSkillMap, initialPokebox} = props;
 
   const {act, session} = useUserDataActor();
 
@@ -44,7 +45,14 @@ export const PokeboxLoadedClient = (props: Props) => {
     setLoading,
   });
 
-  const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
+  const pokemonList = React.useMemo(
+    () => Object.values(pokedexMap).filter(isNotNullish),
+    [pokedexMap],
+  );
+  const subSkillList = React.useMemo(
+    () => getSortedSubSkills(Object.values(subSkillMap).filter(isNotNullish)),
+    [subSkillMap],
+  );
 
   return (
     <Flex className="gap-1.5">
@@ -102,7 +110,13 @@ export const PokeboxLoadedClient = (props: Props) => {
           {...props}
         />
         <AdsUnit className="block lg:hidden"/>
-        <PokeboxViewerInput {...props} pokemonList={pokemonList} filter={filter} setFilter={setFilter}/>
+        <PokeboxViewerInput
+          {...props}
+          pokemonList={pokemonList}
+          subSkillList={subSkillList}
+          filter={filter}
+          setFilter={setFilter}
+        />
       </Flex>
       <AdsUnit className="hidden lg:flex"/>
       <PokeboxContent

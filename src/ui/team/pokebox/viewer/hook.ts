@@ -1,5 +1,9 @@
 import {useFilterInput} from '@/components/input/filter/hook';
-import {isFilterMatchingSearch, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
+import {
+  isFilterIncludingSome,
+  isFilterMatchingSearch,
+  isFilterMismatchOnSingle,
+} from '@/components/input/filter/utils/check';
 import {
   pokemonIngredientInputToLevel,
   pokemonInputTypeOfIngredients,
@@ -55,6 +59,7 @@ export const usePokeboxViewerFilter = ({
       ...generatePokemonInputFilter(),
       name: '',
       snorlaxFavorite: {},
+      subSkill: {},
       ...migrate({
         original: {
           sort: 'id',
@@ -79,6 +84,14 @@ export const usePokeboxViewerFilter = ({
         filterKey: inputType,
         id: data.inBox.ingredients[pokemonIngredientInputToLevel[inputType]].id,
       }))) {
+        return false;
+      }
+
+      if (!isFilterIncludingSome({
+        filter,
+        filterKey: 'subSkill',
+        ids: Object.values(data.inBox.subSkill),
+      })) {
         return false;
       }
 
