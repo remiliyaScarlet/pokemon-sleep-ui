@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
-  if (image === 'onSnorlax' || !pokemonId) {
+  if (!pokemonId) {
     return (
       <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
     );
