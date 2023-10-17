@@ -12,7 +12,7 @@ import {isProduction} from '@/utils/environment';
 
 
 export const AnchorAdsUnit = () => {
-  const state = useCollapsible(!isProduction());
+  const state = useCollapsible(isProduction());
   const {setShow} = state;
 
   React.useEffect(() => {
