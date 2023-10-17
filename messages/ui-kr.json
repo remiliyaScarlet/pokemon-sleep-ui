@@ -1,7 +1,7 @@
 {
   "Ads": {
-    "AdBlockActive": "Please allow ads, or check Discord/Patreon in the about page (/about) for subscription (US$3.33+) to activate ads-free.",
-    "Popup": "Check Discord/Patreon in the [about](/about) page for subscription (US$3.33+) to support us and browse ads-free!"
+    "AdBlockActive": "애드블록을 종료해주세요. 혹은 구독을 하신다면 광고 없이 이용할 수 있습니다. 정보(/about) 탭에서 디스코드/패트리온으로 확인해주세요.",
+    "Popup": "구독(3.33달러 이상)을 한다면 이 사이트를 광고 없이 사용할 수 있습니다. 구독하려면 정보 탭에서 디스코드나 패트리온을 눌러 확인해주세요! :)"
   },
   "Auth": {
     "EmailSent": "로그인 이메일이 발송되었습니다."
@@ -157,7 +157,7 @@
       "Title": "기력 커브 분석"
     },
     "About": {
-      "Title": "소개"
+      "Title": "정보"
     }
   },
   "InPage": {
