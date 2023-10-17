@@ -6,41 +6,14 @@ import {getAllSubSkillData} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SubSkillInfoSingle} from '@/ui/info/subskill/single';
+import {getSortedSubSkills} from '@/utils/game/subSkill/sort';
 
 
 export const SubSkillInfo = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const subSkills = await getAllSubSkillData();
 
-  const sortedSubSkills = subSkills.sort((a, b) => {
-    // Check if the rarity of both are available for sorting
-    // > If not, use ID to sort
-    if (!a.rarity || !b.rarity) {
-      return a.id - b.id;
-    }
-
-    // Check if the rarity of both are the same
-    const rarityDiff = b.rarity - a.rarity;
-    if (rarityDiff) {
-      return rarityDiff;
-    }
-
-    // Compare lexicographically based on the active bonus name
-    const bonusA = Object.entries(a.bonus).at(0);
-    const bonusB = Object.entries(b.bonus).at(0);
-
-    if (!bonusA || !bonusB) {
-      return 0;
-    }
-
-    const bonusProperty = bonusA[0].localeCompare(bonusB[0]);
-
-    if (bonusProperty !== 0) {
-      return bonusProperty;
-    }
-
-    return bonusB[1] - bonusA[1];
-  });
+  const sortedSubSkills = getSortedSubSkills(subSkills);
 
   return (
     <PublicPageLayout locale={locale}>
