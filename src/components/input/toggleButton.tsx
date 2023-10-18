@@ -4,8 +4,8 @@ import {clsx} from 'clsx';
 
 
 export type ToggleButtonProps = {
-  active: boolean,
   id: string,
+  active: boolean,
   onClick?: () => void,
   onChange?: (checked: boolean) => void,
   disabled?: boolean,
@@ -13,8 +13,8 @@ export type ToggleButtonProps = {
 };
 
 export const ToggleButton = ({
-  active,
   id,
+  active,
   onClick,
   onChange,
   className,
@@ -24,8 +24,8 @@ export const ToggleButton = ({
   return (
     <>
       <input
-        type="checkbox"
         id={id}
+        type="checkbox"
         className="peer hidden"
         checked={active}
         onClick={onClick}
