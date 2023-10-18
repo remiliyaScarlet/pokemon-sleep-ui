@@ -18,8 +18,7 @@ import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {createUserSettings} from '@/utils/user/settings';
 
 
-export const Pokebox = async ({params}: DefaultPageProps) => {
-  const {locale} = params;
+const Pokebox = async () => {
   const [
     session,
     pokedexMap,
@@ -57,6 +56,12 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
     pokemonMaxLevel,
   };
 
+  return <PokeboxClient {...props}/>;
+};
+
+export const PokeboxEntry = async ({params}: DefaultPageProps) => {
+  const {locale} = params;
+
   return (
     <LoginRequiredPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={[
@@ -66,7 +71,7 @@ export const Pokebox = async ({params}: DefaultPageProps) => {
         'UI.InPage.Team',
         'UI.Metadata',
       ]}>
-        <PokeboxClient {...props}/>
+        <Pokebox/>
       </I18nProvider>
     </LoginRequiredPageLayout>
   );

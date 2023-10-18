@@ -1,5 +1,5 @@
 import {GenerateMetadata} from '@/types/next/metadata';
-import {Pokebox} from '@/ui/team/pokebox/main';
+import {PokeboxEntry} from '@/ui/team/pokebox/main';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMetaFromString} from '@/utils/meta';
 
@@ -14,4 +14,4 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
   });
 };
 
-export default Pokebox;
+export default PokeboxEntry;
