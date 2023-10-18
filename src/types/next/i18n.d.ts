@@ -168,6 +168,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         AnalysisPeriod: string,
         CurrentEnergy: string,
         SubSkill: string,
+        NatureEffect: string,
         Box: {
           DisplayType: {
             Frequency: string,

@@ -1,23 +1,12 @@
 import {useFilterInput} from '@/components/input/filter/hook';
-import {
-  isFilterIncludingSome,
-  isFilterMatchingSearch,
-  isFilterMismatchOnSingle,
-} from '@/components/input/filter/utils/check';
-import {
-  pokemonIngredientInputToLevel,
-  pokemonInputTypeOfIngredients,
-  UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/input/type';
-import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
 import {enforceFilterWithSkillValue} from '@/components/shared/pokemon/sorter/enforcer/skillValue';
 import {defaultPokemonSort} from '@/const/filter';
 import {Pokebox} from '@/types/game/pokebox';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxPokemonForView, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
-import {migrate} from '@/utils/migrate/main';
-import {pokeboxDisplayMigrators} from '@/utils/migrate/pokeboxDisplay/migrators';
+import {generatePokeboxViewerFilter, isPokeInBoxIncluded} from '@/ui/team/pokebox/viewer/utils';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -55,48 +44,8 @@ export const usePokeboxViewerFilter = ({
       })
       .filter(isNotNullish),
     dataToId: ({inBox}) => inBox.uuid,
-    initialFilter: {
-      ...generatePokemonInputFilter(),
-      name: '',
-      snorlaxFavorite: {},
-      subSkill: {},
-      ...migrate({
-        original: {
-          sort: 'id',
-          displayOfGrid: 'productionTotal',
-          displayOfTable: {},
-          viewType: 'table',
-          previewLevel: null,
-          version: 3,
-        },
-        override: preloaded.display ?? {},
-        migrators: pokeboxDisplayMigrators,
-        migrateParams: {},
-      }),
-    },
-    isDataIncluded: (filter, data) => {
-      if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {
-        return false;
-      }
-
-      if (pokemonInputTypeOfIngredients.some((inputType) => isFilterMismatchOnSingle({
-        filter,
-        filterKey: inputType,
-        id: data.inBox.ingredients[pokemonIngredientInputToLevel[inputType]].id,
-      }))) {
-        return false;
-      }
-
-      if (!isFilterIncludingSome({
-        filter,
-        filterKey: 'subSkill',
-        ids: Object.values(data.inBox.subSkill),
-      })) {
-        return false;
-      }
-
-      return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
-    },
+    initialFilter: generatePokeboxViewerFilter(preloaded),
+    isDataIncluded: isPokeInBoxIncluded(filterData),
     deps: [pokebox],
     onSetFilter: (original, updated) => enforceFilterWithSkillValue<
       PokeboxViewerFilter,

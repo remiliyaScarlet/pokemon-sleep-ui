@@ -12,6 +12,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
 import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonNatureEffectInput} from '@/components/shared/pokemon/nature/input/effect';
 import {PokemonSubSkillFilter} from '@/components/shared/pokemon/subSkill/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {PokeboxViewerInputCommonProps} from '@/ui/team/pokebox/viewer/type';
@@ -58,6 +59,18 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
           {...props}
           idPrefix="PokeboxViewer"
           filterKey="subSkill"
+        />
+        <PokemonNatureEffectInput
+          {...props}
+          direction="buff"
+          idPrefix="PokeboxViewer"
+          filterKey="natureBuff"
+        />
+        <PokemonNatureEffectInput
+          {...props}
+          direction="nerf"
+          idPrefix="PokeboxViewer"
+          filterKey="natureNerf"
         />
       </Flex>
     </Collapsible>

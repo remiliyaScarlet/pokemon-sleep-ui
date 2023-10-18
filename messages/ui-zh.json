@@ -237,6 +237,7 @@
       "AnalysisPeriod": "分析週期",
       "CurrentEnergy": "能量",
       "SubSkill": "副技能",
+      "NatureEffect": "性格效果",
       "Box": {
         "DisplayType": {
           "Frequency": "幫忙間隔",

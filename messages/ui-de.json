@@ -238,6 +238,7 @@
       "AnalysisPeriod": "Analysezeitraum",
       "CurrentEnergy": "Stärke",
       "SubSkill": "Nebentalent",
+      "NatureEffect": "Weseneffekt",
       "Box": {
         "DisplayType": {
           "Frequency": "Frequenz",
