@@ -1,4 +1,5 @@
 import {PokemonId} from '@/types/game/pokemon';
+import {UserActivationProperties} from '@/types/mongo/user';
 
 
 export type UserDataLoadingOpts = {
@@ -28,4 +29,7 @@ export type UserDataLoadingOpts = {
   opts: {
     pokemonId: PokemonId,
   },
+} | {
+  type: 'adminGenerateActivation',
+  opts: UserActivationProperties,
 };

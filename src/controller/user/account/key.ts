@@ -6,7 +6,7 @@ import {durationOfDay} from '@/const/common';
 import {getSingleData} from '@/controller/common';
 import {isAdmin} from '@/controller/user/account/common';
 import mongoPromise from '@/lib/mongodb';
-import {UserActivationKey} from '@/types/mongo/user';
+import {UserActivationKey, UserActivationProperties} from '@/types/mongo/user';
 
 
 const getCollection = async (): Promise<Collection<UserActivationKey>> => {
@@ -17,18 +17,23 @@ const getCollection = async (): Promise<Collection<UserActivationKey>> => {
     .collection<UserActivationKey>('activationKey');
 };
 
-export const generateActivationKey = async (executorUserId: string, expiry: string): Promise<string> => {
+type GenerateActivationKeyOpts = UserActivationProperties & {
+  executorUserId: string,
+};
+
+export const generateActivationKey = async ({executorUserId, ...opts}: GenerateActivationKeyOpts): Promise<string> => {
   if (!isAdmin(executorUserId)) {
     throw new Error('Attempted to generate user activation key without admin privilege!');
   }
+
   const key = crypto.randomBytes(24).toString('hex');
   await (await getCollection()).insertOne({
+    ...opts,
     key,
-    expiry: new Date(expiry),
     generatedAt: new Date(),
   });
 
-  return key;
+  return `${process.env.NEXTAUTH_URL}/account/adsFree/activate?key=${key}`;
 };
 
 export const getActivationKey = async (key: string) => (

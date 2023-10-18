@@ -13,4 +13,5 @@ export type UserLazyLoadedContent = {
   pokeboxSorted: PokeInBox[],
   sleepdex: SleepdexMap,
   sleepdexOfPokemon: SleepdexMap,
+  adminGenerateActivation: string,
 };

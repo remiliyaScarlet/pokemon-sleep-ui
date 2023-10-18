@@ -1,5 +1,6 @@
 import {getSinglePokeInBox, getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
+import {generateActivationKey} from '@/controller/user/account/key';
 import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
@@ -66,6 +67,13 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
 
   if (type === 'sleepdexOfPokemon') {
     return await getSleepdexMapOfPokemon(userId, opts.pokemonId) satisfies UserLazyLoadedData['sleepdexOfPokemon'];
+  }
+
+  if (type === 'adminGenerateActivation') {
+    return await generateActivationKey({
+      executorUserId: userId,
+      ...opts,
+    }) satisfies UserLazyLoadedData['adminGenerateActivation'];
   }
 
   console.error(`Unknown data type ${type satisfies never} to load data`);
