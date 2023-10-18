@@ -26,6 +26,7 @@ import {
 import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/const';
 import {toIsoDateString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
+import {isNotNullish} from '@/utils/type';
 
 
 export const SiteAdminGenerateActivation = () => {
@@ -67,7 +68,7 @@ export const SiteAdminGenerateActivation = () => {
   const commonInputStyle = 'h-8 w-full sm:w-96';
 
   const onSubmit = async () => {
-    if (!source) {
+    if (!source && !note) {
       showToast({
         isAlert: true,
         content: 'Missing subscription source!',
@@ -75,7 +76,7 @@ export const SiteAdminGenerateActivation = () => {
       return;
     }
 
-    if (!contact[source]) {
+    if ((source && !contact[source]) || (!source && !Object.values(contact).filter(isNotNullish).length)) {
       showToast({
         isAlert: true,
         content: 'Missing contact of the subscription source!',
@@ -87,7 +88,7 @@ export const SiteAdminGenerateActivation = () => {
       action: 'load',
       options: {type: 'adminGenerateActivation', opts: data},
       getStatusOnCompleted: (updated) => (
-        !!updated?.user.lazyLoaded.pokeboxSingle ? 'completed' : 'failed'
+        !!updated?.user.lazyLoaded.adminGenerateActivation ? 'completed' : 'failed'
       ),
     });
 
