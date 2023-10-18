@@ -36,12 +36,18 @@ const getContinuousIngredientStats = ({
   pokemon,
   getComparer,
 }: GetContinuousIngredientStatsOpts) => {
+  // Current ingredients need to be grouped, or the comparison of something like Apple x 2 / Apple x 1 fails
+  const currentIngredientsGrouped = groupIngredientProductions(currentIngredients);
+
   return getAnalysisStatsOfContinuous({
     samples,
     getPokemonId: ({pokemon}) => pokemon.id,
     isCurrentRank: (sample) => (
       sample.pokemon.id === pokemon.id &&
-      isEqual(sortBy(sample.productionsGrouped, ({id}) => id), sortBy(currentIngredients, ({id}) => id))
+      isEqual(
+        sortBy(sample.productionsGrouped, ({id}) => id),
+        sortBy(currentIngredientsGrouped, ({id}) => id),
+      )
     ),
     getValue: ({rates}) => getComparer(rates),
     getLinkedData: ({rates, productions}) => ({
