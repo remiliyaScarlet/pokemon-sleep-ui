@@ -8,11 +8,16 @@ export type NextAuthSessionUser = DefaultSession['user'] & {
   preloaded: UserPreloadedData,
   lazyLoaded: UserLazyLoadedData,
   isAdsFree: boolean,
+  isAdmin: boolean,
   build: string,
 };
 
 declare module 'next-auth' {
   interface Session {
     user: NextAuthSessionUser;
+  }
+
+  interface User {
+    isAdmin?: boolean;
   }
 }
