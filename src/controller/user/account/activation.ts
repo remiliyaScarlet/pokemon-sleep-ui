@@ -1,7 +1,7 @@
 import {ObjectId} from 'bson';
 import {Collection, MongoError} from 'mongodb';
 
-import {getSingleData} from '@/controller/common';
+import {getDataAsArray, getSingleData} from '@/controller/common';
 import {getActivationKey, removeActivationKey} from '@/controller/user/account/key';
 import mongoPromise from '@/lib/mongodb';
 import {UserActivationData, UserActivationStatus} from '@/types/mongo/user';
@@ -45,6 +45,8 @@ export const getUserActivation = async (userId: string): Promise<UserActivationS
 
   return data.activation;
 };
+
+export const getAllActivations = (): Promise<UserActivationData[]> => getDataAsArray(getCollection());
 
 const addIndex = async () => {
   const collection = await getCollection();
