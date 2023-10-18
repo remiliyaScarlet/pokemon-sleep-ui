@@ -42,11 +42,7 @@ export const SiteAdminGenerateActivation = () => {
         premium: true,
       },
       source: null,
-      contact: {
-        discord: null,
-        patreon: null,
-        line: null,
-      },
+      contact: {},
       isSpecial: false,
       note: '',
     };

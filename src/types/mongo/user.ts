@@ -34,7 +34,7 @@ export type UserActivationStatus = FilterInclusionMap<UserActivationType>;
 export type UserActivationProperties = {
   expiry: Date,
   source: UserActivationSource | null,
-  contact: {[contact in UserActivationContact]: string | null},
+  contact: {[contact in UserActivationContact]?: string | null},
   isSpecial: boolean,
   note: string,
   activation: UserActivationStatus,
