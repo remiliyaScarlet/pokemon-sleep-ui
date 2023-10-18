@@ -6,7 +6,7 @@ import {getServerSession} from 'next-auth';
 import {SignIn} from '@/components/auth/signIn';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
-import {activateAdsFree} from '@/controller/user/account/adsFree';
+import {userActivateKey} from '@/controller/user/account/activation';
 import {PageProps} from '@/types/next/page';
 
 
@@ -22,7 +22,7 @@ const AccountActivate = async ({searchParams}: PageProps) => {
     return <Failed text="Key"/>;
   }
 
-  const activated = await activateAdsFree(session.user.id, activationKey);
+  const activated = await userActivateKey(session.user.id, activationKey);
   if (!activated) {
     return <Failed text="Activation Failed"/>;
   }

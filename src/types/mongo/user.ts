@@ -29,13 +29,15 @@ export const userActivationContact = [
 
 export type UserActivationContact = typeof userActivationContact[number];
 
+export type UserActivationStatus = FilterInclusionMap<UserActivationType>;
+
 export type UserActivationProperties = {
   expiry: Date,
   source: UserActivationSource | null,
   contact: {[contact in UserActivationContact]: string | null},
   isSpecial: boolean,
   note: string,
-  activation: FilterInclusionMap<UserActivationType>,
+  activation: UserActivationStatus,
 };
 
 export type UserActivationKey = UserActivationProperties & {
@@ -43,6 +45,6 @@ export type UserActivationKey = UserActivationProperties & {
   generatedAt: Date,
 };
 
-export type UserAdsFreeData = UserActivationKey & {
+export type UserActivationData = UserActivationKey & {
   userId: ObjectId,
 };

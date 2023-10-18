@@ -27,7 +27,7 @@ export const AdsWrapper = ({
     if (status === 'unauthenticated') {
       setIsAdsFree(false);
     } else if (status === 'authenticated') {
-      setIsAdsFree(data?.user.isAdsFree ?? false);
+      setIsAdsFree(data?.user.activation?.adsFree ?? false);
     }
   }, [status]);
 

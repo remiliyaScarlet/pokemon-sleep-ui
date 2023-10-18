@@ -4,18 +4,18 @@ import {Collection, MongoError} from 'mongodb';
 import {getSingleData} from '@/controller/common';
 import {getActivationKey, removeActivationKey} from '@/controller/user/account/key';
 import mongoPromise from '@/lib/mongodb';
-import {UserAdsFreeData} from '@/types/mongo/user';
+import {UserActivationData, UserActivationStatus} from '@/types/mongo/user';
 
 
-const getCollection = async (): Promise<Collection<UserAdsFreeData>> => {
+const getCollection = async (): Promise<Collection<UserActivationData>> => {
   const client = await mongoPromise;
 
   return client
     .db('auth')
-    .collection<UserAdsFreeData>('adsFree');
+    .collection<UserActivationData>('activation');
 };
 
-export const activateAdsFree = async (userId: string, key: string): Promise<boolean> => {
+export const userActivateKey = async (userId: string, key: string): Promise<boolean> => {
   const activationKey = await getActivationKey(key);
 
   if (!activationKey) {
@@ -36,8 +36,14 @@ export const activateAdsFree = async (userId: string, key: string): Promise<bool
   return true;
 };
 
-export const isUserAdsFree = async (userId: string): Promise<boolean> => {
-  return !!await getSingleData(getCollection(), {userId: new ObjectId(userId)});
+export const getUserActivation = async (userId: string): Promise<UserActivationStatus | null> => {
+  const data = await getSingleData(getCollection(), {userId: new ObjectId(userId)});
+
+  if (!data) {
+    return null;
+  }
+
+  return data.activation;
 };
 
 const addIndex = async () => {

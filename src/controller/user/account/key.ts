@@ -33,7 +33,7 @@ export const generateActivationKey = async ({executorUserId, ...opts}: GenerateA
     generatedAt: new Date(),
   });
 
-  return `${process.env.NEXTAUTH_URL}/account/adsFree/activate?key=${key}`;
+  return `${process.env.NEXTAUTH_URL}/account/activate?key=${key}`;
 };
 
 export const getActivationKey = async (key: string) => (
