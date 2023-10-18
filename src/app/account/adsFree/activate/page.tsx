@@ -24,7 +24,7 @@ const AccountActivate = async ({searchParams}: PageProps) => {
 
   const activated = await activateAdsFree(session.user.id, activationKey);
   if (!activated) {
-    return <Failed text="Activation"/>;
+    return <Failed text="Activation Failed"/>;
   }
 
   redirect('/');
