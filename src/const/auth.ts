@@ -68,7 +68,6 @@ export const authOptions: AuthOptions = {
         preloaded,
         lazyLoaded: emptyLazyData,
         isAdsFree,
-        isAdmin: user.isAdmin ?? false,
         build: process.env.NEXT_PUBLIC_BUILD_ID,
       } satisfies NextAuthSessionUser;
 
