@@ -7,4 +7,5 @@ export type NatureInfoEffectProps = {
   effectId: NatureEffectId | null,
   dimension?: Dimension,
   isActive?: boolean,
+  className?: string,
 };
