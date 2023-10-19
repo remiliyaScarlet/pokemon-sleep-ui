@@ -7,7 +7,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {UserActivationSource} from '@/types/mongo/user';
+import {UserActivationSource} from '@/types/mongo/activation';
 import {userActivationContactToText} from '@/ui/admin/activation/const';
 import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {useUserActivationPopup} from '@/ui/admin/activation/viewer/popup/hook';
@@ -20,7 +20,9 @@ type Props = SiteAdminDataProps & {
   source: UserActivationSource,
 };
 
-export const UserActivationViewer = ({activations, source}: Props) => {
+export const UserActivationViewer = (props: Props) => {
+  const {activations, source} = props;
+
   const collapsible = useCollapsible();
   const popup = useUserActivationPopup();
   const [search, setSearch] = React.useState('');
@@ -41,7 +43,7 @@ export const UserActivationViewer = ({activations, source}: Props) => {
     <Collapsible state={collapsible} classNameForHeight="h-80" button={
       <div className="p-2">{userActivationContactToText[source]}</div>
     }>
-      <UserActivationPopup state={popup}/>
+      <UserActivationPopup state={popup} {...props}/>
       <Flex className="gap-1.5 pr-1.5">
         <InputRow>
           <InputBox

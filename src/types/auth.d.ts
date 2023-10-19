@@ -1,6 +1,6 @@
 import {DefaultSession} from 'next-auth';
 
-import {UserActivationStatus} from '@/types/mongo/user';
+import {UserActivationStatus} from '@/types/mongo/activation';
 import {UserLazyLoadedData, UserPreloadedData} from '@/types/userData/main';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
+import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {UseUserActivationPopupReturn} from '@/ui/admin/activation/viewer/popup/type';
 
 

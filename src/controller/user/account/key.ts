@@ -6,7 +6,7 @@ import {durationOfDay} from '@/const/common';
 import {getSingleData} from '@/controller/common';
 import {isAdmin} from '@/controller/user/account/common';
 import mongoPromise from '@/lib/mongodb';
-import {UserActivationKey, UserActivationProperties} from '@/types/mongo/user';
+import {UserActivationKey, UserActivationProperties} from '@/types/mongo/activation';
 
 
 const getCollection = async (): Promise<Collection<UserActivationKey>> => {

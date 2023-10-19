@@ -1,6 +1,7 @@
 import {ObjectId} from 'bson';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
+import {IsoDateString} from '@/types/date';
 
 
 export type UserDataInDatabase<T> = {
@@ -40,6 +41,10 @@ export type UserActivationProperties = {
   activation: UserActivationStatus,
 };
 
+export type UserActivationPropertiesAtClient = Omit<UserActivationProperties, 'expiry'> & {
+  expiry: IsoDateString,
+};
+
 export type UserActivationKey = UserActivationProperties & {
   key: string,
   generatedAt: Date,
@@ -47,6 +52,12 @@ export type UserActivationKey = UserActivationProperties & {
 
 export type UserActivationData = UserActivationKey & {
   userId: ObjectId,
+};
+
+export type UserActivationDataAtClient = Omit<UserActivationData, 'expiry' | 'generatedAt' | 'userId'> & {
+  expiry: IsoDateString,
+  generatedAt: IsoDateString,
+  userId: string,
 };
 
 export type UserIdToEmailMap = {[userId in string]: string | null | undefined};

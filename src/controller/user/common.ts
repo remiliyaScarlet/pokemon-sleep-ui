@@ -1,7 +1,7 @@
 import {Collection} from 'mongodb';
 
 import mongoPromise from '@/lib/mongodb';
-import {UserDataInDatabase} from '@/types/mongo/user';
+import {UserDataInDatabase} from '@/types/mongo/activation';
 
 
 export const getUserData = async <TData>(

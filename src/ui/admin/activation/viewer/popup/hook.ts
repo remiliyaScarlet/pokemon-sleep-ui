@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
+import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {UserActivationPopupState, UseUserActivationPopupReturn} from '@/ui/admin/activation/viewer/popup/type';
 
 
@@ -13,6 +13,7 @@ export const useUserActivationPopup = (): UseUserActivationPopupReturn => {
   return {
     show: state.show,
     data: state.data,
+    setData: setState,
     setShow: (show: boolean) => setState((original) => ({
       ...original,
       show,

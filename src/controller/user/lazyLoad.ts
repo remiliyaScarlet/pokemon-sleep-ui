@@ -5,6 +5,7 @@ import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/t
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
+import {toUserActivationProperties} from '@/utils/user/activation';
 import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
@@ -72,7 +73,7 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
   if (type === 'adminGenerateActivation') {
     return await generateActivationKey({
       executorUserId: userId,
-      ...opts,
+      ...toUserActivationProperties(opts),
     }) satisfies UserLazyLoadedData['adminGenerateActivation'];
   }
 

@@ -1,4 +1,4 @@
-import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
+import {UserActivationDataAtClient} from '@/types/mongo/activation';
 
 
 export type UserActivationButtonTextGetter = (data: UserActivationDataAtClient) => string;

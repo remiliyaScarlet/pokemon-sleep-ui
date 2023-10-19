@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
+import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {SiteAdminDataProps} from '@/ui/admin/type';
 
 

@@ -1,4 +1,4 @@
-import {UserActivationSource} from '@/types/mongo/user';
+import {UserActivationSource} from '@/types/mongo/activation';
 import {UserActivationButtonTextGetter} from '@/ui/admin/activation/viewer/type';
 
 

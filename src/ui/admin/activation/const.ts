@@ -1,4 +1,4 @@
-import {UserActivationContact, UserActivationType} from '@/types/mongo/user';
+import {UserActivationContact, UserActivationType} from '@/types/mongo/activation';
 
 
 export const userActivationContactToText: {[contact in UserActivationContact]: string} = {
