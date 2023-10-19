@@ -12,7 +12,7 @@ import {
   UserActivationProperties,
   UserActivationStatus,
 } from '@/types/mongo/activation';
-import {toUserActivationDataAtClient} from '@/utils/user/activation';
+import {toUserActivationDataAtClient} from '@/utils/user/activation/utils';
 
 
 const getCollection = async (): Promise<Collection<UserActivationData>> => {

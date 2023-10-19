@@ -5,7 +5,7 @@ import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/t
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
-import {toUserActivationProperties} from '@/utils/user/activation';
+import {toUserActivationProperties} from '@/utils/user/activation/utils';
 import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 

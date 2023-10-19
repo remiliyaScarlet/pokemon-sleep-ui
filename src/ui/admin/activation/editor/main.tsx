@@ -24,7 +24,7 @@ import {
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus} from '@/types/userData/main';
 import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
-import {isActivationDataValid} from '@/utils/user/activation';
+import {isActivationDataValid} from '@/utils/user/activation/utils';
 
 
 type Props = {
