@@ -12,6 +12,7 @@ declare global {
 
       MONGODB_URI: string;
 
+      // `next-auth` URLs
       NEXTAUTH_URL: string;
       NEXTAUTH_COOKIE_DOMAIN: string;
       NEXTAUTH_SECRET: string;
@@ -22,6 +23,10 @@ declare global {
 
       NEXTAUTH_ADMIN_UID: string;
 
+      // Subscription related
+      SUBSCRIPTION_EMAIL_SERVER: string;
+      SUBSCRIPTION_EMAIL_FROM: string;
+      // Public env vars
       NEXT_PUBLIC_BUILD_ID: string;
     }
   }
