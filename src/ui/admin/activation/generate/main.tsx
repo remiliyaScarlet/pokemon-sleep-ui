@@ -32,13 +32,13 @@ export const UserActivationGenerator = () => {
         onSubmit={async (data) => {
           const updated = await actAsync({
             action: 'load',
-            options: {type: 'adminGenerateActivation', opts: data},
+            options: {type: 'adminActivationCreate', opts: data},
             getStatusOnCompleted: (updated) => (
-              !!updated?.user.lazyLoaded.adminGenerateActivation ? 'completed' : 'failed'
+              !!updated?.user.lazyLoaded.adminActivationCreate ? 'completed' : 'failed'
             ),
           });
 
-          const activationKey = updated?.user.lazyLoaded.adminGenerateActivation;
+          const activationKey = updated?.user.lazyLoaded.adminActivationCreate;
           if (!activationKey) {
             return;
           }

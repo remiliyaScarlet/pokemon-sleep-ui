@@ -70,11 +70,11 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     return await getSleepdexMapOfPokemon(userId, opts.pokemonId) satisfies UserLazyLoadedData['sleepdexOfPokemon'];
   }
 
-  if (type === 'adminGenerateActivation') {
+  if (type === 'adminActivationCreate') {
     return await generateActivationKey({
       executorUserId: userId,
       ...toUserActivationProperties(opts),
-    }) satisfies UserLazyLoadedData['adminGenerateActivation'];
+    }) satisfies UserLazyLoadedData['adminActivationCreate'];
   }
 
   console.error(`Unknown data type ${type satisfies never} to load data`);

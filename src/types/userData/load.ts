@@ -30,6 +30,6 @@ export type UserDataLoadingOpts = {
     pokemonId: PokemonId,
   },
 } | {
-  type: 'adminGenerateActivation',
+  type: 'adminActivationCreate',
   opts: UserActivationPropertiesAtClient,
 };
