@@ -9,19 +9,19 @@ import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationSource} from '@/types/mongo/activation';
 import {userActivationContactToText} from '@/ui/admin/activation/const';
+import {UserActivationUiControl} from '@/ui/admin/activation/type';
 import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
-import {UseUserActivationPopupReturn} from '@/ui/admin/activation/viewer/popup/type';
 import {UserActivationUnit} from '@/ui/admin/activation/viewer/unit';
 import {SiteAdminDataProps} from '@/ui/admin/type';
 
 
 type Props = SiteAdminDataProps & {
   source: UserActivationSource,
-  popup: UseUserActivationPopupReturn,
+  control: UserActivationUiControl,
 };
 
 export const UserActivationViewer = (props: Props) => {
-  const {activations, source, popup} = props;
+  const {activations, source, control} = props;
 
   const collapsible = useCollapsible();
   const [search, setSearch] = React.useState('');
@@ -54,7 +54,7 @@ export const UserActivationViewer = (props: Props) => {
         <HorizontalSplitter/>
         <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
           {activationsOfSource.map((data) => (
-            <UserActivationUnit key={data.userId} popup={popup} data={data} button={data.buttonText}/>
+            <UserActivationUnit key={data.userId} control={control} data={data} button={data.buttonText}/>
           ))}
         </Grid>
       </Flex>
