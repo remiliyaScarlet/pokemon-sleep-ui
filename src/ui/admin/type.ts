@@ -4,5 +4,5 @@ import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
 
 export type SiteAdminDataProps = {
   activations: UserActivationDataAtClient[],
-  userMap: UserIdToEmailMap,
+  userIdEmailMap: UserIdToEmailMap,
 };

@@ -11,11 +11,11 @@ import {AdminOnlyPageLayout} from '@/ui/base/layout/adminOnly';
 
 const SiteAdmin = async () => {
   const activations = await getAllActivations();
-  const userMap = await getUserIdEmailMap(activations.map(({userId}) => userId));
+  const userIdEmailMap = await getUserIdEmailMap(activations.map(({userId}) => userId));
 
   const props: SiteAdminDataProps = {
     activations: activations.map(toSiteAdminUserActivationData),
-    userMap,
+    userIdEmailMap,
   };
 
   return <SiteAdminClient {...props}/>;
