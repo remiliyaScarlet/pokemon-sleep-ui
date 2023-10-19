@@ -48,3 +48,11 @@ export const toUserActivationProperties = ({
   ...data,
   expiry: new Date(expiry),
 });
+
+export const generateActivationDefaultExpiry = () => {
+  const expiry = new Date();
+
+  expiry.setDate(expiry.getDate() + 183);
+
+  return expiry;
+};
