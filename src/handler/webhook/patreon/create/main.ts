@@ -1,10 +1,10 @@
 import {generateActivationKey} from '@/controller/user/account/activationKey';
-import {PatreonWebhookPledgeCreatedPayload} from '@/types/patreon/webhook/pledge/create';
+import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {sendUserActivationEmail} from '@/utils/user/activation/email';
 import {generateActivationDefaultExpiry} from '@/utils/user/activation/utils';
 
 
-export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPledgeCreatedPayload) => {
+export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload) => {
   const {email, social_connections: social} = payload.included[1].attributes;
   const chargeStatus = payload.data.attributes.last_charge_status;
 

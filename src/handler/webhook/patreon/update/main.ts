@@ -1,7 +1,7 @@
-import {PatreonWebhookPledgeUpdatedPayload} from '@/types/patreon/webhook/pledge/update';
+import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 
 
-export const handlePatreonPledgeUpdated = async (payload: PatreonWebhookPledgeUpdatedPayload) => {
+export const handlePatreonPledgeUpdated = async (payload: PatreonWebhookPayload) => {
   const {email} = payload.included[1].attributes;
 
   // No-op for now if the pledge has been updated
