@@ -48,6 +48,8 @@ export const getUserActivation = async (userId: string): Promise<UserActivationS
 
 export const getAllActivations = (): Promise<UserActivationData[]> => getDataAsArray(getCollection());
 
+export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
+
 const addIndex = async () => {
   const collection = await getCollection();
 

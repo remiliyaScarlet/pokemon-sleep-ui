@@ -1,21 +1,18 @@
 import React from 'react';
 
-import UsersIcon from '@heroicons/react/24/outline/UsersIcon';
-
 import {Flex} from '@/components/layout/flex/common';
 import {formatInt} from '@/utils/number';
 
 
 type Props = {
+  icon: React.ReactNode,
   userCount: number,
 };
 
-export const HomeUserCount = ({userCount}: Props) => {
+export const HomeUserCount = ({icon, userCount}: Props) => {
   return (
-    <Flex direction="row" className="gap-2">
-      <div className="h-6 w-6">
-        <UsersIcon/>
-      </div>
+    <Flex noFullWidth direction="row" className="gap-1.5">
+      {icon}
       <div>{formatInt(userCount)}</div>
     </Flex>
   );
