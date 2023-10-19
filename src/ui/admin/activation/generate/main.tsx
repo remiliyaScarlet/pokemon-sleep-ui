@@ -26,8 +26,7 @@ import {
 } from '@/types/mongo/user';
 import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
 import {toIsoDateString} from '@/utils/date';
-import {showToast} from '@/utils/toast';
-import {isNotNullish} from '@/utils/type';
+import {isActivationDataValid} from '@/utils/user/activation';
 
 
 export const UserActivationGenerator = () => {
@@ -57,7 +56,6 @@ export const UserActivationGenerator = () => {
 
   const {
     expiry,
-    source,
     contact,
     isSpecial,
     note,
@@ -65,19 +63,8 @@ export const UserActivationGenerator = () => {
   const commonInputStyle = 'h-8 w-full sm:w-96';
 
   const onSubmit = async () => {
-    if (!source && !note) {
-      showToast({
-        isAlert: true,
-        content: 'Missing subscription source!',
-      });
-      return;
-    }
-
-    if ((source && !contact[source]) || (!source && !Object.values(contact).filter(isNotNullish).length)) {
-      showToast({
-        isAlert: true,
-        content: 'Missing contact of the subscription source!',
-      });
+    const activationDataValid = isActivationDataValid(data);
+    if (!activationDataValid) {
       return;
     }
 
