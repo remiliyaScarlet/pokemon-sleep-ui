@@ -23,9 +23,13 @@ declare global {
 
       NEXTAUTH_ADMIN_UID: string;
 
+      // External services
+      EXTERNAL_PATREON_API_SECRET: string;
+
       // Subscription related
       SUBSCRIPTION_EMAIL_SERVER: string;
       SUBSCRIPTION_EMAIL_FROM: string;
+
       // Public env vars
       NEXT_PUBLIC_BUILD_ID: string;
     }
