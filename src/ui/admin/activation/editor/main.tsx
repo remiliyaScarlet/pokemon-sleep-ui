@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
+import {clsx} from 'clsx';
 
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
@@ -13,6 +13,7 @@ import {
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {FlexForm} from '@/components/layout/flex/form';
+import {actionStatusIcon} from '@/components/shared/userData/const';
 import {IsoDateString} from '@/types/date';
 import {
   userActivationContact,
@@ -21,6 +22,7 @@ import {
   userActivationType,
 } from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
+import {UserDataActionStatus} from '@/types/userData/main';
 import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
 import {isActivationDataValid} from '@/utils/user/activation';
 
@@ -29,6 +31,7 @@ type Props = {
   data: UserActivationPropertiesAtClient,
   setData: ReactStateUpdaterFromOriginal<UserActivationPropertiesAtClient>,
   idPrefix: string,
+  status: UserDataActionStatus,
   onSubmit: (data: UserActivationPropertiesAtClient) => void,
 };
 
@@ -36,6 +39,7 @@ export const UserActivationEditor = ({
   data,
   setData,
   idPrefix,
+  status,
   onSubmit,
 }: Props) => {
   const {
@@ -132,8 +136,10 @@ export const UserActivationEditor = ({
         />
       </InputRowWithTitle>
       <InputRow className="justify-end gap-1.5">
-        <button type="submit" className="button-clickable-bg h-8 w-8 p-1">
-          <ArrowUpCircleIcon/>
+        <button type="submit" disabled={status !== 'waiting'} className={clsx(
+          'button-clickable-bg disabled:button-disabled h-8 w-8 p-1',
+        )}>
+          {actionStatusIcon[status]}
         </button>
       </InputRow>
     </FlexForm>

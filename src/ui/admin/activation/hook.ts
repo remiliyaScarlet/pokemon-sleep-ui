@@ -27,7 +27,7 @@ export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): Use
     },
   });
 
-  const {actAsync} = useUserDataActor({statusToast: true});
+  const {actAsync, status} = useUserDataActor({statusToast: true});
 
   if (!actAsync) {
     return null;
@@ -55,6 +55,7 @@ export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): Use
       },
     })),
     actAsync,
+    status,
     updateActivation: async (updated) => {
       await actAsync({
         action: 'upload',

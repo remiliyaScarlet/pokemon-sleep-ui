@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const UserActivationGenerator = ({control}: Props) => {
-  const {actAsync} = control;
+  const {actAsync, status} = control;
 
   const [data, setData] = React.useState<UserActivationPropertiesAtClient>(
     generateInitialUserActivationPropertiesAtClient,
@@ -30,6 +30,7 @@ export const UserActivationGenerator = ({control}: Props) => {
         data={data}
         setData={setData}
         idPrefix="generator"
+        status={status}
         onSubmit={async (data) => {
           const updated = await actAsync({
             action: 'load',

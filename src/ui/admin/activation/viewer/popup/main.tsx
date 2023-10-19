@@ -4,13 +4,12 @@ import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationEditor} from '@/ui/admin/activation/editor/main';
-import {UserActivationUiControl, UserActivationUiState} from '@/ui/admin/activation/type';
+import {UserActivationUiDataProps, UserActivationUiControl, UserActivationUiState} from '@/ui/admin/activation/type';
 import {UserActivationDelete} from '@/ui/admin/activation/viewer/popup/delete';
 import {UserActivationReadonlyField} from '@/ui/admin/activation/viewer/popup/field/readonly';
-import {SiteAdminDataProps} from '@/ui/admin/type';
 
 
-type Props = SiteAdminDataProps & {
+type Props = UserActivationUiDataProps & {
   control: UserActivationUiControl,
 };
 
@@ -19,6 +18,7 @@ export const UserActivationPopup = ({userIdEmailMap, control}: Props) => {
     state,
     setState,
     setPopupShow,
+    status,
     updateActivation,
     deleteActivation,
   } = control;
@@ -53,6 +53,7 @@ export const UserActivationPopup = ({userIdEmailMap, control}: Props) => {
             },
           }))}
           idPrefix="popup"
+          status={status}
           onSubmit={(properties) => updateActivation({...data, ...properties})}
         />
         <HorizontalSplitter/>
