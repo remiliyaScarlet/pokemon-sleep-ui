@@ -1,32 +1,13 @@
 import React from 'react';
 
-import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
-
 import {Loading} from '@/components/icons/loading';
-import {InputBox} from '@/components/input/box';
-import {InputRow} from '@/components/input/filter/row';
-import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterTextInput} from '@/components/input/filter/text';
-import {
-  getMultiSelectOnClickProps,
-  getSingleSelectOnClickProps,
-  getTextFilterButtonClass,
-} from '@/components/input/filter/utils/props';
-import {ToggleButton} from '@/components/input/toggleButton';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Copyable} from '@/components/layout/copyable/main';
 import {Flex} from '@/components/layout/flex/common';
-import {FlexForm} from '@/components/layout/flex/form';
 import {useUserDataActor} from '@/hooks/userData/actor';
-import {
-  userActivationContact,
-  UserActivationProperties,
-  userActivationSource,
-  userActivationType,
-} from '@/types/mongo/user';
-import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
-import {toIsoDateString} from '@/utils/date';
-import {isActivationDataValid} from '@/utils/user/activation';
+import {UserActivationPropertiesAtClient} from '@/types/mongo/activation';
+import {UserActivationEditor} from '@/ui/admin/activation/editor/main';
+import {generateInitialUserActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
 
 
 export const UserActivationGenerator = () => {

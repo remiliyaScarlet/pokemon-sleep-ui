@@ -4,13 +4,13 @@ import {ReactStateUpdaterFromOriginal} from '@/types/react';
 
 export type UserActivationPopupState = {
   show: boolean,
-  data: UserActivationDataAtClient | null,
+  data: UserActivationDataAtClient,
 };
 
 export type UseUserActivationPopupReturn = {
   show: boolean,
   setShow: (show: boolean) => void,
   setData: ReactStateUpdaterFromOriginal<UserActivationPopupState>,
-  data: UserActivationDataAtClient | null,
+  data: UserActivationDataAtClient,
   showActivation: (data: UserActivationDataAtClient) => void,
 };
