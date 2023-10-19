@@ -2,7 +2,7 @@ import {ObjectId} from 'bson';
 import {Collection, MongoError} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
-import {getActivationKey, removeActivationKey} from '@/controller/user/account/key';
+import {getActivationKey, removeActivationKey} from '@/controller/user/account/activationKey';
 import mongoPromise from '@/lib/mongodb';
 import {UserActivationData, UserActivationStatus} from '@/types/mongo/activation';
 
