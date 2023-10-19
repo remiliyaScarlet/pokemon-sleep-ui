@@ -39,9 +39,7 @@ export const UserActivationViewer = ({activations, source}: Props) => {
 
   return (
     <Collapsible state={collapsible} classNameForHeight="h-80" button={
-      <div className="p-2">
-        {`[${activationsOfSource.length}] ${userActivationContactToText[source]}`}
-      </div>
+      <div className="p-2">{userActivationContactToText[source]}</div>
     }>
       <UserActivationPopup state={popup}/>
       <Flex className="gap-1.5 pr-1.5">

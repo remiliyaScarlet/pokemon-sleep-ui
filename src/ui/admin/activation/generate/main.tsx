@@ -2,6 +2,7 @@ import React from 'react';
 
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 
+import {Loading} from '@/components/icons/loading';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
@@ -51,7 +52,7 @@ export const UserActivationGenerator = () => {
   const {actAsync} = useUserDataActor();
 
   if (!actAsync) {
-    return null;
+    return <Loading text="Activation Key Generator"/>;
   }
 
   const {

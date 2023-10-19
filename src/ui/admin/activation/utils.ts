@@ -9,4 +9,5 @@ export const toSiteAdminUserActivationData = ({
 }: UserActivationData): UserActivationDataAtClient => ({
   ...data,
   userId: userId.toString(),
+  expiry: data.expiry.toString(),
 });
