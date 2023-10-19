@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getAllActivationsAsClient} from '@/controller/user/account/activation';
+import {getAllActivationsAsClient} from '@/controller/user/activation/data';
 import {getUserIdEmailMap} from '@/controller/user/auth/main';
 import {DefaultPageProps} from '@/types/next/page';
 import {SiteAdminClient} from '@/ui/admin/client';

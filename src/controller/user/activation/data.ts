@@ -1,14 +1,15 @@
 import {ObjectId} from 'bson';
-import {Collection, MongoError} from 'mongodb';
+import {Collection, Filter, MongoError} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
-import {getActivationKey, removeActivationKey} from '@/controller/user/account/activationKey';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
+import {getActivationKey, removeActivationKeyByKey} from '@/controller/user/activation/key';
 import mongoPromise from '@/lib/mongodb';
 import {
   UserActivationData,
   UserActivationDataAtClient,
+  UserActivationKey,
   UserActivationProperties,
   UserActivationStatus,
 } from '@/types/mongo/activation';
@@ -40,7 +41,7 @@ export const userActivateKey = async (userId: string, key: string): Promise<bool
     throw e;
   }
 
-  await removeActivationKey(activationKey.key);
+  await removeActivationKeyByKey(activationKey.key);
   return true;
 };
 
@@ -60,11 +61,26 @@ export const getAllActivationsAsClient = async (): Promise<UserActivationDataAtC
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
-type UpdateUserActivationOpts = ControllerRequireAdminOpts & UserActivationProperties & {
+type UpdateActivationPropertiesOfDataOpts = ControllerRequireAdminOpts & {
+  filter: Filter<UserActivationData>,
+  update: UserActivationProperties,
+};
+
+export const updateActivationPropertiesOfData = async ({
+  executorUserId,
+  filter,
+  update,
+}: UpdateActivationPropertiesOfDataOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).updateOne(filter, {$set: update});
+};
+
+type UpdateUserActivationByKeyOpts = ControllerRequireAdminOpts & UserActivationProperties & {
   key: UserActivationData['key'],
 };
 
-export const updateUserActivation = async ({
+export const updateUserActivationByKey = async ({
   executorUserId,
   key,
   activation,
@@ -73,32 +89,36 @@ export const updateUserActivation = async ({
   contact,
   isSpecial,
   note,
-}: UpdateUserActivationOpts) => {
-  throwIfNotAdmin(executorUserId);
+}: UpdateUserActivationByKeyOpts) => updateActivationPropertiesOfData({
+  executorUserId,
+  filter: {key},
+  update: {
+    activation,
+    expiry,
+    source,
+    contact,
+    isSpecial,
+    note,
+  },
+});
 
-  return (await getCollection()).updateOne(
-    {key},
-    // Explicit to avoid overwriting properties that shouldn't get overwritten
-    {$set: {
-      activation,
-      expiry,
-      source,
-      contact,
-      isSpecial,
-      note,
-    }},
-  );
+type RemoveUserActivationDataOpts = ControllerRequireAdminOpts & {
+  filter: Filter<UserActivationKey>,
 };
 
-type DeleteUserActivationOpts = ControllerRequireAdminOpts & {
+export const removeActivationData = async ({executorUserId, filter}: RemoveUserActivationDataOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).deleteOne(filter);
+};
+
+type RemoveActivationDataByKeyOpts = ControllerRequireAdminOpts & {
   key: UserActivationData['key'],
 };
 
-export const deleteUserActivation = async ({executorUserId, key}: DeleteUserActivationOpts) => {
-  throwIfNotAdmin(executorUserId);
-
-  return (await getCollection()).deleteOne({key});
-};
+export const removeActivationDataByKey = ({executorUserId, key}: RemoveActivationDataByKeyOpts) => (
+  removeActivationData({executorUserId, filter: {key}})
+);
 
 const addIndex = async () => {
   const collection = await getCollection();

@@ -4,7 +4,7 @@ import {Announcements} from '@/components/announcement/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {I18nProvider} from '@/contexts/i18n';
 import {getUserCount} from '@/controller/auth';
-import {getPaidUserCount} from '@/controller/user/account/activation';
+import {getPaidUserCount} from '@/controller/user/activation/data';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {HomeClient} from '@/ui/home/client';

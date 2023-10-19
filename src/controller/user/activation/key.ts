@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import {Collection} from 'mongodb';
+import {Collection, Filter} from 'mongodb';
 
 import {durationOfDay} from '@/const/common';
 import {getSingleData} from '@/controller/common';
@@ -37,8 +37,25 @@ export const getActivationKey = async (key: string) => (
   getSingleData(getCollection(), {key})
 );
 
-export const removeActivationKey = async (key: string) => (
-  (await getCollection()).deleteOne({key})
+type UpdateActivationPropertiesOfKeyOpts = {
+  filter: Filter<UserActivationKey>,
+  update: UserActivationProperties,
+};
+
+export const updateActivationPropertiesOfKey = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
+  return (await getCollection()).updateOne(filter, {$set: update});
+};
+
+type RemoveActivationKeyOpts = {
+  filter: Filter<UserActivationKey>,
+};
+
+export const removeActivationKey = async ({filter}: RemoveActivationKeyOpts) => {
+  return (await getCollection()).deleteOne(filter);
+};
+
+export const removeActivationKeyByKey = async (key: string) => (
+  removeActivationKey({filter: {key}})
 );
 
 const addIndex = async () => {

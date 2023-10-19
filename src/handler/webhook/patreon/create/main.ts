@@ -1,4 +1,5 @@
-import {generateActivationKey} from '@/controller/user/account/activationKey';
+import {generateActivationKey} from '@/controller/user/activation/key';
+import {toActivationProperties} from '@/handler/webhook/patreon/utils';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {sendUserActivationEmail} from '@/utils/user/activation/email';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
