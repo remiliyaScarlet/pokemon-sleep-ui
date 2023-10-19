@@ -191,6 +191,7 @@
         "TimeToFullPack": "주머니가 꽉 찰 떄 까지 필요한 시간",
         "MainSkillValue": "스킬 밸류",
         "MainSkillTriggerValue": "스킬 확률 밸류"
+        "TimeToFullPack": "주머니가 꽉 찰 때 까지 필요한 시간",
       },
       "Sort": {
         "Id": "ID",
@@ -261,7 +262,7 @@
     "PokemonExp": {
       "ExpToNext": "다음 레벨까지",
       "OwnedCandies": "소유한 사탕",
-      "NormalCandy": "포켓몬 사탕",
+      "NormalCandy": "사탕",
       "HandyCandy": "만능사탕"
     }
   },
@@ -277,7 +278,7 @@
   "Producing": {
     "State": {
       "Awake": "깨 있을 때",
-      "AsleepUnfilled": "주머니를 비우고 잤을 떄",
+      "AsleepUnfilled": "주머니를 비우고 잤을 때",
       "AsleepFilled": "주머니가 가득찬 상태로 잤을 때"
     },
     "Preset": {
