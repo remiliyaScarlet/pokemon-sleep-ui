@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
-import {durationOfDay} from '@/const/common';
 import {UserActivationStatsUnit} from '@/ui/admin/activation/stats/unit';
 import {UserActivationUiCommonProps} from '@/ui/admin/activation/type';
+import {isExpiringSoon} from '@/ui/admin/activation/utils';
 
 
 export const UserActivationStats = (props: UserActivationUiCommonProps) => {
@@ -28,7 +28,7 @@ export const UserActivationStats = (props: UserActivationUiCommonProps) => {
       />
       <UserActivationStatsUnit
         title="Expiry T-7"
-        filter={({expiry}) => new Date(expiry).getTime() - now.getTime() < durationOfDay * 7 * 1000}
+        filter={(data) => isExpiringSoon({data, now})}
         {...props}
       />
       <UserActivationStatsUnit

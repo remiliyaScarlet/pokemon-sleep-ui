@@ -1,7 +1,10 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {UserActivationUiControl} from '@/ui/admin/activation/type';
+import {isExpiringSoon} from '@/ui/admin/activation/utils';
 
 
 type Props = {
@@ -15,7 +18,10 @@ export const UserActivationUnit = ({data, control, button}: Props) => {
   const {showActivation} = control;
 
   return (
-    <button key={userId} className="button-clickable-bg truncate p-2" onClick={() => showActivation(data)}>
+    <button key={userId} onClick={() => showActivation(data)} className={clsx(
+      'truncate p-2',
+      isExpiringSoon({data, now: new Date()}) ? 'button-clickable button-warn-bg' : 'button-clickable-bg',
+    )}>
       {button}
     </button>
   );
