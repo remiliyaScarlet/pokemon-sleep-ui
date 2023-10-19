@@ -1,4 +1,4 @@
-import {PatreonDiscordConnection} from '@/types/patreon/common/patron/social/discord';
+import {PatreonDiscordConnection} from '@/types/patreon/common/social/discord';
 
 
 export type PatreonSocialConnections = {

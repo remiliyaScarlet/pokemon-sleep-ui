@@ -5,9 +5,9 @@ import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 
 
 export const handlePatreonPledgeModified = async (payload: PatreonWebhookPayload) => {
-  const {email} = payload.included[1].attributes;
+  const {email} = payload.data.attributes;
 
-  const activationProperties = toActivationProperties(payload);
+  const activationProperties = await toActivationProperties(payload);
 
   if (!activationProperties) {
     await removeActivation({

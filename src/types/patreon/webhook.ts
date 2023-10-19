@@ -1,17 +1,5 @@
-import {IsoUtcTimestampString} from '@/types/date';
-import {PatreonChargeStatus} from '@/types/patreon/common/enum';
-import {PatreonPatron} from '@/types/patreon/common/patron/main';
+import {PatreonMember} from '@/types/patreon/common/member';
+import {PatreonResponse} from '@/types/patreon/common/response';
 
 
-export type PatreonWebhookPayload = {
-  data: {
-    attributes: {
-      access_expires_at: IsoUtcTimestampString | null,
-      last_charge_status: PatreonChargeStatus,
-    },
-  },
-  included: [
-    unknown,
-    PatreonPatron,
-  ]
-};
+export type PatreonWebhookPayload = PatreonResponse<PatreonMember>;

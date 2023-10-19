@@ -11,3 +11,5 @@ export type PatreonChargeStatus =
   'Fraud' |
   'Other' |
   null;
+
+export type PatronStatus = 'active_patron' | 'declined_patron' | 'former_patron' | null;

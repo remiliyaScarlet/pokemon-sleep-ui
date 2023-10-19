@@ -5,9 +5,9 @@ import {sendUserActivationEmail} from '@/utils/user/activation/email';
 
 
 export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload) => {
-  const {email} = payload.included[1].attributes;
+  const {email} = payload.data.attributes;
 
-  const activationProperties = toActivationProperties(payload);
+  const activationProperties = await toActivationProperties(payload);
 
   if (!activationProperties) {
     console.warn(`Patreon received non-Paid charge status of user ${email}`);
