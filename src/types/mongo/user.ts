@@ -48,3 +48,5 @@ export type UserActivationKey = UserActivationProperties & {
 export type UserActivationData = UserActivationKey & {
   userId: ObjectId,
 };
+
+export type UserIdToEmailMap = {[userId in string]: string | null | undefined};
