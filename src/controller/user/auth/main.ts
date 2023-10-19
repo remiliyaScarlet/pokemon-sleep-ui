@@ -14,9 +14,9 @@ const getCollection = async (): Promise<Collection<User>> => {
     .collection<User>('users');
 };
 
-export const getUserIdEmailMap = async (ids: ObjectId[]): Promise<UserIdToEmailMap> => {
+export const getUserIdEmailMap = async (ids: string[]): Promise<UserIdToEmailMap> => {
   const data = await (await getCollection())
-    .find({_id: {$in: ids}})
+    .find({_id: {$in: ids.map((id) => new ObjectId(id))}})
     .toArray();
 
   return Object.fromEntries(data.map((data) => [data._id.toString(), data.email]));

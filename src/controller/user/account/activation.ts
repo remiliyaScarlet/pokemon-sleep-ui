@@ -3,8 +3,16 @@ import {Collection, MongoError} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {getActivationKey, removeActivationKey} from '@/controller/user/account/activationKey';
+import {throwIfNotAdmin} from '@/controller/user/account/common';
+import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {UserActivationData, UserActivationStatus} from '@/types/mongo/activation';
+import {
+  UserActivationData,
+  UserActivationDataAtClient,
+  UserActivationProperties,
+  UserActivationStatus,
+} from '@/types/mongo/activation';
+import {toUserActivationDataAtClient} from '@/utils/user/activation';
 
 
 const getCollection = async (): Promise<Collection<UserActivationData>> => {
@@ -46,7 +54,9 @@ export const getUserActivation = async (userId: string): Promise<UserActivationS
   return data.activation;
 };
 
-export const getAllActivations = (): Promise<UserActivationData[]> => getDataAsArray(getCollection());
+export const getAllActivationsAsClient = async (): Promise<UserActivationDataAtClient[]> => {
+  return (await getDataAsArray(getCollection())).map(toUserActivationDataAtClient);
+};
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
