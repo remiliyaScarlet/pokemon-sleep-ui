@@ -1,7 +1,7 @@
 import {generateActivationKey} from '@/controller/user/account/activationKey';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {sendUserActivationEmail} from '@/utils/user/activation/email';
-import {generateActivationDefaultExpiry} from '@/utils/user/activation/utils';
+import {getActivationExpiry} from '@/utils/user/activation/utils';
 
 
 export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload) => {
@@ -15,7 +15,7 @@ export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload)
 
   const activationLink = await generateActivationKey({
     executorUserId: process.env.NEXTAUTH_ADMIN_UID,
-    expiry: generateActivationDefaultExpiry(),
+    expiry: getActivationExpiry(),
     activation: {
       adsFree: true,
       premium: true,

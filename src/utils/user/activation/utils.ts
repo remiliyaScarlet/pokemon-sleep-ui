@@ -1,3 +1,4 @@
+import {IsoUtcTimestampString} from '@/types/date';
 import {
   UserActivationData,
   UserActivationDataAtClient,
@@ -49,7 +50,11 @@ export const toUserActivationProperties = ({
   expiry: new Date(expiry),
 });
 
-export const generateActivationDefaultExpiry = () => {
+export const getActivationExpiry = (expiryTimestamp?: IsoUtcTimestampString | null) => {
+  if (expiryTimestamp) {
+    return new Date(expiryTimestamp);
+  }
+
   const expiry = new Date();
 
   expiry.setDate(expiry.getDate() + 183);
