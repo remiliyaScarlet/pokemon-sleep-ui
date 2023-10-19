@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {InfoIcon} from '@/components/icons/info';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
@@ -8,14 +9,13 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationSource} from '@/types/mongo/activation';
-import {userActivationContactToText} from '@/ui/admin/activation/const';
 import {UserActivationUiCommonProps, UserActivationUiControl} from '@/ui/admin/activation/type';
-import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {UserActivationUnit} from '@/ui/admin/activation/viewer/unit';
+import {getUserActivationButtonText, getUserActivationTitle} from '@/ui/admin/activation/viewer/utils';
 
 
 type Props = UserActivationUiCommonProps & {
-  source: UserActivationSource,
+  source: UserActivationSource | null,
   control: UserActivationUiControl,
 };
 
@@ -27,9 +27,9 @@ export const UserActivationViewer = (props: Props) => {
 
   let activationsOfSource = control.state.data
     .filter((activation) => activation.source === source)
-    .map((activation) => ({
-      ...activation,
-      buttonText: userActivationButtonTextGetter[source](activation),
+    .map((data) => ({
+      ...data,
+      buttonText: getUserActivationButtonText({data, ...props}),
     }))
     .sort((a, b) => a.buttonText.localeCompare(b.buttonText));
 
@@ -39,7 +39,10 @@ export const UserActivationViewer = (props: Props) => {
 
   return (
     <Collapsible state={collapsible} classNameForHeight="h-80" button={
-      <div className="p-2">{userActivationContactToText[source]}</div>
+      <Flex direction="row" center className="gap-1.5 p-2">
+        <div>{getUserActivationTitle(source)}</div>
+        <InfoIcon>{activationsOfSource.length}</InfoIcon>
+      </Flex>
     }>
       <Flex className="gap-1.5 pr-1.5">
         <InputRow>
