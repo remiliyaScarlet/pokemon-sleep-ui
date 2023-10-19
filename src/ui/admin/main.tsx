@@ -3,9 +3,9 @@ import React from 'react';
 import {getAllActivations} from '@/controller/user/account/activation';
 import {getUserIdEmailMap} from '@/controller/user/auth/main';
 import {DefaultPageProps} from '@/types/next/page';
+import {toSiteAdminUserActivationData} from '@/ui/admin/activation/utils';
 import {SiteAdminClient} from '@/ui/admin/client';
 import {SiteAdminDataProps} from '@/ui/admin/type';
-import {toSiteAdminUserActivationData} from '@/ui/admin/utils';
 import {AdminOnlyPageLayout} from '@/ui/base/layout/adminOnly';
 
 

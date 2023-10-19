@@ -23,13 +23,13 @@ import {
   userActivationSource,
   userActivationType,
 } from '@/types/mongo/user';
-import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/const';
+import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
 import {toIsoDateString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 
 
-export const SiteAdminGenerateActivation = () => {
+export const UserActivationGenerator = () => {
   const [data, setData] = React.useState<UserActivationProperties>(() => {
     const expiry = new Date();
 

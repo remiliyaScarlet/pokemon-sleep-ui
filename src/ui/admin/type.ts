@@ -1,11 +1,8 @@
-import {UserActivationData, UserIdToEmailMap} from '@/types/mongo/user';
+import {UserIdToEmailMap} from '@/types/mongo/user';
+import {UserActivationDataAtClient} from '@/ui/admin/activation/type';
 
 
 export type SiteAdminDataProps = {
-  activations: SiteAdminUserActivationData[],
+  activations: UserActivationDataAtClient[],
   userMap: UserIdToEmailMap,
-};
-
-export type SiteAdminUserActivationData = Omit<UserActivationData, 'userId'> & {
-  userId: string,
 };
