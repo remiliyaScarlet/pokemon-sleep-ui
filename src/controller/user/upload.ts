@@ -1,5 +1,6 @@
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
+import {deleteUserActivation, updateUserActivation} from '@/controller/user/account/activation';
 import {
   userDataCooking,
   userDataPokeboxDisplay,
@@ -71,6 +72,20 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'settings') {
     await userDataSettings.setData(userId, data);
+    return;
+  }
+
+  if (type === 'admin.activation.update') {
+    await updateUserActivation({
+      ...data,
+      executorUserId: userId,
+      expiry: new Date(data.expiry),
+    });
+    return;
+  }
+
+  if (type === 'admin.activation.delete') {
+    await deleteUserActivation({executorUserId: userId, key: data});
     return;
   }
 

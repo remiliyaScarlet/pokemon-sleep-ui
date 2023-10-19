@@ -2,20 +2,28 @@ import React from 'react';
 
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserActivationDataAtClient} from '@/types/mongo/activation';
-import {UserActivationUiState, UserActivationUiControl} from '@/ui/admin/activation/type';
+import {UserActivationUiControl, UserActivationUiState} from '@/ui/admin/activation/type';
 import {generateInitialUserActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
 import {toIsoDateString} from '@/utils/date';
 
 
-export const useUserActivationUI = (): UserActivationUiControl | null => {
+type UseUserActivationUiOpts = {
+  activations: UserActivationDataAtClient[],
+};
+
+export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): UserActivationUiControl | null => {
   const [state, setState] = React.useState<UserActivationUiState>({
-    popupShow: false,
-    popupData: {
-      // Dummy values, should be overwritten on show (by calling `showActivation()`
-      userId: '',
-      generatedAt: toIsoDateString(new Date()),
-      key: '',
-      ...generateInitialUserActivationPropertiesAtClient(),
+    // Keep a copy of the data to save refreshes that could create large I/O
+    data: activations,
+    popup: {
+      show: false,
+      data: {
+        // Dummy values, should be overwritten on show (by calling `showActivation()`
+        userId: '',
+        generatedAt: toIsoDateString(new Date()),
+        key: '',
+        ...generateInitialUserActivationPropertiesAtClient(),
+      },
     },
   });
 
@@ -25,19 +33,59 @@ export const useUserActivationUI = (): UserActivationUiControl | null => {
     return null;
   }
 
+  const {popup} = state;
+
+  const setPopupShow = (show: boolean) => setState((original): UserActivationUiState => ({
+    ...original,
+    popup: {
+      ...original.popup,
+      show,
+    },
+  }));
+
   return {
-    popupShow: state.popupShow,
-    data: state.popupData,
     state,
-    setState: setState,
-    setPopupShow: (show: boolean) => setState((original) => ({
+    setState,
+    setPopupShow,
+    showActivation: (data: UserActivationDataAtClient) => setState((original): UserActivationUiState => ({
       ...original,
-      popupShow: show,
+      popup: {
+        show: true,
+        data,
+      },
     })),
-    showActivation: (data: UserActivationDataAtClient) => setState({
-      popupShow: true,
-      popupData: data,
-    }),
     actAsync,
+    updateActivation: async (updated) => {
+      await actAsync({
+        action: 'upload',
+        options: {
+          type: 'admin.activation.update',
+          data: updated,
+        },
+      });
+      setState(({data, popup}) => ({
+        data: data.map((single) => single.key === updated.key ? updated : single),
+        popup: {
+          ...popup,
+          show: false,
+        },
+      }));
+    },
+    deleteActivation: async () => {
+      await actAsync({
+        action: 'upload',
+        options: {
+          type: 'admin.activation.delete',
+          data: popup.data.key,
+        },
+      });
+      setState(({data, popup}) => ({
+        data: data.filter(({key}) => popup.data.key !== key),
+        popup: {
+          ...popup,
+          show: false,
+        },
+      }));
+    },
   };
 };

@@ -1,5 +1,6 @@
 import {PokeInBox} from '@/types/game/pokebox';
 import {SleepdexData} from '@/types/game/sleepdex';
+import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
@@ -31,4 +32,10 @@ export type UserDataUploadOpts = {
 } | {
   type: 'settings',
   data: UserSettings,
+} | {
+  type: 'admin.activation.update',
+  data: UserActivationDataAtClient,
+} | {
+  type: 'admin.activation.delete',
+  data: string,
 };

@@ -60,11 +60,51 @@ export const getAllActivationsAsClient = async (): Promise<UserActivationDataAtC
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
+type UpdateUserActivationOpts = ControllerRequireAdminOpts & UserActivationProperties & {
+  key: UserActivationData['key'],
+};
+
+export const updateUserActivation = async ({
+  executorUserId,
+  key,
+  activation,
+  expiry,
+  source,
+  contact,
+  isSpecial,
+  note,
+}: UpdateUserActivationOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).updateOne(
+    {key},
+    // Explicit to avoid overwriting properties that shouldn't get overwritten
+    {$set: {
+      activation,
+      expiry,
+      source,
+      contact,
+      isSpecial,
+      note,
+    }},
+  );
+};
+
+type DeleteUserActivationOpts = ControllerRequireAdminOpts & {
+  key: UserActivationData['key'],
+};
+
+export const deleteUserActivation = async ({executorUserId, key}: DeleteUserActivationOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).deleteOne({key});
+};
+
 const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
-    collection.createIndex({userId: 1}, {unique: true}),
+    collection.createIndex({userId: 1, key: 1}, {unique: true}),
     collection.createIndex({expiry: 1}, {expireAfterSeconds: 0}),
   ]);
 };

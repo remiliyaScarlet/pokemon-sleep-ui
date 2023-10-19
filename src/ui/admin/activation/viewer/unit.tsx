@@ -12,9 +12,10 @@ type Props = {
 
 export const UserActivationUnit = ({data, control, button}: Props) => {
   const {userId} = data;
+  const {showActivation} = control;
 
   return (
-    <button key={userId} className="button-clickable-bg truncate p-2" onClick={() => control.showActivation(data)}>
+    <button key={userId} className="button-clickable-bg truncate p-2" onClick={() => showActivation(data)}>
       {button}
     </button>
   );

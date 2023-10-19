@@ -11,7 +11,9 @@ import {SiteAdminDataProps} from '@/ui/admin/type';
 
 
 export const UserActivationUI = (props: SiteAdminDataProps) => {
-  const control = useUserActivationUI();
+  const {activations} = props;
+
+  const control = useUserActivationUI({activations});
 
   if (!control) {
     return <Loading text="User Activation UI"/>;
