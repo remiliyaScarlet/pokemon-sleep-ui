@@ -4,16 +4,12 @@ import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationEditor} from '@/ui/admin/activation/editor/main';
-import {UserActivationUiDataProps, UserActivationUiControl, UserActivationUiState} from '@/ui/admin/activation/type';
+import {UserActivationUiCommonProps, UserActivationUiState} from '@/ui/admin/activation/type';
 import {UserActivationDelete} from '@/ui/admin/activation/viewer/popup/delete';
 import {UserActivationReadonlyField} from '@/ui/admin/activation/viewer/popup/field/readonly';
 
 
-type Props = UserActivationUiDataProps & {
-  control: UserActivationUiControl,
-};
-
-export const UserActivationPopup = ({userIdEmailMap, control}: Props) => {
+export const UserActivationPopup = ({userIdEmailMap, control}: UserActivationUiCommonProps) => {
   const {
     state,
     setState,

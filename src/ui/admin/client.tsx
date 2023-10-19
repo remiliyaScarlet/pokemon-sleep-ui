@@ -2,9 +2,9 @@
 import React from 'react';
 
 import {UserActivationUI} from '@/ui/admin/activation/main';
-import {SiteAdminDataProps} from '@/ui/admin/type';
+import {SiteAdminServerDataProps} from '@/ui/admin/type';
 
 
-export const SiteAdminClient = (props: SiteAdminDataProps) => {
+export const SiteAdminClient = (props: SiteAdminServerDataProps) => {
   return <UserActivationUI {...props}/>;
 };

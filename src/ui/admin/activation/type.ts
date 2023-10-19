@@ -1,7 +1,7 @@
 import {UserActivationDataAtClient} from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
-import {UserDataActorAsync} from '@/types/userData/main';
 import {UserDataActionStatus, UserDataActorAsync} from '@/types/userData/main';
+import {SiteAdminServerDataProps} from '@/ui/admin/type';
 
 
 export type UserActivationUiState = {
@@ -21,4 +21,8 @@ export type UserActivationUiControl = {
   status: UserDataActionStatus,
   updateActivation: (updated: UserActivationDataAtClient) => void,
   deleteActivation: () => void,
+};
+
+export type UserActivationUiCommonProps = SiteAdminServerDataProps & {
+  control: UserActivationUiControl,
 };

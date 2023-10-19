@@ -2,16 +2,16 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {UserActivationDataAtClient} from '@/types/mongo/activation';
-import {SiteAdminDataProps} from '@/ui/admin/type';
+import {UserActivationUiCommonProps} from '@/ui/admin/activation/type';
 
 
-type Props = SiteAdminDataProps & {
+type Props = UserActivationUiCommonProps & {
   title: string,
   filter: (data: UserActivationDataAtClient) => boolean,
 };
 
-export const UserActivationStatsUnit = ({activations, title, filter}: Props) => {
-  const filtered = activations.filter(filter);
+export const UserActivationStatsUnit = ({control, title, filter}: Props) => {
+  const filtered = control.state.data.filter(filter);
 
   return (
     <Flex direction="row" className="items-end justify-center gap-1">

@@ -9,24 +9,23 @@ import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationSource} from '@/types/mongo/activation';
 import {userActivationContactToText} from '@/ui/admin/activation/const';
-import {UserActivationUiControl} from '@/ui/admin/activation/type';
+import {UserActivationUiCommonProps, UserActivationUiControl} from '@/ui/admin/activation/type';
 import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {UserActivationUnit} from '@/ui/admin/activation/viewer/unit';
-import {SiteAdminDataProps} from '@/ui/admin/type';
 
 
-type Props = SiteAdminDataProps & {
+type Props = UserActivationUiCommonProps & {
   source: UserActivationSource,
   control: UserActivationUiControl,
 };
 
 export const UserActivationViewer = (props: Props) => {
-  const {activations, source, control} = props;
+  const {source, control} = props;
 
   const collapsible = useCollapsible();
   const [search, setSearch] = React.useState('');
 
-  let activationsOfSource = activations
+  let activationsOfSource = control.state.data
     .filter((activation) => activation.source === source)
     .map((activation) => ({
       ...activation,

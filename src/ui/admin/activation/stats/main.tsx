@@ -3,10 +3,10 @@ import React from 'react';
 import {Grid} from '@/components/layout/grid';
 import {durationOfDay} from '@/const/common';
 import {UserActivationStatsUnit} from '@/ui/admin/activation/stats/unit';
-import {SiteAdminDataProps} from '@/ui/admin/type';
+import {UserActivationUiCommonProps} from '@/ui/admin/activation/type';
 
 
-export const UserActivationStats = (props: SiteAdminDataProps) => {
+export const UserActivationStats = (props: UserActivationUiCommonProps) => {
   const now = new Date();
 
   return (
