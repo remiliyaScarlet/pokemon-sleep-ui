@@ -5,7 +5,7 @@ export const efficiencyBeforeBreakPoint: {[breakPoint in EfficiencyBreakPoint]: 
   80: 2.2,
   60: 1.9,
   40: 1.6,
-  20: 1.3,
+  20: 1.4,
   0: 1,
 };
 
