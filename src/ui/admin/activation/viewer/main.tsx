@@ -10,21 +10,20 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {UserActivationSource} from '@/types/mongo/activation';
 import {userActivationContactToText} from '@/ui/admin/activation/const';
 import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
-import {useUserActivationPopup} from '@/ui/admin/activation/viewer/popup/hook';
-import {UserActivationPopup} from '@/ui/admin/activation/viewer/popup/main';
+import {UseUserActivationPopupReturn} from '@/ui/admin/activation/viewer/popup/type';
 import {UserActivationUnit} from '@/ui/admin/activation/viewer/unit';
 import {SiteAdminDataProps} from '@/ui/admin/type';
 
 
 type Props = SiteAdminDataProps & {
   source: UserActivationSource,
+  popup: UseUserActivationPopupReturn,
 };
 
 export const UserActivationViewer = (props: Props) => {
-  const {activations, source} = props;
+  const {activations, source, popup} = props;
 
   const collapsible = useCollapsible();
-  const popup = useUserActivationPopup();
   const [search, setSearch] = React.useState('');
 
   let activationsOfSource = activations
@@ -43,7 +42,6 @@ export const UserActivationViewer = (props: Props) => {
     <Collapsible state={collapsible} classNameForHeight="h-80" button={
       <div className="p-2">{userActivationContactToText[source]}</div>
     }>
-      <UserActivationPopup state={popup} {...props}/>
       <Flex className="gap-1.5 pr-1.5">
         <InputRow>
           <InputBox
