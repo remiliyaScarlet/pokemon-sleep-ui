@@ -29,6 +29,7 @@ export const UserActivationGenerator = ({control}: Props) => {
       <UserActivationEditor
         data={data}
         setData={setData}
+        idPrefix="generator"
         onSubmit={async (data) => {
           const updated = await actAsync({
             action: 'load',

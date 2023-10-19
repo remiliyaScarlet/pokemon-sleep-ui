@@ -2,7 +2,6 @@ import React from 'react';
 
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 
-import {Loading} from '@/components/icons/loading';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
@@ -14,7 +13,6 @@ import {
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {FlexForm} from '@/components/layout/flex/form';
-import {useUserDataActor} from '@/hooks/userData/actor';
 import {IsoDateString} from '@/types/date';
 import {
   userActivationContact,
@@ -30,20 +28,16 @@ import {isActivationDataValid} from '@/utils/user/activation';
 type Props = {
   data: UserActivationPropertiesAtClient,
   setData: ReactStateUpdaterFromOriginal<UserActivationPropertiesAtClient>,
+  idPrefix: string,
   onSubmit: (data: UserActivationPropertiesAtClient) => void,
 };
 
 export const UserActivationEditor = ({
   data,
   setData,
+  idPrefix,
   onSubmit,
 }: Props) => {
-  const {actAsync} = useUserDataActor();
-
-  if (!actAsync) {
-    return <Loading text="Activation Key Generator"/>;
-  }
-
   const {
     expiry,
     contact,
@@ -63,7 +57,7 @@ export const UserActivationEditor = ({
     }}>
       <InputRowWithTitle title="Expiry">
         <InputBox
-          id="expiry"
+          id={`${idPrefix}expiry`}
           type="date"
           value={expiry}
           className={commonInputStyle}
@@ -77,7 +71,7 @@ export const UserActivationEditor = ({
         title="Activation"
         ids={[...userActivationType]}
         idToButton={(activation) => userActivationTypeToText[activation]}
-        idToItemId={(activation) => activation}
+        idToItemId={(activation) => `${idPrefix}activation${activation}`}
         {...getMultiSelectOnClickProps({
           filter: data,
           setFilter: setData,
@@ -88,7 +82,7 @@ export const UserActivationEditor = ({
         title="Source"
         ids={[...userActivationSource]}
         idToButton={(source) => userActivationContactToText[source]}
-        idToItemId={(source) => source}
+        idToItemId={(source) => `${idPrefix}source${source}`}
         {...getSingleSelectOnClickProps({
           filter: data,
           setFilter: setData,
@@ -98,7 +92,7 @@ export const UserActivationEditor = ({
       {[...userActivationContact].map((platform) => (
         <InputRowWithTitle key={platform} title={userActivationContactToText[platform]}>
           <InputBox
-            id={`contact${platform}`}
+            id={`${idPrefix}contact${platform}`}
             type="text"
             value={contact[platform] ?? ''}
             className={commonInputStyle}
@@ -114,7 +108,7 @@ export const UserActivationEditor = ({
       ))}
       <InputRowWithTitle title="Properties">
         <ToggleButton
-          id="isSpecial"
+          id={`${idPrefix}isSpecial`}
           active={isSpecial}
           onChange={(isSpecial) => setData((original) => ({
             ...original,
@@ -127,7 +121,7 @@ export const UserActivationEditor = ({
       </InputRowWithTitle>
       <InputRowWithTitle title="Note">
         <InputBox
-          id="note"
+          id={`${idPrefix}note`}
           type="text"
           value={note}
           className={commonInputStyle}
