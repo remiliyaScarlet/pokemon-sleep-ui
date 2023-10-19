@@ -10,3 +10,9 @@ export const isAdmin = (userId: string | undefined): boolean => {
 
   return adminUid?.equals(new ObjectId(userId)) ?? false;
 };
+
+export const throwIfNotAdmin = (userId: string | undefined) => {
+  if (!isAdmin(userId)) {
+    throw new Error('Attempted to generate user activation key without admin privilege!');
+  }
+};

@@ -4,7 +4,8 @@ import {Collection} from 'mongodb';
 
 import {durationOfDay} from '@/const/common';
 import {getSingleData} from '@/controller/common';
-import {isAdmin} from '@/controller/user/account/common';
+import {throwIfNotAdmin} from '@/controller/user/account/common';
+import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
 import {UserActivationKey, UserActivationProperties} from '@/types/mongo/activation';
 
@@ -17,14 +18,10 @@ const getCollection = async (): Promise<Collection<UserActivationKey>> => {
     .collection<UserActivationKey>('activationKey');
 };
 
-type GenerateActivationKeyOpts = UserActivationProperties & {
-  executorUserId: string,
-};
+type GenerateActivationKeyOpts = ControllerRequireAdminOpts & UserActivationProperties;
 
 export const generateActivationKey = async ({executorUserId, ...opts}: GenerateActivationKeyOpts): Promise<string> => {
-  if (!isAdmin(executorUserId)) {
-    throw new Error('Attempted to generate user activation key without admin privilege!');
-  }
+  throwIfNotAdmin(executorUserId);
 
   const key = crypto.randomBytes(24).toString('hex');
   await (await getCollection()).insertOne({
