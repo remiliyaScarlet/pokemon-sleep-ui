@@ -16,7 +16,7 @@ export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFail
   }
 
   const hash = crypto
-    .createHmac('md5', process.env.EXTERNAL_PATREON_API_SECRET)
+    .createHmac('md5', process.env.EXTERNAL_PATREON_WEBHOOK_SECRET)
     .update(message)
     .digest('hex');
 

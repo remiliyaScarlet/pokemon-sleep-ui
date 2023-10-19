@@ -25,6 +25,7 @@ declare global {
 
       // External services
       EXTERNAL_PATREON_API_SECRET: string;
+      EXTERNAL_PATREON_WEBHOOK_SECRET: string;
 
       // Subscription related
       SUBSCRIPTION_EMAIL_SERVER: string;
