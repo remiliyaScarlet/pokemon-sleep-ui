@@ -1,6 +1,8 @@
 import crypto from 'crypto';
 
 import {UserActivationProperties} from '@/types/mongo/activation';
+import {PatreonResponse} from '@/types/patreon/common/response';
+import {PatreonUser} from '@/types/patreon/common/user';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
@@ -27,12 +29,18 @@ export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFail
   throw new Error(`Patreon signature mismatch / message: ${message}`);
 };
 
-export const toActivationProperties = (payload: PatreonWebhookPayload): UserActivationProperties | null => {
-  const {email, social_connections: social} = payload.included[1].attributes;
+export const toActivationProperties = async (
+  payload: PatreonWebhookPayload,
+): Promise<UserActivationProperties | null> => {
   const {
     access_expires_at: accessExpiry,
     last_charge_status: chargeStatus,
   } = payload.data.attributes;
+
+  const userResponse = await fetch(payload.data.relationships.user.links.related);
+  const userData = await userResponse.json() as PatreonResponse<PatreonUser>;
+
+  const {email, social_connections: social} = userData.data.attributes;
 
   if (chargeStatus !== 'Paid') {
     return null;
