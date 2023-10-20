@@ -23,4 +23,6 @@ export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload)
   }
 
   await sendUserActivationEmail({recipient: email, activationLink});
+  // eslint-disable-next-line no-console
+  console.log(`Activation email sent to Patreon ${email} with link ${activationLink}`);
 };

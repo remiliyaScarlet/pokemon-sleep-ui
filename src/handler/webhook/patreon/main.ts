@@ -14,6 +14,11 @@ export const handlePatreonWebhook = async (request: Request) => {
   const messageObj = JSON.parse(message) as PatreonWebhookPayload;
   const trigger = request.headers.get(patreonHeaderKeyOfTrigger) as PatreonEventType | null;
 
+  /* eslint-disable no-console */
+  console.log('Patreon Webhook trigger:', trigger);
+  console.log('Patreon Webhook message received:', message);
+  /* eslint-enable no-console */
+
   if (!trigger) {
     return Response.json({}, {status: 400});
   }

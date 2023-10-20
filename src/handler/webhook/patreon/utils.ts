@@ -26,7 +26,7 @@ export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFail
     return;
   }
 
-  throw new Error(`Patreon signature mismatch / message: ${message}`);
+  throw new Error(`Patreon signature mismatch / Hash: [E] ${expected} [A]: ${hash} / message: ${message}`);
 };
 
 export const toPatreonUserActivationPayload = async (
@@ -42,12 +42,19 @@ export const toPatreonUserActivationPayload = async (
     return {email, activationProperties: null};
   }
 
-  const social = (await getPatreonMemberData({userId: id})).included[0].attributes.social_connections;
+  const memberData = await getPatreonMemberData({userId: id});
+
+  const social = memberData.included[0].attributes.social_connections;
 
   let existedActivationProperties;
   if (!social) {
     existedActivationProperties = (await getActivationPropertiesByPatreonContact(email));
   }
+
+  /* eslint-disable no-console */
+  console.log(`Patreon member data of ${id} (${email}):`, memberData);
+  console.log(`Existed activation properties of ${email} on Patreon:`, existedActivationProperties);
+  /* eslint-enable no-console */
 
   return {
     email,
