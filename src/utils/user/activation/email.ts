@@ -1,4 +1,5 @@
 import {sendEmail} from '@/utils/email';
+import {getActivationEmailContent} from '@/utils/user/activation/content';
 
 
 type SendActivationEmail = {
@@ -12,7 +13,7 @@ export const sendActivationEmail = async ({recipient, activationLink}: SendActiv
     from: process.env.SUBSCRIPTION_EMAIL_FROM,
     to: recipient,
     subject: 'Pokemon Sleep 訂閱啟用連結 / Subscription Activation Link',
-    text: activationLink,
-    html: activationLink,
+    text: getActivationEmailContent(activationLink),
+    html: getActivationEmailContent(activationLink).replaceAll('\n', '<br/>'),
   });
 };
