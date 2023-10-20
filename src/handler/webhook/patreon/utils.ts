@@ -1,8 +1,7 @@
 import crypto from 'crypto';
 
-import {UserActivationProperties} from '@/types/mongo/activation';
-import {PatreonResponse} from '@/types/patreon/common/response';
-import {PatreonUser} from '@/types/patreon/common/user';
+import {getPatreonMemberData} from '@/handler/webhook/patreon/api/member/main';
+import {PatreonUserActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
@@ -29,37 +28,40 @@ export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFail
   throw new Error(`Patreon signature mismatch / message: ${message}`);
 };
 
-export const toActivationProperties = async (
+export const toPatreonUserActivationPayload = async (
   payload: PatreonWebhookPayload,
-): Promise<UserActivationProperties | null> => {
+): Promise<PatreonUserActivationPayload> => {
+  const {id, attributes} = payload.data;
   const {
-    access_expires_at: accessExpiry,
+    email,
     last_charge_status: chargeStatus,
-  } = payload.data.attributes;
-
-  const userResponse = await fetch(payload.data.relationships.user.links.related);
-  const userData = await userResponse.json() as PatreonResponse<PatreonUser>;
-
-  const {email, social_connections: social} = userData.data.attributes;
+  } = attributes;
 
   if (chargeStatus !== 'Paid') {
-    return null;
+    return {email, activationProperties: null};
   }
 
+  const {
+    social_connections: social,
+  } = (await getPatreonMemberData({userId: id})).included[0].attributes;
+
   return {
-    expiry: getActivationExpiry(accessExpiry),
-    activation: {
-      adsFree: true,
-      premium: true,
+    email,
+    activationProperties: {
+      expiry: getActivationExpiry(payload.data),
+      activation: {
+        adsFree: true,
+        premium: true,
+      },
+      source: 'patreon',
+      contact: {
+        patreon: email,
+        ...(social.discord ? {
+          discord: `<@${social.discord.user_id}>`,
+        } : {}),
+      },
+      isSpecial: false,
+      note: '',
     },
-    source: 'patreon',
-    contact: {
-      patreon: email,
-      ...(social.discord ? {
-        discord: `<@${social.discord.user_id}>`,
-      } : {}),
-    },
-    isSpecial: false,
-    note: '',
   };
 };

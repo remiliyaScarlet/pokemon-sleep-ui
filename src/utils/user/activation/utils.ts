@@ -1,13 +1,14 @@
-import {IsoUtcTimestampString} from '@/types/date';
 import {
   UserActivationData,
   UserActivationDataAtClient,
   UserActivationProperties,
   UserActivationPropertiesAtClient,
 } from '@/types/mongo/activation';
+import {PatreonMember} from '@/types/patreon/common/member';
 import {toIsoDateString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
+import {defaultExpiryDays} from '@/utils/user/activation/const';
 
 
 export const isActivationDataValid = ({source, contact, note}: UserActivationPropertiesAtClient) => {
@@ -50,14 +51,21 @@ export const toUserActivationProperties = ({
   expiry: new Date(expiry),
 });
 
-export const getActivationExpiry = (expiryTimestamp?: IsoUtcTimestampString | null) => {
-  if (expiryTimestamp) {
-    return new Date(expiryTimestamp);
+export const getActivationExpiry = (member?: PatreonMember): Date => {
+  let expiry;
+
+  if (member?.attributes.last_charge_date) {
+    const {
+      last_charge_date: lastChargeIsoUtc,
+      pledge_cadence: cadence,
+    } = member.attributes;
+
+    expiry = new Date(lastChargeIsoUtc);
+    expiry.setDate(expiry.getDate() + cadence * 31);
+  } else {
+    expiry = new Date();
+    expiry.setDate(expiry.getDate() + defaultExpiryDays);
   }
-
-  const expiry = new Date();
-
-  expiry.setDate(expiry.getDate() + 183);
 
   return expiry;
 };
