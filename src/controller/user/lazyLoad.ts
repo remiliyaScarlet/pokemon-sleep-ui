@@ -71,10 +71,12 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
   }
 
   if (type === 'adminActivationCreate') {
-    return await generateActivationKey({
+    const activationLink = await generateActivationKey({
       executorUserId: userId,
       ...toUserActivationProperties(opts),
-    }) satisfies UserLazyLoadedData['adminActivationCreate'];
+    });
+
+    return (activationLink ?? '(Duplicated)') satisfies UserLazyLoadedData['adminActivationCreate'];
   }
 
   console.error(`Unknown data type ${type satisfies never} to load data`);

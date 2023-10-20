@@ -20,11 +20,21 @@ const getCollection = async (): Promise<Collection<UserActivationKey>> => {
 
 type GenerateActivationKeyOpts = ControllerRequireAdminOpts & UserActivationProperties;
 
-export const generateActivationKey = async ({executorUserId, ...opts}: GenerateActivationKeyOpts): Promise<string> => {
+export const generateActivationKey = async ({
+  executorUserId,
+  ...opts
+}: GenerateActivationKeyOpts): Promise<string | null> => {
   throwIfNotAdmin(executorUserId);
 
+  const collection = await getCollection();
+  const {source} = opts;
+
+  if (await collection.findOne({source})) {
+    return null;
+  }
+
   const key = crypto.randomBytes(24).toString('hex');
-  await (await getCollection()).insertOne({
+  await collection.insertOne({
     ...opts,
     key,
     generatedAt: new Date(),
