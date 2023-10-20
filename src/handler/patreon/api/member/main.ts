@@ -1,12 +1,12 @@
 import {patreonSearchParams} from '@/handler/patreon/api/const';
-import {PatreonMemberData} from '@/handler/patreon/api/member/type';
+import {PatreonMemberResponse} from '@/handler/patreon/api/member/type';
 
 
 type GetPatreonMemberOpts = {
   userId: string,
 };
 
-export const getPatreonMemberData = async ({userId}: GetPatreonMemberOpts): Promise<PatreonMemberData> => {
+export const getPatreonMember = async ({userId}: GetPatreonMemberOpts): Promise<PatreonMemberResponse> => {
   const response = await fetch(
     `https://www.patreon.com/api/oauth2/v2/members/${userId}?${patreonSearchParams.toString()}`,
     {
@@ -16,5 +16,5 @@ export const getPatreonMemberData = async ({userId}: GetPatreonMemberOpts): Prom
     },
   );
 
-  return await response.json() as PatreonMemberData;
+  return await response.json() as PatreonMemberResponse;
 };

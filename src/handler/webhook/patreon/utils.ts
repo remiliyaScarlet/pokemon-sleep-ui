@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
-import {getPatreonMemberData} from '@/handler/patreon/api/member/main';
+import {getPatreonMember} from '@/handler/patreon/api/member/main';
 import {PatreonActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
@@ -42,7 +42,7 @@ export const toPatreonActivationPayload = async (
     return {email, activationProperties: null};
   }
 
-  const memberData = await getPatreonMemberData({userId: id});
+  const memberData = await getPatreonMember({userId: id});
 
   const social = memberData.included[0].attributes.social_connections;
 
