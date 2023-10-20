@@ -1,7 +1,7 @@
 import crypto from 'crypto';
 
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
-import {getPatreonMemberData} from '@/handler/webhook/patreon/api/member/main';
+import {getPatreonMemberData} from '@/handler/patreon/api/member/main';
 import {PatreonActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
