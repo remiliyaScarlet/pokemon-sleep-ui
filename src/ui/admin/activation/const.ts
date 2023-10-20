@@ -1,13 +1,13 @@
-import {UserActivationContact, UserActivationType} from '@/types/mongo/activation';
+import {ActivationContact, ActivationType} from '@/types/mongo/activation';
 
 
-export const userActivationContactToText: {[contact in UserActivationContact]: string} = {
+export const activationContactToText: {[contact in ActivationContact]: string} = {
   patreon: 'Patreon',
   discord: 'Discord',
   line: 'LINE',
 };
 
-export const userActivationTypeToText: {[type in UserActivationType]: string} = {
+export const activationTypeToText: {[type in ActivationType]: string} = {
   adsFree: 'Ads-Free',
   premium: 'Premium',
 };

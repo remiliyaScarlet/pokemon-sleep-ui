@@ -1,11 +1,11 @@
 import {generateActivationKey} from '@/controller/user/activation/key';
-import {toPatreonUserActivationPayload} from '@/handler/webhook/patreon/utils';
+import {toPatreonActivationPayload} from '@/handler/webhook/patreon/utils';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
-import {sendUserActivationEmail} from '@/utils/user/activation/email';
+import {sendActivationEmail} from '@/utils/user/activation/email';
 
 
 export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload) => {
-  const {email, activationProperties} = await toPatreonUserActivationPayload(payload);
+  const {email, activationProperties} = await toPatreonActivationPayload(payload);
 
   if (!activationProperties) {
     console.warn(`Patreon received non-Paid charge status of user ${email}`);
@@ -22,7 +22,7 @@ export const handlePatreonPledgeCreated = async (payload: PatreonWebhookPayload)
     return;
   }
 
-  await sendUserActivationEmail({recipient: email, activationLink});
+  await sendActivationEmail({recipient: email, activationLink});
   // eslint-disable-next-line no-console
   console.log(`Activation email sent to Patreon ${email} with link ${activationLink}`);
 };

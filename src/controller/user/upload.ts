@@ -1,6 +1,6 @@
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
-import {removeActivationDataByKey, updateUserActivationByKey} from '@/controller/user/activation/data';
+import {removeActivationDataByKey, updateActivationDataByKey} from '@/controller/user/activation/data';
 import {
   userDataCooking,
   userDataPokeboxDisplay,
@@ -76,7 +76,7 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   }
 
   if (type === 'admin.activation.update') {
-    await updateUserActivationByKey({
+    await updateActivationDataByKey({
       ...data,
       executorUserId: userId,
       expiry: new Date(data.expiry),

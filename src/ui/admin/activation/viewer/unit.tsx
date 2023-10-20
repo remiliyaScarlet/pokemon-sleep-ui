@@ -2,18 +2,18 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {UserActivationDataAtClient} from '@/types/mongo/activation';
-import {UserActivationUiControl} from '@/ui/admin/activation/type';
+import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationUiControl} from '@/ui/admin/activation/type';
 import {isExpiringSoon} from '@/ui/admin/activation/utils';
 
 
 type Props = {
-  data: UserActivationDataAtClient,
-  control: UserActivationUiControl,
+  data: ActivationDataAtClient,
+  control: ActivationUiControl,
   button: React.ReactNode,
 };
 
-export const UserActivationUnit = ({data, control, button}: Props) => {
+export const ActivationUnit = ({data, control, button}: Props) => {
   const {userId} = data;
   const {showActivation} = control;
 

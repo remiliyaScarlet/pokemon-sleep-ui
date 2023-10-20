@@ -5,7 +5,7 @@ import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/t
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
-import {toUserActivationProperties} from '@/utils/user/activation/utils';
+import {toActivationProperties} from '@/utils/user/activation/utils';
 import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
@@ -73,7 +73,7 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
   if (type === 'adminActivationCreate') {
     const activationLink = await generateActivationKey({
       executorUserId: userId,
-      ...toUserActivationProperties(opts),
+      ...toActivationProperties(opts),
     });
 
     return (activationLink ?? '(Duplicated)') satisfies UserLazyLoadedData['adminActivationCreate'];

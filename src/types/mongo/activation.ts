@@ -9,52 +9,52 @@ export type UserDataInDatabase<T> = {
   data: T,
 };
 
-export const userActivationType = [
+export const activationType = [
   'adsFree',
   'premium',
 ] as const;
 
-export type UserActivationType = typeof userActivationType[number];
+export type ActivationType = typeof activationType[number];
 
-export const userActivationSource = [
+export const activationSource = [
   'discord',
   'patreon',
 ] as const;
 
-export type UserActivationSource = typeof userActivationSource[number];
+export type ActivationSource = typeof activationSource[number];
 
-export const userActivationContact = [
-  ...userActivationSource,
+export const activationContact = [
+  ...activationSource,
   'line',
 ] as const;
 
-export type UserActivationContact = typeof userActivationContact[number];
+export type ActivationContact = typeof activationContact[number];
 
-export type UserActivationStatus = FilterInclusionMap<UserActivationType>;
+export type ActivationStatus = FilterInclusionMap<ActivationType>;
 
-export type UserActivationProperties = {
+export type ActivationProperties = {
   expiry: Date,
-  source: UserActivationSource | null,
-  contact: {[contact in UserActivationContact]?: string | null},
+  source: ActivationSource | null,
+  contact: {[contact in ActivationContact]?: string | null},
   isSpecial: boolean,
   note: string,
-  activation: UserActivationStatus,
+  activation: ActivationStatus,
 };
 
-export type UserActivationPropertiesAtClient = Omit<UserActivationProperties, 'expiry'> & {
+export type ActivationPropertiesAtClient = Omit<ActivationProperties, 'expiry'> & {
   expiry: IsoDateString,
 };
 
-export type UserActivationKey = UserActivationProperties & {
+export type ActivationKey = ActivationProperties & {
   key: string,
   generatedAt: Date,
 };
 
-export type UserActivationData = UserActivationKey & {
+export type ActivationData = ActivationKey & {
   userId: ObjectId,
 };
 
-export type UserActivationDataAtClient = Omit<UserActivationData, 'expiry' | 'generatedAt' | 'userId'> & {
+export type ActivationDataAtClient = Omit<ActivationData, 'expiry' | 'generatedAt' | 'userId'> & {
   expiry: IsoDateString,
   generatedAt: IsoDateString,
   userId: string,

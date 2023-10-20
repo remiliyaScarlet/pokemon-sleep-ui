@@ -7,25 +7,25 @@ import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import {getActivationKey, removeActivationKeyByKey} from '@/controller/user/activation/key';
 import mongoPromise from '@/lib/mongodb';
 import {
-  userActivationContact,
-  UserActivationData,
-  UserActivationDataAtClient,
-  UserActivationKey,
-  UserActivationProperties,
-  UserActivationStatus,
+  activationContact,
+  ActivationData,
+  ActivationDataAtClient,
+  ActivationKey,
+  ActivationProperties,
+  ActivationStatus,
 } from '@/types/mongo/activation';
-import {toUserActivationDataAtClient} from '@/utils/user/activation/utils';
+import {toActivationDataAtClient} from '@/utils/user/activation/utils';
 
 
-const getCollection = async (): Promise<Collection<UserActivationData>> => {
+const getCollection = async (): Promise<Collection<ActivationData>> => {
   const client = await mongoPromise;
 
   return client
     .db('auth')
-    .collection<UserActivationData>('activation');
+    .collection<ActivationData>('activation');
 };
 
-export const userActivateKey = async (userId: string, key: string): Promise<boolean> => {
+export const consumeActivationKey = async (userId: string, key: string): Promise<boolean> => {
   const activationKey = await getActivationKey(key);
 
   if (!activationKey) {
@@ -47,7 +47,7 @@ export const userActivateKey = async (userId: string, key: string): Promise<bool
 };
 
 type GetActivationDataByFilterOpts = ControllerRequireAdminOpts & {
-  filter: Filter<UserActivationData>,
+  filter: Filter<ActivationData>,
 };
 
 export const getActivationDataByFilter = ({executorUserId, filter}: GetActivationDataByFilterOpts) => {
@@ -56,7 +56,7 @@ export const getActivationDataByFilter = ({executorUserId, filter}: GetActivatio
   return getSingleData(getCollection(), filter);
 };
 
-export const getActivationData = async (userId: string): Promise<UserActivationStatus | null> => {
+export const getActivationData = async (userId: string): Promise<ActivationStatus | null> => {
   const data = await getSingleData(getCollection(), {userId: new ObjectId(userId)});
 
   if (!data) {
@@ -66,18 +66,18 @@ export const getActivationData = async (userId: string): Promise<UserActivationS
   return data.activation;
 };
 
-export const getAllActivationsAsClient = async (): Promise<UserActivationDataAtClient[]> => {
-  return (await getDataAsArray(getCollection())).map(toUserActivationDataAtClient);
+export const getAllActivationDataAsClient = async (): Promise<ActivationDataAtClient[]> => {
+  return (await getDataAsArray(getCollection())).map(toActivationDataAtClient);
 };
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
 type UpdateActivationPropertiesOfDataOpts = ControllerRequireAdminOpts & {
-  filter: Filter<UserActivationData>,
-  update: UserActivationProperties,
+  filter: Filter<ActivationData>,
+  update: ActivationProperties,
 };
 
-export const updateActivationPropertiesOfData = async ({
+export const updateActivationDataProperties = async ({
   executorUserId,
   filter,
   update,
@@ -87,11 +87,11 @@ export const updateActivationPropertiesOfData = async ({
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
-type UpdateUserActivationByKeyOpts = ControllerRequireAdminOpts & UserActivationProperties & {
-  key: UserActivationData['key'],
+type UpdateActivationByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
+  key: ActivationData['key'],
 };
 
-export const updateUserActivationByKey = async ({
+export const updateActivationDataByKey = async ({
   executorUserId,
   key,
   activation,
@@ -100,7 +100,7 @@ export const updateUserActivationByKey = async ({
   contact,
   isSpecial,
   note,
-}: UpdateUserActivationByKeyOpts) => updateActivationPropertiesOfData({
+}: UpdateActivationByKeyOpts) => updateActivationDataProperties({
   executorUserId,
   filter: {key},
   update: {
@@ -113,18 +113,18 @@ export const updateUserActivationByKey = async ({
   },
 });
 
-type RemoveUserActivationDataOpts = ControllerRequireAdminOpts & {
-  filter: Filter<UserActivationKey>,
+type RemoveActivationDataOpts = ControllerRequireAdminOpts & {
+  filter: Filter<ActivationKey>,
 };
 
-export const removeActivationData = async ({executorUserId, filter}: RemoveUserActivationDataOpts) => {
+export const removeActivationData = async ({executorUserId, filter}: RemoveActivationDataOpts) => {
   throwIfNotAdmin(executorUserId);
 
   return (await getCollection()).deleteOne(filter);
 };
 
 type RemoveActivationDataByKeyOpts = ControllerRequireAdminOpts & {
-  key: UserActivationData['key'],
+  key: ActivationData['key'],
 };
 
 export const removeActivationDataByKey = ({executorUserId, key}: RemoveActivationDataByKeyOpts) => (
@@ -137,7 +137,7 @@ const addIndex = async () => {
   return Promise.all([
     collection.createIndex({userId: 1, key: 1}, {unique: true}),
     collection.createIndex({expiry: 1}, {expireAfterSeconds: 0}),
-    ...userActivationContact.map((channel) => (
+    ...activationContact.map((channel) => (
       collection.createIndex({[`contact.${channel}`]: 1}, {unique: true, sparse: true})
     )),
   ]);

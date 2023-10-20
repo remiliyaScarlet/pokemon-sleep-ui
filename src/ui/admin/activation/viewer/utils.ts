@@ -1,27 +1,27 @@
 import {
-  userActivationContact,
-  UserActivationDataAtClient,
-  UserActivationSource,
+  activationContact,
+  ActivationDataAtClient,
+  ActivationSource,
   UserIdToEmailMap,
 } from '@/types/mongo/activation';
-import {userActivationContactToText} from '@/ui/admin/activation/const';
-import {userActivationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
+import {activationContactToText} from '@/ui/admin/activation/const';
+import {activationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {isNotNullish} from '@/utils/type';
 
 
-type GetUserActivationButtonTextOpts = {
-  data: UserActivationDataAtClient,
-  source: UserActivationSource | null,
+type GetActivationButtonTextOpts = {
+  data: ActivationDataAtClient,
+  source: ActivationSource | null,
   userIdEmailMap: UserIdToEmailMap,
 };
 
-export const getUserActivationButtonText = ({
+export const getActivationButtonText = ({
   data,
   source,
   userIdEmailMap,
-}: GetUserActivationButtonTextOpts): string => {
+}: GetActivationButtonTextOpts): string => {
   if (!source) {
-    const contact = userActivationContact.map((channel) => {
+    const contact = activationContact.map((channel) => {
       const contact = data.contact[channel];
 
       if (!contact) {
@@ -40,13 +40,13 @@ export const getUserActivationButtonText = ({
     return userIdEmailMap[data.userId] ?? data.userId;
   }
 
-  return userActivationButtonTextGetter[source](data);
+  return activationButtonTextGetter[source](data);
 };
 
-export const getUserActivationTitle = (source: UserActivationSource | null) => {
+export const getActivationTitle = (source: ActivationSource | null) => {
   if (!source) {
     return '(Free)';
   }
 
-  return userActivationContactToText[source];
+  return activationContactToText[source];
 };

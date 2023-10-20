@@ -7,18 +7,18 @@ import {getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {userActivationContact, UserActivationKey, UserActivationProperties} from '@/types/mongo/activation';
+import {activationContact, ActivationKey, ActivationProperties} from '@/types/mongo/activation';
 
 
-const getCollection = async (): Promise<Collection<UserActivationKey>> => {
+const getCollection = async (): Promise<Collection<ActivationKey>> => {
   const client = await mongoPromise;
 
   return client
     .db('auth')
-    .collection<UserActivationKey>('activationKey');
+    .collection<ActivationKey>('activationKey');
 };
 
-type GenerateActivationKeyOpts = ControllerRequireAdminOpts & UserActivationProperties;
+type GenerateActivationKeyOpts = ControllerRequireAdminOpts & ActivationProperties;
 
 export const generateActivationKey = async ({
   executorUserId,
@@ -44,7 +44,7 @@ export const generateActivationKey = async ({
 };
 
 type GetActivationKeyByFilterOpts = ControllerRequireAdminOpts & {
-  filter: Filter<UserActivationKey>,
+  filter: Filter<ActivationKey>,
 };
 
 export const getActivationKeyByFilter = ({executorUserId, filter}: GetActivationKeyByFilterOpts) => {
@@ -58,16 +58,16 @@ export const getActivationKey = async (key: string) => (
 );
 
 type UpdateActivationPropertiesOfKeyOpts = {
-  filter: Filter<UserActivationKey>,
-  update: UserActivationProperties,
+  filter: Filter<ActivationKey>,
+  update: ActivationProperties,
 };
 
-export const updateActivationPropertiesOfKey = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
+export const updateActivationKeyProperties = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
 type RemoveActivationKeyOpts = {
-  filter: Filter<UserActivationKey>,
+  filter: Filter<ActivationKey>,
 };
 
 export const removeActivationKey = async ({filter}: RemoveActivationKeyOpts) => {
@@ -84,7 +84,7 @@ const addIndex = async () => {
   return Promise.all([
     collection.createIndex({key: 1}, {unique: true}),
     collection.createIndex({generatedAt: 1}, {expireAfterSeconds: durationOfDay}),
-    ...userActivationContact.map((channel) => (
+    ...activationContact.map((channel) => (
       collection.createIndex({[`contact.${channel}`]: 1}, {unique: true, sparse: true})
     )),
   ]);

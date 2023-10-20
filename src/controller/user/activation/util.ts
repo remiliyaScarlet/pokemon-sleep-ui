@@ -3,30 +3,30 @@ import {Filter} from 'mongodb';
 import {
   getActivationDataByFilter,
   removeActivationData,
-  updateActivationPropertiesOfData,
+  updateActivationDataProperties,
 } from '@/controller/user/activation/data';
 import {
   getActivationKeyByFilter,
   removeActivationKey,
-  updateActivationPropertiesOfKey,
+  updateActivationKeyProperties,
 } from '@/controller/user/activation/key';
-import {UserActivationContact, UserActivationProperties} from '@/types/mongo/activation';
+import {ActivationContact, ActivationProperties} from '@/types/mongo/activation';
 
 
 type UpdateActivationPropertiesOpts = {
-  filter: Filter<UserActivationProperties>,
-  properties: UserActivationProperties,
+  filter: Filter<ActivationProperties>,
+  properties: ActivationProperties,
 };
 
 export const updateActivationProperties = ({filter, properties}: UpdateActivationPropertiesOpts) => {
   return Promise.all([
-    updateActivationPropertiesOfData({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter, update: properties}),
-    updateActivationPropertiesOfKey({filter, update: properties}),
+    updateActivationDataProperties({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter, update: properties}),
+    updateActivationKeyProperties({filter, update: properties}),
   ]);
 };
 
 type RemoveActivationPropertiesOpts = {
-  filter: Filter<UserActivationProperties>,
+  filter: Filter<ActivationProperties>,
 };
 
 export const removeActivation = ({filter}: RemoveActivationPropertiesOpts) => {
@@ -38,8 +38,8 @@ export const removeActivation = ({filter}: RemoveActivationPropertiesOpts) => {
 
 export const getActivationPropertiesByPatreonContact = async (
   contact: string,
-): Promise<UserActivationProperties | null> => {
-  const filter: Filter<UserActivationProperties> = {[`contact.${'patreon' satisfies UserActivationContact}`]: contact};
+): Promise<ActivationProperties | null> => {
+  const filter: Filter<ActivationProperties> = {[`contact.${'patreon' satisfies ActivationContact}`]: contact};
 
   const properties = await getActivationDataByFilter({
     executorUserId: process.env.NEXTAUTH_ADMIN_UID,

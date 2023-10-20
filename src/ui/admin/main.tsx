@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getAllActivationsAsClient} from '@/controller/user/activation/data';
+import {getAllActivationDataAsClient} from '@/controller/user/activation/data';
 import {getUserIdEmailMap} from '@/controller/user/auth/main';
 import {DefaultPageProps} from '@/types/next/page';
 import {SiteAdminClient} from '@/ui/admin/client';
@@ -9,7 +9,7 @@ import {AdminOnlyPageLayout} from '@/ui/base/layout/adminOnly';
 
 
 const SiteAdmin = async () => {
-  const activations = await getAllActivationsAsClient();
+  const activations = await getAllActivationDataAsClient();
   const userIdEmailMap = await getUserIdEmailMap(activations.map(({userId}) => userId));
 
   const props: SiteAdminServerDataProps = {

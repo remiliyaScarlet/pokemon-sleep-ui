@@ -1,28 +1,28 @@
-import {UserActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationDataAtClient} from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus, UserDataActorAsync} from '@/types/userData/main';
 import {SiteAdminServerDataProps} from '@/ui/admin/type';
 
 
-export type UserActivationUiState = {
-  data: UserActivationDataAtClient[],
+export type ActivationUiState = {
+  data: ActivationDataAtClient[],
   popup: {
     show: boolean,
-    data: UserActivationDataAtClient
+    data: ActivationDataAtClient
   },
 };
 
-export type UserActivationUiControl = {
-  state: UserActivationUiState,
-  setState: ReactStateUpdaterFromOriginal<UserActivationUiState>,
+export type ActivationUiControl = {
+  state: ActivationUiState,
+  setState: ReactStateUpdaterFromOriginal<ActivationUiState>,
   setPopupShow: (show: boolean) => void,
-  showActivation: (data: UserActivationDataAtClient) => void,
+  showActivation: (data: ActivationDataAtClient) => void,
   actAsync: UserDataActorAsync,
   status: UserDataActionStatus,
-  updateActivation: (updated: UserActivationDataAtClient) => void,
+  updateActivation: (updated: ActivationDataAtClient) => void,
   deleteActivation: () => void,
 };
 
-export type UserActivationUiCommonProps = SiteAdminServerDataProps & {
-  control: UserActivationUiControl,
+export type ActivationUiCommonProps = SiteAdminServerDataProps & {
+  control: ActivationUiControl,
 };

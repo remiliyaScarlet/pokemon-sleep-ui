@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
 import {getPatreonMemberData} from '@/handler/webhook/patreon/api/member/main';
-import {PatreonUserActivationPayload} from '@/handler/webhook/patreon/type';
+import {PatreonActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
@@ -29,9 +29,9 @@ export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFail
   throw new Error(`Patreon signature mismatch / Hash: [E] ${expected} [A]: ${hash} / message: ${message}`);
 };
 
-export const toPatreonUserActivationPayload = async (
+export const toPatreonActivationPayload = async (
   payload: PatreonWebhookPayload,
-): Promise<PatreonUserActivationPayload> => {
+): Promise<PatreonActivationPayload> => {
   const {id, attributes} = payload.data;
   const {
     email,

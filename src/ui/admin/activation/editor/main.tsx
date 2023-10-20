@@ -16,26 +16,26 @@ import {FlexForm} from '@/components/layout/flex/form';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {IsoDateString} from '@/types/date';
 import {
-  userActivationContact,
-  UserActivationPropertiesAtClient,
-  userActivationSource,
-  userActivationType,
+  activationContact,
+  ActivationPropertiesAtClient,
+  activationSource,
+  activationType,
 } from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus} from '@/types/userData/main';
-import {userActivationContactToText, userActivationTypeToText} from '@/ui/admin/activation/const';
+import {activationContactToText, activationTypeToText} from '@/ui/admin/activation/const';
 import {isActivationDataValid} from '@/utils/user/activation/utils';
 
 
 type Props = {
-  data: UserActivationPropertiesAtClient,
-  setData: ReactStateUpdaterFromOriginal<UserActivationPropertiesAtClient>,
+  data: ActivationPropertiesAtClient,
+  setData: ReactStateUpdaterFromOriginal<ActivationPropertiesAtClient>,
   idPrefix: string,
   status: UserDataActionStatus,
-  onSubmit: (data: UserActivationPropertiesAtClient) => void,
+  onSubmit: (data: ActivationPropertiesAtClient) => void,
 };
 
-export const UserActivationEditor = ({
+export const ActivationEditor = ({
   data,
   setData,
   idPrefix,
@@ -68,13 +68,13 @@ export const UserActivationEditor = ({
           onChange={({target}) => setData((original) => ({
             ...original,
             expiry: target.value as IsoDateString,
-          } satisfies UserActivationPropertiesAtClient))}
+          } satisfies ActivationPropertiesAtClient))}
         />
       </InputRowWithTitle>
       <FilterTextInput
         title="Activation"
-        ids={[...userActivationType]}
-        idToButton={(activation) => userActivationTypeToText[activation]}
+        ids={[...activationType]}
+        idToButton={(activation) => activationTypeToText[activation]}
         idToItemId={(activation) => `${idPrefix}activation${activation}`}
         {...getMultiSelectOnClickProps({
           filter: data,
@@ -84,8 +84,8 @@ export const UserActivationEditor = ({
       />
       <FilterTextInput
         title="Source"
-        ids={[...userActivationSource]}
-        idToButton={(source) => userActivationContactToText[source]}
+        ids={[...activationSource]}
+        idToButton={(source) => activationContactToText[source]}
         idToItemId={(source) => `${idPrefix}source${source}`}
         {...getSingleSelectOnClickProps({
           filter: data,
@@ -93,8 +93,8 @@ export const UserActivationEditor = ({
           filterKey: 'source',
         })}
       />
-      {[...userActivationContact].map((platform) => (
-        <InputRowWithTitle key={platform} title={userActivationContactToText[platform]}>
+      {[...activationContact].map((platform) => (
+        <InputRowWithTitle key={platform} title={activationContactToText[platform]}>
           <InputBox
             id={`${idPrefix}contact${platform}`}
             type="text"
@@ -106,7 +106,7 @@ export const UserActivationEditor = ({
                 ...original.contact,
                 [platform]: target.value || null,
               },
-            } satisfies UserActivationPropertiesAtClient))}
+            } satisfies ActivationPropertiesAtClient))}
           />
         </InputRowWithTitle>
       ))}
@@ -117,7 +117,7 @@ export const UserActivationEditor = ({
           onChange={(isSpecial) => setData((original) => ({
             ...original,
             isSpecial,
-          } satisfies UserActivationPropertiesAtClient))}
+          } satisfies ActivationPropertiesAtClient))}
           className={getTextFilterButtonClass(isSpecial)}
         >
           Special Grant
@@ -132,7 +132,7 @@ export const UserActivationEditor = ({
           onChange={({target}) => setData((original) => ({
             ...original,
             note: target.value,
-          } satisfies UserActivationPropertiesAtClient))}
+          } satisfies ActivationPropertiesAtClient))}
         />
       </InputRowWithTitle>
       <InputRow className="justify-end gap-1.5">

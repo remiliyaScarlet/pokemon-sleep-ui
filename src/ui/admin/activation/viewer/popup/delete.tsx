@@ -4,21 +4,21 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
-import {userActivationContact, UserActivationDataAtClient} from '@/types/mongo/activation';
-import {userActivationContactToText} from '@/ui/admin/activation/const';
-import {UserActivationReadonlyField} from '@/ui/admin/activation/viewer/popup/field/readonly';
+import {activationContact, ActivationDataAtClient} from '@/types/mongo/activation';
+import {activationContactToText} from '@/ui/admin/activation/const';
+import {ActivationReadonlyField} from '@/ui/admin/activation/viewer/popup/field/readonly';
 import {isNotNullish} from '@/utils/type';
 
 
 type Props = {
-  data: UserActivationDataAtClient,
+  data: ActivationDataAtClient,
   onDelete: () => void,
 };
 
-export const UserActivationDelete = ({data, onDelete}: Props) => {
+export const ActivationDelete = ({data, onDelete}: Props) => {
   const [deleteConfirmation, setDeleteConfirmation] = React.useState(false);
 
-  const contactInfo = userActivationContact
+  const contactInfo = activationContact
     .map((channel) => {
       const contact = data.contact[channel];
 
@@ -26,7 +26,7 @@ export const UserActivationDelete = ({data, onDelete}: Props) => {
         return null;
       }
 
-      return {channel: userActivationContactToText[channel], contact};
+      return {channel: activationContactToText[channel], contact};
     })
     .filter(isNotNullish);
 
@@ -37,7 +37,7 @@ export const UserActivationDelete = ({data, onDelete}: Props) => {
           <div className="text-xl">Confirm Deleting Activation</div>
           <Flex className="info-section">
             {contactInfo.map(({channel, contact}) => (
-              <UserActivationReadonlyField key={channel} title={channel} data={contact}/>
+              <ActivationReadonlyField key={channel} title={channel} data={contact}/>
             ))}
           </Flex>
           <button className="button-alert-bg rounded-lg p-1" onClick={() => {

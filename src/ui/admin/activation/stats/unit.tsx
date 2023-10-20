@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {UserActivationDataAtClient} from '@/types/mongo/activation';
-import {UserActivationUiCommonProps} from '@/ui/admin/activation/type';
+import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationUiCommonProps} from '@/ui/admin/activation/type';
 
 
-type Props = UserActivationUiCommonProps & {
+type Props = ActivationUiCommonProps & {
   title: string,
-  filter: (data: UserActivationDataAtClient) => boolean,
+  filter: (data: ActivationDataAtClient) => boolean,
 };
 
-export const UserActivationStatsUnit = ({control, title, filter}: Props) => {
+export const ActivationStatsUnit = ({control, title, filter}: Props) => {
   const filtered = control.state.data.filter(filter);
 
   return (

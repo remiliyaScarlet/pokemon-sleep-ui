@@ -1,18 +1,18 @@
 import React from 'react';
 
 import {useUserDataActor} from '@/hooks/userData/actor';
-import {UserActivationDataAtClient} from '@/types/mongo/activation';
-import {UserActivationUiControl, UserActivationUiState} from '@/ui/admin/activation/type';
-import {generateInitialUserActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
+import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationUiControl, ActivationUiState} from '@/ui/admin/activation/type';
+import {generateInitialActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
 import {toIsoDateString} from '@/utils/date';
 
 
-type UseUserActivationUiOpts = {
-  activations: UserActivationDataAtClient[],
+type UseActivationUiOpts = {
+  activations: ActivationDataAtClient[],
 };
 
-export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): UserActivationUiControl | null => {
-  const [state, setState] = React.useState<UserActivationUiState>({
+export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationUiControl | null => {
+  const [state, setState] = React.useState<ActivationUiState>({
     // Keep a copy of the data to save refreshes that could create large I/O
     data: activations,
     popup: {
@@ -22,7 +22,7 @@ export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): Use
         userId: '',
         generatedAt: toIsoDateString(new Date()),
         key: '',
-        ...generateInitialUserActivationPropertiesAtClient(),
+        ...generateInitialActivationPropertiesAtClient(),
       },
     },
   });
@@ -35,7 +35,7 @@ export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): Use
 
   const {popup} = state;
 
-  const setPopupShow = (show: boolean) => setState((original): UserActivationUiState => ({
+  const setPopupShow = (show: boolean) => setState((original): ActivationUiState => ({
     ...original,
     popup: {
       ...original.popup,
@@ -47,7 +47,7 @@ export const useUserActivationUI = ({activations}: UseUserActivationUiOpts): Use
     state,
     setState,
     setPopupShow,
-    showActivation: (data: UserActivationDataAtClient) => setState((original): UserActivationUiState => ({
+    showActivation: (data: ActivationDataAtClient) => setState((original): ActivationUiState => ({
       ...original,
       popup: {
         show: true,

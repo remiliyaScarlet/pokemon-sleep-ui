@@ -1,5 +1,5 @@
 import {PokemonId} from '@/types/game/pokemon';
-import {UserActivationPropertiesAtClient} from '@/types/mongo/activation';
+import {ActivationPropertiesAtClient} from '@/types/mongo/activation';
 
 
 export type UserDataLoadingOpts = {
@@ -31,5 +31,5 @@ export type UserDataLoadingOpts = {
   },
 } | {
   type: 'adminActivationCreate',
-  opts: UserActivationPropertiesAtClient,
+  opts: ActivationPropertiesAtClient,
 };

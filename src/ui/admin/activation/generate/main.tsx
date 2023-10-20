@@ -3,21 +3,21 @@ import React from 'react';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Copyable} from '@/components/layout/copyable/main';
 import {Flex} from '@/components/layout/flex/common';
-import {UserActivationPropertiesAtClient} from '@/types/mongo/activation';
-import {UserActivationEditor} from '@/ui/admin/activation/editor/main';
-import {UserActivationUiControl} from '@/ui/admin/activation/type';
-import {generateInitialUserActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
+import {ActivationPropertiesAtClient} from '@/types/mongo/activation';
+import {ActivationEditor} from '@/ui/admin/activation/editor/main';
+import {ActivationUiControl} from '@/ui/admin/activation/type';
+import {generateInitialActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
 
 
 type Props = {
-  control: UserActivationUiControl,
+  control: ActivationUiControl,
 };
 
-export const UserActivationGenerator = ({control}: Props) => {
+export const ActivationGenerator = ({control}: Props) => {
   const {actAsync, status} = control;
 
-  const [data, setData] = React.useState<UserActivationPropertiesAtClient>(
-    generateInitialUserActivationPropertiesAtClient,
+  const [data, setData] = React.useState<ActivationPropertiesAtClient>(
+    generateInitialActivationPropertiesAtClient,
   );
   const [activationLink, setActivationLink] = React.useState<string>();
 
@@ -26,7 +26,7 @@ export const UserActivationGenerator = ({control}: Props) => {
       <div className="text-2xl">
         Activation Key Generator
       </div>
-      <UserActivationEditor
+      <ActivationEditor
         data={data}
         setData={setData}
         idPrefix="generator"

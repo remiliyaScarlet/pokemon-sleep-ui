@@ -9,7 +9,7 @@ type Props = {
   data: string,
 };
 
-export const UserActivationReadonlyField = ({title, data}: Props) => {
+export const ActivationReadonlyField = ({title, data}: Props) => {
   return (
     <Flex className="gap-1">
       <div>{title}</div>

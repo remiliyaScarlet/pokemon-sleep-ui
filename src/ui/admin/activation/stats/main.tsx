@@ -1,52 +1,52 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
-import {UserActivationStatsUnit} from '@/ui/admin/activation/stats/unit';
-import {UserActivationUiCommonProps} from '@/ui/admin/activation/type';
+import {ActivationStatsUnit} from '@/ui/admin/activation/stats/unit';
+import {ActivationUiCommonProps} from '@/ui/admin/activation/type';
 import {isExpiringSoon} from '@/ui/admin/activation/utils';
 
 
-export const UserActivationStats = (props: UserActivationUiCommonProps) => {
+export const ActivationStats = (props: ActivationUiCommonProps) => {
   const now = new Date();
 
   return (
     <Grid center className="info-section grid-cols-2 sm:grid-cols-3 xl:grid-cols-6">
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Activated"
         filter={() => true}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Ads-Free"
         filter={({activation}) => !!activation.adsFree}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Premium"
         filter={({activation}) => !!activation.premium}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Expiry T-7"
         filter={(data) => isExpiringSoon({data, now})}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Discord"
         filter={({source}) => source === 'discord'}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Patreon"
         filter={({source}) => source === 'patreon'}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Paid"
         filter={({source}) => !!source}
         {...props}
       />
-      <UserActivationStatsUnit
+      <ActivationStatsUnit
         title="Free"
         filter={({source}) => !source}
         {...props}

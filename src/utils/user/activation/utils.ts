@@ -1,8 +1,8 @@
 import {
-  UserActivationData,
-  UserActivationDataAtClient,
-  UserActivationProperties,
-  UserActivationPropertiesAtClient,
+  ActivationData,
+  ActivationDataAtClient,
+  ActivationProperties,
+  ActivationPropertiesAtClient,
 } from '@/types/mongo/activation';
 import {PatreonMember} from '@/types/patreon/common/member';
 import {toIsoDateString} from '@/utils/date';
@@ -11,7 +11,7 @@ import {isNotNullish} from '@/utils/type';
 import {defaultExpiryDays} from '@/utils/user/activation/const';
 
 
-export const isActivationDataValid = ({source, contact, note}: UserActivationPropertiesAtClient) => {
+export const isActivationDataValid = ({source, contact, note}: ActivationPropertiesAtClient) => {
   if (!source && !note) {
     showToast({
       isAlert: true,
@@ -31,22 +31,22 @@ export const isActivationDataValid = ({source, contact, note}: UserActivationPro
   return true;
 };
 
-export const toUserActivationDataAtClient = ({
+export const toActivationDataAtClient = ({
   userId,
   expiry,
   generatedAt,
   ...data
-}: UserActivationData): UserActivationDataAtClient => ({
+}: ActivationData): ActivationDataAtClient => ({
   ...data,
   userId: userId.toString(),
   expiry: toIsoDateString(expiry),
   generatedAt: toIsoDateString(generatedAt),
 });
 
-export const toUserActivationProperties = ({
+export const toActivationProperties = ({
   expiry,
   ...data
-}: UserActivationPropertiesAtClient): UserActivationProperties => ({
+}: ActivationPropertiesAtClient): ActivationProperties => ({
   ...data,
   expiry: new Date(expiry),
 });
