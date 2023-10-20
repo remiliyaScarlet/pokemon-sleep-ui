@@ -1,0 +1,120 @@
+{
+  "data": {
+    "attributes": {
+      "campaign_lifetime_support_cents": 0,
+      "currently_entitled_amount_cents": 0,
+      "email": "raenonx0710us@gmail.com",
+      "full_name": "RaenonX JELLYCAT",
+      "is_follower": false,
+      "is_free_trial": false,
+      "last_charge_date": null,
+      "last_charge_status": null,
+      "lifetime_support_cents": 0,
+      "next_charge_date": "2023-11-01T07:00:00.000+00:00",
+      "note": "",
+      "patron_status": "active_patron",
+      "pledge_cadence": 1,
+      "pledge_relationship_start": "2023-10-20T01:27:04.935+00:00",
+      "will_pay_amount_cents": 100
+    },
+    "id": "c44ea5d7-4555-4912-8784-51386cb55674",
+    "relationships": {
+      "address": {
+        "data": null
+      },
+      "campaign": {
+        "data": {
+          "id": "11228931",
+          "type": "campaign"
+        },
+        "links": {
+          "related": "https://www.patreon.com/api/oauth2/v2/campaigns/11228931"
+        }
+      },
+      "currently_entitled_tiers": {
+        "data": []
+      },
+      "user": {
+        "data": {
+          "id": "50262255",
+          "type": "user"
+        },
+        "links": {
+          "related": "https://www.patreon.com/api/oauth2/v2/user/50262255"
+        }
+      }
+    },
+    "type": "member"
+  },
+  "included": [
+    {
+      "attributes": {
+        "created_at": "2023-10-20T01:22:35.000+00:00",
+        "creation_name": "",
+        "discord_server_id": null,
+        "google_analytics_id": null,
+        "has_rss": false,
+        "has_sent_rss_notify": false,
+        "image_small_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/11228931/6fe19ce4d926420ca1c994388ee6ca7a/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1699056000&token-hash=1kR6cZoJLsCDnV5IDxKW0_ckBjcKElWLIelO_v3ljKE%3D",
+        "image_url": "https://c10.patreonusercontent.com/4/patreon-media/p/campaign/11228931/6fe19ce4d926420ca1c994388ee6ca7a/eyJ3IjoxOTIwLCJ3ZSI6MX0%3D/1.png?token-time=1699056000&token-hash=1kR6cZoJLsCDnV5IDxKW0_ckBjcKElWLIelO_v3ljKE%3D",
+        "is_charged_immediately": false,
+        "is_monthly": false,
+        "is_nsfw": false,
+        "main_video_embed": null,
+        "main_video_url": null,
+        "one_liner": null,
+        "patron_count": 0,
+        "pay_per_name": "creation",
+        "pledge_url": "/checkout/Test755",
+        "published_at": "2023-10-20T01:25:57.000+00:00",
+        "rss_artwork_url": null,
+        "rss_feed_title": null,
+        "summary": null,
+        "thanks_embed": null,
+        "thanks_msg": null,
+        "thanks_video_url": null,
+        "url": "https://www.patreon.com/Test755",
+        "vanity": "Test755"
+      },
+      "id": "11228931",
+      "type": "campaign"
+    },
+    {
+      "attributes": {
+        "about": null,
+        "created": "2021-02-08T01:53:05.000+00:00",
+        "first_name": "RaenonX",
+        "full_name": "RaenonX JELLYCAT",
+        "hide_pledges": true,
+        "image_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/50262255/9b1ef958980c4fdaa11388d31108ddd1/eyJ3IjoyMDB9/1.png?token-time=2145916800&token-hash=X4AD3MI3EaAyRUPF4-eQNj0CPBZ9Ixc12C4Frx93J0I%3D",
+        "is_creator": true,
+        "last_name": "JELLYCAT",
+        "like_count": 0,
+        "social_connections": {
+          "discord": {
+            "url": null,
+            "user_id": "360461600542425108"
+          },
+          "facebook": null,
+          "google": null,
+          "instagram": null,
+          "reddit": null,
+          "spotify": null,
+          "spotify_open_access": null,
+          "twitch": null,
+          "twitter": null,
+          "vimeo": null,
+          "youtube": null
+        },
+        "thumb_url": "https://c10.patreonusercontent.com/4/patreon-media/p/user/50262255/9b1ef958980c4fdaa11388d31108ddd1/eyJ3IjoyMDB9/1.png?token-time=2145916800&token-hash=X4AD3MI3EaAyRUPF4-eQNj0CPBZ9Ixc12C4Frx93J0I%3D",
+        "url": "https://www.patreon.com/RaenonX",
+        "vanity": "RaenonX"
+      },
+      "id": "50262255",
+      "type": "user"
+    }
+  ],
+  "links": {
+    "self": "https://www.patreon.com/api/oauth2/v2/members/c44ea5d7-4555-4912-8784-51386cb55674"
+  }
+}
