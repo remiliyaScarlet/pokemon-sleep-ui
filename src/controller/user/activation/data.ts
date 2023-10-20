@@ -46,7 +46,17 @@ export const userActivateKey = async (userId: string, key: string): Promise<bool
   return true;
 };
 
-export const getUserActivation = async (userId: string): Promise<UserActivationStatus | null> => {
+type GetActivationDataByFilterOpts = ControllerRequireAdminOpts & {
+  filter: Filter<UserActivationData>,
+};
+
+export const getActivationDataByFilter = ({executorUserId, filter}: GetActivationDataByFilterOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return getSingleData(getCollection(), filter);
+};
+
+export const getActivationData = async (userId: string): Promise<UserActivationStatus | null> => {
   const data = await getSingleData(getCollection(), {userId: new ObjectId(userId)});
 
   if (!data) {

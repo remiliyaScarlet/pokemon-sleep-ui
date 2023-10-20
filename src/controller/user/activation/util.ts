@@ -1,8 +1,16 @@
 import {Filter} from 'mongodb';
 
-import {removeActivationData, updateActivationPropertiesOfData} from '@/controller/user/activation/data';
-import {removeActivationKey, updateActivationPropertiesOfKey} from '@/controller/user/activation/key';
-import {UserActivationProperties} from '@/types/mongo/activation';
+import {
+  getActivationDataByFilter,
+  removeActivationData,
+  updateActivationPropertiesOfData,
+} from '@/controller/user/activation/data';
+import {
+  getActivationKeyByFilter,
+  removeActivationKey,
+  updateActivationPropertiesOfKey,
+} from '@/controller/user/activation/key';
+import {UserActivationContact, UserActivationProperties} from '@/types/mongo/activation';
 
 
 type UpdateActivationPropertiesOpts = {
@@ -26,4 +34,20 @@ export const removeActivation = ({filter}: RemoveActivationPropertiesOpts) => {
     removeActivationKey({filter}),
     removeActivationData({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
   ]);
+};
+
+export const getActivationPropertiesByPatreonContact = async (
+  contact: string,
+): Promise<UserActivationProperties | null> => {
+  const filter: Filter<UserActivationProperties> = {[`contact.${'patreon' satisfies UserActivationContact}`]: contact};
+
+  const properties = await getActivationDataByFilter({
+    executorUserId: process.env.NEXTAUTH_ADMIN_UID,
+    filter,
+  });
+  if (properties) {
+    return properties;
+  }
+
+  return await getActivationKeyByFilter({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter});
 };

@@ -43,6 +43,16 @@ export const generateActivationKey = async ({
   return `${process.env.NEXTAUTH_URL}/account/activate?key=${key}`;
 };
 
+type GetActivationKeyByFilterOpts = ControllerRequireAdminOpts & {
+  filter: Filter<UserActivationKey>,
+};
+
+export const getActivationKeyByFilter = ({executorUserId, filter}: GetActivationKeyByFilterOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return getSingleData(getCollection(), filter);
+};
+
 export const getActivationKey = async (key: string) => (
   getSingleData(getCollection(), {key})
 );

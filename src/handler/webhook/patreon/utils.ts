@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 
+import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
 import {getPatreonMemberData} from '@/handler/webhook/patreon/api/member/main';
 import {PatreonUserActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
@@ -41,9 +42,12 @@ export const toPatreonUserActivationPayload = async (
     return {email, activationProperties: null};
   }
 
-  const {
-    social_connections: social,
-  } = (await getPatreonMemberData({userId: id})).included[0].attributes;
+  const social = (await getPatreonMemberData({userId: id})).included[0].attributes.social_connections;
+
+  let existedActivationProperties;
+  if (!social) {
+    existedActivationProperties = (await getActivationPropertiesByPatreonContact(email));
+  }
 
   return {
     email,
@@ -56,9 +60,15 @@ export const toPatreonUserActivationPayload = async (
       source: 'patreon',
       contact: {
         patreon: email,
-        ...(social.discord ? {
-          discord: `<@${social.discord.user_id}>`,
-        } : {}),
+        ...(
+          // Use the Discord contact from the Patreon first
+          // If not returned, the use the existing contact, if available
+          social?.discord ?
+            {
+              discord: `<@${social.discord.user_id}>`,
+            } :
+            existedActivationProperties?.contact
+        ),
       },
       isSpecial: false,
       note: '',

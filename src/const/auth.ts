@@ -3,7 +3,7 @@ import {AuthOptions} from 'next-auth';
 import emailProvider from 'next-auth/providers/email';
 import googleProvider from 'next-auth/providers/google';
 
-import {getUserActivation} from '@/controller/user/activation/data';
+import {getActivationData} from '@/controller/user/activation/data';
 import {emptyLazyData, getUserLazyData} from '@/controller/user/lazyLoad';
 import {getUserPreloadedData} from '@/controller/user/preload';
 import {uploadUserData} from '@/controller/user/upload';
@@ -60,7 +60,7 @@ export const authOptions: AuthOptions = {
 
       const [preloaded, activation] = await Promise.all([
         getUserPreloadedData(userId),
-        getUserActivation(userId),
+        getActivationData(userId),
       ]);
       session.user = {
         id: userId,

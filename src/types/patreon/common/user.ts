@@ -6,6 +6,6 @@ export type PatreonUser = {
   type: 'user',
   id: string,
   attributes: {
-    social_connections: PatreonSocialConnections,
+    social_connections?: PatreonSocialConnections,
   }
 };
