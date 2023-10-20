@@ -7,7 +7,7 @@ import {getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {UserActivationKey, UserActivationProperties} from '@/types/mongo/activation';
+import {userActivationContact, UserActivationKey, UserActivationProperties} from '@/types/mongo/activation';
 
 
 const getCollection = async (): Promise<Collection<UserActivationKey>> => {
@@ -64,6 +64,9 @@ const addIndex = async () => {
   return Promise.all([
     collection.createIndex({key: 1}, {unique: true}),
     collection.createIndex({generatedAt: 1}, {expireAfterSeconds: durationOfDay}),
+    ...userActivationContact.map((channel) => (
+      collection.createIndex({[`contact.${channel}`]: 1}, {unique: true, sparse: true})
+    )),
   ]);
 };
 
