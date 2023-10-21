@@ -1,40 +1,85 @@
-import {Filter} from 'mongodb';
+import {Filter, UpdateOneModel} from 'mongodb';
 
 import {
   getActivationDataByFilter,
   getAllActivationData,
-  removeActivationData,
-  updateActivationDataProperties,
+  removeActivationDataBatch,
+  removeActivationDataSingle,
+  updateActivationDataPropertiesBatch,
+  updateActivationDataPropertiesSingle,
 } from '@/controller/user/activation/data';
 import {
   getActivationKeyByFilter,
   getAllActivationKeys,
-  removeActivationKey,
-  updateActivationKeyProperties,
+  removeActivationKeyBatch,
+  removeActivationKeySingle,
+  updateActivationKeyPropertiesBatch,
+  updateActivationKeyPropertiesSingle,
 } from '@/controller/user/activation/key';
+import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {ActivationContact, ActivationKey, ActivationProperties} from '@/types/mongo/activation';
+import {isNotNullish} from '@/utils/type';
 
 
-type UpdateActivationPropertiesOpts = {
+type UpdateActivationPropertiesSingleOpts = {
   filter: Filter<ActivationProperties>,
   properties: ActivationProperties,
 };
 
-export const updateActivationProperties = ({filter, properties}: UpdateActivationPropertiesOpts) => {
+export const updateActivationPropertiesSingle = ({filter, properties}: UpdateActivationPropertiesSingleOpts) => {
   return Promise.all([
-    updateActivationDataProperties({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter, update: properties}),
-    updateActivationKeyProperties({filter, update: properties}),
+    updateActivationDataPropertiesSingle({
+      executorUserId: process.env.NEXTAUTH_ADMIN_UID,
+      filter,
+      update: properties,
+    }),
+    updateActivationKeyPropertiesSingle({
+      filter,
+      update: properties,
+    }),
   ]);
 };
 
-type RemoveActivationPropertiesOpts = {
+type UpdateActivationPropertiesFromPayloadsOpts = {
+  payloads: ActionSendActivationPayload[]
+};
+
+export const updateActivationPropertiesFromPayloads = ({payloads}: UpdateActivationPropertiesFromPayloadsOpts) => {
+  const updates: UpdateOneModel<ActivationKey>[] = payloads
+    .map(({email, activationProperties}) => {
+      if (!activationProperties) {
+        return null;
+      }
+
+      return ({
+        filter: {[`contact.${'patreon' satisfies ActivationContact}`]: email},
+        update: {$set: activationProperties},
+        upsert: false,
+      });
+    })
+    .filter(isNotNullish);
+
+  return Promise.all([
+    updateActivationKeyPropertiesBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, updates}),
+    updateActivationDataPropertiesBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, updates}),
+  ]);
+};
+
+type RemoveActivationOpts = {
   filter: Filter<ActivationProperties>,
 };
 
-export const removeActivation = ({filter}: RemoveActivationPropertiesOpts) => {
+export const removeActivationSingle = ({filter}: RemoveActivationOpts) => {
   return Promise.all([
-    removeActivationKey({filter}),
-    removeActivationData({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
+    removeActivationKeySingle({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
+    removeActivationDataSingle({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
+  ]);
+};
+
+export const removeActivationBatch = ({filter}: RemoveActivationOpts) => {
+  return Promise.all([
+    removeActivationKeyBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
+    removeActivationDataBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter}),
   ]);
 };
 

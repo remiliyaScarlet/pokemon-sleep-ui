@@ -1,5 +1,5 @@
 import {ObjectId} from 'bson';
-import {Collection, Filter, MongoError} from 'mongodb';
+import {Collection, Filter, MongoError, UpdateOneModel} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
@@ -83,22 +83,38 @@ export const getAllActivationDataAsClient = async (): Promise<ActivationDataAtCl
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
-type UpdateActivationPropertiesOfDataOpts = ControllerRequireAdminOpts & {
+type UpdateActivationDataPropertiesSingleOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationData>,
   update: ActivationProperties,
 };
 
-export const updateActivationDataProperties = async ({
+export const updateActivationDataPropertiesSingle = async ({
   executorUserId,
   filter,
   update,
-}: UpdateActivationPropertiesOfDataOpts) => {
+}: UpdateActivationDataPropertiesSingleOpts) => {
   throwIfNotAdmin(executorUserId);
 
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
-type UpdateActivationByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
+type UpdateActivationDataPropertiesBatchOpts = ControllerRequireAdminOpts & {
+  updates: UpdateOneModel<ActivationData>[]
+};
+
+export const updateActivationDataPropertiesBatch = async ({
+  executorUserId,
+  updates,
+}: UpdateActivationDataPropertiesBatchOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).bulkWrite(
+    updates.map((updateOne) => ({updateOne})),
+    {ordered: false},
+  );
+};
+
+type UpdateActivationDataByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
   key: ActivationData['key'],
 };
 
@@ -111,7 +127,7 @@ export const updateActivationDataByKey = async ({
   contact,
   isSpecial,
   note,
-}: UpdateActivationByKeyOpts) => updateActivationDataProperties({
+}: UpdateActivationDataByKeyOpts) => updateActivationDataPropertiesSingle({
   executorUserId,
   filter: {key},
   update: {
@@ -128,10 +144,16 @@ type RemoveActivationDataOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationKey>,
 };
 
-export const removeActivationData = async ({executorUserId, filter}: RemoveActivationDataOpts) => {
+export const removeActivationDataSingle = async ({executorUserId, filter}: RemoveActivationDataOpts) => {
   throwIfNotAdmin(executorUserId);
 
   return (await getCollection()).deleteOne(filter);
+};
+
+export const removeActivationDataBatch = async ({executorUserId, filter}: RemoveActivationDataOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).deleteMany(filter);
 };
 
 type RemoveActivationDataByKeyOpts = ControllerRequireAdminOpts & {
@@ -139,7 +161,7 @@ type RemoveActivationDataByKeyOpts = ControllerRequireAdminOpts & {
 };
 
 export const removeActivationDataByKey = ({executorUserId, key}: RemoveActivationDataByKeyOpts) => (
-  removeActivationData({executorUserId, filter: {key}})
+  removeActivationDataSingle({executorUserId, filter: {key}})
 );
 
 const addIndex = async () => {

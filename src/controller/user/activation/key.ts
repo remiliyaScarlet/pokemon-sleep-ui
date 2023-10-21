@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import {Collection, Filter} from 'mongodb';
+import {Collection, Filter, UpdateOneModel} from 'mongodb';
 
 import {durationOfDay} from '@/const/common';
 import {getDataAsArray, getSingleData} from '@/controller/common';
@@ -72,20 +72,44 @@ type UpdateActivationPropertiesOfKeyOpts = {
   update: ActivationProperties,
 };
 
-export const updateActivationKeyProperties = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
+export const updateActivationKeyPropertiesSingle = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
-type RemoveActivationKeyOpts = {
+type UpdateActivationKeyPropertiesBatchOpts = ControllerRequireAdminOpts & {
+  updates: UpdateOneModel<ActivationKey>[]
+};
+
+export const updateActivationKeyPropertiesBatch = async ({
+  executorUserId,
+  updates,
+}: UpdateActivationKeyPropertiesBatchOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).bulkWrite(
+    updates.map((updateOne) => ({updateOne})),
+    {ordered: false},
+  );
+};
+
+type RemoveActivationKeyOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationKey>,
 };
 
-export const removeActivationKey = async ({filter}: RemoveActivationKeyOpts) => {
+export const removeActivationKeySingle = async ({executorUserId, filter}: RemoveActivationKeyOpts) => {
+  throwIfNotAdmin(executorUserId);
+
   return (await getCollection()).deleteOne(filter);
 };
 
+export const removeActivationKeyBatch = async ({executorUserId, filter}: RemoveActivationKeyOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).deleteMany(filter);
+};
+
 export const removeActivationKeyByKey = async (key: string) => (
-  removeActivationKey({filter: {key}})
+  removeActivationKeySingle({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter: {key}})
 );
 
 const addIndex = async () => {
