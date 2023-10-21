@@ -1,12 +1,12 @@
 import {generateActivationKey} from '@/controller/user/activation/key';
-import {ActionSendActivationEmailPayload} from '@/handler/action/activation/type';
+import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {sendActivationEmail} from '@/utils/user/activation/email';
 
 
 type ActionSendActivationEmailOpts = {
-  payload: ActionSendActivationEmailPayload,
+  payload: ActionSendActivationPayload,
   sourceNote: string,
-  getWarnOnNullActivation: (payload: ActionSendActivationEmailPayload) => string,
+  getWarnOnNullActivation: (payload: ActionSendActivationPayload) => string,
 };
 
 export const actionSendActivationEmail = async ({
