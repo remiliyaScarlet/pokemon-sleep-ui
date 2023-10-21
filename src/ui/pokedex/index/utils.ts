@@ -15,6 +15,8 @@ const exhaustIngredientCombinationsIfSort: PokemonSortType[] = [
   'frequencyOfIngredient',
   'timeToFullPack',
   'totalEnergy',
+  // Time to full pack indirectly affects how many skills could proc
+  'mainSkillTriggerValue',
 ];
 
 const exhaustIngredientCombinationsIfDisplay: PokedexDisplayType[] = [
