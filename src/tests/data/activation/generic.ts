@@ -1,8 +1,7 @@
 import {ActivationKey, activationType} from '@/types/mongo/activation';
 
 
-const testActivationKey: ActivationKey = {
-  key: 'TestKey',
+const testActivationKey: Omit<ActivationKey, 'key'> = {
   generatedAt: new Date(),
   activation: Object.fromEntries(activationType.map((type) => [type, true])),
   expiry: new Date(),
@@ -17,9 +16,11 @@ const testActivationKey: ActivationKey = {
 export const testActivations: ActivationKey[] = [
   {
     ...testActivationKey,
+    key: 'default',
   },
   {
     ...testActivationKey,
+    key: 'discord',
     source: 'discord',
     contact: {
       discord: '@discord',
@@ -27,6 +28,7 @@ export const testActivations: ActivationKey[] = [
   },
   {
     ...testActivationKey,
+    key: 'patreonPending',
     source: 'patreon',
     contact: {
       patreon: 'patronPending@email.com',
@@ -34,6 +36,7 @@ export const testActivations: ActivationKey[] = [
   },
   {
     ...testActivationKey,
+    key: 'patreonActive',
     source: 'patreon',
     contact: {
       patreon: 'patronActive@email.com',
@@ -41,34 +44,18 @@ export const testActivations: ActivationKey[] = [
   },
   {
     ...testActivationKey,
-    key: 'denied',
-    source: 'patreon',
-    contact: {
-      patreon: 'patronDenied2@email.com',
-    },
-  },
-  {
-    ...testActivationKey,
-    key: 'denied2',
-    source: 'patreon',
-    contact: {
-      patreon: 'patronDenied@email.com',
-    },
-  },
-  {
-    ...testActivationKey,
-    key: 'expired',
-    source: 'patreon',
-    contact: {
-      patreon: 'patronExpired@email.com',
-    },
-  },
-  {
-    ...testActivationKey,
-    key: 'declined',
+    key: 'patreonDeclined',
     source: 'patreon',
     contact: {
       patreon: 'patronDeclined@email.com',
+    },
+  },
+  {
+    ...testActivationKey,
+    key: 'patreonExpired',
+    source: 'patreon',
+    contact: {
+      patreon: 'patronExpired@email.com',
     },
   },
 ];

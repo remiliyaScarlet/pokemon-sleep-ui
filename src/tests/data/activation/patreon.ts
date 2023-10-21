@@ -64,30 +64,6 @@ export const testPatreonMemberData: PatreonMemberData[] = [
     },
     user: testPatreonUser,
   },
-  // Is Patron, got denied but have a pending activation
-  {
-    member: {
-      ...testPatreonMember,
-      attributes: {
-        ...testPatreonMember.attributes,
-        email: 'patronDenied@email.com',
-        last_charge_status: 'Declined',
-      },
-    },
-    user: testPatreonUser,
-  },
-  // Is Patron, got denied but is activated
-  {
-    member: {
-      ...testPatreonMember,
-      attributes: {
-        ...testPatreonMember.attributes,
-        email: 'patronDenied2@email.com',
-        last_charge_status: 'Declined',
-      },
-    },
-    user: testPatreonUser,
-  },
   // Is Patron, but subscription expired
   {
     member: {

@@ -20,9 +20,7 @@ export const getCurrentCampaignMembers = async (): Promise<PatreonMemberData[]> 
   );
   do {
     const response = await sendPatreonApiRequest(url);
-    const json = await response.json();
-    console.log(json);
-    const {data, included, links} = json as PatreonCampaignMemberResponse;
+    const {data, included, links} = await response.json() as PatreonCampaignMemberResponse;
 
     members.push(...data);
     users.push(...included);
