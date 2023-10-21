@@ -1,11 +1,11 @@
 import {removeActivation, updateActivationProperties} from '@/controller/user/activation/util';
-import {toPatreonActivationPayload} from '@/handler/webhook/patreon/utils';
+import {toActivationPayloadFromPatreon} from '@/handler/webhook/patreon/utils';
 import {ActivationContact} from '@/types/mongo/activation';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
 
 
 export const handlePatreonPledgeModified = async (payload: PatreonWebhookPayload) => {
-  const {email, activationProperties} = await toPatreonActivationPayload(payload);
+  const {email, activationProperties} = await toActivationPayloadFromPatreon(payload);
 
   if (!activationProperties) {
     await removeActivation({

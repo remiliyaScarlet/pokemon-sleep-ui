@@ -1,7 +1,7 @@
 import {ActivationProperties} from '@/types/mongo/activation';
 
 
-export type PatreonActivationPayload = {
+export type ActionSendActivationEmailPayload = {
   email: string,
   activationProperties: ActivationProperties | null,
 };
