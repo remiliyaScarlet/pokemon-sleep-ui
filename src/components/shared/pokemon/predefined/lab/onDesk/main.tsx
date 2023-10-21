@@ -99,7 +99,7 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
         />
       </Flex>
       <PokemonEvolutionCountInput
-        idPrefix="Rating"
+        idPrefix="rating"
         evolutionCount={evolutionCount}
         setEvolutionCount={(evolutionCount) => setSetup((setup) => ({
           ...setup,

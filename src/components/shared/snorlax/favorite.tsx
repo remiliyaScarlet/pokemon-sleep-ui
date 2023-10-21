@@ -51,7 +51,7 @@ export const SnorlaxFavoriteInput = <
         {...getMultiSelectOnClickProps(props)}
       />
       <PokemonMapFilter
-        idPrefix="SnorlaxFav-"
+        idPrefix="snorlaxFavorite"
         title={
           <Flex direction="row" center className="gap-0.5">
             <div className="relative h-7 w-7">

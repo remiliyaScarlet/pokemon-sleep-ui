@@ -57,19 +57,19 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
         ))}
         <PokemonSubSkillFilter
           {...props}
-          idPrefix="PokeboxViewer"
+          idPrefix="pokeboxViewer"
           filterKey="subSkill"
         />
         <PokemonNatureEffectInput
           {...props}
           direction="buff"
-          idPrefix="PokeboxViewer"
+          idPrefix="pokeboxViewer"
           filterKey="natureBuff"
         />
         <PokemonNatureEffectInput
           {...props}
           direction="nerf"
-          idPrefix="PokeboxViewer"
+          idPrefix="pokeboxViewer"
           filterKey="natureNerf"
         />
       </Flex>

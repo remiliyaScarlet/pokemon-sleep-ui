@@ -130,7 +130,7 @@ export const PokeInBoxEditLayout = ({
         idPrefix={pokeInBox.uuid}
       />
       <PokemonEvolutionCountInput
-        idPrefix="Pokebox"
+        idPrefix="pokebox"
         evolutionCount={evolutionCount}
         setEvolutionCount={(evolutionCount) => setPokeInBox({
           ...pokeInBox,
