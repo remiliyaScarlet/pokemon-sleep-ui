@@ -12,4 +12,6 @@ export type PatreonChargeStatus =
   'Other' |
   null;
 
+// `active_patron` when the Patron still have an active subscription
+// `former_patron` when the Patron pledged but not anymore
 export type PatronStatus = 'active_patron' | 'declined_patron' | 'former_patron' | null;
