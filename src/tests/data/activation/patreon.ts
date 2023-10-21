@@ -12,7 +12,7 @@ const testPatreonMember: PatreonMember = {
     last_charge_date: new Date('2023-10-01').toISOString() as IsoUtcTimestampString,
     last_charge_status: 'Paid',
     patron_status: 'active_patron',
-    pledge_cadence: 0,
+    pledge_cadence: 1,
   },
   id: v4(),
   type: 'member',
@@ -84,6 +84,31 @@ export const testPatreonMemberData: PatreonMemberData[] = [
         ...testPatreonMember.attributes,
         email: 'patronDenied2@email.com',
         last_charge_status: 'Declined',
+      },
+    },
+    user: testPatreonUser,
+  },
+  // Is Patron, but subscription expired
+  {
+    member: {
+      ...testPatreonMember,
+      attributes: {
+        ...testPatreonMember.attributes,
+        patron_status: 'former_patron',
+        email: 'patronExpired@email.com',
+      },
+    },
+    user: testPatreonUser,
+  },
+  // Is Patron, but payment declined
+  {
+    member: {
+      ...testPatreonMember,
+      attributes: {
+        ...testPatreonMember.attributes,
+        last_charge_status: 'Declined',
+        patron_status: 'declined_patron',
+        email: 'patronDeclined@email.com',
       },
     },
     user: testPatreonUser,

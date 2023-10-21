@@ -55,4 +55,20 @@ export const testActivations: ActivationKey[] = [
       patreon: 'patronDenied@email.com',
     },
   },
+  {
+    ...testActivationKey,
+    key: 'expired',
+    source: 'patreon',
+    contact: {
+      patreon: 'patronExpired@email.com',
+    },
+  },
+  {
+    ...testActivationKey,
+    key: 'declined',
+    source: 'patreon',
+    contact: {
+      patreon: 'patronDeclined@email.com',
+    },
+  },
 ];

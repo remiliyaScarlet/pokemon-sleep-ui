@@ -19,9 +19,14 @@ describe('Patreon Campaign Member Poll / Scan Patron', () => {
     });
 
     expect(toSendActivation[0].member.attributes.email).toBe('patronNoActivation@email.com');
+    expect(toSendActivation).toHaveLength(1);
     expect(toUpdateExpiry[0].member.attributes.email).toBe('patronPending@email.com');
     expect(toUpdateExpiry[1].member.attributes.email).toBe('patronActive@email.com');
-    expect(toDeactivate[0]).toBe('denied');
-    expect(toDeactivate[1]).toBe('denied2');
+    expect(toUpdateExpiry).toHaveLength(2);
+    expect(toDeactivate[0]).toBe('denied2');
+    expect(toDeactivate[1]).toBe('denied');
+    expect(toDeactivate[2]).toBe('expired');
+    expect(toDeactivate[3]).toBe('declined');
+    expect(toDeactivate).toHaveLength(4);
   });
 });

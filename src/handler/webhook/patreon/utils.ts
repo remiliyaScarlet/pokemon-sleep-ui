@@ -4,7 +4,7 @@ import {getActivationPropertiesByPatreonContact} from '@/controller/user/activat
 import {ActionSendActivationEmailPayload} from '@/handler/action/activation/type';
 import {getPatreonMember} from '@/handler/patreon/api/member/main';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
-import {isPatreonChargeSuccessful} from '@/utils/external/patreon';
+import {isPatronActive} from '@/utils/external/patreon';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
 
@@ -34,12 +34,9 @@ export const toActivationPayloadFromPatreon = async (
   payload: PatreonWebhookPayload,
 ): Promise<ActionSendActivationEmailPayload> => {
   const {id, attributes} = payload.data;
-  const {
-    email,
-    last_charge_status: chargeStatus,
-  } = attributes;
+  const {email} = attributes;
 
-  if (!isPatreonChargeSuccessful(chargeStatus)) {
+  if (!isPatronActive(payload.data)) {
     return {email, activationProperties: null};
   }
 

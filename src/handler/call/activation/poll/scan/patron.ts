@@ -1,5 +1,5 @@
 import {ScanPatronOpts, ScanPatronResult} from '@/handler/call/activation/poll/scan/type';
-import {isPatreonChargeSuccessful} from '@/utils/external/patreon';
+import {isPatronActive} from '@/utils/external/patreon';
 
 
 export const scanPatron = ({memberData, activations}: ScanPatronOpts): ScanPatronResult => {
@@ -15,7 +15,7 @@ export const scanPatron = ({memberData, activations}: ScanPatronOpts): ScanPatro
       .find(({contact}) => contact.patreon === member.attributes.email);
 
     if (!!activation) {
-      if (isPatreonChargeSuccessful(data.member.attributes.last_charge_status)) {
+      if (isPatronActive(data.member)) {
         result.toUpdateExpiry.push(data);
       } else {
         result.toDeactivate.push(activation.key);
