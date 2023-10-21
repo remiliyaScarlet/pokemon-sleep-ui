@@ -18,7 +18,7 @@ export const scanPatron = ({memberData, activations}: ScanPatronOpts): ScanPatro
       if (isPatronActive(data.member)) {
         result.toUpdateExpiry.push(data);
       } else {
-        result.toDeactivate.push(activation.key);
+        result.toDeactivate.push({memberData: data, key: activation.key});
       }
     } else {
       result.toSendActivation.push(data);

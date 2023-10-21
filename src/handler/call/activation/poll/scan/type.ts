@@ -7,8 +7,13 @@ export type ScanPatronOpts = {
   activations: ActivationKey[],
 };
 
+export type ScanPatronDeactivationPayload = {
+  memberData: PatreonMemberData,
+  key: string,
+};
+
 export type ScanPatronResult = {
   toSendActivation: PatreonMemberData[],
   toUpdateExpiry: PatreonMemberData[],
-  toDeactivate: string[],
+  toDeactivate: ScanPatronDeactivationPayload[],
 };

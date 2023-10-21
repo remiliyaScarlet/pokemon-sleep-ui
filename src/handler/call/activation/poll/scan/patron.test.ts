@@ -23,8 +23,8 @@ describe('Patreon Campaign Member Poll / Scan Patron', () => {
     expect(toUpdateExpiry[0].member.attributes.email).toBe('patronPending@email.com');
     expect(toUpdateExpiry[1].member.attributes.email).toBe('patronActive@email.com');
     expect(toUpdateExpiry).toHaveLength(2);
-    expect(toDeactivate[0]).toBe('patreonExpired');
-    expect(toDeactivate[1]).toBe('patreonDeclined');
+    expect(toDeactivate[0].key).toBe('patreonExpired');
+    expect(toDeactivate[1].key).toBe('patreonDeclined');
     expect(toDeactivate).toHaveLength(2);
   });
 });

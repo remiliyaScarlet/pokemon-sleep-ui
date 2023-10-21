@@ -14,17 +14,17 @@ export const scanActivations = ({memberData, activations}: ScanPatronOpts): Scan
       continue;
     }
 
-    const patreonMemberData = memberData
+    const memberDataSelected = memberData
       .find(({member}) => member.attributes.email === contact.patreon);
-    if (!patreonMemberData) {
+    if (!memberDataSelected) {
       continue;
     }
 
-    if (isPatronActive(patreonMemberData.member)) {
+    if (isPatronActive(memberDataSelected.member)) {
       continue;
     }
 
-    result.toDeactivate.push(key);
+    result.toDeactivate.push({memberData: memberDataSelected, key});
   }
 
   return result;

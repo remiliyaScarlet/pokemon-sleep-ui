@@ -20,8 +20,8 @@ describe('Patreon Campaign Member Poll / Scan Activation', () => {
 
     expect(toUpdateExpiry).toHaveLength(0);
     expect(toSendActivation).toHaveLength(0);
-    expect(toDeactivate[0]).toBe('patreonDeclined');
-    expect(toDeactivate[1]).toBe('patreonExpired');
+    expect(toDeactivate[0].key).toBe('patreonDeclined');
+    expect(toDeactivate[1].key).toBe('patreonExpired');
     expect(toDeactivate).toHaveLength(2);
   });
 });
