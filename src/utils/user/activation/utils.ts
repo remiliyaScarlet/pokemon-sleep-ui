@@ -61,7 +61,8 @@ export const getActivationExpiry = (member?: PatreonMember): Date => {
     } = member.attributes;
 
     expiry = new Date(lastChargeIsoUtc);
-    expiry.setDate(expiry.getDate() + cadence * 31);
+    // 2 days grace period
+    expiry.setDate(expiry.getDate() + cadence * 31 + 2);
   } else {
     expiry = new Date();
     expiry.setDate(expiry.getDate() + defaultExpiryDays);
