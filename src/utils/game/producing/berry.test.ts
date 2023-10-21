@@ -1,9 +1,9 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {durationOfDay} from '@/const/common';
-import {testBerryDataMap} from '@/tests/data/berry';
-import {testBonus} from '@/tests/data/bonus';
-import {testPokemonData} from '@/tests/data/pokemon';
+import {testBerryDataMap} from '@/tests/data/game/berry';
+import {testBonus} from '@/tests/data/game/bonus';
+import {testPokemonData} from '@/tests/data/game/pokemon';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 

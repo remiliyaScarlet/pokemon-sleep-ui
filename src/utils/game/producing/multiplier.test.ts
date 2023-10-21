@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {testBonus} from '@/tests/data/bonus';
+import {testBonus} from '@/tests/data/game/bonus';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 

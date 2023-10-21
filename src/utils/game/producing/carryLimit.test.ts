@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {testPokemonData} from '@/tests/data/pokemon';
+import {testPokemonData} from '@/tests/data/game/pokemon';
 import {
   getCarryLimitInfo,
   getFullPackStats,

@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {testExpData, testExpDataWithNull} from '@/tests/data/exp';
+import {testExpData, testExpDataWithNull} from '@/tests/data/game/exp';
 import {
   getExpDataWithMultiplier,
   getLevelUpRequirementsAccumulated,

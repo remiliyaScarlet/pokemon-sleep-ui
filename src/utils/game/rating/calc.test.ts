@@ -1,13 +1,13 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {defaultProducingParams} from '@/const/game/production';
-import {testBerryDataMap} from '@/tests/data/berry';
-import {testBonus} from '@/tests/data/bonus';
-import {testIngredientChainMap} from '@/tests/data/ingredient/chain';
-import {testIngredientMap} from '@/tests/data/ingredient/data';
-import {testIngredientProductionAtLevels} from '@/tests/data/ingredient/productionAtLevel';
-import {testPokemonData} from '@/tests/data/pokemon';
-import {testSubSkillMap} from '@/tests/data/subSkill';
+import {testBerryDataMap} from '@/tests/data/game/berry';
+import {testBonus} from '@/tests/data/game/bonus';
+import {testIngredientChainMap} from '@/tests/data/game/ingredient/chain';
+import {testIngredientMap} from '@/tests/data/game/ingredient/data';
+import {testIngredientProductionAtLevels} from '@/tests/data/game/ingredient/productionAtLevel';
+import {testPokemonData} from '@/tests/data/game/pokemon';
+import {testSubSkillMap} from '@/tests/data/game/subSkill';
 import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
 
 

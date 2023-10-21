@@ -1,10 +1,10 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {durationOfDay} from '@/const/common';
-import {testBonus} from '@/tests/data/bonus';
-import {testIngredientMap} from '@/tests/data/ingredient/data';
-import {testIngredientProductions} from '@/tests/data/ingredient/production';
-import {testPokemonData} from '@/tests/data/pokemon';
+import {testBonus} from '@/tests/data/game/bonus';
+import {testIngredientMap} from '@/tests/data/game/ingredient/data';
+import {testIngredientProductions} from '@/tests/data/game/ingredient/production';
+import {testPokemonData} from '@/tests/data/game/pokemon';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
