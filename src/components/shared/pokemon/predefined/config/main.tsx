@@ -20,9 +20,10 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
     pokemonMaxLevel,
     subSkillMap,
     maxEvolutionCount,
+    idPrefix,
   } = props;
 
-  const {id, ingredientChain} = pokemon;
+  const {ingredientChain} = pokemon;
 
   return (
     <Flex className="gap-1.5">
@@ -41,7 +42,7 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
             [ingredientLevel]: updated,
           },
         })}
-        idPrefix={id.toString()}
+        idPrefix={idPrefix}
       />
       <Flex className="h-20 gap-1.5">
         <PokemonNatureSelector
@@ -61,10 +62,10 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         noSameLine
       />
       <PokemonEvolutionCountInput
-        idPrefix="TeamAnalysis"
         evolutionCount={data.evolutionCount}
         setEvolutionCount={(evolutionCount) => onDataUpdated({evolutionCount})}
         maxEvolutionCount={maxEvolutionCount}
+        idPrefix={idPrefix}
       />
     </Flex>
   );

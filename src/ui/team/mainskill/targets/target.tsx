@@ -64,6 +64,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
               {...props}
               data={unit}
               onDataUpdated={(update) => updateUnit(update)}
+              idPrefix={unit.id}
             />
           </Flex>
         </PopupCommon>

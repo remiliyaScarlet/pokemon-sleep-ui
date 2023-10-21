@@ -22,4 +22,5 @@ export type PokemonConfigProps = {
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,
   maxEvolutionCount: number,
+  idPrefix: string,
 };
