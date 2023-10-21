@@ -10,7 +10,7 @@ import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
-import {TeamAnalysisCloudPull} from '@/ui/team/analysis/popup/cloudPull/main';
+import {TeamAnalysisCloudPull} from '@/ui/team/analysis/popup/cloudPull';
 import {TeamAnalysisEmptySlotPopupType} from '@/ui/team/analysis/setup/team/type';
 
 

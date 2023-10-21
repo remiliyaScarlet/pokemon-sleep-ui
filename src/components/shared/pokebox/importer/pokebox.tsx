@@ -105,6 +105,7 @@ export const PokeboxImporterView = ({
               filter={filter}
               setFilter={setFilter}
               ingredientChainMap={ingredientChainMap}
+              idPrefix="pokeboxImporter"
             />
           ))}
         </Flex>
