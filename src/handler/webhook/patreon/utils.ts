@@ -4,6 +4,7 @@ import {getActivationPropertiesByPatreonContact} from '@/controller/user/activat
 import {getPatreonMember} from '@/handler/patreon/api/member/main';
 import {PatreonActivationPayload} from '@/handler/webhook/patreon/type';
 import {PatreonWebhookPayload} from '@/types/patreon/webhook';
+import {isPatreonChargeSuccessful} from '@/utils/external/patreon';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
 
@@ -38,7 +39,7 @@ export const toPatreonActivationPayload = async (
     last_charge_status: chargeStatus,
   } = attributes;
 
-  if (chargeStatus !== 'Paid') {
+  if (!isPatreonChargeSuccessful(chargeStatus)) {
     return {email, activationProperties: null};
   }
 
