@@ -27,4 +27,7 @@ const FlexButtonInternal = ({
   </button>
 );
 
+// This is only usable if the children is not a single node of icon
+// Otherwise, the icon will fail to render on Apple device
+// See https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/issues/370
 export const FlexButton = React.forwardRef(FlexButtonInternal);

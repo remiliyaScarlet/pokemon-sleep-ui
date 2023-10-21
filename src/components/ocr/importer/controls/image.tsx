@@ -1,8 +1,8 @@
 import React from 'react';
 
 import PhotoIcon from '@heroicons/react/24/outline/PhotoIcon';
+import {clsx} from 'clsx';
 
-import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {NextImageAutoHeight} from '@/components/shared/common/image/autoHeight';
@@ -22,16 +22,11 @@ export const OcrImporterImagePreview = ({image}: Props) => {
           {image && <NextImageAutoHeight src={image} alt="OCR"/>}
         </Flex>
       </PopupCommon>
-      <FlexButton
-        noFullWidth
-        onClick={() => setShow(true)}
-        disabled={!image}
-        className="button-clickable-border disabled:button-disabled w-fit self-end p-1"
-      >
-        <div className="h-6 w-6">
-          <PhotoIcon/>
-        </div>
-      </FlexButton>
+      <button disabled={!image} onClick={() => setShow(true)} className={clsx(
+        'button-clickable-border disabled:button-disabled self-end p-1',
+      )}>
+        <PhotoIcon className="h-6 w-6"/>
+      </button>
     </>
   );
 };

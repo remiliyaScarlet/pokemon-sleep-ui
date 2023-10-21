@@ -11,7 +11,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageIconSizes} from '@/styles/image';
-import {TeamAnalysisSetup, TeamAnalysisComp} from '@/types/teamAnalysis';
+import {TeamAnalysisComp, TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {TeamAnalysisCompSelectorProps} from '@/ui/team/analysis/comp/type';
 import {getTeamName} from '@/ui/team/analysis/utils';
 
@@ -67,7 +67,9 @@ export const TeamAnalysisCompSelection = ({
           </button>
         }
       </Flex>
-      <FlexButton className="enabled:button-clickable gap-1.5 p-2" disabled={isCurrent} onClick={onClick}>
+      <FlexButton noFullWidth={false} disabled={isCurrent} onClick={onClick} center className={clsx(
+        'enabled:button-clickable gap-1.5 p-2',
+      )}>
         {Object.entries(team.members).map(([slot, member]) => (
           member ?
             <IconWithInfo

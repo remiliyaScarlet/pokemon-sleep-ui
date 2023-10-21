@@ -2,8 +2,9 @@ import React from 'react';
 
 import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
+import {clsx} from 'clsx';
 
-import {FlexButton} from '@/components/layout/flex/button';
+import {Dimension} from '@/types/style';
 
 
 type Props = {
@@ -12,14 +13,13 @@ type Props = {
 };
 
 export const OcrImporterConfirm = ({onClick, disabled}: Props) => {
+  const dimension: Dimension = 'h-6 w-6';
+
   return (
-    <FlexButton
-      className="enabled:button-clickable-border disabled:button-disabled w-fit self-end p-1"
-      noFullWidth disabled={disabled} onClick={onClick}
-    >
-      <div className="h-6 w-6">
-        {disabled ? <XMarkIcon/> : <CheckIcon/>}
-      </div>
-    </FlexButton>
+    <button disabled={disabled} onClick={onClick} className={clsx(
+      'enabled:button-clickable-border disabled:button-disabled self-end p-1',
+    )}>
+      {disabled ? <XMarkIcon className={dimension}/> : <CheckIcon className={dimension}/>}
+    </button>
   );
 };

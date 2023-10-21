@@ -4,7 +4,6 @@ import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {v4} from 'uuid';
 
 import {InputBox} from '@/components/input/box';
-import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {TeamAnalysisComp} from '@/types/teamAnalysis';
 import {generateEmptyTeam, getTeamName} from '@/ui/team/analysis/utils';
@@ -31,14 +30,12 @@ export const TeamAnalysisCompAddition = ({onAdded}: React.PropsWithChildren<Prop
           }))}
         />
       </Flex>
-      <FlexButton noFullWidth={false} center className="button-clickable p-2" onClick={() => {
+      <button className="button-clickable w-full p-2" onClick={() => {
         onAdded(newTeam);
         setNewTeam(generateEmptyTeam(v4()));
       }}>
-        <div className="h-12 w-12">
-          <PlusCircleIcon/>
-        </div>
-      </FlexButton>
+        <PlusCircleIcon className="m-auto h-12 w-12"/>
+      </button>
     </Flex>
   );
 };

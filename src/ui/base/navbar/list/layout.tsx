@@ -4,7 +4,6 @@ import {Dialog, Transition} from '@headlessui/react';
 import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import {clsx} from 'clsx';
 
-import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {Blur} from '@/components/static/blur';
 import {NavListContent} from '@/ui/base/navbar/list/content';
@@ -29,9 +28,9 @@ export const NavListLayout = ({open, setOpen}: NavListCommonProps) => {
         >
           <Dialog.Panel className="pointer-events-auto relative w-screen max-w-xs">
             <Flex noFullWidth className="absolute right-0 top-0 -mr-10 p-2">
-              <FlexButton className="button-clickable" onClick={() => setOpen(false)}>
+              <button className="button-clickable" onClick={() => setOpen(false)}>
                 <XMarkIcon className="h-6 w-6"/>
-              </FlexButton>
+              </button>
             </Flex>
             <NavListContent/>
           </Dialog.Panel>

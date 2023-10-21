@@ -1,8 +1,8 @@
 import React from 'react';
 
 import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon';
+import {clsx} from 'clsx';
 
-import {FlexButton} from '@/components/layout/flex/button';
 import {PokeboxImporter} from '@/components/shared/pokebox/importer/main';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokeInBox} from '@/types/game/pokebox';
@@ -29,14 +29,9 @@ export const PokeboxImporterButton = ({onPokeboxPicked, noFullWidth, dimension, 
           setShow(false);
         }}
       />
-      <FlexButton
-        center
-        noFullWidth={noFullWidth}
-        className="button-clickable-bg p-1"
-        onClick={() => setShow(true)}
-      >
-        <InboxArrowDownIcon className={dimension ?? 'h-8 w-8'}/>
-      </FlexButton>
+      <button onClick={() => setShow(true)} className="button-clickable-bg w-full p-1">
+        <InboxArrowDownIcon className={clsx('m-auto', dimension ?? 'h-8 w-8')}/>
+      </button>
     </>
   );
 };
