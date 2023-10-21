@@ -17,7 +17,7 @@ import {
   updateActivationKeyPropertiesSingle,
 } from '@/controller/user/activation/key';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
-import {ActivationContact, ActivationKey, ActivationProperties} from '@/types/mongo/activation';
+import {ActivationContact, ActivationKey, ActivationProperties, ActivationSource} from '@/types/mongo/activation';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -99,18 +99,18 @@ export const getActivationPropertiesByPatreonContact = async (
   return await getActivationKeyByFilter({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter});
 };
 
-export const getAllActivationProperties = async (): Promise<ActivationKey[]> => {
+export const getAllActivationsOfSource = async (source: ActivationSource): Promise<ActivationKey[]> => {
   const [
     activationData,
     activationKeys,
   ] = await Promise.all([
     getAllActivationData({
       executorUserId: process.env.NEXTAUTH_ADMIN_UID,
-      filter: {source: 'patreon'},
+      filter: {source},
     }),
     getAllActivationKeys({
       executorUserId: process.env.NEXTAUTH_ADMIN_UID,
-      filter: {source: 'patreon'},
+      filter: {source},
     }),
   ]);
 

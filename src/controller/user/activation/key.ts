@@ -27,9 +27,9 @@ export const generateActivationKey = async ({
   throwIfNotAdmin(executorUserId);
 
   const collection = await getCollection();
-  const {source} = opts;
+  const {contact} = opts;
 
-  if (await collection.findOne({source})) {
+  if (await collection.findOne({contact})) {
     return null;
   }
 

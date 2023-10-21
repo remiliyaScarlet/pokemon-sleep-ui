@@ -31,7 +31,7 @@ const testPatreonUser: PatreonUser = {
 };
 
 export const testPatreonMemberData: PatreonMemberData[] = [
-  // Is Patron, but not in activations
+  // [0] Is Patron, but not in activations
   {
     member: {
       ...testPatreonMember,
@@ -42,7 +42,7 @@ export const testPatreonMemberData: PatreonMemberData[] = [
     },
     user: testPatreonUser,
   },
-  // Is Patron, got pending activation key
+  // [1] Is Patron, got pending activation key
   {
     member: {
       ...testPatreonMember,
@@ -53,7 +53,7 @@ export const testPatreonMemberData: PatreonMemberData[] = [
     },
     user: testPatreonUser,
   },
-  // Is Patron, got active activation
+  // [2] Is Patron, got active activation
   {
     member: {
       ...testPatreonMember,
@@ -64,7 +64,7 @@ export const testPatreonMemberData: PatreonMemberData[] = [
     },
     user: testPatreonUser,
   },
-  // Is Patron, but subscription expired
+  // [3] Is Patron, but subscription expired
   {
     member: {
       ...testPatreonMember,
@@ -76,7 +76,7 @@ export const testPatreonMemberData: PatreonMemberData[] = [
     },
     user: testPatreonUser,
   },
-  // Is Patron, but payment declined
+  // [4] Is Patron, but payment declined
   {
     member: {
       ...testPatreonMember,

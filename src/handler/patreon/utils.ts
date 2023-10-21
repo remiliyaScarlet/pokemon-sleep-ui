@@ -26,9 +26,10 @@ export const toActivationPayloadFromPatreon = async (
   }
 
   /* eslint-disable no-console */
-  console.log('>>> Converting Patreon member to activation payload');
-  console.log(`Member data of ${id} (${email}):`, memberData);
-  console.log(`Existed activation properties of ${email} on Patreon:`, existedActivationProperties);
+  console.log(`>>> Converting Patreon member of ${id} (${email}) to activation payload`);
+  if (existedActivationProperties) {
+    console.log(`Existed activation properties of ${email} on Patreon:`, JSON.stringify(existedActivationProperties));
+  }
   /* eslint-enable no-console */
 
   return {

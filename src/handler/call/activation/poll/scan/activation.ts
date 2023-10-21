@@ -1,9 +1,9 @@
-import {ScanPatronOpts, ScanPatronResult} from '@/handler/call/activation/poll/scan/type';
+import {PatreonUserScanOpts, PatreonSubscriberScanResult} from '@/handler/call/activation/poll/scan/type';
 import {isPatronActive} from '@/utils/external/patreon';
 
 
-export const scanActivations = ({memberData, activations}: ScanPatronOpts): ScanPatronResult => {
-  const result: ScanPatronResult = {
+export const scanActivations = ({memberData, activations}: PatreonUserScanOpts): PatreonSubscriberScanResult => {
+  const result: PatreonSubscriberScanResult = {
     toUpdateExpiry: [],
     toDeactivate: [],
     toSendActivation: [],

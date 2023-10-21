@@ -1,9 +1,9 @@
-import {ScanPatronOpts, ScanPatronResult} from '@/handler/call/activation/poll/scan/type';
+import {PatreonUserScanOpts, PatreonSubscriberScanResult} from '@/handler/call/activation/poll/scan/type';
 import {isPatronActive} from '@/utils/external/patreon';
 
 
-export const scanPatron = ({memberData, activations}: ScanPatronOpts): ScanPatronResult => {
-  const result: ScanPatronResult = {
+export const scanPatron = ({memberData, activations}: PatreonUserScanOpts): PatreonSubscriberScanResult => {
+  const result: PatreonSubscriberScanResult = {
     toUpdateExpiry: [],
     toDeactivate: [],
     toSendActivation: [],
@@ -11,17 +11,18 @@ export const scanPatron = ({memberData, activations}: ScanPatronOpts): ScanPatro
 
   for (const data of memberData) {
     const {member} = data;
-    const activation = activations
-      .find(({contact}) => contact.patreon === member.attributes.email);
+    const activation = activations.find(({source, contact}) => (
+      source === 'patreon' && contact.patreon === member.attributes.email
+    ));
 
-    if (!!activation) {
-      if (isPatronActive(data.member)) {
-        result.toUpdateExpiry.push(data);
+    if (isPatronActive(data.member)) {
+      if (!activation) {
+        result.toSendActivation.push(data);
       } else {
-        result.toDeactivate.push({memberData: data, key: activation.key});
+        result.toUpdateExpiry.push(data);
       }
-    } else {
-      result.toSendActivation.push(data);
+    } else if (activation) {
+      result.toDeactivate.push({memberData: data, key: activation.key});
     }
   }
 

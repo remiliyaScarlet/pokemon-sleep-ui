@@ -1,5 +1,6 @@
 import {generateActivationKey} from '@/controller/user/activation/key';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
+import {isProduction} from '@/utils/environment';
 import {sendActivationEmail} from '@/utils/user/activation/email';
 
 
@@ -31,7 +32,10 @@ export const actionSendActivationEmail = async ({
     return;
   }
 
-  await sendActivationEmail({recipient: email, activationLink});
+  // Production only to avoid accidental send
+  if (isProduction()) {
+    await sendActivationEmail({recipient: email, activationLink});
+  }
   // eslint-disable-next-line no-console
   console.log(`Activation email sent to ${email} with link ${activationLink} (${sourceNote})`);
 };
