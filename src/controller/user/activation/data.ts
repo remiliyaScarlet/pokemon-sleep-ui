@@ -66,8 +66,19 @@ export const getActivationData = async (userId: string): Promise<ActivationStatu
   return data.activation;
 };
 
+type GetAllActivationDataOpts = ControllerRequireAdminOpts & {
+  filter: Filter<ActivationData>,
+};
+
+export const getAllActivationData = ({executorUserId, filter}: GetAllActivationDataOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return getDataAsArray(getCollection(), filter);
+};
+
 export const getAllActivationDataAsClient = async (): Promise<ActivationDataAtClient[]> => {
-  return (await getDataAsArray(getCollection())).map(toActivationDataAtClient);
+  return (await getAllActivationData({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter: {}}))
+    .map(toActivationDataAtClient);
 };
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});

@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import {Collection, Filter} from 'mongodb';
 
 import {durationOfDay} from '@/const/common';
-import {getSingleData} from '@/controller/common';
+import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
@@ -45,6 +45,16 @@ export const generateActivationKey = async ({
 
 type GetActivationKeyByFilterOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationKey>,
+};
+
+type GetAllActivationKeysOpts = ControllerRequireAdminOpts & {
+  filter: Filter<ActivationKey>,
+};
+
+export const getAllActivationKeys = ({executorUserId, filter}: GetAllActivationKeysOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  return getDataAsArray(getCollection(), filter);
 };
 
 export const getActivationKeyByFilter = ({executorUserId, filter}: GetActivationKeyByFilterOpts) => {

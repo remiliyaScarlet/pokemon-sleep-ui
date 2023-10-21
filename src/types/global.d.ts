@@ -24,8 +24,9 @@ declare global {
       NEXTAUTH_ADMIN_UID: string;
 
       // External services
-      EXTERNAL_PATREON_API_SECRET: string;
+      EXTERNAL_PATREON_CAMPAIGN_ID: string;
       EXTERNAL_PATREON_WEBHOOK_SECRET: string;
+      EXTERNAL_PATREON_OAUTH_ACCESS_TOKEN: string;
 
       // Subscription related
       SUBSCRIPTION_EMAIL_SERVER: string;
