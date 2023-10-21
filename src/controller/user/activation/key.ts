@@ -116,6 +116,7 @@ const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
+    collection.createIndex({userId: 1}, {unique: true}),
     collection.createIndex({key: 1}, {unique: true}),
     collection.createIndex({generatedAt: 1}, {expireAfterSeconds: durationOfDay}),
     ...activationContact.map((channel) => (
