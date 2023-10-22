@@ -60,4 +60,3 @@ export type ActivationDataAtClient = Omit<ActivationData, 'expiry' | 'generatedA
   userId: string,
 };
 
-export type UserIdToEmailMap = {[userId in string]: string | null | undefined};

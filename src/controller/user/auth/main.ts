@@ -3,7 +3,7 @@ import {Collection} from 'mongodb';
 import {User} from 'next-auth';
 
 import mongoPromise from '@/lib/mongodb';
-import {UserIdToEmailMap} from '@/types/mongo/activation';
+import {UserIdToEmailMap} from '@/types/mongo/auth';
 
 
 const getCollection = async (): Promise<Collection<User>> => {

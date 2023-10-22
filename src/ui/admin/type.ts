@@ -1,4 +1,5 @@
-import {ActivationDataAtClient, UserIdToEmailMap} from '@/types/mongo/activation';
+import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {UserIdToEmailMap} from '@/types/mongo/auth';
 
 
 export type SiteAdminServerDataProps = {

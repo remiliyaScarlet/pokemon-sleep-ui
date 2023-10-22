@@ -8,7 +8,7 @@ export type ActivationUiState = {
   data: ActivationDataAtClient[],
   popup: {
     show: boolean,
-    data: ActivationDataAtClient
+    data: ActivationDataAtClient,
   },
 };
 

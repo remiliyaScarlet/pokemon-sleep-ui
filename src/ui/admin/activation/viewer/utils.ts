@@ -1,9 +1,5 @@
-import {
-  activationContact,
-  ActivationDataAtClient,
-  ActivationSource,
-  UserIdToEmailMap,
-} from '@/types/mongo/activation';
+import {activationContact, ActivationDataAtClient, ActivationSource} from '@/types/mongo/activation';
+import {UserIdToEmailMap} from '@/types/mongo/auth';
 import {activationContactToText} from '@/ui/admin/activation/const';
 import {activationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {isNotNullish} from '@/utils/type';
