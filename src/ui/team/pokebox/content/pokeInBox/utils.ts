@@ -16,6 +16,7 @@ export const toRatingWorkerOpts = ({
   subSkillMap,
   snorlaxFavorite,
   calculatedSettings,
+  ratingBasis,
 }: PokeInBoxCommonProps): RatingWorkerOpts => {
   const {
     level,
@@ -43,7 +44,7 @@ export const toRatingWorkerOpts = ({
     subSkill,
     nature,
     evolutionCount,
-    basis: getDefaultRatingBasis(pokemon.specialty),
+    basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
   };
 };
 

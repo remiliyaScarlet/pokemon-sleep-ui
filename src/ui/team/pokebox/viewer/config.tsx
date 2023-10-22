@@ -19,6 +19,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {RatingBasisSelectionNullable} from '@/components/shared/pokemon/rating/basis/selection/nullable';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
@@ -56,6 +57,10 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
           sort={filter.sort}
           updateSort={(sort) => setFilter((original) => ({...original, sort}))}
           exclude={['friendshipPoint']}
+        />
+        <RatingBasisSelectionNullable
+          current={filter.ratingBasis}
+          onSelect={(ratingBasis) => setFilter((original) => ({...original, ratingBasis}))}
         />
         <SnorlaxFavoriteInput
           filterKey="snorlaxFavorite"

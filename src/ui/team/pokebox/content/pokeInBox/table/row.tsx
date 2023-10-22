@@ -13,14 +13,10 @@ import {PokeInBoxTableRowHeader} from '@/ui/team/pokebox/content/pokeInBox/table
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {PokeboxDisplayType, PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
 
 
-type Props = PokeInBoxViewUnitProps & {
-  display: PokeboxViewerDisplay,
-};
-
-export const PokeInBoxTableRow = (props: Props) => {
+export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
   const {
     pokeInBox,
     pokedexMap,
@@ -36,6 +32,7 @@ export const PokeInBoxTableRow = (props: Props) => {
 
   const pokeInBoxProps: PokeInBoxCommonProps = {
     ...props,
+    ratingBasis: display.ratingBasis,
     pokemon,
   };
 

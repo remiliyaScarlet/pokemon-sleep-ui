@@ -6,6 +6,7 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
+import {RatingBasis} from '@/types/game/pokemon/rating';
 import {pokemonSubSkillLevel, SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
@@ -46,6 +47,7 @@ export type PokeboxPreviewLevel = typeof pokeboxPreviewLevel[number] | null;
 
 export type PokeboxViewerDisplay = Migratable & {
   sort: PokemonSortType,
+  ratingBasis: RatingBasis | null,
   viewType: PokeboxViewType,
   displayOfGrid: PokeboxDisplayType,
   displayOfTable: FilterInclusionMap<PokeboxDisplayType>,

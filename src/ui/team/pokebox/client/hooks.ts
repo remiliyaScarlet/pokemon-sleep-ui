@@ -69,6 +69,7 @@ export const useCalculatedData = (
       data: {
         // Explicit references here so no extra data get stored
         sort: filter.sort,
+        ratingBasis: filter.ratingBasis,
         displayOfGrid: filter.displayOfGrid,
         displayOfTable: filter.displayOfTable,
         viewType: filter.viewType,

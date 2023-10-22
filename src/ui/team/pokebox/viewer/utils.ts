@@ -26,6 +26,7 @@ export const generatePokeboxViewerFilter = (preloaded: PokeboxDataProps['preload
   ...migrate({
     original: {
       sort: 'id',
+      ratingBasis: null,
       displayOfGrid: 'productionTotal',
       displayOfTable: {},
       viewType: 'table',

@@ -8,7 +8,7 @@ import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
-import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 
 
 export type PokeInBoxRefreshDependency = {
@@ -32,6 +32,7 @@ export type PokeInBoxViewOfTypeProps = PokeInBoxViewCommonProps;
 export type PokeInBoxViewUnitProps = PokeboxCommonProps & PokeInBoxPopupProps & PokeInBoxChangeableProps & {
   pokeInBox: PokeInBox,
   pokedexMap: PokedexMap,
+  display: PokeboxViewerDisplay,
   onClick: () => void,
   isLevelPreview: boolean,
 };
