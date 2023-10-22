@@ -10,8 +10,7 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonNatureEffectInput} from '@/components/shared/pokemon/nature/input/effect';
 import {PokemonSubSkillFilter} from '@/components/shared/pokemon/subSkill/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
@@ -46,15 +45,10 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
             name: target.value,
           }))}/>
         </InputRowWithTitle>
-        {pokemonInputType.map((type) => (
-          <PokemonFilter
-            key={type}
-            type={type}
-            filterKey={type}
-            idPrefix="viewer-"
-            {...props}
-          />
-        ))}
+        <PokemonFilter
+          idPrefix="pokeboxViewer"
+          {...props}
+        />
         <PokemonSubSkillFilter
           {...props}
           idPrefix="pokeboxViewer"

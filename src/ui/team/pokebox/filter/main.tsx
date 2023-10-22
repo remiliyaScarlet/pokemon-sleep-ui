@@ -10,8 +10,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
@@ -53,20 +52,14 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           </div>
         </Flex>
       }>
-        <Flex className="gap-1 pr-1">
-          {pokemonInputType.map((type) => (
-            <PokemonFilter
-              key={type}
-              type={type}
-              pokemonList={pokemonList}
-              ingredientChainMap={ingredientChainMap}
-              filterKey={type}
-              filter={filter}
-              setFilter={setFilter}
-              idPrefix="picker-"
-            />
-          ))}
-        </Flex>
+        <PokemonFilter
+          className="pr-1"
+          pokemonList={pokemonList}
+          ingredientChainMap={ingredientChainMap}
+          filter={filter}
+          setFilter={setFilter}
+          idPrefix="pokeboxPicker"
+        />
       </Collapsible>
       <Collapsible state={resultCollapsible} classNameForHeight={inputSectionHeight} appear button={
         <Flex direction="row" center className="group gap-0.5">

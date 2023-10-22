@@ -22,18 +22,6 @@ export const pokemonInputTypeOfIngredients = [
 
 export type PokemonInputTypeOfIngredients = typeof pokemonInputTypeOfIngredients[number];
 
-export const pokemonInputType = [
-  'pokemonType',
-  'berry',
-  'specialty',
-  'sleepType',
-  ...pokemonInputTypeOfIngredients,
-  'evolutionStage',
-  'mainSkill',
-] as const;
-
-export type PokemonInputType = typeof pokemonInputType[number];
-
 export const pokemonIngredientInputToLevel: {[inputType in PokemonInputTypeOfIngredients]: IngredientLevel} = {
   ingredient1: 1,
   ingredient2: 30,
@@ -46,22 +34,19 @@ export const ingredientLevelToPokemonInput: {[level in IngredientLevel]: Pokemon
   60: 'ingredient3',
 };
 
-export type PokemonInputFilterIdType = {
-  pokemonType: PokemonTypeId,
-  specialty: PokemonSpecialtyId,
-  sleepType: PokemonSleepTypeId,
-  ingredient1: IngredientId,
-  ingredient2: IngredientId,
-  ingredient3: IngredientId,
-  berry: BerryId,
-  evolutionStage: EvolutionStage,
-  mainSkill: PokemonSkillId,
+export type PokemonInputFilter = {
+  pokemonType: FilterInclusionMap<PokemonTypeId>,
+  specialty: FilterInclusionMap<PokemonSpecialtyId>,
+  sleepType: FilterInclusionMap<PokemonSleepTypeId>,
+  ingredient1: FilterInclusionMap<IngredientId>,
+  ingredient2: FilterInclusionMap<IngredientId>,
+  ingredient3: FilterInclusionMap<IngredientId>,
+  berry: FilterInclusionMap<BerryId>,
+  evolutionStage: FilterInclusionMap<EvolutionStage>,
+  mainSkill: FilterInclusionMap<PokemonSkillId>,
 };
 
-export type PokemonInputFilter = Record<
-  PokemonInputType,
-  FilterInclusionMap<PokemonInputFilterIdType[PokemonInputType]>
->;
+export type PokemonInputType = keyof PokemonInputFilter;
 
 export type PokemonInputFilterExtended = PokemonInputFilter & {
   level: number,

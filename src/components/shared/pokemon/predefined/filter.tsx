@@ -7,12 +7,8 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {CollapsibleState} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {
-  PokemonInputFilter,
-  pokemonInputType,
-  UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonInfo} from '@/types/game/pokemon';
 
 
@@ -31,16 +27,7 @@ export const PokemonCollapsibleFilter = ({collapsibleState, ...props}: Props) =>
         </div>
       </Flex>
     }>
-      <Flex className="gap-1">
-        {pokemonInputType.map((type) => (
-          <PokemonFilter
-            key={type}
-            type={type}
-            filterKey={type}
-            {...props}
-          />
-        ))}
-      </Flex>
+      <PokemonFilter className="pr-1" {...props}/>
     </Collapsible>
   );
 };

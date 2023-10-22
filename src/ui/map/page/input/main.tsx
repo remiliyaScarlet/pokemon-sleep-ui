@@ -2,8 +2,7 @@ import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {MapInputDisplayType} from '@/ui/map/page/input/displayType';
 import {MapInputMarkSleepdexToggle} from '@/ui/map/page/input/markSleepdex';
 import {MapInputSleepStyleToggle} from '@/ui/map/page/input/styleIndex';
@@ -25,15 +24,10 @@ export const MapInfoInput = (props: MapInputWithDataProps) => {
 
   return (
     <Flex className="gap-1">
-      {pokemonInputType.map((type) => (
-        <PokemonFilter
-          key={type}
-          type={type}
-          filterKey={type}
-          pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
-          {...props}
-        />
-      ))}
+      <PokemonFilter
+        pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
+        {...props}
+      />
       <MapInputSleepStyleToggle
         sleepStyles={toUnique(sleepStyles.map(({style}) => style.style))}
         filter={filter}

@@ -10,8 +10,7 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisMember, TeamAnalysisSetup, TeamAnalysisSlotName} from '@/types/teamAnalysis';
@@ -88,17 +87,11 @@ export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isInc
           </div>
         </Flex>
       }>
-        <Flex className="gap-1">
-          {pokemonInputType.map((type) => (
-            <PokemonFilter
-              key={type}
-              type={type}
-              filterKey={type}
-              pokemonList={pokemonList}
-              {...props}
-            />
-          ))}
-        </Flex>
+        <PokemonFilter
+          className="pr-1"
+          pokemonList={pokemonList}
+          {...props}
+        />
       </Collapsible>
       <Collapsible state={pickerCollapsible} classNameForHeight="h-60" button={
         <Flex direction="row" center className="gap-0.5">

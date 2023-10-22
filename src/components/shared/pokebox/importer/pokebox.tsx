@@ -15,8 +15,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {usePokeboxImporterFilter} from '@/components/shared/pokebox/importer/filter';
 import {PokeboxImporterCommonProps, PokeInBoxForFilter} from '@/components/shared/pokebox/importer/type';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
@@ -95,19 +94,13 @@ export const PokeboxImporterView = ({
               }))}
             />
           </InputRowWithTitle>
-          {pokemonInputType.map((type) => (
-            <PokemonFilter
-              key={type}
-              style={type === 'sleepType' ? 'highlight' : 'normal'}
-              type={type}
-              filterKey={type}
-              pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
-              filter={filter}
-              setFilter={setFilter}
-              ingredientChainMap={ingredientChainMap}
-              idPrefix="pokeboxImporter"
-            />
-          ))}
+          <PokemonFilter
+            pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
+            filter={filter}
+            setFilter={(getUpdated) => setFilter((original) => getUpdated(original))}
+            ingredientChainMap={ingredientChainMap}
+            idPrefix="pokeboxImporter"
+          />
         </Flex>
       </Collapsible>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">

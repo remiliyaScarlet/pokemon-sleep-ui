@@ -7,9 +7,8 @@ import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props'
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
@@ -40,7 +39,7 @@ export const AnalysisPageInput = ({
         </div>
       </Flex>
     }>
-      <Flex className="gap-1">
+      <Flex className="gap-1 pr-1">
         <PokemonMapFilter
           mapIds={toUnique(Object
             .values(sleepStyleMap)
@@ -53,17 +52,12 @@ export const AnalysisPageInput = ({
             filterKey: 'mapId',
           })}
         />
-        {pokemonInputType.map((type) => (
-          <PokemonFilter
-            {...props}
-            key={type}
-            type={type}
-            filterKey={type}
-            filter={filter}
-            setFilter={setFilter}
-            pokemonList={pokemonList}
-          />
-        ))}
+        <PokemonFilter
+          {...props}
+          filter={filter}
+          setFilter={setFilter}
+          pokemonList={pokemonList}
+        />
         <PokemonLevelSliderRow
           level={filter.level}
           maxLevel={maxLevel}

@@ -11,9 +11,8 @@ import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props'
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
-import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {pokedexSortExclusion} from '@/components/shared/pokemon/sorter/type';
@@ -22,7 +21,7 @@ import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
 import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
+import {PokedexClientCommonProps, PokedexFilter} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
 
 
@@ -63,23 +62,17 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               name: target.value,
             }))}/>
           </InputRowWithTitle>
-          {pokemonInputType.map((type) => (
-            <PokemonFilter
-              key={type}
-              style={type === 'sleepType' ? 'highlight' : 'normal'}
-              type={type}
-              filterKey={type}
-              pokemonList={pokedex}
-              {...props}
-            />
-          ))}
+          <PokemonFilter
+            pokemonList={pokedex}
+            {...props}
+          />
           <PokemonLevelSliderRow
             level={filter.level}
             maxLevel={maxLevel}
             setLevel={(level) => setFilter((original) => ({
               ...original,
               level,
-            } satisfies PokedexInputProps['filter']))}
+            } satisfies PokedexFilter))}
           />
           <SnorlaxFavoriteInput
             filterKey="snorlaxFavorite"
@@ -90,7 +83,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             onClick={(display) => setFilter((original) => ({
               ...original,
               display,
-            } satisfies PokedexInputProps['filter']))}
+            } satisfies PokedexFilter))}
             isActive={(display) => filter.display === display}
             title={
               <Flex direction="row" center>

@@ -47,7 +47,7 @@ export type GetMultiSelectOnClickPropsOpts<
   TFilter extends FilterWithInclusionMap<TId>,
   TId extends Indexable
 > = FilterWithUpdaterProps<TFilter> & {
-  filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>
+  filterKey: KeysOfType<TFilter, FilterInclusionMap<TId>>,
 };
 
 export const getMultiSelectOnClickProps = <

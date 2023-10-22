@@ -3,11 +3,15 @@ import {
   pokemonIngredientInputToLevel,
   PokemonInputFilter,
   PokemonInputFilterCheckExclusion,
-  PokemonInputFilterCheckingOpts, PokemonInputFilterExtended,
+  PokemonInputFilterCheckingOpts,
+  PokemonInputFilterExtended,
   PokemonInputType,
   pokemonInputTypeOfIngredients,
   PokemonInputTypeOfIngredients,
 } from '@/components/shared/pokemon/filter/type';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {toUnique} from '@/utils/array';
+import {isNotNullish} from '@/utils/type';
 
 
 const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilterCheckExclusion} = {
@@ -79,3 +83,17 @@ export const generatePokemonInputFilterExtended = (): PokemonInputFilterExtended
   mapId: {},
   snorlaxFavorite: {},
 });
+
+type GetFilterIdsFromPokemonOpts<TId> = {
+  pokemonList: PokemonInfo[],
+  toId: (single: PokemonInfo) => TId | TId[] | null | undefined,
+};
+
+export const getFilterIdsFromPokemon = <TId extends number>({
+  pokemonList,
+  toId,
+}: GetFilterIdsFromPokemonOpts<TId>) => {
+  return toUnique(pokemonList.flatMap(toId))
+    .filter(isNotNullish)
+    .sort((a, b) => a - b);
+};
