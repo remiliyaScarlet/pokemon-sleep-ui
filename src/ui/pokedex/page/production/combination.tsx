@@ -16,6 +16,7 @@ import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonProps} from '@/ui/pokedex/page/type';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
@@ -29,6 +30,7 @@ type Props = PokemonProps & {
 
 export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const {level, pokemon, calculatedSettings} = props;
+  const evolutionCount = getEvolutionCountFromPokemonInfo({pokemon});
 
   return (
     <Grid className="grid-cols-1 gap-1 xl:grid-cols-2">
@@ -38,6 +40,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
         const rate = getPokemonProducingRate({
           ingredients,
           snorlaxFavorite: {},
+          evolutionCount,
           ...defaultNeutralOpts,
           ...calculatedSettings,
           ...props,

@@ -4,6 +4,7 @@ import {
   PokemonItemStatsWorkerReturn,
 } from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {defaultNeutralOpts} from '@/const/game/production';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
@@ -46,6 +47,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
             ...defaultNeutralOpts,
             berryData: berryDataMap[pokemon.berry.id],
             ingredients,
+            evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
             ...data,
           });
 

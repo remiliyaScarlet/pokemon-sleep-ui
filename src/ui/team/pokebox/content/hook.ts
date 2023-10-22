@@ -55,15 +55,16 @@ export const useFilteredSortedPokebox = ({
           level,
           dateAdded,
           extra: pokeInBox,
+          evolutionCount: pokeInBox.evolutionCount,
           ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
           ...getProducingRateSingleParams({
             ...pokeInBox,
             subSkillMap,
             helpingBonusSimulateOnSelf: true,
           }),
-        };
+        } satisfies PokemonInfoWithSortingPayload<PokeInBox>;
       })
-      .filter(isNotNullish) satisfies PokemonInfoWithSortingPayload<PokeInBox>[],
+      .filter(isNotNullish),
     sort: filter.sort,
     snorlaxFavorite: filter.snorlaxFavorite,
     ingredientMap,

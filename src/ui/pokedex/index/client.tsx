@@ -18,6 +18,7 @@ import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
@@ -49,12 +50,13 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
 
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
-      pokemon: pokemon,
+      pokemon,
       pokemonProducingParams: getPokemonProducingParams({
         pokemonId: pokemon.id,
         pokemonProducingParamsMap,
       }),
       level: filter.level,
+      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
       dateAdded: null,
       extra: null,
       ...defaultNeutralOpts,

@@ -4,7 +4,6 @@ import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/po
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
   getCarryLimitInfo,
@@ -24,7 +23,7 @@ type GetPokemonProducingRateOpts =
     pokemonProducingParams: PokemonProducingParams,
     sleepDurations: number[],
     period?: ProductionPeriod,
-    evolutionCount?: number,
+    evolutionCount: number,
     noCap?: boolean,
   };
 
@@ -46,7 +45,7 @@ export const getPokemonProducingRate = ({
   });
   const carryLimitInfo = getCarryLimitInfo({
     pokemon,
-    evolutionCount: evolutionCount ?? getEvolutionCountFromPokemonInfo({pokemon}),
+    evolutionCount,
     subSkillBonus,
   });
 

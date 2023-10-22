@@ -20,6 +20,7 @@ import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {formatFloat} from '@/utils/number';
 
@@ -92,6 +93,8 @@ export const PokedexLinkDetail = React.memo(({
     return <PokemonMainSkillValue value={skillValue}/>;
   }
 
+  const evolutionCount = getEvolutionCountFromPokemonInfo({pokemon});
+
   // Need to calculate here because display and sort could be different
   const sorter = getPokemonSorter({
     type: display,
@@ -103,6 +106,7 @@ export const PokedexLinkDetail = React.memo(({
     level,
     snorlaxFavorite,
     calculatedSettings,
+    evolutionCount,
     dateAdded: null,
     ...defaultNeutralOpts,
   });
@@ -157,6 +161,7 @@ export const PokedexLinkDetail = React.memo(({
       ingredients,
       snorlaxFavorite: {},
       berryData: berryDataMap[pokemon.berry.id],
+      evolutionCount,
       ...calculatedSettings,
       ...defaultNeutralOpts,
     });

@@ -47,6 +47,7 @@ export type PokemonSortingRequiredData = {
   pokemonProducingParams: PokemonProducingParams,
   level: number,
   ingredients: IngredientProduction[],
+  evolutionCount: number,
   dateAdded: number | null,
 };
 

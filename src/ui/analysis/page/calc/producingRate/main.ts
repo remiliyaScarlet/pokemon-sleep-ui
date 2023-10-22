@@ -5,6 +5,7 @@ import {toAnalysisSkillTriggerProducingStats} from '@/ui/analysis/page/calc/prod
 import {toAnalysisTotalProducingStats} from '@/ui/analysis/page/calc/producingRate/total';
 import {PokemonAnalysisRateInfo} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
@@ -28,6 +29,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     ...opts,
     pokemonProducingParams: currentPokemonProducingParams,
     berryData: berryDataMap[pokemon.berry.id],
+    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     ...defaultNeutralOpts,
   });
 
@@ -47,6 +49,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       }),
       berryData: berryDataMap[otherPokemon.berry.id],
       ingredients: otherIngredients,
+      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon: otherPokemon}),
       ...defaultNeutralOpts,
     }),
   })));
