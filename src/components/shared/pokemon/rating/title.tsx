@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection';
+import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
 import {RatingBasisTitle} from '@/components/shared/pokemon/rating/basis/title';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 

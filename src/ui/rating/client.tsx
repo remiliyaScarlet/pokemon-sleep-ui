@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
-import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection';
+import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettings} from '@/hooks/userData/settings';
