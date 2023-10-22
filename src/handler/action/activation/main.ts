@@ -18,7 +18,7 @@ export const actionSendActivationEmail = async ({
   const {email, activationProperties} = payload;
 
   if (!activationProperties) {
-    console.warn(getWarnOnNullActivation(payload));
+    console.warn(`${getWarnOnNullActivation(payload)} (${sourceNote})`);
     return;
   }
 
