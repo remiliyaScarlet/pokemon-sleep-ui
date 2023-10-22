@@ -206,7 +206,8 @@
         "TotalEnergy": "총 에너지"
       },
       "Input": {
-        "EvolutionCount": "진화횟수"
+        "EvolutionCount": "진화횟수",
+        "FinalEvolution": "마지막 단계"
       }
     },
     "Analysis": {

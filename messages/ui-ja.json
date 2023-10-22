@@ -206,7 +206,8 @@
         "TotalEnergy": "総エナジー"
       },
       "Input": {
-        "EvolutionCount": "進化回数"
+        "EvolutionCount": "進化回数",
+        "FinalEvolution": "最終段階"
       }
     },
     "Analysis": {

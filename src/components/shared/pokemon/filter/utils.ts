@@ -50,11 +50,17 @@ const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilter
     filterKey: 'mainSkill',
     id: pokemon.skill,
   }),
-  evolutionStage: ({filter, pokemon}) => isFilterMismatchOnSingle({
-    filter,
-    filterKey: 'evolutionStage',
-    id: pokemon.evolution.stage,
-  }),
+  evolutionStage: ({filter, pokemon}) => {
+    if (!isFilterMismatchOnSingle({
+      filter,
+      filterKey: 'evolutionStage',
+      id: pokemon.evolution.stage,
+    })) {
+      return false;
+    }
+
+    return !!filter.evolutionStage.final && !!pokemon.evolution.next.length;
+  },
 };
 
 export const isPokemonIncludedFromFilter = (opts: PokemonInputFilterCheckingOpts) => {

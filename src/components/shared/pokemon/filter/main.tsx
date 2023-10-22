@@ -9,7 +9,11 @@ import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/fil
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
-import {ingredientLevelToPokemonInput, PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
+import {
+  EvolutionStageSelection,
+  ingredientLevelToPokemonInput,
+  PokemonInputFilter,
+} from '@/components/shared/pokemon/filter/type';
 import {getFilterIdsFromPokemon} from '@/components/shared/pokemon/filter/utils';
 import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/filter';
 import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
@@ -18,7 +22,6 @@ import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/game/pokemon';
-import {EvolutionStage} from '@/types/game/pokemon/evolution';
 import {IngredientChainMap, ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {MainSkillId} from '@/types/game/pokemon/mainSkill';
 import {KeysOfType} from '@/utils/type';
@@ -39,6 +42,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
   ...props
 }: Props<TFilter>) => {
   const t = useTranslations('Game');
+  const t2 = useTranslations('UI.InPage.Pokedex.Input');
 
   return (
     <Flex className={clsx('gap-1', className)}>
@@ -111,15 +115,22 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       />
       <FilterTextInput
         title={<PokemonFilterTitle type="evolutionStage"/>}
-        idToButton={(id) => <div className="mx-1">{id}</div>}
+        idToButton={(id) => (
+          <div className="mx-1">
+            {id === 'final' ? t2('FinalEvolution') : id}
+          </div>
+        )}
         idToItemId={(id) => `${idPrefix}Evolution${id}`}
-        ids={getFilterIdsFromPokemon({
-          pokemonList,
-          toId: ({evolution}) => evolution.stage,
-        })}
+        ids={[
+          ...getFilterIdsFromPokemon({
+            pokemonList,
+            toId: ({evolution}) => evolution.stage,
+          }),
+          'final',
+        ] satisfies EvolutionStageSelection[]}
         {...getMultiSelectOnClickProps({
           ...props,
-          filterKey: 'evolutionStage' as KeysOfType<TFilter, FilterInclusionMap<EvolutionStage>>,
+          filterKey: 'evolutionStage' as KeysOfType<TFilter, FilterInclusionMap<EvolutionStageSelection>>,
         })}
       />
       <FilterTextInput

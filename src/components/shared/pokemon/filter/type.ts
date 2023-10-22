@@ -34,6 +34,8 @@ export const ingredientLevelToPokemonInput: {[level in IngredientLevel]: Pokemon
   60: 'ingredient3',
 };
 
+export type EvolutionStageSelection = EvolutionStage | 'final';
+
 export type PokemonInputFilter = {
   pokemonType: FilterInclusionMap<PokemonTypeId>,
   specialty: FilterInclusionMap<PokemonSpecialtyId>,
@@ -42,7 +44,7 @@ export type PokemonInputFilter = {
   ingredient2: FilterInclusionMap<IngredientId>,
   ingredient3: FilterInclusionMap<IngredientId>,
   berry: FilterInclusionMap<BerryId>,
-  evolutionStage: FilterInclusionMap<EvolutionStage>,
+  evolutionStage: FilterInclusionMap<EvolutionStageSelection>,
   mainSkill: FilterInclusionMap<PokemonSkillId>,
 };
 

@@ -206,7 +206,8 @@
         "TotalEnergy": "Total Strength"
       },
       "Input": {
-        "EvolutionCount": "Evolution Count"
+        "EvolutionCount": "Evolution Count",
+        "FinalEvolution": "Final Stage"
       }
     },
     "Analysis": {

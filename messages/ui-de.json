@@ -207,7 +207,8 @@
         "TotalEnergy": "Gesamtstärke"
       },
       "Input": {
-        "EvolutionCount": "Anzahl der Entwicklungen"
+        "EvolutionCount": "Anzahl der Entwicklungen",
+        "FinalEvolution": "letzte Entwicklungen"
       }
     },
     "Analysis": {
