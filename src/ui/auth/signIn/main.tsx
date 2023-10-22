@@ -1,9 +1,10 @@
 import React from 'react';
 
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
+import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
 
-import {Link, redirect} from '@/components/i18n';
+import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {DefaultPageProps} from '@/types/next/page';
@@ -18,9 +19,10 @@ export const AuthSignIn = async ({params, searchParams}: DefaultPageProps) => {
   if (session) {
     const callbackUrl = searchParams?.callbackUrl;
 
+    // Redirection here will be a complete URL,
+    // therefore the `redirect` usage should be directly from `next` instead
     if (typeof callbackUrl !== 'string') {
       redirect('/');
-      return;
     }
 
     redirect(callbackUrl);
