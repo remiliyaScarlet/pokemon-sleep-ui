@@ -1,10 +1,9 @@
 import React from 'react';
 
 import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
-import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
-import Link from 'next-intl/link';
 
+import {Link, redirect} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {DefaultPageProps} from '@/types/next/page';
@@ -21,6 +20,7 @@ export const AuthSignIn = async ({params, searchParams}: DefaultPageProps) => {
 
     if (typeof callbackUrl !== 'string') {
       redirect('/');
+      return;
     }
 
     redirect(callbackUrl);

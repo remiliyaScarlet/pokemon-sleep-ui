@@ -1,8 +1,6 @@
 const childProcess = require('child_process');
 
-const withNextI18n = require('next-intl/plugin')(
-  './i18n.ts',
-);
+const withNextI18n = require('next-intl/plugin')();
 
 
 const buildId = childProcess

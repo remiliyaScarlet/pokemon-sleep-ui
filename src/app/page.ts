@@ -1,5 +1,4 @@
-import {redirect} from 'next/navigation';
-
+import {redirect} from '@/components/i18n';
 import {defaultLocale} from '@/const/website';
 
 

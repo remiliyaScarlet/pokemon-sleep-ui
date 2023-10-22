@@ -2,8 +2,8 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
-import {usePathname} from 'next-intl/client';
 
+import {usePathname} from '@/components/i18n';
 import {FlexLink} from '@/components/layout/flex/link';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';

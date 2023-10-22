@@ -3,8 +3,8 @@ import React from 'react';
 import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';

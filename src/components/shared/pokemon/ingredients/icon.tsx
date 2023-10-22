@@ -1,8 +1,8 @@
 import React from 'react';
 
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {PokemonIngredientIconContent} from '@/components/shared/pokemon/ingredients/iconContent';
 import {IngredientIconCommonProps} from '@/components/shared/pokemon/ingredients/type';
 

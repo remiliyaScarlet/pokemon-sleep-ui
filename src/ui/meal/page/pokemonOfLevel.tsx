@@ -3,9 +3,9 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
 import {AdsUnit} from '@/components/ads/main';
+import {Link} from '@/components/i18n';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';

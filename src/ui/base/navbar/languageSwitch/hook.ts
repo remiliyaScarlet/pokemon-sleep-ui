@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {useLocale} from 'next-intl';
-import {usePathname, useRouter} from 'next-intl/client';
+
+import {usePathname, useRouter} from '@/components/i18n';
 
 
 export const useLanguageSwitch = () => {

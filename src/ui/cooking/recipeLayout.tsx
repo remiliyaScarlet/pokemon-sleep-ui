@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {CookingRecipeContent} from '@/ui/cooking/recipeContent';
 import {CookingRecipeLayoutProps} from '@/ui/cooking/type';
 

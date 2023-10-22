@@ -1,4 +1,4 @@
-import {redirect} from 'next-intl/server';
+import {redirect} from '@/components/i18n';
 
 
 const redirectToNewPath = () => {

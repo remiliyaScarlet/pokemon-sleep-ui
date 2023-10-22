@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {imageSmallIconSizes} from '@/styles/image';

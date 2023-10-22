@@ -4,7 +4,7 @@ import {defaultLocale, locales} from '@/const/website';
 
 
 export default createMiddleware({
-  locales: [...locales],
+  locales,
   defaultLocale,
 });
 

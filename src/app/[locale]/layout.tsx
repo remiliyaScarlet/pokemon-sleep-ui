@@ -6,6 +6,8 @@ import {clsx} from 'clsx';
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import Script from 'next/script';
+// eslint-disable-next-line camelcase
+import {unstable_setRequestLocale} from 'next-intl/server';
 
 import {locales} from '@/const/website';
 import {LocaleLayoutProps} from '@/types/next/layout';
@@ -33,22 +35,24 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
     notFound();
   }
 
+  unstable_setRequestLocale(locale);
+
   return (
     <html lang={locale} className="h-full" suppressHydrationWarning>
       {/* Google Analytics */}
       {isProduction() &&
-        <>
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
-          <Script id="google-analytics">
-            {`
+      <>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
+        <Script id="google-analytics">
+          {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
      
               gtag('config', 'G-2LL7T4CCZP');
             `}
-          </Script>
-        </>}
+        </Script>
+      </>}
       <body className={clsx('h-full overflow-hidden', font.className)}>
         <Providers>
           {children}

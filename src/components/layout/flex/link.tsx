@@ -2,8 +2,7 @@ import {UrlObject} from 'url';
 
 import React from 'react';
 
-import Link from 'next-intl/link';
-
+import {Link} from '@/components/i18n';
 import {FlexCommonProps} from '@/components/layout/flex/type';
 import {getFlexStyles} from '@/components/layout/flex/utils';
 

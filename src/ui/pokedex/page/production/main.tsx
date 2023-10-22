@@ -4,8 +4,8 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
-import Link from 'next-intl/link';
 
+import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
