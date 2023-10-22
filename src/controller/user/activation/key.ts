@@ -67,12 +67,18 @@ export const getActivationKey = async (key: string) => (
   getSingleData(getCollection(), {key})
 );
 
-type UpdateActivationPropertiesOfKeyOpts = {
+type UpdateActivationPropertiesOfKeyOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationKey>,
   update: ActivationProperties,
 };
 
-export const updateActivationKeyPropertiesSingle = async ({filter, update}: UpdateActivationPropertiesOfKeyOpts) => {
+export const updateActivationKeyPropertiesSingle = async ({
+  executorUserId,
+  filter,
+  update,
+}: UpdateActivationPropertiesOfKeyOpts) => {
+  throwIfNotAdmin(executorUserId);
+
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 

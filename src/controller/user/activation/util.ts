@@ -34,6 +34,7 @@ export const updateActivationPropertiesSingle = ({filter, properties}: UpdateAct
       update: properties,
     }),
     updateActivationKeyPropertiesSingle({
+      executorUserId: process.env.NEXTAUTH_ADMIN_UID,
       filter,
       update: properties,
     }),
