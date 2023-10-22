@@ -19,11 +19,7 @@ export const toActivationPayloadFromPatreon = async (
   const memberData = await getPatreonMember({userId: id});
 
   const social = memberData.included[0].attributes.social_connections;
-
-  let existedActivationProperties;
-  if (!social) {
-    existedActivationProperties = (await getActivationPropertiesByPatreonContact(email));
-  }
+  const existedActivationProperties = (await getActivationPropertiesByPatreonContact(email));
 
   /* eslint-disable no-console */
   console.log(`>>> Converting Patreon member of ${id} (${email}) to activation payload`);
@@ -43,15 +39,9 @@ export const toActivationPayloadFromPatreon = async (
       source: 'patreon',
       contact: {
         patreon: email,
-        ...(
-          // Use the Discord contact from the Patreon first
-          // If not returned, the use the existing contact, if available
-          social?.discord ?
-            {
-              discord: `<@${social.discord.user_id}>`,
-            } :
-            existedActivationProperties?.contact
-        ),
+        // Keep the existed ones and overwrite with Discord User ID linked to Patreon if once is available
+        ...existedActivationProperties?.contact,
+        ...(social?.discord && {discord: `<@${social.discord.user_id}>`}),
       },
       isSpecial: false,
       note: '',
