@@ -83,6 +83,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
           <RatingBasisSelection
             current={onDesk.basis}
             onSelect={(basis) => setOnDesk((original) => ({...original, basis}))}
+            idPrefix="rating"
           />
         </Flex>
       )}

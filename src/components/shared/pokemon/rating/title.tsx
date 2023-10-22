@@ -25,6 +25,7 @@ export const RatingResultTitle = ({request, setRequest}: Pick<RatingResultProps,
         },
         timestamp: Date.now(),
       })}
+      idPrefix="ratingResult"
     />
   );
 };

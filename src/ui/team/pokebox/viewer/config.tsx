@@ -61,6 +61,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
         <RatingBasisSelectionNullable
           current={filter.ratingBasis}
           onSelect={(ratingBasis) => setFilter((original) => ({...original, ratingBasis}))}
+          idPrefix="pokeboxViewer"
         />
         <SnorlaxFavoriteInput
           filterKey="snorlaxFavorite"

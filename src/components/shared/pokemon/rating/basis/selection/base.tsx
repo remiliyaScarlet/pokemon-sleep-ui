@@ -12,7 +12,13 @@ type Props<TRatingBasis> =
   Pick<FilterCategoryInputProps<TRatingBasis>, 'ids' | 'idToButton' | 'idToItemId'> &
   RatingBasisSelectionCommonProps<TRatingBasis>;
 
-export const RatingBasisSelectionBase = <TRatingBasis, >({current, onSelect, ...props}: Props<TRatingBasis>) => {
+export const RatingBasisSelectionBase = <TRatingBasis, >({
+  current,
+  onSelect,
+  idToItemId,
+  idPrefix,
+  ...props
+}: Props<TRatingBasis>) => {
   return (
     <FilterTextInput
       onClick={onSelect}
@@ -22,6 +28,7 @@ export const RatingBasisSelectionBase = <TRatingBasis, >({current, onSelect, ...
           <MagnifyingGlassCircleIcon className="h-6 w-6"/>
         </Flex>
       }
+      idToItemId={(id) => `${idPrefix}${idToItemId(id)}`}
       {...props}
     />
   );
