@@ -1,6 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hook';
-import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
-import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
+import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/type';
 

@@ -1,5 +1,5 @@
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
-import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';

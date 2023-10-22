@@ -7,8 +7,8 @@ import {
   pokemonIngredientInputToLevel,
   pokemonInputTypeOfIngredients,
   UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/input/type';
-import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/input/utils';
+} from '@/components/shared/pokemon/filter/type';
+import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
 import {natureDataMap} from '@/data/nature';
 import {PokeboxDataProps} from '@/ui/team/pokebox/type';
 import {PokeboxPokemonForView, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';

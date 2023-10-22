@@ -2,8 +2,8 @@ import React from 'react';
 
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
-import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
+import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
 import {MapInputDisplayType} from '@/ui/map/page/input/displayType';
 import {MapInputMarkSleepdexToggle} from '@/ui/map/page/input/markSleepdex';
 import {MapInputSleepStyleToggle} from '@/ui/map/page/input/styleIndex';

@@ -1,10 +1,10 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isDataIncludingAllOfFilter} from '@/components/input/filter/utils/check';
-import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {
   generatePokemonInputFilterExtended,
   isPokemonIncludedFromFilter,
-} from '@/components/shared/pokemon/input/utils';
+} from '@/components/shared/pokemon/filter/utils';
 import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
 import {AnalysisComparisonFilter} from '@/ui/analysis/page/type';
 import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';

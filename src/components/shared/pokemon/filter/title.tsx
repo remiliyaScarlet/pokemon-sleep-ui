@@ -2,9 +2,9 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {pokemonIngredientInputToLevel, PokemonInputType} from '@/components/shared/pokemon/filter/type';
+import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/filter/utils';
 import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
-import {pokemonIngredientInputToLevel, PokemonInputType} from '@/components/shared/pokemon/input/type';
-import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/input/utils';
 
 
 type Props = {

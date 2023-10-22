@@ -7,12 +7,12 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {CollapsibleState} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
 import {
   PokemonInputFilter,
   pokemonInputType,
   UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/input/type';
+} from '@/components/shared/pokemon/filter/type';
 import {PokemonInfo} from '@/types/game/pokemon';
 
 

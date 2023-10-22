@@ -8,7 +8,7 @@ import {FilterWithInclusionMap, FilterWithUpdaterProps} from '@/components/input
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
+import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryId} from '@/types/game/berry';
 import {FieldMetaMap} from '@/types/game/mapMeta';

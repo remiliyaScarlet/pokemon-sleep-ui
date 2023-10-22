@@ -7,9 +7,9 @@ import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props'
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
-import {PokemonFilter} from '@/components/shared/pokemon/input/filter';
-import {PokemonMapFilter} from '@/components/shared/pokemon/input/mapFilter';
-import {pokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonFilter} from '@/components/shared/pokemon/filter/common/main';
+import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
+import {pokemonInputType} from '@/components/shared/pokemon/filter/type';
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';

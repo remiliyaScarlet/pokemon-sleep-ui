@@ -7,7 +7,7 @@ import {
   PokemonInputType,
   pokemonInputTypeOfIngredients,
   PokemonInputTypeOfIngredients,
-} from '@/components/shared/pokemon/input/type';
+} from '@/components/shared/pokemon/filter/type';
 
 
 const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilterCheckExclusion} = {

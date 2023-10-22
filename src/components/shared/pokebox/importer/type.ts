@@ -1,4 +1,4 @@
-import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';

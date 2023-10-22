@@ -2,7 +2,7 @@ import {
   PokemonInputFilter,
   PokemonInputFilterExtended,
   UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/input/type';
+} from '@/components/shared/pokemon/filter/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';

@@ -1,5 +1,5 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {MapMeta} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {SleepdexMap} from '@/types/game/sleepdex';

@@ -6,14 +6,14 @@ import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterCategoryInputProps, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
-import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/filter';
-import {PokemonFilterTitle} from '@/components/shared/pokemon/input/title';
+import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
 import {
   pokemonIngredientInputToLevel,
   PokemonInputFilterIdType,
   PokemonInputType,
-} from '@/components/shared/pokemon/input/type';
-import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/input/utils';
+} from '@/components/shared/pokemon/filter/type';
+import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/filter/utils';
+import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/filter';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {PokemonInfo} from '@/types/game/pokemon';

@@ -1,4 +1,4 @@
-import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';

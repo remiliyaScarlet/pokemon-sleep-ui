@@ -1,4 +1,4 @@
-import {PokemonInputFilter} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 
 
 export type PokeboxPickerFilter = PokemonInputFilter;

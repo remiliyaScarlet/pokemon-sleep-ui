@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
-import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/input/type';
+import {PokemonInputFilterIdType, PokemonInputType} from '@/components/shared/pokemon/filter/type';
 import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {toUnique} from '@/utils/array';
 

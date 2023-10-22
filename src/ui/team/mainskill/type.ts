@@ -1,4 +1,4 @@
-import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/input/type';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonComplexFilterDataProps} from '@/components/shared/pokemon/predefined/complexPicker/type';
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
 import {PokemonOnDeskDataProps, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
