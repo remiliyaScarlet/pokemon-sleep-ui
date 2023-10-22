@@ -2,7 +2,6 @@ import crypto from 'crypto';
 
 import {Collection, Filter, UpdateOneModel} from 'mongodb';
 
-import {durationOfDay} from '@/const/common';
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
@@ -123,7 +122,7 @@ const addIndex = async () => {
 
   return Promise.all([
     collection.createIndex({key: 1}, {unique: true}),
-    collection.createIndex({generatedAt: 1}, {expireAfterSeconds: durationOfDay}),
+    collection.createIndex({expiry: 1}, {expireAfterSeconds: 0}),
     ...activationContact.map((channel) => (
       collection.createIndex({[`contact.${channel}`]: 1}, {unique: true, sparse: true})
     )),
