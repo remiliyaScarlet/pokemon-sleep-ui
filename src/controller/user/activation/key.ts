@@ -97,6 +97,32 @@ export const updateActivationKeyPropertiesBatch = async ({
   );
 };
 
+type UpdateActivationKeyByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
+  key: ActivationKey['key'],
+};
+
+export const updateActivationKeyByKey = async ({
+  executorUserId,
+  key,
+  activation,
+  expiry,
+  source,
+  contact,
+  isSpecial,
+  note,
+}: UpdateActivationKeyByKeyOpts) => updateActivationKeyPropertiesSingle({
+  executorUserId,
+  filter: {key},
+  update: {
+    activation,
+    expiry,
+    source,
+    contact,
+    isSpecial,
+    note,
+  },
+});
+
 type RemoveActivationKeyOpts = ControllerRequireAdminOpts & {
   filter: Filter<ActivationKey>,
 };

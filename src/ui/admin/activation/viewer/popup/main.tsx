@@ -19,9 +19,9 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
     deleteActivation,
   } = control;
 
-  const data = state.popup.data;
+  const info = state.popup.info;
+  const {type, data} = info;
   const {
-    userId,
     key,
     generatedAt,
   } = data;
@@ -29,8 +29,13 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
   return (
     <PopupCommon show={state.popup.show} setShow={setPopupShow}>
       <Flex className="gap-1.5">
-        <ActivationReadonlyField title="User ID" data={userId}/>
-        <ActivationReadonlyField title="User Email" data={userIdEmailMap[userId] ?? '(Unknown)'}/>
+        {
+          type === 'data' &&
+          <>
+            <ActivationReadonlyField title="User ID" data={data.userId}/>
+            <ActivationReadonlyField title="User Email" data={userIdEmailMap[data.userId] ?? '(Unknown)'}/>
+          </>
+        }
         <ActivationReadonlyField title="Activation Key" data={key}/>
         <Flex className="text-end">
           {`Subscriber since ${generatedAt}`}
@@ -42,20 +47,25 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
             ...original,
             popup: {
               ...popup,
-              data: {
-                ...popup.data,
-                ...getUpdated(popup.data),
+              info: {
+                ...popup.info,
+                ...getUpdated(popup.info.data),
               },
             },
           }))}
           idPrefix="popup"
           status={status}
-          onSubmit={(properties) => updateActivation({...data, ...properties})}
+          onSubmit={(properties) => updateActivation({...info, ...properties})}
         />
-        <HorizontalSplitter/>
-        <Flex direction="row" className="justify-end">
-          <ActivationDelete data={data} onDelete={deleteActivation}/>
-        </Flex>
+        {
+          type === 'data' &&
+          <>
+            <HorizontalSplitter/>
+            <Flex direction="row" className="justify-end">
+              <ActivationDelete data={data} onDelete={deleteActivation}/>
+            </Flex>
+          </>
+        }
       </Flex>
     </PopupCommon>
   );

@@ -17,12 +17,15 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
     data: activations,
     popup: {
       show: false,
-      data: {
+      info: {
         // Dummy values, should be overwritten on show (by calling `showActivation()`
-        userId: '',
-        generatedAt: toIsoDateString(new Date()),
-        key: '',
-        ...generateInitialActivationPropertiesAtClient(),
+        type: 'data',
+        data: {
+          userId: '',
+          generatedAt: toIsoDateString(new Date()),
+          key: '',
+          ...generateInitialActivationPropertiesAtClient(),
+        },
       },
     },
   });
@@ -47,41 +50,57 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
     state,
     setState,
     setPopupShow,
-    showActivation: (data: ActivationDataAtClient) => setState((original): ActivationUiState => ({
+    showActivation: (info) => setState((original): ActivationUiState => ({
       ...original,
-      popup: {
-        show: true,
-        data,
-      },
+      popup: {show: true, info},
     })),
     actAsync,
     status,
-    updateActivation: async (updated) => {
-      await actAsync({
-        action: 'upload',
-        options: {
-          type: 'admin.activation.update',
-          data: updated,
-        },
-      });
-      setState(({data, popup}) => ({
-        data: data.map((single) => single.key === updated.key ? updated : single),
-        popup: {
-          ...popup,
-          show: false,
-        },
-      }));
+    updateActivation: async (info) => {
+      const {type, data} = info;
+
+      if (type === 'key') {
+        await actAsync({
+          action: 'upload',
+          options: {type: 'admin.activation.update.key', data},
+        });
+        setState(({data, popup}) => ({
+          data,
+          popup: {
+            ...popup,
+            show: false,
+          },
+        }));
+        return;
+      }
+
+      if (type === 'data') {
+        await actAsync({
+          action: 'upload',
+          options: {type: 'admin.activation.update.key', data},
+        });
+        setState(({data, popup}) => ({
+          data: data.map((single) => single.key === info.data.key ? info.data : single),
+          popup: {
+            ...popup,
+            show: false,
+          },
+        }));
+        return;
+      }
+
+      throw new Error(`Unhandled activation info update of type: ${type satisfies never}`);
     },
     deleteActivation: async () => {
       await actAsync({
         action: 'upload',
         options: {
           type: 'admin.activation.delete',
-          data: popup.data.key,
+          data: popup.info.data.key,
         },
       });
       setState(({data, popup}) => ({
-        data: data.filter(({key}) => popup.data.key !== key),
+        data: data.filter(({key}) => popup.info.data.key !== key),
         popup: {
           ...popup,
           show: false,

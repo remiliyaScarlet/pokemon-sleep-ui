@@ -18,7 +18,7 @@ export const ActivationUnit = ({data, control, button}: Props) => {
   const {showActivation} = control;
 
   return (
-    <button key={userId} onClick={() => showActivation(data)} className={clsx(
+    <button key={userId} onClick={() => showActivation({type: 'data', data})} className={clsx(
       'truncate p-2',
       isExpiringSoon({data, now: new Date()}) ? 'button-clickable button-warn-bg' : 'button-clickable-bg',
     )}>

@@ -50,13 +50,28 @@ export type ActivationKey = ActivationProperties & {
   generatedAt: Date,
 };
 
+export type ActivationKeyAtClient =
+  ActivationPropertiesAtClient &
+  Omit<ActivationKey, keyof ActivationProperties | 'generatedAt'> &
+  {
+    generatedAt: IsoDateString,
+  };
+
 export type ActivationData = ActivationKey & {
   userId: ObjectId,
 };
 
-export type ActivationDataAtClient = Omit<ActivationData, 'expiry' | 'generatedAt' | 'userId'> & {
-  expiry: IsoDateString,
-  generatedAt: IsoDateString,
-  userId: string,
-};
+export type ActivationDataAtClient =
+  ActivationKeyAtClient &
+  Omit<ActivationData, keyof ActivationKey | 'userId'> &
+  {
+    userId: string,
+  };
 
+export type ActivationInfo = {
+  type: 'key',
+  data: ActivationKeyAtClient,
+} | {
+  type: 'data',
+  data: ActivationDataAtClient,
+};
