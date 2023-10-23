@@ -67,6 +67,7 @@ export const MapPage = async ({params}: Props) => {
       <I18nProvider locale={locale} namespaces={[
         'Game',
         'UI.InPage.Pokedex.Info',
+        'UI.InPage.Pokedex.Input',
         'UI.InPage.Map',
         'UI.Common',
         'UI.Metadata',
