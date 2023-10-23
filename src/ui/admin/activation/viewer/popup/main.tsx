@@ -36,6 +36,12 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
             <ActivationReadonlyField title="User Email" data={userIdEmailMap[data.userId] ?? '(Unknown)'}/>
           </>
         }
+        {
+          type === 'key' &&
+          <Flex className="text-center text-2xl text-amber-600 dark:text-amber-400">
+            Pending Activation
+          </Flex>
+        }
         <ActivationReadonlyField title="Activation Key" data={key}/>
         <Flex className="text-end">
           {`Subscriber since ${generatedAt}`}
@@ -43,19 +49,31 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
         <HorizontalSplitter/>
         <ActivationEditor
           data={data}
-          setData={(getUpdated) => setState(({popup, ...original}): ActivationUiState => ({
-            ...original,
-            popup: {
-              ...popup,
-              info: {
-                ...popup.info,
-                ...getUpdated(popup.info.data),
-              },
-            },
-          }))}
+          setData={(getUpdated) => setState(({popup, ...original}): ActivationUiState => {
+            const {info} = popup;
+            const {type, data} = info;
+
+            const properties = getUpdated(data);
+
+            if (type === 'key') {
+              return {...original, popup: {...popup, info: {...info, data: {...data, ...properties}}}};
+            }
+
+            if (type === 'data') {
+              return {...original, popup: {...popup, info: {...info, data: {...data, ...properties}}}};
+            }
+
+            throw new Error(`Unhandled update type ${type satisfies never}`);
+          })}
           idPrefix="popup"
           status={status}
-          onSubmit={(properties) => updateActivation({...info, ...properties})}
+          onSubmit={(properties) => {
+            if (info.type === 'key') {
+              updateActivation({...info, data: {...info.data, ...properties}});
+            } else if (info.type === 'data') {
+              updateActivation({...info, data: {...info.data, ...properties}});
+            }
+          }}
         />
         {
           type === 'data' &&

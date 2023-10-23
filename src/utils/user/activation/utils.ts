@@ -1,6 +1,8 @@
 import {
   ActivationData,
   ActivationDataAtClient,
+  ActivationKey,
+  ActivationKeyAtClient,
   ActivationProperties,
   ActivationPropertiesAtClient,
 } from '@/types/mongo/activation';
@@ -31,16 +33,15 @@ export const isActivationDataValid = ({source, contact, note}: ActivationPropert
   return true;
 };
 
-export const toActivationDataAtClient = ({
-  userId,
-  expiry,
-  generatedAt,
-  ...data
-}: ActivationData): ActivationDataAtClient => ({
+export const toActivationKeyAtClient = ({expiry, generatedAt, ...data}: ActivationKey): ActivationKeyAtClient => ({
   ...data,
-  userId: userId.toString(),
   expiry: toIsoDateString(expiry),
   generatedAt: toIsoDateString(generatedAt),
+});
+
+export const toActivationDataAtClient = ({userId, ...data}: ActivationData): ActivationDataAtClient => ({
+  ...toActivationKeyAtClient(data),
+  userId: userId.toString(),
 });
 
 export const toActivationProperties = ({

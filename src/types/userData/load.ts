@@ -32,4 +32,9 @@ export type UserDataLoadingOpts = {
 } | {
   type: 'adminActivationCreate',
   opts: ActivationPropertiesAtClient,
+} | {
+  type: 'adminActivationCheck',
+  opts: {
+    key: string,
+  },
 };

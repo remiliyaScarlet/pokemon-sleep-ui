@@ -1,5 +1,6 @@
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {SleepdexMap} from '@/types/game/sleepdex';
+import {ActivationInfo} from '@/types/mongo/activation';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
 
@@ -14,4 +15,5 @@ export type UserLazyLoadedContent = {
   sleepdex: SleepdexMap,
   sleepdexOfPokemon: SleepdexMap,
   adminActivationCreate: string,
+  adminActivationCheck: ActivationInfo | null,
 };

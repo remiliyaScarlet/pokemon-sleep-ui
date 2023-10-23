@@ -52,8 +52,7 @@ export type ActivationKey = ActivationProperties & {
 
 export type ActivationKeyAtClient =
   ActivationPropertiesAtClient &
-  Omit<ActivationKey, keyof ActivationProperties | 'generatedAt'> &
-  {
+  Omit<ActivationKey, keyof ActivationProperties | 'generatedAt'> & {
     generatedAt: IsoDateString,
   };
 
@@ -63,8 +62,7 @@ export type ActivationData = ActivationKey & {
 
 export type ActivationDataAtClient =
   ActivationKeyAtClient &
-  Omit<ActivationData, keyof ActivationKey | 'userId'> &
-  {
+  Omit<ActivationData, keyof ActivationKey | 'userId'> & {
     userId: string,
   };
 

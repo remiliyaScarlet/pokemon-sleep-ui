@@ -1,11 +1,16 @@
 import {getSinglePokeInBox, getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
-import {generateActivationKey} from '@/controller/user/activation/key';
+import {getActivationDataByFilter} from '@/controller/user/activation/data';
+import {generateActivationKey, getActivationKeyByFilter} from '@/controller/user/activation/key';
 import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
-import {toActivationProperties} from '@/utils/user/activation/utils';
+import {
+  toActivationDataAtClient,
+  toActivationKeyAtClient,
+  toActivationProperties,
+} from '@/utils/user/activation/utils';
 import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
@@ -77,6 +82,34 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     });
 
     return (activationLink ?? '(Duplicated)') satisfies UserLazyLoadedData['adminActivationCreate'];
+  }
+
+  if (type === 'adminActivationCheck') {
+    const {key} = opts;
+
+    const activationKey = await getActivationKeyByFilter({
+      executorUserId: userId,
+      filter: {key},
+    });
+    if (activationKey) {
+      return {
+        type: 'key',
+        data: toActivationKeyAtClient(activationKey),
+      } satisfies UserLazyLoadedData['adminActivationCheck'];
+    }
+
+    const activationData = await getActivationDataByFilter({
+      executorUserId: userId,
+      filter: {key},
+    });
+    if (activationData) {
+      return {
+        type: 'data',
+        data: toActivationDataAtClient(activationData),
+      } satisfies UserLazyLoadedData['adminActivationCheck'];
+    }
+
+    return null satisfies UserLazyLoadedData['adminActivationCheck'];
   }
 
   console.error(`Unknown data type ${type satisfies never} to load data`);

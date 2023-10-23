@@ -77,7 +77,7 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
       if (type === 'data') {
         await actAsync({
           action: 'upload',
-          options: {type: 'admin.activation.update.key', data},
+          options: {type: 'admin.activation.update.data', data},
         });
         setState(({data, popup}) => ({
           data: data.map((single) => single.key === info.data.key ? info.data : single),
