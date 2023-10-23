@@ -9,9 +9,7 @@ import {InputRowProps} from '@/components/input/filter/type';
 type Props = InputRowProps & {
   title: React.ReactNode,
   ender?: React.ReactNode,
-  noFixedTitleWidth?: React.ReactNode,
 };
-
 
 export const InputRowWithTitle = ({
   title,
@@ -22,7 +20,7 @@ export const InputRowWithTitle = ({
 }: React.PropsWithChildren<Props>) => {
   return (
     <InputRow {...props}>
-      <div className={clsx('whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
+      <div className={clsx('shrink-0 whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
         {title}
       </div>
       {children}

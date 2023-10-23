@@ -7,16 +7,12 @@ import {InputRowProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex/common';
 
 
-type Props = InputRowProps & {
-  className?: string,
-};
-
 export const InputRow = ({
   style = 'normal',
   noRowPadding,
   className,
   children,
-}: React.PropsWithChildren<Props>) => {
+}: React.PropsWithChildren<InputRowProps>) => {
   return (
     <Flex noFullWidth={style === 'none'} className={clsx(
       'items-center gap-1 rounded-lg sm:flex-row',

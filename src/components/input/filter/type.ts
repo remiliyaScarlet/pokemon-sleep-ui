@@ -9,6 +9,7 @@ export type InputRowProps = {
   ender?: React.ReactNode,
   noFixedTitleWidth?: boolean,
   noRowPadding?: boolean,
+  className?: string,
 };
 
 export type FilterInclusionMap<TId extends Indexable> = {[id in TId]?: boolean};
