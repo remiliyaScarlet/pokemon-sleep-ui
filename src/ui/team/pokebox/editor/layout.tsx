@@ -1,5 +1,7 @@
 import React from 'react';
 
+import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
+import BookmarkSlashIcon from '@heroicons/react/24/outline/BookmarkSlashIcon';
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {clsx} from 'clsx';
@@ -52,6 +54,7 @@ export const PokeInBoxEditLayout = ({
     subSkill,
     nature,
     isShiny,
+    isFavorite,
   } = pokeInBox;
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.Common');
@@ -63,6 +66,7 @@ export const PokeInBoxEditLayout = ({
   }
 
   const isShinyActive = isShiny ?? false;
+  const isFavoriteActive = isFavorite ?? false;
   const iconDimension: Dimension = 'h-5 w-5';
   const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
@@ -83,7 +87,7 @@ export const PokeInBoxEditLayout = ({
               ...pokeInBox,
               isShiny: !pokeInBox.isShiny,
             })}
-            className={clsx('group rounded-lg p-1', getToggleButtonClass(isShiny ?? false))}
+            className={clsx('group rounded-lg p-1', getToggleButtonClass(isShinyActive))}
           >
             <div className="group relative h-5 w-5">
               <NextImage
@@ -91,6 +95,19 @@ export const PokeInBoxEditLayout = ({
                 sizes={imageSmallIconSizes} className={isShinyActive ? 'invert-on-dark' : 'invert-on-light'}
               />
             </div>
+          </ToggleButton>
+          <ToggleButton
+            id="markPokeInBoxFavorite"
+            active={isFavoriteActive}
+            onClick={() => setPokeInBox({
+              ...pokeInBox,
+              isFavorite: !pokeInBox.isFavorite,
+            })}
+            className={clsx('group rounded-lg p-1', getToggleButtonClass(isFavoriteActive))}
+          >
+            {isFavoriteActive ?
+              <BookmarkIcon className={iconDimension}/> :
+              <BookmarkSlashIcon className={iconDimension}/>}
           </ToggleButton>
           <InputBox
             value={name ?? ''}

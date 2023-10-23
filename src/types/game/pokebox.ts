@@ -15,6 +15,7 @@ export type PokeInBox = {
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   isShiny?: boolean,
+  isFavorite?: boolean,
 };
 
 export type Pokebox = {[uuid in string]?: PokeInBox};
