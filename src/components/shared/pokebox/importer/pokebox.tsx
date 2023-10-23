@@ -1,6 +1,8 @@
 import React from 'react';
 
 import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
+import BookmarkIcon from '@heroicons/react/24/solid/BookmarkIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
@@ -18,6 +20,7 @@ import {PokeboxImporterCommonProps, PokeInBoxForFilter} from '@/components/share
 import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
+import {pokeInBoxFavoriteStyle} from '@/styles/game/pokebox';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {isNotNullish} from '@/utils/type';
@@ -104,7 +107,7 @@ export const PokeboxImporterView = ({
         </Flex>
       </Collapsible>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
-        {pokebox.filter(({uuid}) => isIncluded[uuid]).map(({name, isShiny, ...pokeInBox}) => (
+        {pokebox.filter(({uuid}) => isIncluded[uuid]).map(({name, isShiny, isFavorite, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
             onClick={() => onPokeboxPicked({name, ...pokeInBox})}
@@ -119,7 +122,7 @@ export const PokeboxImporterView = ({
                 className="shrink-0"
               />
               <Flex>
-                <Flex direction="row" center className="gap-1">
+                <Flex direction="row" center className={clsx('gap-1', isFavorite && pokeInBoxFavoriteStyle)}>
                   {
                     isShiny &&
                     <InfoIcon>
@@ -131,6 +134,7 @@ export const PokeboxImporterView = ({
                       </div>
                     </InfoIcon>
                   }
+                  {isFavorite && <BookmarkIcon className="h-5 w-5"/>}
                   <div className="truncate">
                     {name}
                   </div>
