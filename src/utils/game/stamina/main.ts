@@ -23,14 +23,14 @@ const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): Sta
   return logs;
 };
 
-const getDailyAverageStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
+export const getDailyAverageStaminaEfficiencyFromLogs = (logs: StaminaEventLog[]): number => {
   let sumOfWeightedDuration = (durationOfDay - logs[logs.length - 1].timing) * efficiencyInSleep;
 
   for (let i = 1; i < logs.length; i++) {
     const prev = logs[i - 1];
     const curr = logs[i];
 
-    const blockEfficiency = getEfficiency({type: prev.type, stamina: prev.stamina.after});
+    const blockEfficiency = getEfficiency({stamina: prev.stamina.after});
     const duration = curr.timing - prev.timing;
 
     sumOfWeightedDuration += blockEfficiency * duration;

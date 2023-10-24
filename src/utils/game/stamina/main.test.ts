@@ -2,11 +2,11 @@ import {describe, expect, it} from '@jest/globals';
 
 import {StaminaCalcConfig} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
-import {getStaminaEfficiency} from '@/utils/game/stamina/main';
+import {getDailyAverageStaminaEfficiencyFromLogs, getStaminaEfficiency} from '@/utils/game/stamina/main';
 
 
-describe('Stamina Efficiency', () => {
-  it('has correct stamina efficiency', () => {
+describe('Stamina Efficiency / From Config', () => {
+  it('is correct', () => {
     const config: StaminaCalcConfig = {
       sleepSession: {
         primary: {
@@ -30,6 +30,63 @@ describe('Stamina Efficiency', () => {
     };
     const sessionInfo = getSleepSessionInfo(config.sleepSession);
 
-    expect(getStaminaEfficiency({config, sessionInfo}).average).toBeCloseTo(2.05625);
+    expect(getStaminaEfficiency({config, sessionInfo}).average).toBeCloseTo(2.0375);
+  });
+});
+
+describe('Stamina Efficiency / From Logs', () => {
+  it('is correctly handling secondary sleep', () => {
+    const efficiency = getDailyAverageStaminaEfficiencyFromLogs([
+      {
+        type: 'wakeup',
+        timing: 0,
+        stamina: {before: 4, after: 100},
+        staminaUnderlying: {before: 4, after: 100},
+      },
+      {
+        type: 'efficiencyBlock',
+        timing: 12000,
+        stamina: {before: 80, after: 80},
+        staminaUnderlying: {before: 80, after: 80},
+      },
+      {
+        type: 'skillRecovery',
+        timing: 19200,
+        stamina: {before: 68, after: 86},
+        staminaUnderlying: {before: 68, after: 86},
+      },
+      {
+        type: 'efficiencyBlock',
+        timing: 22800,
+        stamina: {before: 80, after: 80},
+        staminaUnderlying: {before: 80, after: 80},
+      },
+      {
+        type: 'sleep',
+        timing: 34200,
+        stamina: {before: 61, after: 79},
+        staminaUnderlying: {before: 61, after: 79},
+      },
+      {
+        type: 'wakeup',
+        timing: 39600,
+        stamina: {before: 61, after: 79},
+        staminaUnderlying: {before: 61, after: 79},
+      },
+      {
+        type: 'efficiencyBlock',
+        timing: 51000,
+        stamina: {before: 60, after: 60},
+        staminaUnderlying: {before: 60, after: 60},
+      },
+      {
+        type: 'sleep',
+        timing: 60000,
+        stamina: {before: 45, after: 45},
+        staminaUnderlying: {before: 45, after: 45},
+      },
+    ]);
+
+    expect(efficiency).toBeCloseTo(2.014583);
   });
 });

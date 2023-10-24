@@ -56,7 +56,7 @@ export const PokemonProducingStats = (props: PokemonProducingStatsCommonProps) =
               <div>{t2('Stamina')} {breakPoint}+</div>
             </Flex>
           }
-          targetMultiplier={getEfficiency({type: null, stamina: breakPoint + 1})}
+          targetMultiplier={getEfficiency({stamina: breakPoint + 1})}
         />
       ))}
       <AdsUnit/>
