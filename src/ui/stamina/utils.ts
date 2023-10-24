@@ -1,4 +1,4 @@
-import {staminaDepleteInterval, staminaRecoveryInterval} from '@/const/game/stamina';
+import {staminaDepleteInterval} from '@/const/game/stamina';
 import {StaminaAtEvent, StaminaEventLog} from '@/types/game/producing/stamina';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 import {formatSeconds, rotateTime} from '@/utils/time';
@@ -44,8 +44,7 @@ const expandStaminaEventLog = (log: StaminaEventLog): StaminaEventLogFlattened[]
   throw new Error(`Failed to flatten the stamina event log of type [${type satisfies never}]`);
 };
 
-
-export const toFlattenedStaminaEventLogs = (logs: StaminaEventLog[]): StaminaEventLogFlattened[] => {
+export const getStaminaEventLogsFlattened = (logs: StaminaEventLog[]): StaminaEventLogFlattened[] => {
   const originalFlattened = logs.flatMap(expandStaminaEventLog);
   const flattened: StaminaEventLogFlattened[] = [originalFlattened[0]];
 
@@ -64,10 +63,13 @@ export const toFlattenedStaminaEventLogs = (logs: StaminaEventLog[]): StaminaEve
           staminaUnderlying: last.staminaUnderlying - 1,
         };
       } else if (curr.staminaUnderlying - last.staminaUnderlying > 1 && curr.type === 'wakeup') {
+        const prev = originalFlattened[i - 1];
+        const recoveryInterval = (curr.timing - prev.timing) / (curr.stamina - prev.stamina);
+
         newLog = {
           // `type` can't be `null` as the efficiency will be incorrect
           type: 'sleep',
-          timing: last.timing + staminaRecoveryInterval,
+          timing: last.timing + recoveryInterval,
           stamina: last.stamina + 1,
           staminaUnderlying: last.staminaUnderlying + 1,
         };
