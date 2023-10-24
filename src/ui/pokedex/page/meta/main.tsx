@@ -29,7 +29,7 @@ export const PokemonMeta = (props: PokemonProps) => {
   const t2 = useTranslations('UI.InPage.Pokedex');
 
   return (
-    <Flex center className="info-section gap-2 lg:flex-row">
+    <Flex center className="info-section lg:flex-row">
       <Flex className="gap-2 md:p-5 lg:p-8">
         <PokemonNameBig pokemon={pokemon}/>
         <PokemonImageGallery {...props}/>

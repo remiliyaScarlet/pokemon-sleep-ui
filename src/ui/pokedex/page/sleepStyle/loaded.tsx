@@ -19,7 +19,7 @@ export const PokemonSleepStylesLoaded = ({pokemon, sleepStyles, initialSleepdex}
   }
 
   return (
-    <Flex center wrap className="info-section gap-1.5 md:flex-row">
+    <Flex center wrap className="info-section md:flex-row">
       {sleepStyles.map((sleepStyleOfMap) => (
         <PokemonSleepStylesOfMap
           key={sleepStyleOfMap.mapId}

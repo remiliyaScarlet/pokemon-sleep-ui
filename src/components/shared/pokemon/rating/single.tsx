@@ -76,7 +76,7 @@ export const RatingResultOfLevelUI = ({
   const basis = request?.setup.basis;
 
   return (
-    <LazyLoad loading={loading} loadingFullHeight className="info-section relative gap-3">
+    <LazyLoad loading={loading} loadingFullHeight className="info-section relative">
       <Flex direction="row" className={clsx('gap-0.5', textMarkStyle && classOfMarkStyle[textMarkStyle])}>
         <Flex center noFullWidth>
           <GenericIconLarger src="/images/generic/lv.png" alt="Lv" dimension="h-10 w-10"/>

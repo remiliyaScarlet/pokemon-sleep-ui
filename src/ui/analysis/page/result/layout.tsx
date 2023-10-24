@@ -29,7 +29,7 @@ export const AnalysisLayout = <TData, >({
           ))}
         </Flex>
       </PopupCommon>
-      <Flex className="info-section items-center justify-center gap-1">
+      <Flex className="info-section items-center justify-center">
         <div className="text-center text-sm text-slate-500">
           {title}
         </div>

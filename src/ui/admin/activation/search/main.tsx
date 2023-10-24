@@ -27,7 +27,7 @@ export const ActivationSearcher = ({control}: Props) => {
   const {key, notFound} = data;
 
   return (
-    <FlexForm className="info-section gap-1.5" onSubmit={async () => {
+    <FlexForm className="info-section" onSubmit={async () => {
       const updated = await actAsync({
         action: 'load',
         options: {type: 'adminActivationCheck', opts: {key}},

@@ -44,7 +44,7 @@ export const PokemonExpCalculatorInputUI = ({
   const t = useTranslations('UI.InPage.PokemonExp');
 
   return (
-    <Flex className="info-section gap-1.5">
+    <Flex className="info-section">
       <PokemonClickableIcons
         pokemonList={Object
           .values(xpMultiplier)

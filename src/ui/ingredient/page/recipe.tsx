@@ -22,7 +22,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
   const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
-    <Flex direction="row" center wrap className="info-section gap-1">
+    <Flex direction="row" center wrap className="info-section">
       {cookableMeals
         .sort((a, b) => (a.levels.at(-1)?.energy ?? 0) - (b.levels.at(-1)?.energy ?? 0))
         .map((meal) => (

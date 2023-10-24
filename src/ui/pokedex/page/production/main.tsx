@@ -43,7 +43,7 @@ export const PokemonProduction = (props: PokemonProps) => {
   const chain = ingredientChainMap[ingredientChain];
 
   return (
-    <Flex center className="info-section gap-2">
+    <Flex center className="info-section">
       <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
       <PokemonMetaSection
         title={t2('Info.Berry')}

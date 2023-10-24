@@ -22,7 +22,7 @@ export const ActivationGenerator = ({control}: Props) => {
   const [activationLink, setActivationLink] = React.useState<string>();
 
   return (
-    <Flex className="info-section gap-1.5">
+    <Flex className="info-section">
       <div className="text-2xl">
         Activation Key Generator
       </div>

@@ -197,7 +197,7 @@
   }
   
   .info-section {
-    @apply gap-2 rounded-lg p-4 self-stretch info-section-bg;
+    @apply gap-1.5 rounded-lg p-4 self-stretch info-section-bg;
   }
   
   .info-icon-base {
