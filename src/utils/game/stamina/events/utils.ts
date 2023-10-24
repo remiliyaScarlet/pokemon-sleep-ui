@@ -64,14 +64,21 @@ export const offsetEventLogStamina = ({log, offset}: OffsetEventLogStaminaOpts):
   };
 };
 
-type GetActualRecoveryAmountOpts = {
-  amount: number,
+type GetFinalRecoveryRateOpts = {
   recoveryRate: StaminaCalcRecoveryRateConfig,
   isSleep: boolean,
 };
 
-export const getActualRecoveryAmount = ({amount, recoveryRate, isSleep}: GetActualRecoveryAmountOpts) => {
+export const getFinalRecoveryRate = ({recoveryRate, isSleep}: GetFinalRecoveryRateOpts) => {
   const {general, sleep} = recoveryRate;
 
-  return Math.ceil(amount * general * (isSleep ? sleep : 1));
+  return general * (isSleep ? sleep : 1);
+};
+
+type GetActualRecoveryAmountOpts = GetFinalRecoveryRateOpts & {
+  amount: number,
+};
+
+export const getActualRecoveryAmount = ({amount, ...opts}: GetActualRecoveryAmountOpts) => {
+  return Math.ceil(amount * getFinalRecoveryRate(opts));
 };
