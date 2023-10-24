@@ -35,3 +35,5 @@ export const mainSkillEffectTargetImageSrc: {[target in MainSkillTarget]: string
   random: '/images/mainSkill/target/random.png',
   team: '/images/mainSkill/target/team.png',
 };
+
+export const mainSkillMaxLevel = 6;
