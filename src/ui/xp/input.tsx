@@ -103,12 +103,14 @@ export const PokemonExpCalculatorInputUI = ({
           }))}
         />
       </InputRowWithTitle>
-      <Flex className="h-8">
-        <PokemonNatureSelector nature={nature} setNature={(nature) => setFilter((original) => ({
+      <PokemonNatureSelector
+        nature={nature}
+        setNature={(nature) => setFilter((original) => ({
           ...original,
           nature,
-        }))}/>
-      </Flex>
+        }))}
+        classNameForHeight="h-8"
+      />
       <InputRow>
         <Flex direction="row" noFullWidth className="ml-auto gap-2">
           <ToggleButton

@@ -156,25 +156,23 @@ export const PokeInBoxEditLayout = ({
         maxEvolutionCount={maxEvolutionCount}
       />
       <Flex className="gap-1.5 md:flex-row">
-        <Flex className="h-8">
-          <PokemonSubSkillSelector
-            subSkill={subSkill}
-            subSkillMap={subSkillMap}
-            setSubSkill={(subSkill) => setPokeInBox({
-              ...pokeInBox,
-              subSkill,
-            })}
-          />
-        </Flex>
-        <Flex className="h-8">
-          <PokemonNatureSelector
-            nature={nature}
-            setNature={(nature) => setPokeInBox({
-              ...pokeInBox,
-              nature,
-            })}
-          />
-        </Flex>
+        <PokemonSubSkillSelector
+          subSkill={subSkill}
+          subSkillMap={subSkillMap}
+          setSubSkill={(subSkill) => setPokeInBox({
+            ...pokeInBox,
+            subSkill,
+          })}
+          classNameForHeight="h-8"
+        />
+        <PokemonNatureSelector
+          nature={nature}
+          setNature={(nature) => setPokeInBox({
+            ...pokeInBox,
+            nature,
+          })}
+          classNameForHeight="h-8"
+        />
       </Flex>
       <InputRowWithTitle noFixedTitleWidth title={
         <div className="px-2">

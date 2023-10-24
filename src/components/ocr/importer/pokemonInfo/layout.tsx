@@ -32,25 +32,23 @@ export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data,
         <PokemonImage pokemonId={pokemonId} image="icon" isShiny={false}/>
       </div>
       <Flex className="gap-1.5 md:flex-row">
-        <Flex className="h-8">
-          <PokemonSubSkillSelector
-            subSkill={subSkill}
-            setSubSkill={(subSkill) => setState((original) => ({
-              ...original,
-              subSkill,
-            }))}
-            subSkillMap={subSkillMap}
-          />
-        </Flex>
-        <Flex className="h-8">
-          <PokemonNatureSelector
-            nature={nature}
-            setNature={(nature) => setState((original) => ({
-              ...original,
-              nature,
-            }))}
-          />
-        </Flex>
+        <PokemonSubSkillSelector
+          subSkill={subSkill}
+          setSubSkill={(subSkill) => setState((original) => ({
+            ...original,
+            subSkill,
+          }))}
+          subSkillMap={subSkillMap}
+          classNameForHeight="h-8"
+        />
+        <PokemonNatureSelector
+          nature={nature}
+          setNature={(nature) => setState((original) => ({
+            ...original,
+            nature,
+          }))}
+          classNameForHeight="h-8"
+        />
       </Flex>
       <OcrImporterControls
         image={image}

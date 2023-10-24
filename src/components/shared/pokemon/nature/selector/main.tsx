@@ -2,6 +2,7 @@ import React from 'react';
 
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
@@ -19,9 +20,10 @@ type Props = {
   nature: NatureId | null,
   setNature: (nature: NatureId | null) => void,
   hideName?: boolean,
+  classNameForHeight?: string,
 };
 
-export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
+export const PokemonNatureSelector = ({nature, setNature, hideName, classNameForHeight}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -48,10 +50,10 @@ export const PokemonNatureSelector = ({nature, setNature, hideName}: Props) => {
 
   return (
     <>
-      <button
-        className="button-clickable-bg group h-full w-full whitespace-nowrap px-1.5 text-sm"
-        onClick={() => setShow(true)}
-      >
+      <button onClick={() => setShow(true)} className={clsx(
+        'button-clickable-bg group w-full whitespace-nowrap px-1.5 text-sm',
+        classNameForHeight ?? 'h-full',
+      )}>
         <PokemonNatureIndicator nature={nature} hideName={hideName}/>
       </button>
       <PopupCommon show={show} setShow={setShow}>

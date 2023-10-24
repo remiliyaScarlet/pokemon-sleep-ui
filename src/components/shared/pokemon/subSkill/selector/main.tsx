@@ -27,9 +27,10 @@ type Props = {
   subSkill: PokemonSubSkill,
   setSubSkill: (subSkill: PokemonSubSkill) => void,
   subSkillMap: SubSkillMap,
+  classNameForHeight?: string,
 };
 
-export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Props) => {
+export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap, classNameForHeight}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -74,10 +75,10 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap}: Pr
 
   return (
     <>
-      <button
-        className="button-clickable-bg group h-full w-full whitespace-nowrap px-1.5 text-sm"
-        onClick={() => setShow(true)}
-      >
+      <button onClick={() => setShow(true)} className={clsx(
+        'button-clickable-bg group w-full whitespace-nowrap px-1.5 text-sm',
+        classNameForHeight ?? 'h-full',
+      )}>
         <Flex center>
           <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
         </Flex>
