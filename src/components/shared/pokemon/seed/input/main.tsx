@@ -40,7 +40,7 @@ export const SeedUsageInput = ({
   });
 
   return (
-    <InputRow className="">
+    <InputRow className="px-2">
       <Flex direction="row" noFullWidth className={commonInputStyle}>
         <GoldSeedIcon/>
         <InputBox
