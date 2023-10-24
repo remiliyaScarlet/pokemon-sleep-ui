@@ -1,6 +1,7 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
 import {StaminaAtEvent, StaminaEventLog} from '@/types/game/producing/stamina';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
+import {getEfficiency} from '@/utils/game/stamina/efficiency';
 import {formatSeconds, rotateTime} from '@/utils/time';
 
 
@@ -10,12 +11,14 @@ type GetStaminaOfLogOpts = {
 };
 
 const toFlattenedStaminaEventLog = ({log, key}: GetStaminaOfLogOpts): StaminaEventLogFlattened => {
-  const {stamina, staminaUnderlying} = log;
+  const {staminaUnderlying} = log;
+  const stamina = log.stamina[key];
 
   return {
     ...log,
-    stamina: stamina[key],
+    stamina,
     staminaUnderlying: staminaUnderlying[key],
+    efficiency: getEfficiency({stamina}),
   };
 };
 
@@ -56,11 +59,14 @@ export const getStaminaEventLogsFlattened = (logs: StaminaEventLog[]): StaminaEv
       let newLog: StaminaEventLogFlattened | undefined = undefined;
 
       if (curr.staminaUnderlying - last.staminaUnderlying < -1) {
+        const stamina = Math.max(0, last.stamina - 1);
+
         newLog = {
           type: null,
           timing: last.timing + staminaDepleteInterval,
-          stamina: Math.max(0, last.stamina - 1),
+          stamina,
           staminaUnderlying: last.staminaUnderlying - 1,
+          efficiency: getEfficiency({stamina}),
         };
       } else if (curr.staminaUnderlying - last.staminaUnderlying > 1 && curr.type === 'wakeup') {
         const prev = originalFlattened[i - 1];
@@ -72,6 +78,7 @@ export const getStaminaEventLogsFlattened = (logs: StaminaEventLog[]): StaminaEv
           timing: last.timing + recoveryInterval,
           stamina: last.stamina + 1,
           staminaUnderlying: last.staminaUnderlying + 1,
+          efficiency: getEfficiency({stamina: curr.stamina}),
         };
       }
 

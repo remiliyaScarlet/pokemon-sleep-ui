@@ -7,6 +7,7 @@ export type StaminaEventLogFlattened = Omit<StaminaEventLog, 'stamina' | 'stamin
   stamina: number,
   staminaUnderlying: number,
   type: StaminaEventType | null,
+  efficiency: number,
 };
 
 export type StaminaAnalysisDataProps = {

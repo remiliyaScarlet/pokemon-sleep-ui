@@ -3,7 +3,6 @@ import React from 'react';
 import {StaminaChart} from '@/ui/stamina/chart/common';
 import {StaminaChartTooltipOfEfficiency} from '@/ui/stamina/chart/tooltip/efficiency';
 import {StaminaChartCommonProps} from '@/ui/stamina/chart/type';
-import {getEfficiency} from '@/utils/game/stamina/efficiency';
 
 
 export const StaminaChartOfEfficiency = ({config, logs}: StaminaChartCommonProps) => {
@@ -14,7 +13,7 @@ export const StaminaChartOfEfficiency = ({config, logs}: StaminaChartCommonProps
       config={config}
       logs={logs}
       titleI18nId="Chart.Efficiency"
-      getData={getEfficiency}
+      getData={({efficiency}) => efficiency}
       domainMin={1}
       tooltip={<StaminaChartTooltipOfEfficiency logs={logs} start={start}/>}
     />
