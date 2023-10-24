@@ -4,7 +4,7 @@ import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {StaminaAnalysisDataProps, StaminaAnalysisState, UseStaminaAnalysisReturn} from '@/ui/stamina/type';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
-import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
+import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 
 export const useStaminaAnalysis = ({
@@ -32,7 +32,7 @@ export const useStaminaAnalysis = ({
       nature,
     })),
     setSubSkill: (subSkill) => setState(({config, ...original}) => {
-      const subSkillBonus = getSubSkillBonus({
+      const bonus = getSubSkillBonus({
         level: Math.max(...pokemonSubSkillLevel),
         pokemonSubSkill: subSkill,
         subSkillMap,
@@ -44,7 +44,7 @@ export const useStaminaAnalysis = ({
           ...config,
           recoveryRate: {
             ...config.recoveryRate,
-            sleep: toSum(subSkillBonus.stamina ?? []) || 1,
+            sleep: toSum(getSubSkillBonusValue(bonus, 'stamina')) || 1,
           },
         },
         subSkill,
