@@ -1,5 +1,6 @@
 import {v4} from 'uuid';
 
+import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
@@ -26,5 +27,6 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     subSkill: {},
     nature: null,
+    seeds: defaultSeedUsage,
   };
 };

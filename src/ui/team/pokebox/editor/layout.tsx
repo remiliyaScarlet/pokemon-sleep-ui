@@ -20,7 +20,9 @@ import {PokemonEvolutionSelector} from '@/components/shared/pokemon/evolution/se
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {SeedUsageInput} from '@/components/shared/pokemon/seed/input/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {defaultSeedUsage} from '@/const/game/seed';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
@@ -28,6 +30,7 @@ import {Dimension} from '@/types/style';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
 import {toIsoDateString} from '@/utils/date';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';
+import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -67,6 +70,7 @@ export const PokeInBoxEditLayout = ({
 
   const isShinyActive = isShiny ?? false;
   const isFavoriteActive = isFavorite ?? false;
+  const seeds = pokeInBox.seeds ?? defaultSeedUsage;
   const iconDimension: Dimension = 'h-5 w-5';
   const maxEvolutionCount = getPokemonMaxEvolutionCount(Object.values(pokedexMap).filter(isNotNullish));
 
@@ -154,6 +158,16 @@ export const PokeInBoxEditLayout = ({
           evolutionCount,
         })}
         maxEvolutionCount={maxEvolutionCount}
+      />
+      <SeedUsageInput
+        idPrefix={`${uuid}pokebox`}
+        usage={seeds}
+        setUsage={(getUpdated) => setPokeInBox({
+          ...pokeInBox,
+          seeds: getUpdated(seeds),
+        })}
+        evolutionCount={evolutionCount}
+        subSkillBonus={getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap})}
       />
       <Flex className="gap-1.5 md:flex-row">
         <PokemonSubSkillSelector
