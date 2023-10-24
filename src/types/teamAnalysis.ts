@@ -1,4 +1,5 @@
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
+import {SeedUsage} from '@/types/game/pokemon/seed';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
@@ -10,6 +11,7 @@ export type TeamAnalysisSlotName = typeof teamAnalysisSlotName[number];
 
 export type TeamAnalysisMember = PokemonConfigPokemonData & {
   name?: string | null,
+  seeds?: SeedUsage,
 };
 
 export type TeamAnalysisConfig = Migratable & {
