@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {LevelIcon} from '@/components/shared/icon/lv';
 import {PokemonExpCalculatorTableRow} from '@/ui/xp/results/row';
 import {
   getExpDataWithMultiplier,
@@ -45,7 +46,7 @@ export const PokemonExpCalculatorTable = ({
           <tr>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt="Lv." src="/images/generic/lv.png" dimension={dimension}/>
+                <LevelIcon dimension={dimension}/>
               </Flex>
             </td>
             <td>

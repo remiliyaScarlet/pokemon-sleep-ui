@@ -29,6 +29,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Exp: string,
       Hour: string,
       Map: string,
+      MainSkill: string,
       MaxCarry: string,
       Rank: string,
       Rewards: string,

@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
+import {LevelIcon} from '@/components/shared/icon/lv';
 import {EvolutionCondition} from '@/types/game/pokemon/evolution';
 
 
@@ -22,7 +23,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'level') {
     return (
       <Flex direction="row" className="gap-1">
-        <GenericIconLarger src="/images/generic/lv.png" alt="Lv"/>
+        <LevelIcon/>
         <div>{condition.level}</div>
       </Flex>
     );
