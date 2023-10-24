@@ -1,4 +1,4 @@
-import {StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaCalcRecoveryRateConfig, StaminaEventLog} from '@/types/game/producing/stamina';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 
 
@@ -62,4 +62,16 @@ export const offsetEventLogStamina = ({log, offset}: OffsetEventLogStaminaOpts):
       after: staminaUnderlying.after + offset,
     },
   };
+};
+
+type GetActualRecoveryAmountOpts = {
+  amount: number,
+  recoveryRate: StaminaCalcRecoveryRateConfig,
+  isSleep: boolean,
+};
+
+export const getActualRecoveryAmount = ({amount, recoveryRate, isSleep}: GetActualRecoveryAmountOpts) => {
+  const {general, sleep} = recoveryRate;
+
+  return Math.ceil(amount * general * (isSleep ? sleep : 1));
 };

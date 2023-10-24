@@ -12,6 +12,18 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
   },
   {
     toVersion: 2,
+    // Added stamina config
     migrate: (old) => ({...old, stamina: defaultStaminaCalcConfig}),
+  },
+  {
+    toVersion: 3,
+    // Added `recoveryRate` in `StaminaCalcConfig`
+    migrate: (old) => ({
+      ...old,
+      stamina: {
+        ...old.stamina,
+        recoveryRate: defaultStaminaCalcConfig.recoveryRate,
+      },
+    }),
   },
 ];

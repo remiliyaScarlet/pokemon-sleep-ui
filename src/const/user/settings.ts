@@ -27,11 +27,15 @@ export const defaultStaminaCalcConfig: StaminaCalcConfig = {
     dailyCount: 3,
     amount: 18,
   },
+  recoveryRate: {
+    general: 1,
+    sleep: 1,
+  },
 };
 
 export const defaultUserSettings: UserSettings = {
   bonus: defaultUserBonus,
   stamina: defaultStaminaCalcConfig,
   currentMap: 1,
-  version: 2,
+  version: 3,
 };

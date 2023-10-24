@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {StaminaCalcRecoveryRateConfig, StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
 import {getLogsWithSecondarySleep} from '@/utils/game/stamina/events/secondary';
@@ -18,15 +18,19 @@ describe('Stamina Event Log (+Secondary)', () => {
     },
   });
 
-  it('is correct with secondary sleep under optimistic', () => {
+  it('is correct under optimistic', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1,
+      sleep: 1,
+    };
     const skillRecovery: StaminaCalcSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
     };
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
-    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
@@ -47,15 +51,19 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs.length).toBe(4);
   });
 
-  it('is correct with secondary sleep under conservative', () => {
+  it('is correct under conservative', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1,
+      sleep: 1,
+    };
     const skillRecovery: StaminaCalcSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,
     };
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
-    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
@@ -76,7 +84,11 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs.length).toBe(4);
   });
 
-  it('is correct with secondary sleep occurred after 0 energy', () => {
+  it('is correct occurred after 0 energy', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1,
+      sleep: 1,
+    };
     const sessionInfo = getSleepSessionInfo({
       primary: {
         start: 81000, // 22:30
@@ -94,8 +106,8 @@ describe('Stamina Event Log (+Secondary)', () => {
       amount: 9,
     };
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
-    logs = getLogsWithSecondarySleep({sessionInfo, logs});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
@@ -113,6 +125,138 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs[3].timing).toBe(81000);
     expect(logs[3].stamina.before).toBe(0);
     expect(logs[3].staminaUnderlying.before).toBe(-17);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with > 1 recovery rate under optimistic', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1.2,
+      sleep: 1,
+    };
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'optimistic',
+      dailyCount: 3,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(133);
+    expect(logs[0].staminaUnderlying.after).toBe(133);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(25200);
+    expect(logs[1].stamina.before).toBe(91);
+    expect(logs[1].staminaUnderlying.before).toBe(91);
+    expect(logs[2].type).toBe('wakeup');
+    expect(logs[2].timing).toBe(30600);
+    expect(logs[2].stamina.after).toBe(113);
+    expect(logs[2].staminaUnderlying.after).toBe(113);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(63000);
+    expect(logs[3].stamina.before).toBe(59);
+    expect(logs[3].staminaUnderlying.before).toBe(59);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with < 1 recovery rate under optimistic', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 0.8,
+      sleep: 1,
+    };
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'optimistic',
+      dailyCount: 3,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(124);
+    expect(logs[0].staminaUnderlying.after).toBe(124);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(25200);
+    expect(logs[1].stamina.before).toBe(82);
+    expect(logs[1].staminaUnderlying.before).toBe(82);
+    expect(logs[2].type).toBe('wakeup');
+    expect(logs[2].timing).toBe(30600);
+    expect(logs[2].stamina.after).toBe(97);
+    expect(logs[2].staminaUnderlying.after).toBe(97);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(63000);
+    expect(logs[3].stamina.before).toBe(43);
+    expect(logs[3].staminaUnderlying.before).toBe(43);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with > 1 recovery rate under conservative', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1.2,
+      sleep: 1,
+    };
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 3,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[0].staminaUnderlying.after).toBe(100);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(25200);
+    expect(logs[1].stamina.before).toBe(58);
+    expect(logs[1].staminaUnderlying.before).toBe(58);
+    expect(logs[2].type).toBe('wakeup');
+    expect(logs[2].timing).toBe(30600);
+    expect(logs[2].stamina.after).toBe(80);
+    expect(logs[2].staminaUnderlying.after).toBe(80);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(63000);
+    expect(logs[3].stamina.before).toBe(26);
+    expect(logs[3].staminaUnderlying.before).toBe(26);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with < 1 recovery rate under conservative', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 0.8,
+      sleep: 1,
+    };
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 3,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[0].staminaUnderlying.after).toBe(100);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(25200);
+    expect(logs[1].stamina.before).toBe(58);
+    expect(logs[1].staminaUnderlying.before).toBe(58);
+    expect(logs[2].type).toBe('wakeup');
+    expect(logs[2].timing).toBe(30600);
+    expect(logs[2].stamina.after).toBe(73);
+    expect(logs[2].staminaUnderlying.after).toBe(73);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(63000);
+    expect(logs[3].stamina.before).toBe(19);
+    expect(logs[3].staminaUnderlying.before).toBe(19);
     expect(logs.length).toBe(4);
   });
 });

@@ -16,9 +16,15 @@ export type StaminaCalcSkillRecoveryConfig = {
 
 export type StaminaCalcSleepSessionConfig = SleepSessions<SleepSessionTimes>;
 
+export type StaminaCalcRecoveryRateConfig = {
+  general: number,
+  sleep: number,
+};
+
 export type StaminaCalcConfig = {
   sleepSession: StaminaCalcSleepSessionConfig,
   skillRecovery: StaminaCalcSkillRecoveryConfig,
+  recoveryRate: StaminaCalcRecoveryRateConfig,
 };
 
 export type StaminaEventType = 'skillRecovery' | 'efficiencyBlock' | 'sleep' | 'wakeup';

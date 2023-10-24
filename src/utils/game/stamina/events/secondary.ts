@@ -1,10 +1,10 @@
 import {StaminaEventLog} from '@/types/game/producing/stamina';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
-import {generateSleepEventFromLast} from '@/utils/game/stamina/events/utils';
+import {generateSleepEventFromLast, getActualRecoveryAmount} from '@/utils/game/stamina/events/utils';
 
 
-export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts): StaminaEventLog[] => {
+export const getLogsWithSecondarySleep = ({sessionInfo, logs, recoveryRate}: GetLogsCommonOpts): StaminaEventLog[] => {
   const {session} = sessionInfo;
   const {secondary} = session;
 
@@ -18,6 +18,7 @@ export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts
     start: newLogs[0].stamina.after,
     duration: secondary.adjustedTiming.start,
   });
+  const recovery = getActualRecoveryAmount({amount: secondary.recovery, recoveryRate, isSleep: true});
 
   newLogs.push(
     {
@@ -25,11 +26,11 @@ export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts
       timing: secondary.adjustedTiming.start,
       stamina: {
         before: sleepStamina.inGame,
-        after: sleepStamina.inGame + secondary.recovery,
+        after: sleepStamina.inGame + recovery,
       },
       staminaUnderlying: {
         before: sleepStamina.actual,
-        after: sleepStamina.actual + secondary.recovery,
+        after: sleepStamina.actual + recovery,
       },
     },
     {
@@ -37,11 +38,11 @@ export const getLogsWithSecondarySleep = ({sessionInfo, logs}: GetLogsCommonOpts
       timing: secondary.adjustedTiming.end,
       stamina: {
         before: sleepStamina.inGame,
-        after: sleepStamina.inGame + secondary.recovery,
+        after: sleepStamina.inGame + recovery,
       },
       staminaUnderlying: {
         before: sleepStamina.actual,
-        after: sleepStamina.actual + secondary.recovery,
+        after: sleepStamina.actual + recovery,
       },
     },
   );

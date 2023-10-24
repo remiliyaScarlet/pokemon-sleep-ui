@@ -15,11 +15,9 @@ type GetStaminaEventLogOpts = {
 };
 
 const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): StaminaEventLog[] => {
-  const {skillRecovery} = config;
-
-  let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery});
-  logs = getLogsWithSecondarySleep({sessionInfo, logs});
-  logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs});
+  let logs = getLogsWithPrimarySleep({sessionInfo, ...config});
+  logs = getLogsWithSecondarySleep({sessionInfo, logs, ...config});
+  logs = getLogsWithSkillRecovery({sessionInfo, logs, ...config});
   logs = getLogsWithEfficiencyBlock({logs});
 
   return logs;

@@ -23,6 +23,10 @@ describe('Stamina Efficiency', () => {
         dailyCount: 3,
         amount: 9,
       },
+      recoveryRate: {
+        general: 1,
+        sleep: 1,
+      },
     };
     const sessionInfo = getSleepSessionInfo(config.sleepSession);
 
