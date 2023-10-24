@@ -9,7 +9,9 @@ type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'value'> &
   setValue: (newValue: number) => void,
 };
 
-export const Slider = ({id, value, setValue, max, ...props}: Props) => {
+export const Slider = ({id, value, setValue, ...props}: Props) => {
+  const {max} = props;
+
   return (
     <input
       id={id}
