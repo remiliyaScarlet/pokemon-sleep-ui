@@ -44,7 +44,7 @@ export const PokemonStats = ({pokemon}: PokemonProps) => {
             <GenericIconLarger src="/images/generic/pokemonbox.png" alt={t('Stats.Recruit')}/>
           </td>
           <td>
-            <table className="mx-4 border-separate border-spacing-0.5">
+            <table className="mx-4 flex border-separate border-spacing-0.5 place-content-center">
               <tbody>
                 <tr>
                   <td>
