@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaCalcRecoveryRateConfig, StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {StaminaRecoveryRateConfig, StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
 import {getLogsWithSecondarySleep} from '@/utils/game/stamina/events/secondary';
@@ -19,11 +19,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
@@ -52,11 +52,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,
@@ -85,7 +85,7 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct occurred after 0 energy', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -100,7 +100,7 @@ describe('Stamina Event Log (+Secondary)', () => {
       },
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 0,
       amount: 9,
@@ -129,11 +129,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct with > 1 recovery rate under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1.2,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
@@ -162,11 +162,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct with < 1 recovery rate under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 0.8,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
@@ -195,11 +195,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct with > 1 recovery rate under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1.2,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,
@@ -228,11 +228,11 @@ describe('Stamina Event Log (+Secondary)', () => {
   });
 
   it('is correct with < 1 recovery rate under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 0.8,
       sleep: 1,
     };
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,

@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaCalcRecoveryRateConfig, StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {StaminaRecoveryRateConfig, StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithEfficiencyBlock} from '@/utils/game/stamina/events/block';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
@@ -10,7 +10,7 @@ import {getLogsWithSkillRecovery} from '@/utils/game/stamina/events/skill';
 
 describe('Stamina Event Log (+Efficiency Block)', () => {
   it('is correct with secondary sleep before any skill trigger under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -25,7 +25,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       },
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 1,
       amount: 9,
@@ -68,7 +68,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
   });
 
   it('is correct with secondary sleep after a skill trigger under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -83,7 +83,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       },
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,
@@ -142,7 +142,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
   });
 
   it('is correct with secondary sleep without any skill trigger', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -157,7 +157,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       },
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 0,
       amount: 9,
@@ -196,7 +196,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
   });
 
   it('is correct without secondary sleep under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -208,7 +208,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
@@ -241,7 +241,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
   });
 
   it('is correct when the session is very long', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -253,7 +253,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 2,
       amount: 9,
@@ -310,7 +310,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
   });
 
   it('is correct with > 1 recovery rate under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1.2,
       sleep: 1,
     };
@@ -325,7 +325,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
       },
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,

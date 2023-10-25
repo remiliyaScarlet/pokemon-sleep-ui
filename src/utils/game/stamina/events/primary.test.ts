@@ -1,13 +1,13 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaCalcRecoveryRateConfig, StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {StaminaRecoveryRateConfig, StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
 
 
 describe('Stamina Event Log (+Primary)', () => {
   it('is correct with energy never hitting 0 under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -19,7 +19,7 @@ describe('Stamina Event Log (+Primary)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,
@@ -39,7 +39,7 @@ describe('Stamina Event Log (+Primary)', () => {
   });
 
   it('is correct with energy never hitting 0 under conservative', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -51,7 +51,7 @@ describe('Stamina Event Log (+Primary)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 3,
       amount: 9,
@@ -71,7 +71,7 @@ describe('Stamina Event Log (+Primary)', () => {
   });
 
   it('is correct with energy hitting 0', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
     };
@@ -83,7 +83,7 @@ describe('Stamina Event Log (+Primary)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
       dailyCount: 0,
       amount: 9,
@@ -103,7 +103,7 @@ describe('Stamina Event Log (+Primary)', () => {
   });
 
   it('is correct with > 1 recovery rate under optimistic', () => {
-    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+    const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1.2,
       sleep: 1,
     };
@@ -115,7 +115,7 @@ describe('Stamina Event Log (+Primary)', () => {
       secondary: null,
     });
 
-    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+    const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
       dailyCount: 3,
       amount: 9,

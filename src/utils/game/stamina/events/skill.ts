@@ -1,6 +1,6 @@
 import {
-  StaminaCalcRecoveryRateConfig,
-  StaminaCalcSkillRecoveryConfig,
+  StaminaRecoveryRateConfig,
+  StaminaSkillRecoveryConfig,
   StaminaEventLog,
 } from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
@@ -15,10 +15,10 @@ import {generateDecimalsAndOnes} from '@/utils/number';
 
 
 type GetSkillRecoveryTimingsOpts = {
-  skillRecovery: StaminaCalcSkillRecoveryConfig,
+  skillRecovery: StaminaSkillRecoveryConfig,
   secondarySession: SleepSessionInfo['session']['secondary'],
   awakeDuration: number,
-  recoveryRate: StaminaCalcRecoveryRateConfig,
+  recoveryRate: StaminaRecoveryRateConfig,
 };
 
 export const getSkillRecoveryData = ({
@@ -44,7 +44,7 @@ export const getSkillRecoveryData = ({
 };
 
 type GetLogsWithSkillRecoveryOpts = GetLogsCommonOpts & {
-  skillRecovery: StaminaCalcSkillRecoveryConfig,
+  skillRecovery: StaminaSkillRecoveryConfig,
 };
 
 export const getLogsWithSkillRecovery = ({

@@ -6,7 +6,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
-import {StaminaCalcSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
@@ -14,7 +14,7 @@ type Props = StaminaConfigProps & {
   id: string,
   iconI18nId: I18nMessageKeysOfNamespace<'UI.Stamina.SkillRecovery'>,
   iconSrc: string,
-  configTarget: keyof StaminaCalcSkillRecoveryConfig,
+  configTarget: keyof StaminaSkillRecoveryConfig,
 };
 
 export const StaminaConfigSkillRecoveryInput = ({config, setConfig, id, iconI18nId, iconSrc, configTarget}: Props) => {

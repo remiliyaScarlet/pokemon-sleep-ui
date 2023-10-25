@@ -1,30 +1,30 @@
 import {SleepSessions, SleepSessionTimes} from '@/types/game/sleep';
 
 
-export const staminaCalcSkillRecoveryStrategies = [
+export const staminaSkillRecoveryStrategies = [
   'optimistic',
   'conservative',
 ];
 
-export type StaminaCalcSkillRecoveryStrategy = typeof staminaCalcSkillRecoveryStrategies[number];
+export type StaminaSkillRecoveryStrategy = typeof staminaSkillRecoveryStrategies[number];
 
-export type StaminaCalcSkillRecoveryConfig = {
-  strategy: StaminaCalcSkillRecoveryStrategy,
+export type StaminaSkillRecoveryConfig = {
+  strategy: StaminaSkillRecoveryStrategy,
   dailyCount: number,
   amount: number,
 };
 
-export type StaminaCalcSleepSessionConfig = SleepSessions<SleepSessionTimes>;
+export type StaminaSleepSessionConfig = SleepSessions<SleepSessionTimes>;
 
-export type StaminaCalcRecoveryRateConfig = {
+export type StaminaRecoveryRateConfig = {
   general: number,
   sleep: number,
 };
 
 export type StaminaCalcConfig = {
-  sleepSession: StaminaCalcSleepSessionConfig,
-  skillRecovery: StaminaCalcSkillRecoveryConfig,
-  recoveryRate: StaminaCalcRecoveryRateConfig,
+  sleepSession: StaminaSleepSessionConfig,
+  skillRecovery: StaminaSkillRecoveryConfig,
+  recoveryRate: StaminaRecoveryRateConfig,
 };
 
 export type StaminaEventType = 'skillRecovery' | 'efficiencyBlock' | 'sleep' | 'wakeup';

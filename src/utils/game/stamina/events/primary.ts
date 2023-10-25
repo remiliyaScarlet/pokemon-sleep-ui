@@ -1,12 +1,12 @@
 import {staminaStartingDefault} from '@/const/game/stamina';
-import {StaminaCalcSkillRecoveryConfig, StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaSkillRecoveryConfig, StaminaEventLog} from '@/types/game/producing/stamina';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
 import {getActualRecoveryAmount} from '@/utils/game/stamina/events/utils';
 
 
 type GetLogsWithPrimarySleepOpts = Omit<GetLogsCommonOpts, 'logs'> & {
-  skillRecovery: StaminaCalcSkillRecoveryConfig,
+  skillRecovery: StaminaSkillRecoveryConfig,
 };
 
 export const getLogsWithPrimarySleep = ({

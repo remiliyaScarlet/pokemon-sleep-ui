@@ -1,6 +1,6 @@
 import {durationOfDay} from '@/const/common';
 import {staminaRecoveryInterval} from '@/const/game/stamina';
-import {StaminaCalcSleepSessionConfig} from '@/types/game/producing/stamina';
+import {StaminaSleepSessionConfig} from '@/types/game/producing/stamina';
 import {SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
 import {rotateTime} from '@/utils/time';
 
@@ -15,7 +15,7 @@ export const getSleepSessionExtraInfo = (session: SleepSessionTimes): Omit<Sleep
   };
 };
 
-const getSecondarySleepSessionInfo = ({primary, secondary}: StaminaCalcSleepSessionConfig) => {
+const getSecondarySleepSessionInfo = ({primary, secondary}: StaminaSleepSessionConfig) => {
   if (!secondary) {
     return null;
   }
@@ -32,7 +32,7 @@ const getSecondarySleepSessionInfo = ({primary, secondary}: StaminaCalcSleepSess
   };
 };
 
-export const getSleepSessionInfo = (session: StaminaCalcSleepSessionConfig): SleepSessionInfo => {
+export const getSleepSessionInfo = (session: StaminaSleepSessionConfig): SleepSessionInfo => {
   const {primary} = session;
 
   const primaryWithInfo: SleepSessionInternal = {
@@ -60,7 +60,7 @@ export const getSleepSessionInfo = (session: StaminaCalcSleepSessionConfig): Sle
 export const getSleepDurationsFromSleepSession = ({
   primary,
   secondary,
-}: StaminaCalcSleepSessionConfig): number[] => {
+}: StaminaSleepSessionConfig): number[] => {
   const sleepDurations = [rotateTime(primary.end - primary.start)];
 
   if (secondary) {

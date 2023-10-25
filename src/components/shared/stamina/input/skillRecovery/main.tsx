@@ -7,8 +7,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
 import {StaminaConfigSkillRecoveryInput} from '@/components/shared/stamina/input/skillRecovery/input';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
-import {staminaCalcStrategyI18nId} from '@/const/game/stamina';
-import {staminaCalcSkillRecoveryStrategies} from '@/types/game/producing/stamina';
+import {staminaStrategyI18nId} from '@/const/game/stamina';
+import {staminaSkillRecoveryStrategies} from '@/types/game/producing/stamina';
 
 
 export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
@@ -32,8 +32,8 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
           },
         })}
         isActive={(strategy) => strategy === skillRecovery.strategy}
-        ids={staminaCalcSkillRecoveryStrategies}
-        idToButton={(strategy) => t(`Strategy.${staminaCalcStrategyI18nId[strategy]}`)}
+        ids={staminaSkillRecoveryStrategies}
+        idToButton={(strategy) => t(`Strategy.${staminaStrategyI18nId[strategy]}`)}
         idToItemId={(strategy) => `${idPrefix}-staminaStrategy-${strategy}`}
         noFixedTitleWidth
       />

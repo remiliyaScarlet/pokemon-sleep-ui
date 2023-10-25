@@ -1,4 +1,4 @@
-import {StaminaCalcRecoveryRateConfig, StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaRecoveryRateConfig, StaminaEventLog} from '@/types/game/producing/stamina';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 
 
@@ -65,7 +65,7 @@ export const offsetEventLogStamina = ({log, offset}: OffsetEventLogStaminaOpts):
 };
 
 type GetFinalRecoveryRateOpts = {
-  recoveryRate: StaminaCalcRecoveryRateConfig,
+  recoveryRate: StaminaRecoveryRateConfig,
   isSleep: boolean,
 };
 
