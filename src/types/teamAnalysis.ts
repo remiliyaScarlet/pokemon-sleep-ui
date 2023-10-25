@@ -2,6 +2,7 @@ import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/c
 import {SeedUsage} from '@/types/game/pokemon/seed';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
+import {StaminaCalcConfig} from '@/types/game/stamina/config';
 import {Migratable} from '@/types/migrate';
 
 
@@ -23,6 +24,7 @@ export type TeamAnalysisComp = Migratable & {
   name: string,
   snorlaxFavorite: SnorlaxFavorite,
   analysisPeriod: ProductionPeriod,
+  staminaConfig: StaminaCalcConfig | null,
   members: {[slot in TeamAnalysisSlotName]: TeamAnalysisMember | null},
 };
 

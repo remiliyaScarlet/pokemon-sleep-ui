@@ -9,4 +9,9 @@ export const teamAnalysisCompMigrators: Migrator<TeamAnalysisComp, TeamAnalysisC
     toVersion: 1,
     migrate: (old) => old,
   },
+  {
+    // `staminaConfig` addition
+    toVersion: 2,
+    migrate: (old) => ({...old, staminaConfig: null}),
+  },
 ];

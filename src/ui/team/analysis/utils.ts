@@ -41,10 +41,12 @@ export const getTeamName = (team: TeamAnalysisComp): string => {
 
 export const generateEmptyTeam = (uuid: string): TeamAnalysisComp => {
   return {
+    version: teamAnalysisCompVersion,
     uuid,
     name: getDefaultTeamName(uuid),
     snorlaxFavorite: {},
     analysisPeriod: 'daily',
+    staminaConfig: null,
     members: {
       A: null,
       B: null,
@@ -52,6 +54,5 @@ export const generateEmptyTeam = (uuid: string): TeamAnalysisComp => {
       D: null,
       E: null,
     },
-    version: teamAnalysisCompVersion,
   };
 };
