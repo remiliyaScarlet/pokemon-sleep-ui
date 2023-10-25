@@ -23,11 +23,11 @@ export const updateLogStaminaFromLast = ({source, last}: UpdateLogStaminaFromLas
     ...source,
     stamina: {
       before: stamina.inGame,
-      after: stamina.inGame,
+      after: stamina.inGame + (source.stamina.after - source.stamina.before),
     },
     staminaUnderlying: {
       before: staminaUnderlying.actual,
-      after: staminaUnderlying.actual,
+      after: staminaUnderlying.actual + (source.staminaUnderlying.after - source.staminaUnderlying.before),
     },
   };
 };

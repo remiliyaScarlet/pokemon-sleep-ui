@@ -31,7 +31,36 @@ describe('Stamina Efficiency / From Config', () => {
       {dailyCount: 3, amount: 9},
     ];
 
-    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.0375);
+    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.05625);
+  });
+
+  it('is correct with multiple skill triggers', () => {
+    const config: StaminaCalcConfig = {
+      sleepSession: {
+        primary: {
+          start: 84600, // 23:30
+          end: 21600, // 06:00
+        },
+        secondary: {
+          start: 46800, // 13:00
+          end: 52200, // 14:30
+        },
+      },
+      skillRecovery: {
+        strategy: 'conservative',
+      },
+      recoveryRate: {
+        general: 1,
+        sleep: 1,
+      },
+    };
+    const sessionInfo = getSleepSessionInfo(config.sleepSession);
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+      {dailyCount: 2, amount: 9},
+    ];
+
+    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.15);
   });
 });
 

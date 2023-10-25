@@ -662,4 +662,57 @@ describe('Stamina Event Log (+Skill)', () => {
     expect(logs[3].stamina.before).toBe(18);
     expect(logs.length).toBe(4);
   });
+
+  it('is correct with multiple skill triggers', () => {
+    const recoveryRate: StaminaRecoveryRateConfig = {
+      general: 1,
+      sleep: 1,
+    };
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 0, // 00:00
+        end: 28800, // 08:00
+      },
+      secondary: null,
+    });
+    const skillRecovery: StaminaSkillRecoveryConfig = {
+      strategy: 'conservative',
+    };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+      {dailyCount: 2, amount: 12},
+    ];
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, skillTriggers, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(14400);
+    expect(logs[1].stamina.before).toBe(76);
+    expect(logs[1].stamina.after).toBe(85);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(19200);
+    expect(logs[2].stamina.before).toBe(77);
+    expect(logs[2].stamina.after).toBe(89);
+    expect(logs[3].type).toBe('skillRecovery');
+    expect(logs[3].timing).toBe(28800);
+    expect(logs[3].stamina.before).toBe(73);
+    expect(logs[3].stamina.after).toBe(82);
+    expect(logs[4].type).toBe('skillRecovery');
+    expect(logs[4].timing).toBe(38400);
+    expect(logs[4].stamina.before).toBe(66);
+    expect(logs[4].stamina.after).toBe(78);
+    expect(logs[5].type).toBe('skillRecovery');
+    expect(logs[5].timing).toBe(43200);
+    expect(logs[5].stamina.before).toBe(70);
+    expect(logs[5].stamina.after).toBe(79);
+    expect(logs[6].type).toBe('sleep');
+    expect(logs[6].timing).toBe(57600);
+    expect(logs[6].stamina.before).toBe(55);
+    expect(logs.length).toBe(7);
+  });
 });
