@@ -61,8 +61,8 @@ export const StaminaAnalysisClient = (props: StaminaAnalysisDataProps) => {
       </Flex>
       <HorizontalSplitter/>
       <StaminaEfficiencyUI efficiency={staminaEfficiency}/>
-      <StaminaChartOfStamina config={config} logs={logs} titleI18nId="Chart.Stamina"/>
-      <StaminaChartOfEfficiency config={config} logs={logs} titleI18nId="Chart.Efficiency"/>
+      <StaminaChartOfStamina config={config} logs={logs}/>
+      <StaminaChartOfEfficiency config={config} logs={logs}/>
     </Flex>
   );
 };

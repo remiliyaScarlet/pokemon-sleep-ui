@@ -5,12 +5,14 @@ import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAx
 
 import {Flex} from '@/components/layout/flex/common';
 import {useLayout} from '@/hooks/layout/main';
+import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 import {StaminaChartCommonProps} from '@/ui/stamina/chart/type';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 import {generateTimingTicks, toFormattedTimeFromTiming} from '@/ui/stamina/utils';
 
 
 type Props = StaminaChartCommonProps & {
+  titleI18nId: I18nMessageKeysOfNamespace<'UI.Stamina'>,
   getData: (log: StaminaEventLogFlattened) => number,
   domainMin: number,
   tooltip: React.ReactElement,
