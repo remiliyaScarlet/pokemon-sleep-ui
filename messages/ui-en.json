@@ -66,10 +66,10 @@
     },
     "Meal": {
       "Index": {
-        "Title": "Recipes"
+        "Title": "Recipes / Dishes"
       },
       "Page": {
-        "Title": "{name} - Recipe"
+        "Title": "{name} - Recipe / Dish"
       }
     },
     "Ingredient": {
