@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {StaminaEfficiencyAtState} from '@/components/shared/stamina/efficiency/single';
-import {StaminaEfficiency} from '@/types/game/producing/stamina';
+import {StaminaEfficiency} from '@/types/game/stamina/efficiency';
 
 
 type Props = {

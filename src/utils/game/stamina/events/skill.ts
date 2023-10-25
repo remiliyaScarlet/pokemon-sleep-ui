@@ -1,10 +1,7 @@
-import {
-  StaminaEventLog,
-  StaminaRecoveryRateConfig,
-  StaminaSkillRecoveryConfig,
-  StaminaSkillTriggerData,
-} from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
+import {StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
+import {StaminaEventLog} from '@/types/game/stamina/event';
+import {StaminaSkillRecoveryConfig, StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts, StaminaSkillRecoveryData} from '@/utils/game/stamina/events/type';
 import {

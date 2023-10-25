@@ -8,7 +8,7 @@ import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/g
 import {StaminaConfigSkillRecoveryInput} from '@/components/shared/stamina/input/skillRecovery/input';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
 import {staminaStrategyI18nId} from '@/const/game/stamina';
-import {staminaSkillRecoveryStrategies} from '@/types/game/producing/stamina';
+import {staminaSkillRecoveryStrategies} from '@/types/game/stamina/skill';
 
 
 export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {

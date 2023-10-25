@@ -1,7 +1,7 @@
 import {durationOfDay} from '@/const/common';
 import {staminaRecoveryInterval} from '@/const/game/stamina';
-import {StaminaSleepSessionConfig} from '@/types/game/producing/stamina';
 import {SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
+import {StaminaSleepSessionConfig} from '@/types/game/stamina/config';
 import {rotateTime} from '@/utils/time';
 
 

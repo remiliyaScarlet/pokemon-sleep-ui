@@ -1,5 +1,6 @@
 import {EfficiencyBreakPoint} from '@/types/game/producing/efficiency';
-import {StaminaSkillRecoveryStrategy, StaminaEventType} from '@/types/game/producing/stamina';
+import {StaminaEventType} from '@/types/game/stamina/event';
+import {StaminaSkillRecoveryStrategy} from '@/types/game/stamina/skill';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 

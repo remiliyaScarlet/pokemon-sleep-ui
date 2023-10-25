@@ -1,5 +1,6 @@
 import {UserBonus} from '@/types/game/bonus';
-import {StaminaCalcConfig, StaminaSkillTriggerData} from '@/types/game/producing/stamina';
+import {StaminaCalcConfig} from '@/types/game/stamina/config';
+import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {UserSettings} from '@/types/userData/settings';
 
 

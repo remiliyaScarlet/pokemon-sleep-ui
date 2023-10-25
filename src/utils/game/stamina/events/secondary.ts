@@ -1,4 +1,4 @@
-import {StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaEventLog} from '@/types/game/stamina/event';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
 import {generateSleepEventFromLast, getActualRecoveryAmount} from '@/utils/game/stamina/events/utils';

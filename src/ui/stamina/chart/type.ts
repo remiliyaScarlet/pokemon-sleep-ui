@@ -1,4 +1,4 @@
-import {StaminaCalcConfig} from '@/types/game/producing/stamina';
+import {StaminaCalcConfig} from '@/types/game/stamina/config';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 
 

@@ -1,6 +1,7 @@
 import {EffectiveBonus, UserBonus} from '@/types/game/bonus';
-import {StaminaCalcConfig, StaminaSkillTriggerData} from '@/types/game/producing/stamina';
 import {SleepMapId} from '@/types/game/sleepStyle';
+import {StaminaCalcConfig} from '@/types/game/stamina/config';
+import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {Migratable} from '@/types/migrate';
 
 

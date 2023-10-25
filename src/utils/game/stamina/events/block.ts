@@ -1,6 +1,6 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
 import {efficiencyBreakPoints} from '@/types/game/producing/efficiency';
-import {StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaEventLog} from '@/types/game/stamina/event';
 
 
 type GetLogsWithEfficiencyBlockOpts = {

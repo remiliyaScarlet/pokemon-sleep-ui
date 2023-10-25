@@ -1,5 +1,6 @@
 import {staminaStartingDefault} from '@/const/game/stamina';
-import {StaminaEventLog, StaminaSkillRecoveryConfig, StaminaSkillTriggerData} from '@/types/game/producing/stamina';
+import {StaminaEventLog} from '@/types/game/stamina/event';
+import {StaminaSkillRecoveryConfig, StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {toSum} from '@/utils/array';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
 import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';

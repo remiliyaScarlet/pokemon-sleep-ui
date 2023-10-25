@@ -1,12 +1,10 @@
 import {durationOfDay} from '@/const/common';
 import {efficiencyInSleep} from '@/const/game/efficiency';
-import {
-  StaminaCalcConfig,
-  StaminaEfficiency,
-  StaminaEventLog,
-  StaminaSkillTriggerData,
-} from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
+import {StaminaCalcConfig} from '@/types/game/stamina/config';
+import {StaminaEfficiency} from '@/types/game/stamina/efficiency';
+import {StaminaEventLog} from '@/types/game/stamina/event';
+import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
 import {getLogsWithEfficiencyBlock} from '@/utils/game/stamina/events/block';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';

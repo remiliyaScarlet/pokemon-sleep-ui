@@ -1,5 +1,5 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
-import {StaminaAtEvent, StaminaEventLog} from '@/types/game/producing/stamina';
+import {StaminaAtEvent, StaminaEventLog} from '@/types/game/stamina/event';
 import {StaminaEventLogFlattened} from '@/ui/stamina/type';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
 import {formatSeconds, rotateTime} from '@/utils/time';
