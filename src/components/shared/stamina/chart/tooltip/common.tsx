@@ -3,9 +3,9 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
+import {StaminaChartTooltipCommonProps} from '@/components/shared/stamina/chart/tooltip/type';
+import {toFormattedTimeFromTiming} from '@/components/shared/stamina/chart/utils';
 import {staminaEventTypeI18nId} from '@/const/game/stamina';
-import {StaminaChartTooltipCommonProps} from '@/ui/stamina/chart/tooltip/type';
-import {toFormattedTimeFromTiming} from '@/ui/stamina/utils';
 
 
 type Props = StaminaChartTooltipCommonProps & {

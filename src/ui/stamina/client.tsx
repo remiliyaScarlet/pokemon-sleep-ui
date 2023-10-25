@@ -6,14 +6,14 @@ import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {StaminaChartOfEfficiency} from '@/components/shared/stamina/chart/efficiency';
+import {StaminaChartOfStamina} from '@/components/shared/stamina/chart/stamina';
 import {StaminaEfficiencyUI} from '@/components/shared/stamina/efficiency/main';
 import {StaminaConfig} from '@/components/shared/stamina/input/main';
-import {StaminaChartOfEfficiency} from '@/ui/stamina/chart/efficiency';
-import {StaminaChartOfStamina} from '@/ui/stamina/chart/stamina';
 import {useStaminaAnalysis} from '@/ui/stamina/hook';
 import {StaminaAnalysisDataProps} from '@/ui/stamina/type';
-import {getStaminaEventLogsFlattened} from '@/ui/stamina/utils';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
+import {getStaminaEventLogsFlattened} from '@/utils/game/stamina/flatten';
 import {getStaminaEfficiency} from '@/utils/game/stamina/main';
 
 

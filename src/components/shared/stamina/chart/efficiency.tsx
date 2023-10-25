@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {StaminaChart} from '@/ui/stamina/chart/common';
-import {StaminaChartTooltipOfEfficiency} from '@/ui/stamina/chart/tooltip/efficiency';
-import {StaminaChartCommonProps} from '@/ui/stamina/chart/type';
+import {StaminaChart} from '@/components/shared/stamina/chart/common';
+import {StaminaChartTooltipOfEfficiency} from '@/components/shared/stamina/chart/tooltip/efficiency';
+import {StaminaChartCommonProps} from '@/components/shared/stamina/chart/type';
 
 
 export const StaminaChartOfEfficiency = ({config, logs}: StaminaChartCommonProps) => {

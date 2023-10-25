@@ -1,16 +1,8 @@
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {StaminaCalcConfig} from '@/types/game/stamina/config';
-import {StaminaEventLog, StaminaEventType} from '@/types/game/stamina/event';
 import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 
-
-export type StaminaEventLogFlattened = Omit<StaminaEventLog, 'stamina' | 'staminaUnderlying' | 'type'> & {
-  stamina: number,
-  staminaUnderlying: number,
-  type: StaminaEventType | null,
-  efficiency: number,
-};
 
 export type StaminaAnalysisConfig = {
   config: StaminaCalcConfig,

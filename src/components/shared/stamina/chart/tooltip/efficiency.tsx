@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {StaminaChartTooltip} from '@/ui/stamina/chart/tooltip/common';
-import {StaminaChartTooltipCommonProps} from '@/ui/stamina/chart/tooltip/type';
+import {StaminaChartTooltip} from '@/components/shared/stamina/chart/tooltip/common';
+import {StaminaChartTooltipCommonProps} from '@/components/shared/stamina/chart/tooltip/type';
 
 
 export const StaminaChartTooltipOfEfficiency = (props: StaminaChartTooltipCommonProps) => {

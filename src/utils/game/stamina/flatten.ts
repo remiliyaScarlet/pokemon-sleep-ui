@@ -1,16 +1,14 @@
 import {staminaDepleteInterval} from '@/const/game/stamina';
-import {StaminaAtEvent, StaminaEventLog} from '@/types/game/stamina/event';
-import {StaminaEventLogFlattened} from '@/ui/stamina/type';
+import {StaminaAtEvent, StaminaEventLog, StaminaEventLogFlattened} from '@/types/game/stamina/event';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
-import {formatSeconds, rotateTime} from '@/utils/time';
 
 
-type GetStaminaOfLogOpts = {
+type ToFlattenedStaminaEventLogOpts = {
   log: StaminaEventLog,
   key: keyof StaminaAtEvent,
 };
 
-const toFlattenedStaminaEventLog = ({log, key}: GetStaminaOfLogOpts): StaminaEventLogFlattened => {
+const toFlattenedStaminaEventLog = ({log, key}: ToFlattenedStaminaEventLogOpts): StaminaEventLogFlattened => {
   const {staminaUnderlying} = log;
   const stamina = log.stamina[key];
 
@@ -93,46 +91,4 @@ export const getStaminaEventLogsFlattened = (logs: StaminaEventLog[]): StaminaEv
   }
 
   return flattened;
-};
-
-type GenerateTicksOpts = {
-  max: number,
-  interval: number,
-};
-
-export const generateTicks = ({max, interval}: GenerateTicksOpts): number[] => {
-  let current = 0;
-  const ticks: number[] = [current];
-
-  while (current < max) {
-    current += interval;
-    ticks.push(current);
-  }
-
-  return ticks;
-};
-
-type GenerateTimingTicksOpts = {
-  max: number,
-  isLandscape: boolean,
-};
-
-export const generateTimingTicks = ({max, isLandscape}: GenerateTimingTicksOpts): number[] => generateTicks({
-  max,
-  // 4/8 is (the number of the ticks to show - 1)
-  interval: Math.ceil(max / (isLandscape ? 8 : 4) / 1800) * 1800,
-});
-
-export const generateStaminaTicks = (max: number): number[] => generateTicks({max, interval: 20});
-
-type ToFormattedTimeFromTimingOpts = {
-  start: number,
-  timing: number,
-};
-
-export const toFormattedTimeFromTiming = ({start, timing}: ToFormattedTimeFromTimingOpts): string => {
-  return formatSeconds({
-    seconds: rotateTime(start + timing),
-    omitSeconds: true,
-  });
 };

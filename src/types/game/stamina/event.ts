@@ -13,3 +13,10 @@ export type StaminaEventLog = {
   // `staminaUnderlying` could go negative, for calculation purposes
   staminaUnderlying: StaminaAtEvent,
 };
+
+export type StaminaEventLogFlattened = Omit<StaminaEventLog, 'stamina' | 'staminaUnderlying' | 'type'> & {
+  stamina: number,
+  staminaUnderlying: number,
+  type: StaminaEventType | null,
+  efficiency: number,
+};

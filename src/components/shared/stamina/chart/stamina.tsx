@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {StaminaChart} from '@/ui/stamina/chart/common';
-import {StaminaChartTooltipOfStamina} from '@/ui/stamina/chart/tooltip/stamina';
-import {StaminaChartCommonProps} from '@/ui/stamina/chart/type';
-import {generateStaminaTicks} from '@/ui/stamina/utils';
+import {StaminaChart} from '@/components/shared/stamina/chart/common';
+import {StaminaChartTooltipOfStamina} from '@/components/shared/stamina/chart/tooltip/stamina';
+import {StaminaChartCommonProps} from '@/components/shared/stamina/chart/type';
+import {generateStaminaTicks} from '@/components/shared/stamina/chart/utils';
 
 
 export const StaminaChartOfStamina = ({config, logs}: StaminaChartCommonProps) => {

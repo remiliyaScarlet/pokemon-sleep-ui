@@ -4,9 +4,9 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {StaminaChartTooltip} from '@/components/shared/stamina/chart/tooltip/common';
+import {StaminaChartTooltipCommonProps} from '@/components/shared/stamina/chart/tooltip/type';
 import {staminaLevelImageSrc} from '@/const/game/stamina';
-import {StaminaChartTooltip} from '@/ui/stamina/chart/tooltip/common';
-import {StaminaChartTooltipCommonProps} from '@/ui/stamina/chart/tooltip/type';
 import {getStaminaBreakpoint} from '@/utils/game/stamina/utils';
 import {formatInt} from '@/utils/number';
 
