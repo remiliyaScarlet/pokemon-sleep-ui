@@ -1,4 +1,4 @@
-import {defaultStaminaCalcConfig} from '@/const/user/settings';
+import {defaultStaminaCalcConfig, defaultUserSettings} from '@/const/user/settings';
 import {Migrator} from '@/types/migrate';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsMigrateParams} from '@/utils/migrate/userSettings/type';
@@ -24,6 +24,14 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
         ...old.stamina,
         recoveryRate: defaultStaminaCalcConfig.recoveryRate,
       },
+    }),
+  },
+  {
+    toVersion: 4,
+    // Added `staminaSkillTrigger` in the config
+    migrate: (old) => ({
+      ...old,
+      staminaSkillTrigger: defaultUserSettings.staminaSkillTrigger,
     }),
   },
 ];

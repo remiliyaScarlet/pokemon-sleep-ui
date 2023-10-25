@@ -48,6 +48,11 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
             ...original,
             stamina,
           }))}
+          trigger={settings.staminaSkillTrigger}
+          setTrigger={(staminaSkillTrigger) => setSettings((original) => ({
+            ...original,
+            staminaSkillTrigger,
+          }))}
         />
         <UserSettingsBonusUI
           mapIds={mapIds}

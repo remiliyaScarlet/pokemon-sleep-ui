@@ -12,8 +12,9 @@ import {staminaSkillRecoveryStrategies} from '@/types/game/producing/stamina';
 
 
 export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
-  const {config, setConfig, idPrefix} = props;
+  const {idPrefix, config, setConfig, trigger, setTrigger} = props;
   const {skillRecovery} = config;
+
   const t = useTranslations('UI.Stamina');
 
   return (
@@ -32,25 +33,25 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
           },
         })}
         isActive={(strategy) => strategy === skillRecovery.strategy}
-        ids={staminaSkillRecoveryStrategies}
+        ids={[...staminaSkillRecoveryStrategies]}
         idToButton={(strategy) => t(`Strategy.${staminaStrategyI18nId[strategy]}`)}
         idToItemId={(strategy) => `${idPrefix}-staminaStrategy-${strategy}`}
         noFixedTitleWidth
       />
       <Flex direction="row" className="justify-center gap-1.5">
         <StaminaConfigSkillRecoveryInput
-          {...props}
           id={`${idPrefix}-energyAmount`}
           iconI18nId="Amount"
           iconSrc="/images/mainSkill/target/team.png"
-          configTarget="amount"
+          value={trigger.amount}
+          onValueChanged={(amount) => setTrigger({...trigger, amount})}
         />
         <StaminaConfigSkillRecoveryInput
-          {...props}
           id={`${idPrefix}-energySkillDailyCount`}
           iconI18nId="DailyCount"
           iconSrc="/images/generic/flash.png"
-          configTarget="dailyCount"
+          value={trigger.dailyCount}
+          onValueChanged={(dailyCount) => setTrigger({...trigger, dailyCount})}
         />
       </Flex>
     </Flex>

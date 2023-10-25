@@ -1,8 +1,10 @@
-import {StaminaCalcConfig} from '@/types/game/producing/stamina';
+import {StaminaCalcConfig, StaminaSkillTriggerData} from '@/types/game/producing/stamina';
 
 
 export type StaminaConfigProps = {
+  idPrefix: string,
   config: StaminaCalcConfig,
   setConfig: (updated: StaminaCalcConfig) => void,
-  idPrefix: string,
+  trigger: StaminaSkillTriggerData,
+  setTrigger: (updated: StaminaSkillTriggerData) => void,
 };

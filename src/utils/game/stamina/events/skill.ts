@@ -1,7 +1,8 @@
 import {
+  StaminaEventLog,
   StaminaRecoveryRateConfig,
   StaminaSkillRecoveryConfig,
-  StaminaEventLog,
+  StaminaSkillTriggerData,
 } from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
 import {getStaminaAfterDuration} from '@/utils/game/stamina/depletion';
@@ -14,8 +15,12 @@ import {
 import {generateDecimalsAndOnes} from '@/utils/number';
 
 
-type GetSkillRecoveryTimingsOpts = {
+type GetSkillRecoveryOpts = {
   skillRecovery: StaminaSkillRecoveryConfig,
+};
+
+type GetSkillRecoveryDataOpts = GetSkillRecoveryOpts & {
+  skillTrigger: StaminaSkillTriggerData,
   secondarySession: SleepSessionInfo['session']['secondary'],
   awakeDuration: number,
   recoveryRate: StaminaRecoveryRateConfig,
@@ -23,11 +28,16 @@ type GetSkillRecoveryTimingsOpts = {
 
 export const getSkillRecoveryData = ({
   skillRecovery,
+  skillTrigger,
   secondarySession,
   awakeDuration,
   recoveryRate,
-}: GetSkillRecoveryTimingsOpts): StaminaSkillRecoveryData[] => {
-  const {dailyCount, amount} = skillRecovery;
+}: GetSkillRecoveryDataOpts): StaminaSkillRecoveryData[] => {
+  if (skillRecovery.strategy !== 'conservative') {
+    return [];
+  }
+
+  const {dailyCount, amount} = skillTrigger;
 
   return [...generateDecimalsAndOnes(dailyCount)].map((weight, idx): StaminaSkillRecoveryData => {
     let expectedTiming = awakeDuration * (idx + 1) / (Math.max(1, Math.floor(dailyCount)) + 1);
@@ -43,28 +53,26 @@ export const getSkillRecoveryData = ({
   });
 };
 
-type GetLogsWithSkillRecoveryOpts = GetLogsCommonOpts & {
-  skillRecovery: StaminaSkillRecoveryConfig,
+type GetLogsWithSkillRecoveryOfTriggerOpts = Omit<GetLogsWithSkillRecoveryOpts, 'skillTriggers'> & {
+  skillTrigger: StaminaSkillTriggerData,
 };
 
-export const getLogsWithSkillRecovery = ({
+export const getLogsWithSkillRecoveryOfTrigger = ({
   sessionInfo,
-  skillRecovery,
   logs,
   recoveryRate,
-}: GetLogsWithSkillRecoveryOpts): StaminaEventLog[] => {
-  const {strategy, dailyCount, amount} = skillRecovery;
-
-  if (strategy !== 'conservative' || dailyCount === 0 || amount === 0) {
-    return [...logs];
-  }
-
+  skillTrigger,
+  ...opts
+}: GetLogsWithSkillRecoveryOfTriggerOpts): StaminaEventLog[] => {
   const {session, duration} = sessionInfo;
   const {secondary} = session;
+  const {amount} = skillTrigger;
 
   const newLogs: StaminaEventLog[] = [logs[0]];
+
   const skillRecoveries = getSkillRecoveryData({
-    skillRecovery,
+    ...opts,
+    skillTrigger,
     secondarySession: secondary,
     awakeDuration: duration.awake,
     recoveryRate,
@@ -113,6 +121,36 @@ export const getLogsWithSkillRecovery = ({
       source: log,
       last: lastLog,
     }));
+  }
+
+  return newLogs;
+};
+
+type GetLogsWithSkillRecoveryOpts = GetLogsCommonOpts & GetSkillRecoveryOpts;
+
+export const getLogsWithSkillRecovery = ({
+  skillTriggers,
+  ...opts
+}: GetLogsWithSkillRecoveryOpts): StaminaEventLog[] => {
+  const {
+    logs,
+    skillRecovery,
+  } = opts;
+
+  const {strategy} = skillRecovery;
+
+  if (strategy !== 'conservative') {
+    return [...logs];
+  }
+
+  let newLogs: StaminaEventLog[] = [logs[0]];
+
+  for (const skillTrigger of skillTriggers) {
+    newLogs = getLogsWithSkillRecoveryOfTrigger({
+      ...opts,
+      logs: newLogs.length === 1 ? logs : newLogs,
+      skillTrigger,
+    });
   }
 
   return newLogs;

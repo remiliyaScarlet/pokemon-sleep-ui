@@ -20,8 +20,8 @@ import {getStaminaEfficiency} from '@/utils/game/stamina/main';
 export const StaminaAnalysisClient = (props: StaminaAnalysisDataProps) => {
   const {subSkillMap} = props;
 
-  const {state, setConfig, setNature, setSubSkill} = useStaminaAnalysis(props);
-  const {config, subSkill, nature} = state;
+  const {state, setConfig, setSkillTrigger, setNature, setSubSkill} = useStaminaAnalysis(props);
+  const {config, skillTrigger, subSkill, nature} = state;
   const {sleepSession} = config;
 
   const sessionInfo = React.useMemo(
@@ -29,13 +29,23 @@ export const StaminaAnalysisClient = (props: StaminaAnalysisDataProps) => {
     [sleepSession],
   );
 
-  const staminaEfficiency = getStaminaEfficiency({config, sessionInfo});
+  const staminaEfficiency = getStaminaEfficiency({
+    config,
+    sessionInfo,
+    skillTriggers: [skillTrigger],
+  });
   const logs = getStaminaEventLogsFlattened(staminaEfficiency.logs);
 
   return (
     <Flex className="gap-3 p-2">
       <AdsUnit/>
-      <StaminaConfig config={config} setConfig={setConfig} idPrefix="staminaAnalysis"/>
+      <StaminaConfig
+        idPrefix="staminaAnalysis"
+        config={config}
+        setConfig={setConfig}
+        trigger={skillTrigger}
+        setTrigger={setSkillTrigger}
+      />
       <Flex className="gap-1.5 md:flex-row">
         <PokemonSubSkillSelector
           classNameForHeight="h-8"

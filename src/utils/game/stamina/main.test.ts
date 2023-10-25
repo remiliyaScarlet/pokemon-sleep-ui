@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaCalcConfig} from '@/types/game/producing/stamina';
+import {StaminaCalcConfig, StaminaSkillTriggerData} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getDailyAverageStaminaEfficiencyFromLogs, getStaminaEfficiency} from '@/utils/game/stamina/main';
 
@@ -20,8 +20,6 @@ describe('Stamina Efficiency / From Config', () => {
       },
       skillRecovery: {
         strategy: 'conservative',
-        dailyCount: 3,
-        amount: 9,
       },
       recoveryRate: {
         general: 1,
@@ -29,8 +27,11 @@ describe('Stamina Efficiency / From Config', () => {
       },
     };
     const sessionInfo = getSleepSessionInfo(config.sleepSession);
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    expect(getStaminaEfficiency({config, sessionInfo}).average).toBeCloseTo(2.0375);
+    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.0375);
   });
 });
 

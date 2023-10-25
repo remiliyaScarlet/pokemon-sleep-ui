@@ -3,7 +3,7 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {defaultStaminaCalcConfig} from '@/const/user/settings';
+import {defaultStaminaCalcConfig, defaultStaminaSkillTrigger} from '@/const/user/settings';
 import {I18nProvider} from '@/contexts/i18n';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page';
@@ -23,13 +23,17 @@ export const StaminaAnalysis = async ({params}: DefaultPageProps) => {
     getSubSkillMap(),
   ]);
 
-  const preloadedStaminaConfig = cloneMerge(
-    defaultStaminaCalcConfig,
-    session?.user.preloaded.settings?.stamina,
-  );
-
   const props: StaminaAnalysisDataProps = {
-    preloadedStaminaConfig,
+    preloaded: {
+      config: cloneMerge(
+        defaultStaminaCalcConfig,
+        session?.user.preloaded.settings?.stamina,
+      ),
+      skillTrigger: cloneMerge(
+        defaultStaminaSkillTrigger,
+        session?.user.preloaded.settings?.staminaSkillTrigger,
+      ),
+    },
     subSkillMap,
   };
 

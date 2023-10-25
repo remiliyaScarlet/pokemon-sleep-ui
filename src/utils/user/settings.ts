@@ -12,10 +12,14 @@ export const createUserSettings = (settings: DeepPartial<UserSettings> | undefin
 };
 
 export const toEffectiveBonus = (settings: UserSettings): EffectiveBonus => {
-  const {bonus, stamina} = settings;
+  const {bonus, stamina, staminaSkillTrigger} = settings;
 
   const sessionInfo = getSleepSessionInfo(stamina.sleepSession);
-  const staminaEfficiency = getStaminaEfficiency({config: stamina, sessionInfo});
+  const staminaEfficiency = getStaminaEfficiency({
+    config: stamina,
+    skillTriggers: [staminaSkillTrigger],
+    sessionInfo,
+  });
 
   return {
     ingredient: bonus.ingredient,

@@ -5,20 +5,24 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
-import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
-import {StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
-type Props = StaminaConfigProps & {
+type Props = {
   id: string,
   iconI18nId: I18nMessageKeysOfNamespace<'UI.Stamina.SkillRecovery'>,
   iconSrc: string,
-  configTarget: keyof StaminaSkillRecoveryConfig,
+  value: number,
+  onValueChanged: (updated: number) => void,
 };
 
-export const StaminaConfigSkillRecoveryInput = ({config, setConfig, id, iconI18nId, iconSrc, configTarget}: Props) => {
-  const {skillRecovery} = config;
+export const StaminaConfigSkillRecoveryInput = ({
+  id,
+  iconI18nId,
+  iconSrc,
+  value,
+  onValueChanged,
+}: Props) => {
   const t = useTranslations('UI.Stamina.SkillRecovery');
 
   return (
@@ -30,14 +34,8 @@ export const StaminaConfigSkillRecoveryInput = ({config, setConfig, id, iconI18n
         step={0.1}
         min={0}
         className="w-20 text-center"
-        value={skillRecovery[configTarget].toString()}
-        onChange={({target}) => setConfig({
-          ...config,
-          skillRecovery: {
-            ...skillRecovery,
-            [configTarget]: parseFloat(target.value || '0'),
-          },
-        })}
+        value={value.toString()}
+        onChange={({target}) => onValueChanged(parseFloat(target.value || '0'))}
       />
     </Flex>
   );

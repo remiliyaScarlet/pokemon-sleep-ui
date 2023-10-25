@@ -8,18 +8,25 @@ import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/eff
 
 
 export const useStaminaAnalysis = ({
-  preloadedStaminaConfig,
+  preloaded,
   subSkillMap,
 }: StaminaAnalysisDataProps): UseStaminaAnalysisReturn => {
   const [state, setState] = React.useState<StaminaAnalysisState>({
-    config: preloadedStaminaConfig,
+    ...preloaded,
     subSkill: {},
     nature: null,
   });
 
   return {
     state,
-    setConfig: (config) => setState((original) => ({...original, config})),
+    setConfig: (config) => setState((original) => ({
+      ...original,
+      config,
+    })),
+    setSkillTrigger: (skillTrigger) => setState((original) => ({
+      ...original,
+      skillTrigger,
+    })),
     setNature: (nature) => setState(({config, ...original}) => ({
       ...original,
       config: {

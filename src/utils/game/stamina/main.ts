@@ -1,6 +1,11 @@
 import {durationOfDay} from '@/const/common';
 import {efficiencyInSleep} from '@/const/game/efficiency';
-import {StaminaCalcConfig, StaminaEfficiency, StaminaEventLog} from '@/types/game/producing/stamina';
+import {
+  StaminaCalcConfig,
+  StaminaEfficiency,
+  StaminaEventLog,
+  StaminaSkillTriggerData,
+} from '@/types/game/producing/stamina';
 import {SleepSessionInfo} from '@/types/game/sleep';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
 import {getLogsWithEfficiencyBlock} from '@/utils/game/stamina/events/block';
@@ -12,12 +17,13 @@ import {getLogsWithSkillRecovery} from '@/utils/game/stamina/events/skill';
 type GetStaminaEventLogOpts = {
   config: StaminaCalcConfig,
   sessionInfo: SleepSessionInfo,
+  skillTriggers: StaminaSkillTriggerData[],
 };
 
-const getStaminaEventLogs = ({config, sessionInfo}: GetStaminaEventLogOpts): StaminaEventLog[] => {
-  let logs = getLogsWithPrimarySleep({sessionInfo, ...config});
+const getStaminaEventLogs = ({config, sessionInfo, skillTriggers}: GetStaminaEventLogOpts): StaminaEventLog[] => {
+  let logs = getLogsWithPrimarySleep({sessionInfo, skillTriggers, ...config});
   logs = getLogsWithSecondarySleep({sessionInfo, logs, ...config});
-  logs = getLogsWithSkillRecovery({sessionInfo, logs, ...config});
+  logs = getLogsWithSkillRecovery({sessionInfo, logs, skillTriggers, ...config});
   logs = getLogsWithEfficiencyBlock({logs});
 
   return logs;

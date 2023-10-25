@@ -4,7 +4,11 @@ import {GetLogsCommonOpts} from '@/utils/game/stamina/events/type';
 import {generateSleepEventFromLast, getActualRecoveryAmount} from '@/utils/game/stamina/events/utils';
 
 
-export const getLogsWithSecondarySleep = ({sessionInfo, logs, recoveryRate}: GetLogsCommonOpts): StaminaEventLog[] => {
+export const getLogsWithSecondarySleep = ({
+  sessionInfo,
+  logs,
+  recoveryRate,
+}: Omit<GetLogsCommonOpts, 'skillTriggers'>): StaminaEventLog[] => {
   const {session} = sessionInfo;
   const {secondary} = session;
 

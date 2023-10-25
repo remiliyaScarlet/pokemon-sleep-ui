@@ -1,6 +1,10 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {StaminaRecoveryRateConfig, StaminaSkillRecoveryConfig} from '@/types/game/producing/stamina';
+import {
+  StaminaRecoveryRateConfig,
+  StaminaSkillRecoveryConfig,
+  StaminaSkillTriggerData,
+} from '@/types/game/producing/stamina';
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
 import {getLogsWithSecondarySleep} from '@/utils/game/stamina/events/secondary';
@@ -25,11 +29,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -58,11 +63,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -99,14 +105,14 @@ describe('Stamina Event Log (+Secondary)', () => {
         end: 72000, // 20:00
       },
     });
-
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
-      dailyCount: 0,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 0, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -135,11 +141,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -168,11 +175,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'optimistic',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -201,11 +209,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
@@ -234,11 +243,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     };
     const skillRecovery: StaminaSkillRecoveryConfig = {
       strategy: 'conservative',
-      dailyCount: 3,
-      amount: 9,
     };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
 
-    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
     logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
 
     expect(logs[0].type).toBe('wakeup');
