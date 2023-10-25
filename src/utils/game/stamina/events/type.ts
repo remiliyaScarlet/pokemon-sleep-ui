@@ -7,3 +7,8 @@ export type GetLogsCommonOpts = {
   logs: StaminaEventLog[],
   recoveryRate: StaminaCalcRecoveryRateConfig,
 };
+
+export type StaminaSkillRecoveryData = {
+  timing: number,
+  amount: number,
+};

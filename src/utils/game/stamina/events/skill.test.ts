@@ -4,8 +4,98 @@ import {StaminaCalcRecoveryRateConfig, StaminaCalcSkillRecoveryConfig} from '@/t
 import {getSleepSessionInfo} from '@/utils/game/sleep';
 import {getLogsWithPrimarySleep} from '@/utils/game/stamina/events/primary';
 import {getLogsWithSecondarySleep} from '@/utils/game/stamina/events/secondary';
-import {getLogsWithSkillRecovery} from '@/utils/game/stamina/events/skill';
+import {getLogsWithSkillRecovery, getSkillRecoveryData} from '@/utils/game/stamina/events/skill';
 
+
+describe('Skill Recovery Data Generation', () => {
+  it('is correct with floating number trigger count', () => {
+    const recoveryData = getSkillRecoveryData({
+      skillRecovery: {
+        strategy: 'conservative',
+        dailyCount: 2.5,
+        amount: 9,
+      },
+      secondarySession: null,
+      awakeDuration: 60000,
+      recoveryRate: {
+        general: 1,
+        sleep: 1,
+      },
+    });
+
+    expect(recoveryData[0].timing).toBe(20000);
+    expect(recoveryData[0].amount).toBe(14);
+    expect(recoveryData[1].timing).toBe(40000);
+    expect(recoveryData[1].amount).toBe(9);
+    expect(recoveryData.length).toBe(2);
+  });
+
+  it('is correct with trigger count < 1', () => {
+    const recoveryData = getSkillRecoveryData({
+      skillRecovery: {
+        strategy: 'conservative',
+        dailyCount: 0.5,
+        amount: 9,
+      },
+      secondarySession: null,
+      awakeDuration: 60000,
+      recoveryRate: {
+        general: 1,
+        sleep: 1,
+      },
+    });
+
+    expect(recoveryData[0].timing).toBe(30000);
+    expect(recoveryData[0].amount).toBe(5);
+    expect(recoveryData.length).toBe(1);
+  });
+
+  it('is correct with integer trigger count', () => {
+    const recoveryData = getSkillRecoveryData({
+      skillRecovery: {
+        strategy: 'conservative',
+        dailyCount: 3,
+        amount: 9,
+      },
+      secondarySession: null,
+      awakeDuration: 60000,
+      recoveryRate: {
+        general: 1,
+        sleep: 1,
+      },
+    });
+
+    expect(recoveryData[0].timing).toBe(15000);
+    expect(recoveryData[0].amount).toBe(9);
+    expect(recoveryData[1].timing).toBe(30000);
+    expect(recoveryData[1].amount).toBe(9);
+    expect(recoveryData[2].timing).toBe(45000);
+    expect(recoveryData[2].amount).toBe(9);
+    expect(recoveryData.length).toBe(3);
+  });
+
+  it('is correct with floating number trigger count and non-1 recovery rate', () => {
+    const recoveryData = getSkillRecoveryData({
+      skillRecovery: {
+        strategy: 'conservative',
+        dailyCount: 2.5,
+        amount: 9,
+      },
+      secondarySession: null,
+      awakeDuration: 60000,
+      recoveryRate: {
+        general: 1.2,
+        sleep: 1,
+      },
+    });
+
+    expect(recoveryData[0].timing).toBe(20000);
+    expect(recoveryData[0].amount).toBe(17);
+    expect(recoveryData[1].timing).toBe(40000);
+    expect(recoveryData[1].amount).toBe(11);
+    expect(recoveryData.length).toBe(2);
+  });
+});
 
 describe('Stamina Event Log (+Skill)', () => {
   it('is correct with secondary sleep before any skill trigger under conservative', () => {
@@ -518,6 +608,46 @@ describe('Stamina Event Log (+Skill)', () => {
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(63000);
     expect(logs[3].stamina.before).toBe(59);
+    expect(logs.length).toBe(4);
+  });
+
+  it('is correct with floating number trigger count under conservative', () => {
+    const recoveryRate: StaminaCalcRecoveryRateConfig = {
+      general: 1,
+      sleep: 1,
+    };
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 84600, // 23:30
+        end: 21600, // 06:00
+      },
+      secondary: null,
+    });
+
+    const skillRecovery: StaminaCalcSkillRecoveryConfig = {
+      strategy: 'conservative',
+      dailyCount: 2.5,
+      amount: 9,
+    };
+
+    let logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, recoveryRate});
+    logs = getLogsWithSecondarySleep({sessionInfo, logs, recoveryRate});
+    logs = getLogsWithSkillRecovery({sessionInfo, skillRecovery, logs, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[1].type).toBe('skillRecovery');
+    expect(logs[1].timing).toBe(21000);
+    expect(logs[1].stamina.before).toBe(65);
+    expect(logs[1].stamina.after).toBe(79);
+    expect(logs[2].type).toBe('skillRecovery');
+    expect(logs[2].timing).toBe(42000);
+    expect(logs[2].stamina.before).toBe(44);
+    expect(logs[2].stamina.after).toBe(53);
+    expect(logs[3].type).toBe('sleep');
+    expect(logs[3].timing).toBe(63000);
+    expect(logs[3].stamina.before).toBe(18);
     expect(logs.length).toBe(4);
   });
 });
