@@ -27,7 +27,7 @@ export const StaminaConfigSkillRecoveryInput = ({config, setConfig, id, iconI18n
       <InputBox
         id={id}
         type="number"
-        step={1}
+        step={0.1}
         min={0}
         className="w-20 text-center"
         value={skillRecovery[configTarget].toString()}
@@ -35,7 +35,7 @@ export const StaminaConfigSkillRecoveryInput = ({config, setConfig, id, iconI18n
           ...config,
           skillRecovery: {
             ...skillRecovery,
-            [configTarget]: parseInt(target.value || '0'),
+            [configTarget]: parseFloat(target.value || '0'),
           },
         })}
       />
