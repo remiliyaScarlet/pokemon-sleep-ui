@@ -2,7 +2,7 @@ import React from 'react';
 
 import {ProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {TeamAnalysisSetup, teamAnalysisSlotName, TeamAnalysisSlotName} from '@/types/teamAnalysis';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {
   TeamProducingStats,
@@ -20,11 +20,12 @@ import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/p
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill/effect';
 import {isNotNullish} from '@/utils/type';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
-type UseProducingStatsOpts = Omit<TeamAnalysisDataProps, 'settings'> & {
+type UseProducingStatsOpts = TeamAnalysisDataProps & {
   setup: TeamAnalysisSetup,
-  calculatedSettings: CalculatedUserSettings,
+  settings: UserSettings,
 };
 
 type UseProducingStatsOfSlotOpts = UseProducingStatsOpts & {
@@ -41,7 +42,7 @@ const useProducingStatsOfSlot = ({
   berryDataMap,
   ingredientMap,
   subSkillMap,
-  calculatedSettings,
+  settings,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
   const {
     snorlaxFavorite,
@@ -70,6 +71,7 @@ const useProducingStatsOfSlot = ({
       }),
       natureId: member.nature,
     };
+    const calculatedSettings = toCalculatedUserSettings({settings});
 
     const pokemonProducingRate = getPokemonProducingRate({
       ...producingRateOpts,
@@ -93,12 +95,12 @@ const useProducingStatsOfSlot = ({
       state: stateOfRateToShow,
     });
 
-    return {...pokemonProducingRate, total};
-  }, [snorlaxFavorite, analysisPeriod, members[slotName], helperCount, calculatedSettings]);
+    return {...pokemonProducingRate, total, calculatedSettings};
+  }, [snorlaxFavorite, analysisPeriod, members[slotName], helperCount, settings]);
 };
 
 export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingStats => {
-  const {setup, subSkillMap, calculatedSettings} = opts;
+  const {setup, subSkillMap, settings} = opts;
   const {analysisPeriod, members} = getCurrentTeam({setup});
   const helperCount = Object.values(members)
     .filter((member) => {
@@ -119,7 +121,7 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
     E: useProducingStatsOfSlot({slotName: 'E', helperCount, ...opts}),
   };
 
-  const deps: React.DependencyList = [setup, calculatedSettings];
+  const deps: React.DependencyList = [setup, settings];
 
   const total: TeamProducingStatsTotal = React.useMemo(() => {
     const stats = teamAnalysisSlotName

@@ -4,7 +4,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useUserSettings} from '@/hooks/userData/settings/main';
 import {UserSettings} from '@/types/userData/settings';
 import {TeamAnalysisSetupControl} from '@/ui/team/analysis/setup/control';
 import {useProducingStats} from '@/ui/team/analysis/setup/hook';
@@ -29,13 +29,13 @@ export const TeamAnalysisSetupView = (props: Props) => {
     settings,
   } = props;
 
-  const calculatedSettings = useCalculatedUserSettings({
+  const userSettings = useUserSettings({
     server: preloadedSettings,
     client: settings,
   });
   const statsOfTeam = useProducingStats({
     ...props,
-    calculatedSettings,
+    settings: userSettings,
   });
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
@@ -46,7 +46,6 @@ export const TeamAnalysisSetupView = (props: Props) => {
         <TeamAnalysisTeamView
           showPokemon={showPokemon}
           statsOfTeam={statsOfTeam}
-          calculatedSettings={calculatedSettings}
           {...props}
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
