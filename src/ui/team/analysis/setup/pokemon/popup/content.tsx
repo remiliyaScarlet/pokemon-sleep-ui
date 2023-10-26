@@ -12,6 +12,7 @@ export const TeamAnalysisPokemonPopupContent = ({
 }: TeamAnalysisPokemonPopupCommonProps) => {
   const {
     stats,
+    settings,
     pokemon,
   } = props;
   const {type} = state.control;
@@ -23,7 +24,12 @@ export const TeamAnalysisPokemonPopupContent = ({
   if (type === 'detailedStats') {
     return (
       <Flex noFullWidth className="gap-1 sm:w-[60vw] lg:w-[50vw] 2xl:w-[40vw]">
-        <PokemonProducingStats rate={stats} bonus={stats.calculatedSettings.bonus} specialty={pokemon.specialty}/>
+        <PokemonProducingStats
+          rate={stats}
+          settings={settings}
+          calculatedSettings={stats.calculatedSettings}
+          specialty={pokemon.specialty}
+        />
       </Flex>
     );
   }

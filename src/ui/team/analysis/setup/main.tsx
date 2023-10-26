@@ -16,7 +16,7 @@ import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {DeepPartial} from '@/utils/type';
 
 
-type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'calculatedSettings'> & {
+type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'settings'> & {
   settings: DeepPartial<UserSettings> | undefined,
 };
 
@@ -44,9 +44,10 @@ export const TeamAnalysisSetupView = (props: Props) => {
       <PokemonLinkPopup state={state} setState={setState}/>
       <Flex className="gap-1.5">
         <TeamAnalysisTeamView
+          {...props}
           showPokemon={showPokemon}
           statsOfTeam={statsOfTeam}
-          {...props}
+          settings={userSettings}
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
         <AdsUnit/>

@@ -29,12 +29,19 @@ type Props = PokemonProducingStatsCommonProps & {
   targetMultiplier: number,
 });
 
-export const PokemonProducingStatsOfState = ({bonus, rate, specialty, title, state, targetMultiplier}: Props) => {
+export const PokemonProducingStatsOfState = ({
+  calculatedSettings,
+  rate,
+  specialty,
+  title,
+  state,
+  targetMultiplier,
+}: Props) => {
   if (targetMultiplier) {
     rate = applyStaminaMultiplierToPokemonRate({
       rate,
       multiplier: {
-        original: bonus.stamina.awake,
+        original: calculatedSettings.bonus.stamina.awake,
         target: targetMultiplier,
       },
     });

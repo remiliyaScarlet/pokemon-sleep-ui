@@ -8,12 +8,16 @@ import {GenericIcon} from '@/components/shared/icon/common/main';
 import {pokemonProducingStatsStateI18nId} from '@/components/shared/pokemon/production/stats/const';
 import {PokemonProducingStatsOfState} from '@/components/shared/pokemon/production/stats/state';
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';
+import {StaminaChartOfStamina} from '@/components/shared/stamina/chart/stamina';
 import {staminaLevelImageSrc} from '@/const/game/stamina';
 import {efficiencyBreakPoints} from '@/types/game/producing/efficiency';
 import {getEfficiency} from '@/utils/game/stamina/efficiency';
+import {getStaminaEventLogsFlattened} from '@/utils/game/stamina/flatten';
 
 
 export const PokemonProducingStats = (props: PokemonProducingStatsCommonProps) => {
+  const {settings, calculatedSettings} = props;
+
   const t = useTranslations('UI.Producing');
   const t2 = useTranslations('UI.Common');
 
@@ -42,6 +46,10 @@ export const PokemonProducingStats = (props: PokemonProducingStatsCommonProps) =
         title={t(pokemonProducingStatsStateI18nId.sleepFilled)}
       />
       <AdsUnit/>
+      <StaminaChartOfStamina
+        config={settings.stamina}
+        logs={getStaminaEventLogsFlattened(calculatedSettings.bonus.stamina.logs)}
+      />
       {/* If no +1 for `getEfficiency()`, the efficiency obtained is actually 1 level lower */}
       {efficiencyBreakPoints.map((breakPoint) => (
         <PokemonProducingStatsOfState
