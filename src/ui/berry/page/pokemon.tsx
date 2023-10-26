@@ -4,7 +4,7 @@ import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIconsBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
 
 
@@ -14,7 +14,7 @@ type Props = BerryPageDataProps & {
 
 export const BerryProducingRatesOfPokemon = ({level, preloadedSettings, ...props}: Props) => {
   const {data} = useSession();
-  const settings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });
@@ -23,7 +23,7 @@ export const BerryProducingRatesOfPokemon = ({level, preloadedSettings, ...props
     <Flex direction="row" wrap className="info-section">
       <PokemonIconsBerryStats
         level={level}
-        {...settings}
+        {...calculatedSettings}
         {...props}
       />
     </Flex>

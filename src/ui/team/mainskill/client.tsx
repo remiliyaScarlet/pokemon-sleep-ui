@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {useSkillTriggerAnalysisTargetState} from '@/ui/team/mainskill/state/hook';
 import {SkillTriggerAnalysisTargets} from '@/ui/team/mainskill/targets/main';
 import {
@@ -26,7 +26,7 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   } = props;
 
   const {data: session} = useSession();
-  const calculatedSettings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });

@@ -10,7 +10,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
@@ -31,7 +31,7 @@ export const PokemonProduction = (props: PokemonProps) => {
 
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const calculatedSettings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

@@ -11,7 +11,7 @@ import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {usePokedexFilter} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
@@ -41,7 +41,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ...props,
   });
 
-  const calculatedSettings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloaded.settings,
     client: session?.user.preloaded.settings,
   });

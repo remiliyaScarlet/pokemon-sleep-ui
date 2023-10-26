@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {Ingredient} from '@/types/game/ingredient';
 import {UserSettings} from '@/types/userData/settings';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
@@ -27,7 +27,7 @@ export const IngredientPokemonProduction = ({
 }: Props) => {
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const settings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });
@@ -39,7 +39,7 @@ export const IngredientPokemonProduction = ({
       <PokemonIconsIngredientStats
         level={level}
         ingredient={ingredient}
-        {...settings}
+        {...calculatedSettings}
         {...props}
       />
     </Flex>

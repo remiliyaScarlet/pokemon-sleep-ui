@@ -8,7 +8,7 @@ import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {useUserSettings} from '@/hooks/userData/settings';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
@@ -28,7 +28,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
 
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
-  const calculatedSettings = useUserSettings({
+  const calculatedSettings = useCalculatedUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });
