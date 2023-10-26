@@ -13,7 +13,7 @@ export const useCalculatedUserSettings = (opts: UseUserSettingsOpts): Calculated
 
   return useCustomCompareMemo(
     () => ({
-      bonus: toEffectiveBonus(settings),
+      bonus: toEffectiveBonus({settings}),
       sleepDurations: getSleepDurationsFromSleepSession(settings.stamina.sleepSession),
     }),
     [settings],
