@@ -6,6 +6,8 @@ export const testBonus: {[id in number]: EffectiveBonus} = {
     ingredient: 20,
     map: 5,
     stamina: {
+      logs: [], // ignore
+      average: NaN, // ignore
       sleep: 2.2,
       awake: 1.6,
     },
