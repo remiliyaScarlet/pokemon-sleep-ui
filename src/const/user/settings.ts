@@ -42,5 +42,5 @@ export const defaultUserSettings: UserSettings = {
   stamina: defaultStaminaCalcConfig,
   staminaSkillTrigger: defaultStaminaSkillTrigger,
   currentMap: 1,
-  version: 3,
+  version: 4,
 };
