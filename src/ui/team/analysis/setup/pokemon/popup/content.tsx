@@ -1,7 +1,6 @@
 import React from 'react';
 
-import {Flex} from '@/components/layout/flex/common';
-import {PokemonProducingStats} from '@/components/shared/pokemon/production/stats/main';
+import {PokemonProducingStatsPopupContent} from '@/components/shared/pokemon/production/stats/main';
 import {TeamAnalysisPokemonMemberConfig} from '@/ui/team/analysis/setup/pokemon/config';
 import {TeamAnalysisPokemonPopupCommonProps} from '@/ui/team/analysis/setup/pokemon/popup/type';
 
@@ -23,14 +22,12 @@ export const TeamAnalysisPokemonPopupContent = ({
 
   if (type === 'detailedStats') {
     return (
-      <Flex noFullWidth className="gap-1 sm:w-[60vw] lg:w-[50vw] 2xl:w-[40vw]">
-        <PokemonProducingStats
-          rate={stats}
-          settings={settings}
-          calculatedSettings={stats.calculatedSettings}
-          specialty={pokemon.specialty}
-        />
-      </Flex>
+      <PokemonProducingStatsPopupContent
+        rate={stats}
+        settings={settings}
+        calculatedSettings={stats.calculatedSettings}
+        specialty={pokemon.specialty}
+      />
     );
   }
 
