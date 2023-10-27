@@ -2,14 +2,14 @@ import React from 'react';
 
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealId, MealInfo, MealTypeId} from '@/types/game/meal';
+import {Meal, MealId, MealStrengthInfo, MealTypeId} from '@/types/game/meal';
 import {Dimension} from '@/types/style';
 import {UserPreloadedData} from '@/types/userData/main';
 
 
 export type CookingRecipeData = {
   meal: Meal,
-  info: MealInfo,
+  info: MealStrengthInfo,
 };
 
 export type CookingFilterRecipeLevel = {[id in MealId]?: number};

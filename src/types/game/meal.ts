@@ -36,8 +36,5 @@ export type Meal = {
 export type MealStrengthInfo = {
   strengthBase: number,
   strengthFinal: number,
-};
-
-export type MealInfo = MealStrengthInfo & {
   bonusRate: number,
 };

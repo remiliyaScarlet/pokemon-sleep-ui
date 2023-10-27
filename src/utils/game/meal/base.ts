@@ -1,5 +1,5 @@
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealInfo} from '@/types/game/meal';
+import {Meal, MealStrengthInfo} from '@/types/game/meal';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {getMealLevelBonus} from '@/utils/game/meal/level';
 import {getMealRarityBonus} from '@/utils/game/meal/rarity';
@@ -12,7 +12,11 @@ export type GetMealBaseStrengthOpts = {
   ingredientMap: IngredientMap,
 };
 
-export const getMealBaseStrength = ({level, meal, ingredientMap}: GetMealBaseStrengthOpts): MealInfo => {
+export const getMealBaseStrength = ({
+  level,
+  meal,
+  ingredientMap,
+}: GetMealBaseStrengthOpts): MealStrengthInfo => {
   const rarityBonus = getMealRarityBonus(getMealIngredientCount(meal));
   const levelBonus = getMealLevelBonus(level);
 

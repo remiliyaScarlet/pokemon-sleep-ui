@@ -11,7 +11,7 @@ type GetMealFinalStrengthOpts = GetMealBaseStrengthOpts & {
 export const getMealFinalStrength = ({filler, mapBonus, ...opts}: GetMealFinalStrengthOpts): MealStrengthInfo => {
   const {ingredientMap} = opts;
 
-  const {strengthBase, strengthFinal} = getMealBaseStrength(opts);
+  const {strengthFinal, ...info} = getMealBaseStrength(opts);
   const strengthFromFiller = getMealIngredientStrength({
     ingredients: filler,
     ingredientMap,
@@ -20,7 +20,7 @@ export const getMealFinalStrength = ({filler, mapBonus, ...opts}: GetMealFinalSt
   const mealStrength = strengthFinal + strengthFromFiller;
 
   return {
-    strengthBase,
+    ...info,
     strengthFinal: mealStrength * (1 + mapBonus / 100),
   };
 };
