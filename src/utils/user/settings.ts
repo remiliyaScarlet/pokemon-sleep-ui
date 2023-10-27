@@ -1,4 +1,5 @@
 import {defaultUserSettings} from '@/const/user/settings';
+import {StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {getSleepDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object/cloneMerge';
@@ -16,5 +17,23 @@ export const toCalculatedUserSettings = (opts: ToEffectiveBonusOpts): Calculated
   return {
     bonus: toEffectiveBonus(opts),
     sleepDurations: getSleepDurationsFromSleepSession(settings.stamina.sleepSession),
+  };
+};
+
+type OverrideRecoveryRateOpts = {
+  settings: UserSettings,
+  recoveryRate: StaminaRecoveryRateConfig,
+};
+
+export const overrideRecoveryRate = ({
+  settings,
+  recoveryRate,
+}: OverrideRecoveryRateOpts): UserSettings => {
+  return {
+    ...settings,
+    stamina: {
+      ...settings.stamina,
+      recoveryRate,
+    },
   };
 };
