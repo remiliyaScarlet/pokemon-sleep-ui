@@ -201,7 +201,7 @@
   }
   
   .info-icon-base {
-    @apply rounded-full;
+    @apply rounded-full shrink-0;
   }
   
   .info-icon-normal {
