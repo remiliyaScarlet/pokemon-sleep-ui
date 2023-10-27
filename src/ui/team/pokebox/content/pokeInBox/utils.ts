@@ -4,6 +4,7 @@ import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredie
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 export const toRatingWorkerOpts = ({
@@ -15,7 +16,7 @@ export const toRatingWorkerOpts = ({
   ingredientChainMap,
   subSkillMap,
   snorlaxFavorite,
-  calculatedSettings,
+  settings,
   ratingBasis,
 }: PokeInBoxCommonProps): RatingWorkerOpts => {
   const {
@@ -28,7 +29,6 @@ export const toRatingWorkerOpts = ({
 
   // Explicit to avoid passing unwanted property to worker
   return {
-    ...calculatedSettings,
     pokemon,
     pokemonProducingParams: getPokemonProducingParams({
       pokemonId: pokemon.id,
@@ -44,6 +44,7 @@ export const toRatingWorkerOpts = ({
     subSkill,
     nature,
     evolutionCount,
+    settings,
     basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
   };
 };
@@ -54,7 +55,11 @@ export const getRateOfPokemon = ({
   subSkillMap,
   ...props
 }: PokeInBoxCommonProps) => {
-  const {pokemon, pokemonProducingParamsMap, calculatedSettings} = props;
+  const {
+    pokemon,
+    pokemonProducingParamsMap,
+    settings,
+  } = props;
   const {level, ingredients} = pokeInBox;
   const {id, berry} = pokemon;
 
@@ -67,7 +72,7 @@ export const getRateOfPokemon = ({
   return getPokemonProducingRate({
     ...props,
     ...singleParams,
-    ...calculatedSettings,
+    ...toCalculatedUserSettings({settings}),
     level: pokeInBox.level,
     evolutionCount: pokeInBox.evolutionCount,
     pokemonProducingParams: getPokemonProducingParams({

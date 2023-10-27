@@ -4,10 +4,10 @@ import isEqual from 'lodash/isEqual';
 
 import {PokeInBoxGrid} from '@/ui/team/pokebox/content/pokeInBox/grid/main';
 import {PokeInBoxTable} from '@/ui/team/pokebox/content/pokeInBox/table/main';
-import {PokeInBoxRefreshDependency, PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {PokeInBoxRefreshDependency, PokeInBoxViewProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
 
-export const PokeInBoxView = React.memo((props: PokeInBoxViewCommonProps) => {
+export const PokeInBoxView = React.memo((props: PokeInBoxViewProps) => {
   const {filter} = props;
 
   if (filter.viewType === 'table') {

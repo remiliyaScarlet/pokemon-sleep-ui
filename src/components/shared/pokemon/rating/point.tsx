@@ -45,10 +45,10 @@ export const RatingDataPointUI = ({level, point, subSkillMap, icon, basis, class
           </div>
         </Flex>
         <div className="h-8">
-          <PokemonIngredientIcons ingredients={[combination.productions]}/>
+          <PokemonIngredientIcons ingredients={[combination.ingredients]}/>
         </div>
         <div className="h-8">
-          <PokemonNatureIndicator nature={combination.natureId}/>
+          <PokemonNatureIndicator nature={combination.nature}/>
         </div>
         <div className="h-8">
           <PokemonSubSkillIndicator subSkill={combination.subSkill} subSkillMap={subSkillMap} level={level}/>

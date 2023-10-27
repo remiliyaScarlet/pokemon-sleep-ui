@@ -1,60 +1,18 @@
 import {natureData} from '@/data/nature';
-import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {
-  RatingBasis,
   RatingCombination,
   RatingDataPoint,
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
-import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
-import {toSum} from '@/utils/array';
-import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
+import {getRatingValueOfBase} from '@/utils/game/rating/base';
+import {getRatingValueOfCurrent} from '@/utils/game/rating/current';
+import {getRatingValueOfPossibility} from '@/utils/game/rating/possibility';
 import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill/generate';
 import {isNotNullish} from '@/utils/type';
 
-
-type GetRatingBasisValueOpts = {
-  rate: PokemonProducingRate,
-  basis: RatingBasis,
-  pokemonProducingParams: PokemonProducingParams,
-  singleParams: ProducingRateSingleParams,
-};
-
-const getRatingBasisValue = ({
-  rate,
-  basis,
-  pokemonProducingParams,
-  singleParams,
-}: GetRatingBasisValueOpts): number => {
-  if (basis === 'totalProduction') {
-    return getTotalEnergyOfPokemonProducingRate(rate);
-  }
-
-  if (basis === 'ingredientCount') {
-    return toSum(Object.values(rate.ingredient).map(({quantity}) => quantity.equivalent));
-  }
-
-  if (basis === 'ingredientProduction') {
-    return toSum(Object.values(rate.ingredient).map(({energy}) => energy.equivalent));
-  }
-
-  if (basis === 'skillTriggerValue') {
-    return getSkillTriggerValue({
-      rate,
-      skillValue: pokemonProducingParams.skillValue,
-      ...singleParams,
-    });
-  }
-
-  throw new Error(`Unhandled rating basis - ${basis satisfies never}`);
-};
 
 export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResultOfLevel | null => {
   const {
@@ -75,49 +33,21 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
 
   const chain = ingredientChainMap[pokemon.ingredientChain];
   const berryData = berryDataMap[pokemon.berry.id];
+
   const currentProductions = getEffectiveIngredientProductions({level, ingredients});
+
+  const valueOfCurrent = getRatingValueOfCurrent({
+    ...opts,
+    berryData,
+    ingredients: currentProductions,
+  });
+  const valueOfBase = getRatingValueOfBase({
+    ...opts,
+    berryData,
+    ingredients: currentProductions,
+  });
+
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
-  const noCap = true;
-
-  const singleParamsOfCurrent = getProducingRateSingleParams({
-    ...opts,
-    helpingBonusSimulateOnSelf: true,
-  });
-  const valueOfCurrent = getRatingBasisValue({
-    ...opts,
-    rate: getPokemonProducingRate({
-      ...opts,
-      pokemon,
-      berryData,
-      ingredients: currentProductions,
-      ...singleParamsOfCurrent,
-      noCap,
-    }),
-    singleParams: singleParamsOfCurrent,
-  });
-
-  const singleParamsOfBase = getProducingRateSingleParams({
-    level,
-    subSkill: {},
-    nature: null,
-    subSkillMap,
-    helpingBonusSimulateOnSelf: basis !== 'skillTriggerValue',
-  });
-  const valueOfBase = getRatingBasisValue({
-    ...opts,
-    rate: getPokemonProducingRate({
-      ...opts,
-      // Override `evolutionCount` in `opts` to apply default evolution count of the Pokémon
-      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
-      pokemon,
-      berryData,
-      ingredients: currentProductions,
-      ...singleParamsOfBase,
-      noCap,
-    }),
-    singleParams: singleParamsOfBase,
-  });
-
   const natureIds = natureData.map(({id}) => id);
 
   let samples = 0;
@@ -130,35 +60,25 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     [getEffectiveIngredientProductions({level, ingredients})] :
     generatePossibleIngredientProductions({level, chain});
 
-  for (const productions of ingredientProductions) {
+  for (const ingredients of ingredientProductions) {
     for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
-      for (const natureId of natureIds) {
+      for (const nature of natureIds) {
         samples++;
 
-        const singleParamsOfPossibility = getProducingRateSingleParams({
-          level,
-          subSkill,
-          nature: natureId,
-          subSkillMap,
-          helpingBonusSimulateOnSelf: true,
-        });
-        const valueOfPossibility = getRatingBasisValue({
+        const valueOfPossibility = getRatingValueOfPossibility({
           ...opts,
-          rate: getPokemonProducingRate({
-            ...opts,
-            pokemon,
-            berryData,
-            ingredients: productions,
-            ...singleParamsOfPossibility,
-            noCap,
-          }),
-          singleParams: singleParamsOfPossibility,
+          berryData,
+          override: {
+            nature,
+            subSkill,
+            ingredients,
+          },
         });
         if (valueOfPossibility > valueOfCurrent) {
           rank++;
         }
 
-        const combination: RatingCombination = {productions, natureId, subSkill};
+        const combination: RatingCombination = {ingredients, nature, subSkill};
 
         if (!min || valueOfPossibility < min.value) {
           min = {value: valueOfPossibility, combination};
@@ -182,9 +102,9 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
       current: {
         value: valueOfCurrent,
         combination: {
-          productions: currentProductions,
+          ingredients: currentProductions,
           subSkill,
-          natureId: nature,
+          nature,
         },
       },
       max,

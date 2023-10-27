@@ -7,7 +7,7 @@ import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export const ratingBasis = [
@@ -20,9 +20,9 @@ export const ratingBasis = [
 export type RatingBasis = typeof ratingBasis[number];
 
 export type RatingCombination = {
-  productions: IngredientProduction[],
+  ingredients: IngredientProduction[],
   subSkill: PokemonSubSkill,
-  natureId: NatureId | null,
+  nature: NatureId | null,
 };
 
 export type RatingDataPoint = {
@@ -49,7 +49,9 @@ export type RatingOnDeskState = PokemonOnDeskState & {
   basis: RatingBasis,
 };
 
-export type RatingSetupData = RatingOnDeskState & CalculatedUserSettings;
+export type RatingSetupData = RatingOnDeskState & {
+  settings: UserSettings,
+};
 
 export type RatingRequest = {
   setup: RatingSetupData,

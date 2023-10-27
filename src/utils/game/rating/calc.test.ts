@@ -1,8 +1,8 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {defaultProducingParams} from '@/const/game/production';
+import {defaultUserSettings} from '@/const/user/settings';
 import {testBerryDataMap} from '@/tests/data/game/berry';
-import {testBonus} from '@/tests/data/game/bonus';
 import {testIngredientChainMap} from '@/tests/data/game/ingredient/chain';
 import {testIngredientMap} from '@/tests/data/game/ingredient/data';
 import {testIngredientProductionAtLevels} from '@/tests/data/game/ingredient/productionAtLevel';
@@ -17,7 +17,6 @@ describe('Rating / Calculate', () => {
       level: 30,
       pokemon: testPokemonData.absol,
       evolutionCount: 1,
-      bonus: testBonus['1'],
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
@@ -25,7 +24,6 @@ describe('Rating / Calculate', () => {
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
-      sleepDurations: [28800],
       snorlaxFavorite: {},
       subSkill: {},
       berryDataMap: testBerryDataMap,
@@ -33,6 +31,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: {},
       basis: 'totalProduction',
+      settings: defaultUserSettings,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -43,7 +42,6 @@ describe('Rating / Calculate', () => {
       level: 30,
       pokemon: testPokemonData.absol,
       evolutionCount: 0,
-      bonus: testBonus['1'],
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
@@ -51,7 +49,6 @@ describe('Rating / Calculate', () => {
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
-      sleepDurations: [28800],
       snorlaxFavorite: {},
       subSkill: {25: 19},
       berryDataMap: testBerryDataMap,
@@ -59,6 +56,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
+      settings: defaultUserSettings,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -69,7 +67,6 @@ describe('Rating / Calculate', () => {
       level: 15,
       pokemon: testPokemonData.absol,
       evolutionCount: 0,
-      bonus: testBonus['1'],
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
       pokemonProducingParams: {
@@ -77,7 +74,6 @@ describe('Rating / Calculate', () => {
         pokemonId: 359,
         ingredientSplit: 0.2,
       },
-      sleepDurations: [28800],
       snorlaxFavorite: {},
       subSkill: {25: 19},
       berryDataMap: testBerryDataMap,
@@ -85,6 +81,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
+      settings: defaultUserSettings,
     });
 
     expect(result?.baseDiffPercent).toBe(0);

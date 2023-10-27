@@ -7,3 +7,5 @@ import {RatingBasis} from '@/types/game/pokemon/rating';
 export const getDefaultRatingBasis = (specialtyId: PokemonSpecialtyId | null): RatingBasis => (
   specialtyId ? defaultRatingBasisOfSpecialty[specialtyIdToType[specialtyId]] : 'totalProduction'
 );
+
+export const getHelpingBonusSimulateOnSelf = (basis: RatingBasis) => basis !== 'skillTriggerValue';

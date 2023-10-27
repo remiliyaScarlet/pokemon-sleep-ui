@@ -6,12 +6,12 @@ import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
 export type PokeInBoxChangeableProps = {
-  calculatedSettings: CalculatedUserSettings,
+  settings: UserSettings,
   snorlaxFavorite: SnorlaxFavorite,
 };
 

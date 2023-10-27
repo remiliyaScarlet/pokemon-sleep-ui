@@ -31,7 +31,7 @@ export const useCalculatedData = (
 
   const t = useTranslations('Game');
 
-  const {calculatedSettings} = useCalculatedUserSettings({
+  const {settings, calculatedSettings} = useCalculatedUserSettings({
     server: preloaded.settings,
     client: session.data?.user.preloaded.settings,
   });
@@ -82,7 +82,7 @@ export const useCalculatedData = (
   });
 
   return {
-    calculatedSettings,
+    settings,
     filter,
     setFilter,
     filteredSortedPokebox,

@@ -29,9 +29,9 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
     currentTeam,
     slotName,
     pokemon,
-    stats,
     snorlaxFavorite,
     ratingControl,
+    settings,
     onEditClick,
     onDetailsClick,
   } = props;
@@ -72,7 +72,7 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
           pokemon,
           snorlaxFavorite,
           specialtyId: pokemon.specialty,
-          ...stats.calculatedSettings,
+          settings,
         }))}>
           <MagnifyingGlassIcon/>
         </button>

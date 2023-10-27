@@ -8,7 +8,7 @@ import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useUserSettings} from '@/hooks/userData/settings/main';
 import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
@@ -28,7 +28,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
 
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const settings = useUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });
@@ -51,20 +51,19 @@ export const RatingClient = (props: RatingServerDataProps) => {
         const {origin} = opts;
 
         if (origin === 'pokebox') {
-          setRequest(toRatingRequest({setup, calculatedSettings}));
+          setRequest(toRatingRequest({setup: {...setup, settings}}));
           scrollToResult();
         } else if (origin === 'pokedex' && request) {
           // This is for resetting the result layout
           setRequest(toRatingRequest({
-            setup,
-            calculatedSettings,
+            setup: {...setup, settings},
             timestamp: request.timestamp,
           }));
         }
       }}
       onRun={(setup: RatingOnDeskState) => {
         scrollToResult();
-        setRequest(toRatingRequest({setup, calculatedSettings}));
+        setRequest(toRatingRequest({setup: {...setup, settings}}));
       }}
       toState={(onDeskState): RatingOnDeskState => ({
         ...onDeskState,

@@ -21,7 +21,7 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
   const {
     pokeInBox,
     snorlaxFavorite,
-    calculatedSettings,
+    settings,
     setRatingPopupControl,
   } = props;
 
@@ -37,10 +37,10 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
       </button>
       <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
         ...pokeInBox,
-        ...calculatedSettings,
         pokemon,
         snorlaxFavorite,
         basis: getDefaultRatingBasis(pokemon.specialty),
+        settings,
       })}>
         <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>
       </button>

@@ -8,22 +8,19 @@ import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
-import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokeboxCount} from '@/ui/team/pokebox/content/count';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
-import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
+import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
-type Props = PokeboxCommonProps & {
+type Props = PokeboxCommonProps & PokeInBoxViewCommonProps & {
   filter: PokeboxViewerFilter,
   loading: boolean,
-  calculatedSettings: CalculatedUserSettings,
   totalPokeInBox: number,
   sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
-  setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
 };
 
 export const PokeboxContent = (props: Props) => {
