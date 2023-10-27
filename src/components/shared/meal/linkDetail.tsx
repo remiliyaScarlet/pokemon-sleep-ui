@@ -16,7 +16,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
 
   const t = useTranslations('UI.InPage.Cooking');
 
-  const mealStrengthInfo = getMealFinalStrength({
+  const info = getMealFinalStrength({
     ...props,
     filler: [],
   });
@@ -32,7 +32,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
           <Flex direction="row" noFullWidth className="items-end gap-0.5 whitespace-nowrap">
             <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
             <div>
-              {formatMealStrengthInfo(mealStrengthInfo)}
+              {formatMealStrengthInfo({info})}
             </div>
             <div>@</div>
             <div>Lv.{level}</div>

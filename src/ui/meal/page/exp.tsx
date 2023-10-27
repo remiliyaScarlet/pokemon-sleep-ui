@@ -17,7 +17,7 @@ export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonPro
   const [level, setLevel] = React.useState(1);
 
   const mapBonus = calculatedSettings.bonus.map;
-  const mealStrengthInfo = React.useMemo(() => getMealFinalStrength({
+  const info = React.useMemo(() => getMealFinalStrength({
     filler: [],
     level,
     meal,
@@ -32,7 +32,7 @@ export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonPro
     >
       <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
       <div className="text-sm">
-        {formatMealStrengthInfo(mealStrengthInfo)}
+        {formatMealStrengthInfo({info, includeBonusRate: true})}
       </div>
     </InfoSlider>
   );
