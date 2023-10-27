@@ -28,6 +28,7 @@ export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> =
   dataCount: NaN,
   ingredientSplit: 0.2,
   skillValue: NaN,
+  skillPercent: NaN,
   confidence: {
     ingredient: null,
     skill: null,

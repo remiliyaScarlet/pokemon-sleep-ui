@@ -27,6 +27,7 @@ export type PokemonProducingParams = {
   dataCount: number,
   ingredientSplit: number,
   skillValue: number,
+  skillPercent: number,
   confidence: PokemonProducingParamsConfidence,
 };
 
