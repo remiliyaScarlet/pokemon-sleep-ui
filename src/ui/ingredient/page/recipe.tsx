@@ -9,7 +9,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
 import {imageGallerySizes} from '@/styles/image';
 import {Meal} from '@/types/game/meal';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatInt} from '@/utils/number';
 
 
@@ -36,7 +36,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
                 imageAlt={t(meal.id.toString())}
                 imageDimension="h-12 w-12"
                 imageSizes={imageGallerySizes}
-                info={getMealRequiredQuantity(meal)}
+                info={getMealIngredientCount(meal)}
               />
               <IngredientIconsFromMeal meal={meal} useTextShadow={false}/>
               <Flex direction="row" center className="gap-0.5">

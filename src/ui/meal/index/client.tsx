@@ -10,7 +10,7 @@ import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/game/meal';
 import {useMealFilter} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
-import {toSum} from '@/utils/array';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 
 
 type Props = {
@@ -35,7 +35,7 @@ export const MealIndexClient = ({data, session}: Props) => {
         {data
           .map((meal) => ({
             meal,
-            totalIngredientCount: toSum(meal.ingredients.map(({quantity}) => quantity)),
+            totalIngredientCount: getMealIngredientCount(meal),
           }))
           .sort((a, b) => {
             if (a.meal.type > b.meal.type) {

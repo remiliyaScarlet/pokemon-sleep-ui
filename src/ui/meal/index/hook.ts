@@ -3,7 +3,7 @@ import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/inpu
 import {Meal, MealId} from '@/types/game/meal';
 import {UserPreloadedData} from '@/types/userData/main';
 import {MealFilter} from '@/ui/meal/index/type';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {migrate} from '@/utils/migrate/main';
 import {mealFilterMigrators} from '@/utils/migrate/mealFilter/migrators';
 
@@ -40,7 +40,7 @@ export const useMealFilter = ({data, preloaded}: UseMealFilterOpts) => {
         return false;
       }
 
-      if (filter.potCapacity !== null && getMealRequiredQuantity(data) > filter.potCapacity) {
+      if (filter.potCapacity !== null && getMealIngredientCount(data) > filter.potCapacity) {
         return false;
       }
 

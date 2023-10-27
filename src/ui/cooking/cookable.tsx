@@ -12,7 +12,7 @@ import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingFilterIngredientCount, MealEnergyData} from '@/ui/cooking/type';
-import {toSum} from '@/utils/array';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatInt} from '@/utils/number';
 
 
@@ -61,7 +61,7 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
         <Flex noFullWidth className="absolute bottom-1 left-1 z-10 gap-1">
           <Flex direction="row" className="items-end gap-0.5">
             <InfoIcon>
-              {toSum(meal.ingredients.map(({quantity}) => quantity))}
+              {getMealIngredientCount(meal)}
             </InfoIcon>
             <Flex noFullWidth>
               <IngredientIcons ingredients={ingredientsMissing} markRed={() => true} useTextShadow={false}/>

@@ -5,7 +5,7 @@ import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check'
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal';
 import {CookingFilter} from '@/ui/cooking/type';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
@@ -41,7 +41,7 @@ export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
         return false;
       }
 
-      return getMealRequiredQuantity(meal) <= filter.capacity;
+      return getMealIngredientCount(meal) <= filter.capacity;
     },
   });
 };

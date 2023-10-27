@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
 import {MealLinkProps} from '@/components/shared/meal/type';
-import {getMealRequiredQuantity} from '@/utils/game/meal';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatInt} from '@/utils/number';
 
 
@@ -20,7 +20,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
   return (
     <Flex direction="row" className="items-end gap-0.5 text-xs">
       <Flex noFullWidth center className="info-icon-normal text-shadow-preset h-6 w-6">
-        {getMealRequiredQuantity(meal)}
+        {getMealIngredientCount(meal)}
       </Flex>
       <Flex noFullWidth className="gap-0.5">
         {
