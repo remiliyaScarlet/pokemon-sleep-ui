@@ -7,24 +7,30 @@ import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
+import {recipeMaxLevel} from '@/const/game/meal';
 import {imageGallerySizes} from '@/styles/image';
+import {IngredientMap} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal';
+import {getMealBaseStrength} from '@/utils/game/meal/base';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
-import {formatInt} from '@/utils/number';
 
 
 type Props = {
-  cookableMeals: Meal[]
+  cookableMeals: Meal[],
+  ingredientMap: IngredientMap,
 };
 
-export const IngredientCookableMeals = ({cookableMeals}: Props) => {
+export const IngredientCookableMeals = ({cookableMeals, ingredientMap}: Props) => {
   const t = useTranslations('Game.Food');
   const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
     <Flex direction="row" center wrap className="info-section">
       {cookableMeals
-        .sort((a, b) => (a.levels.at(-1)?.energy ?? 0) - (b.levels.at(-1)?.energy ?? 0))
+        .sort((a, b) => (
+          getMealBaseStrength({level: recipeMaxLevel, meal: a, ingredientMap}).strengthFinal -
+          getMealBaseStrength({level: recipeMaxLevel, meal: b, ingredientMap}).strengthFinal
+        ))
         .map((meal) => (
           <Link key={meal.id} href={`/meal/${meal.id}`}>
             <Flex center className="button-clickable-bg gap-1 p-1.5">
@@ -42,7 +48,7 @@ export const IngredientCookableMeals = ({cookableMeals}: Props) => {
               <Flex direction="row" center className="gap-0.5">
                 <ColoredEnergyIcon dimension="h-4 w-4" alt={t2('Energy')}/>
                 <div className="text-sm">
-                  {formatInt(meal.levels.at(-1)?.energy)}
+                  {getMealBaseStrength({level: recipeMaxLevel, meal, ingredientMap}).strengthFinal}
                 </div>
               </Flex>
             </Flex>

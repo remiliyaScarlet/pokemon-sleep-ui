@@ -71,7 +71,7 @@ export const IngredientPage = async ({params}: Props) => {
     <PublicPageLayout locale={locale}>
       <Flex className="gap-1.5 md:flex-row">
         <IngredientMeta {...ingredient}/>
-        <IngredientCookableMeals cookableMeals={cookableMeals}/>
+        <IngredientCookableMeals cookableMeals={cookableMeals} ingredientMap={ingredientMap}/>
       </Flex>
       <AdsUnit/>
       <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>

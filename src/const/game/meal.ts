@@ -8,3 +8,5 @@ export const mealRarityBonusAfterBreakPoint: {[breakPoint in MealRarityBonusBrea
   10: 1.11,
   1: 1.06,
 };
+
+export const recipeMaxLevel = 50;

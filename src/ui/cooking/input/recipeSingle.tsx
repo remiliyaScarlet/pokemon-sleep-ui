@@ -3,6 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {LevelInput} from '@/components/shared/input/levelInput';
+import {recipeMaxLevel} from '@/const/game/meal';
 import {Meal} from '@/types/game/meal';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
@@ -13,18 +14,17 @@ type Props = Omit<CookingCommonProps, 'meals'> & {
 };
 
 export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
-  const {id, levels} = data;
+  const {id} = data;
   const t = useTranslations('UI.InPage.Cooking');
 
   const recipeLevel = filter.recipeLevel[id] ?? 1;
-  const maxLevel = levels.length;
 
   const setLevel = (level: number) => {
     setFilter((original) => ({
       ...original,
       recipeLevel: {
         ...original.recipeLevel,
-        [id]: Math.min(level || 1, maxLevel),
+        [id]: Math.min(level || 1, recipeMaxLevel),
       },
     } satisfies CookingCommonProps['filter']));
   };
@@ -37,7 +37,7 @@ export const CookingInputRecipeSingle = ({filter, setFilter, data}: Props) => {
         textClassName="text-xs text-slate-500 dark:text-slate-400 self-end"
         level={recipeLevel}
         minLevel={1}
-        maxLevel={maxLevel}
+        maxLevel={recipeMaxLevel}
         setLevel={setLevel}
       />
     </CookingRecipeLayout>

@@ -2,6 +2,7 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {recipeMaxLevel} from '@/const/game/meal';
 import {usePotInfoFilter} from '@/ui/info/pot/hook';
 import {PotInfoInput} from '@/ui/info/pot/input';
 import {PotInfoDataProps} from '@/ui/info/pot/type';
@@ -16,15 +17,13 @@ export const PotInfoClient = (props: PotInfoDataProps) => {
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
-  const maxMealLevel = Math.max(...validMeals.map(({levels}) => Math.max(...levels.map(({lv}) => lv))));
-
   return (
     <>
       <PotInfoInput
         {...props}
         filter={filter}
         setFilter={setFilter}
-        maxMealLevel={maxMealLevel}
+        maxMealLevel={recipeMaxLevel}
         mealTypes={mealTypes}
         preloaded={preloaded.cooking}
       />

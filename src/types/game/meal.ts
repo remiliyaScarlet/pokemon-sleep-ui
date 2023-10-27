@@ -20,17 +20,10 @@ export type MealIngredient = {
   quantity: number,
 };
 
-export type MealLevel = {
-  lv: number,
-  exp: number,
-  energy: number,
-};
-
 export type Meal = {
   id: MealId,
   type: MealTypeId,
   ingredients: MealIngredient[],
-  levels: MealLevel[]
 };
 
 export type MealStrengthInfo = {
