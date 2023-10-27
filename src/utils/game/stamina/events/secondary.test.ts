@@ -182,20 +182,20 @@ describe('Stamina Event Log (+Secondary)', () => {
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
-    expect(logs[0].stamina.after).toBe(124);
-    expect(logs[0].staminaUnderlying.after).toBe(124);
+    expect(logs[0].stamina.after).toBe(104);
+    expect(logs[0].staminaUnderlying.after).toBe(104);
     expect(logs[1].type).toBe('sleep');
     expect(logs[1].timing).toBe(25200);
-    expect(logs[1].stamina.before).toBe(82);
-    expect(logs[1].staminaUnderlying.before).toBe(82);
+    expect(logs[1].stamina.before).toBe(62);
+    expect(logs[1].staminaUnderlying.before).toBe(62);
     expect(logs[2].type).toBe('wakeup');
     expect(logs[2].timing).toBe(30600);
-    expect(logs[2].stamina.after).toBe(97);
-    expect(logs[2].staminaUnderlying.after).toBe(97);
+    expect(logs[2].stamina.after).toBe(77);
+    expect(logs[2].staminaUnderlying.after).toBe(77);
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(63000);
-    expect(logs[3].stamina.before).toBe(43);
-    expect(logs[3].staminaUnderlying.before).toBe(43);
+    expect(logs[3].stamina.before).toBe(23);
+    expect(logs[3].staminaUnderlying.before).toBe(23);
     expect(logs.length).toBe(4);
   });
 
@@ -250,20 +250,20 @@ describe('Stamina Event Log (+Secondary)', () => {
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
-    expect(logs[0].stamina.after).toBe(100);
-    expect(logs[0].staminaUnderlying.after).toBe(100);
+    expect(logs[0].stamina.after).toBe(80);
+    expect(logs[0].staminaUnderlying.after).toBe(80);
     expect(logs[1].type).toBe('sleep');
     expect(logs[1].timing).toBe(25200);
-    expect(logs[1].stamina.before).toBe(58);
-    expect(logs[1].staminaUnderlying.before).toBe(58);
+    expect(logs[1].stamina.before).toBe(38);
+    expect(logs[1].staminaUnderlying.before).toBe(38);
     expect(logs[2].type).toBe('wakeup');
     expect(logs[2].timing).toBe(30600);
-    expect(logs[2].stamina.after).toBe(73);
-    expect(logs[2].staminaUnderlying.after).toBe(73);
+    expect(logs[2].stamina.after).toBe(53);
+    expect(logs[2].staminaUnderlying.after).toBe(53);
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(63000);
-    expect(logs[3].stamina.before).toBe(19);
-    expect(logs[3].staminaUnderlying.before).toBe(19);
+    expect(logs[3].stamina.before).toBe(0);
+    expect(logs[3].staminaUnderlying.before).toBe(-1);
     expect(logs.length).toBe(4);
   });
 });

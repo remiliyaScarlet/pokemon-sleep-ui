@@ -1,4 +1,5 @@
 import {staminaStartingDefault} from '@/const/game/stamina';
+import {StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
 import {StaminaEventLog} from '@/types/game/stamina/event';
 import {StaminaSkillRecoveryConfig, StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {toSum} from '@/utils/array';
@@ -28,15 +29,25 @@ const getInitialSkillRecoveryAmount = ({
   )));
 };
 
+const getStartingStamina = (recoveryRate: StaminaRecoveryRateConfig) => {
+  // Starting stamina for buffed or neutral nature will be the default starting point (since it's the max)
+  // For nerfed nature, it starts lower
+  return Math.min(
+    getActualRecoveryAmount({amount: staminaStartingDefault, recoveryRate, isSleep: false}),
+    staminaStartingDefault,
+  );
+};
+
 type GetLogsWithPrimarySleepOpts = Omit<GetLogsCommonOpts, 'logs'> & {
   skillRecovery: StaminaSkillRecoveryConfig,
 };
 
 export const getLogsWithPrimarySleep = ({sessionInfo, ...opts}: GetLogsWithPrimarySleepOpts): StaminaEventLog[] => {
+  const {recoveryRate} = opts;
   const {session, duration} = sessionInfo;
   const {primary} = session;
 
-  const wakeupStamina = staminaStartingDefault + getInitialSkillRecoveryAmount(opts);
+  const wakeupStamina = getStartingStamina(recoveryRate) + getInitialSkillRecoveryAmount(opts);
   const sleepStamina = getStaminaAfterDuration({
     start: wakeupStamina,
     duration: duration.awake,
