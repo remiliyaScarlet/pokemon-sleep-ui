@@ -1,32 +1,25 @@
-import {Session} from 'next-auth';
-
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal/main';
-import {CookingFilter} from '@/ui/cooking/type';
+import {CookingFilter, CookingServerDataProps} from '@/ui/cooking/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
-type UseCookingFilterOpts = {
-  meals: Meal[],
-  session: Session | null,
-};
-
-export const useCookingFilter = ({meals, session}: UseCookingFilterOpts) => {
-  const preloaded = session?.user.preloaded.cooking;
+export const useCookingFilter = ({meals, preloaded}: CookingServerDataProps) => {
+  const preloadedCooking = preloaded.cooking;
 
   return useFilterInput<CookingFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
-      type: preloaded?.mealType ?? defaultCookingPreset.mealType,
-      capacity: preloaded?.potCapacity ?? defaultCookingPreset.potCapacity,
+      type: preloadedCooking?.mealType ?? defaultCookingPreset.mealType,
+      capacity: preloadedCooking?.potCapacity ?? defaultCookingPreset.potCapacity,
       ingredient: {},
-      recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloaded?.recipeLevel),
-      ingredientCount: cloneMerge(defaultCookingPreset.ingredientCount, preloaded?.ingredientCount),
-      showUnmakeableRecipe: preloaded?.showUnmakeableRecipe ?? defaultCookingPreset.showUnmakeableRecipe,
+      recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloadedCooking?.recipeLevel),
+      ingredientCount: cloneMerge(defaultCookingPreset.ingredientCount, preloadedCooking?.ingredientCount),
+      showUnmakeableRecipe: preloadedCooking?.showUnmakeableRecipe ?? defaultCookingPreset.showUnmakeableRecipe,
     },
     isDataIncluded: (filter, meal) => {
       if (filter.type !== meal.type) {

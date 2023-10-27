@@ -9,6 +9,8 @@ import {getAllMeals} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {CookingClient} from '@/ui/cooking/client';
+import {CookingServerDataProps} from '@/ui/cooking/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const Cooking = async ({params}: DefaultPageProps) => {
@@ -23,10 +25,19 @@ export const Cooking = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
   ]);
 
+  const props: CookingServerDataProps = {
+    meals,
+    ingredientMap,
+    preloaded: {
+      cooking: session?.user.preloaded.cooking,
+      settings: createUserSettings(session?.user.preloaded.settings),
+    },
+  };
+
   return (
     <PublicPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
-        <CookingClient meals={meals} ingredientMap={ingredientMap} session={session}/>
+        <CookingClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>
   );

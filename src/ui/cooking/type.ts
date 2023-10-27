@@ -6,6 +6,7 @@ import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
 import {Dimension} from '@/types/style';
 import {UserPreloadedData} from '@/types/userData/main';
+import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 
 
 export type CookingRecipeData = {
@@ -26,11 +27,21 @@ export type CookingFilter = {
   showUnmakeableRecipe: boolean,
 };
 
+export type CookingServerDataProps = {
+  meals: Meal[],
+  ingredientMap: IngredientMap,
+  preloaded: {
+    cooking: UserPreloadedData['cooking'],
+    settings: UserSettings,
+  },
+};
+
 export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
   ingredientMap: IngredientMap,
   preloaded: UserPreloadedData['cooking'],
+  calculatedSettings: CalculatedUserSettings,
 };
 
 export type CookingRecipeLayoutProps = {

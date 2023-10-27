@@ -3,24 +3,26 @@ import React from 'react';
 import {Grid} from '@/components/layout/grid';
 import {CookingCookable} from '@/ui/cooking/cookable';
 import {CookingCommonProps, CookingRecipeData} from '@/ui/cooking/type';
-import {getMealBaseStrength} from '@/utils/game/meal/base';
+import {getMealFinalStrength} from '@/utils/game/meal/main';
 
 
 type Props = Omit<CookingCommonProps, 'setFilter'>;
 
-export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
+export const CookingResult = ({filter, meals, ingredientMap, calculatedSettings}: Props) => {
   const {showUnmakeableRecipe} = filter;
 
   const data: CookingRecipeData[] = React.useMemo(
     () => meals.map((meal) => ({
       meal,
-      info: getMealBaseStrength({
+      info: getMealFinalStrength({
+        filler: [],
         level: filter.recipeLevel[meal.id] ?? 1,
         meal,
         ingredientMap,
+        mapBonus: calculatedSettings.bonus.map,
       }),
     })),
-    [meals, ingredientMap, filter],
+    [filter, meals, ingredientMap, calculatedSettings],
   );
 
   return (

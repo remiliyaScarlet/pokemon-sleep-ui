@@ -1,48 +1,54 @@
 'use client';
 import React from 'react';
 
-import {Session} from 'next-auth';
+import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
-import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal/main';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';
-import {CookingCommonProps} from '@/ui/cooking/type';
+import {CookingCommonProps, CookingServerDataProps} from '@/ui/cooking/type';
 import {toUnique} from '@/utils/array';
 
 
-type Props = {
-  meals: Meal[],
-  ingredientMap: IngredientMap,
-  session: Session | null,
-};
-
-export const CookingClient = ({meals, ingredientMap, session}: Props) => {
-  const {filter, setFilter, isIncluded} = useCookingFilter({
+export const CookingClient = (props: CookingServerDataProps) => {
+  const {
     meals,
-    session,
+    ingredientMap,
+    preloaded,
+  } = props;
+
+  const {
+    filter,
+    setFilter,
+    isIncluded,
+  } = useCookingFilter(props);
+  const {data: session} = useSession();
+  const {calculatedSettings} = useCalculatedUserSettings({
+    server: preloaded.settings,
+    client: session?.user.preloaded.settings,
   });
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
-  const props: CookingCommonProps = {
+  const commonProps: CookingCommonProps = {
     filter,
     setFilter,
     meals: validMeals,
     mealTypes,
     ingredientMap,
-    preloaded: session?.user.preloaded.cooking,
+    calculatedSettings,
+    preloaded: preloaded.cooking,
   };
 
   return (
     <Flex className="gap-1">
-      <CookingInputUI {...props}/>
+      <CookingInputUI {...commonProps}/>
       <AdsUnit/>
-      <CookingResult {...props}/>
+      <CookingResult {...commonProps}/>
       <AdsUnit/>
     </Flex>
   );
