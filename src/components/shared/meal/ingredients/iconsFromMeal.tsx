@@ -2,7 +2,7 @@ import React from 'react';
 
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {IngredientIconsCommonProps} from '@/components/shared/meal/ingredients/type';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 
 
 type Props = IngredientIconsCommonProps & {

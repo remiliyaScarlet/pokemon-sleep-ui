@@ -1,5 +1,5 @@
 import {mealRarityBonusAfterBreakPoint} from '@/const/game/meal';
-import {mealRarityBonusBreakPoints} from '@/types/game/meal';
+import {mealRarityBonusBreakPoints} from '@/types/game/meal/rarity';
 
 
 export const getMealRarityBonus = (ingredientCount: number): number => {

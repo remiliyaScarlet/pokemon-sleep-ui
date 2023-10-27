@@ -1,4 +1,4 @@
-import {MealTypeId} from '@/types/game/meal';
+import {MealTypeId} from '@/types/game/meal/main';
 import {PokemonSleepTypeId, PokemonSpecialtyId} from '@/types/game/pokemon';
 
 

@@ -1,6 +1,6 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealTypeId} from '@/types/game/meal';
+import {Meal, MealTypeId} from '@/types/game/meal/main';
 import {Migratable} from '@/types/migrate';
 import {UserPreloadedData} from '@/types/userData/main';
 import {UserSettings} from '@/types/userData/settings';

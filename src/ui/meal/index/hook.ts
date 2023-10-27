@@ -1,6 +1,6 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
-import {Meal, MealId} from '@/types/game/meal';
+import {Meal, MealId} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {MealFilter} from '@/ui/meal/index/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';

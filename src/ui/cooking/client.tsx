@@ -6,7 +6,7 @@ import {Session} from 'next-auth';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingResult} from '@/ui/cooking/result';

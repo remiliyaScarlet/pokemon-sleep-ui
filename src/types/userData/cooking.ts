@@ -1,6 +1,6 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {IngredientId} from '@/types/game/ingredient';
-import {MealTypeId} from '@/types/game/meal';
+import {MealTypeId} from '@/types/game/meal/main';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 
 

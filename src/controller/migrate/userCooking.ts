@@ -1,7 +1,7 @@
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {createUserDataManager} from '@/controller/user/common';
 import {userDataCooking} from '@/controller/user/manager';
-import {MealTypeId} from '@/types/game/meal';
+import {MealTypeId} from '@/types/game/meal/main';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {CookingFilterIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 

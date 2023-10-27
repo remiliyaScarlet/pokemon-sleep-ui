@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 import {Flex} from '@/components/layout/flex/common';
 import potCapacity from '@/data/potCapacity.json';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
 import {PotRecipeUnlockSection} from '@/ui/info/pot/unlockSection';
 import {getMealIngredientCount} from '@/utils/game/meal/count';

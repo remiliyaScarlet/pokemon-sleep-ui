@@ -2,7 +2,8 @@ import React from 'react';
 
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealId, MealStrengthInfo, MealTypeId} from '@/types/game/meal';
+import {MealStrengthInfo} from '@/types/game/meal/info';
+import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
 import {Dimension} from '@/types/style';
 import {UserPreloadedData} from '@/types/userData/main';
 

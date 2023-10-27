@@ -1,4 +1,4 @@
-import {MealRarityBonusBreakPoint} from '@/types/game/meal';
+import {MealRarityBonusBreakPoint} from '@/types/game/meal/rarity';
 
 
 export const mealRarityBonusAfterBreakPoint: {[breakPoint in MealRarityBonusBreakPoint]: number} = {

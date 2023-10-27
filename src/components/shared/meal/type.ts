@@ -1,5 +1,5 @@
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 
 
 export type MealLinkProps = {

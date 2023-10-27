@@ -1,5 +1,5 @@
 import {IngredientMap} from '@/types/game/ingredient';
-import {MealIngredient} from '@/types/game/meal';
+import {MealIngredient} from '@/types/game/meal/main';
 import {toSum} from '@/utils/array';
 
 

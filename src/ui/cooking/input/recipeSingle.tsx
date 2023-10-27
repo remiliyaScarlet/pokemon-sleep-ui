@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {LevelInput} from '@/components/shared/input/levelInput';
 import {recipeMaxLevel} from '@/const/game/meal';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingCommonProps} from '@/ui/cooking/type';
 

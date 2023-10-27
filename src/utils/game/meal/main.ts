@@ -1,4 +1,5 @@
-import {MealIngredient, MealStrengthInfo} from '@/types/game/meal';
+import {MealStrengthInfo} from '@/types/game/meal/info';
+import {MealIngredient} from '@/types/game/meal/main';
 import {getMealBaseStrength, GetMealBaseStrengthOpts} from '@/utils/game/meal/base';
 import {getMealIngredientStrength} from '@/utils/game/meal/strength';
 

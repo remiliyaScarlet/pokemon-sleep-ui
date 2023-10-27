@@ -1,4 +1,4 @@
-import {MealStrengthInfo} from '@/types/game/meal';
+import {MealStrengthInfo} from '@/types/game/meal/info';
 import {formatInt} from '@/utils/number';
 
 

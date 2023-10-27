@@ -10,7 +10,7 @@ import {MealDisplayControl} from '@/components/shared/meal/control';
 import {MealLevelInput} from '@/components/shared/meal/level';
 import {recipeMaxLevel} from '@/const/game/meal';
 import {defaultCookingPreset} from '@/const/user/cooking';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {MealFilter} from '@/ui/meal/index/type';

@@ -1,5 +1,6 @@
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealStrengthInfo} from '@/types/game/meal';
+import {MealStrengthInfo} from '@/types/game/meal/info';
+import {Meal} from '@/types/game/meal/main';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {getMealLevelBonus} from '@/utils/game/meal/level';
 import {getMealRarityBonus} from '@/utils/game/meal/rarity';

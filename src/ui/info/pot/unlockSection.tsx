@@ -8,7 +8,7 @@ import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {MealLink} from '@/components/shared/meal/link';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PotInfoDataProps, PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';
 import {formatInt} from '@/utils/number';

@@ -9,7 +9,7 @@ import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealDisplayControl} from '@/components/shared/meal/control';
 import {MealLevelInput} from '@/components/shared/meal/level';
 import {defaultCookingPreset} from '@/const/user/cooking';
-import {MealTypeId} from '@/types/game/meal';
+import {MealTypeId} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
 

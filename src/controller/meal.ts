@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 
 
 const getCollection = async (): Promise<Collection<Meal>> => {

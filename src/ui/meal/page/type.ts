@@ -1,6 +1,6 @@
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal';
+import {Meal} from '@/types/game/meal/main';
 import {
   PokedexMap,
   PokemonIngredientProductionMap,
