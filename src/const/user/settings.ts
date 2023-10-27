@@ -1,5 +1,5 @@
 import {UserBonus} from '@/types/game/bonus';
-import {StaminaCalcConfig} from '@/types/game/stamina/config';
+import {StaminaCalcConfig, StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
 import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {UserSettings} from '@/types/userData/settings';
 
@@ -10,6 +10,11 @@ export const defaultUserBonus: UserBonus = {
   overall: 0,
   map: {},
   ingredient: 20,
+};
+
+export const defaultRecoveryRate: StaminaRecoveryRateConfig = {
+  general: 1,
+  sleep: 1,
 };
 
 export const defaultStaminaCalcConfig: StaminaCalcConfig = {
@@ -26,10 +31,7 @@ export const defaultStaminaCalcConfig: StaminaCalcConfig = {
   skillRecovery: {
     strategy: 'optimistic',
   },
-  recoveryRate: {
-    general: 1,
-    sleep: 1,
-  },
+  recoveryRate: defaultRecoveryRate,
 };
 
 export const defaultStaminaSkillTrigger: StaminaSkillTriggerData = {
