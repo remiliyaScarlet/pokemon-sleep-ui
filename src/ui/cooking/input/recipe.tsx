@@ -11,7 +11,8 @@ export const CookingInputRecipe = (props: CookingCommonProps) => {
   return (
     <Grid className="grid-cols-1 gap-1 xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
       {meals
-        .filter(({type}) => filter.type === type)
+        // `!!ingredients.length` to filter out non-recipe meals because it won't have level
+        .filter(({type, ingredients}) => filter.type === type && !!ingredients.length)
         .map((data) => <CookingInputRecipeSingle key={data.id} {...props} data={data}/>)}
     </Grid>
   );
