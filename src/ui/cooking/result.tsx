@@ -2,8 +2,8 @@ import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
 import {CookingCookable} from '@/ui/cooking/cookable';
-import {CookingCommonProps, MealEnergyData} from '@/ui/cooking/type';
-import {getMealEnergyInfo} from '@/utils/game/meal';
+import {CookingCommonProps, CookingRecipeData} from '@/ui/cooking/type';
+import {getMealBaseStrength} from '@/utils/game/meal/base';
 
 
 type Props = Omit<CookingCommonProps, 'setFilter'>;
@@ -11,13 +11,13 @@ type Props = Omit<CookingCommonProps, 'setFilter'>;
 export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
   const {showUnmakeableRecipe} = filter;
 
-  const mealEnergyInfo: MealEnergyData[] = React.useMemo(
+  const data: CookingRecipeData[] = React.useMemo(
     () => meals.map((meal) => ({
       meal,
-      energyInfo: getMealEnergyInfo({
+      info: getMealBaseStrength({
+        level: filter.recipeLevel[meal.id] ?? 1,
         meal,
         ingredientMap,
-        level: filter.recipeLevel[meal.id] ?? 1,
       }),
     })),
     [meals, ingredientMap, filter],
@@ -25,8 +25,8 @@ export const CookingResult = ({filter, meals, ingredientMap}: Props) => {
 
   return (
     <Grid className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-      {mealEnergyInfo
-        .sort((a, b) => (b.energyInfo.atLevel.energy ?? 0) - (a.energyInfo.atLevel.energy ?? 0))
+      {data
+        .sort((a, b) => (b.info.strengthFinal ?? 0) - (a.info.strengthFinal ?? 0))
         .map((mealEnergyData) => (
           <CookingCookable
             key={mealEnergyData.meal.id}

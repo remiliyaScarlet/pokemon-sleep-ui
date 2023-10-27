@@ -1,19 +1,13 @@
-'use client';
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
-import {PokemonIngredientProductionMap} from '@/types/game/pokemon';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {MealPokemonOfIngredientLevel} from '@/ui/meal/page/pokemonOfLevel';
 import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
 
 
-type Props = MealCommonProps & {
-  pokemonIngredientProductionMap: PokemonIngredientProductionMap,
-};
-
-export const MealPokemonOfIngredient = (props: Props) => {
+export const MealPokemonOfIngredient = (props: MealCommonProps) => {
   const {pokemonIngredientProductionMap, pokemonMaxLevel} = props;
   const [level, setLevel] = React.useState(1);
 

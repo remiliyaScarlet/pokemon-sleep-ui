@@ -6,7 +6,6 @@ import {useTranslations} from 'next-intl';
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {I18nProvider} from '@/contexts/i18n';
 import {mealTypeTextStyle} from '@/styles/classes';
 import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
 import {MealExp} from '@/ui/meal/page/exp';
@@ -14,7 +13,7 @@ import {MealCommonProps} from '@/ui/meal/page/type';
 
 
 export const MealMeta = (props: MealCommonProps) => {
-  const {meal, locale} = props;
+  const {meal} = props;
   const {id, type} = meal;
 
   const t = useTranslations('Game.Food');
@@ -32,9 +31,7 @@ export const MealMeta = (props: MealCommonProps) => {
         </div>
       </Flex>
       <Flex className="gap-2 lg:w-2/3">
-        <I18nProvider locale={locale} namespaces={['UI.InPage.Cooking']}>
-          <MealExp {...props}/>
-        </I18nProvider>
+        <MealExp {...props}/>
         <Flex direction="row" center className="gap-1.5">
           {meal.ingredients.map(({id, quantity}) => (
             <Link key={id} href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">

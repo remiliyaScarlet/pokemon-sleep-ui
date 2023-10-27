@@ -11,17 +11,17 @@ import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/icon
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
-import {CookingFilterIngredientCount, MealEnergyData} from '@/ui/cooking/type';
+import {CookingFilterIngredientCount, CookingRecipeData} from '@/ui/cooking/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatInt} from '@/utils/number';
 
 
-type Props = MealEnergyData & {
+type Props = CookingRecipeData & {
   ingredientCount: CookingFilterIngredientCount,
   showUnmakeableRecipe: boolean,
 };
 
-export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeableRecipe}: Props) => {
+export const CookingCookable = ({meal, info, ingredientCount, showUnmakeableRecipe}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   const ingredientSetReady = Object.fromEntries(meal.ingredients.map(({id, quantity}) => {
@@ -71,15 +71,15 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
               />
             </Flex>
           </Flex>
-          <Flex direction="row" className="items-center gap-1">
+          <Flex direction="row" noFullWidth className="items-center gap-1">
             <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
             <div>
-              {formatInt(energyInfo.atLevel.energy)}
+              {formatInt(info.strengthFinal)}
             </div>
           </Flex>
         </Flex>
         <div className="absolute bottom-1 right-1 z-10 text-sm">
-          +{formatInt(energyInfo.diffVal)} / +{energyInfo.diffPct.toFixed(0)}%
+          +{(info.bonusRate * 100 - 100).toFixed(1)}%
         </div>
       </CookingRecipeLayout>
     </AnimatedCollapseQuick>

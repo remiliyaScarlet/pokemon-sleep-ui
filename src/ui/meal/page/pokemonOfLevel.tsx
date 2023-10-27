@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
@@ -11,7 +10,6 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {imageIconSizes} from '@/styles/image';
 import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
 
@@ -23,9 +21,10 @@ type Props = MealCommonProps & {
 
 export const MealPokemonOfIngredientLevel = ({
   meal,
+  preloadedSettings,
+  calculatedSettings,
   pokemonLevel,
   pokemonOfIngredientLevel,
-  preloadedSettings,
   ...props
 }: Props) => {
   const {ingredientMap} = props;
@@ -34,12 +33,6 @@ export const MealPokemonOfIngredientLevel = ({
     pokemonIngredientProductionOfLevel,
     show,
   } = pokemonOfIngredientLevel;
-
-  const {data} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloadedSettings,
-    client: data?.user.preloaded.settings,
-  });
 
   const t = useTranslations('Game.Food');
 
