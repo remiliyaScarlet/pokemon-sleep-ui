@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {getStaminaBreakpoint} from '@/utils/game/stamina/utils';
+import {getStaminaBreakpoint} from '@/utils/game/stamina/breakpoint';
 
 
 describe('Stamina Breakpoint', () => {

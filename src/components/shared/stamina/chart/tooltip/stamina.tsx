@@ -7,7 +7,7 @@ import {GenericIcon} from '@/components/shared/icon/common/main';
 import {StaminaChartTooltip} from '@/components/shared/stamina/chart/tooltip/common';
 import {StaminaChartTooltipCommonProps} from '@/components/shared/stamina/chart/tooltip/type';
 import {staminaLevelImageSrc} from '@/const/game/stamina';
-import {getStaminaBreakpoint} from '@/utils/game/stamina/utils';
+import {getStaminaBreakpoint} from '@/utils/game/stamina/breakpoint';
 import {formatInt} from '@/utils/number';
 
 

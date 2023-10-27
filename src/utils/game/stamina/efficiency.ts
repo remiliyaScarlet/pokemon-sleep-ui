@@ -1,5 +1,5 @@
 import {efficiencyBeforeBreakPoint} from '@/const/game/efficiency';
-import {getStaminaBreakpoint} from '@/utils/game/stamina/utils';
+import {getStaminaBreakpoint} from '@/utils/game/stamina/breakpoint';
 
 
 type GetEfficiencyOpts = {
