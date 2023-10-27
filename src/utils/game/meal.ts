@@ -1,9 +1,7 @@
 import {IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealLevel} from '@/types/game/meal';
-import {toSum} from '@/utils/array';
+import {getMealIngredientStrength} from '@/utils/game/meal/strength';
 
-
-export const getMealRequiredQuantity = ({ingredients}: Meal) => toSum(ingredients.map(({quantity}) => quantity));
 
 type GetMealEnergyInfoOpts = {
   meal: Meal,
@@ -20,9 +18,10 @@ export type MealEnergyInfo = {
 export const getMealEnergyInfo = ({meal, ingredientMap, level}: GetMealEnergyInfoOpts): MealEnergyInfo => {
   const atLevel = meal.levels[level - 1];
 
-  const energyNoRecipe = toSum(
-    meal.ingredients.map(({id, quantity}) => (ingredientMap[id]?.energy ?? 0) * quantity),
-  );
+  const energyNoRecipe = getMealIngredientStrength({
+    ingredients: meal.ingredients,
+    ingredientMap,
+  });
 
   return {
     atLevel,
