@@ -34,7 +34,9 @@ export const ActivationViewer = (props: Props) => {
     .sort((a, b) => a.buttonText.localeCompare(b.buttonText));
 
   if (search) {
-    activationsOfSource = activationsOfSource.filter(({buttonText}) => buttonText.includes(search));
+    activationsOfSource = activationsOfSource.filter(({buttonText, contact}) => (
+      buttonText.includes(search) || (source && contact[source]?.includes(search))
+    ));
   }
 
   return (
