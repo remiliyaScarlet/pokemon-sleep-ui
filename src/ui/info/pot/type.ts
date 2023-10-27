@@ -3,12 +3,16 @@ import potCapacity from '@/data/potCapacity.json';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {Meal, MealTypeId} from '@/types/game/meal';
 import {UserPreloadedData} from '@/types/userData/main';
+import {UserSettings} from '@/types/userData/settings';
 
 
-export type PotInfoCommonProps = {
+export type PotInfoDataProps = {
   meals: Meal[],
-  ingredients: IngredientMap,
-  preloaded: UserPreloadedData['cooking'],
+  ingredientMap: IngredientMap,
+  preloaded: {
+    cooking: UserPreloadedData['cooking'],
+    settings: UserSettings,
+  },
 };
 
 export type PotInfoFilter = {

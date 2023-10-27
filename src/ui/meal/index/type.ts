@@ -1,7 +1,9 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {IngredientId} from '@/types/game/ingredient';
-import {MealTypeId} from '@/types/game/meal';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
+import {Meal, MealTypeId} from '@/types/game/meal';
 import {Migratable} from '@/types/migrate';
+import {UserPreloadedData} from '@/types/userData/main';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type MealFilter = Migratable & {
@@ -10,4 +12,13 @@ export type MealFilter = Migratable & {
   ingredient: FilterInclusionMap<IngredientId>,
   potCapacity: number | null,
   showEnergy: boolean,
+};
+
+export type MealDataProps = {
+  meals: Meal[],
+  ingredientMap: IngredientMap,
+  preloaded: {
+    cooking: UserPreloadedData['cooking'],
+    settings: UserSettings,
+  },
 };

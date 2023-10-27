@@ -4,26 +4,40 @@ import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealIndexClient} from '@/ui/meal/index/client';
+import {MealDataProps} from '@/ui/meal/index/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const MealIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
+    meals,
+    ingredientMap,
     session,
-    data,
   ] = await Promise.all([
-    getServerSession(authOptions),
     getAllMeals(),
+    getAllIngredients(),
+    getServerSession(authOptions),
   ]);
+
+  const props: MealDataProps = {
+    meals,
+    ingredientMap,
+    preloaded: {
+      cooking: session?.user.preloaded.cooking,
+      settings: createUserSettings(session?.user.preloaded.settings),
+    },
+  };
 
   return (
     <PublicPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={['Game', 'UI.InPage.Cooking']}>
-        <MealIndexClient data={data} session={session}/>
+        <MealIndexClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>
   );

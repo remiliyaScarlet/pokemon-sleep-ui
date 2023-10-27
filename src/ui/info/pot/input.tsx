@@ -10,15 +10,17 @@ import {MealDisplayControl} from '@/components/shared/meal/control';
 import {MealLevelInput} from '@/components/shared/meal/level';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {MealTypeId} from '@/types/game/meal';
-import {PotInfoCommonProps, PotInfoFilter} from '@/ui/info/pot/type';
+import {UserPreloadedData} from '@/types/userData/main';
+import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
 
 
-type Props = FilterWithUpdaterProps<PotInfoFilter> & Pick<PotInfoCommonProps, 'preloaded' | 'ingredients'> & {
+type Props = FilterWithUpdaterProps<PotInfoFilter> & Pick<PotInfoDataProps, 'ingredientMap'> & {
+  preloaded: UserPreloadedData['cooking'],
   maxMealLevel: number,
   mealTypes: MealTypeId[],
 };
 
-export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloaded, ingredients}: Props) => {
+export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloaded, ingredientMap}: Props) => {
   return (
     <>
       <MealTypeInput
@@ -37,7 +39,7 @@ export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloa
         />
       </InputRow>
       <IngredientInput
-        ingredientIds={Object.keys(ingredients).map((id) => Number(id))}
+        ingredientIds={Object.keys(ingredientMap).map((id) => Number(id))}
         {...getMultiSelectOnClickProps({
           filter: filter,
           setFilter: setFilter,

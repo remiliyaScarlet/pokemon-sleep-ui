@@ -12,8 +12,14 @@ export type GetMealBaseStrengthOpts = {
   ingredientMap: IngredientMap,
 };
 
-export const getMealBaseStrength = ({level, meal, ingredientMap}: GetMealBaseStrengthOpts) => (
-  getMealIngredientStrength({ingredients: meal.ingredients, ingredientMap}) *
-  getMealRarityBonus(getMealIngredientCount(meal)) *
-  getMealLevelBonus(level)
-);
+export const getMealBaseStrength = ({level, meal, ingredientMap}: GetMealBaseStrengthOpts) => {
+  const base = (
+    getMealIngredientStrength({ingredients: meal.ingredients, ingredientMap}) *
+    getMealRarityBonus(getMealIngredientCount(meal))
+  );
+
+  return {
+    base,
+    withLevel: base * getMealLevelBonus(level),
+  };
+};

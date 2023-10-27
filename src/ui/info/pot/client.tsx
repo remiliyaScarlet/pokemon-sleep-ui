@@ -4,13 +4,13 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {usePotInfoFilter} from '@/ui/info/pot/hook';
 import {PotInfoInput} from '@/ui/info/pot/input';
-import {PotInfoCommonProps} from '@/ui/info/pot/type';
+import {PotInfoDataProps} from '@/ui/info/pot/type';
 import {PotRecipeUnlockTable} from '@/ui/info/pot/unlockTable';
 import {toUnique} from '@/utils/array';
 
 
-export const PotInfoClient = (props: PotInfoCommonProps) => {
-  const {meals, ingredients, preloaded} = props;
+export const PotInfoClient = (props: PotInfoDataProps) => {
+  const {meals, preloaded} = props;
   const {filter, setFilter, isIncluded} = usePotInfoFilter(props);
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
@@ -21,15 +21,15 @@ export const PotInfoClient = (props: PotInfoCommonProps) => {
   return (
     <>
       <PotInfoInput
+        {...props}
         filter={filter}
         setFilter={setFilter}
         maxMealLevel={maxMealLevel}
         mealTypes={mealTypes}
-        ingredients={ingredients}
-        preloaded={preloaded}
+        preloaded={preloaded.cooking}
       />
       <AdsUnit/>
-      <PotRecipeUnlockTable filter={filter} meals={validMeals}/>
+      <PotRecipeUnlockTable filter={filter} validMeals={validMeals} {...props}/>
       <AdsUnit/>
     </>
   );

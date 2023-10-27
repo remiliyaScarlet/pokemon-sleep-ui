@@ -1,21 +1,32 @@
 import React from 'react';
 
+import {useSession} from 'next-auth/react';
+
 import {Flex} from '@/components/layout/flex/common';
 import potCapacity from '@/data/potCapacity.json';
+import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {Meal} from '@/types/game/meal';
-import {PotInfoFilter} from '@/ui/info/pot/type';
+import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
 import {PotRecipeUnlockSection} from '@/ui/info/pot/unlockSection';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 
 
-type Props = & {
+type Props = Omit<PotInfoDataProps, 'meals'> & {
   filter: PotInfoFilter,
-  meals: Meal[]
+  validMeals: Meal[],
 };
 
-export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
+export const PotRecipeUnlockTable = ({filter, validMeals, ...props}: Props) => {
+  const {preloaded} = props;
   const {capacity, showEmpty} = filter;
-  const sortedMeals = meals.sort((a, b) => {
+
+  const {data: session} = useSession();
+  const {calculatedSettings} = useCalculatedUserSettings({
+    server: preloaded.settings,
+    client: session?.user.preloaded.settings,
+  });
+
+  const sortedMeals = validMeals.sort((a, b) => {
     const diff = getMealIngredientCount(a) - getMealIngredientCount(b);
 
     if (diff !== 0) {
@@ -24,6 +35,7 @@ export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
 
     return a.id - b.id;
   });
+
   let mealCursorIdx = 0;
   let cumulativeCost = 0;
 
@@ -56,8 +68,10 @@ export const PotRecipeUnlockTable = ({filter, meals}: Props) => {
               filter={filter}
               cumulativeCost={cumulativeCost}
               potInfo={potInfo}
-              meals={unlockedMeals}
+              unlockedMeals={unlockedMeals}
               unlockedRecipes={mealCursorIdx}
+              calculatedSettings={calculatedSettings}
+              {...props}
             />
           );
         })}

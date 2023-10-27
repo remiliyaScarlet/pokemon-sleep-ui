@@ -9,7 +9,8 @@ import {getAllMeals} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PotInfoClient} from '@/ui/info/pot/client';
-import {PotInfoCommonProps} from '@/ui/info/pot/type';
+import {PotInfoDataProps} from '@/ui/info/pot/type';
+import {createUserSettings} from '@/utils/user/settings';
 
 
 export const PotInfo = async ({params}: DefaultPageProps) => {
@@ -17,17 +18,20 @@ export const PotInfo = async ({params}: DefaultPageProps) => {
   const [
     session,
     meals,
-    ingredients,
+    ingredientMap,
   ] = await Promise.all([
     getServerSession(authOptions),
     getAllMeals(),
     getAllIngredients(),
   ]);
 
-  const props: PotInfoCommonProps = {
+  const props: PotInfoDataProps = {
     meals,
-    ingredients,
-    preloaded: session?.user.preloaded.cooking,
+    ingredientMap,
+    preloaded: {
+      cooking: session?.user.preloaded.cooking,
+      settings: createUserSettings(session?.user.preloaded.settings),
+    },
   };
 
   return (

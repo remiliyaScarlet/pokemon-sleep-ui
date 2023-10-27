@@ -9,19 +9,29 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/game/meal';
-import {PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';
+import {CalculatedUserSettings} from '@/types/userData/settings';
+import {PotInfoDataProps, PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type';
 import {formatInt} from '@/utils/number';
 
 
-type Props = {
+type Props = Omit<PotInfoDataProps, 'meals'> & {
   filter: PotInfoFilter,
   cumulativeCost: number,
   potInfo: PotLevelInfo,
-  meals: Meal[],
+  unlockedMeals: Meal[],
   unlockedRecipes: number,
+  calculatedSettings: CalculatedUserSettings,
 };
 
-export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, unlockedRecipes}: Props) => {
+export const PotRecipeUnlockSection = ({
+  ingredientMap,
+  filter,
+  cumulativeCost,
+  potInfo,
+  unlockedMeals,
+  unlockedRecipes,
+  calculatedSettings,
+}: Props) => {
   const {mealLevel, capacity, showEnergy} = filter;
 
   const t = useTranslations('UI.InPage.Info.Pot');
@@ -46,15 +56,22 @@ export const PotRecipeUnlockSection = ({filter, cumulativeCost, potInfo, meals, 
           <GenericIcon src="/images/generic/meal.png" alt={t('UnlockedRecipes')} dimension="h-7 w-7"/>
           <Flex noFullWidth className="gap-0.5">
             <div>{unlockedRecipes}</div>
-            <div className="text-xs">(+{meals.length})</div>
+            <div className="text-xs">(+{unlockedMeals.length})</div>
           </Flex>
         </Flex>
       </Flex>
       <HorizontalSplitter className="block md:hidden"/>
-      {meals.length ?
-        <Grid className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
-          {meals.map((meal) => (
-            <MealLink key={meal.id} meal={meal} mealLevel={mealLevel} showEnergy={showEnergy}/>
+      {unlockedMeals.length ?
+        <Grid className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          {unlockedMeals.map((meal) => (
+            <MealLink
+              key={meal.id}
+              meal={meal}
+              level={mealLevel}
+              showEnergy={showEnergy}
+              ingredientMap={ingredientMap}
+              mapBonus={calculatedSettings.bonus.map}
+            />
           ))}
         </Grid> :
         <Grid>
