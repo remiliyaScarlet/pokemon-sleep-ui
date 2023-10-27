@@ -2,9 +2,8 @@ import React from 'react';
 
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {StaminaAnalysisDataProps, StaminaAnalysisState, UseStaminaAnalysisReturn} from '@/ui/stamina/type';
-import {toSum} from '@/utils/array';
-import {getNatureMultiplier} from '@/utils/game/nature';
-import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
+import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 
 
 export const useStaminaAnalysis = ({
@@ -27,19 +26,27 @@ export const useStaminaAnalysis = ({
       ...original,
       skillTrigger,
     })),
-    setNature: (nature) => setState(({config, ...original}) => ({
-      ...original,
-      config: {
-        ...config,
-        recoveryRate: {
-          ...config.recoveryRate,
-          general: getNatureMultiplier({id: nature, effect: 'energy'}),
+    setNature: (nature) => setState(({config, ...original}) => {
+      const subSkillBonus = getSubSkillBonus({
+        level: Math.max(...pokemonSubSkillLevel),
+        pokemonSubSkill: original.subSkill,
+        subSkillMap,
+      });
+
+      return {
+        ...original,
+        config: {
+          ...config,
+          recoveryRate: toRecoveryRate({
+            natureId: nature,
+            subSkillBonus,
+          }),
         },
-      },
-      nature,
-    })),
+        nature,
+      };
+    }),
     setSubSkill: (subSkill) => setState(({config, ...original}) => {
-      const bonus = getSubSkillBonus({
+      const subSkillBonus = getSubSkillBonus({
         level: Math.max(...pokemonSubSkillLevel),
         pokemonSubSkill: subSkill,
         subSkillMap,
@@ -49,10 +56,10 @@ export const useStaminaAnalysis = ({
         ...original,
         config: {
           ...config,
-          recoveryRate: {
-            ...config.recoveryRate,
-            sleep: toSum(getSubSkillBonusValue(bonus, 'stamina')) || 1,
-          },
+          recoveryRate: toRecoveryRate({
+            natureId: original.nature,
+            subSkillBonus,
+          }),
         },
         subSkill,
       };
