@@ -36,7 +36,7 @@ export const TeamAnalysisCompSelection = ({
   const isCurrent = config.current === team.uuid;
 
   return (
-    <Flex center direction="col" className={clsx(
+    <Flex center className={clsx(
       'border-button-clickable h-full rounded-lg border',
       isCurrent && 'button-bg',
     )}>

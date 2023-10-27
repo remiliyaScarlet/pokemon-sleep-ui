@@ -61,7 +61,7 @@ export const TeamAnalysisTeamView = (props: Props) => {
         const isAvailable = member && pokemon && stats;
 
         return (
-          <Flex key={slotName} direction="col" center className={clsx(
+          <Flex key={slotName} center className={clsx(
             'button-bg relative gap-1.5 rounded-lg p-3',
           )}>
             <button

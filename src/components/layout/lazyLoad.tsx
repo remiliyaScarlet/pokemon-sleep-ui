@@ -19,7 +19,7 @@ const LazyLoadInternal = ({
   children,
 }: React.PropsWithChildren<Props>, ref: React.ForwardedRef<HTMLDivElement>) => {
   return (
-    <Flex ref={ref} direction="col" className={clsx('relative', className, loading && 'min-h-[8rem]')}>
+    <Flex ref={ref} className={clsx('relative', className, loading && 'min-h-[8rem]')}>
       {
         loading &&
         <Flex className={clsx(

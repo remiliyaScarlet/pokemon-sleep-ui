@@ -58,7 +58,7 @@ export const CookingCookable = ({meal, energyInfo, ingredientCount, showUnmakeab
         markGray={!isMealMakeable}
         icon={mealsReady >= 2 && <InfoIcon>{Math.floor(mealsReady)}</InfoIcon>}
       >
-        <Flex noFullWidth direction="col" className="absolute bottom-1 left-1 z-10 gap-1">
+        <Flex noFullWidth className="absolute bottom-1 left-1 z-10 gap-1">
           <Flex direction="row" className="items-end gap-0.5">
             <InfoIcon>
               {toSum(meal.ingredients.map(({quantity}) => quantity))}

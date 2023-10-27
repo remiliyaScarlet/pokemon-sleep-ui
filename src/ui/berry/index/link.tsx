@@ -27,7 +27,7 @@ export const BerryLink = ({berryData}: Props) => {
 
   return (
     <Link href={`/berry/${id}`} className="w-full">
-      <Flex key={id} direction="col" center className="button-clickable-bg gap-0.5 p-1">
+      <Flex key={id} center className="button-clickable-bg gap-0.5 p-1">
         <Flex center className="relative">
           <div className="absolute bottom-0 right-1">
             <div className="relative h-8 w-8">

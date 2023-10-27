@@ -29,7 +29,7 @@ export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
         const mapName = t(mapId.toString());
 
         return (
-          <Flex key={mapId} direction="col">
+          <Flex key={mapId}>
             <MapLink mapId={mapId} className="h-16">
               <div className="whitespace-nowrap">
                 {mapName}

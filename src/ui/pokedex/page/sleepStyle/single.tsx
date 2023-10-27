@@ -36,7 +36,7 @@ export const PokemonSingleSleepStyle = ({pokemon, sleepStyle, sleepdex, setSleep
   );
 
   return (
-    <Flex key={style} direction="col" center className="gap-1.5 p-2.5" noFullWidth>
+    <Flex key={style} center className="gap-1.5 p-2.5" noFullWidth>
       <button className={className} onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();

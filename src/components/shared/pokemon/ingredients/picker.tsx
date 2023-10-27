@@ -39,7 +39,7 @@ export const PokemonIngredientPicker = ({
         const productions = chain.ingredients[level];
 
         return (
-          <Flex key={level} direction="col" className="rounded-lg bg-slate-500/10 p-2">
+          <Flex key={level} className="rounded-lg bg-slate-500/10 p-2">
             <Flex direction="row" center className="gap-1.5 md:flex-col">
               <Flex direction="row" noFullWidth center className="w-12 gap-1">
                 <div>Lv</div>

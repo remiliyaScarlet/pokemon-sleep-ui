@@ -14,9 +14,9 @@ export const Copyable = ({content}: Props) => {
       <pre className="truncate px-2">
         {content}
       </pre>
-      <Flex direction="col" noFullWidth>
+      <div>
         <CopyButton data={content}/>
-      </Flex>
+      </div>
     </Flex>
   );
 };

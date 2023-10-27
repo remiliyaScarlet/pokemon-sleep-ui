@@ -57,7 +57,7 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
   }, [setup]);
 
   return (
-    <Flex ref={ref} direction="col" center className="relative gap-1.5">
+    <Flex ref={ref} center className="relative gap-1.5">
       <PokemonLinkPopup state={state} setState={setState}/>
       <button
         className="button-clickable group absolute left-1 top-1 h-8 w-8 rounded-full"

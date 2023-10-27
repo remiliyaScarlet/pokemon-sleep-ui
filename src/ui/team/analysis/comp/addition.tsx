@@ -17,7 +17,7 @@ export const TeamAnalysisCompAddition = ({onAdded}: React.PropsWithChildren<Prop
   const [newTeam, setNewTeam] = React.useState(generateEmptyTeam(v4()));
 
   return (
-    <Flex center direction="col" className="border-button-clickable rounded-lg border">
+    <Flex center className="border-button-clickable rounded-lg border">
       <Flex direction="row" className="p-2">
         <InputBox
           type="text"
