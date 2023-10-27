@@ -8,7 +8,7 @@ import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/icon
 import {MealLinkProps} from '@/components/shared/meal/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {getMealFinalStrength} from '@/utils/game/meal/main';
-import {formatInt} from '@/utils/number';
+import {formatMealStrengthInfo} from '@/utils/game/meal/utils';
 
 
 export const MealLinkDetail = (props: MealLinkProps) => {
@@ -16,7 +16,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
 
   const t = useTranslations('UI.InPage.Cooking');
 
-  const {base, withMapBonus} = getMealFinalStrength({
+  const mealStrengthInfo = getMealFinalStrength({
     ...props,
     filler: [],
   });
@@ -32,7 +32,7 @@ export const MealLinkDetail = (props: MealLinkProps) => {
           <Flex direction="row" noFullWidth className="items-end gap-0.5 whitespace-nowrap">
             <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
             <div>
-              {`${formatInt(base)} (${formatInt(withMapBonus)})`}
+              {formatMealStrengthInfo(mealStrengthInfo)}
             </div>
             <div>@</div>
             <div>Lv.{level}</div>

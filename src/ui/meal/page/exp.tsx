@@ -6,21 +6,24 @@ import {useTranslations} from 'next-intl';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {InfoSlider} from '@/components/shared/input/infoSlider';
 import {MealCommonProps} from '@/ui/meal/page/type';
-import {getMealEnergyInfo} from '@/utils/game/meal';
-import {formatInt} from '@/utils/number';
+import {getMealFinalStrength} from '@/utils/game/meal/main';
+import {formatMealStrengthInfo} from '@/utils/game/meal/utils';
 
 
-export const MealExp = ({meal, ingredientMap}: MealCommonProps) => {
+export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonProps) => {
   const {id, levels} = meal;
 
   const t = useTranslations('UI.InPage.Cooking');
   const [level, setLevel] = React.useState(1);
 
-  const {atLevel, diffVal, diffPct} = React.useMemo(() => getMealEnergyInfo({
+  const mapBonus = calculatedSettings.bonus.map;
+  const mealStrengthInfo = React.useMemo(() => getMealFinalStrength({
+    filler: [],
+    level,
     meal,
     ingredientMap,
-    level,
-  }), [meal, ingredientMap, level]);
+    mapBonus,
+  }), [meal, ingredientMap, level, mapBonus]);
 
   return (
     <InfoSlider
@@ -29,7 +32,7 @@ export const MealExp = ({meal, ingredientMap}: MealCommonProps) => {
     >
       <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
       <div className="text-sm">
-        {formatInt(atLevel.energy)} (+{formatInt(diffVal)} / +{diffPct.toFixed(0)}%)
+        {formatMealStrengthInfo(mealStrengthInfo)}
       </div>
     </InfoSlider>
   );
