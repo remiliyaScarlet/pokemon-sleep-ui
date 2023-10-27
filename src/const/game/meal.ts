@@ -1,3 +1,4 @@
+import {recipeLevelData} from '@/data/recipeLevel';
 import {MealRarityBonusBreakPoint} from '@/types/game/meal/rarity';
 
 
@@ -9,4 +10,4 @@ export const mealRarityBonusAfterBreakPoint: {[breakPoint in MealRarityBonusBrea
   1: 1.06,
 };
 
-export const recipeMaxLevel = 50;
+export const recipeMaxLevel = recipeLevelData.length;
