@@ -40,7 +40,7 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     .map((level) => filter.ingredients[level]), [filter]);
 
   const {data: session} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });

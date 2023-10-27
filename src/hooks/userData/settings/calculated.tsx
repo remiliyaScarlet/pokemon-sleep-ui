@@ -3,15 +3,23 @@ import {useCustomCompareMemo} from 'use-custom-compare';
 
 import {useUserSettings} from '@/hooks/userData/settings/main';
 import {UseUserSettingsOpts} from '@/hooks/userData/settings/type';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
-export const useCalculatedUserSettings = (opts: UseUserSettingsOpts): CalculatedUserSettings => {
+type UseCalculatedUserSettingsReturn = {
+  settings: UserSettings,
+  calculatedSettings: CalculatedUserSettings,
+};
+
+export const useCalculatedUserSettings = (opts: UseUserSettingsOpts): UseCalculatedUserSettingsReturn => {
   const settings = useUserSettings(opts);
 
   return useCustomCompareMemo(
-    () => toCalculatedUserSettings({settings}),
+    () => ({
+      settings,
+      calculatedSettings: toCalculatedUserSettings({settings}),
+    }),
     [settings],
     (prev, next) => isEqual(prev, next),
   );

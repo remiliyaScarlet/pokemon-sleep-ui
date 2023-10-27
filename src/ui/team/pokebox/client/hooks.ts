@@ -31,7 +31,7 @@ export const useCalculatedData = (
 
   const t = useTranslations('Game');
 
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloaded.settings,
     client: session.data?.user.preloaded.settings,
   });

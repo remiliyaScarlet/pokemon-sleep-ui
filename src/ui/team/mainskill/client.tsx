@@ -26,7 +26,7 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   } = props;
 
   const {data: session} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloadedSettings,
     client: session?.user.preloaded.settings,
   });

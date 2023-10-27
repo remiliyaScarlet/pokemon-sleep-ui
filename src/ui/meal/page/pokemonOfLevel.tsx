@@ -36,7 +36,7 @@ export const MealPokemonOfIngredientLevel = ({
   } = pokemonOfIngredientLevel;
 
   const {data} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

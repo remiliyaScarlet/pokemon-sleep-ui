@@ -27,7 +27,7 @@ export const IngredientPokemonProduction = ({
 }: Props) => {
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });

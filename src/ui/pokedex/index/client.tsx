@@ -41,7 +41,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ...props,
   });
 
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloaded.settings,
     client: session?.user.preloaded.settings,
   });

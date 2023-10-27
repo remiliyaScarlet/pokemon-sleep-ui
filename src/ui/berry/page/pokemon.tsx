@@ -14,7 +14,7 @@ type Props = BerryPageDataProps & {
 
 export const BerryProducingRatesOfPokemon = ({level, preloadedSettings, ...props}: Props) => {
   const {data} = useSession();
-  const calculatedSettings = useCalculatedUserSettings({
+  const {calculatedSettings} = useCalculatedUserSettings({
     server: preloadedSettings,
     client: data?.user.preloaded.settings,
   });
