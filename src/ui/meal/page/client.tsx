@@ -6,7 +6,7 @@ import {useSession} from 'next-auth/react';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
-import {MealMeta} from '@/ui/meal/page/meta';
+import {MealInfo} from '@/ui/meal/page/info';
 import {MealPokemonOfIngredient} from '@/ui/meal/page/pokemon';
 import {MealCommonProps, MealServerDataProps} from '@/ui/meal/page/type';
 
@@ -27,7 +27,7 @@ export const MealClient = (props: MealServerDataProps) => {
 
   return (
     <Flex center className="gap-1.5">
-      <MealMeta {...commonProps}/>
+      <MealInfo {...commonProps}/>
       <AdsUnit/>
       <MealPokemonOfIngredient {...commonProps}/>
     </Flex>

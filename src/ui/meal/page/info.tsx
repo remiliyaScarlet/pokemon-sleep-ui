@@ -1,35 +1,24 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {mealTypeTextStyle} from '@/styles/classes';
-import {imageIconSizes, imagePortraitSizes} from '@/styles/image';
+import {MealMeta} from '@/components/shared/meal/meta';
+import {imageIconSizes} from '@/styles/image';
 import {MealExp} from '@/ui/meal/page/exp';
 import {MealCommonProps} from '@/ui/meal/page/type';
 
 
-export const MealMeta = (props: MealCommonProps) => {
+export const MealInfo = (props: MealCommonProps) => {
   const {meal} = props;
-  const {id, type} = meal;
 
   const t = useTranslations('Game.Food');
 
-  const mealName = t(id.toString());
-
   return (
     <Flex center className="info-section md:flex-row md:gap-4">
-      <Flex center noFullWidth className="gap-2">
-        <div className={clsx('text-lg', mealTypeTextStyle[type])}>
-          {mealName}
-        </div>
-        <div className="relative h-44 w-44 rounded-lg border border-slate-300 dark:border-slate-700">
-          <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imagePortraitSizes}/>
-        </div>
-      </Flex>
+      <MealMeta meal={meal}/>
       <Flex className="gap-2 lg:w-2/3">
         <MealExp {...props}/>
         <Flex direction="row" center className="gap-1.5">
