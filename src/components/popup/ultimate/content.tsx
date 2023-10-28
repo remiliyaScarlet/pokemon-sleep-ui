@@ -39,10 +39,10 @@ const PopupUltimateContentInternal = ({
   return (
     <FloatingPortal>
       <FloatingOverlay hidden={!context.open && !isMounted} lockScroll style={styles} className={clsx(
-        'z-ultimate', blurStyle,
+        'z-popup-ultimate', blurStyle,
       )}>
         <FloatingFocusManager context={context}>
-          <div className={clsx('z-ultimate', popupOverlayStyle)}>
+          <div className={clsx('z-popup-ultimate', popupOverlayStyle)}>
             <div ref={ref} {...getFloatingProps(floatingProps)}>
               {children}
             </div>

@@ -42,7 +42,15 @@ const config: Config = {
         120: '1.2',
       },
       zIndex: {
-        'ultimate': '1000',
+        // Used in navbar
+        // > This should be below every type of popup, but above every other things else (max 50)
+        'nav': '500',
+        // Used in common popup
+        // > This popup should be above everything else, but below navbar and ultimate popup
+        'popup-common': '900',
+        // Used in ultimate popup
+        // > This popup should always show on top
+        'popup-ultimate': '1000',
       },
       transitionProperty: {
         'height': 'height',

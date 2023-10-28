@@ -44,29 +44,29 @@ export const PageLayout = ({
         />
       }
       <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
-      <Flex className="h-full">
-        <Flex direction="row" stretch className={clsx(
-          'gap-1.5 border-b border-b-gray-700 bg-slate-300/90 dark:bg-slate-900/90',
-        )}>
-          <NavBar announcement={announcement} {...props}/>
-        </Flex>
-        <Flex direction="row" className="grow overflow-hidden">
-          <Flex className="hidden max-w-xs lg:flex">
-            <I18nProvider locale={locale} namespaces={['UI.Metadata']}>
-              <NavListContent/>
-            </I18nProvider>
-          </Flex>
-          <div className="h-full w-full overflow-y-auto">
-            <Flex className="gap-1.5 p-2">
-              {announcement && <Announcements showOn="portrait" height="h-10"/>}
-              <React.Suspense fallback={<Loading/>}>
-                {children}
-              </React.Suspense>
-            </Flex>
-          </div>
-        </Flex>
-        <AdsOfLayout adsShouldShow={adsShouldShow}/>
+      <Flex direction="row" stretch className={clsx(
+        'nav-bar-height sticky top-0 z-nav gap-1.5 border-b border-b-gray-700 bg-slate-300/90 dark:bg-slate-900/90',
+      )}>
+        <NavBar announcement={announcement} {...props}/>
       </Flex>
+      <Flex direction="row">
+        <Flex noFullWidth className={clsx(
+          'sticky top-[var(--nav-bar-height)] hidden h-[calc(100vh-var(--nav-bar-height))] w-96 lg:flex',
+        )}>
+          <I18nProvider locale={locale} namespaces={['UI.Metadata']}>
+            <NavListContent/>
+          </I18nProvider>
+        </Flex>
+        <div className="h-full w-full overflow-y-auto">
+          <Flex className="gap-1.5 p-2">
+            {announcement && <Announcements showOn="portrait" height="h-10"/>}
+            <React.Suspense fallback={<Loading/>}>
+              {children}
+            </React.Suspense>
+          </Flex>
+        </div>
+      </Flex>
+      <AdsOfLayout adsShouldShow={adsShouldShow}/>
     </>
   );
 };

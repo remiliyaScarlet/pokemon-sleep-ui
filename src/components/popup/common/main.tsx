@@ -13,7 +13,7 @@ export const PopupCommon = (props: React.PropsWithChildren<PopupProps>) => {
 
   return (
     <Transition.Root show={show ?? true} as={React.Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={() => setShow ? setShow(false) : void 0}>
+      <Dialog as="div" className="relative z-popup-common" onClose={() => setShow ? setShow(false) : void 0}>
         <Blur/>
         <div className={popupOverlayStyle}>
           <Transition.Child

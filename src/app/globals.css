@@ -40,6 +40,9 @@
   body {
     @apply w-full;
     
+    --nav-height: theme('height.8');
+    --nav-bar-height: theme('height.12');
+    
     color: var(--foreground-rgb);
     background-image: radial-gradient(var(--background-start-rgb), var(--background-end-rgb));
   }
@@ -437,7 +440,11 @@
   /* region Navbar styling (nav-*) */
   
   .nav-height {
-    @apply h-8;
+    height: var(--nav-height);
+  }
+  
+  .nav-bar-height {
+    height: var(--nav-bar-height);
   }
   
   .nav-button {

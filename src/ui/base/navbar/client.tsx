@@ -31,7 +31,7 @@ export const NavBarClient = ({
         </div>
         {children}
       </Flex>
-      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5 p-2">
+      <Flex direction="row" center noFullWidth className="ml-auto gap-1.5 px-2">
         {session && <UserSettingsUI session={session} {...props}/>}
         {!session && <LanguageSwitch/>}
         <ThemeSwitcher/>

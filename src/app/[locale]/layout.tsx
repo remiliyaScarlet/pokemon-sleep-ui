@@ -1,7 +1,6 @@
 /* eslint-disable new-cap */
 import React from 'react';
 
-import {clsx} from 'clsx';
 // eslint-disable-next-line camelcase
 import {Noto_Sans} from 'next/font/google';
 import {notFound} from 'next/navigation';
@@ -45,15 +44,15 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
         <Script id="google-analytics">
           {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-     
-              gtag('config', 'G-2LL7T4CCZP');
-            `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+   
+            gtag('config', 'G-2LL7T4CCZP');
+          `}
         </Script>
       </>}
-      <body className={clsx('h-full overflow-hidden', font.className)}>
+      <body className={font.className}>
         <Providers>
           {children}
         </Providers>
