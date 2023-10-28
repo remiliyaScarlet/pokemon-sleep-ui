@@ -37,6 +37,7 @@ export type ActivationProperties = {
   source: ActivationSource | null,
   contact: {[contact in ActivationContact]?: string | null},
   isSpecial: boolean,
+  isCmsMod?: boolean,
   note: string,
   activation: ActivationStatus,
 };
