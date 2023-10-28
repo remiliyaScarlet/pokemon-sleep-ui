@@ -37,7 +37,7 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
           enterTo={classNameForHeight}
           leaveFrom={classNameForHeight}
           leaveTo="h-0"
-          className="overflow-x-hidden overflow-y-scroll transition-[height] duration-300 ease-in-out"
+          className="overflow-y-auto overflow-x-hidden transition-[height] duration-300 ease-in-out"
         >
           <Transition.Child
             enterFrom="opacity-0"

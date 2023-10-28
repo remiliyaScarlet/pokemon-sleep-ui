@@ -12,7 +12,7 @@ export const NavListContent = () => {
   const entries = useNavEntries();
 
   return (
-    <Flex noFullWidth className="info-section-opaque h-full gap-1.5 overflow-y-scroll p-4">
+    <Flex noFullWidth className="info-section-opaque h-full gap-1.5 overflow-y-auto p-4">
       <NavListHome/>
       <AdsUnit alwaysSingle/>
       {entries.map((entry) => <NavListEntry key={entry.i18nTextId} entry={entry}/>)}

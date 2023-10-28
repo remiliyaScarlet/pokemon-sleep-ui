@@ -56,7 +56,7 @@ export const PageLayout = ({
               <NavListContent/>
             </I18nProvider>
           </Flex>
-          <div className="h-full w-full overflow-y-scroll">
+          <div className="h-full w-full overflow-y-auto">
             <Flex className="gap-1.5 p-2">
               {announcement && <Announcements showOn="portrait" height="h-10"/>}
               <React.Suspense fallback={<Loading/>}>
