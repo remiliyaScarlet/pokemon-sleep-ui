@@ -52,7 +52,7 @@ export const PokemonProducingStatsOfState = ({
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <Flex className="gap-1 rounded-lg bg-slate-500/10 p-2">
+    <Flex className="bg-plate gap-1">
       <Flex className="text-lg">
         {title}
       </Flex>

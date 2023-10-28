@@ -39,43 +39,41 @@ export const PokemonIngredientPicker = ({
         const productions = chain.ingredients[level];
 
         return (
-          <Flex key={level} className="rounded-lg bg-slate-500/10 p-2">
-            <Flex direction="row" center className="gap-1.5 md:flex-col">
-              <Flex direction="row" noFullWidth center className="w-12 gap-1">
-                <div>Lv</div>
-                <div>{level}</div>
-              </Flex>
-              <Flex direction="row" className="gap-1" center wrap>
-                {productions.map((production) => {
-                  const {id, qty} = production;
-                  const active = current.id === id;
-                  const itemId = `${idPrefix}-ingredient-${level}-${id}`;
+          <Flex key={level} direction="row" center className="bg-plate gap-1 md:flex-col">
+            <Flex direction="row" noFullWidth center className="w-12 gap-1">
+              <div>Lv</div>
+              <div>{level}</div>
+            </Flex>
+            <Flex direction="row" className="gap-1" center wrap>
+              {productions.map((production) => {
+                const {id, qty} = production;
+                const active = current.id === id;
+                const itemId = `${idPrefix}-ingredient-${level}-${id}`;
 
-                  return (
-                    <ToggleButton
-                      key={itemId}
-                      active={active}
-                      id={itemId}
-                      onClick={() => onSelect(production, level)}
-                      className={clsx('rounded-lg p-1.5', getToggleButtonClass(active))}
-                    >
-                      <Flex direction="row" center noFullWidth className="gap-1 md:flex-col">
-                        <div className="group relative h-7 w-7">
-                          <NextImage
-                            src={`/images/ingredient/${id}.png`}
-                            alt={t(`Food.${id}`)}
-                            sizes={imageIconSizes}
-                          />
-                        </div>
-                        <Flex direction="row" center noFullWidth className="gap-1">
-                          <div>&times;</div>
-                          <div>{qty}</div>
-                        </Flex>
+                return (
+                  <ToggleButton
+                    key={itemId}
+                    active={active}
+                    id={itemId}
+                    onClick={() => onSelect(production, level)}
+                    className={clsx('rounded-lg p-1.5', getToggleButtonClass(active))}
+                  >
+                    <Flex direction="row" center noFullWidth className="gap-1 md:flex-col">
+                      <div className="group relative h-7 w-7">
+                        <NextImage
+                          src={`/images/ingredient/${id}.png`}
+                          alt={t(`Food.${id}`)}
+                          sizes={imageIconSizes}
+                        />
+                      </div>
+                      <Flex direction="row" center noFullWidth className="gap-1">
+                        <div>&times;</div>
+                        <div>{qty}</div>
                       </Flex>
-                    </ToggleButton>
-                  );
-                })}
-              </Flex>
+                    </Flex>
+                  </ToggleButton>
+                );
+              })}
             </Flex>
           </Flex>
         );

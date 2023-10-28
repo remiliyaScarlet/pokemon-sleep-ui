@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
-
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
@@ -50,9 +48,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
 
         return (
           <AnimatedCollapse key={productionKeys} show appear>
-            <Flex center noFullWidth className={clsx(
-              'gap-1.5 rounded-lg bg-slate-500/10 p-1.5',
-            )}>
+            <Flex center noFullWidth className="bg-plate gap-1.5">
               <Flex direction="row" center wrap className="gap-1">
                 {ingredients.map((production) => (
                   <PokemonProductionIngredientLink

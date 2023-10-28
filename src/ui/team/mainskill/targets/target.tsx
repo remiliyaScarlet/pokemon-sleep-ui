@@ -54,7 +54,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
 
   return (
     <AnimatedCollapseQuick show={unit.show} appear>
-      <Flex center className="relative h-full gap-1 rounded-lg bg-slate-500/10 p-2">
+      <Flex center className="bg-plate relative h-full gap-1">
         <button onClick={deleteUnit} className="button-clickable absolute right-1 top-1 z-10 h-5 w-5 rounded-full">
           <XMarkIcon/>
         </button>

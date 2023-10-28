@@ -9,7 +9,7 @@ type Props = {
 
 export const UserSettingsSection = ({titleIcon, children}: React.PropsWithChildren<Props>) => {
   return (
-    <Flex className="gap-1.5 rounded-lg bg-slate-500/10 p-3">
+    <Flex className="bg-plate gap-1.5">
       <div className="relative h-10 w-10">
         {titleIcon}
       </div>

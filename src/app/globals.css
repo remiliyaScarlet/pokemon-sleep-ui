@@ -131,10 +131,6 @@
     }
   }
   
-  .bg-corner-mark {
-    @apply bg-gradient-to-br from-transparent to-slate-500/80;
-  }
-  
   /* region Fixed count of element in row (width-with-gap-*) */
   
   .width-with-gap-xs {
@@ -453,6 +449,18 @@
   
   .nav-button-text {
     @apply nav-button button-clickable-bg text-sm whitespace-nowrap px-2.5;
+  }
+  
+  /* endregion */
+  
+  /* region Miscellaneous background styling (bg-*) */
+  
+  .bg-corner-mark {
+    @apply bg-gradient-to-br from-transparent to-slate-500/80;
+  }
+  
+  .bg-plate {
+    @apply bg-slate-500/10 rounded-lg p-2;
   }
   
   /* endregion */
