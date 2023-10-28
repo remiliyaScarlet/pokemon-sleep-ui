@@ -45,6 +45,9 @@ const config: Config = {
         // Used in navbar
         // > This should be below every type of popup, but above every other things else (max 50)
         'nav': '500',
+        // Used in nav list
+        // > This should be below every type of popup, but above every other things else and nav bar
+        'nav-list': '550',
         // Used in common popup
         // > This popup should be above everything else, but below navbar and ultimate popup
         'popup-common': '900',

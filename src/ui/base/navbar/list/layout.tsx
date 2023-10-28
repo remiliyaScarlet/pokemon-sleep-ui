@@ -13,7 +13,7 @@ import {NavListCommonProps} from '@/ui/base/navbar/list/type';
 export const NavListLayout = ({open, setOpen}: NavListCommonProps) => {
   return (
     <Transition.Root show={open} as={React.Fragment}>
-      <Dialog as="div" className="relative z-40" onClose={setOpen}>
+      <Dialog as="div" className="relative z-nav" onClose={setOpen}>
         <Blur/>
         <Transition.Child
           enter="duration-300"
