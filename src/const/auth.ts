@@ -1,4 +1,4 @@
-import {MongoDBAdapter as mongoDBAdapter} from '@next-auth/mongodb-adapter';
+import {MongoDBAdapter as mongoDBAdapter} from '@auth/mongodb-adapter';
 import {AuthOptions} from 'next-auth';
 import emailProvider from 'next-auth/providers/email';
 import googleProvider from 'next-auth/providers/google';
