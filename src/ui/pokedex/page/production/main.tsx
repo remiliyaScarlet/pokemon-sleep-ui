@@ -1,12 +1,13 @@
 'use client';
 import React from 'react';
 
+import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -41,6 +42,7 @@ export const PokemonProduction = (props: PokemonProps) => {
   const t3 = useTranslations('UI.Metadata');
 
   const chain = ingredientChainMap[ingredientChain];
+  const analysisTitle = t3('Analysis.Title', {name: t(`PokemonName.${pokemon.id}`)});
 
   return (
     <Flex center className="info-section">
@@ -68,15 +70,22 @@ export const PokemonProduction = (props: PokemonProps) => {
           {...props}
         />
       </PokemonMetaSection>
-      <Flex className="items-end">
-        <Link href={`/analysis/${pokemon.id}`} className="button-clickable group relative mt-auto h-10 w-10">
-          <NextImage
-            src="/images/generic/analysis.png"
-            alt={t3('Analysis.Title', {name: t(`PokemonName.${pokemon.id}`)})}
-            sizes={imageIconSizes} className="invert-hoverable"
-          />
-        </Link>
-      </Flex>
+      <PokemonMetaSection title={<LinkIcon className="h-6 w-6"/>} titleClassName={metaTitleClass}>
+        <FlexLink href={`/analysis/${pokemon.id}`} className={clsx(
+          'button-clickable-bg group items-center gap-1.5 self-end px-2 py-1',
+        )}>
+          <div>
+            {analysisTitle}
+          </div>
+          <div className="relative h-10 w-10">
+            <NextImage
+              src="/images/generic/analysis.png"
+              alt={analysisTitle}
+              sizes={imageIconSizes} className="invert-hoverable"
+            />
+          </div>
+        </FlexLink>
+      </PokemonMetaSection>
     </Flex>
   );
 };

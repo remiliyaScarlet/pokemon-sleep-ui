@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {
-  title: string,
+  title: React.ReactNode,
   titleClassName?: string,
   contentClassName?: string,
 };
