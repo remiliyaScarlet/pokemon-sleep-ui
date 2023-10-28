@@ -1,10 +1,7 @@
-import React from 'react';
-
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
-import {Dimension} from '@/types/style';
 import {UserPreloadedData} from '@/types/userData/main';
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 
@@ -42,12 +39,4 @@ export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & {
   ingredientMap: IngredientMap,
   preloaded: UserPreloadedData['cooking'],
   calculatedSettings: CalculatedUserSettings,
-};
-
-export type CookingRecipeLayoutProps = {
-  imageDimension: Dimension,
-  clickable: boolean,
-  mealId: number,
-  icon?: React.ReactNode,
-  markGray?: boolean,
 };

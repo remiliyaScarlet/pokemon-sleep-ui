@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
-import {CookingResult} from '@/ui/cooking/result';
+import {CookingRecipe} from '@/ui/cooking/recipe/main';
 import {CookingCommonProps, CookingServerDataProps} from '@/ui/cooking/type';
 import {toUnique} from '@/utils/array';
 
@@ -48,7 +48,7 @@ export const CookingClient = (props: CookingServerDataProps) => {
     <Flex className="gap-1">
       <CookingInputUI {...commonProps}/>
       <AdsUnit/>
-      <CookingResult {...commonProps}/>
+      <CookingRecipe {...commonProps}/>
       <AdsUnit/>
     </Flex>
   );
