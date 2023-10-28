@@ -1,4 +1,4 @@
-import {MealStrengthInfo} from '@/types/game/meal/info';
+import {MealStrengthInfoFinal} from '@/types/game/meal/info';
 import {MealIngredient} from '@/types/game/meal/main';
 import {getMealBaseStrength, GetMealBaseStrengthOpts} from '@/utils/game/meal/base';
 import {getMealIngredientStrength} from '@/utils/game/meal/strength';
@@ -9,7 +9,11 @@ type GetMealFinalStrengthOpts = GetMealBaseStrengthOpts & {
   mapBonus: number,
 };
 
-export const getMealFinalStrength = ({filler, mapBonus, ...opts}: GetMealFinalStrengthOpts): MealStrengthInfo => {
+export const getMealFinalStrength = ({
+  filler,
+  mapBonus,
+  ...opts
+}: GetMealFinalStrengthOpts): MealStrengthInfoFinal => {
   const {ingredientMap} = opts;
 
   const {strengthFinal, ...info} = getMealBaseStrength(opts);
@@ -18,10 +22,11 @@ export const getMealFinalStrength = ({filler, mapBonus, ...opts}: GetMealFinalSt
     ingredientMap,
   });
 
-  const mealStrength = strengthFinal + strengthFromFiller;
+  const strengthWithFiller = strengthFinal + strengthFromFiller;
 
   return {
     ...info,
-    strengthFinal: mealStrength * (1 + mapBonus / 100),
+    strengthFinal: strengthWithFiller * (1 + mapBonus / 100),
+    bonusRateWithFiller: strengthWithFiller / info.strengthBase,
   };
 };
