@@ -80,7 +80,7 @@ export const PokemonIconsItemStats = ({
                 show={isProductionIncluded ? isProductionIncluded(ingredients) : true}
                 appear
               >
-                <Flex className="button-clickable-bg relative">
+                <Flex className="button-clickable-bg group relative">
                   <Flex noFullWidth className="absolute bottom-1 right-1 z-10">
                     <PokemonProducingRateSingle
                       rate={itemRate}
