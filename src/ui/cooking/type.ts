@@ -3,7 +3,8 @@ import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
+import {CookingPopupCommonProps} from '@/ui/cooking/recipe/popup/type';
 
 
 export type CookingRecipeData = {
@@ -35,10 +36,8 @@ export type CookingServerDataProps = {
   preloaded: CookingPreloadedData,
 };
 
-export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & {
+export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & CookingPopupCommonProps & {
   meals: Meal[],
   mealTypes: MealTypeId[],
-  ingredientMap: IngredientMap,
   preloaded: CookingPreloadedData['cooking'],
-  calculatedSettings: CalculatedUserSettings,
 };

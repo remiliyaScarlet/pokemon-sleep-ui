@@ -19,7 +19,7 @@ export const CookingRecipeStats = ({info}: CookingRecipePartsProps) => {
           {formatInt(info.strengthFinal)}
         </div>
       </Flex>
-      <div className="text-sm">
+      <div>
         +{(info.bonusRate * 100 - 100).toFixed(1)}%
       </div>
     </Flex>

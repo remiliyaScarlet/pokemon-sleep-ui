@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
 
-import {useSession} from 'next-auth/react';
-
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
+import {useUserDataActor} from '@/hooks/userData/actor';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingRecipe} from '@/ui/cooking/recipe/main';
 import {CookingCommonProps, CookingServerDataProps} from '@/ui/cooking/type';
+import {subtractIngredientCount, toCookingPreset} from '@/ui/cooking/utils';
 import {toUnique} from '@/utils/array';
 
 
@@ -25,10 +25,10 @@ export const CookingClient = (props: CookingServerDataProps) => {
     setFilter,
     isIncluded,
   } = useCookingFilter(props);
-  const {data: session} = useSession();
+  const {actAsync, session, status} = useUserDataActor();
   const {calculatedSettings} = useCalculatedUserSettings({
     server: preloaded.settings,
-    client: session?.user.preloaded.settings,
+    client: session.data?.user.preloaded.settings,
   });
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
@@ -41,6 +41,25 @@ export const CookingClient = (props: CookingServerDataProps) => {
     mealTypes,
     ingredientMap,
     calculatedSettings,
+    status,
+    onCook: async (ingredientsUsed) => {
+      setFilter((original) => ({
+        ...original,
+        ingredientCount: subtractIngredientCount(filter.ingredientCount, ingredientsUsed),
+      }));
+
+      if (!actAsync) {
+        return;
+      }
+
+      await actAsync({
+        action: 'upload',
+        options: {
+          type: 'cooking',
+          data: toCookingPreset({preloaded: preloaded.cooking, filter}),
+        },
+      });
+    },
     preloaded: preloaded.cooking,
   };
 

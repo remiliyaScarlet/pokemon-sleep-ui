@@ -21,7 +21,8 @@ export const CookingRecipeIngredients = ({
       <Flex noFullWidth>
         <IngredientIcons ingredients={ingredientsMissing} markRed={() => true} useTextShadow={false}/>
         <IngredientIconsFromMeal
-          meal={meal} useTextShadow={false}
+          meal={meal}
+          useTextShadow={false}
           markRed={(ingredient) => ingredientSetReady[ingredient.id] < 1}
         />
       </Flex>
