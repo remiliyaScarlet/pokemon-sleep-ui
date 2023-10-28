@@ -10,8 +10,8 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {defaultCookingPreset} from '@/const/user/cooking';
 import {CookingCommonProps} from '@/ui/cooking/type';
+import {toCookingPreset} from '@/ui/cooking/utils';
 
 
 export const CookingInputControl = ({filter, setFilter, preloaded}: CookingCommonProps) => {
@@ -46,16 +46,7 @@ export const CookingInputControl = ({filter, setFilter, preloaded}: CookingCommo
         </ToggleButton>
         <UserDataUploadButton opts={{
           type: 'cooking',
-          data: {
-            ...defaultCookingPreset,
-            ...preloaded,
-            potCapacity: filter.capacity,
-            mealType: filter.type,
-            ingredients: filter.ingredient,
-            ingredientCount: filter.ingredientCount,
-            recipeLevel: filter.recipeLevel,
-            showUnmakeableRecipe: filter.showUnmakeableRecipe,
-          },
+          data: toCookingPreset({preloaded, filter}),
         }}/>
       </Flex>
     </InputRow>

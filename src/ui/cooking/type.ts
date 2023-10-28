@@ -24,19 +24,21 @@ export type CookingFilter = {
   showUnmakeableRecipe: boolean,
 };
 
+export type CookingPreloadedData = {
+  cooking: UserPreloadedData['cooking'],
+  settings: UserSettings,
+};
+
 export type CookingServerDataProps = {
   meals: Meal[],
   ingredientMap: IngredientMap,
-  preloaded: {
-    cooking: UserPreloadedData['cooking'],
-    settings: UserSettings,
-  },
+  preloaded: CookingPreloadedData,
 };
 
 export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & {
   meals: Meal[],
   mealTypes: MealTypeId[],
   ingredientMap: IngredientMap,
-  preloaded: UserPreloadedData['cooking'],
+  preloaded: CookingPreloadedData['cooking'],
   calculatedSettings: CalculatedUserSettings,
 };
