@@ -12,7 +12,7 @@ type Props = {
 
 export const AdsOfLayout = ({adsShouldShow}: Props) => {
   if (!adsShouldShow) {
-    return <></>;
+    return null;
   }
 
   const locale = getLocale();
