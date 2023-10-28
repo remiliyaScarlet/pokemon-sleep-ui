@@ -8,6 +8,7 @@ import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
+import {roundDown} from '@/utils/number/round';
 
 
 type GetBaseFrequencyOpts = {
@@ -27,14 +28,15 @@ const getBaseFrequency = ({
   helperCount,
   noCap,
 }: GetBaseFrequencyOpts) => {
-  frequency *= (1 - (level - 1) * 0.002);
-  frequency *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
+  let bonus = (1 - (level - 1) * 0.002);
+  bonus *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
   // https://x.com/emuptea/status/1711238322780266825
   // 0.35 is the mandatory cap from the officials
   // -- No Cap is used in rating, because rating applies 5 stacks of helper count, which won't really happen in game
-  frequency *= (1 - Math.min(noCap ? Infinity : 0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
+  bonus *= (1 - Math.min(noCap ? Infinity : 0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
+  bonus = roundDown({value: bonus, decimals: 4});
 
-  return frequency;
+  return roundDown({value: frequency * bonus, decimals: 0});
 };
 
 export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCount' | 'natureId' | 'noCap'> & {

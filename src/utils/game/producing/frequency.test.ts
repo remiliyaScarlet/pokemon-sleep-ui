@@ -14,7 +14,7 @@ describe('Pokemon Base Producing Frequency', () => {
       natureId: null,
     });
 
-    expect(frequency).toBeCloseTo(2920.2);
+    expect(frequency).toBeCloseTo(2920);
   });
 });
 
