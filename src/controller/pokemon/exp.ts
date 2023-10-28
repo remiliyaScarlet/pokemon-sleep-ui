@@ -17,7 +17,7 @@ export const getAllExpDataSorted = async () => {
   return getDataAsArray(getCollection(), {}, {lv: 1});
 };
 
-const addPokemonExpDataIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -25,5 +25,5 @@ const addPokemonExpDataIndex = async () => {
   ]);
 };
 
-addPokemonExpDataIndex()
+addIndex()
   .catch((e) => console.error('MongoDB failed to initialize Pokemon EXP data index', e));

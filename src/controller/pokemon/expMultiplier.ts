@@ -17,7 +17,7 @@ export const getAllExpMultiplierData = async () => {
   return getDataAsMap(getCollection(), ({pokemon}) => pokemon);
 };
 
-const addPokemonExpMultiplierIndex = async () => {
+const addIndex = async () => {
   const collection = await getCollection();
 
   return Promise.all([
@@ -25,5 +25,5 @@ const addPokemonExpMultiplierIndex = async () => {
   ]);
 };
 
-addPokemonExpMultiplierIndex()
+addIndex()
   .catch((e) => console.error('MongoDB failed to initialize Pokemon EXP multiplier index', e));
