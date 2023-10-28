@@ -12,7 +12,7 @@ export const formatMealStrengthInfo = ({
   includeBonusRate,
 }: FormatMealStrengthInfoOpts): string => {
   const {
-    strengthBase,
+    strengthAfterRarity,
     strengthFinal,
     bonusRate,
   } = info;
@@ -20,8 +20,8 @@ export const formatMealStrengthInfo = ({
   if (includeBonusRate) {
     const bonusPercent = bonusRate * 100 - 100;
 
-    return `${formatInt(strengthBase)} (${formatInt(strengthFinal)} / +${formatInt(bonusPercent)}%)`;
+    return `${formatInt(strengthAfterRarity)} (${formatInt(strengthFinal)} / +${formatInt(bonusPercent)}%)`;
   }
 
-  return `${formatInt(strengthBase)} (${formatInt(strengthFinal)})`;
+  return `${formatInt(strengthAfterRarity)} (${formatInt(strengthFinal)})`;
 };

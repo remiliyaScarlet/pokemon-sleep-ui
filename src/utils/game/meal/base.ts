@@ -22,14 +22,13 @@ export const getMealBaseStrength = ({
   const rarityBonus = getMealRarityBonus(getMealIngredientCount(meal));
   const levelBonus = 1 + getRecipeLevelData(level).bonus;
 
-  const strengthBase = Math.round(
-    rarityBonus *
-    getMealIngredientStrength({ingredients: meal.ingredients, ingredientMap}),
-  );
+  const strengthBase = getMealIngredientStrength({ingredients: meal.ingredients, ingredientMap});
+  const strengthAfterRarity = Math.round(rarityBonus * strengthBase);
 
   return {
     strengthBase,
-    strengthFinal: Math.round(strengthBase * levelBonus),
+    strengthAfterRarity,
+    strengthFinal: Math.round(strengthAfterRarity * levelBonus),
     bonusRate: rarityBonus * levelBonus,
   };
 };
