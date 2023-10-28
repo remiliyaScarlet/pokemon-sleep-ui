@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {generateDecimalsAndOnes} from '@/utils/number';
+import {generateDecimalsAndOnes} from '@/utils/number/generator';
 
 
 describe('Number / Generate Decimals and Ones', () => {

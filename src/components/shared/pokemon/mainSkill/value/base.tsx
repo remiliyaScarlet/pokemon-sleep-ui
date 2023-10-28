@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 
 
 type Props = {

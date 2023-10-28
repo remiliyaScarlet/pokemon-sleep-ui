@@ -8,7 +8,7 @@ import {StaminaChartTooltip} from '@/components/shared/stamina/chart/tooltip/com
 import {StaminaChartTooltipCommonProps} from '@/components/shared/stamina/chart/tooltip/type';
 import {staminaLevelImageSrc} from '@/const/game/stamina';
 import {getStaminaBreakpoint} from '@/utils/game/stamina/breakpoint';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 export const StaminaChartTooltipOfStamina = (props: StaminaChartTooltipCommonProps) => {

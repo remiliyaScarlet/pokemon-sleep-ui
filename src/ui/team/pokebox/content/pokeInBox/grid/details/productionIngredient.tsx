@@ -10,7 +10,7 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 
 
 export const PokeInBoxGridProductionIngredient = (props: PokeInBoxCommonProps) => {

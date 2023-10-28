@@ -6,7 +6,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = {

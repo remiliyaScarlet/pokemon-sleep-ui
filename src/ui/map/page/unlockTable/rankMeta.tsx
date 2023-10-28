@@ -10,7 +10,7 @@ import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {MapUnlockTableRowProps} from '@/ui/map/page/unlockTable/type';
 import {toSum} from '@/utils/array';
 import {isSameRank} from '@/utils/game/snorlax';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 import {isNotNullish} from '@/utils/type';
 
 

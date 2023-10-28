@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = {

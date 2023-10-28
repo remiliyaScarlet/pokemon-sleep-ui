@@ -9,7 +9,7 @@ import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const'
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {UseCalculatePokeInBoxRatingReturn} from '@/ui/team/pokebox/content/pokeInBox/type';
-import {formatFloat, formatInt} from '@/utils/number';
+import {formatFloat, formatInt} from '@/utils/number/format';
 
 
 type Props = UseCalculatePokeInBoxRatingReturn;

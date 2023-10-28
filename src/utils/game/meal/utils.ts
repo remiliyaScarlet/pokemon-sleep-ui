@@ -1,5 +1,5 @@
 import {MealStrengthInfo} from '@/types/game/meal/info';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type FormatMealStrengthInfoOpts = {

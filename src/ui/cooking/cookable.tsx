@@ -13,7 +13,7 @@ import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {CookingRecipeLayout} from '@/ui/cooking/recipeLayout';
 import {CookingFilterIngredientCount, CookingRecipeData} from '@/ui/cooking/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = CookingRecipeData & {

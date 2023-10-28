@@ -6,7 +6,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {InfoSlider} from '@/components/shared/input/infoSlider';
 import {BerryData} from '@/types/game/berry';
 import {getBerryEnergyInfo} from '@/utils/game/berry';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = {

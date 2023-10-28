@@ -10,7 +10,7 @@ import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/ind
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {RatingBasis, RatingDataPoint} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 
 
 type Props = {

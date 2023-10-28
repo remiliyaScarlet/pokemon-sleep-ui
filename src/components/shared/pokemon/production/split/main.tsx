@@ -8,7 +8,7 @@ import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonProductionSplitCommonProps} from '@/components/shared/pokemon/production/split/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 
 
 type Props = PokemonProductionSplitCommonProps & {

@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
-import {formatFloat, formatFloat3} from '@/utils/number';
+import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
 type Props = {

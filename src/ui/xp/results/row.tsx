@@ -7,7 +7,7 @@ import {PokemonKeyLevel, pokemonKeyLevels} from '@/types/game/pokemon/level';
 import {PokemonExpCalculatorCandyCount} from '@/ui/xp/results/candyCount';
 import {PokemonLevelUpRequirements} from '@/ui/xp/results/type';
 import {PokemonExpCalculatorInput} from '@/ui/xp/type';
-import {formatInt, formatToAbbreviation} from '@/utils/number';
+import {formatInt, formatToAbbreviation} from '@/utils/number/format';
 
 
 type Props = {

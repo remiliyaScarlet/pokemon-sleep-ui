@@ -7,7 +7,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imagePortraitSizes} from '@/styles/image';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 export const BerryMeta = ({berryData}: BerryPageDataProps) => {

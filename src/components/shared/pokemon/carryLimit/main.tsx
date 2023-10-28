@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonPackStatsCommonProps} from '@/components/shared/pokemon/type';
 import {getPackStatsStyle} from '@/components/shared/pokemon/utils';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = PokemonPackStatsCommonProps & {

@@ -16,7 +16,7 @@ import {ProgressBar} from '@/components/progressBar';
 import {NextImage} from '@/components/shared/common/image/main';
 import {localeName} from '@/const/website';
 import {OcrLocale, ocrLocale} from '@/types/ocr/locale';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 import {isOcrRunning} from '@/utils/ocr/status';
 import {showToast} from '@/utils/toast';
 

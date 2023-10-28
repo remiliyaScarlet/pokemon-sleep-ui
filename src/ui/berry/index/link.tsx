@@ -8,7 +8,7 @@ import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {imageSmallIconSizes} from '@/styles/image';
 import {BerryData} from '@/types/game/berry';
-import {formatInt} from '@/utils/number';
+import {formatInt} from '@/utils/number/format';
 
 
 type Props = {

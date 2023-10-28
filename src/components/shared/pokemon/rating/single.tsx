@@ -20,7 +20,7 @@ import {useRatingWorker} from '@/hooks/rating/hook';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
-import {formatFloat, formatInt, formatToAbbreviation} from '@/utils/number';
+import {formatFloat, formatInt, formatToAbbreviation} from '@/utils/number/format';
 
 
 type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {

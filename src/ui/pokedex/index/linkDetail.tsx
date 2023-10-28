@@ -22,7 +22,7 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 
 
 export const PokedexLinkDetail = React.memo(({

@@ -5,7 +5,7 @@ import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisCategoryData} from '@/ui/team/analysis/setup/summary/grouped/type';
 import {toSum} from '@/utils/array';
-import {formatFloat} from '@/utils/number';
+import {formatFloat} from '@/utils/number/format';
 import {isNotNullish} from '@/utils/type';
 
 

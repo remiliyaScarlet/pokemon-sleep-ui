@@ -9,7 +9,7 @@ import {
   offsetEventLogStamina,
   updateLogStaminaFromLast,
 } from '@/utils/game/stamina/events/utils';
-import {generateDecimalsAndOnes} from '@/utils/number';
+import {generateDecimalsAndOnes} from '@/utils/number/generator';
 
 
 type GetSkillRecoveryOpts = {

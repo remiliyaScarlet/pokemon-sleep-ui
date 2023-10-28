@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {MainSkillTriggerValueIcon} from '@/components/shared/pokemon/mainSkill/icon/trigger';
 import {getNumberStyles} from '@/styles/text/number';
 import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
-import {formatFloat, formatFloat3} from '@/utils/number';
+import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
 type Props = {
