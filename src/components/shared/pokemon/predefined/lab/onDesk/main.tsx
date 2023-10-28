@@ -49,7 +49,12 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
   } = setup;
 
   // This allows this component to trigger an update if `initialSetup` is changed
-  React.useEffect(() => setSetup(initialSetup), [initialSetup]);
+  React.useEffect(() => setSetup((original) => ({
+    ...initialSetup,
+    // Keep the original nature/subskill even if the initial setup changes
+    nature: original.nature,
+    subSkill: original.subSkill,
+  } satisfies TOnDesk)), [initialSetup]);
   React.useEffect(() => {
     if (immediateUpdate) {
       onRun(setup);
