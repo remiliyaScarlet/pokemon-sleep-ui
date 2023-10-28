@@ -3,14 +3,15 @@ import React from 'react';
 
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon';
 import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
+import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 
-import {Flex} from '@/components/layout/flex/common';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonEvolutionNextStage} from '@/ui/pokedex/page/evolution/next';
 import {PokemonEvolutionPortrait} from '@/ui/pokedex/page/evolution/portrait';
 import {PokemonEvolutionCommonProps} from '@/ui/pokedex/page/evolution/type';
+import {PokemonTitledLayout} from '@/ui/pokedex/page/layout/titled';
 
 
 export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps) => {
@@ -19,7 +20,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   return (
-    <Flex center className="info-section !gap-5 lg:flex-row">
+    <PokemonTitledLayout title={<ChevronDoubleUpIcon className="h-6 w-6"/>} className="!gap-5 lg:flex-row">
       <PokemonLinkPopup state={state} setState={setState}/>
       <PokemonEvolutionPortrait
         dimension="h-40 w-40"
@@ -30,7 +31,7 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
         <ArrowDownIcon className="block lg:hidden"/>
         <ArrowRightIcon className="hidden lg:block"/>
       </div>
-      <div className="relative h-52 w-52">
+      <div className="relative h-52 w-52 shrink-0">
         <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
       </div>
       {
@@ -43,6 +44,6 @@ export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps
           <PokemonEvolutionNextStage pokedex={pokedex} evolutions={evolution.next} showPokemon={showPokemon}/>
         </>
       }
-    </Flex>
+    </PokemonTitledLayout>
   );
 };
