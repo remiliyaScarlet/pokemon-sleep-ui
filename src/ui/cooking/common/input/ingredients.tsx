@@ -18,7 +18,7 @@ type Props = {
   onValueChanged: (ingredient: Ingredient, count: number | null) => void,
 };
 
-export const MealMakerInputIngredients = ({
+export const CookingInputIngredientCounter = ({
   ingredientMap,
   counter,
   minCount,
