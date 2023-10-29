@@ -28,7 +28,7 @@ export const NumberInputLayout = ({
   const isDefaultUnavailable = onClickDefault == null && !isValueNumber;
 
   return (
-    <Flex direction="row" noFullWidth className={clsx('items-center gap-1.5 self-end', className)}>
+    <Flex direction="row" noFullWidth className={clsx('items-center gap-1.5', className)}>
       {
         text &&
         <div className={clsx('whitespace-nowrap', textClassName)}>

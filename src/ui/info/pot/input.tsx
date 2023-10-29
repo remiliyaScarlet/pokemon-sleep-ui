@@ -31,7 +31,7 @@ export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloa
           filterKey: 'mealType',
         })}
       />
-      <InputRow className="px-2 py-1">
+      <InputRow className="px-2 py-1 text-sm">
         <MealLevelInput
           value={filter.mealLevel}
           max={maxMealLevel}

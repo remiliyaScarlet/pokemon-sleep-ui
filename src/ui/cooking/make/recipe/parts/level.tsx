@@ -19,8 +19,7 @@ export const MealMakerRecipeLevel = ({meal, filter, setFilter}: MealMakerRecipeP
     <NumberInputRequired
       text={t('RecipeLevel')}
       textClassName={clsx(
-        'self-end text-xs',
-        'text-slate-500 group-hover:text-slate-400 dark:text-slate-400 dark:group-hover:text-slate-500',
+        'text-xs text-slate-500 group-hover:text-slate-400 dark:text-slate-400 dark:group-hover:text-slate-500',
       )}
       value={recipeLevel[id] ?? 1}
       min={1}
@@ -32,6 +31,7 @@ export const MealMakerRecipeLevel = ({meal, filter, setFilter}: MealMakerRecipeP
           [id]: level,
         },
       } satisfies MealMakerFilter))}
+      className="self-end"
     />
   );
 };
