@@ -19,11 +19,11 @@ export const MealMakerRecipeIngredients = ({
         {getMealIngredientCount(meal)}
       </InfoIcon>
       <Flex noFullWidth>
-        <IngredientIcons ingredients={ingredientsMissing} markRed={() => true} useTextShadow={false}/>
+        <IngredientIcons ingredients={ingredientsMissing} getMark={() => 'red'} useTextShadow={false}/>
         <IngredientIconsFromMeal
           meal={meal}
           useTextShadow={false}
-          markRed={(ingredient) => ingredientSetReady[ingredient.id] < 1}
+          getMark={(ingredient) => ingredientSetReady[ingredient.id] < 1 && 'red'}
         />
       </Flex>
     </Flex>

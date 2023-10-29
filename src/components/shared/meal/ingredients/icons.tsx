@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
+import {ingredientIconMarkToStyle} from '@/components/shared/meal/ingredients/const';
 import {IngredientIconsCommonProps} from '@/components/shared/meal/ingredients/type';
 import {imageIconSizes} from '@/styles/image';
 import {IngredientId} from '@/types/game/ingredient';
@@ -20,11 +21,11 @@ type Props = IngredientIconsCommonProps & {
 };
 
 export const IngredientIcons = ({
-  markRed,
+  useTextShadow = true,
+  getMark,
   ingredients,
   dimension,
   textSizeClassName,
-  useTextShadow = true,
   className,
 }: Props) => {
   const t = useTranslations('Game.Food');
@@ -37,6 +38,7 @@ export const IngredientIcons = ({
     )}>
       {ingredients.map((ingredient) => {
         const {id, qty} = ingredient;
+        const mark = getMark && getMark(ingredient);
 
         return (
           <Flex key={id} direction="row" noFullWidth wrap className="items-center gap-0.5">
@@ -45,8 +47,7 @@ export const IngredientIcons = ({
             </div>
             <div className={clsx(
               useTextShadow && 'text-shadow-preset',
-              markRed && markRed(ingredient) && 'text-danger',
-              markGreen && markGreen(ingredient) && 'text-safe',
+              mark && ingredientIconMarkToStyle[mark],
             )}>
               {qty}
             </div>
