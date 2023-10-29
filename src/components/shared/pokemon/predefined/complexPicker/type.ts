@@ -27,6 +27,8 @@ export type PokemonComplexFilterOnSelectOpts = {
   nature?: NatureId | null,
 });
 
+export type PokemonComplexFilterOrigin = PokemonComplexFilterOnSelectOpts['origin'];
+
 export type PokemonComplexFilterDataProps = UsePokemonFilterCommonData & {
   pokemonList: PokemonInfo[],
   pokedexMap: PokedexMap,

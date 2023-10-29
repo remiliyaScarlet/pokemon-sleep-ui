@@ -15,6 +15,7 @@ export const toOnDeskState = ({
   subSkill,
   nature,
   chain,
+  origin,
 }: ToOnDeskStateOpts): PokemonOnDeskState => {
   return {
     pokemon,
@@ -22,5 +23,6 @@ export const toOnDeskState = ({
     subSkill: subSkill ?? {},
     nature: nature ?? null,
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+    origin,
   };
 };

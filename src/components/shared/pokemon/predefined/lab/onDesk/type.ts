@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {PokemonComplexFilterOrigin} from '@/components/shared/pokemon/predefined/complexPicker/type';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
@@ -14,6 +15,7 @@ export type PokemonOnDeskState = {
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   evolutionCount: number,
+  origin: PokemonComplexFilterOrigin,
 };
 
 export type PokemonOnDeskDataProps = {

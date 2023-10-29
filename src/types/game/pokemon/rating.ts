@@ -49,7 +49,7 @@ export type RatingOnDeskState = PokemonOnDeskState & {
   basis: RatingBasis,
 };
 
-export type RatingSetupData = RatingOnDeskState & {
+export type RatingSetupData = Omit<RatingOnDeskState, 'origin'> & {
   settings: UserSettings,
 };
 
