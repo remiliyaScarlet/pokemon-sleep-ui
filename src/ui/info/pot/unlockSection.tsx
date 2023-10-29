@@ -7,6 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericIcon} from '@/components/shared/icon/common/main';
+import {PotIcon} from '@/components/shared/icon/pot';
 import {MealLink} from '@/components/shared/meal/link';
 import {Meal} from '@/types/game/meal/main';
 import {CalculatedUserSettings} from '@/types/userData/settings';
@@ -40,7 +41,7 @@ export const PotRecipeUnlockSection = ({
     <Flex className="button-bg gap-1.5 rounded-lg p-2 md:flex-row md:items-center">
       <Flex direction="row" center noFullWidth className="gap-1.5 md:w-48 md:flex-col">
         <Flex direction="row" center noFullWidth className="gap-1">
-          <GenericIcon src="/images/generic/pot.png" alt={t('Capacity')} dimension="h-7 w-7"/>
+          <PotIcon alt={t('Capacity')} dimension="h-7 w-7"/>
           <div>{potInfo.capacity}</div>
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
