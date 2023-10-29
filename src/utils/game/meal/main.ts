@@ -30,3 +30,27 @@ export const getMealFinalStrength = ({
     bonusRateWithFiller: strengthWithFiller / info.strengthBase,
   };
 };
+
+type GetMealFinalStrengthOfNonRecipeOpts = Pick<GetMealBaseStrengthOpts, 'ingredientMap'> & {
+  filler: MealIngredient[],
+  mapBonus: number,
+};
+
+export const getMealFinalStrengthOfNonRecipe = ({
+  ingredientMap,
+  filler,
+  mapBonus,
+}: GetMealFinalStrengthOfNonRecipeOpts): MealStrengthInfoFinal => {
+  const strengthBase = getMealIngredientStrength({
+    ingredients: filler,
+    ingredientMap,
+  });
+
+  return {
+    strengthBase,
+    strengthAfterRarity: strengthBase,
+    strengthFinal: strengthBase * (1 + mapBonus / 100),
+    bonusRate: 1,
+    bonusRateWithFiller: 1,
+  };
+};
