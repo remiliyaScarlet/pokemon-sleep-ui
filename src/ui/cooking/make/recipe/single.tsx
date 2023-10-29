@@ -6,8 +6,7 @@ import {useTranslations} from 'next-intl';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
-import {imageIconSizes} from '@/styles/image';
+import {MealImage} from '@/components/shared/meal/image';
 import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {useRecipeInfo} from '@/ui/cooking/make/recipe/hook';
 import {MealMakerRecipeIngredients} from '@/ui/cooking/make/recipe/parts/ingredients';
@@ -55,9 +54,12 @@ export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
             <MealMakerRecipeIngredients {...partsProps}/>
             <MealMakerRecipeStats {...partsProps}/>
           </Flex>
-          <div className="absolute bottom-0 right-0 h-20 w-20 opacity-30">
-            <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
-          </div>
+          <MealImage
+            mealId={id}
+            dimension="h-20 w-20"
+            className="bottom-0 right-0 opacity-30"
+            isAbsolute
+          />
         </FlexButton>
       </Flex>
     </AnimatedCollapseQuick>

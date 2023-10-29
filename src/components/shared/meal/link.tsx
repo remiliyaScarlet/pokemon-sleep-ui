@@ -5,11 +5,10 @@ import {useTranslations} from 'next-intl';
 
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
+import {MealImage} from '@/components/shared/meal/image';
 import {MealLinkDetail} from '@/components/shared/meal/linkDetail';
 import {MealLinkProps} from '@/components/shared/meal/type';
 import {mealTypeBackgroundStyle} from '@/styles/game/mealType';
-import {imageIconSizes} from '@/styles/image';
 
 
 export const MealLink = (props: MealLinkProps) => {
@@ -25,9 +24,7 @@ export const MealLink = (props: MealLinkProps) => {
       'relative flex h-20 w-full flex-col items-end rounded-lg',
       mealTypeBackgroundStyle[type],
     )}>
-      <div className="relative h-20 w-20 opacity-40">
-        <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
-      </div>
+      <MealImage mealId={id} dimension="h-20 w-20" className="opacity-40"/>
       <Flex className="absolute left-0 top-0 z-10 h-full justify-between p-1.5">
         <div className="text-shadow-preset truncate text-left">
           {mealName}

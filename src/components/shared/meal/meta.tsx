@@ -4,9 +4,8 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
+import {MealImage} from '@/components/shared/meal/image';
 import {mealTypeTextStyle} from '@/styles/game/mealType';
-import {imagePortraitSizes} from '@/styles/image';
 import {Meal} from '@/types/game/meal/main';
 
 
@@ -27,9 +26,11 @@ export const MealMeta = ({meal, className}: Props) => {
       <div className={clsx('text-lg', mealTypeTextStyle[type])}>
         {mealName}
       </div>
-      <div className="relative h-44 w-44 rounded-lg border border-slate-300 dark:border-slate-700">
-        <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imagePortraitSizes}/>
-      </div>
+      <MealImage
+        mealId={id}
+        dimension="h-44 w-44"
+        className="rounded-lg border border-slate-300 dark:border-slate-700"
+      />
     </Flex>
   );
 };

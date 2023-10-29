@@ -4,12 +4,11 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PotIcon} from '@/components/shared/icon/pot';
 import {NumberInputOptional} from '@/components/shared/input/number/optional/main';
+import {MealImage} from '@/components/shared/meal/image';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
-import {imageIconSizes} from '@/styles/image';
 import {Meal} from '@/types/game/meal/main';
 import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {CookingExternalLink} from '@/ui/cooking/common/link';
@@ -69,9 +68,12 @@ export const MealPreparerRecipe = (props: Props) => {
           </div>
         </Flex>
       </Flex>
-      <div className="absolute bottom-0 right-0 h-16 w-16 self-end opacity-30">
-        <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>
-      </div>
+      <MealImage
+        mealId={id}
+        dimension="h-20 w-20"
+        className="bottom-0 right-0 self-end opacity-30"
+        isAbsolute
+      />
     </Flex>
   );
 };
