@@ -6,7 +6,7 @@ import {NumberInputLayoutProps} from '@/components/shared/input/number/common/ty
 import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 
 
-export const MealLevelInput = (props: Omit<NumberInputLayoutProps, 'text'>) => {
+export const MealLevelInput = (props: Omit<NumberInputLayoutProps<number>, 'text'>) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (

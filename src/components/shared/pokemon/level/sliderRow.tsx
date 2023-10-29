@@ -6,7 +6,7 @@ import {NumberSliderRequiredProps} from '@/components/shared/input/number/requir
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 
 
-export const PokemonLevelSliderRow = (props: NumberSliderRequiredProps) => {
+export const PokemonLevelSliderRow = (props: Omit<NumberSliderRequiredProps, 'text'>) => {
   return (
     <InputRow>
       <Flex className="p-1">

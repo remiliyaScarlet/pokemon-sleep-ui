@@ -1,10 +1,6 @@
-export type NumberInputRequiredProps = {
-  value: number,
-  min?: number,
-  max?: number,
-  setValue: (value: number) => void,
-};
+import {NumberInputLayoutProps} from '@/components/shared/input/number/common/type';
 
-export type NumberSliderRequiredProps = NumberInputRequiredProps & {
+
+export type NumberSliderRequiredProps = NumberInputLayoutProps<number> & {
   noSameLine?: boolean,
 };
