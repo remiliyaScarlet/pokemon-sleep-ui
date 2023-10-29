@@ -5,13 +5,13 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {useMealMakerFilter} from '@/ui/cooking/make/hook';
 import {MealMakerInputUI} from '@/ui/cooking/make/input/main';
 import {MealMakerRecipe} from '@/ui/cooking/make/recipe/main';
 import {MealMakerCommonProps, MealMakerFilter} from '@/ui/cooking/make/type';
 import {toCookingPreset} from '@/ui/cooking/make/utils';
-import {toUnique} from '@/utils/array';
 import {subtractIngredientCount} from '@/utils/game/cooking';
 
 
@@ -34,7 +34,7 @@ export const MealMakerClient = (props: CookingServerDataProps) => {
   });
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
-  const mealTypes = toUnique(meals.map(({type}) => type));
+  const mealTypes = usePossibleMealTypes(meals);
 
   const commonProps: MealMakerCommonProps = {
     filter,
