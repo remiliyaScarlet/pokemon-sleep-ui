@@ -1,5 +1,6 @@
-import {IngredientCounter} from '@/types/game/ingredient';
+import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {MealIngredient} from '@/types/game/meal/main';
+import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -11,6 +12,20 @@ export const toMealIngredientFromIngredientCounter = (ingredientCount: Ingredien
       }
 
       return {id: parseInt(id), quantity};
+    })
+    .filter(isNotNullish);
+};
+
+export const toProducingItemFromIngredientCounter = (
+  ingredientCount: IngredientCounter,
+): PokemonProducingItem<IngredientId>[] => {
+  return Object.entries(ingredientCount)
+    .map(([id, qty]) => {
+      if (!qty) {
+        return null;
+      }
+
+      return {id: parseInt(id), qty};
     })
     .filter(isNotNullish);
 };
