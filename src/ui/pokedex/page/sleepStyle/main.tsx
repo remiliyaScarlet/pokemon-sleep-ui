@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';

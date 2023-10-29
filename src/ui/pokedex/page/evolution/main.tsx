@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import ArrowDownIcon from '@heroicons/react/24/outline/ArrowDownIcon';
@@ -6,22 +5,18 @@ import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
 import ChevronDoubleUpIcon from '@heroicons/react/24/solid/ChevronDoubleUpIcon';
 
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
-import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
-import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
+import {UsePokemonLinkPopupReturn} from '@/components/shared/pokemon/linkPopup/type';
 import {PokemonEvolutionNextStage} from '@/ui/pokedex/page/evolution/next';
 import {PokemonEvolutionPortrait} from '@/ui/pokedex/page/evolution/portrait';
-import {PokemonEvolutionCommonProps} from '@/ui/pokedex/page/evolution/type';
 import {PokemonTitledLayout} from '@/ui/pokedex/page/layout/titled';
+import {PokemonProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonEvolution = ({pokedex, pokemon}: PokemonEvolutionCommonProps) => {
+export const PokemonEvolution = ({pokedex, pokemon, showPokemon}: PokemonProps & UsePokemonLinkPopupReturn) => {
   const {evolution} = pokemon;
-
-  const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   return (
     <PokemonTitledLayout title={<ChevronDoubleUpIcon className="h-6 w-6"/>} className="!gap-5 lg:flex-row">
-      <PokemonLinkPopup state={state} setState={setState}/>
       <PokemonEvolutionPortrait
         dimension="h-40 w-40"
         pokemon={evolution.previous ? pokedex[evolution.previous] : undefined}
