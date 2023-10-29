@@ -9,8 +9,9 @@ import {useCookingFilter} from '@/ui/cooking/hook';
 import {CookingInputUI} from '@/ui/cooking/input/main';
 import {CookingRecipe} from '@/ui/cooking/recipe/main';
 import {CookingCommonProps, CookingServerDataProps} from '@/ui/cooking/type';
-import {subtractIngredientCount, toCookingPreset} from '@/ui/cooking/utils';
+import {toCookingPreset} from '@/ui/cooking/utils';
 import {toUnique} from '@/utils/array';
+import {subtractIngredientCount} from '@/utils/game/cooking';
 
 
 export const CookingClient = (props: CookingServerDataProps) => {

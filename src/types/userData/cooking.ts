@@ -1,7 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {IngredientId} from '@/types/game/ingredient';
+import {RecipeLevel} from '@/types/game/cooking';
+import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {MealTypeId} from '@/types/game/meal/main';
-import {CookingIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 
 
 export type UserCookingPreset = {
@@ -10,6 +10,6 @@ export type UserCookingPreset = {
   ingredients: FilterInclusionMap<IngredientId>,
   showEnergy: boolean,
   showUnmakeableRecipe: boolean,
-  ingredientCount: CookingIngredientCount,
-  recipeLevel: CookingFilterRecipeLevel,
+  ingredientCount: IngredientCounter,
+  recipeLevel: RecipeLevel,
 };

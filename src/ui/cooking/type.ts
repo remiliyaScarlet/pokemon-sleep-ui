@@ -1,7 +1,8 @@
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
-import {IngredientId, IngredientMap} from '@/types/game/ingredient';
+import {RecipeLevel} from '@/types/game/cooking';
+import {IngredientCounter, IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {MealStrengthInfo} from '@/types/game/meal/info';
-import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
+import {Meal, MealTypeId} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {UserSettings} from '@/types/userData/settings';
 import {CookingPopupCommonProps} from '@/ui/cooking/recipe/popup/type';
@@ -12,16 +13,12 @@ export type CookingRecipeData = {
   info: MealStrengthInfo,
 };
 
-export type CookingFilterRecipeLevel = {[id in MealId]?: number};
-
-export type CookingIngredientCount = {[ingredient in IngredientId]?: number | null};
-
 export type CookingFilter = {
   type: MealTypeId,
-  recipeLevel: CookingFilterRecipeLevel,
+  recipeLevel: RecipeLevel,
   capacity: number,
   ingredient: FilterInclusionMap<IngredientId>,
-  ingredientCount: CookingIngredientCount,
+  ingredientCount: IngredientCounter,
   showUnmakeableRecipe: boolean,
 };
 

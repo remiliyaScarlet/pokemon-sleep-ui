@@ -6,15 +6,14 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {dangerText} from '@/styles/classes';
-import {Ingredient, IngredientMap} from '@/types/game/ingredient';
-import {CookingIngredientCount} from '@/ui/cooking/type';
+import {IngredientCounter, Ingredient, IngredientMap} from '@/types/game/ingredient';
 import {isNotNullish} from '@/utils/type';
 
 
 type Props = {
   ingredientMap: IngredientMap,
-  ingredientCount: CookingIngredientCount,
-  minCount?: CookingIngredientCount,
+  ingredientCount: IngredientCounter,
+  minCount?: IngredientCounter,
   showIngredient: (ingredient: Ingredient) => boolean,
   onValueChanged: (ingredient: Ingredient, count: number | null) => void,
 };

@@ -1,15 +1,14 @@
 import React from 'react';
 
-import {IngredientId} from '@/types/game/ingredient';
+import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {CookingRecipeInfo} from '@/ui/cooking/recipe/type';
-import {CookingIngredientCount} from '@/ui/cooking/type';
 
 
 export type UseRecipeInfoOpts = {
   meal: Meal,
-  ingredientCount: CookingIngredientCount,
+  ingredientCount: IngredientCounter,
 };
 
 export const useRecipeInfo = ({meal, ingredientCount}: UseRecipeInfoOpts): CookingRecipeInfo => {

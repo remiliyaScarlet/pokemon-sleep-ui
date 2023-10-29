@@ -7,3 +7,5 @@ export type Ingredient = {
 };
 
 export type IngredientMap = {[id in IngredientId]?: Ingredient};
+
+export type IngredientCounter = {[ingredient in IngredientId]?: number | null};

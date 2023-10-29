@@ -10,15 +10,16 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {MealMeta} from '@/components/shared/meal/meta';
 import {actionStatusIcon} from '@/components/shared/userData/const';
+import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {CookingInputIngredients} from '@/ui/cooking/input/ingredients';
 import {CookingPopupCommonProps} from '@/ui/cooking/recipe/popup/type';
-import {CookingFilter, CookingIngredientCount} from '@/ui/cooking/type';
+import {CookingFilter} from '@/ui/cooking/type';
 import {
   subtractIngredientCount,
   toCookingCountFromMealIngredient,
   toMealIngredientFromCookingCount,
-} from '@/ui/cooking/utils';
+} from '@/utils/game/cooking';
 import {getMealFinalStrength} from '@/utils/game/meal/main';
 import {formatInt} from '@/utils/number/format';
 
@@ -36,7 +37,7 @@ export const CookingPopup = ({filter, calculatedSettings, status, onCook, ...pro
   const [
     ingredientCount,
     setIngredientCount,
-  ] = React.useState<CookingIngredientCount>(requiredIngredients);
+  ] = React.useState<IngredientCounter>(requiredIngredients);
 
   const {strengthFinal, bonusRateWithFiller} = getMealFinalStrength({
     ...props,

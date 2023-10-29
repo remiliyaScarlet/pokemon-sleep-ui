@@ -1,18 +1,19 @@
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {createUserDataManager} from '@/controller/user/common';
 import {userDataCooking} from '@/controller/user/manager';
+import {RecipeLevel} from '@/types/game/cooking';
+import {IngredientCounter} from '@/types/game/ingredient';
 import {MealTypeId} from '@/types/game/meal/main';
 import {UserCookingPreset} from '@/types/userData/cooking';
-import {CookingIngredientCount, CookingFilterRecipeLevel} from '@/ui/cooking/type';
 
 
-const userDataRecipeLevel = createUserDataManager<CookingFilterRecipeLevel>('recipeLevel');
+const userDataRecipeLevel = createUserDataManager<RecipeLevel>('recipeLevel');
 
 const userDataPotCapacity = createUserDataManager<number>('potCapacity');
 
 const userDataMealType = createUserDataManager<MealTypeId>('mealType');
 
-const userDataIngredientCount = createUserDataManager<CookingIngredientCount>('ingredientCount');
+const userDataIngredientCount = createUserDataManager<IngredientCounter>('ingredientCount');
 
 export const migrateUserCookingData = async (userId: string) => {
   const [
