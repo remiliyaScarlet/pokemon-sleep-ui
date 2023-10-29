@@ -131,9 +131,9 @@ export const PokeInBoxEditLayout = ({
         onClick={(pokemon) => setPokeInBox({...pokeInBox, pokemon})}
       />
       <PokemonLevelSlider
-        level={level}
-        maxLevel={Math.max(...pokemonSubSkillLevel)}
-        setLevel={(level) => setPokeInBox({
+        max={Math.max(...pokemonSubSkillLevel)}
+        value={level}
+        setValue={(level) => setPokeInBox({
           ...pokeInBox,
           level,
         })}

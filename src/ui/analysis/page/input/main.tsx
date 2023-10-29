@@ -59,9 +59,9 @@ export const AnalysisPageInput = ({
           pokemonList={pokemonList}
         />
         <PokemonLevelSliderRow
-          level={filter.level}
-          maxLevel={maxLevel}
-          setLevel={(level) => setFilter((original) => ({
+          value={filter.level}
+          max={maxLevel}
+          setValue={(level) => setFilter((original) => ({
             ...original,
             level,
           } satisfies AnalysisComparisonFilter))}

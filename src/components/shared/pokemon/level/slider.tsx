@@ -2,15 +2,15 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {LevelSlider} from '@/components/shared/input/levelSlider';
-import {LevelSliderProps} from '@/components/shared/input/type';
+import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
+import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 
 
-export const PokemonLevelSlider = (props: LevelSliderProps) => {
+export const PokemonLevelSlider = (props: NumberSliderRequiredProps) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <LevelSlider
+    <NumberSliderRequired
       id="PokemonLevel"
       text={t('PokemonLevel')}
       {...props}

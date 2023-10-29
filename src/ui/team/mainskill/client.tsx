@@ -66,9 +66,9 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
       )}
       renderAdditional={({level}, setOnDesk) => (
         <PokemonLevelSliderRow
-          level={level}
-          maxLevel={pokemonMaxLevel}
-          setLevel={(level) => setOnDesk((original) => ({...original, level}))}
+          max={pokemonMaxLevel}
+          value={level}
+          setValue={(level) => setOnDesk((original) => ({...original, level}))}
         />
       )}
     />

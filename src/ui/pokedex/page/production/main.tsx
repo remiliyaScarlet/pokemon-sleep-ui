@@ -45,7 +45,7 @@ export const PokemonProduction = (props: PokemonProps) => {
 
   return (
     <Flex center className="info-section">
-      <PokemonLevelSlider level={level} setLevel={setLevel} maxLevel={berryData.energy.length} noSameLine/>
+      <PokemonLevelSlider value={level} setValue={setLevel} max={berryData.energy.length} noSameLine/>
       <PokemonMetaSection
         title={t2('Info.Berry')}
         titleClassName={clsx(metaTitleClass, specialty === specialtyIdMap.berry && 'bg-blink')}

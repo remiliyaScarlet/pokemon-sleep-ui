@@ -34,7 +34,7 @@ export const IngredientPokemonProduction = ({
 
   return (
     <Flex className="info-section">
-      <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel}/>
+      <PokemonLevelSlider value={level} max={pokemonMaxLevel} setValue={setLevel}/>
       <HorizontalSplitter/>
       <PokemonIconsIngredientStats
         level={level}

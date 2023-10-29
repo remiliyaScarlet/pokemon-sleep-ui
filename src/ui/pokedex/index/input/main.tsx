@@ -67,9 +67,9 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             {...props}
           />
           <PokemonLevelSliderRow
-            level={filter.level}
-            maxLevel={maxLevel}
-            setLevel={(level) => setFilter((original) => ({
+            max={maxLevel}
+            value={filter.level}
+            setValue={(level) => setFilter((original) => ({
               ...original,
               level,
             } satisfies PokedexFilter))}

@@ -33,9 +33,9 @@ export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloa
       />
       <InputRow className="px-2 py-1">
         <MealLevelInput
-          level={filter.mealLevel}
-          maxLevel={maxMealLevel}
-          setLevel={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
+          value={filter.mealLevel}
+          max={maxMealLevel}
+          setValue={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
         />
       </InputRow>
       <IngredientInput

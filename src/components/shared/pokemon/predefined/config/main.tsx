@@ -56,9 +56,9 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         />
       </Flex>
       <PokemonLevelSlider
-        level={data.level}
-        setLevel={(level) => onDataUpdated({level})}
-        maxLevel={pokemonMaxLevel}
+        value={data.level}
+        setValue={(level) => onDataUpdated({level})}
+        max={pokemonMaxLevel}
         noSameLine
       />
       <PokemonEvolutionCountInput

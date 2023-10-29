@@ -68,9 +68,9 @@ export const PokemonExpCalculatorInputUI = ({
         )}
       </PokemonClickableIcons>
       <PokemonLevelSlider
-        level={currentLv}
-        maxLevel={maxLevel}
-        setLevel={(currentLv) => setFilter((original) => ({
+        max={maxLevel}
+        value={currentLv}
+        setValue={(currentLv) => setFilter((original) => ({
           ...original,
           currentLv,
         }))}

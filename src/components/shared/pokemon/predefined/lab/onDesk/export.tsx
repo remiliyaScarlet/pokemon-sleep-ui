@@ -46,7 +46,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
             className="w-full"
             onChange={({target}) => setName(target.value || null)}
           />
-          <PokemonLevelSlider level={level} maxLevel={pokemonMaxLevel} setLevel={setLevel} noSameLine/>
+          <PokemonLevelSlider value={level} max={pokemonMaxLevel} setValue={setLevel} noSameLine/>
           <Flex>
             <button
               className="button-clickable-bg disabled:button-disabled ml-auto p-1"
