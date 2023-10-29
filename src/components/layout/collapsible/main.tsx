@@ -2,6 +2,7 @@ import React from 'react';
 
 import {Transition} from '@headlessui/react';
 
+import {CollapsibleMark} from '@/components/layout/collapsible/mark';
 import {CollapsibleCommonProps} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex/common';
 
@@ -22,6 +23,7 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
   return (
     <Flex>
       <button className="button-clickable-bg group p-1" onClick={() => setShow(!show)}>
+        <CollapsibleMark show={show}/>
         {button}
       </button>
       <Transition

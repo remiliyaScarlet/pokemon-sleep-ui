@@ -3,6 +3,7 @@ import React from 'react';
 import {Transition} from '@headlessui/react';
 import {clsx} from 'clsx';
 
+import {CollapsibleMark} from '@/components/layout/collapsible/mark';
 import {CollapsibleCommonProps} from '@/components/layout/collapsible/type';
 import {Flex} from '@/components/layout/flex/common';
 
@@ -36,8 +37,9 @@ export const CollapsibleFull = ({
   return (
     <Flex>
       <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
-        'button-clickable-bg disabled:button-disabled group p-1',
+        'button-clickable-bg disabled:button-disabled group relative p-1',
       )}>
+        <CollapsibleMark show={show}/>
         {button}
       </button>
       <Transition
