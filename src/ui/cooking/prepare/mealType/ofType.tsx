@@ -9,6 +9,7 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {MealImage} from '@/components/shared/meal/image';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {mealTypeBorderStyle, mealTypeDotStyle, mealTypeTextStyle} from '@/styles/game/mealType';
 import {Meal, MealTypeId} from '@/types/game/meal/main';
@@ -25,6 +26,8 @@ type Props = MealPreparerCommonProps & {
 };
 
 export const MealPrepareOfMealType = ({mealsOfType, mealType, ...props}: Props) => {
+  const {filter} = props;
+
   const t = useTranslations('Game.MealType');
   const t2 = useTranslations('UI.InPage.Cooking');
 
@@ -39,9 +42,27 @@ export const MealPrepareOfMealType = ({mealsOfType, mealType, ...props}: Props) 
   return (
     <Flex className={clsx('info-section gap-2 border', mealTypeBorderStyle[mealType])}>
       <CollapsibleFull state={collapsible} button={
-        <Flex direction="row" center className="gap-1 text-xl">
-          <div className={clsx('h-5 w-5 rounded-full', mealTypeDotStyle[mealType])}/>
-          <div className={mealTypeTextStyle[mealType]}>{t(mealType.toString())}</div>
+        <Flex>
+          <Flex direction="row" center className="gap-1 text-xl">
+            <div className={clsx('h-5 w-5 rounded-full', mealTypeDotStyle[mealType])}/>
+            <div className={mealTypeTextStyle[mealType]}>{t(mealType.toString())}</div>
+          </Flex>
+          <Flex direction="row" center className="gap-1.5">
+            {mealsOfType.map(({id}) => {
+              const count = filter.mealsWanted[id];
+
+              if (!count) {
+                return null;
+              }
+
+              return (
+                <React.Fragment key={id}>
+                  <MealImage mealId={id} dimension="h-6 w-6"/>
+                  <div>{count}</div>
+                </React.Fragment>
+              );
+            })}
+          </Flex>
         </Flex>
       }>
         <Grid className={clsx(
