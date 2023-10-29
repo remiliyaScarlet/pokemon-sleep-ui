@@ -10,27 +10,41 @@ import {imageIconSizes} from '@/styles/image';
 import {dangerText} from '@/styles/text/common';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
+import {Dimension} from '@/types/style';
 
 
 type Props = IngredientIconsCommonProps & {
   ingredients: PokemonProducingItem<IngredientId>[],
+  dimension?: Dimension,
+  textSizeClassName?: string,
+  className?: string,
 };
 
-export const IngredientIcons = ({ingredients, useTextShadow = true, markRed}: Props) => {
+export const IngredientIcons = ({
+  markRed,
+  ingredients,
+  dimension,
+  textSizeClassName,
+  useTextShadow = true,
+  className,
+}: Props) => {
   const t = useTranslations('Game.Food');
 
   return (
-    <Flex direction="row" noFullWidth className="items-end gap-0.5 text-xs">
+    <Flex direction="row" noFullWidth className={clsx(
+      'items-end gap-0.5',
+      textSizeClassName ?? 'text-xs',
+      className,
+    )}>
       {ingredients.map((ingredient) => {
         const {id, qty} = ingredient;
 
         return (
-          <Flex key={id} direction="row" noFullWidth wrap className="gap-0.5">
-            <div className="relative h-4 w-4">
+          <Flex key={id} direction="row" noFullWidth wrap className="items-center gap-0.5">
+            <div className={clsx('relative', dimension ?? 'h-4 w-4')}>
               <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
             </div>
             <div className={clsx(
-              'text-xs',
               useTextShadow && 'text-shadow-preset',
               markRed && markRed(ingredient) && dangerText,
             )}>
