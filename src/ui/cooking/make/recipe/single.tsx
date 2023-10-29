@@ -8,9 +8,9 @@ import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
+import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {useRecipeInfo} from '@/ui/cooking/make/recipe/hook';
 import {MealMakerRecipeIngredients} from '@/ui/cooking/make/recipe/parts/ingredients';
-import {MealMakerRecipeLevel} from '@/ui/cooking/make/recipe/parts/level';
 import {MealMakerRecipeStats} from '@/ui/cooking/make/recipe/parts/stats';
 import {MealMakerRecipeTitle} from '@/ui/cooking/make/recipe/parts/title';
 import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
@@ -47,7 +47,7 @@ export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
       <MealMakerPopup {...props} show={show} setShow={setShow}/>
       <Flex className="info-section-bg gap-1 rounded-lg p-2">
         <MealMakerRecipeTitle {...partsProps}/>
-        <MealMakerRecipeLevel {...partsProps}/>
+        <CookingInputRecipeLevel className="self-end" {...partsProps}/>
         <FlexButton direction="col" noFullWidth={false} onClick={() => setShow(true)} className={clsx(
           'button-clickable-bg group relative h-full',
         )}>
