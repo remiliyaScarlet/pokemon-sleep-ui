@@ -3,7 +3,7 @@ import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check'
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal/main';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
-import {generateCookingCommonFilter} from '@/ui/cooking/common/utils';
+import {generateCookingCommonFilter} from '@/ui/cooking/common/utils/main';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 

@@ -1,10 +1,7 @@
-import {getServerSession, Session} from 'next-auth';
+import {Session} from 'next-auth';
 
-import {authOptions} from '@/const/auth';
 import {defaultCookingPreset} from '@/const/user/cooking';
-import {getAllIngredients} from '@/controller/ingredient';
-import {getAllMeals} from '@/controller/meal';
-import {CookingCommonFilter, CookingPreloadedData, CookingServerDataProps} from '@/ui/cooking/common/type';
+import {CookingCommonFilter, CookingPreloadedData} from '@/ui/cooking/common/type';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {createUserSettings} from '@/utils/user/settings';
 
@@ -13,24 +10,6 @@ export const toCookingPreloadedData = (session: Session | null): CookingPreloade
   return {
     cooking: session?.user.preloaded.cooking,
     settings: createUserSettings(session?.user.preloaded.settings),
-  };
-};
-
-export const getCookingServerDataProps = async (): Promise<CookingServerDataProps> => {
-  const [
-    session,
-    meals,
-    ingredientMap,
-  ] = await Promise.all([
-    getServerSession(authOptions),
-    getAllMeals(),
-    getAllIngredients(),
-  ]);
-
-  return {
-    meals,
-    ingredientMap,
-    preloaded: toCookingPreloadedData(session),
   };
 };
 

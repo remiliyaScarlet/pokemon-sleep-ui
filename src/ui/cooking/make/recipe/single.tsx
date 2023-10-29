@@ -27,14 +27,14 @@ export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
   const {id} = meal;
 
   const [show, setShow] = React.useState(false);
-  const t2 = useTranslations('Game.Food');
+  const t = useTranslations('Game.Food');
   const recipeInfo = useRecipeInfo({
     meal,
     inventory: filter.inventory,
   });
 
   const {isMealMakeable} = recipeInfo;
-  const mealName = t2(id.toString());
+  const mealName = t(id.toString());
 
   const partsProps: MealMakerRecipePartsProps = {
     ...props,
