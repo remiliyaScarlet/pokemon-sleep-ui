@@ -30,7 +30,7 @@ export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
   const t2 = useTranslations('Game.Food');
   const recipeInfo = useRecipeInfo({
     meal,
-    ingredientCount: filter.ingredientCount,
+    inventory: filter.inventory,
   });
 
   const {isMealMakeable} = recipeInfo;

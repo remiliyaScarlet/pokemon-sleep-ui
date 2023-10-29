@@ -34,19 +34,16 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
 
   const t = useTranslations('UI.InPage.Cooking');
   const requiredIngredients = React.useMemo(() => toCookingCountFromMealIngredient(meal.ingredients), [meal]);
-  const [
-    ingredientCount,
-    setIngredientCount,
-  ] = React.useState<IngredientCounter>(requiredIngredients);
+  const [usages, setUsages] = React.useState<IngredientCounter>(requiredIngredients);
 
   const {strengthFinal, bonusRateWithFiller} = getMealFinalStrength({
     ...props,
     level: filter.recipeLevel[meal.id] ?? 1,
-    filler: toMealIngredientFromCookingCount(subtractIngredientCount(ingredientCount, requiredIngredients)),
+    filler: toMealIngredientFromCookingCount(subtractIngredientCount(usages, requiredIngredients)),
     mapBonus: calculatedSettings.bonus.map,
   });
 
-  const isRequirementSatisfied = Object.values(subtractIngredientCount(requiredIngredients, ingredientCount))
+  const isRequirementSatisfied = Object.values(subtractIngredientCount(requiredIngredients, usages))
     .every((count) => !count);
 
   return (
@@ -57,10 +54,10 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
           <Flex className="bg-plate justify-center gap-2">
             <MealMakerInputIngredients
               ingredientMap={ingredientMap}
-              ingredientCount={ingredientCount}
+              counter={usages}
               minCount={requiredIngredients}
               showIngredient={() => true}
-              onValueChanged={({id}, count) => setIngredientCount((original) => ({
+              onValueChanged={({id}, count) => setUsages((original) => ({
                 ...original,
                 [id]: count,
               }))}
@@ -84,7 +81,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
           <button
             disabled={!isRequirementSatisfied || status !== 'waiting'}
             onClick={async () => {
-              await onCook(ingredientCount);
+              await onCook(usages);
               setShow(false);
             }}
             className="enabled:button-clickable-bg disabled:button-disabled h-8 w-8 p-1"

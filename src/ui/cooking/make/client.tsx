@@ -5,16 +5,17 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {useMealMakerFilter} from '@/ui/cooking/make/hook';
 import {MealMakerInputUI} from '@/ui/cooking/make/input/main';
 import {MealMakerRecipe} from '@/ui/cooking/make/recipe/main';
-import {MealMakerCommonProps, MealMakerServerDataProps} from '@/ui/cooking/make/type';
+import {MealMakerCommonProps, MealMakerFilter} from '@/ui/cooking/make/type';
 import {toCookingPreset} from '@/ui/cooking/make/utils';
 import {toUnique} from '@/utils/array';
 import {subtractIngredientCount} from '@/utils/game/cooking';
 
 
-export const MealMakerClient = (props: MealMakerServerDataProps) => {
+export const MealMakerClient = (props: CookingServerDataProps) => {
   const {
     meals,
     ingredientMap,
@@ -46,8 +47,8 @@ export const MealMakerClient = (props: MealMakerServerDataProps) => {
     onCook: async (ingredientsUsed) => {
       setFilter((original) => ({
         ...original,
-        ingredientCount: subtractIngredientCount(filter.ingredientCount, ingredientsUsed),
-      }));
+        inventory: subtractIngredientCount(filter.inventory, ingredientsUsed),
+      } satisfies MealMakerFilter));
 
       if (!actAsync) {
         return;

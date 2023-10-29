@@ -12,7 +12,7 @@ import {isNotNullish} from '@/utils/type';
 
 type Props = {
   ingredientMap: IngredientMap,
-  ingredientCount: IngredientCounter,
+  counter: IngredientCounter,
   minCount?: IngredientCounter,
   showIngredient: (ingredient: Ingredient) => boolean,
   onValueChanged: (ingredient: Ingredient, count: number | null) => void,
@@ -20,7 +20,7 @@ type Props = {
 
 export const MealMakerInputIngredients = ({
   ingredientMap,
-  ingredientCount,
+  counter,
   minCount,
   showIngredient,
   onValueChanged,
@@ -33,7 +33,7 @@ export const MealMakerInputIngredients = ({
         }
 
         const id = ingredient.id;
-        const count = ingredientCount[id];
+        const count = counter[id];
         const min = (minCount && minCount[id]) ?? 0;
 
         return (

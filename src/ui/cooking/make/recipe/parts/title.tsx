@@ -8,7 +8,7 @@ import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
 
 
 export const MealMakerRecipeTitle = ({filter, mealName, mealsReady, isMealMakeable}: MealMakerRecipePartsProps) => {
-  const isInventoryEnabled = Object.values(filter.ingredientCount)
+  const isInventoryEnabled = Object.values(filter.inventory)
     .some((count) => count != null);
 
   return (

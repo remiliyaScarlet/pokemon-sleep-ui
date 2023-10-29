@@ -8,9 +8,9 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
+import {CookingServerDataProps} from '@/ui/cooking/common/type';
+import {toCookingPreloadedData} from '@/ui/cooking/common/utils';
 import {MealMakerClient} from '@/ui/cooking/make/client';
-import {MealMakerServerDataProps} from '@/ui/cooking/make/type';
-import {createUserSettings} from '@/utils/user/settings';
 
 
 export const MealMaker = async ({params}: DefaultPageProps) => {
@@ -25,13 +25,10 @@ export const MealMaker = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
   ]);
 
-  const props: MealMakerServerDataProps = {
+  const props: CookingServerDataProps = {
     meals,
     ingredientMap,
-    preloaded: {
-      cooking: session?.user.preloaded.cooking,
-      settings: createUserSettings(session?.user.preloaded.settings),
-    },
+    preloaded: toCookingPreloadedData(session),
   };
 
   return (
