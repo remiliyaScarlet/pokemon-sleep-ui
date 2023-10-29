@@ -4,8 +4,8 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
-import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
+import {PokemonClickablePortrait} from '@/components/shared/pokemon/portrait/main';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
 
@@ -26,10 +26,10 @@ export const PokemonEvolutionPortrait = ({pokemon, dimension, showPokemon}: Prop
   }
 
   return (
-    <button className="button-clickable-bg" onClick={() => showPokemon(pokemon)}>
-      <div className={clsx('relative shrink-0', dimension)}>
-        <PokemonImage pokemonId={pokemon.id} image="portrait" isShiny={false}/>
-      </div>
-    </button>
+    <PokemonClickablePortrait
+      pokemon={pokemon.id}
+      dimension={dimension}
+      onClick={() => showPokemon(pokemon)}
+    />
   );
 };
