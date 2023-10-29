@@ -8,7 +8,7 @@ import {useTranslations} from 'next-intl';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSubSkillUiProps} from '@/components/shared/pokemon/subSkill/type';
 import {subSkillBonusImageSrcMap, subSkillImageOverride} from '@/const/game/pokemon';
-import {subSkillRarityIconFilter} from '@/styles/classes';
+import {subSkillRarityIconFilter} from '@/styles/game/subSkill';
 import {imageSmallIconSizes} from '@/styles/image';
 import {SubSkillBonusCategory} from '@/types/game/pokemon/subSkill';
 

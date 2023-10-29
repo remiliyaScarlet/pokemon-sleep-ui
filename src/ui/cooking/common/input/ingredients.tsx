@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {dangerText} from '@/styles/classes';
+import {dangerText} from '@/styles/text/common';
 import {Ingredient, IngredientCounter, IngredientMap} from '@/types/game/ingredient';
 import {isNotNullish} from '@/utils/type';
 

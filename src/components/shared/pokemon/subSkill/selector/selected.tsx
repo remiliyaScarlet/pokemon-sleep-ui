@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonSubSkillIcon} from '@/components/shared/pokemon/subSkill/icon';
-import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/classes';
+import {subSkillRarityDisabled, subSkillRaritySectionBg} from '@/styles/game/subSkill';
 import {SubSkillData} from '@/types/game/pokemon/subSkill';
 
 

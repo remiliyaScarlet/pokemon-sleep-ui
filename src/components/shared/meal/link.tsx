@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {MealLinkDetail} from '@/components/shared/meal/linkDetail';
 import {MealLinkProps} from '@/components/shared/meal/type';
-import {mealTypeBackgroundStyle} from '@/styles/classes';
+import {mealTypeBackgroundStyle} from '@/styles/game/mealType';
 import {imageIconSizes} from '@/styles/image';
 
 

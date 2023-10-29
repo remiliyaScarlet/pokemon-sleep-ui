@@ -6,8 +6,8 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIconsCommonProps} from '@/components/shared/meal/ingredients/type';
-import {dangerText} from '@/styles/classes';
 import {imageIconSizes} from '@/styles/image';
+import {dangerText} from '@/styles/text/common';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 

@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {popupOverlayStyle} from '@/components/popup/const';
 import {PopupProps} from '@/components/popup/type';
 import {usePopupUltimate} from '@/components/popup/ultimate/hook';
-import {blurStyle} from '@/styles/classes';
+import {blurStyle} from '@/styles/popup';
 
 
 type Props = React.HTMLProps<HTMLDivElement> & PopupProps;

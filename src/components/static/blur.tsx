@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Transition} from '@headlessui/react';
 
-import {blurStyle} from '@/styles/classes';
+import {blurStyle} from '@/styles/popup';
 
 
 export const Blur = () => {

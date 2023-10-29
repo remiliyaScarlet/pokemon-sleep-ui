@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {mealTypeTextStyle} from '@/styles/classes';
+import {mealTypeTextStyle} from '@/styles/game/mealType';
 import {imagePortraitSizes} from '@/styles/image';
 import {Meal} from '@/types/game/meal/main';
 
