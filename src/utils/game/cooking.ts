@@ -3,7 +3,7 @@ import {MealIngredient} from '@/types/game/meal/main';
 import {isNotNullish} from '@/utils/type';
 
 
-export const toMealIngredientFromCookingCount = (ingredientCount: IngredientCounter): MealIngredient[] => {
+export const toMealIngredientFromIngredientCounter = (ingredientCount: IngredientCounter): MealIngredient[] => {
   return Object.entries(ingredientCount)
     .map(([id, quantity]) => {
       if (!quantity) {
@@ -15,7 +15,7 @@ export const toMealIngredientFromCookingCount = (ingredientCount: IngredientCoun
     .filter(isNotNullish);
 };
 
-export const toCookingCountFromMealIngredient = (ingredients: MealIngredient[]): IngredientCounter => (
+export const toIngredientCounterFromMealIngredient = (ingredients: MealIngredient[]): IngredientCounter => (
   Object.fromEntries(ingredients.map(({id, quantity}) => [id, quantity]))
 );
 

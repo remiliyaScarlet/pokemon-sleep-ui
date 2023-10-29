@@ -17,8 +17,8 @@ import {MealMakerPopupCommonProps} from '@/ui/cooking/make/recipe/popup/type';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {
   subtractIngredientCount,
-  toCookingCountFromMealIngredient,
-  toMealIngredientFromCookingCount,
+  toIngredientCounterFromMealIngredient,
+  toMealIngredientFromIngredientCounter,
 } from '@/utils/game/cooking';
 import {getMealFinalStrength} from '@/utils/game/meal/main';
 import {formatInt} from '@/utils/number/format';
@@ -33,13 +33,13 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
   const {meal, ingredientMap, setShow} = props;
 
   const t = useTranslations('UI.InPage.Cooking');
-  const requiredIngredients = React.useMemo(() => toCookingCountFromMealIngredient(meal.ingredients), [meal]);
+  const requiredIngredients = React.useMemo(() => toIngredientCounterFromMealIngredient(meal.ingredients), [meal]);
   const [usages, setUsages] = React.useState<IngredientCounter>(requiredIngredients);
 
   const {strengthFinal, bonusRateWithFiller} = getMealFinalStrength({
     ...props,
     level: filter.recipeLevel[meal.id] ?? 1,
-    filler: toMealIngredientFromCookingCount(subtractIngredientCount(usages, requiredIngredients)),
+    filler: toMealIngredientFromIngredientCounter(subtractIngredientCount(usages, requiredIngredients)),
     mapBonus: calculatedSettings.bonus.map,
   });
 
