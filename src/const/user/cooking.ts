@@ -10,4 +10,5 @@ export const defaultCookingPreset: NonNullableRecord<UserCookingPreset> = {
   showUnmakeableRecipe: true,
   ingredientCount: {},
   recipeLevel: {},
+  mealsWanted: {},
 };

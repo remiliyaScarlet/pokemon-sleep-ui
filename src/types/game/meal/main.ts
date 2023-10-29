@@ -15,3 +15,5 @@ export type Meal = {
   type: MealTypeId,
   ingredients: MealIngredient[],
 };
+
+export type MealCounter = {[meal in MealId]?: number | null};
