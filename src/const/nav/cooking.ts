@@ -13,6 +13,5 @@ export const navEntriesForCooking: NavEntryLink[] = [
     href: '/cooking/prepare',
     imageSrc: '/images/generic/ingredient.png',
     i18nTextId: 'Cooking.Prepare.Title',
-    disabled: true,
   },
 ];

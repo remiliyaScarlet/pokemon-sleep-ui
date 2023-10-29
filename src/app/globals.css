@@ -332,7 +332,7 @@
   }
   
   .meal-text-curry {
-    @apply text-orange-800 dark:text-orange-200;
+    @apply text-orange-800 dark:text-orange-200 group-hover:text-orange-200 dark:group-hover:text-orange-800;
   }
   
   .meal-border-curry {
@@ -344,7 +344,7 @@
   }
   
   .meal-dot-curry {
-    @apply bg-orange-600 dark:bg-orange-500;
+    @apply bg-orange-600 dark:bg-orange-500 group-hover:bg-orange-500 dark:group-hover:bg-orange-600;
   }
   
   .meal-bg-salad {
@@ -352,7 +352,7 @@
   }
   
   .meal-text-salad {
-    @apply text-yellow-800 dark:text-yellow-200;
+    @apply text-yellow-800 dark:text-yellow-200 group-hover:text-yellow-200 dark:group-hover:text-yellow-800;
   }
   
   .meal-border-salad {
@@ -364,7 +364,7 @@
   }
   
   .meal-dot-salad {
-    @apply bg-yellow-600 dark:bg-yellow-500;
+    @apply bg-yellow-600 dark:bg-yellow-500 group-hover:bg-yellow-500 dark:group-hover:bg-yellow-500;
   }
   
   .meal-bg-dessert {
@@ -372,7 +372,7 @@
   }
   
   .meal-text-dessert {
-    @apply text-lime-800 dark:text-lime-200;
+    @apply text-lime-800 dark:text-lime-200 group-hover:text-lime-200 dark:group-hover:text-lime-800;
   }
   
   .meal-border-dessert {
@@ -384,7 +384,7 @@
   }
   
   .meal-dot-dessert {
-    @apply bg-lime-600 dark:bg-lime-500;
+    @apply bg-lime-600 dark:bg-lime-500 group-hover:bg-lime-500 dark:group-hover:bg-lime-600;
   }
   
   /* endregion */

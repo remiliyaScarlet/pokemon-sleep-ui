@@ -225,11 +225,21 @@
     },
     "Cooking": {
       "Energy": "最終能量",
-      "Ingredient": "食材",
+      "Ingredient": {
+        "Name": "食材",
+        "Filler": "餘料",
+        "Missing": "不足",
+        "Required": "需求"
+      },
       "MealType": "料理",
       "PotCapacity": "容量",
+      "Preparer": {
+        "Total": "總計",
+        "IncludeFiller": "(+餘料)"
+      },
       "RecipeLevel": "食譜等級",
-      "ToggleUnmakeable": "顯示/隱藏無法製作的料理"
+      "ToggleUnmakeable": "顯示/隱藏無法製作的料理",
+      "TargetMealCount": "目標數量"
     },
     "Berry": {
       "Energy": "能量"

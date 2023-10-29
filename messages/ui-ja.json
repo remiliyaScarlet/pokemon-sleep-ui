@@ -225,11 +225,21 @@
     },
     "Cooking": {
       "Energy": "最終エナジー",
-      "Ingredient": "食材",
+      "Ingredient": {
+        "Name": "食材",
+        "Filler": "余分",
+        "Missing": "不足",
+        "Required": "必要"
+      },
       "MealType": "料理",
       "PotCapacity": "容量",
+      "Preparer": {
+        "Total": "計",
+        "IncludeFiller": "(+余分)"
+      },
       "RecipeLevel": "レシピレベル",
-      "ToggleUnmakeable": "作れない料理を表示/非表示"
+      "ToggleUnmakeable": "作れない料理を表示/非表示",
+      "TargetMealCount": "目標料理数"
     },
     "Berry": {
       "Energy": "エナジー"

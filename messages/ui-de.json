@@ -66,10 +66,10 @@
         "Title": "Kochen"
       },
       "Make": {
-        "Title": "Make a Meal"
+        "Title": "Mahlzeitenzubereiter"
       },
       "Prepare": {
-        "Title": "Ingredient Preparation"
+        "Title": "Zutatenvorbereiter"
       }
     },
     "Meal": {
@@ -226,11 +226,21 @@
     },
     "Cooking": {
       "Energy": "Endstärke",
-      "Ingredient": "Zutaten",
+      "Ingredient": {
+        "Name": "Zutaten",
+        "Filler": "Extra",
+        "Missing": "Fehlend",
+        "Required": "Benötigt"
+      },
       "MealType": "Gericht",
       "PotCapacity": "Max",
+      "Preparer": {
+        "Total": "Gesamt",
+        "IncludeFiller": "(+Extra)"
+      },
       "RecipeLevel": "Rezeptlevel",
-      "ToggleUnmakeable": "Unzubereitbare Gerichte ein-/ausblenden"
+      "ToggleUnmakeable": "Unzubereitbare Gerichte ein-/ausblenden",
+      "TargetMealCount": "Zielzahl der Mahlzeiten"
     },
     "Berry": {
       "Energy": "Stärke"

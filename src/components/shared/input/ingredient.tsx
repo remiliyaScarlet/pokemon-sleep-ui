@@ -17,7 +17,7 @@ export const IngredientInput = ({ingredientIds, ...props}: Props) => {
 
   return (
     <FilterIconInput
-      title={t2('Ingredient')}
+      title={t2('Ingredient.Name')}
       idToItemId={(id) => `Ingredient-${id}`}
       ids={ingredientIds}
       idToAlt={(id) => t(`Food.${id.toString()}`)}

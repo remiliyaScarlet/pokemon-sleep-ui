@@ -225,11 +225,23 @@
     },
     "Cooking": {
       "Energy": "최종 에너지",
-      "Ingredient": "식재료",
+      "Ingredient": {
+        "Name": "식재료",
+        "Filler": "Filler",
+        "Missing": "Missing",
+        "Required": "Required"
+      },
+      "IngredientsRequired": "Required",
+      "IngredientsMissing": "Missing",
       "MealType": "요리",
       "PotCapacity": "용량",
+      "Preparer": {
+        "Total": "총합",
+        "IncludeFiller": "(+Filler)"
+      },
       "RecipeLevel": "레시피 레벨",
-      "ToggleUnmakeable": "만들 수 없는 요리 표시/숨기기"
+      "ToggleUnmakeable": "만들 수 없는 요리 표시/숨기기",
+      "TargetMealCount": "목표 요리 수"
     },
     "Berry": {
       "Energy": "에너지"

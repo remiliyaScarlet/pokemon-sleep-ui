@@ -66,10 +66,10 @@
         "Title": "Cooking"
       },
       "Make": {
-        "Title": "Make a Meal"
+        "Title": "Meal Maker"
       },
       "Prepare": {
-        "Title": "Ingredient Preparation"
+        "Title": "Meal Preparer"
       }
     },
     "Meal": {
@@ -225,11 +225,21 @@
     },
     "Cooking": {
       "Energy": "Final Strength",
-      "Ingredient": "Ingredient",
+      "Ingredient": {
+        "Name": "Ingredient",
+        "Filler": "Filler",
+        "Missing": "Missing",
+        "Required": "Required"
+      },
       "MealType": "Meal",
       "PotCapacity": "Max",
+      "Preparer": {
+        "Total": "Total",
+        "IncludeFiller": "(+Filler)"
+      },
       "RecipeLevel": "Recipe Level",
-      "ToggleUnmakeable": "Show/Hide Unmakeable Dishes"
+      "ToggleUnmakeable": "Show/Hide Unmakeable Dishes",
+      "TargetMealCount": "Target Meal Count"
     },
     "Berry": {
       "Energy": "Strength"

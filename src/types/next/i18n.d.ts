@@ -152,11 +152,21 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       },
       Cooking: {
         Energy: string,
-        Ingredient: string,
+        Ingredient: {
+          Name: string,
+          Filler: string,
+          Missing: string,
+          Required: string,
+        },
         MealType: string,
         PotCapacity: string,
+        Preparer: {
+          Total: string,
+          IncludeFiller: string,
+        },
         RecipeLevel: string,
         ToggleUnmakeable: string,
+        TargetMealCount: string,
       },
       Berry: {
         Energy: string,
