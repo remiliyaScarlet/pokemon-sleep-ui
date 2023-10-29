@@ -4,11 +4,11 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {CookingRecipePartsProps} from '@/ui/cooking/recipe/parts/type';
+import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
 import {formatInt} from '@/utils/number/format';
 
 
-export const CookingRecipeStats = ({info}: CookingRecipePartsProps) => {
+export const MealMakerRecipeStats = ({info}: MealMakerRecipePartsProps) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (

@@ -4,10 +4,10 @@ import {clsx} from 'clsx';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
-import {CookingRecipePartsProps} from '@/ui/cooking/recipe/parts/type';
+import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
 
 
-export const CookingRecipeTitle = ({filter, mealName, mealsReady, isMealMakeable}: CookingRecipePartsProps) => {
+export const MealMakerRecipeTitle = ({filter, mealName, mealsReady, isMealMakeable}: MealMakerRecipePartsProps) => {
   const isInventoryEnabled = Object.values(filter.ingredientCount)
     .some((count) => count != null);
 

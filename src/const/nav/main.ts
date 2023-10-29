@@ -1,3 +1,4 @@
+import {navEntriesForCooking} from '@/const/nav/cooking';
 import {navEntriesForInfo} from '@/const/nav/info';
 import {navEntryForItem} from '@/const/nav/item';
 import {navEntriesForTeam} from '@/const/nav/team';
@@ -24,10 +25,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Map.Index.Title',
   },
   {
-    type: 'link',
+    type: 'group',
     href: '/cooking',
     imageSrc: '/images/generic/pot.png',
-    i18nTextId: 'Cooking.Title',
+    i18nTextId: 'Cooking.Index.Title',
+    entries: navEntriesForCooking,
   },
   {
     type: 'link',

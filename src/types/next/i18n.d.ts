@@ -64,7 +64,11 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Pokedex: PageWithIndividual,
       Analysis: I18nMetadata,
       Rating: I18nMetadata,
-      Cooking: I18nMetadata,
+      Cooking: {
+        Index: I18nMetadata,
+        Make: I18nMetadata,
+        Prepare: I18nMetadata,
+      },
       Meal: PageWithIndividual,
       Ingredient: PageWithIndividual,
       Berry: PageWithIndividual,

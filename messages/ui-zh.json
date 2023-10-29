@@ -62,7 +62,15 @@
       "Title": "個體分析"
     },
     "Cooking": {
-      "Title": "製作料理"
+      "Index": {
+        "Title": "料理"
+      },
+      "Make": {
+        "Title": "製作料理"
+      },
+      "Prepare": {
+        "Title": "準備食材"
+      }
     },
     "Meal": {
       "Index": {

@@ -3,7 +3,7 @@ import React from 'react';
 import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
-import {CookingRecipeInfo} from '@/ui/cooking/recipe/type';
+import {MealMakerRecipeInfo} from '@/ui/cooking/make/recipe/type';
 
 
 export type UseRecipeInfoOpts = {
@@ -11,7 +11,7 @@ export type UseRecipeInfoOpts = {
   ingredientCount: IngredientCounter,
 };
 
-export const useRecipeInfo = ({meal, ingredientCount}: UseRecipeInfoOpts): CookingRecipeInfo => {
+export const useRecipeInfo = ({meal, ingredientCount}: UseRecipeInfoOpts): MealMakerRecipeInfo => {
   return React.useMemo(() => {
     const ingredientSetReady = Object.fromEntries(meal.ingredients.map(({id, quantity}) => {
       const filterIngredientCount = ingredientCount[id];

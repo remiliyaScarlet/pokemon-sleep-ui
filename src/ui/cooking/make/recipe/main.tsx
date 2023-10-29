@@ -1,16 +1,16 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
-import {CookingRecipeSingle} from '@/ui/cooking/recipe/single';
-import {CookingCommonProps, CookingRecipeData} from '@/ui/cooking/type';
+import {MealMakerRecipeSingle} from '@/ui/cooking/make/recipe/single';
+import {MealMakerCommonProps, MealMakerRecipeData} from '@/ui/cooking/make/type';
 import {getMealFinalStrength} from '@/utils/game/meal/main';
 
 
-export const CookingRecipe = ({meals, ...props}: CookingCommonProps) => {
+export const MealMakerRecipe = ({meals, ...props}: MealMakerCommonProps) => {
   const {filter, ingredientMap, calculatedSettings} = props;
   const {showUnmakeableRecipe} = filter;
 
-  const data: CookingRecipeData[] = React.useMemo(
+  const data: MealMakerRecipeData[] = React.useMemo(
     () => meals.map((meal) => ({
       meal,
       info: getMealFinalStrength({
@@ -29,7 +29,7 @@ export const CookingRecipe = ({meals, ...props}: CookingCommonProps) => {
       {data
         .sort((a, b) => (b.info.strengthFinal ?? 0) - (a.info.strengthFinal ?? 0))
         .map((data) => (
-          <CookingRecipeSingle
+          <MealMakerRecipeSingle
             key={data.meal.id}
             showUnmakeableRecipe={showUnmakeableRecipe}
             {...data}

@@ -8,12 +8,12 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page';
 import {PublicPageLayout} from '@/ui/base/layout/public';
-import {CookingClient} from '@/ui/cooking/client';
-import {CookingServerDataProps} from '@/ui/cooking/type';
+import {MealMakerClient} from '@/ui/cooking/make/client';
+import {MealMakerServerDataProps} from '@/ui/cooking/make/type';
 import {createUserSettings} from '@/utils/user/settings';
 
 
-export const Cooking = async ({params}: DefaultPageProps) => {
+export const MealMaker = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
     session,
@@ -25,7 +25,7 @@ export const Cooking = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
   ]);
 
-  const props: CookingServerDataProps = {
+  const props: MealMakerServerDataProps = {
     meals,
     ingredientMap,
     preloaded: {
@@ -37,7 +37,7 @@ export const Cooking = async ({params}: DefaultPageProps) => {
   return (
     <PublicPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={['Game.MealType', 'Game.Food', 'UI.InPage.Cooking']}>
-        <CookingClient {...props}/>
+        <MealMakerClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>
   );

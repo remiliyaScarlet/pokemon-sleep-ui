@@ -62,7 +62,15 @@
       "Title": "Bewertung"
     },
     "Cooking": {
-      "Title": "Kochen"
+      "Index": {
+        "Title": "Kochen"
+      },
+      "Make": {
+        "Title": "Make a Meal"
+      },
+      "Prepare": {
+        "Title": "Ingredient Preparation"
+      }
     },
     "Meal": {
       "Index": {

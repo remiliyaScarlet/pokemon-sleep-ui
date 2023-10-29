@@ -5,16 +5,16 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
-import {useCookingFilter} from '@/ui/cooking/hook';
-import {CookingInputUI} from '@/ui/cooking/input/main';
-import {CookingRecipe} from '@/ui/cooking/recipe/main';
-import {CookingCommonProps, CookingServerDataProps} from '@/ui/cooking/type';
-import {toCookingPreset} from '@/ui/cooking/utils';
+import {useMealMakerFilter} from '@/ui/cooking/make/hook';
+import {MealMakerInputUI} from '@/ui/cooking/make/input/main';
+import {MealMakerRecipe} from '@/ui/cooking/make/recipe/main';
+import {MealMakerCommonProps, MealMakerServerDataProps} from '@/ui/cooking/make/type';
+import {toCookingPreset} from '@/ui/cooking/make/utils';
 import {toUnique} from '@/utils/array';
 import {subtractIngredientCount} from '@/utils/game/cooking';
 
 
-export const CookingClient = (props: CookingServerDataProps) => {
+export const MealMakerClient = (props: MealMakerServerDataProps) => {
   const {
     meals,
     ingredientMap,
@@ -25,7 +25,7 @@ export const CookingClient = (props: CookingServerDataProps) => {
     filter,
     setFilter,
     isIncluded,
-  } = useCookingFilter(props);
+  } = useMealMakerFilter(props);
   const {actAsync, session, status} = useUserDataActor();
   const {calculatedSettings} = useCalculatedUserSettings({
     server: preloaded.settings,
@@ -35,7 +35,7 @@ export const CookingClient = (props: CookingServerDataProps) => {
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
   const mealTypes = toUnique(meals.map(({type}) => type));
 
-  const commonProps: CookingCommonProps = {
+  const commonProps: MealMakerCommonProps = {
     filter,
     setFilter,
     meals: validMeals,
@@ -66,9 +66,9 @@ export const CookingClient = (props: CookingServerDataProps) => {
 
   return (
     <Flex className="gap-1">
-      <CookingInputUI {...commonProps}/>
+      <MealMakerInputUI {...commonProps}/>
       <AdsUnit/>
-      <CookingRecipe {...commonProps}/>
+      <MealMakerRecipe {...commonProps}/>
       <AdsUnit/>
     </Flex>
   );

@@ -6,7 +6,7 @@ import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {dangerText} from '@/styles/classes';
-import {IngredientCounter, Ingredient, IngredientMap} from '@/types/game/ingredient';
+import {Ingredient, IngredientCounter, IngredientMap} from '@/types/game/ingredient';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -18,7 +18,7 @@ type Props = {
   onValueChanged: (ingredient: Ingredient, count: number | null) => void,
 };
 
-export const CookingInputIngredients = ({
+export const MealMakerInputIngredients = ({
   ingredientMap,
   ingredientCount,
   minCount,

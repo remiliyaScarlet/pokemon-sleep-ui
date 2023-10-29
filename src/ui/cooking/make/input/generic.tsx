@@ -4,10 +4,10 @@ import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/compone
 import {IngredientInput} from '@/components/shared/input/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
-import {CookingCommonProps} from '@/ui/cooking/type';
+import {MealMakerCommonProps} from '@/ui/cooking/make/type';
 
 
-export const CookingInputGeneral = ({mealTypes, ingredientMap, filter, setFilter}: CookingCommonProps) => {
+export const MealMakerInputGeneral = ({mealTypes, ingredientMap, filter, setFilter}: MealMakerCommonProps) => {
   return (
     <>
       <MealTypeInput

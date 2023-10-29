@@ -62,7 +62,15 @@
       "Title": "Rate my Pokémon"
     },
     "Cooking": {
-      "Title": "Cooking"
+      "Index": {
+        "Title": "Cooking"
+      },
+      "Make": {
+        "Title": "Make a Meal"
+      },
+      "Prepare": {
+        "Title": "Ingredient Preparation"
+      }
     },
     "Meal": {
       "Index": {

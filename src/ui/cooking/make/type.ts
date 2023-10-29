@@ -5,15 +5,15 @@ import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal, MealTypeId} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {UserSettings} from '@/types/userData/settings';
-import {CookingPopupCommonProps} from '@/ui/cooking/recipe/popup/type';
+import {MealMakerPopupCommonProps} from '@/ui/cooking/make/recipe/popup/type';
 
 
-export type CookingRecipeData = {
+export type MealMakerRecipeData = {
   meal: Meal,
   info: MealStrengthInfo,
 };
 
-export type CookingFilter = {
+export type MealMakerFilter = {
   type: MealTypeId,
   recipeLevel: RecipeLevel,
   capacity: number,
@@ -22,19 +22,19 @@ export type CookingFilter = {
   showUnmakeableRecipe: boolean,
 };
 
-export type CookingPreloadedData = {
+export type MealMakerPreloadedData = {
   cooking: UserPreloadedData['cooking'],
   settings: UserSettings,
 };
 
-export type CookingServerDataProps = {
+export type MealMakerServerDataProps = {
   meals: Meal[],
   ingredientMap: IngredientMap,
-  preloaded: CookingPreloadedData,
+  preloaded: MealMakerPreloadedData,
 };
 
-export type CookingCommonProps = FilterWithUpdaterProps<CookingFilter> & CookingPopupCommonProps & {
+export type MealMakerCommonProps = FilterWithUpdaterProps<MealMakerFilter> & MealMakerPopupCommonProps & {
   meals: Meal[],
   mealTypes: MealTypeId[],
-  preloaded: CookingPreloadedData['cooking'],
+  preloaded: MealMakerPreloadedData['cooking'],
 };

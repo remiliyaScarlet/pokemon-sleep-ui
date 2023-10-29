@@ -62,7 +62,15 @@
       "Title": "단독 평가"
     },
     "Cooking": {
-      "Title": "요리하기"
+      "Index": {
+        "Title": "요리"
+      },
+      "Make": {
+        "Title": "요리하기"
+      },
+      "Prepare": {
+        "Title": "식재료준비"
+      }
     },
     "Meal": {
       "Index": {

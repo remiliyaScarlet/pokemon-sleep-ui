@@ -5,11 +5,11 @@ import {useTranslations} from 'next-intl';
 
 import {LevelInput} from '@/components/shared/input/levelInput';
 import {recipeMaxLevel} from '@/const/game/meal';
-import {CookingRecipePartsProps} from '@/ui/cooking/recipe/parts/type';
-import {CookingFilter} from '@/ui/cooking/type';
+import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
+import {MealMakerFilter} from '@/ui/cooking/make/type';
 
 
-export const CookingRecipeLevel = ({meal, filter, setFilter}: CookingRecipePartsProps) => {
+export const MealMakerRecipeLevel = ({meal, filter, setFilter}: MealMakerRecipePartsProps) => {
   const {recipeLevel} = filter;
   const {id} = meal;
 
@@ -32,7 +32,7 @@ export const CookingRecipeLevel = ({meal, filter, setFilter}: CookingRecipeParts
           ...original.recipeLevel,
           [id]: Math.min(level || 1, recipeMaxLevel),
         },
-      } satisfies CookingFilter))}
+      } satisfies MealMakerFilter))}
     />
   );
 };

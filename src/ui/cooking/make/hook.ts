@@ -2,15 +2,15 @@ import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal/main';
-import {CookingFilter, CookingServerDataProps} from '@/ui/cooking/type';
+import {MealMakerFilter, MealMakerServerDataProps} from '@/ui/cooking/make/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
-export const useCookingFilter = ({meals, preloaded}: CookingServerDataProps) => {
+export const useMealMakerFilter = ({meals, preloaded}: MealMakerServerDataProps) => {
   const preloadedCooking = preloaded.cooking;
 
-  return useFilterInput<CookingFilter, Meal, MealId>({
+  return useFilterInput<MealMakerFilter, Meal, MealId>({
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {

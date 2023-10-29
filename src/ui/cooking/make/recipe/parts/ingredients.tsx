@@ -4,15 +4,15 @@ import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
-import {CookingRecipePartsProps} from '@/ui/cooking/recipe/parts/type';
+import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 
 
-export const CookingRecipeIngredients = ({
+export const MealMakerRecipeIngredients = ({
   meal,
   ingredientsMissing,
   ingredientSetReady,
-}: CookingRecipePartsProps) => {
+}: MealMakerRecipePartsProps) => {
   return (
     <Flex direction="row" className="h-9 items-end gap-0.5">
       <InfoIcon>

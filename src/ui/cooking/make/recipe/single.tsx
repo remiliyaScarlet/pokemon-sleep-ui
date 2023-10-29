@@ -8,17 +8,17 @@ import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageIconSizes} from '@/styles/image';
-import {useRecipeInfo} from '@/ui/cooking/recipe/hook';
-import {CookingRecipeIngredients} from '@/ui/cooking/recipe/parts/ingredients';
-import {CookingRecipeLevel} from '@/ui/cooking/recipe/parts/level';
-import {CookingRecipeStats} from '@/ui/cooking/recipe/parts/stats';
-import {CookingRecipeTitle} from '@/ui/cooking/recipe/parts/title';
-import {CookingRecipePartsProps} from '@/ui/cooking/recipe/parts/type';
-import {CookingPopup} from '@/ui/cooking/recipe/popup/main';
-import {CookingRecipeSingleProps} from '@/ui/cooking/recipe/type';
+import {useRecipeInfo} from '@/ui/cooking/make/recipe/hook';
+import {MealMakerRecipeIngredients} from '@/ui/cooking/make/recipe/parts/ingredients';
+import {MealMakerRecipeLevel} from '@/ui/cooking/make/recipe/parts/level';
+import {MealMakerRecipeStats} from '@/ui/cooking/make/recipe/parts/stats';
+import {MealMakerRecipeTitle} from '@/ui/cooking/make/recipe/parts/title';
+import {MealMakerRecipePartsProps} from '@/ui/cooking/make/recipe/parts/type';
+import {MealMakerPopup} from '@/ui/cooking/make/recipe/popup/main';
+import {MealMakerRecipeSingleProps} from '@/ui/cooking/make/recipe/type';
 
 
-export const CookingRecipeSingle = (props: CookingRecipeSingleProps) => {
+export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
   const {
     meal,
     filter,
@@ -36,7 +36,7 @@ export const CookingRecipeSingle = (props: CookingRecipeSingleProps) => {
   const {isMealMakeable} = recipeInfo;
   const mealName = t2(id.toString());
 
-  const partsProps: CookingRecipePartsProps = {
+  const partsProps: MealMakerRecipePartsProps = {
     ...props,
     ...recipeInfo,
     mealName,
@@ -44,16 +44,16 @@ export const CookingRecipeSingle = (props: CookingRecipeSingleProps) => {
 
   return (
     <AnimatedCollapseQuick show={showUnmakeableRecipe || isMealMakeable}>
-      <CookingPopup {...props} show={show} setShow={setShow}/>
+      <MealMakerPopup {...props} show={show} setShow={setShow}/>
       <Flex className="info-section-bg gap-1 rounded-lg p-2">
-        <CookingRecipeTitle {...partsProps}/>
-        <CookingRecipeLevel {...partsProps}/>
+        <MealMakerRecipeTitle {...partsProps}/>
+        <MealMakerRecipeLevel {...partsProps}/>
         <FlexButton direction="col" noFullWidth={false} onClick={() => setShow(true)} className={clsx(
           'button-clickable-bg group relative h-full',
         )}>
           <Flex className="z-10 gap-1 p-1">
-            <CookingRecipeIngredients {...partsProps}/>
-            <CookingRecipeStats {...partsProps}/>
+            <MealMakerRecipeIngredients {...partsProps}/>
+            <MealMakerRecipeStats {...partsProps}/>
           </Flex>
           <div className="absolute bottom-0 right-0 h-20 w-20 opacity-30">
             <NextImage src={`/images/meal/portrait/${id}.png`} alt={mealName} sizes={imageIconSizes}/>

@@ -10,11 +10,11 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {CookingCommonProps} from '@/ui/cooking/type';
-import {toCookingPreset} from '@/ui/cooking/utils';
+import {MealMakerCommonProps} from '@/ui/cooking/make/type';
+import {toCookingPreset} from '@/ui/cooking/make/utils';
 
 
-export const CookingInputControl = ({filter, setFilter, preloaded}: CookingCommonProps) => {
+export const MealMakerInputControl = ({filter, setFilter, preloaded}: MealMakerCommonProps) => {
   const {showUnmakeableRecipe} = filter;
 
   const t = useTranslations('UI.InPage.Cooking');

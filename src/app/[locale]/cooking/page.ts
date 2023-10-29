@@ -1,7 +1,7 @@
-import {Cooking} from '@/ui/cooking/main';
+import {CookingIndex} from '@/ui/cooking/index/main';
 import {generatePageMeta} from '@/utils/meta';
 
 
-export const generateMetadata = generatePageMeta({key: 'Cooking.Title'});
+export const generateMetadata = generatePageMeta({key: 'Cooking.Index.Title'});
 
-export default Cooking;
+export default CookingIndex;

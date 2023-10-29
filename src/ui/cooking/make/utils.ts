@@ -1,11 +1,11 @@
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {UserCookingPreset} from '@/types/userData/cooking';
-import {CookingFilter, CookingPreloadedData} from '@/ui/cooking/type';
+import {MealMakerFilter, MealMakerPreloadedData} from '@/ui/cooking/make/type';
 
 
 type ToCookingPresetOpts = {
-  preloaded: CookingPreloadedData['cooking'],
-  filter: CookingFilter,
+  preloaded: MealMakerPreloadedData['cooking'],
+  filter: MealMakerFilter,
 };
 
 export const toCookingPreset = ({preloaded, filter}: ToCookingPresetOpts): UserCookingPreset => {

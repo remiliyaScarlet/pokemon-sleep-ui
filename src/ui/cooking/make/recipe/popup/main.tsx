@@ -12,9 +12,9 @@ import {MealMeta} from '@/components/shared/meal/meta';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
-import {CookingInputIngredients} from '@/ui/cooking/input/ingredients';
-import {CookingPopupCommonProps} from '@/ui/cooking/recipe/popup/type';
-import {CookingFilter} from '@/ui/cooking/type';
+import {MealMakerInputIngredients} from '@/ui/cooking/make/input/ingredients';
+import {MealMakerPopupCommonProps} from '@/ui/cooking/make/recipe/popup/type';
+import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {
   subtractIngredientCount,
   toCookingCountFromMealIngredient,
@@ -24,12 +24,12 @@ import {getMealFinalStrength} from '@/utils/game/meal/main';
 import {formatInt} from '@/utils/number/format';
 
 
-type Props = PopupProps & CookingPopupCommonProps & {
+type Props = PopupProps & MealMakerPopupCommonProps & {
   meal: Meal,
-  filter: CookingFilter,
+  filter: MealMakerFilter,
 };
 
-export const CookingPopup = ({filter, calculatedSettings, status, onCook, ...props}: Props) => {
+export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...props}: Props) => {
   const {meal, ingredientMap, setShow} = props;
 
   const t = useTranslations('UI.InPage.Cooking');
@@ -55,7 +55,7 @@ export const CookingPopup = ({filter, calculatedSettings, status, onCook, ...pro
         <Flex className="gap-1 lg:flex-row">
           <MealMeta meal={meal} className="bg-plate"/>
           <Flex className="bg-plate justify-center gap-2">
-            <CookingInputIngredients
+            <MealMakerInputIngredients
               ingredientMap={ingredientMap}
               ingredientCount={ingredientCount}
               minCount={requiredIngredients}
