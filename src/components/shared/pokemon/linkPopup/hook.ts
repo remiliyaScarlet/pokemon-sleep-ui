@@ -1,16 +1,17 @@
 import React from 'react';
 
-import {PokemonLinkPopupState} from '@/components/shared/pokemon/linkPopup/type';
-import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonLinkPopupState, UsePokemonLinkPopupReturn} from '@/components/shared/pokemon/linkPopup/type';
 
 
-export const usePokemonLinkPopup = () => {
+export const usePokemonLinkPopup = (): UsePokemonLinkPopupReturn => {
   const [state, setState] = React.useState<PokemonLinkPopupState>({
     show: false,
     pokemon: null,
   });
 
-  const showPokemon = (pokemon: PokemonInfo) => setState({show: true, pokemon});
-
-  return {state, setState, showPokemon};
+  return {
+    state,
+    setState,
+    showPokemon: (pokemon) => setState({show: true, pokemon}),
+  };
 };

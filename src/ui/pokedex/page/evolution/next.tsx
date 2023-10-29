@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
+import {UsePokemonLinkPopupReturn} from '@/components/shared/pokemon/linkPopup/type';
 import {PokedexMap} from '@/types/game/pokemon';
 import {EvolutionBranch} from '@/types/game/pokemon/evolution';
 import {PokemonEvolutionCondition} from '@/ui/pokedex/page/evolution/condition';
@@ -11,7 +11,7 @@ import {PokemonEvolutionPortrait} from '@/ui/pokedex/page/evolution/portrait';
 type Props = {
   pokedex: PokedexMap,
   evolutions: EvolutionBranch[],
-  showPokemon: ReturnType<typeof usePokemonLinkPopup>['showPokemon'],
+  showPokemon: UsePokemonLinkPopupReturn['showPokemon'],
 };
 
 export const PokemonEvolutionNextStage = ({pokedex, evolutions, showPokemon}: Props) => {
