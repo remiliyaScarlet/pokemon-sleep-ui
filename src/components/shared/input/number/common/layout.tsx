@@ -39,6 +39,7 @@ export const NumberInputLayout = ({
         className={changeButtonClass}
         disabled={value === inUseMin || isDefaultUnavailable}
         onClick={() => setValue(isValueNumber ? Math.max(value - 1, inUseMin) : (onClickDefault ?? value))}
+        tabIndex={-1}
       >
         <ChevronDownIcon/>
       </button>
@@ -47,6 +48,7 @@ export const NumberInputLayout = ({
         className={changeButtonClass}
         disabled={value === inUseMax || isDefaultUnavailable}
         onClick={() => setValue(isValueNumber ? Math.min(value + 1, inUseMax) : (onClickDefault ?? value))}
+        tabIndex={-1}
       >
         <ChevronUpIcon/>
       </button>
