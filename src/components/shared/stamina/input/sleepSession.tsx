@@ -71,7 +71,6 @@ export const StaminaConfigSleepSession = (props: Props) => {
         <StaminaConfigSleepTime
           {...props}
           icon={<PlayCircleIcon className="h-7 w-7 shrink-0 md:hidden"/>}
-          idPrefix={`${num}-start`}
           times={times}
           timing="start"
         />
@@ -79,7 +78,6 @@ export const StaminaConfigSleepSession = (props: Props) => {
         <StaminaConfigSleepTime
           {...props}
           icon={<StopCircleIcon className="h-7 w-7 shrink-0 md:hidden"/>}
-          idPrefix={`${num}-end`}
           times={times}
           timing="end"
         />

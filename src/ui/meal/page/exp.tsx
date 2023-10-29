@@ -11,8 +11,6 @@ import {formatMealStrengthInfo} from '@/utils/game/meal/utils';
 
 
 export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonProps) => {
-  const {id} = meal;
-
   const t = useTranslations('UI.InPage.Cooking');
   const [level, setLevel] = React.useState(1);
 
@@ -27,8 +25,10 @@ export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonPro
 
   return (
     <InfoSlider
-      title={t('RecipeLevel')} id={`recipeLevel-${id}`}
-      level={level} setLevel={setLevel} maxLevel={recipeMaxLevel}
+      title={t('RecipeLevel')}
+      level={level}
+      setLevel={setLevel}
+      maxLevel={recipeMaxLevel}
     >
       <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
       <div className="text-sm">

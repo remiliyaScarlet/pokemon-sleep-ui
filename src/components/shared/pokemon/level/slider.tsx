@@ -6,12 +6,11 @@ import {NumberSliderRequiredProps} from '@/components/shared/input/number/requir
 import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 
 
-export const PokemonLevelSlider = (props: NumberSliderRequiredProps) => {
+export const PokemonLevelSlider = (props: Omit<NumberSliderRequiredProps, 'text'>) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
     <NumberSliderRequired
-      id="PokemonLevel"
       text={t('PokemonLevel')}
       {...props}
     />

@@ -9,17 +9,16 @@ import {NumberSliderRequiredProps} from '@/components/shared/input/number/requir
 
 
 export type Props = NumberSliderRequiredProps & {
-  id: string,
   text: string,
 };
 
 export const NumberSliderRequired = (props: Props) => {
-  const {id, value, min = 1, max, setValue, noSameLine} = props;
+  const {value, min = 1, max, setValue, noSameLine} = props;
 
   return (
     <Flex className={clsx('items-center gap-1.5', !noSameLine && 'lg:flex-row')}>
       <NumberInputRequired {...props} min={min}/>
-      <Slider id={id} value={value} setValue={setValue} min={min} max={max}/>
+      <Slider value={value} setValue={setValue} min={min} max={max}/>
     </Flex>
   );
 };

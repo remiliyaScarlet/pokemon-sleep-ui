@@ -34,7 +34,7 @@ export const BonusSlider = ({id, min, max, step, value, setValue, children}: Rea
           %
         </div>
       </Flex>
-      <Slider id={`${id}-slider`} value={value} setValue={setValue} min={min} max={max} step={step}/>
+      <Slider value={value} setValue={setValue} min={min} max={max} step={step}/>
     </Flex>
   );
 };

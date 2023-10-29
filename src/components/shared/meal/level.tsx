@@ -2,16 +2,15 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {NumberInputRequiredProps} from '@/components/shared/input/number/required/type';
+import {NumberInputLayoutProps} from '@/components/shared/input/number/common/type';
 import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 
 
-export const MealLevelInput = (props: NumberInputRequiredProps) => {
+export const MealLevelInput = (props: Omit<NumberInputLayoutProps, 'text'>) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (
     <NumberSliderRequired
-      id="RecipeLevel"
       text={t('RecipeLevel')}
       {...props}
     />

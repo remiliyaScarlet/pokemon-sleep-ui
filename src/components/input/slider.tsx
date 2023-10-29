@@ -4,17 +4,15 @@ import {clsx} from 'clsx';
 
 
 type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id' | 'value'> & {
-  id: string,
   value: number,
   setValue: (newValue: number) => void,
 };
 
-export const Slider = ({id, value, setValue, ...props}: Props) => {
+export const Slider = ({value, setValue, ...props}: Props) => {
   const {max} = props;
 
   return (
     <input
-      id={id}
       type="range"
       value={value}
       onChange={({target}) => {

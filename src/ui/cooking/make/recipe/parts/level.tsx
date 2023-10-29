@@ -17,7 +17,6 @@ export const MealMakerRecipeLevel = ({meal, filter, setFilter}: MealMakerRecipeP
 
   return (
     <NumberInputRequired
-      id={`recipeLevel-${id}`}
       text={t('RecipeLevel')}
       textClassName={clsx(
         'self-end text-xs',

@@ -9,15 +9,14 @@ import {SleepSessions, SleepSessionTimes} from '@/types/game/sleep';
 import {toSeconds, toTimeString} from '@/utils/time';
 
 
-type Props = StaminaConfigProps & {
-  idPrefix: string,
+type Props = Pick<StaminaConfigProps, 'config' | 'setConfig'> & {
   session: keyof SleepSessions<never>,
   times: SleepSessionTimes | null,
   timing: keyof SleepSessionTimes,
   icon?: React.ReactNode,
 };
 
-export const StaminaConfigSleepTime = ({config, setConfig, idPrefix, session, times, timing, icon}: Props) => {
+export const StaminaConfigSleepTime = ({config, setConfig, session, times, timing, icon}: Props) => {
   const timeValue = times ? times[timing] : null;
 
   const updateTimeInConfig = (time: number) => setConfig({
@@ -43,7 +42,6 @@ export const StaminaConfigSleepTime = ({config, setConfig, idPrefix, session, ti
           className="text-center"
         />
         <Slider
-          id={`${idPrefix}-slider`}
           value={timeValue ?? 0}
           setValue={updateTimeInConfig}
           min={0}
