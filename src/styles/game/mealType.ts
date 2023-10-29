@@ -18,3 +18,9 @@ export const mealTypeDotStyle: MealTypeClassMap = {
   2: 'meal-dot-salad',
   3: 'meal-dot-dessert',
 };
+
+export const mealTypeBorderStyle: MealTypeClassMap = {
+  1: 'meal-border-curry',
+  2: 'meal-border-salad',
+  3: 'meal-border-dessert',
+};

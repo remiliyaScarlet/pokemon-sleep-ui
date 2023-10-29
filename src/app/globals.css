@@ -335,6 +335,10 @@
     @apply text-orange-800 dark:text-orange-200;
   }
   
+  .meal-border-curry {
+    @apply border-orange-600 dark:border-orange-500;
+  }
+  
   .meal-active-curry {
     @apply meal-active meal-text-curry ring-1 ring-inset ring-orange-800 dark:ring-orange-200;
   }
@@ -351,6 +355,10 @@
     @apply text-yellow-800 dark:text-yellow-200;
   }
   
+  .meal-border-salad {
+    @apply border-yellow-600 dark:border-yellow-500;
+  }
+  
   .meal-active-salad {
     @apply meal-active meal-text-salad ring-yellow-800 dark:ring-yellow-200;
   }
@@ -365,6 +373,10 @@
   
   .meal-text-dessert {
     @apply text-lime-800 dark:text-lime-200;
+  }
+  
+  .meal-border-dessert {
+    @apply border-lime-600 dark:border-lime-500;
   }
   
   .meal-active-dessert {
