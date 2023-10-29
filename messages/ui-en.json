@@ -234,11 +234,11 @@
       "MealType": "Meal",
       "PotCapacity": "Max",
       "Preparer": {
-        "Total": "Total",
         "IncludeFiller": "(+Filler)"
       },
       "RecipeLevel": "Recipe Level",
       "ToggleUnmakeable": "Show/Hide Unmakeable Dishes",
+      "Total": "Total",
       "TargetMealCount": "Target Meal Count"
     },
     "Berry": {

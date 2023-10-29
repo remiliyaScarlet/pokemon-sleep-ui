@@ -235,11 +235,11 @@
       "MealType": "Gericht",
       "PotCapacity": "Max",
       "Preparer": {
-        "Total": "Gesamt",
         "IncludeFiller": "(+Extra)"
       },
       "RecipeLevel": "Rezeptlevel",
       "ToggleUnmakeable": "Unzubereitbare Gerichte ein-/ausblenden",
+      "Total": "Gesamt",
       "TargetMealCount": "Zielzahl der Mahlzeiten"
     },
     "Berry": {

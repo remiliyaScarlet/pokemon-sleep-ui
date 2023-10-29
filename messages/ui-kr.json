@@ -231,16 +231,14 @@
         "Missing": "Missing",
         "Required": "Required"
       },
-      "IngredientsRequired": "Required",
-      "IngredientsMissing": "Missing",
       "MealType": "요리",
       "PotCapacity": "용량",
       "Preparer": {
-        "Total": "총합",
         "IncludeFiller": "(+Filler)"
       },
       "RecipeLevel": "레시피 레벨",
       "ToggleUnmakeable": "만들 수 없는 요리 표시/숨기기",
+      "Total": "총합",
       "TargetMealCount": "목표 요리 수"
     },
     "Berry": {

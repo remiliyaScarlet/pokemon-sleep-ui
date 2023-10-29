@@ -234,11 +234,11 @@
       "MealType": "料理",
       "PotCapacity": "容量",
       "Preparer": {
-        "Total": "總計",
         "IncludeFiller": "(+餘料)"
       },
       "RecipeLevel": "食譜等級",
       "ToggleUnmakeable": "顯示/隱藏無法製作的料理",
+      "Total": "總計",
       "TargetMealCount": "目標數量"
     },
     "Berry": {
