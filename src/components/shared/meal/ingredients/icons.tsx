@@ -7,7 +7,6 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {IngredientIconsCommonProps} from '@/components/shared/meal/ingredients/type';
 import {imageIconSizes} from '@/styles/image';
-import {dangerText} from '@/styles/text/common';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {Dimension} from '@/types/style';
@@ -46,7 +45,8 @@ export const IngredientIcons = ({
             </div>
             <div className={clsx(
               useTextShadow && 'text-shadow-preset',
-              markRed && markRed(ingredient) && dangerText,
+              markRed && markRed(ingredient) && 'text-danger',
+              markGreen && markGreen(ingredient) && 'text-safe',
             )}>
               {qty}
             </div>

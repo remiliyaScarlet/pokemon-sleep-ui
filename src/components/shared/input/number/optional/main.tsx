@@ -5,7 +5,6 @@ import {clsx} from 'clsx';
 import {InputBox} from '@/components/input/box';
 import {NumberInputLayout} from '@/components/shared/input/number/common/layout';
 import {NumberInputLayoutProps} from '@/components/shared/input/number/common/type';
-import {dangerText} from '@/styles/text/common';
 import {Nullable} from '@/utils/type';
 
 
@@ -17,7 +16,7 @@ export const NumberInputOptional = (props: NumberInputLayoutProps<Nullable<numbe
       <InputBox
         type="number"
         value={value ?? ''}
-        className={clsx('w-12 text-center', value != null && min && value < min && dangerText)}
+        className={clsx('w-12 text-center', value != null && min && value < min && 'text-danger')}
         min={0}
         onChange={({target}) => {
           const value = parseInt(target.value);
