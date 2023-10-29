@@ -3,9 +3,9 @@ import {isFilterIncludingAllOfData} from '@/components/input/filter/utils/check'
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealId} from '@/types/game/meal/main';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
+import {generateCookingCommonFilter} from '@/ui/cooking/common/utils';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
-import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
 export const useMealMakerFilter = ({meals, preloaded}: CookingServerDataProps) => {
@@ -15,11 +15,10 @@ export const useMealMakerFilter = ({meals, preloaded}: CookingServerDataProps) =
     data: meals,
     dataToId: ({id}) => id,
     initialFilter: {
+      ...generateCookingCommonFilter(preloadedCooking),
       type: preloadedCooking?.mealType ?? defaultCookingPreset.mealType,
       capacity: preloadedCooking?.potCapacity ?? defaultCookingPreset.potCapacity,
       ingredient: {},
-      recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloadedCooking?.recipeLevel),
-      inventory: cloneMerge(defaultCookingPreset.ingredientCount, preloadedCooking?.ingredientCount),
       showUnmakeableRecipe: preloadedCooking?.showUnmakeableRecipe ?? defaultCookingPreset.showUnmakeableRecipe,
     },
     isDataIncluded: (filter, meal) => {

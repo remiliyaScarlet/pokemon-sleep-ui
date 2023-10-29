@@ -1,9 +1,11 @@
 import {getServerSession, Session} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
+import {defaultCookingPreset} from '@/const/user/cooking';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
-import {CookingPreloadedData, CookingServerDataProps} from '@/ui/cooking/common/type';
+import {CookingCommonFilter, CookingPreloadedData, CookingServerDataProps} from '@/ui/cooking/common/type';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 import {createUserSettings} from '@/utils/user/settings';
 
 
@@ -31,3 +33,10 @@ export const getCookingServerDataProps = async (): Promise<CookingServerDataProp
     preloaded: toCookingPreloadedData(session),
   };
 };
+
+export const generateCookingCommonFilter = (
+  preloadedCooking: CookingPreloadedData['cooking'],
+): CookingCommonFilter => ({
+  recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloadedCooking?.recipeLevel),
+  inventory: cloneMerge(defaultCookingPreset.ingredientCount, preloadedCooking?.ingredientCount),
+});
