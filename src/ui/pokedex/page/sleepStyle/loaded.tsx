@@ -11,7 +11,7 @@ type Props = PokemonProps & {
   initialSleepdex: SleepdexMap,
 };
 
-export const PokemonSleepStylesLoaded = ({pokemon, sleepStyles, initialSleepdex}: Props) => {
+export const PokemonSleepStylesLoaded = ({pokemon, pokemonBranches, sleepStyles, initialSleepdex}: Props) => {
   const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
 
   if (sleepStyles.length === 0) {
@@ -26,6 +26,7 @@ export const PokemonSleepStylesLoaded = ({pokemon, sleepStyles, initialSleepdex}
           sleepdex={sleepdex}
           setSleepdex={setSleepdex}
           pokemon={pokemon}
+          pokemonBranch={pokemonBranches}
           sleepStyleOfMap={sleepStyleOfMap}
         />
       ))}

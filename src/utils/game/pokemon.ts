@@ -50,3 +50,16 @@ export const getEvolutionCountFromPokemonInfo = ({pokemon}: GetEvolutionCountFro
 export const getPokemonMaxEvolutionCount = (pokemonList: PokemonInfo[]) => (
   Math.max(...pokemonList.map(({evolution}) => evolution.stage))
 );
+
+type GetPokemonSleepStyleId = {
+  pokemonId: number,
+  branch: PokemonBranchData | null,
+};
+
+export const getPokemonSleepStyleId = ({pokemonId, branch}: GetPokemonSleepStyleId): PokemonId => {
+  if (branch && branch.branches.includes(pokemonId)) {
+    return branch.pokemonId;
+  }
+
+  return pokemonId;
+};

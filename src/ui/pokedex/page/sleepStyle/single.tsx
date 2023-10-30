@@ -11,6 +11,7 @@ import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {SleepStyle} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
+import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {isInSleepdex} from '@/utils/game/sleepdex';
 
 
@@ -18,13 +19,17 @@ type Props = PokemonSleepStyleProps & {
   sleepStyle: SleepStyle,
 };
 
-export const PokemonSingleSleepStyle = ({pokemon, sleepStyle, sleepdex, setSleepdex}: Props) => {
+export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sleepdex, setSleepdex}: Props) => {
   const {rank, style, rewards} = sleepStyle;
 
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
+  const sleepStyleId = getPokemonSleepStyleId({
+    pokemonId: pokemon.id,
+    branch: pokemonBranch,
+  });
 
   const t = useTranslations('UI.Common');
-  const t2 = useTranslations(`Game.SleepFace.${pokemon.id}`);
+  const t2 = useTranslations(`Game.SleepFace.${sleepStyleId}`);
   const t3 = useTranslations('Game.SleepFace.onSnorlax');
 
   const pokemonId = pokemon.id;

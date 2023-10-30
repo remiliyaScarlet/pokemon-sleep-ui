@@ -14,18 +14,20 @@ import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 import {toUnique} from '@/utils/array';
+import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 
 
 type Props = {
   pokemonId: PokemonId,
+  pokemonSleepStyleId: PokemonId,
   image: PokemonImageType,
   isActive: boolean,
 };
 
 const gallerySize = 'h-72 w-72';
 
-const GalleryButton = ({pokemonId, image, isActive}: Props) => {
-  const t = useTranslations(`Game.SleepFace.${pokemonId}`);
+const GalleryButton = ({pokemonId, pokemonSleepStyleId, image, isActive}: Props) => {
+  const t = useTranslations(`Game.SleepFace.${pokemonSleepStyleId}`);
   const t2 = useTranslations('Game.SleepFace.onSnorlax');
   const t3 = useTranslations('Game.PokemonName');
 
@@ -41,7 +43,7 @@ const GalleryButton = ({pokemonId, image, isActive}: Props) => {
 };
 
 export const PokemonImageGallery = (props: PokemonProps) => {
-  const {pokemon, sleepStyles} = props;
+  const {pokemon, pokemonBranches, sleepStyles} = props;
 
   const t = useTranslations('UI.Common');
 
@@ -93,7 +95,15 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               onClick={() => setCurrentImage(image)}
               className={getTextFilterButtonClass(isActive)}
             >
-              <GalleryButton pokemonId={pokemon.id} image={image} isActive={isActive}/>
+              <GalleryButton
+                pokemonId={pokemon.id}
+                pokemonSleepStyleId={getPokemonSleepStyleId({
+                  pokemonId: pokemon.id,
+                  branch: pokemonBranches,
+                })}
+                image={image}
+                isActive={isActive}
+              />
             </ToggleButton>
           );
         })}
