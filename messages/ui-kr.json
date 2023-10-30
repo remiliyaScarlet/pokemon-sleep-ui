@@ -69,7 +69,7 @@
         "Title": "요리하기"
       },
       "Prepare": {
-        "Title": "식재료준비"
+        "Title": "준비해야하는 식재료"
       }
     },
     "Meal": {
@@ -227,14 +227,14 @@
       "Energy": "최종 에너지",
       "Ingredient": {
         "Name": "식재료",
-        "Filler": "Filler",
-        "Missing": "Missing",
-        "Required": "Required"
+        "Filler": "투입",
+        "Missing": "부족",
+        "Required": "필요"
       },
       "MealType": "요리",
       "PotCapacity": "용량",
       "Preparer": {
-        "IncludeFiller": "(+Filler)"
+        "IncludeFiller": "(+투입)"
       },
       "RecipeLevel": "레시피 레벨",
       "ToggleUnmakeable": "만들 수 없는 요리 표시/숨기기",
