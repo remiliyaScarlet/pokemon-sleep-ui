@@ -12,6 +12,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {setLocale} from '@/ui/base/context';
+import {AdsGap} from '@/ui/base/gap';
 import {AdsOfLayout} from '@/ui/base/layout/ads';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
@@ -63,10 +64,13 @@ export const PageLayout = ({
             <React.Suspense fallback={<Loading/>}>
               {children}
             </React.Suspense>
+            <AdsGap/>
           </Flex>
         </div>
       </Flex>
-      <AdsOfLayout adsShouldShow={adsShouldShow}/>
+      <Flex className="fixed bottom-0">
+        <AdsOfLayout adsShouldShow={adsShouldShow}/>
+      </Flex>
     </>
   );
 };
