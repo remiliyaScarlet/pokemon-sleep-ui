@@ -12,7 +12,7 @@ export const IngredientBonusSlider = (props: BonusSliderProps) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <BonusSlider id="ingredient-bonus" min={0} max={100} {...props}>
+    <BonusSlider id="ingredient-bonus" min={0} max={300} {...props}>
       <GenericIngredientIcon dimension="h-6 w-6" alt={t('Ingredient')}/>
       <div className="h-6 w-6">
         <ChevronUpIcon/>
