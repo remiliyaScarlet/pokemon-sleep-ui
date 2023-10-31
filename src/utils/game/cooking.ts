@@ -52,3 +52,21 @@ export const subtractIngredientCount = (
     return [id, result];
   }).filter(isNotNullish))
 );
+
+export const getMealIngredientsRequiredCommon = (counters: IngredientCounter[]): IngredientCounter => {
+  if (!counters.length) {
+    return {};
+  }
+
+  const ret: IngredientCounter = {...counters[0]};
+
+  for (const counter of counters.slice(1)) {
+    for (const [id, count] of Object.entries(counter)) {
+      const ingredientId = parseInt(id);
+
+      ret[ingredientId] = Math.max(ret[ingredientId] ?? 0, count ?? 0);
+    }
+  }
+
+  return ret;
+};

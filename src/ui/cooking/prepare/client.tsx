@@ -11,6 +11,7 @@ import {generateCookingCommonFilter} from '@/ui/cooking/common/utils/main';
 import {useMealPreparerInfo} from '@/ui/cooking/prepare/hook/main';
 import {MealPreparerInput} from '@/ui/cooking/prepare/input/main';
 import {MealPreparerByMealTypes} from '@/ui/cooking/prepare/mealType/main';
+import {MealPreparerSummary} from '@/ui/cooking/prepare/summary/main';
 import {MealPreparerCommonProps, MealPreparerFilter} from '@/ui/cooking/prepare/type';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 
@@ -45,6 +46,7 @@ export const MealPreparerClient = (props: CookingServerDataProps) => {
     <>
       <MealPreparerInput {...commonProps}/>
       <MealPreparerByMealTypes info={info} {...commonProps}/>
+      <MealPreparerSummary info={info} inventory={filter.inventory}/>
     </>
   );
 };
