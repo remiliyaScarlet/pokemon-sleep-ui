@@ -17,6 +17,9 @@ export type SleepSessionInternal = {
 
 export type SleepSessionInfo = {
   session: SleepSessions<SleepSessionInternal>,
+  stamina: {
+    dailyLoss: number,
+  },
   duration: {
     awake: number,
   },

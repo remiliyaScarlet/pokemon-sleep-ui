@@ -241,7 +241,7 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
     expect(logs.length).toBe(5);
   });
 
-  it('is correct when the session is very long', () => {
+  it('is correct when the sleep duration is short', () => {
     const recoveryRate: StaminaRecoveryRateConfig = {
       general: 1,
       sleep: 1,
@@ -267,47 +267,43 @@ describe('Stamina Event Log (+Efficiency Block)', () => {
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
-    expect(logs[0].stamina.after).toBe(100);
+    expect(logs[0].stamina.after).toBe(62);
     expect(logs[1].type).toBe('efficiencyBlock');
-    expect(logs[1].timing).toBe(12000);
-    expect(logs[1].stamina.before).toBe(80);
-    expect(logs[1].stamina.after).toBe(80);
+    expect(logs[1].timing).toBe(1200);
+    expect(logs[1].stamina.before).toBe(60);
+    expect(logs[1].stamina.after).toBe(60);
     expect(logs[2].type).toBe('efficiencyBlock');
-    expect(logs[2].timing).toBe(24000);
-    expect(logs[2].stamina.before).toBe(60);
-    expect(logs[2].stamina.after).toBe(60);
-    expect(logs[3].type).toBe('skillRecovery');
-    expect(logs[3].timing).toBe(27600);
-    expect(logs[3].stamina.before).toBe(54);
-    expect(logs[3].stamina.after).toBe(63);
-    expect(logs[4].type).toBe('efficiencyBlock');
-    expect(logs[4].timing).toBe(29400);
-    expect(logs[4].stamina.before).toBe(60);
-    expect(logs[4].stamina.after).toBe(60);
+    expect(logs[2].timing).toBe(13200);
+    expect(logs[2].stamina.before).toBe(40);
+    expect(logs[2].stamina.after).toBe(40);
+    expect(logs[3].type).toBe('efficiencyBlock');
+    expect(logs[3].timing).toBe(25200);
+    expect(logs[3].stamina.before).toBe(20);
+    expect(logs[3].stamina.after).toBe(20);
+    expect(logs[4].type).toBe('skillRecovery');
+    expect(logs[4].timing).toBe(27600);
+    expect(logs[4].stamina.before).toBe(16);
+    expect(logs[4].stamina.after).toBe(25);
     expect(logs[5].type).toBe('efficiencyBlock');
-    expect(logs[5].timing).toBe(41400);
-    expect(logs[5].stamina.before).toBe(40);
-    expect(logs[5].stamina.after).toBe(40);
+    expect(logs[5].timing).toBe(30600);
+    expect(logs[5].stamina.before).toBe(20);
+    expect(logs[5].stamina.after).toBe(20);
     expect(logs[6].type).toBe('efficiencyBlock');
-    expect(logs[6].timing).toBe(53400);
-    expect(logs[6].stamina.before).toBe(20);
-    expect(logs[6].stamina.after).toBe(20);
+    expect(logs[6].timing).toBe(42600);
+    expect(logs[6].stamina.before).toBe(0);
+    expect(logs[6].stamina.after).toBe(0);
     expect(logs[7].type).toBe('skillRecovery');
     expect(logs[7].timing).toBe(55200);
-    expect(logs[7].stamina.before).toBe(17);
-    expect(logs[7].stamina.after).toBe(26);
+    expect(logs[7].stamina.before).toBe(0);
+    expect(logs[7].stamina.after).toBe(9);
     expect(logs[8].type).toBe('efficiencyBlock');
-    expect(logs[8].timing).toBe(58800);
-    expect(logs[8].stamina.before).toBe(20);
-    expect(logs[8].stamina.after).toBe(20);
-    expect(logs[9].type).toBe('efficiencyBlock');
-    expect(logs[9].timing).toBe(70800);
+    expect(logs[8].timing).toBe(60600);
+    expect(logs[8].stamina.before).toBe(0);
+    expect(logs[8].stamina.after).toBe(0);
+    expect(logs[9].type).toBe('sleep');
+    expect(logs[9].timing).toBe(82800);
     expect(logs[9].stamina.before).toBe(0);
-    expect(logs[9].stamina.after).toBe(0);
-    expect(logs[10].type).toBe('sleep');
-    expect(logs[10].timing).toBe(82800);
-    expect(logs[10].stamina.before).toBe(0);
-    expect(logs.length).toBe(11);
+    expect(logs.length).toBe(10);
   });
 
   it('is correct with > 1 recovery rate under conservative', () => {

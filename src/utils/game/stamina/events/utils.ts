@@ -50,13 +50,13 @@ type OffsetEventLogStaminaOpts = {
 };
 
 export const offsetEventLogStamina = ({log, offset}: OffsetEventLogStaminaOpts): StaminaEventLog => {
-  const {staminaUnderlying} = log;
+  const {stamina, staminaUnderlying} = log;
 
   return {
     ...log,
     stamina: {
-      before: Math.max(0, staminaUnderlying.before + offset),
-      after: Math.max(0, staminaUnderlying.after + offset),
+      before: Math.max(stamina.before, staminaUnderlying.before + offset),
+      after: Math.max(stamina.after - stamina.before, staminaUnderlying.after + offset),
     },
     staminaUnderlying: {
       before: staminaUnderlying.before + offset,

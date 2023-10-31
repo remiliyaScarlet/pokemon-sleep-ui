@@ -1,5 +1,5 @@
 import {durationOfDay} from '@/const/common';
-import {staminaRecoveryInterval} from '@/const/game/stamina';
+import {staminaDepleteInterval, staminaRecoveryInterval} from '@/const/game/stamina';
 import {SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
 import {StaminaSleepSessionConfig} from '@/types/game/stamina/config';
 import {rotateTime} from '@/utils/time';
@@ -45,11 +45,15 @@ export const getSleepSessionInfo = (session: StaminaSleepSessionConfig): SleepSe
   const secondaryWithInfo: SleepSessionInternal | null = getSecondarySleepSessionInfo(session);
 
   const awakeDuration = durationOfDay - primaryWithInfo.length - (secondaryWithInfo?.length ?? 0);
+  const dailyLoss = Math.floor(awakeDuration / staminaDepleteInterval);
 
   return {
     session: {
       primary: primaryWithInfo,
       secondary: secondaryWithInfo,
+    },
+    stamina: {
+      dailyLoss,
     },
     duration: {
       awake: awakeDuration,

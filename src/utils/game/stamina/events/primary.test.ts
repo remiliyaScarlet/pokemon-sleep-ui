@@ -94,12 +94,12 @@ describe('Stamina Event Log (+Primary)', () => {
 
     expect(logs[0].type).toBe('wakeup');
     expect(logs[0].timing).toBe(0);
-    expect(logs[0].stamina.after).toBe(100);
-    expect(logs[0].staminaUnderlying.after).toBe(100);
+    expect(logs[0].stamina.after).toBe(65);
+    expect(logs[0].staminaUnderlying.after).toBe(65);
     expect(logs[1].type).toBe('sleep');
     expect(logs[1].timing).toBe(81000);
     expect(logs[1].stamina.before).toBe(0);
-    expect(logs[1].staminaUnderlying.before).toBe(-35);
+    expect(logs[1].staminaUnderlying.before).toBe(-70);
     expect(logs.length).toBe(2);
   });
 
@@ -132,6 +132,70 @@ describe('Stamina Event Log (+Primary)', () => {
     expect(logs[1].timing).toBe(57600);
     expect(logs[1].stamina.before).toBe(37);
     expect(logs[1].staminaUnderlying.before).toBe(37);
+    expect(logs.length).toBe(2);
+  });
+
+  it('is correct with < 1 recovery rate and daily loss > daily recovery', () => {
+    const recoveryRate: StaminaRecoveryRateConfig = {
+      general: 0.8,
+      sleep: 1,
+    };
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 54000, // 15:00
+        end: 0, // 00:00
+      },
+      secondary: null,
+    });
+    const skillRecovery: StaminaSkillRecoveryConfig = {
+      strategy: 'conservative',
+    };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
+
+    const logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(90);
+    expect(logs[0].staminaUnderlying.after).toBe(90);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(54000);
+    expect(logs[1].stamina.before).toBe(0);
+    expect(logs[1].staminaUnderlying.before).toBe(0);
+    expect(logs.length).toBe(2);
+  });
+
+  it('is correct with < 1 recovery rate under conservative', () => {
+    const recoveryRate: StaminaRecoveryRateConfig = {
+      general: 0.8,
+      sleep: 1,
+    };
+    const sessionInfo = getSleepSessionInfo({
+      primary: {
+        start: 64800, // 18:00
+        end: 0, // 00:00
+      },
+      secondary: null,
+    });
+    const skillRecovery: StaminaSkillRecoveryConfig = {
+      strategy: 'conservative',
+    };
+    const skillTriggers: StaminaSkillTriggerData[] = [
+      {dailyCount: 3, amount: 9},
+    ];
+
+    const logs = getLogsWithPrimarySleep({sessionInfo, skillRecovery, skillTriggers, recoveryRate});
+
+    expect(logs[0].type).toBe('wakeup');
+    expect(logs[0].timing).toBe(0);
+    expect(logs[0].stamina.after).toBe(72);
+    expect(logs[0].staminaUnderlying.after).toBe(72);
+    expect(logs[1].type).toBe('sleep');
+    expect(logs[1].timing).toBe(64800);
+    expect(logs[1].stamina.before).toBe(0);
+    expect(logs[1].staminaUnderlying.before).toBe(-36);
     expect(logs.length).toBe(2);
   });
 });
