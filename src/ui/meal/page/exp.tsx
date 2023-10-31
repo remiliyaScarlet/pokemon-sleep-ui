@@ -6,8 +6,8 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {InfoSlider} from '@/components/shared/input/infoSlider';
 import {recipeMaxLevel} from '@/const/game/meal';
 import {MealCommonProps} from '@/ui/meal/page/type';
+import {formatMealStrengthInfo} from '@/utils/game/meal/format';
 import {getMealFinalStrength} from '@/utils/game/meal/main';
-import {formatMealStrengthInfo} from '@/utils/game/meal/utils';
 
 
 export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonProps) => {
