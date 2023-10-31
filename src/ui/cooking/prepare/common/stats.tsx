@@ -26,6 +26,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           textSizeClassName="text-lg"
           ingredients={toProducingItemFromIngredientCounter(missing)}
           className="flex-wrap justify-center"
+          iconClickable
         />
       </InputRowWithTitle>
       <InputRowWithTitle title={t('Ingredient.Filler')} className="min-h-[2.5rem]">
@@ -35,6 +36,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           textSizeClassName="text-lg"
           ingredients={toProducingItemFromIngredientCounter(filler)}
           className="flex-wrap justify-center"
+          iconClickable
         />
       </InputRowWithTitle>
       <InputRowWithTitle title={t('Ingredient.Required')} className="min-h-[2.5rem]">
@@ -43,6 +45,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           textSizeClassName="text-lg"
           ingredients={toProducingItemFromIngredientCounter(required)}
           className="flex-wrap justify-center"
+          iconClickable
         />
       </InputRowWithTitle>
     </>
