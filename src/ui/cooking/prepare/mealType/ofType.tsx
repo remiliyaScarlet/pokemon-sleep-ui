@@ -12,8 +12,8 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {MealImage} from '@/components/shared/meal/image';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {mealTypeBorderStyle, mealTypeDotStyle, mealTypeTextStyle} from '@/styles/game/mealType';
-import {Meal, MealTypeId} from '@/types/game/meal/main';
-import {useMealPreparerInfoOfMealType} from '@/ui/cooking/prepare/mealType/hook';
+import {MealTypeId} from '@/types/game/meal/main';
+import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerRecipe} from '@/ui/cooking/prepare/mealType/recipe';
 import {MealPreparerMealTypeStatsUI} from '@/ui/cooking/prepare/mealType/stats';
 import {MealPreparerCommonProps} from '@/ui/cooking/prepare/type';
@@ -21,20 +21,17 @@ import {toProducingItemFromIngredientCounter} from '@/utils/game/cooking';
 
 
 type Props = MealPreparerCommonProps & {
-  mealsOfType: Meal[],
   mealType: MealTypeId,
+  info: MealPreparerInfoOfMealType,
 };
 
-export const MealPrepareOfMealType = ({mealsOfType, mealType, ...props}: Props) => {
+export const MealPrepareOfMealType = ({mealType, info, ...props}: Props) => {
   const {filter} = props;
+  const {mealsOfType} = info;
 
   const t = useTranslations('Game.MealType');
   const t2 = useTranslations('UI.InPage.Cooking');
 
-  const info = useMealPreparerInfoOfMealType({
-    ...props,
-    mealsOfType,
-  });
   const collapsible = useCollapsible(true);
 
   const {missing, filler, required} = info.ingredients;

@@ -8,6 +8,7 @@ import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {generateCookingCommonFilter} from '@/ui/cooking/common/utils/main';
+import {useMealPreparerInfo} from '@/ui/cooking/prepare/hook/main';
 import {MealPreparerInput} from '@/ui/cooking/prepare/input/main';
 import {MealPreparerByMealTypes} from '@/ui/cooking/prepare/mealType/main';
 import {MealPreparerCommonProps, MealPreparerFilter} from '@/ui/cooking/prepare/type';
@@ -38,10 +39,12 @@ export const MealPreparerClient = (props: CookingServerDataProps) => {
     preloaded: preloaded.cooking,
   };
 
+  const info = useMealPreparerInfo(commonProps);
+
   return (
     <>
       <MealPreparerInput {...commonProps}/>
-      <MealPreparerByMealTypes {...commonProps}/>
+      <MealPreparerByMealTypes info={info} {...commonProps}/>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import {IngredientCounter} from '@/types/game/ingredient';
-import {MealId} from '@/types/game/meal/main';
+import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
 
 
 export type MealPreparerMealTypeStats = {
@@ -15,4 +15,7 @@ export type MealPreparerInfoOfMealType = {
   },
   finalStrength: {[meal in MealId]?: number},
   stats: MealPreparerMealTypeStats,
+  mealsOfType: Meal[],
 };
+
+export type MealPreparerInfo = {[mealType in MealTypeId]: MealPreparerInfoOfMealType};

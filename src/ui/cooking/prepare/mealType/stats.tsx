@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {MealPreparerMealTypeStats} from '@/ui/cooking/prepare/mealType/type';
+import {MealPreparerMealTypeStats} from '@/ui/cooking/prepare/hook/type';
 import {formatInt} from '@/utils/number/format';
 
 

@@ -12,7 +12,7 @@ import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/icon
 import {Meal} from '@/types/game/meal/main';
 import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {CookingExternalLink} from '@/ui/cooking/common/link';
-import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/mealType/type';
+import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerCommonProps, MealPreparerFilter} from '@/ui/cooking/prepare/type';
 import {formatInt} from '@/utils/number/format';
 
