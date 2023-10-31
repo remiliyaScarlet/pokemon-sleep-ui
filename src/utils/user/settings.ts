@@ -11,11 +11,21 @@ export const createUserSettings = (settings: DeepPartial<UserSettings> | undefin
   return cloneMerge(defaultUserSettings, settings);
 };
 
-export const toCalculatedUserSettings = (opts: ToEffectiveBonusOpts): CalculatedUserSettings => {
-  const {settings} = opts;
+type ToCalculatedUserSettingsOpts = ToEffectiveBonusOpts & {
+  recoveryRate?: StaminaRecoveryRateConfig,
+};
+
+export const toCalculatedUserSettings = ({
+  recoveryRate,
+  settings,
+  ...opts
+}: ToCalculatedUserSettingsOpts): CalculatedUserSettings => {
+  if (recoveryRate) {
+    settings = overrideRecoveryRate({settings, recoveryRate});
+  }
 
   return {
-    bonus: toEffectiveBonus(opts),
+    bonus: toEffectiveBonus({settings, ...opts}),
     sleepDurations: getSleepDurationsFromSleepSession(settings.stamina.sleepSession),
   };
 };

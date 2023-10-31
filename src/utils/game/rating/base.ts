@@ -1,4 +1,3 @@
-import {defaultRecoveryRate} from '@/const/user/settings';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
@@ -6,7 +5,8 @@ import {getRatingBasisValue} from '@/utils/game/rating/basis';
 import {ratingCalculationNoCap} from '@/utils/game/rating/const';
 import {GetRatingValueOfSimulationOpts} from '@/utils/game/rating/type';
 import {getHelpingBonusSimulateOnSelf} from '@/utils/game/rating/utils';
-import {overrideRecoveryRate, toCalculatedUserSettings} from '@/utils/user/settings';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 export const getRatingValueOfBase = (opts: GetRatingValueOfSimulationOpts) => {
@@ -34,10 +34,8 @@ export const getRatingValueOfBase = (opts: GetRatingValueOfSimulationOpts) => {
       evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
       ...singleParams,
       ...toCalculatedUserSettings({
-        settings: overrideRecoveryRate({
-          settings,
-          recoveryRate: defaultRecoveryRate,
-        }),
+        settings,
+        recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
     }),

@@ -18,6 +18,7 @@ import {toSum} from '@/utils/array';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {getSubSkillBonus, hasHelperSubSkill} from '@/utils/game/subSkill/effect';
 import {isNotNullish} from '@/utils/type';
 import {toCalculatedUserSettings} from '@/utils/user/settings';
@@ -71,7 +72,10 @@ const useProducingStatsOfSlot = ({
       }),
       natureId: member.nature,
     };
-    const calculatedSettings = toCalculatedUserSettings({settings});
+    const calculatedSettings = toCalculatedUserSettings({
+      settings,
+      recoveryRate: toRecoveryRate(producingRateOpts),
+    });
 
     const pokemonProducingRate = getPokemonProducingRate({
       ...producingRateOpts,

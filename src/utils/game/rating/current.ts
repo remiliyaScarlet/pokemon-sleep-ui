@@ -5,7 +5,7 @@ import {ratingCalculationNoCap} from '@/utils/game/rating/const';
 import {GetRatingValueOfSimulationOpts} from '@/utils/game/rating/type';
 import {getHelpingBonusSimulateOnSelf} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
-import {overrideRecoveryRate, toCalculatedUserSettings} from '@/utils/user/settings';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 export const getRatingValueOfCurrent = (opts: GetRatingValueOfSimulationOpts) => {
@@ -25,10 +25,8 @@ export const getRatingValueOfCurrent = (opts: GetRatingValueOfSimulationOpts) =>
       ...opts,
       ...singleParams,
       ...toCalculatedUserSettings({
-        settings: overrideRecoveryRate({
-          settings,
-          recoveryRate: toRecoveryRate(singleParams),
-        }),
+        settings,
+        recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
     }),

@@ -7,7 +7,7 @@ import {ratingCalculationNoCap} from '@/utils/game/rating/const';
 import {GetRatingValueOfSimulationOpts} from '@/utils/game/rating/type';
 import {getHelpingBonusSimulateOnSelf} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
-import {overrideRecoveryRate, toCalculatedUserSettings} from '@/utils/user/settings';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 type GetRatingValueOfPossibilityOpts = Omit<
@@ -45,10 +45,8 @@ export const getRatingValueOfPossibility = ({override, ...opts}: GetRatingValueO
       ingredients,
       ...singleParams,
       ...toCalculatedUserSettings({
-        settings: overrideRecoveryRate({
-          settings,
-          recoveryRate: toRecoveryRate(singleParams),
-        }),
+        settings,
+        recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
     }),
