@@ -1,5 +1,5 @@
-import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
+import {MealPreparerIngredientStats} from '@/ui/cooking/prepare/type';
 
 
 export type MealPreparerMealTypeStats = {
@@ -8,11 +8,7 @@ export type MealPreparerMealTypeStats = {
 };
 
 export type MealPreparerInfoOfMealType = {
-  ingredients: {
-    missing: IngredientCounter,
-    filler: IngredientCounter,
-    required: IngredientCounter,
-  },
+  ingredients: MealPreparerIngredientStats,
   finalStrength: {[meal in MealId]?: number},
   stats: MealPreparerMealTypeStats,
   mealsOfType: Meal[],

@@ -1,8 +1,9 @@
 import {Meal} from '@/types/game/meal/main';
 import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerCommonProps} from '@/ui/cooking/prepare/type';
+import {getMealPreparerIngredientStats} from '@/ui/cooking/prepare/utils';
 import {toSum} from '@/utils/array';
-import {subtractIngredientCount, toMealIngredientFromIngredientCounter} from '@/utils/game/cooking';
+import {toMealIngredientFromIngredientCounter} from '@/utils/game/cooking';
 import {getMealsIngredientsRequired} from '@/utils/game/meal/count';
 import {getMealFinalStrength, getMealFinalStrengthOfNonRecipe} from '@/utils/game/meal/main';
 import {isNotNullish} from '@/utils/type';
@@ -26,7 +27,10 @@ export const getMealPreparerInfoOfMealType = ({
   const mapBonus = calculatedSettings.bonus.map;
 
   const required = getMealsIngredientsRequired({meals: mealsOfType, mealCount: filter.mealsWanted});
-  const filler = subtractIngredientCount(filter.inventory, required);
+  const ingredients = getMealPreparerIngredientStats({
+    required,
+    inventory: filter.inventory,
+  });
 
   const finalStrength: MealPreparerInfoOfMealType['finalStrength'] = Object.fromEntries(mealsOfType
     .map((meal) => {
@@ -49,17 +53,13 @@ export const getMealPreparerInfoOfMealType = ({
 
   const recipeStrength = toSum(Object.values(finalStrength).filter(isNotNullish));
   const fillerStrength = getMealFinalStrengthOfNonRecipe({
-    filler: toMealIngredientFromIngredientCounter(filler),
+    filler: toMealIngredientFromIngredientCounter(ingredients.filler),
     ingredientMap,
     mapBonus,
   }).strengthFinal;
 
   return {
-    ingredients: {
-      filler,
-      missing: subtractIngredientCount(required, filter.inventory),
-      required,
-    },
+    ingredients,
     finalStrength,
     stats: {
       recipeOnly: recipeStrength,
