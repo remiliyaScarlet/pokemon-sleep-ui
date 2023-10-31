@@ -25,7 +25,9 @@ type Props = PokeboxCommonProps & {
 export const PokeboxLoadedClient = (props: Props) => {
   const {pokedexMap, subSkillMap, initialPokebox} = props;
 
-  const {act, session} = useUserDataActor();
+  const {act, session} = useUserDataActor({
+    statusToast: true,
+  });
 
   const [loading, setLoading] = React.useState(false);
   // Keeping a local copy of the pokebox so no need to lazy load the whole box on every change
