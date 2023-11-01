@@ -24,16 +24,17 @@ type Props =
 export const useCalculationWorker = ({
   pokemon,
   pokemonProducingParamsMap,
-  ingredients,
   ingredientMap,
   ingredientChainMap,
   berryDataMap,
   sleepStyleMap,
-  level,
-  pokemonToAnalyze,
-  snorlaxFavorite,
   bonus,
   sleepDurations,
+  behavior,
+  level,
+  ingredients,
+  pokemonToAnalyze,
+  snorlaxFavorite,
   setStats,
   setLoading,
   calculateDeps,
@@ -50,18 +51,19 @@ export const useCalculationWorker = ({
 
   const requestStats = () => {
     work({
-      level,
-      pokemonList: pokemonToAnalyze,
       pokemon,
       pokemonProducingParamsMap,
-      ingredients,
-      ingredientChainMap,
       ingredientMap,
+      ingredientChainMap,
       berryDataMap,
       sleepStyleMap,
-      snorlaxFavorite,
       bonus,
       sleepDurations,
+      behavior,
+      level,
+      ingredients,
+      pokemonList: pokemonToAnalyze,
+      snorlaxFavorite,
     });
     setLoading(true);
   };

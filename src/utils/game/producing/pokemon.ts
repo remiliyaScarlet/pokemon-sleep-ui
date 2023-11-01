@@ -60,7 +60,10 @@ export const getPokemonProducingRate = ({
     ...opts,
   });
 
-  const produceSplit = getProduceSplit(opts);
+  const produceSplit = getProduceSplit({
+    specialty: pokemon.specialty,
+    ...opts,
+  });
   const fullPackStats = getFullPackStats({
     carryLimit: carryLimitInfo.final,
     dailyCount: getTheoreticalDailyQuantityInSleep({
@@ -80,6 +83,7 @@ export const getPokemonProducingRate = ({
     sleepStateSplit,
     carryLimitInfo,
     berry: getProducingRateOfStates({
+      specialty: pokemon.specialty,
       period,
       rate: berry,
       produceType: 'berry',
@@ -90,6 +94,7 @@ export const getPokemonProducingRate = ({
     ingredient: Object.fromEntries(Object.values(ingredient).map((rate) => [
       rate.id,
       getProducingRateOfStates({
+        specialty: pokemon.specialty,
         period,
         rate,
         produceType: 'ingredient',

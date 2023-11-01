@@ -5,12 +5,10 @@ import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/
 import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {BerryDataMap} from '@/types/game/berry';
-import {EffectiveBonus} from '@/types/game/bonus';
 
 
 type Props = PokemonBerryStatsCommonProps & {
   level: number,
-  bonus: EffectiveBonus,
   berryDataMap: BerryDataMap,
 };
 
