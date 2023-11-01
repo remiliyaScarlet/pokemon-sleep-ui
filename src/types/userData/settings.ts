@@ -5,14 +5,20 @@ import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {Migratable} from '@/types/migrate';
 
 
+export type UserCalculationBehavior = {
+  berryPokemonAlwaysFullPack: boolean,
+  goodCampTicket: boolean,
+};
+
 export type UserSettings = Migratable & {
   bonus: UserBonus,
   stamina: StaminaCalcConfig,
   staminaSkillTrigger: StaminaSkillTriggerData,
   currentMap: SleepMapId,
+  behavior: UserCalculationBehavior,
 };
 
-export type CalculatedUserSettings = {
+export type CalculatedUserSettings = Pick<UserSettings, 'behavior'> & {
   bonus: EffectiveBonus,
   sleepDurations: number[],
 };

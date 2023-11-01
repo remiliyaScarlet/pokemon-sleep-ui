@@ -1,4 +1,9 @@
-import {defaultStaminaCalcConfig, defaultUserSettings} from '@/const/user/settings';
+import {
+  defaultRecoveryRate,
+  defaultStaminaCalcConfig,
+  defaultStaminaSkillTrigger,
+  defaultUserCalculationBehavior,
+} from '@/const/user/settings';
 import {Migrator} from '@/types/migrate';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsMigrateParams} from '@/utils/migrate/userSettings/type';
@@ -22,7 +27,7 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
       ...old,
       stamina: {
         ...old.stamina,
-        recoveryRate: defaultStaminaCalcConfig.recoveryRate,
+        recoveryRate: defaultRecoveryRate,
       },
     }),
   },
@@ -31,7 +36,15 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
     // Added `staminaSkillTrigger` in the config
     migrate: (old) => ({
       ...old,
-      staminaSkillTrigger: defaultUserSettings.staminaSkillTrigger,
+      staminaSkillTrigger: defaultStaminaSkillTrigger,
+    }),
+  },
+  {
+    toVersion: 5,
+    // Added `staminaSkillTrigger` in the config
+    migrate: (old) => ({
+      ...old,
+      behavior: defaultUserCalculationBehavior,
     }),
   },
 ];

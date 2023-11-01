@@ -1,7 +1,7 @@
 import {UserBonus} from '@/types/game/bonus';
 import {StaminaCalcConfig, StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
 import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
-import {UserSettings} from '@/types/userData/settings';
+import {UserCalculationBehavior, UserSettings} from '@/types/userData/settings';
 
 
 export const defaultMapBonus = 0;
@@ -39,10 +39,16 @@ export const defaultStaminaSkillTrigger: StaminaSkillTriggerData = {
   amount: 18,
 };
 
+export const defaultUserCalculationBehavior: UserCalculationBehavior = {
+  berryPokemonAlwaysFullPack: true,
+  goodCampTicket: false,
+};
+
 export const defaultUserSettings: UserSettings = {
   bonus: defaultUserBonus,
   stamina: defaultStaminaCalcConfig,
   staminaSkillTrigger: defaultStaminaSkillTrigger,
+  behavior: defaultUserCalculationBehavior,
   currentMap: 1,
-  version: 4,
+  version: 5,
 };

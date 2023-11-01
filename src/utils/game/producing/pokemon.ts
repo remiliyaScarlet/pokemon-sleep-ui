@@ -3,6 +3,7 @@ import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
@@ -22,14 +23,15 @@ type GetPokemonProducingRateOpts =
   ProducingRateSingleParams & {
     pokemonProducingParams: PokemonProducingParams,
     sleepDurations: number[],
-    period?: ProductionPeriod,
     evolutionCount: number,
+    behavior: UserCalculationBehavior,
+    period?: ProductionPeriod,
     noCap?: boolean,
   };
 
 export const getPokemonProducingRate = ({
-  evolutionCount,
   sleepDurations,
+  evolutionCount,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
   const {pokemon, helperCount} = opts;
