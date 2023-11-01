@@ -36,7 +36,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
   const requiredIngredients = React.useMemo(() => toIngredientCounterFromMealIngredient(meal.ingredients), [meal]);
   const [usages, setUsages] = React.useState<IngredientCounter>(requiredIngredients);
 
-  const {strengthFinal, bonusRateWithFiller} = getMealFinalStrength({
+  const {strengthFinal, bonusRate} = getMealFinalStrength({
     ...props,
     level: filter.recipeLevel[meal.id] ?? 1,
     filler: toMealIngredientFromIngredientCounter(subtractIngredientCount(usages, requiredIngredients)),
@@ -72,7 +72,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
               </Flex>
               {
                 isRequirementSatisfied &&
-                <div>+{(bonusRateWithFiller * 100 - 100).toFixed(1)}%</div>
+                <div>+{(bonusRate * 100 - 100).toFixed(1)}%</div>
               }
             </Flex>
           </Flex>

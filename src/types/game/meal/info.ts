@@ -4,7 +4,3 @@ export type MealStrengthInfo = {
   strengthFinal: number,
   bonusRate: number,
 };
-
-export type MealStrengthInfoFinal = MealStrengthInfo & {
-  bonusRateWithFiller: number,
-};
