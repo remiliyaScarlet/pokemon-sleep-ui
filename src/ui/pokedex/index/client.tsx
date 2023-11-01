@@ -5,8 +5,10 @@ import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
+import {pokemonInputTypeOfIngredients} from '@/components/shared/pokemon/filter/type';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {defaultNeutralOpts} from '@/const/game/production';
@@ -114,10 +116,21 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
             'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-6',
         )}>
           {sortedData.map(({source}) => {
+            const ingredientIds = source.ingredients.map(({id}) => id);
             const pokemonId = source.pokemon.id;
-            const key = `${pokemonId}-${source.ingredients.map(({id}) => id).join('-')}`;
+            const key = `${pokemonId}-${ingredientIds.join('-')}`;
 
             if (!isIncluded[pokemonId]) {
+              return null;
+            }
+
+            // Filter inclusion map (`isIncluded`) is ingredient-agnostic,
+            // but combination that does not have the selected ingredient should be filtered out as well #401
+            if (!pokemonInputTypeOfIngredients.every((ingredientKey) => isFilterIncludingSome({
+              filter,
+              filterKey: ingredientKey,
+              ids: ingredientIds,
+            }))) {
               return null;
             }
 
