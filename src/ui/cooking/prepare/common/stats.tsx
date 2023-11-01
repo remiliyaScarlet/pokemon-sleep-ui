@@ -27,6 +27,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(missing)}
           className="flex-wrap justify-center"
           iconClickable
+          showXMarkOnEmpty
         />
       </InputRowWithTitle>
       <InputRowWithTitle title={t('Ingredient.Filler')} className="min-h-[2.5rem]">
@@ -37,6 +38,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(filler)}
           className="flex-wrap justify-center"
           iconClickable
+          showXMarkOnEmpty
         />
       </InputRowWithTitle>
       <InputRowWithTitle title={t('Ingredient.Required')} className="min-h-[2.5rem]">
@@ -46,6 +48,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(required)}
           className="flex-wrap justify-center"
           iconClickable
+          showXMarkOnEmpty
         />
       </InputRowWithTitle>
     </>

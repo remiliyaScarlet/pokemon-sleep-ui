@@ -1,5 +1,6 @@
 import React from 'react';
 
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -19,6 +20,7 @@ type Props = IngredientIconsCommonProps & {
   dimension?: Dimension,
   iconClickable?: boolean,
   textSizeClassName?: string,
+  showXMarkOnEmpty?: boolean,
   className?: string,
 };
 
@@ -29,6 +31,7 @@ export const IngredientIcons = ({
   dimension,
   iconClickable,
   textSizeClassName,
+  showXMarkOnEmpty,
   className,
 }: Props) => {
   const t = useTranslations('Game.Food');
@@ -59,6 +62,7 @@ export const IngredientIcons = ({
           </Flex>
         );
       })}
+      {showXMarkOnEmpty && !ingredients.length && <XCircleIcon className={dimension}/>}
     </Flex>
   );
 };
