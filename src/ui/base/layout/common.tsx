@@ -64,7 +64,7 @@ export const PageLayout = ({
             <React.Suspense fallback={<Loading/>}>
               {children}
             </React.Suspense>
-            <AdsGap/>
+            <AdsGap show={adsShouldShow}/>
           </Flex>
         </div>
       </Flex>
