@@ -5,10 +5,8 @@ import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
-import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
-import {pokemonInputTypeOfIngredients} from '@/components/shared/pokemon/filter/type';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {defaultNeutralOpts} from '@/const/game/production';
@@ -20,6 +18,7 @@ import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
+import {getPossibleIngredientsFromChain} from '@/utils/game/ingredientChain';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
@@ -63,17 +62,19 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       extra: null,
       ...defaultNeutralOpts,
     };
+    const chain = ingredientChainMap[pokemon.ingredientChain];
 
     if (!toCalculateAllIngredientPossibilities(filter)) {
       return [{
         ...commonOpts,
-        ingredients: [],
+        // Count of 0 to avoid accidental inclusion in the calculation
+        ingredients: getPossibleIngredientsFromChain({chain, count: 0}),
       }];
     }
 
     return [...generatePossibleIngredientProductions({
       level: filter.level,
-      chain: ingredientChainMap[pokemon.ingredientChain],
+      chain,
     })]
       .map((ingredients) => ({...commonOpts, ingredients}));
   }), sortingDeps);
@@ -124,15 +125,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
               return null;
             }
 
-            // Filter inclusion map (`isIncluded`) is ingredient-agnostic,
-            // but combination that does not have the selected ingredient should be filtered out as well #401
-            if (!pokemonInputTypeOfIngredients.every((ingredientKey) => isFilterIncludingSome({
-              filter,
-              filterKey: ingredientKey,
-              ids: ingredientIds,
-            }))) {
-              return null;
-            }
+            // --- Any other filtering condition should **NOT** go here as it makes the result count incorrect
 
             return (
               <PokedexLink
