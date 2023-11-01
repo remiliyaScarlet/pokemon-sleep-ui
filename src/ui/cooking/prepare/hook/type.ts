@@ -2,7 +2,7 @@ import {Meal, MealId, MealTypeId} from '@/types/game/meal/main';
 import {MealPreparerIngredientStats} from '@/ui/cooking/prepare/type';
 
 
-export type MealPreparerMealTypeStats = {
+export type MealPreparerMealTypeSummary = {
   recipeOnly: number,
   withFiller: number,
 };
@@ -10,7 +10,7 @@ export type MealPreparerMealTypeStats = {
 export type MealPreparerInfoOfMealType = {
   ingredients: MealPreparerIngredientStats,
   finalStrength: {[meal in MealId]?: number},
-  stats: MealPreparerMealTypeStats,
+  summary: MealPreparerMealTypeSummary,
   mealsOfType: Meal[],
 };
 

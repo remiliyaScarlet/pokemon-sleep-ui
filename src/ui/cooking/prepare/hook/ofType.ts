@@ -61,7 +61,7 @@ export const getMealPreparerInfoOfMealType = ({
   return {
     ingredients,
     finalStrength,
-    stats: {
+    summary: {
       recipeOnly: recipeStrength,
       withFiller: recipeStrength + fillerStrength,
     },

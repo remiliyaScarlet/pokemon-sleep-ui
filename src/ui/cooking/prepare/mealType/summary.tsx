@@ -4,15 +4,15 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
-import {MealPreparerMealTypeStats} from '@/ui/cooking/prepare/hook/type';
+import {MealPreparerMealTypeSummary} from '@/ui/cooking/prepare/hook/type';
 import {formatInt} from '@/utils/number/format';
 
 
 type Props = {
-  stats: MealPreparerMealTypeStats,
+  stats: MealPreparerMealTypeSummary,
 };
 
-export const MealPreparerMealTypeStatsUI = ({stats}: Props) => {
+export const MealPreparerMealTypeSummaryUI = ({stats}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (

@@ -14,7 +14,7 @@ import {MealTypeId} from '@/types/game/meal/main';
 import {MealPreparerIngredientStatsUI} from '@/ui/cooking/prepare/common/stats';
 import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerRecipe} from '@/ui/cooking/prepare/mealType/recipe';
-import {MealPreparerMealTypeStatsUI} from '@/ui/cooking/prepare/mealType/stats';
+import {MealPreparerMealTypeSummaryUI} from '@/ui/cooking/prepare/mealType/summary';
 import {MealPreparerCommonProps} from '@/ui/cooking/prepare/type';
 
 
@@ -65,7 +65,7 @@ export const MealPrepareOfMealType = ({mealType, info, ...props}: Props) => {
       </CollapsibleFull>
       <HorizontalSplitter className={mealTypeBorderStyle[mealType]}/>
       <MealPreparerIngredientStatsUI stats={info.ingredients}/>
-      <MealPreparerMealTypeStatsUI stats={info.stats}/>
+      <MealPreparerMealTypeSummaryUI stats={info.summary}/>
     </Flex>
   );
 };
