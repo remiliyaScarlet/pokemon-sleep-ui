@@ -90,12 +90,14 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     }
   }
 
+  const isValid = min?.value !== max?.value;
+
   return {
     level,
     samples,
-    rank,
-    percentage: min && max ? Math.abs((valueOfCurrent - min.value) / (max.value - min.value) * 100) : NaN,
-    percentile: Math.abs((samples + 1 - rank) / (samples + 1) * 100),
+    rank: isValid ? rank : NaN,
+    percentage: isValid && min && max ? Math.abs((valueOfCurrent - min.value) / (max.value - min.value) * 100) : NaN,
+    percentile: isValid ? Math.abs((samples + 1 - rank) / (samples + 1) * 100) : NaN,
     baseDiffPercent: (valueOfCurrent / valueOfBase - 1) * 100,
     points: {
       min,
