@@ -259,6 +259,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Awake: string,
       },
     },
+    UserSettings: {
+      BerryPokemonFullPack: string,
+      GoodCampTicket: string,
+    },
     UserControl: {
       Login: string,
       Logout: string,

@@ -332,6 +332,10 @@
       "Awake": "非睡眠"
     }
   },
+  "UserSettings": {
+    "BerryPokemonFullPack": "きのみポケモン全時所持上限に達する",
+    "GoodCampTicket": "いいキャンプチケット"
+  },
   "UserControl": {
     "Login": "ログイン",
     "Logout": "ログアウト"

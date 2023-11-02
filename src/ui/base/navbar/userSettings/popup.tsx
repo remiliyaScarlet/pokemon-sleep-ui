@@ -7,6 +7,7 @@ import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';
+import {UserCalculationBehaviorUI} from '@/ui/base/navbar/userSettings/sections/behavior';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
 import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
 import {UserSettingsStamina} from '@/ui/base/navbar/userSettings/sections/stamina';
@@ -52,6 +53,13 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
           setTrigger={(staminaSkillTrigger) => setSettings((original) => ({
             ...original,
             staminaSkillTrigger,
+          }))}
+        />
+        <UserCalculationBehaviorUI
+          behavior={settings.behavior}
+          setBehavior={(behavior) => setSettings((original) => ({
+            ...original,
+            behavior,
           }))}
         />
         <UserSettingsBonusUI

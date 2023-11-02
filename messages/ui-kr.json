@@ -332,6 +332,10 @@
       "Awake": "깨 있을 때"
     }
   },
+  "UserSettings": {
+    "BerryPokemonFullPack": "Always full pack for berry specialists",
+    "GoodCampTicket": "좋은캠프티켓"
+  },
   "UserControl": {
     "Login": "로그인",
     "Logout": "로그아웃"

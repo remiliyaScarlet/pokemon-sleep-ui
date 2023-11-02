@@ -29,6 +29,7 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
       'UI.InPage.Pokedex.Info',
       'UI.Metadata',
       'UI.Stamina',
+      'UI.UserSettings',
       'UI.UserControl',
     ]}>
       <NavBarClient session={session} mapIds={mapIds} noUserControl={noUserControl}>

@@ -333,6 +333,10 @@
       "Awake": "Wach"
     }
   },
+  "UserSettings": {
+    "BerryPokemonFullPack": "Immer volles Inventar für Beeren-Spezialisten",
+    "GoodCampTicket": "Profi-Camping-Ticket"
+  },
   "UserControl": {
     "Login": "Login",
     "Logout": "Logout"

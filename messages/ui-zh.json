@@ -332,6 +332,10 @@
       "Awake": "清醒中"
     }
   },
+  "UserSettings": {
+    "BerryPokemonFullPack": "樹果專長全時滿包",
+    "GoodCampTicket": "好露營券"
+  },
   "UserControl": {
     "Login": "登入",
     "Logout": "登出"
