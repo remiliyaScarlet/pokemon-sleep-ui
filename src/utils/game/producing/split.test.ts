@@ -17,10 +17,7 @@ describe('Pokemon Producing Split', () => {
       },
       natureId: null,
       subSkillBonus: {},
-      behavior: {
-        ...defaultUserCalculationBehavior,
-        berryPokemonAlwaysFullPack: false,
-      },
+      behavior: defaultUserCalculationBehavior,
     });
 
     expect(split.berry).toBeCloseTo(0.74369);
@@ -37,7 +34,10 @@ describe('Pokemon Producing Split', () => {
       },
       natureId: null,
       subSkillBonus: {},
-      behavior: defaultUserCalculationBehavior,
+      behavior: {
+        ...defaultUserCalculationBehavior,
+        berryPokemonAlwaysFullPack: true,
+      },
     });
 
     expect(split.berry).toBeCloseTo(1);
