@@ -4,6 +4,7 @@ import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
+import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
@@ -25,13 +26,23 @@ type GetCarryLimitInfoOpts = {
   pokemon: PokemonInfo,
   evolutionCount: number,
   subSkillBonus: GroupedSubSkillBonus,
+  behavior: UserCalculationBehavior,
 };
 
-export const getCarryLimitInfo = ({pokemon, evolutionCount, subSkillBonus}: GetCarryLimitInfoOpts): CarryLimitInfo => {
+export const getCarryLimitInfo = ({
+  pokemon,
+  evolutionCount,
+  subSkillBonus,
+  behavior,
+}: GetCarryLimitInfoOpts): CarryLimitInfo => {
   const {stats} = pokemon;
 
   const base = stats.maxCarry + evolutionCount * 5;
-  const final = base + toSum(getSubSkillBonusValue(subSkillBonus, 'inventory'));
+  let final = base + toSum(getSubSkillBonusValue(subSkillBonus, 'inventory'));
+
+  if (behavior.goodCampTicket) {
+    final = Math.ceil(final * 1.2);
+  }
 
   return {base, final};
 };

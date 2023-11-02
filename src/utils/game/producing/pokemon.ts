@@ -34,7 +34,7 @@ export const getPokemonProducingRate = ({
   evolutionCount,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon, helperCount} = opts;
+  const {pokemon, helperCount, behavior} = opts;
 
   const period = opts.period ?? 'daily';
   const sleepDuration = toSum(sleepDurations);
@@ -49,6 +49,7 @@ export const getPokemonProducingRate = ({
     pokemon,
     evolutionCount,
     subSkillBonus,
+    behavior,
   });
 
   const berry = getBerryProducingRate({

@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
+import {defaultUserCalculationBehavior} from '@/const/user/settings';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {getBaseFrequencyFromPokemon, getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 
@@ -12,9 +13,26 @@ describe('Pokemon Base Producing Frequency', () => {
       pokemon: testPokemonData.absol,
       helperCount: 0,
       natureId: null,
+      behavior: defaultUserCalculationBehavior,
     });
 
     expect(frequency).toBeCloseTo(2920);
+  });
+
+  it('respects good camp ticket calculation behavior', () => {
+    const frequency = getBaseFrequencyFromPokemon({
+      level: 30,
+      subSkillBonus: {},
+      pokemon: testPokemonData.absol,
+      helperCount: 0,
+      natureId: null,
+      behavior: {
+        ...defaultUserCalculationBehavior,
+        goodCampTicket: true,
+      },
+    });
+
+    expect(frequency).toBeCloseTo(2433);
   });
 });
 

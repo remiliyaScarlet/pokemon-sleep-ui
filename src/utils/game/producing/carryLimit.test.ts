@@ -1,5 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
+import {defaultUserCalculationBehavior} from '@/const/user/settings';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {
   getCarryLimitInfo,
@@ -14,6 +15,7 @@ describe('Pokemon Carry Limit Info', () => {
       pokemon: testPokemonData.absol,
       evolutionCount: 0,
       subSkillBonus: {},
+      behavior: defaultUserCalculationBehavior,
     });
 
     expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
@@ -25,6 +27,7 @@ describe('Pokemon Carry Limit Info', () => {
       pokemon: testPokemonData.absol,
       evolutionCount: 2,
       subSkillBonus: {},
+      behavior: defaultUserCalculationBehavior,
     });
 
     expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry + 2 * 5);
@@ -38,10 +41,28 @@ describe('Pokemon Carry Limit Info', () => {
       subSkillBonus: {
         inventory: [18],
       },
+      behavior: defaultUserCalculationBehavior,
     });
 
     expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
     expect(final).toBeCloseTo(testPokemonData.absol.stats.maxCarry + 18);
+  });
+
+  it('respects good camp ticket calculation behavior', () => {
+    const {base, final} = getCarryLimitInfo({
+      pokemon: testPokemonData.absol,
+      evolutionCount: 0,
+      subSkillBonus: {
+        inventory: [18],
+      },
+      behavior: {
+        ...defaultUserCalculationBehavior,
+        goodCampTicket: true,
+      },
+    });
+
+    expect(base).toBeCloseTo(testPokemonData.absol.stats.maxCarry);
+    expect(final).toBeCloseTo(39);
   });
 });
 

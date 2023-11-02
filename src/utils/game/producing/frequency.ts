@@ -1,9 +1,11 @@
 import {durationOfDay} from '@/const/common';
+import {goodCampTicketBonus} from '@/const/game/bonus';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {PokemonProducingRate, ProducingValueOfStates} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
+import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
@@ -17,6 +19,7 @@ type GetBaseFrequencyOpts = {
   natureId: NatureId | null,
   subSkillBonusRates: number[],
   helperCount: number,
+  behavior: UserCalculationBehavior,
   noCap?: boolean,
 };
 
@@ -26,6 +29,7 @@ const getBaseFrequency = ({
   natureId,
   subSkillBonusRates,
   helperCount,
+  behavior,
   noCap,
 }: GetBaseFrequencyOpts) => {
   let bonus = (1 - (level - 1) * 0.002);
@@ -34,12 +38,20 @@ const getBaseFrequency = ({
   // 0.35 is the mandatory cap from the officials
   // -- No Cap is used in rating, because rating applies 5 stacks of helper count, which won't really happen in game
   bonus *= (1 - Math.min(noCap ? Infinity : 0.35, toSum(subSkillBonusRates) / 100 + 0.05 * helperCount));
+
+  if (behavior.goodCampTicket) {
+    bonus /= goodCampTicketBonus.frequencyDivisor;
+  }
+
   bonus = roundDown({value: bonus, decimals: 4});
 
   return roundDown({value: frequency * bonus, decimals: 0});
 };
 
-export type GetFrequencyFromPokemonOpts = Pick<GetBaseFrequencyOpts, 'helperCount' | 'natureId' | 'noCap'> & {
+export type GetFrequencyFromPokemonOpts = Pick<
+  GetBaseFrequencyOpts,
+  'behavior' | 'helperCount' | 'natureId' | 'noCap'
+> & {
   level: number,
   subSkillBonus: GroupedSubSkillBonus,
   pokemon: PokemonInfo,
