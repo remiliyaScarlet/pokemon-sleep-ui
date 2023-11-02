@@ -20,7 +20,6 @@ export const useMealPreparerInfo = ({
     calculatedSettings,
     ingredientMap,
   } = props;
-  const {mealsWanted, recipeLevel} = filter;
 
   return React.useMemo(
     (): MealPreparerInfo => Object.fromEntries(mealTypes.map((mealType) => [
@@ -30,6 +29,6 @@ export const useMealPreparerInfo = ({
         mealsOfType: meals.filter(({type, ingredients}) => type === mealType && !!ingredients.length),
       }),
     ])),
-    [mealsWanted, recipeLevel, calculatedSettings, meals, ingredientMap],
+    [filter, calculatedSettings, meals, ingredientMap],
   );
 };
