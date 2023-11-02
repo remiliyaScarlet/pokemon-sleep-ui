@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PotIcon} from '@/components/shared/icon/pot';
@@ -14,6 +15,7 @@ import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {CookingExternalLink} from '@/ui/cooking/common/link';
 import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerCommonProps, MealPreparerFilter} from '@/ui/cooking/prepare/type';
+import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatInt} from '@/utils/number/format';
 
 
@@ -39,14 +41,19 @@ export const MealPreparerRecipe = (props: Props) => {
 
   return (
     <Flex className="bg-plate relative rounded-lg p-2">
-      <Flex className={clsx('z-10 gap-1.5', !count && 'text-slate-600/80 dark:text-slate-400/80')}>
+      <Flex className={clsx('z-10 gap-1.5', !count && 'text-slate-600/90 dark:text-slate-400/90')}>
         <Flex direction="row" className="justify-between">
-          <div className={clsx('truncate text-sm')}>
+          <div className="truncate text-sm">
             {mealName}
           </div>
           <CookingExternalLink mealId={id}/>
         </Flex>
-        <IngredientIconsFromMeal meal={meal}/>
+        <Flex direction="row" noFullWidth className="items-center gap-1">
+          <InfoIcon style="soft">
+            {getMealIngredientCount(meal)}
+          </InfoIcon>
+          <IngredientIconsFromMeal meal={meal}/>
+        </Flex>
         <CookingInputRecipeLevel {...props}/>
         <NumberInputOptional
           text={<PotIcon alt={t('TargetMealCount')} dimension="h-6 w-6"/>}
