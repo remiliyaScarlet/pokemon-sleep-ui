@@ -215,6 +215,10 @@
     @apply info-icon-base bg-amber-400/80 dark:bg-yellow-700/80;
   }
   
+  .info-icon-soft {
+    @apply info-icon-base bg-slate-400/40 dark:bg-slate-500/40;
+  }
+  
   .info-highlight {
     @apply rounded-lg ring-1 ring-inset ring-slate-700/50 dark:ring-slate-300/70;
   }

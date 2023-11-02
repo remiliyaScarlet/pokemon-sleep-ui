@@ -14,7 +14,7 @@ type Props = {
 
 export const PokeInBoxLevel = ({viewType, level, isLevelPreview}: Props) => {
   return (
-    <InfoIcon warn={isLevelPreview} className={clsx(
+    <InfoIcon style={isLevelPreview ? 'warn' : 'normal'} className={clsx(
       viewType === 'grid' && 'absolute bottom-1 right-1 z-20 gap-1',
     )}>
       {level}
