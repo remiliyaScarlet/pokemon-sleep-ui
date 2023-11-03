@@ -61,6 +61,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Name: string,
         Description: string,
       },
+      NotFound: I18nMetadata,
       Home: I18nMetadata,
       Pokedex: PageWithIndividual,
       Analysis: I18nMetadata,
