@@ -220,7 +220,7 @@
   }
   
   .info-highlight {
-    @apply rounded-lg ring-1 ring-inset ring-slate-700/50 dark:ring-slate-300/70;
+    @apply rounded-lg bg-slate-300 dark:bg-slate-700;
   }
   
   /* endregion */
@@ -450,7 +450,7 @@
   }
   
   .bg-blink {
-    @apply bg-blink-light dark:bg-blink-dark
+    @apply bg-blink-light dark:bg-blink-dark;
   }
   
   /* endregion */
