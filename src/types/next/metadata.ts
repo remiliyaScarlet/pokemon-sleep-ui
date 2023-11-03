@@ -5,6 +5,10 @@ import {PageParams} from '@/types/next/page';
 
 export type GenerateMetadataParams = PageParams;
 
+export type GeneratePageMetaValues = {
+  name: string,
+};
+
 export type GenerateMetadataOpts<P extends GenerateMetadataParams> = {
   params: P
 };
