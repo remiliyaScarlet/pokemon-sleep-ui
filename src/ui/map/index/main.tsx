@@ -6,7 +6,7 @@ import {authOptions} from '@/const/auth';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {getSleepStyleByMaps} from '@/controller/sleepStyle';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MapIndexContent} from '@/ui/map/index/content';
 import {MapIndexServerDataProps} from '@/ui/map/index/type';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {getAllActivationDataAsClient} from '@/controller/user/activation/data';
 import {getUserIdEmailMap} from '@/controller/user/auth/main';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {SiteAdminClient} from '@/ui/admin/client';
 import {SiteAdminServerDataProps} from '@/ui/admin/type';
 import {AdminOnlyPageLayout} from '@/ui/base/layout/adminOnly';

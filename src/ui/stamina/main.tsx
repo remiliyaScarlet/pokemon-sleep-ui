@@ -6,7 +6,7 @@ import {authOptions} from '@/const/auth';
 import {defaultStaminaCalcConfig, defaultStaminaSkillTrigger} from '@/const/user/settings';
 import {I18nProvider} from '@/contexts/i18n';
 import {getSubSkillMap} from '@/controller/subSkill';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {StaminaAnalysisClient} from '@/ui/stamina/client';
 import {StaminaAnalysisDataProps} from '@/ui/stamina/type';

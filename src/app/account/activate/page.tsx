@@ -7,7 +7,7 @@ import {SignIn} from '@/components/auth/signIn';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
 import {consumeActivationKey} from '@/controller/user/activation/data';
-import {PageProps} from '@/types/next/page';
+import {PageProps} from '@/types/next/page/common';
 
 
 const AccountActivate = async ({searchParams}: PageProps) => {

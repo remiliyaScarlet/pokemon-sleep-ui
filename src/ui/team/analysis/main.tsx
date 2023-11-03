@@ -12,7 +12,7 @@ import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSnorlaxRank} from '@/controller/snorlaxRank';
 import {getSubSkillMap} from '@/controller/subSkill';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {TeamAnalysisClient} from '@/ui/team/analysis/client/main';
 import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';

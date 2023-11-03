@@ -6,7 +6,7 @@ import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {discordLink} from '@/const/external';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {AboutSection} from '@/ui/about/section';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {getI18nTranslator} from '@/utils/i18n';

@@ -12,7 +12,7 @@ import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {RatingClient} from '@/ui/rating/client';
 import {RatingServerDataProps} from '@/ui/rating/type';

@@ -5,7 +5,7 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {I18nProvider} from '@/contexts/i18n';
 import {getUserCount} from '@/controller/auth';
 import {getPaidUserCount} from '@/controller/user/activation/data';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {HomeClient} from '@/ui/home/client';
 

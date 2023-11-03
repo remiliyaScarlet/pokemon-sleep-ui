@@ -11,7 +11,7 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SkillTriggerAnalysisClient} from '@/ui/team/mainskill/client';
 import {SkillTriggerAnalysisServerDataProps} from '@/ui/team/mainskill/type';

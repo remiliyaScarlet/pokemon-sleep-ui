@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {AuthLayout} from '@/ui/auth/common/layout';
 import {AuthSignInEmailClient} from '@/ui/auth/signIn/email/client';
 

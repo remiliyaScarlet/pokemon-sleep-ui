@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
 import {NavEntryLink} from '@/types/nav';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 
 

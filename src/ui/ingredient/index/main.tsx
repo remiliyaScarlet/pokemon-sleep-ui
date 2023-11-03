@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {getAllIngredients} from '@/controller/ingredient';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientLink} from '@/ui/ingredient/index/link';
 

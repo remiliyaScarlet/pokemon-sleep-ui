@@ -6,7 +6,7 @@ import {I18nProvider} from '@/contexts/i18n';
 import {getAllExpDataSorted} from '@/controller/pokemon/exp';
 import {getAllExpMultiplierData} from '@/controller/pokemon/expMultiplier';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonExpCalculatorClient} from '@/ui/xp/client';
 import {PokemonExpCalculatorDataProps} from '@/ui/xp/type';

@@ -6,7 +6,7 @@ import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getAllMeals} from '@/controller/meal';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PotInfoClient} from '@/ui/info/pot/client';
 import {PotInfoDataProps} from '@/ui/info/pot/type';

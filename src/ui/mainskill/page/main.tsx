@@ -7,7 +7,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {I18nProvider} from '@/contexts/i18n';
 import {getMainSkillData} from '@/controller/mainSkill';
 import {getPokemonByMainSkill} from '@/controller/pokemon/info';
-import {PageProps} from '@/types/next/page';
+import {PageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MainSkillMeta} from '@/ui/mainskill/page/meta';
 import {MainSkillAvailablePokemon} from '@/ui/mainskill/page/pokemon';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {navEntriesForCooking} from '@/const/nav/cooking';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PageIndex} from '@/ui/base/pageIndex';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {navEntriesForTeam} from '@/const/nav/team';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PageIndex} from '@/ui/base/pageIndex';
 
 

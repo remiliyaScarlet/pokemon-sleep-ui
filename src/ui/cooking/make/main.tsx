@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {I18nProvider} from '@/contexts/i18n';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {getCookingServerDataProps} from '@/ui/cooking/common/utils/data';
 import {MealMakerClient} from '@/ui/cooking/make/client';

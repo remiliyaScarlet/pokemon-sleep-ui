@@ -3,7 +3,7 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {getAllMainSkillData} from '@/controller/mainSkill';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MainSkillLink} from '@/ui/mainskill/index/link';
 

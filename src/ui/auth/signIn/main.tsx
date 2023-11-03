@@ -7,7 +7,7 @@ import {getServerSession} from 'next-auth';
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
-import {DefaultPageProps} from '@/types/next/page';
+import {DefaultPageProps} from '@/types/next/page/common';
 import {AuthLayout} from '@/ui/auth/common/layout';
 import {AuthSignInExternal} from '@/ui/auth/signIn/external';
 
