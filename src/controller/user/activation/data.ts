@@ -56,14 +56,20 @@ export const getActivationDataByFilter = ({executorUserId, filter}: GetActivatio
   return getSingleData(getCollection(), filter);
 };
 
-export const getActivationData = async (userId: string): Promise<ActivationStatus | null> => {
+export const getActivatedUser = async (userId: string | undefined): Promise<ActivationData | null> => {
   const data = await getSingleData(getCollection(), {userId: new ObjectId(userId)});
 
   if (!data) {
     return null;
   }
 
-  return data.activation;
+  return data;
+};
+
+export const getActivationData = async (userId: string): Promise<ActivationStatus | null> => {
+  const data = await getActivatedUser(userId);
+
+  return data?.activation ?? null;
 };
 
 type GetAllActivationDataOpts = ControllerRequireAdminOpts & {
