@@ -1,6 +1,6 @@
 import {defaultUserSettings} from '@/const/user/settings';
 import {StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserCalculationBehavior, UserSettings} from '@/types/userData/settings';
 import {getSleepDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {DeepPartial} from '@/utils/type';
@@ -13,11 +13,13 @@ export const createUserSettings = (settings: DeepPartial<UserSettings> | undefin
 
 type ToCalculatedUserSettingsOpts = ToEffectiveBonusOpts & {
   recoveryRate?: StaminaRecoveryRateConfig,
+  behaviorOverride?: Partial<UserCalculationBehavior>,
 };
 
 export const toCalculatedUserSettings = ({
-  recoveryRate,
   settings,
+  recoveryRate,
+  behaviorOverride,
   ...opts
 }: ToCalculatedUserSettingsOpts): CalculatedUserSettings => {
   if (recoveryRate) {
@@ -27,7 +29,10 @@ export const toCalculatedUserSettings = ({
   return {
     bonus: toEffectiveBonus({settings, ...opts}),
     sleepDurations: getSleepDurationsFromSleepSession(settings.stamina.sleepSession),
-    behavior: settings.behavior,
+    behavior: {
+      ...settings.behavior,
+      ...behaviorOverride,
+    },
   };
 };
 

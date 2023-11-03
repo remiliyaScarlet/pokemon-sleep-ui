@@ -57,24 +57,34 @@ const useProducingStatsOfSlot = ({
       return null;
     }
 
-    const pokemon = pokedexMap[member.pokemonId];
+    const {
+      level,
+      pokemonId,
+      ingredients,
+      evolutionCount,
+      subSkill,
+      nature,
+      berryPokemonAlwaysFullPack,
+    } = member;
+
+    const pokemon = pokedexMap[pokemonId];
     if (!pokemon) {
       return null;
     }
-    const level = member.level;
     const berryData = berryDataMap[pokemon.berry.id];
     const producingRateOpts: ProducingRateSingleParams = {
       helperCount,
       subSkillBonus: getSubSkillBonus({
-        level: member.level,
-        pokemonSubSkill: member.subSkill,
+        level,
+        pokemonSubSkill: subSkill,
         subSkillMap,
       }),
-      natureId: member.nature,
+      natureId: nature,
     };
     const calculatedSettings = toCalculatedUserSettings({
       settings,
       recoveryRate: toRecoveryRate(producingRateOpts),
+      behaviorOverride: berryPokemonAlwaysFullPack !== null ? {berryPokemonAlwaysFullPack} : {},
     });
 
     const pokemonProducingRate = getPokemonProducingRate({
@@ -89,9 +99,9 @@ const useProducingStatsOfSlot = ({
       }),
       snorlaxFavorite,
       berryData,
-      ingredients: getEffectiveIngredientProductions({level, ingredients: member.ingredients}),
+      ingredients: getEffectiveIngredientProductions({level, ingredients}),
       ingredientMap,
-      evolutionCount: member.evolutionCount,
+      evolutionCount,
     });
 
     const total: ProducingRate = getTotalOfPokemonProducingRate({
