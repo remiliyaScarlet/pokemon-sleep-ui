@@ -41,16 +41,17 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         rate={stats}
         state={stateOfRateToShow}
         specialty={pokemon.specialty}
+        noBlink
       />
       <HorizontalSplitter className="w-full"/>
-      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.berry && 'bg-blink')}>
+      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.berry && 'info-highlight')}>
         <TeamAnalysisBerryRate
           id={berryData.id}
           rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
         />
       </Flex>
       <HorizontalSplitter className="w-full"/>
-      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink')}>
+      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'info-highlight')}>
         {ingredientRates.map((rate) => (
           <TeamAnalysisIngredientRate
             key={rate.id}

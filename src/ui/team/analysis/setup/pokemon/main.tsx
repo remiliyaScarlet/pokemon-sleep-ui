@@ -61,14 +61,14 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
         <Flex direction="row" className="items-center justify-between">
           <Flex direction="row" noFullWidth className={clsx(
             'items-center gap-1.5 truncate px-2 py-1 text-sm',
-            pokemon.specialty === specialtyIdMap.skill && 'bg-blink',
+            pokemon.specialty === specialtyIdMap.skill && 'info-highlight',
           )}>
             <MainSkillIcon id={skill} dimension="h-5 w-5"/>
             <div className="truncate">{t(`MainSkill.Name.${skill}`)}</div>
           </Flex>
           <Flex noFullWidth className={clsx(
             'items-end px-2 py-1 text-sm',
-            pokemon.specialty === specialtyIdMap.ingredient && 'bg-blink',
+            pokemon.specialty === specialtyIdMap.ingredient && 'info-highlight',
           )}>
             <PokemonIngredientIcons
               ingredients={[Object.values(member.ingredients).map((production) => production)]}
