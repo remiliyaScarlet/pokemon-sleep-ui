@@ -25,6 +25,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     Common: {
       Candy: string,
       Day: string,
+      Default: string,
       DreamShards: string,
       Exp: string,
       Hour: string,
