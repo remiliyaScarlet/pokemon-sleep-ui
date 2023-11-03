@@ -171,6 +171,17 @@
     },
     "About": {
       "Title": "サイトについて"
+    },
+    "Docs": {
+      "New": {
+        "Title": "新規ヘルプ"
+      },
+      "Edit": {
+        "Title": "ヘルプ編集 - {name}"
+      },
+      "View": {
+        "Title": "ヘルプ - {name}"
+      }
     }
   },
   "InPage": {

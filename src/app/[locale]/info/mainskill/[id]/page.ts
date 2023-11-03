@@ -11,7 +11,7 @@ export const generateStaticParams = async () => {
 };
 
 export type MainSkillPageParams = GenerateMetadataParams & {
-  id: string
+  id: string,
 };
 
 export const generateMetadata: GenerateMetadata<MainSkillPageParams> = async ({params}) => {

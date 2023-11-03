@@ -171,6 +171,17 @@
     },
     "About": {
       "Title": "關於"
+    },
+    "Docs": {
+      "New": {
+        "Title": "新增幫助文件"
+      },
+      "Edit": {
+        "Title": "編輯幫助文件 - {name}"
+      },
+      "View": {
+        "Title": "幫助文件 - {name}"
+      }
     }
   },
   "InPage": {

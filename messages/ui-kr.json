@@ -171,6 +171,17 @@
     },
     "About": {
       "Title": "정보"
+    },
+    "Docs": {
+      "New": {
+        "Title": "New Documentation"
+      },
+      "Edit": {
+        "Title": "Edit Doc - {name}"
+      },
+      "View": {
+        "Title": "Doc - {name}"
+      }
     }
   },
   "InPage": {

@@ -171,6 +171,17 @@
     },
     "About": {
       "Title": "Impressum"
+    },
+    "Docs": {
+      "New": {
+        "Title": "Neue Dokumentation"
+      },
+      "Edit": {
+        "Title": "Dokumentation bearbeiten - {name}"
+      },
+      "View": {
+        "Title": "Dokumentation - {name}"
+      }
     }
   },
   "InPage": {
