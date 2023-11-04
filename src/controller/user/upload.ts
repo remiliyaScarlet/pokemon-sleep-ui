@@ -1,3 +1,5 @@
+import {revalidatePath} from 'next/cache';
+
 import {addDoc, deleteDoc, updateDoc} from '@/controller/docs';
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
@@ -102,16 +104,19 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'cms.docs.create') {
     await addDoc({executorUserId: userId, doc: data});
+    revalidatePath(`/docs/${data.path}`);
     return;
   }
 
   if (type === 'cms.docs.edit') {
     await updateDoc({executorUserId: userId, doc: data});
+    revalidatePath(`/docs/${data.path}`);
     return;
   }
 
   if (type === 'cms.docs.delete') {
     await deleteDoc({executorUserId: userId, ...data});
+    revalidatePath(`/docs/${data.path}`);
     return;
   }
 
