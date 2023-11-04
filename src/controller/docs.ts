@@ -8,6 +8,7 @@ import mongoPromise from '@/lib/mongodb';
 import {DocsData, DocsDataEditable, DocsDataEditableFetched, DocsDataFetched} from '@/types/mongo/docs';
 import {Locale} from '@/types/next/locale';
 import {getMigratedDocs} from '@/utils/migrate/docs/utils';
+import {DeepPartial} from '@/utils/type';
 
 
 const getCollection = async (): Promise<Collection<DocsData>> => {
@@ -18,6 +19,16 @@ const getCollection = async (): Promise<Collection<DocsData>> => {
     .collection<DocsData>('content');
 };
 
+const getSanitizedDoc = (doc: DeepPartial<DocsData>): DocsData => {
+  const {path, ...migrated} = getMigratedDocs(doc);
+  const sanitizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
+
+  return {
+    ...migrated,
+    path: sanitizedPath,
+  };
+};
+
 type UploadDocOpts<TDoc> = ControllerRequireUserIdOpts & {
   doc: TDoc,
 };
@@ -25,14 +36,14 @@ type UploadDocOpts<TDoc> = ControllerRequireUserIdOpts & {
 export const addDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditable>) => {
   throwIfNotCmsMod(executorUserId);
 
-  return (await getCollection()).insertOne(getMigratedDocs(doc));
+  return (await getCollection()).insertOne(getSanitizedDoc(doc));
 };
 
 export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditableFetched>) => {
   throwIfNotCmsMod(executorUserId);
 
   // View count is extracted to avoid overwriting
-  const {viewCount, ...migrated} = getMigratedDocs(doc);
+  const {viewCount, ...migrated} = getSanitizedDoc(doc);
 
   return (await getCollection()).updateOne(
     {_id: new ObjectId(doc.id)},
@@ -71,7 +82,7 @@ export const getDocBySlug = async ({locale, slug, count}: GetDocBySlugOpts): Pro
   return {
     id: doc._id.toString(),
     createdEpoch: doc._id.getTimestamp().getTime(),
-    ...getMigratedDocs(doc),
+    ...getSanitizedDoc(doc),
   };
 };
 
