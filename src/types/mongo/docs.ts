@@ -12,4 +12,4 @@ export type DocsData = Migratable & {
   viewCount: number,
 };
 
-export type DocsDataEditable = Pick<DocsData, 'path' | 'title' | 'content' | 'showIndex'>;
+export type DocsDataEditable = Omit<DocsData, 'version' | 'lastUpdatedEpoch' | 'viewCount'>;

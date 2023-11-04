@@ -1,5 +1,6 @@
 import React from 'react';
 
+import LanguageIcon from '@heroicons/react/24/outline/LanguageIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -7,9 +8,11 @@ import {useRouter} from '@/components/i18n';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
+import {FilterTextInput} from '@/components/input/filter/text';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {InputTextArea} from '@/components/input/textarea';
 import {ToggleButton} from '@/components/input/toggleButton';
+import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {Grid} from '@/components/layout/grid';
 import {DocRenderingCommonProps} from '@/components/shared/docs/type';
@@ -17,8 +20,10 @@ import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {regexDocPath, regexDocPathObject} from '@/const/regex';
+import {localeName} from '@/const/website';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
+import {locales} from '@/types/next/locale';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 
 
@@ -87,6 +92,21 @@ export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
           required
         />
       </InputRowWithTitle>
+      <FilterTextInput
+        onClick={(locale) => setData((original) => ({
+          ...original,
+          locale,
+        } satisfies DocsDataEditable))}
+        isActive={(locale) => locale === data.locale}
+        title={
+          <Flex center>
+            <LanguageIcon className="h-6 w-6"/>
+          </Flex>
+        }
+        ids={[...locales]}
+        idToButton={(locale) => localeName[locale]}
+        idToItemId={(locale) => locale}
+      />
       <InputRow>
         <ToggleButton
           id={`${idPrefix}ShowIndex`}
