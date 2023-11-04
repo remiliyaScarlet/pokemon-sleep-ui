@@ -12,7 +12,7 @@ export const generateMetadata: GenerateMetadata<DocsPageParams> = async ({params
     return generatePageMeta({key: 'NotFound.Title'})({params});
   }
 
-  return generatePageMeta({key: 'Docs.New.Title', values: {name: doc.title}})({params});
+  return generatePageMeta({key: 'Docs.Edit.Title', values: {name: doc.title}})({params});
 };
 
 export default DocsEdit;
