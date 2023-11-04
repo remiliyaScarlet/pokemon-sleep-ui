@@ -8,7 +8,7 @@ import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {ActivationCheckerState} from '@/ui/admin/activation/search/type';
 import {ActivationUiControl} from '@/ui/admin/activation/type';
 
@@ -58,7 +58,7 @@ export const ActivationSearcher = ({control}: Props) => {
         <button type="submit" disabled={status !== 'waiting'} className={clsx(
           'button-clickable-bg disabled:button-disabled h-8 w-8 shrink-0 p-1',
         )}>
-          {status === 'waiting' ? <MagnifyingGlassIcon/> : actionStatusIcon[status]}
+          <UserActionStatusIcon status={status} onWaitingOverride={<MagnifyingGlassIcon/>}/>
         </button>
       </InputRowWithTitle>
       <AnimatedCollapseQuick show={notFound}>

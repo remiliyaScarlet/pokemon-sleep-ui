@@ -5,7 +5,7 @@ import InboxArrowDownIcon from '@heroicons/react/24/outline/InboxArrowDownIcon';
 import {InputBox} from '@/components/input/box';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {regexUuid} from '@/const/regex';
 import {useUserDataActor} from '@/hooks/userData/actor';
 
@@ -62,7 +62,7 @@ export const PokeboxImporterViaUuid = ({onPokeboxPicked}: Props) => {
           className="enabled:button-clickable-bg disabled:button-disabled h-8 w-8 shrink-0 p-1"
           disabled={!regexUuid.test(uuid) || status === 'processing'}
         >
-          {status !== 'waiting' ? actionStatusIcon[status] : <InboxArrowDownIcon/>}
+          <UserActionStatusIcon status={status} onWaitingOverride={<InboxArrowDownIcon/>}/>
         </button>
       </InputRowWithTitle>
     </form>

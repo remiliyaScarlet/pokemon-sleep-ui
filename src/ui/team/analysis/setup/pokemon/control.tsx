@@ -10,7 +10,7 @@ import {Copyable} from '@/components/layout/copyable/main';
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toPokeInBox, toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
@@ -60,7 +60,7 @@ export const TeamAnalysisPokemonControl = (props: Props) => {
             },
           });
         }}>
-          {status !== 'waiting' ? actionStatusIcon[status] : <ArrowTopRightOnSquareIcon/>}
+          <UserActionStatusIcon status={status} onWaitingOverride={<ArrowTopRightOnSquareIcon/>}/>
         </button>
         <button className={commonButtonStyle} onClick={() => setShowId(true)}>
           <ShareIcon/>

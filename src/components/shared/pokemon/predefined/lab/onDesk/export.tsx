@@ -10,7 +10,7 @@ import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {toPokeInBox} from '@/components/shared/pokemon/predefined/lab/onDesk/utils';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {PokemonInfo} from '@/types/game/pokemon';
 
@@ -70,8 +70,8 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
                 });
               }}
             >
-              <div className="relative h-8 w-8">
-                {actionStatusIcon[status]}
+              <div className="h-8 w-8">
+                <UserActionStatusIcon status={status}/>
               </div>
             </button>
           </Flex>
@@ -85,7 +85,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
         <Flex direction="row" center className="group gap-1">
           {status !== 'waiting' ?
             <div className="h-9 w-9">
-              {actionStatusIcon[status]}
+              <UserActionStatusIcon status={status}/>
             </div> :
             <>
               <ArrowTopRightOnSquareIcon className="h-9 w-9"/>

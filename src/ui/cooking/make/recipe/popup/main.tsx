@@ -9,7 +9,7 @@ import {PopupProps} from '@/components/popup/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {MealMeta} from '@/components/shared/meal/meta';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {CookingInputIngredientCounter} from '@/ui/cooking/common/input/ingredients';
@@ -86,7 +86,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
             }}
             className="enabled:button-clickable-bg disabled:button-disabled h-8 w-8 p-1"
           >
-            {status === 'waiting' ? <FireIcon/> : actionStatusIcon[status]}
+            <UserActionStatusIcon status={status} onWaitingOverride={<FireIcon/>}/>
           </button>
         </Flex>
       </Flex>

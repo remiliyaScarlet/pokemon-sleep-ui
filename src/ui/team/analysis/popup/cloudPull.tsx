@@ -5,7 +5,7 @@ import CloudArrowDownIcon from '@heroicons/react/24/outline/CloudArrowDownIcon';
 import {InputBox} from '@/components/input/box';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
 
@@ -56,7 +56,7 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
 
           onCloudPulled(member);
         }}>
-          {status !== 'waiting' ? actionStatusIcon[status] : <CloudArrowDownIcon/>}
+          <UserActionStatusIcon status={status} onWaitingOverride={<CloudArrowDownIcon/>}/>
         </button>
       </Flex>
     </FlexForm>

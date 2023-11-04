@@ -14,7 +14,7 @@ import {
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
-import {actionStatusIcon} from '@/components/shared/userData/const';
+import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {IsoDateString} from '@/types/date';
 import {
   activationContact,
@@ -155,7 +155,7 @@ export const ActivationEditor = ({
         <button type="submit" disabled={status !== 'waiting'} className={clsx(
           'button-clickable-bg disabled:button-disabled h-8 w-8 p-1',
         )}>
-          {actionStatusIcon[status]}
+          <UserActionStatusIcon status={status}/>
         </button>
       </InputRow>
     </FlexForm>
