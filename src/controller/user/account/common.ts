@@ -13,6 +13,12 @@ export const isAdmin = (userId: string | undefined): boolean => {
   return adminUid?.equals(new ObjectId(userId)) ?? false;
 };
 
+export const throwIfNotAdmin = (userId: string | undefined) => {
+  if (!isAdmin(userId)) {
+    throw new Error(`User ID ${userId} does not have admin privilege!`);
+  }
+};
+
 export const isCmsMod = async (userId: string | undefined): Promise<boolean> => {
   if (!userId) {
     return false;
@@ -23,8 +29,8 @@ export const isCmsMod = async (userId: string | undefined): Promise<boolean> => 
   return user?.isCmsMod ?? false;
 };
 
-export const throwIfNotAdmin = (userId: string | undefined) => {
-  if (!isAdmin(userId)) {
-    throw new Error('Attempted to generate user activation key without admin privilege!');
+export const throwIfNotCmsMod = (userId: string | undefined) => {
+  if (!isCmsMod(userId)) {
+    throw new Error(`User ID ${userId} does not have CMS Moderator privilege!`);
   }
 };
