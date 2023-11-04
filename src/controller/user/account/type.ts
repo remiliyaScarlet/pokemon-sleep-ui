@@ -1,3 +1,3 @@
-export type ControllerRequireAdminOpts = {
+export type ControllerRequireUserIdOpts = {
   executorUserId: string,
 };

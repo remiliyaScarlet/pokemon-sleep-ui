@@ -4,7 +4,7 @@ import {Collection, Filter, UpdateOneModel} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
-import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
+import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
 import {activationContact, ActivationKey, ActivationProperties} from '@/types/mongo/activation';
 
@@ -17,7 +17,7 @@ const getCollection = async (): Promise<Collection<ActivationKey>> => {
     .collection<ActivationKey>('activationKey');
 };
 
-type GenerateActivationKeyOpts = ControllerRequireAdminOpts & ActivationProperties;
+type GenerateActivationKeyOpts = ControllerRequireUserIdOpts & ActivationProperties;
 
 export const generateActivationKey = async ({
   executorUserId,
@@ -42,11 +42,11 @@ export const generateActivationKey = async ({
   return `${process.env.NEXTAUTH_URL}/account/activate?key=${key}`;
 };
 
-type GetActivationKeyByFilterOpts = ControllerRequireAdminOpts & {
+type GetActivationKeyByFilterOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationKey>,
 };
 
-type GetAllActivationKeysOpts = ControllerRequireAdminOpts & {
+type GetAllActivationKeysOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationKey>,
 };
 
@@ -66,7 +66,7 @@ export const getActivationKey = async (key: string) => (
   getSingleData(getCollection(), {key})
 );
 
-type UpdateActivationPropertiesOfKeyOpts = ControllerRequireAdminOpts & {
+type UpdateActivationPropertiesOfKeyOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationKey>,
   update: ActivationProperties,
 };
@@ -81,7 +81,7 @@ export const updateActivationKeyPropertiesSingle = async ({
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
-type UpdateActivationKeyPropertiesBatchOpts = ControllerRequireAdminOpts & {
+type UpdateActivationKeyPropertiesBatchOpts = ControllerRequireUserIdOpts & {
   updates: UpdateOneModel<ActivationKey>[]
 };
 
@@ -97,7 +97,7 @@ export const updateActivationKeyPropertiesBatch = async ({
   );
 };
 
-type UpdateActivationKeyByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
+type UpdateActivationKeyByKeyOpts = ControllerRequireUserIdOpts & ActivationProperties & {
   key: ActivationKey['key'],
 };
 
@@ -123,7 +123,7 @@ export const updateActivationKeyByKey = async ({
   },
 });
 
-type RemoveActivationKeyOpts = ControllerRequireAdminOpts & {
+type RemoveActivationKeyOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationKey>,
 };
 

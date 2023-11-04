@@ -3,7 +3,7 @@ import {Collection, Filter, MongoError, UpdateOneModel} from 'mongodb';
 
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
-import {ControllerRequireAdminOpts} from '@/controller/user/account/type';
+import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import {getActivationKey, removeActivationKeyByKey} from '@/controller/user/activation/key';
 import mongoPromise from '@/lib/mongodb';
 import {
@@ -46,7 +46,7 @@ export const consumeActivationKey = async (userId: string, key: string): Promise
   return true;
 };
 
-type GetActivationDataByFilterOpts = ControllerRequireAdminOpts & {
+type GetActivationDataByFilterOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationData>,
 };
 
@@ -72,7 +72,7 @@ export const getActivationData = async (userId: string): Promise<ActivationStatu
   return data?.activation ?? null;
 };
 
-type GetAllActivationDataOpts = ControllerRequireAdminOpts & {
+type GetAllActivationDataOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationData>,
 };
 
@@ -89,7 +89,7 @@ export const getAllActivationDataAsClient = async (): Promise<ActivationDataAtCl
 
 export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
 
-type UpdateActivationDataPropertiesSingleOpts = ControllerRequireAdminOpts & {
+type UpdateActivationDataPropertiesSingleOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationData>,
   update: ActivationProperties,
 };
@@ -104,7 +104,7 @@ export const updateActivationDataPropertiesSingle = async ({
   return (await getCollection()).updateOne(filter, {$set: update});
 };
 
-type UpdateActivationDataPropertiesBatchOpts = ControllerRequireAdminOpts & {
+type UpdateActivationDataPropertiesBatchOpts = ControllerRequireUserIdOpts & {
   updates: UpdateOneModel<ActivationData>[]
 };
 
@@ -120,7 +120,7 @@ export const updateActivationDataPropertiesBatch = async ({
   );
 };
 
-type UpdateActivationDataByKeyOpts = ControllerRequireAdminOpts & ActivationProperties & {
+type UpdateActivationDataByKeyOpts = ControllerRequireUserIdOpts & ActivationProperties & {
   key: ActivationData['key'],
 };
 
@@ -146,7 +146,7 @@ export const updateActivationDataByKey = async ({
   },
 });
 
-type RemoveActivationDataOpts = ControllerRequireAdminOpts & {
+type RemoveActivationDataOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationKey>,
 };
 
@@ -162,7 +162,7 @@ export const removeActivationDataBatch = async ({executorUserId, filter}: Remove
   return (await getCollection()).deleteMany(filter);
 };
 
-type RemoveActivationDataByKeyOpts = ControllerRequireAdminOpts & {
+type RemoveActivationDataByKeyOpts = ControllerRequireUserIdOpts & {
   key: ActivationData['key'],
 };
 
