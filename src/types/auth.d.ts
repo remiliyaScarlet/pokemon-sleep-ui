@@ -11,6 +11,7 @@ export type NextAuthUserInDatabase = Required<DefaultSession['user']> & {
 
 export type NextAuthSessionUser = DefaultSession['user'] & {
   id: string,
+  errorOnUpdate: boolean,
   preloaded: UserPreloadedData,
   lazyLoaded: UserLazyLoadedData,
   activation: ActivationStatus | null,

@@ -65,6 +65,7 @@ export const authOptions: AuthOptions = {
       session.user = {
         id: userId,
         email: user.email,
+        errorOnUpdate: false,
         preloaded,
         lazyLoaded: emptyLazyData,
         activation,
@@ -77,17 +78,22 @@ export const authOptions: AuthOptions = {
 
       const {action, options} = newSession as UserDataAction;
 
-      if (action === 'upload') {
-        await uploadUserData({userId, opts: options});
-        session.user.preloaded = await getUserPreloadedData(userId);
-      } else if (action === 'load') {
-        session.user.lazyLoaded = await getUserLazyData({
-          initialData: session.user.lazyLoaded,
-          userId,
-          options,
-        });
-      } else {
-        console.error(`Unhandled user data action ${action satisfies never}`);
+      try {
+        if (action === 'upload') {
+          await uploadUserData({userId, opts: options});
+          session.user.preloaded = await getUserPreloadedData(userId);
+        } else if (action === 'load') {
+          session.user.lazyLoaded = await getUserLazyData({
+            initialData: session.user.lazyLoaded,
+            userId,
+            options,
+          });
+        } else {
+          console.error(`Unhandled user data action ${action satisfies never}`);
+        }
+      } catch (e) {
+        console.error('Error occurred during session update', e);
+        session.user.errorOnUpdate = true;
       }
 
       return session;

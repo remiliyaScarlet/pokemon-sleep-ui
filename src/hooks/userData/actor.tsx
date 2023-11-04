@@ -4,7 +4,12 @@ import {useSession} from 'next-auth/react';
 
 import {UserDataUploadStatus} from '@/components/shared/userData/uploadStatus';
 import {useOverridableSession} from '@/hooks/session';
-import {UserDataActionStatus, UserDataActor, UserDataActorAsync} from '@/types/userData/main';
+import {
+  UserDataActionStatus,
+  UserDataActor,
+  UserDataActorAsync,
+  UserDataActorAsyncReturn,
+} from '@/types/userData/main';
 import {showToast} from '@/utils/toast';
 
 
@@ -28,18 +33,29 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
   const userDataActorAsync: UserDataActorAsync = async ({getStatusOnCompleted, ...action}) => {
     setStatus('processing');
 
+    const onError = (): UserDataActorAsyncReturn => {
+      const status = 'failed';
+
+      setStatus(status);
+      return {updated: null, status};
+    };
+
     try {
       const updated = await session.update(action);
+
+      const errorOnUpdate = updated?.user.errorOnUpdate;
+      if (!!errorOnUpdate) {
+        console.error(`Error occurred on update for [${action.action}] of [${action.options.type}]`);
+        return onError();
+      }
+
       const status = getStatusOnCompleted ? getStatusOnCompleted(updated) : 'completed';
 
       setStatus(status);
       return {updated, status};
     } catch (err) {
       console.error(`Failed to [${action.action}] user data of [${action.options.type}]`, err);
-      const status = 'failed';
-
-      setStatus(status);
-      return {updated: null, status};
+      return onError();
     }
   };
 
