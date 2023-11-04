@@ -16,11 +16,9 @@ type Props = DocRenderingCommonProps & {
 };
 
 export const DocsContentView = ({locale, doc, className}: Props) => {
-  const {title, showIndex} = doc;
+  const {showIndex} = doc;
 
   const content = [
-    `# ${title}`,
-    '-------',
     showIndex && `## ${tableOfContentsText[locale]}`,
     doc.content,
   ]
