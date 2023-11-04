@@ -25,14 +25,16 @@ import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
+import {UserDataAction} from '@/types/userData/main';
 
 
 type Props = DocRenderingCommonProps & {
   idPrefix: string,
   setData: ReactStateUpdaterFromOriginal<DocsDataEditable>,
+  getUserDataAction: (data: DocsDataEditable) => UserDataAction,
 };
 
-export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
+export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Props) => {
   const {locale, data} = props;
   const {path, title, content, showIndex} = data;
 
@@ -49,13 +51,7 @@ export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
 
   return (
     <FlexForm className="gap-1.5" onSubmit={async () => {
-      const {status} = await actAsync({
-        action: 'upload',
-        options: {
-          type: 'cms.docs.create',
-          data: data,
-        },
-      });
+      const {status} = await actAsync(getUserDataAction(data));
 
       if (status === 'completed') {
         push(`/docs/view/${path}`);
