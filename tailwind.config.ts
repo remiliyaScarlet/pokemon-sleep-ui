@@ -29,6 +29,9 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
+      boxShadow: {
+        'border': '0 0 0.3rem',
+      },
       dropShadow: {
         'thick': '0 0 0.4rem var(--tw-shadow-color)',
       },

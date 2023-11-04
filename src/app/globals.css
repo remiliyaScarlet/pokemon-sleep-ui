@@ -119,8 +119,92 @@
     @apply transform-gpu transition-all;
   }
   
-  .markdown a {
-    @apply text-link;
+  .markdown {
+    & h1 {
+      @apply text-5xl;
+    }
+    
+    & h2 {
+      @apply text-4xl;
+    }
+    
+    & h3 {
+      @apply text-3xl;
+    }
+    
+    & h4 {
+      @apply text-2xl;
+    }
+    
+    & h5 {
+      @apply text-xl;
+    }
+    
+    & h6 {
+      @apply text-lg;
+    }
+    
+    & hr {
+      @apply border-t-gray-600;
+    }
+    
+    & blockquote {
+      & > p + blockquote {
+        @apply mt-1.5 mb-1.5;
+      }
+      
+      @apply border-l-4 border-slate-500/50 px-3 py-1.5 text-slate-600 dark:text-slate-400;
+    }
+    
+    & a {
+      @apply text-link;
+    }
+    
+    & ul {
+      & > li {
+        @apply ml-3 before:content-[""] before:-ml-0.5;
+      }
+      
+      @apply list-inside list-disc;
+    }
+    
+    & ol {
+      & > li {
+        @apply ml-3 before:content-[""];
+      }
+      
+      @apply list-inside list-decimal;
+    }
+    
+    & pre {
+      @apply p-2 rounded-lg shadow-border shadow-pink-500;
+    }
+    
+    & code {
+      @apply p-1 text-pink-600 dark:text-pink-400;
+    }
+    
+    & table {
+      @apply rounded-lg p-1 border-separate border-spacing-0.5 shadow-border shadow-slate-500;
+      
+      & td {
+        @apply p-1;
+      }
+      
+      & > thead > tr {
+        @apply border border-slate-500;
+      }
+      
+      & > tbody {
+        & tr:nth-child(even) {
+          @apply bg-slate-300/50 dark:bg-slate-600/50;
+        }
+        
+        & tr:nth-child(odd) {
+          @apply bg-white/50 dark:bg-slate-800/50;
+        }
+      }
+    }
   }
   
   div.unlock-table-row {
