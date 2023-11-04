@@ -132,18 +132,21 @@ export const updateActivationDataByKey = async ({
   source,
   contact,
   isSpecial,
+  isCmsMod,
   note,
 }: UpdateActivationDataByKeyOpts) => updateActivationDataPropertiesSingle({
   executorUserId,
   filter: {key},
+  // Explicit to avoid properties accidentally passed in, overwriting the data
   update: {
     activation,
     expiry,
     source,
     contact,
     isSpecial,
+    isCmsMod: isCmsMod ?? false,
     note,
-  },
+  } satisfies Required<ActivationProperties>,
 });
 
 type RemoveActivationDataOpts = ControllerRequireUserIdOpts & {
