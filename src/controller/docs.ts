@@ -23,6 +23,12 @@ export const getDocBySlug = async ({locale, slug}: GetDocBySlugOpts): Promise<Do
   return getSingleData(getCollection(), {locale, path: slug.join('/')});
 };
 
+export const getDocsPathList = async (locale: Locale): Promise<string[]> => {
+  const docs = await getDataAsArray(getCollection(), {locale});
+
+  return docs.map(({path}) => path);
+};
+
 const addIndex = async () => {
   return Promise.all([
     (await getCollection()).createIndex({path: 1}, {unique: true}),
