@@ -4,5 +4,5 @@ import {Locale} from '@/types/next/locale';
 
 export type DocRenderingCommonProps = {
   locale: Locale,
-  data: DocsDataEditable,
+  doc: DocsDataEditable,
 };

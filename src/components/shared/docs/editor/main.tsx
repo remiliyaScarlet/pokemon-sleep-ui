@@ -24,19 +24,18 @@ import {localeName} from '@/const/website';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
-import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataAction} from '@/types/userData/main';
 
 
 type Props = DocRenderingCommonProps & {
   idPrefix: string,
-  setData: ReactStateUpdaterFromOriginal<DocsDataEditable>,
+  onDocUpdated: (updated: DocsDataEditable) => void,
   getUserDataAction: (data: DocsDataEditable) => UserDataAction,
 };
 
-export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Props) => {
-  const {locale, data} = props;
-  const {path, title, content, showIndex} = data;
+export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}: Props) => {
+  const {locale, doc} = props;
+  const {path, title, content, showIndex} = doc;
 
   const {push} = useRouter();
   const {actAsync} = useUserDataActor({
@@ -51,7 +50,7 @@ export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Pro
 
   return (
     <FlexForm className="gap-1.5" onSubmit={async () => {
-      const {status} = await actAsync(getUserDataAction(data));
+      const {status} = await actAsync(getUserDataAction(doc));
 
       if (status === 'completed') {
         push(`/docs/view/${path}`);
@@ -69,7 +68,7 @@ export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Pro
               return;
             }
 
-            setData((original) => ({...original, path} satisfies DocsDataEditable));
+            onDocUpdated({...doc, path});
           }}
           className="w-full"
           pattern={regexDocPath}
@@ -80,20 +79,17 @@ export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Pro
         <InputBox
           type="text"
           value={title}
-          onChange={({target}) => setData((original) => ({
-            ...original,
+          onChange={({target}) => onDocUpdated({
+            ...doc,
             title: target.value,
-          } satisfies DocsDataEditable))}
+          })}
           className="w-full"
           required
         />
       </InputRowWithTitle>
       <FilterTextInput
-        onClick={(locale) => setData((original) => ({
-          ...original,
-          locale,
-        } satisfies DocsDataEditable))}
-        isActive={(locale) => locale === data.locale}
+        onClick={(locale) => onDocUpdated({...doc, locale})}
+        isActive={(locale) => locale === doc.locale}
         title={
           <Flex center>
             <LanguageIcon className="h-6 w-6"/>
@@ -107,10 +103,7 @@ export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Pro
         <ToggleButton
           id={`${idPrefix}ShowIndex`}
           active={showIndex}
-          onClick={() => setData((original) => ({
-            ...original,
-            showIndex: !showIndex,
-          } satisfies DocsDataEditable))}
+          onClick={() => onDocUpdated({...doc, showIndex: !showIndex})}
           className={clsx('group', getTextFilterButtonClass(showIndex))}
         >
           {tableOfContentsText[locale]}
@@ -119,7 +112,7 @@ export const DocsEditor = ({idPrefix, setData, getUserDataAction, ...props}: Pro
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
         <InputTextArea
           value={content}
-          setValue={(content) => setData((original) => ({...original, content}))}
+          setValue={(content) => onDocUpdated({...doc, content})}
           required
         />
         <DocsContentView className="info-section-bg rounded-lg" {...props}/>

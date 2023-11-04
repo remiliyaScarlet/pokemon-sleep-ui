@@ -15,14 +15,14 @@ type Props = DocRenderingCommonProps & {
   className?: string,
 };
 
-export const DocsContentView = ({locale, data, className}: Props) => {
-  const {title, showIndex} = data;
+export const DocsContentView = ({locale, doc, className}: Props) => {
+  const {title, showIndex} = doc;
 
   const content = [
     `# ${title}`,
     '-------',
     showIndex && `## ${tableOfContentsText[locale]}`,
-    data.content,
+    doc.content,
   ]
     .filter((content) => !!content)
     .join('\n');
