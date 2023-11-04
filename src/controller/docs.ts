@@ -50,11 +50,15 @@ export const deleteDoc = async ({executorUserId, locale, path}: DeleteDocOpts) =
 
 type GetDocBySlugOpts = {
   locale: Locale,
-  slug: string[],
+  slug?: string[],
   count: boolean,
 };
 
 export const getDocBySlug = async ({locale, slug, count}: GetDocBySlugOpts): Promise<DocsDataFetched | null> => {
+  if (!slug) {
+    return null;
+  }
+
   const doc = await (await getCollection()).findOneAndUpdate(
     {locale, path: slug.join('/')},
     {$inc: {viewCount: count ? 1 : 0}},
