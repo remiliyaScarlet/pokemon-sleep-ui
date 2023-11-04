@@ -298,6 +298,9 @@
       "OwnedCandies": "所有しているアメ",
       "NormalCandy": "ポケモンアメ",
       "HandyCandy": "ばんのうアメ"
+    },
+    "Docs": {
+      "Title": "タイトル"
     }
   },
   "Ocr": {

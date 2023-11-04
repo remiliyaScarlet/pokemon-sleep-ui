@@ -298,6 +298,9 @@
       "OwnedCandies": "擁有糖果",
       "NormalCandy": "一般糖果",
       "HandyCandy": "萬能糖果"
+    },
+    "Docs": {
+      "Title": "標題"
     }
   },
   "Ocr": {

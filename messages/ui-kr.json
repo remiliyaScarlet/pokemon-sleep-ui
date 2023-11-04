@@ -298,6 +298,9 @@
       "OwnedCandies": "소유한 사탕",
       "NormalCandy": "사탕",
       "HandyCandy": "만능사탕"
+    },
+    "Docs": {
+      "Title": "제목"
     }
   },
   "Ocr": {

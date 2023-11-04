@@ -299,6 +299,9 @@
       "OwnedCandies": "Eigene Bonbons",
       "NormalCandy": "Pokemon Bonbon",
       "HandyCandy": "Universalbonbon"
+    },
+    "Docs": {
+      "Title": "Titel"
     }
   },
   "Ocr": {
