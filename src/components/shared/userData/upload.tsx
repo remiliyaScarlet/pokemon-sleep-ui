@@ -8,7 +8,10 @@ import {UserDataUploadOpts} from '@/types/userData/upload';
 
 type Props = {
   opts: UserDataUploadOpts,
-  isSubmit?: boolean,
+  isSubmit?: false,
+} | {
+  opts?: never,
+  isSubmit: true,
 };
 
 export const UserDataUploadButton = ({opts, isSubmit}: Props) => {
@@ -16,7 +19,7 @@ export const UserDataUploadButton = ({opts, isSubmit}: Props) => {
 
   return (
     <ClickableIconButton disabled={!act || status === 'processing'} isSubmit={isSubmit} onClick={() => (
-      act && act({action: 'upload', options: opts})
+      isSubmit ? undefined : act && act({action: 'upload', options: opts})
     )}>
       {actionStatusIcon[status]}
     </ClickableIconButton>
