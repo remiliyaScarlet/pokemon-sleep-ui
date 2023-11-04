@@ -1,17 +1,20 @@
 import {getAllIngredients} from '@/controller/ingredient';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
+import {GenerateStaticParamsFunc} from '@/types/next/static';
 import {IngredientPage} from '@/ui/ingredient/page/main';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMeta} from '@/utils/meta';
 import {isNotNullish} from '@/utils/type';
 
 
-export const generateStaticParams = async () => {
-  return Object.values(await getAllIngredients()).filter(isNotNullish).map(({id}) => id);
+export const generateStaticParams: GenerateStaticParamsFunc<IngredientPageParams> = async () => {
+  return Object.values(await getAllIngredients())
+    .filter(isNotNullish)
+    .map(({id}) => ({id: id.toString()}));
 };
 
 export type IngredientPageParams = GenerateMetadataParams & {
-  id: string
+  id: string,
 };
 
 export const generateMetadata: GenerateMetadata<IngredientPageParams> = async ({params}) => {
