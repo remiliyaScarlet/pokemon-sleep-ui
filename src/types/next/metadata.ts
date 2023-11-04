@@ -5,10 +5,6 @@ import {PageParams} from '@/types/next/page/common';
 
 export type GenerateMetadataParams = PageParams;
 
-export type GeneratePageMetaValues = {
-  name: string,
-};
-
 export type GenerateMetadataOpts<P extends GenerateMetadataParams> = {
   params: P
 };
@@ -17,6 +13,6 @@ export type GenerateMetadata<T extends GenerateMetadataParams = GenerateMetadata
   opts: GenerateMetadataOpts<T>,
 ) => Promise<Metadata>;
 
-export type GenerateStaticParams<T extends GenerateMetadataParams = GenerateMetadataParams> = (
-  opts: GenerateMetadataOpts<T>,
-) => T[] | Promise<T[]>;
+export type GeneratePageMetaValues = {
+  name: string,
+};
