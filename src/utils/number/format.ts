@@ -8,7 +8,7 @@ const formatter: {[format in NumberFormat]: ReturnType<typeof Intl.NumberFormat>
   float3: new Intl.NumberFormat(undefined, {minimumFractionDigits: 3, maximumFractionDigits: 3}),
 };
 
-export const formatFloat3 = (num: number | null | undefined): string | null => {
+export const formatFloat3 = (num: number | null | undefined): string => {
   if (isNotNullish(num)) {
     return formatter.float3.format(num);
   }
@@ -16,7 +16,7 @@ export const formatFloat3 = (num: number | null | undefined): string | null => {
   return '-';
 };
 
-export const formatFloat = (num: number | null | undefined): string | null => {
+export const formatFloat = (num: number | null | undefined): string => {
   if (isNotNullish(num)) {
     return formatter.float.format(num);
   }
@@ -24,7 +24,7 @@ export const formatFloat = (num: number | null | undefined): string | null => {
   return '-';
 };
 
-export const formatInt = (num: number | null | undefined): string | null => {
+export const formatInt = (num: number | null | undefined): string => {
   if (isNotNullish(num)) {
     return formatter.int.format(num);
   }
