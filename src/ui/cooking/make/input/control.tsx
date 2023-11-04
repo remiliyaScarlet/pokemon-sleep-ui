@@ -43,10 +43,12 @@ export const MealMakerInputControl = ({filter, setFilter, preloaded}: MealMakerC
           />
         </Flex>
       </ToggleButton>
-      <UserDataUploadButton opts={{
-        type: 'cooking',
-        data: toCookingPreset({preloaded, filter}),
-      }}/>
+      <UserDataUploadButton
+        opts={{
+          type: 'cooking',
+          data: toCookingPreset({preloaded, filter}),
+        }}
+      />
     </InputRow>
   );
 };

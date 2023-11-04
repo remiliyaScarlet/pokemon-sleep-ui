@@ -8,7 +8,7 @@ import {MealPreparerCommonProps} from '@/ui/cooking/prepare/type';
 
 export const MealPreparerControl = ({filter, preloaded}: MealPreparerCommonProps) => {
   return (
-    <InputRow className="justify-end gap-2">
+    <InputRow className="justify-end">
       <UserDataUploadButton opts={{
         type: 'cooking',
         data: toCookingPreset({preloaded, filter}),

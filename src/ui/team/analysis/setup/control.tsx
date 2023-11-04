@@ -96,7 +96,8 @@ export const TeamAnalysisSetupControl = ({setup, setSetup}: TeamAnalysisSetupMod
             config: setup.config,
             comps: Object.values(setup.comps),
           },
-        }}/>
+        }}
+      />
     </InputRow>
   );
 };
