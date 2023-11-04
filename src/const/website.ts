@@ -1,7 +1,7 @@
 import {Locale} from '@/types/next/locale';
 
 
-export const localeName = {
+export const localeName: {[locale in Locale]: string} = {
   en: 'English',
   zh: '中文',
   ja: '日本語',
@@ -10,5 +10,3 @@ export const localeName = {
 } as const;
 
 export const defaultLocale: Locale = 'zh';
-
-export const locales = Object.keys(localeName);

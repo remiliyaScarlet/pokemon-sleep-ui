@@ -1,4 +1,9 @@
-import {localeName} from '@/const/website';
+export const locales = [
+  'en',
+  'zh',
+  'ja',
+  'kr',
+  'de',
+] as const;
 
-
-export type Locale = keyof typeof localeName;
+export type Locale = typeof locales[number];

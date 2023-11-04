@@ -1,12 +1,12 @@
 import {createTranslator} from 'next-intl';
 
-import {defaultLocale, locales} from '@/const/website';
+import {defaultLocale} from '@/const/website';
 import {I18nNamespaces} from '@/types/i18n';
-import {Locale} from '@/types/next/locale';
+import {Locale, locales} from '@/types/next/locale';
 
 
 export const isLocale = (locale: string): locale is Locale => {
-  return locales.includes(locale);
+  return locales.includes(locale as Locale);
 };
 
 export const getMessages = async (locale: string) => {

@@ -3,7 +3,6 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
-import {locales} from '@/const/website';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
@@ -12,6 +11,7 @@ import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
+import {locales} from '@/types/next/locale';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';

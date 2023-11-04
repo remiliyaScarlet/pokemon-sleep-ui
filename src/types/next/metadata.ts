@@ -16,3 +16,7 @@ export type GenerateMetadataOpts<P extends GenerateMetadataParams> = {
 export type GenerateMetadata<T extends GenerateMetadataParams = GenerateMetadataParams> = (
   opts: GenerateMetadataOpts<T>,
 ) => Promise<Metadata>;
+
+export type GenerateStaticParams<T extends GenerateMetadataParams = GenerateMetadataParams> = (
+  opts: GenerateMetadataOpts<T>,
+) => T[] | Promise<T[]>;

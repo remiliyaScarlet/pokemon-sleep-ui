@@ -8,8 +8,9 @@ import Script from 'next/script';
 // eslint-disable-next-line camelcase
 import {unstable_setRequestLocale} from 'next-intl/server';
 
-import {locales} from '@/const/website';
-import {LocaleLayoutProps} from '@/types/next/layout';
+import {LocaleLayoutParams, LocaleLayoutProps} from '@/types/next/layout';
+import {locales} from '@/types/next/locale';
+import {GenerateStaticParams} from '@/types/next/metadata';
 import {Providers} from '@/ui/base/providers';
 import {isProduction} from '@/utils/environment';
 import {isLocale} from '@/utils/i18n';
@@ -17,7 +18,7 @@ import {isLocale} from '@/utils/i18n';
 import '../globals.css';
 
 
-export const generateStaticParams = async () => {
+export const generateStaticParams: GenerateStaticParams<LocaleLayoutParams> = async () => {
   return locales.map((locale) => ({locale}));
 };
 

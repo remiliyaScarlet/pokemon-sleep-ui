@@ -1,9 +1,9 @@
 import {Collection} from 'mongodb';
 
-import {defaultLocale, locales} from '@/const/website';
+import {defaultLocale} from '@/const/website';
 import mongoPromise from '@/lib/mongodb';
 import {Announcement, announcementLevels} from '@/types/mongo/announcement';
-import {Locale} from '@/types/next/locale';
+import {Locale, locales} from '@/types/next/locale';
 
 
 const getCollection = async (): Promise<Collection<Announcement>> => {
