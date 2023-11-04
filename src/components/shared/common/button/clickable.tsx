@@ -4,16 +4,18 @@ import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {
-  disabled?: boolean,
   onClick: () => void,
+  disabled?: boolean,
+  isSubmit?: boolean,
 };
 
-export const ClickableIconButton = ({disabled, onClick, children}: React.PropsWithChildren<Props>) => {
+export const ClickableIconButton = ({onClick, disabled, isSubmit, children}: React.PropsWithChildren<Props>) => {
   return (
     <button
       className="enabled:button-clickable-bg disabled:button-disabled relative h-8 w-14"
+      onClick={isSubmit ? onClick : undefined}
       disabled={disabled}
-      onClick={onClick}
+      type={isSubmit ? 'submit' : 'button'}
     >
       <Flex center className="h-7">
         {children}

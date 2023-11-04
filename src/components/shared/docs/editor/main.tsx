@@ -14,9 +14,11 @@ import {Grid} from '@/components/layout/grid';
 import {DocRenderingCommonProps} from '@/components/shared/docs/type';
 import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
+import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {regexDocPath, regexDocPathObject} from '@/const/regex';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
+import {toCookingPreset} from '@/ui/cooking/prepare/input/utils';
 
 
 type Props = DocRenderingCommonProps & {
@@ -83,6 +85,14 @@ export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
         />
         <DocsContentView className="info-section-bg rounded-lg" {...props}/>
       </Grid>
+      <InputRow className="justify-end">
+        <UserDataUploadButton
+          opts={{
+            type: 'cms.docs.create',
+            data: toCookingPreset({preloaded, filter}),
+          }}
+        />
+      </InputRow>
     </FlexForm>
   );
 };
