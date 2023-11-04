@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {useRouter} from '@/components/i18n';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
@@ -16,9 +17,9 @@ import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {regexDocPath, regexDocPathObject} from '@/const/regex';
+import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
-import {toCookingPreset} from '@/ui/cooking/prepare/input/utils';
 
 
 type Props = DocRenderingCommonProps & {
@@ -30,10 +31,31 @@ export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
   const {locale, data} = props;
   const {path, title, content, showIndex} = data;
 
+  const {push} = useRouter();
+  const {actAsync} = useUserDataActor({
+    statusToast: true,
+    statusNoReset: true,
+  });
   const t = useTranslations('UI.InPage.Docs');
 
+  if (!actAsync) {
+    return null;
+  }
+
   return (
-    <FlexForm className="gap-1.5">
+    <FlexForm className="gap-1.5" onSubmit={async () => {
+      const {status} = await actAsync({
+        action: 'upload',
+        options: {
+          type: 'cms.docs.create',
+          data: data,
+        },
+      });
+
+      if (status === 'completed') {
+        push(`/docs/view/${path}`);
+      }
+    }}>
       <InputRowWithTitle title="URL">
         <InputBox
           type="text"
@@ -82,16 +104,12 @@ export const DocsEditor = ({idPrefix, setData, ...props}: Props) => {
         <InputTextArea
           value={content}
           setValue={(content) => setData((original) => ({...original, content}))}
+          required
         />
         <DocsContentView className="info-section-bg rounded-lg" {...props}/>
       </Grid>
       <InputRow className="justify-end">
-        <UserDataUploadButton
-          opts={{
-            type: 'cms.docs.create',
-            data: toCookingPreset({preloaded, filter}),
-          }}
-        />
+        <UserDataUploadButton isSubmit/>
       </InputRow>
     </FlexForm>
   );
