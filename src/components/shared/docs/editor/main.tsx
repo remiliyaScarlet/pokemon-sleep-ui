@@ -38,7 +38,7 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
   const {path, title, content, showIndex} = doc;
 
   const {push} = useRouter();
-  const {actAsync} = useUserDataActor({
+  const {actAsync, status} = useUserDataActor({
     statusToast: true,
     statusNoReset: true,
   });
@@ -118,7 +118,7 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
         <DocsContentView className="info-section-bg rounded-lg" {...props}/>
       </Grid>
       <InputRow className="justify-end">
-        <UserDataUploadButton isSubmit/>
+        <UserDataUploadButton isSubmit statusOverride={status}/>
       </InputRow>
     </FlexForm>
   );
