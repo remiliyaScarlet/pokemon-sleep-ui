@@ -12,6 +12,7 @@ import {
   getTextFilterButtonClass,
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
+import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {actionStatusIcon} from '@/components/shared/userData/const';
 import {IsoDateString} from '@/types/date';
@@ -113,28 +114,30 @@ export const ActivationEditor = ({
         </InputRowWithTitle>
       ))}
       <InputRowWithTitle title="Properties">
-        <ToggleButton
-          id={`${idPrefix}isSpecial`}
-          active={isSpecial}
-          onChange={(isSpecial) => setData((original) => ({
-            ...original,
-            isSpecial,
-          } satisfies ActivationPropertiesAtClient))}
-          className={getTextFilterButtonClass(isSpecial)}
-        >
-          Special Grant
-        </ToggleButton>
-        <ToggleButton
-          id={`${idPrefix}isCmsMod`}
-          active={isCmsMod}
-          onChange={(isCmsMod) => setData((original) => ({
-            ...original,
-            isCmsMod,
-          } satisfies ActivationPropertiesAtClient))}
-          className={getTextFilterButtonClass(isCmsMod)}
-        >
-          CMS Mod
-        </ToggleButton>
+        <Flex direction="row" noFullWidth className="gap-1">
+          <ToggleButton
+            id={`${idPrefix}isSpecial`}
+            active={isSpecial}
+            onChange={(isSpecial) => setData((original) => ({
+              ...original,
+              isSpecial,
+            } satisfies ActivationPropertiesAtClient))}
+            className={getTextFilterButtonClass(isSpecial)}
+          >
+            Special Grant
+          </ToggleButton>
+          <ToggleButton
+            id={`${idPrefix}isCmsMod`}
+            active={isCmsMod}
+            onChange={(isCmsMod) => setData((original) => ({
+              ...original,
+              isCmsMod,
+            } satisfies ActivationPropertiesAtClient))}
+            className={getTextFilterButtonClass(isCmsMod)}
+          >
+            CMS Mod
+          </ToggleButton>
+        </Flex>
       </InputRowWithTitle>
       <InputRowWithTitle title="Note">
         <InputBox

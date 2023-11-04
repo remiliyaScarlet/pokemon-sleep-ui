@@ -24,23 +24,21 @@ export const MealDisplayControl = ({showEnergy, setShowEnergy, uploadData}: Prop
   const t = useTranslations('UI.InPage.Cooking');
 
   return (
-    <InputRow>
-      <Flex direction="row" noFullWidth className="ml-auto gap-2">
-        <ToggleButton
-          id="showEmpty"
-          active={showEnergy}
-          onClick={() => setShowEnergy(!showEnergy)}
-          className={clsx('group', getTextFilterButtonClass(showEnergy))}
-        >
-          <Flex direction="row" center noFullWidth className="gap-1">
-            <div className="h-5 w-5">
-              {showEnergy ? <EyeIcon/> : <EyeSlashIcon/>}
-            </div>
-            <EnergyIcon alt={t('Energy')} noInvert isActive={showEnergy}/>
-          </Flex>
-        </ToggleButton>
-        <UserDataUploadButton opts={{type: 'cooking', data: uploadData}}/>
-      </Flex>
+    <InputRow className="justify-end gap-2">
+      <ToggleButton
+        id="showEmpty"
+        active={showEnergy}
+        onClick={() => setShowEnergy(!showEnergy)}
+        className={clsx('group', getTextFilterButtonClass(showEnergy))}
+      >
+        <Flex direction="row" center noFullWidth className="gap-1">
+          <div className="h-5 w-5">
+            {showEnergy ? <EyeIcon/> : <EyeSlashIcon/>}
+          </div>
+          <EnergyIcon alt={t('Energy')} noInvert isActive={showEnergy}/>
+        </Flex>
+      </ToggleButton>
+      <UserDataUploadButton opts={{type: 'cooking', data: uploadData}}/>
     </InputRow>
   );
 };

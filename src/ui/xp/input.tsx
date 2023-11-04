@@ -111,27 +111,25 @@ export const PokemonExpCalculatorInputUI = ({
         }))}
         classNameForHeight="h-8"
       />
-      <InputRow>
-        <Flex direction="row" noFullWidth className="ml-auto gap-2">
-          <ToggleButton
-            id="showEmpty"
-            active={showNonBreakthroughLevel}
-            onClick={() => setFilter((original) => ({
-              ...original,
-              showNonBreakthroughLevel: !original.showNonBreakthroughLevel,
-            } satisfies PokemonExpCalculatorInput))}
-            className={clsx('group', getTextFilterButtonClass(showNonBreakthroughLevel))}
-          >
-            <Flex direction="row" center noFullWidth className="gap-1.5 p-1">
-              <div className="h-5 w-5">
-                {showNonBreakthroughLevel ? <EyeIcon/> : <EyeSlashIcon/>}
-              </div>
-              <div className="h-5 w-5">
-                <RocketLaunchIcon/>
-              </div>
-            </Flex>
-          </ToggleButton>
-        </Flex>
+      <InputRow className="justify-end gap-2">
+        <ToggleButton
+          id="showEmpty"
+          active={showNonBreakthroughLevel}
+          onClick={() => setFilter((original) => ({
+            ...original,
+            showNonBreakthroughLevel: !original.showNonBreakthroughLevel,
+          } satisfies PokemonExpCalculatorInput))}
+          className={clsx('group', getTextFilterButtonClass(showNonBreakthroughLevel))}
+        >
+          <Flex direction="row" center noFullWidth className="gap-1.5 p-1">
+            <div className="h-5 w-5">
+              {showNonBreakthroughLevel ? <EyeIcon/> : <EyeSlashIcon/>}
+            </div>
+            <div className="h-5 w-5">
+              <RocketLaunchIcon/>
+            </div>
+          </Flex>
+        </ToggleButton>
       </InputRow>
     </Flex>
   );

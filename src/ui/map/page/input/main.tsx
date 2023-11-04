@@ -34,13 +34,11 @@ export const MapInfoInput = (props: MapInputWithDataProps) => {
         setFilter={setFilter}
       />
       <MapInputDisplayType filter={filter} setFilter={setFilter}/>
-      <InputRow>
-        <Flex direction="row" noFullWidth className="ml-auto gap-1.5">
-          <MapInputMarkSleepdexToggle {...props}/>
-          <MapInputSleepdexStatsToggle {...props}/>
-          <MapInputLockedOnlyToggle {...props}/>
-          <MapInputEmptyRankToggle filter={filter} setFilter={setFilter}/>
-        </Flex>
+      <InputRow className="justify-end gap-1.5">
+        <MapInputMarkSleepdexToggle {...props}/>
+        <MapInputSleepdexStatsToggle {...props}/>
+        <MapInputLockedOnlyToggle {...props}/>
+        <MapInputEmptyRankToggle filter={filter} setFilter={setFilter}/>
       </InputRow>
     </Flex>
   );
