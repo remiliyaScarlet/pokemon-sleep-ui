@@ -28,7 +28,7 @@ export const ActivationSearcher = ({control}: Props) => {
 
   return (
     <FlexForm className="info-section" onSubmit={async () => {
-      const updated = await actAsync({
+      const {updated} = await actAsync({
         action: 'load',
         options: {type: 'adminActivationCheck', opts: {key}},
       });

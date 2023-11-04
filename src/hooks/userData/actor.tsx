@@ -30,14 +30,17 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
 
     try {
       const updated = await session.update(action);
-      setStatus(getStatusOnCompleted ? getStatusOnCompleted(updated) : 'completed');
-      return updated;
+      const status = getStatusOnCompleted ? getStatusOnCompleted(updated) : 'completed';
+
+      setStatus(status);
+      return {updated, status};
     } catch (err) {
       console.error(`Failed to [${action.action}] user data of [${action.options.type}]`, err);
-      setStatus('failed');
-    }
+      const status = 'failed';
 
-    return null;
+      setStatus(status);
+      return {updated: null, status};
+    }
   };
 
   const userDataActor: UserDataActor = ({getStatusOnCompleted, ...action}) => {

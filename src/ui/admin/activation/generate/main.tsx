@@ -32,7 +32,7 @@ export const ActivationGenerator = ({control}: Props) => {
         idPrefix="generator"
         status={status}
         onSubmit={async (data) => {
-          const updated = await actAsync({
+          const {updated} = await actAsync({
             action: 'load',
             options: {type: 'adminActivationCreate', opts: data},
             getStatusOnCompleted: (updated) => (

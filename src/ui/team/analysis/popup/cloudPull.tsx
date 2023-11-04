@@ -33,7 +33,7 @@ export const TeamAnalysisCloudPull = ({onCloudPulled}: Props) => {
       </Flex>
       <Flex className="items-end">
         <button type="submit" className="button-clickable-bg h-9 w-9 p-1" onClick={async () => {
-          const updated = await actAsync({
+          const {updated} = await actAsync({
             action: 'load',
             options: {
               type: 'teamAnalysisMember',

@@ -25,4 +25,9 @@ export type UserDataAction = {
 
 export type UserDataActor = (opts: UserDataAction) => void;
 
-export type UserDataActorAsync = (opts: UserDataAction) => Promise<Session | null>;
+export type UserDataActorAsyncReturn = {
+  updated: Session | null,
+  status: UserDataActionStatus,
+};
+
+export type UserDataActorAsync = (opts: UserDataAction) => Promise<UserDataActorAsyncReturn>;

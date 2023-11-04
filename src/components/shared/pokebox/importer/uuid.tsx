@@ -21,7 +21,7 @@ export const PokeboxImporterViaUuid = ({onPokeboxPicked}: Props) => {
   }
 
   const pullPokeInBox = async () => {
-    const updated = await actAsync({
+    const {updated} = await actAsync({
       action: 'load',
       options: {
         type: 'pokeboxSingle',
