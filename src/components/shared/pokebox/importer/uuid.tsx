@@ -6,7 +6,7 @@ import {InputBox} from '@/components/input/box';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {actionStatusIcon} from '@/components/shared/userData/const';
-import {regexUuid, regexUuidObject} from '@/const/regex';
+import {regexUuid} from '@/const/regex';
 import {useUserDataActor} from '@/hooks/userData/actor';
 
 
@@ -55,12 +55,12 @@ export const PokeboxImporterViaUuid = ({onPokeboxPicked}: Props) => {
           value={uuid}
           onChange={({target}) => setUuid(target.value)}
           className="w-full"
-          pattern={regexUuid}
+          pattern={regexUuid.source}
         />
         <button
           type="submit"
           className="enabled:button-clickable-bg disabled:button-disabled h-8 w-8 shrink-0 p-1"
-          disabled={!regexUuidObject.test(uuid) || status === 'processing'}
+          disabled={!regexUuid.test(uuid) || status === 'processing'}
         >
           {status !== 'waiting' ? actionStatusIcon[status] : <InboxArrowDownIcon/>}
         </button>

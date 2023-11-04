@@ -19,7 +19,7 @@ import {DocRenderingCommonProps} from '@/components/shared/docs/type';
 import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {regexDocPath, regexDocPathObject} from '@/const/regex';
+import {regexDocPath} from '@/const/regex';
 import {localeName} from '@/const/website';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
@@ -64,14 +64,14 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
             const path = target.value;
 
             // `!!path` to allow empty string
-            if (!!path && !regexDocPathObject.test(path)) {
+            if (!!path && !regexDocPath.test(path)) {
               return;
             }
 
             onDocUpdated({...doc, path});
           }}
           className="w-full"
-          pattern={regexDocPath}
+          pattern={regexDocPath.source}
           required
         />
       </InputRowWithTitle>
