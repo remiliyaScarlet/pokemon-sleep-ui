@@ -1,3 +1,4 @@
+import {addDoc, deleteDoc, updateDoc} from '@/controller/docs';
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
 import {removeActivationDataByKey, updateActivationDataByKey} from '@/controller/user/activation/data';
@@ -96,6 +97,21 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'admin.activation.delete') {
     await removeActivationDataByKey({executorUserId: userId, key: data});
+    return;
+  }
+
+  if (type === 'cms.docs.create') {
+    await addDoc({executorUserId: userId, doc: data});
+    return;
+  }
+
+  if (type === 'cms.docs.edit') {
+    await updateDoc({executorUserId: userId, doc: data});
+    return;
+  }
+
+  if (type === 'cms.docs.delete') {
+    await deleteDoc({executorUserId: userId, ...data});
     return;
   }
 

@@ -14,7 +14,7 @@ export const generateStaticParams: GenerateStaticParamsFunc<DocsPageParams> = as
 };
 
 export const generateMetadata: GenerateMetadata<DocsPageParams> = async ({params}) => {
-  const doc = await getDocBySlug(params);
+  const doc = await getDocBySlug({...params, count: false});
 
   if (!doc) {
     return generatePageMeta({key: 'NotFound.Title'})({params});

@@ -1,7 +1,7 @@
 import {PokeInBox} from '@/types/game/pokebox';
 import {SleepdexData} from '@/types/game/sleepdex';
 import {ActivationDataAtClient, ActivationKeyAtClient} from '@/types/mongo/activation';
-import {DocsDataEditable} from '@/types/mongo/docs';
+import {DocsData, DocsDataEditable, DocsDataEditableFetched} from '@/types/mongo/docs';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
@@ -43,9 +43,12 @@ export type UserDataUploadOpts = {
   type: 'admin.activation.delete',
   data: string,
 } | {
-  type: 'cms.docs.create' | 'cms.docs.edit',
+  type: 'cms.docs.create',
   data: DocsDataEditable,
 } | {
+  type: 'cms.docs.edit',
+  data: DocsDataEditableFetched,
+} | {
   type: 'cms.docs.delete',
-  data: {path: string},
+  data: Pick<DocsData, 'locale' | 'path'>,
 };

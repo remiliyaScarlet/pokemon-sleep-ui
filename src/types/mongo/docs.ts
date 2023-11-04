@@ -12,4 +12,13 @@ export type DocsData = Migratable & {
   viewCount: number,
 };
 
+export type DocsDataFetched = DocsData & {
+  id: string,
+  createdEpoch: number,
+};
+
 export type DocsDataEditable = Omit<DocsData, 'version' | 'lastUpdatedEpoch' | 'viewCount'>;
+
+export type DocsDataEditableFetched = DocsDataEditable & {
+  id: string,
+};
