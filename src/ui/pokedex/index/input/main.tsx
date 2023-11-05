@@ -86,10 +86,8 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             } satisfies PokedexFilter))}
             isActive={(display) => filter.display === display}
             title={
-              <Flex direction="row" center>
-                <div className="h-6 w-6">
-                  <InformationCircleIcon/>
-                </div>
+              <Flex center>
+                <InformationCircleIcon className="h-6 w-6"/>
               </Flex>
             }
             ids={[...pokedexDisplayType].filter((displayType) => !isPokedexSortExclusion(displayType))}

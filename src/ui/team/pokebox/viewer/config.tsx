@@ -70,9 +70,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
         <FilterCategoryInput
           title={
             <Flex center>
-              <div className="h-6 w-6">
-                <EyeIcon/>
-              </div>
+              <EyeIcon className="h-6 w-6"/>
             </Flex>
           }
           ids={[...pokeboxViewType]}
@@ -119,9 +117,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
           <FilterIconInput
             title={
               <Flex center>
-                <div className="h-6 w-6">
-                  <InformationCircleIcon/>
-                </div>
+                <InformationCircleIcon className="h-6 w-6"/>
               </Flex>
             }
             ids={[...pokeboxDisplayType]}
@@ -142,9 +138,7 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
           <FilterIconInput
             title={
               <Flex center>
-                <div className="h-6 w-6">
-                  <InformationCircleIcon/>
-                </div>
+                <InformationCircleIcon className="h-6 w-6"/>
               </Flex>
             }
             ids={[...pokeboxDisplayType]}

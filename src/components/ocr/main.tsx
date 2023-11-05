@@ -57,9 +57,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
           isActive={(ocrLang) => ocrLang === locale}
           title={
             <Flex center className="px-2">
-              <div className="h-6 w-6">
-                <LanguageIcon/>
-              </div>
+              <LanguageIcon className="h-6 w-6"/>
             </Flex>
           }
           ids={[...ocrLocale]}

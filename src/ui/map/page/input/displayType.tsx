@@ -22,9 +22,7 @@ export const MapInputDisplayType = ({filter, setFilter}: MapInputCommonProps) =>
       isActive={(display) => filter.displayType === display}
       title={
         <Flex direction="row" center>
-          <div className="h-6 w-6">
-            <InformationCircleIcon/>
-          </div>
+          <InformationCircleIcon className="h-6 w-6"/>
         </Flex>
       }
       ids={[...mapUnlockTableDisplayType]}
