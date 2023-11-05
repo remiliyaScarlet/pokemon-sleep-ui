@@ -84,6 +84,12 @@ export const navEntries: NavEntry[] = [
   },
   {
     type: 'link',
+    href: '/docs',
+    imageSrc: '/images/generic/memo.png',
+    i18nTextId: 'Docs.Index.Title',
+  },
+  {
+    type: 'link',
     href: '/about',
     imageSrc: '/images/generic/globe.png',
     i18nTextId: 'About.Title',
