@@ -15,6 +15,8 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {Grid} from '@/components/layout/grid';
+import {DocsEditorDisplayToggle} from '@/components/shared/docs/editor/display';
+import {DocsEditorDisplayType} from '@/components/shared/docs/editor/type';
 import {DocRenderingCommonProps} from '@/components/shared/docs/type';
 import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
@@ -37,6 +39,7 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
   const {locale, doc} = props;
   const {path, title, content, showIndex} = doc;
 
+  const [display, setDisplay] = React.useState<DocsEditorDisplayType>('markdown');
   const {push} = useRouter();
   const {actAsync, status} = useUserDataActor({
     statusToast: true,
@@ -109,13 +112,18 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
           {tableOfContentsText[locale]}
         </ToggleButton>
       </InputRow>
+      <DocsEditorDisplayToggle display={display} setDisplay={setDisplay} className="lg:hidden"/>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
         <InputTextArea
           value={content}
           setValue={(content) => onDocUpdated({...doc, content})}
           required
+          className={clsx('lg:block', display === 'markdown' ? 'block' : 'hidden')}
         />
-        <DocsContentView className="info-section-bg rounded-lg" {...props}/>
+        <DocsContentView
+          className={clsx('info-section-bg rounded-lg lg:block', display === 'preview' ? 'block' : 'hidden')}
+          {...props}
+        />
       </Grid>
       <InputRow className="justify-end">
         <UserDataUploadButton isSubmit statusOverride={status}/>
