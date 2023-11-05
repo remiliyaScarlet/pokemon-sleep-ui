@@ -13,7 +13,7 @@ type Props = {
 
 export const DocsMetaItem = ({icon, content, className}: Props) => {
   return (
-    <Flex direction="row" noFullWidth className={clsx('items-center gap-1', className)}>
+    <Flex direction="row" noFullWidth className={clsx('items-center gap-1 whitespace-nowrap', className)}>
       {icon}
       {content}
     </Flex>

@@ -21,7 +21,7 @@ export const DocsMetaCard = ({metadata}: Props) => {
       <div className="text-start">
         {metadata.title}
       </div>
-      <Flex direction="row" noFullWidth className="gap-1">
+      <Flex direction="row" noFullWidth wrap className="gap-1">
         <DocsMetaLastUpdatedUI lastUpdatedEpoch={metadata.lastUpdatedEpoch}/>
         <DocsMetaViewCountUI viewCount={metadata.viewCount} enlargeOnWide={false}/>
       </Flex>
