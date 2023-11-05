@@ -1,3 +1,5 @@
+'use client';
+// This has to be a client component, or the timezone will not be correctly handled
 import React from 'react';
 
 import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
