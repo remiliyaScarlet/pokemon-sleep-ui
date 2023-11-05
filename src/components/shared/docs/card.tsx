@@ -13,7 +13,7 @@ type Props = {
   metadata: DocsMetadata,
 };
 
-export const DocsIndexDocUnit = ({metadata}: Props) => {
+export const DocsMetaCard = ({metadata}: Props) => {
   return (
     <FlexLink direction="col" href={`/docs/view/${metadata.path}`} className={clsx(
       'button-clickable-bg gap-1 rounded-lg p-1.5',
