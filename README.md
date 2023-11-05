@@ -20,6 +20,13 @@ Discord: https://discord.gg/eeveesleep
 
 - Discord `@pail5cm`
 
+### Images
+
+- Discord `@wei3207`
+- Discord `@yuh926323`
+
+> #58
+
 ### Translations
 
 #### Deutsch
