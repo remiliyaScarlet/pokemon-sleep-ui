@@ -4,6 +4,7 @@ import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredie
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
@@ -72,7 +73,10 @@ export const getRateOfPokemon = ({
   return getPokemonProducingRate({
     ...props,
     ...singleParams,
-    ...toCalculatedUserSettings({settings}),
+    ...toCalculatedUserSettings({
+      settings,
+      recoveryRate: toRecoveryRate(singleParams),
+    }),
     level: pokeInBox.level,
     evolutionCount: pokeInBox.evolutionCount,
     pokemonProducingParams: getPokemonProducingParams({
