@@ -4,6 +4,7 @@ import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {ingredientIconMarkToStyle} from '@/components/shared/meal/ingredients/const';
@@ -13,6 +14,7 @@ import {imageIconSizes} from '@/styles/image';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {Dimension} from '@/types/style';
+import {toSum} from '@/utils/array';
 
 
 type Props = IngredientIconsCommonProps & {
@@ -20,6 +22,7 @@ type Props = IngredientIconsCommonProps & {
   dimension?: Dimension,
   iconClickable?: boolean,
   textSizeClassName?: string,
+  showTotalCount?: boolean,
   showXMarkOnEmpty?: boolean,
   className?: string,
 };
@@ -31,6 +34,7 @@ export const IngredientIcons = ({
   dimension,
   iconClickable,
   textSizeClassName,
+  showTotalCount,
   showXMarkOnEmpty,
   className,
 }: Props) => {
@@ -42,6 +46,12 @@ export const IngredientIcons = ({
       textSizeClassName ?? 'text-xs',
       className,
     )}>
+      {
+        showTotalCount &&
+        <InfoIcon dimension={dimension} className="self-center">
+          {toSum(ingredients.map(({qty}) => qty))}
+        </InfoIcon>
+      }
       {ingredients.map((ingredient) => {
         const {id, qty} = ingredient;
         const mark = getMark && getMark(ingredient);

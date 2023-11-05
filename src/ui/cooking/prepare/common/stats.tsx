@@ -27,6 +27,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(missing)}
           className="flex-wrap justify-center"
           iconClickable
+          showTotalCount
           showXMarkOnEmpty
         />
       </InputRowWithTitle>
@@ -38,6 +39,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(filler)}
           className="flex-wrap justify-center"
           iconClickable
+          showTotalCount
           showXMarkOnEmpty
         />
       </InputRowWithTitle>
@@ -48,6 +50,7 @@ export const MealPreparerIngredientStatsUI = ({stats}: Props) => {
           ingredients={toProducingItemFromIngredientCounter(required)}
           className="flex-wrap justify-center"
           iconClickable
+          showTotalCount
           showXMarkOnEmpty
         />
       </InputRowWithTitle>
