@@ -173,6 +173,9 @@
       "Title": "About"
     },
     "Docs": {
+      "Index": {
+        "Title": "Documentations"
+      },
       "New": {
         "Title": "New Documentation"
       },

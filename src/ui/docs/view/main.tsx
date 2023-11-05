@@ -5,7 +5,7 @@ import {getServerSession} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
 import {DocsControl} from '@/components/shared/docs/control/main';
-import {DocsMeta} from '@/components/shared/docs/meta/main';
+import {DocsMetadataUI} from '@/components/shared/docs/meta/main';
 import {DocsContentView} from '@/components/shared/docs/view/main';
 import {authOptions} from '@/const/auth';
 import {getDocBySlug} from '@/controller/docs';
@@ -36,7 +36,7 @@ export const DocsView = async ({params}: PageProps<DocsPageParams>) => {
   return (
     <PublicPageLayout locale={locale}>
       <AdsUnit/>
-      <DocsMeta doc={doc}/>
+      <DocsMetadataUI doc={doc}/>
       <DocsControl locale={doc.locale} path={doc.path} isCmsMod={await isCmsMod(session?.user.id)}/>
       <AdsUnit/>
       <DocsContentView locale={locale} doc={doc}/>

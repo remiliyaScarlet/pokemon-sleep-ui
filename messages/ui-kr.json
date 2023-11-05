@@ -173,6 +173,9 @@
       "Title": "정보"
     },
     "Docs": {
+      "Index": {
+        "Title": "Documentations"
+      },
       "New": {
         "Title": "New Documentation"
       },

@@ -98,6 +98,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Stamina: I18nMetadata,
       About: I18nMetadata,
       Docs: {
+        Index: I18nMetadata,
         New: I18nMetadata,
         Edit: I18nMetadata,
         View: I18nMetadata,

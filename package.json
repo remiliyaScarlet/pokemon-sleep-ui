@@ -59,6 +59,7 @@
     "tailwindcss": "^3.3.5",
     "tesseract.js": "^5.0.3",
     "threads": "^1.7.0",
+    "treeify-paths": "^2.0.1",
     "use-custom-compare": "^1.4.0",
     "uuid": "^9.0.1"
   },
