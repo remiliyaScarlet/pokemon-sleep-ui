@@ -8,14 +8,14 @@ import {PokedexMap} from '@/types/game/pokemon';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrTranslationsForPokemonInfo} from '@/types/ocr/extracted/pokemon';
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type SkillTriggerOnDeskState = PokemonOnDeskState & {
   level: number,
 };
 
-export type SkillTriggerAnalysisState = CalculatedUserSettings & {
+export type SkillTriggerAnalysisState = {
   base: SkillTriggerAnalysisUnit | null,
   targets: {[id in string]: SkillTriggerAnalysisUnit},
 };
@@ -39,5 +39,5 @@ export type SkillTriggerAnalysisDataProps =
   SkillTriggerAnalysisServerDataProps &
   PokemonComplexFilterDataProps &
   PokemonOnDeskDataProps & {
-    calculatedSettings: CalculatedUserSettings,
+    settings: UserSettings,
   };

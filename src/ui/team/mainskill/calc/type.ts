@@ -3,7 +3,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {PokedexMap} from '@/types/game/pokemon';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 
 
 export type GetSkillTriggerValueCommonOpts = {
@@ -12,5 +12,5 @@ export type GetSkillTriggerValueCommonOpts = {
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   subSkillMap: SubSkillMap,
-  calculatedSettings: CalculatedUserSettings,
+  settings: UserSettings,
 };

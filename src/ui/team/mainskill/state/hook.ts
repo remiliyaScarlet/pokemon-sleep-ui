@@ -3,21 +3,13 @@ import React from 'react';
 import {v4} from 'uuid';
 
 import {PokemonConfigPokemonData} from '@/components/shared/pokemon/predefined/config/type';
-import {CalculatedUserSettings} from '@/types/userData/settings';
 import {UseSkillTriggerAnalysisTargetStateReturn} from '@/ui/team/mainskill/state/type';
 import {SkillTriggerAnalysisState, SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 import {generateSkillTriggerAnalysisUnit, GenerateSkillTriggerAnalysisUnitOpts} from '@/ui/team/mainskill/utils';
 
 
-type UseSkillTriggerAnalysisOpts = {
-  calculatedSettings: CalculatedUserSettings,
-};
-
-export const useSkillTriggerAnalysisTargetState = ({
-  calculatedSettings,
-}: UseSkillTriggerAnalysisOpts): UseSkillTriggerAnalysisTargetStateReturn => {
+export const useSkillTriggerAnalysisTargetState = (): UseSkillTriggerAnalysisTargetStateReturn => {
   const [state, setState] = React.useState<SkillTriggerAnalysisState>({
-    ...calculatedSettings,
     base: null,
     targets: {},
   });

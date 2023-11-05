@@ -5,7 +5,9 @@ import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 type GetSkillTriggerValueOfUnitOpts = GetSkillTriggerValueCommonOpts & {
@@ -20,7 +22,7 @@ export const getSkillTriggerValueOfUnit = ({
   berryDataMap,
   ingredientMap,
   subSkillMap,
-  calculatedSettings,
+  settings,
   id,
   unit,
   baseValue,
@@ -44,19 +46,22 @@ export const getSkillTriggerValueOfUnit = ({
     pokemonId,
     pokemonProducingParamsMap,
   });
-
   const subSkillBonus = getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap});
+  const singleParams = getProducingRateSingleParams({
+    level,
+    subSkill,
+    nature,
+    subSkillMap,
+  });
 
   const rate = getPokemonProducingRate({
     // `unit` could have `pokemon` from Poke-in-box, therefore it should always be at the top
     ...unit,
-    ...getProducingRateSingleParams({
-      level,
-      subSkill,
-      nature,
-      subSkillMap,
+    ...singleParams,
+    ...toCalculatedUserSettings({
+      settings,
+      recoveryRate: toRecoveryRate(singleParams),
     }),
-    ...calculatedSettings,
     pokemon,
     snorlaxFavorite: {},
     berryData: berryDataMap[berry.id],
