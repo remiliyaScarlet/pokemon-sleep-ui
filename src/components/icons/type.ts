@@ -1,1 +1,1 @@
-export type InfoIconStyle = 'normal' | 'warn' | 'soft';
+export type InfoIconStyle = 'normal' | 'warn' | 'soft' | 'glow';

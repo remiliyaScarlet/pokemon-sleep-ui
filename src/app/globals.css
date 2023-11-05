@@ -303,6 +303,10 @@
     @apply info-icon-base bg-slate-400/40 dark:bg-slate-500/40;
   }
   
+  .info-icon-glow {
+    @apply info-icon-base shadow-border shadow-slate-700 dark:shadow-slate-300;
+  }
+  
   .info-highlight {
     @apply rounded-lg shadow-border shadow-slate-700 dark:shadow-slate-300;
   }

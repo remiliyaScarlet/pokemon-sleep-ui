@@ -48,7 +48,7 @@ export const IngredientIcons = ({
     )}>
       {
         showTotalCount &&
-        <InfoIcon dimension={dimension} className="self-center">
+        <InfoIcon dimension={dimension} style="glow" className="self-center">
           {toSum(ingredients.map(({qty}) => qty))}
         </InfoIcon>
       }
