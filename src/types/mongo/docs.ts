@@ -22,3 +22,8 @@ export type DocsDataEditable = Omit<DocsData, 'version' | 'lastUpdatedEpoch' | '
 export type DocsDataEditableFetched = DocsDataEditable & {
   id: string,
 };
+
+export type DocsMetadata = Pick<
+  DocsDataFetched,
+  'path' | 'title' | 'createdEpoch' | 'lastUpdatedEpoch' | 'viewCount'
+>;

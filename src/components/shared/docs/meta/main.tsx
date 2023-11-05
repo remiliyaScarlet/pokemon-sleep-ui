@@ -7,12 +7,12 @@ import format from 'date-fns/format';
 
 import {Flex} from '@/components/layout/flex/common';
 import {DocsMetaItem} from '@/components/shared/docs/meta/item';
-import {DocsDataFetched} from '@/types/mongo/docs';
+import {DocsMetadata} from '@/types/mongo/docs';
 import {formatInt} from '@/utils/number/format';
 
 
 type Props = {
-  doc: DocsDataFetched,
+  doc: DocsMetadata,
 };
 
 export const DocsMeta = ({doc}: Props) => {

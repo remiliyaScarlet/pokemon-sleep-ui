@@ -1,11 +1,16 @@
 import {ObjectId} from 'bson';
 import {Collection} from 'mongodb';
 
-import {getDataAsArray} from '@/controller/common';
 import {throwIfNotCmsMod} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {DocsData, DocsDataEditable, DocsDataEditableFetched, DocsDataFetched} from '@/types/mongo/docs';
+import {
+  DocsData,
+  DocsDataEditable,
+  DocsDataEditableFetched,
+  DocsDataFetched,
+  DocsMetadata,
+} from '@/types/mongo/docs';
 import {Locale} from '@/types/next/locale';
 import {getMigratedDocs} from '@/utils/migrate/docs/utils';
 import {DeepPartial} from '@/utils/type';
@@ -108,10 +113,19 @@ export const getDocBySlugForEdit = async (
   return {id, locale, path, title, content, showIndex};
 };
 
-export const getDocsPathList = async (locale: Locale): Promise<string[]> => {
-  const docs = await getDataAsArray(getCollection(), {locale});
+export const getDocsMetadataList = async (locale: Locale): Promise<DocsMetadata[]> => {
+  const docs = (await getCollection()).find({locale}, {sort: {path: 1}});
 
-  return docs.map(({path}) => path);
+  // Explicit to avoid sending additional data to client
+  return docs
+    .map(({_id, path, title, lastUpdatedEpoch, viewCount}) => ({
+      path,
+      title,
+      createdEpoch: _id.getTimestamp().getTime(),
+      lastUpdatedEpoch,
+      viewCount,
+    }))
+    .toArray();
 };
 
 const addIndex = async () => {
