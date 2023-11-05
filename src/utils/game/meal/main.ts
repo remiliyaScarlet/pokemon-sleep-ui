@@ -24,7 +24,7 @@ export const getMealFinalStrength = ({
 
   return {
     ...info,
-    strengthFinal: (strengthFinal + strengthFromFiller) * (1 + mapBonus / 100),
+    strengthFinal: Math.floor((strengthFinal + strengthFromFiller) * (1 + mapBonus / 100)),
   };
 };
 
