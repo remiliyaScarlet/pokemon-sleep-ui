@@ -13,7 +13,7 @@ import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {setLocale} from '@/ui/base/context';
 import {AdsGap} from '@/ui/base/gap';
-import {AdsOfLayout} from '@/ui/base/layout/ads';
+import {AdsLayout} from '@/ui/base/layout/ads';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
 import {NavBar} from '@/ui/base/navbar/main';
@@ -69,7 +69,7 @@ export const PageLayout = ({
         </div>
       </Flex>
       <Flex className="fixed bottom-0">
-        <AdsOfLayout adsShouldShow={adsShouldShow}/>
+        <AdsLayout adsShouldShow={adsShouldShow}/>
       </Flex>
     </>
   );

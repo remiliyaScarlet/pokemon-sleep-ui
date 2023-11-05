@@ -10,7 +10,7 @@ type Props = {
   adsShouldShow: boolean,
 };
 
-export const AdsOfLayout = ({adsShouldShow}: Props) => {
+export const AdsLayout = ({adsShouldShow}: Props) => {
   if (!adsShouldShow) {
     return null;
   }
