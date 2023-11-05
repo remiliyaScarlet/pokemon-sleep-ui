@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LanguageIcon from '@heroicons/react/24/outline/LanguageIcon';
+import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -15,6 +16,7 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {Grid} from '@/components/layout/grid';
+import {docsRelatedSeparator} from '@/components/shared/docs/editor/const';
 import {DocsEditorDisplayToggle} from '@/components/shared/docs/editor/display';
 import {DocsEditorDisplayType} from '@/components/shared/docs/editor/type';
 import {DocRenderingCommonProps} from '@/components/shared/docs/type';
@@ -37,7 +39,7 @@ type Props = DocRenderingCommonProps & {
 
 export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}: Props) => {
   const {locale, doc} = props;
-  const {path, title, content, showIndex} = doc;
+  const {path, title, content, showIndex, related} = doc;
 
   const [display, setDisplay] = React.useState<DocsEditorDisplayType>('markdown');
   const {push} = useRouter();
@@ -88,6 +90,21 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
           })}
           className="w-full"
           required
+        />
+      </InputRowWithTitle>
+      <InputRowWithTitle title={
+        <Flex center>
+          <LinkIcon className="h-4 w-4"/>
+        </Flex>
+      }>
+        <InputBox
+          type="text"
+          value={related.join(docsRelatedSeparator)}
+          onChange={({target}) => onDocUpdated({
+            ...doc,
+            related: target.value.split(docsRelatedSeparator),
+          })}
+          className="w-full"
         />
       </InputRowWithTitle>
       <FilterTextInput

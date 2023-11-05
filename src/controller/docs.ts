@@ -1,5 +1,5 @@
 import {ObjectId} from 'bson';
-import {Collection} from 'mongodb';
+import {Collection, FindCursor, WithId} from 'mongodb';
 
 import {throwIfNotCmsMod} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
@@ -34,6 +34,19 @@ const getSanitizedDoc = (doc: DeepPartial<DocsData>): DocsData => {
   };
 };
 
+const toDocMetadata = (cursor: FindCursor<WithId<DocsData>>) => (
+  cursor
+    // Explicit to avoid sending additional data to client
+    .map(({_id, path, title, lastUpdatedEpoch, viewCount}) => ({
+      path,
+      title,
+      createdEpoch: _id.getTimestamp().getTime(),
+      lastUpdatedEpoch,
+      viewCount,
+    }))
+    .toArray()
+);
+
 type UploadDocOpts<TDoc> = ControllerRequireUserIdOpts & {
   doc: TDoc,
 };
@@ -56,6 +69,7 @@ export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEdi
     title,
     content,
     showIndex,
+    related,
   } = getSanitizedDoc(doc);
 
   return (await getCollection()).updateOne(
@@ -67,6 +81,7 @@ export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEdi
       title,
       content,
       showIndex,
+      related,
     } satisfies Omit<DocsData, 'viewCount'>},
   );
 };
@@ -77,6 +92,16 @@ export const deleteDoc = async ({executorUserId, locale, path}: DeleteDocOpts) =
   throwIfNotCmsMod(executorUserId);
 
   return (await getCollection()).deleteOne({locale, path});
+};
+
+type GetRelatedDocMetaOpts = {
+  path: string,
+};
+
+export const getRelatedDocMeta = async ({path}: GetRelatedDocMetaOpts): Promise<DocsMetadata[]> => {
+  const docs = (await getCollection()).find({related: new RegExp(`^${path}`)});
+
+  return toDocMetadata(docs);
 };
 
 type GetDocBySlugOpts = {
@@ -123,24 +148,16 @@ export const getDocBySlugForEdit = async (
     title,
     content,
     showIndex,
+    related,
   } = doc;
 
-  return {id, locale, path, title, content, showIndex};
+  return {id, locale, path, title, content, showIndex, related};
 };
 
 export const getDocsMetadataList = async (locale: Locale): Promise<DocsMetadata[]> => {
   const docs = (await getCollection()).find({locale}, {sort: {path: 1}});
 
-  // Explicit to avoid sending additional data to client
-  return docs
-    .map(({_id, path, title, lastUpdatedEpoch, viewCount}) => ({
-      path,
-      title,
-      createdEpoch: _id.getTimestamp().getTime(),
-      lastUpdatedEpoch,
-      viewCount,
-    }))
-    .toArray();
+  return toDocMetadata(docs);
 };
 
 const addIndex = async () => {

@@ -17,6 +17,7 @@ export const DocsNewClient = ({locale}: Props) => {
     title: '',
     content: '',
     showIndex: true,
+    related: [],
   });
 
   return (

@@ -10,3 +10,5 @@ export const docsEditorDisplayTypeIcon: {[type in DocsEditorDisplayType]: React.
   markdown: <DocumentTextIcon/>,
   preview: <EyeIcon/>,
 };
+
+export const docsRelatedSeparator = ';';

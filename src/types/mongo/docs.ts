@@ -10,6 +10,7 @@ export type DocsData = Migratable & {
   showIndex: boolean,
   lastUpdatedEpoch: number,
   viewCount: number,
+  related: string[],
 };
 
 export type DocsDataFetched = DocsData & {

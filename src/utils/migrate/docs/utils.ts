@@ -15,6 +15,7 @@ export const getMigratedDocs = (override: DeepPartial<DocsData>) => migrate({
     showIndex: true,
     lastUpdatedEpoch: Date.now(),
     viewCount: 0,
+    related: [],
   },
   override,
   migrators: docsMigrators,
