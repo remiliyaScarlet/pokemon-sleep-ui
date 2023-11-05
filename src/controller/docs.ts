@@ -47,12 +47,27 @@ export const addDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditab
 export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditableFetched>) => {
   throwIfNotCmsMod(executorUserId);
 
-  // View count is extracted to avoid overwriting
-  const {viewCount, ...migrated} = getSanitizedDoc(doc);
+  // Explicit to avoid updating unwanted properties
+  const {
+    version,
+    lastUpdatedEpoch,
+    locale,
+    path,
+    title,
+    content,
+    showIndex,
+  } = getSanitizedDoc(doc);
 
   return (await getCollection()).updateOne(
     {_id: new ObjectId(doc.id)},
-    {$set: {...migrated, lastUpdatedEpoch: Date.now()} satisfies Omit<DocsData, 'viewCount'>},
+    {$set: {version,
+      lastUpdatedEpoch,
+      locale,
+      path,
+      title,
+      content,
+      showIndex,
+    } satisfies Omit<DocsData, 'viewCount'>},
   );
 };
 
