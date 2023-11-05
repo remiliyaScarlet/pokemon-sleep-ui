@@ -13,10 +13,11 @@ type Props = Pick<StaminaConfigProps, 'config' | 'setConfig'> & {
   session: keyof SleepSessions<never>,
   times: SleepSessionTimes | null,
   timing: keyof SleepSessionTimes,
+  isActive: boolean,
   icon?: React.ReactNode,
 };
 
-export const StaminaConfigSleepTime = ({config, setConfig, session, times, timing, icon}: Props) => {
+export const StaminaConfigSleepTime = ({config, setConfig, session, times, timing, isActive, icon}: Props) => {
   const timeValue = times ? times[timing] : null;
 
   const updateTimeInConfig = (time: number) => setConfig({
@@ -46,6 +47,7 @@ export const StaminaConfigSleepTime = ({config, setConfig, session, times, timin
           setValue={updateTimeInConfig}
           min={0}
           max={durationOfDay - 1}
+          disabled={!isActive}
         />
       </Flex>
     </Flex>
