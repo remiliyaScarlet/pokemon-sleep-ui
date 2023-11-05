@@ -9,6 +9,7 @@ import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
+import {DocsAutoLink} from '@/components/shared/docs/autoLink/main';
 import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {setLocale} from '@/ui/base/context';
@@ -61,6 +62,7 @@ export const PageLayout = ({
         <div className="h-full w-full overflow-y-auto">
           <Flex className="gap-1.5 p-2">
             {announcement && <Announcements showOn="portrait" height="h-10"/>}
+            <DocsAutoLink locale={locale}/>
             <React.Suspense fallback={<Loading/>}>
               {children}
             </React.Suspense>

@@ -18,7 +18,7 @@ export const DocsMetaCard = ({metadata}: Props) => {
     <FlexLink direction="col" href={`/docs/view/${metadata.path}`} className={clsx(
       'button-clickable-bg gap-1 rounded-lg p-1.5',
     )}>
-      <div>
+      <div className="text-start">
         {metadata.title}
       </div>
       <Flex direction="row" noFullWidth className="gap-1">
