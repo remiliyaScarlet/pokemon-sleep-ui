@@ -19,12 +19,16 @@ export const DocsIndexTreeUnit = ({tree, lookup}: Props) => {
   return (
     <Flex noFullWidth className="gap-1.5">
       {isNode && <DocsMetaCard metadata={lookup[tree.path]}/>}
-      {/* No `ml-4` if the node is parent (`tree.path` is an empty string) */}
-      <Flex noFullWidth className={clsx('gap-2', tree.path && 'ml-4')}>
-        {tree.children.map((tree) => (
-          <DocsIndexTreeUnit key={tree.path} tree={tree} lookup={lookup}/>
-        ))}
-      </Flex>
+      {
+        // Check for `length` to avoid rendering an empty `<Flex/>`
+        !!tree.children.length &&
+        // No `ml-4` if the node is parent (`tree.path` is an empty string)
+        <Flex noFullWidth className={clsx('gap-2', tree.path && 'ml-4')}>
+          {tree.children.map((tree) => (
+            <DocsIndexTreeUnit key={tree.path} tree={tree} lookup={lookup}/>
+          ))}
+        </Flex>
+      }
     </Flex>
   );
 };
