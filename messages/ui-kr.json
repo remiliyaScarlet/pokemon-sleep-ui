@@ -174,16 +174,16 @@
     },
     "Docs": {
       "Index": {
-        "Title": "Documentations"
+        "Title": "문서"
       },
       "New": {
-        "Title": "New Documentation"
+        "Title": "새 문서"
       },
       "Edit": {
-        "Title": "Edit Doc - {name}"
+        "Title": "문서 편집 - {name}"
       },
       "View": {
-        "Title": "Doc - {name}"
+        "Title": "문서 - {name}"
       }
     }
   },
