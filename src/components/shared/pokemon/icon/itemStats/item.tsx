@@ -13,7 +13,9 @@ import {PokemonItemStatsWorkerOpts} from '@/components/shared/pokemon/icon/itemS
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
+import {usePokemonProducingRateSingleDisplay} from '@/components/shared/pokemon/production/single/hook';
+import {PokemonProducingRateSingleDisplaySwitch} from '@/components/shared/pokemon/production/single/input';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
@@ -26,6 +28,8 @@ type Props = PokemonItemStatsWorkerOpts & {
   getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfStates | undefined,
   getIcon: (pokemon: PokemonInfo, dimension: Dimension) => React.ReactNode,
   targetSpecialty: PokemonSpecialtyId,
+  itemAlt: string,
+  itemImageSrc: string,
   isProductionIncluded?: (productions: IngredientProduction[]) => boolean,
 };
 
@@ -33,6 +37,8 @@ export const PokemonIconsItemStats = ({
   getItemRate,
   getIcon,
   targetSpecialty,
+  itemAlt,
+  itemImageSrc,
   isProductionIncluded,
   ...props
 }: Props) => {
@@ -42,6 +48,7 @@ export const PokemonIconsItemStats = ({
     setLoading,
     ...props,
   });
+  const control = usePokemonProducingRateSingleDisplay();
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
@@ -63,7 +70,12 @@ export const PokemonIconsItemStats = ({
   return (
     <>
       <PokemonLinkPopup state={state} setState={setState}/>
-      <LazyLoad loading={loading}>
+      <LazyLoad loading={loading} className="gap-1.5">
+        <PokemonProducingRateSingleDisplaySwitch
+          control={control}
+          itemAlt={itemAlt}
+          itemImageSrc={itemImageSrc}
+        />
         <Grid className="grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
           {filteredStats.map(({
             pokemon,
@@ -84,10 +96,9 @@ export const PokemonIconsItemStats = ({
                   <Flex noFullWidth className="absolute bottom-1 right-1 z-10">
                     <PokemonProducingRateSingle
                       rate={itemRate}
+                      display={control.display}
                       getIcon={(dimension) => getIcon(pokemon, dimension)}
-                      additionalContents={[
-                        <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>,
-                      ]}
+                      infoAtTotal={<PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>}
                       dailyTotalEnergy={dailyTotalEnergy}
                     />
                   </Flex>

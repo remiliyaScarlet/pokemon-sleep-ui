@@ -6,7 +6,7 @@ import {Grid} from '@/components/layout/grid';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
-import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {defaultNeutralOpts} from '@/const/game/production';
@@ -76,6 +76,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
                     getIcon={(dimension) => (
                       <PokemonBerryIcon id={berry.id} dimension={dimension}/>
                     )}
+                    display="item"
                   />
                   <PokemonProducingRateMultiple
                     horizontal

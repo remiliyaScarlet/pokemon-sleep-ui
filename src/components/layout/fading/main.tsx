@@ -3,27 +3,22 @@ import React from 'react';
 import {Transition} from '@headlessui/react';
 import {clsx} from 'clsx';
 
-import {AnimatedSwitchCommonProps} from '@/components/layout/animatedSwitch/type';
 import {Grid} from '@/components/layout/grid';
 
 
-type Props = AnimatedSwitchCommonProps & {
-  idx: number,
+type Props<TKey extends string> = {
+  current: TKey,
+  contents: {[key in TKey]: React.ReactNode},
+  className?: string,
 };
 
-export const AnimatedSwitchContent = ({contents, idx, className}: Props) => {
-  const content = contents[idx] as React.ReactNode | undefined;
-
-  if (!content) {
-    return null;
-  }
-
+export const FadingLayout = <TKey extends string>({current, contents, className}: Props<TKey>) => {
   return (
     <Grid className={clsx('grid-areas-inner-div', className)}>
-      {contents.map((content, contentIdx) => (
+      {Object.entries(contents).map(([key, content]) => (
         <Transition
-          key={contentIdx}
-          show={contentIdx === idx}
+          key={key}
+          show={key === current}
           enter="duration-1000"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -32,7 +27,7 @@ export const AnimatedSwitchContent = ({contents, idx, className}: Props) => {
           leaveTo="opacity-0"
           className="overflow-hidden transition-opacity ease-in-out grid-in-inner-div"
         >
-          {content}
+          {content as React.ReactNode}
         </Transition>
       ))}
     </Grid>

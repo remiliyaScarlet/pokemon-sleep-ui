@@ -8,7 +8,7 @@ import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single';
+import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {PokemonProducingStatsItemLayout} from '@/components/shared/pokemon/production/stats/item';
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';
@@ -69,6 +69,7 @@ export const PokemonProducingStatsOfState = ({
             rate={berry}
             state={state}
             getIcon={(dimension) => <PokemonBerryIcon id={berry.id} dimension={dimension}/>}
+            display="item"
           />
         </PokemonProducingStatsItemLayout>
         <PokemonProducingStatsItemLayout icon={<GenericIngredientIcon alt={t('Ingredient')} dimension="h-10 w-10"/>}>
@@ -79,6 +80,7 @@ export const PokemonProducingStatsOfState = ({
                 rate={rate}
                 state={state}
                 getIcon={(dimension) => <PokemonIngredientIcon id={rate.id} dimension={dimension}/>}
+                display="item"
               />
             ))}
           </Flex>

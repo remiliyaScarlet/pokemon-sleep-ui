@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {useTranslations} from 'next-intl';
+
 import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/item';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
@@ -16,6 +18,8 @@ export const PokemonIconsIngredientStats = ({
   ingredient,
   ...props
 }: Props) => {
+  const t = useTranslations('UI.InPage.Pokedex.Info');
+
   if (!ingredient) {
     return null;
   }
@@ -27,6 +31,8 @@ export const PokemonIconsIngredientStats = ({
       getIcon={(_, dimension) => (
         <PokemonIngredientIcon id={ingredient.id} dimension={dimension}/>
       )}
+      itemAlt={t('Ingredient')}
+      itemImageSrc={`/images/ingredient/${ingredient.id}.png`}
       isProductionIncluded={(productions) => productions.some(({id}) => id === ingredient.id)}
       {...props}
     />
