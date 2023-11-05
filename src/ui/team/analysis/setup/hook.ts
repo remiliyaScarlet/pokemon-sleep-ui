@@ -84,7 +84,7 @@ const useProducingStatsOfSlot = ({
     const calculatedSettings = toCalculatedUserSettings({
       settings,
       recoveryRate: toRecoveryRate(producingRateOpts),
-      behaviorOverride: berryPokemonAlwaysFullPack !== null ? {berryPokemonAlwaysFullPack} : {},
+      behaviorOverride: berryPokemonAlwaysFullPack != null ? {berryPokemonAlwaysFullPack} : {},
     });
 
     const pokemonProducingRate = getPokemonProducingRate({
