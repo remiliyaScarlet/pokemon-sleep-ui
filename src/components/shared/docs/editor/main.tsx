@@ -121,7 +121,7 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
           className={clsx('lg:block', display === 'markdown' ? 'block' : 'hidden')}
         />
         <DocsContentView
-          className={clsx('info-section-bg rounded-lg lg:block', display === 'preview' ? 'block' : 'hidden')}
+          className={clsx('info-section-bg rounded-lg lg:flex', display === 'preview' ? 'flex' : 'hidden')}
           {...props}
         />
       </Grid>
