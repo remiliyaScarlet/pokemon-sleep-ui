@@ -13,7 +13,7 @@ export const ClickableIconButton = ({onClick, disabled, isSubmit, children}: Rea
   return (
     <button
       className="enabled:button-clickable-bg disabled:button-disabled relative h-8 w-14"
-      onClick={isSubmit ? onClick : undefined}
+      onClick={isSubmit ? undefined : onClick}
       disabled={disabled}
       type={isSubmit ? 'submit' : 'button'}
     >

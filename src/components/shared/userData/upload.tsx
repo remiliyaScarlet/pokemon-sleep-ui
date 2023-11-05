@@ -21,9 +21,13 @@ export const UserDataUploadButton = ({opts, isSubmit, statusOverride}: Props) =>
   const {act, status} = useUserDataActor();
 
   return (
-    <ClickableIconButton disabled={!act || status === 'processing'} isSubmit={isSubmit} onClick={() => (
-      isSubmit ? undefined : act && act({action: 'upload', options: opts})
-    )}>
+    <ClickableIconButton disabled={!act || status === 'processing'} isSubmit={isSubmit} onClick={() => {
+      if (isSubmit || !act) {
+        return;
+      }
+
+      act({action: 'upload', options: opts});
+    }}>
       {actionStatusIcon[statusOverride ?? status]}
     </ClickableIconButton>
   );
