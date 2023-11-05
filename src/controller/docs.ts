@@ -146,6 +146,7 @@ export const getDocsMetadataList = async (locale: Locale): Promise<DocsMetadata[
 const addIndex = async () => {
   return Promise.all([
     (await getCollection()).createIndex({locale: 1, path: 1}, {unique: true}),
+    (await getCollection()).createIndex({title: 'text', content: 'text'}),
   ]);
 };
 
