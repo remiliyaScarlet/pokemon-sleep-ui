@@ -21,9 +21,9 @@ export const DocsMetadataUI = ({doc}: Props) => {
 
   return (
     <Flex className="info-section">
-      <Flex className="text-2xl">
+      <h1 className="text-2xl">
         {title}
-      </Flex>
+      </h1>
       <Flex className="items-end justify-between gap-1 md:flex-row">
         <Flex className="gap-1" noFullWidth>
           <DocsMetaCreatedUI createdEpoch={createdEpoch}/>
