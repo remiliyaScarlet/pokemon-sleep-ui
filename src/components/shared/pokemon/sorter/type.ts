@@ -49,6 +49,7 @@ export type PokemonSortingRequiredData = {
   ingredients: IngredientProduction[],
   evolutionCount: number,
   dateAdded: number | null,
+  calculatedSettings: CalculatedUserSettings,
 };
 
 export type PokemonInfoWithSortingPayload<TExtra> = PokemonSortingRequiredData & ProducingRateSingleParams & {
@@ -64,7 +65,6 @@ export type PokemonSorterGetterOpts = PokemonSortingRequiredData & ProducingRate
   ingredientMap: IngredientMap,
   berryData: BerryData,
   snorlaxFavorite: SnorlaxFavorite,
-  calculatedSettings: CalculatedUserSettings,
 };
 
 export type PokemonSorterGetter = (opts: PokemonSorterGetterOpts) => number;

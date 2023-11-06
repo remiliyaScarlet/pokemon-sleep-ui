@@ -60,6 +60,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
       dateAdded: null,
       extra: null,
+      calculatedSettings,
       ...defaultNeutralOpts,
     };
     const chain = ingredientChainMap[pokemon.ingredientChain];
@@ -84,7 +85,6 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ingredientMap,
     berryDataMap,
     snorlaxFavorite: filter.snorlaxFavorite,
-    calculatedSettings,
     triggerDeps: sortingDeps,
     setLoading,
   });

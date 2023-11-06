@@ -2,20 +2,22 @@ import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {UserSettings} from '@/types/userData/settings';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {isNotNullish} from '@/utils/type';
+import {toCalculatedUserSettings} from '@/utils/user/settings';
 
 
 type Props = PokeboxCommonProps & {
   pokebox: Pokebox,
   pokeboxForCalc: Pokebox,
   filter: PokeboxViewerFilter,
-  calculatedSettings: CalculatedUserSettings,
+  settings: UserSettings,
   isIncluded: FilterInclusionMap<PokeInBox['uuid']>,
   setLoading: (loading: boolean) => void,
 };
@@ -29,7 +31,7 @@ export const useFilteredSortedPokebox = ({
   pokebox,
   pokeboxForCalc,
   filter,
-  calculatedSettings,
+  settings,
   isIncluded,
   setLoading,
 }: Props) => {
@@ -45,6 +47,11 @@ export const useFilteredSortedPokebox = ({
         }
 
         const {level, dateAdded} = pokeInBox;
+        const singleParams = getProducingRateSingleParams({
+          ...pokeInBox,
+          subSkillMap,
+          helpingBonusSimulateOnSelf: true,
+        });
 
         return {
           pokemon,
@@ -57,10 +64,10 @@ export const useFilteredSortedPokebox = ({
           extra: pokeInBox,
           evolutionCount: pokeInBox.evolutionCount,
           ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
-          ...getProducingRateSingleParams({
-            ...pokeInBox,
-            subSkillMap,
-            helpingBonusSimulateOnSelf: true,
+          ...singleParams,
+          calculatedSettings: toCalculatedUserSettings({
+            settings,
+            recoveryRate: toRecoveryRate(singleParams),
           }),
         } satisfies PokemonInfoWithSortingPayload<PokeInBox>;
       })
@@ -69,8 +76,7 @@ export const useFilteredSortedPokebox = ({
     snorlaxFavorite: filter.snorlaxFavorite,
     ingredientMap,
     berryDataMap,
-    calculatedSettings,
-    triggerDeps: [pokebox, filter, calculatedSettings],
+    triggerDeps: [pokebox, filter, settings],
     setLoading,
   });
 };

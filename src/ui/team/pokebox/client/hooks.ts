@@ -4,7 +4,7 @@ import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useUserSettings} from '@/hooks/userData/settings/main';
 import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {useFilteredSortedPokebox} from '@/ui/team/pokebox/content/hook';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
@@ -31,7 +31,7 @@ export const useCalculatedData = (
 
   const t = useTranslations('Game');
 
-  const {settings, calculatedSettings} = useCalculatedUserSettings({
+  const settings = useUserSettings({
     server: preloaded.settings,
     client: session.data?.user.preloaded.settings,
   });
@@ -58,7 +58,7 @@ export const useCalculatedData = (
       } satisfies PokeInBox,
     ])),
     filter,
-    calculatedSettings,
+    settings,
     isIncluded,
     setLoading,
   });
