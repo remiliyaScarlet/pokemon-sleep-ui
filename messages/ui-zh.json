@@ -59,8 +59,21 @@
         "Title": "{name} - 寶可夢"
       }
     },
-    "Sleepdex": {
-      "Title": "睡眠圖鑑"
+    "SleepStyle": {
+      "Index": {
+        "Title": "地圖、睡姿"
+      },
+      "Sleepdex": {
+        "Title": "睡眠圖鑑"
+      },
+      "Map": {
+        "Index": {
+          "Title": "地圖"
+        },
+        "Page": {
+          "Title": "{name} - 地圖"
+        }
+      }
     },
     "Analysis": {
       "Title": "{name} - 寶可夢分析"
@@ -101,14 +114,6 @@
       },
       "Page": {
         "Title": "{name} - 樹果"
-      }
-    },
-    "Map": {
-      "Index": {
-        "Title": "地圖、睡姿"
-      },
-      "Page": {
-        "Title": "{name} - 地圖、睡姿"
       }
     },
     "Team": {

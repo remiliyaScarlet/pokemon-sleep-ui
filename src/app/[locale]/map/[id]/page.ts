@@ -21,7 +21,7 @@ export const generateMetadata: GenerateMetadata<MapPageParams> = async ({params}
   const {id, locale} = params;
   const t = await getI18nTranslator({locale, namespace: 'Game.Field'});
 
-  return generatePageMeta({key: 'Map.Page.Title', values: {name: t(id)}})({params});
+  return generatePageMeta({key: 'SleepStyle.Map.Page.Title', values: {name: t(id)}})({params});
 };
 
 export default MapPage;

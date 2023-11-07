@@ -59,8 +59,21 @@
         "Title": "{name} - ポケモン"
       }
     },
-    "Sleepdex": {
-      "Title": "睡眠図鑑"
+    "SleepStyle": {
+      "Index": {
+        "Title": "マップ / 寝顔"
+      },
+      "Sleepdex": {
+        "Title": "睡眠図鑑"
+      },
+      "Map": {
+        "Index": {
+          "Title": "マップ"
+        },
+        "Page": {
+          "Title": "{name} - マップ"
+        }
+      }
     },
     "Analysis": {
       "Title": "{name} - ポケモン分析"
@@ -101,14 +114,6 @@
       },
       "Page": {
         "Title": "{name} - きのみ"
-      }
-    },
-    "Map": {
-      "Index": {
-        "Title": "マップ / 寝顔"
-      },
-      "Page": {
-        "Title": "{name} - マップ / 寝顔"
       }
     },
     "Team": {

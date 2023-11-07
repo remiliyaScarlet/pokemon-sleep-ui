@@ -59,8 +59,21 @@
         "Title": "{name} - Pokémon"
       }
     },
-    "Sleepdex": {
-      "Title": "Sleep Style Dex"
+    "SleepStyle": {
+      "Index": {
+        "Title": "Map / Sleep Styles"
+      },
+      "Sleepdex": {
+        "Title": "Sleep Style Dex"
+      },
+      "Map": {
+        "Index": {
+          "Title": "Maps"
+        },
+        "Page": {
+          "Title": "{name} - Map"
+        }
+      }
     },
     "Analysis": {
       "Title": "{name} - Pokémon Analysis"
@@ -101,14 +114,6 @@
       },
       "Page": {
         "Title": "{name} - Berry"
-      }
-    },
-    "Map": {
-      "Index": {
-        "Title": "Maps / Sleep Styles"
-      },
-      "Page": {
-        "Title": "{name} - Map / Sleep Styles"
       }
     },
     "Team": {

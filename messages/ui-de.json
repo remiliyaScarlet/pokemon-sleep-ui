@@ -59,8 +59,21 @@
         "Title": "{name} - Pokémon"
       }
     },
-    "Sleepdex": {
-      "Title": "Schlafdex"
+    "SleepStyle": {
+      "Index": {
+        "Title": "Karte / Schlafposen"
+      },
+      "Sleepdex": {
+        "Title": "Schlafdex"
+      },
+      "Map": {
+        "Index": {
+          "Title": "Karte"
+        },
+        "Page": {
+          "Title": "{name} - Karte"
+        }
+      }
     },
     "Analysis": {
       "Title": "{name} - Pokémon Analysis"
@@ -101,14 +114,6 @@
       },
       "Page": {
         "Title": "{name} - Beere"
-      }
-    },
-    "Map": {
-      "Index": {
-        "Title": "Karte / Schlafposen"
-      },
-      "Page": {
-        "Title": "{name} - Karte / Schlafposen"
       }
     },
     "Team": {

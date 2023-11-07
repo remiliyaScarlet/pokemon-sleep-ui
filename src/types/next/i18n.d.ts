@@ -64,7 +64,11 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       NotFound: I18nMetadata,
       Home: I18nMetadata,
       Pokedex: PageWithIndividual,
-      Sleepdex: I18nMetadata,
+      SleepStyle: {
+        Index: I18nMetadata,
+        Sleepdex: I18nMetadata,
+        Map: PageWithIndividual,
+      },
       Analysis: I18nMetadata,
       Rating: I18nMetadata,
       Cooking: {
@@ -75,7 +79,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Meal: PageWithIndividual,
       Ingredient: PageWithIndividual,
       Berry: PageWithIndividual,
-      Map: PageWithIndividual,
       Team: {
         Analysis: I18nMetadata,
         Box: I18nMetadata,

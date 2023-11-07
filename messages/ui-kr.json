@@ -59,8 +59,21 @@
         "Title": "{name} - 포켓몬"
       }
     },
-    "Sleepdex": {
-      "Title": "수면 도감"
+    "SleepStyle": {
+      "Index": {
+        "Title": "맵 / 잠자는 모습"
+      },
+      "Sleepdex": {
+        "Title": "수면 도감"
+      },
+      "Map": {
+        "Index": {
+          "Title": "맵"
+        },
+        "Page": {
+          "Title": "{name} - 맵"
+        }
+      }
     },
     "Analysis": {
       "Title": "{name} - 포켓몬 분석"
@@ -101,14 +114,6 @@
       },
       "Page": {
         "Title": "{name} - 나무열매"
-      }
-    },
-    "Map": {
-      "Index": {
-        "Title": "맵 / 잠자는 모습"
-      },
-      "Page": {
-        "Title": "{name} - 맵 / 잠자는 모습"
       }
     },
     "Team": {

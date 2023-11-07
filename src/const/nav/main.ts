@@ -1,6 +1,7 @@
 import {navEntriesForCooking} from '@/const/nav/cooking';
 import {navEntriesForInfo} from '@/const/nav/info';
 import {navEntryForItem} from '@/const/nav/item';
+import {navEntriesForSleepStyle} from '@/const/nav/sleepStyle';
 import {navEntriesForTeam} from '@/const/nav/team';
 import {NavEntry} from '@/types/nav';
 
@@ -19,10 +20,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Rating.Title',
   },
   {
-    type: 'link',
-    href: '/map',
-    imageSrc: '/images/generic/map.png',
-    i18nTextId: 'Map.Index.Title',
+    type: 'group',
+    href: '/sleepstyle',
+    imageSrc: '/images/generic/sleep.png',
+    i18nTextId: 'SleepStyle.Index.Title',
+    entries: navEntriesForSleepStyle,
   },
   {
     type: 'group',
