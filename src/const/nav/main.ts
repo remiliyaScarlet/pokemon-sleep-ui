@@ -15,6 +15,12 @@ export const navEntries: NavEntry[] = [
   },
   {
     type: 'link',
+    href: '/docs',
+    imageSrc: '/images/generic/memo.png',
+    i18nTextId: 'Docs.Index.Title',
+  },
+  {
+    type: 'link',
     href: '/rating',
     imageSrc: '/images/generic/search.png',
     i18nTextId: 'Rating.Title',
@@ -34,10 +40,11 @@ export const navEntries: NavEntry[] = [
     entries: navEntriesForCooking,
   },
   {
-    type: 'link',
-    href: '/meal',
-    imageSrc: '/images/generic/meal.png',
-    i18nTextId: 'Meal.Index.Title',
+    type: 'group',
+    href: '/team',
+    imageSrc: '/images/generic/team.png',
+    i18nTextId: 'Team.Index.Title',
+    entries: navEntriesForTeam,
   },
   {
     type: 'link',
@@ -53,24 +60,10 @@ export const navEntries: NavEntry[] = [
   },
   {
     type: 'group',
-    href: '/team',
-    imageSrc: '/images/generic/team.png',
-    i18nTextId: 'Team.Index.Title',
-    entries: navEntriesForTeam,
-  },
-  {
-    type: 'group',
     href: '/info',
     imageSrc: '/images/generic/info.png',
     i18nTextId: 'Info.Index.Title',
     entries: navEntriesForInfo,
-  },
-  {
-    type: 'group',
-    href: '/item',
-    imageSrc: '/images/generic/bag.png',
-    i18nTextId: 'Item.Index.Title',
-    entries: navEntryForItem,
   },
   {
     type: 'link',
@@ -85,10 +78,11 @@ export const navEntries: NavEntry[] = [
     i18nTextId: 'Stamina.Title',
   },
   {
-    type: 'link',
-    href: '/docs',
-    imageSrc: '/images/generic/memo.png',
-    i18nTextId: 'Docs.Index.Title',
+    type: 'group',
+    href: '/item',
+    imageSrc: '/images/generic/bag.png',
+    i18nTextId: 'Item.Index.Title',
+    entries: navEntryForItem,
   },
   {
     type: 'link',
