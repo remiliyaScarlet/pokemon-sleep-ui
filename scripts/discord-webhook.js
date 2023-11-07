@@ -6,7 +6,10 @@ const env = {
   title: 'AZ_DEVOPS_TITLE',
   status: 'AZ_DEVOPS_STATUS',
   url: 'AZ_DEVOPS_BUILD_URL',
-  requester: 'AZ_DEVOPS_REQUESTER_ID',
+  requester: 'AZ_DEVOPS_REQUESTER',
+  requesterId: 'AZ_DEVOPS_REQUESTER_ID',
+  queuedBy: 'AZ_DEVOPS_QUEUED_BY',
+  queuedById: 'AZ_DEVOPS_QUEUED_BY_ID',
 };
 
 const azureRequesterIdToDiscordUid = {
@@ -47,7 +50,7 @@ writeFile('devops-env.txt', JSON.stringify(env), (err) => {
 
 const discordData = {
   timestamp: Date.now(),
-  content: `**${env.status}** / ${env.title} <@${getRequesterDiscordUid(env.requester)}>`,
+  content: `**${env.status}** / ${env.title} <@${getRequesterDiscordUid(env.requesterId)}>`,
   embeds: [
     {
       'title': env.title,
@@ -66,7 +69,10 @@ const discordData = {
 
 /* eslint-disable no-console */
 console.log(`Azure DevOps triggered at ${discordData.timestamp}`);
-console.log(`- Requester ID: ${env.requester}`);
+console.log(`- Requester: ${env.requester}`);
+console.log(`- Requester ID: ${env.requesterId}`);
+console.log(`- Queued by: ${env.queuedBy}`);
+console.log(`- Queued by ID: ${env.queuedById}`);
 console.log(`- Status: ${env.status}`);
 console.log(`- Title: ${env.title}`);
 console.log(`- Content: ${discordData.content}`);
