@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
+import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {PokemonId} from '@/types/game/pokemon';
 
 
@@ -15,17 +16,12 @@ type Props = {
 };
 
 export const PokemonGalleryButton = ({pokemonId, pokemonSleepStyleId, image, isActive}: Props) => {
-  const t = useTranslations(`Game.SleepFace.${pokemonSleepStyleId}`);
-  const t2 = useTranslations('Game.SleepFace.onSnorlax');
-  const t3 = useTranslations('Game.PokemonName');
-
-  if (image === 'onSnorlax') {
-    return t2('Default');
-  }
+  const t = useTranslations('Game.PokemonName');
+  const sleepStyleName = useSleepStyleName(pokemonSleepStyleId);
 
   if (image === 'portrait') {
-    return <GenericPokeballIcon alt={t3(pokemonId.toString())} isActive={isActive}/>;
+    return <GenericPokeballIcon alt={t(pokemonId.toString())} isActive={isActive}/>;
   }
 
-  return t(image.toString());
+  return sleepStyleName;
 };

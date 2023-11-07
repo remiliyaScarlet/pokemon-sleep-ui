@@ -8,6 +8,7 @@ import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
+import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {SleepStyle} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
@@ -29,8 +30,7 @@ export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sle
   });
 
   const t = useTranslations('UI.Common');
-  const t2 = useTranslations(`Game.SleepFace.${sleepStyleId}`);
-  const t3 = useTranslations('Game.SleepFace.onSnorlax');
+  const sleepStyleName = useSleepStyleName(sleepStyleId);
 
   const pokemonId = pokemon.id;
   const styleId = sleepStyle.style;
@@ -50,7 +50,7 @@ export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sle
         <BookmarkIcon/>
       </button>
       <div className="text-sm">
-        {style === 'onSnorlax' ? t3('Default') : t2(style.toString())}
+        {sleepStyleName}
       </div>
       <SnorlaxRankUI rank={rank}/>
       <Flex direction="row" center>
