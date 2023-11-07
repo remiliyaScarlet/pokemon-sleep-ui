@@ -6,6 +6,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {AdsPopupText} from '@/components/ads/popup/text';
 import {Flex} from '@/components/layout/flex/common';
 import {DocsMetaCard} from '@/components/shared/docs/card';
+import {DiscordLink} from '@/components/static/discord/link';
 import {DocsMetadata} from '@/types/mongo/docs';
 import {isAdsShouldShow} from '@/utils/environment';
 
@@ -21,6 +22,7 @@ export const DocsAutoLinkPopup = ({metaList}: Props) => {
     <Flex className="gap-1.5 md:w-[60vw] lg:w-[50vw]">
       <AdsUnit/>
       {isAdsShouldShow(data) && <AdsPopupText/>}
+      <DiscordLink className="button-clickable-glow h-9 w-9 self-end p-1.5"/>
       {metaList.map((metadata) => <DocsMetaCard key={metadata.path} metadata={metadata}/>)}
     </Flex>
   );
