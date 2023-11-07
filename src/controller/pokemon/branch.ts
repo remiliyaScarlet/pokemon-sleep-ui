@@ -1,9 +1,9 @@
 import {Collection} from 'mongodb';
 
-import {getSingleData} from '@/controller/common';
+import {getDataAsMap, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/game/pokemon';
-import {PokemonBranchData} from '@/types/game/pokemon/branch';
+import {PokemonBranchData, PokemonBranchMap} from '@/types/game/pokemon/branch';
 
 
 const getCollection = async (): Promise<Collection<PokemonBranchData>> => {
@@ -16,6 +16,10 @@ const getCollection = async (): Promise<Collection<PokemonBranchData>> => {
 
 export const getAssociatedPokemonBranchData = async (pokemonId: PokemonId) => {
   return getSingleData(getCollection(), {$or: [{pokemonId}, {branches: pokemonId}]});
+};
+
+export const getPokemonBranchMap = (): Promise<PokemonBranchMap> => {
+  return getDataAsMap(getCollection(), ({pokemonId}) => pokemonId);
 };
 
 const addIndex = async () => {

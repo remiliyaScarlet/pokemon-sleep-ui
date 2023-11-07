@@ -5,3 +5,5 @@ export type PokemonBranchData = {
   pokemonId: PokemonId,
   branches: PokemonId[],
 };
+
+export type PokemonBranchMap = {[id in PokemonId]?: PokemonBranchData};
