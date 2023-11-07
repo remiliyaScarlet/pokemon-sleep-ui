@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexLink} from '@/components/layout/flex/link';
+import {PokemonGallery} from '@/components/shared/pokemon/gallery/main';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
@@ -13,7 +14,6 @@ import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {specialtyTextClassDefault} from '@/styles/game/specialty';
-import {PokemonImageGallery} from '@/ui/pokedex/page/gallery';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
@@ -31,7 +31,7 @@ export const PokemonMeta = (props: PokemonProps) => {
     <Flex center className="info-section lg:flex-row">
       <Flex className="gap-2 md:p-5 lg:p-8">
         <PokemonNameBig pokemon={pokemon}/>
-        <PokemonImageGallery {...props}/>
+        <PokemonGallery {...props}/>
       </Flex>
       <AdsUnit className="my-2 lg:hidden"/>
       <Flex className="gap-y-3 md:p-5 lg:p-8">

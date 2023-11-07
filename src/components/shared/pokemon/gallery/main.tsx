@@ -8,43 +8,16 @@ import {useTranslations} from 'next-intl';
 import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
-import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
+import {PokemonGalleryButton} from '@/components/shared/pokemon/gallery/button';
+import {gallerySize} from '@/components/shared/pokemon/gallery/const';
+import {PokemonGalleryCommonProps} from '@/components/shared/pokemon/gallery/type';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
-import {PokemonId} from '@/types/game/pokemon';
-import {PokemonProps} from '@/ui/pokedex/page/type';
 import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {getAvailableSleepStyles} from '@/utils/game/sleepdex';
 
 
-type Props = {
-  pokemonId: PokemonId,
-  pokemonSleepStyleId: PokemonId,
-  image: PokemonImageType,
-  isActive: boolean,
-};
-
-const gallerySize = 'h-72 w-72';
-
-const GalleryButton = ({pokemonId, pokemonSleepStyleId, image, isActive}: Props) => {
-  const t = useTranslations(`Game.SleepFace.${pokemonSleepStyleId}`);
-  const t2 = useTranslations('Game.SleepFace.onSnorlax');
-  const t3 = useTranslations('Game.PokemonName');
-
-  if (image === 'onSnorlax') {
-    return t2('Default');
-  }
-
-  if (image === 'portrait') {
-    return <GenericPokeballIcon alt={t3(pokemonId.toString())} isActive={isActive}/>;
-  }
-
-  return t(image.toString());
-};
-
-export const PokemonImageGallery = (props: PokemonProps) => {
-  const {pokemon, pokemonBranches, sleepStyles} = props;
-
+export const PokemonGallery = ({pokemon, pokemonBranches, sleepStyles}: PokemonGalleryCommonProps) => {
   const t = useTranslations('UI.Common');
 
   const imageOptions: PokemonImageType[] = React.useMemo(() => [
@@ -95,7 +68,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
               onClick={() => setCurrentImage(image)}
               className={getTextFilterButtonClass(isActive)}
             >
-              <GalleryButton
+              <PokemonGalleryButton
                 pokemonId={pokemon.id}
                 pokemonSleepStyleId={getPokemonSleepStyleId({
                   pokemonId: pokemon.id,

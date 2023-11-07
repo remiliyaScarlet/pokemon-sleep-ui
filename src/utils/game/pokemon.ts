@@ -53,7 +53,7 @@ export const getPokemonMaxEvolutionCount = (pokemonList: PokemonInfo[]) => (
 
 type GetPokemonSleepStyleId = {
   pokemonId: number,
-  branch: PokemonBranchData | null,
+  branch: PokemonBranchData | null | undefined,
 };
 
 export const getPokemonSleepStyleId = ({pokemonId, branch}: GetPokemonSleepStyleId): PokemonId => {
