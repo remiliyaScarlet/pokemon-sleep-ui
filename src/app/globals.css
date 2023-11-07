@@ -344,7 +344,7 @@
   }
   
   .button-bg {
-    @apply bg-white/80 dark:bg-slate-700/50;
+    @apply bg-white/80 shadow-border-sm shadow-slate-500 dark:shadow-none dark:bg-slate-700/50;
   }
   
   .button-text {

@@ -30,6 +30,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       boxShadow: {
+        'border-sm': '0 0 0.15rem',
         'border': '0 0 0.3rem',
       },
       dropShadow: {
