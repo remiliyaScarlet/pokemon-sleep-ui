@@ -59,6 +59,9 @@
         "Title": "{name} - 寶可夢"
       }
     },
+    "Sleepdex": {
+      "Title": "睡眠圖鑑"
+    },
     "Analysis": {
       "Title": "{name} - 寶可夢分析"
     },

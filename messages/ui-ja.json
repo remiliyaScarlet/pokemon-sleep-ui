@@ -59,6 +59,9 @@
         "Title": "{name} - ポケモン"
       }
     },
+    "Sleepdex": {
+      "Title": "睡眠図鑑"
+    },
     "Analysis": {
       "Title": "{name} - ポケモン分析"
     },

@@ -59,6 +59,9 @@
         "Title": "{name} - 포켓몬"
       }
     },
+    "Sleepdex": {
+      "Title": "수면 도감"
+    },
     "Analysis": {
       "Title": "{name} - 포켓몬 분석"
     },

@@ -59,6 +59,9 @@
         "Title": "{name} - Pokémon"
       }
     },
+    "Sleepdex": {
+      "Title": "Sleep Style Dex"
+    },
     "Analysis": {
       "Title": "{name} - Pokémon Analysis"
     },
