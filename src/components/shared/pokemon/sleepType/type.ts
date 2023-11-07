@@ -6,4 +6,5 @@ export type PokemonSleepTypeCommonProps = {
   sleepType: PokemonSleepTypeId,
   dimension?: Dimension,
   active?: boolean,
+  className?: string,
 };

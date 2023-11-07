@@ -9,11 +9,7 @@ import {getSleepTypeBgClass} from '@/styles/game/sleepType';
 import {imageSmallIconSizes} from '@/styles/image';
 
 
-type Props = PokemonSleepTypeCommonProps & {
-  className?: string,
-};
-
-export const PokemonSleepTypeIcon = ({sleepType, dimension, active, className}: Props) => {
+export const PokemonSleepTypeIcon = ({sleepType, dimension, active, className}: PokemonSleepTypeCommonProps) => {
   const t = useTranslations('Game.SleepType');
 
   return (
