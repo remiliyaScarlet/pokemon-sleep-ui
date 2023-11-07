@@ -35,7 +35,7 @@ const config: Config = {
         'border': '0 0 0.3rem',
       },
       dropShadow: {
-        'thick': '0 0 0.4rem var(--tw-shadow-color)',
+        'thick': '0 0 0.2rem var(--tw-shadow-color)',
       },
       textShadow: {
         none: 'none',
