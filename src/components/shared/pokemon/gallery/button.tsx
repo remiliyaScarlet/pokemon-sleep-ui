@@ -17,9 +17,12 @@ type Props = {
 
 export const PokemonGalleryButton = ({pokemonId, pokemonSleepStyleId, image, isActive}: Props) => {
   const t = useTranslations('Game.PokemonName');
-  const sleepStyleName = useSleepStyleName(pokemonSleepStyleId);
+  const sleepStyleName = useSleepStyleName({
+    pokemonId: pokemonSleepStyleId,
+    sleepStyleId: image === 'portrait' || image === 'icon' ? null : image,
+  });
 
-  if (image === 'portrait') {
+  if (image === 'portrait' || image === 'icon') {
     return <GenericPokeballIcon alt={t(pokemonId.toString())} isActive={isActive}/>;
   }
 

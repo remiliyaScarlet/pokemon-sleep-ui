@@ -23,17 +23,19 @@ type Props = PokemonSleepStyleProps & {
 export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sleepdex, setSleepdex}: Props) => {
   const {rank, style, rewards} = sleepStyle;
 
-  const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
-  const sleepStyleId = getPokemonSleepStyleId({
-    pokemonId: pokemon.id,
-    branch: pokemonBranch,
-  });
-
-  const t = useTranslations('UI.Common');
-  const sleepStyleName = useSleepStyleName(sleepStyleId);
-
   const pokemonId = pokemon.id;
   const styleId = sleepStyle.style;
+
+  const t = useTranslations('UI.Common');
+  const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
+  const sleepStyleId = getPokemonSleepStyleId({
+    pokemonId,
+    branch: pokemonBranch,
+  });
+  const sleepStyleName = useSleepStyleName({
+    pokemonId,
+    sleepStyleId,
+  });
 
   const className = clsx(
     'z-10 h-8 w-8 rounded-lg p-1.5',
