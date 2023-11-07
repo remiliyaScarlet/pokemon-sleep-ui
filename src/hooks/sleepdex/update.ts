@@ -1,23 +1,10 @@
-import React from 'react';
-
+import {SleepdexUpdater, UpdateSleepdexOpts, UseUpdateSleepdexOpts} from '@/hooks/sleepdex/type';
 import {useUserDataActor} from '@/hooks/userData/actor';
-import {PokemonId} from '@/types/game/pokemon';
-import {SleepdexData, SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleId} from '@/types/game/sleepStyle';
+import {SleepdexData} from '@/types/game/sleepdex';
 import {isInSleepdex, toSleepdexStyleId} from '@/utils/game/sleepdex';
 
 
-type UpdateSleepdexOpts = {
-  pokemonId: PokemonId,
-  styleId: SleepStyleId,
-};
-
-type UseUpdateSleepdexOpts = {
-  sleepdex: SleepdexMap,
-  setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,
-};
-
-export const useUpdateSleepdex = ({sleepdex, setSleepdex}: UseUpdateSleepdexOpts) => {
+export const useUpdateSleepdex = ({sleepdex, setSleepdex}: UseUpdateSleepdexOpts): SleepdexUpdater => {
   const {act} = useUserDataActor({statusToast: true});
 
   return (opts: UpdateSleepdexOpts) => {
