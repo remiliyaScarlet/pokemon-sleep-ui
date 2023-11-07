@@ -32,7 +32,7 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
         enterTo="p-1"
         leaveFrom="p-1"
         leaveTo="p-0"
-        className="border-button-clickable rounded-b-lg border-x border-b transition-spacing duration-300 ease-in-out"
+        className="border-common rounded-b-lg border-x border-b transition-spacing duration-300 ease-in-out"
       >
         <Transition.Child
           enterFrom="h-0"

@@ -53,7 +53,7 @@ export const MealPokemonOfIngredientLevel = ({
               </Flex>
             </Link>
             <Flex center className={clsx(
-              'border-button-clickable rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
+              'border-common rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
             )}>
               <PokemonIconsIngredientStats
                 level={pokemonLevel}

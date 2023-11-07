@@ -553,7 +553,7 @@
 
   /* region Border styling (border-*) */
   
-  .border-button-clickable {
+  .border-common {
     @apply border-slate-50/70 dark:border-slate-700/50;
   }
   

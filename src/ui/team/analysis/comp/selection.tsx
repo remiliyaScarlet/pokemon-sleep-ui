@@ -37,7 +37,7 @@ export const TeamAnalysisCompSelection = ({
 
   return (
     <Flex center className={clsx(
-      'border-button-clickable h-full rounded-lg border',
+      'border-common h-full rounded-lg border',
       isCurrent && 'button-bg',
     )}>
       <Flex direction="row" className="gap-2 p-2">

@@ -18,7 +18,7 @@ export const PokemonProducingStatsItemLayout = ({icon, children}: React.PropsWit
         </div>
       </Flex>
       <Flex className={clsx(
-        'border-button-clickable place-content-end gap-1.5 rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
+        'border-common place-content-end gap-1.5 rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
       )}>
         {children}
       </Flex>
