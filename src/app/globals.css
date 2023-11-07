@@ -114,7 +114,11 @@
   }
   
   .text-heading-highlight {
-    @apply pb-1 border-b-slate-500 border-b;
+    @apply pb-1.5 border-b-slate-500 border-b;
+  }
+  
+  .text-heading-spacing:not(:first-child) {
+    @apply mt-3;
   }
 }
 
@@ -125,27 +129,27 @@
   
   .markdown {
     & h1 {
-      @apply text-5xl text-heading-highlight;
+      @apply text-5xl text-heading-highlight text-heading-spacing;
     }
     
     & h2 {
-      @apply text-4xl text-heading-highlight;
+      @apply text-4xl text-heading-highlight text-heading-spacing;
     }
     
     & h3 {
-      @apply text-3xl text-heading-highlight;
+      @apply text-3xl text-heading-highlight text-heading-spacing;
     }
     
     & h4 {
-      @apply text-2xl;
+      @apply text-2xl text-heading-spacing;
     }
     
     & h5 {
-      @apply text-xl;
+      @apply text-xl text-heading-spacing;
     }
     
     & h6 {
-      @apply text-lg;
+      @apply text-lg text-heading-spacing;
     }
     
     & hr {

@@ -29,7 +29,7 @@ export const DocsContentView = ({locale, doc, className}: Props) => {
     <ReactMarkdown
       remarkPlugins={remarkPlugins}
       rehypePlugins={rehypePlugins}
-      className={clsx('markdown flex flex-col gap-2 break-words p-2', className)}
+      className={clsx('markdown flex flex-col gap-2.5 break-words p-2', className)}
       components={remarkDirectiveComponents}
     >
       {content}
