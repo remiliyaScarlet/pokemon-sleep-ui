@@ -1,8 +1,10 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
+import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
@@ -91,8 +93,11 @@ export const PokemonIconsItemStats = ({
                 key={`${id}-${identifier}`}
                 show={isProductionIncluded ? isProductionIncluded(ingredients) : true}
                 appear
+                className="button-clickable-bg"
               >
-                <Flex className="button-clickable-bg group relative">
+                <FlexButton noFullWidth={false} onClick={() => showPokemon(pokemon)} className={clsx(
+                  'group relative',
+                )}>
                   <Flex noFullWidth className="absolute bottom-1 right-1 z-10">
                     <PokemonProducingRateSingle
                       rate={itemRate}
@@ -102,26 +107,24 @@ export const PokemonIconsItemStats = ({
                       dailyTotalEnergy={dailyTotalEnergy}
                     />
                   </Flex>
-                  <button className="button-clickable" onClick={() => showPokemon(pokemon)}>
-                    <Flex direction="row" className="h-full items-center gap-1.5 p-1.5 opacity-70">
-                      <IconWithInfo
-                        imageSrc={`/images/pokemon/icons/${id}.png`}
-                        imageAlt={t(`PokemonName.${id}`)}
-                        imageDimension="h-12 w-12"
-                        imageSizes={imageIconSizes}
-                        info={
-                          specialty === targetSpecialty &&
-                          <div className="relative h-4 w-4">
-                            <NextImage
-                              src="/images/generic/flash.png" alt={t2('Specialty')}
-                              sizes={imageSmallIconSizes} className="invert-on-light"
-                            />
-                          </div>
-                        }
-                      />
-                    </Flex>
-                  </button>
-                </Flex>
+                  <Flex direction="row" className="h-full items-center gap-1.5 p-1.5 opacity-70">
+                    <IconWithInfo
+                      imageSrc={`/images/pokemon/icons/${id}.png`}
+                      imageAlt={t(`PokemonName.${id}`)}
+                      imageDimension="h-12 w-12"
+                      imageSizes={imageIconSizes}
+                      info={
+                        specialty === targetSpecialty &&
+                        <div className="relative h-4 w-4">
+                          <NextImage
+                            src="/images/generic/flash.png" alt={t2('Specialty')}
+                            sizes={imageSmallIconSizes} className="invert-on-light"
+                          />
+                        </div>
+                      }
+                    />
+                  </Flex>
+                </FlexButton>
               </AnimatedCollapse>
             );
           })}

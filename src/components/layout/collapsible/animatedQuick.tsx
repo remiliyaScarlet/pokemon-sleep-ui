@@ -1,14 +1,16 @@
 import React from 'react';
 
 import {Transition} from '@headlessui/react';
+import {clsx} from 'clsx';
 
 
 type Props = {
   show: boolean,
   appear?: boolean,
+  className?: string,
 };
 
-export const AnimatedCollapseQuick = ({show, appear, children}: React.PropsWithChildren<Props>) => {
+export const AnimatedCollapseQuick = ({show, appear, className, children}: React.PropsWithChildren<Props>) => {
   return (
     <Transition
       show={show}
@@ -28,7 +30,7 @@ export const AnimatedCollapseQuick = ({show, appear, children}: React.PropsWithC
         leave="duration-500"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        className="overflow-hidden transition-opacity ease-in-out"
+        className={clsx('overflow-hidden transition-opacity ease-in-out', className)}
       >
         {children}
       </Transition.Child>
