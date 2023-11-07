@@ -6,7 +6,8 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
+import {SleepdexStyleIcon} from '@/components/shared/sleepdex/styleIcon';
+import {imageIconSizes} from '@/styles/image';
 import {SleepStyleId} from '@/types/game/sleepStyle';
 import {MapInputCommonProps} from '@/ui/map/page/input/type';
 
@@ -33,17 +34,7 @@ export const MapInputSleepStyleToggle = (props: Props) => {
         </Flex>
       }
       idToItemId={(id) => `SleepStyle-${id}`}
-      idToButton={(id) => {
-        if (id === 'onSnorlax') {
-          return (
-            <div className="relative h-6 w-6">
-              <NextImage src="/images/generic/snorlax.png" alt={id} sizes={imageSmallIconSizes}/>
-            </div>
-          );
-        }
-
-        return `#${id}`;
-      }}
+      idToButton={(id) => <SleepdexStyleIcon styleId={id}/>}
       ids={sleepStyles}
       {...getMultiSelectOnClickProps({
         filter,

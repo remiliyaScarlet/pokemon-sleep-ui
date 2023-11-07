@@ -2,10 +2,9 @@ import React from 'react';
 
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 
-import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
-import {imageSmallIconSizes} from '@/styles/image';
+import {SleepdexStyleIcon} from '@/components/shared/sleepdex/styleIcon';
 import {PokedexMap} from '@/types/game/pokemon';
 import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
 import {MapUnlockTableDisplayType} from '@/ui/map/page/type';
@@ -21,15 +20,7 @@ export const MapTableInfoIcon = ({data, pokedex, displayType}: Props) => {
   if (displayType === 'sleepStyle') {
     const {style} = data;
 
-    if (style.style === 'onSnorlax') {
-      return (
-        <div className="relative h-4 w-4">
-          <NextImage src="/images/generic/snorlax.png" alt={style.style} sizes={imageSmallIconSizes}/>
-        </div>
-      );
-    }
-
-    return `#${style.style}`;
+    return <SleepdexStyleIcon styleId={style.style} dimension="h-4 w-4"/>;
   }
 
   const pokemon = pokedex[data.pokemonId];
