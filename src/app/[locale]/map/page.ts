@@ -1,4 +1,4 @@
-import {MapIndex} from '@/ui/map/index/main';
+import {MapIndex} from '@/ui/sleepStyle/map/index/main';
 import {generatePageMeta} from '@/utils/meta';
 
 

@@ -1,4 +1,4 @@
-import {Sleepdex} from '@/ui/sleepdex/main';
+import {Sleepdex} from '@/ui/sleepStyle/sleepdex/main';
 import {generatePageMeta} from '@/utils/meta';
 
 
