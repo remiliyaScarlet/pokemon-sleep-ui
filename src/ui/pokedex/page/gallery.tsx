@@ -13,8 +13,8 @@ import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {toUnique} from '@/utils/array';
 import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
+import {getAvailableSleepStyles} from '@/utils/game/sleepdex';
 
 
 type Props = {
@@ -49,7 +49,7 @@ export const PokemonImageGallery = (props: PokemonProps) => {
 
   const imageOptions: PokemonImageType[] = React.useMemo(() => [
     'portrait',
-    ...toUnique(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style))),
+    ...getAvailableSleepStyles(sleepStyles),
   ], [sleepStyles]);
   const [isShiny, setShiny] = React.useState(false);
   const [currentImage, setCurrentImage] = React.useState<PokemonImageType>('portrait');

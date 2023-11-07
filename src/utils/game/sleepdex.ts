@@ -1,6 +1,7 @@
 import {PokemonId} from '@/types/game/pokemon';
 import {SleepdexMap, SleepdexStyleId} from '@/types/game/sleepdex';
-import {SleepStyleId} from '@/types/game/sleepStyle';
+import {SleepStyleId, SleepStyleOfMap} from '@/types/game/sleepStyle';
+import {toUnique} from '@/utils/array';
 
 
 type ToSleepdexByMapIdOpts = {
@@ -22,3 +23,7 @@ export const isInSleepdex = ({pokemonId, styleId, sleepdex}: IsInSleepdexOpts) =
   const sleepdexId = toSleepdexStyleId({pokemonId, styleId});
   return sleepdex[sleepdexId];
 };
+
+export const getAvailableSleepStyles = (sleepStyles: SleepStyleOfMap[]) => (
+  toUnique(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style)))
+);
