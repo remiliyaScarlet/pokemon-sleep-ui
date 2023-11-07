@@ -4,9 +4,9 @@ import CheckIcon from '@heroicons/react/24/outline/CheckIcon';
 import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 
 import {Flex} from '@/components/layout/flex/common';
+import {CompletionResultUI} from '@/components/shared/completion/main';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
-import {formatInt} from '@/utils/number/format';
 
 
 type Props = {
@@ -29,12 +29,7 @@ export const MapUnlockTableStylesUnlocked = ({sleepType, unlocked, unlockable}: 
         unlocked !== undefined && unlockable !== undefined &&
         (
           unlocked !== unlockable ?
-            <>
-              <div>{formatInt(unlocked)}</div>
-              <div>/</div>
-              <div>{formatInt(unlockable)}</div>
-              <div>({(unlocked / unlockable * 100).toFixed(2)}%)</div>
-            </> :
+            <CompletionResultUI completed={unlocked} total={unlockable}/> :
             <div className="h-6 w-6">
               <CheckIcon/>
             </div>
