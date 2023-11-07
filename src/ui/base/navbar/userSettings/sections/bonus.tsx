@@ -1,16 +1,13 @@
 import React from 'react';
 
-import ArrowRightIcon from '@heroicons/react/24/outline/ArrowRightIcon';
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 
-import {Link} from '@/components/i18n';
-import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
 import {Grid} from '@/components/layout/grid';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {MapBonusSlider} from '@/components/shared/production/bonus/map';
 import {OverallBonusSlider} from '@/components/shared/production/bonus/overall';
-import {discordLink} from '@/const/external';
 import {UserBonus} from '@/types/game/bonus';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
@@ -53,17 +50,9 @@ export const UserSettingsBonusUI = ({mapIds, bonus, setBonus, currentMap, setCur
         ...bonus,
         overall,
       })}/>
-      <Flex direction="row" className="items-center justify-end gap-1">
-        <div className="h-6 w-6">
-          <QuestionMarkCircleIcon/>
-        </div>
-        <div className="h-6 w-6">
-          <ArrowRightIcon/>
-        </div>
-        <Link href={discordLink} className="border-link">
-          Discord
-        </Link>
-      </Flex>
+      <FlexLink href="/docs" center className="button-clickable-glow h-8 w-8 self-end p-1">
+        <QuestionMarkCircleIcon/>
+      </FlexLink>
     </UserSettingsSection>
   );
 };

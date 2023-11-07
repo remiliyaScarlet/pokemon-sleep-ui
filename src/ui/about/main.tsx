@@ -5,7 +5,7 @@ import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 
 import {Link} from '@/components/i18n';
 import {Flex} from '@/components/layout/flex/common';
-import {discordLink} from '@/const/external';
+import {DiscordLink} from '@/components/static/discord/link';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {AboutSection} from '@/ui/about/section';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -24,9 +24,7 @@ export const About = async ({params}: DefaultPageProps) => {
             {t('Site.Name')}
           </div>
           <AboutSection title="Discord">
-            <Link href={discordLink} className="border-link">
-              {discordLink}
-            </Link>
+            <DiscordLink className="button-clickable-glow h-14 w-14 self-center p-2"/>
           </AboutSection>
         </Flex>
         <Flex className="gap-8 md:flex-row">
