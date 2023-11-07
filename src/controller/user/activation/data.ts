@@ -180,6 +180,7 @@ const addIndex = async () => {
     collection.createIndex({userId: 1}, {unique: true}),
     collection.createIndex({key: 1}, {unique: true}),
     collection.createIndex({expiry: 1}, {expireAfterSeconds: 0}),
+    collection.createIndex({source: 1}),
     ...activationContact.map((channel) => (
       collection.createIndex({[`contact.${channel}`]: 1}, {unique: true, sparse: true})
     )),
