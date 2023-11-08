@@ -1,4 +1,4 @@
-import {PatreonSocialConnections} from '@/types/patreon/common/social/main';
+import {PatreonSocialConnections} from '@/types/subscription/patreon/common/social/main';
 
 
 // https://docs.patreon.com/#user-v2

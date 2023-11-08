@@ -1,4 +1,4 @@
-import {PatreonMember} from '@/types/patreon/common/member';
+import {PatreonMember} from '@/types/subscription/patreon/common/member';
 
 
 export const isPatronActive = ({attributes}: PatreonMember) => {

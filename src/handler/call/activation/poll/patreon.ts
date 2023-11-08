@@ -8,8 +8,8 @@ import {actionSendActivationEmail} from '@/handler/action/activation/main';
 import {scanActivations} from '@/handler/call/activation/poll/scan/activation';
 import {scanPatron} from '@/handler/call/activation/poll/scan/patron';
 import {mergePatreonSubscriberScanResult} from '@/handler/call/activation/poll/scan/utils';
-import {getCurrentCampaignMembers} from '@/handler/patreon/api/campaign/main';
-import {toActivationPayloadFromPatreon} from '@/handler/patreon/utils';
+import {getCurrentCampaignMembers} from '@/handler/shared/patreon/api/campaign/main';
+import {toActivationPayloadFromPatreon} from '@/handler/shared/patreon/utils';
 
 
 export const callPatreonActivationPoll = async () => {

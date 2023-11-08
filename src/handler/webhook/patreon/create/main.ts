@@ -1,7 +1,7 @@
 import {getActivationPresetLookupOfSource} from '@/controller/user/activation/preset';
 import {actionSendActivationEmail} from '@/handler/action/activation/main';
-import {toActivationPayloadFromPatreon} from '@/handler/patreon/utils';
-import {PatreonWebhookPayload} from '@/types/patreon/webhook';
+import {toActivationPayloadFromPatreon} from '@/handler/shared/patreon/utils';
+import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 
 
 export const handlePatreonPledgeCreated = async (

@@ -1,9 +1,9 @@
 import {v4} from 'uuid';
 
 import {IsoUtcTimestampString} from '@/types/date';
-import {PatreonMember} from '@/types/patreon/common/member';
-import {PatreonUser} from '@/types/patreon/common/user';
-import {PatreonMemberData} from '@/types/patreon/memberData';
+import {PatreonMember} from '@/types/subscription/patreon/common/member';
+import {PatreonUser} from '@/types/subscription/patreon/common/user';
+import {PatreonMemberData} from '@/types/subscription/patreon/memberData';
 
 
 const testPatreonMember: PatreonMember = {

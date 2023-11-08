@@ -1,5 +1,5 @@
 import {ActivationKey} from '@/types/mongo/activation';
-import {PatreonMemberData} from '@/types/patreon/memberData';
+import {PatreonMemberData} from '@/types/subscription/patreon/memberData';
 
 
 export type PatreonUserScanOpts = {

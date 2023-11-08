@@ -1,11 +1,11 @@
 import {zip} from 'lodash';
 
-import {PatreonCampaignMemberResponse} from '@/handler/patreon/api/campaign/type';
-import {patreonSearchParams} from '@/handler/patreon/api/const';
-import {sendPatreonApiRequest} from '@/handler/patreon/api/utils';
-import {PatreonMember} from '@/types/patreon/common/member';
-import {PatreonUser} from '@/types/patreon/common/user';
-import {PatreonMemberData} from '@/types/patreon/memberData';
+import {PatreonCampaignMemberResponse} from '@/handler/shared/patreon/api/campaign/type';
+import {patreonSearchParams} from '@/handler/shared/patreon/api/const';
+import {sendPatreonApiRequest} from '@/handler/shared/patreon/api/utils';
+import {PatreonMember} from '@/types/subscription/patreon/common/member';
+import {PatreonUser} from '@/types/subscription/patreon/common/user';
+import {PatreonMemberData} from '@/types/subscription/patreon/memberData';
 import {isNotNullish} from '@/utils/type';
 
 

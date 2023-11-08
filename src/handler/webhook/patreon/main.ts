@@ -2,8 +2,8 @@ import {patreonHeaderKeyOfSignature, patreonHeaderKeyOfTrigger} from '@/handler/
 import {handlePatreonPledgeCreated} from '@/handler/webhook/patreon/create/main';
 import {handlePatreonPledgeModified} from '@/handler/webhook/patreon/modify/main';
 import {throwIfSignatureFailed} from '@/handler/webhook/patreon/utils';
-import {PatreonEventType} from '@/types/patreon/common/enum';
-import {PatreonWebhookPayload} from '@/types/patreon/webhook';
+import {PatreonEventType} from '@/types/subscription/patreon/common/enum';
+import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 
 
 export const handlePatreonWebhook = async (request: Request) => {

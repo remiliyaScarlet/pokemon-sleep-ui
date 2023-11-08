@@ -1,6 +1,6 @@
-import {patreonSearchParams} from '@/handler/patreon/api/const';
-import {PatreonMemberResponse} from '@/handler/patreon/api/member/type';
-import {sendPatreonApiRequest} from '@/handler/patreon/api/utils';
+import {patreonSearchParams} from '@/handler/shared/patreon/api/const';
+import {PatreonMemberResponse} from '@/handler/shared/patreon/api/member/type';
+import {sendPatreonApiRequest} from '@/handler/shared/patreon/api/utils';
 
 
 type GetPatreonMemberOpts = {

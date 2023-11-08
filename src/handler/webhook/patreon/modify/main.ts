@@ -1,8 +1,8 @@
 import {getActivationPresetLookupOfSource} from '@/controller/user/activation/preset';
 import {removeActivationSingle, updateActivationPropertiesSingle} from '@/controller/user/activation/util';
-import {toActivationPayloadFromPatreon} from '@/handler/patreon/utils';
+import {toActivationPayloadFromPatreon} from '@/handler/shared/patreon/utils';
 import {ActivationContact} from '@/types/mongo/activation';
-import {PatreonWebhookPayload} from '@/types/patreon/webhook';
+import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 
 
 export const handlePatreonPledgeModified = async (payload: PatreonWebhookPayload) => {

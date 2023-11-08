@@ -6,7 +6,7 @@ import {
   ActivationProperties,
   ActivationPropertiesAtClient,
 } from '@/types/mongo/activation';
-import {PatreonMember} from '@/types/patreon/common/member';
+import {PatreonMember} from '@/types/subscription/patreon/common/member';
 import {toIsoDateString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';

@@ -1,9 +1,9 @@
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
-import {getPatreonMember} from '@/handler/patreon/api/member/main';
+import {getPatreonMember} from '@/handler/shared/patreon/api/member/main';
 import {ActivationStatus} from '@/types/mongo/activation';
 import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
-import {PatreonMember} from '@/types/patreon/common/member';
+import {PatreonMember} from '@/types/subscription/patreon/common/member';
 import {isPatronActive} from '@/utils/external/patreon';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 

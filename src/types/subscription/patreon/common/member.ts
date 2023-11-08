@@ -1,6 +1,6 @@
 import {IsoUtcTimestampString} from '@/types/date';
-import {PatreonChargeStatus, PatronStatus} from '@/types/patreon/common/enum';
-import {PatreonTier} from '@/types/patreon/common/tier';
+import {PatreonChargeStatus, PatronStatus} from '@/types/subscription/patreon/common/enum';
+import {PatreonTier} from '@/types/subscription/patreon/common/tier';
 
 
 // https://docs.patreon.com/#member
