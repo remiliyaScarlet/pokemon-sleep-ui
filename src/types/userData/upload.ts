@@ -1,6 +1,7 @@
 import {PokeInBox} from '@/types/game/pokebox';
 import {SleepdexData} from '@/types/game/sleepdex';
 import {ActivationDataAtClient, ActivationKeyAtClient} from '@/types/mongo/activation';
+import {ActivationPresetMap} from '@/types/mongo/activationPreset';
 import {DocsData, DocsDataEditable, DocsDataEditableFetched} from '@/types/mongo/docs';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
@@ -42,6 +43,9 @@ export type UserDataUploadOpts = {
 } | {
   type: 'admin.activation.delete',
   data: string,
+} | {
+  type: 'admin.activation.preset.update',
+  data: ActivationPresetMap,
 } | {
   type: 'cms.docs.create',
   data: DocsDataEditable,
