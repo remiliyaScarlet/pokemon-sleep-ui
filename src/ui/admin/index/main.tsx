@@ -15,6 +15,9 @@ export const SiteAdminIndex = async ({params}: DefaultPageProps) => {
         <FlexLink href="/admin/activation" center className="button-clickable-glow h-28">
           Activation Management
         </FlexLink>
+        <FlexLink href="/admin/preset" center className="button-clickable-glow h-28">
+          Activation Preset
+        </FlexLink>
       </Grid>
     </AdminOnlyPageLayout>
   );
