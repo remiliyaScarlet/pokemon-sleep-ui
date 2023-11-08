@@ -22,7 +22,7 @@ export const AdsContent = ({className, fullHeight, children}: React.PropsWithChi
     isBlocked: false,
   });
 
-  const t = useTranslations('UI.Ads');
+  const t = useTranslations('UI.Subscription');
   const adsRef = useAdBlockDetector({
     setAdblockState,
   });

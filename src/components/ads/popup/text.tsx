@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 
 
 export const AdsPopupText = () => {
-  const t = useTranslations('UI.Ads');
+  const t = useTranslations('UI.Subscription');
 
   return (
     <ReactMarkdown remarkPlugins={[remarkGfm]} className="markdown text-xl">

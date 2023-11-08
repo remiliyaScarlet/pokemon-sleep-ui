@@ -1,7 +1,8 @@
 {
-  "Ads": {
-    "AdBlockActive": "継続的なサイト運営のため、広告ブロックの解除をお願いします。\n\nまた、Discord / Patreonにてご支援をいただいた方は、広告なしでサイトをご利用いただけます。\n\nご支援については「このサイトについて」をご確認ください。",
-    "Popup": "Discord / Patreonにてご支援をいただいた方は、広告なしでサイトをご利用いただけます。\n\nご支援については「[このサイトについて](/about)」をご確認ください。"
+  "Subscription": {
+    "AdBlockActive": "継続的なサイト運営のため、広告ブロックの解除をお願いします。[サブスクの紹介](https://pks.raenonx.cc/ja/docs/view/subscription/intro) もあわせてご覧ください。",
+    "Popup": "サイトを気に入ってくださってありがとうございます。サブスクもよろしくお願いします。詳しくは[サブスクの紹介](https://pks.raenonx.cc/ja/docs/view/subscription/intro) へ。",
+    "PremiumOnly": "こちらはプレミアム限定機能です。詳しくは[サブスクの紹介](https://pks.raenonx.cc/ja/docs/view/subscription/intro) へ。"
   },
   "Auth": {
     "EmailSent": "ログイン用メールを送信しました。"

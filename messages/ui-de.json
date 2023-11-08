@@ -1,7 +1,8 @@
 {
-  "Ads": {
-    "AdBlockActive": "Mit dem Nutzen eines Ad-Blockers schadest du diesem unabhängigen Projekt finanziell.\n\nBitte erlaube Werbung oder besuche Discord/Patreon über die About-Seite (/about) für ein Abonnement (ab 3,33 US-Dollar), um uns zu unterstützen und die Seite werbefrei nutzen zu können.",
-    "Popup": "Werbung kann nach 3.5 Sekunden geschlossen werden.\n\nBesuche Discord/Patreon über die [About-Seite](/about) für ein Abonnement (ab 3,33 US-Dollar), um uns zu unterstützen und die Seite werbefrei nutzen zu können! :D"
+  "Subscription": {
+    "AdBlockActive": "Von der Nutzung eines Ad-Blockers auf dieser Website wird abgeraten. Das Hosten der Website ist teuer, und die Entwicklung der Website braucht Zeit.\n\nBitte lasse Werbung zu, oder besuche die \"Abonnement-Einführung\" im Dokumentationsbereich.",
+    "Popup": "Bitte abonniere die Website, wenn du sie gern nutzt :) Siehe [Abonnement-Einführung] (https://pks.raenonx.cc/docs/view/subscription/intro) für Details.",
+    "PremiumOnly": "Premium-Abonnement erforderlich. Bitte siehe [Abonnement-Einführung](https://pks.raenonx.cc/docs/view/subscription/intro) für Details."
   },
   "Auth": {
     "EmailSent": "Email für den Login wurde gesendet."

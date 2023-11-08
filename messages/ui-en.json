@@ -1,7 +1,8 @@
 {
-  "Ads": {
-    "AdBlockActive": "Using Ad-blocker on this website is discouraged. Hosting the website costs, and developing the website needs time.\n\nPlease allow ads, or check Discord/Patreon in the about page (/about) for subscription (US$3.33+) to browse ads-free.",
-    "Popup": "Check Discord/Patreon in the [about](/about) page for subscription (US$3.33+) to support us and browse ads-free!"
+  "Subscription": {
+    "AdBlockActive": "Using Ad-blocker on this website is discouraged. Hosting the website costs, and developing the website needs time.\n\nPlease allow ads, or check the \"Subscription Intro\" in the documentation section.",
+    "Popup": "Please subscribe if you like using the website :) Check [Subscription Intro](https://pks.raenonx.cc/docs/view/subscription/intro) for details.",
+    "PremiumOnly": "Premium subscription required. Please check [Subscription Intro](https://pks.raenonx.cc/docs/view/subscription/intro) for details."
   },
   "Auth": {
     "EmailSent": "Email for login has been sent."
