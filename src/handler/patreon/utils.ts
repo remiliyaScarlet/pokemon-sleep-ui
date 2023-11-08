@@ -1,8 +1,8 @@
-import {patreonTierActivationLookup} from '@/const/activation/patreon';
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {getPatreonMember} from '@/handler/patreon/api/member/main';
 import {ActivationStatus} from '@/types/mongo/activation';
+import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 import {PatreonMember} from '@/types/patreon/common/member';
 import {isPatronActive} from '@/utils/external/patreon';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
@@ -11,11 +11,13 @@ import {getActivationExpiry} from '@/utils/user/activation/utils';
 type GetActivationFromPatreonMemberOpts = {
   email: string,
   member: PatreonMember,
+  presetLookup: ActivationPresetLookup,
 };
 
 export const getActivationFromPatreonMember = ({
   email,
   member,
+  presetLookup,
 }: GetActivationFromPatreonMemberOpts): ActivationStatus | null => {
   const activeTier = member.relationships.currently_entitled_tiers.data.at(0);
   if (!activeTier) {
@@ -26,7 +28,7 @@ export const getActivationFromPatreonMember = ({
     return null;
   }
 
-  const activation = patreonTierActivationLookup[activeTier.id];
+  const activation = presetLookup[activeTier.id];
   if (!activation) {
     console.warn(
       `Tier ID ${activeTier.id} is on user of ${email} on Patreon, but no associated activation configured`,
@@ -35,12 +37,13 @@ export const getActivationFromPatreonMember = ({
     return null;
   }
 
-  return activation;
+  return activation.activation;
 };
 
 export const toActivationPayloadFromPatreon = async (
-  member: PatreonMember,
+  opts: Omit<GetActivationFromPatreonMemberOpts, 'email'>,
 ): Promise<ActionSendActivationPayload> => {
+  const {member} = opts;
   const {id, attributes} = member;
   const {email} = attributes;
 
@@ -60,7 +63,7 @@ export const toActivationPayloadFromPatreon = async (
   }
   /* eslint-enable no-console */
 
-  const activation = getActivationFromPatreonMember({email, member});
+  const activation = getActivationFromPatreonMember({email, ...opts});
   if (!activation) {
     return {email, activationProperties: null};
   }

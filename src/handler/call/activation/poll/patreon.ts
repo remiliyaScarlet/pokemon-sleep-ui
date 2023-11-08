@@ -1,3 +1,4 @@
+import {getActivationPresetLookupOfSource} from '@/controller/user/activation/preset';
 import {
   getAllActivationsOfSource,
   removeActivationBatch,
@@ -15,9 +16,11 @@ export const callPatreonActivationPoll = async () => {
   const [
     memberData,
     activations,
+    presetLookup,
   ] = await Promise.all([
     getCurrentCampaignMembers(),
     getAllActivationsOfSource('patreon'),
+    getActivationPresetLookupOfSource('patreon'),
   ]);
 
   const {
@@ -43,7 +46,7 @@ export const callPatreonActivationPoll = async () => {
     // Send activations
     ...toSendActivation.map(async ({member}) => (
       actionSendActivationEmail({
-        payload: await toActivationPayloadFromPatreon(member),
+        payload: await toActivationPayloadFromPatreon({member, presetLookup}),
         sourceNote: 'Patreon Activation Poll',
         getWarnOnNullActivation: ({email}) => `Patreon member is inactive for email: ${email}`,
       })),
@@ -51,7 +54,7 @@ export const callPatreonActivationPoll = async () => {
     // Update expiry
     updateActivationPropertiesFromPayloads({
       payloads: await Promise.all(toUpdateExpiry.map(async ({member}) => (
-        await toActivationPayloadFromPatreon(member)
+        await toActivationPayloadFromPatreon({member, presetLookup})
       ))),
     }),
     // Remove activations
