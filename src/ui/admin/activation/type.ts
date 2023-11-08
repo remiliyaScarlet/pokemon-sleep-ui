@@ -1,8 +1,15 @@
 import {ActivationDataAtClient, ActivationInfo} from '@/types/mongo/activation';
+import {UserIdToEmailMap} from '@/types/mongo/auth';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus, UserDataActorAsync} from '@/types/userData/main';
-import {SiteAdminServerDataProps} from '@/ui/admin/type';
 
+
+export type AdminActivationServerDataProps = {
+  userIdEmailMap: UserIdToEmailMap,
+  preloaded: {
+    activations: ActivationDataAtClient[],
+  },
+};
 
 export type ActivationUiState = {
   data: ActivationDataAtClient[],
@@ -23,6 +30,6 @@ export type ActivationUiControl = {
   deleteActivation: () => void,
 };
 
-export type ActivationUiCommonProps = SiteAdminServerDataProps & {
+export type ActivationUiCommonProps = AdminActivationServerDataProps & {
   control: ActivationUiControl,
 };

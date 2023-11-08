@@ -4,8 +4,8 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
+import {activationContactToText} from '@/const/activation/common';
 import {activationContact, ActivationDataAtClient} from '@/types/mongo/activation';
-import {activationContactToText} from '@/ui/admin/activation/const';
 import {ActivationReadonlyField} from '@/ui/admin/activation/viewer/popup/field/readonly';
 import {isNotNullish} from '@/utils/type';
 

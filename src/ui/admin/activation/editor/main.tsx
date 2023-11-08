@@ -15,6 +15,7 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
+import {activationContactToText, activationTypeToText} from '@/const/activation/common';
 import {IsoDateString} from '@/types/date';
 import {
   activationContact,
@@ -24,7 +25,6 @@ import {
 } from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus} from '@/types/userData/main';
-import {activationContactToText, activationTypeToText} from '@/ui/admin/activation/const';
 import {isActivationDataValid} from '@/utils/user/activation/utils';
 
 

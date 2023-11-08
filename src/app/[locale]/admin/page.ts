@@ -1,10 +1,9 @@
 import {GenerateMetadata} from '@/types/next/metadata';
-import {SiteAdminEntry} from '@/ui/admin/main';
+import {SiteAdminIndex} from '@/ui/admin/index/main';
 
 
 export const generateMetadata: GenerateMetadata = async () => ({
-  title: 'Pokemon Sleep Info Website Admin',
-  description: 'Pokemon Sleep Info Website Admin page.',
+  title: 'Index | Pokemon Sleep Info Website Admin',
 });
 
-export default SiteAdminEntry;
+export default SiteAdminIndex;
