@@ -7,6 +7,8 @@ import {PatreonMemberData} from '@/types/patreon/memberData';
 
 
 const testPatreonMember: PatreonMember = {
+  type: 'member',
+  id: v4(),
   attributes: {
     email: 'test@email.com',
     last_charge_date: new Date('2023-10-01').toISOString() as IsoUtcTimestampString,
@@ -14,8 +16,11 @@ const testPatreonMember: PatreonMember = {
     patron_status: 'active_patron',
     pledge_cadence: 1,
   },
-  id: v4(),
-  type: 'member',
+  relationships: {
+    currently_entitled_tiers: {
+      data: [],
+    },
+  },
 };
 
 const testPatreonUser: PatreonUser = {

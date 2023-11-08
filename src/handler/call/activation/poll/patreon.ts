@@ -39,10 +39,6 @@ export const callPatreonActivationPoll = async () => {
   console.log('Pending deactivations', JSON.stringify(toDeactivate));
   /* eslint-enable no-console */
 
-  const updateExpiryPayloads = await Promise.all(toUpdateExpiry.map(async ({member}) => (
-    await toActivationPayloadFromPatreon(member)
-  )));
-
   await Promise.all([
     // Send activations
     ...toSendActivation.map(async ({member}) => (
@@ -54,7 +50,9 @@ export const callPatreonActivationPoll = async () => {
     ),
     // Update expiry
     updateActivationPropertiesFromPayloads({
-      payloads: updateExpiryPayloads,
+      payloads: await Promise.all(toUpdateExpiry.map(async ({member}) => (
+        await toActivationPayloadFromPatreon(member)
+      ))),
     }),
     // Remove activations
     removeActivationBatch({

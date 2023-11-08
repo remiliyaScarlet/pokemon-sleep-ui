@@ -1,10 +1,42 @@
+import {patreonTierActivationLookup} from '@/const/activation/patreon';
 import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {getPatreonMember} from '@/handler/patreon/api/member/main';
+import {ActivationStatus} from '@/types/mongo/activation';
 import {PatreonMember} from '@/types/patreon/common/member';
 import {isPatronActive} from '@/utils/external/patreon';
 import {getActivationExpiry} from '@/utils/user/activation/utils';
 
+
+type GetActivationFromPatreonMemberOpts = {
+  email: string,
+  member: PatreonMember,
+};
+
+export const getActivationFromPatreonMember = ({
+  email,
+  member,
+}: GetActivationFromPatreonMemberOpts): ActivationStatus | null => {
+  const activeTier = member.relationships.currently_entitled_tiers.data.at(0);
+  if (!activeTier) {
+    /* eslint-disable no-console */
+    console.log(`User of ${email} on Patreon does not seem to have entitled tiers`);
+    /* eslint-enable no-console */
+
+    return null;
+  }
+
+  const activation = patreonTierActivationLookup[activeTier.id];
+  if (!activation) {
+    console.warn(
+      `Tier ID ${activeTier.id} is on user of ${email} on Patreon, but no associated activation configured`,
+    );
+
+    return null;
+  }
+
+  return activation;
+};
 
 export const toActivationPayloadFromPatreon = async (
   member: PatreonMember,
@@ -28,14 +60,16 @@ export const toActivationPayloadFromPatreon = async (
   }
   /* eslint-enable no-console */
 
+  const activation = getActivationFromPatreonMember({email, member});
+  if (!activation) {
+    return {email, activationProperties: null};
+  }
+
   return {
     email,
     activationProperties: {
       expiry: getActivationExpiry(member),
-      activation: {
-        adsFree: true,
-        premium: true,
-      },
+      activation,
       source: 'patreon',
       contact: {
         patreon: email,
