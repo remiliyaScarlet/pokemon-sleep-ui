@@ -1,5 +1,5 @@
 import {getActivationPresetLookupOfSource} from '@/controller/user/activation/preset';
-import {actionSendActivationEmail} from '@/handler/action/activation/main';
+import {actionSendActivationEmail} from '@/handler/action/activation/email';
 import {toActivationPayloadFromPatreon} from '@/handler/shared/patreon/utils';
 import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 

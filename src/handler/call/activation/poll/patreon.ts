@@ -1,6 +1,6 @@
 import {getActivationPresetLookupOfSource} from '@/controller/user/activation/preset';
 import {getAllActivationsOfSource} from '@/controller/user/activation/util';
-import {actionSendActivationEmail} from '@/handler/action/activation/main';
+import {actionSendActivationEmail} from '@/handler/action/activation/email';
 import {scanActivations} from '@/handler/call/activation/poll/scan/main';
 import {scanPatreonActivationInDatabase} from '@/handler/call/activation/poll/scan/patreon/activation';
 import {scanPatron} from '@/handler/call/activation/poll/scan/patreon/member';
@@ -29,6 +29,10 @@ export const callPatreonActivationPoll = async () => {
       ],
       getId: ({member}) => member.id,
     }),
+    toPayload: async ({member}) => await toActivationPayloadFromPatreon({
+      member: member.member,
+      presetLookup,
+    }),
     toSendActivationActions: (payloads, sourceText) => payloads.map(async (payload) => (
       actionSendActivationEmail({
         payload: await payload,
@@ -36,9 +40,5 @@ export const callPatreonActivationPoll = async () => {
         getWarnOnNullActivation: ({contact}) => `${sourceText} member is inactive for email: ${contact}`,
       })),
     ),
-    toPayload: async ({member}) => await toActivationPayloadFromPatreon({
-      member: member.member,
-      presetLookup,
-    }),
   });
 };
