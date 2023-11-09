@@ -40,7 +40,7 @@ export const generateDiscordActivationLink = async (request: NextRequest) => {
     executorUserId: process.env.NEXTAUTH_ADMIN_UID,
     source: 'discord',
     contact: {
-      discord: `<@${discordId}>`,
+      discord: discordId,
     },
     expiry: new Date(now.setDate(now.getDate() + defaultExpiryDays)),
     isSpecial: false,

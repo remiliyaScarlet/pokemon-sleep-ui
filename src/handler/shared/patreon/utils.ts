@@ -78,7 +78,7 @@ export const toActivationPayloadFromPatreon = async (
         patreon: email,
         // Keep the existed ones and overwrite with Discord User ID linked to Patreon if once is available
         ...existedActivationProperties?.contact,
-        ...(social?.discord && {discord: `<@${social.discord.user_id}>`}),
+        ...(social?.discord && {discord: social.discord.user_id}),
       },
       isSpecial: false,
       note: '',
