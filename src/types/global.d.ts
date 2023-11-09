@@ -11,6 +11,7 @@ declare global {
       NODE_ENV: 'development' | 'production';
 
       MONGODB_URI: string;
+      API_TOKEN_INBOUND: string;
 
       // `next-auth` URLs
       NEXTAUTH_URL: string;
