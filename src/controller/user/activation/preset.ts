@@ -1,6 +1,6 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsMap} from '@/controller/common';
+import {getDataAsMap, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
@@ -23,6 +23,15 @@ export const getActivationPresetMap = (): Promise<ActivationPresetMap> => (
 export const getActivationPresetLookupOfSource = (source: ActivationSource): Promise<ActivationPresetLookup> => (
   getDataAsMap(getCollection(), ({tag}) => tag, {source})
 );
+
+type GetActivationPresetSingleOpts = {
+  source: ActivationSource,
+  tags: string[],
+};
+
+export const getActivationPresetSingle = ({source, tags}: GetActivationPresetSingleOpts) => {
+  return getSingleData(getCollection(), {source, tag: {$in: tags}});
+};
 
 type UpdateActivationPresetsOpts = ControllerRequireUserIdOpts & {
   data: ActivationPresetMap,
