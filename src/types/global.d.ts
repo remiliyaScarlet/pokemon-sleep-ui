@@ -31,6 +31,8 @@ declare global {
       EXTERNAL_PATREON_OAUTH_ACCESS_TOKEN: string;
 
       // Subscription related
+      SUBSCRIPTION_DISCORD_SOURCE_URL: string;
+      SUBSCRIPTION_DISCORD_SEND_ACTIVATION_URL: string;
       SUBSCRIPTION_EMAIL_SERVER: string;
       SUBSCRIPTION_EMAIL_FROM: string;
 

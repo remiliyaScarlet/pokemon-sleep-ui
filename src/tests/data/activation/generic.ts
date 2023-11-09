@@ -16,44 +16,57 @@ const testActivationKey: Omit<ActivationKey, 'key'> = {
 export const testActivations: ActivationKey[] = [
   {
     ...testActivationKey,
-    key: 'default',
+    key: 'danglingPatreon',
   },
   {
     ...testActivationKey,
-    key: 'discord',
     source: 'discord',
+    key: 'danglingDiscord',
+  },
+  {
+    ...testActivationKey,
+    source: 'discord',
+    key: 'discordPending',
     contact: {
-      discord: '@discord',
+      discord: 'discordPendingId',
     },
   },
   {
     ...testActivationKey,
-    key: 'patreonPending',
+    source: 'discord',
+    key: 'discordActive',
+    contact: {
+      discord: 'discordActiveId',
+    },
+  },
+  {
+    ...testActivationKey,
     source: 'patreon',
+    key: 'patreonPending',
     contact: {
       patreon: 'patronPending@email.com',
     },
   },
   {
     ...testActivationKey,
-    key: 'patreonActive',
     source: 'patreon',
+    key: 'patreonActive',
     contact: {
       patreon: 'patronActive@email.com',
     },
   },
   {
     ...testActivationKey,
-    key: 'patreonDeclined',
     source: 'patreon',
+    key: 'patreonDeclined',
     contact: {
       patreon: 'patronDeclined@email.com',
     },
   },
   {
     ...testActivationKey,
-    key: 'patreonExpired',
     source: 'patreon',
+    key: 'patreonExpired',
     contact: {
       patreon: 'patronExpired@email.com',
     },

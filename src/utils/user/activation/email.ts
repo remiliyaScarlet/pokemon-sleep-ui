@@ -2,12 +2,12 @@ import {sendEmail} from '@/utils/email';
 import {getActivationEmailContent} from '@/utils/user/activation/content';
 
 
-type SendActivationEmail = {
+type SendActivationEmailOpts = {
   recipient: string,
   activationLink: string,
 };
 
-export const sendActivationEmail = async ({recipient, activationLink}: SendActivationEmail) => {
+export const sendActivationEmail = async ({recipient, activationLink}: SendActivationEmailOpts) => {
   await sendEmail({
     server: process.env.SUBSCRIPTION_EMAIL_SERVER,
     from: process.env.SUBSCRIPTION_EMAIL_FROM,
