@@ -36,7 +36,7 @@ describe('Pokemon Producing Split', () => {
       subSkillBonus: {},
       behavior: {
         ...defaultUserCalculationBehavior,
-        berryPokemonAlwaysFullPack: true,
+        alwaysFullPack: 'berryOnly',
       },
     });
 

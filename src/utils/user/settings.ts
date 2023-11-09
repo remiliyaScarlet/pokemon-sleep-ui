@@ -1,6 +1,13 @@
+import {specialtyIdMap} from '@/const/game/pokemon';
 import {defaultUserSettings} from '@/const/user/settings';
+import {PokemonSpecialtyId} from '@/types/game/pokemon';
 import {StaminaRecoveryRateConfig} from '@/types/game/stamina/config';
-import {CalculatedUserSettings, UserCalculationBehavior, UserSettings} from '@/types/userData/settings';
+import {
+  CalculatedUserSettings,
+  UserCalculationBehavior,
+  UserCalculationFullPackBehavior,
+  UserSettings,
+} from '@/types/userData/settings';
 import {getSleepDurationsFromSleepSession} from '@/utils/game/sleep';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {DeepPartial} from '@/utils/type';
@@ -52,4 +59,25 @@ export const overrideRecoveryRate = ({
       recoveryRate,
     },
   };
+};
+
+type IsFullPackOpts = {
+  alwaysFullBack: UserCalculationFullPackBehavior,
+  specialty: PokemonSpecialtyId | null,
+};
+
+export const isFullPack = ({alwaysFullBack, specialty}: IsFullPackOpts): boolean => {
+  if (alwaysFullBack === 'berryOnly') {
+    return specialty === specialtyIdMap.berry;
+  }
+
+  if (alwaysFullBack === 'always') {
+    return true;
+  }
+
+  if (alwaysFullBack === 'disable') {
+    return false;
+  }
+
+  throw new Error(`Unhandled full pack behavior [${alwaysFullBack}]`);
 };

@@ -276,6 +276,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       },
     },
     UserSettings: {
+      AlwaysFullPack: string,
       BerryPokemonFullPack: string,
       GoodCampTicket: string,
     },

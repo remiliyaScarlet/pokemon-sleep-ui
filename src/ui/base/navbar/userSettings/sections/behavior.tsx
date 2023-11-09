@@ -14,20 +14,22 @@ type Props = {
 };
 
 export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
-  const {berryPokemonAlwaysFullPack, goodCampTicket} = behavior;
+  const {alwaysFullPack, goodCampTicket} = behavior;
 
   const t = useTranslations('UI.UserSettings');
+
+  const isAlwaysFullPack = alwaysFullPack === 'berryOnly';
 
   return (
     <InputRow>
       <ToggleButton
         id="berryMonFullPack"
-        active={berryPokemonAlwaysFullPack}
-        onChange={(berryPokemonAlwaysFullPack) => setBehavior({
+        active={isAlwaysFullPack}
+        onChange={(alwaysFullPack) => setBehavior({
           ...behavior,
-          berryPokemonAlwaysFullPack,
+          alwaysFullPack: alwaysFullPack ? 'berryOnly' : 'disable',
         })}
-        className={getTextFilterButtonClass(berryPokemonAlwaysFullPack)}
+        className={getTextFilterButtonClass(isAlwaysFullPack)}
       >
         {t('BerryPokemonFullPack')}
       </ToggleButton>

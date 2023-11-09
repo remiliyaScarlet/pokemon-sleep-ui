@@ -363,6 +363,7 @@
     }
   },
   "UserSettings": {
+    "AlwaysFullPack": "Always Full Pack",
     "BerryPokemonFullPack": "Always Full Pack for Berry Specialists",
     "GoodCampTicket": "Good Camp Ticket"
   },

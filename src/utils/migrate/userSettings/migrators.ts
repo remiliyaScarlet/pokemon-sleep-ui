@@ -47,4 +47,16 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
       behavior: defaultUserCalculationBehavior,
     }),
   },
+  {
+    toVersion: 6,
+    // Added `staminaSkillTrigger` in the config
+    migrate: (old) => ({
+      ...old,
+      behavior: {
+        ...old.behavior,
+        ...defaultUserCalculationBehavior,
+        alwaysFullPack: old.behavior.alwaysFullPack ? 'berryOnly' : 'disable',
+      },
+    }),
+  },
 ];

@@ -40,7 +40,7 @@ export const defaultStaminaSkillTrigger: StaminaSkillTriggerData = {
 };
 
 export const defaultUserCalculationBehavior: UserCalculationBehavior = {
-  berryPokemonAlwaysFullPack: false,
+  alwaysFullPack: 'disable',
   goodCampTicket: false,
 };
 
@@ -50,5 +50,5 @@ export const defaultUserSettings: UserSettings = {
   staminaSkillTrigger: defaultStaminaSkillTrigger,
   behavior: defaultUserCalculationBehavior,
   currentMap: 1,
-  version: 5,
+  version: 6,
 };

@@ -13,7 +13,7 @@ export type TeamAnalysisSlotName = typeof teamAnalysisSlotName[number];
 export type TeamAnalysisMember = PokemonConfigPokemonData & {
   name?: string | null,
   seeds?: SeedUsage,
-  berryPokemonAlwaysFullPack?: boolean | null,
+  alwaysFullPack?: boolean | null,
 };
 
 export type TeamAnalysisConfig = Migratable & {

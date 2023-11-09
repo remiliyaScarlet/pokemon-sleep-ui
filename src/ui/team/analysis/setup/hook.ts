@@ -64,7 +64,7 @@ const useProducingStatsOfSlot = ({
       evolutionCount,
       subSkill,
       nature,
-      berryPokemonAlwaysFullPack,
+      alwaysFullPack,
     } = member;
 
     const pokemon = pokedexMap[pokemonId];
@@ -84,7 +84,7 @@ const useProducingStatsOfSlot = ({
     const calculatedSettings = toCalculatedUserSettings({
       settings,
       recoveryRate: toRecoveryRate(producingRateOpts),
-      behaviorOverride: berryPokemonAlwaysFullPack != null ? {berryPokemonAlwaysFullPack} : {},
+      behaviorOverride: alwaysFullPack != null ? {alwaysFullPack: alwaysFullPack ? 'always' : 'disable'} : {},
     });
 
     const pokemonProducingRate = getPokemonProducingRate({

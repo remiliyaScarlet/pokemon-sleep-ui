@@ -5,8 +5,10 @@ import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {Migratable} from '@/types/migrate';
 
 
+export type UserCalculationFullPackBehavior = 'berryOnly' | 'always' | 'disable';
+
 export type UserCalculationBehavior = {
-  berryPokemonAlwaysFullPack: boolean,
+  alwaysFullPack: UserCalculationFullPackBehavior,
   goodCampTicket: boolean,
 };
 

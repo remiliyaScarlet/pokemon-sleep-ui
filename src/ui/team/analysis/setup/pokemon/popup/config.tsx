@@ -20,7 +20,7 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
   const t = useTranslations('UI.UserSettings');
 
   const seeds = member.seeds ?? defaultSeedUsage;
-  const alwaysFullPack = member.berryPokemonAlwaysFullPack ?? null;
+  const alwaysFullPack = member.alwaysFullPack ?? null;
 
   return (
     <Flex noFullWidth className="gap-1.5 sm:w-[60vw]">
@@ -37,10 +37,10 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
       />
       <PokemonIntentionalFullPackInput
         idPrefix="teamAnalysis"
-        title={t('BerryPokemonFullPack')}
+        title={t('AlwaysFullPack')}
         alwaysFullPack={alwaysFullPack}
         setAlwaysFullPack={(berryPokemonAlwaysFullPack) => (
-          setMember(slotName, {berryPokemonAlwaysFullPack})
+          setMember(slotName, {alwaysFullPack: berryPokemonAlwaysFullPack})
         )}
       />
     </Flex>
