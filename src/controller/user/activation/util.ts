@@ -17,7 +17,7 @@ import {
   updateActivationKeyPropertiesSingle,
 } from '@/controller/user/activation/key';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
-import {ActivationContact, ActivationKey, ActivationProperties, ActivationSource} from '@/types/mongo/activation';
+import {ActivationKey, ActivationProperties, ActivationSource} from '@/types/mongo/activation';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -88,10 +88,16 @@ export const removeActivationBatch = ({filter}: RemoveActivationOpts) => {
   ]);
 };
 
-export const getActivationPropertiesByPatreonContact = async (
+type GetActivationPropertiesByContactOpts = {
+  source: ActivationSource,
   contact: string,
-): Promise<ActivationProperties | null> => {
-  const filter: Filter<ActivationProperties> = {[`contact.${'patreon' satisfies ActivationContact}`]: contact};
+};
+
+export const getActivationPropertiesByContact = async ({
+  source,
+  contact,
+}: GetActivationPropertiesByContactOpts): Promise<ActivationProperties | null> => {
+  const filter: Filter<ActivationProperties> = {[`contact.${source}`]: contact};
 
   const properties = await getActivationDataByFilter({
     executorUserId: process.env.NEXTAUTH_ADMIN_UID,

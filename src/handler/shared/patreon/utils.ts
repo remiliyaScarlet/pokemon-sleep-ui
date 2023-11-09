@@ -1,4 +1,4 @@
-import {getActivationPropertiesByPatreonContact} from '@/controller/user/activation/util';
+import {getActivationPropertiesByContact} from '@/controller/user/activation/util';
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {getPatreonMember} from '@/handler/shared/patreon/api/member/main';
 import {ActivationStatus} from '@/types/mongo/activation';
@@ -54,7 +54,10 @@ export const toActivationPayloadFromPatreon = async (
   const memberData = await getPatreonMember({userId: id});
 
   const social = memberData.included[0].attributes.social_connections;
-  const existedActivationProperties = (await getActivationPropertiesByPatreonContact(email));
+  const existedActivationProperties = (await getActivationPropertiesByContact({
+    source: 'patreon',
+    contact: email,
+  }));
 
   /* eslint-disable no-console */
   console.log(`>>> Converting Patreon member of ${id} (${email}) to activation payload`);
