@@ -5,7 +5,7 @@ import {ActivationStatus} from '@/types/mongo/activation';
 import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 import {PatreonMember} from '@/types/subscription/patreon/common/member';
 import {isPatronActive} from '@/utils/external/patreon';
-import {getActivationExpiry} from '@/utils/user/activation/utils';
+import {getActivationExpiryFromPatreon} from '@/utils/user/activation/utils';
 
 
 type GetActivationFromPatreonMemberOpts = {
@@ -62,7 +62,10 @@ export const toActivationPayloadFromPatreon = async (
   /* eslint-disable no-console */
   console.log(`>>> Converting Patreon member of ${id} (${email}) to activation payload`);
   if (existedActivationProperties) {
-    console.log(`Existed activation properties of ${email} on Patreon:`, JSON.stringify(existedActivationProperties));
+    console.log(
+      `Existing activation properties of ${email} on Patreon:`,
+      JSON.stringify(existedActivationProperties),
+    );
   }
   /* eslint-enable no-console */
 
@@ -74,7 +77,7 @@ export const toActivationPayloadFromPatreon = async (
   return {
     contact: email,
     activationProperties: {
-      expiry: getActivationExpiry(member),
+      expiry: getActivationExpiryFromPatreon(member),
       activation,
       source: 'patreon',
       contact: {

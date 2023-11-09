@@ -52,22 +52,26 @@ export const toActivationProperties = ({
   expiry: new Date(expiry),
 });
 
-export const getActivationExpiry = (member?: PatreonMember): Date => {
-  let expiry;
+export const getActivationExpiryOfDefault = (): Date => {
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + defaultExpiryDays);
 
-  if (member?.attributes.last_charge_date) {
-    const {
-      last_charge_date: lastChargeIsoUtc,
-      pledge_cadence: cadence,
-    } = member.attributes;
+  return expiry;
+};
 
-    expiry = new Date(lastChargeIsoUtc);
-    // 2 days grace period
-    expiry.setDate(expiry.getDate() + cadence * 31 + 2);
-  } else {
-    expiry = new Date();
-    expiry.setDate(expiry.getDate() + defaultExpiryDays);
+export const getActivationExpiryFromPatreon = (member?: PatreonMember): Date => {
+  if (!member?.attributes.last_charge_date) {
+    return getActivationExpiryOfDefault();
   }
+
+  const {
+    last_charge_date: lastChargeIsoUtc,
+    pledge_cadence: cadence,
+  } = member.attributes;
+
+  const expiry = new Date(lastChargeIsoUtc);
+  // 2 days grace period
+  expiry.setDate(expiry.getDate() + cadence * 31 + 2);
 
   return expiry;
 };

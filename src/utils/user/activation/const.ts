@@ -1,2 +1,2 @@
 // Half year
-export const defaultExpiryDays = 183;
+export const defaultExpiryDays = 90;
