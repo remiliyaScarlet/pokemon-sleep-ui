@@ -3,7 +3,7 @@ import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 
 
 export type ActivationDeactivatePayload<TMember> = {
-  member: TMember,
+  member: TMember | undefined,
   key: string,
 };
 

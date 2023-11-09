@@ -28,6 +28,8 @@ export const scanActivationInDatabase = <TMember>({
     const member = members
       .find((member) => isMemberMatchesActivation(member, activation));
     if (!member) {
+      // Dangling activation
+      result.toDeactivate.push({member, key: activation.key});
       continue;
     }
 
