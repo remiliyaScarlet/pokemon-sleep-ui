@@ -1,7 +1,7 @@
 import {activationSourceToText} from '@/const/activation/common';
 import {removeActivationBatch, updateActivationPropertiesFromPayloads} from '@/controller/user/activation/util';
-import {actionSendActivationEmail} from '@/handler/action/activation/main';
-import {ActivationPayloadConverter, ActivationDeactivatePayload} from '@/handler/call/activation/poll/scan/type';
+import {ActionSendActivationPayload} from '@/handler/action/activation/type';
+import {ActivationDeactivatePayload, ActivationPayloadConverter} from '@/handler/call/activation/poll/scan/type';
 import {ActivationSource} from '@/types/mongo/activation';
 import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 
@@ -14,6 +14,10 @@ type ScanActivationsOpts<TMember> = {
     toDeactivate: ActivationDeactivatePayload<TMember>[],
   },
   toPayload: ActivationPayloadConverter<TMember>,
+  toSendActivationActions: (
+    payloads: Promise<ActionSendActivationPayload>[],
+    sourceText: string,
+  ) => Promise<void>[],
   presetLookup: ActivationPresetLookup,
 };
 
@@ -21,6 +25,7 @@ export const scanActivations = async <TMember>({
   source,
   data,
   toPayload,
+  toSendActivationActions,
   presetLookup,
 }: ScanActivationsOpts<TMember>) => {
   const {
@@ -42,13 +47,9 @@ export const scanActivations = async <TMember>({
   /* eslint-enable no-console */
 
   await Promise.all([
-    // Send activations
-    ...toSendActivation.map(async (member) => (
-      actionSendActivationEmail({
-        payload: await toPayload({member, presetLookup}),
-        sourceNote: `Activation Poll (${sourceText})`,
-        getWarnOnNullActivation: ({contact}) => `${sourceText} member is inactive for email: ${contact}`,
-      })),
+    ...toSendActivationActions(
+      toSendActivation.map((member) => toPayload({member, presetLookup})),
+      sourceText,
     ),
     // Update expiry
     updateActivationPropertiesFromPayloads({
