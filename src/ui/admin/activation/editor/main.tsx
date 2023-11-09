@@ -52,6 +52,7 @@ export const ActivationEditor = ({
   const commonInputStyle = 'h-8 w-full sm:w-96';
 
   const isCmsMod = data.isCmsMod ?? false;
+  const isActivationLocked = data.isActivationLocked ?? false;
 
   return (
     <FlexForm className="gap-1.5" onSubmit={async () => {
@@ -136,6 +137,17 @@ export const ActivationEditor = ({
             className={getTextFilterButtonClass(isCmsMod)}
           >
             CMS Mod
+          </ToggleButton>
+          <ToggleButton
+            id={`${idPrefix}isActivationLocked`}
+            active={isActivationLocked}
+            onChange={(isActivationLocked) => setData((original) => ({
+              ...original,
+              isActivationLocked,
+            } satisfies ActivationPropertiesAtClient))}
+            className={getTextFilterButtonClass(isActivationLocked)}
+          >
+            Activation Locked (Founder)
           </ToggleButton>
         </Flex>
       </InputRowWithTitle>

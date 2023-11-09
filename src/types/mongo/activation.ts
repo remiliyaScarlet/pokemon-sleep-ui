@@ -38,6 +38,7 @@ export type ActivationProperties = {
   contact: {[contact in ActivationContact]?: string | null},
   isSpecial: boolean,
   isCmsMod?: boolean,
+  isActivationLocked?: boolean,
   note: string,
   activation: ActivationStatus,
 };
