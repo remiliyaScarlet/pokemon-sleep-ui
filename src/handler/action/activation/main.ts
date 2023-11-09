@@ -15,7 +15,7 @@ export const actionSendActivationEmail = async ({
   sourceNote,
   getWarnOnNullActivation,
 }: ActionSendActivationEmailOpts) => {
-  const {email, activationProperties} = payload;
+  const {contact, activationProperties} = payload;
 
   if (!activationProperties) {
     console.warn(`${getWarnOnNullActivation(payload)} (${sourceNote})`);
@@ -34,8 +34,8 @@ export const actionSendActivationEmail = async ({
 
   // Production only to avoid accidental send
   if (isProduction()) {
-    await sendActivationEmail({recipient: email, activationLink});
+    await sendActivationEmail({recipient: contact, activationLink});
   }
   // eslint-disable-next-line no-console
-  console.log(`Activation email sent to ${email} with link ${activationLink} (${sourceNote})`);
+  console.log(`Activation email sent to ${contact} with link ${activationLink} (${sourceNote})`);
 };

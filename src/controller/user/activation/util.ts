@@ -42,18 +42,22 @@ export const updateActivationPropertiesSingle = ({filter, properties}: UpdateAct
 };
 
 type UpdateActivationPropertiesFromPayloadsOpts = {
+  source: ActivationSource,
   payloads: ActionSendActivationPayload[]
 };
 
-export const updateActivationPropertiesFromPayloads = ({payloads}: UpdateActivationPropertiesFromPayloadsOpts) => {
+export const updateActivationPropertiesFromPayloads = ({
+  source,
+  payloads,
+}: UpdateActivationPropertiesFromPayloadsOpts) => {
   const updates: UpdateOneModel<ActivationKey>[] = payloads
-    .map(({email, activationProperties}) => {
+    .map(({contact, activationProperties}) => {
       if (!activationProperties) {
         return null;
       }
 
       return ({
-        filter: {[`contact.${'patreon' satisfies ActivationContact}`]: email},
+        filter: {[`contact.${source}`]: contact},
         update: {$set: activationProperties},
         upsert: false,
       });

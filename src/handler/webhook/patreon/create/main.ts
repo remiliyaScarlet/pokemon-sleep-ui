@@ -12,6 +12,6 @@ export const handlePatreonPledgeCreated = async (
   return actionSendActivationEmail({
     payload: await toActivationPayloadFromPatreon({member: payload.data, presetLookup}),
     sourceNote: 'Patreon Webhook',
-    getWarnOnNullActivation: ({email}) => `Patreon member is inactive for email: ${email}`,
+    getWarnOnNullActivation: ({contact}) => `Patreon member is inactive for email: ${contact}`,
   });
 };

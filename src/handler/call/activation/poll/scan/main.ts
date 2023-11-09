@@ -47,11 +47,12 @@ export const scanActivations = async <TMember>({
       actionSendActivationEmail({
         payload: await toPayload({member, presetLookup}),
         sourceNote: `Activation Poll (${sourceText})`,
-        getWarnOnNullActivation: ({email}) => `${sourceText} member is inactive for email: ${email}`,
+        getWarnOnNullActivation: ({contact}) => `${sourceText} member is inactive for email: ${contact}`,
       })),
     ),
     // Update expiry
     updateActivationPropertiesFromPayloads({
+      source,
       payloads: await Promise.all(toUpdateExpiry.map(async (member) => (
         await toPayload({member, presetLookup})
       ))),

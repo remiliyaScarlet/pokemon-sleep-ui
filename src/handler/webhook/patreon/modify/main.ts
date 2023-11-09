@@ -8,20 +8,20 @@ import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 export const handlePatreonPledgeModified = async (payload: PatreonWebhookPayload) => {
   const presetLookup = await getActivationPresetLookupOfSource('patreon');
 
-  const {email, activationProperties} = await toActivationPayloadFromPatreon({
+  const {contact, activationProperties} = await toActivationPayloadFromPatreon({
     member: payload.data,
     presetLookup,
   });
 
   if (!activationProperties) {
     await removeActivationSingle({
-      filter: {[`contact.${'patreon' satisfies ActivationContact}`]: email},
+      filter: {[`contact.${'patreon' satisfies ActivationContact}`]: contact},
     });
     return;
   }
 
   await updateActivationPropertiesSingle({
-    filter: {[`contact.${'patreon' satisfies ActivationContact}`]: email},
+    filter: {[`contact.${'patreon' satisfies ActivationContact}`]: contact},
     properties: activationProperties,
   });
 };
