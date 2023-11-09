@@ -64,6 +64,10 @@ export const updateActivationPropertiesFromPayloads = ({
     })
     .filter(isNotNullish);
 
+  if (!updates.length) {
+    return;
+  }
+
   return Promise.all([
     updateActivationKeyPropertiesBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, updates}),
     updateActivationDataPropertiesBatch({executorUserId: process.env.NEXTAUTH_ADMIN_UID, updates}),
