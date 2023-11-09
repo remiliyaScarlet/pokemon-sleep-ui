@@ -28,13 +28,13 @@ export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sle
 
   const t = useTranslations('UI.Common');
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
-  const sleepStyleId = getPokemonSleepStyleId({
+  const pokemonSleepStyleId = getPokemonSleepStyleId({
     pokemonId,
     branch: pokemonBranch,
   });
   const sleepStyleName = useSleepStyleName({
-    pokemonId,
-    sleepStyleId,
+    pokemonId: pokemonSleepStyleId,
+    sleepStyleId: sleepStyle.style,
   });
 
   const className = clsx(
