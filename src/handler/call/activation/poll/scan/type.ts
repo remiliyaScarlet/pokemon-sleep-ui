@@ -1,5 +1,4 @@
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
-import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 
 
 export type ActivationDeactivatePayload<TMember> = {
@@ -15,7 +14,6 @@ export type ActivationScanResult<TMember> = {
 
 export type ActivationConverterOpts<TMember> = {
   member: TMember,
-  presetLookup: ActivationPresetLookup,
 };
 
 export type ActivationPayloadConverter<TMember> = (

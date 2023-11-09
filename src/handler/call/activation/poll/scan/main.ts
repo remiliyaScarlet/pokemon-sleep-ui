@@ -3,7 +3,6 @@ import {removeActivationBatch, updateActivationPropertiesFromPayloads} from '@/c
 import {ActionSendActivationPayload} from '@/handler/action/activation/type';
 import {ActivationDeactivatePayload, ActivationPayloadConverter} from '@/handler/call/activation/poll/scan/type';
 import {ActivationSource} from '@/types/mongo/activation';
-import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 
 
 type ScanActivationsOpts<TMember> = {
@@ -18,7 +17,6 @@ type ScanActivationsOpts<TMember> = {
     payloads: Promise<ActionSendActivationPayload>[],
     sourceText: string,
   ) => Promise<void>[],
-  presetLookup: ActivationPresetLookup,
 };
 
 export const scanActivations = async <TMember>({
@@ -26,7 +24,6 @@ export const scanActivations = async <TMember>({
   data,
   toPayload,
   toSendActivationActions,
-  presetLookup,
 }: ScanActivationsOpts<TMember>) => {
   const {
     toUpdateExpiry,
@@ -48,14 +45,14 @@ export const scanActivations = async <TMember>({
 
   await Promise.all([
     ...toSendActivationActions(
-      toSendActivation.map((member) => toPayload({member, presetLookup})),
+      toSendActivation.map((member) => toPayload({member})),
       sourceText,
     ),
     // Update expiry
     updateActivationPropertiesFromPayloads({
       source,
       payloads: await Promise.all(toUpdateExpiry.map(async (member) => (
-        await toPayload({member, presetLookup})
+        await toPayload({member})
       ))),
     }),
     // Remove activations

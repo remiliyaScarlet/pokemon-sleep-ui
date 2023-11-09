@@ -40,6 +40,5 @@ export const callPatreonActivationPoll = async () => {
       member: member.member,
       presetLookup,
     }),
-    presetLookup,
   });
 };
