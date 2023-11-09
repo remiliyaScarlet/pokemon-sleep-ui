@@ -1,19 +1,23 @@
-import {ActivationKey} from '@/types/mongo/activation';
-import {PatreonMemberData} from '@/types/subscription/patreon/memberData';
+import {ActionSendActivationPayload} from '@/handler/action/activation/type';
+import {ActivationPresetLookup} from '@/types/mongo/activationPreset';
 
 
-export type PatreonUserScanOpts = {
-  memberData: PatreonMemberData[],
-  activations: ActivationKey[],
-};
-
-export type PatreonUserDeactivationPayload = {
-  memberData: PatreonMemberData,
+export type ActivationDeactivatePayload<TMember> = {
+  member: TMember,
   key: string,
 };
 
-export type PatreonSubscriberScanResult = {
-  toSendActivation: PatreonMemberData[],
-  toUpdateExpiry: PatreonMemberData[],
-  toDeactivate: PatreonUserDeactivationPayload[],
+export type ActivationScanResult<TMember> = {
+  toSendActivation: TMember[],
+  toUpdateExpiry: TMember[],
+  toDeactivate: ActivationDeactivatePayload<TMember>[],
 };
+
+export type ActivationConverterOpts<TMember> = {
+  member: TMember,
+  presetLookup: ActivationPresetLookup,
+};
+
+export type ActivationPayloadConverter<TMember> = (
+  opts: ActivationConverterOpts<TMember>
+) => Promise<ActionSendActivationPayload>;

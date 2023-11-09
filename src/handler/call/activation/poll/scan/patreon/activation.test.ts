@@ -1,6 +1,6 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {scanActivations} from '@/handler/call/activation/poll/scan/activation';
+import {scanPatreonActivationInDatabase} from '@/handler/call/activation/poll/scan/patreon/activation';
 import {testActivations} from '@/tests/data/activation/generic';
 import {testPatreonMemberData} from '@/tests/data/activation/patreon';
 
@@ -13,8 +13,8 @@ describe('Patreon Campaign Member Poll / Scan Activation', () => {
       toUpdateExpiry,
       toSendActivation,
       toDeactivate,
-    } = scanActivations({
-      memberData: testPatreonMemberData,
+    } = scanPatreonActivationInDatabase({
+      members: testPatreonMemberData,
       activations: testActivations,
     });
 

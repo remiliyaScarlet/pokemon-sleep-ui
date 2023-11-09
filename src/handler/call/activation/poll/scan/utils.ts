@@ -1,14 +1,20 @@
-import {uniqBy} from 'lodash';
+import {ValueIteratee, uniqBy} from 'lodash';
 
-import {PatreonSubscriberScanResult} from '@/handler/call/activation/poll/scan/type';
+import {ActivationScanResult} from '@/handler/call/activation/poll/scan/type';
 
 
-export const mergePatreonSubscriberScanResult = (
-  ...results: PatreonSubscriberScanResult[]
-): PatreonSubscriberScanResult => {
+type MergeScanResultOpts<TMember> = {
+  results: ActivationScanResult<TMember>[],
+  getId: ValueIteratee<TMember>,
+};
+
+export const mergeScanResult = <TMember>({
+  results,
+  getId,
+}: MergeScanResultOpts<TMember>): ActivationScanResult<TMember> => {
   return {
-    toSendActivation: uniqBy(results.flatMap(({toSendActivation}) => toSendActivation), ({member}) => member.id),
-    toUpdateExpiry: uniqBy(results.flatMap(({toUpdateExpiry}) => toUpdateExpiry), ({member}) => member.id),
+    toSendActivation: uniqBy(results.flatMap(({toSendActivation}) => toSendActivation), getId),
+    toUpdateExpiry: uniqBy(results.flatMap(({toUpdateExpiry}) => toUpdateExpiry), getId),
     toDeactivate: uniqBy(results.flatMap(({toDeactivate}) => toDeactivate), ({key}) => key),
   };
 };
