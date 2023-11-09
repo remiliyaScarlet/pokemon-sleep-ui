@@ -12,6 +12,7 @@ declare global {
 
       MONGODB_URI: string;
       API_TOKEN_INBOUND: string;
+      API_TOKEN_OUTBOUND: string;
 
       // `next-auth` URLs
       NEXTAUTH_URL: string;
