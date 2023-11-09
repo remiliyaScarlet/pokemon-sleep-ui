@@ -66,7 +66,12 @@ export const PokemonProducingStatsPopupContent = (props: PokemonProducingStatsCo
               <Flex direction="row" center className="gap-1.5 p-1">
                 <div>{t(pokemonProducingStatsStateI18nId.awake)}</div>
                 <div>/</div>
-                <GenericIcon src={staminaLevelImageSrc[breakPoint]} alt={`${breakPoint}+`}/>
+                <GenericIcon
+                  src={staminaLevelImageSrc[breakPoint]}
+                  alt={`${breakPoint}+`}
+                  noInvert
+                  dropShadow
+                />
                 <div>{t2('Stamina')} {breakPoint}+</div>
               </Flex>
             }
