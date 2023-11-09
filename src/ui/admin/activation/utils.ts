@@ -22,5 +22,5 @@ type IsExpiringSoonOpts = {
 };
 
 export const isExpiringSoon = ({data, now}: IsExpiringSoonOpts) => {
-  return new Date(data.expiry).getTime() - now.getTime() < durationOfDay * 7 * 1000;
+  return new Date(data.expiry).getTime() - now.getTime() < durationOfDay * 3 * 1000;
 };

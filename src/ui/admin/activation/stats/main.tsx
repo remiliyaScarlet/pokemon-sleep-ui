@@ -27,7 +27,7 @@ export const ActivationStats = (props: ActivationUiCommonProps) => {
         {...props}
       />
       <ActivationStatsUnit
-        title="Expiry T-7"
+        title="Expiry T-3"
         filter={(data) => isExpiringSoon({data, now})}
         {...props}
       />
