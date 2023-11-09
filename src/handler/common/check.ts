@@ -1,4 +1,4 @@
-export const throwIfNotApiToken = (token: string | null | undefined) => {
+export const throwIfNotInboundApiToken = (token: string | null | undefined) => {
   if (token === process.env.API_TOKEN_INBOUND) {
     return;
   }

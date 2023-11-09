@@ -2,7 +2,7 @@ import {NextRequest} from 'next/server';
 
 import {generateActivationKey} from '@/controller/user/activation/key';
 import {getActivationPresetSingle} from '@/controller/user/activation/preset';
-import {throwIfNotApiToken} from '@/handler/common/check';
+import {throwIfNotInboundApiToken} from '@/handler/common/check';
 import {DiscordActivationGeneratePayload} from '@/types/subscription/discord/request';
 import {defaultExpiryDays} from '@/utils/user/activation/const';
 
@@ -12,7 +12,7 @@ export const generateDiscordActivationLink = async (request: NextRequest) => {
     Object.fromEntries(new URLSearchParams(await request.text()).entries())
   );
 
-  throwIfNotApiToken(params.token);
+  throwIfNotInboundApiToken(params.token);
 
   const discordId = params.discordId;
   if (!discordId) {
