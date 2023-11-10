@@ -55,7 +55,8 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
       behavior: {
         ...old.behavior,
         ...defaultUserCalculationBehavior,
-        alwaysFullPack: old.behavior.alwaysFullPack ? 'berryOnly' : 'disable',
+        // @ts-ignore
+        alwaysFullPack: old.behavior.berryPokemonAlwaysFullPack ? 'berryOnly' : 'disable',
       },
     }),
   },
