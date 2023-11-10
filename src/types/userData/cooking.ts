@@ -1,7 +1,7 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {RecipeLevel} from '@/types/game/cooking';
 import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
-import {MealCounter, MealTypeId} from '@/types/game/meal/main';
+import {MealCounter, MealsMarked, MealTypeId} from '@/types/game/meal/main';
 
 
 export type UserCookingPreset = {
@@ -13,4 +13,5 @@ export type UserCookingPreset = {
   ingredientCount: IngredientCounter,
   recipeLevel: RecipeLevel,
   mealsWanted: MealCounter,
+  mealsMarked: MealsMarked,
 };

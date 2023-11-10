@@ -1,3 +1,4 @@
+import {FilterInclusionMap} from '@/components/input/filter/type';
 import {IngredientId} from '@/types/game/ingredient';
 
 
@@ -17,3 +18,5 @@ export type Meal = {
 };
 
 export type MealCounter = {[meal in MealId]?: number | null};
+
+export type MealsMarked = FilterInclusionMap<MealId>;

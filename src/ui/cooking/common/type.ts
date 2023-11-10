@@ -1,6 +1,6 @@
 import {RecipeLevel} from '@/types/game/cooking';
 import {IngredientCounter, IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal/main';
+import {Meal, MealsMarked} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
 import {UserSettings} from '@/types/userData/settings';
 
@@ -19,4 +19,5 @@ export type CookingServerDataProps = {
 export type CookingCommonFilter = {
   recipeLevel: RecipeLevel,
   inventory: IngredientCounter,
+  mealsMarked: MealsMarked,
 };

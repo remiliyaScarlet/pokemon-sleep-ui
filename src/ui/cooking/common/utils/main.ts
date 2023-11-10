@@ -18,4 +18,5 @@ export const generateCookingCommonFilter = (
 ): CookingCommonFilter => ({
   recipeLevel: cloneMerge(defaultCookingPreset.recipeLevel, preloadedCooking?.recipeLevel),
   inventory: cloneMerge(defaultCookingPreset.ingredientCount, preloadedCooking?.ingredientCount),
+  mealsMarked: cloneMerge(defaultCookingPreset.mealsMarked, preloadedCooking?.mealsMarked),
 });
