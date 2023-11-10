@@ -6,12 +6,12 @@ import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {SleepdexStyleIcon} from '@/components/shared/sleepdex/styleIcon';
 import {PokedexMap} from '@/types/game/pokemon';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {MapUnlockTableDisplayType} from '@/ui/sleepStyle/map/page/type';
 
 
 type Props = {
-  data: SleepStyleDataFlattened,
+  data: SleepStyleNormalFlattened,
   pokedex: PokedexMap,
   displayType: MapUnlockTableDisplayType,
 };

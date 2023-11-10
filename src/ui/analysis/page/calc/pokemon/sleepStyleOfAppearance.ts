@@ -1,12 +1,12 @@
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {AnalysisStatsSleepStyleAppearance} from '@/ui/analysis/page/calc/type';
 import {getSnorlaxRankEquivalentNumber, isSameRank} from '@/utils/game/snorlax';
 
 
 type GetAnalysisStatsOfAppearanceOpts = {
-  appearances: SleepStyleDataFlattened[],
-  current: SleepStyleDataFlattened,
+  appearances: SleepStyleNormalFlattened[],
+  current: SleepStyleNormalFlattened,
 };
 
 export const getAnalysisStatsOfAppearance = ({

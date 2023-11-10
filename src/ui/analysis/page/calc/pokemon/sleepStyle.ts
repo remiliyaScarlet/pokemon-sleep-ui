@@ -1,11 +1,11 @@
-import {SleepMapId, SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepMapId, SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfMap} from '@/ui/analysis/page/calc/pokemon/sleepStyleOfMap';
 import {AnalysisStatsSleepStyle, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {sortBySnorlaxRankAsc} from '@/utils/game/snorlax';
 import {isNotNullish} from '@/utils/type';
 
 
-type SelectedStyleOfMap = {[id in SleepMapId]?: SleepStyleDataFlattened[]};
+type SelectedStyleOfMap = {[id in SleepMapId]?: SleepStyleNormalFlattened[]};
 
 export const getAnalysisStatsOfSleepStyle = ({
   pokemon,

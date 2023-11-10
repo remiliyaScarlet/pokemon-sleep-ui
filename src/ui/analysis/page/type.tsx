@@ -5,7 +5,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
-import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
 import {UserSettings} from '@/types/userData/settings';
 
 
@@ -19,7 +19,7 @@ export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   ingredientMap: IngredientMap,
   berryDataMap: BerryDataMap,
-  sleepStyleMap: PokemonSleepDataMap,
+  sleepStyleMap: SleepStyleNormalMap,
   mapMeta: FieldMetaMap,
   preloadedSettings: UserSettings,
 };

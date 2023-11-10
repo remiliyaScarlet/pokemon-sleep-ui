@@ -1,11 +1,11 @@
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {getAnalysisStatsOfAppearance} from '@/ui/analysis/page/calc/pokemon/sleepStyleOfAppearance';
 import {AnalysisStatsSleepStyle} from '@/ui/analysis/page/calc/type';
 
 
 type GetAnalysisStatsOfMapOpts = {
-  firstOfMap: SleepStyleDataFlattened[] | undefined,
-  lastOfMap: SleepStyleDataFlattened[] | undefined,
+  firstOfMap: SleepStyleNormalFlattened[] | undefined,
+  lastOfMap: SleepStyleNormalFlattened[] | undefined,
   pokemonId: number,
 };
 

@@ -8,7 +8,8 @@ import {authOptions} from '@/const/auth';
 import {I18nProvider} from '@/contexts/i18n';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
-import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
+import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
+import {getPokemonSleepStyleNoMapLookup} from '@/controller/sleepStyleNoMap';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
 import {SleepdexClient} from '@/ui/sleepStyle/sleepdex/client';
@@ -26,17 +27,20 @@ export const Sleepdex = async ({params}: DefaultPageProps) => {
 
   const [
     pokemonList,
-    sleepStyles,
+    sleepStyleMap,
+    sleepStylesNoMapLookup,
     sleepdex,
   ] = await Promise.all([
     getAllPokemonAsArray(),
-    getPokemonSleepStyleMap(),
+    getSleepStyleNormalMap(),
+    getPokemonSleepStyleNoMapLookup(),
     getSleepdexMap(session.user.id),
   ]);
 
   const props: SleepdexDataProps = {
     pokemonList,
-    sleepStyleMap: sleepStyles,
+    sleepStyleMap,
+    sleepStylesNoMapLookup,
     preloaded: {
       sleepdex,
     },

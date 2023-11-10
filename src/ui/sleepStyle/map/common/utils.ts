@@ -1,5 +1,5 @@
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {
   MapIndexSleepdexCompletion,
   MapIndexSleepdexCompletionOfMap,
@@ -9,7 +9,7 @@ import {toSleepdexStyleId} from '@/utils/game/sleepdex';
 
 
 type GetSleepdexCompletionOfMapOpts = {
-  sleepStyles: SleepStyleDataFlattened[] | undefined,
+  sleepStyles: SleepStyleNormalFlattened[] | undefined,
   sleepdexMap: SleepdexMap,
 };
 

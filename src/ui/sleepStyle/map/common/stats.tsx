@@ -10,14 +10,14 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {MapMeta} from '@/types/game/mapMeta';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {MapSleepdexUnlockCount} from '@/ui/sleepStyle/map/common/sleepdexUnlock';
 import {MapIndexSleepdexCompletionOfMap} from '@/ui/sleepStyle/map/common/type';
 import {toUnique} from '@/utils/array';
 
 
 type Props = {
-  sleepStyles: SleepStyleDataFlattened[] | undefined,
+  sleepStyles: SleepStyleNormalFlattened[] | undefined,
   sleepdexCompletionOfMap: MapIndexSleepdexCompletionOfMap | undefined,
   meta: MapMeta | null | undefined,
   isLoggedIn: boolean,

@@ -10,7 +10,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
-import {SleepStyleOfMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormal} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
@@ -18,7 +18,7 @@ import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
 
 export type PokemonInfoForPokedex = PokemonInfo & {
-  sleepStyles: SleepStyleOfMap[],
+  sleepStyles: SleepStyleNormal[],
   nameOfAllLocale: string[],
 };
 

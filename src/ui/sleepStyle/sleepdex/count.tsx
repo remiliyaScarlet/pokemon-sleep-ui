@@ -4,12 +4,12 @@ import {Flex} from '@/components/layout/flex/common';
 import {ProgressBar} from '@/components/progressBar';
 import {CompletionResultUI} from '@/components/shared/completion/main';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
 import {getAllPossibleSleepStyles} from '@/utils/game/sleepdex';
 
 
 type Props = {
-  sleepStyleMap: PokemonSleepDataMap,
+  sleepStyleMap: SleepStyleNormalMap,
   sleepdex: SleepdexMap,
 };
 

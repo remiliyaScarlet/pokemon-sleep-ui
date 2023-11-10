@@ -3,7 +3,7 @@ import React from 'react';
 import {PokemonSleepTypeId} from '@/types/game/pokemon';
 import {SnorlaxRank} from '@/types/game/rank';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleDataFlattened} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {MapCommonProps, MapPageFilter} from '@/ui/sleepStyle/map/page/type';
 
 
@@ -29,7 +29,7 @@ export type MapUnlockTableRowProps = Pick<
 > & {
   filter: MapPageFilter,
   rank: SnorlaxRank,
-  matchingStyles: SleepStyleDataFlattened[],
+  matchingStyles: SleepStyleNormalFlattened[],
   accumulator: MapUnlockAccumulator,
   sleepdex: SleepdexMap,
   setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,

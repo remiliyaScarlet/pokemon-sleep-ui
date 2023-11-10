@@ -1,6 +1,6 @@
 import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
 import {PokemonBranchData} from '@/types/game/pokemon/branch';
-import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
 import {toUnique} from '@/utils/array';
 
 
@@ -27,7 +27,7 @@ export const getRelatedPokemonIds = ({pokemon, branchData}: GetRelatedPokemonIds
 
 type GetPokedexWithMapOpts = {
   pokemonList: PokemonInfo[],
-  sleepStyleMap: PokemonSleepDataMap,
+  sleepStyleMap: SleepStyleNormalMap,
 };
 
 export const getPokedexWithField = ({pokemonList, sleepStyleMap}: GetPokedexWithMapOpts): PokemonInfoWithMap[] => {

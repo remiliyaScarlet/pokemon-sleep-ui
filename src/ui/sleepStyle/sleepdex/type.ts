@@ -1,12 +1,13 @@
 import {SleepdexUpdater} from '@/hooks/sleepdex/type';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {PokemonSleepDataMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormalMap, SleepStyleSpecialMap} from '@/types/game/sleepStyle';
 
 
 export type SleepdexDataProps = {
   pokemonList: PokemonInfo[],
-  sleepStyleMap: PokemonSleepDataMap,
+  sleepStyleMap: SleepStyleNormalMap,
+  sleepStylesNoMapLookup: SleepStyleSpecialMap,
   preloaded: {
     sleepdex: SleepdexMap,
   },

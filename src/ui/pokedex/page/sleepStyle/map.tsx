@@ -6,13 +6,13 @@ import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {MapLink} from '@/components/shared/map/link';
 import {imageSmallIconSizes} from '@/styles/image';
-import {SleepStyleOfMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormal} from '@/types/game/sleepStyle';
 import {PokemonSingleSleepStyle} from '@/ui/pokedex/page/sleepStyle/single';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
 
 
 type Props = PokemonSleepStyleProps & {
-  sleepStyleOfMap: SleepStyleOfMap,
+  sleepStyleOfMap: SleepStyleNormal,
 };
 
 export const PokemonSleepStylesOfMap = ({sleepStyleOfMap, ...props}: Props) => {

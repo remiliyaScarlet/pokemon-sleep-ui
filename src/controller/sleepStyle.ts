@@ -5,30 +5,28 @@ import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/game/pokemon';
 import {
   FieldToSleepStyleFlattenedMap,
-  PokemonSleepDataMap,
+  SleepStyleNormalMap,
   SleepMapId,
-  SleepStyleOfMap,
-  SleepStyleDataFlattened,
+  SleepStyleNormal,
+  SleepStyleNormalFlattened,
 } from '@/types/game/sleepStyle';
 
 
-const getCollection = async (): Promise<Collection<SleepStyleOfMap>> => {
+const getCollection = async (): Promise<Collection<SleepStyleNormal>> => {
   const client = await mongoPromise;
 
   return client
     .db('pokemon')
-    .collection<SleepStyleOfMap>('sleepStyle');
+    .collection<SleepStyleNormal>('sleepStyle');
 };
 
-const getSleepStyles = async () => (
-  (await getCollection()).find({}, {projection: {_id: false}})
-);
+const getSleepStylesNormal = async () => getDataAsArray(getCollection());
 
-export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> => {
-  const ret: PokemonSleepDataMap = {};
-  for await (const entry of await getSleepStyles()) {
+export const getSleepStyleNormalMap = async (): Promise<SleepStyleNormalMap> => {
+  const ret: SleepStyleNormalMap = {};
+  for await (const entry of await getSleepStylesNormal()) {
     if (!(entry.pokemonId in ret)) {
-      ret[entry.pokemonId] = [] as PokemonSleepDataMap[PokemonId];
+      ret[entry.pokemonId] = [] as SleepStyleNormalMap[PokemonId];
     }
 
     ret[entry.pokemonId]?.push(entry);
@@ -37,7 +35,7 @@ export const getPokemonSleepStyleMap = async (): Promise<PokemonSleepDataMap> =>
   return ret;
 };
 
-export const getPokemonSleepStyles = async (pokemonId: number): Promise<SleepStyleOfMap[]> => {
+export const getSleepStyleNormalList = async (pokemonId: number): Promise<SleepStyleNormal[]> => {
   return getDataAsArray(getCollection(), {pokemonId});
 };
 
@@ -58,7 +56,7 @@ export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleFlattenedM
   return ret;
 };
 
-export const getSleepStyleOfMap = async (mapId: number): Promise<SleepStyleDataFlattened[]> => (
+export const getSleepStyleNormalOfMap = async (mapId: number): Promise<SleepStyleNormalFlattened[]> => (
   (await (await getCollection()).find({mapId}, {projection: {_id: false}}).toArray())
     .flatMap(({styles, ...props}) => (
       styles.map((style) => ({style, ...props}))

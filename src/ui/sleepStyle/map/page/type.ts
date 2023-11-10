@@ -3,7 +3,7 @@ import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/share
 import {MapMeta} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleDataFlattened, SleepStyleId} from '@/types/game/sleepStyle';
+import {SleepStyleNormalFlattened, SleepStyleId} from '@/types/game/sleepStyle';
 import {SnorlaxRankInMap, SnorlaxReward} from '@/types/game/snorlax';
 
 
@@ -26,7 +26,7 @@ export type MapPageFilter = PokemonInputFilter & {
 
 export type MapPageServerDataProps = UsePokemonFilterCommonData & {
   mapId: number,
-  sleepStyles: SleepStyleDataFlattened[],
+  sleepStyles: SleepStyleNormalFlattened[],
   pokedexMap: PokedexMap,
   snorlaxRank: SnorlaxRankInMap,
   snorlaxReward: SnorlaxReward[],

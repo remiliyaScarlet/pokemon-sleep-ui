@@ -12,7 +12,7 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
-import {getPokemonSleepStyleMap} from '@/controller/sleepStyle';
+import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -41,7 +41,7 @@ export const AnalysisPage = async ({params}: Props) => {
     getIngredientChainMap(),
     getAllIngredients(),
     getAllBerryData(),
-    getPokemonSleepStyleMap(),
+    getSleepStyleNormalMap(),
     getAllMapMeta(),
   ]);
 

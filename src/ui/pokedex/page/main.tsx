@@ -14,7 +14,7 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
-import {getPokemonSleepStyles} from '@/controller/sleepStyle';
+import {getSleepStyleNormalList} from '@/controller/sleepStyle';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonClient} from '@/ui/pokedex/page/client';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -50,7 +50,7 @@ export const Pokemon = async ({params}: Props) => {
     getPokemonAsMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
     getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
-    getPokemonSleepStyles(idNumber),
+    getSleepStyleNormalList(idNumber),
     getBerryData(pokemon.berry.id),
     getAllIngredients(),
   ]);

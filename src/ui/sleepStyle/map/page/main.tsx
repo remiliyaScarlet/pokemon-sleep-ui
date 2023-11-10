@@ -10,7 +10,7 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
-import {getSleepStyleOfMap} from '@/controller/sleepStyle';
+import {getSleepStyleNormalOfMap} from '@/controller/sleepStyle';
 import {getSnorlaxRankOfMap} from '@/controller/snorlaxRank';
 import {getSnorlaxReward} from '@/controller/snorlaxReward';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -29,7 +29,7 @@ export const MapPage = async ({params}: Props) => {
 
   const mapId = Number(id);
 
-  const sleepStyles = await getSleepStyleOfMap(mapId);
+  const sleepStyles = await getSleepStyleNormalOfMap(mapId);
   const [
     pokedexMap,
     ingredientChainMap,
