@@ -61,7 +61,7 @@ export const toActivationPayloadFromDiscord = async (
     activationProperties: {
       expiry: getActivationExpiryOfDefault(),
       activation,
-      source: 'patreon',
+      source: 'discord',
       contact: {
         // Keep the existed ones except `discord` to make sure the reference used for polling is correct
         ...existedActivationProperties?.contact,
