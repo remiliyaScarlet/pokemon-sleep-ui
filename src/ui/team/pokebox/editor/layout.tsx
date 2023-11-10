@@ -200,7 +200,7 @@ export const PokeInBoxEditLayout = ({
           value={toIsoDateString(new Date(dateAdded))}
           onChange={({target}) => setPokeInBox({
             ...pokeInBox,
-            dateAdded: new Date(target.value).getTime(),
+            dateAdded: new Date(target.value || 0).getTime(),
           })}
         />
       </InputRowWithTitle>
