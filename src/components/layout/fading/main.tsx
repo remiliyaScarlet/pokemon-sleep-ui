@@ -19,10 +19,10 @@ export const FadingLayout = <TKey extends string>({current, contents, className}
         <Transition
           key={key}
           show={key === current}
-          enter="duration-1000"
+          enter="duration-500"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="duration-1000"
+          leave="duration-500"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
           className="overflow-hidden transition-opacity ease-in-out grid-in-inner-div"
