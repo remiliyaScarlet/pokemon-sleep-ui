@@ -1,0 +1,22 @@
+import React from 'react';
+
+import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
+import {clsx} from 'clsx';
+
+import {getToggleButtonClass} from '@/components/input/filter/utils/props';
+
+
+type Props = {
+  marked: boolean,
+  setMarked: (updated: boolean) => void,
+};
+
+export const CookingMarkButton = ({marked, setMarked}: Props) => {
+  return (
+    <button onClick={() => setMarked(!marked)} className={clsx(
+      'h-5 w-5 shrink-0 rounded-lg p-1', getToggleButtonClass(marked),
+    )}>
+      <BookmarkIcon/>
+    </button>
+  );
+};

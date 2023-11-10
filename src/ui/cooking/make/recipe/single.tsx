@@ -42,9 +42,12 @@ export const MealMakerRecipeSingle = (props: MealMakerRecipeSingleProps) => {
   };
 
   return (
-    <AnimatedCollapseQuick show={showUnmakeableRecipe || isMealMakeable}>
+    <AnimatedCollapseQuick show={showUnmakeableRecipe || isMealMakeable} className="p-[1px]">
       <MealMakerPopup {...props} show={show} setShow={setShow}/>
-      <Flex className="info-section-bg gap-1 rounded-lg p-2">
+      <Flex className={clsx(
+        'info-section-bg transform-smooth gap-1 rounded-lg p-2',
+        filter.mealsMarked[meal.id] && 'ring-1 ring-slate-900/70 dark:ring-slate-400/60',
+      )}>
         <MealMakerRecipeTitle {...partsProps}/>
         <CookingInputRecipeLevel className="self-end" {...partsProps}/>
         <FlexButton direction="col" noFullWidth={false} onClick={() => setShow(true)} className={clsx(

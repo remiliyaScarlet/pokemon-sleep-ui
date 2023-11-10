@@ -13,6 +13,7 @@ import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/icon
 import {Meal} from '@/types/game/meal/main';
 import {CookingInputRecipeLevel} from '@/ui/cooking/common/input/level';
 import {CookingExternalLink} from '@/ui/cooking/common/link';
+import {CookingMarkButton} from '@/ui/cooking/common/mark';
 import {MealPreparerInfoOfMealType} from '@/ui/cooking/prepare/hook/type';
 import {MealPreparerCommonProps, MealPreparerFilter} from '@/ui/cooking/prepare/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
@@ -40,12 +41,30 @@ export const MealPreparerRecipe = (props: Props) => {
   const count = filter.mealsWanted[id];
 
   return (
-    <Flex className="bg-plate relative rounded-lg p-2">
-      <Flex className={clsx('z-10 gap-1.5', !count && 'text-slate-600/90 dark:text-slate-400/90')}>
+    <Flex className={clsx(
+      'bg-plate transform-smooth relative rounded-lg p-2',
+      filter.mealsMarked[meal.id] && 'ring-1 ring-slate-900/70 dark:ring-slate-400/60',
+    )}>
+      <Flex className={clsx(
+        'z-10 gap-1.5',
+        !count && 'text-slate-600/90 dark:text-slate-400/90',
+      )}>
         <Flex direction="row" className="justify-between">
-          <div className="truncate text-sm">
-            {mealName}
-          </div>
+          <Flex direction="row" className="gap-1 truncate" noFullWidth>
+            <CookingMarkButton
+              marked={!!filter.mealsMarked[meal.id]}
+              setMarked={(updated) => setFilter((original) => ({
+                ...original,
+                mealsMarked: {
+                  ...original.mealsMarked,
+                  [meal.id]: updated,
+                },
+              }))}
+            />
+            <div className="truncate text-sm">
+              {mealName}
+            </div>
+          </Flex>
           <CookingExternalLink mealId={id}/>
         </Flex>
         <Flex direction="row" noFullWidth className="items-center gap-1">

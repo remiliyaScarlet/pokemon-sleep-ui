@@ -16,6 +16,7 @@ export const toCookingPreset = ({preloaded, filter}: ToCookingPresetOpts): UserC
     ingredientCount: filter.inventory,
     recipeLevel: filter.recipeLevel,
     mealsWanted: filter.mealsWanted,
+    mealsMarked: filter.mealsMarked,
   };
 };
 
