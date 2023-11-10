@@ -9,6 +9,7 @@ import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/item
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {Ingredient} from '@/types/game/ingredient';
+import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {UserSettings} from '@/types/userData/settings';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
 
@@ -34,7 +35,12 @@ export const IngredientPokemonProduction = ({
 
   return (
     <Flex className="info-section">
-      <PokemonLevelSlider value={level} max={pokemonMaxLevel} setValue={setLevel}/>
+      <PokemonLevelSlider
+        value={level}
+        max={pokemonMaxLevel}
+        setValue={setLevel}
+        presetLevels={[...ingredientLevels]}
+      />
       <HorizontalSplitter/>
       <PokemonIconsIngredientStats
         level={level}
