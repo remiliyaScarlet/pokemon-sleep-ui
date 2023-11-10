@@ -7,7 +7,7 @@ import {SleepStyleNormalMap, SleepStyleSpecialMap} from '@/types/game/sleepStyle
 export type SleepdexDataProps = {
   pokemonList: PokemonInfo[],
   sleepStyleMap: SleepStyleNormalMap,
-  sleepStylesNoMapLookup: SleepStyleSpecialMap,
+  sleepStyleSpecialMap: SleepStyleSpecialMap,
   preloaded: {
     sleepdex: SleepdexMap,
   },
