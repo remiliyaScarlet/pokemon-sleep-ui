@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {createWorker, OEM} from 'tesseract.js';
+import {createWorker, OEM, PSM} from 'tesseract.js';
 
 import {ocrLocaleToTesseract} from '@/components/ocr/const';
 import {OcrState, UseOcrReturn} from '@/components/ocr/type';
@@ -82,6 +82,7 @@ export const useOcr = ({
       // https://github.com/naptha/tesseract.js/issues/831
       // @ts-ignore
       tessedit_char_blacklist: '$§',
+      tessedit_pageseg_mode: PSM.SPARSE_TEXT,
     });
 
     setState({status: 'recognizing', progress: 0, text: null});

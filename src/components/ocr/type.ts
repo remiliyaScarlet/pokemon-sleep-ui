@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {Pixel} from '@/types/image';
 import {OcrLocale} from '@/types/ocr/locale';
 
 
@@ -29,6 +30,11 @@ export type OcrCommonProps<TData> = {
   buttonText: string,
   textToData: (text: string, locale: OcrLocale) => TData,
   renderData: (opts: OcrRenderDataOpts<TData>) => React.ReactNode,
+};
+
+export type OcrAllowedPixel = {
+  basis: Pixel,
+  range: number,
 };
 
 export type UseOcrReturn = {

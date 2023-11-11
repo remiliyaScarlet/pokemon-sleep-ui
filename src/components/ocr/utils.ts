@@ -1,11 +1,20 @@
-type OcrThresholdPixelOpts = {
-  r: number,
-  g: number,
-  b: number,
+import {ocrAllowedPixels} from '@/components/ocr/const';
+import {Pixel} from '@/types/image';
+import {isRgbInRange} from '@/utils/image';
+
+
+export type OcrThresholdPixelOpts = {
+  pixel: Pixel,
 };
 
-export const ocrThresholdPixel = ({r, g, b}: OcrThresholdPixelOpts) => {
-  return (0.2126 * r + 0.7152 * g + 0.0722 * b >= 180) ? 255 : 0;
+export const ocrThresholdPixel = ({pixel}: OcrThresholdPixelOpts): boolean => {
+  for (const allowedPixel of ocrAllowedPixels) {
+    if (isRgbInRange({...allowedPixel, pixel})) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 type OcrThresholdImageOpts = {
@@ -20,8 +29,8 @@ export const ocrThresholdImage = ({imageData}: OcrThresholdImageOpts) => {
     const g = d[i + 1];
     const b = d[i + 2];
 
-    const v = ocrThresholdPixel({r, g, b});
-    d[i] = d[i + 1] = d[i + 2] = v;
+    const v = ocrThresholdPixel({pixel: {r, g, b}});
+    d[i] = d[i + 1] = d[i + 2] = v ? 255 : 0;
   }
 
   return imageData;
