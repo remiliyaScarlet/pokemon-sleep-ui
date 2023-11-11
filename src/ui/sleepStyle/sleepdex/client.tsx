@@ -4,17 +4,20 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex/common';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
+import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
+import {SleepdexSection} from '@/components/shared/sleepdex/section/main';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {SleepdexUnlockedCount} from '@/ui/sleepStyle/sleepdex/count';
-import {SleepdexOfSleepType} from '@/ui/sleepStyle/sleepdex/ofType/main';
-import {SleepdexCommonProps, SleepdexDataProps} from '@/ui/sleepStyle/sleepdex/type';
+import {SleepdexDataProps} from '@/ui/sleepStyle/sleepdex/type';
 import {toUnique} from '@/utils/array';
+import {getAvailableSleepStylesFromNormal, getAvailableSleepStylesFromSpecial} from '@/utils/game/sleepdex';
 
 
 export const SleepdexClient = (props: SleepdexDataProps) => {
   const {
     pokemonList,
     sleepStyleMap,
+    sleepStyleSpecialMap,
     preloaded,
   } = props;
 
@@ -38,23 +41,23 @@ export const SleepdexClient = (props: SleepdexDataProps) => {
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
-  const commonProps: SleepdexCommonProps = {
-    ...props,
-    sleepdex,
-    updateSleepdex,
-    showPokemon,
-  };
-
   return (
     <Flex className="gap-2">
       <PokemonLinkPopup state={state} setState={setState}/>
       <SleepdexUnlockedCount sleepStyleMap={sleepStyleMap} sleepdex={sleepdex}/>
       {uniqueSleepTypes.map((sleepType) => (
-        <SleepdexOfSleepType
+        <SleepdexSection
           key={sleepType}
-          {...commonProps}
-          sleepType={sleepType}
-          pokemonListOfSleepType={pokemonListOfSleepType[sleepType]}
+          title={<PokemonSleepType sleepType={sleepType} className="invert-hoverable-dark"/>}
+          sleepdex={sleepdex}
+          updateSleepdex={updateSleepdex}
+          showPokemon={showPokemon}
+          pokemonListToShow={pokemonListOfSleepType[sleepType]}
+          getSleepStylesFromPokemon={(pokemon) => toUnique([
+            ...getAvailableSleepStylesFromNormal(sleepStyleMap[pokemon.id]),
+            ...getAvailableSleepStylesFromSpecial(sleepStyleSpecialMap[pokemon.id]),
+          ])}
+          sleepStyleDependencies={[sleepStyleMap]}
         />
       ))}
     </Flex>

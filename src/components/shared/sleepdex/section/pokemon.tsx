@@ -7,18 +7,18 @@ import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonNameSmall} from '@/components/shared/pokemon/name/small';
+import {SleepdexSectionSleepStyle} from '@/components/shared/sleepdex/section/style';
+import {SleepdexSectionProps} from '@/components/shared/sleepdex/section/type';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {SleepStyleId} from '@/types/game/sleepStyle';
-import {SleepdexPokemonSleepStyleButton} from '@/ui/sleepStyle/sleepdex/ofType/style';
-import {SleepdexCommonProps} from '@/ui/sleepStyle/sleepdex/type';
 
 
-type Props = SleepdexCommonProps & {
+type Props = SleepdexSectionProps & {
   pokemon: PokemonInfo,
   sleepStyles: SleepStyleId[],
 };
 
-export const SleepdexOfPokemon = (props: Props) => {
+export const SleepdexPokemonInSection = (props: Props) => {
   const {
     pokemon,
     sleepStyles,
@@ -48,7 +48,7 @@ export const SleepdexOfPokemon = (props: Props) => {
       </div>
       <Flex direction="row" wrap className="justify-center gap-1.5">
         {sleepStyles.map((styleId) => (
-          <SleepdexPokemonSleepStyleButton
+          <SleepdexSectionSleepStyle
             key={styleId}
             {...props}
             pokemonId={pokemonId}
