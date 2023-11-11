@@ -23,6 +23,7 @@ export const SleepdexPokemonInSection = (props: Props) => {
     pokemon,
     sleepStyles,
     showPokemon,
+    hideButtons,
   } = props;
 
   const t = useTranslations('Game.PokemonName');
@@ -46,16 +47,19 @@ export const SleepdexPokemonInSection = (props: Props) => {
           image={1}
         />
       </div>
-      <Flex direction="row" wrap className="justify-center gap-1.5">
-        {sleepStyles.map((styleId) => (
-          <SleepdexSectionSleepStyle
-            key={styleId}
-            {...props}
-            pokemonId={pokemonId}
-            styleId={styleId}
-          />
-        ))}
-      </Flex>
+      {
+        !hideButtons &&
+        <Flex direction="row" wrap className="justify-center gap-1.5">
+          {sleepStyles.map((styleId) => (
+            <SleepdexSectionSleepStyle
+              key={styleId}
+              {...props}
+              pokemonId={pokemonId}
+              styleId={styleId}
+            />
+          ))}
+        </Flex>
+      }
     </Flex>
   );
 };

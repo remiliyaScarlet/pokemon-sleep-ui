@@ -316,6 +316,10 @@
     },
     "Docs": {
       "Title": "標題"
+    },
+    "Sleepdex": {
+      "IncenseOnly": "薰香限定",
+      "Unreleased": "未釋出"
     }
   },
   "Ocr": {

@@ -316,6 +316,10 @@
     },
     "Docs": {
       "Title": "Title"
+    },
+    "Sleepdex": {
+      "IncenseOnly": "Incense Only",
+      "Unreleased": "Unreleased"
     }
   },
   "Ocr": {

@@ -316,6 +316,10 @@
     },
     "Docs": {
       "Title": "제목"
+    },
+    "Sleepdex": {
+      "IncenseOnly": "향로 전용",
+      "Unreleased": "미출시"
     }
   },
   "Ocr": {

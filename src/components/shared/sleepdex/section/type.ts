@@ -14,4 +14,5 @@ export type SleepdexSectionProps = {
   getSleepStylesFromPokemon: (pokemonInfo: PokemonInfo) => SleepStyleId[],
   showPokemon: (pokemon: PokemonInfo) => void,
   sleepStyleDependencies: React.DependencyList,
+  hideButtons?: boolean,
 };

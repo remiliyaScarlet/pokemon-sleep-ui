@@ -228,6 +228,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Docs: {
         Title: string,
       },
+      Sleepdex: {
+        IncenseOnly: string,
+        Unreleased: string,
+      },
     },
     Ocr: {
       Status: {
