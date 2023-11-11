@@ -74,6 +74,9 @@
         "Page": {
           "Title": "{name} - 맵"
         }
+      },
+      "Special": {
+        "Title": "Sleep Styles (Incense / Others)"
       }
     },
     "Analysis": {

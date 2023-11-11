@@ -65,7 +65,7 @@
         "Title": "Map / Sleep Styles"
       },
       "Sleepdex": {
-        "Title": "Sleep Style Dex"
+        "Title": "Sleepdex"
       },
       "Map": {
         "Index": {
@@ -74,6 +74,9 @@
         "Page": {
           "Title": "{name} - Map"
         }
+      },
+      "Special": {
+        "Title": "Sleep Styles (Incense / Others)"
       }
     },
     "Analysis": {

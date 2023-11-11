@@ -74,6 +74,9 @@
         "Page": {
           "Title": "{name} - 地圖"
         }
+      },
+      "Special": {
+        "Title": "睡姿 (薰香、其他)"
       }
     },
     "Analysis": {

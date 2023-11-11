@@ -74,6 +74,9 @@
         "Page": {
           "Title": "{name} - Karte"
         }
+      },
+      "Special": {
+        "Title": "Sleep Styles (Incense / Others)"
       }
     },
     "Analysis": {
