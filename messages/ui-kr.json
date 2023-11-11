@@ -370,8 +370,8 @@
     }
   },
   "UserSettings": {
-    "AlwaysFullPack": "Always full pack",
-    "BerryPokemonFullPack": "Always full pack for berry specialists",
+    "AlwaysFullPack": "항상 가득 차 있음",
+    "BerryPokemonFullPack": "가득 차 있음 (특기: 나무열매)",
     "GoodCampTicket": "좋은캠프티켓"
   },
   "UserControl": {
