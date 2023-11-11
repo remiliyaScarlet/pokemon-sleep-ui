@@ -10,7 +10,7 @@ import {MarkdownCalloutProps} from '@/components/shared/docs/view/directive/call
 export const MarkdownCalloutInfo = (props: MarkdownCalloutProps) => {
   return (
     <MarkdownCalloutLayout
-      className="text-cyan-500 shadow-cyan-500"
+      className="text-cyan-600 shadow-cyan-600 dark:text-cyan-500 dark:shadow-cyan-500"
       icon={<InformationCircleIcon className={markdownCalloutClassName}/>}
       {...props}
     />

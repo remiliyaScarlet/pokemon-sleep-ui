@@ -10,7 +10,7 @@ import {MarkdownCalloutProps} from '@/components/shared/docs/view/directive/call
 export const MarkdownCalloutAlert = (props: MarkdownCalloutProps) => {
   return (
     <MarkdownCalloutLayout
-      className="text-rose-500 shadow-rose-500"
+      className="text-rose-600 shadow-rose-600 dark:text-rose-500 dark:shadow-rose-500"
       icon={<ExclamationTriangleIcon className={markdownCalloutClassName}/>}
       {...props}
     />
