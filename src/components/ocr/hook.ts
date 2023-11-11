@@ -10,13 +10,11 @@ import {OcrLocale} from '@/types/ocr/locale';
 
 type UseOcrOpts = {
   ocrLocale: OcrLocale,
-  ocrThreshold: number, // 0-255
   onError: (message: string) => void,
 };
 
 export const useOcr = ({
   ocrLocale,
-  ocrThreshold,
   onError,
 }: UseOcrOpts): UseOcrReturn => {
   const [state, setState] = React.useState<OcrState>({
@@ -60,7 +58,7 @@ export const useOcr = ({
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    const processedImage = ocrThresholdImage({imageData, threshold: ocrThreshold});
+    const processedImage = ocrThresholdImage({imageData});
     ctx.putImageData(processedImage, 0, 0);
 
     setState({status: 'loadingOcr', progress: 0, text: null});
@@ -91,7 +89,7 @@ export const useOcr = ({
 
     setState({status: 'completed', progress: 100, text});
     await worker.terminate();
-  }, [ocrLocale, ocrThreshold]);
+  }, [ocrLocale]);
 
   return {state, canvasRef, imageRef, runOcr};
 };
