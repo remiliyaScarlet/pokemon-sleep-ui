@@ -1,9 +1,9 @@
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {FieldToSleepStyleFlattenedMap, SleepMapId} from '@/types/game/sleepStyle';
+import {FieldToFlattenedSleepStyleMap, SleepMapId} from '@/types/game/sleepStyle';
 
 
 export type MapIndexSleepdexCompletionProps = {
-  data: FieldToSleepStyleFlattenedMap,
+  data: FieldToFlattenedSleepStyleMap,
   sleepdexMap: SleepdexMap,
 };
 

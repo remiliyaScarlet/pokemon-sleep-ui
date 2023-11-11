@@ -4,7 +4,7 @@ import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {PokemonId} from '@/types/game/pokemon';
 import {
-  FieldToSleepStyleFlattenedMap,
+  FieldToFlattenedSleepStyleMap,
   SleepStyleNormalMap,
   SleepMapId,
   SleepStyleNormal,
@@ -39,13 +39,13 @@ export const getSleepStyleNormalList = async (pokemonId: number): Promise<SleepS
   return getDataAsArray(getCollection(), {pokemonId});
 };
 
-export const getSleepStyleByMaps = async (): Promise<FieldToSleepStyleFlattenedMap> => {
+export const getSleepStyleByMaps = async (): Promise<FieldToFlattenedSleepStyleMap> => {
   const data = (await getCollection()).find({}, {projection: {_id: false}});
 
-  const ret: FieldToSleepStyleFlattenedMap = {};
+  const ret: FieldToFlattenedSleepStyleMap = {};
   for await (const entry of data) {
     if (!(entry.mapId in ret)) {
-      ret[entry.mapId] = [] as FieldToSleepStyleFlattenedMap[SleepMapId];
+      ret[entry.mapId] = [] as FieldToFlattenedSleepStyleMap[SleepMapId];
     }
 
     const {styles, ...rest} = entry;

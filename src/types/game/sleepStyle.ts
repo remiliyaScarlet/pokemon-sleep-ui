@@ -35,7 +35,7 @@ export type SleepStyleNormalFlattened = {
 
 export type SleepStyleNormalMap = {[id in PokemonId]?: SleepStyleNormal[]};
 
-export type FieldToSleepStyleFlattenedMap = {[id in SleepMapId]?: SleepStyleNormalFlattened[]};
+export type FieldToFlattenedSleepStyleMap = {[id in SleepMapId]?: SleepStyleNormalFlattened[]};
 
 export type SleepStyleSpecial = SleepStyleCommon & {
   pokemonId: PokemonId,
