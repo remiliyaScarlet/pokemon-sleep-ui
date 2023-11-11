@@ -19,10 +19,16 @@ export type OcrState = {
 
 export type OcrStatus = OcrState['status'];
 
+export type OcrRenderDataOpts<TData> = {
+  data: TData,
+  text: string,
+  image: string | null,
+};
+
 export type OcrCommonProps<TData> = {
   buttonText: string,
   textToData: (text: string, locale: OcrLocale) => TData,
-  renderData: (data: TData, image: string | null) => React.ReactNode,
+  renderData: (opts: OcrRenderDataOpts<TData>) => React.ReactNode,
 };
 
 export type UseOcrReturn = {

@@ -15,10 +15,18 @@ import {OcrExtractedPokemonInfo} from '@/types/ocr/extracted/pokemon';
 
 type Props = OcrPokemonInfoImportCommonProps & {
   data: OcrExtractedPokemonInfo,
+  text: string,
   image: string | null,
 };
 
-export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data, image, pokemonIdOverride}: Props) => {
+export const OcrPokemonInfoImportLayout = ({
+  subSkillMap,
+  onCompleteImport,
+  pokemonIdOverride,
+  data,
+  text,
+  image,
+}: Props) => {
   const [state, setState] = React.useState<OcrPokemonInfoImportState>({
     subSkill: toPokemonSubSkill(data.subSkills),
     ...data,
@@ -52,6 +60,7 @@ export const OcrPokemonInfoImportLayout = ({subSkillMap, onCompleteImport, data,
       </Flex>
       <OcrImporterControls
         image={image}
+        text={text}
         onConfirm={() => pokemonId && onCompleteImport(pokemonId, state)}
         disableConfirm={!pokemonId}
       />

@@ -30,9 +30,10 @@ export const OcrPokemonInfoImporter = ({
         text,
         translations: ocrTranslations[locale],
       })}
-      renderData={(data, image) => (
+      renderData={({data, text, image}) => (
         <OcrPokemonInfoImportLayout
           data={data}
+          text={text}
           image={image}
           onCompleteImport={(pokemonId, state) => {
             onCompleteImport(pokemonId, state);
