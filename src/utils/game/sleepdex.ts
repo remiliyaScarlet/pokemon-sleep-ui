@@ -1,6 +1,6 @@
 import {PokemonId} from '@/types/game/pokemon';
 import {SleepdexMap, SleepdexStyleId} from '@/types/game/sleepdex';
-import {SleepStyleId, SleepStyleNormal, SleepStyleNormalMap} from '@/types/game/sleepStyle';
+import {SleepStyleId, SleepStyleNormal, SleepStyleNormalMap, SleepStyleSpecial} from '@/types/game/sleepStyle';
 import {toUnique} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
@@ -31,6 +31,14 @@ export const getAvailableSleepStylesFromNormal = (sleepStyles: SleepStyleNormal[
   }
 
   return toUnique(sleepStyles.flatMap(({styles}) => styles.map(({style}) => style)));
+};
+
+export const getAvailableSleepStylesFromSpecial = (sleepStyles: SleepStyleSpecial[] | undefined): SleepStyleId[] => {
+  if (!sleepStyles) {
+    return [];
+  }
+
+  return toUnique(sleepStyles.map(({style}) => style));
 };
 
 export const getAllPossibleSleepStyles = (sleepData: SleepStyleNormalMap): SleepdexStyleId[] => {
