@@ -10,9 +10,14 @@ import {PopupCommon} from '@/components/popup/common/main';
 import {DocsAutoLinkPopup} from '@/components/shared/docs/autoLink/popup';
 import {getDocsRelatedFromApi} from '@/const/api/docs';
 import {DocsMetadata} from '@/types/mongo/docs';
+import {Locale} from '@/types/next/locale';
 
 
-export const DocsAutoLinkClient = () => {
+type Props = {
+  locale: Locale,
+};
+
+export const DocsAutoLinkClient = ({locale}: Props) => {
   const path = usePathname();
   const [metaList, setMetaList] = React.useState<DocsMetadata[]>([]);
   const [show, setShow] = React.useState(false);
@@ -20,7 +25,10 @@ export const DocsAutoLinkClient = () => {
   React.useEffect(() => {
     // `.slice(1)` because `related` of `DocsData` do not store heading slash (/),
     // but `usePathname()` always return the path starting with slash.
-    getDocsRelatedFromApi(new URLSearchParams({path: path.slice(1)})).then(setMetaList);
+    getDocsRelatedFromApi(new URLSearchParams({
+      path: path.slice(1),
+      locale,
+    })).then(setMetaList);
   }, []);
 
   return (

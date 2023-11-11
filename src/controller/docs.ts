@@ -98,11 +98,13 @@ export const deleteDoc = async ({executorUserId, locale, path}: DeleteDocOpts) =
 
 type GetRelatedDocMetaOpts = {
   path: string,
+  locale: string,
 };
 
-export const getRelatedDocMeta = async ({path}: GetRelatedDocMetaOpts): Promise<DocsMetadata[]> => {
+export const getRelatedDocMeta = async ({path, locale}: GetRelatedDocMetaOpts): Promise<DocsMetadata[]> => {
   // No index used, not sure if optimization is possible here
   const docs = (await getCollection()).aggregate<WithId<DocsData>>([
+    {$match: {locale}},
     {$unwind: {path: '$related'}},
     {
       $addFields: {

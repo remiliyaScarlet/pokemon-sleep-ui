@@ -12,7 +12,7 @@ type Props = {
 export const DocsAutoLink = ({locale}: Props) => {
   return (
     <I18nProvider locale={locale} namespaces={[]}>
-      <DocsAutoLinkClient/>
+      <DocsAutoLinkClient locale={locale}/>
     </I18nProvider>
   );
 };

@@ -5,10 +5,11 @@ import {DocsMetadata} from '@/types/mongo/docs';
 
 export const GET = createRouteHandler<DocsMetadata[]>(async ({searchParams}) => {
   const path = searchParams.get('path');
+  const locale = searchParams.get('locale');
 
-  if (!path) {
+  if (!path || !locale) {
     return [];
   }
 
-  return getRelatedDocMeta({path});
+  return getRelatedDocMeta({path, locale});
 });
