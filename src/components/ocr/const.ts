@@ -7,6 +7,7 @@ import {OcrLocale} from '@/types/ocr/locale';
 export const ocrLocaleToTesseract: {[lang in OcrLocale]: string} = {
   en: 'eng',
   ja: 'jpn',
+  zh: 'chi_tra',
 };
 
 export const ocrStatusToI18nId: {[status in OcrStatus]: I18nMessageKeysOfNamespace<'UI.Ocr.Status'>} = {

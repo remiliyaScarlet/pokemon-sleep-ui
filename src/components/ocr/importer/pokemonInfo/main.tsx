@@ -43,6 +43,11 @@ export const OcrPokemonInfoImporter = ({
         />
       )}
       noFullWidth={noFullWidth}
+      getWhitelistChars={(locale) => (
+        Object.values(ocrTranslations[locale])
+          .flatMap((trans) => Object.keys(trans))
+          .join('')
+      )}
     />
   );
 };

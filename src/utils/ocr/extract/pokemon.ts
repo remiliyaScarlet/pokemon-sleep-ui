@@ -10,12 +10,25 @@ type OcrExtractPokemonInfoOpts = OcrExtractCommonOpts & {
 };
 
 export const ocrExtractPokemonInfo = ({translations, ...opts}: OcrExtractPokemonInfoOpts): OcrExtractedPokemonInfo => {
+  const {ocrLocale} = opts;
   const text = ocrPreprocessText(opts);
 
   return {
-    pokemonId: ocrExtractSingle({text, translations: translations.name})?.id ?? null,
-    nature: ocrExtractSingle({text, translations: translations.nature})?.id ?? null,
-    subSkills: ocrExtractMulti({text, translations: translations.subSkill})
+    pokemonId: ocrExtractSingle({
+      text,
+      translations: translations.name,
+      offset: 0,
+    })?.id ?? null,
+    nature: ocrExtractSingle({
+      text,
+      translations: translations.nature,
+      offset: 0,
+    })?.id ?? null,
+    subSkills: ocrExtractMulti({
+      text,
+      translations: translations.subSkill,
+      offset: ocrLocale === 'zh' ? 1 : 0,
+    })
       .sort((a, b) => a.index - b.index)
       .map(({id}, idx) => {
         const level = pokemonSubSkillLevel[idx];

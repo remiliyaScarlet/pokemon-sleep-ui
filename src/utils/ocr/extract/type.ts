@@ -9,6 +9,7 @@ export type OcrExtractCommonOpts = {
 
 export type OcrExtractOpts<TId> = {
   text: string,
+  offset: number,
   translations: OcrTranslationOfLocale<TId>,
 };
 

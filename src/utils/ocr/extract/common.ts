@@ -3,10 +3,11 @@ import {OcrExtractCommonOpts, OcrExtractOpts, OcrExtractSingleResult} from '@/ut
 
 export const ocrExtractSingle = <TId>({
   text,
+  offset,
   translations,
 }: OcrExtractOpts<TId>): OcrExtractSingleResult<TId> | null => {
   for (const [name, id] of Object.entries(translations)) {
-    const index = text.indexOf(name);
+    const index = text.indexOf(name.slice(offset));
 
     if (index < 0) {
       continue;
@@ -20,12 +21,13 @@ export const ocrExtractSingle = <TId>({
 
 export const ocrExtractMulti = <TId>({
   text,
+  offset,
   translations,
 }: OcrExtractOpts<TId>): OcrExtractSingleResult<TId>[] => {
   const results: OcrExtractSingleResult<TId>[] = [];
 
   for (const [name, id] of Object.entries(translations)) {
-    const index = text.indexOf(name);
+    const index = text.indexOf(name.slice(offset));
 
     if (index < 0) {
       continue;
@@ -38,9 +40,9 @@ export const ocrExtractMulti = <TId>({
 };
 
 export const ocrPreprocessText = ({ocrLocale, text}: OcrExtractCommonOpts) => {
-  if (ocrLocale === 'ja') {
-    return text.replaceAll(' ', '');
+  if (ocrLocale === 'en') {
+    return text;
   }
 
-  return text;
+  return text.replaceAll(' ', '');
 };

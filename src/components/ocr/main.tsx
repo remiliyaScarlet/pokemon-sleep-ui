@@ -21,7 +21,7 @@ import {isOcrRunning} from '@/utils/ocr/status';
 import {showToast} from '@/utils/toast';
 
 
-export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProps<TData>) => {
+export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistChars}: OcrCommonProps<TData>) => {
   const [image, setImage] = React.useState<string | null>(null);
   const [locale, setLocale] = React.useState<OcrLocale>('en');
   const t = useTranslations('UI.Ocr.Status');
@@ -36,6 +36,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData}: OcrCommonProp
       isAlert: true,
       content: message,
     }),
+    whitelistChars: getWhitelistChars(locale),
   });
 
   const {status, progress, text} = state;

@@ -11,11 +11,13 @@ import {OcrLocale} from '@/types/ocr/locale';
 type UseOcrOpts = {
   ocrLocale: OcrLocale,
   onError: (message: string) => void,
+  whitelistChars: string,
 };
 
 export const useOcr = ({
   ocrLocale,
   onError,
+  whitelistChars,
 }: UseOcrOpts): UseOcrReturn => {
   const [state, setState] = React.useState<OcrState>({
     status: 'ready',
@@ -65,7 +67,7 @@ export const useOcr = ({
     const tesseractLang = ocrLocaleToTesseract[ocrLocale];
     const worker = await createWorker(
       tesseractLang,
-      OEM.DEFAULT,
+      OEM.TESSERACT_LSTM_COMBINED,
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
@@ -80,6 +82,7 @@ export const useOcr = ({
       // 'S' could be mistakenly recognized as `$` in JP
       // 'S' could be mistakenly recognized as `§` in EN
       tessedit_char_blacklist: '$§',
+      tessedit_char_whitelist: whitelistChars,
       tessedit_pageseg_mode: PSM.SPARSE_TEXT,
     });
 
