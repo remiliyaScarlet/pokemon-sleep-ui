@@ -24,7 +24,7 @@ export const PokemonSleepStylesOfMap = ({sleepStyleOfMap, ...props}: Props) => {
   const mapName = t(mapId.toString());
 
   return (
-    <Flex key={mapId} className="md:w-fit">
+    <Flex className="md:w-fit">
       <MapLink mapId={mapId} className="p-1.5" noAbsolute>
         <Flex direction="row" center className="z-10 p-1.5">
           <div>
@@ -38,7 +38,12 @@ export const PokemonSleepStylesOfMap = ({sleepStyleOfMap, ...props}: Props) => {
         </Flex>
         <Flex direction="row" center wrap className="z-10 gap-1">
           {styles.map((sleepStyle) => (
-            <PokemonSingleSleepStyle key={sleepStyle.style} sleepStyle={sleepStyle} {...props}/>
+            <PokemonSingleSleepStyle
+              key={sleepStyle.style}
+              sleepStyle={sleepStyle}
+              getRank={({rank}) => rank}
+              {...props}
+            />
           ))}
         </Flex>
       </MapLink>

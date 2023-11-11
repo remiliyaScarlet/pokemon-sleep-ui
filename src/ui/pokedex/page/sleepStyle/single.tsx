@@ -10,18 +10,27 @@ import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
-import {SleepStyle} from '@/types/game/sleepStyle';
+import {SnorlaxRank} from '@/types/game/rank';
+import {SleepStyleCommon} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
 import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {isInSleepdex} from '@/utils/game/sleepdex';
 
 
-type Props = PokemonSleepStyleProps & {
-  sleepStyle: SleepStyle,
+type Props<TSleepStyle extends SleepStyleCommon> = PokemonSleepStyleProps & {
+  sleepStyle: TSleepStyle,
+  getRank?: (style: TSleepStyle) => SnorlaxRank,
 };
 
-export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sleepdex, setSleepdex}: Props) => {
-  const {rank, style, rewards} = sleepStyle;
+export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
+  pokemon,
+  pokemonBranch,
+  sleepdex,
+  setSleepdex,
+  sleepStyle,
+  getRank,
+}: Props<TSleepStyle>) => {
+  const {style, rewards} = sleepStyle;
 
   const pokemonId = pokemon.id;
   const styleId = sleepStyle.style;
@@ -54,7 +63,7 @@ export const PokemonSingleSleepStyle = ({pokemon, pokemonBranch, sleepStyle, sle
       <div className="text-sm">
         {sleepStyleName}
       </div>
-      <SnorlaxRankUI rank={rank}/>
+      {getRank && <SnorlaxRankUI rank={getRank(sleepStyle)}/>}
       <Flex direction="row" center>
         <div>
           <GenericIconLarger src="/images/generic/gift.png" alt={t('Rewards')}/>

@@ -20,11 +20,11 @@ const getCollection = async (): Promise<Collection<SleepStyleNormal>> => {
     .collection<SleepStyleNormal>('sleepStyle');
 };
 
-const getSleepStylesNormal = async () => getDataAsArray(getCollection());
+const getAllSleepStylesNormal = async () => getDataAsArray(getCollection());
 
 export const getSleepStyleNormalMap = async (): Promise<SleepStyleNormalMap> => {
   const ret: SleepStyleNormalMap = {};
-  for await (const entry of await getSleepStylesNormal()) {
+  for await (const entry of await getAllSleepStylesNormal()) {
     if (!(entry.pokemonId in ret)) {
       ret[entry.pokemonId] = [] as SleepStyleNormalMap[PokemonId];
     }

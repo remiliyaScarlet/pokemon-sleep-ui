@@ -14,11 +14,11 @@ const getCollection = async (): Promise<Collection<SleepStyleSpecial>> => {
     .collection<SleepStyleSpecial>('sleepStyle/noMap');
 };
 
-const getSleepStyleSpecialList = async () => getDataAsArray(getCollection());
+const getAllSleepStyleSpecial = async () => getDataAsArray(getCollection());
 
 export const getSleepStyleSpecialMap = async (): Promise<SleepStyleSpecialMap> => {
   const ret: SleepStyleSpecialMap = {};
-  for await (const entry of await getSleepStyleSpecialList()) {
+  for await (const entry of await getAllSleepStyleSpecial()) {
     if (!(entry.pokemonId in ret)) {
       ret[entry.pokemonId] = [] as SleepStyleSpecialMap[PokemonId];
     }
@@ -27,6 +27,10 @@ export const getSleepStyleSpecialMap = async (): Promise<SleepStyleSpecialMap> =
   }
 
   return ret;
+};
+
+export const getSleepStyleSpecialList = async (pokemonId: number): Promise<SleepStyleSpecial[]> => {
+  return getDataAsArray(getCollection(), {pokemonId});
 };
 
 const addIndex = async () => {

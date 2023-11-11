@@ -1,8 +1,8 @@
-'use client';
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {SleepdexMap} from '@/types/game/sleepdex';
+import {PokemonSleepStylesIncenseOnly} from '@/ui/pokedex/page/sleepStyle/incenseOnly';
 import {PokemonSleepStylesOfMap} from '@/ui/pokedex/page/sleepStyle/map';
 import {PokemonProps} from '@/ui/pokedex/page/type';
 
@@ -11,7 +11,13 @@ type Props = PokemonProps & {
   initialSleepdex: SleepdexMap,
 };
 
-export const PokemonSleepStylesLoaded = ({pokemon, pokemonBranches, sleepStyles, initialSleepdex}: Props) => {
+export const PokemonSleepStylesLoaded = ({
+  pokemon,
+  pokemonBranches,
+  sleepStyles,
+  sleepStylesSpecial,
+  initialSleepdex,
+}: Props) => {
   const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
 
   if (sleepStyles.length === 0) {
@@ -30,6 +36,13 @@ export const PokemonSleepStylesLoaded = ({pokemon, pokemonBranches, sleepStyles,
           sleepStyleOfMap={sleepStyleOfMap}
         />
       ))}
+      <PokemonSleepStylesIncenseOnly
+        pokemon={pokemon}
+        pokemonBranch={pokemonBranches}
+        sleepdex={sleepdex}
+        setSleepdex={setSleepdex}
+        sleepStylesIncenseOnly={sleepStylesSpecial}
+      />
     </Flex>
   );
 };

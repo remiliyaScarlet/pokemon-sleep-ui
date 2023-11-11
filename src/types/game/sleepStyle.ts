@@ -12,10 +12,13 @@ export type SleepReward = {
   candy: number,
 };
 
-export type SleepStyle = {
+export type SleepStyleCommon = {
   style: SleepStyleId,
-  rank: SnorlaxRank,
   rewards: SleepReward,
+};
+
+export type SleepStyle = SleepStyleCommon & {
+  rank: SnorlaxRank,
 };
 
 export type SleepStyleNormal = {
@@ -34,10 +37,8 @@ export type SleepStyleNormalMap = {[id in PokemonId]?: SleepStyleNormal[]};
 
 export type FieldToSleepStyleFlattenedMap = {[id in SleepMapId]?: SleepStyleNormalFlattened[]};
 
-export type SleepStyleSpecial = {
+export type SleepStyleSpecial = SleepStyleCommon & {
   pokemonId: PokemonId,
-  style: SleepStyleId,
-  rewards: SleepReward,
   unreleased: boolean,
 };
 

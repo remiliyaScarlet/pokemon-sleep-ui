@@ -15,6 +15,7 @@ import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalList} from '@/controller/sleepStyle';
+import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonClient} from '@/ui/pokedex/page/client';
 import {PokemonProps} from '@/ui/pokedex/page/type';
@@ -43,6 +44,7 @@ export const Pokemon = async ({params}: Props) => {
     pokemonProducingParams,
     ingredientChainMap,
     sleepStyles,
+    sleepStylesSpecial,
     berryData,
     ingredientMap,
   ] = await Promise.all([
@@ -51,6 +53,7 @@ export const Pokemon = async ({params}: Props) => {
     getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
     getSleepStyleNormalList(idNumber),
+    getSleepStyleSpecialList(idNumber),
     getBerryData(pokemon.berry.id),
     getAllIngredients(),
   ]);
@@ -66,6 +69,7 @@ export const Pokemon = async ({params}: Props) => {
     pokemonProducingParams,
     ingredientChainMap,
     sleepStyles,
+    sleepStylesSpecial,
     berryData,
     ingredientMap,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),
@@ -80,6 +84,7 @@ export const Pokemon = async ({params}: Props) => {
           'UI.Common',
           'UI.Evolution',
           'UI.InPage.Pokedex',
+          'UI.InPage.Sleepdex',
           'UI.Metadata',
         ]}>
           <PokemonClient {...props}/>
