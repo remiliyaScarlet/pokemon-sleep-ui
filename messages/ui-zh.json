@@ -75,6 +75,14 @@
           "Title": "{name} - 地圖"
         }
       },
+      "UniqueMap": {
+        "Index": {
+          "Title": "睡姿 (地圖限定)"
+        },
+        "Page": {
+          "Title": "{name} - 睡姿 (地圖限定)"
+        }
+      },
       "Special": {
         "Title": "睡姿 (薰香、其他)"
       }
@@ -278,6 +286,7 @@
       "Energy": "能量"
     },
     "Map": {
+      "Unique": "地圖限定",
       "Energy": "能量",
       "Pokemon": "寶可夢",
       "SleepStyle": "睡姿",

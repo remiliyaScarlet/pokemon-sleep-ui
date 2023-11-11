@@ -75,6 +75,14 @@
           "Title": "{name} - Map"
         }
       },
+      "UniqueMap": {
+        "Index": {
+          "Title": "Sleep Styles (Single Map)"
+        },
+        "Page": {
+          "Title": "{name} - Sleep Styles (Single Map)"
+        }
+      },
       "Special": {
         "Title": "Sleep Styles (Incense / Others)"
       }
@@ -278,6 +286,7 @@
       "Energy": "Strength"
     },
     "Map": {
+      "Unique": "Single Map",
       "Energy": "Strength",
       "Pokemon": "Pokémon",
       "SleepStyle": "Sleep Style",

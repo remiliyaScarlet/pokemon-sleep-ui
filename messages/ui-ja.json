@@ -75,6 +75,14 @@
           "Title": "{name} - マップ"
         }
       },
+      "UniqueMap": {
+        "Index": {
+          "Title": "寝顔 (マップ限定)"
+        },
+        "Page": {
+          "Title": "{name} - 寝顔 (マップ限定)"
+        }
+      },
       "Special": {
         "Title": "寝顔 (お香 / その他)"
       }
@@ -278,6 +286,7 @@
       "Energy": "エナジー"
     },
     "Map": {
+      "Unique": "マップ限定",
       "Energy": "エナジー",
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔",

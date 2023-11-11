@@ -75,8 +75,16 @@
           "Title": "{name} - Karte"
         }
       },
+      "UniqueMap": {
+        "Index": {
+          "Title": "Schlafposen (einzelnes Gebiet)"
+        },
+        "Page": {
+          "Title": "{name} - Schlafposen (einzelnes Gebiet)"
+        }
+      },
       "Special": {
-        "Title": "Sleep Styles (Incense / Others)"
+        "Title": "Schlafposen (Rauch / Andere)"
       }
     },
     "Analysis": {
@@ -279,6 +287,7 @@
       "Energy": "Stärke"
     },
     "Map": {
+      "Unique": "einzelnes Gebiet",
       "Energy": "Stärke",
       "Pokemon": "Pokémon",
       "SleepStyle": "Schlafpose",
@@ -319,8 +328,8 @@
       "Title": "Titel"
     },
     "Sleepdex": {
-      "IncenseOnly": "Incense Only",
-      "Unreleased": "Unreleased"
+      "IncenseOnly": "Nur Rauch",
+      "Unreleased": "Unveröffentlicht"
     }
   },
   "Ocr": {

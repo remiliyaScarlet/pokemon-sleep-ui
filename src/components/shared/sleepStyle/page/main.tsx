@@ -4,6 +4,8 @@ import {getServerSession} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Failed} from '@/components/icons/failed';
+import {Flex} from '@/components/layout/flex/common';
+import {MapUniqueWarning} from '@/components/shared/sleepStyle/common/uniqueWarning';
 import {MapPageClient} from '@/components/shared/sleepStyle/page/client';
 import {MapPageServerDataProps} from '@/components/shared/sleepStyle/page/type';
 import {authOptions} from '@/const/auth';
@@ -23,9 +25,10 @@ type Props = {
   locale: Locale,
   mapId: number,
   getDataPromise: (mapId: number) => Promise<SleepStyleNormalFlattened[]>,
+  isUnique?: boolean,
 };
 
-export const MapPage = async ({locale, mapId, getDataPromise}: Props) => {
+export const MapPage = async ({locale, mapId, getDataPromise, isUnique}: Props) => {
   const session = await getServerSession(authOptions);
 
   const sleepStyles = await getDataPromise(mapId);
@@ -62,7 +65,9 @@ export const MapPage = async ({locale, mapId, getDataPromise}: Props) => {
   };
 
   return (
-    <>
+    <Flex className="gap-1.5 self-center md:w-3/4">
+      <AdsUnit/>
+      {isUnique && <MapUniqueWarning/>}
       <I18nProvider locale={locale} namespaces={[
         'Game',
         'UI.InPage.Pokedex.Info',
@@ -74,6 +79,6 @@ export const MapPage = async ({locale, mapId, getDataPromise}: Props) => {
         <MapPageClient locale={locale} {...props}/>
       </I18nProvider>
       <AdsUnit/>
-    </>
+    </Flex>
   );
 };

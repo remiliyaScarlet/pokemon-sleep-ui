@@ -5,4 +5,5 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 export type MapIndexServerDataProps = MapIndexSleepdexCompletionProps & {
   mapMeta: FieldMetaMap,
   isLoggedIn: boolean,
+  isUnique?: boolean,
 };

@@ -4,7 +4,6 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Flex} from '@/components/layout/flex/common';
 import {useMapFilter} from '@/components/shared/sleepStyle/page/hook';
 import {MapInfoInput} from '@/components/shared/sleepStyle/page/input/main';
 import {MapMeta} from '@/components/shared/sleepStyle/page/meta';
@@ -30,22 +29,18 @@ export const MapPageClient = ({locale, ...props}: Props) => {
   const [sleepdex, setSleepdex] = React.useState(sleepdexMap);
 
   return (
-    <Flex center>
-      <Flex className="gap-1.5 md:w-3/4">
-        <AdsUnit/>
-        <MapMeta {...props} mapName={mapName} sleepdexMap={sleepdex}/>
-        <AdsUnit/>
-        <MapInfoInput filter={filter} setFilter={setFilter} mapName={mapName} {...props}/>
-        <AdsUnit/>
-        <MapUnlockTable
-          filter={filter}
-          isIncluded={isIncluded}
-          sleepdex={sleepdex}
-          setSleepdex={setSleepdex}
-          {...props}
-        />
-        <AdsUnit/>
-      </Flex>
-    </Flex>
+    <>
+      <MapMeta {...props} mapName={mapName} sleepdexMap={sleepdex}/>
+      <AdsUnit/>
+      <MapInfoInput filter={filter} setFilter={setFilter} mapName={mapName} {...props}/>
+      <AdsUnit/>
+      <MapUnlockTable
+        filter={filter}
+        isIncluded={isIncluded}
+        sleepdex={sleepdex}
+        setSleepdex={setSleepdex}
+        {...props}
+      />
+    </>
   );
 };

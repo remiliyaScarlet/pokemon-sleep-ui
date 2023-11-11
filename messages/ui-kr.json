@@ -75,8 +75,16 @@
           "Title": "{name} - 맵"
         }
       },
+      "UniqueMap": {
+        "Index": {
+          "Title": "잠자는 모습 (특정 맵)"
+        },
+        "Page": {
+          "Title": "{name} - 잠자는 모습 (특정 맵)"
+        }
+      },
       "Special": {
-        "Title": "Sleep Styles (Incense / Others)"
+        "Title": "잠자는 모습 (향로 / 기타)"
       }
     },
     "Analysis": {
@@ -278,6 +286,7 @@
       "Energy": "에너지"
     },
     "Map": {
+      "Unique": "특정 맵 한정",
       "Energy": "에너지",
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습",
@@ -319,7 +328,7 @@
     },
     "Sleepdex": {
       "IncenseOnly": "향로 전용",
-      "Unreleased": "미출시"
+      "Unreleased": "미구현"
     }
   },
   "Ocr": {

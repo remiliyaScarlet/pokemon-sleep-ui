@@ -20,4 +20,10 @@ export const navEntriesForSleepStyle: NavEntryLink[] = [
     imageSrc: '/images/generic/incense.png',
     i18nTextId: 'SleepStyle.Special.Title',
   },
+  {
+    type: 'link',
+    href: '/map/unique',
+    imageSrc: '/images/generic/map.png',
+    i18nTextId: 'SleepStyle.UniqueMap.Index.Title',
+  },
 ];

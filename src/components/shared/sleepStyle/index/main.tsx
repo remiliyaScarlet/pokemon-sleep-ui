@@ -12,9 +12,10 @@ import {FieldToFlattenedSleepStyleMap} from '@/types/game/sleepStyle';
 
 type Props = {
   getDataPromise: () => Promise<FieldToFlattenedSleepStyleMap>,
+  isUnique?: boolean,
 };
 
-export const MapIndex = async ({getDataPromise}: Props) => {
+export const MapIndex = async ({getDataPromise, isUnique}: Props) => {
   const session = await getServerSession(authOptions);
 
   const [
@@ -32,6 +33,7 @@ export const MapIndex = async ({getDataPromise}: Props) => {
     sleepdexMap,
     mapMeta,
     isLoggedIn: !!session,
+    isUnique,
   };
 
   return <MapIndexContent {...props}/>;

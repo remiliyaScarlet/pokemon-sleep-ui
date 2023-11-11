@@ -12,16 +12,20 @@ import {imageGallerySizes} from '@/styles/image';
 type Props = {
   mapId: string | number,
   className?: string,
+  toUnique?: boolean,
   noAbsolute?: boolean,
 };
 
-export const MapLink = ({mapId, className, noAbsolute, children}: React.PropsWithChildren<Props>) => {
+export const MapLink = ({mapId, className, toUnique, noAbsolute, children}: React.PropsWithChildren<Props>) => {
   const t = useTranslations('Game.Field');
 
   const mapName = t(mapId.toString());
 
   return (
-    <Link href={`/map/${mapId}`} className={clsx('button-clickable-bg group relative', className)}>
+    <Link href={`/map/${toUnique ? 'unique/' : ''}${mapId}`} className={clsx(
+      'button-clickable-bg group relative',
+      className,
+    )}>
       <NextImage
         src={`/images/field/${mapId}.png`} alt={mapName}
         sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"

@@ -69,6 +69,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Index: I18nMetadata,
         Sleepdex: I18nMetadata,
         Map: PageWithIndividual,
+        UniqueMap: PageWithIndividual,
         Special: I18nMetadata,
       },
       Analysis: I18nMetadata,
@@ -189,6 +190,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Energy: string,
       },
       Map: {
+        Unique: string,
         Energy: string,
         Pokemon: string,
         SleepStyle: string,
