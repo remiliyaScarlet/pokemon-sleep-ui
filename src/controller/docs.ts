@@ -1,5 +1,5 @@
 import {ObjectId} from 'bson';
-import {Collection, FindCursor, WithId} from 'mongodb';
+import {AbstractCursor, Collection, WithId} from 'mongodb';
 
 import {throwIfNotCmsMod} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
@@ -12,6 +12,7 @@ import {
   DocsMetadata,
 } from '@/types/mongo/docs';
 import {Locale} from '@/types/next/locale';
+import {toRelatedPathForStorage} from '@/utils/docs';
 import {getMigratedDocs} from '@/utils/migrate/docs/utils';
 import {DeepPartial} from '@/utils/type';
 
@@ -25,16 +26,16 @@ const getCollection = async (): Promise<Collection<DocsData>> => {
 };
 
 const getSanitizedDoc = (doc: DeepPartial<DocsData>): DocsData => {
-  const {path, ...migrated} = getMigratedDocs(doc);
-  const sanitizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
+  const {path, related, ...migrated} = getMigratedDocs(doc);
 
   return {
     ...migrated,
-    path: sanitizedPath,
+    path: path.endsWith('/') ? path.slice(0, -1) : path,
+    related: toRelatedPathForStorage(related),
   };
 };
 
-const toDocMetadata = (cursor: FindCursor<WithId<DocsData>>) => (
+const toDocMetadata = (cursor: AbstractCursor<WithId<DocsData>>) => (
   cursor
     // Explicit to avoid sending additional data to client
     .map(({_id, path, title, lastUpdatedEpoch, viewCount}) => ({
@@ -74,7 +75,8 @@ export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEdi
 
   return (await getCollection()).updateOne(
     {_id: new ObjectId(doc.id)},
-    {$set: {version,
+    {$set: {
+      version,
       lastUpdatedEpoch,
       locale,
       path,
@@ -99,7 +101,22 @@ type GetRelatedDocMetaOpts = {
 };
 
 export const getRelatedDocMeta = async ({path}: GetRelatedDocMetaOpts): Promise<DocsMetadata[]> => {
-  const docs = (await getCollection()).find({related: new RegExp(`^${path}`)});
+  // No index used, not sure if optimization is possible here
+  const docs = (await getCollection()).aggregate<WithId<DocsData>>([
+    {$unwind: {path: '$related'}},
+    {
+      $addFields: {
+        urlIsRelated: {
+          $regexMatch: {
+            input: path,
+            regex: '$related',
+            options: 'imx',
+          },
+        },
+      },
+    },
+    {$match: {urlIsRelated: true}},
+  ]);
 
   return toDocMetadata(docs);
 };

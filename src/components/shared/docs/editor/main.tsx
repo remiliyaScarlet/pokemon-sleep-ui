@@ -16,19 +16,19 @@ import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {Grid} from '@/components/layout/grid';
-import {docsRelatedSeparator} from '@/components/shared/docs/editor/const';
 import {DocsEditorDisplayToggle} from '@/components/shared/docs/editor/display';
 import {DocsEditorDisplayType} from '@/components/shared/docs/editor/type';
 import {DocRenderingCommonProps} from '@/components/shared/docs/type';
 import {tableOfContentsText} from '@/components/shared/docs/view/const';
 import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
-import {regexDocPath} from '@/const/regex';
+import {regexDocLinkedPath, regexDocPath} from '@/const/regex';
 import {localeName} from '@/const/website';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
 import {UserDataAction} from '@/types/userData/main';
+import {docsRelatedSeparator, toRelatedPathForDisplay} from '@/utils/docs';
 
 
 type Props = DocRenderingCommonProps & {
@@ -99,12 +99,22 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
       }>
         <InputBox
           type="text"
-          value={related.join(docsRelatedSeparator)}
-          onChange={({target}) => onDocUpdated({
-            ...doc,
-            related: target.value.split(docsRelatedSeparator),
-          })}
+          value={toRelatedPathForDisplay(related)}
+          onChange={({target}) => {
+            const related = target.value;
+
+            // `!!path` to allow empty string
+            if (!!related && !regexDocLinkedPath.test(related)) {
+              return;
+            }
+
+            onDocUpdated({
+              ...doc,
+              related: related.split(docsRelatedSeparator),
+            });
+          }}
           className="w-full"
+          pattern={regexDocLinkedPath.source}
         />
       </InputRowWithTitle>
       <FilterTextInput
