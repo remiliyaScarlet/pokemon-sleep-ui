@@ -20,7 +20,7 @@ type Props = PokeboxCommonProps & PokeInBoxViewCommonProps & {
   filter: PokeboxViewerFilter,
   loading: boolean,
   totalPokeInBox: number,
-  sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
+  processedPokebox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 
 export const PokeboxContent = (props: Props) => {
@@ -28,7 +28,7 @@ export const PokeboxContent = (props: Props) => {
     filter,
     loading,
     totalPokeInBox,
-    sortedPokeInBox,
+    processedPokebox,
     pokemonProducingParamsMap,
   } = props;
 
@@ -50,7 +50,7 @@ export const PokeboxContent = (props: Props) => {
           {...props}
         />
       }
-      <PokeboxCount loading={loading} countToShow={sortedPokeInBox.length} total={totalPokeInBox}/>
+      <PokeboxCount loading={loading} countToShow={processedPokebox.length} total={totalPokeInBox}/>
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeInBoxView
           {...props}

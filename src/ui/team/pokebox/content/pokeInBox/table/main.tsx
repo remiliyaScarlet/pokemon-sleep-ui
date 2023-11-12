@@ -11,7 +11,7 @@ import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type
 export const PokeInBoxTable = ({
   filter,
   setEditingPokeInBox,
-  sortedPokeInBox,
+  processedPokebox,
   ...props
 }: PokeInBoxViewOfTypeProps) => {
   return (
@@ -20,9 +20,9 @@ export const PokeInBoxTable = ({
         {({height}) => (
           <FixedSizeList
             height={height}
-            itemCount={sortedPokeInBox.length}
+            itemCount={processedPokebox.length}
             itemSize={51}
-            itemData={sortedPokeInBox}
+            itemData={processedPokebox}
             width="100%"
             overscanCount={10}
           >

@@ -23,11 +23,11 @@ export const PokeInBoxView = React.memo((props: PokeInBoxViewProps) => {
   // Caching this so rerender won't be triggered if the edit popup shows (without things actually change)
   const a: PokeInBoxRefreshDependency = {
     filter: prev.filter,
-    sortedPokeInBox: prev.sortedPokeInBox,
+    processedPokebox: prev.processedPokebox,
   };
   const b: PokeInBoxRefreshDependency = {
     filter: next.filter,
-    sortedPokeInBox: next.sortedPokeInBox,
+    processedPokebox: next.processedPokebox,
   };
 
   return isEqual(a, b);

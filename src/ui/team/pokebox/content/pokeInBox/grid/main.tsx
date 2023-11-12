@@ -10,7 +10,7 @@ import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type
 export const PokeInBoxGrid = ({
   filter,
   setEditingPokeInBox,
-  sortedPokeInBox,
+  processedPokebox,
   ...props
 }: PokeInBoxViewOfTypeProps) => {
   return (
@@ -18,7 +18,7 @@ export const PokeInBoxGrid = ({
       <Grid className={clsx(
         'grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4',
       )}>
-        {sortedPokeInBox.map(({source}) => {
+        {processedPokebox.map(({source}) => {
           const uuid = source.extra.uuid;
 
           return (

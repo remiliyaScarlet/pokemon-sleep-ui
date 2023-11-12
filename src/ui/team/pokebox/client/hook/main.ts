@@ -5,8 +5,8 @@ import {useTranslations} from 'next-intl';
 
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useUserSettings} from '@/hooks/userData/settings/main';
-import {Pokebox, PokeInBox} from '@/types/game/pokebox';
-import {useFilteredSortedPokebox} from '@/ui/team/pokebox/content/hook';
+import {Pokebox} from '@/types/game/pokebox';
+import {useProcessedPokebox} from '@/ui/team/pokebox/client/hook/process';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {isNotNullish} from '@/utils/type';
@@ -48,15 +48,12 @@ export const useCalculatedData = (
     ),
   });
 
-  const filteredSortedPokebox = useFilteredSortedPokebox({
+  const processedPokebox = useProcessedPokebox({
     ...opts,
-    pokeboxForCalc: Object.fromEntries(Object.values(pokebox).filter(isNotNullish).map((pokeInBox) => [
-      pokeInBox.uuid,
-      {
-        ...pokeInBox,
-        level: filter.previewLevel ?? pokeInBox.level,
-      } satisfies PokeInBox,
-    ])),
+    pokeInBoxToCalc: Object.values(pokebox).filter(isNotNullish).map((pokeInBox) =>({
+      ...pokeInBox,
+      level: filter.previewLevel ?? pokeInBox.level,
+    })),
     filter,
     settings,
     isIncluded,
@@ -85,6 +82,6 @@ export const useCalculatedData = (
     settings,
     filter,
     setFilter,
-    filteredSortedPokebox,
+    processedPokebox,
   };
 };

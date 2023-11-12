@@ -7,7 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {Pokebox} from '@/types/game/pokebox';
-import {useCalculatedData} from '@/ui/team/pokebox/client/hooks';
+import {useCalculatedData} from '@/ui/team/pokebox/client/hook/main';
 import {PokeboxContent} from '@/ui/team/pokebox/content/main';
 import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
@@ -39,7 +39,7 @@ export const PokeboxLoadedClient = (props: Props) => {
     settings,
     filter,
     setFilter,
-    filteredSortedPokebox,
+    processedPokebox,
   } = useCalculatedData({
     ...props,
     pokebox,
@@ -62,7 +62,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         pokebox={Object.fromEntries(
           // Using `source.extra.uuid` to get the original poke-in-box
           // so the content opened in the edit popup won't have preview level, if active
-          filteredSortedPokebox.map(({source}) => [source.extra.uuid, pokebox[source.extra.uuid]]),
+          processedPokebox.map(({source}) => [source.extra.uuid, pokebox[source.extra.uuid]]),
         )}
         onUpdateCompleted={(updated) => {
           if (act) {
@@ -126,7 +126,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         loading={loading}
         settings={settings}
         totalPokeInBox={Object.keys(pokebox).length}
-        sortedPokeInBox={filteredSortedPokebox}
+        processedPokebox={processedPokebox}
         setEditingPokeInBox={setEditingPokeInBox}
         {...props}
       />

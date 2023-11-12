@@ -13,7 +13,7 @@ import {PokeboxViewerDisplay, PokeboxViewerFilter} from '@/ui/team/pokebox/viewe
 
 export type PokeInBoxRefreshDependency = {
   filter: PokeboxViewerFilter,
-  sortedPokeInBox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
+  processedPokebox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
 };
 
 export type PokeInBoxPopupProps = {
