@@ -30,7 +30,7 @@ export const ocrThresholdImage = ({imageData}: OcrThresholdImageOpts) => {
     const b = d[i + 2];
 
     const v = ocrThresholdPixel({pixel: {r, g, b}});
-    d[i] = d[i + 1] = d[i + 2] = v ? 255 : 0;
+    d[i] = d[i + 1] = d[i + 2] = v ? 0 : 255;
   }
 
   return imageData;
