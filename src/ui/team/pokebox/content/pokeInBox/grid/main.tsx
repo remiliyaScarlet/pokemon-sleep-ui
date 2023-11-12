@@ -3,6 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {Grid} from '@/components/layout/grid';
+import {getPokeInBoxEntryKey} from '@/ui/team/pokebox/content/pokeInBox/common/utils';
 import {PokeInBoxGridCell} from '@/ui/team/pokebox/content/pokeInBox/grid/cell';
 import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
@@ -19,11 +20,11 @@ export const PokeInBoxGrid = ({
         'grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4',
       )}>
         {processedPokebox.map(({source}) => {
-          const uuid = source.extra.uuid;
+          const {uuid} = source.extra;
 
           return (
             <PokeInBoxGridCell
-              key={uuid}
+              key={getPokeInBoxEntryKey(source.extra)}
               pokeInBox={source.extra}
               display={filter}
               snorlaxFavorite={filter.snorlaxFavorite}

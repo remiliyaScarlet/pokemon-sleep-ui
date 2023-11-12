@@ -50,10 +50,26 @@ export const useCalculatedData = (
 
   const processedPokebox = useProcessedPokebox({
     ...opts,
-    pokeInBoxToCalc: Object.values(pokebox).filter(isNotNullish).map((pokeInBox) =>({
-      ...pokeInBox,
-      level: filter.previewLevel ?? pokeInBox.level,
-    })),
+    pokeInBoxToCalc: Object.values(pokebox).filter(isNotNullish).flatMap((pokeInBox) => {
+      const level = filter.previewLevel ?? pokeInBox.level;
+
+      if (!filter.previewFinalEvolution) {
+        return [{...pokeInBox, level}];
+      }
+
+      const {pokemon} = pokeInBox;
+      const pokemonInfo = pokedexMap[pokemon];
+
+      if (!pokemonInfo) {
+        return [];
+      }
+
+      return pokemonInfo.evolution.next.map(({id}) => ({
+        ...pokeInBox,
+        pokemon: id,
+        level,
+      }));
+    }),
     filter,
     settings,
     isIncluded,
@@ -71,6 +87,7 @@ export const useCalculatedData = (
         displayOfTable: filter.displayOfTable,
         viewType: filter.viewType,
         previewLevel: filter.previewLevel,
+        previewFinalEvolution: filter.previewFinalEvolution,
         version: filter.version,
       },
     },

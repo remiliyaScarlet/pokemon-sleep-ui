@@ -4,6 +4,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {FixedSizeList} from 'react-window';
 
 import {Flex} from '@/components/layout/flex/common';
+import {getPokeInBoxEntryKey} from '@/ui/team/pokebox/content/pokeInBox/common/utils';
 import {PokeInBoxTableRow} from '@/ui/team/pokebox/content/pokeInBox/table/row';
 import {PokeInBoxViewOfTypeProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 
@@ -28,13 +29,13 @@ export const PokeInBoxTable = ({
           >
             {({style, data, index}) => {
               const {source} = data[index];
-              const uuid = source.extra.uuid;
+              const {uuid} = source.extra;
 
               // Extracting `width` out because it causes #187 (width not enough - sticky not in effect
               const {width, ...styleToUse} = style;
 
               return (
-                <div key={uuid} style={styleToUse}>
+                <div key={getPokeInBoxEntryKey(source.extra)} style={styleToUse}>
                   <PokeInBoxTableRow
                     pokeInBox={source.extra}
                     display={filter}

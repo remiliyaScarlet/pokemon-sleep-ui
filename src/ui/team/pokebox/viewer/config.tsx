@@ -9,11 +9,14 @@ import {useTranslations} from 'next-intl';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterIconInput} from '@/components/input/filter/icon';
+import {InputRow} from '@/components/input/filter/row';
 import {
   getIconFilterButtonClass,
   getMultiSelectOnClickProps,
   getSingleSelectOnClickProps,
+  getTextFilterButtonClass,
 } from '@/components/input/filter/utils/props';
+import {ToggleButton} from '@/components/input/toggleButton';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
@@ -22,6 +25,7 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {RatingBasisSelectionNullable} from '@/components/shared/pokemon/rating/basis/selection/nullable';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
+import {usePremiumRequiredToast} from '@/hooks/toast/main';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
   pokeboxDisplayTypeToI18nId,
@@ -37,11 +41,13 @@ import {
 } from '@/ui/team/pokebox/viewer/type';
 
 
-export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
+export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommonProps) => {
   const {filter, setFilter} = props;
 
   const viewCollapsible = useCollapsible();
+  const {showPremiumRequiredToast} = usePremiumRequiredToast();
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
+  const t2 = useTranslations('UI.InPage.Pokedex.Input');
 
   return (
     <Collapsible state={viewCollapsible} classNameForHeight={inputSectionHeight} appear button={
@@ -153,6 +159,26 @@ export const PokeboxViewerConfig = (props: PokeboxViewerInputCommonProps) => {
             })}
           />
         }
+        <InputRow className="justify-end">
+          <ToggleButton
+            id="pokeboxPreviewFinalEvo"
+            active={filter.previewFinalEvolution}
+            onClick={() => {
+              if (!session?.user.activation?.premium) {
+                showPremiumRequiredToast();
+                return;
+              }
+
+              setFilter((original) => ({
+                ...original,
+                previewFinalEvolution: !original.previewFinalEvolution,
+              }));
+            }}
+            className={clsx('group', getTextFilterButtonClass(filter.previewFinalEvolution))}
+          >
+            {t2('FinalEvolution')}
+          </ToggleButton>
+        </InputRow>
       </Flex>
     </Collapsible>
   );

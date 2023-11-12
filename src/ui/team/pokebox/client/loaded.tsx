@@ -118,6 +118,7 @@ export const PokeboxLoadedClient = (props: Props) => {
           subSkillList={subSkillList}
           filter={filter}
           setFilter={setFilter}
+          session={session.data}
         />
       </Flex>
       <AdsUnit className="hidden lg:flex"/>
@@ -125,7 +126,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         filter={filter}
         loading={loading}
         settings={settings}
-        totalPokeInBox={Object.keys(pokebox).length}
+        totalPokeInBox={processedPokebox.length}
         processedPokebox={processedPokebox}
         setEditingPokeInBox={setEditingPokeInBox}
         {...props}

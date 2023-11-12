@@ -44,4 +44,12 @@ export const pokeboxDisplayMigrators: Migrator<PokeboxViewerDisplay, PokeboxView
       };
     },
   },
+  {
+    // `previewFinalEvolution` addition
+    toVersion: 4,
+    migrate: (old) => ({
+      ...old,
+      previewFinalEvolution: false,
+    }),
+  },
 ];
