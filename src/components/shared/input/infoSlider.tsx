@@ -6,12 +6,12 @@ import {Flex} from '@/components/layout/flex/common';
 
 type Props = {
   title: React.ReactNode,
-  level: number,
-  setLevel: (level: number) => void,
-  maxLevel: number,
+  value: number,
+  setValue: (level: number) => void,
+  maxValue: number,
 };
 
-export const InfoSlider = ({title, level, setLevel, maxLevel, children}: React.PropsWithChildren<Props>) => {
+export const InfoSlider = ({title, value, setValue, maxValue, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex className="gap-1">
       <Flex direction="row" className="gap-1">
@@ -19,10 +19,10 @@ export const InfoSlider = ({title, level, setLevel, maxLevel, children}: React.P
           {title}
         </div>
         <div>
-          {level}
+          {value}
         </div>
       </Flex>
-      <Slider value={level} setValue={setLevel} min={1} max={maxLevel}/>
+      <Slider value={value} setValue={setValue} min={1} max={maxValue}/>
       <Flex direction="row" className="ml-auto items-center justify-end gap-1">
         {children}
       </Flex>

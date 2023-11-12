@@ -27,9 +27,9 @@ export const BerryLevelSlider = ({berryData, level, setLevel}: Props) => {
   return (
     <InfoSlider
       title={t('Info.PokemonLevel')}
-      level={level}
-      setLevel={setLevel}
-      maxLevel={berryData.energy.length}
+      value={level}
+      setValue={setLevel}
+      maxValue={berryData.energy.length}
     >
       <ColoredEnergyIcon dimension="h-4 w-4" alt={t2('Energy')}/>
       <div className="text-sm">

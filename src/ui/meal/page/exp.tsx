@@ -26,9 +26,9 @@ export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonPro
   return (
     <InfoSlider
       title={t('RecipeLevel')}
-      level={level}
-      setLevel={setLevel}
-      maxLevel={recipeMaxLevel}
+      value={level}
+      setValue={setLevel}
+      maxValue={recipeMaxLevel}
     >
       <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
       <div className="text-sm">
