@@ -1,7 +1,7 @@
-import {MapIndex} from '@/ui/sleepStyle/map/index/main';
+import {MapIndexUiEntry} from '@/ui/sleepStyle/map';
 import {generatePageMeta} from '@/utils/meta';
 
 
 export const generateMetadata = generatePageMeta({key: 'SleepStyle.Map.Index.Title'});
 
-export default MapIndex;
+export default MapIndexUiEntry;

@@ -1,0 +1,38 @@
+import React from 'react';
+
+import {getServerSession} from 'next-auth';
+
+import {MapIndexContent} from '@/components/shared/sleepStyle/index/content';
+import {MapIndexServerDataProps} from '@/components/shared/sleepStyle/index/type';
+import {authOptions} from '@/const/auth';
+import {getAllMapMeta} from '@/controller/mapMeta';
+import {getSleepdexMap} from '@/controller/sleepdex';
+import {FieldToFlattenedSleepStyleMap} from '@/types/game/sleepStyle';
+
+
+type Props = {
+  getDataPromise: () => Promise<FieldToFlattenedSleepStyleMap>,
+};
+
+export const MapIndex = async ({getDataPromise}: Props) => {
+  const session = await getServerSession(authOptions);
+
+  const [
+    data,
+    sleepdexMap,
+    mapMeta,
+  ] = await Promise.all([
+    getDataPromise(),
+    getSleepdexMap(session?.user.id),
+    getAllMapMeta(),
+  ]);
+
+  const props: MapIndexServerDataProps = {
+    data,
+    sleepdexMap,
+    mapMeta,
+    isLoggedIn: !!session,
+  };
+
+  return <MapIndexContent {...props}/>;
+};

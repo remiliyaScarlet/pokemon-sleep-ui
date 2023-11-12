@@ -1,7 +1,7 @@
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
-import {MapPage} from '@/ui/sleepStyle/map/page/main';
+import {MapPageUiEntry} from '@/ui/sleepStyle/map/page';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMeta} from '@/utils/meta';
 import {isNotNullish} from '@/utils/type';
@@ -24,4 +24,4 @@ export const generateMetadata: GenerateMetadata<MapPageParams> = async ({params}
   return generatePageMeta({key: 'SleepStyle.Map.Page.Title', values: {name: t(id)}})({params});
 };
 
-export default MapPage;
+export default MapPageUiEntry;
