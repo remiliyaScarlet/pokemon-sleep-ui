@@ -10,9 +10,9 @@ export const navEntriesForSleepStyle: NavEntryLink[] = [
   },
   {
     type: 'link',
-    href: '/sleepdex',
-    imageSrc: '/images/generic/sleep.png',
-    i18nTextId: 'SleepStyle.Sleepdex.Title',
+    href: '/map/unique',
+    imageSrc: '/images/generic/map.png',
+    i18nTextId: 'SleepStyle.UniqueMap.Index.Title',
   },
   {
     type: 'link',
@@ -22,8 +22,8 @@ export const navEntriesForSleepStyle: NavEntryLink[] = [
   },
   {
     type: 'link',
-    href: '/map/unique',
-    imageSrc: '/images/generic/map.png',
-    i18nTextId: 'SleepStyle.UniqueMap.Index.Title',
+    href: '/sleepdex',
+    imageSrc: '/images/generic/sleep.png',
+    i18nTextId: 'SleepStyle.Sleepdex.Title',
   },
 ];
