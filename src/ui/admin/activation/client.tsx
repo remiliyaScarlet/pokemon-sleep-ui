@@ -36,6 +36,7 @@ export const AdminActivationManagementClient = (data: AdminActivationServerDataP
       <Grid className="grid-cols-1 gap-2 lg:grid-cols-2">
         <ActivationViewer source="discord" {...props}/>
         <ActivationViewer source="patreon" {...props}/>
+        <ActivationViewer source="github" {...props}/>
         <ActivationViewer source={null} {...props}/>
       </Grid>
     </Flex>

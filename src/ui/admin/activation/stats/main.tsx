@@ -42,6 +42,11 @@ export const ActivationStats = (props: ActivationUiCommonProps) => {
         {...props}
       />
       <ActivationStatsUnit
+        title="Github"
+        filter={({source}) => source === 'github'}
+        {...props}
+      />
+      <ActivationStatsUnit
         title="Paid"
         filter={({source}) => !!source}
         {...props}

@@ -19,6 +19,7 @@ export type ActivationType = typeof activationType[number];
 export const activationSource = [
   'discord',
   'patreon',
+  'github',
 ] as const;
 
 export type ActivationSource = typeof activationSource[number];

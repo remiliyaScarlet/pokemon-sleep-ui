@@ -4,6 +4,7 @@ import {ActivationContact, ActivationSource, ActivationType} from '@/types/mongo
 export const activationSourceToText: {[source in ActivationSource]: string} = {
   patreon: 'Patreon',
   discord: 'Discord',
+  github: 'Github',
 };
 
 
