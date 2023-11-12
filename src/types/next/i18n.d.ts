@@ -212,6 +212,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
             Rating: string,
             Skills: string,
           },
+          Preview: {
+            Level: string,
+            FinalEvolution: string,
+          },
         },
       },
       Info: {

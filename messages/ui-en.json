@@ -307,6 +307,10 @@
           "ProductionTotal": "Production (Total)",
           "Rating": "Rating",
           "Skills": "Skills"
+        },
+        "Preview": {
+          "Level": "Previewing Level",
+          "FinalEvolution": "Previewing Final Evolution"
         }
       }
     },

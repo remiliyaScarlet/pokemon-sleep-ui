@@ -307,6 +307,10 @@
           "ProductionTotal": "생산 (총합)",
           "Rating": "평가",
           "Skills": "스킬"
+        },
+        "Preview": {
+          "Level": "레벨 미리보기",
+          "FinalEvolution": "최종 진화 미리보기"
         }
       }
     },

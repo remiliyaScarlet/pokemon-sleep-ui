@@ -8,9 +8,10 @@ import {useRatingPopup} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultPopup} from '@/components/shared/pokemon/rating/popup';
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {PokeInBox} from '@/types/game/pokebox';
-import {PokeboxCount} from '@/ui/team/pokebox/content/count';
+import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {PokeInBoxView} from '@/ui/team/pokebox/content/pokeInBox/main';
 import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {PokeboxViewStatus} from '@/ui/team/pokebox/content/status';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
@@ -18,6 +19,7 @@ import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 type Props = PokeboxCommonProps & PokeInBoxViewCommonProps & {
   filter: PokeboxViewerFilter,
+  setFilter: ReactStateUpdaterFromOriginal<PokeboxViewerFilter>,
   loading: boolean,
   totalPokeInBox: number,
   processedPokebox: SortedPokemonInfo<PokeInBox, PokemonInfoWithSortingPayload<PokeInBox>>[],
@@ -26,6 +28,7 @@ type Props = PokeboxCommonProps & PokeInBoxViewCommonProps & {
 export const PokeboxContent = (props: Props) => {
   const {
     filter,
+    setFilter,
     loading,
     totalPokeInBox,
     processedPokebox,
@@ -50,7 +53,13 @@ export const PokeboxContent = (props: Props) => {
           {...props}
         />
       }
-      <PokeboxCount loading={loading} countToShow={processedPokebox.length} total={totalPokeInBox}/>
+      <PokeboxViewStatus
+        filter={filter}
+        setFilter={setFilter}
+        loading={loading}
+        countToShow={processedPokebox.length}
+        total={totalPokeInBox}
+      />
       <LazyLoad loading={loading} className="gap-1.5">
         <PokeInBoxView
           {...props}

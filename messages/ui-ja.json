@@ -307,6 +307,10 @@
           "ProductionTotal": "生産 (トータル)",
           "Rating": "評価",
           "Skills": "スキル"
+        },
+        "Preview": {
+          "Level": "Previewing Level",
+          "FinalEvolution": "Previewing Final Evolution"
         }
       }
     },

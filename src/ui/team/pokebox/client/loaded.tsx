@@ -124,6 +124,7 @@ export const PokeboxLoadedClient = (props: Props) => {
       <AdsUnit className="hidden lg:flex"/>
       <PokeboxContent
         filter={filter}
+        setFilter={setFilter}
         loading={loading}
         settings={settings}
         totalPokeInBox={processedPokebox.length}

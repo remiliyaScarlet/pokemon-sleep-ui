@@ -308,6 +308,10 @@
           "ProductionTotal": "Produktion (Gesamt)",
           "Rating": "Bewerte meine",
           "Skills": "Talente"
+        },
+        "Preview": {
+          "Level": "Previewing Level",
+          "FinalEvolution": "Previewing Final Evolution"
         }
       }
     },

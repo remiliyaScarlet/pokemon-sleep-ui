@@ -307,6 +307,10 @@
           "ProductionTotal": "生產 (總和)",
           "Rating": "個體評價",
           "Skills": "技能"
+        },
+        "Preview": {
+          "Level": "預覽等級中",
+          "FinalEvolution": "預覽最終進化中"
         }
       }
     },
