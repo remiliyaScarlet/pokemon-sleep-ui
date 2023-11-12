@@ -8,14 +8,17 @@ export type OcrState = {
   status: 'ready' | 'thresholding' | 'loadingOcr',
   progress: 0,
   text: null,
+  processedImage: null,
 } | {
   status: 'recognizing',
   progress: number,
   text: null,
+  processedImage: null,
 } | {
   status: 'completed',
   progress: 100,
   text: string,
+  processedImage: ImageData,
 };
 
 export type OcrStatus = OcrState['status'];
@@ -23,7 +26,10 @@ export type OcrStatus = OcrState['status'];
 export type OcrRenderDataOpts<TData> = {
   data: TData,
   text: string,
-  image: string | null,
+  image: {
+    raw: string | null,
+    processed: ImageData | null,
+  },
 };
 
 export type OcrCommonProps<TData> = {

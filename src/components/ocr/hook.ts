@@ -23,6 +23,7 @@ export const useOcr = ({
     status: 'ready',
     progress: 0,
     text: null,
+    processedImage: null,
   });
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -52,7 +53,7 @@ export const useOcr = ({
       return;
     }
 
-    setState({status: 'thresholding', progress: 0, text: null});
+    setState({status: 'thresholding', progress: 0, text: null, processedImage: null});
     canvas.width = image.width;
     canvas.height = image.height;
 
@@ -63,7 +64,7 @@ export const useOcr = ({
     const processedImage = ocrThresholdImage({imageData});
     ctx.putImageData(processedImage, 0, 0);
 
-    setState({status: 'loadingOcr', progress: 0, text: null});
+    setState({status: 'loadingOcr', progress: 0, text: null, processedImage: null});
     const tesseractLang = ocrLocaleToTesseract[ocrLocale];
     const worker = await createWorker(
       tesseractLang,
@@ -71,9 +72,9 @@ export const useOcr = ({
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
-            setState({status: 'recognizing', progress: progress * 100, text: null});
+            setState({status: 'recognizing', progress: progress * 100, text: null, processedImage: null});
           } else {
-            setState({status: 'loadingOcr', progress: 0, text: null});
+            setState({status: 'loadingOcr', progress: 0, text: null, processedImage: null});
           }
         },
       },
@@ -86,10 +87,10 @@ export const useOcr = ({
       tessedit_pageseg_mode: PSM.SPARSE_TEXT,
     });
 
-    setState({status: 'recognizing', progress: 0, text: null});
+    setState({status: 'recognizing', progress: 0, text: null, processedImage: null});
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
-    setState({status: 'completed', progress: 100, text});
+    setState({status: 'completed', progress: 100, text, processedImage});
     await worker.terminate();
   }, [ocrLocale]);
 

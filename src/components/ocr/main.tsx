@@ -87,7 +87,10 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
         {text && renderData({
           data: textToData(text, locale),
           text,
-          image,
+          image: {
+            raw: image,
+            processed: state.processedImage,
+          },
         })}
       </AnimatedCollapse>
     </Flex>

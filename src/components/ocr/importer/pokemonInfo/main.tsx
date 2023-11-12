@@ -34,7 +34,8 @@ export const OcrPokemonInfoImporter = ({
         <OcrPokemonInfoImportLayout
           data={data}
           text={text}
-          image={image}
+          image={image.raw}
+          processed={image.processed}
           onCompleteImport={(pokemonId, state) => {
             onCompleteImport(pokemonId, state);
             setShowOcr(false);
