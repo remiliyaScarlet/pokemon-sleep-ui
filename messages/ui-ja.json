@@ -344,8 +344,8 @@
       "Completed": "Completed"
     },
     "Tolerance": {
-      "Title": "Tolerance",
-      "Tips": "Increase only if the image quality is bad. Higher value could decrease accuracy."
+      "Title": "許容差",
+      "Tips": "許容差を広げるのは画質の悪いときだけにしましょう。広げると読み取り精度が落ちます。"
     }
   },
   "Producing": {
