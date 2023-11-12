@@ -34,7 +34,9 @@ export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {
       <HorizontalSplitter/>
       <TeamAnalysisCategorySummary
         icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
-        data={Object.entries(grouped.ingredient).map(([id, rate]) => ({id: Number(id), rate}))}
+        data={Object.entries(grouped.ingredient)
+          .map(([id, rate]) => ({id: Number(id), rate}))
+          .filter(({rate}) => !!rate?.quantity)}
         getReactNode={(id, rate) => (
           <div className="px-4">
             <TeamAnalysisIngredientRate key={id} id={Number(id)} rate={rate}/>
