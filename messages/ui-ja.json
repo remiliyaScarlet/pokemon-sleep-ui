@@ -309,8 +309,8 @@
           "Skills": "スキル"
         },
         "Preview": {
-          "Level": "Previewing Level",
-          "FinalEvolution": "Previewing Final Evolution"
+          "Level": " レベルプレビューON",
+          "FinalEvolution": "最終進化プレビューON"
         }
       }
     },
