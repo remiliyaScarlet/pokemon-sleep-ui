@@ -44,7 +44,11 @@ export const SleepdexClient = (props: SleepdexDataProps) => {
   return (
     <Flex className="gap-2">
       <PokemonLinkPopup state={state} setState={setState}/>
-      <SleepdexUnlockedCount sleepStyleMap={sleepStyleMap} sleepdex={sleepdex}/>
+      <SleepdexUnlockedCount
+        sleepStyleMap={sleepStyleMap}
+        sleepStyleSpecialMap={sleepStyleSpecialMap}
+        sleepdex={sleepdex}
+      />
       {uniqueSleepTypes.map((sleepType) => (
         <SleepdexSection
           key={sleepType}

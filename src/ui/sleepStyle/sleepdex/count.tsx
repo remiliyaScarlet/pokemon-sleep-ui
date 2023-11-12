@@ -4,19 +4,22 @@ import {Flex} from '@/components/layout/flex/common';
 import {ProgressBar} from '@/components/progressBar';
 import {CompletionResultUI} from '@/components/shared/completion/main';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
+import {SleepStyleNormalMap, SleepStyleSpecialMap} from '@/types/game/sleepStyle';
 import {getAllPossibleSleepStyles} from '@/utils/game/sleepdex';
 
 
 type Props = {
   sleepStyleMap: SleepStyleNormalMap,
+  sleepStyleSpecialMap: SleepStyleSpecialMap,
   sleepdex: SleepdexMap,
 };
 
-export const SleepdexUnlockedCount = ({sleepdex, sleepStyleMap}: Props) => {
+export const SleepdexUnlockedCount = ({sleepStyleMap, sleepStyleSpecialMap, sleepdex}: Props) => {
   const total = React.useMemo(
-    () => getAllPossibleSleepStyles(sleepStyleMap).length,
-    [sleepStyleMap],
+    () => (
+      getAllPossibleSleepStyles({normal: sleepStyleMap, special: sleepStyleSpecialMap}).length
+    ),
+    [sleepStyleMap, sleepStyleSpecialMap],
   );
   const count = React.useMemo(
     () => Object.values(sleepdex).map((unlocked) => !!unlocked).length
