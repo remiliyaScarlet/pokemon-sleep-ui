@@ -5,11 +5,12 @@ import {isRgbInRange} from '@/utils/image';
 
 export type OcrThresholdPixelOpts = {
   pixel: Pixel,
+  tolerance: number,
 };
 
-export const ocrThresholdPixel = ({pixel}: OcrThresholdPixelOpts): boolean => {
-  for (const allowedPixel of ocrAllowedPixels) {
-    if (isRgbInRange({...allowedPixel, pixel})) {
+export const ocrThresholdPixel = ({pixel, tolerance}: OcrThresholdPixelOpts): boolean => {
+  for (const basis of ocrAllowedPixels) {
+    if (isRgbInRange({basis, pixel, range: tolerance})) {
       return true;
     }
   }
@@ -19,9 +20,10 @@ export const ocrThresholdPixel = ({pixel}: OcrThresholdPixelOpts): boolean => {
 
 type OcrThresholdImageOpts = {
   imageData: ImageData,
+  tolerance: number,
 };
 
-export const ocrThresholdImage = ({imageData}: OcrThresholdImageOpts) => {
+export const ocrThresholdImage = ({imageData, tolerance}: OcrThresholdImageOpts) => {
   const d = imageData.data;
 
   for (let i = 0; i < d.length; i += 4) {
@@ -29,7 +31,7 @@ export const ocrThresholdImage = ({imageData}: OcrThresholdImageOpts) => {
     const g = d[i + 1];
     const b = d[i + 2];
 
-    const v = ocrThresholdPixel({pixel: {r, g, b}});
+    const v = ocrThresholdPixel({pixel: {r, g, b}, tolerance});
     d[i] = d[i + 1] = d[i + 2] = v ? 0 : 255;
   }
 

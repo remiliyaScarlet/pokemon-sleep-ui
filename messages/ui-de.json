@@ -343,6 +343,10 @@
       "LoadingOcr": "Initiiere Texterkennung",
       "Recognizing": "Erkenne Text",
       "Completed": "Abgeschlossen"
+    },
+    "Tolerance": {
+      "Title": "Tolerance",
+      "Tips": "Increase only if the image quality is bad. Higher value could decrease accuracy."
     }
   },
   "Producing": {

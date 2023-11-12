@@ -342,6 +342,10 @@
       "LoadingOcr": "OCR 初始化中",
       "Recognizing": "文字辨認中",
       "Completed": "完成"
+    },
+    "Tolerance": {
+      "Title": "容許誤差",
+      "Tips": "若圖片品質較差，將這個數值調高。容許誤差越高 OCR 越容易失準。"
     }
   },
   "Producing": {

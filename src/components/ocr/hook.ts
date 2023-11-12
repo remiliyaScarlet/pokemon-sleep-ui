@@ -3,21 +3,20 @@ import React from 'react';
 import {createWorker, OEM, PSM} from 'tesseract.js';
 
 import {ocrLocaleToTesseract} from '@/components/ocr/const';
-import {OcrState, UseOcrReturn} from '@/components/ocr/type';
+import {OcrSettings, OcrState, UseOcrReturn} from '@/components/ocr/type';
 import {ocrThresholdImage} from '@/components/ocr/utils';
-import {OcrLocale} from '@/types/ocr/locale';
 
 
 type UseOcrOpts = {
-  ocrLocale: OcrLocale,
-  onError: (message: string) => void,
+  settings: OcrSettings,
   whitelistChars: string,
+  onError: (message: string) => void,
 };
 
 export const useOcr = ({
-  ocrLocale,
-  onError,
+  settings,
   whitelistChars,
+  onError,
 }: UseOcrOpts): UseOcrReturn => {
   const [state, setState] = React.useState<OcrState>({
     status: 'ready',
@@ -53,6 +52,8 @@ export const useOcr = ({
       return;
     }
 
+    const {locale, tolerance} = settings;
+
     setState({status: 'thresholding', progress: 0, text: null, processedImage: null});
     canvas.width = image.width;
     canvas.height = image.height;
@@ -61,11 +62,11 @@ export const useOcr = ({
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-    const processedImage = ocrThresholdImage({imageData});
+    const processedImage = ocrThresholdImage({imageData, tolerance});
     ctx.putImageData(processedImage, 0, 0);
 
     setState({status: 'loadingOcr', progress: 0, text: null, processedImage: null});
-    const tesseractLang = ocrLocaleToTesseract[ocrLocale];
+    const tesseractLang = ocrLocaleToTesseract[locale];
     const worker = await createWorker(
       tesseractLang,
       OEM.TESSERACT_LSTM_COMBINED,
@@ -92,7 +93,7 @@ export const useOcr = ({
 
     setState({status: 'completed', progress: 100, text, processedImage});
     await worker.terminate();
-  }, [ocrLocale]);
+  }, [settings]);
 
   return {state, canvasRef, imageRef, runOcr};
 };

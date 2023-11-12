@@ -342,6 +342,10 @@
       "LoadingOcr": "Loading OCR",
       "Recognizing": "Recognizing",
       "Completed": "Completed"
+    },
+    "Tolerance": {
+      "Title": "Tolerance",
+      "Tips": "Increase only if the image quality is bad. Higher value could decrease accuracy."
     }
   },
   "Producing": {

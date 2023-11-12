@@ -247,6 +247,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Recognizing: string,
         Completed: string,
       },
+      Tolerance: {
+        Title: string,
+        Tips: string,
+      },
     },
     Producing: {
       State: {

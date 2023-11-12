@@ -342,6 +342,10 @@
       "LoadingOcr": "ocr 로딩중",
       "Recognizing": "인식중",
       "Completed": "완료"
+    },
+    "Tolerance": {
+      "Title": "Tolerance",
+      "Tips": "Increase only if the image quality is bad. Higher value could decrease accuracy."
     }
   },
   "Producing": {
