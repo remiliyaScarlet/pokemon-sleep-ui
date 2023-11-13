@@ -25,10 +25,13 @@ declare global {
 
       NEXTAUTH_ADMIN_UID: string;
 
-      // External services
+      // External services - Patreon
       EXTERNAL_PATREON_CAMPAIGN_ID: string;
       EXTERNAL_PATREON_WEBHOOK_SECRET: string;
       EXTERNAL_PATREON_OAUTH_ACCESS_TOKEN: string;
+
+      // External services - GitHub
+      EXTERNAL_GITHUB_WEBHOOK_SECRET: string;
 
       // Subscription related
       SUBSCRIPTION_DISCORD_SOURCE_URL: string;
