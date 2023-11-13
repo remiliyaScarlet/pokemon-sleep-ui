@@ -15,6 +15,10 @@ export const handleGithubWebhook = async (request: Request) => {
   });
 
   const webhookEvent = request.headers.get(githubHeaderEventType);
+  if (webhookEvent === 'ping') {
+    return Response.json({}, {status: 200});
+  }
+
   if (webhookEvent !== 'sponsorship') {
     throw new Error(`Received mismatched Github webhook event type: ${webhookEvent} (Message: ${message})`);
   }
