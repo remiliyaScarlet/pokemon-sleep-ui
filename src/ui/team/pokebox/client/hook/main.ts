@@ -9,6 +9,7 @@ import {Pokebox} from '@/types/game/pokebox';
 import {useProcessedPokebox} from '@/ui/team/pokebox/client/hook/process';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
+import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -64,7 +65,7 @@ export const useCalculatedData = (
         return [];
       }
 
-      return pokemonInfo.evolution.next.map(({id}) => ({
+      return getPokemonFinalEvolutionIds({pokemonId: pokemon, pokedex: pokedexMap}).map((id) => ({
         ...pokeInBox,
         pokemon: id,
         level,
