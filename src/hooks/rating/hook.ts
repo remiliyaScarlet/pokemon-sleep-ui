@@ -46,6 +46,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       evolutionCount: setupData.evolutionCount,
       settings: setupData.settings,
       basis: setupData.basis,
+      friendshipLevel: setupData.friendshipLevel,
       ingredientChainMap,
       ingredientMap,
       berryDataMap,

@@ -5,7 +5,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {FriendshipLevelOfGoldLock, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserSettings} from '@/types/userData/settings';
 
@@ -47,6 +47,7 @@ export type RatingResultOfLevel = {
 export type RatingOnDeskState = PokemonOnDeskState & {
   snorlaxFavorite: SnorlaxFavorite,
   basis: RatingBasis,
+  friendshipLevel: FriendshipLevelOfGoldLock,
 };
 
 export type RatingSetupData = Omit<RatingOnDeskState, 'origin'> & {
@@ -58,8 +59,6 @@ export type RatingRequest = {
   timestamp: number,
 };
 
-export type RatingWorkerOpts = RatingSetupData & Omit<RatingOpts, 'pokemon'>;
-
 export type RatingOpts = {
   level: number,
   pokemon: PokemonInfo | undefined,
@@ -69,3 +68,5 @@ export type RatingOpts = {
   berryDataMap: BerryDataMap,
   subSkillMap: SubSkillMap,
 };
+
+export type RatingWorkerOpts = RatingSetupData & Omit<RatingOpts, 'pokemon'>;

@@ -66,6 +66,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
         'Game',
         'UI.Common',
         'UI.InPage.Pokedex',
+        'UI.InPage.Rating',
         'UI.InPage.Team',
         'UI.Metadata',
         'UI.Ocr',

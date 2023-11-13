@@ -6,6 +6,7 @@ import {useSession} from 'next-auth/react';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
+import {RatingFriendshipLevel} from '@/components/shared/pokemon/rating/friendship/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettings} from '@/hooks/userData/settings/main';
@@ -69,6 +70,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
         ...onDeskState,
         snorlaxFavorite: {},
         basis: getDefaultRatingBasis(onDeskState.pokemon.specialty),
+        friendshipLevel: 0,
       })}
       renderAdditional={(onDesk, setOnDesk) => (
         <Flex className="gap-1.5">
@@ -81,8 +83,18 @@ export const RatingClient = (props: RatingServerDataProps) => {
           />
           <RatingBasisSelection
             current={onDesk.basis}
-            onSelect={(basis) => setOnDesk((original) => ({...original, basis}))}
+            onSelect={(basis) => setOnDesk((original) => ({
+              ...original,
+              basis,
+            }))}
             idPrefix="rating"
+          />
+          <RatingFriendshipLevel
+            current={onDesk.friendshipLevel}
+            onUpdated={(friendshipLevel) => setOnDesk((original) => ({
+              ...original,
+              friendshipLevel,
+            }))}
           />
         </Flex>
       )}

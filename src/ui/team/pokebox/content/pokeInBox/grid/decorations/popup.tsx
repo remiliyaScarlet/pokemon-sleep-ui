@@ -40,6 +40,7 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
         pokemon,
         snorlaxFavorite,
         basis: getDefaultRatingBasis(pokemon.specialty),
+        friendshipLevel: 0,
         settings,
       })}>
         <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>

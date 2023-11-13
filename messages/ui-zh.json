@@ -261,6 +261,9 @@
       "FirstAppearance": "首次出現 - {mapName}",
       "LastSleepStyle": "最終睡姿 - {mapName}"
     },
+    "Rating": {
+      "FriendshipLevel": "友情等級"
+    },
     "Cooking": {
       "Energy": "最終能量",
       "Ingredient": {

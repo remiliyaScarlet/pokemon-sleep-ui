@@ -21,6 +21,7 @@ export const toRatingSetup = ({member, specialtyId, ...opts}: ToRatingRequestOpt
   ...member,
   ...opts,
   basis: getDefaultRatingBasis(specialtyId),
+  friendshipLevel: 0,
 });
 
 export const toPokeInBox = ({pokemonId, name, ...member}: TeamAnalysisMember): PokeInBox => {

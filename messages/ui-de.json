@@ -262,6 +262,9 @@
       "FirstAppearance": "Erster Auftritt - {mapName}",
       "LastSleepStyle": "Letzte Schlafpose - {mapName}"
     },
+    "Rating": {
+      "FriendshipLevel": "Freundeslevel"
+    },
     "Cooking": {
       "Energy": "Endstärke",
       "Ingredient": {

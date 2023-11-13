@@ -31,6 +31,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: {},
       basis: 'totalProduction',
+      friendshipLevel: 0,
       settings: defaultUserSettings,
     });
 
@@ -56,6 +57,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
+      friendshipLevel: 0,
       settings: defaultUserSettings,
     });
 
@@ -81,6 +83,7 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
+      friendshipLevel: 0,
       settings: defaultUserSettings,
     });
 

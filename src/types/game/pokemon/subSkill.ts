@@ -41,3 +41,12 @@ export const pokemonSubSkillLevel = [
 export type PokemonSubSkillLevel = typeof pokemonSubSkillLevel[number];
 
 export type PokemonSubSkill = {[level in PokemonSubSkillLevel]?: SubSkillId};
+
+export const friendshipLevelsOfGoldLock = [
+  0,
+  10,
+  45,
+  100,
+] as const;
+
+export type FriendshipLevelOfGoldLock = typeof friendshipLevelsOfGoldLock[number];

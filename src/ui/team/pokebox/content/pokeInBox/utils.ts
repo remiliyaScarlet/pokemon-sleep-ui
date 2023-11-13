@@ -47,6 +47,7 @@ export const toRatingWorkerOpts = ({
     evolutionCount,
     settings,
     basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
+    friendshipLevel: 0,
   };
 };
 

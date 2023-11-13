@@ -18,6 +18,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
   const {
     basis,
     level,
+    friendshipLevel,
     pokemon,
     ingredients,
     subSkill,
@@ -61,7 +62,11 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     generatePossibleIngredientProductions({level, chain});
 
   for (const ingredients of ingredientProductions) {
-    for (const subSkill of generatePossiblePokemonSubSkills({level, subSkillData})) {
+    for (const subSkill of generatePossiblePokemonSubSkills({
+      level,
+      subSkillData,
+      friendshipLevel,
+    })) {
       for (const nature of natureIds) {
         samples++;
 

@@ -261,6 +261,9 @@
       "FirstAppearance": "First Appearance - {mapName}",
       "LastSleepStyle": "Last Sleep Style - {mapName}"
     },
+    "Rating": {
+      "FriendshipLevel": "Friendship Level"
+    },
     "Cooking": {
       "Energy": "Final Strength",
       "Ingredient": {
