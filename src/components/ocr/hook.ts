@@ -69,7 +69,7 @@ export const useOcr = ({
     const tesseractLang = ocrLocaleToTesseract[locale];
     const worker = await createWorker(
       tesseractLang,
-      OEM.TESSERACT_LSTM_COMBINED,
+      OEM.DEFAULT,
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
