@@ -1,7 +1,7 @@
 import {patreonHeaderKeyOfSignature, patreonHeaderKeyOfTrigger} from '@/handler/webhook/patreon/const';
-import {handlePatreonPledgeCreated} from '@/handler/webhook/patreon/create/main';
-import {handlePatreonPledgeModified} from '@/handler/webhook/patreon/modify/main';
-import {throwIfSignatureFailed} from '@/handler/webhook/patreon/utils';
+import {handlePatreonPledgeCreated} from '@/handler/webhook/patreon/event/create';
+import {handlePatreonPledgeModified} from '@/handler/webhook/patreon/event/modify';
+import {throwIfPatreonSignatureFailed} from '@/handler/webhook/patreon/utils';
 import {PatreonEventType} from '@/types/subscription/patreon/common/enum';
 import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 
@@ -9,7 +9,7 @@ import {PatreonWebhookPayload} from '@/types/subscription/patreon/webhook';
 export const handlePatreonWebhook = async (request: Request) => {
   const message = await request.text();
 
-  throwIfSignatureFailed({message, expected: request.headers.get(patreonHeaderKeyOfSignature)});
+  throwIfPatreonSignatureFailed({message, expected: request.headers.get(patreonHeaderKeyOfSignature)});
 
   const messageObj = JSON.parse(message) as PatreonWebhookPayload;
   const trigger = request.headers.get(patreonHeaderKeyOfTrigger) as PatreonEventType | null;

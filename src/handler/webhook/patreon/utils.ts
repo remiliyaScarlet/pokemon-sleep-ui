@@ -1,12 +1,12 @@
 import crypto from 'crypto';
 
 
-type ThrowIfSignatureFailedOpts = {
+type ThrowIfPatreonSignatureFailedOpts = {
   message: string,
   expected: string | null,
 };
 
-export const throwIfSignatureFailed = ({message, expected}: ThrowIfSignatureFailedOpts) => {
+export const throwIfPatreonSignatureFailed = ({message, expected}: ThrowIfPatreonSignatureFailedOpts) => {
   if (!expected) {
     throw new Error(`Patreon signature is empty / message: ${message}`);
   }
