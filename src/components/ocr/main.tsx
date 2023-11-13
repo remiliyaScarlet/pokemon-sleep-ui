@@ -26,7 +26,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
   const [image, setImage] = React.useState<string | null>(null);
   const [settings, setSettings] = React.useState<OcrSettings>({
     locale: 'en',
-    tolerance: 6,
+    tolerance: 25,
   });
 
   const t = useTranslations('UI.Ocr');
