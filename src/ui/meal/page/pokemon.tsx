@@ -14,7 +14,12 @@ export const MealPokemonOfIngredient = (props: MealCommonProps) => {
   return (
     <>
       <Flex className="info-section">
-        <PokemonLevelSlider value={level} max={pokemonMaxLevel} setValue={setLevel}/>
+        <PokemonLevelSlider
+          value={level}
+          max={pokemonMaxLevel}
+          setValue={setLevel}
+          presetLevels={[...ingredientLevels]}
+        />
       </Flex>
       {ingredientLevels
         .map((ingredientLevel): MealPokemonOfIngredientLevelProps => ({
