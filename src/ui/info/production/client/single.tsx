@@ -61,14 +61,14 @@ export const ProducingParamsSingle = ({
                 <PokemonIngredientRate split={ingredientSplit} dimension={dimension}/>
                 <ValueError valueError={formatFloat(error.ingredient)} className="text-xs"/>
               </Flex>
-              <Flex noFullWidth direction="row" className={clsx('gap-1', !skillPercent && 'opacity-20')}>
-                <PokemonMainSkillTriggerRate ratePercent={skillPercent} dimension={dimension}/>
-              </Flex>
-            </Flex>
-            <Flex direction="row" className="justify-between gap-1">
               <Flex noFullWidth direction="row" className="items-center gap-1">
                 <DocumentTextIcon className={dimension}/>
                 <div>{formatInt(dataCount)}</div>
+              </Flex>
+            </Flex>
+            <Flex direction="row" className="justify-between gap-1">
+              <Flex noFullWidth className={clsx(!skillPercent && 'opacity-20')}>
+                <PokemonMainSkillTriggerRate ratePercent={skillPercent} dimension={dimension}/>
               </Flex>
               <Flex noFullWidth direction="row" className="items-end gap-1">
                 <PokemonMainSkillValue value={skillValue} dimension={dimension}/>

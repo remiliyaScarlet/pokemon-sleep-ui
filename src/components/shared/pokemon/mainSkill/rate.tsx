@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
 import {Dimension} from '@/types/style';
-import {formatFloat3} from '@/utils/number/format';
+import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
 type Props = {
@@ -19,7 +19,13 @@ export const PokemonMainSkillTriggerRate = ({ratePercent, dimension}: Props) => 
   return (
     <Flex direction="row" noFullWidth className="items-center gap-1">
       <GenericMainSkillIcon alt={t('MainSkillTriggerRate')} dimension={dimension}/>
-      <div>{formatFloat3(ratePercent)}%</div>
+      <span>
+        {formatFloat3(ratePercent)}%
+        {
+          ratePercent &&
+          <>&nbsp;(<span className="text-xs">1:</span>{formatFloat(1 / (ratePercent / 100))})</>
+        }
+      </span>
     </Flex>
   );
 };
