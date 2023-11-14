@@ -5,21 +5,25 @@ import PuzzlePieceIcon from '@heroicons/react/24/outline/PuzzlePieceIcon';
 import ServerIcon from '@heroicons/react/24/outline/ServerIcon';
 
 import {Grid} from '@/components/layout/grid';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
 import {UserSettingsAppBuildInfo} from '@/ui/base/navbar/userSettings/sections/app/build';
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 
 
-type Props = {
-  serverBuildId: string,
-};
-
-export const UserSettingsAppInfo = ({serverBuildId}: Props) => {
+export const UserSettingsAppInfo = () => {
   return (
     <UserSettingsSection titleIcon={<PuzzlePieceIcon/>}>
-      <UserSettingsAppBuildInfo
-        icon={<ServerIcon/>}
-        buildId={serverBuildId}
+      <UserDataLazyLoad
+        options={{type: 'buildId'}}
+        loadingText="Server Build"
+        content={(data) => (
+          <UserSettingsAppBuildInfo
+            icon={<ServerIcon/>}
+            buildId={data?.buildId}
+          />
+        )}
+        smallLoading
       />
       <UserSettingsAppBuildInfo
         icon={<ComputerDesktopIcon/>}

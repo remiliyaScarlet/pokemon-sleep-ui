@@ -8,7 +8,7 @@ import {UserSettingsAppInfoIcon} from '@/ui/base/navbar/userSettings/sections/ap
 
 type Props = {
   icon: React.ReactNode,
-  buildId: string,
+  buildId: string | undefined,
 };
 
 export const UserSettingsAppBuildInfo = ({icon, buildId}: Props) => {
@@ -17,7 +17,7 @@ export const UserSettingsAppBuildInfo = ({icon, buildId}: Props) => {
       <UserSettingsAppInfoIcon icon={icon}/>
       <UserSettingsAppInfoIcon icon={<WrenchIcon/>}/>
       <code className="truncate">
-        {buildId}
+        {buildId ?? '(N/A)'}
       </code>
     </Flex>
   );

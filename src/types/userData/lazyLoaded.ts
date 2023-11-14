@@ -16,4 +16,5 @@ export type UserLazyLoadedContent = {
   sleepdexOfPokemon: SleepdexMap,
   adminActivationCreate: string,
   adminActivationCheck: ActivationInfo | null,
+  buildId: string,
 };

@@ -112,6 +112,10 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     return null satisfies UserLazyLoadedData['adminActivationCheck'];
   }
 
+  if (type === 'buildId') {
+    return process.env.NEXT_PUBLIC_BUILD_ID satisfies UserLazyLoadedData['buildId'];
+  }
+
   console.error(`Unknown data type ${type satisfies never} to load data`);
   return undefined;
 };

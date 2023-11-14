@@ -76,7 +76,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
           }))}
         />
         <UserSettingsLanguage/>
-        <UserSettingsAppInfo serverBuildId={session.user.build}/>
+        <UserSettingsAppInfo/>
       </Flex>
     </PopupCommon>
   );

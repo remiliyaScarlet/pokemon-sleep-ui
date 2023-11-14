@@ -37,4 +37,7 @@ export type UserDataLoadingOpts = {
   opts: {
     key: string,
   },
+} | {
+  type: 'buildId',
+  opts?: never,
 };
