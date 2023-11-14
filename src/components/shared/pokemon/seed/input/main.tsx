@@ -69,7 +69,7 @@ export const SeedUsageInput = ({
           } satisfies SeedUsage))}
         />
       </Flex>
-      <Flex direction="row" noFullWidth center className="sm:ml-auto">
+      <Flex direction="row" noFullWidth center className="ml-auto">
         <GenericMainSkillIcon alt={t('MainSkill')}/>
         <LevelIcon/>
         <div>{expectedMainSkillLevel}</div>
