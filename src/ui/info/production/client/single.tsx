@@ -11,11 +11,11 @@ import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
 import {PokemonMainSkillTriggerRate} from '@/components/shared/pokemon/production/params/skillRate';
 import {PokemonMainSkillValue} from '@/components/shared/pokemon/production/params/skillValue';
+import {trustedDataCount} from '@/const/game/producingParams';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {Dimension} from '@/types/style';
 import {ProducingParamsBar} from '@/ui/info/production/client/bar';
-import {producingParamsDataCountAlertThreshold} from '@/ui/info/production/client/const';
 import {ProducingParamsMaximum} from '@/ui/info/production/client/type';
 import {formatFloat, formatFloat3, formatInt} from '@/utils/number/format';
 
@@ -48,7 +48,7 @@ export const ProducingParamsSingle = ({
       <FlexButton noFullWidth={false} onClick={onPokemonClicked} direction="col" className="group">
         <Flex direction="row" className={clsx(
           'items-center gap-1 p-1',
-          dataCount < producingParamsDataCountAlertThreshold && 'text-danger',
+          dataCount < trustedDataCount && 'text-danger',
         )}>
           <Flex noFullWidth className="relative h-10 w-10 shrink-0">
             <PokemonImage pokemonId={pokemonInfo.id} image="icon" isShiny={false}/>

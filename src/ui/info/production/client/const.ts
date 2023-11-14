@@ -9,5 +9,3 @@ export const producingParamsSortToI18nId: {
   ingredientRate: 'Sort.IngredientRate',
   skillRate: 'Stats.MainSkillTriggerRate',
 };
-
-export const producingParamsDataCountAlertThreshold = 20;
