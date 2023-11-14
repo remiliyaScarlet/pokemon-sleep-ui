@@ -9,7 +9,7 @@ import {formatFloat3} from '@/utils/number/format';
 
 
 type Props = {
-  ratePercent: number,
+  ratePercent: number | null,
   dimension?: Dimension,
 };
 
