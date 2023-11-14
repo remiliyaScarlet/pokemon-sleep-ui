@@ -9,7 +9,7 @@ import {FlexLink} from '@/components/layout/flex/link';
 import {PokemonGallery} from '@/components/shared/pokemon/gallery/main';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
-import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -67,7 +67,7 @@ export const PokemonMeta = (props: PokemonProps) => {
           <FlexLink href="/info/production" center className={clsx(
             'button-clickable-bg group gap-2 p-1 px-2 text-lg',
           )}>
-            <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit} noIcon/>
+            <PokemonIngredientRate params={pokemonProducingParams} noIcon/>
           </FlexLink>
         </PokemonMetaSection>
         <PokemonMetaSection

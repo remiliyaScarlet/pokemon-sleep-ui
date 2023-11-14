@@ -5,7 +5,7 @@ import {clsx} from 'clsx';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
@@ -40,7 +40,7 @@ export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox
           </div>
         </Flex>
         <div className="px-1">
-          <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit}/>
+          <PokemonIngredientRate params={pokemonProducingParams}/>
         </div>
       </Flex>
     </Flex>

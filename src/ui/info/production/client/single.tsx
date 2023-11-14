@@ -8,9 +8,9 @@ import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {ValueError} from '@/components/shared/error';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
-import {PokemonMainSkillTriggerRate} from '@/components/shared/pokemon/mainSkill/rate';
-import {PokemonMainSkillValue} from '@/components/shared/pokemon/mainSkill/value/base';
-import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
+import {PokemonMainSkillTriggerRate} from '@/components/shared/pokemon/production/params/skillRate';
+import {PokemonMainSkillValue} from '@/components/shared/pokemon/production/params/skillValue';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {Dimension} from '@/types/style';
@@ -37,8 +37,6 @@ export const ProducingParamsSingle = ({
 }: Props) => {
   const {
     dataCount,
-    ingredientSplit,
-    skillValue,
     skillPercent,
     error,
   } = params;
@@ -58,20 +56,20 @@ export const ProducingParamsSingle = ({
           <Flex center className="gap-1">
             <Flex direction="row" className="justify-between gap-1">
               <Flex noFullWidth direction="row" className="items-end gap-1 whitespace-nowrap">
-                <PokemonIngredientRate split={ingredientSplit} dimension={dimension}/>
+                <PokemonIngredientRate params={params} dimension={dimension}/>
                 <ValueError valueError={formatFloat(error.ingredient)} className="text-xs"/>
               </Flex>
-              <Flex noFullWidth direction="row" className="items-center gap-1">
-                <DocumentTextIcon className={dimension}/>
+              <Flex noFullWidth direction="row" className="items-center gap-0.5">
+                <DocumentTextIcon className="h-4 w-4"/>
                 <div>{formatInt(dataCount)}</div>
               </Flex>
             </Flex>
             <Flex direction="row" className="justify-between gap-1">
               <Flex noFullWidth className={clsx(!skillPercent && 'opacity-20')}>
-                <PokemonMainSkillTriggerRate ratePercent={skillPercent} dimension={dimension}/>
+                <PokemonMainSkillTriggerRate params={params} dimension={dimension}/>
               </Flex>
               <Flex noFullWidth direction="row" className="items-end gap-1">
-                <PokemonMainSkillValue value={skillValue} dimension={dimension}/>
+                <PokemonMainSkillValue params={params} dimension={dimension}/>
                 <ValueError valueError={formatFloat3(error.skill)} className="text-xs"/>
               </Flex>
             </Flex>

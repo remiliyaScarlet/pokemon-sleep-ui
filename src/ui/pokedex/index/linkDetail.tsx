@@ -10,9 +10,9 @@ import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
-import {PokemonMainSkillValue} from '@/components/shared/pokemon/mainSkill/value/base';
-import {PokemonMainSkillTriggerValue} from '@/components/shared/pokemon/mainSkill/value/trigger';
-import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
+import {PokemonMainSkillTriggerValue} from '@/components/shared/pokemon/mainSkill/triggerValue';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
+import {PokemonMainSkillValue} from '@/components/shared/pokemon/production/params/skillValue';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc/main';
 import {isPokedexSortExclusion} from '@/components/shared/pokemon/sorter/utils';
@@ -44,7 +44,6 @@ export const PokedexLinkDetail = React.memo(({
     specialty,
     sleepType,
   } = pokemon;
-  const {ingredientSplit, skillValue} = pokemonProducingParams;
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
@@ -74,7 +73,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredientRate') {
-    return <PokemonIngredientRate split={ingredientSplit}/>;
+    return <PokemonIngredientRate params={pokemonProducingParams}/>;
   }
 
   if (display === 'sleepType') {
@@ -90,7 +89,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'mainSkillValue') {
-    return <PokemonMainSkillValue value={skillValue}/>;
+    return <PokemonMainSkillValue params={pokemonProducingParams}/>;
   }
 
   const evolutionCount = getEvolutionCountFromPokemonInfo({pokemon});

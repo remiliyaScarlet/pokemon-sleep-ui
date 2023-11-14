@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokeInBoxMeta} from '@/components/shared/pokebox/meta';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
-import {PokemonIngredientRate} from '@/components/shared/pokemon/production/ingredientRate';
+import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxLevel} from '@/ui/team/pokebox/content/pokeInBox/common/level';
@@ -57,7 +57,7 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
         />
       </div>
       <Flex noFullWidth center className="w-40">
-        <PokemonIngredientRate split={producingParams.ingredientSplit}/>
+        <PokemonIngredientRate params={producingParams}/>
       </Flex>
     </>
   );
