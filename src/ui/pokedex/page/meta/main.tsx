@@ -64,7 +64,11 @@ export const PokemonMeta = (props: PokemonProps) => {
           title={t2('Sort.IngredientRate')}
           contentClassName="flex justify-center"
         >
-          <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit} noIcon/>
+          <FlexLink href="/info/production" center className={clsx(
+            'button-clickable-bg group gap-2 p-1 px-2 text-lg',
+          )}>
+            <PokemonIngredientRate split={pokemonProducingParams.ingredientSplit} noIcon/>
+          </FlexLink>
         </PokemonMetaSection>
         <PokemonMetaSection
           title={t2('Info.Stats')}
