@@ -3,7 +3,7 @@ import React from 'react';
 import {useSession} from 'next-auth/react';
 
 import {Failed} from '@/components/icons/failed';
-import {Loading} from '@/components/icons/loading';
+import {Loading, LoadingText} from '@/components/icons/loading';
 import {useUserDataActor} from '@/hooks/userData/actor';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
@@ -14,6 +14,7 @@ type Props = {
   loadingText: string,
   content: (data: UserLazyLoadedData | null | undefined, session: ReturnType<typeof useSession>) => React.ReactNode,
   sessionOverride?: ReturnType<typeof useSession>,
+  smallLoading?: boolean,
 } & ({
   actDeps: React.DependencyList,
   toAct: () => boolean,
@@ -22,7 +23,15 @@ type Props = {
   toAct?: never,
 });
 
-export const UserDataLazyLoad = ({options, loadingText, content, sessionOverride, actDeps, toAct}: Props) => {
+export const UserDataLazyLoad = ({
+  options,
+  loadingText,
+  content,
+  sessionOverride,
+  smallLoading,
+  actDeps,
+  toAct,
+}: Props) => {
   const {act, status, session} = useUserDataActor({
     override: sessionOverride,
     statusNoReset: true,
@@ -52,10 +61,18 @@ export const UserDataLazyLoad = ({options, loadingText, content, sessionOverride
     // Loading data through `update()` of the session sets the status to `loading`
     // So this has to be placed before `session.status === `loading` to show correct loading text
     if (status === 'processing') {
+      if (smallLoading) {
+        return <LoadingText text={loadingText} dimension="h-4 w-4"/>;
+      }
+
       return <Loading text={loadingText}/>;
     }
 
     if (session.status === 'loading') {
+      if (smallLoading) {
+        return <LoadingText text="User" dimension="h-4 w-4"/>;
+      }
+
       return <Loading text="User"/>;
     }
 
