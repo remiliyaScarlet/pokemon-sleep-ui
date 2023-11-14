@@ -2,11 +2,11 @@ import React from 'react';
 
 import CloudArrowUpIcon from '@heroicons/react/24/outline/CloudArrowUpIcon';
 import DocumentTextIcon from '@heroicons/react/24/outline/DocumentTextIcon';
-import format from 'date-fns/format';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonProducingParamsMeta} from '@/types/game/pokemon/producing';
 import {Dimension} from '@/types/style';
+import {ProducingParamsMetaLastUpdated} from '@/ui/info/production/meta/lastUpdated';
 import {formatInt} from '@/utils/number/format';
 
 
@@ -31,7 +31,7 @@ export const ProducingParamsMeta = ({meta}: Props) => {
       </Flex>
       <Flex noFullWidth direction="row" className="items-center gap-1">
         <CloudArrowUpIcon className={dimension}/>
-        <div>{format(lastUpdated * 1000, 'yyyy-MM-dd HH:mm:ss')}</div>
+        <ProducingParamsMetaLastUpdated epochMs={lastUpdated * 1000}/>
       </Flex>
     </Flex>
   );

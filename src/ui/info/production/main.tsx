@@ -10,7 +10,7 @@ import {getPokemonProducingParamsMeta} from '@/controller/pokemon/producingMeta'
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {ProducingParamsClient} from '@/ui/info/production/client/main';
-import {ProducingParamsMeta} from '@/ui/info/production/meta';
+import {ProducingParamsMeta} from '@/ui/info/production/meta/main';
 import {ProducingParamsNotice} from '@/ui/info/production/notice';
 import {ProducingParamsDataProps} from '@/ui/info/production/type';
 
