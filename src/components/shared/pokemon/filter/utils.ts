@@ -51,15 +51,15 @@ const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilter
     id: pokemon.skill,
   }),
   evolutionStage: ({filter, pokemon}) => {
-    if (!isFilterMismatchOnSingle({
+    if (!!filter.evolutionStage.final) {
+      return !!pokemon.evolution.next.length;
+    }
+
+    return isFilterMismatchOnSingle({
       filter,
       filterKey: 'evolutionStage',
       id: pokemon.evolution.stage,
-    })) {
-      return false;
-    }
-
-    return !!filter.evolutionStage.final && !!pokemon.evolution.next.length;
+    });
   },
 };
 
