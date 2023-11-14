@@ -51,7 +51,11 @@ export const toActivationPayloadFromDiscord = async (
   }
   /* eslint-enable no-console */
 
-  const activation = getActivationFromDiscordSubscriber(opts);
+  let activation = existedActivationProperties?.activation ?? null;
+  if (!existedActivationProperties?.isActivationLocked) {
+    activation = getActivationFromDiscordSubscriber(opts);
+  }
+
   if (!activation) {
     return {contact: userId, activationProperties: null};
   }
