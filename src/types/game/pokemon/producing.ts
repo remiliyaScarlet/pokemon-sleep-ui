@@ -8,27 +8,20 @@ export type PokemonProducingItem<TId> = {
 
 export type PokemonProducingParamsType = 'ingredient' | 'skill';
 
-export const pokemonProducingParamsConfidenceLevel = [
-  2, // Very Good
-  1, // Good
-  0, // Decent
-  -1, // Poor
-  -2, // Very Poor
-];
-
-export type PokemonProducingParamsConfidenceLevel = typeof pokemonProducingParamsConfidenceLevel[number];
-
-export type PokemonProducingParamsConfidence = {
-  [key in PokemonProducingParamsType]: PokemonProducingParamsConfidenceLevel | null
-};
+export type PokemonProducingParamsError = {[key in PokemonProducingParamsType]: number | null};
 
 export type PokemonProducingParams = {
   pokemonId: PokemonId,
   dataCount: number,
   ingredientSplit: number,
   skillValue: number,
-  skillPercent: number,
-  confidence: PokemonProducingParamsConfidence,
+  skillPercent: number | null,
+  error: PokemonProducingParamsError,
 };
 
 export type PokemonProducingParamsMap = {[pokemonId in PokemonId]?: PokemonProducingParams};
+
+export type PokemonProducingParamsMeta = {
+  dataCount: number,
+  lastUpdated: number,
+};

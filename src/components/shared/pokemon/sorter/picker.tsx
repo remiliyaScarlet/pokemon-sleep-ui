@@ -29,7 +29,7 @@ export const PokemonSortingPicker = ({sort, updateSort, exclude}: Props) => {
       }
       ids={[...pokemonSortType].filter((sortType) => !exclude?.includes(sortType))}
       idToButton={(sort) => t(sortTypeToI18nId[sort])}
-      idToItemId={(sort) => `sortType-${sort}`}
+      idToItemId={(sort) => `sortType${sort}`}
     />
   );
 };

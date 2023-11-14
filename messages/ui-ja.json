@@ -165,6 +165,9 @@
       },
       "SubSkill": {
         "Title": "サブスキル"
+      },
+      "ProducingParams": {
+        "Title": "生産性図鑑"
       }
     },
     "Item": {
@@ -237,7 +240,8 @@
         "Recruit": "仲間になる",
         "TimeToFullPack": "所持上限に達するまでの時間",
         "MainSkillValue": "スキル指数",
-        "MainSkillTriggerValue": "スキル生産指数"
+        "MainSkillTriggerValue": "スキル生産指数",
+        "MainSkillTriggerRate": "スキル発動率"
       },
       "Sort": {
         "Id": "ID",
@@ -336,6 +340,9 @@
     "Sleepdex": {
       "IncenseOnly": "お香限定",
       "Unreleased": "未実装"
+    },
+    "ProducingParams": {
+      "Notice": "- このページは毎日更新されます\n- スキル指数はポケモンのレベルに影響されません\n  - スキル生産指数については [ポケモン図鑑](https://pks.raenonx.cc/pokedex) や [スキル発動分析](https://pks.raenonx.cc/team/mainskill) を参照してください\n- スキル発動率が空欄のポケモンは、値の確証がとれていないものです\n- スペシャルサンクス:\n  - `@jc`, `@goobliss`, `@harold_grant` (Mathcord): 計算モデル構築・関連データ集積\n  - `@calpistori`: 検査・データ照合"
     }
   },
   "Ocr": {

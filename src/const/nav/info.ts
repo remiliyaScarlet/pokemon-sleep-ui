@@ -4,6 +4,12 @@ import {NavEntryLink} from '@/types/nav';
 export const navEntriesForInfo: NavEntryLink[] = [
   {
     type: 'link',
+    href: '/info/production',
+    imageSrc: '/images/generic/speed.png',
+    i18nTextId: 'Info.ProducingParams.Title',
+  },
+  {
+    type: 'link',
     href: '/info/pot',
     imageSrc: '/images/generic/pot.png',
     i18nTextId: 'Info.Pot.Title',

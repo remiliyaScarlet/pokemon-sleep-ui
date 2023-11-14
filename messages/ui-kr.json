@@ -165,6 +165,9 @@
       },
       "SubSkill": {
         "Title": "서브 스킬"
+      },
+      "ProducingParams": {
+        "Title": "Production Rates"
       }
     },
     "Item": {
@@ -237,7 +240,8 @@
         "Recruit": "동료가 되어",
         "TimeToFullPack": "주머니가 꽉 찰 때 까지 필요한 시간",
         "MainSkillValue": "스킬 확률",
-        "MainSkillTriggerValue": "스킬 발동률"
+        "MainSkillTriggerValue": "스킬 발동지",
+        "MainSkillTriggerRate": "스킬 발동률"
       },
       "Sort": {
         "Id": "ID",
@@ -336,6 +340,9 @@
     "Sleepdex": {
       "IncenseOnly": "향로 전용",
       "Unreleased": "미구현"
+    },
+    "ProducingParams": {
+      "Notice": "- This page updates daily.\n- Skill value does not affect by level. Check [Pokedex](https://pks.raenonx.cc/pokedex) or [Main Skill Trigger Analysis](https://pks.raenonx.cc/team/mainskill) for skill trigger value.\n- Skill trigger rate without value means that it's not yet verified.\n- Credit to @jc, @goobliss, @harold_grant in Mathcord for providing the model and related information; @calpistori for testing and data verification."
     }
   },
   "Ocr": {

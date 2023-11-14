@@ -165,6 +165,9 @@
       },
       "SubSkill": {
         "Title": "Nebentalent"
+      },
+      "ProducingParams": {
+        "Title": "Production Rates"
       }
     },
     "Item": {
@@ -238,7 +241,8 @@
         "Recruit": "Befreundet",
         "TimeToFullPack": "Zeit bis Inventar voll ist",
         "MainSkillValue": "Talentwert",
-        "MainSkillTriggerValue": "Talent-Auslösefrequenzwert"
+        "MainSkillTriggerValue": "Talent-Auslösefrequenzwert",
+        "MainSkillTriggerRate": "Skill Trigger Rate"
       },
       "Sort": {
         "Id": "ID",
@@ -337,6 +341,9 @@
     "Sleepdex": {
       "IncenseOnly": "Nur Rauch",
       "Unreleased": "Unveröffentlicht"
+    },
+    "ProducingParams": {
+      "Notice": "- This page updates daily.\n- Skill value does not affect by level. Check [Pokedex](https://pks.raenonx.cc/pokedex) or [Main Skill Trigger Analysis](https://pks.raenonx.cc/team/mainskill) for skill trigger value.\n- Skill trigger rate without value means that it's not yet verified.\n- Credit to @jc, @goobliss, @harold_grant in Mathcord for providing the model and related information; @calpistori for testing and data verification."
     }
   },
   "Ocr": {

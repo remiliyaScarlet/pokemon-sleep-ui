@@ -95,6 +95,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Nature: I18nMetadata,
         MainSkill: PageWithIndividual,
         SubSkill: I18nMetadata,
+        ProducingParams: I18nMetadata,
       },
       Item: {
         Index: I18nMetadata,
@@ -142,6 +143,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           TimeToFullPack: string,
           MainSkillValue: string,
           MainSkillTriggerValue: string,
+          MainSkillTriggerRate: string,
         },
         Sort: {
           Id: string,
@@ -240,6 +242,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Sleepdex: {
         IncenseOnly: string,
         Unreleased: string,
+      },
+      ProducingParams: {
+        Notice: string,
       },
     },
     Ocr: {
