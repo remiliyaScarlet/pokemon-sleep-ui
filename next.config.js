@@ -6,7 +6,8 @@ const withNextI18n = require('next-intl/plugin')();
 const buildId = childProcess
   .execSync('git show -s --format="%h-%cI"')
   .toString()
-  .trim();
+  .trim()
+  .replaceAll(':', '-');
 
 
 module.exports = withNextI18n({
