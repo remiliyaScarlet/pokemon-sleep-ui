@@ -313,8 +313,8 @@
           "Skills": "Talente"
         },
         "Preview": {
-          "Level": "Previewing Level",
-          "FinalEvolution": "Previewing Final Evolution"
+          "Level": "Vorschau des Levels",
+          "FinalEvolution": "Vorschau der finalen Evolution"
         }
       }
     },
@@ -348,8 +348,8 @@
       "Completed": "Abgeschlossen"
     },
     "Tolerance": {
-      "Title": "Tolerance",
-      "Tips": "Increase only if the image quality is bad. Higher value could decrease accuracy."
+      "Title": "Toleranz",
+      "Tips": "Erhöhe den Wert nur, wenn die Bildqualität schlecht ist. Ein höherer Wert könnte die Genauigkeit verringern."
     }
   },
   "Producing": {
