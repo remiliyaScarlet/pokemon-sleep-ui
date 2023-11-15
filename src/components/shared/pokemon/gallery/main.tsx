@@ -14,15 +14,21 @@ import {PokemonGalleryCommonProps} from '@/components/shared/pokemon/gallery/typ
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
-import {getAvailableSleepStylesFromNormal} from '@/utils/game/sleepdex';
+import {getAvailableSleepStylesFromNormal, getAvailableSleepStylesFromSpecial} from '@/utils/game/sleepdex';
 
 
-export const PokemonGallery = ({pokemon, pokemonBranches, sleepStyles}: PokemonGalleryCommonProps) => {
+export const PokemonGallery = ({
+  pokemon,
+  pokemonBranches,
+  sleepStyles,
+  sleepStylesSpecial,
+}: PokemonGalleryCommonProps) => {
   const t = useTranslations('UI.Common');
 
   const imageOptions: PokemonImageType[] = React.useMemo(() => [
     'portrait',
     ...getAvailableSleepStylesFromNormal(sleepStyles),
+    ...getAvailableSleepStylesFromSpecial(sleepStylesSpecial),
   ], [sleepStyles]);
   const [isShiny, setShiny] = React.useState(false);
   const [currentImage, setCurrentImage] = React.useState<PokemonImageType>('portrait');
