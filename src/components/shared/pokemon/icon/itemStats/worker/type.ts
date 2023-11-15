@@ -24,5 +24,3 @@ export type PokemonItemStatsCalcResult = {
   ingredients: IngredientProduction[],
   dailyTotalEnergy: number,
 };
-
-export type PokemonItemStatsWorkerReturn = PokemonItemStatsCalcResult[];

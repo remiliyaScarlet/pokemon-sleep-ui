@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/item';
+import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/fromPokedex';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';

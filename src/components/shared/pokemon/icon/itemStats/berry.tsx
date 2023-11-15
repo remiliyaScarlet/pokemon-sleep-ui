@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/item';
+import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/fromPokedex';
 import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {BerryData, BerryDataMap} from '@/types/game/berry';

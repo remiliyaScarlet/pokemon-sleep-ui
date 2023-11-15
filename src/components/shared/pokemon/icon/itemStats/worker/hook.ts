@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {
+  PokemonItemStatsCalcResult,
   PokemonItemStatsWorkerOpts,
-  PokemonItemStatsWorkerReturn,
 } from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {useWorker} from '@/hooks/worker';
 
@@ -22,9 +22,9 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
   const [
     producingStats,
     setProducingStats,
-  ] = React.useState<PokemonItemStatsWorkerReturn>([]);
+  ] = React.useState<PokemonItemStatsCalcResult[]>([]);
 
-  const {work} = useWorker<PokemonItemStatsWorkerOpts, PokemonItemStatsWorkerReturn>({
+  const {work} = useWorker<PokemonItemStatsWorkerOpts, PokemonItemStatsCalcResult[]>({
     workerName: 'Pokemon Stats Calculator',
     generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
     onCompleted: (result) => {

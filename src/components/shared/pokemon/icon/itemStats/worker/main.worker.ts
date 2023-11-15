@@ -1,7 +1,6 @@
 import {
   PokemonItemStatsCalcResult,
   PokemonItemStatsWorkerOpts,
-  PokemonItemStatsWorkerReturn,
 } from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
@@ -21,7 +20,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
     level,
   } = data;
 
-  const producingStats: PokemonItemStatsWorkerReturn = pokemonIngredientProduction
+  const producingStats: PokemonItemStatsCalcResult[] = pokemonIngredientProduction
     .flatMap(({pokemonId, ingredientChainId}) => {
       const pokemon = pokedex[pokemonId];
 
