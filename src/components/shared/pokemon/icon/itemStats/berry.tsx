@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
-import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/fromPokedex';
+import {PokemonIconsItemStatsFromPokedex} from '@/components/shared/pokemon/icon/itemStats/base/fromPokedex';
 import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
@@ -23,7 +23,7 @@ export const PokemonIconsBerryStats = ({
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <PokemonIconsItemStats
+    <PokemonIconsItemStatsFromPokedex
       targetSpecialty={specialtyIdMap.berry}
       getItemRate={({berry}) => berry}
       getIcon={({berry}, dimension) => (

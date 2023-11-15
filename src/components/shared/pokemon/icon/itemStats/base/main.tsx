@@ -10,8 +10,8 @@ import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
-import {usePokemonProducingStats} from '@/components/shared/pokemon/icon/itemStats/worker/hook';
-import {PokemonItemStatsWorkerOpts} from '@/components/shared/pokemon/icon/itemStats/worker/type';
+import {PokemonIconsItemStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/base/type';
+import {PokemonItemStatsCalcResult} from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
@@ -19,37 +19,25 @@ import {usePokemonProducingRateSingleDisplay} from '@/components/shared/pokemon/
 import {PokemonProducingRateSingleDisplaySwitch} from '@/components/shared/pokemon/production/single/input';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
-import {IngredientProduction} from '@/types/game/pokemon/ingredient';
-import {PokemonProducingRate, ProducingRateOfStates} from '@/types/game/producing/rate';
-import {Dimension} from '@/types/style';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = PokemonItemStatsWorkerOpts & {
-  getItemRate: (pokemonRate: PokemonProducingRate) => ProducingRateOfStates | undefined,
-  getIcon: (pokemon: PokemonInfo, dimension: Dimension) => React.ReactNode,
-  targetSpecialty: PokemonSpecialtyId,
-  itemAlt: string,
-  itemImageSrc: string,
-  isProductionIncluded?: (productions: IngredientProduction[]) => boolean,
+type Props = PokemonIconsItemStatsCommonProps & {
+  loading: boolean,
+  producingStats: PokemonItemStatsCalcResult[],
 };
 
-export const PokemonIconsItemStats = ({
+export const PokemonIconsItemStatsBase = ({
   getItemRate,
   getIcon,
   targetSpecialty,
   itemAlt,
   itemImageSrc,
   isProductionIncluded,
-  ...props
+  loading,
+  producingStats,
 }: Props) => {
-  const [loading, setLoading] = React.useState(false);
   const {state, setState, showPokemon} = usePokemonLinkPopup();
-  const producingStats = usePokemonProducingStats({
-    setLoading,
-    ...props,
-  });
   const control = usePokemonProducingRateSingleDisplay();
 
   const t = useTranslations('Game');

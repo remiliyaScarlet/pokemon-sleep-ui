@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {PokemonIconsItemStats} from '@/components/shared/pokemon/icon/itemStats/fromPokedex';
+import {PokemonIconsItemStatsFromPokedex} from '@/components/shared/pokemon/icon/itemStats/base/fromPokedex';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -25,7 +25,7 @@ export const PokemonIconsIngredientStats = ({
   }
 
   return (
-    <PokemonIconsItemStats
+    <PokemonIconsItemStatsFromPokedex
       targetSpecialty={specialtyIdMap.ingredient}
       getItemRate={(pokemonRate) => pokemonRate.ingredient[ingredient.id]}
       getIcon={(_, dimension) => (
