@@ -4,6 +4,7 @@ import LanguageIcon from '@heroicons/react/24/outline/LanguageIcon';
 import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
+import {useBeforeunload} from 'react-beforeunload';
 
 import {useRouter} from '@/components/i18n';
 import {InputBox} from '@/components/input/box';
@@ -48,6 +49,8 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
     statusNoReset: true,
   });
   const t = useTranslations('UI.InPage.Docs');
+
+  useBeforeunload((e) => e.preventDefault());
 
   if (!actAsync) {
     return null;
