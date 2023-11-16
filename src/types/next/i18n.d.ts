@@ -33,6 +33,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Map: string,
       MainSkill: string,
       MaxCarry: string,
+      Pokebox: string,
       Rank: string,
       Rewards: string,
       Shiny: string,
