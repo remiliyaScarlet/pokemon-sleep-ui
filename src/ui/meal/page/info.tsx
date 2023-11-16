@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {MealMeta} from '@/components/shared/meal/meta';

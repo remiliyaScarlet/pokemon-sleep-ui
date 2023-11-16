@@ -3,9 +3,9 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {AnalysisPageParams} from '@/app/[locale]/analysis/[id]/page';
+import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
-import {I18nProvider} from '@/contexts/i18n';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';

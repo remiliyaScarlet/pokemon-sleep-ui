@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {I18nProvider} from '@/contexts/i18n';
+import {I18nProvider} from '@/components/i18n/provider';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {CmsModOnlyPageLayout} from '@/ui/base/layout/cmsModOnly';
 import {DocsNewClient} from '@/ui/docs/new/client';

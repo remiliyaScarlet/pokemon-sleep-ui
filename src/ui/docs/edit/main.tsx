@@ -2,7 +2,7 @@ import React from 'react';
 
 import {notFound} from 'next/navigation';
 
-import {I18nProvider} from '@/contexts/i18n';
+import {I18nProvider} from '@/components/i18n/provider';
 import {getDocBySlugForEdit} from '@/controller/docs';
 import {PageProps} from '@/types/next/page/common';
 import {DocsPageParams} from '@/types/next/page/docs';

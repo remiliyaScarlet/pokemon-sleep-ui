@@ -3,8 +3,8 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {Announcements} from '@/components/announcement/main';
+import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {I18nProvider} from '@/contexts/i18n';
 import {getMapIds} from '@/controller/mapMeta';
 import {NavBarClient} from '@/ui/base/navbar/client';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';

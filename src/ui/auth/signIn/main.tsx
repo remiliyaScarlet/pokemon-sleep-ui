@@ -4,7 +4,7 @@ import EnvelopeIcon from '@heroicons/react/24/outline/EnvelopeIcon';
 import {redirect} from 'next/navigation';
 import {getServerSession} from 'next-auth';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {DefaultPageProps} from '@/types/next/page/common';

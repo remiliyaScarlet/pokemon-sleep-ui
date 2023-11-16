@@ -3,7 +3,7 @@ import React from 'react';
 import CurrencyDollarIcon from '@heroicons/react/24/outline/CurrencyDollarIcon';
 import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
 import {DiscordLink} from '@/components/static/discord/link';
 import {DefaultPageProps} from '@/types/next/page/common';

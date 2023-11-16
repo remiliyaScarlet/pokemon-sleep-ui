@@ -5,7 +5,7 @@ import PencilIcon from '@heroicons/react/24/outline/PencilIcon';
 import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
-import {useRouter} from '@/components/i18n';
+import {useRouter} from '@/components/i18n/exports';
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexLink} from '@/components/layout/flex/link';

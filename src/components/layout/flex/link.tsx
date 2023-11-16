@@ -2,7 +2,7 @@ import {UrlObject} from 'url';
 
 import React, {HTMLAttributeAnchorTarget} from 'react';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {FlexCommonProps} from '@/components/layout/flex/type';
 import {getFlexStyles} from '@/components/layout/flex/utils';
 

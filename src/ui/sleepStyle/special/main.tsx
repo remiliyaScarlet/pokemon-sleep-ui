@@ -2,8 +2,8 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
+import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {I18nProvider} from '@/contexts/i18n';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {getSleepStyleSpecialMap} from '@/controller/sleepStyleSpecial';

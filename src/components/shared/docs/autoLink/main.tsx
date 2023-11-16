@@ -1,7 +1,7 @@
 import React from 'react';
 
+import {I18nProvider} from '@/components/i18n/provider';
 import {DocsAutoLinkClient} from '@/components/shared/docs/autoLink/client';
-import {I18nProvider} from '@/contexts/i18n';
 import {Locale} from '@/types/next/locale';
 
 

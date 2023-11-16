@@ -2,9 +2,9 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
+import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
 import {defaultStaminaCalcConfig, defaultStaminaSkillTrigger} from '@/const/user/settings';
-import {I18nProvider} from '@/contexts/i18n';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';

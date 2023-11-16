@@ -4,8 +4,8 @@ import {getServerSession} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
 import {SignIn} from '@/components/auth/signIn';
+import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {I18nProvider} from '@/contexts/i18n';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';

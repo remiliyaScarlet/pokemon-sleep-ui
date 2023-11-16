@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';

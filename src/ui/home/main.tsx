@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {Announcements} from '@/components/announcement/main';
+import {I18nProvider} from '@/components/i18n/provider';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {I18nProvider} from '@/contexts/i18n';
 import {getUserCount} from '@/controller/auth';
 import {getPaidUserCount} from '@/controller/user/activation/data';
 import {DefaultPageProps} from '@/types/next/page/common';

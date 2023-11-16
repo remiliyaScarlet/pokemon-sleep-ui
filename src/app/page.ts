@@ -1,4 +1,4 @@
-import {redirect} from '@/components/i18n';
+import {redirect} from '@/components/i18n/exports';
 import {defaultLocale} from '@/const/website';
 
 

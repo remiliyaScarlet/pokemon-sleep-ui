@@ -3,13 +3,13 @@ import React from 'react';
 import {getServerSession} from 'next-auth';
 
 import {AdsUnit} from '@/components/ads/main';
+import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex/common';
 import {MapUniqueWarning} from '@/components/shared/sleepStyle/common/uniqueWarning';
 import {MapPageClient} from '@/components/shared/sleepStyle/page/client';
 import {MapPageServerDataProps} from '@/components/shared/sleepStyle/page/type';
 import {authOptions} from '@/const/auth';
-import {I18nProvider} from '@/contexts/i18n';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';

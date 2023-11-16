@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {Dimension} from '@/types/style';

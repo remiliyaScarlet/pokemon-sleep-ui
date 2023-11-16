@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n';
+import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
 import {MealImage} from '@/components/shared/meal/image';
 import {MealLinkDetail} from '@/components/shared/meal/linkDetail';

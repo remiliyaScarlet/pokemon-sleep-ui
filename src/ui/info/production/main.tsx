@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {I18nProvider} from '@/components/i18n/provider';
 import {Flex} from '@/components/layout/flex/common';
-import {I18nProvider} from '@/contexts/i18n';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';

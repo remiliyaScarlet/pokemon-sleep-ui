@@ -2,7 +2,7 @@ import React from 'react';
 
 import {getServerSession} from 'next-auth';
 
-import {redirect} from '@/components/i18n';
+import {redirect} from '@/components/i18n/exports';
 import {authOptions} from '@/const/auth';
 import {isAdmin} from '@/controller/user/account/common';
 import {PageLayout} from '@/ui/base/layout/common';

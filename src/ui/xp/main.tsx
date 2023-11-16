@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
-import {I18nProvider} from '@/contexts/i18n';
 import {getAllExpDataSorted} from '@/controller/pokemon/exp';
 import {getAllExpMultiplierData} from '@/controller/pokemon/expMultiplier';
 import {getPokemonAsMap} from '@/controller/pokemon/info';

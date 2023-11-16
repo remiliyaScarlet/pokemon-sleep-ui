@@ -3,7 +3,7 @@ import React from 'react';
 
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
 
-import {usePathname} from '@/components/i18n';
+import {usePathname} from '@/components/i18n/exports';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';

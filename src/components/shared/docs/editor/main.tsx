@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 import {useBeforeunload} from 'react-beforeunload';
 
-import {useRouter} from '@/components/i18n';
+import {useRouter} from '@/components/i18n/exports';
 import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
