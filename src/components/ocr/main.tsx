@@ -44,7 +44,12 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
     }),
   });
 
-  const {status, progress, text} = state;
+  const {
+    error,
+    status,
+    progress,
+    text,
+  } = state;
 
   const ocrRunning = isOcrRunning(status);
 
@@ -55,6 +60,12 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
         <canvas id="output" ref={canvasRef}/>
       </div>
       <AdsUnit/>
+      {
+        error &&
+        <Flex className="text-rose-600 shadow-rose-600 dark:text-rose-500 dark:shadow-rose-500">
+          {error}
+        </Flex>
+      }
       <Flex className="items-center gap-1.5 md:flex-row">
         <FilterTextInput
           style="none"

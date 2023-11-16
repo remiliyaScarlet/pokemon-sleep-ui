@@ -19,6 +19,7 @@ export const useOcr = ({
   onError,
 }: UseOcrOpts): UseOcrReturn => {
   const [state, setState] = React.useState<OcrState>({
+    error: null,
     status: 'ready',
     progress: 0,
     text: null,
@@ -54,7 +55,13 @@ export const useOcr = ({
 
     const {locale, tolerance} = settings;
 
-    setState({status: 'thresholding', progress: 0, text: null, processedImage: null});
+    setState((original) => ({
+      ...original,
+      status: 'thresholding',
+      progress: 0,
+      text: null,
+      processedImage: null,
+    }));
     canvas.width = image.width;
     canvas.height = image.height;
 
@@ -65,7 +72,13 @@ export const useOcr = ({
     const processedImage = ocrThresholdImage({imageData, tolerance});
     ctx.putImageData(processedImage, 0, 0);
 
-    setState({status: 'loadingOcr', progress: 0, text: null, processedImage: null});
+    setState((original) => ({
+      ...original,
+      status: 'loadingOcr',
+      progress: 0,
+      text: null,
+      processedImage: null,
+    }));
     const tesseractLang = ocrLocaleToTesseract[locale];
     const worker = await createWorker(
       tesseractLang,
@@ -73,10 +86,29 @@ export const useOcr = ({
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
-            setState({status: 'recognizing', progress: progress * 100, text: null, processedImage: null});
+            setState((original) => ({
+              ...original,
+              status: 'recognizing',
+              progress: progress * 100,
+              text: null,
+              processedImage: null,
+            }));
           } else {
-            setState({status: 'loadingOcr', progress: 0, text: null, processedImage: null});
+            setState((original) => ({
+              ...original,
+              status: 'loadingOcr',
+              progress: 0,
+              text: null,
+              processedImage: null,
+            }));
           }
+        },
+        errorHandler: (error) => {
+          console.error('OCR Error', error);
+          setState((original) => ({
+            ...original,
+            error: JSON.stringify(error),
+          }));
         },
       },
     );
@@ -87,10 +119,22 @@ export const useOcr = ({
       tessedit_char_whitelist: whitelistChars,
     });
 
-    setState({status: 'recognizing', progress: 0, text: null, processedImage: null});
+    setState((original) => ({
+      ...original,
+      status: 'recognizing',
+      progress: 0,
+      text: null,
+      processedImage: null,
+    }));
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
-    setState({status: 'completed', progress: 100, text, processedImage});
+    setState((original) => ({
+      ...original,
+      status: 'completed',
+      progress: 100,
+      text,
+      processedImage,
+    }));
     await worker.terminate();
   }, [settings]);
 

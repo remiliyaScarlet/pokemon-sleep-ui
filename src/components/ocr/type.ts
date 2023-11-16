@@ -4,6 +4,8 @@ import {OcrLocale} from '@/types/ocr/locale';
 
 
 export type OcrState = {
+  error: string | null,
+} & ({
   status: 'ready' | 'thresholding' | 'loadingOcr',
   progress: 0,
   text: null,
@@ -18,7 +20,7 @@ export type OcrState = {
   progress: 100,
   text: string,
   processedImage: ImageData,
-};
+});
 
 export type OcrSettings = {
   locale: OcrLocale,
