@@ -21,16 +21,21 @@ import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateR
 import {isNotNullish} from '@/utils/type';
 
 
+type Props = PokemonItemStatsFromPokeboxCommonProps & {
+  reCalcDeps: React.DependencyList,
+};
+
 export const PokemonItemStatsFromPokeboxList = ({
   targetSpecialty,
   getIcon,
   pokedex,
   pokemonProducingParamsMap,
   berryDataMap,
-  filter,
   pokeInBoxList,
+  filter,
+  reCalcDeps,
   ...props
-}: PokemonItemStatsFromPokeboxCommonProps) => {
+}: Props) => {
   const {getItemRate, subSkillMap} = props;
 
   const t = useTranslations('Game');
@@ -76,7 +81,7 @@ export const PokemonItemStatsFromPokeboxList = ({
           dailyTotalEnergy: getTotalEnergyOfPokemonProducingRate(pokemonRate),
         };
       })
-  ), [pokeInBoxList]);
+  ), [pokeInBoxList, ...reCalcDeps]);
 
   return (
     <PokemonItemStatsList

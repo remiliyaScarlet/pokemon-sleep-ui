@@ -2,7 +2,6 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonItemStatsFromPokeboxList} from '@/components/shared/pokemon/icon/itemStats/base/fromPokebox/list';
 import {
@@ -16,10 +15,6 @@ type Props = PokemonItemStatsFromPokeboxCommonProps & {
 };
 
 export const PokemonItemStatsFromPokeboxContent = ({session, ...props}: Props) => {
-  if (session.status === 'loading') {
-    return <Loading text="Session"/>;
-  }
-
   if (!session.data?.user.activation?.premium) {
     return (
       <Flex center className="info-highlight p-3">
@@ -28,5 +23,5 @@ export const PokemonItemStatsFromPokeboxContent = ({session, ...props}: Props) =
     );
   }
 
-  return <PokemonItemStatsFromPokeboxList {...props}/>;
+  return <PokemonItemStatsFromPokeboxList {...props} reCalcDeps={[session]}/>;
 };
