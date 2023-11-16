@@ -7,7 +7,7 @@ import {PokemonItemStatsFromPokeboxList} from '@/components/shared/pokemon/icon/
 import {
   PokemonItemStatsFromPokeboxCommonProps,
 } from '@/components/shared/pokemon/icon/itemStats/base/fromPokebox/type';
-import {PremiumOnly} from '@/components/static/premiumOnly';
+import {PremiumOnlyNotice} from '@/components/static/premium/notice';
 
 
 type Props = PokemonItemStatsFromPokeboxCommonProps & {
@@ -18,7 +18,7 @@ export const PokemonItemStatsFromPokeboxContent = ({session, ...props}: Props) =
   if (!session.data?.user.activation?.premium) {
     return (
       <Flex center className="info-highlight p-3">
-        <PremiumOnly className="[&_a]:text-link"/>
+        <PremiumOnlyNotice className="[&_a]:text-link"/>
       </Flex>
     );
   }

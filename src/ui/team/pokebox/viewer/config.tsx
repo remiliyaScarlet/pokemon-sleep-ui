@@ -25,6 +25,7 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {RatingBasisSelectionNullable} from '@/components/shared/pokemon/rating/basis/selection/nullable';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
+import {PremiumIcon} from '@/components/static/premium/icon';
 import {usePremiumRequiredToast} from '@/hooks/toast/main';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
@@ -48,6 +49,8 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
   const {showPremiumRequiredToast} = usePremiumRequiredToast();
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
   const t2 = useTranslations('UI.InPage.Pokedex.Input');
+
+  const isPremium = !!session?.user.activation?.premium;
 
   return (
     <Collapsible state={viewCollapsible} classNameForHeight={inputSectionHeight} appear button={
@@ -164,7 +167,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
             id="pokeboxPreviewFinalEvo"
             active={filter.previewFinalEvolution}
             onClick={() => {
-              if (!session?.user.activation?.premium) {
+              if (!isPremium) {
                 showPremiumRequiredToast();
                 return;
               }
@@ -174,8 +177,9 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
                 previewFinalEvolution: !original.previewFinalEvolution,
               }));
             }}
-            className={clsx('group', getTextFilterButtonClass(filter.previewFinalEvolution))}
+            className={clsx('group gap-1', getTextFilterButtonClass(filter.previewFinalEvolution))}
           >
+            {!isPremium && <PremiumIcon/>}
             {t2('FinalEvolution')}
           </ToggleButton>
         </InputRow>

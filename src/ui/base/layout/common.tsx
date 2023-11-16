@@ -45,7 +45,9 @@ export const PageLayout = ({
           crossOrigin="anonymous"
         />
       }
-      <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
+      <I18nProvider locale={locale} namespaces={[]}>
+        <Toaster position="bottom-center" toastOptions={{duration: 3000}}/>
+      </I18nProvider>
       <Flex direction="row" stretch className={clsx(
         'nav-bar-height sticky top-0 z-nav gap-1.5 border-b border-b-gray-700 bg-slate-300/90 dark:bg-slate-900/90',
       )}>
