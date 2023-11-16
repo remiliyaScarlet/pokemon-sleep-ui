@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {AdsConfiguredWrapper} from '@/components/ads/configured/wrapper';
 import {AdsUnitProps} from '@/components/ads/type';
 import {AdsUnitInFeed} from '@/components/ads/unit/inFeed';
+import {I18nAutoWrap} from '@/components/i18n/autoWrap';
 
 
 export const AdsConfiguredInFeed = (props: AdsUnitProps) => (
-  <AdsConfiguredWrapper>
+  <I18nAutoWrap>
     <AdsUnitInFeed
       {...props}
       slot={{
@@ -18,5 +18,5 @@ export const AdsConfiguredInFeed = (props: AdsUnitProps) => (
         dark: '-fb+5w+4e-db+86',
       }}
     />
-  </AdsConfiguredWrapper>
+  </I18nAutoWrap>
 );

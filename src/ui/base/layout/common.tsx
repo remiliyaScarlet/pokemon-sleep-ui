@@ -7,12 +7,12 @@ import {Toaster} from 'react-hot-toast';
 
 import {adsClientId} from '@/components/ads/const';
 import {Announcements} from '@/components/announcement/main';
+import {setLocale} from '@/components/i18n/exports';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {DocsAutoLink} from '@/components/shared/docs/autoLink/main';
 import {authOptions} from '@/const/auth';
-import {setLocale} from '@/ui/base/context';
 import {AdsGap} from '@/ui/base/gap';
 import {AdsLayout} from '@/ui/base/layout/ads';
 import {UiPageProps} from '@/ui/base/layout/type';

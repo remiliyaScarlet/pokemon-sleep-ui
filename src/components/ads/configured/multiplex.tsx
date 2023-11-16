@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {AdsConfiguredWrapper} from '@/components/ads/configured/wrapper';
 import {AdsUnitProps} from '@/components/ads/type';
 import {AdsUnitMultiplex} from '@/components/ads/unit/multiplex';
+import {I18nAutoWrap} from '@/components/i18n/autoWrap';
 
 
 export const AdsConfiguredMultiplex = (props: AdsUnitProps) => (
-  <AdsConfiguredWrapper>
+  <I18nAutoWrap>
     <AdsUnitMultiplex
       {...props}
       slot={{
@@ -14,5 +14,5 @@ export const AdsConfiguredMultiplex = (props: AdsUnitProps) => (
         dark: '8134710811',
       }}
     />
-  </AdsConfiguredWrapper>
+  </I18nAutoWrap>
 );

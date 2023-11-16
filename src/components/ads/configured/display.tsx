@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {AdsConfiguredWrapper} from '@/components/ads/configured/wrapper';
 import {AdsUnitProps} from '@/components/ads/type';
 import {AdsUnitDisplay} from '@/components/ads/unit/display';
+import {I18nAutoWrap} from '@/components/i18n/autoWrap';
 
 
 export const AdsConfiguredDisplay = (props: AdsUnitProps) => (
-  <AdsConfiguredWrapper>
+  <I18nAutoWrap>
     <AdsUnitDisplay
       fullHeight
       slot={{
@@ -15,5 +15,5 @@ export const AdsConfiguredDisplay = (props: AdsUnitProps) => (
       }}
       {...props}
     />
-  </AdsConfiguredWrapper>
+  </I18nAutoWrap>
 );
