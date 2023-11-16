@@ -4,7 +4,6 @@ import LanguageIcon from '@heroicons/react/24/outline/LanguageIcon';
 import LinkIcon from '@heroicons/react/24/outline/LinkIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
-import {useBeforeunload} from 'react-beforeunload';
 
 import {useRouter} from '@/components/i18n/exports';
 import {InputBox} from '@/components/input/box';
@@ -25,6 +24,7 @@ import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {regexDocLinkedPath, regexDocPath} from '@/const/regex';
 import {localeName} from '@/const/website';
+import {useOnBeforeUnload} from '@/hooks/beforeUnload';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
@@ -50,7 +50,7 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
   });
   const t = useTranslations('UI.InPage.Docs');
 
-  useBeforeunload((e) => e.preventDefault());
+  useOnBeforeUnload();
 
   if (!actAsync) {
     return null;

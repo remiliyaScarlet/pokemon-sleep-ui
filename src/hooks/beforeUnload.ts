@@ -1,23 +1,26 @@
 import React from 'react';
 
+import {useBeforeunload} from 'react-beforeunload';
 
-type UseOnBeforeUnloadReturn = {
-  clearUnload: () => void,
-};
+import {usePathname, useRouter} from '@/components/i18n/exports';
 
-export const useOnBeforeUnload = (dependencies: React.DependencyList): UseOnBeforeUnloadReturn => {
-  const clearUnload = () => {
-    window.onbeforeunload = null;
-  };
+
+export const useOnBeforeUnload = () => {
+  const {replace} = useRouter();
+  const pathname = usePathname();
+
+  useBeforeunload((e) => e.preventDefault());
 
   React.useEffect(() => {
-    window.onbeforeunload = (e) => {
-      e.preventDefault();
-      return (e.returnValue = '');
+    const handler = () => {
+      if (confirm('Reload?')) {
+        return;
+      }
+      replace(pathname);
     };
 
-    return clearUnload;
-  }, dependencies);
+    window.addEventListener('popstate', handler, false);
 
-  return {clearUnload};
+    return () => window.removeEventListener('popstate', handler);
+  }, []);
 };
