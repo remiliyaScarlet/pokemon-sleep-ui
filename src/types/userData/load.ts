@@ -1,5 +1,8 @@
+import {Filter} from 'mongodb';
+
 import {PokemonId} from '@/types/game/pokemon';
 import {ActivationPropertiesAtClient} from '@/types/mongo/activation';
+import {PokeInBoxData} from '@/types/mongo/pokebox';
 
 
 export type UserDataLoadingOpts = {
@@ -21,6 +24,9 @@ export type UserDataLoadingOpts = {
 } | {
   type: 'pokeboxSorted',
   opts?: never,
+} | {
+  type: 'pokeboxWithFilter',
+  opts: Filter<PokeInBoxData>,
 } | {
   type: 'sleepdex',
   opts?: never,

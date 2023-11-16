@@ -12,6 +12,7 @@ export type UserLazyLoadedContent = {
   pokebox: Pokebox,
   pokeboxSingle: PokeInBox,
   pokeboxSorted: PokeInBox[],
+  pokeboxWithFilter: PokeInBox[],
   sleepdex: SleepdexMap,
   sleepdexOfPokemon: SleepdexMap,
   adminActivationCreate: string,

@@ -1,4 +1,4 @@
-import {Collection, WithId} from 'mongodb';
+import {Collection, Filter, WithId} from 'mongodb';
 
 import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
@@ -19,17 +19,24 @@ const pokeInBoxDataToPokeInBox = ({_id, dateAdded, ...rest}: WithId<PokeInBoxDat
   dateAdded: dateAdded ?? _id.getTimestamp().getTime(),
 });
 
+export const getUserPokeboxWithFilter = async (
+  owner: string,
+  filter: Filter<PokeInBoxData>,
+): Promise<PokeInBox[]> => {
+  await migratePokeboxOfUser(owner);
+
+  return await (await getCollection())
+    .find({...filter, owner}, {projection: {owner: false}, sort: [['pokemon', 'asc'], ['level', 'desc']]})
+    .map(pokeInBoxDataToPokeInBox)
+    .toArray();
+};
+
 export const getUserPokeboxSorted = async (owner: string | undefined): Promise<PokeInBox[]> => {
   if (!owner) {
     return [];
   }
 
-  // Run migration first (will skip if nothing to migrate) before getting the Pokebox to avoid schema mismatch
-  await migratePokeboxOfUser(owner);
-  return await (await getCollection())
-    .find({owner}, {projection: {owner: false}, sort: [['pokemon', 'asc'], ['level', 'desc']]})
-    .map(pokeInBoxDataToPokeInBox)
-    .toArray();
+  return getUserPokeboxWithFilter(owner, {});
 };
 
 export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox> => {

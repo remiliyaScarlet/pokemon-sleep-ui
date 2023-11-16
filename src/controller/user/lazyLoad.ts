@@ -1,4 +1,9 @@
-import {getSinglePokeInBox, getUserPokebox, getUserPokeboxSorted} from '@/controller/pokebox';
+import {
+  getSinglePokeInBox,
+  getUserPokebox,
+  getUserPokeboxSorted,
+  getUserPokeboxWithFilter,
+} from '@/controller/pokebox';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
 import {getActivationDataByFilter} from '@/controller/user/activation/data';
 import {generateActivationKey, getActivationKeyByFilter} from '@/controller/user/activation/key';
@@ -65,6 +70,10 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
 
   if (type === 'pokeboxSorted') {
     return await getUserPokeboxSorted(userId) satisfies UserLazyLoadedData['pokeboxSorted'];
+  }
+
+  if (type === 'pokeboxWithFilter') {
+    return await getUserPokeboxWithFilter(userId, opts) satisfies UserLazyLoadedData['pokeboxWithFilter'];
   }
 
   if (type === 'sleepdex') {
