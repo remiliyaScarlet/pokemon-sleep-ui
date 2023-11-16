@@ -17,7 +17,7 @@ export const OcrImporterText = ({text}: Props) => {
     <>
       <PopupCommon show={show} setShow={setShow}>
         <Flex noFullWidth className="w-full p-2 sm:w-[60vw]">
-          <pre className="rounded-lg p-2 shadow-border shadow-slate-500">
+          <pre className="info-highlight p-2">
             {text}
           </pre>
         </Flex>
