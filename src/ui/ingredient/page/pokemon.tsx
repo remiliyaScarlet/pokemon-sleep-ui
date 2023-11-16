@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
+import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {Ingredient} from '@/types/game/ingredient';
@@ -42,7 +42,7 @@ export const IngredientPokemonProduction = ({
         presetLevels={[...ingredientLevels]}
       />
       <HorizontalSplitter/>
-      <PokemonIconsIngredientStats
+      <PokemonIngredientStats
         level={level}
         ingredient={ingredient}
         {...calculatedSettings}

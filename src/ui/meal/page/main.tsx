@@ -13,6 +13,7 @@ import {getSingleMeal} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByIngredientIds} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealClient} from '@/ui/meal/page/client';
 import {MealServerDataProps} from '@/ui/meal/page/type';
@@ -38,6 +39,7 @@ export const MealPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
     pokemonIngredientProductionMap,
     pokemonMaxLevel,
   ] = await Promise.all([
@@ -47,6 +49,7 @@ export const MealPage = async ({params}: Props) => {
     getAllBerryData(),
     getAllIngredients(),
     getIngredientChainMap(),
+    getSubSkillMap(),
     getPokemonIngredientProductionByIngredientIds(meal.ingredients.map(({id}) => id)),
     getPokemonMaxLevelByBerry(),
   ]);
@@ -58,6 +61,7 @@ export const MealPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
     pokemonIngredientProductionMap,
     pokemonMaxLevel,
     preloadedSettings: createUserSettings(session?.user.preloaded?.settings),
@@ -71,6 +75,7 @@ export const MealPage = async ({params}: Props) => {
         'UI.Metadata',
         'UI.InPage.Cooking',
         'UI.InPage.Pokedex',
+        'UI.InPage.Team',
       ]}>
         <MealClient {...props}/>
       </I18nProvider>

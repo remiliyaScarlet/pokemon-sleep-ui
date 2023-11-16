@@ -8,7 +8,7 @@ import {Link} from '@/components/i18n';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
-import {PokemonIconsIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
+import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIngredientLevelIcon} from '@/components/shared/pokemon/ingredients/levelIcon';
 import {imageIconSizes} from '@/styles/image';
 import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
@@ -55,7 +55,7 @@ export const MealPokemonOfIngredientLevel = ({
             <Flex center className={clsx(
               'border-common rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
             )}>
-              <PokemonIconsIngredientStats
+              <PokemonIngredientStats
                 level={pokemonLevel}
                 ingredient={ingredientMap[id]}
                 pokemonIngredientProduction={pokemonIngredientProductionOfLevel[id] ?? []}

@@ -15,6 +15,7 @@ import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByIngredient} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
@@ -43,6 +44,7 @@ export const IngredientPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
     pokedex,
     cookableMeals,
     pokemonMaxLevel,
@@ -53,6 +55,7 @@ export const IngredientPage = async ({params}: Props) => {
     getAllBerryData(),
     getAllIngredients(),
     getIngredientChainMap(),
+    getSubSkillMap(),
     getPokemonAsMap(),
     getMealByIngredient(ingredient.id),
     getPokemonMaxLevelByBerry(),
@@ -65,6 +68,7 @@ export const IngredientPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
   };
 
   return (
@@ -74,7 +78,13 @@ export const IngredientPage = async ({params}: Props) => {
         <IngredientCookableMeals cookableMeals={cookableMeals} ingredientMap={ingredientMap}/>
       </Flex>
       <AdsUnit/>
-      <I18nProvider locale={locale} namespaces={['Game', 'UI.Common', 'UI.Metadata', 'UI.InPage.Pokedex']}>
+      <I18nProvider locale={locale} namespaces={[
+        'Game',
+        'UI.Common',
+        'UI.Metadata',
+        'UI.InPage.Pokedex',
+        'UI.InPage.Team',
+      ]}>
         <IngredientPokemonProduction
           pokemonMaxLevel={pokemonMaxLevel}
           ingredient={ingredient}

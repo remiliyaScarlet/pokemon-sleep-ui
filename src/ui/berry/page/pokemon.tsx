@@ -2,8 +2,7 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex/common';
-import {PokemonIconsBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
+import {PokemonBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
 
@@ -20,12 +19,10 @@ export const BerryProducingRatesOfPokemon = ({level, preloadedSettings, ...props
   });
 
   return (
-    <Flex direction="row" wrap className="info-section">
-      <PokemonIconsBerryStats
-        level={level}
-        {...calculatedSettings}
-        {...props}
-      />
-    </Flex>
+    <PokemonBerryStats
+      level={level}
+      {...calculatedSettings}
+      {...props}
+    />
   );
 };

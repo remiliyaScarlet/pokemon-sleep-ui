@@ -1,7 +1,5 @@
-import {
-  PokemonItemStatsCalcResult,
-  PokemonItemStatsWorkerOpts,
-} from '@/components/shared/pokemon/icon/itemStats/worker/type';
+import {PokemonItemStatsCalcResult} from '@/components/shared/pokemon/icon/itemStats/type';
+import {PokemonItemStatsWorkerOpts} from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {defaultNeutralOpts} from '@/const/game/production';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';

@@ -13,6 +13,7 @@ import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
 import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByBerry} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
@@ -34,6 +35,7 @@ export const BerryPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
     pokemonOfBerry,
     berryData,
     favoriteInfo,
@@ -45,6 +47,7 @@ export const BerryPage = async ({params}: Props) => {
     getAllBerryData(),
     getAllIngredients(),
     getIngredientChainMap(),
+    getSubSkillMap(),
     getPokemonByBerry(idNumber),
     getBerryData(idNumber),
     getFavoriteInfoOfBerry(idNumber),
@@ -62,6 +65,7 @@ export const BerryPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    subSkillMap,
     pokemonOfBerry,
     berryData,
     favoriteInfo,
@@ -71,13 +75,12 @@ export const BerryPage = async ({params}: Props) => {
   return (
     <PublicPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={[
-        'Game.Berry',
-        'Game.Food',
-        'Game.Field',
-        'Game.PokemonName',
+        'Game',
         'UI.Common',
-        'UI.InPage.Pokedex',
         'UI.InPage.Berry',
+        'UI.InPage.Pokedex',
+        'UI.InPage.Team',
+        'UI.Metadata',
       ]}>
         <BerryPageClient {...props}/>
       </I18nProvider>

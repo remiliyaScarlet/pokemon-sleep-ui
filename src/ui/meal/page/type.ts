@@ -8,6 +8,7 @@ import {
 } from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
+import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 
 
@@ -18,6 +19,7 @@ export type MealServerDataProps = {
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
+  subSkillMap: SubSkillMap,
   pokemonIngredientProductionMap: PokemonIngredientProductionMap,
   pokemonMaxLevel: number,
   preloadedSettings: UserSettings,

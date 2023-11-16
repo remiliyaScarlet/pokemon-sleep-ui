@@ -1,9 +1,7 @@
 import React from 'react';
 
-import {
-  PokemonItemStatsCalcResult,
-  PokemonItemStatsWorkerOpts,
-} from '@/components/shared/pokemon/icon/itemStats/worker/type';
+import {PokemonItemStatsCalcResult} from '@/components/shared/pokemon/icon/itemStats/type';
+import {PokemonItemStatsWorkerOpts} from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {useWorker} from '@/hooks/worker';
 
 
