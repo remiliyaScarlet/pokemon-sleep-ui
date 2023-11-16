@@ -90,7 +90,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
             <>
               <ArrowTopRightOnSquareIcon className="h-9 w-9"/>
               <GenericIconLarger
-                src="/images/generic/pokemonbox.png"
+                src="/images/generic/pokebox.png"
                 alt={t('Team.Box.Title')}
                 dimension="h-9 w-9"
               />
