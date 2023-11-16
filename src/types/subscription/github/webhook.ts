@@ -1,6 +1,6 @@
 export type GithubSponsor = {
   id: number,
-  email: string | null,
+  email?: string | null,
 };
 
 export type GithubSponsorTier = {
