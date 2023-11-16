@@ -12,7 +12,7 @@ export const PokemonProducingRateSingleAtItem = ({
   rate,
   getIcon,
   state = 'equivalent',
-}: PokemonProducingRateSingleProps) => (
+}: Pick<PokemonProducingRateSingleProps, 'hideFrequency' | 'rate' | 'getIcon' | 'state'>) => (
   <Flex noFullWidth className="items-end gap-0.5">
     {!hideFrequency && <PokemonFrequency frequency={rate?.frequency[state] ?? NaN}/>}
     <ProducingRateUI

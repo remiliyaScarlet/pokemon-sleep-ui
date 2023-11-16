@@ -8,7 +8,7 @@ import {ProducingRateContent} from '@/components/shared/production/rate/content'
 export const PokemonProducingRateSingleAtTotal = ({
   infoAtTotal,
   dailyTotalEnergy,
-}: PokemonProducingRateSingleProps) => {
+}: Pick<PokemonProducingRateSingleProps, 'infoAtTotal' | 'dailyTotalEnergy'>) => {
   return (
     <Flex noFullWidth className="items-end gap-0.5">
       {infoAtTotal}
