@@ -129,26 +129,35 @@ export const getTotalOfItemRates = ({rates, target, state}: GetTotalOfItemRatesO
   toSum(rates.map((rate) => rate[target][state]))
 );
 
-type GetTotalOfPokemonProducingRateOpts = {
+type GetPokemonProducingRateComponentOpts = {
   rate: PokemonProducingRate,
+  target: KeysOfType<ProducingRate, number>,
   state: ProducingStateOfRate,
 };
+
+export const getTotalIngredientRateOfPokemon = ({
+  rate,
+  target,
+  state,
+}: GetPokemonProducingRateComponentOpts) => (
+  getTotalOfItemRates({rates: Object.values(rate.ingredient), target, state})
+);
 
 export const getTotalOfPokemonProducingRate = ({
   rate,
   state,
-}: GetTotalOfPokemonProducingRateOpts): ProducingRate => {
-  const {period, berry, ingredient} = rate;
+}: Omit<GetPokemonProducingRateComponentOpts, 'target'>): ProducingRate => {
+  const {period, berry} = rate;
 
   return {
     period,
     quantity: (
       berry.quantity[state] +
-      getTotalOfItemRates({rates: Object.values(ingredient), target: 'quantity', state})
+      getTotalIngredientRateOfPokemon({rate, target: 'quantity', state})
     ),
     energy: (
       berry.energy[state] +
-      getTotalOfItemRates({rates: Object.values(ingredient), target: 'energy', state})
+      getTotalIngredientRateOfPokemon({rate, target: 'energy', state})
     ),
   };
 };
