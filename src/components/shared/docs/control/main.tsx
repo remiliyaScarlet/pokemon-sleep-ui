@@ -12,7 +12,7 @@ import {FlexLink} from '@/components/layout/flex/link';
 import {PopupCommon} from '@/components/popup/common/main';
 import {DocsControlDeleteButton} from '@/components/shared/docs/control/delete';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {Locale} from '@/types/next/locale';
 
 

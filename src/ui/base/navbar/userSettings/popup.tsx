@@ -3,7 +3,7 @@ import React from 'react';
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {defaultUserSettings} from '@/const/user/settings';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserSettings} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {ClickableIconButton} from '@/components/shared/common/button/clickable';
 import {actionStatusIcon} from '@/components/shared/userData/const';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserDataActionStatus} from '@/types/userData/main';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 

@@ -19,13 +19,7 @@ import {
 import {extractTeamMemberId} from '@/utils/user/teamAnalysis';
 
 
-export const emptyLazyData: UserLazyLoadedData = {
-  teamAnalysis: undefined,
-  pokebox: undefined,
-};
-
 type GetUserLazyDataOpts = {
-  initialData: UserLazyLoadedData,
   userId: string,
   options: UserDataLoadingOpts,
 };
@@ -130,11 +124,9 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
 };
 
 export const getUserLazyData = async (opts: GetUserLazyDataOpts): Promise<UserLazyLoadedData> => {
-  const {initialData, options} = opts;
+  const {options} = opts;
 
   return {
-    ...initialData,
-    ...emptyLazyData,
     [options.type]: await loadData(opts),
   };
 };

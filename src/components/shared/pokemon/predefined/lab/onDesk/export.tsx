@@ -11,7 +11,7 @@ import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {toPokeInBox} from '@/components/shared/pokemon/predefined/lab/onDesk/utils';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {PokemonInfo} from '@/types/game/pokemon';
 
 

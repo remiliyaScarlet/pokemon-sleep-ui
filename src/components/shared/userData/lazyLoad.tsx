@@ -4,7 +4,7 @@ import {useSession} from 'next-auth/react';
 
 import {Failed} from '@/components/icons/failed';
 import {Loading, LoadingText} from '@/components/icons/loading';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
@@ -12,7 +12,7 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 type Props = {
   options: UserDataLoadingOpts,
   loadingText: string,
-  content: (data: UserLazyLoadedData | null | undefined, session: ReturnType<typeof useSession>) => React.ReactNode,
+  content: (data: UserLazyLoadedData | null, session: ReturnType<typeof useSession>) => React.ReactNode,
   sessionOverride?: ReturnType<typeof useSession>,
   smallLoading?: boolean,
 } & ({
@@ -32,7 +32,12 @@ export const UserDataLazyLoad = ({
   actDeps,
   toAct,
 }: Props) => {
-  const {act, status, session} = useUserDataActor({
+  const {
+    act,
+    status,
+    session,
+    lazyLoaded,
+  } = useUserDataActor({
     override: sessionOverride,
     statusNoReset: true,
   });
@@ -99,5 +104,5 @@ export const UserDataLazyLoad = ({
     console.warn(`Uncaught lazy load status: Session: ${session.status} / User data action: ${status}`);
   }
 
-  return content(session.data?.user.lazyLoaded, session);
+  return content(lazyLoaded, session);
 };

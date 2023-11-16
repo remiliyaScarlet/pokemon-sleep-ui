@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {ActivationDataAtClient} from '@/types/mongo/activation';
 import {ActivationUiControl, ActivationUiState} from '@/ui/admin/activation/type';
 import {generateInitialActivationPropertiesAtClient} from '@/ui/admin/activation/utils';

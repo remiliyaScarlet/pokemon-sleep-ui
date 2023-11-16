@@ -25,7 +25,7 @@ import {DocsContentView} from '@/components/shared/docs/view/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
 import {regexDocLinkedPath, regexDocPath} from '@/const/regex';
 import {localeName} from '@/const/website';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
 import {UserDataAction} from '@/types/userData/main';

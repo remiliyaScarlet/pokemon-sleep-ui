@@ -11,7 +11,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {RatingPopupControl} from '@/components/shared/pokemon/rating/type';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toPokeInBox, toRatingSetup} from '@/ui/team/analysis/setup/pokemon/utils';
 import {getTeamMemberId} from '@/utils/user/teamAnalysis';

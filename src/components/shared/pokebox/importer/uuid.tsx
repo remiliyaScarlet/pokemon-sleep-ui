@@ -7,7 +7,7 @@ import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {regexUuid} from '@/const/regex';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 
 
 type Props = PokeboxImporterCommonProps;

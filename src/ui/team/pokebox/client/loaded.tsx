@@ -5,7 +5,7 @@ import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {Pokebox} from '@/types/game/pokebox';
 import {useCalculatedData} from '@/ui/team/pokebox/client/hook/main';
 import {PokeboxContent} from '@/ui/team/pokebox/content/main';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 
 

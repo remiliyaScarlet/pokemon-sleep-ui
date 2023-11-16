@@ -4,7 +4,7 @@ import emailProvider from 'next-auth/providers/email';
 import googleProvider from 'next-auth/providers/google';
 
 import {getActivationData} from '@/controller/user/activation/data';
-import {emptyLazyData, getUserLazyData} from '@/controller/user/lazyLoad';
+import {getUserLazyData} from '@/controller/user/lazyLoad';
 import {getUserPreloadedData} from '@/controller/user/preload';
 import {uploadUserData} from '@/controller/user/upload';
 import mongoPromise from '@/lib/mongodb';
@@ -72,7 +72,7 @@ export const authOptions: AuthOptions = {
         email: user.email,
         errorOnUpdate: false,
         preloaded,
-        lazyLoaded: emptyLazyData,
+        lazyLoaded: {},
         activation,
         build: process.env.NEXT_PUBLIC_BUILD_ID,
       } satisfies NextAuthSessionUser;
@@ -89,7 +89,6 @@ export const authOptions: AuthOptions = {
           session.user.preloaded = await getUserPreloadedData(userId);
         } else if (action === 'load') {
           session.user.lazyLoaded = await getUserLazyData({
-            initialData: session.user.lazyLoaded,
             userId,
             options,
           });

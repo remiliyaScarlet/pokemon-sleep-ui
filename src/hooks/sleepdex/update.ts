@@ -1,5 +1,5 @@
 import {SleepdexUpdater, UpdateSleepdexOpts, UseUpdateSleepdexOpts} from '@/hooks/sleepdex/type';
-import {useUserDataActor} from '@/hooks/userData/actor';
+import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {SleepdexData} from '@/types/game/sleepdex';
 import {isInSleepdex, toSleepdexStyleId} from '@/utils/game/sleepdex';
 
