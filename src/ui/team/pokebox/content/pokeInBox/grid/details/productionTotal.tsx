@@ -40,7 +40,6 @@ export const PokeInBoxGridProductionTotal = (props: PokeInBoxCommonProps) => {
           rate={rate}
           state={stateOfRateToShow}
           specialty={pokemon.specialty}
-          noBlink
         />
       </Flex>
     </Flex>

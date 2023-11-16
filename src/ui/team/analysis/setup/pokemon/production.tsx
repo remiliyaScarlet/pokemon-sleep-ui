@@ -41,7 +41,6 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
         rate={stats}
         state={stateOfRateToShow}
         specialty={pokemon.specialty}
-        noBlink
       />
       <HorizontalSplitter className="w-full"/>
       <Flex center className={clsx(pokemon.specialty === specialtyIdMap.berry && 'info-highlight')}>

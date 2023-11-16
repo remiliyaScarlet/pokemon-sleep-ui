@@ -93,7 +93,6 @@ export const PokeInBoxTableProduction = ({
           rate={rateOfPokemon}
           state={stateOfRateToShow}
           specialty={pokemon.specialty}
-          noBlink
         />
       </Flex>
     </>
