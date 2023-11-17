@@ -1,1 +1,1 @@
-export type ProduceType = 'berry' | 'ingredient';
+export type ProduceType = 'berry' | 'ingredient' | 'skill';

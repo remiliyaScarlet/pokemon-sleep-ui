@@ -13,6 +13,7 @@ import {
 } from '@/utils/game/producing/carryLimit';
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
+import {getMainSkillProducingRate, GetMainSkillProducingRateOpts} from '@/utils/game/producing/mainSkill';
 import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 
@@ -20,6 +21,7 @@ import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/produci
 type GetPokemonProducingRateOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
+  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent'> &
   ProducingRateSingleParams & {
     pokemonProducingParams: PokemonProducingParams,
     sleepDurations: number[],
@@ -34,7 +36,12 @@ export const getPokemonProducingRate = ({
   evolutionCount,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
-  const {pokemon, helperCount, behavior} = opts;
+  const {
+    pokemon,
+    pokemonProducingParams,
+    helperCount,
+    behavior,
+  } = opts;
 
   const period = opts.period ?? 'daily';
   const sleepDuration = toSum(sleepDurations);
@@ -58,6 +65,11 @@ export const getPokemonProducingRate = ({
   });
   const ingredient = getIngredientProducingRates({
     frequency,
+    ...opts,
+  });
+  const skill = getMainSkillProducingRate({
+    frequency,
+    skillRatePercent: pokemonProducingParams.skillPercent,
     ...opts,
   });
 
@@ -104,6 +116,15 @@ export const getPokemonProducingRate = ({
         ...opts,
       }),
     ])),
+    skill: getProducingRateOfStates({
+      specialty: pokemon.specialty,
+      period,
+      rate: skill,
+      produceType: 'skill',
+      produceSplit,
+      sleepStateSplit,
+      ...opts,
+    }),
   };
 };
 

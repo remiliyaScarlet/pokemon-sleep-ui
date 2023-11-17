@@ -56,4 +56,5 @@ export type PokemonProducingRate = {
   carryLimitInfo: CarryLimitInfo,
   berry: ProducingRateOfStates,
   ingredient: {[ingredientId in IngredientId]: ProducingRateOfStates},
+  skill: ProducingRateOfStates,
 };

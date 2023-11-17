@@ -13,3 +13,15 @@ export const getSkillTriggerValue = ({rate, skillValue, ...opts}: GetSkillTrigge
   getSkillTriggerRateMultiplier(opts) *
   skillValue
 );
+
+type GetSkillTriggerRateOpts = GetSkillTriggerRateMultiplierOpts & {
+  skillRatePercent: number | null,
+};
+
+export const getSkillTriggerRate = ({skillRatePercent, ...opts}: GetSkillTriggerRateOpts): number => {
+  if (!skillRatePercent) {
+    return 0;
+  }
+
+  return (getSkillTriggerRateMultiplier(opts) * skillRatePercent) / 100;
+};

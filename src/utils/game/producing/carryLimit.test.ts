@@ -175,6 +175,7 @@ describe('Pokemon Theoretical Daily Quantity in Sleep', () => {
       produceSplit: {
         berry: 0.85,
         ingredient: 0.15,
+        skill: 1,
       },
     });
 
@@ -241,6 +242,7 @@ describe('Pokemon Theoretical Daily Quantity in Sleep', () => {
       produceSplit: {
         berry: 0.85,
         ingredient: 0.15,
+        skill: 1,
       },
     });
 

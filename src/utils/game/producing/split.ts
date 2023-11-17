@@ -29,6 +29,7 @@ export const getProduceSplit = ({
     return {
       berry: 1,
       ingredient: 0,
+      skill: 1,
     };
   }
 
@@ -42,6 +43,7 @@ export const getProduceSplit = ({
   return {
     berry: 1 - ingredientSplit,
     ingredient: ingredientSplit,
+    skill: 1,
   };
 };
 
