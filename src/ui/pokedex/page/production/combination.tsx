@@ -27,8 +27,14 @@ type Props = PokemonProps & {
 };
 
 export const PokemonProductionCombination = ({chain, ...props}: Props) => {
-  const {level, pokemon, calculatedSettings} = props;
+  const {
+    level,
+    pokemon,
+    calculatedSettings,
+    mainSkillMap,
+  } = props;
   const evolutionCount = getEvolutionCountFromPokemonInfo({pokemon});
+  const skillData = mainSkillMap[pokemon.skill];
 
   return (
     <Grid className="grid-cols-1 gap-1 xl:grid-cols-2">
@@ -39,6 +45,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
           ingredients,
           snorlaxFavorite: {},
           evolutionCount,
+          skillData,
           ...defaultNeutralOpts,
           ...calculatedSettings,
           ...props,

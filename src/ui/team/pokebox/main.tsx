@@ -7,6 +7,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -24,9 +25,10 @@ const Pokebox = async () => {
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
-    subSkillMap,
-    ingredientMap,
     berryDataMap,
+    ingredientMap,
+    mainSkillMap,
+    subSkillMap,
     mapMeta,
     pokemonMaxLevel,
   ] = await Promise.all([
@@ -34,9 +36,10 @@ const Pokebox = async () => {
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
     getIngredientChainMap(),
-    getSubSkillMap(),
-    getAllIngredients(),
     getAllBerryData(),
+    getAllIngredients(),
+    getMainSkillMap(),
+    getSubSkillMap(),
     getAllMapMeta(),
     getPokemonMaxLevelByBerry(),
   ]);
@@ -45,9 +48,10 @@ const Pokebox = async () => {
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
-    subSkillMap,
-    ingredientMap,
     berryDataMap,
+    ingredientMap,
+    mainSkillMap,
+    subSkillMap,
     mapMeta,
     preloaded: {
       settings: createUserSettings(session?.user.preloaded.settings),

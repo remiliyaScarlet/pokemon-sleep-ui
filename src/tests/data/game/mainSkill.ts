@@ -1,7 +1,7 @@
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 
 
-export const testMainSkill: MainSkillMap = {
+export const testMainSkillMap: MainSkillMap = {
   1: {
     id: 1,
     effects: [

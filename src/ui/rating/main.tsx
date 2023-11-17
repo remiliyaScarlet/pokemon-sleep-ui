@@ -8,6 +8,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -28,6 +29,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
+    mainSkillMap,
     subSkillMap,
     mapMeta,
     pokemonMaxLevel,
@@ -39,6 +41,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     getIngredientChainMap(),
     getAllIngredients(),
     getAllBerryData(),
+    getMainSkillMap(),
     getSubSkillMap(),
     getAllMapMeta(),
     getPokemonMaxLevelByBerry(),
@@ -52,6 +55,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     ingredientMap,
     berryDataMap,
+    mainSkillMap,
     subSkillMap,
     mapMeta,
     pokemonMaxLevel,

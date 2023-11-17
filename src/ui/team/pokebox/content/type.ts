@@ -3,6 +3,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
@@ -24,5 +25,6 @@ export type PokeInBoxCommonProps = PokeInBoxChangeableProps & {
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
+  mainSkillMap: MainSkillMap,
   ratingBasis: PokeboxViewerDisplay['ratingBasis'],
 };

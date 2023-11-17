@@ -11,6 +11,7 @@ import {authOptions} from '@/const/auth';
 import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
@@ -47,6 +48,7 @@ export const Pokemon = async ({params}: Props) => {
     sleepStylesSpecial,
     berryData,
     ingredientMap,
+    mainSkillMap,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonAsMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
@@ -56,6 +58,7 @@ export const Pokemon = async ({params}: Props) => {
     getSleepStyleSpecialList(idNumber),
     getBerryData(pokemon.berry.id),
     getAllIngredients(),
+    getMainSkillMap(),
   ]);
 
   if (!berryData) {
@@ -72,6 +75,7 @@ export const Pokemon = async ({params}: Props) => {
     sleepStylesSpecial,
     berryData,
     ingredientMap,
+    mainSkillMap,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),
   };
 

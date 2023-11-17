@@ -42,6 +42,7 @@ const useProducingStatsOfSlot = ({
   pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
+  mainSkillMap,
   subSkillMap,
   settings,
 }: UseProducingStatsOfSlotOpts): TeamProducingStatsSingle | null => {
@@ -71,7 +72,6 @@ const useProducingStatsOfSlot = ({
     if (!pokemon) {
       return null;
     }
-    const berryData = berryDataMap[pokemon.berry.id];
     const producingRateOpts: ProducingRateSingleParams = {
       helperCount,
       subSkillBonus: getSubSkillBonus({
@@ -98,9 +98,10 @@ const useProducingStatsOfSlot = ({
         pokemonProducingParamsMap,
       }),
       snorlaxFavorite,
-      berryData,
+      berryData: berryDataMap[pokemon.berry.id],
       ingredients: getEffectiveIngredientProductions({level, ingredients}),
       ingredientMap,
+      skillData: mainSkillMap[pokemon.skill],
       evolutionCount,
     });
 

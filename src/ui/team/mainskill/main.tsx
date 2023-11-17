@@ -8,6 +8,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
@@ -27,6 +28,7 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     berryDataMap,
     ingredientMap,
+    mainSkillMap,
     subSkillMap,
     pokemonMaxLevel,
     session,
@@ -37,6 +39,7 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     getIngredientChainMap(),
     getAllBerryData(),
     getAllIngredients(),
+    getMainSkillMap(),
     getSubSkillMap(),
     getPokemonMaxLevelByBerry(),
     getServerSession(authOptions),
@@ -49,6 +52,7 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     berryDataMap,
     ingredientMap,
+    mainSkillMap,
     subSkillMap,
     pokemonMaxLevel,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),

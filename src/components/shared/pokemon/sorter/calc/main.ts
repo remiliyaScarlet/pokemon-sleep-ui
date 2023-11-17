@@ -6,22 +6,26 @@ import {
   SortedPokemonInfo,
 } from '@/components/shared/pokemon/sorter/type';
 import {BerryDataMap} from '@/types/game/berry';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 
 
-export type GetPokemonSorterOpts = Omit<PokemonSorterGetterOpts, 'berryData'> & {
+export type GetPokemonSorterOpts = Omit<PokemonSorterGetterOpts, 'berryData' | 'skillData'> & {
   type: PokemonSortType,
   berryDataMap: BerryDataMap,
+  mainSkillMap: MainSkillMap,
 };
 
 export const getPokemonSorter = ({
   type,
   pokemon,
   berryDataMap,
+  mainSkillMap,
   ...opts
 }: GetPokemonSorterOpts): number => {
   return pokemonSorterGetterBySortType[type]({
     pokemon,
     berryData: berryDataMap[pokemon.berry.id],
+    skillData: mainSkillMap[pokemon.skill],
     ...opts,
   });
 };

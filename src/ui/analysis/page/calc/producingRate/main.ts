@@ -19,6 +19,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     ingredients,
     berryDataMap,
     ingredientChainMap,
+    mainSkillMap,
   } = opts;
 
   const currentPokemonProducingParams = getPokemonProducingParams({
@@ -29,6 +30,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     ...opts,
     pokemonProducingParams: currentPokemonProducingParams,
     berryData: berryDataMap[pokemon.berry.id],
+    skillData: mainSkillMap[pokemon.skill],
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     ...defaultNeutralOpts,
   });
@@ -48,6 +50,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
         pokemonProducingParamsMap,
       }),
       berryData: berryDataMap[otherPokemon.berry.id],
+      skillData: mainSkillMap[otherPokemon.skill],
       ingredients: otherIngredients,
       evolutionCount: getEvolutionCountFromPokemonInfo({pokemon: otherPokemon}),
       ...defaultNeutralOpts,

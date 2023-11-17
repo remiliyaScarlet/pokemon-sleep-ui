@@ -35,6 +35,7 @@ export const RatingResultOfLevelUI = ({
   berryDataMap,
   ingredientChainMap,
   ingredientMap,
+  mainSkillMap,
   subSkillMap,
 }: Props) => {
   const [loading, setLoading] = React.useState(false);
@@ -46,9 +47,10 @@ export const RatingResultOfLevelUI = ({
       pokemon,
       pokemonProducingParams,
       berryDataMap,
-      subSkillMap,
       ingredientChainMap,
       ingredientMap,
+      mainSkillMap,
+      subSkillMap,
     },
   });
 

@@ -15,6 +15,7 @@ export const toRatingWorkerOpts = ({
   berryDataMap,
   ingredientMap,
   ingredientChainMap,
+  mainSkillMap,
   subSkillMap,
   snorlaxFavorite,
   settings,
@@ -38,6 +39,7 @@ export const toRatingWorkerOpts = ({
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    mainSkillMap,
     subSkillMap,
     snorlaxFavorite,
     level,
@@ -54,6 +56,7 @@ export const toRatingWorkerOpts = ({
 export const getRateOfPokemon = ({
   pokeInBox,
   berryDataMap,
+  mainSkillMap,
   subSkillMap,
   ...props
 }: PokeInBoxCommonProps) => {
@@ -63,7 +66,7 @@ export const getRateOfPokemon = ({
     settings,
   } = props;
   const {level, ingredients} = pokeInBox;
-  const {id, berry} = pokemon;
+  const {id, berry, skill} = pokemon;
 
   const singleParams = getProducingRateSingleParams({
     subSkillMap,
@@ -86,6 +89,7 @@ export const getRateOfPokemon = ({
     }),
     berryData: berryDataMap[berry.id],
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
+    skillData: mainSkillMap[skill],
     noCap: true,
   });
 };

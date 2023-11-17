@@ -9,6 +9,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SleepStyleNormal} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
@@ -39,6 +40,7 @@ export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
   maxLevel: number,
   ingredientMap: IngredientMap,
   berryDataMap: BerryDataMap,
+  mainSkillMap: MainSkillMap,
   mapMeta: FieldMetaMap,
   preloaded: {
     display: Partial<PokedexDisplay> | undefined,

@@ -11,6 +11,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients, getIngredientData} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getMealByIngredient} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByIngredient} from '@/controller/pokemon/ingredient';
@@ -44,6 +45,7 @@ export const IngredientPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    mainSkillMap,
     subSkillMap,
     pokedex,
     cookableMeals,
@@ -55,6 +57,7 @@ export const IngredientPage = async ({params}: Props) => {
     getAllBerryData(),
     getAllIngredients(),
     getIngredientChainMap(),
+    getMainSkillMap(),
     getSubSkillMap(),
     getPokemonAsMap(),
     getMealByIngredient(ingredient.id),
@@ -68,6 +71,7 @@ export const IngredientPage = async ({params}: Props) => {
     berryDataMap,
     ingredientMap,
     ingredientChainMap,
+    mainSkillMap,
     subSkillMap,
   };
 

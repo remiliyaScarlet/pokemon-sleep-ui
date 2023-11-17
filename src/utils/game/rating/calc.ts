@@ -25,6 +25,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     nature,
     ingredientChainMap,
     berryDataMap,
+    mainSkillMap,
     subSkillMap,
   } = opts;
 
@@ -32,8 +33,11 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     return null;
   }
 
-  const chain = ingredientChainMap[pokemon.ingredientChain];
-  const berryData = berryDataMap[pokemon.berry.id];
+  const {ingredientChain, berry, skill} = pokemon;
+
+  const chain = ingredientChainMap[ingredientChain];
+  const berryData = berryDataMap[berry.id];
+  const skillData = mainSkillMap[skill];
 
   const currentProductions = getEffectiveIngredientProductions({level, ingredients});
 
@@ -41,11 +45,13 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     ...opts,
     berryData,
     ingredients: currentProductions,
+    skillData,
   });
   const valueOfBase = getRatingValueOfBase({
     ...opts,
     berryData,
     ingredients: currentProductions,
+    skillData,
   });
 
   const subSkillData = Object.values(subSkillMap).filter(isNotNullish);
@@ -73,6 +79,7 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
         const valueOfPossibility = getRatingValueOfPossibility({
           ...opts,
           berryData,
+          skillData,
           override: {
             nature,
             subSkill,

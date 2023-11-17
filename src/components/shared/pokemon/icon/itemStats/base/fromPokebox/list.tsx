@@ -36,7 +36,11 @@ export const PokemonItemStatsFromPokeboxList = ({
   reCalcDeps,
   ...props
 }: Props) => {
-  const {getItemRate, subSkillMap} = props;
+  const {
+    getItemRate,
+    mainSkillMap,
+    subSkillMap,
+  } = props;
 
   const t = useTranslations('Game');
   const producingStats = React.useMemo(() => (
@@ -69,6 +73,7 @@ export const PokemonItemStatsFromPokeboxList = ({
           ...singleParams,
           berryData: berryDataMap[pokemon.berry.id],
           ingredients,
+          skillData: mainSkillMap[pokemon.skill],
           evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
         });
 

@@ -6,6 +6,7 @@ import {testBerryDataMap} from '@/tests/data/game/berry';
 import {testIngredientChainMap} from '@/tests/data/game/ingredient/chain';
 import {testIngredientMap} from '@/tests/data/game/ingredient/data';
 import {testIngredientProductionAtLevels} from '@/tests/data/game/ingredient/productionAtLevel';
+import {testMainSkillMap} from '@/tests/data/game/mainSkill';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testSubSkillMap} from '@/tests/data/game/subSkill';
 import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
@@ -29,6 +30,7 @@ describe('Rating / Calculate', () => {
       berryDataMap: testBerryDataMap,
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
+      mainSkillMap: testMainSkillMap,
       subSkillMap: {},
       basis: 'totalProduction',
       friendshipLevel: 0,
@@ -55,6 +57,7 @@ describe('Rating / Calculate', () => {
       berryDataMap: testBerryDataMap,
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
+      mainSkillMap: testMainSkillMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
       friendshipLevel: 0,
@@ -81,6 +84,7 @@ describe('Rating / Calculate', () => {
       berryDataMap: testBerryDataMap,
       ingredientChainMap: testIngredientChainMap,
       ingredientMap: testIngredientMap,
+      mainSkillMap: testMainSkillMap,
       subSkillMap: testSubSkillMap,
       basis: 'totalProduction',
       friendshipLevel: 0,

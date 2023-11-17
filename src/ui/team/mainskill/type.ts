@@ -5,6 +5,7 @@ import {PokemonOnDeskDataProps, PokemonOnDeskState} from '@/components/shared/po
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokedexMap} from '@/types/game/pokemon';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrTranslationsForPokemonInfo} from '@/types/ocr/extracted/pokemon';
@@ -27,6 +28,7 @@ export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData & {
 export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
+  mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,

@@ -3,6 +3,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap, IngredientProduction} from '@/types/game/pokemon/ingredient';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {FriendshipLevelOfGoldLock, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -66,6 +67,7 @@ export type RatingOpts = {
   ingredientChainMap: IngredientChainMap,
   ingredientMap: IngredientMap,
   berryDataMap: BerryDataMap,
+  mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
 };
 

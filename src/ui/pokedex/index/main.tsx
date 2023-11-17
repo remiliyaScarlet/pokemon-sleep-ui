@@ -7,6 +7,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -43,18 +44,20 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     pokedex,
     pokemonProducingParamsMap,
     maxLevel,
+    berryDataMap,
     ingredientMap,
     ingredientChainMap,
-    berryDataMap,
+    mainSkillMap,
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokedexData(),
     getAllPokemonProducingParams(),
     getPokemonMaxLevelByBerry(),
+    getAllBerryData(),
     getAllIngredients(),
     getIngredientChainMap(),
-    getAllBerryData(),
+    getMainSkillMap(),
     getAllMapMeta(),
   ]);
 
@@ -62,9 +65,10 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     pokedex,
     pokemonProducingParamsMap,
     maxLevel,
+    berryDataMap,
     ingredientMap,
     ingredientChainMap,
-    berryDataMap,
+    mainSkillMap,
     mapMeta,
     preloaded: {
       settings: createUserSettings(session?.user.preloaded.settings),

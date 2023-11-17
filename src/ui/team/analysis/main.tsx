@@ -7,6 +7,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -30,6 +31,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     ingredientMap,
     snorlaxRankData,
     mapMeta,
+    mainSkillMap,
     subSkillMap,
     pokemonMaxLevel,
   ] = await Promise.all([
@@ -41,6 +43,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
     getSnorlaxRank(),
     getAllMapMeta(),
+    getMainSkillMap(),
     getSubSkillMap(),
     getPokemonMaxLevelByBerry(),
   ]);
@@ -53,6 +56,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     ingredientMap,
     snorlaxRankData,
     mapMeta,
+    mainSkillMap,
     subSkillMap,
     pokemonMaxLevel,
     preloadedSettings: createUserSettings(session?.user.preloaded.settings),

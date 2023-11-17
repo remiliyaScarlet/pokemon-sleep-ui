@@ -15,6 +15,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
     pokemonIngredientProduction,
     berryDataMap,
     ingredientChainMap,
+    mainSkillMap,
     level,
   } = data;
 
@@ -44,6 +45,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
             ...defaultNeutralOpts,
             berryData: berryDataMap[pokemon.berry.id],
             ingredients,
+            skillData: mainSkillMap[pokemon.skill],
             evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
             ...data,
           });

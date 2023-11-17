@@ -24,9 +24,10 @@ type Props =
 export const useCalculationWorker = ({
   pokemon,
   pokemonProducingParamsMap,
+  berryDataMap,
   ingredientMap,
   ingredientChainMap,
-  berryDataMap,
+  mainSkillMap,
   sleepStyleMap,
   bonus,
   sleepDurations,
@@ -53,9 +54,10 @@ export const useCalculationWorker = ({
     work({
       pokemon,
       pokemonProducingParamsMap,
+      berryDataMap,
       ingredientMap,
       ingredientChainMap,
-      berryDataMap,
+      mainSkillMap,
       sleepStyleMap,
       bonus,
       sleepDurations,

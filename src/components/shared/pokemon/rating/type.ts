@@ -4,6 +4,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -16,6 +17,7 @@ export type RatingResultProps = {
   berryDataMap: BerryDataMap,
   ingredientChainMap: IngredientChainMap,
   ingredientMap: IngredientMap,
+  mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,
   setRequest?: (updated: RatingRequest) => void,

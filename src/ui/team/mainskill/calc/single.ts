@@ -21,6 +21,7 @@ export const getSkillTriggerValueOfUnit = ({
   pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
+  mainSkillMap,
   subSkillMap,
   settings,
   id,
@@ -40,7 +41,7 @@ export const getSkillTriggerValueOfUnit = ({
     return null;
   }
 
-  const {berry} = pokemon;
+  const {berry, skill} = pokemon;
 
   const pokemonProducingParams = getPokemonProducingParams({
     pokemonId,
@@ -66,6 +67,7 @@ export const getSkillTriggerValueOfUnit = ({
     snorlaxFavorite: {},
     berryData: berryDataMap[berry.id],
     ingredientMap,
+    skillData: mainSkillMap[skill],
     pokemonProducingParams,
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
   });

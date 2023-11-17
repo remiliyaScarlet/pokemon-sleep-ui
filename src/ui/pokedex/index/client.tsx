@@ -28,9 +28,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   const {
     pokedex,
     pokemonProducingParamsMap,
+    berryDataMap,
     ingredientChainMap,
     ingredientMap,
-    berryDataMap,
+    mainSkillMap,
     preloaded,
   } = props;
 
@@ -82,8 +83,9 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
   const sortedData = useSortingWorker({
     data,
     sort: filter.sort,
-    ingredientMap,
     berryDataMap,
+    ingredientMap,
+    mainSkillMap,
     snorlaxFavorite: filter.snorlaxFavorite,
     triggerDeps: sortingDeps,
     setLoading,

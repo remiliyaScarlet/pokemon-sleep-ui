@@ -9,6 +9,7 @@ import {authOptions} from '@/const/auth';
 import {getAllBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
+import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -29,18 +30,20 @@ export const AnalysisPage = async ({params}: Props) => {
     session,
     pokemonList,
     pokemonProducingParamsMap,
+    berryDataMap,
     ingredientChainMap,
     ingredientMap,
-    berryDataMap,
+    mainSkillMap,
     sleepStyleMap,
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
     getAllPokemonAsArray(),
     getAllPokemonProducingParams(),
+    getAllBerryData(),
     getIngredientChainMap(),
     getAllIngredients(),
-    getAllBerryData(),
+    getMainSkillMap(),
     getSleepStyleNormalMap(),
     getAllMapMeta(),
   ]);
@@ -59,6 +62,7 @@ export const AnalysisPage = async ({params}: Props) => {
     pokemonList,
     pokemon,
     pokemonProducingParamsMap,
+    mainSkillMap,
     ingredientMap,
     ingredientChainMap,
     berryDataMap,
