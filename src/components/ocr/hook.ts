@@ -86,21 +86,21 @@ export const useOcr = ({
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
-            setState((original) => ({
-              ...original,
+            setState({
+              error: null,
               status: 'recognizing',
               progress: progress * 100,
               text: null,
               processedImage: null,
-            }));
+            });
           } else {
-            setState((original) => ({
-              ...original,
+            setState({
+              error: null,
               status: 'loadingOcr',
               progress: 0,
               text: null,
               processedImage: null,
-            }));
+            });
           }
         },
         errorHandler: (error) => {
