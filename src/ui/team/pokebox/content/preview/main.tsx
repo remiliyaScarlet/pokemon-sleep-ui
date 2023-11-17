@@ -23,7 +23,7 @@ export const PokeboxPreviewStatus = ({filter, setFilter}: PokeboxPreviewStatusPr
   }
 
   return (
-    <Flex direction="row" className="gap-1.5">
+    <Flex direction="row" wrap className="gap-1.5">
       {
         previewLevel &&
         <PokeboxPreviewButton
