@@ -1,8 +1,8 @@
 import {Collection} from 'mongodb';
 
-import {getDataAsArray, getSingleData} from '@/controller/common';
+import {getDataAsArray, getDataAsMap, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {MainSkillData, MainSkillId} from '@/types/game/pokemon/mainSkill';
+import {MainSkillData, MainSkillId, MainSkillMap} from '@/types/game/pokemon/mainSkill';
 
 
 const getCollection = async (): Promise<Collection<MainSkillData>> => {
@@ -13,9 +13,13 @@ const getCollection = async (): Promise<Collection<MainSkillData>> => {
     .collection<MainSkillData>('main');
 };
 
-export const getAllMainSkillData = async () => {
-  return getDataAsArray(getCollection());
-};
+export const getAllMainSkillData = async (): Promise<MainSkillData[]> => (
+  getDataAsArray(getCollection())
+);
+
+export const getMainSkillMap = async (): Promise<MainSkillMap> => (
+  getDataAsMap(getCollection(), ({id}) => id)
+);
 
 export const getMainSkillData = async (id: MainSkillId) => (
   getSingleData(getCollection(), {id})

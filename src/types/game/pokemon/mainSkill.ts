@@ -42,3 +42,5 @@ export type MainSkillData = {
   id: MainSkillId,
   effects: MainSkillEffect[],
 };
+
+export type MainSkillMap = {[id in MainSkillId]?: MainSkillData};
