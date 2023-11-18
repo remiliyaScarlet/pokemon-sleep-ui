@@ -24,7 +24,7 @@ export const About = async ({params}: DefaultPageProps) => {
             {t('Site.Name')}
           </div>
           <AboutSection title="Discord">
-            <DiscordLink className="button-clickable-glow h-14 w-14 self-center p-2"/>
+            <DiscordLink className="button-clickable-glow h-14 w-14"/>
           </AboutSection>
         </Flex>
         <Flex className="gap-8 md:flex-row">

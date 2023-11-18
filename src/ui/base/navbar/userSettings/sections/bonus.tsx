@@ -3,7 +3,7 @@ import React from 'react';
 import ArrowUpCircleIcon from '@heroicons/react/24/outline/ArrowUpCircleIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 
-import {FlexLink} from '@/components/layout/flex/link';
+import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {MapBonusSlider} from '@/components/shared/production/bonus/map';
@@ -50,9 +50,11 @@ export const UserSettingsBonusUI = ({mapIds, bonus, setBonus, currentMap, setCur
         ...bonus,
         overall,
       })}/>
-      <FlexLink href="/docs" center className="button-clickable-glow h-8 w-8 self-end p-1">
-        <QuestionMarkCircleIcon/>
-      </FlexLink>
+      <a href="/docs" className="button-clickable-glow h-8 w-8 self-end p-1">
+        <Flex center className="h-full">
+          <QuestionMarkCircleIcon/>
+        </Flex>
+      </a>
     </UserSettingsSection>
   );
 };

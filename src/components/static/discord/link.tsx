@@ -1,8 +1,6 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
-
-import {FlexLink} from '@/components/layout/flex/link';
+import {Flex} from '@/components/layout/flex/common';
 import {DiscordIcon} from '@/components/static/discord/icon';
 import {discordLink} from '@/const/external';
 
@@ -13,8 +11,10 @@ type Props = {
 
 export const DiscordLink = ({className}: Props) => {
   return (
-    <FlexLink href={discordLink} className={clsx('button-clickable group p-1', className)}>
-      <DiscordIcon/>
-    </FlexLink>
+    <a href={discordLink} className="group" target="_blank">
+      <Flex noFullWidth center className={className}>
+        <DiscordIcon className="scale-75"/>
+      </Flex>
+    </a>
   );
 };

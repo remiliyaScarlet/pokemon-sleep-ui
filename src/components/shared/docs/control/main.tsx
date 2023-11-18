@@ -8,7 +8,6 @@ import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {useRouter} from '@/components/i18n/exports';
 import {InputRow} from '@/components/input/filter/row';
 import {Flex} from '@/components/layout/flex/common';
-import {FlexLink} from '@/components/layout/flex/link';
 import {PopupCommon} from '@/components/popup/common/main';
 import {DocsControlDeleteButton} from '@/components/shared/docs/control/delete';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
@@ -58,14 +57,18 @@ export const DocsControl = ({locale, path, isCmsMod}: Props) => {
           </button>
         </>
       }
-      <FlexLink href="/docs/new" center className="button-clickable-bg h-8 w-14">
-        <PlusCircleIcon className="h-6 w-6"/>
-      </FlexLink>
+      <a href="/docs/new" className="button-clickable-bg h-8 w-14">
+        <Flex center className="h-full">
+          <PlusCircleIcon className="h-6 w-6"/>
+        </Flex>
+      </a>
       {
         path &&
-        <FlexLink href={`/docs/edit/${path}`} center className="button-clickable-bg h-8 w-14">
-          <PencilIcon className="h-6 w-6"/>
-        </FlexLink>
+        <a href={`/docs/edit/${path}`} className="button-clickable-bg h-8 w-14">
+          <Flex center className="h-full">
+            <PencilIcon className="h-6 w-6"/>
+          </Flex>
+        </a>
       }
     </InputRow>
   );

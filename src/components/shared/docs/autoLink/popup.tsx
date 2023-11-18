@@ -22,7 +22,9 @@ export const DocsAutoLinkPopup = ({metaList}: Props) => {
     <Flex className="gap-1.5 md:w-[60vw] lg:w-[50vw]">
       <AdsUnit/>
       {isAdsShouldShow(data) && <AdsPopupText/>}
-      <DiscordLink className="button-clickable-glow h-9 w-9 self-end p-1.5"/>
+      <Flex direction="row" className="justify-end">
+        <DiscordLink className="button-clickable-glow h-9 w-9"/>
+      </Flex>
       {metaList.map((metadata) => <DocsMetaCard key={metadata.path} metadata={metadata}/>)}
     </Flex>
   );
