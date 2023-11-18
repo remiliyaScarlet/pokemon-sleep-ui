@@ -28,7 +28,7 @@ export const ProducingParamsClient = (props: ProducingParamsDataProps) => {
         setFilter={setFilter}
         {...props}
       />
-      <Grid className="grid-cols-1 gap-1.5 text-sm sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <Grid className="grid-cols-1 gap-1.5 text-sm sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4">
         {pokemonResult.map(({pokemonInfo, params, show}) => ((
           <ProducingParamsSingle
             key={pokemonInfo.id}
