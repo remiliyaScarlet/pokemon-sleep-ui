@@ -9,13 +9,12 @@ import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/producti
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
-import {defaultNeutralOpts} from '@/const/game/production';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
@@ -33,7 +32,6 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
     calculatedSettings,
     mainSkillMap,
   } = props;
-  const evolutionCount = getEvolutionCountFromPokemonInfo({pokemon});
   const skillData = mainSkillMap[pokemon.skill];
 
   return (
@@ -44,9 +42,8 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
         const rate = getPokemonProducingRate({
           ingredients,
           snorlaxFavorite: {},
-          evolutionCount,
           skillData,
-          ...defaultNeutralOpts,
+          ...getProducingRateNeutralParams({pokemon}),
           ...calculatedSettings,
           ...props,
         });

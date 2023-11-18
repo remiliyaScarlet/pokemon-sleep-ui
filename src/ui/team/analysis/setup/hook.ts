@@ -65,6 +65,7 @@ const useProducingStatsOfSlot = ({
       evolutionCount,
       subSkill,
       nature,
+      seeds,
       alwaysFullPack,
     } = member;
 
@@ -103,6 +104,7 @@ const useProducingStatsOfSlot = ({
       ingredientMap,
       skillData: mainSkillMap[pokemon.skill],
       evolutionCount,
+      seeds,
     });
 
     const total: ProducingRate = getTotalOfPokemonProducingRate({

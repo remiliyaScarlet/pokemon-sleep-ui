@@ -9,7 +9,6 @@ import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
-import {defaultNeutralOpts} from '@/const/game/production';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
@@ -19,8 +18,8 @@ import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
 import {getPossibleIngredientsFromChain} from '@/utils/game/ingredientChain';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 
 
@@ -58,11 +57,10 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
         pokemonProducingParamsMap,
       }),
       level: filter.level,
-      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
       dateAdded: null,
       extra: null,
       calculatedSettings,
-      ...defaultNeutralOpts,
+      ...getProducingRateNeutralParams({pokemon}),
     };
     const chain = ingredientChainMap[pokemon.ingredientChain];
 

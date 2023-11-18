@@ -1,7 +1,10 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {
+  getProducingRateImplicitParamsFromPokeInbox,
+  getProducingRateSingleParams,
+} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
@@ -26,7 +29,6 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
-    evolutionCount,
   } = pokeInBox;
 
   // Explicit to avoid passing unwanted property to worker
@@ -46,10 +48,10 @@ export const toRatingWorkerOpts = ({
     ingredients,
     subSkill,
     nature,
-    evolutionCount,
     settings,
     basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
     friendshipLevel: 0,
+    ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
   };
 };
 
@@ -77,12 +79,12 @@ export const getRateOfPokemon = ({
   return getPokemonProducingRate({
     ...props,
     ...singleParams,
+    ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
     ...toCalculatedUserSettings({
       settings,
       recoveryRate: toRecoveryRate(singleParams),
     }),
     level: pokeInBox.level,
-    evolutionCount: pokeInBox.evolutionCount,
     pokemonProducingParams: getPokemonProducingParams({
       pokemonId: id,
       pokemonProducingParamsMap,

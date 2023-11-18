@@ -6,7 +6,10 @@ import {UserSettings} from '@/types/userData/settings';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {
+  getProducingRateImplicitParamsFromPokeInbox,
+  getProducingRateSingleParams,
+} from '@/utils/game/producing/params';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {isNotNullish} from '@/utils/type';
@@ -61,13 +64,13 @@ export const useProcessedPokebox = ({
         level,
         dateAdded,
         extra: pokeInBox,
-        evolutionCount: pokeInBox.evolutionCount,
         ingredients: getEffectiveIngredientProductions({level, ingredients: pokeInBox.ingredients}),
-        ...singleParams,
         calculatedSettings: toCalculatedUserSettings({
           settings,
           recoveryRate: toRecoveryRate(singleParams),
         }),
+        ...singleParams,
+        ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
       } satisfies PokemonInfoWithSortingPayload<PokeInBox>;
     })
     .filter(isNotNullish),

@@ -1,6 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {defaultProducingParams} from '@/const/game/production';
+import {defaultSeedUsage} from '@/const/game/seed';
 import {defaultUserSettings} from '@/const/user/settings';
 import {testBerryDataMap} from '@/tests/data/game/berry';
 import {testIngredientChainMap} from '@/tests/data/game/ingredient/chain';
@@ -17,6 +18,7 @@ describe('Rating / Calculate', () => {
     const result = calculateRatingResultOfLevel({
       level: 30,
       pokemon: testPokemonData.absol,
+      seeds: defaultSeedUsage,
       evolutionCount: 1,
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
@@ -44,6 +46,7 @@ describe('Rating / Calculate', () => {
     const result = calculateRatingResultOfLevel({
       level: 30,
       pokemon: testPokemonData.absol,
+      seeds: defaultSeedUsage,
       evolutionCount: 0,
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,
@@ -71,6 +74,7 @@ describe('Rating / Calculate', () => {
     const result = calculateRatingResultOfLevel({
       level: 15,
       pokemon: testPokemonData.absol,
+      seeds: defaultSeedUsage,
       evolutionCount: 0,
       ingredients: testIngredientProductionAtLevels['1'],
       nature: null,

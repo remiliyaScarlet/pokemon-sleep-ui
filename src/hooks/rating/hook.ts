@@ -45,6 +45,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       subSkill: setupData.subSkill,
       nature: setupData.nature,
       evolutionCount: setupData.evolutionCount,
+      seeds: setupData.seeds,
       settings: setupData.settings,
       basis: setupData.basis,
       friendshipLevel: setupData.friendshipLevel,

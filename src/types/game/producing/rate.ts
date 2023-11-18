@@ -2,6 +2,7 @@ import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
+import {SeedUsage} from '@/types/game/pokemon/seed';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProductionPeriod} from '@/types/game/producing/display';

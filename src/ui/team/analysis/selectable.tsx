@@ -2,6 +2,7 @@ import React from 'react';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
+import {defaultSeedUsage} from '@/const/game/seed';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {
   TeamAnalysisMember,
@@ -50,6 +51,7 @@ export const TeamAnalysisSelectablePokemon = ({
         subSkill: {},
         ingredients: generateIngredientProductionAtLevels(chain),
         evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+        seeds: defaultSeedUsage,
       },
     );
   };

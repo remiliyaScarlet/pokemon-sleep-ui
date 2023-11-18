@@ -1,12 +1,11 @@
-import {defaultNeutralOpts} from '@/const/game/production';
 import {toAnalysisBerryProducingRate} from '@/ui/analysis/page/calc/producingRate/berry';
 import {toAnalysisIngredientProducingStats} from '@/ui/analysis/page/calc/producingRate/ingredient';
 import {toAnalysisSkillTriggerProducingStats} from '@/ui/analysis/page/calc/producingRate/skill';
 import {toAnalysisTotalProducingStats} from '@/ui/analysis/page/calc/producingRate/total';
 import {PokemonAnalysisRateInfo} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
 
@@ -31,8 +30,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     pokemonProducingParams: currentPokemonProducingParams,
     berryData: berryDataMap[pokemon.berry.id],
     skillData: mainSkillMap[pokemon.skill],
-    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
-    ...defaultNeutralOpts,
+    ...getProducingRateNeutralParams({pokemon}),
   });
 
   const rateOfAllPokemon = pokemonList.flatMap((otherPokemon) => [...generatePossibleIngredientProductions({
@@ -52,8 +50,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
       berryData: berryDataMap[otherPokemon.berry.id],
       skillData: mainSkillMap[otherPokemon.skill],
       ingredients: otherIngredients,
-      evolutionCount: getEvolutionCountFromPokemonInfo({pokemon: otherPokemon}),
-      ...defaultNeutralOpts,
+      ...getProducingRateNeutralParams({pokemon: otherPokemon}),
     }),
   })));
 

@@ -7,6 +7,7 @@ import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/p
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
 import {PokemonConfigProps} from '@/components/shared/pokemon/predefined/config/type';
+import {SeedUsageInput} from '@/components/shared/pokemon/seed/input/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 
 
@@ -21,6 +22,7 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
     subSkillMap,
     maxEvolutionCount,
     idPrefix,
+    showSeeds,
   } = props;
 
   const {ingredientChain} = pokemon;
@@ -67,6 +69,14 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         maxEvolutionCount={maxEvolutionCount}
         idPrefix={idPrefix}
       />
+      {
+        showSeeds &&
+        <SeedUsageInput
+          usage={data.seeds}
+          setUsage={(getOriginal) => onDataUpdated({seeds: getOriginal(data.seeds)})}
+          idPrefix={idPrefix}
+        />
+      }
     </Flex>
   );
 };

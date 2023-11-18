@@ -1,3 +1,4 @@
+import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
 
@@ -10,6 +11,7 @@ export const toTeamAnalysisMember = ({
   subSkill,
   ingredients,
   evolutionCount,
+  seeds,
 }: PokeInBox): TeamAnalysisMember => {
   return {
     name,
@@ -19,5 +21,6 @@ export const toTeamAnalysisMember = ({
     subSkill,
     ingredients,
     evolutionCount,
+    seeds: seeds ?? defaultSeedUsage,
   };
 };

@@ -13,9 +13,11 @@ import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicat
 import {PokemonProducingRateSingleAtItem} from '@/components/shared/pokemon/production/single/item';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes} from '@/styles/image';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {
+  getProducingRateImplicitParamsFromPokeInbox,
+  getProducingRateSingleParams,
+} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
@@ -71,10 +73,10 @@ export const PokemonItemStatsFromPokeboxList = ({
           }),
           snorlaxFavorite: {},
           ...singleParams,
+          ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
           berryData: berryDataMap[pokemon.berry.id],
           ingredients,
           skillData: mainSkillMap[pokemon.skill],
-          evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
         });
 
         return {
