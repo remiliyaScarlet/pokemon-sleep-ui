@@ -1,5 +1,6 @@
+import {defaultSeedUsage} from '@/const/game/seed';
 import {Migrator} from '@/types/migrate';
-import {TeamAnalysisComp} from '@/types/teamAnalysis';
+import {TeamAnalysisComp, teamAnalysisSlotName} from '@/types/teamAnalysis';
 import {TeamAnalysisCompMigrateParams} from '@/utils/migrate/teamAnalysis/comp/type';
 
 
@@ -13,5 +14,21 @@ export const teamAnalysisCompMigrators: Migrator<TeamAnalysisComp, TeamAnalysisC
     // `staminaConfig` addition
     toVersion: 2,
     migrate: (old) => ({...old, staminaConfig: null}),
+  },
+  {
+    // `seeds` transition from optional to required
+    toVersion: 3,
+    migrate: ({members, ...old}) => ({
+      ...old,
+      members: Object.fromEntries(teamAnalysisSlotName.map((slot) => {
+        const member = members[slot];
+
+        if (!member) {
+          return [slot, null];
+        }
+
+        return [slot, {...member, seeds: defaultSeedUsage}];
+      })) as TeamAnalysisComp['members'],
+    }),
   },
 ];

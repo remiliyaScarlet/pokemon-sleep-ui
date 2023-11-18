@@ -1,1 +1,1 @@
-export const teamAnalysisCompVersion = 1;
+export const teamAnalysisCompVersion = 3;
