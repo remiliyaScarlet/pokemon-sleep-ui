@@ -32,7 +32,7 @@ export const PokemonProducingStatsPopupContent = (props: PokemonProducingStatsCo
         title={t(pokemonProducingStatsStateI18nId.equivalent)}
       />
       <AdsUnit/>
-      <Grid className="gap-1 xl:grid-cols-2">
+      <Grid className="gap-1 2xl:grid-cols-2">
         <PokemonProducingStatsOfState
           {...props}
           state="awake"

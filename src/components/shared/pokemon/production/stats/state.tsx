@@ -8,6 +8,8 @@ import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {PokemonProducingStatsItemLayout} from '@/components/shared/pokemon/production/stats/item';
@@ -47,7 +49,7 @@ export const PokemonProducingStatsOfState = ({
     });
   }
 
-  const {berry, ingredient} = rate;
+  const {berry, ingredient, skill} = rate;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
@@ -84,6 +86,15 @@ export const PokemonProducingStatsOfState = ({
               />
             ))}
           </Flex>
+        </PokemonProducingStatsItemLayout>
+        <PokemonProducingStatsItemLayout icon={<GenericMainSkillIcon alt={t('MainSkill')} noWrap/>}>
+          <PokemonProducingRateSingle
+            key={skill.id}
+            rate={skill}
+            state={state}
+            getIcon={(dimension) => <MainSkillIcon id={skill.id} dimension={dimension}/>}
+            display="item"
+          />
         </PokemonProducingStatsItemLayout>
       </Flex>
       <Flex className="items-end gap-1 sm:flex-row">
