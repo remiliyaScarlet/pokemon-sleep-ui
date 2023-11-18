@@ -19,7 +19,11 @@ type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
 };
 
 export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => {
-  const {berry, ingredient} = stats.total;
+  const {
+    berry,
+    ingredient,
+    skill,
+  } = stats.total;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
@@ -33,7 +37,9 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
             icon={<GenericBerryIcon alt={t('Berry')} noWrap/>}
           />
           <TeamAnalysisRateLayout
-            period={period} showQuantity={false} rate={ingredient}
+            period={period}
+            showQuantity={false}
+            rate={ingredient}
             icon={<GenericIngredientIcon alt={t('Ingredient')} noWrap/>}
           />
         </Flex>
@@ -41,6 +47,7 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
           specialty={null}
           berry={berry.energy}
           ingredient={ingredient?.energy ?? 0}
+          mainSkill={skill.energy}
         />
         <Flex direction="row" noFullWidth className="justify-end">
           <TeamAnalysisRateLayout period={period} larger showQuantity={false} rate={stats.overall}/>

@@ -9,6 +9,7 @@ import {Indexable} from '@/utils/type';
 export type TeamProducingStatsTotal = {
   berry: ProducingRate,
   ingredient: ProducingRate | null,
+  skill: ProducingRate,
 };
 
 export type TeamProducingStatsSingle = PokemonProducingRate & {

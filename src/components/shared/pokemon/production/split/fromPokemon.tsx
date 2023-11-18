@@ -13,13 +13,18 @@ type Props = PokemonProductionSplitCommonProps & {
 };
 
 export const PokemonProductionSplitFromPokemonRate = ({rate, state, ...props}: Props) => {
-  const {berry, ingredient} = rate;
+  const {
+    berry,
+    ingredient,
+    skill,
+  } = rate;
 
   return (
     <PokemonProductionSplit
       {...props}
       berry={berry.energy.equivalent}
       ingredient={toSum(Object.values(ingredient).map(({energy}) => energy[state]))}
+      mainSkill={skill.energy.equivalent}
     />
   );
 };

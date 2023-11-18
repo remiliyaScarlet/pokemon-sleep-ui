@@ -168,6 +168,11 @@ export const useProducingStats = (opts: UseProducingStatsOpts): TeamProducingSta
             .filter(isNotNullish),
         ),
       },
+      skill: {
+        period: analysisPeriod,
+        energy: toSum(stats.map(({skill}) => skill.energy[stateOfRateToShow])),
+        quantity: toSum(stats.map(({skill}) => skill.quantity[stateOfRateToShow])),
+      },
     };
   }, deps);
 
