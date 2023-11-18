@@ -4,7 +4,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {MainSkillData} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {ProducingRateImplicitParams, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 
@@ -43,12 +43,11 @@ export const pokemonSortType = [
 
 export type PokemonSortType = typeof pokemonSortType[number];
 
-export type PokemonSortingRequiredData = {
+export type PokemonSortingRequiredData = ProducingRateImplicitParams & {
   pokemon: PokemonInfo,
   pokemonProducingParams: PokemonProducingParams,
   level: number,
   ingredients: IngredientProduction[],
-  evolutionCount: number,
   dateAdded: number | null,
   calculatedSettings: CalculatedUserSettings,
 };

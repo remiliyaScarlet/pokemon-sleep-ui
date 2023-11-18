@@ -2,9 +2,14 @@ import {defaultHelperCount, defaultProducingParams} from '@/const/game/productio
 import {PokemonId} from '@/types/game/pokemon';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {ProductionPeriod} from '@/types/game/producing/display';
-import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {
+  PokemonProducingRate,
+  ProducingRateImplicitParams,
+  ProducingRateSingleParams,
+} from '@/types/game/producing/rate';
 import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
+import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
   getCarryLimitInfo,
@@ -21,11 +26,11 @@ import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/produci
 type GetPokemonProducingRateOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
-  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent'> &
-  ProducingRateSingleParams & {
+  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent' | 'skillLevel'> &
+  ProducingRateSingleParams &
+  ProducingRateImplicitParams & {
     pokemonProducingParams: PokemonProducingParams,
     sleepDurations: number[],
-    evolutionCount: number,
     behavior: UserCalculationBehavior,
     period?: ProductionPeriod,
     noCap?: boolean,
@@ -33,6 +38,7 @@ type GetPokemonProducingRateOpts =
 
 export const getPokemonProducingRate = ({
   sleepDurations,
+  seeds,
   evolutionCount,
   ...opts
 }: GetPokemonProducingRateOpts): PokemonProducingRate => {
@@ -69,6 +75,11 @@ export const getPokemonProducingRate = ({
   });
   const skill = getMainSkillProducingRate({
     frequency,
+    skillLevel: getMainSkillLevel({
+      seedsUsed: seeds.gold,
+      evolutionCount,
+      subSkillBonus,
+    }),
     skillRatePercent: pokemonProducingParams.skillPercent,
     ...opts,
   });

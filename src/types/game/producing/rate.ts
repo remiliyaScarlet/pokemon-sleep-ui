@@ -43,6 +43,11 @@ export type ProducingRateSingleParams = {
   natureId: NatureId | null,
 };
 
+export type ProducingRateImplicitParams = {
+  evolutionCount: number,
+  seeds: SeedUsage,
+};
+
 export type ProducingRateCommonParams = {
   level: number
   pokemon: PokemonInfo,
