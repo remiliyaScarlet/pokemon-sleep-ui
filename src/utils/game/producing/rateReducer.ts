@@ -147,17 +147,20 @@ export const getTotalOfPokemonProducingRate = ({
   rate,
   state,
 }: Omit<GetPokemonProducingRateComponentOpts, 'target'>): ProducingRate => {
-  const {period, berry} = rate;
+  const {period, berry, skill} = rate;
 
   return {
     period,
     quantity: (
+      // Not adding `skill.energy[state]` here because this quantity is used for calculating carry limit,
+      // but skill trigger count doesn't occupy inventory space
       berry.quantity[state] +
       getTotalIngredientRateOfPokemon({rate, target: 'quantity', state})
     ),
     energy: (
       berry.energy[state] +
-      getTotalIngredientRateOfPokemon({rate, target: 'energy', state})
+      getTotalIngredientRateOfPokemon({rate, target: 'energy', state}) +
+      skill.energy[state]
     ),
   };
 };
