@@ -9,6 +9,7 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonConfigProps} from '@/components/shared/pokemon/predefined/config/type';
 import {SeedUsageInput} from '@/components/shared/pokemon/seed/input/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 
 
 export const PokemonConfig = (props: PokemonConfigProps) => {
@@ -75,6 +76,12 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
           usage={data.seeds}
           setUsage={(getOriginal) => onDataUpdated({seeds: getOriginal(data.seeds)})}
           idPrefix={idPrefix}
+          evolutionCount={data.evolutionCount}
+          subSkillBonus={getSubSkillBonus({
+            level: data.level,
+            pokemonSubSkill: data.subSkill,
+            subSkillMap,
+          })}
         />
       }
     </Flex>

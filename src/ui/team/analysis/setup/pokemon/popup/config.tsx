@@ -5,10 +5,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIntentionalFullPackInput} from '@/components/shared/pokemon/fullPack/input';
 import {PokemonConfig} from '@/components/shared/pokemon/predefined/config/main';
-import {SeedUsageInput} from '@/components/shared/pokemon/seed/input/main';
-import {defaultSeedUsage} from '@/const/game/seed';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
-import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 
 
 export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps) => {
@@ -16,17 +13,10 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
     slotName,
     member,
     setMember,
-    subSkillMap,
   } = props;
-
-  const {
-    level,
-    subSkill,
-  } = member;
 
   const t = useTranslations('UI.UserSettings');
 
-  const seeds = member.seeds ?? defaultSeedUsage;
   const alwaysFullPack = member.alwaysFullPack ?? null;
 
   return (
@@ -36,13 +26,7 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
         data={member}
         onDataUpdated={(update) => setMember(slotName, update)}
         idPrefix="teamAnalysis"
-      />
-      <SeedUsageInput
-        idPrefix="teamAnalysis"
-        usage={seeds}
-        setUsage={(getUpdated) => setMember(slotName, {seeds: getUpdated(seeds)})}
-        evolutionCount={member.evolutionCount}
-        subSkillBonus={getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap})}
+        showSeeds
       />
       <PokemonIntentionalFullPackInput
         idPrefix="teamAnalysis"
