@@ -13,7 +13,7 @@ import {specialtyIdMap} from '@/const/game/pokemon';
 import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {PokeInBoxTableDetailsProps} from '@/ui/team/pokebox/content/pokeInBox/table/details/type';
 import {PokeboxDisplayType} from '@/ui/team/pokebox/viewer/type';
-import {toSum} from '@/utils/array';
+import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {formatFloat} from '@/utils/number/format';
 
 
@@ -26,8 +26,6 @@ export const PokeInBoxTableProduction = ({
   const rateOfIngredients = Object.values(ingredient);
 
   const t = useTranslations('UI.InPage.Pokedex');
-
-  const sumOfDailyIngredientEnergy = toSum(rateOfIngredients.map(({energy}) => energy[stateOfRateToShow]));
 
   return (
     <>
@@ -84,7 +82,7 @@ export const PokeInBoxTableProduction = ({
         <Flex direction="row" center noFullWidth className="w-32 gap-0.5 text-lg">
           <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Stats.Energy.Name')}/>
           <div>
-            {formatFloat(berry.energy[stateOfRateToShow] + sumOfDailyIngredientEnergy)}
+            {formatFloat(getTotalEnergyOfPokemonProducingRate(rateOfPokemon))}
           </div>
         </Flex>
       }

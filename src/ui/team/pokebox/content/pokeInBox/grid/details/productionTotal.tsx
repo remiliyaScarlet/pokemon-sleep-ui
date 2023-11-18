@@ -8,7 +8,7 @@ import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon
 import {stateOfRateToShow} from '@/ui/team/pokebox/content/pokeInBox/const';
 import {getRateOfPokemon} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {toSum} from '@/utils/array';
+import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {formatFloat} from '@/utils/number/format';
 
 
@@ -18,21 +18,13 @@ export const PokeInBoxGridProductionTotal = (props: PokeInBoxCommonProps) => {
   const t = useTranslations('UI.InPage.Pokedex');
 
   const rate = getRateOfPokemon(props);
-  const {berry, ingredient} = rate;
-
-  const sumOfDailyIngredientEnergy = (
-    toSum(Object.values(ingredient).map(({energy}) => energy[stateOfRateToShow]))
-  );
 
   return (
     <Flex noFullWidth className="justify-center gap-1">
       <Flex direction="row" className="items-center gap-0.5 p-0.5">
         <ColoredEnergyIcon dimension="h-5 w-5" alt={t('Stats.Energy.Name')}/>
         <div>
-          {formatFloat(
-            berry.energy[stateOfRateToShow] +
-            sumOfDailyIngredientEnergy,
-          )}
+          {formatFloat(getTotalEnergyOfPokemonProducingRate(rate))}
         </div>
       </Flex>
       <Flex noFullWidth className="w-3/4">
