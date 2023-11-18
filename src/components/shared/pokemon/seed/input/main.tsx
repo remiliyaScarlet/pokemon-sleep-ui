@@ -12,7 +12,7 @@ import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/g
 import {SeedUsage} from '@/types/game/pokemon/seed';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
-import {getMainSkillLevel} from '@/utils/game/mainSkill';
+import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 
 
 type Props = {
