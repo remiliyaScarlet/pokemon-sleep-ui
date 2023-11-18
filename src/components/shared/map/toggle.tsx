@@ -28,7 +28,7 @@ export const MapToggle = ({mapId, isActive, onClick, className}: Props) => {
     )}>
       <NextImage
         src={`/images/field/${mapId}.png`} alt={mapName}
-        sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
+        sizes={imageGallerySizes} className="rounded-lg opacity-50 dark:opacity-25"
       />
       <Flex direction="row" center className="absolute left-0 top-0 z-10 h-full gap-1 p-1">
         {isActive && <div className="h-6 w-6"><CheckCircleIcon/></div>}
