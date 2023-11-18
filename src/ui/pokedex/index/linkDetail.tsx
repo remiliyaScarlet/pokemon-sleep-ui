@@ -73,7 +73,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredientRate') {
-    return <PokemonIngredientRate params={pokemonProducingParams}/>;
+    return <PokemonIngredientRate params={pokemonProducingParams} dimension="h-4 w-4"/>;
   }
 
   if (display === 'sleepType') {
@@ -89,7 +89,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'mainSkillValue') {
-    return <PokemonMainSkillValue params={pokemonProducingParams}/>;
+    return <PokemonMainSkillValue params={pokemonProducingParams} dimension="h-4 w-4"/>;
   }
 
   // Need to calculate here because display and sort could be different

@@ -67,7 +67,7 @@ export const PokemonMeta = (props: PokemonProps) => {
           <FlexLink href="/info/production" center className={clsx(
             'button-clickable-bg group gap-2 p-1 px-2 text-lg',
           )}>
-            <PokemonIngredientRate params={pokemonProducingParams} noIcon/>
+            <PokemonIngredientRate params={pokemonProducingParams} noIcon dimension="h-6 w-6"/>
           </FlexLink>
         </PokemonMetaSection>
         <PokemonMetaSection

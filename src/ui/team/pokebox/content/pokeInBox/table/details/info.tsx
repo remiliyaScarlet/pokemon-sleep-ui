@@ -57,7 +57,7 @@ export const PokeInBoxTableDetails = (props: PokeInBoxTableDetailsProps) => {
         />
       </div>
       <Flex noFullWidth center className="w-40">
-        <PokemonIngredientRate params={producingParams}/>
+        <PokemonIngredientRate params={producingParams} dimension="h-6 w-6"/>
       </Flex>
     </>
   );

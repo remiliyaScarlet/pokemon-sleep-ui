@@ -40,7 +40,7 @@ export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox
           </div>
         </Flex>
         <div className="px-1">
-          <PokemonIngredientRate params={pokemonProducingParams}/>
+          <PokemonIngredientRate params={pokemonProducingParams} dimension="h-6 w-6"/>
         </div>
       </Flex>
     </Flex>

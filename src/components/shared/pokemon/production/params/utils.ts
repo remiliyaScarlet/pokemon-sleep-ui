@@ -4,7 +4,9 @@ import {trustedDataCount} from '@/const/game/producingParams';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 
 
+export const isParamsTrustWorthy = (dataCount: number): boolean => dataCount > trustedDataCount;
+
 export const getProducingParamsSectionStyle = ({dataCount}: PokemonProducingParams): string => clsx(
   'items-center gap-1',
-  dataCount <= trustedDataCount && 'text-danger',
+  !isParamsTrustWorthy(dataCount) && 'text-danger',
 );
