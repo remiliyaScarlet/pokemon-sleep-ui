@@ -75,11 +75,10 @@ type GetProducingRateImplicitParamsFromPokeboxOpts = {
 
 export const getProducingRateImplicitParamsFromPokeInbox = ({
   pokeInBox,
-}: GetProducingRateImplicitParamsFromPokeboxOpts): ProducingRateSingleParams & ProducingRateImplicitParams => {
+}: GetProducingRateImplicitParamsFromPokeboxOpts): ProducingRateImplicitParams => {
   const {seeds, evolutionCount} = pokeInBox;
 
   return {
-    ...defaultNeutralOpts,
     seeds: seeds ?? defaultSeedUsage,
     evolutionCount,
   };
