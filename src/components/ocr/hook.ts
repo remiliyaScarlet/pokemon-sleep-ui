@@ -5,6 +5,7 @@ import {createWorker, OEM} from 'tesseract.js';
 import {ocrLocaleToTesseract} from '@/components/ocr/const';
 import {OcrSettings, OcrState, UseOcrReturn} from '@/components/ocr/type';
 import {ocrThresholdImage} from '@/components/ocr/utils';
+import {useGatedUpdateState} from '@/hooks/gatedUpdate';
 
 
 type UseOcrOpts = {
@@ -18,12 +19,19 @@ export const useOcr = ({
   whitelistChars,
   onError,
 }: UseOcrOpts): UseOcrReturn => {
-  const [state, setState] = React.useState<OcrState>({
-    error: null,
-    status: 'ready',
-    progress: 0,
-    text: null,
-    processedImage: null,
+  const {
+    state,
+    setState,
+    setStateGated,
+  } = useGatedUpdateState<OcrState>({
+    gateMs: 250,
+    initial: {
+      error: null,
+      status: 'ready',
+      progress: 0,
+      text: null,
+      processedImage: null,
+    },
   });
 
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
@@ -86,13 +94,13 @@ export const useOcr = ({
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
-            setState({
+            setStateGated(() => ({
               error: null,
               status: 'recognizing',
               progress: progress * 100,
               text: null,
               processedImage: null,
-            });
+            }));
           } else {
             setState({
               error: null,
