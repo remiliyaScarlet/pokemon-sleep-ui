@@ -3,13 +3,12 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokeInBoxOpenRatingButton} from '@/ui/team/pokebox/content/pokeInBox/common/rating/button';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
-import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 
 
 type Props = PokeInBoxViewUnitProps & {
@@ -17,12 +16,10 @@ type Props = PokeInBoxViewUnitProps & {
   pokemonName: string,
 };
 
-export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => {
+export const PokeInBoxGridPopUps = (props: Props) => {
   const {
-    pokeInBox,
-    snorlaxFavorite,
-    settings,
-    setRatingPopupControl,
+    pokemon,
+    pokemonName,
   } = props;
 
   const t = useTranslations('UI.Metadata');
@@ -35,16 +32,7 @@ export const PokeInBoxGridPopUps = ({pokemon, pokemonName, ...props}: Props) => 
       <button className="button-clickable group h-6 w-6 rounded-full" onClick={() => showPokemon(pokemon)}>
         <GenericPokeballIcon alt={t('Pokedex.Page.Title', {name: pokemonName})} noWrap/>
       </button>
-      <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
-        ...pokeInBox,
-        pokemon,
-        snorlaxFavorite,
-        basis: getDefaultRatingBasis(pokemon.specialty),
-        friendshipLevel: 0,
-        settings,
-      })}>
-        <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>
-      </button>
+      <PokeInBoxOpenRatingButton {...props}/>
     </Flex>
   );
 };

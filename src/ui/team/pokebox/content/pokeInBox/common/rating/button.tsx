@@ -1,0 +1,38 @@
+import React from 'react';
+
+import {useTranslations} from 'next-intl';
+
+import {GenericIconLarger} from '@/components/shared/icon/common/larger';
+import {PokemonInfo} from '@/types/game/pokemon';
+import {RatingSetupData} from '@/types/game/pokemon/rating';
+import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
+import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
+
+
+type Props = PokeInBoxViewUnitProps & {
+  pokemon: PokemonInfo,
+  setRatingPopupControl: (setupData: RatingSetupData) => void,
+};
+
+export const PokeInBoxOpenRatingButton = ({
+  pokeInBox,
+  snorlaxFavorite,
+  settings,
+  pokemon,
+  setRatingPopupControl,
+}: Props) => {
+  const t = useTranslations('UI.Metadata');
+
+  return (
+    <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
+      ...pokeInBox,
+      pokemon,
+      snorlaxFavorite,
+      basis: getDefaultRatingBasis(pokemon.specialty),
+      friendshipLevel: 0,
+      settings,
+    })}>
+      <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>
+    </button>
+  );
+};

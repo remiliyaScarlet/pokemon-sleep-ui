@@ -6,23 +6,22 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {NextImage} from '@/components/shared/common/image/main';
-import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokeInBoxOpenRatingButton} from '@/ui/team/pokebox/content/pokeInBox/common/rating/button';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
-import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 
 
 type Props = PokeInBoxViewUnitProps & {
   pokemon: PokemonInfo,
 };
 
-export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupControl, ...props}: Props) => {
+export const PokeInBoxTableRowHeader = (props: Props) => {
   const {
     pokeInBox,
-    snorlaxFavorite,
-    settings,
+    pokemon,
+    showPokemon,
   } = props;
 
   const t = useTranslations('Game');
@@ -56,16 +55,7 @@ export const PokeInBoxTableRowHeader = ({pokemon, showPokemon, setRatingPopupCon
           </div>
         }
       />
-      <button className="button-clickable group relative h-6 w-6" onClick={() => setRatingPopupControl({
-        ...pokeInBox,
-        pokemon,
-        snorlaxFavorite,
-        basis: getDefaultRatingBasis(pokemon.specialty),
-        friendshipLevel: 0,
-        settings,
-      })}>
-        <GenericIconLarger src="/images/generic/search.png" alt={t2('Rating.Title')}/>
-      </button>
+      <PokeInBoxOpenRatingButton {...props}/>
     </Flex>
   );
 };
