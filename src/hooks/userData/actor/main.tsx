@@ -6,7 +6,6 @@ import {UserDataUploadStatus} from '@/components/shared/userData/uploadStatus';
 import {useOverridableSession} from '@/hooks/session';
 import {UserDataActorState} from '@/hooks/userData/actor/type';
 import {UserDataActor, UserDataActorAsync, UserDataActorAsyncReturn} from '@/types/userData/main';
-import {cloneMerge} from '@/utils/object/cloneMerge';
 import {showToast} from '@/utils/toast';
 
 
@@ -61,7 +60,7 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
 
       setState((original) => ({
         status,
-        lazyLoaded: cloneMerge(original.lazyLoaded, updated?.user.lazyLoaded),
+        lazyLoaded: {...original.lazyLoaded, ...updated?.user.lazyLoaded},
       }));
       return {updated, status};
     } catch (err) {
