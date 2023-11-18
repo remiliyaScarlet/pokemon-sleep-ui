@@ -303,6 +303,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       AlwaysFullPack: string,
       BerryPokemonFullPack: string,
       GoodCampTicket: string,
+      IncludeMainSkill: string,
     },
     UserControl: {
       Login: string,

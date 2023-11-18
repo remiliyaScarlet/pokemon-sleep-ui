@@ -14,7 +14,11 @@ type Props = {
 };
 
 export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
-  const {alwaysFullPack, goodCampTicket} = behavior;
+  const {
+    alwaysFullPack,
+    goodCampTicket,
+    includeMainSkill,
+  } = behavior;
 
   const t = useTranslations('UI.UserSettings');
 
@@ -34,7 +38,7 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
         {t('BerryPokemonFullPack')}
       </ToggleButton>
       <ToggleButton
-        id="userSettings"
+        id="goodCampTicket"
         active={goodCampTicket}
         onChange={(goodCampTicket) => setBehavior({
           ...behavior,
@@ -43,6 +47,17 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
         className={getTextFilterButtonClass(goodCampTicket)}
       >
         {t('GoodCampTicket')}
+      </ToggleButton>
+      <ToggleButton
+        id="includeMainSkill"
+        active={includeMainSkill}
+        onChange={(includeMainSkill) => setBehavior({
+          ...behavior,
+          includeMainSkill,
+        })}
+        className={getTextFilterButtonClass(includeMainSkill)}
+      >
+        {t('IncludeMainSkill')}
       </ToggleButton>
     </InputRow>
   );

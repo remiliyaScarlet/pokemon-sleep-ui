@@ -401,7 +401,8 @@
   "UserSettings": {
     "AlwaysFullPack": "Immer volles Inventar",
     "BerryPokemonFullPack": "Immer volles Inventar für Beeren-Spezialisten",
-    "GoodCampTicket": "Profi-Camping-Ticket"
+    "GoodCampTicket": "Profi-Camping-Ticket",
+    "IncludeMainSkill": "Include Main Skill"
   },
   "UserControl": {
     "Login": "Login",

@@ -400,7 +400,8 @@
   "UserSettings": {
     "AlwaysFullPack": "Always Full Pack",
     "BerryPokemonFullPack": "Always Full Pack for Berry Specialists",
-    "GoodCampTicket": "Good Camp Ticket"
+    "GoodCampTicket": "Good Camp Ticket",
+    "IncludeMainSkill": "Include Main Skill"
   },
   "UserControl": {
     "Login": "Login",

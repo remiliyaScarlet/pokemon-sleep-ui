@@ -50,13 +50,24 @@ export const userSettingsMigrators: Migrator<UserSettings, UserSettingsMigratePa
   {
     toVersion: 6,
     // Added `staminaSkillTrigger` in the config
-    migrate: (old) => ({
+    migrate: ({behavior, ...old}) => ({
       ...old,
       behavior: {
-        ...old.behavior,
+        ...behavior,
         ...defaultUserCalculationBehavior,
         // @ts-ignore
-        alwaysFullPack: old.behavior.berryPokemonAlwaysFullPack ? 'berryOnly' : 'disable',
+        alwaysFullPack: behavior.berryPokemonAlwaysFullPack ? 'berryOnly' : 'disable',
+      },
+    }),
+  },
+  {
+    toVersion: 7,
+    // Added `includeMainSkill` in calculation behavior
+    migrate: ({behavior, ...old}) => ({
+      ...old,
+      behavior: {
+        ...defaultStaminaSkillTrigger,
+        ...behavior,
       },
     }),
   },

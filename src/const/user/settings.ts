@@ -42,6 +42,7 @@ export const defaultStaminaSkillTrigger: StaminaSkillTriggerData = {
 export const defaultUserCalculationBehavior: UserCalculationBehavior = {
   alwaysFullPack: 'disable',
   goodCampTicket: false,
+  includeMainSkill: true,
 };
 
 export const defaultUserSettings: UserSettings = {
@@ -50,5 +51,5 @@ export const defaultUserSettings: UserSettings = {
   staminaSkillTrigger: defaultStaminaSkillTrigger,
   behavior: defaultUserCalculationBehavior,
   currentMap: 1,
-  version: 6,
+  version: 7,
 };

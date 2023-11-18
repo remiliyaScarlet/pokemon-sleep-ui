@@ -400,7 +400,8 @@
   "UserSettings": {
     "AlwaysFullPack": "常時満杯",
     "BerryPokemonFullPack": "きのみポケモン常時満杯",
-    "GoodCampTicket": "いいキャンプチケット"
+    "GoodCampTicket": "いいキャンプチケット",
+    "IncludeMainSkill": "メインスキル算入"
   },
   "UserControl": {
     "Login": "ログイン",

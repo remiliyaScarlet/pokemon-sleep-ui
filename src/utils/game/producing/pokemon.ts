@@ -80,7 +80,7 @@ export const getPokemonProducingRate = ({
       evolutionCount,
       subSkillBonus,
     }),
-    skillRatePercent: pokemonProducingParams.skillPercent,
+    skillRatePercent: behavior.includeMainSkill ? pokemonProducingParams.skillPercent : 0,
     ...opts,
   });
 
