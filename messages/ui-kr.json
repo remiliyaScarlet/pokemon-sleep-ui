@@ -348,9 +348,10 @@
   },
   "Ocr": {
     "Status": {
+      "Error": "오류",
       "Ready": "준비됨",
       "Thresholding": "Thresholding Image",
-      "LoadingOcr": "ocr 로딩중",
+      "LoadingOcr": "OCR 로딩중",
       "Recognizing": "인식중",
       "Completed": "완료"
     },

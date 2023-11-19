@@ -15,13 +15,13 @@ export const useGatedUpdateState = <TState = undefined>({
 
   return {
     state,
-    setState,
-    setStateGated: (getUpdated: (original: TState) => TState) => {
+    setState: (updated: TState) => setState(updated),
+    setStateGated: (updated: TState) => {
       if (Date.now() - lastUpdated.current < gateMs) {
         return;
       }
 
-      setState((original) => getUpdated(original));
+      setState(updated);
       lastUpdated.current = Date.now();
     },
   };

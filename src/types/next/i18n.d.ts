@@ -250,6 +250,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     },
     Ocr: {
       Status: {
+        Error: string,
         Ready: string,
         Thresholding: string,
         LoadingOcr: string,

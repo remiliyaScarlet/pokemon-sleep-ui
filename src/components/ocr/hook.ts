@@ -63,13 +63,13 @@ export const useOcr = ({
 
     const {locale, tolerance} = settings;
 
-    setState((original) => ({
-      ...original,
+    setState({
+      error: null,
       status: 'thresholding',
       progress: 0,
       text: null,
       processedImage: null,
-    }));
+    });
     canvas.width = image.width;
     canvas.height = image.height;
 
@@ -80,13 +80,13 @@ export const useOcr = ({
     const processedImage = ocrThresholdImage({imageData, tolerance});
     ctx.putImageData(processedImage, 0, 0);
 
-    setState((original) => ({
-      ...original,
+    setState({
+      error: null,
       status: 'loadingOcr',
       progress: 0,
       text: null,
       processedImage: null,
-    }));
+    });
     const tesseractLang = ocrLocaleToTesseract[locale];
     const worker = await createWorker(
       tesseractLang,
@@ -94,13 +94,13 @@ export const useOcr = ({
       {
         logger: ({progress, status}) => {
           if (status === 'recognizing text') {
-            setStateGated(() => ({
+            setStateGated({
               error: null,
               status: 'recognizing',
               progress: progress * 100,
               text: null,
               processedImage: null,
-            }));
+            });
           } else {
             setState({
               error: null,
@@ -113,10 +113,13 @@ export const useOcr = ({
         },
         errorHandler: (error) => {
           console.error('OCR Error', error);
-          setState((original) => ({
-            ...original,
+          setState({
             error: JSON.stringify(error),
-          }));
+            status: 'error',
+            progress: 100,
+            text: null,
+            processedImage,
+          });
         },
       },
     );
@@ -128,22 +131,22 @@ export const useOcr = ({
       tessedit_char_whitelist: whitelistChars,
     });
 
-    setState((original) => ({
-      ...original,
+    setState({
+      error: null,
       status: 'recognizing',
       progress: 0,
       text: null,
       processedImage: null,
-    }));
+    });
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
-    setState((original) => ({
-      ...original,
+    setState({
+      error: null,
       status: 'completed',
       progress: 100,
       text,
       processedImage,
-    }));
+    });
     await worker.terminate();
   }, [settings]);
 

@@ -349,6 +349,7 @@
   },
   "Ocr": {
     "Status": {
+      "Error": "Fehler",
       "Ready": "Bereit",
       "Thresholding": "Segmentiere Bild",
       "LoadingOcr": "Initiiere Texterkennung",

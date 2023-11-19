@@ -348,6 +348,7 @@
   },
   "Ocr": {
     "Status": {
+      "Error": "Error",
       "Ready": "Ready",
       "Thresholding": "Thresholding Image",
       "LoadingOcr": "Loading OCR",

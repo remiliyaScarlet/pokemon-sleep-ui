@@ -4,23 +4,30 @@ import {OcrLocale} from '@/types/ocr/locale';
 
 
 export type OcrState = {
-  error: string | null,
-} & ({
+  error: null,
   status: 'ready' | 'thresholding' | 'loadingOcr',
   progress: 0,
   text: null,
   processedImage: null,
 } | {
+  error: null,
   status: 'recognizing',
   progress: number,
   text: null,
   processedImage: null,
 } | {
+  error: null,
   status: 'completed',
   progress: 100,
   text: string,
   processedImage: ImageData,
-});
+} | {
+  error: string,
+  status: 'error',
+  progress: 100,
+  text: null,
+  processedImage: ImageData | null,
+};
 
 export type OcrSettings = {
   locale: OcrLocale,

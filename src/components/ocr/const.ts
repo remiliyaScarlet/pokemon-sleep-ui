@@ -12,6 +12,7 @@ export const ocrLocaleToTesseract: {[lang in OcrLocale]: string} = {
 };
 
 export const ocrStatusToI18nId: {[status in OcrStatus]: I18nMessageKeysOfNamespace<'UI.Ocr.Status'>} = {
+  error: 'Error',
   ready: 'Ready',
   thresholding: 'Thresholding',
   loadingOcr: 'LoadingOcr',
