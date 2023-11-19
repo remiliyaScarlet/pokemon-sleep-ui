@@ -28,4 +28,30 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       previous: null,
     },
   },
+  ampharos: {
+    id: 181,
+    type: 4,
+    specialty: 3,
+    sleepType: 1,
+    stats: {
+      frequency: 2500,
+      maxCarry: 15,
+      friendshipPoints: 20,
+      recruit: {
+        exp: 397,
+        shards: 715,
+      },
+    },
+    berry: {
+      id: 4,
+      quantity: 1,
+    },
+    skill: 2,
+    ingredientChain: 181,
+    evolution: {
+      next: [],
+      stage: 3,
+      previous: 180,
+    },
+  },
 };

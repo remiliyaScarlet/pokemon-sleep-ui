@@ -103,10 +103,12 @@ export const applyStaminaMultiplierToPokemonRate = ({
   const berry = applyStaminaMultiplierToRateOfStates({rate: rate.berry, multiplier});
   const ingredient = Object.values(rate.ingredient)
     .map((rate) => applyStaminaMultiplierToRateOfStates({rate, multiplier}));
+  const skill = applyStaminaMultiplierToRateOfStates({rate: rate.skill, multiplier});
 
   return {
     ...rate,
     berry,
     ingredient,
+    skill,
   };
 };

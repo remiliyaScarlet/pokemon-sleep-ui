@@ -26,11 +26,10 @@ import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/produci
 type GetPokemonProducingRateOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
-  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent' | 'skillLevel'> &
+  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent' | 'skillLevel' | 'timeToFullPack'> &
   ProducingRateSingleParams &
   ProducingRateImplicitParams & {
     pokemonProducingParams: PokemonProducingParams,
-    sleepDurations: number[],
     behavior: UserCalculationBehavior,
     period?: ProductionPeriod,
     noCap?: boolean,
@@ -73,16 +72,6 @@ export const getPokemonProducingRate = ({
     frequency,
     ...opts,
   });
-  const skill = getMainSkillProducingRate({
-    frequency,
-    skillLevel: getMainSkillLevel({
-      seedsUsed: seeds.gold,
-      evolutionCount,
-      subSkillBonus,
-    }),
-    skillRatePercent: behavior.includeMainSkill ? pokemonProducingParams.skillPercent : 0,
-    ...opts,
-  });
 
   const produceSplit = getProduceSplit({
     specialty: pokemon.specialty,
@@ -94,11 +83,24 @@ export const getPokemonProducingRate = ({
       rate: {berry, ingredient},
       produceSplit,
     }),
-    sleepDurations: sleepDurations,
+    sleepDurations,
   });
   const sleepStateSplit = getProducingSleepStateSplit({
     sleepDuration,
     fullPackRatioInSleep: fullPackStats.ratio,
+  });
+  // `skill` depends on `fullPackStats.secondsToFull`
+  const skill = getMainSkillProducingRate({
+    frequency,
+    sleepDurations,
+    timeToFullPack: fullPackStats.secondsToFull,
+    skillLevel: getMainSkillLevel({
+      seedsUsed: seeds.gold,
+      evolutionCount,
+      subSkillBonus,
+    }),
+    skillRatePercent: behavior.includeMainSkill ? pokemonProducingParams.skillPercent : 0,
+    ...opts,
   });
 
   return {

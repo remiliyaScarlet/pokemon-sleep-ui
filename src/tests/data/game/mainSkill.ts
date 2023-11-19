@@ -37,4 +37,39 @@ export const testMainSkillMap: MainSkillMap = {
       },
     ],
   },
+  2: {
+    id: 2,
+    effects: [
+      {
+        type: 'strength',
+        level: 1,
+        value: 880,
+      },
+      {
+        type: 'strength',
+        level: 2,
+        value: 1251,
+      },
+      {
+        type: 'strength',
+        level: 3,
+        value: 1726,
+      },
+      {
+        type: 'strength',
+        level: 4,
+        value: 2383,
+      },
+      {
+        type: 'strength',
+        level: 5,
+        value: 3290,
+      },
+      {
+        type: 'strength',
+        level: 6,
+        value: 4546,
+      },
+    ],
+  },
 };
