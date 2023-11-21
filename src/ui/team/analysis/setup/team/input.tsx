@@ -43,7 +43,6 @@ export const TeamAnalysisCompDependentInput = ({currentTeam, setSetup, ...props}
       />
       <FilterTextInput
         title={t('AnalysisPeriod')}
-        idToItemId={(period) => `AnalysisPeriod-${period}`}
         idToButton={(period) => t2(productionStatsPeriodI18nId[period])}
         ids={[...productionPeriod]}
         isActive={(period) => period === currentTeam.analysisPeriod}

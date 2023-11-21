@@ -15,7 +15,6 @@ export const PotCapacityInput = (props: Props) => {
   return (
     <FilterTextInput
       title={t('PotCapacity')}
-      idToItemId={(id) => `PotCapacity-${id.toString()}`}
       ids={potPossibleCapacity}
       idToButton={(id) => id.toString()}
       {...props}

@@ -12,13 +12,11 @@ import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSki
 type Props<
   TFilter extends FilterWithInclusionMap<SubSkillId>,
 > = GetMultiSelectOnClickPropsOpts<TFilter, SubSkillId> & {
-  idPrefix: string,
   subSkillList: SubSkillData[],
   subSkillMap: SubSkillMap,
 };
 
 export const PokemonSubSkillFilter = <TFilter extends FilterWithInclusionMap<SubSkillId>>({
-  idPrefix,
   subSkillList,
   subSkillMap,
   ...props
@@ -28,7 +26,6 @@ export const PokemonSubSkillFilter = <TFilter extends FilterWithInclusionMap<Sub
   return (
     <FilterTextInput
       title={t('SubSkill')}
-      idToItemId={(id) => `${idPrefix}SubSkill-${id}`}
       idToButton={(id) => <PokemonSubSkillText subSkill={subSkillMap[id]}/>}
       ids={subSkillList.map(({id}) => id)}
       {...getMultiSelectOnClickProps(props)}

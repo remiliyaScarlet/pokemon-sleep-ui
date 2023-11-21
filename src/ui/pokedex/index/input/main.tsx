@@ -92,7 +92,6 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             }
             ids={[...pokedexDisplayType].filter((displayType) => !isPokedexSortExclusion(displayType))}
             idToButton={(display) => t(displayTypeToI18nId[display])}
-            idToItemId={(display) => `displayType-${display}`}
           />
           <PokemonSortingPicker
             sort={filter.sort}

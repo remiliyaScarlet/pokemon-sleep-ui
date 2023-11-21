@@ -102,7 +102,6 @@ export const PokeboxImporterView = ({
             filter={filter}
             setFilter={(getUpdated) => setFilter((original) => getUpdated(original))}
             ingredientChainMap={ingredientChainMap}
-            idPrefix="pokeboxImporter"
           />
         </Flex>
       </Collapsible>

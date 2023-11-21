@@ -16,12 +16,10 @@ import {NatureInfoEffectText} from '@/ui/info/nature/effectText';
 type Props<
   TFilter extends FilterWithInclusionMap<NatureEffectId>,
 > = GetMultiSelectOnClickPropsOpts<TFilter, NatureEffectId> & {
-  idPrefix: string,
   direction: NatureEffectDirection,
 };
 
 export const PokemonNatureEffectInput = <TFilter extends FilterWithInclusionMap<NatureEffectId>>({
-  idPrefix,
   direction,
   ...props
 }: Props<TFilter>) => {
@@ -37,7 +35,6 @@ export const PokemonNatureEffectInput = <TFilter extends FilterWithInclusionMap<
           <div>{t('NatureEffect')}</div>
         </Flex>
       }
-      idToItemId={(id) => `${idPrefix}NatureEffect${direction}${id}`}
       idToButton={(id, isActive) => (
         <NatureInfoEffectText
           direction={direction}

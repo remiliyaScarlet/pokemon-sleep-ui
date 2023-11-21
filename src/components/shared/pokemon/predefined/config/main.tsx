@@ -68,7 +68,6 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         evolutionCount={data.evolutionCount}
         setEvolutionCount={(evolutionCount) => onDataUpdated({evolutionCount})}
         maxEvolutionCount={maxEvolutionCount}
-        idPrefix={idPrefix}
       />
       {
         showSeeds &&

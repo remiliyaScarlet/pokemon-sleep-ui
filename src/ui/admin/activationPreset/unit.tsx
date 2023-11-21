@@ -45,7 +45,6 @@ export const ActivationPresetUnit = ({preset, onUpdate, onDelete}: Props) => {
         ids={[...activationType]}
         isActive={(type) => !!activation[type]}
         idToButton={(type) => activationTypeToText[type]}
-        idToItemId={(type) => `${uuid}${type}`}
         onClick={(type) => onUpdate(
           uuid,
           {

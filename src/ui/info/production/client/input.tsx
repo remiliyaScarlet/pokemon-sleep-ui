@@ -29,7 +29,6 @@ export const ProducingParamsInput = (props: Props) => {
         }
         ids={[...producingParamsSort]}
         idToButton={(sort) => t(producingParamsSortToI18nId[sort])}
-        idToItemId={(sort) => `paramsSort${sort}`}
         {...getSingleSelectOnClickProps({
           ...props,
           filterKey: 'sort',

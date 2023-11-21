@@ -27,7 +27,6 @@ export const MapInputDisplayType = ({filter, setFilter}: MapInputCommonProps) =>
       }
       ids={[...mapUnlockTableDisplayType]}
       idToButton={(display) => t(displayTypeToI18nId[display])}
-      idToItemId={(display) => `displayType-${display}`}
     />
   );
 };

@@ -58,7 +58,6 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
           ingredientChainMap={ingredientChainMap}
           filter={filter}
           setFilter={setFilter}
-          idPrefix="pokeboxPicker"
         />
       </Collapsible>
       <Collapsible state={resultCollapsible} classNameForHeight={inputSectionHeight} appear button={

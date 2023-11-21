@@ -10,12 +10,11 @@ import {toUnique} from '@/utils/array';
 
 
 type Props = Pick<FilterCategoryInputProps<IngredientId>, 'style' | 'isActive' | 'onClick' | 'title'> & {
-  idPrefix?: string,
   ingredientChainMap: IngredientChainMap,
   level: IngredientLevel,
 };
 
-export const PokemonIngredientFilter = ({idPrefix, ingredientChainMap, level, ...props}: Props) => {
+export const PokemonIngredientFilter = ({ingredientChainMap, level, ...props}: Props) => {
   const t = useTranslations('Game');
 
   const possibleIngredientsAtLevel = toUnique(Object.values(ingredientChainMap)
@@ -25,7 +24,6 @@ export const PokemonIngredientFilter = ({idPrefix, ingredientChainMap, level, ..
 
   return (
     <FilterIconInput
-      idToItemId={(id) => `${idPrefix}Ingredient@${level}-${id}`}
       idToAlt={(id) => t(`Food.${id}`)}
       idToImageSrc={(id) => `/images/ingredient/${id}.png`}
       ids={possibleIngredientsAtLevel}

@@ -36,7 +36,6 @@ export const PokemonLevelSlider = ({presetLevels, idPrefix, ...props}: Props) =>
           }
           ids={presetLevels.sort((a, b) => a - b)}
           idToButton={(level) => level}
-          idToItemId={(level) => `${idPrefix ?? ''}presetLevel${level}`}
           getClassNames={getIconFilterButtonClass}
           onClick={setValue}
           isActive={() => false}

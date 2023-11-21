@@ -14,7 +14,6 @@ export const RatingBasisSelection = (props: RatingBasisSelectionCommonProps<Rati
       idToButton={(basis, isActive) => (
         <RatingBasisTitle basis={basis} isActive={isActive}/>
       )}
-      idToItemId={(basis) => basis}
     />
   );
 };

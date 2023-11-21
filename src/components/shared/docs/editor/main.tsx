@@ -129,7 +129,6 @@ export const DocsEditor = ({onDocUpdated, getUserDataAction, ...props}: Props) =
         }
         ids={[...locales]}
         idToButton={(locale) => localeName[locale]}
-        idToItemId={(locale) => locale}
       />
       <InputRow>
         <ToggleButton

@@ -33,7 +33,6 @@ export const MapInputSleepStyleToggle = (props: Props) => {
           </div>
         </Flex>
       }
-      idToItemId={(id) => `SleepStyle-${id}`}
       idToButton={(id) => <SleepdexStyleIcon styleId={id}/>}
       ids={sleepStyles}
       {...getMultiSelectOnClickProps({

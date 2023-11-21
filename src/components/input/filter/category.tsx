@@ -6,12 +6,12 @@ import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
+import {IndexableNonSymbol} from '@/utils/type';
 
 
-export const FilterCategoryInput = <TId, >({
+export const FilterCategoryInput = <TId extends IndexableNonSymbol | null>({
   title,
   ids,
-  idToItemId,
   idToButton,
   isHidden,
   onClick,
@@ -42,7 +42,7 @@ export const FilterCategoryInput = <TId, >({
 
           return (
             <ToggleButton
-              key={idToItemId(id)}
+              key={id}
               active={active}
               onClick={() => onClick(id)}
               className={getClassNames(active, id)}

@@ -4,9 +4,10 @@ import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {getIconFilterButtonClass} from '@/components/input/filter/utils/props';
 import {NextImage} from '@/components/shared/common/image/main';
+import {IndexableNonSymbol} from '@/utils/type';
 
 
-type Props<TId> = Omit<FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
+type Props<TId extends IndexableNonSymbol> = Omit<FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
   idToAlt: (id: TId) => string,
   idToImageSrc: (id: TId) => string,
   idToImageClassName?: (id: TId) => string,
@@ -20,7 +21,12 @@ const sizes = [
   '10vw',
 ].join(', ');
 
-export const FilterIconInput = <TId, >({idToAlt, idToImageSrc, idToImageClassName, ...props}: Props<TId>) => {
+export const FilterIconInput = <TId extends IndexableNonSymbol>({
+  idToAlt,
+  idToImageSrc,
+  idToImageClassName,
+  ...props
+}: Props<TId>) => {
   return (
     <FilterCategoryInput
       idToButton={(id) => (

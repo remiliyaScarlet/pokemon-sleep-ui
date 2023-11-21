@@ -87,7 +87,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
               ...original,
               basis,
             }))}
-            idPrefix="rating"
           />
           <RatingFriendshipLevel
             current={onDesk.friendshipLevel}

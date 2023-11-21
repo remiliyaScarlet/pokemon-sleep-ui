@@ -8,14 +8,12 @@ import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 
 
 type Props = {
-  idPrefix: string,
   evolutionCount: number,
   maxEvolutionCount: number,
   setEvolutionCount: (evolutionCount: number) => void,
 };
 
 export const PokemonEvolutionCountInput = ({
-  idPrefix,
   evolutionCount,
   maxEvolutionCount,
   setEvolutionCount,
@@ -33,7 +31,6 @@ export const PokemonEvolutionCountInput = ({
           <div>{text}</div>
         </Flex>
       }
-      idToItemId={(id) => `${idPrefix}-EvolutionStage-${id}`}
       idToButton={(id) => <div className="mx-1">{id}</div>}
       ids={[...new Array(maxEvolutionCount).keys()]}
       onClick={setEvolutionCount}

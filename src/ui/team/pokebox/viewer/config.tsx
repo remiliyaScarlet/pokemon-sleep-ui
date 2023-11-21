@@ -70,7 +70,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
         <RatingBasisSelectionNullable
           current={filter.ratingBasis}
           onSelect={(ratingBasis) => setFilter((original) => ({...original, ratingBasis}))}
-          idPrefix="pokeboxViewer"
         />
         <SnorlaxFavoriteInput
           filterKey="snorlaxFavorite"
@@ -88,7 +87,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               {pokeboxViewTypeToIcon[type]}
             </div>
           )}
-          idToItemId={(type) => type}
           getClassNames={getIconFilterButtonClass}
           {...getSingleSelectOnClickProps({
             filter,
@@ -112,7 +110,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               </div> :
               level
           )}
-          idToItemId={(level) => `previewLevel-${level}`}
           getClassNames={getIconFilterButtonClass}
           {...getSingleSelectOnClickProps({
             filter,
@@ -130,7 +127,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               </Flex>
             }
             ids={[...pokeboxDisplayType]}
-            idToItemId={(type) => type}
             idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
             idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
             idToImageClassName={(type) => clsx(type === filter.displayOfGrid ? 'invert-on-dark' : 'invert-on-light')}
@@ -151,7 +147,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               </Flex>
             }
             ids={[...pokeboxDisplayType]}
-            idToItemId={(type) => type}
             idToAlt={(type) => t(pokeboxDisplayTypeToI18nId[type])}
             idToImageSrc={(type) => pokeboxDisplayTypeToImageSrc[type]}
             idToImageClassName={(type) => clsx(filter.displayOfTable[type] ? 'invert-on-dark' : 'invert-on-light')}

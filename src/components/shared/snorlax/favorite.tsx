@@ -44,14 +44,12 @@ export const SnorlaxFavoriteInput = <
             </div>
           </Flex>
         }
-        idToItemId={(id) => `Snorlax-${id}`}
         idToAlt={(id) => t(`Berry.${id.toString()}`)}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         ids={toUnique(pokemonList.map(({berry}) => berry.id)).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps(props)}
       />
       <PokemonMapFilter
-        idPrefix="snorlaxFavorite"
         title={
           <Flex direction="row" center className="gap-0.5">
             <div className="relative h-7 w-7">

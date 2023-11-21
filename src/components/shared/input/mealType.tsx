@@ -22,7 +22,6 @@ export const MealTypeInput = ({mealTypes, ...props}: Props) => {
     <FilterTextInput
       style="highlight"
       title={t('MealType')}
-      idToItemId={(id) => `MealType-${id}`}
       ids={mealTypes}
       idToButton={(id) => (
         <Flex direction="row" className="gap-1" center>

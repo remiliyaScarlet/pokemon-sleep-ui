@@ -79,7 +79,6 @@ export const ActivationEditor = ({
         title="Activation"
         ids={[...activationType]}
         idToButton={(activation) => activationTypeToText[activation]}
-        idToItemId={(activation) => `${idPrefix}activation${activation}`}
         {...getMultiSelectOnClickProps({
           filter: data,
           setFilter: setData,
@@ -90,7 +89,6 @@ export const ActivationEditor = ({
         title="Source"
         ids={[...activationSource]}
         idToButton={(source) => activationContactToText[source]}
-        idToItemId={(source) => `${idPrefix}source${source}`}
         {...getSingleSelectOnClickProps({
           filter: data,
           setFilter: setData,

@@ -35,7 +35,6 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
         isActive={(strategy) => strategy === skillRecovery.strategy}
         ids={[...staminaSkillRecoveryStrategies]}
         idToButton={(strategy) => t(`Strategy.${staminaStrategyI18nId[strategy]}`)}
-        idToItemId={(strategy) => `${idPrefix}-staminaStrategy-${strategy}`}
         noFixedTitleWidth
       />
       <Flex direction="row" className="justify-center gap-1.5">

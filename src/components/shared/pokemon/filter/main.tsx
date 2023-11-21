@@ -30,14 +30,12 @@ import {KeysOfType} from '@/utils/type';
 type Props<TFilter extends PokemonInputFilter> = FilterWithUpdaterProps<TFilter> & {
   pokemonList: PokemonInfo[],
   ingredientChainMap: IngredientChainMap,
-  idPrefix?: string,
   className?: string,
 };
 
 export const PokemonFilter = <TFilter extends PokemonInputFilter>({
   pokemonList,
   ingredientChainMap,
-  idPrefix,
   className,
   ...props
 }: Props<TFilter>) => {
@@ -50,7 +48,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
         title={<PokemonFilterTitle type="pokemonType"/>}
         idToAlt={(id) => t(`PokemonType.${id}`)}
         idToImageSrc={(id) => `/images/type/${id}.png`}
-        idToItemId={(id) => `${idPrefix}PokemonType${id}`}
         ids={getFilterIdsFromPokemon({
           pokemonList,
           toId: ({type}) => type,
@@ -63,7 +60,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       <FilterTextInput
         title={<PokemonFilterTitle type="specialty"/>}
         idToButton={(id, isActive) => <PokemonSpecialty specialty={id} active={isActive}/>}
-        idToItemId={(id) => `${idPrefix}Specialty${id}`}
         ids={getFilterIdsFromPokemon({
           pokemonList,
           toId: ({specialty}) => specialty,
@@ -76,7 +72,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       <FilterTextInput
         title={<PokemonFilterTitle type="sleepType"/>}
         idToButton={(id, isActive) => <PokemonSleepType sleepType={id} active={isActive}/>}
-        idToItemId={(id) => `${idPrefix}SleepType${id}`}
         ids={getFilterIdsFromPokemon({
           pokemonList,
           toId: ({sleepType}) => sleepType,
@@ -90,7 +85,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
         <PokemonIngredientFilter
           key={level}
           title={<PokemonIngredientTypeTitle level={level} lvAsText/>}
-          idPrefix={idPrefix}
           ingredientChainMap={ingredientChainMap}
           level={level}
           {...getMultiSelectOnClickProps({
@@ -102,7 +96,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       <FilterIconInput
         title={<PokemonFilterTitle type="berry"/>}
         idToAlt={(id) => t(`Berry.${id}`)}
-        idToItemId={(id) => `${idPrefix}Berry${id}`}
         idToImageSrc={(id) => `/images/berry/${id}.png`}
         ids={getFilterIdsFromPokemon({
           pokemonList,
@@ -120,7 +113,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
             {id === 'final' ? t2('FinalEvolution') : id}
           </div>
         )}
-        idToItemId={(id) => `${idPrefix}Evolution${id}`}
         ids={[
           ...getFilterIdsFromPokemon({
             pokemonList,
@@ -136,7 +128,6 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       <FilterTextInput
         title={<PokemonFilterTitle type="mainSkill"/>}
         idToButton={(id) => t(`MainSkill.Name.${id}`)}
-        idToItemId={(id) => `${idPrefix}MainSkill${id}`}
         ids={getFilterIdsFromPokemon({
           pokemonList,
           toId: ({skill}) => skill,

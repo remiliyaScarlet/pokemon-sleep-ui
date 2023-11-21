@@ -32,7 +32,6 @@ export const PokemonProducingRateSingleDisplaySwitch = ({control, itemAlt, itemI
         </Flex>
       }
       ids={[...pokemonProducingRateSingleDisplay]}
-      idToItemId={(id) => id}
       idToAlt={(id) => id === 'total' ? t('TotalEnergy') : itemAlt}
       idToImageSrc={(id) => id === 'total' ? '/images/generic/energy.png' : itemImageSrc}
     />

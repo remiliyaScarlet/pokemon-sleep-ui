@@ -30,7 +30,6 @@ export const DocsEditorDisplayToggle = ({display, setDisplay, className}: Props)
           {docsEditorDisplayTypeIcon[display]}
         </div>
       )}
-      idToItemId={(display) => display}
       className={className}
     />
   );

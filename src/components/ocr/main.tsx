@@ -81,7 +81,6 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
           }
           ids={[...ocrLocale]}
           idToButton={(ocrLang) => localeName[ocrLang]}
-          idToItemId={(ocrLang) => `OcrLang-${ocrLang}`}
           noRowPadding
           noFixedTitleWidth
           noWrap

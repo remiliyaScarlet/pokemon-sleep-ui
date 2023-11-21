@@ -21,7 +21,6 @@ export const RatingFriendshipLevel = ({current, onUpdated}: Props) => {
       title={t('FriendshipLevel')}
       ids={[...friendshipLevelsOfGoldLock]}
       idToButton={(level) => `${level}+`}
-      idToItemId={(level) => `friendship${level}`}
     />
   );
 };
