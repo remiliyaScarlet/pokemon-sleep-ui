@@ -1,3 +1,3 @@
 export type OcrImporterProcessedImageProps = {
-  processed: ImageData | null,
+  processed: ImageData | null | undefined,
 };

@@ -120,7 +120,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
           text,
           image: {
             raw: image,
-            processed: state.processedImage,
+            processedCanvasRef: canvasRef,
           },
         })}
       </AnimatedCollapse>

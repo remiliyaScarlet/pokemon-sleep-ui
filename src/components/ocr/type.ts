@@ -8,25 +8,21 @@ export type OcrState = {
   status: 'ready' | 'thresholding' | 'loadingOcr',
   progress: 0,
   text: null,
-  processedImage: null,
 } | {
   error: null,
   status: 'recognizing',
   progress: number,
   text: null,
-  processedImage: null,
 } | {
   error: null,
   status: 'completed',
   progress: 100,
   text: string,
-  processedImage: ImageData,
 } | {
   error: string,
   status: 'error',
   progress: 100,
   text: null,
-  processedImage: ImageData | null,
 };
 
 export type OcrSettings = {
@@ -36,13 +32,15 @@ export type OcrSettings = {
 
 export type OcrStatus = OcrState['status'];
 
+export type OcrRenderImageData = {
+  raw: string | null,
+  processedCanvasRef: React.RefObject<HTMLCanvasElement>,
+};
+
 export type OcrRenderDataOpts<TData> = {
   data: TData,
   text: string,
-  image: {
-    raw: string | null,
-    processed: ImageData | null,
-  },
+  image: OcrRenderImageData,
 };
 
 export type OcrCommonProps<TData> = {

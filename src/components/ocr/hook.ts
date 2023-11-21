@@ -30,7 +30,6 @@ export const useOcr = ({
       status: 'ready',
       progress: 0,
       text: null,
-      processedImage: null,
     },
   });
 
@@ -68,7 +67,6 @@ export const useOcr = ({
       status: 'thresholding',
       progress: 0,
       text: null,
-      processedImage: null,
     });
     canvas.width = image.width;
     canvas.height = image.height;
@@ -85,7 +83,6 @@ export const useOcr = ({
       status: 'loadingOcr',
       progress: 0,
       text: null,
-      processedImage: null,
     });
     const tesseractLang = ocrLocaleToTesseract[locale];
     const worker = await createWorker(
@@ -99,7 +96,6 @@ export const useOcr = ({
               status: 'recognizing',
               progress: progress * 100,
               text: null,
-              processedImage: null,
             });
           } else {
             setState({
@@ -107,7 +103,6 @@ export const useOcr = ({
               status: 'loadingOcr',
               progress: 0,
               text: null,
-              processedImage: null,
             });
           }
         },
@@ -118,7 +113,6 @@ export const useOcr = ({
             status: 'error',
             progress: 100,
             text: null,
-            processedImage,
           });
         },
       },
@@ -136,7 +130,6 @@ export const useOcr = ({
       status: 'recognizing',
       progress: 0,
       text: null,
-      processedImage: null,
     });
     const {data: {text}} = await worker.recognize(canvasRef.current.toDataURL('image/jpeg'));
 
@@ -145,7 +138,6 @@ export const useOcr = ({
       status: 'completed',
       progress: 100,
       text,
-      processedImage,
     });
     await worker.terminate();
   }, [settings]);
