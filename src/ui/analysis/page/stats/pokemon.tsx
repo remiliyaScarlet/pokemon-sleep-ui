@@ -4,14 +4,13 @@ import {useTranslations} from 'next-intl';
 
 import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
 import {ingredientLevelToPokemonInput} from '@/components/shared/pokemon/filter/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
-import {imageIconSizes} from '@/styles/image';
 import {AnalysisStatsGroupedUI} from '@/ui/analysis/page/result/group';
 import {AnalysisStatsLayout} from '@/ui/analysis/page/stats/layout';
 import {AnalysisStatsUiProps} from '@/ui/analysis/page/stats/type';
@@ -34,9 +33,7 @@ export const AnalysisStatsOfPokemonMeta = ({pokemon, stats, level}: AnalysisStat
         stats={stats.pokemon.type}
         title={<PokemonFilterTitle type="pokemonType"/>}
       >
-        <div className="relative h-10 w-10">
-          <NextImage src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)} sizes={imageIconSizes}/>
-        </div>
+        <PokemonTypeIcon type={type} dimension="h-10 w-10"/>
       </AnalysisStatsGroupedUI>
       {
         specialty &&

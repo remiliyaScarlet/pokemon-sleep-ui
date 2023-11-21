@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {NextImage} from '@/components/shared/common/image/main';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
+import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
@@ -28,12 +29,7 @@ export const PokemonClickableIconImage = ({pokemon, dimension}: Props) => {
   return (
     <>
       <div className="absolute left-0.5 top-0.5 z-10">
-        <div className="relative h-5 w-5">
-          <NextImage
-            src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
-            className="drop-shadow-thick" sizes={imageIconSizes}
-          />
-        </div>
+        <PokemonTypeIcon type={type} dimension="h-5 w-5"/>
       </div>
       <div className={clsx('relative', dimension)}>
         <NextImage

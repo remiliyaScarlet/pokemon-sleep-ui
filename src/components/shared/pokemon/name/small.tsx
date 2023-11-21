@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/common/main';
+import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {PokemonNameProps} from '@/components/shared/pokemon/name/type';
 
 
@@ -18,14 +18,7 @@ export const PokemonNameSmall = ({pokemon, override, className}: Props) => {
 
   return (
     <Flex direction="row" noFullWidth className={clsx('items-center gap-1 text-lg', className)}>
-      <GenericIcon
-        alt={t(`PokemonType.${type}`)}
-        src={`/images/type/${type}.png`}
-        dimension="h-6 w-6"
-        noInvert
-        noShrink
-        dropShadow
-      />
+      <PokemonTypeIcon type={type} dimension="h-6 w-6"/>
       <div className="truncate">
         {override ?? t(`PokemonName.${id}`)}
       </div>

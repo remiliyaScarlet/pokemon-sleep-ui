@@ -5,6 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
+import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {imageIconSizes} from '@/styles/image';
@@ -37,12 +38,7 @@ export const PokedexLink = (props: PokedexLinkProps) => {
             direction="row"
             className="text-shadow-preset absolute left-1 top-1 z-10 items-center gap-0.5 whitespace-nowrap"
           >
-            <div className="relative h-5 w-5">
-              <NextImage
-                src={`/images/type/${type}.png`} alt={t(`PokemonType.${type}`)}
-                sizes={imageIconSizes} className="drop-shadow-thick"
-              />
-            </div>
+            <PokemonTypeIcon type={type} dimension="h-5 w-5"/>
             <div>
               {t(`PokemonName.${id}`)}
             </div>

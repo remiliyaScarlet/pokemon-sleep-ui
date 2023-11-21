@@ -3,7 +3,7 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {GenericIcon} from '@/components/shared/icon/common/main';
+import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {PokemonNameProps} from '@/components/shared/pokemon/name/type';
 
 
@@ -13,14 +13,7 @@ export const PokemonNameBig = ({pokemon, override}: PokemonNameProps) => {
 
   return (
     <Flex direction="row" center className="gap-1 p-2.5 text-2xl">
-      <GenericIcon
-        alt={t(`PokemonType.${type}`)}
-        src={`/images/type/${type}.png`}
-        dimension="h-8 w-8"
-        noInvert
-        noShrink
-        dropShadow
-      />
+      <PokemonTypeIcon type={type} dimension="h-8 w-8"/>
       <div className="truncate">
         {override ?? t(`PokemonName.${id}`)}
       </div>
