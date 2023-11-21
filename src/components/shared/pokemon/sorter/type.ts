@@ -12,6 +12,7 @@ import {CalculatedUserSettings} from '@/types/userData/settings';
 export const pokedexSortExclusion = [
   'dateAdded',
   'level',
+  'mainSkillLevel',
 ] as const;
 
 export type PokedexSortExclusion = typeof pokedexSortExclusion[number];

@@ -5,6 +5,7 @@ import {
   getPokemonRateSorter,
 } from '@/components/shared/pokemon/sorter/calc/sorter';
 import {PokemonSorterGetter, PokemonSortType} from '@/components/shared/pokemon/sorter/type';
+import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
@@ -38,6 +39,10 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   frequencyOfIngredient: (opts) => getIngredientFirstRateSorter({key: 'frequency', opts}),
   timeToFullPack: (opts) => getPokemonRateSorter(opts).fullPackStats.secondsToFull,
   totalEnergy: (opts) => getTotalEnergyOfPokemonProducingRate(getPokemonRateSorter(opts)),
+  mainSkillLevel: ({seeds, ...opts}) => getMainSkillLevel({
+    seedsUsed: seeds.gold,
+    ...opts,
+  }),
   mainSkillValue: ({pokemonProducingParams}) => pokemonProducingParams.skillValue,
   mainSkillTriggerValue: (opts) => {
     const {pokemonProducingParams} = opts;

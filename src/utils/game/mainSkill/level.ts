@@ -7,7 +7,7 @@ import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 type GetMainSkillLevelOpts = {
   seedsUsed: number,
   evolutionCount?: number,
-  subSkillBonus?: GroupedSubSkillBonus,
+  subSkillBonus?: GroupedSubSkillBonus | null,
 };
 
 export const getMainSkillLevel = ({seedsUsed, evolutionCount, subSkillBonus}: GetMainSkillLevelOpts) => {

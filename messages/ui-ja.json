@@ -252,6 +252,7 @@
         "IngredientRate": "食材確率",
         "BerryEnergy": "きのみのエナジー",
         "BerryCount": "きのみの数",
+        "MainSkillLevel": "メインスキルレベル",
         "FrequencyOfBerry": "おてつだい時間 (きのみ)",
         "FrequencyOfIngredient": "おてつだい時間 (食材)",
         "FriendshipPoint": "フレンドポイント",

@@ -253,6 +253,7 @@
         "IngredientRate": "Zutatenwahrscheinlichkeit",
         "BerryEnergy": "Beerenstärke",
         "BerryCount": "Beerensuche",
+        "MainSkillLevel": "Main Skill Level",
         "FrequencyOfBerry": "Frequenz (Beeren)",
         "FrequencyOfIngredient": "Frequenz (Zutaten)",
         "FriendshipPoint": "Freundespunkte",

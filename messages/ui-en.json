@@ -252,6 +252,7 @@
         "IngredientRate": "Ingredient Rate",
         "BerryEnergy": "Berry Strength",
         "BerryCount": "Berry Count",
+        "MainSkillLevel": "Main Skill Level",
         "FrequencyOfBerry": "Frequency (Berry)",
         "FrequencyOfIngredient": "Frequency (Ingredient)",
         "FriendshipPoint": "Friendship Points",
