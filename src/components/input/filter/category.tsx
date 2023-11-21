@@ -35,7 +35,6 @@ export const FilterCategoryInput = <TId, >({
         {ids.map((id) => {
           const active = isActive(id);
           const hidden = isHidden && isHidden(id);
-          const itemId = idToItemId(id);
 
           if (hidden) {
             return null;
@@ -43,9 +42,8 @@ export const FilterCategoryInput = <TId, >({
 
           return (
             <ToggleButton
-              key={itemId}
+              key={idToItemId(id)}
               active={active}
-              id={itemId}
               onClick={() => onClick(id)}
               className={getClassNames(active, id)}
             >

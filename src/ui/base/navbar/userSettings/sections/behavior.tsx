@@ -27,33 +27,30 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
   return (
     <InputRow>
       <ToggleButton
-        id="berryMonFullPack"
         active={isAlwaysFullPack}
-        onChange={(alwaysFullPack) => setBehavior({
+        onClick={() => setBehavior({
           ...behavior,
-          alwaysFullPack: alwaysFullPack ? 'berryOnly' : 'disable',
+          alwaysFullPack: !isAlwaysFullPack ? 'berryOnly' : 'disable',
         })}
         className={getTextFilterButtonClass(isAlwaysFullPack)}
       >
         {t('BerryPokemonFullPack')}
       </ToggleButton>
       <ToggleButton
-        id="goodCampTicket"
         active={goodCampTicket}
-        onChange={(goodCampTicket) => setBehavior({
+        onClick={() => setBehavior({
           ...behavior,
-          goodCampTicket,
+          goodCampTicket: !goodCampTicket,
         })}
         className={getTextFilterButtonClass(goodCampTicket)}
       >
         {t('GoodCampTicket')}
       </ToggleButton>
       <ToggleButton
-        id="includeMainSkill"
         active={includeMainSkill}
-        onChange={(includeMainSkill) => setBehavior({
+        onClick={() => setBehavior({
           ...behavior,
-          includeMainSkill,
+          includeMainSkill: !includeMainSkill,
         })}
         className={getTextFilterButtonClass(includeMainSkill)}
       >

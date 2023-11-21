@@ -117,33 +117,30 @@ export const ActivationEditor = ({
       <InputRowWithTitle title="Properties">
         <Flex direction="row" noFullWidth className="gap-1">
           <ToggleButton
-            id={`${idPrefix}isSpecial`}
             active={isSpecial}
-            onChange={(isSpecial) => setData((original) => ({
+            onClick={() => setData((original) => ({
               ...original,
-              isSpecial,
+              isSpecial: !original.isSpecial,
             } satisfies ActivationPropertiesAtClient))}
             className={getTextFilterButtonClass(isSpecial)}
           >
             Special Grant
           </ToggleButton>
           <ToggleButton
-            id={`${idPrefix}isCmsMod`}
             active={isCmsMod}
-            onChange={(isCmsMod) => setData((original) => ({
+            onClick={() => setData((original) => ({
               ...original,
-              isCmsMod,
+              isCmsMod: !original.isCmsMod,
             } satisfies ActivationPropertiesAtClient))}
             className={getTextFilterButtonClass(isCmsMod)}
           >
             CMS Mod
           </ToggleButton>
           <ToggleButton
-            id={`${idPrefix}isActivationLocked`}
             active={isActivationLocked}
-            onChange={(isActivationLocked) => setData((original) => ({
+            onClick={() => setData((original) => ({
               ...original,
-              isActivationLocked,
+              isActivationLocked: !original.isActivationLocked,
             } satisfies ActivationPropertiesAtClient))}
             className={getTextFilterButtonClass(isActivationLocked)}
           >

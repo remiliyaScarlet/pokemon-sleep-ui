@@ -164,7 +164,6 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
         }
         <InputRow className="justify-end">
           <ToggleButton
-            id="pokeboxPreviewFinalEvo"
             active={filter.previewFinalEvolution}
             onClick={() => {
               if (!isPremium) {

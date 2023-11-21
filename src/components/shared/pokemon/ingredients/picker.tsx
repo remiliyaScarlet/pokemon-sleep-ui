@@ -48,13 +48,11 @@ export const PokemonIngredientPicker = ({
               {productions.map((production) => {
                 const {id, qty} = production;
                 const active = current.id === id;
-                const itemId = `${idPrefix}-ingredient-${level}-${id}`;
 
                 return (
                   <ToggleButton
-                    key={itemId}
+                    key={`${idPrefix}-ingredient-${level}-${id}`}
                     active={active}
-                    id={itemId}
                     onClick={() => onSelect(production, level)}
                     className={clsx('rounded-lg p-1.5', getToggleButtonClass(active))}
                   >

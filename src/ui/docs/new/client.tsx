@@ -22,7 +22,6 @@ export const DocsNewClient = ({locale}: Props) => {
 
   return (
     <DocsEditor
-      idPrefix="newDoc"
       locale={locale}
       doc={data}
       onDocUpdated={setData}

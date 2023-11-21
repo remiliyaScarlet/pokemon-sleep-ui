@@ -85,7 +85,6 @@ export const PokeInBoxEditLayout = ({
         </Flex>
         <Flex direction="row" className="gap-1.5">
           <ToggleButton
-            id="markPokeInBoxShiny"
             active={isShinyActive}
             onClick={() => setPokeInBox({
               ...pokeInBox,
@@ -101,7 +100,6 @@ export const PokeInBoxEditLayout = ({
             </div>
           </ToggleButton>
           <ToggleButton
-            id="markPokeInBoxFavorite"
             active={isFavoriteActive}
             onClick={() => setPokeInBox({
               ...pokeInBox,

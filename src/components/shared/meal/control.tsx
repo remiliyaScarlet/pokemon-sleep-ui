@@ -26,7 +26,6 @@ export const MealDisplayControl = ({showEnergy, setShowEnergy, uploadData}: Prop
   return (
     <InputRow className="justify-end gap-2">
       <ToggleButton
-        id="showEmpty"
         active={showEnergy}
         onClick={() => setShowEnergy(!showEnergy)}
         className={clsx('group', getTextFilterButtonClass(showEnergy))}

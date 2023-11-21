@@ -21,7 +21,6 @@ export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInp
 
   return (
     <ToggleButton
-      id="toggleUnlocked"
       active={showLockedOnly}
       onClick={() => setFilter((original) => ({
         ...original,

@@ -12,13 +12,12 @@ import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {
-  idPrefix: string,
   title: string,
   alwaysFullPack: boolean | null,
   setAlwaysFullPack: (updated: boolean | null) => void,
 };
 
-export const PokemonIntentionalFullPackInput = ({idPrefix, title, alwaysFullPack, setAlwaysFullPack}: Props) => {
+export const PokemonIntentionalFullPackInput = ({title, alwaysFullPack, setAlwaysFullPack}: Props) => {
   const t = useTranslations('UI.Common');
 
   // Checks have to be exact comparison because of the possible `null` on `alwaysFullPack`
@@ -30,7 +29,6 @@ export const PokemonIntentionalFullPackInput = ({idPrefix, title, alwaysFullPack
     >
       <Flex direction="row" className="justify-center gap-1 md:justify-start">
         <ToggleButton
-          id={`${idPrefix}FullPackDefault`}
           active={alwaysFullPack === null}
           onClick={() => setAlwaysFullPack(null)}
           className={clsx('group', getTextFilterButtonClass(alwaysFullPack === null))}
@@ -38,7 +36,6 @@ export const PokemonIntentionalFullPackInput = ({idPrefix, title, alwaysFullPack
           {t('Default')}
         </ToggleButton>
         <ToggleButton
-          id={`${idPrefix}FullPackActive`}
           active={alwaysFullPack === true}
           onClick={() => setAlwaysFullPack(true)}
           className={clsx('group', getTextFilterButtonClass(alwaysFullPack === true))}
@@ -46,7 +43,6 @@ export const PokemonIntentionalFullPackInput = ({idPrefix, title, alwaysFullPack
           <CheckCircleIcon className="h-6 w-6"/>
         </ToggleButton>
         <ToggleButton
-          id={`${idPrefix}FullPackInactive`}
           active={alwaysFullPack === false}
           onClick={() => setAlwaysFullPack(false)}
           className={clsx('group', getTextFilterButtonClass(alwaysFullPack === false))}

@@ -33,12 +33,11 @@ import {docsRelatedSeparator, toRelatedPathForDisplay} from '@/utils/docs';
 
 
 type Props = DocRenderingCommonProps & {
-  idPrefix: string,
   onDocUpdated: (updated: DocsDataEditable) => void,
   getUserDataAction: (data: DocsDataEditable) => UserDataAction,
 };
 
-export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}: Props) => {
+export const DocsEditor = ({onDocUpdated, getUserDataAction, ...props}: Props) => {
   const {locale, doc} = props;
   const {path, title, content, showIndex, related} = doc;
 
@@ -134,7 +133,6 @@ export const DocsEditor = ({idPrefix, onDocUpdated, getUserDataAction, ...props}
       />
       <InputRow>
         <ToggleButton
-          id={`${idPrefix}ShowIndex`}
           active={showIndex}
           onClick={() => onDocUpdated({...doc, showIndex: !showIndex})}
           className={clsx('group', getTextFilterButtonClass(showIndex))}

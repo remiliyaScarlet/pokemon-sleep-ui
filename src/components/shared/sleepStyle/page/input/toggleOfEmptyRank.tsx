@@ -17,7 +17,6 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: MapInputCommonProps
 
   return (
     <ToggleButton
-      id="toggleEmptyRank"
       active={showEmptyRank}
       onClick={() => setFilter((original) => ({
         ...original,

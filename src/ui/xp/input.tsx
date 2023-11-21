@@ -113,7 +113,6 @@ export const PokemonExpCalculatorInputUI = ({
       />
       <InputRow className="justify-end gap-2">
         <ToggleButton
-          id="showEmpty"
           active={showNonBreakthroughLevel}
           onClick={() => setFilter((original) => ({
             ...original,

@@ -16,7 +16,6 @@ export const DocsEditClient = ({locale, initialDoc}: Props) => {
 
   return (
     <DocsEditor
-      idPrefix="editDoc"
       locale={locale}
       doc={data}
       onDocUpdated={(doc) => setData((original) => ({

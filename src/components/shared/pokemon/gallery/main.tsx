@@ -57,8 +57,7 @@ export const PokemonGallery = ({
       <Flex direction="row" center wrap className="gap-1.5">
         <ToggleButton
           active={isShiny}
-          id="shiny"
-          onChange={setShiny}
+          onClick={() => setShiny(!isShiny)}
           className={getTextFilterButtonClass(isShiny)}
         >
           {t('Shiny')}
@@ -70,7 +69,6 @@ export const PokemonGallery = ({
             <ToggleButton
               key={image}
               active={isActive}
-              id={image.toString()}
               onClick={() => setCurrentImage(image)}
               className={getTextFilterButtonClass(isActive)}
             >

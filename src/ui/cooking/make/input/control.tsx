@@ -22,7 +22,6 @@ export const MealMakerInputControl = ({filter, setFilter, preloaded}: MealMakerC
   return (
     <InputRow className="justify-end gap-2">
       <ToggleButton
-        id="makeableRecipe"
         active={showUnmakeableRecipe}
         onClick={() => setFilter((original) => ({
           ...original,

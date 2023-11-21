@@ -21,7 +21,6 @@ export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: Map
 
   return (
     <ToggleButton
-      id="toggleSleepdexStats"
       active={showSleepdexStats}
       onClick={() => setFilter((original) => ({
         ...original,

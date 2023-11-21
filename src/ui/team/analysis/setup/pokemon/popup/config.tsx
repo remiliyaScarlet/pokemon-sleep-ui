@@ -29,7 +29,6 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
         showSeeds
       />
       <PokemonIntentionalFullPackInput
-        idPrefix="teamAnalysis"
         title={t('AlwaysFullPack')}
         alwaysFullPack={alwaysFullPack}
         setAlwaysFullPack={(berryPokemonAlwaysFullPack) => (

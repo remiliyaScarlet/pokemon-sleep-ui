@@ -18,7 +18,6 @@ export const MapInputMarkSleepdexToggle = ({filter, setFilter, isLoggedIn}: MapI
 
   return (
     <ToggleButton
-      id="markingSleepdex"
       active={markingSleepdex}
       onClick={() => setFilter((original) => ({
         ...original,
