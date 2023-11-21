@@ -58,9 +58,7 @@ export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isInc
     } satisfies TeamAnalysisSetup));
     showToast({content: (
       <Flex direction="row" className="gap-1.5">
-        <div className="relative h-9 w-9">
-          <PlusCircleIcon/>
-        </div>
+        <PlusCircleIcon className="h-9 w-9"/>
         <div className="relative h-9 w-9">
           <NextImage
             src={`/images/pokemon/icons/${member.pokemonId}.png`} alt={t(`PokemonName.${member.pokemonId}`)}
@@ -79,12 +77,8 @@ export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isInc
       <Collapsible state={filterCollapsible} classNameForHeight="h-60" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-          <div className="h-6 w-6">
-            <PlusCircleIcon/>
-          </div>
-          <div className="h-6 w-6">
-            <FunnelIcon/>
-          </div>
+          <PlusCircleIcon className="h-6 w-6"/>
+          <FunnelIcon className="h-6 w-6"/>
         </Flex>
       }>
         <PokemonFilter
@@ -96,9 +90,7 @@ export const TeamAnalysisPokemonFilterUI = ({pokemonList, setup, setSetup, isInc
       <Collapsible state={pickerCollapsible} classNameForHeight="h-60" button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-          <div className="h-6 w-6">
-            <PlusCircleIcon/>
-          </div>
+          <PlusCircleIcon className="h-6 w-6"/>
         </Flex>
       }>
         <TeamAnalysisSelectablePokemon

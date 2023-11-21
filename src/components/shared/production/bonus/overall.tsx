@@ -9,9 +9,7 @@ import {BonusSliderProps} from '@/components/shared/production/bonus/type';
 export const OverallBonusSlider = (props: BonusSliderProps) => {
   return (
     <BonusSlider min={0} max={150} {...props}>
-      <div className="h-6 w-6">
-        <ChevronDoubleUpIcon/>
-      </div>
+      <ChevronDoubleUpIcon className="h-6 w-6"/>
     </BonusSlider>
   );
 };

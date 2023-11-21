@@ -25,9 +25,7 @@ export const MapInputMarkSleepdexToggle = ({filter, setFilter, isLoggedIn}: MapI
       } satisfies MapPageFilter))}
       className={clsx('group', textFilterButtonStyle)}
     >
-      <div className="h-5 w-5">
-        <BookmarkIcon/>
-      </div>
+      <BookmarkIcon className="h-5 w-5"/>
     </ToggleButton>
   );
 };

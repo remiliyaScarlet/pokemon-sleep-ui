@@ -53,9 +53,7 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn
         {
           isLoggedIn && sleepdexCompletionOfMap &&
           <Flex direction="row" center noFullWidth className="gap-1.5">
-            <div className="h-6 w-6">
-              <BookmarkIcon/>
-            </div>
+            <BookmarkIcon className="h-6 w-6"/>
             <div>
               <MapSleepdexUnlockCount sleepdexCompletionOfMap={sleepdexCompletionOfMap}/>
             </div>
@@ -71,10 +69,7 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn
         <Flex direction="row" center noFullWidth className="gap-1">
           {meta?.berry ?
             meta?.berry.map((berry) => <PokemonBerryIcon key={berry} dimension="h-8 w-8" id={berry}/>) :
-            <div className="relative h-8 w-8">
-              <QuestionMarkCircleIcon/>
-            </div>
-          }
+            <QuestionMarkCircleIcon className="h-8 w-8"/>}
         </Flex>
       </Flex>
     </Flex>

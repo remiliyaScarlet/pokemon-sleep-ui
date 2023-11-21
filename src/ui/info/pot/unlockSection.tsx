@@ -75,11 +75,7 @@ export const PotRecipeUnlockSection = ({
             />
           ))}
         </Grid> :
-        <Grid>
-          <div className="m-auto h-10 w-10">
-            <XCircleIcon/>
-          </div>
-        </Grid>}
+        <XCircleIcon className="m-auto h-10 w-10"/>}
     </Flex>
   );
 };

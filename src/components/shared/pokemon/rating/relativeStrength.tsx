@@ -22,9 +22,7 @@ export const PokemonRatingRelativeStrength = ({baseDiffPercent, iconDimension, c
       getNumberStyles({num: baseDiffPercent}),
       className,
     )}>
-      <div className={iconDimension ?? 'h-4 w-4'}>
-        <ArrowsUpDownIcon/>
-      </div>
+      <ArrowsUpDownIcon className={iconDimension ?? 'h-4 w-4'}/>
       <div>
         {baseDiffPercent > 0 && '+'}{isNaN(baseDiffPercent) ? '-' : formatFloat(baseDiffPercent)}%
       </div>

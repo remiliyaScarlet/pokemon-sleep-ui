@@ -31,9 +31,7 @@ export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...pro
         center
         noFullWidth={noFullWidth}
       >
-        <div className={dimension ?? 'h-8 w-8'}>
-          <DocumentMagnifyingGlassIcon/>
-        </div>
+        <DocumentMagnifyingGlassIcon className={dimension ?? 'h-8 w-8'}/>
         <div className="text-lg">
           OCR
         </div>

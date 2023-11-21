@@ -61,9 +61,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'timing') {
     return (
       <Flex direction="row" className="gap-1">
-        <div className="h-6 w-6">
-          <ClockIcon/>
-        </div>
+        <ClockIcon className="h-6 w-6"/>
         <div>{condition.startHour}&nbsp;~&nbsp;{condition.endHour}</div>
       </Flex>
     );

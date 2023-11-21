@@ -102,9 +102,7 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap, cla
             })}
           </Grid>
           <Flex direction="row" center className="gap-1.5">
-            <div className="h-6 w-6">
-              <MagnifyingGlassIcon/>
-            </div>
+            <MagnifyingGlassIcon className="h-6 w-6"/>
             <InputBox
               type="text"
               value={search}

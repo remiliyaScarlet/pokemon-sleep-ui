@@ -57,9 +57,7 @@ export const SnorlaxFavoriteInput = <
                 src="/images/generic/snorlax.png" alt={t2('SnorlaxFavorite')} sizes={imageSmallIconSizes}
               />
             </div>
-            <div className="h-6 w-6">
-              <PlusCircleIcon/>
-            </div>
+            <PlusCircleIcon className="h-6 w-6"/>
             <div className="relative h-7 w-7">
               <NextImage
                 src="/images/generic/map.png" alt={t2('Map')} sizes={imageSmallIconSizes}

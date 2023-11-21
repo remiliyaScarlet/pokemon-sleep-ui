@@ -25,9 +25,7 @@ export const PokemonSubSkillSelectionButtons = ({data, selectedSubSkills, onSele
             onClick={() => onSelect(single.id)}
           />
         )) :
-        <div className="h-9 w-9">
-          <QuestionMarkCircleIcon/>
-        </div>}
+        <QuestionMarkCircleIcon className="h-9 w-9"/>}
     </Flex>
   );
 };

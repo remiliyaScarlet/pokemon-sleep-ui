@@ -16,20 +16,12 @@ export const PokemonNatureIndicatorText = ({nature, hideName}: PokemonNatureIndi
   const t = useTranslations('Game');
 
   if (!nature) {
-    return (
-      <div className="h-5 w-5">
-        <XCircleIcon/>
-      </div>
-    );
+    return <XCircleIcon className="h-5 w-5"/>;
   }
 
   const dataOfNature = natureDataMap[nature];
   if (!dataOfNature) {
-    return (
-      <div className="h-5 w-5">
-        <QuestionMarkCircleIcon/>
-      </div>
-    );
+    return <QuestionMarkCircleIcon className="h-5 w-5"/>;
   }
 
   const buffEffectId = dataOfNature.buff;
@@ -44,15 +36,11 @@ export const PokemonNatureIndicatorText = ({nature, hideName}: PokemonNatureIndi
         </div>
       }
       <Flex direction="row" center noFullWidth>
-        <div className="h-4 w-4">
-          <ChevronUpIcon/>
-        </div>
+        <ChevronUpIcon className="h-4 w-4"/>
         <div className="relative h-6 w-6">
           <NatureEffectIcon effectId={buffEffectId} showOnNull/>
         </div>
-        <div className="h-4 w-4">
-          <ChevronDownIcon/>
-        </div>
+        <ChevronDownIcon className="h-4 w-4"/>
         <div className="relative h-6 w-6">
           <NatureEffectIcon effectId={nerfEffectId} showOnNull/>
         </div>

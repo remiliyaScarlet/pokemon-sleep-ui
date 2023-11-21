@@ -19,12 +19,7 @@ export const PokemonFrequency = ({frequency, noIcon, normalText}: Props) => {
 
   return (
     <Flex direction="row" center noFullWidth className={clsx('gap-0.5', !normalText && 'text-sm')}>
-      {
-        !noIcon &&
-        <div className={normalText ? 'h-5 w-5' : 'h-4 w-4'}>
-          <ClockIcon/>
-        </div>
-      }
+      {!noIcon && <ClockIcon className={normalText ? 'h-5 w-5' : 'h-4 w-4'}/>}
       <div>{formatSeconds({seconds: frequency})}</div>
       <div>({formatFloat(dailyCount)}x)</div>
     </Flex>

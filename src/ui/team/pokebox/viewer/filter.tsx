@@ -30,12 +30,8 @@ export const PokeboxViewerFilterUI = (props: PokeboxViewerInputCommonProps) => {
     <Collapsible state={filterCollapsible} classNameForHeight={inputSectionHeight} button={
       <Flex direction="row" center className="gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-        <div className="h-6 w-6">
-          <EyeIcon/>
-        </div>
-        <div className="h-6 w-6">
-          <FunnelIcon/>
-        </div>
+        <EyeIcon className="h-6 w-6"/>
+        <FunnelIcon className="h-6 w-6"/>
       </Flex>
     }>
       <Flex className="gap-1 pr-1">

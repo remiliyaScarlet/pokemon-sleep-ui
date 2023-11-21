@@ -32,9 +32,7 @@ export const MapInputLockedOnlyToggle = ({filter, setFilter, isLoggedIn}: MapInp
         <div className="h-5 w-5">
           {showLockedOnly ? <EyeIcon/> : <EyeSlashIcon/>}
         </div>
-        <div className="h-5 w-5">
-          <LockOpenIcon/>
-        </div>
+        <LockOpenIcon className="h-5 w-5"/>
       </Flex>
     </ToggleButton>
   );

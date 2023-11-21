@@ -32,9 +32,7 @@ export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: Map
         <div className="h-5 w-5">
           {showSleepdexStats ? <EyeIcon/> : <EyeSlashIcon/>}
         </div>
-        <div className="h-5 w-5">
-          <BookmarkIcon/>
-        </div>
+        <BookmarkIcon className="h-5 w-5"/>
       </Flex>
     </ToggleButton>
   );

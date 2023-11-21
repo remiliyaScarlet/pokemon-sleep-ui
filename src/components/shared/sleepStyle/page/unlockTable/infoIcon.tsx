@@ -26,11 +26,7 @@ export const MapTableInfoIcon = ({data, pokedex, displayType}: Props) => {
   const pokemon = pokedex[data.pokemonId];
 
   if (!pokemon) {
-    return (
-      <div className="h-4 w-4">
-        <QuestionMarkCircleIcon/>
-      </div>
-    );
+    return <QuestionMarkCircleIcon className="h-4 w-4"/>;
   }
 
   if (displayType === 'specialty') {

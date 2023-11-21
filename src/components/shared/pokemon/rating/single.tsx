@@ -117,12 +117,8 @@ export const RatingResultOfLevelUI = ({
       </Flex>
       <CollapsibleFull state={collapsible} disabled={!points.min && !points.current && !points.max} button={
         <Flex direction="row" center className="gap-1">
-          <div className="h-6 w-6">
-            <HandThumbDownIcon/>
-          </div>
-          <div className="h-6 w-6">
-            <HandThumbUpIcon/>
-          </div>
+          <HandThumbDownIcon className="h-6 w-6"/>
+          <HandThumbUpIcon className="h-6 w-6"/>
         </Flex>
       }>
         <Grid className="grid-rows-3 gap-1.5">

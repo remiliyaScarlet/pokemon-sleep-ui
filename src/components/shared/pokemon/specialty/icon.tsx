@@ -27,9 +27,7 @@ export const PokemonSpecialtyIcon = ({specialty, dimension, active, className}: 
             sizes={imageSmallIconSizes} className={clsx(className, active ? 'invert-on-light' : 'invert-on-dark')}
           />
         </div> :
-        <div className={dimension ?? 'h-5 w-5'}>
-          <XCircleIcon/>
-        </div>}
+        <XCircleIcon className={dimension ?? 'h-5 w-5'}/>}
     </div>
   );
 };

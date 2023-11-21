@@ -29,8 +29,8 @@ export const About = async ({params}: DefaultPageProps) => {
         </Flex>
         <Flex className="gap-8 md:flex-row">
           <Flex className="gap-3">
-            <Flex center className="relative h-10 w-10">
-              <UserCircleIcon/>
+            <Flex center>
+              <UserCircleIcon className="h-10 w-10"/>
             </Flex>
             <AboutSection title="Discord">
               @raenonx
@@ -40,8 +40,8 @@ export const About = async ({params}: DefaultPageProps) => {
             </AboutSection>
           </Flex>
           <Flex className="gap-2">
-            <Flex center className="relative h-10 w-10">
-              <CurrencyDollarIcon/>
+            <Flex center>
+              <CurrencyDollarIcon className="h-10 w-10"/>
             </Flex>
             <AboutSection title="Patreon">
               <Link href="https://patreon.com/RaenonX" className="border-link">

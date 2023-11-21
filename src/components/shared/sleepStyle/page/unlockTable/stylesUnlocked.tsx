@@ -21,18 +21,14 @@ export const MapUnlockTableStylesUnlocked = ({sleepType, unlocked, unlockable}: 
       {
         sleepType !== null ?
           <PokemonSleepType sleepType={sleepType} dimension="h-4 w-4" hideText/> :
-          <div className="h-6 w-6">
-            <XCircleIcon/>
-          </div>
+          <XCircleIcon className="h-6 w-6"/>
       }
       {
         unlocked !== undefined && unlockable !== undefined &&
         (
           unlocked !== unlockable ?
             <CompletionResultUI completed={unlocked} total={unlockable}/> :
-            <div className="h-6 w-6">
-              <CheckIcon/>
-            </div>
+            <CheckIcon className="h-6 w-6"/>
         )
       }
     </Flex>

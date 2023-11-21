@@ -19,15 +19,11 @@ export const InputFileImageOnly = (props: InputFileCommonProps) => {
         isAlert: true,
         content: (
           <Flex direction="row" className="items-center gap-1">
-            <div className="h-6 w-6">
-              <ExclamationTriangleIcon/>
-            </div>
+            <ExclamationTriangleIcon className="h-6 w-6"/>
             <div>
               {fileType || '(N/A)'}
             </div>
-            <div className="h-6 w-6">
-              <DocumentCheckIcon/>
-            </div>
+            <DocumentCheckIcon className="h-6 w-6"/>
             <div>
               {mimeTypesOfImage.join(' / ')}
             </div>

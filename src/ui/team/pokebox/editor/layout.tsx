@@ -207,9 +207,7 @@ export const PokeInBoxEditLayout = ({
           className="transform-smooth button-alert-bg ml-auto rounded-lg p-1"
           onClick={() => onRemovePokeInBox(uuid)}
         >
-          <div className={iconDimension}>
-            <TrashIcon/>
-          </div>
+          <TrashIcon className={iconDimension}/>
         </button>
       </Flex>
     </Flex>

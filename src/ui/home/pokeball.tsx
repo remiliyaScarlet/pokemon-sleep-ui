@@ -34,9 +34,7 @@ export const HomePokeball = () => {
       <div className="relative">
         <div className="absolute bottom-0 right-0 z-10">
           <button className="button-clickable-bg p-1" onClick={() => setShow(false)} disabled={!show}>
-            <div className="relative h-4 w-4">
-              <ArrowPathIcon/>
-            </div>
+            <ArrowPathIcon className="h-4 w-4"/>
           </button>
         </div>
         <Transition

@@ -124,9 +124,7 @@ export const PokemonExpCalculatorInputUI = ({
             <div className="h-5 w-5">
               {showNonBreakthroughLevel ? <EyeIcon/> : <EyeSlashIcon/>}
             </div>
-            <div className="h-5 w-5">
-              <RocketLaunchIcon/>
-            </div>
+            <RocketLaunchIcon className="h-5 w-5"/>
           </Flex>
         </ToggleButton>
       </InputRow>

@@ -44,12 +44,8 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
       <Collapsible state={pickerCollapsible} classNameForHeight={inputSectionHeight} button={
         <Flex direction="row" center className="gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-          <div className="h-6 w-6">
-            <InboxArrowDownIcon/>
-          </div>
-          <div className="h-6 w-6">
-            <FunnelIcon/>
-          </div>
+          <InboxArrowDownIcon className="h-6 w-6"/>
+          <FunnelIcon className="h-6 w-6"/>
         </Flex>
       }>
         <PokemonFilter
@@ -63,9 +59,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
       <Collapsible state={resultCollapsible} classNameForHeight={inputSectionHeight} appear button={
         <Flex direction="row" center className="group gap-0.5">
           <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-          <div className="h-6 w-6">
-            <InboxArrowDownIcon/>
-          </div>
+          <InboxArrowDownIcon className="h-6 w-6"/>
         </Flex>
       }>
         <PokemonClickableIcons pokemonList={pokemonList.filter(({id}) => isIncluded[id])} onClick={(pokemon) => {
@@ -73,9 +67,7 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
 
           showToast({content: (
             <Flex direction="row" className="gap-1.5">
-              <div className="relative h-9 w-9">
-                <PlusCircleIcon/>
-              </div>
+              <PlusCircleIcon className="h-9 w-9"/>
               <div className="relative h-9 w-9">
                 <NextImage
                   src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}

@@ -59,9 +59,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
     <Collapsible state={viewCollapsible} classNameForHeight={inputSectionHeight} appear button={
       <Flex direction="row" center className="gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-        <div className="h-6 w-6">
-          <AdjustmentsHorizontalIcon/>
-        </div>
+        <AdjustmentsHorizontalIcon className="h-6 w-6"/>
       </Flex>
     }>
       <Flex className="gap-1 pr-1">
@@ -107,11 +105,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
           }
           ids={[null, ...[...pokeboxPreviewLevel].sort((a, b) => a - b)]}
           idToButton={(level) => (
-            level === null ?
-              <div className="h-7 w-7">
-                <XMarkIcon/>
-              </div> :
-              level
+            level === null ? <XMarkIcon className="h-7 w-7"/> : level
           )}
           classNameOfButton={iconFilterButtonStyle}
           {...getSingleSelectOnClickProps({

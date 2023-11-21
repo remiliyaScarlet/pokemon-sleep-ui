@@ -134,9 +134,7 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
             'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
           )}>
             <Flex center>
-              <div className="h-9 w-9">
-                <BeakerIcon/>
-              </div>
+              <BeakerIcon className="h-9 w-9"/>
             </Flex>
           </button>
         }

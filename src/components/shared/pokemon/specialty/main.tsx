@@ -28,9 +28,7 @@ export const PokemonSpecialty = ({hideText, ...props}: Props) => {
               {t(`Specialty.${specialty}`)}
             </div>}
         </> :
-        <div className={dimension ?? 'h-5 w-5'}>
-          <XCircleIcon/>
-        </div>}
+        <XCircleIcon className={dimension ?? 'h-5 w-5'}/>}
     </Flex>
   );
 };

@@ -34,12 +34,8 @@ export const AuthSignIn = async ({params, searchParams}: DefaultPageProps) => {
       <Flex className="items-end">
         <Link href={'/auth/sign-in/email'} className="border-link w-fit">
           <Flex direction="row" noFullWidth center className="gap-1.5">
-            <div className="h-6 w-6">
-              <EnvelopeIcon/>
-            </div>
-            <div>
-              Email
-            </div>
+            <EnvelopeIcon className="h-6 w-6"/>
+            <div>Email</div>
           </Flex>
         </Link>
       </Flex>

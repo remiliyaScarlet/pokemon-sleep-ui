@@ -36,9 +36,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
     <div className="relative">
       <Collapsible state={collapsible} classNameForHeight="h-72 md:h-56" button={
         <Flex direction="row" center className="gap-0.5">
-          <div className="h-6 w-6">
-            <FunnelIcon/>
-          </div>
+          <FunnelIcon className="h-6 w-6"/>
         </Flex>
       }>
         <div className="absolute bottom-2 right-6 z-10">

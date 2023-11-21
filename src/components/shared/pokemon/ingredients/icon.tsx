@@ -15,11 +15,7 @@ export const PokemonIngredientIcon = (props: Props) => {
   const {dimension, noLink, id} = props;
 
   if (id === null) {
-    return (
-      <div className={dimension ?? 'h-5 w-5'}>
-        <XCircleIcon/>
-      </div>
-    );
+    return <XCircleIcon className={dimension ?? 'h-5 w-5'}/>;
   }
 
   if (noLink) {

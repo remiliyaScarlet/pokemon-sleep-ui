@@ -81,9 +81,7 @@ export const PokeboxImporterView = ({
     <Flex className="gap-1.5">
       <Collapsible state={collapsible} classNameForHeight="h-72 md:h-56" button={
         <Flex direction="row" center className="gap-0.5">
-          <div className="h-6 w-6">
-            <FunnelIcon/>
-          </div>
+          <FunnelIcon className="h-6 w-6"/>
         </Flex>
       }>
         <Flex noFullWidth className="gap-1 pr-1">

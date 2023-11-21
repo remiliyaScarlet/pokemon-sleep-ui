@@ -21,12 +21,8 @@ export const MapBonusSlider = ({mapId, isCurrent, onMapClicked, ...props}: Props
     <Flex direction="row" className="gap-1">
       <MapToggle mapId={mapId} className="w-72" isActive={isCurrent} onClick={onMapClicked}/>
       <BonusSlider min={0} max={100} step={5} {...props}>
-        <div className="h-6 w-6">
-          <MapPinIcon/>
-        </div>
-        <div className="h-6 w-6">
-          <ChevronUpIcon/>
-        </div>
+        <MapPinIcon className="h-6 w-6"/>
+        <ChevronUpIcon className="h-6 w-6"/>
       </BonusSlider>
     </Flex>
   );

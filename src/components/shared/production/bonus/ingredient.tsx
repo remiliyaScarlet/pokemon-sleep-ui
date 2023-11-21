@@ -14,9 +14,7 @@ export const IngredientBonusSlider = (props: BonusSliderProps) => {
   return (
     <BonusSlider min={0} max={300} {...props}>
       <GenericIngredientIcon dimension="h-6 w-6" alt={t('Ingredient')}/>
-      <div className="h-6 w-6">
-        <ChevronUpIcon/>
-      </div>
+      <ChevronUpIcon className="h-6 w-6"/>
     </BonusSlider>
   );
 };

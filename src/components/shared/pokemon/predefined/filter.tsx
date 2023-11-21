@@ -22,9 +22,7 @@ export const PokemonCollapsibleFilter = ({collapsibleState, ...props}: Props) =>
     <Collapsible state={collapsibleState} classNameForHeight="h-72" button={
       <Flex direction="row" center className="gap-0.5">
         <GenericPokeballIcon alt="Pokemon" dimension="h-6 w-6"/>
-        <div className="h-6 w-6">
-          <FunnelIcon/>
-        </div>
+        <FunnelIcon className="h-6 w-6"/>
       </Flex>
     }>
       <PokemonFilter className="pr-1" {...props}/>
