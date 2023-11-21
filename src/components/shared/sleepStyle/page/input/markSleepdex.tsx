@@ -3,10 +3,10 @@ import React from 'react';
 import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import {clsx} from 'clsx';
 
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {MapInputWithDataProps} from '@/components/shared/sleepStyle/page/input/type';
 import {MapPageFilter} from '@/components/shared/sleepStyle/page/type';
+import {textFilterButtonStyle} from '@/styles/input';
 
 
 export const MapInputMarkSleepdexToggle = ({filter, setFilter, isLoggedIn}: MapInputWithDataProps) => {
@@ -23,7 +23,7 @@ export const MapInputMarkSleepdexToggle = ({filter, setFilter, isLoggedIn}: MapI
         ...original,
         markingSleepdex: !original.markingSleepdex,
       } satisfies MapPageFilter))}
-      className={clsx('group', getTextFilterButtonClass(markingSleepdex))}
+      className={clsx('group', textFilterButtonStyle)}
     >
       <div className="h-5 w-5">
         <BookmarkIcon/>

@@ -6,9 +6,9 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
+import {textFilterButtonStyle} from '@/styles/input';
 
 
 type Props = {
@@ -31,21 +31,21 @@ export const PokemonIntentionalFullPackInput = ({title, alwaysFullPack, setAlway
         <ToggleButton
           active={alwaysFullPack === null}
           onClick={() => setAlwaysFullPack(null)}
-          className={clsx('group', getTextFilterButtonClass(alwaysFullPack === null))}
+          className={clsx('group', textFilterButtonStyle)}
         >
           {t('Default')}
         </ToggleButton>
         <ToggleButton
           active={alwaysFullPack === true}
           onClick={() => setAlwaysFullPack(true)}
-          className={clsx('group', getTextFilterButtonClass(alwaysFullPack === true))}
+          className={clsx('group', textFilterButtonStyle)}
         >
           <CheckCircleIcon className="h-6 w-6"/>
         </ToggleButton>
         <ToggleButton
           active={alwaysFullPack === false}
           onClick={() => setAlwaysFullPack(false)}
-          className={clsx('group', getTextFilterButtonClass(alwaysFullPack === false))}
+          className={clsx('group', textFilterButtonStyle)}
         >
           <XCircleIcon className="h-6 w-6"/>
         </ToggleButton>

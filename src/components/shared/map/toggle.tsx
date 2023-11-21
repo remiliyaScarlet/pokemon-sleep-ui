@@ -4,10 +4,10 @@ import CheckCircleIcon from '@heroicons/react/24/outline/CheckCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
+import {getToggleButtonClass} from '@/styles/input';
 
 
 type Props = {

@@ -9,13 +9,14 @@ import {FilterTextInput} from '@/components/input/filter/text';
 import {
   getMultiSelectOnClickProps,
   getSingleSelectOnClickProps,
-  getTextFilterButtonClass,
+
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {activationContactToText, activationTypeToText} from '@/const/activation/common';
+import {textFilterButtonStyle} from '@/styles/input';
 import {IsoDateString} from '@/types/date';
 import {
   activationContact,
@@ -120,7 +121,7 @@ export const ActivationEditor = ({
               ...original,
               isSpecial: !original.isSpecial,
             } satisfies ActivationPropertiesAtClient))}
-            className={getTextFilterButtonClass(isSpecial)}
+            className={textFilterButtonStyle}
           >
             Special Grant
           </ToggleButton>
@@ -130,7 +131,7 @@ export const ActivationEditor = ({
               ...original,
               isCmsMod: !original.isCmsMod,
             } satisfies ActivationPropertiesAtClient))}
-            className={getTextFilterButtonClass(isCmsMod)}
+            className={textFilterButtonStyle}
           >
             CMS Mod
           </ToggleButton>
@@ -140,7 +141,7 @@ export const ActivationEditor = ({
               ...original,
               isActivationLocked: !original.isActivationLocked,
             } satisfies ActivationPropertiesAtClient))}
-            className={getTextFilterButtonClass(isActivationLocked)}
+            className={textFilterButtonStyle}
           >
             Activation Locked (Founder)
           </ToggleButton>

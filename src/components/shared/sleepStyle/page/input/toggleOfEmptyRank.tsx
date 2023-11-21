@@ -4,12 +4,12 @@ import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import {clsx} from 'clsx';
 
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {MapInputCommonProps} from '@/components/shared/sleepStyle/page/input/type';
 import {MapPageFilter} from '@/components/shared/sleepStyle/page/type';
+import {textFilterButtonStyle} from '@/styles/input';
 
 
 export const MapInputEmptyRankToggle = ({filter, setFilter}: MapInputCommonProps) => {
@@ -22,7 +22,7 @@ export const MapInputEmptyRankToggle = ({filter, setFilter}: MapInputCommonProps
         ...original,
         showEmptyRank: !original.showEmptyRank,
       } satisfies MapPageFilter))}
-      className={clsx('group', getTextFilterButtonClass(showEmptyRank))}
+      className={clsx('group', textFilterButtonStyle)}
     >
       <Flex direction="row" center noFullWidth>
         <div className="h-5 w-5">

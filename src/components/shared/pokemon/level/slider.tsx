@@ -3,11 +3,11 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
-import {getIconFilterButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {LevelIcon} from '@/components/shared/icon/lv';
 import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
 import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
+import {iconFilterButtonStyle} from '@/styles/input';
 
 
 type Props = Omit<NumberSliderRequiredProps, 'text'> & {
@@ -36,7 +36,7 @@ export const PokemonLevelSlider = ({presetLevels, idPrefix, ...props}: Props) =>
           }
           ids={presetLevels.sort((a, b) => a - b)}
           idToButton={(level) => level}
-          getClassNames={getIconFilterButtonClass}
+          classNameOfButton={iconFilterButtonStyle}
           onClick={setValue}
           isActive={() => false}
         />

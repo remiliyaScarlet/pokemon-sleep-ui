@@ -3,8 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {InputRow} from '@/components/input/filter/row';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
+import {textFilterButtonStyle} from '@/styles/input';
 import {UserCalculationBehavior} from '@/types/userData/settings';
 
 
@@ -32,7 +32,7 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
           ...behavior,
           alwaysFullPack: !isAlwaysFullPack ? 'berryOnly' : 'disable',
         })}
-        className={getTextFilterButtonClass(isAlwaysFullPack)}
+        className={textFilterButtonStyle}
       >
         {t('BerryPokemonFullPack')}
       </ToggleButton>
@@ -42,7 +42,7 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
           ...behavior,
           goodCampTicket: !goodCampTicket,
         })}
-        className={getTextFilterButtonClass(goodCampTicket)}
+        className={textFilterButtonStyle}
       >
         {t('GoodCampTicket')}
       </ToggleButton>
@@ -52,7 +52,7 @@ export const UserCalculationBehaviorUI = ({behavior, setBehavior}: Props) => {
           ...behavior,
           includeMainSkill: !includeMainSkill,
         })}
-        className={getTextFilterButtonClass(includeMainSkill)}
+        className={textFilterButtonStyle}
       >
         {t('IncludeMainSkill')}
       </ToggleButton>

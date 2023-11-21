@@ -9,7 +9,6 @@ import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {CopyButton} from '@/components/layout/copyable/button';
 import {Flex} from '@/components/layout/flex/common';
@@ -24,6 +23,7 @@ import {SeedUsageInput} from '@/components/shared/pokemon/seed/input/main';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {imageSmallIconSizes} from '@/styles/image';
+import {getToggleButtonClass} from '@/styles/input';
 import {PokeInBox} from '@/types/game/pokebox';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {Dimension} from '@/types/style';

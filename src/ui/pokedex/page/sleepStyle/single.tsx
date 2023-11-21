@@ -4,12 +4,12 @@ import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
+import {getToggleButtonClass} from '@/styles/input';
 import {SnorlaxRank} from '@/types/game/rank';
 import {SleepStyleCommon} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';

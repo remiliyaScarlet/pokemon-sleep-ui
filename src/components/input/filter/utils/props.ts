@@ -1,5 +1,3 @@
-import {clsx} from 'clsx';
-
 import {
   FilterInclusionMap,
   FilterInputOnClickProps,
@@ -8,22 +6,6 @@ import {
 } from '@/components/input/filter/type';
 import {Indexable, KeysOfType} from '@/utils/type';
 
-
-export const getToggleButtonClass = (isActive: boolean) => clsx(
-  isActive ? 'button-toggle-active' : 'button-toggle-inactive',
-);
-
-export const getTextFilterButtonClass = (isActive: boolean) => clsx(
-  'whitespace-nowrap px-2 text-sm',
-  getFilterInputButtonClass(isActive),
-);
-
-export const getIconFilterButtonClass = (isActive: boolean) => clsx('w-8', getFilterInputButtonClass(isActive));
-
-const getFilterInputButtonClass = (isActive: boolean) => clsx(
-  'relative h-8 rounded-full',
-  getToggleButtonClass(isActive),
-);
 
 export type GetSingleSelectOnClickPropsOpts<TFilter, TData> = FilterWithUpdaterProps<TFilter> & {
   filterKey: KeysOfType<TFilter, TData | null>,

@@ -10,7 +10,6 @@ import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterTextInput} from '@/components/input/filter/text';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {InputTextArea} from '@/components/input/textarea';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
@@ -26,6 +25,7 @@ import {regexDocLinkedPath, regexDocPath} from '@/const/regex';
 import {localeName} from '@/const/website';
 import {useOnBeforeUnload} from '@/hooks/beforeUnload';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
+import {textFilterButtonStyle} from '@/styles/input';
 import {DocsDataEditable} from '@/types/mongo/docs';
 import {locales} from '@/types/next/locale';
 import {UserDataAction} from '@/types/userData/main';
@@ -134,7 +134,7 @@ export const DocsEditor = ({onDocUpdated, getUserDataAction, ...props}: Props) =
         <ToggleButton
           active={showIndex}
           onClick={() => onDocUpdated({...doc, showIndex: !showIndex})}
-          className={clsx('group', getTextFilterButtonClass(showIndex))}
+          className={clsx('group', textFilterButtonStyle)}
         >
           {tableOfContentsText[locale]}
         </ToggleButton>

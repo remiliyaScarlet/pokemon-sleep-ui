@@ -9,12 +9,12 @@ import StopCircleIcon from '@heroicons/react/24/outline/StopCircleIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {StaminaConfigSleepTime} from '@/components/shared/stamina/input/sleepTime';
 import {StaminaConfigProps} from '@/components/shared/stamina/input/type';
+import {getToggleButtonClass} from '@/styles/input';
 import {SleepSessions} from '@/types/game/sleep';
 
 

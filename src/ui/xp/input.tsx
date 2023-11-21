@@ -10,13 +10,13 @@ import {InputBox} from '@/components/input/box';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterInputProps} from '@/components/input/filter/type';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {textFilterButtonStyle} from '@/styles/input';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
 import {isNotNullish} from '@/utils/type';
 
@@ -118,7 +118,7 @@ export const PokemonExpCalculatorInputUI = ({
             ...original,
             showNonBreakthroughLevel: !original.showNonBreakthroughLevel,
           } satisfies PokemonExpCalculatorInput))}
-          className={clsx('group', getTextFilterButtonClass(showNonBreakthroughLevel))}
+          className={clsx('group', textFilterButtonStyle)}
         >
           <Flex direction="row" center noFullWidth className="gap-1.5 p-1">
             <div className="h-5 w-5">

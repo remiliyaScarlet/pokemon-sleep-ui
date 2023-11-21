@@ -2,16 +2,16 @@ import React from 'react';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
+import {textFilterButtonStyle} from '@/styles/input';
 import {IndexableNonSymbol, Optional} from '@/utils/type';
 
 
-type Props<TId extends IndexableNonSymbol | null> = Optional<FilterCategoryInputProps<TId>, 'getClassNames'>;
+type Props<TId extends IndexableNonSymbol | null> = Optional<FilterCategoryInputProps<TId>, 'classNameOfButton'>;
 
 export const FilterTextInput = <TId extends IndexableNonSymbol | null>(props: Props<TId>) => {
   return (
     <FilterCategoryInput
-      getClassNames={getTextFilterButtonClass}
+      classNameOfButton={textFilterButtonStyle}
       {...props}
     />
   );

@@ -5,11 +5,11 @@ import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import {clsx} from 'clsx';
 
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {MapInputWithDataProps} from '@/components/shared/sleepStyle/page/input/type';
 import {MapPageFilter} from '@/components/shared/sleepStyle/page/type';
+import {textFilterButtonStyle} from '@/styles/input';
 
 
 export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: MapInputWithDataProps) => {
@@ -26,7 +26,7 @@ export const MapInputSleepdexStatsToggle = ({filter, setFilter, isLoggedIn}: Map
         ...original,
         showSleepdexStats: !original.showSleepdexStats,
       } satisfies MapPageFilter))}
-      className={clsx('group', getTextFilterButtonClass(showSleepdexStats))}
+      className={clsx('group', textFilterButtonStyle)}
     >
       <Flex direction="row" center noFullWidth className="gap-1">
         <div className="h-5 w-5">

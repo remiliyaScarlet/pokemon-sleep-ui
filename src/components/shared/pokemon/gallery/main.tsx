@@ -5,7 +5,6 @@ import {Transition} from '@headlessui/react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonGalleryButton} from '@/components/shared/pokemon/gallery/button';
@@ -13,6 +12,7 @@ import {gallerySize} from '@/components/shared/pokemon/gallery/const';
 import {PokemonGalleryCommonProps} from '@/components/shared/pokemon/gallery/type';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
+import {textFilterButtonStyle} from '@/styles/input';
 import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {getAvailableSleepStylesFromNormal, getAvailableSleepStylesFromSpecial} from '@/utils/game/sleepdex';
 
@@ -58,7 +58,7 @@ export const PokemonGallery = ({
         <ToggleButton
           active={isShiny}
           onClick={() => setShiny(!isShiny)}
-          className={getTextFilterButtonClass(isShiny)}
+          className={textFilterButtonStyle}
         >
           {t('Shiny')}
         </ToggleButton>
@@ -70,7 +70,7 @@ export const PokemonGallery = ({
               key={image}
               active={isActive}
               onClick={() => setCurrentImage(image)}
-              className={getTextFilterButtonClass(isActive)}
+              className={textFilterButtonStyle}
             >
               <PokemonGalleryButton
                 pokemonId={pokemon.id}

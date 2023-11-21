@@ -16,7 +16,7 @@ export const FilterCategoryInput = <TId extends IndexableNonSymbol | null>({
   isHidden,
   onClick,
   isActive,
-  getClassNames,
+  classNameOfButton,
   noWrap,
   ...rowOpts
 }: FilterCategoryInputProps<TId>) => {
@@ -45,7 +45,7 @@ export const FilterCategoryInput = <TId extends IndexableNonSymbol | null>({
               key={id}
               active={active}
               onClick={() => onClick(id)}
-              className={getClassNames(active, id)}
+              className={classNameOfButton}
             >
               {idToButton(id, active)}
             </ToggleButton>

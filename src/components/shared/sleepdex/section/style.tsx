@@ -2,10 +2,10 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {SleepdexSectionProps} from '@/components/shared/sleepdex/section/type';
 import {SleepdexStyleIcon} from '@/components/shared/sleepdex/styleIcon';
+import {getToggleButtonClass} from '@/styles/input';
 import {PokemonId} from '@/types/game/pokemon';
 import {SleepStyleId} from '@/types/game/sleepStyle';
 import {isInSleepdex} from '@/utils/game/sleepdex';

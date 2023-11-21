@@ -2,12 +2,15 @@ import React from 'react';
 
 import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterCategoryInputProps} from '@/components/input/filter/type';
-import {getIconFilterButtonClass} from '@/components/input/filter/utils/props';
 import {NextImage} from '@/components/shared/common/image/main';
+import {iconFilterButtonStyle} from '@/styles/input';
 import {IndexableNonSymbol} from '@/utils/type';
 
 
-type Props<TId extends IndexableNonSymbol> = Omit<FilterCategoryInputProps<TId>, 'idToButton' | 'getClassNames'> & {
+type Props<TId extends IndexableNonSymbol> = Omit<
+  FilterCategoryInputProps<TId>,
+  'idToButton' | 'classNameOfButton'
+> & {
   idToAlt: (id: TId) => string,
   idToImageSrc: (id: TId) => string,
   idToImageClassName?: (id: TId) => string,
@@ -37,7 +40,7 @@ export const FilterIconInput = <TId extends IndexableNonSymbol>({
           />
         </div>
       )}
-      getClassNames={getIconFilterButtonClass}
+      classNameOfButton={iconFilterButtonStyle}
       {...props}
     />
   );

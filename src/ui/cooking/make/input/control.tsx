@@ -5,11 +5,11 @@ import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import {useTranslations} from 'next-intl';
 
 import {InputRow} from '@/components/input/filter/row';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
+import {textFilterButtonStyle} from '@/styles/input';
 import {MealMakerCommonProps} from '@/ui/cooking/make/type';
 import {toCookingPreset} from '@/ui/cooking/make/utils';
 
@@ -27,7 +27,7 @@ export const MealMakerInputControl = ({filter, setFilter, preloaded}: MealMakerC
           ...original,
           showUnmakeableRecipe: !showUnmakeableRecipe,
         }))}
-        className={getTextFilterButtonClass(showUnmakeableRecipe)}
+        className={textFilterButtonStyle}
       >
         <Flex direction="row" noFullWidth className="gap-1">
           <div className="h-5 w-5">

@@ -11,10 +11,9 @@ import {FilterCategoryInput} from '@/components/input/filter/category';
 import {FilterIconInput} from '@/components/input/filter/icon';
 import {InputRow} from '@/components/input/filter/row';
 import {
-  getIconFilterButtonClass,
   getMultiSelectOnClickProps,
   getSingleSelectOnClickProps,
-  getTextFilterButtonClass,
+
 } from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
@@ -27,6 +26,10 @@ import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PremiumIcon} from '@/components/static/premium/icon';
 import {usePremiumRequiredToast} from '@/hooks/toast/main';
+import {
+  iconFilterButtonStyle,
+  textFilterButtonStyle,
+} from '@/styles/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
   pokeboxDisplayTypeToI18nId,
@@ -87,7 +90,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               {pokeboxViewTypeToIcon[type]}
             </div>
           )}
-          getClassNames={getIconFilterButtonClass}
+          classNameOfButton={iconFilterButtonStyle}
           {...getSingleSelectOnClickProps({
             filter,
             setFilter,
@@ -110,7 +113,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               </div> :
               level
           )}
-          getClassNames={getIconFilterButtonClass}
+          classNameOfButton={iconFilterButtonStyle}
           {...getSingleSelectOnClickProps({
             filter,
             setFilter,
@@ -171,7 +174,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
                 previewFinalEvolution: !original.previewFinalEvolution,
               }));
             }}
-            className={clsx('group gap-1', getTextFilterButtonClass(filter.previewFinalEvolution))}
+            className={clsx('group gap-1', textFilterButtonStyle)}
           >
             {!isPremium && <PremiumIcon/>}
             {t2('FinalEvolution')}

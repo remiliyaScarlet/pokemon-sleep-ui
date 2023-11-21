@@ -6,11 +6,11 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputRow} from '@/components/input/filter/row';
-import {getTextFilterButtonClass} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {EnergyIcon} from '@/components/shared/icon/energy';
 import {UserDataUploadButton} from '@/components/shared/userData/upload';
+import {textFilterButtonStyle} from '@/styles/input';
 import {UserCookingPreset} from '@/types/userData/cooking';
 
 
@@ -28,7 +28,7 @@ export const MealDisplayControl = ({showEnergy, setShowEnergy, uploadData}: Prop
       <ToggleButton
         active={showEnergy}
         onClick={() => setShowEnergy(!showEnergy)}
-        className={clsx('group', getTextFilterButtonClass(showEnergy))}
+        className={clsx('group', textFilterButtonStyle)}
       >
         <Flex direction="row" center noFullWidth className="gap-1">
           <div className="h-5 w-5">

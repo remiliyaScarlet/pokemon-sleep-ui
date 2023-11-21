@@ -3,7 +3,8 @@ import React from 'react';
 import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import {clsx} from 'clsx';
 
-import {getToggleButtonClass} from '@/components/input/filter/utils/props';
+
+import {getToggleButtonClass} from '@/styles/input';
 
 
 type Props = {
