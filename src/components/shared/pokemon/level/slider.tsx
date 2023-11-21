@@ -11,11 +11,10 @@ import {iconFilterButtonStyle} from '@/styles/input';
 
 
 type Props = Omit<NumberSliderRequiredProps, 'text'> & {
-  idPrefix?: string,
   presetLevels?: number[],
 };
 
-export const PokemonLevelSlider = ({presetLevels, idPrefix, ...props}: Props) => {
+export const PokemonLevelSlider = ({presetLevels, ...props}: Props) => {
   const {setValue} = props;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');

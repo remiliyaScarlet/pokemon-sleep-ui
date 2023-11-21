@@ -29,7 +29,6 @@ export const ActivationGenerator = ({control}: Props) => {
       <ActivationEditor
         data={data}
         setData={setData}
-        idPrefix="generator"
         status={status}
         onSubmit={async (data) => {
           const {updated} = await actAsync({

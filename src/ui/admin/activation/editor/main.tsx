@@ -32,7 +32,6 @@ import {isActivationDataValid} from '@/utils/user/activation/utils';
 type Props = {
   data: ActivationPropertiesAtClient,
   setData: ReactStateUpdaterFromOriginal<ActivationPropertiesAtClient>,
-  idPrefix: string,
   status: UserDataActionStatus,
   onSubmit: (data: ActivationPropertiesAtClient) => void,
 };
@@ -40,7 +39,6 @@ type Props = {
 export const ActivationEditor = ({
   data,
   setData,
-  idPrefix,
   status,
   onSubmit,
 }: Props) => {
@@ -66,7 +64,6 @@ export const ActivationEditor = ({
     }}>
       <InputRowWithTitle title="Expiry">
         <InputBox
-          id={`${idPrefix}expiry`}
           type="date"
           value={expiry}
           className={commonInputStyle}
@@ -99,7 +96,6 @@ export const ActivationEditor = ({
       {[...activationContact].map((platform) => (
         <InputRowWithTitle key={platform} title={activationContactToText[platform]}>
           <InputBox
-            id={`${idPrefix}contact${platform}`}
             type="text"
             value={contact[platform] ?? ''}
             className={commonInputStyle}
@@ -149,7 +145,6 @@ export const ActivationEditor = ({
       </InputRowWithTitle>
       <InputRowWithTitle title="Note">
         <InputBox
-          id={`${idPrefix}note`}
           type="text"
           value={note}
           className={commonInputStyle}

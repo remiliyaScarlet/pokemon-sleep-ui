@@ -22,7 +22,6 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
     pokemonMaxLevel,
     subSkillMap,
     maxEvolutionCount,
-    idPrefix,
     showSeeds,
   } = props;
 
@@ -45,7 +44,6 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
             [ingredientLevel]: updated,
           },
         })}
-        idPrefix={idPrefix}
       />
       <Flex className="h-20 gap-1.5">
         <PokemonNatureSelector
@@ -74,7 +72,6 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         <SeedUsageInput
           usage={data.seeds}
           setUsage={(getOriginal) => onDataUpdated({seeds: getOriginal(data.seeds)})}
-          idPrefix={idPrefix}
           evolutionCount={data.evolutionCount}
           subSkillBonus={getSubSkillBonus({
             level: data.level,

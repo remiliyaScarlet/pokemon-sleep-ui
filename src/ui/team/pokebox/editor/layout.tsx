@@ -146,7 +146,6 @@ export const PokeInBoxEditLayout = ({
             [ingredientLevel]: updated,
           },
         })}
-        idPrefix={pokeInBox.uuid}
       />
       <PokemonEvolutionCountInput
         evolutionCount={evolutionCount}
@@ -157,7 +156,6 @@ export const PokeInBoxEditLayout = ({
         maxEvolutionCount={maxEvolutionCount}
       />
       <SeedUsageInput
-        idPrefix={`${uuid}pokebox`}
         usage={seeds}
         setUsage={(getUpdated) => setPokeInBox({
           ...pokeInBox,
@@ -191,7 +189,6 @@ export const PokeInBoxEditLayout = ({
         </div>
       }>
         <InputBox
-          id="dateAdded"
           type="date"
           className="text-center"
           value={toIsoDateString(new Date(dateAdded))}

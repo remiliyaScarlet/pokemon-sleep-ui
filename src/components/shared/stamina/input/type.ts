@@ -3,7 +3,6 @@ import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 
 
 export type StaminaConfigProps = {
-  idPrefix: string,
   config: StaminaCalcConfig,
   setConfig: (updated: StaminaCalcConfig) => void,
   trigger: StaminaSkillTriggerData,

@@ -70,7 +70,6 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
             [ingredientLevel]: updated,
           },
         } satisfies AnalysisComparisonFilter))}
-        idPrefix={pokemon.id.toString()}
       />
       <AdsUnit/>
       <HorizontalSplitter/>

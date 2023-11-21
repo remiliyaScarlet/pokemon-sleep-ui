@@ -65,7 +65,6 @@ export const ActivationPopup = ({userIdEmailMap, control}: ActivationUiCommonPro
 
             throw new Error(`Unhandled update type ${type satisfies never}`);
           })}
-          idPrefix="popup"
           status={status}
           onSubmit={(properties) => {
             if (info.type === 'key') {

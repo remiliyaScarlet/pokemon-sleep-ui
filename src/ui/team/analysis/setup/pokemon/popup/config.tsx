@@ -25,7 +25,6 @@ export const TeamAnalysisPokemonMemberConfig = (props: TeamAnalysisPokemonProps)
         {...props}
         data={member}
         onDataUpdated={(update) => setMember(slotName, update)}
-        idPrefix="teamAnalysis"
         showSeeds
       />
       <PokemonIntentionalFullPackInput

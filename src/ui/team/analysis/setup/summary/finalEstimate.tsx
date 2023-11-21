@@ -50,7 +50,6 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
             <ClockIcon/>
           </div>
           <InputBox
-            id="endsAt"
             type="datetime-local"
             min={`${toIsoDateString(new Date())}T00:00`}
             className="text-center"
@@ -64,7 +63,6 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
         <Flex direction="row" center noFullWidth className="gap-1">
           <EnergyIcon alt={t('CurrentEnergy')} dimension="h-6 w-6"/>
           <InputBox
-            id="currentEnergy"
             type="number"
             min={0}
             className="w-20 text-center"

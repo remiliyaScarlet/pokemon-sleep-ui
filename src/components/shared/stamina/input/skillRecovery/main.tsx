@@ -12,7 +12,7 @@ import {staminaSkillRecoveryStrategies} from '@/types/game/stamina/skill';
 
 
 export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
-  const {idPrefix, config, setConfig, trigger, setTrigger} = props;
+  const {config, setConfig, trigger, setTrigger} = props;
   const {skillRecovery} = config;
 
   const t = useTranslations('UI.Stamina');
@@ -39,14 +39,12 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
       />
       <Flex direction="row" className="justify-center gap-1.5">
         <StaminaConfigSkillRecoveryInput
-          id={`${idPrefix}-energyAmount`}
           iconI18nId="Amount"
           iconSrc="/images/mainSkill/target/team.png"
           value={trigger.amount}
           onValueChanged={(amount) => setTrigger({...trigger, amount})}
         />
         <StaminaConfigSkillRecoveryInput
-          id={`${idPrefix}-energySkillDailyCount`}
           iconI18nId="DailyCount"
           iconSrc="/images/generic/flash.png"
           value={trigger.dailyCount}

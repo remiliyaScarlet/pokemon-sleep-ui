@@ -18,7 +18,6 @@ import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 type Props = {
   usage: SeedUsage,
   setUsage: ReactStateUpdaterFromOriginal<SeedUsage>,
-  idPrefix: string,
   evolutionCount?: number,
   subSkillBonus?: GroupedSubSkillBonus,
 };
@@ -26,7 +25,6 @@ type Props = {
 export const SeedUsageInput = ({
   usage,
   setUsage,
-  idPrefix,
   ...props
 }: Props) => {
   const {gold, silver} = usage;
@@ -44,7 +42,6 @@ export const SeedUsageInput = ({
       <Flex direction="row" noFullWidth className={commonInputStyle}>
         <GoldSeedIcon/>
         <InputBox
-          id={`${idPrefix}GoldSeed`}
           type="number"
           min={0}
           className="w-20 text-center"
@@ -58,7 +55,6 @@ export const SeedUsageInput = ({
       <Flex direction="row" noFullWidth className={commonInputStyle}>
         <SilverSeedIcon/>
         <InputBox
-          id={`${idPrefix}SilverSeed`}
           type="number"
           min={0}
           className="w-20 text-center"

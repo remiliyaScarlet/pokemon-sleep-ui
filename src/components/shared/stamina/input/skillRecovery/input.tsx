@@ -9,7 +9,6 @@ import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
 type Props = {
-  id: string,
   iconI18nId: I18nMessageKeysOfNamespace<'UI.Stamina.SkillRecovery'>,
   iconSrc: string,
   value: number,
@@ -17,7 +16,6 @@ type Props = {
 };
 
 export const StaminaConfigSkillRecoveryInput = ({
-  id,
   iconI18nId,
   iconSrc,
   value,
@@ -29,7 +27,6 @@ export const StaminaConfigSkillRecoveryInput = ({
     <Flex direction="row" noFullWidth className="gap-1.5">
       <GenericIcon alt={t(iconI18nId)} src={iconSrc} dimension="h-7 w-7"/>
       <InputBox
-        id={id}
         type="number"
         step={0.1}
         min={0}

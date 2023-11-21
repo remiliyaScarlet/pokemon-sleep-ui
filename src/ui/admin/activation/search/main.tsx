@@ -46,7 +46,6 @@ export const ActivationSearcher = ({control}: Props) => {
       </div>
       <InputRowWithTitle title="Key">
         <InputBox
-          id="activationSearch"
           type="text"
           value={key}
           className="w-full"

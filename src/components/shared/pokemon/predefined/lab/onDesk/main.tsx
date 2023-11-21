@@ -81,7 +81,6 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
       <PokemonIngredientPicker
         chain={ingredientChainMap[pokemon.ingredientChain]}
         ingredients={ingredients}
-        idPrefix={pokemon.id.toString()}
         onSelect={(production, level) => setSetup((setup) => ({
           ...setup,
           ingredients: {

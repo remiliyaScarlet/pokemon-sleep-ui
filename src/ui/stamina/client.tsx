@@ -40,7 +40,6 @@ export const StaminaAnalysisClient = (props: StaminaAnalysisDataProps) => {
     <Flex className="gap-3 p-2">
       <AdsUnit/>
       <StaminaConfig
-        idPrefix="staminaAnalysis"
         config={config}
         setConfig={setConfig}
         trigger={skillTrigger}

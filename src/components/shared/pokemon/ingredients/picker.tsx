@@ -21,14 +21,12 @@ type Props = {
   chain: IngredientChain,
   ingredients: IngredientProductionAtLevels,
   onSelect: (production: IngredientProduction, level: IngredientLevel) => void,
-  idPrefix: string,
 };
 
 export const PokemonIngredientPicker = ({
   chain,
   ingredients,
   onSelect,
-  idPrefix,
 }: Props) => {
   const t = useTranslations('Game');
 
@@ -51,7 +49,7 @@ export const PokemonIngredientPicker = ({
 
                 return (
                   <ToggleButton
-                    key={`${idPrefix}-ingredient-${level}-${id}`}
+                    key={`ingredient@${level}#${id}`}
                     active={active}
                     onClick={() => onSelect(production, level)}
                     className={clsx('rounded-lg p-1.5', getToggleButtonClass(active))}

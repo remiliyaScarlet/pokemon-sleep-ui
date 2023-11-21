@@ -7,13 +7,12 @@ import {BonusSliderProps} from '@/components/shared/production/bonus/type';
 
 
 type Props = BonusSliderProps & {
-  id: string,
   min: number,
   max: number,
   step?: number,
 };
 
-export const BonusSlider = ({id, min, max, step, value, setValue, children}: React.PropsWithChildren<Props>) => {
+export const BonusSlider = ({min, max, step, value, setValue, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex className="gap-2 p-1">
       <Flex direction="row" className="items-center justify-end gap-2">
@@ -21,7 +20,6 @@ export const BonusSlider = ({id, min, max, step, value, setValue, children}: Rea
           {children}
         </Flex>
         <InputBox
-          id={id}
           type="number"
           min={min}
           max={max}
