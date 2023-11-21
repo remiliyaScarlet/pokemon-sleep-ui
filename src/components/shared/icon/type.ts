@@ -7,6 +7,7 @@ export type IconPropsOfBase = {
   noShrink?: boolean,
   isActive?: boolean,
   dropShadow?: boolean,
+  className?: string,
 };
 
 export type IconPropsOfWrap = {

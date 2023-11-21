@@ -13,6 +13,7 @@ export const GenericIcon = ({
   noShrink,
   isActive,
   dropShadow,
+  className,
   dimension,
   noWrap,
   src,
@@ -24,6 +25,7 @@ export const GenericIcon = ({
     dropShadow && 'drop-shadow-thick',
     isActive === undefined && !noInvert && 'invert-hoverable',
     noShrink && 'shrink-0',
+    className,
   );
 
   if (noWrap) {
