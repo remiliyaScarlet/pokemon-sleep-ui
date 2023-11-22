@@ -52,7 +52,7 @@ export const PokemonEvolutionCondition = ({condition}: Props) => {
   if (type === 'sleepTime') {
     return (
       <Flex direction="row" className="gap-1">
-        <GenericIconLarger src="/images/generic/sleep.png" alt={t3('SleepTime')} noInvert/>
+        <GenericIconLarger src="/images/generic/sleep.png" alt={t3('SleepTime')}/>
         <div>{condition.hours}&nbsp;{t('Hour')}</div>
       </Flex>
     );
