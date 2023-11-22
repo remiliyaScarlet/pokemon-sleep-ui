@@ -2,8 +2,8 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
-import {FilterInputOnClickProps} from '@/components/input/filter/type';
+import {FilterInputOnClickProps} from '@/components/input/filter/common/type';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {IngredientId} from '@/types/game/ingredient';
 
 

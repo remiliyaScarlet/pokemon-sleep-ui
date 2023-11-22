@@ -3,9 +3,9 @@ import React from 'react';
 import {clsx} from 'clsx';
 
 import {InputBox} from '@/components/input/box';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterTextInput} from '@/components/input/filter/text';
 import {
   getMultiSelectOnClickProps,
   getSingleSelectOnClickProps,
@@ -76,7 +76,7 @@ export const ActivationEditor = ({
       <FilterTextInput
         title="Activation"
         ids={[...activationType]}
-        idToButton={(activation) => activationTypeToText[activation]}
+        idToText={(activation) => activationTypeToText[activation]}
         {...getMultiSelectOnClickProps({
           filter: data,
           setFilter: setData,
@@ -86,7 +86,7 @@ export const ActivationEditor = ({
       <FilterTextInput
         title="Source"
         ids={[...activationSource]}
-        idToButton={(source) => activationContactToText[source]}
+        idToText={(source) => activationContactToText[source]}
         {...getSingleSelectOnClickProps({
           filter: data,
           setFilter: setData,

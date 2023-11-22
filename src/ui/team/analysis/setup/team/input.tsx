@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {productionStatsPeriodI18nId} from '@/const/game/production';
@@ -43,7 +43,7 @@ export const TeamAnalysisCompDependentInput = ({currentTeam, setSetup, ...props}
       />
       <FilterTextInput
         title={t('AnalysisPeriod')}
-        idToButton={(period) => t2(productionStatsPeriodI18nId[period])}
+        idToText={(period) => t2(productionStatsPeriodI18nId[period])}
         ids={[...productionPeriod]}
         isActive={(period) => period === currentTeam.analysisPeriod}
         onClick={(analysisPeriod) => setSetup((setup) => ({

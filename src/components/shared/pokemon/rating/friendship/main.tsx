@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {FriendshipLevelOfGoldLock, friendshipLevelsOfGoldLock} from '@/types/game/pokemon/subSkill';
 
 
@@ -20,7 +20,7 @@ export const RatingFriendshipLevel = ({current, onUpdated}: Props) => {
       isActive={(level) => level === current}
       title={t('FriendshipLevel')}
       ids={[...friendshipLevelsOfGoldLock]}
-      idToButton={(level) => `${level}+`}
+      idToText={(level) => `${level}+`}
     />
   );
 };

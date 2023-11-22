@@ -3,8 +3,9 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
@@ -19,6 +20,7 @@ import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/f
 import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
+import {textFilterButtonStyle} from '@/styles/input';
 import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/game/pokemon';
@@ -57,7 +59,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
           filterKey: 'pokemonType' as KeysOfType<TFilter, FilterInclusionMap<PokemonTypeId>>,
         })}
       />
-      <FilterTextInput
+      <FilterExpandedInput
         title={<PokemonFilterTitle type="specialty"/>}
         idToButton={(id, isActive) => <PokemonSpecialty specialty={id} active={isActive}/>}
         ids={getFilterIdsFromPokemon({
@@ -68,8 +70,9 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
           ...props,
           filterKey: 'specialty' as KeysOfType<TFilter, FilterInclusionMap<PokemonSpecialtyId>>,
         })}
+        className={textFilterButtonStyle}
       />
-      <FilterTextInput
+      <FilterExpandedInput
         title={<PokemonFilterTitle type="sleepType"/>}
         idToButton={(id, isActive) => <PokemonSleepType sleepType={id} active={isActive}/>}
         ids={getFilterIdsFromPokemon({
@@ -80,6 +83,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
           ...props,
           filterKey: 'sleepType' as KeysOfType<TFilter, FilterInclusionMap<PokemonSleepTypeId>>,
         })}
+        className={textFilterButtonStyle}
       />
       {ingredientLevels.map((level) => (
         <PokemonIngredientFilter
@@ -106,7 +110,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
           filterKey: 'berry' as KeysOfType<TFilter, FilterInclusionMap<BerryId>>,
         })}
       />
-      <FilterTextInput
+      <FilterExpandedInput
         title={<PokemonFilterTitle type="evolutionStage"/>}
         idToButton={(id) => (
           <div className="mx-1">
@@ -120,6 +124,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
           }),
           'final',
         ] satisfies EvolutionStageSelection[]}
+        className={textFilterButtonStyle}
         {...getMultiSelectOnClickProps({
           ...props,
           filterKey: 'evolutionStage' as KeysOfType<TFilter, FilterInclusionMap<EvolutionStageSelection>>,
@@ -127,7 +132,7 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
       />
       <FilterTextInput
         title={<PokemonFilterTitle type="mainSkill"/>}
-        idToButton={(id) => t(`MainSkill.Name.${id}`)}
+        idToText={(id) => t(`MainSkill.Name.${id}`)}
         ids={getFilterIdsFromPokemon({
           pokemonList,
           toId: ({skill}) => skill,

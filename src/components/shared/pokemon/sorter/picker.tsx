@@ -3,7 +3,7 @@ import React from 'react';
 import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {sortTypeToI18nId} from '@/components/shared/pokemon/sorter/const';
 import {PokemonSortType, pokemonSortType} from '@/components/shared/pokemon/sorter/type';
@@ -28,7 +28,7 @@ export const PokemonSortingPicker = ({sort, updateSort, exclude}: Props) => {
         </Flex>
       }
       ids={[...pokemonSortType].filter((sortType) => !exclude?.includes(sortType))}
-      idToButton={(sort) => t(sortTypeToI18nId[sort])}
+      idToText={(sort) => t(sortTypeToI18nId[sort])}
     />
   );
 };

@@ -1,6 +1,6 @@
+import {FilterInputOnClickProps} from '@/components/input/filter/common/type';
 import {
   FilterInclusionMap,
-  FilterInputOnClickProps,
   FilterWithInclusionMap,
   FilterWithUpdaterProps,
 } from '@/components/input/filter/type';

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import {FilterRowBackgroundStyle} from '@/components/input/filter/common/type';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {Indexable} from '@/utils/type';
 
@@ -26,9 +27,3 @@ export type FilterWithUpdaterProps<TFilter> = {
   setFilter: ReactStateUpdaterFromOriginal<TFilter>,
 };
 
-export type FilterInputOnClickProps<TId> = {
-  onClick: (id: TId) => void,
-  isActive: (id: TId) => boolean,
-};
-
-export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';

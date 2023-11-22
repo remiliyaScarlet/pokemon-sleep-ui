@@ -3,7 +3,7 @@ import React from 'react';
 import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
@@ -28,7 +28,7 @@ export const ProducingParamsInput = (props: Props) => {
           </Flex>
         }
         ids={[...producingParamsSort]}
-        idToButton={(sort) => t(producingParamsSortToI18nId[sort])}
+        idToText={(sort) => t(producingParamsSortToI18nId[sort])}
         {...getSingleSelectOnClickProps({
           ...props,
           filterKey: 'sort',

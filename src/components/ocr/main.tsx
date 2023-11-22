@@ -5,7 +5,7 @@ import {useTranslations} from 'next-intl';
 
 import {AdsUnit} from '@/components/ads/main';
 import {InputFileImageOnly} from '@/components/input/file/image';
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
@@ -80,7 +80,7 @@ export const Ocr = <TData, >({buttonText, textToData, renderData, getWhitelistCh
             </Flex>
           }
           ids={[...ocrLocale]}
-          idToButton={(ocrLang) => localeName[ocrLang]}
+          idToText={(ocrLang) => localeName[ocrLang]}
           noRowPadding
           noFixedTitleWidth
           noWrap

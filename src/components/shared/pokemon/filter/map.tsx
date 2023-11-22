@@ -2,31 +2,30 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
-import {FilterInputOnClickProps} from '@/components/input/filter/type';
+import {FilterInputOnClickProps} from '@/components/input/filter/common/type';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {imageGallerySizes} from '@/styles/image';
+import {textFilterButtonStyle} from '@/styles/input';
 import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 type Props = FilterInputOnClickProps<SleepMapId> & {
   mapIds: SleepMapId[],
-  isHidden?: (mapId: SleepMapId) => boolean,
   highlight?: boolean,
   title?: React.ReactNode,
 };
 
-export const PokemonMapFilter = ({mapIds, isHidden, highlight, title, ...props}: Props) => {
+export const PokemonMapFilter = ({mapIds, highlight, title, ...props}: Props) => {
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('Game');
 
   return (
-    <FilterTextInput
+    <FilterExpandedInput
       style={highlight ? 'highlight' : undefined}
       title={title ?? t('Map')}
       ids={mapIds}
-      isHidden={(id) => (isHidden && isHidden(id)) ?? false}
       idToButton={(id) => {
         const mapName = t2(`Field.${id}`);
 
@@ -44,6 +43,7 @@ export const PokemonMapFilter = ({mapIds, isHidden, highlight, title, ...props}:
           </>
         );
       }}
+      className={textFilterButtonStyle}
       {...props}
     />
   );

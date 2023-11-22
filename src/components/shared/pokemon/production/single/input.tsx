@@ -3,7 +3,7 @@ import React from 'react';
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {Flex} from '@/components/layout/flex/common';
 import {
   pokemonProducingRateSingleDisplay,

@@ -5,7 +5,7 @@ import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon';
 import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
 import {InputBox} from '@/components/input/box';
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {activationTypeToText} from '@/const/activation/common';
@@ -44,7 +44,7 @@ export const ActivationPresetUnit = ({preset, onUpdate, onDelete}: Props) => {
       <FilterTextInput
         ids={[...activationType]}
         isActive={(type) => !!activation[type]}
-        idToButton={(type) => activationTypeToText[type]}
+        idToText={(type) => activationTypeToText[type]}
         onClick={(type) => onUpdate(
           uuid,
           {

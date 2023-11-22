@@ -40,7 +40,7 @@ export const FilterIconInput = <TId extends IndexableNonSymbol>({
           />
         </div>
       )}
-      classNameOfButton={iconFilterButtonStyle}
+      className={iconFilterButtonStyle}
       {...props}
     />
   );

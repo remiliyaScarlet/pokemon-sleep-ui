@@ -2,8 +2,8 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
 import {FilterExpandedInputProps} from '@/components/input/filter/expanded/type';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {IngredientId} from '@/types/game/ingredient';
 import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {toUnique} from '@/utils/array';

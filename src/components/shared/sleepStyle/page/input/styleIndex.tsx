@@ -2,13 +2,14 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
 import {SleepdexStyleIcon} from '@/components/shared/sleepdex/styleIcon';
 import {MapInputCommonProps} from '@/components/shared/sleepStyle/page/input/type';
 import {imageIconSizes} from '@/styles/image';
+import {textFilterButtonStyle} from '@/styles/input';
 import {SleepStyleId} from '@/types/game/sleepStyle';
 
 
@@ -22,7 +23,7 @@ export const MapInputSleepStyleToggle = (props: Props) => {
   const t = useTranslations('UI.InPage.Map');
 
   return (
-    <FilterTextInput
+    <FilterExpandedInput
       title={
         <Flex direction="row" center>
           <div className="relative h-8 w-8">
@@ -35,6 +36,7 @@ export const MapInputSleepStyleToggle = (props: Props) => {
       }
       idToButton={(id) => <SleepdexStyleIcon styleId={id}/>}
       ids={sleepStyles}
+      className={textFilterButtonStyle}
       {...getMultiSelectOnClickProps({
         filter,
         setFilter,

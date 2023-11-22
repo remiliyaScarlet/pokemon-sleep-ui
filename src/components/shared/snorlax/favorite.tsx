@@ -3,7 +3,7 @@ import React from 'react';
 import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {FilterWithInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';

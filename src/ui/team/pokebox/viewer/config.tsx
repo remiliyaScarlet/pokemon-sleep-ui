@@ -7,15 +7,10 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/expanded/icon';
 import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
+import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {InputRow} from '@/components/input/filter/row';
-import {FilterTextInput} from '@/components/input/filter/text';
-import {
-  getMultiSelectOnClickProps,
-  getSingleSelectOnClickProps,
-
-} from '@/components/input/filter/utils/props';
+import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
@@ -27,10 +22,7 @@ import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PremiumIcon} from '@/components/static/premium/icon';
 import {usePremiumRequiredToast} from '@/hooks/toast/main';
-import {
-  iconFilterButtonStyle,
-  textFilterButtonStyle,
-} from '@/styles/input';
+import {iconFilterButtonStyle, textFilterButtonStyle} from '@/styles/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
   pokeboxDisplayTypeToI18nId,
@@ -89,7 +81,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
               {pokeboxViewTypeToIcon[type]}
             </div>
           )}
-          classNameOfButton={iconFilterButtonStyle}
+          className={iconFilterButtonStyle}
           {...getSingleSelectOnClickProps({
             filter,
             setFilter,
@@ -97,7 +89,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
             allowNull: false,
           })}
         />
-        <FilterTextInput
+        <FilterExpandedInput
           title={
             <Flex direction="row" center className="gap-1.5">
               <EyeIcon className="h-6 w-6"/>
@@ -108,7 +100,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
           idToButton={(level) => (
             level === null ? <XMarkIcon className="h-7 w-7"/> : level
           )}
-          classNameOfButton={iconFilterButtonStyle}
+          className={clsx('text-sm', iconFilterButtonStyle)}
           {...getSingleSelectOnClickProps({
             filter,
             setFilter,

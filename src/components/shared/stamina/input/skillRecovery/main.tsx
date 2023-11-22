@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/generic';
 import {StaminaConfigSkillRecoveryInput} from '@/components/shared/stamina/input/skillRecovery/input';
@@ -34,7 +34,7 @@ export const StaminaConfigSkillRecovery = (props: StaminaConfigProps) => {
         })}
         isActive={(strategy) => strategy === skillRecovery.strategy}
         ids={[...staminaSkillRecoveryStrategies]}
-        idToButton={(strategy) => t(`Strategy.${staminaStrategyI18nId[strategy]}`)}
+        idToText={(strategy) => t(`Strategy.${staminaStrategyI18nId[strategy]}`)}
         noFixedTitleWidth
       />
       <Flex direction="row" className="justify-center gap-1.5">

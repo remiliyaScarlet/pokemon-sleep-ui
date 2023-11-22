@@ -2,8 +2,8 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
-import {FilterInputOnClickProps} from '@/components/input/filter/type';
+import {FilterInputOnClickProps} from '@/components/input/filter/common/type';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {potPossibleCapacity} from '@/data/potCapacity';
 
 
@@ -16,7 +16,7 @@ export const PotCapacityInput = (props: Props) => {
     <FilterTextInput
       title={t('PotCapacity')}
       ids={potPossibleCapacity}
-      idToButton={(id) => id.toString()}
+      idToText={(id) => id.toString()}
       {...props}
     />
   );

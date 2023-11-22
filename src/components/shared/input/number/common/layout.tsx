@@ -31,7 +31,7 @@ export const NumberInputLayout = ({
     <Flex direction="row" noFullWidth className={clsx('items-center gap-1.5', className)}>
       {
         text &&
-        <div className={clsx('whitespace-nowrap', textClassName)}>
+        <div className={clsx('whitespace-nowrap text-sm', textClassName)}>
           {text}
         </div>
       }

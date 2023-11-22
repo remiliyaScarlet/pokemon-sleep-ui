@@ -2,10 +2,11 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, GetMultiSelectOnClickPropsOpts} from '@/components/input/filter/utils/props';
 import {PokemonSubSkillText} from '@/components/shared/pokemon/subSkill/text';
+import {textFilterButtonStyle} from '@/styles/input';
 import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
@@ -24,10 +25,11 @@ export const PokemonSubSkillFilter = <TFilter extends FilterWithInclusionMap<Sub
   const t = useTranslations('UI.InPage.Team');
 
   return (
-    <FilterTextInput
+    <FilterExpandedInput
       title={t('SubSkill')}
       idToButton={(id) => <PokemonSubSkillText subSkill={subSkillMap[id]}/>}
       ids={subSkillList.map(({id}) => id)}
+      className={textFilterButtonStyle}
       {...getMultiSelectOnClickProps(props)}
     />
   );

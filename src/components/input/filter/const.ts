@@ -1,4 +1,4 @@
-import {FilterRowBackgroundStyle} from '@/components/input/filter/type';
+import {FilterRowBackgroundStyle} from '@/components/input/filter/common/type';
 
 
 export const rowBackground: {[style in FilterRowBackgroundStyle]: string} = {

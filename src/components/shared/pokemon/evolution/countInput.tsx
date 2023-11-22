@@ -1,10 +1,12 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
+import {textFilterButtonStyle} from '@/styles/input';
 
 
 type Props = {
@@ -31,10 +33,11 @@ export const PokemonEvolutionCountInput = ({
           <div>{text}</div>
         </Flex>
       }
-      idToButton={(id) => <div className="mx-1">{id}</div>}
+      idToText={(id) => id.toString()}
       ids={[...new Array(maxEvolutionCount).keys()]}
       onClick={setEvolutionCount}
       isActive={(id) => evolutionCount === id}
+      className={clsx('mx-1', textFilterButtonStyle)}
     />
   );
 };

@@ -7,9 +7,9 @@ import {useTranslations} from 'next-intl';
 
 import {useRouter} from '@/components/i18n/exports';
 import {InputBox} from '@/components/input/box';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterTextInput} from '@/components/input/filter/text';
 import {InputTextArea} from '@/components/input/textarea';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
@@ -128,7 +128,7 @@ export const DocsEditor = ({onDocUpdated, getUserDataAction, ...props}: Props) =
           </Flex>
         }
         ids={[...locales]}
-        idToButton={(locale) => localeName[locale]}
+        idToText={(locale) => localeName[locale]}
       />
       <InputRow>
         <ToggleButton
@@ -139,7 +139,9 @@ export const DocsEditor = ({onDocUpdated, getUserDataAction, ...props}: Props) =
           {tableOfContentsText[locale]}
         </ToggleButton>
       </InputRow>
-      <DocsEditorDisplayToggle display={display} setDisplay={setDisplay} className="lg:hidden"/>
+      <div className="lg:hidden">
+        <DocsEditorDisplayToggle display={display} setDisplay={setDisplay}/>
+      </div>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
         <InputTextArea
           value={content}

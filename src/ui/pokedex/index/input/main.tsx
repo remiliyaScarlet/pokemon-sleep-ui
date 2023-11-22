@@ -5,8 +5,8 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterTextInput} from '@/components/input/filter/text';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
@@ -89,7 +89,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               </Flex>
             }
             ids={[...pokedexDisplayType].filter((displayType) => !isPokedexSortExclusion(displayType))}
-            idToButton={(display) => t(displayTypeToI18nId[display])}
+            idToText={(display) => t(displayTypeToI18nId[display])}
           />
           <PokemonSortingPicker
             sort={filter.sort}

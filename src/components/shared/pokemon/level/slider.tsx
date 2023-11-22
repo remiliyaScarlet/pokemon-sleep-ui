@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/text';
+import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {LevelIcon} from '@/components/shared/icon/lv';
 import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
@@ -34,10 +34,10 @@ export const PokemonLevelSlider = ({presetLevels, ...props}: Props) => {
             </Flex>
           }
           ids={presetLevels.sort((a, b) => a - b)}
-          idToButton={(level) => level}
-          classNameOfButton={iconFilterButtonStyle}
+          idToText={(level) => level.toString()}
           onClick={setValue}
           isActive={() => false}
+          className={iconFilterButtonStyle}
         />
       }
     </Flex>

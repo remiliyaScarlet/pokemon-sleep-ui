@@ -1,0 +1,39 @@
+import React from 'react';
+
+import PlusCircleIcon from '@heroicons/react/24/outline/PlusCircleIcon';
+
+import {FilterCollapsedInputPopup} from '@/components/input/filter/collapsed/popup';
+import {FilterCollapsedInputProps} from '@/components/input/filter/collapsed/type';
+import {FilterToggleButtons} from '@/components/input/filter/common/button';
+import {FilterInputLayout} from '@/components/input/filter/common/layout';
+import {FlexButton} from '@/components/layout/flex/button';
+import {PopupCommon} from '@/components/popup/common/main';
+import {IndexableNonSymbol} from '@/utils/type';
+
+
+type Props<TId extends IndexableNonSymbol | null> = Omit<FilterCollapsedInputProps<TId>, 'idToButton'>;
+
+export const FilterCollapsedInput = <TId extends IndexableNonSymbol | null>(props: Props<TId>) => {
+  const {
+    isActive,
+    idToText,
+    ...rest
+  } = props;
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <FilterInputLayout {...rest}>
+      <PopupCommon show={show} setShow={setShow}>
+        <FilterCollapsedInputPopup {...props}/>
+      </PopupCommon>
+      <FlexButton direction="row" className="button-clickable-bg p-1" onClick={() => setShow(true)}>
+        <PlusCircleIcon className="h-6 w-6"/>
+      </FlexButton>
+      <FilterToggleButtons
+        idToButton={idToText}
+        isHidden={(id) => !isActive(id)}
+        {...props}
+      />
+    </FilterInputLayout>
+  );
+};
