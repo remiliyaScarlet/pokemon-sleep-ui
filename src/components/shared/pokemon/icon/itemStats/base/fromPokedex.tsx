@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {FlexButton} from '@/components/layout/flex/button';
@@ -45,7 +44,7 @@ export const PokemonItemStatsFromPokedex = (props: Props) => {
   const t2 = useTranslations('UI.InPage.Pokedex.Info');
 
   return (
-    <div className="info-section">
+    <Flex className="info-section gap-2">
       <PokemonLinkPopup state={state} setState={setState}/>
       <PokemonProducingRateSingleDisplaySwitch
         control={control}
@@ -66,9 +65,7 @@ export const PokemonItemStatsFromPokedex = (props: Props) => {
           const {id, specialty} = pokemon;
 
           return (
-            <FlexButton noFullWidth={false} onClick={() => showPokemon(pokemon)} className={clsx(
-              'group relative',
-            )}>
+            <FlexButton noFullWidth={false} onClick={() => showPokemon(pokemon)} className="group relative">
               <Flex noFullWidth className="absolute bottom-1 right-1 z-10">
                 <PokemonProducingRateSingle
                   rate={itemRate}
@@ -99,6 +96,6 @@ export const PokemonItemStatsFromPokedex = (props: Props) => {
           );
         }}
       />
-    </div>
+    </Flex>
   );
 };

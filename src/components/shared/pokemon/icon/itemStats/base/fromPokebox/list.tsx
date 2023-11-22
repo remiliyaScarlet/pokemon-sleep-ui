@@ -94,7 +94,7 @@ export const PokemonItemStatsFromPokeboxList = ({
     <PokemonItemStatsList
       getItemRate={getItemRate}
       producingStats={producingStats}
-      className="bg-plate"
+      className="rounded-lg bg-slate-100/80 p-2 dark:bg-slate-950/60"
       toItem={({
         pokemon,
         pokeInBox,
@@ -112,7 +112,7 @@ export const PokemonItemStatsFromPokeboxList = ({
 
         return (
           <Flex center className="relative gap-1">
-            <Flex noFullWidth className="absolute left-0 top-0 z-10 opacity-60">
+            <Flex noFullWidth className="absolute left-1.5 top-1.5 z-10 opacity-60">
               <IconWithInfo
                 imageSrc={`/images/pokemon/icons/${id}.png`}
                 imageAlt={pokemonDefaultName}

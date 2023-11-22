@@ -10,7 +10,7 @@ export const PokemonItemStatsFromPokeboxLayout = ({children}: React.PropsWithChi
   const t = useTranslations('UI.Common');
 
   return (
-    <Flex className="info-highlight gap-1.5 p-2">
+    <Flex className="bg-plate gap-1.5 p-1.5">
       <Flex direction="row" center className="gap-1 p-1.5 text-lg">
         <GenericIconLarger
           src="/images/generic/pokebox.png"
