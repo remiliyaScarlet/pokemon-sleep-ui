@@ -1,13 +1,12 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n/exports';
+import {CollapsibleFull} from '@/components/layout/collapsible/full';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
-import {imageIconSizes} from '@/styles/image';
+import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {MealIngredientSectionProps} from '@/ui/meal/page/type';
 
 
@@ -24,18 +23,15 @@ export const MealIngredientSection = ({
   const {id, quantity} = ingredient;
   const {pokemonIngredientProductionOfLevel} = pokemonOfIngredientLevel;
 
-  const t = useTranslations('Game.Food');
+  const collapsible = useCollapsible();
 
   return (
-    <Flex key={id} direction="row" className="gap-2">
-      <Link href={`/ingredient/${id}`} className="button-clickable-bg">
-        <Flex center className="h-full">
-          <div className="relative h-12 w-12">
-            <NextImage src={`/images/ingredient/${id}.png`} alt={t(id.toString())} sizes={imageIconSizes}/>
-          </div>
-          <div>{quantity}</div>
-        </Flex>
-      </Link>
+    <CollapsibleFull state={collapsible} button={
+      <Flex center direction="row" className="gap-1 text-xl">
+        <PokemonIngredientIcon id={id} dimension="h-8 w-8" noLink/>
+        <div>{quantity}</div>
+      </Flex>
+    }>
       <Flex center className={clsx(
         'border-common rounded-r-lg border-y-2 border-r-2 py-2 pr-2',
       )}>
@@ -47,6 +43,6 @@ export const MealIngredientSection = ({
           {...props}
         />
       </Flex>
-    </Flex>
+    </CollapsibleFull>
   );
 };

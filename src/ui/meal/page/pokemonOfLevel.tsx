@@ -25,7 +25,7 @@ export const MealPokemonOfIngredientLevel = (props: Omit<MealIngredientSectionPr
           <PokemonIngredientLevelIcon level={ingredientLevel}/>
         </div>
         {meal.ingredients.map((ingredient) => (
-          <MealIngredientSection ingredient={ingredient} {...props}/>
+          <MealIngredientSection key={ingredient.id} ingredient={ingredient} {...props}/>
         ))}
         <AdsUnit/>
       </Flex>
