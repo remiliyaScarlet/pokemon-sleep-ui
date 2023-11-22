@@ -7,9 +7,10 @@ import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIc
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterCategoryInput} from '@/components/input/filter/category';
-import {FilterIconInput} from '@/components/input/filter/icon';
+import {FilterIconInput} from '@/components/input/filter/expanded/icon';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {InputRow} from '@/components/input/filter/row';
+import {FilterTextInput} from '@/components/input/filter/text';
 import {
   getMultiSelectOnClickProps,
   getSingleSelectOnClickProps,
@@ -76,7 +77,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
           filterKey="snorlaxFavorite"
           {...props}
         />
-        <FilterCategoryInput
+        <FilterExpandedInput
           title={
             <Flex center>
               <EyeIcon className="h-6 w-6"/>
@@ -96,7 +97,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
             allowNull: false,
           })}
         />
-        <FilterCategoryInput
+        <FilterTextInput
           title={
             <Flex direction="row" center className="gap-1.5">
               <EyeIcon className="h-6 w-6"/>

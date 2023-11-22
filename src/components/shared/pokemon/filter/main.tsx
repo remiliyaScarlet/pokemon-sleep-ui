@@ -3,7 +3,7 @@ import React from 'react';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/icon';
+import {FilterIconInput} from '@/components/input/filter/expanded/icon';
 import {FilterTextInput} from '@/components/input/filter/text';
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';

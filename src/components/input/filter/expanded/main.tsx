@@ -2,14 +2,14 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
+import {FilterExpandedInputProps} from '@/components/input/filter/expanded/type';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {FilterCategoryInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {IndexableNonSymbol} from '@/utils/type';
 
 
-export const FilterSingleCategoryInput = <TId extends IndexableNonSymbol | null>({
+export const FilterExpandedInput = <TId extends IndexableNonSymbol | null>({
   title,
   ids,
   idToButton,
@@ -19,7 +19,7 @@ export const FilterSingleCategoryInput = <TId extends IndexableNonSymbol | null>
   classNameOfButton,
   noWrap,
   ...rowOpts
-}: FilterCategoryInputProps<TId>) => {
+}: FilterExpandedInputProps<TId>) => {
   const {noFixedTitleWidth} = rowOpts;
 
   return (

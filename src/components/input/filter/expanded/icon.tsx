@@ -1,14 +1,14 @@
 import React from 'react';
 
-import {FilterCategoryInput} from '@/components/input/filter/category';
-import {FilterCategoryInputProps} from '@/components/input/filter/type';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
+import {FilterExpandedInputProps} from '@/components/input/filter/expanded/type';
 import {NextImage} from '@/components/shared/common/image/main';
 import {iconFilterButtonStyle} from '@/styles/input';
 import {IndexableNonSymbol} from '@/utils/type';
 
 
 type Props<TId extends IndexableNonSymbol> = Omit<
-  FilterCategoryInputProps<TId>,
+  FilterExpandedInputProps<TId>,
   'idToButton' | 'classNameOfButton'
 > & {
   idToAlt: (id: TId) => string,
@@ -31,7 +31,7 @@ export const FilterIconInput = <TId extends IndexableNonSymbol>({
   ...props
 }: Props<TId>) => {
   return (
-    <FilterCategoryInput
+    <FilterExpandedInput
       idToButton={(id) => (
         <div className="group relative h-7 w-7">
           <NextImage

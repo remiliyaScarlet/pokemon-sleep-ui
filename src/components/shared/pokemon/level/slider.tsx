@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterCategoryInput} from '@/components/input/filter/category';
+import {FilterTextInput} from '@/components/input/filter/text';
 import {Flex} from '@/components/layout/flex/common';
 import {LevelIcon} from '@/components/shared/icon/lv';
 import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
@@ -27,7 +27,7 @@ export const PokemonLevelSlider = ({presetLevels, ...props}: Props) => {
       />
       {
         presetLevels?.length &&
-        <FilterCategoryInput
+        <FilterTextInput
           title={
             <Flex center>
               <LevelIcon/>

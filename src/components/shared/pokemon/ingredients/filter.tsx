@@ -2,14 +2,14 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {FilterIconInput} from '@/components/input/filter/icon';
-import {FilterCategoryInputProps} from '@/components/input/filter/type';
+import {FilterIconInput} from '@/components/input/filter/expanded/icon';
+import {FilterExpandedInputProps} from '@/components/input/filter/expanded/type';
 import {IngredientId} from '@/types/game/ingredient';
 import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
 import {toUnique} from '@/utils/array';
 
 
-type Props = Pick<FilterCategoryInputProps<IngredientId>, 'style' | 'isActive' | 'onClick' | 'title'> & {
+type Props = Pick<FilterExpandedInputProps<IngredientId>, 'style' | 'isActive' | 'onClick' | 'title'> & {
   ingredientChainMap: IngredientChainMap,
   level: IngredientLevel,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
-import {Indexable, IndexableNonSymbol} from '@/utils/type';
+import {Indexable} from '@/utils/type';
 
 
 export type InputRowProps = {
@@ -30,16 +30,5 @@ export type FilterInputOnClickProps<TId> = {
   onClick: (id: TId) => void,
   isActive: (id: TId) => boolean,
 };
-
-export type FilterCategoryInputProps<TId extends IndexableNonSymbol | null> =
-  FilterInputOnClickProps<TId> &
-  InputRowProps & {
-    classNameOfButton: string,
-    title: React.ReactNode,
-    ids: TId[],
-    idToButton: (id: TId, isActive: boolean) => React.ReactNode,
-    isHidden?: (id: TId) => boolean,
-    noWrap?: boolean,
-  };
 
 export type FilterRowBackgroundStyle = 'none' | 'normal' | 'highlight';
