@@ -4,12 +4,14 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {MealPokemonOfIngredientLevel} from '@/ui/meal/page/pokemonOfLevel';
-import {MealCommonProps, MealPokemonOfIngredientLevelProps} from '@/ui/meal/page/type';
+import {MealCommonProps} from '@/ui/meal/page/type';
+import {getIngredientLevel} from '@/utils/game/ingredient';
 
 
 export const MealPokemonOfIngredient = (props: MealCommonProps) => {
   const {pokemonIngredientProductionMap, pokemonMaxLevel} = props;
   const [level, setLevel] = React.useState(1);
+  const ingredientLevel = React.useMemo(() => getIngredientLevel(level), [level]);
 
   return (
     <>
@@ -21,21 +23,11 @@ export const MealPokemonOfIngredient = (props: MealCommonProps) => {
           presetLevels={[...ingredientLevels]}
         />
       </Flex>
-      {ingredientLevels
-        .map((ingredientLevel): MealPokemonOfIngredientLevelProps => ({
-          ingredientLevel,
-          pokemonIngredientProductionOfLevel: pokemonIngredientProductionMap[ingredientLevel],
-          show: level >= ingredientLevel,
-        }))
-        .sort((a, b) => b.ingredientLevel - a.ingredientLevel)
-        .map((pokemonOfIngredientLevel) => (
-          <MealPokemonOfIngredientLevel
-            key={pokemonOfIngredientLevel.ingredientLevel}
-            pokemonLevel={level}
-            pokemonOfIngredientLevel={pokemonOfIngredientLevel}
-            {...props}
-          />
-        ))}
+      <MealPokemonOfIngredientLevel
+        pokemonLevel={level}
+        ingredientProductionMapOfLevel={pokemonIngredientProductionMap[ingredientLevel]}
+        {...props}
+      />
     </>
   );
 };

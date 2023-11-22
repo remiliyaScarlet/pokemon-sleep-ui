@@ -6,7 +6,7 @@ import {
   PokemonIngredientProductionMap,
   PokemonIngredientProductionMapOfLevel,
 } from '@/types/game/pokemon';
-import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
+import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -31,14 +31,8 @@ export type MealCommonProps = MealServerDataProps & {
   calculatedSettings: CalculatedUserSettings,
 };
 
-export type MealPokemonOfIngredientLevelProps = {
-  show: boolean,
-  ingredientLevel: IngredientLevel,
-  pokemonIngredientProductionOfLevel: PokemonIngredientProductionMapOfLevel,
-};
-
 export type MealIngredientSectionProps = MealCommonProps & {
   ingredient: MealIngredient,
   pokemonLevel: number,
-  pokemonOfIngredientLevel: MealPokemonOfIngredientLevelProps,
+  ingredientProductionMapOfLevel: PokemonIngredientProductionMapOfLevel,
 };

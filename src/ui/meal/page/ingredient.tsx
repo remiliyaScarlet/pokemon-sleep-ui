@@ -16,12 +16,11 @@ export const MealIngredientSection = ({
   calculatedSettings,
   ingredient,
   pokemonLevel,
-  pokemonOfIngredientLevel,
+  ingredientProductionMapOfLevel,
   ...props
 }: MealIngredientSectionProps) => {
   const {ingredientMap} = props;
   const {id, quantity} = ingredient;
-  const {pokemonIngredientProductionOfLevel} = pokemonOfIngredientLevel;
 
   const collapsible = useCollapsible();
 
@@ -38,7 +37,7 @@ export const MealIngredientSection = ({
         <PokemonIngredientStats
           level={pokemonLevel}
           ingredient={ingredientMap[id]}
-          pokemonIngredientProduction={pokemonIngredientProductionOfLevel[id] ?? []}
+          pokemonIngredientProduction={ingredientProductionMapOfLevel[id] ?? []}
           {...calculatedSettings}
           {...props}
         />
