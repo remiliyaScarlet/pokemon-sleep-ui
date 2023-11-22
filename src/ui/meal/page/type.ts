@@ -1,6 +1,6 @@
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal/main';
+import {Meal, MealIngredient} from '@/types/game/meal/main';
 import {
   PokedexMap,
   PokemonIngredientProductionMap,
@@ -35,4 +35,10 @@ export type MealPokemonOfIngredientLevelProps = {
   show: boolean,
   ingredientLevel: IngredientLevel,
   pokemonIngredientProductionOfLevel: PokemonIngredientProductionMapOfLevel,
+};
+
+export type MealIngredientSectionProps = MealCommonProps & {
+  ingredient: MealIngredient,
+  pokemonLevel: number,
+  pokemonOfIngredientLevel: MealPokemonOfIngredientLevelProps,
 };
