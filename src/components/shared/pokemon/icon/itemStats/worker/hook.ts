@@ -6,7 +6,7 @@ import {useWorker} from '@/hooks/worker';
 
 
 type UsePokemonProducingStatsWorkerOpts = PokemonItemStatsWorkerOpts & {
-  setLoading: (loading: boolean) => void,
+  setLoading?: (loading: boolean) => void,
 };
 
 export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProducingStatsWorkerOpts) => {
@@ -33,10 +33,17 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
     workerName: 'Pokemon Stats Calculator',
     generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
     onCompleted: (result) => {
-      setLoading(false);
+      if (setLoading) {
+        setLoading(false);
+      }
+
       setProducingStats(result);
     },
-    onError: () => setLoading(false),
+    onError: () => {
+      if (setLoading) {
+        setLoading(false);
+      }
+    },
   });
 
   const calculate = () => {
@@ -54,7 +61,9 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
       sleepDurations,
       behavior,
     });
-    setLoading(true);
+    if (setLoading) {
+      setLoading(true);
+    }
   };
 
   React.useEffect(() => {
