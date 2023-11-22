@@ -12,6 +12,7 @@ import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
+import {TeamAnalysisSkillRate} from '@/ui/team/analysis/setup/common/skill';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
 import {toProducingRateOfState} from '@/utils/game/producing/convert';
@@ -24,7 +25,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
     berryDataMap,
   } = props;
 
-  const {berry} = pokemon;
+  const {specialty, berry, skill} = pokemon;
   const berryData = berryDataMap[berry.id];
   const ingredientRates = Object.values(stats.ingredient);
 
@@ -40,17 +41,17 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       <PokemonProductionSplitFromPokemonRate
         rate={stats}
         state={stateOfRateToShow}
-        specialty={pokemon.specialty}
+        specialty={specialty}
       />
       <HorizontalSplitter className="w-full"/>
-      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.berry && 'info-highlight')}>
+      <Flex center className={clsx(specialty === specialtyIdMap.berry && 'info-highlight')}>
         <TeamAnalysisBerryRate
           id={berryData.id}
           rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
         />
       </Flex>
       <HorizontalSplitter className="w-full"/>
-      <Flex center className={clsx(pokemon.specialty === specialtyIdMap.ingredient && 'info-highlight')}>
+      <Flex center className={clsx(specialty === specialtyIdMap.ingredient && 'info-highlight')}>
         {ingredientRates.map((rate) => (
           <TeamAnalysisIngredientRate
             key={rate.id}
@@ -58,6 +59,13 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
             rate={toProducingRateOfState({rate, state: 'equivalent'})}
           />
         ))}
+      </Flex>
+      <HorizontalSplitter className="w-full"/>
+      <Flex center className={clsx(specialty === specialtyIdMap.skill && 'info-highlight')}>
+        <TeamAnalysisSkillRate
+          id={skill}
+          rate={toProducingRateOfState({rate: stats.skill, state: 'equivalent'})}
+        />
       </Flex>
     </>
   );

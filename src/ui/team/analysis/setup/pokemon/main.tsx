@@ -36,13 +36,13 @@ export const TeamAnalysisPokemon = (props: TeamAnalysisPokemonProps) => {
   const {level, nature, subSkill} = member;
 
   return (
-    <Flex className="gap-1 sm:flex-row lg:flex-col">
+    <Flex className="gap-2 sm:flex-row lg:flex-col">
       <TeamAnalysisPokemonPopup
         state={pokemonPopup}
         ratingControl={ratingControl}
         {...props}
       />
-      <Flex className="gap-1">
+      <Flex className="gap-2">
         <PokemonNameSimple pokemon={pokemon} override={member.name}/>
         <Flex direction="row" center>
           <div className="relative h-28 w-28">
