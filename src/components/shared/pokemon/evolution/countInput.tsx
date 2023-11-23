@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
-import {FilterTextInput} from '@/components/input/filter/preset/text';
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {textFilterButtonStyle} from '@/styles/input';
@@ -25,7 +24,7 @@ export const PokemonEvolutionCountInput = ({
   const text = t('Input.EvolutionCount');
 
   return (
-    <FilterTextInput
+    <FilterExpandedInput
       noFixedTitleWidth
       title={
         <Flex direction="row" className="items-center justify-end gap-0.5 px-2">
@@ -33,11 +32,15 @@ export const PokemonEvolutionCountInput = ({
           <div>{text}</div>
         </Flex>
       }
-      idToText={(id) => id.toString()}
+      idToButton={(id) => (
+        <span className="mx-1">
+          {id}
+        </span>
+      )}
       ids={[...new Array(maxEvolutionCount).keys()]}
       onClick={setEvolutionCount}
       isActive={(id) => evolutionCount === id}
-      className={clsx('mx-1', textFilterButtonStyle)}
+      className={textFilterButtonStyle}
     />
   );
 };
