@@ -12,6 +12,7 @@ import {recipeMaxLevel} from '@/const/game/meal';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
+import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {MealIndexInputProps} from '@/ui/meal/index/input/type';
 import {MealFilter} from '@/ui/meal/index/type';
 import {toUnique} from '@/utils/array';
@@ -23,10 +24,12 @@ type Props = MealIndexInputProps & {
 };
 
 export const MealInput = ({data, filter, setFilter, preloaded}: Props) => {
+  const mealTypes = usePossibleMealTypes(data);
+
   return (
     <Flex className="gap-1">
       <MealTypeInput
-        mealTypes={toUnique(data.map(({type}) => type)).sort((a, b) => a - b)}
+        mealTypes={mealTypes}
         {...getMultiSelectOnClickProps({
           filter,
           setFilter,

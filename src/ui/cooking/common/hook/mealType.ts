@@ -5,6 +5,6 @@ import {toUnique} from '@/utils/array';
 
 
 export const usePossibleMealTypes = (meals: Meal[]): MealTypeId[] => React.useMemo(
-  () => toUnique(meals.map(({type}) => type)),
+  () => toUnique(meals.map(({type}) => type)).sort((a, b) => a - b),
   [meals],
 );

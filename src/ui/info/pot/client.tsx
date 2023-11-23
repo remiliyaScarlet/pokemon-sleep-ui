@@ -3,11 +3,11 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {recipeMaxLevel} from '@/const/game/meal';
+import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {usePotInfoFilter} from '@/ui/info/pot/hook';
 import {PotInfoInput} from '@/ui/info/pot/input';
 import {PotInfoDataProps} from '@/ui/info/pot/type';
 import {PotRecipeUnlockTable} from '@/ui/info/pot/unlockTable';
-import {toUnique} from '@/utils/array';
 
 
 export const PotInfoClient = (props: PotInfoDataProps) => {
@@ -15,7 +15,7 @@ export const PotInfoClient = (props: PotInfoDataProps) => {
   const {filter, setFilter, isIncluded} = usePotInfoFilter(props);
 
   const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
-  const mealTypes = toUnique(meals.map(({type}) => type));
+  const mealTypes = usePossibleMealTypes(meals);
 
   return (
     <>
