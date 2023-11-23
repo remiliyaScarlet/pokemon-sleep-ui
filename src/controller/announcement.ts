@@ -14,7 +14,7 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
     .collection<Announcement>('data');
 };
 
-export const getAllAnnouncements = async (locale: Locale | null): Promise<Announcement[]> => {
+export const getAnnouncementsOfLocale = async (locale: Locale | null): Promise<Announcement[]> => {
   return (await getCollection())
     .find({locale: locale ?? defaultLocale}, {sort: {order: -1}, projection: {_id: false}})
     .toArray();

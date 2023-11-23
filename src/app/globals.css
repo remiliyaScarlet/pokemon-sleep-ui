@@ -613,4 +613,24 @@
   }
   
   /* endregion */
+  
+  /* region Announcement styling (announcement-*) */
+  
+  .announcement-common {
+    & a {
+      @apply before:content-['🔗'];
+    }
+    
+    @apply flex;
+  }
+  
+  .announcement {
+    @apply announcement-common text-sm;
+  }
+  
+  .announcement-lg {
+    @apply announcement-common text-lg;
+  }
+  
+  /* endregion */
 }

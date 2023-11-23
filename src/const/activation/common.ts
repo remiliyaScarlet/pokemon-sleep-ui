@@ -7,7 +7,6 @@ export const activationSourceToText: {[source in ActivationSource]: string} = {
   github: 'Github',
 };
 
-
 export const activationContactToText: {[contact in ActivationContact]: string} = {
   ...activationSourceToText,
   line: 'LINE',

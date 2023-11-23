@@ -26,20 +26,4 @@
     
     @apply w-full transform-gpu;
   }
-  
-  .announcement-common {
-    & a {
-      @apply before:content-['🔗'];
-    }
-    
-    @apply flex;
-  }
-  
-  div.announcement {
-    @apply announcement-common text-sm;
-  }
-  
-  div.announcement-lg {
-    @apply announcement-common text-lg;
-  }
 }
