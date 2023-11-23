@@ -33,6 +33,7 @@ export const MealIngredientSection = ({
         level={pokemonLevel}
         ingredient={ingredientMap[id]}
         pokemonIngredientProduction={ingredientProductionMapOfLevel[id] ?? []}
+        hidePokebox
         {...calculatedSettings}
         {...props}
       />

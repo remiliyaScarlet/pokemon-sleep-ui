@@ -16,10 +16,12 @@ import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 type Props = PokemonIngredientStatsCommonProps & {
   level: number,
   ingredient: Ingredient | undefined,
+  hidePokebox?: boolean,
 };
 
 export const PokemonIngredientStats = ({
   ingredient,
+  hidePokebox,
   ...props
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
@@ -45,14 +47,17 @@ export const PokemonIngredientStats = ({
         {...commonProps}
         {...props}
       />
-      <PokemonItemStatsFromPokebox
-        filter={{
-          internal: () => true,
-          external: {$or: ingredientLevels.map((level) => ({[`ingredients.${level}.id`]: ingredient.id}))},
-        }}
-        {...commonProps}
-        {...props}
-      />
+      {
+        !hidePokebox &&
+        <PokemonItemStatsFromPokebox
+          filter={{
+            internal: () => true,
+            external: {$or: ingredientLevels.map((level) => ({[`ingredients.${level}.id`]: ingredient.id}))},
+          }}
+          {...commonProps}
+          {...props}
+        />
+      }
     </Flex>
   );
 };
