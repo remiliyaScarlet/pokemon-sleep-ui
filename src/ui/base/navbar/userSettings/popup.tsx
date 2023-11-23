@@ -2,9 +2,10 @@ import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
+import {defaultCookingPreset} from '@/const/user/cooking';
 import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
-import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';
 import {UserCalculationBehaviorUI} from '@/ui/base/navbar/userSettings/sections/behavior';
@@ -23,12 +24,20 @@ type Props = UserSettingsProps & {
 
 export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
   const {act} = useUserDataActor({statusToast: true});
-  const [settings, setSettings] = React.useState<UserSettings>(migrate({
-    original: defaultUserSettings,
-    override: session.user.preloaded.settings ?? null,
-    migrators: userSettingsMigrators,
-    migrateParams: {},
-  }));
+  const [bundle, setBundle] = React.useState<UserSettingsBundle>({
+    settings: migrate({
+      original: defaultUserSettings,
+      override: session.user.preloaded.settings ?? null,
+      migrators: userSettingsMigrators,
+      migrateParams: {},
+    }),
+    cooking: {
+      ...defaultCookingPreset,
+      ...session.user.preloaded.cooking,
+    },
+  });
+
+  const {settings} = bundle;
 
   return (
     <PopupCommon show={show} setShow={(show) => {
@@ -36,7 +45,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
         return;
       }
 
-      act({action: 'upload', options: {type: 'settings', data: settings}});
+      act({action: 'upload', options: {type: 'settings', data: bundle}});
 
       setShow(show);
     }}>
@@ -44,35 +53,35 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
         <UserSettingsAccountInfo session={session}/>
         <UserSettingsStamina
           config={settings.stamina}
-          setConfig={(stamina) => setSettings((original) => ({
+          setConfig={(stamina) => setBundle(({settings, ...original}) => ({
             ...original,
-            stamina,
-          }))}
+            settings: {...settings, stamina},
+          } satisfies UserSettingsBundle))}
           trigger={settings.staminaSkillTrigger}
-          setTrigger={(staminaSkillTrigger) => setSettings((original) => ({
+          setTrigger={(staminaSkillTrigger) => setBundle(({settings, ...original}) => ({
             ...original,
-            staminaSkillTrigger,
-          }))}
+            settings: {...settings, staminaSkillTrigger},
+          } satisfies UserSettingsBundle))}
         />
         <UserCalculationBehaviorUI
           behavior={settings.behavior}
-          setBehavior={(behavior) => setSettings((original) => ({
+          setBehavior={(behavior) => setBundle(({settings, ...original}) => ({
             ...original,
-            behavior,
-          }))}
+            settings: {...settings, behavior},
+          } satisfies UserSettingsBundle))}
         />
         <UserSettingsBonusUI
           mapIds={mapIds}
           bonus={settings.bonus}
-          setBonus={(bonus) => setSettings((original) => ({
+          setBonus={(bonus) => setBundle(({settings, ...original}) => ({
             ...original,
-            bonus,
-          }))}
+            settings: {...settings, bonus},
+          } satisfies UserSettingsBundle))}
           currentMap={settings.currentMap}
-          setCurrentMap={(currentMap) => setSettings((original) => ({
+          setCurrentMap={(currentMap) => setBundle(({settings, ...original}) => ({
             ...original,
-            currentMap,
-          }))}
+            settings: {...settings, currentMap},
+          } satisfies UserSettingsBundle))}
         />
         <UserSettingsLanguage/>
         <UserSettingsAppInfo/>

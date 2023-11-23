@@ -3,6 +3,7 @@ import {SleepMapId} from '@/types/game/sleepStyle';
 import {StaminaCalcConfig} from '@/types/game/stamina/config';
 import {StaminaSkillTriggerData} from '@/types/game/stamina/skill';
 import {Migratable} from '@/types/migrate';
+import {UserCookingPreset} from '@/types/userData/cooking';
 
 
 export type UserCalculationFullPackBehavior = 'berryOnly' | 'always' | 'disable';
@@ -19,6 +20,11 @@ export type UserSettings = Migratable & {
   staminaSkillTrigger: StaminaSkillTriggerData,
   currentMap: SleepMapId,
   behavior: UserCalculationBehavior,
+};
+
+export type UserSettingsBundle = {
+  settings: UserSettings,
+  cooking: UserCookingPreset,
 };
 
 export type CalculatedUserSettings = Pick<UserSettings, 'behavior'> & {

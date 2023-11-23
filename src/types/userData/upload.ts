@@ -5,7 +5,7 @@ import {ActivationPresetMap} from '@/types/mongo/activationPreset';
 import {AnnouncementMap} from '@/types/mongo/announcement';
 import {DocsData, DocsDataEditable, DocsDataEditableFetched} from '@/types/mongo/docs';
 import {UserCookingPreset} from '@/types/userData/cooking';
-import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
@@ -34,7 +34,7 @@ export type UserDataUploadOpts = {
   data: UserCookingPreset,
 } | {
   type: 'settings',
-  data: UserSettings,
+  data: UserSettingsBundle,
 } | {
   type: 'admin.activation.update.key',
   data: ActivationKeyAtClient,

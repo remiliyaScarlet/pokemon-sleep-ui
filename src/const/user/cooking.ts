@@ -4,6 +4,7 @@ import {NonNullableRecord} from '@/utils/type';
 
 export const defaultCookingPreset: NonNullableRecord<UserCookingPreset> = {
   mealType: 1,
+  target: {},
   potCapacity: 15,
   ingredients: {},
   showEnergy: true,

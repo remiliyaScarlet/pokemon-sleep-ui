@@ -76,7 +76,11 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   }
 
   if (type === 'settings') {
-    await userDataSettings.setData(userId, data);
+    const {settings, cooking} = data;
+    await Promise.all([
+      userDataSettings.setData(userId, settings),
+      userDataCooking.setData(userId, cooking),
+    ]);
     return;
   }
 
