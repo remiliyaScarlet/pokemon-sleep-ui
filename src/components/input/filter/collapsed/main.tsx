@@ -27,7 +27,7 @@ export const FilterCollapsedInput = <TId extends IndexableNonSymbol | null>(prop
       <PopupCommon show={show} setShow={setShow}>
         <FilterCollapsedInputPopup {...props}/>
       </PopupCommon>
-      <Flex direction="row" center className="gap-1">
+      <Flex noFullWidth direction="row" center className="gap-1">
         <FlexButton className="button-clickable-bg p-1" onClick={() => setShow(true)}>
           <PlusCircleIcon className="h-6 w-6"/>
         </FlexButton>
