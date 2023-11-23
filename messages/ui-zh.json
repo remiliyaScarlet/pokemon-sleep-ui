@@ -256,6 +256,8 @@
         "FrequencyOfBerry": "幫忙間隔 (樹果)",
         "FrequencyOfIngredient": "幫忙間隔 (食材)",
         "FriendshipPoint": "友情點數",
+        "SkillCount": "主技能觸發次數",
+        "SkillStrength": "主技能能量",
         "TotalEnergy": "總能量"
       },
       "Input": {

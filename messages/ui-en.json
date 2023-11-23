@@ -256,6 +256,8 @@
         "FrequencyOfBerry": "Frequency (Berry)",
         "FrequencyOfIngredient": "Frequency (Ingredient)",
         "FriendshipPoint": "Friendship Points",
+        "SkillCount": "Main Skill Count",
+        "SkillStrength": "Main Skill Strength",
         "TotalEnergy": "Total Strength"
       },
       "Input": {

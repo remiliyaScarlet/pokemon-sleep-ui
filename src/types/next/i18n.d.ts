@@ -158,6 +158,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           FrequencyOfBerry: string,
           FrequencyOfIngredient: string,
           FriendshipPoint: string,
+          SkillCount: string,
+          SkillStrength: string,
           TotalEnergy: string,
         },
         Input: {

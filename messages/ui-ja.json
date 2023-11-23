@@ -256,6 +256,8 @@
         "FrequencyOfBerry": "おてつだい時間 (きのみ)",
         "FrequencyOfIngredient": "おてつだい時間 (食材)",
         "FriendshipPoint": "フレンドポイント",
+        "SkillCount": "メインスキルの数",
+        "SkillStrength": "メインスキルのエナジー",
         "TotalEnergy": "総エナジー"
       },
       "Input": {

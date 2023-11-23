@@ -256,6 +256,8 @@
         "FrequencyOfBerry": "나무열매 도우미 시간",
         "FrequencyOfIngredient": "식재료 도우미 시간",
         "FriendshipPoint": "프렌드 포인트",
+        "SkillCount": "메인 스킬 수",
+        "SkillStrength": "메인 스킬 에너지",
         "TotalEnergy": "총 에너지"
       },
       "Input": {

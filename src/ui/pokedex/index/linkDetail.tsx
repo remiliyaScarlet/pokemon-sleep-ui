@@ -12,6 +12,7 @@ import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/ic
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonMainSkillTriggerValue} from '@/components/shared/pokemon/mainSkill/triggerValue';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
+import {PokemonMainSkillTriggerRate} from '@/components/shared/pokemon/production/params/skillRate';
 import {PokemonMainSkillValue} from '@/components/shared/pokemon/production/params/skillValue';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {getPokemonSorter} from '@/components/shared/pokemon/sorter/calc/main';
@@ -21,7 +22,7 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
-import {formatFloat} from '@/utils/number/format';
+import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
 export const PokedexLinkDetail = React.memo(({
@@ -90,6 +91,10 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'mainSkillValue') {
     return <PokemonMainSkillValue params={pokemonProducingParams} dimension="h-4 w-4"/>;
+  }
+
+  if (display === 'mainSkillTriggerRate') {
+    return <PokemonMainSkillTriggerRate params={pokemonProducingParams} dimension="h-4 w-4"/>;
   }
 
   // Need to calculate here because display and sort could be different
@@ -211,6 +216,18 @@ export const PokedexLinkDetail = React.memo(({
 
   if (display === 'mainSkillTriggerValue') {
     return <PokemonMainSkillTriggerValue value={sorter}/>;
+  }
+
+  if (display === 'mainSkillDailyCount' || display === 'mainSkillDailyStrength') {
+    return (
+      <Flex direction="row" className="gap-0.5">
+        <MainSkillIcon id={skill}/>
+        {display === 'mainSkillDailyStrength' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
+        <div>
+          {formatFloat3(sorter)}
+        </div>
+      </Flex>
+    );
   }
 
   if (isPokedexSortExclusion(display)) {

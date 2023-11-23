@@ -53,4 +53,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
       skillValue: pokemonProducingParams.skillValue,
     });
   },
+  mainSkillTriggerRate: ({pokemonProducingParams}) => pokemonProducingParams.skillPercent ?? NaN,
+  mainSkillDailyCount: (opts) => getPokemonRateSorter(opts).skill.quantity.equivalent,
+  mainSkillDailyStrength: (opts) => getPokemonRateSorter(opts).skill.energy.equivalent,
 };

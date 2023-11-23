@@ -257,6 +257,8 @@
         "FrequencyOfBerry": "Frequenz (Beeren)",
         "FrequencyOfIngredient": "Frequenz (Zutaten)",
         "FriendshipPoint": "Freundespunkte",
+        "SkillCount": "Haupttalentsuche",
+        "SkillStrength": "Haupttalentstärke",
         "TotalEnergy": "Gesamtstärke"
       },
       "Input": {

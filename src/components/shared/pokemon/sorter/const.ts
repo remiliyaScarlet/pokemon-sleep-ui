@@ -23,4 +23,7 @@ export const sortTypeToI18nId: {
   mainSkillLevel: 'Sort.MainSkillLevel',
   mainSkillValue: 'Stats.MainSkillValue',
   mainSkillTriggerValue: 'Stats.MainSkillTriggerValue',
+  mainSkillTriggerRate: 'Stats.MainSkillTriggerRate',
+  mainSkillDailyCount: 'Sort.SkillCount',
+  mainSkillDailyStrength: 'Sort.SkillStrength',
 };
