@@ -7,6 +7,7 @@ import {FilterCollapsedInputProps} from '@/components/input/filter/collapsed/typ
 import {FilterToggleButtons} from '@/components/input/filter/common/button';
 import {FilterInputLayout} from '@/components/input/filter/common/layout';
 import {FlexButton} from '@/components/layout/flex/button';
+import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {IndexableNonSymbol} from '@/utils/type';
 
@@ -26,14 +27,16 @@ export const FilterCollapsedInput = <TId extends IndexableNonSymbol | null>(prop
       <PopupCommon show={show} setShow={setShow}>
         <FilterCollapsedInputPopup {...props}/>
       </PopupCommon>
-      <FlexButton direction="row" className="button-clickable-bg p-1" onClick={() => setShow(true)}>
-        <PlusCircleIcon className="h-6 w-6"/>
-      </FlexButton>
-      <FilterToggleButtons
-        idToButton={idToText}
-        isHidden={(id) => !isActive(id)}
-        {...props}
-      />
+      <Flex direction="row" center className="gap-1">
+        <FlexButton className="button-clickable-bg p-1" onClick={() => setShow(true)}>
+          <PlusCircleIcon className="h-6 w-6"/>
+        </FlexButton>
+        <FilterToggleButtons
+          idToButton={idToText}
+          isHidden={(id) => !isActive(id)}
+          {...props}
+        />
+      </Flex>
     </FilterInputLayout>
   );
 };

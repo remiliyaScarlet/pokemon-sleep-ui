@@ -16,7 +16,7 @@ export const FilterToggleButtons = <TId extends IndexableNonSymbol | null>({
   className,
 }: FilterToggleButtonsProps<TId>) => {
   return (
-    <Flex direction="row" center wrap={!noWrap} className="gap-1 sm:justify-normal">
+    <Flex noFullWidth direction="row" center wrap={!noWrap} className="gap-1 sm:justify-normal">
       {ids.filter((id) => !isHidden(id)).map((id) => {
         const active = isActive(id);
 
