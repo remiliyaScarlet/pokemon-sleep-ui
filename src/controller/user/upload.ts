@@ -1,3 +1,4 @@
+import {updateAnnouncements} from '@/controller/announcement';
 import {addDoc, deleteDoc, updateDoc} from '@/controller/docs';
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
@@ -104,6 +105,11 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'admin.activation.preset.update') {
     await updateActivationPresets({executorUserId: userId, data});
+    return;
+  }
+
+  if (type === 'admin.announcements') {
+    await updateAnnouncements({executorUserId: userId, data});
     return;
   }
 

@@ -1,9 +1,14 @@
 import {Collection} from 'mongodb';
 
+import {regexUuid} from '@/const/regex';
 import {defaultLocale} from '@/const/website';
+import {getDataAsArray, getDataAsMap} from '@/controller/common';
+import {throwIfNotAdmin} from '@/controller/user/account/common';
+import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {Announcement, announcementLevels} from '@/types/mongo/announcement';
+import {Announcement, announcementLevels, AnnouncementMap} from '@/types/mongo/announcement';
 import {Locale, locales} from '@/types/next/locale';
+import {isNotNullish} from '@/utils/type';
 
 
 const getCollection = async (): Promise<Collection<Announcement>> => {
@@ -14,10 +19,27 @@ const getCollection = async (): Promise<Collection<Announcement>> => {
     .collection<Announcement>('data');
 };
 
+type UpdateAnnouncementsOpts = ControllerRequireUserIdOpts & {
+  data: AnnouncementMap,
+};
+
+export const updateAnnouncements = async ({data, executorUserId}: UpdateAnnouncementsOpts) => {
+  throwIfNotAdmin(executorUserId);
+
+  const collection = await getCollection();
+
+  await (await mongoPromise).withSession(async (session) => {
+    await collection.deleteMany({}, {session});
+    await collection.insertMany(Object.values(data).filter(isNotNullish), {session});
+  });
+};
+
 export const getAnnouncementsOfLocale = async (locale: Locale | null): Promise<Announcement[]> => {
-  return (await getCollection())
-    .find({locale: locale ?? defaultLocale}, {sort: {order: -1}, projection: {_id: false}})
-    .toArray();
+  return getDataAsArray(getCollection(), {locale: locale ?? defaultLocale}, {order: -1});
+};
+
+export const getAllAnnouncements = async (): Promise<AnnouncementMap> => {
+  return getDataAsMap(getCollection(), ({uuid}) => uuid);
 };
 
 const addValidation = async () => {
@@ -28,7 +50,13 @@ const addValidation = async () => {
       collMod: 'data',
       validator: {
         $jsonSchema: {
-          required: ['_id', 'message', 'locale', 'level'],
+          required: [
+            '_id',
+            'uuid',
+            'message',
+            'locale',
+            'level',
+          ],
           properties: {
             _id: {
               bsonType: 'objectId',
@@ -50,6 +78,10 @@ const addValidation = async () => {
             },
             order: {
               bsonType: 'int',
+            },
+            uuid: {
+              bsonType: 'string',
+              pattern: regexUuid.source,
             },
           },
           additionalProperties: false,
