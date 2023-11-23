@@ -1,7 +1,6 @@
 import React from 'react';
 
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -9,6 +8,7 @@ import {InputBox} from '@/components/input/box';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
+import {DeleteButton} from '@/components/shared/common/button/delete';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {imageIconSizes} from '@/styles/image';
@@ -59,14 +59,12 @@ export const TeamAnalysisCompSelection = ({
               },
             } satisfies TeamAnalysisSetup)}
           />
-          <button className="button-clickable-bg h-7 w-7 rounded-lg p-1" onClick={() => onCopied(team.uuid)}>
+          <button className="button-clickable-bg h-7 w-7 shrink-0 rounded-lg p-1" onClick={() => onCopied(team.uuid)}>
             <DocumentDuplicateIcon/>
           </button>
           {
             config.current !== team.uuid &&
-            <button className="button-alert-bg h-7 w-7 rounded-lg p-1" onClick={() => onDeleted(team.uuid)}>
-              <TrashIcon/>
-            </button>
+            <DeleteButton dimension="h-7 w-7" onClick={() => onDeleted(team.uuid)}/>
           }
         </Flex>
         <FlexButton noFullWidth={false} disabled={isCurrent} onClick={onClick} center className={clsx(

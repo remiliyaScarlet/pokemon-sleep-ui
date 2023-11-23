@@ -2,12 +2,12 @@ import React from 'react';
 
 import FingerPrintIcon from '@heroicons/react/24/outline/FingerPrintIcon';
 import PencilSquareIcon from '@heroicons/react/24/outline/PencilSquareIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 
 import {InputBox} from '@/components/input/box';
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
+import {DeleteButton} from '@/components/shared/common/button/delete';
 import {activationTypeToText} from '@/const/activation/common';
 import {activationType} from '@/types/mongo/activation';
 import {ActivationPresetData} from '@/types/mongo/activationPreset';
@@ -57,9 +57,7 @@ export const ActivationPresetUnit = ({preset, onUpdate, onDelete}: Props) => {
         title={null}
         noFixedTitleWidth
       />
-      <button className="button-alert-bg h-7 w-7 self-end rounded-lg p-1" onClick={() => onDelete(uuid)}>
-        <TrashIcon/>
-      </button>
+      <DeleteButton dimension="h-7 w-7" onClick={() => onDelete(uuid)} className="self-end"/>
     </AnimatedCollapseQuick>
   );
 };

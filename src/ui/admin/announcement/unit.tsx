@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ClockIcon from '@heroicons/react/24/outline/ClockIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 
 import {AnnouncementsDisplay} from '@/components/announcement/display';
@@ -10,6 +9,7 @@ import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
+import {DeleteButton} from '@/components/shared/common/button/delete';
 import {announcementLevelToText} from '@/const/announcement';
 import {localeName} from '@/const/website';
 import {textFilterButtonStyle} from '@/styles/input';
@@ -98,9 +98,7 @@ export const AdminAnnouncementUnit = ({show, data, onUpdate, onDelete}: Props) =
               />
             </Flex>
           </Flex>
-          <button className="transform-smooth button-alert-bg h-7 w-7 shrink-0 rounded-lg p-1" onClick={() => onDelete(uuid)}>
-            <TrashIcon/>
-          </button>
+          <DeleteButton dimension="h-7 w-7" onClick={() => onDelete(uuid)}/>
         </Flex>
       </Flex>
     </AnimatedCollapseQuick>

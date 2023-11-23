@@ -3,7 +3,6 @@ import React from 'react';
 import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
 import BookmarkSlashIcon from '@heroicons/react/24/outline/BookmarkSlashIcon';
 import DocumentDuplicateIcon from '@heroicons/react/24/outline/DocumentDuplicateIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
@@ -12,6 +11,7 @@ import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {CopyButton} from '@/components/layout/copyable/button';
 import {Flex} from '@/components/layout/flex/common';
+import {DeleteButton} from '@/components/shared/common/button/delete';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonEvolutionCountInput} from '@/components/shared/pokemon/evolution/countInput';
@@ -199,16 +199,11 @@ export const PokeInBoxEditLayout = ({
         />
       </InputRowWithTitle>
       <HorizontalSplitter/>
-      <Flex direction="row" className="items-center">
+      <Flex direction="row" className="items-center justify-between">
         <button className="button-clickable-bg p-1" onClick={() => onCopyPokeInBox(pokeInBox)}>
           <DocumentDuplicateIcon className={iconDimension}/>
         </button>
-        <button
-          className="transform-smooth button-alert-bg ml-auto rounded-lg p-1"
-          onClick={() => onRemovePokeInBox(uuid)}
-        >
-          <TrashIcon className={iconDimension}/>
-        </button>
+        <DeleteButton iconDimension={iconDimension} onClick={() => onRemovePokeInBox(uuid)} className="self-end"/>
       </Flex>
     </Flex>
   );
