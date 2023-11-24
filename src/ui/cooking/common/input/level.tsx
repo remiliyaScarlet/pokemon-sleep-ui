@@ -1,12 +1,7 @@
 import React from 'react';
 
-import {clsx} from 'clsx';
-import {useTranslations} from 'next-intl';
-
 import {FilterWithUpdaterProps} from '@/components/input/filter/type';
-import {LevelIcon} from '@/components/shared/icon/lv';
-import {NumberInputRequired} from '@/components/shared/input/number/required/main';
-import {recipeMaxLevel} from '@/const/game/meal';
+import {MealRecipeLevelInput} from '@/components/shared/meal/recipeLevel';
 import {Meal} from '@/types/game/meal/main';
 import {CookingCommonFilter} from '@/ui/cooking/common/type';
 
@@ -25,18 +20,10 @@ export const CookingInputRecipeLevel = <TFilter extends CookingCommonFilter>({
   const {recipeLevel} = filter;
   const {id} = meal;
 
-  const t = useTranslations('UI.InPage.Cooking');
-
   return (
-    <NumberInputRequired
-      text={<LevelIcon alt={t('RecipeLevel')}/>}
-      textClassName={clsx(
-        'text-xs text-slate-500 group-hover:text-slate-400 dark:text-slate-400 dark:group-hover:text-slate-500',
-      )}
-      value={recipeLevel[id] ?? 1}
-      min={1}
-      max={recipeMaxLevel}
-      setValue={(level) => setFilter((original) => ({
+    <MealRecipeLevelInput
+      level={recipeLevel[id] ?? 1}
+      onUpdate={(level) => setFilter((original) => ({
         ...original,
         recipeLevel: {
           ...original.recipeLevel,
