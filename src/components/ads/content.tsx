@@ -13,10 +13,9 @@ import {isProduction} from '@/utils/environment';
 
 type Props = {
   className?: string,
-  fullHeight?: boolean,
 };
 
-export const AdsContent = ({className, fullHeight, children}: React.PropsWithChildren<Props>) => {
+export const AdsContent = ({className, children}: React.PropsWithChildren<Props>) => {
   const [adblockState, setAdblockState] = React.useState<AdBlockState>({
     adsFound: false,
     isBlocked: false,
@@ -29,8 +28,8 @@ export const AdsContent = ({className, fullHeight, children}: React.PropsWithChi
 
   return (
     <div className={clsx(
-      'relative w-full overflow-auto',
-      fullHeight ? 'h-full' : (adblockState.isBlocked ? adsHeightAdBlockActive : adsHeight),
+      'relative w-full overflow-hidden',
+      adblockState.isBlocked ? adsHeightAdBlockActive : adsHeight,
       adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
       className,
     )}>

@@ -1,6 +1,5 @@
 export type AdsUnitProps = {
   alwaysSingle?: boolean,
-  fullHeight?: boolean,
   className?: string,
 };
 

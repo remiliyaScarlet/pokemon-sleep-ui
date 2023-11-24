@@ -11,7 +11,6 @@ import {Flex} from '@/components/layout/flex/common';
 
 export const AdsWrapper = ({
   alwaysSingle,
-  fullHeight,
   className,
   children,
 }: React.PropsWithChildren<AdsUnitProps>) => {
@@ -44,13 +43,13 @@ export const AdsWrapper = ({
   }
 
   return (
-    <Flex direction="row" className={clsx(fullHeight && 'h-full', className)}>
-      <AdsContent key={`${counter}a`} fullHeight={fullHeight}>
+    <Flex direction="row" className={clsx('h-full', className)}>
+      <AdsContent key={`${counter}a`}>
         {children}
       </AdsContent>
       {
         !alwaysSingle &&
-        <AdsContent key={`${counter}b`} className="hidden lg:block" fullHeight={fullHeight}>
+        <AdsContent key={`${counter}b`} className="hidden lg:block">
           {children}
         </AdsContent>
       }
