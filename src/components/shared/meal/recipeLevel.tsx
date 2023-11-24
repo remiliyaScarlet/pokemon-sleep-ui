@@ -11,10 +11,11 @@ import {recipeMaxLevel} from '@/const/game/meal';
 type Props = {
   level: number,
   onUpdate: (updated: number) => void,
+  disabled?: boolean,
   className?: string,
 };
 
-export const MealRecipeLevelInput = ({level, onUpdate, className}: Props) => {
+export const MealRecipeLevelInput = ({level, onUpdate, disabled, className}: Props) => {
   const t = useTranslations('UI.InPage.Cooking');
 
   return (
@@ -27,6 +28,7 @@ export const MealRecipeLevelInput = ({level, onUpdate, className}: Props) => {
       min={1}
       max={recipeMaxLevel}
       setValue={(level) => onUpdate(level)}
+      disabled={disabled}
       className={className}
     />
   );

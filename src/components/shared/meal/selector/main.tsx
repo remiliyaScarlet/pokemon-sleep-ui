@@ -5,12 +5,13 @@ import {clsx} from 'clsx';
 import {Grid} from '@/components/layout/grid';
 import {PopupCommon} from '@/components/popup/common/main';
 import {MealSelectorOption} from '@/components/shared/meal/selector/option';
+import {MealSelectorLevelUpdatingProps} from '@/components/shared/meal/selector/type';
 import {Meal, MealId, MealMap, MealTypeId} from '@/types/game/meal/main';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = {
+type Props = MealSelectorLevelUpdatingProps & {
   current: MealId | null | undefined,
   mealMap: MealMap,
   mealType: MealTypeId,
@@ -18,7 +19,14 @@ type Props = {
   onSelect: (meal: Meal | null) => void,
 };
 
-export const MealSelector = ({current, mealMap, mealType, isMealOption, onSelect}: Props) => {
+export const MealSelector = ({
+  current,
+  mealMap,
+  mealType,
+  isMealOption,
+  onSelect,
+  ...props
+}: Props) => {
   const [show, setShow] = React.useState(false);
 
   return (
@@ -32,21 +40,32 @@ export const MealSelector = ({current, mealMap, mealType, isMealOption, onSelect
             .filter(isMealOption)
             .sort((a, b) => getMealIngredientCount(b) - getMealIngredientCount(a))
             .map((meal) => (
-              <MealSelectorOption key={meal.id} meal={meal} mealType={meal.type} onClick={() => {
-                onSelect(meal);
-                setShow(false);
-              }}/>
+              <MealSelectorOption
+                key={meal.id}
+                meal={meal}
+                mealType={meal.type}
+                onClick={() => {
+                  onSelect(meal);
+                  setShow(false);
+                }}
+                {...props}
+              />
             ))}
-          <MealSelectorOption meal={undefined} mealType={mealType} onClick={() => {
-            onSelect(null);
-            setShow(false);
-          }}/>
+          <MealSelectorOption
+            meal={undefined}
+            mealType={mealType}
+            onClick={() => {
+              onSelect(null);
+              setShow(false);
+            }}
+          />
         </Grid>
       </PopupCommon>
       <MealSelectorOption
         meal={current ? mealMap[current] : undefined}
         mealType={mealType}
         onClick={() => setShow(true)}
+        {...props}
       />
     </>
   );

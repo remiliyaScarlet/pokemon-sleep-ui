@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
+import {Grid} from '@/components/layout/grid';
 import {MealSelector} from '@/components/shared/meal/selector/main';
 import {mealTypeBorderStyle, mealTypeTextStyle} from '@/styles/game/mealType';
 import {MealTypeId} from '@/types/game/meal/main';
@@ -26,7 +27,7 @@ export const UserCookingByMealType = ({cookingPreset, setCookingPreset, mealMap,
       <div className={clsx('px-1 text-left', mealTypeTextStyle[mealType])}>
         {t(`MealType.${mealType}`)}
       </div>
-      <Flex className="gap-1.5 lg:flex-row">
+      <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-3">
         {userCookingMeals.map((mealOfDay) => {
           const targetOfType = target[mealType];
 
@@ -43,11 +44,13 @@ export const UserCookingByMealType = ({cookingPreset, setCookingPreset, mealMap,
                 onSelect={(meal) => setCookingPreset({
                   target: {[mealType]: {[mealOfDay]: meal ? meal.id : null}},
                 })}
+                recipeLevel={cookingPreset.recipeLevel}
+                onLevelUpdated={(id, level) => setCookingPreset({recipeLevel: {[id]: level}})}
               />
             </Flex>
           );
         })}
-      </Flex>
+      </Grid>
     </Flex>
   );
 };

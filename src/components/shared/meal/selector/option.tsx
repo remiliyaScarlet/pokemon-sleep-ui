@@ -9,41 +9,55 @@ import {FlexButton} from '@/components/layout/flex/button';
 import {Flex} from '@/components/layout/flex/common';
 import {MealImage} from '@/components/shared/meal/image';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
+import {MealRecipeLevelInput} from '@/components/shared/meal/recipeLevel';
+import {MealSelectorLevelUpdatingProps} from '@/components/shared/meal/selector/type';
 import {mealTypeBackgroundStyle} from '@/styles/game/mealType';
 import {Meal, MealTypeId} from '@/types/game/meal/main';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 
 
-type Props = {
+type Props = MealSelectorLevelUpdatingProps & {
   meal: Meal | undefined,
   mealType: MealTypeId,
   onClick: () => void,
 };
 
-export const MealSelectorOption = ({meal, mealType, onClick}: Props) => {
+export const MealSelectorOption = ({meal, mealType, onClick, recipeLevel, onLevelUpdated}: Props) => {
   const t = useTranslations('Game');
+  const ingredientCount = meal ? getMealIngredientCount(meal) : 0;
 
   return (
-    <FlexButton noFullWidth={false} onClick={onClick} center className={clsx(
-      'relative h-14 rounded-lg p-1.5',
-      mealTypeBackgroundStyle[mealType],
-    )}>
-      {meal ?
-        <>
-          <MealImage mealId={meal.id} dimension="h-12 w-12" isAbsolute className="bottom-1 right-1 opacity-40"/>
-          <Flex className="gap-1">
-            <div className="text-shadow-preset truncate text-left text-sm">
-              {t(`Food.${meal.id}`)}
-            </div>
-            <Flex noFullWidth direction="row" className="items-end gap-0.5 text-xs">
-              <InfoIcon dimension="h-5 w-5">
-                {getMealIngredientCount(meal)}
-              </InfoIcon>
-              <IngredientIconsFromMeal meal={meal}/>
+    <Flex stretch className="gap-1.5">
+      <FlexButton noFullWidth={false} onClick={onClick} center className={clsx(
+        'relative h-full rounded-lg p-1.5',
+        mealTypeBackgroundStyle[mealType],
+      )}>
+        {meal ?
+          <>
+            <MealImage mealId={meal.id} dimension="h-12 w-12" isAbsolute className="bottom-1 right-1 opacity-40"/>
+            <Flex className="gap-1">
+              <div className="text-shadow-preset truncate text-left text-sm">
+                {t(`Food.${meal.id}`)}
+              </div>
+              <Flex noFullWidth direction="row" className="items-end gap-0.5 text-xs">
+                <InfoIcon dimension="h-5 w-5">
+                  {ingredientCount}
+                </InfoIcon>
+                <IngredientIconsFromMeal meal={meal}/>
+              </Flex>
             </Flex>
-          </Flex>
-        </> :
-        <XCircleIcon className="h-8 w-8"/>}
-    </FlexButton>
+          </> :
+          <XCircleIcon className="h-8 w-8"/>}
+      </FlexButton>
+      {
+        meal && recipeLevel && onLevelUpdated &&
+        <MealRecipeLevelInput
+          level={recipeLevel[meal.id] ?? 1}
+          onUpdate={(level) => onLevelUpdated(meal.id, level)}
+          className="self-end"
+          disabled={!ingredientCount}
+        />
+      }
+    </Flex>
   );
 };
