@@ -408,6 +408,9 @@
     "IncludeMainSkill": "メインスキル算入",
     "Cooking": {
       "Title": "料理関連"
+    },
+    "Message": {
+      "SettingsNotStored": "当サイトのデフォルト設定を表示しています。設定変更の保存・適用にはログインが必要です。"
     }
   },
   "UserControl": {

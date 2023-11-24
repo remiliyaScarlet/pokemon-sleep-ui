@@ -408,6 +408,9 @@
     "IncludeMainSkill": "Include Main Skill",
     "Cooking": {
       "Title": "요리 관련"
+    },
+    "Message": {
+      "SettingsNotStored": "Showing default user settings. Login required to save the user settings, or let the settings takes effect."
     }
   },
   "UserControl": {

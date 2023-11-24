@@ -1,10 +1,13 @@
 import React from 'react';
 
+import {useTranslations} from 'next-intl';
+
 import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {defaultCookingPreset} from '@/const/user/cooking';
 import {defaultUserSettings} from '@/const/user/settings';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
+import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/account';
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';
@@ -25,34 +28,46 @@ type Props = UserSettingsProps & {
 };
 
 export const UserSettingsPopup = ({session, mapIds, mealMap, show, setShow}: Props) => {
+  const t = useTranslations('UI.UserSettings');
   const {act} = useUserDataActor({statusToast: true});
-  const [bundle, setBundle] = React.useState<UserSettingsBundle>({
+  const [bundle, setBundleInternal] = React.useState<UserSettingsBundle>({
     settings: migrate({
       original: defaultUserSettings,
-      override: session.user.preloaded.settings ?? null,
+      override: session?.user.preloaded.settings ?? null,
       migrators: userSettingsMigrators,
       migrateParams: {},
     }),
     cooking: {
       ...defaultCookingPreset,
-      ...session.user.preloaded.cooking,
+      ...session?.user.preloaded.cooking,
     },
   });
 
   const {settings, cooking} = bundle;
+  const setBundle: ReactStateUpdaterFromOriginal<UserSettingsBundle> = (getUpdated) => {
+    // Only really update the state if the user is logged in
+    if (!session) {
+      return;
+    }
+
+    setBundleInternal(getUpdated);
+  };
 
   return (
     <PopupCommon show={show} setShow={(show) => {
-      if (show || !act) {
-        return;
+      if (act) {
+        act({action: 'upload', options: {type: 'settings', data: bundle}});
       }
-
-      act({action: 'upload', options: {type: 'settings', data: bundle}});
 
       setShow(show);
     }}>
       <Flex className="gap-1.5 sm:w-[70vw]">
-        <UserSettingsAccountInfo session={session}/>
+        {session && <UserSettingsAccountInfo session={session}/>}
+        {!session && (
+          <div className="rounded-lg bg-rose-300 p-2 text-lg dark:bg-rose-700">
+            {t('Message.SettingsNotStored')}
+          </div>
+        )}
         <UserSettingsStamina
           config={settings.stamina}
           setConfig={(stamina) => setBundle(({settings, ...original}) => ({

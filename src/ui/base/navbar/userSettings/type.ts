@@ -5,7 +5,7 @@ import {SleepMapId} from '@/types/game/sleepStyle';
 
 
 export type UserSettingsProps = {
-  session: Session,
+  session: Session | null,
   mapIds: SleepMapId[],
   mealMap: MealMap,
 };

@@ -409,6 +409,9 @@
     "IncludeMainSkill": "Include Main Skill",
     "Cooking": {
       "Title": "Kochen bezogen"
+    },
+    "Message": {
+      "SettingsNotStored": "Showing default user settings. Login required to save the user settings, or let the settings takes effect."
     }
   },
   "UserControl": {

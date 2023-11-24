@@ -311,6 +311,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Cooking: {
         Title: string,
       },
+      Message: {
+        SettingsNotStored: string,
+      },
     },
     UserControl: {
       Login: string,
