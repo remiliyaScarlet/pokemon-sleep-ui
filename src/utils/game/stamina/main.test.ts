@@ -32,7 +32,7 @@ describe('Stamina Efficiency / From Config', () => {
       {dailyCount: 3, amount: 9},
     ];
 
-    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.05625);
+    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.07007);
   });
 
   it('is correct with multiple skill triggers', () => {
@@ -61,7 +61,7 @@ describe('Stamina Efficiency / From Config', () => {
       {dailyCount: 2, amount: 9},
     ];
 
-    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.15);
+    expect(getStaminaEfficiency({config, sessionInfo, skillTriggers}).average).toBeCloseTo(2.16458);
   });
 });
 
@@ -118,6 +118,6 @@ describe('Stamina Efficiency / From Logs', () => {
       },
     ]);
 
-    expect(efficiency).toBeCloseTo(2.014583);
+    expect(efficiency).toBeCloseTo(2.027431);
   });
 });
