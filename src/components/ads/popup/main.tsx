@@ -14,10 +14,10 @@ export const AdsPopup = () => {
 
   return (
     <PopupUltimate show={show} setShow={setShow} closeDisabled={locked}>
-      <Flex className="h-[70vh] gap-1.5 md:w-[60vw] lg:w-[50vw]">
+      <Flex className="max-h-[90vh] gap-1.5 md:w-[60vw] lg:w-[50vw]">
         <AdsPopupText/>
-        <AdsConfiguredDisplay alwaysSingle/>
-        <AdsConfiguredDisplay alwaysSingle/>
+        <AdsConfiguredDisplay alwaysSingle heightOverride="h-[30vh]"/>
+        <AdsConfiguredDisplay alwaysSingle heightOverride="h-[30vh]"/>
       </Flex>
     </PopupUltimate>
   );

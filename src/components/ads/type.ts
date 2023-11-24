@@ -1,6 +1,10 @@
-export type AdsUnitProps = {
-  alwaysSingle?: boolean,
+export type AdsContentProps = {
   className?: string,
+  heightOverride?: string,
+};
+
+export type AdsUnitProps = AdsContentProps & {
+  alwaysSingle?: boolean,
 };
 
 export type AdBlockState = {

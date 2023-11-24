@@ -7,15 +7,15 @@ import remarkGfm from 'remark-gfm';
 
 import {adsHeight, adsHeightAdBlockActive} from '@/components/ads/const';
 import {useAdBlockDetector} from '@/components/ads/hook';
-import {AdBlockState} from '@/components/ads/type';
+import {AdBlockState, AdsContentProps} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
 
 
-type Props = {
-  className?: string,
-};
-
-export const AdsContent = ({className, children}: React.PropsWithChildren<Props>) => {
+export const AdsContent = ({
+  className,
+  heightOverride,
+  children,
+}: React.PropsWithChildren<AdsContentProps>) => {
   const [adblockState, setAdblockState] = React.useState<AdBlockState>({
     adsFound: false,
     isBlocked: false,
@@ -29,7 +29,7 @@ export const AdsContent = ({className, children}: React.PropsWithChildren<Props>
   return (
     <div className={clsx(
       'relative w-full overflow-hidden',
-      adblockState.isBlocked ? adsHeightAdBlockActive : adsHeight,
+      adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
       adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
       className,
     )}>
