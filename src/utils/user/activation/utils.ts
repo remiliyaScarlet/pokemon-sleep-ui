@@ -7,7 +7,7 @@ import {
   ActivationPropertiesAtClient,
 } from '@/types/mongo/activation';
 import {PatreonMember} from '@/types/subscription/patreon/common/member';
-import {toIsoDateString} from '@/utils/date';
+import {toIsoDateString, toIsoTimestampString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 import {defaultExpiryDays} from '@/utils/user/activation/const';
@@ -39,7 +39,7 @@ export const isActivationDataValid = ({source, contact, note}: ActivationPropert
 
 export const toActivationKeyAtClient = ({expiry, generatedAt, ...data}: ActivationKey): ActivationKeyAtClient => ({
   ...data,
-  expiry: toIsoDateString(expiry),
+  expiry: toIsoTimestampString(expiry),
   generatedAt: toIsoDateString(generatedAt),
 });
 
@@ -53,7 +53,7 @@ export const toActivationProperties = ({
   ...data
 }: ActivationPropertiesAtClient): ActivationProperties => ({
   ...data,
-  expiry: new Date(expiry),
+  expiry: new Date(`${expiry}Z`),
 });
 
 export const getActivationExpiryOfDefault = (): Date => {

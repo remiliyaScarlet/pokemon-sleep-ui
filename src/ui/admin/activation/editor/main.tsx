@@ -1,23 +1,20 @@
 import React from 'react';
 
 import {clsx} from 'clsx';
+import {formatISO} from 'date-fns';
 
 import {InputBox} from '@/components/input/box';
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {
-  getMultiSelectOnClickProps,
-  getSingleSelectOnClickProps,
-
-} from '@/components/input/filter/utils/props';
+import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {activationContactToText, activationTypeToText} from '@/const/activation/common';
 import {textFilterButtonStyle} from '@/styles/input';
-import {IsoDateString} from '@/types/date';
+import {IsoTimestampString} from '@/types/date';
 import {
   activationContact,
   ActivationPropertiesAtClient,
@@ -26,6 +23,7 @@ import {
 } from '@/types/mongo/activation';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus} from '@/types/userData/main';
+import {toIsoTimestampString} from '@/utils/date';
 import {isActivationDataValid} from '@/utils/user/activation/utils';
 
 
@@ -64,12 +62,12 @@ export const ActivationEditor = ({
     }}>
       <InputRowWithTitle title="Expiry">
         <InputBox
-          type="date"
-          value={expiry}
+          type="datetime-local"
+          value={formatISO(new Date(`${expiry}Z`)).slice(0, 19)}
           className={commonInputStyle}
           onChange={({target}) => setData((original) => ({
             ...original,
-            expiry: target.value as IsoDateString,
+            expiry: toIsoTimestampString(new Date(target.value)) as IsoTimestampString,
           } satisfies ActivationPropertiesAtClient))}
         />
       </InputRowWithTitle>
@@ -110,7 +108,7 @@ export const ActivationEditor = ({
         </InputRowWithTitle>
       ))}
       <InputRowWithTitle title="Properties">
-        <Flex direction="row" noFullWidth className="gap-1">
+        <Flex direction="row" wrap noFullWidth className="gap-1">
           <ToggleButton
             active={isSpecial}
             onClick={() => setData((original) => ({

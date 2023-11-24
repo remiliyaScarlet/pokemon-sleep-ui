@@ -1,11 +1,11 @@
 import {durationOfDay} from '@/const/common';
 import {ActivationDataAtClient, ActivationPropertiesAtClient} from '@/types/mongo/activation';
-import {toIsoDateString} from '@/utils/date';
-import {getActivationExpiryFromPatreon} from '@/utils/user/activation/utils';
+import {toIsoTimestampString} from '@/utils/date';
+import {getActivationExpiryOfDefault} from '@/utils/user/activation/utils';
 
 
 export const generateInitialActivationPropertiesAtClient = (): ActivationPropertiesAtClient => ({
-  expiry: toIsoDateString(getActivationExpiryFromPatreon()),
+  expiry: toIsoTimestampString(getActivationExpiryOfDefault()),
   activation: {
     adsFree: true,
     premium: true,

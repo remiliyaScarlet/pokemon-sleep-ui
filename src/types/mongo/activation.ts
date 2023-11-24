@@ -1,7 +1,7 @@
 import {ObjectId} from 'bson';
 
 import {FilterInclusionMap} from '@/components/input/filter/type';
-import {IsoDateString} from '@/types/date';
+import {IsoDateString, IsoTimestampString} from '@/types/date';
 
 
 export type UserDataInDatabase<T> = {
@@ -56,7 +56,7 @@ export type ActivationProperties = {
 };
 
 export type ActivationPropertiesAtClient = Omit<ActivationProperties, 'expiry'> & {
-  expiry: IsoDateString,
+  expiry: IsoTimestampString,
 };
 
 export type ActivationKey = ActivationProperties & {

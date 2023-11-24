@@ -19,6 +19,7 @@ import {updateTeamAnalysisComps} from '@/controller/user/teamAnalysis/comp';
 import {updateTeamAnalysisConfig} from '@/controller/user/teamAnalysis/config';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 import {invalidateDocsPathCaching} from '@/utils/docs';
+import {toActivationProperties} from '@/utils/user/activation/utils';
 
 
 type UploadUserDataOpts = {
@@ -89,19 +90,21 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   }
 
   if (type === 'admin.activation.update.key') {
+    const {key} = data;
     await updateActivationKeyByKey({
-      ...data,
+      key,
       executorUserId: userId,
-      expiry: new Date(data.expiry),
+      ...toActivationProperties(data),
     });
     return;
   }
 
   if (type === 'admin.activation.update.data') {
+    const {key} = data;
     await updateActivationDataByKey({
-      ...data,
+      key,
       executorUserId: userId,
-      expiry: new Date(data.expiry),
+      ...toActivationProperties(data),
     });
     return;
   }
