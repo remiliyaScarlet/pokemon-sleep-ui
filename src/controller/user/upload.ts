@@ -2,7 +2,11 @@ import {updateAnnouncements} from '@/controller/announcement';
 import {addDoc, deleteDoc, updateDoc} from '@/controller/docs';
 import {addSinglePokeInBox, deleteSinglePokeInBox, upsertSinglePokeInBox} from '@/controller/pokebox';
 import {addSleepdexRecord, removeSleepdexRecord} from '@/controller/sleepdex';
-import {removeActivationDataByKey, updateActivationDataByKey} from '@/controller/user/activation/data';
+import {
+  addActivationDataByAdsClick,
+  removeActivationDataByKey,
+  updateActivationDataByKey,
+} from '@/controller/user/activation/data';
 import {updateActivationKeyByKey} from '@/controller/user/activation/key';
 import {updateActivationPresets} from '@/controller/user/activation/preset';
 import {
@@ -104,6 +108,11 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'admin.activation.delete') {
     await removeActivationDataByKey({executorUserId: userId, key: data});
+    return;
+  }
+
+  if (type === 'admin.activation.adClick') {
+    await addActivationDataByAdsClick({executorUserId: process.env.NEXTAUTH_ADMIN_UID, userId});
     return;
   }
 

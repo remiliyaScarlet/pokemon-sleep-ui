@@ -7,6 +7,7 @@ import remarkGfm from 'remark-gfm';
 
 import {adsHeight, adsHeightAdBlockActive} from '@/components/ads/const';
 import {useAdBlockDetector} from '@/components/ads/hook/adBlockDetect';
+import {useAdClickDetector} from '@/components/ads/hook/adClickDetect';
 import {AdBlockState, AdsContentProps} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
 
@@ -25,14 +26,23 @@ export const AdsContent = ({
   const adsRef = useAdBlockDetector({
     setAdblockState,
   });
+  const {
+    contentRef,
+    ...adClickDetectProps
+  } = useAdClickDetector();
 
   return (
-    <div className={clsx(
-      'relative w-full overflow-hidden',
-      adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
-      adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
-      className,
-    )}>
+    <div
+      ref={contentRef}
+      tabIndex={-1}
+      {...adClickDetectProps}
+      className={clsx(
+        'relative w-full overflow-hidden focus:outline-none',
+        adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
+        adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
+        className,
+      )}
+    >
       {
         adblockState.isBlocked &&
         <ReactMarkdown remarkPlugins={[remarkGfm]} className={clsx(

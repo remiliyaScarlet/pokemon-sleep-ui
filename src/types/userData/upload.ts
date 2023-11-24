@@ -45,6 +45,9 @@ export type UserDataUploadOpts = {
   type: 'admin.activation.delete',
   data: string,
 } | {
+  type: 'admin.activation.adClick',
+  data?: never,
+} | {
   type: 'admin.activation.preset.update',
   data: ActivationPresetMap,
 } | {

@@ -1,6 +1,8 @@
 import {ObjectId} from 'bson';
 import {Collection, Filter, MongoError, UpdateOneModel} from 'mongodb';
+import {v4} from 'uuid';
 
+import {adsFreeByAdsClickDuration} from '@/const/activation/common';
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
@@ -44,6 +46,29 @@ export const consumeActivationKey = async (userId: string, key: string): Promise
 
   await removeActivationKeyByKey(activationKey.key);
   return true;
+};
+
+type AddActivationDataByAdsClick = ControllerRequireUserIdOpts & {
+  userId: string
+};
+
+export const addActivationDataByAdsClick = async ({
+  executorUserId,
+  userId,
+}: AddActivationDataByAdsClick) => {
+  throwIfNotAdmin(executorUserId);
+
+  return (await getCollection()).insertOne({
+    userId: new ObjectId(userId),
+    expiry: new Date(Date.now() + adsFreeByAdsClickDuration),
+    source: 'adClick',
+    contact: {},
+    activation: {adsFree: true},
+    generatedAt: new Date(),
+    key: v4(),
+    note: '',
+    isSpecial: false,
+  });
 };
 
 type GetActivationDataByFilterOpts = ControllerRequireUserIdOpts & {
