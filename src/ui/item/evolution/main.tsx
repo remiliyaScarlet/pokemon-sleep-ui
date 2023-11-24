@@ -24,7 +24,12 @@ export const EvolutionItems = async ({params}: DefaultPageProps) => {
           <AdsUnit/>
           <Grid center className="grid-cols-1 gap-2 md:grid-cols-2">
             {Object.entries(evolutionItemMap).map(([itemId, pokemonList]) => (
-              <EvolutionItemSingle key={itemId} itemId={Number(itemId)} pokemonList={pokemonList}/>
+              <EvolutionItemSingle
+                key={itemId}
+                locale={locale}
+                itemId={Number(itemId)}
+                pokemonList={pokemonList}
+              />
             ))}
           </Grid>
           <AdsUnit/>

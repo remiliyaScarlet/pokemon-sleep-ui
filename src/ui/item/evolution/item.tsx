@@ -2,24 +2,27 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {I18nProvider} from '@/components/i18n/provider';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
-import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {ItemId} from '@/types/game/item';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {Locale} from '@/types/next/locale';
+import {EvolutionIconPokemon} from '@/ui/item/evolution/pokemon';
 
 
 type Props = {
+  locale: Locale,
   itemId: ItemId,
   pokemonList: PokemonInfo[],
 };
 
-export const EvolutionItemSingle = ({itemId, pokemonList}: Props) => {
+export const EvolutionItemSingle = ({locale, itemId, pokemonList}: Props) => {
   const t = useTranslations('Game');
   const itemName = t(`Item.${itemId}`);
 
   return (
-    <Flex center className="info-section-bg gap-1.5 rounded-lg p-2">
+    <Flex center className="info-section-bg h-full gap-1.5 rounded-lg p-2">
       <Flex direction="row" center>
         <GenericIconLarger
           src={`/images/item/${itemId}.png`}
@@ -30,7 +33,9 @@ export const EvolutionItemSingle = ({itemId, pokemonList}: Props) => {
         <div className="text-lg">{itemName}</div>
       </Flex>
       <Flex direction="row" center className="gap-2">
-        <PokemonClickableIcons pokemonList={pokemonList} dimension="h-16 w-16"/>
+        <I18nProvider locale={locale} namespaces={[]}>
+          <EvolutionIconPokemon pokemonList={pokemonList}/>
+        </I18nProvider>
       </Flex>
     </Flex>
   );
