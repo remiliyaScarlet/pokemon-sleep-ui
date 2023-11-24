@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import {adsHeight, adsHeightAdBlockActive} from '@/components/ads/const';
-import {useAdBlockDetector} from '@/components/ads/hook';
+import {useAdBlockDetector} from '@/components/ads/hook/adBlockDetect';
 import {AdBlockState, AdsContentProps} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
 
