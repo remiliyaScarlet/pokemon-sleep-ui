@@ -13,7 +13,7 @@ import {
   ActivationData,
   ActivationDataAtClient,
   ActivationKey,
-  ActivationProperties,
+  ActivationProperties, activationSourceAutomated,
   ActivationStatus,
 } from '@/types/mongo/activation';
 import {toActivationDataAtClient} from '@/utils/user/activation/utils';
@@ -112,7 +112,11 @@ export const getAllActivationDataAsClient = async (): Promise<ActivationDataAtCl
     .map(toActivationDataAtClient);
 };
 
-export const getPaidUserCount = async () => (await getCollection()).countDocuments({source: {$ne: null}});
+export const getPaidUserCount = async () => (await getCollection()).countDocuments({
+  source: {
+    $nin: [null, ...activationSourceAutomated],
+  },
+});
 
 type UpdateActivationDataPropertiesSingleOpts = ControllerRequireUserIdOpts & {
   filter: Filter<ActivationData>,

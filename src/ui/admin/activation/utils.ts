@@ -21,6 +21,10 @@ type IsExpiringSoonOpts = {
   now: Date,
 };
 
-export const isExpiringSoon = ({data, now}: IsExpiringSoonOpts) => {
+export const isExpiringSoon = ({data, now}: IsExpiringSoonOpts): boolean => {
+  if (data.source === 'adClick') {
+    return false;
+  }
+
   return new Date(data.expiry).getTime() - now.getTime() < durationOfDay * 3 * 1000;
 };

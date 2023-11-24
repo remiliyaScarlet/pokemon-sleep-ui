@@ -1,9 +1,12 @@
 import React from 'react';
 
 import {Grid} from '@/components/layout/grid';
+import {activationSourceToText} from '@/const/activation/common';
+import {activationSourceAll} from '@/types/mongo/activation';
 import {ActivationStatsUnit} from '@/ui/admin/activation/stats/unit';
 import {ActivationUiCommonProps} from '@/ui/admin/activation/type';
 import {isExpiringSoon} from '@/ui/admin/activation/utils';
+import {isActivationSource} from '@/utils/user/activation/type';
 
 
 export const ActivationStats = (props: ActivationUiCommonProps) => {
@@ -31,24 +34,17 @@ export const ActivationStats = (props: ActivationUiCommonProps) => {
         filter={(data) => isExpiringSoon({data, now})}
         {...props}
       />
-      <ActivationStatsUnit
-        title="Discord"
-        filter={({source}) => source === 'discord'}
-        {...props}
-      />
-      <ActivationStatsUnit
-        title="Patreon"
-        filter={({source}) => source === 'patreon'}
-        {...props}
-      />
-      <ActivationStatsUnit
-        title="Github"
-        filter={({source}) => source === 'github'}
-        {...props}
-      />
+      {activationSourceAll.map((source) => (
+        <ActivationStatsUnit
+          key={source}
+          title={activationSourceToText[source]}
+          filter={(data) => data.source === source}
+          {...props}
+        />
+      ))}
       <ActivationStatsUnit
         title="Paid"
-        filter={({source}) => !!source}
+        filter={({source}) => isActivationSource(source)}
         {...props}
       />
       <ActivationStatsUnit
