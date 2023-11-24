@@ -21,7 +21,7 @@ export const OcrPopup = <TData, >({show, setShow, noFullWidth, dimension, ...pro
   return (
     <>
       <PopupCommon show={show} setShow={setShow}>
-        <Flex noFullWidth className="w-full sm:w-[70vw]">
+        <Flex className="sm:w-[70vw]">
           <Ocr {...props}/>
         </Flex>
       </PopupCommon>

@@ -406,7 +406,10 @@
     "AlwaysFullPack": "Immer volles Inventar",
     "BerryPokemonFullPack": "Immer volles Inventar für Beeren-Spezialisten",
     "GoodCampTicket": "Profi-Camping-Ticket",
-    "IncludeMainSkill": "Include Main Skill"
+    "IncludeMainSkill": "Include Main Skill",
+    "Cooking": {
+      "Title": "Kochen bezogen"
+    }
   },
   "UserControl": {
     "Login": "Login",

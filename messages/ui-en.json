@@ -281,7 +281,7 @@
         "Required": "Required"
       },
       "MealType": "Meal",
-      "PotCapacity": "Max",
+      "PotCapacity": "Pot Capacity",
       "Preparer": {
         "IncludeFiller": "(+Filler)"
       },
@@ -405,7 +405,10 @@
     "AlwaysFullPack": "Always Full Pack",
     "BerryPokemonFullPack": "Always Full Pack for Berry Specialists",
     "GoodCampTicket": "Good Camp Ticket",
-    "IncludeMainSkill": "Include Main Skill"
+    "IncludeMainSkill": "Include Main Skill",
+    "Cooking": {
+      "Title": "Cooking Related"
+    }
   },
   "UserControl": {
     "Login": "Login",

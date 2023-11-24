@@ -6,6 +6,7 @@ import {Announcements} from '@/components/announcement/main';
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
 import {getMapIds} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {NavBarClient} from '@/ui/base/navbar/client';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';
 
@@ -17,22 +18,25 @@ type Props = NavBarCommonProps & {
 export const NavBar = ({noUserControl, locale, announcement}: Props) => {
   const [
     session,
+    mealMap,
     mapIds,
   ] = React.use(Promise.all([
     getServerSession(authOptions),
+    getAllMealsAsMap(),
     getMapIds(),
   ]));
 
   return (
     <I18nProvider locale={locale} namespaces={[
-      'Game.Field',
+      'Game',
+      'UI.InPage.Cooking',
       'UI.InPage.Pokedex.Info',
       'UI.Metadata',
       'UI.Stamina',
       'UI.UserSettings',
       'UI.UserControl',
     ]}>
-      <NavBarClient session={session} mapIds={mapIds} noUserControl={noUserControl}>
+      <NavBarClient session={session} mapIds={mapIds} mealMap={mealMap} noUserControl={noUserControl}>
         {announcement && <Announcements showOn="landscape"/>}
       </NavBarClient>
     </I18nProvider>

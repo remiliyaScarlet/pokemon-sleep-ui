@@ -17,6 +17,8 @@ export type Meal = {
   ingredients: MealIngredient[],
 };
 
+export type MealMap = {[id in MealId]?: Meal};
+
 export type MealCounter = {[meal in MealId]?: number | null};
 
 export type MealsMarked = FilterInclusionMap<MealId>;

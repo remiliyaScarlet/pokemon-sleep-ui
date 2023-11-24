@@ -12,7 +12,7 @@ export const userCookingMeals = [
 
 export type UserCookingMeal = typeof userCookingMeals[number];
 
-export type UserCookingTargetOfType = {[meal in UserCookingMeal]?: MealId};
+export type UserCookingTargetOfType = {[meal in UserCookingMeal]?: MealId | null};
 
 export type UserCookingTarget = {[mealType in MealTypeId]?: UserCookingTargetOfType};
 

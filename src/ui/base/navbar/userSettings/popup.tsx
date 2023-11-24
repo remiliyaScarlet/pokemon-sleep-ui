@@ -10,11 +10,13 @@ import {UserSettingsAccountInfo} from '@/ui/base/navbar/userSettings/sections/ac
 import {UserSettingsAppInfo} from '@/ui/base/navbar/userSettings/sections/app/main';
 import {UserCalculationBehaviorUI} from '@/ui/base/navbar/userSettings/sections/behavior';
 import {UserSettingsBonusUI} from '@/ui/base/navbar/userSettings/sections/bonus';
+import {UserSettingsCooking} from '@/ui/base/navbar/userSettings/sections/cooking/main';
 import {UserSettingsLanguage} from '@/ui/base/navbar/userSettings/sections/language';
 import {UserSettingsStamina} from '@/ui/base/navbar/userSettings/sections/stamina';
 import {UserSettingsProps} from '@/ui/base/navbar/userSettings/type';
 import {migrate} from '@/utils/migrate/main';
 import {userSettingsMigrators} from '@/utils/migrate/userSettings/migrators';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 
 
 type Props = UserSettingsProps & {
@@ -22,7 +24,7 @@ type Props = UserSettingsProps & {
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
-export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
+export const UserSettingsPopup = ({session, mapIds, mealMap, show, setShow}: Props) => {
   const {act} = useUserDataActor({statusToast: true});
   const [bundle, setBundle] = React.useState<UserSettingsBundle>({
     settings: migrate({
@@ -37,7 +39,7 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
     },
   });
 
-  const {settings} = bundle;
+  const {settings, cooking} = bundle;
 
   return (
     <PopupCommon show={show} setShow={(show) => {
@@ -69,6 +71,14 @@ export const UserSettingsPopup = ({session, mapIds, show, setShow}: Props) => {
             ...original,
             settings: {...settings, behavior},
           } satisfies UserSettingsBundle))}
+        />
+        <UserSettingsCooking
+          cookingPreset={cooking}
+          setCookingPreset={(updated) => setBundle(({cooking, ...original}) => ({
+            ...original,
+            cooking: cloneMerge(cooking, updated),
+          } satisfies UserSettingsBundle))}
+          mealMap={mealMap}
         />
         <UserSettingsBonusUI
           mapIds={mapIds}
