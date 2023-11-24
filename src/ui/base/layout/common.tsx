@@ -72,7 +72,7 @@ export const PageLayout = ({
           </Flex>
         </div>
       </Flex>
-      <Flex className="fixed bottom-0">
+      <Flex className="info-section-opaque fixed bottom-0 z-nav">
         <AdsLayout adsShouldShow={adsShouldShow}/>
       </Flex>
     </>
