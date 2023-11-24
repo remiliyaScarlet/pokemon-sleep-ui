@@ -1,7 +1,7 @@
-import {ActivationContact, ActivationSource, ActivationType} from '@/types/mongo/activation';
+import {ActivationContact, ActivationSourceAll, ActivationType} from '@/types/mongo/activation';
 
 
-export const activationSourceToText: {[source in ActivationSource]: string} = {
+export const activationSourceToText: {[source in ActivationSourceAll]: string} = {
   patreon: 'Patreon',
   discord: 'Discord',
   github: 'Github',

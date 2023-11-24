@@ -8,14 +8,15 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {ActivationSource} from '@/types/mongo/activation';
+import {ActivationSourceAll} from '@/types/mongo/activation';
 import {ActivationUiCommonProps, ActivationUiControl} from '@/ui/admin/activation/type';
 import {ActivationUnit} from '@/ui/admin/activation/viewer/unit';
 import {getActivationButtonText, getActivationTitle} from '@/ui/admin/activation/viewer/utils';
+import {isActivationSource} from '@/utils/user/activation/type';
 
 
 type Props = ActivationUiCommonProps & {
-  source: ActivationSource | null,
+  source: ActivationSourceAll | null,
   control: ActivationUiControl,
 };
 
@@ -35,7 +36,7 @@ export const ActivationViewer = (props: Props) => {
 
   if (search) {
     activationsOfSource = activationsOfSource.filter(({buttonText, contact}) => (
-      buttonText.includes(search) || (source && contact[source]?.includes(search))
+      buttonText.includes(search) || (isActivationSource(source) && contact[source]?.includes(search))
     ));
   }
 

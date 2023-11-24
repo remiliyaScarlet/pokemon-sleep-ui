@@ -1,13 +1,14 @@
-import {activationContactToText} from '@/const/activation/common';
-import {activationContact, ActivationDataAtClient, ActivationSource} from '@/types/mongo/activation';
+import {activationSourceToText} from '@/const/activation/common';
+import {activationContact, ActivationDataAtClient, ActivationSourceAll} from '@/types/mongo/activation';
 import {UserIdToEmailMap} from '@/types/mongo/auth';
 import {activationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {isNotNullish} from '@/utils/type';
+import {isActivationSource} from '@/utils/user/activation/type';
 
 
 type GetActivationButtonTextOpts = {
   data: ActivationDataAtClient,
-  source: ActivationSource | null,
+  source: ActivationSourceAll | null,
   userIdEmailMap: UserIdToEmailMap,
 };
 
@@ -36,13 +37,17 @@ export const getActivationButtonText = ({
     return userIdEmailMap[data.userId] ?? data.userId;
   }
 
+  if (!isActivationSource(source)) {
+    return userIdEmailMap[data.userId] ?? data.userId;
+  }
+
   return activationButtonTextGetter[source](data);
 };
 
-export const getActivationTitle = (source: ActivationSource | null) => {
+export const getActivationTitle = (source: ActivationSourceAll | null) => {
   if (!source) {
     return '(Free)';
   }
 
-  return activationContactToText[source];
+  return activationSourceToText[source];
 };

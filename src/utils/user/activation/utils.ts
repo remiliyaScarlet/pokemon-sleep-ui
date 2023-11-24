@@ -11,6 +11,7 @@ import {toIsoDateString} from '@/utils/date';
 import {showToast} from '@/utils/toast';
 import {isNotNullish} from '@/utils/type';
 import {defaultExpiryDays} from '@/utils/user/activation/const';
+import {isActivationSource} from '@/utils/user/activation/type';
 
 
 export const isActivationDataValid = ({source, contact, note}: ActivationPropertiesAtClient) => {
@@ -22,7 +23,10 @@ export const isActivationDataValid = ({source, contact, note}: ActivationPropert
     return false;
   }
 
-  if ((source && !contact[source]) || (!source && !Object.values(contact).filter(isNotNullish).length)) {
+  if (
+    (isActivationSource(source) && !contact[source]) ||
+    (!source && !Object.values(contact).filter(isNotNullish).length)
+  ) {
     showToast({
       isAlert: true,
       content: 'Missing contact of the subscription source!',

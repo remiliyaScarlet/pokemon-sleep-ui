@@ -20,10 +20,20 @@ export const activationSource = [
   'discord',
   'patreon',
   'github',
-  'adClick',
 ] as const;
 
 export type ActivationSource = typeof activationSource[number];
+
+export const activationSourceAutomated = [
+  'adClick',
+] as const;
+
+export const activationSourceAll = [
+  ...activationSource,
+  ...activationSourceAutomated,
+] as const;
+
+export type ActivationSourceAll = typeof activationSourceAll[number];
 
 export const activationContact = [
   ...activationSource,
@@ -36,7 +46,7 @@ export type ActivationStatus = FilterInclusionMap<ActivationType>;
 
 export type ActivationProperties = {
   expiry: Date,
-  source: ActivationSource | null,
+  source: ActivationSourceAll | null,
   contact: {[contact in ActivationContact]?: string | null},
   isSpecial: boolean,
   isCmsMod?: boolean,
