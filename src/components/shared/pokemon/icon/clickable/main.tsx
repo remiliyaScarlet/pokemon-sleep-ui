@@ -2,9 +2,10 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';
+import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
+import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {getToggleButtonClass} from '@/styles/input';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {Dimension} from '@/types/style';
@@ -19,8 +20,11 @@ type Props = {
 };
 
 export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension, children}: Props) => {
+  const {state, setState, showPokemon} = usePokemonLinkPopup();
+
   return (
     <Flex direction="row" center wrap className="gap-1.5">
+      <PokemonLinkPopup state={state} setState={setState}/>
       {pokemonList.map((pokemon) => {
         const id = pokemon?.id ?? null;
 
@@ -38,9 +42,9 @@ export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension
         }
 
         return (
-          <Link key={id} href={`/pokedex/${id}`} className={className}>
+          <button key={id} className={className} onClick={() => showPokemon(pokemon)}>
             <PokemonClickableIconImage pokemon={pokemon} dimension={dimension}/>
-          </Link>
+          </button>
         );
       })}
       {children && children((active) => clsx(
