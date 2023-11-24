@@ -20,7 +20,7 @@ export const ToggleButton = ({
   children,
 }: React.PropsWithChildren<ToggleButtonProps>) => {
   return (
-    <button onClick={onClick} disabled={disabled} className={clsx(
+    <button type="button" onClick={onClick} disabled={disabled} className={clsx(
       'transform-smooth flex items-center justify-center',
       getToggleButtonClass(active),
       className,
