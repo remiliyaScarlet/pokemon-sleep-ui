@@ -19,6 +19,7 @@ export const NumberInputLayout = ({
   max,
   className,
   textClassName,
+  disabled,
   children,
 }: React.PropsWithChildren<NumberInputLayoutProps<Nullable<number>>>) => {
   const inUseMin = min ?? -Infinity;
@@ -37,7 +38,7 @@ export const NumberInputLayout = ({
       }
       <button
         className={changeButtonClass}
-        disabled={value === inUseMin || isDefaultUnavailable}
+        disabled={value === inUseMin || isDefaultUnavailable || disabled}
         onClick={() => setValue(isValueNumber ? Math.max(value - 1, inUseMin) : (onClickDefault ?? value))}
         tabIndex={-1}
       >
@@ -46,7 +47,7 @@ export const NumberInputLayout = ({
       {children}
       <button
         className={changeButtonClass}
-        disabled={value === inUseMax || isDefaultUnavailable}
+        disabled={value === inUseMax || isDefaultUnavailable || disabled}
         onClick={() => setValue(isValueNumber ? Math.min(value + 1, inUseMax) : (onClickDefault ?? value))}
         tabIndex={-1}
       >

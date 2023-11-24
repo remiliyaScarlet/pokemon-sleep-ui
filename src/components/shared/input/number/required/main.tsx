@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {InputBox} from '@/components/input/box';
 import {NumberInputLayout} from '@/components/shared/input/number/common/layout';
 import {NumberInputLayoutProps} from '@/components/shared/input/number/common/type';
@@ -10,14 +12,14 @@ export const NumberInputRequired = ({
   max = Infinity,
   ...props
 }: NumberInputLayoutProps<number>) => {
-  const {value, setValue} = props;
+  const {value, setValue, disabled} = props;
 
   return (
     <NumberInputLayout {...props} min={min} max={max} setValue={(value) => value && setValue(value)}>
       <InputBox
         value={value.toString()}
         type="number"
-        className="w-12 text-center"
+        className={clsx('w-12 text-center', disabled && 'text-disabled')}
         onChange={({target}) => {
           const value = parseInt(target.value || '0');
 
@@ -27,6 +29,7 @@ export const NumberInputRequired = ({
 
           setValue(Math.max(min, Math.min(value, max)));
         }}
+        disabled={disabled}
       />
     </NumberInputLayout>
   );

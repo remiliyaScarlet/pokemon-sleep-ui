@@ -130,6 +130,10 @@
     @apply mt-3;
   }
   
+  .text-disabled {
+    @apply text-slate-400 dark:text-slate-500;
+  }
+  
   /* endregion */
   
   .shadow-for-light {
