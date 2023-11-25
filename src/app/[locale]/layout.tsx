@@ -8,6 +8,7 @@ import Script from 'next/script';
 // eslint-disable-next-line camelcase
 import {unstable_setRequestLocale} from 'next-intl/server';
 
+import {SiteTracking} from '@/components/tracking/main';
 import {LocaleLayoutParams, LocaleLayoutProps} from '@/types/next/layout';
 import {locales} from '@/types/next/locale';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
@@ -40,19 +41,28 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
   return (
     <html lang={locale} className="h-full" suppressHydrationWarning>
       {/* Google Analytics */}
-      {isProduction() &&
-      <>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"/>
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-   
-            gtag('config', 'G-2LL7T4CCZP');
-          `}
-        </Script>
-      </>}
+      {
+        isProduction() &&
+        <>
+          <Script
+            strategy="lazyOnload"
+            src="https://www.googletagmanager.com/gtag/js?id=G-2LL7T4CCZP"
+          />
+          <Script id="google-analytics">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-2LL7T4CCZP', {
+                send_page_view: false
+              });
+            `}
+          </Script>
+        </>
+      }
+      <React.Suspense>
+        <SiteTracking/>
+      </React.Suspense>
       <body className={font.className}>
         <Providers>
           {children}
