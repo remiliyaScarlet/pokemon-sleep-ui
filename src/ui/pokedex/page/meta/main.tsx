@@ -10,6 +10,7 @@ import {PokemonGallery} from '@/components/shared/pokemon/gallery/main';
 import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {PokemonNameBig} from '@/components/shared/pokemon/name/big';
 import {PokemonIngredientRate} from '@/components/shared/pokemon/production/params/ingredient';
+import {PokemonMainSkillTriggerRate} from '@/components/shared/pokemon/production/params/skillRate';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
@@ -68,6 +69,16 @@ export const PokemonMeta = (props: PokemonProps) => {
             'button-clickable-bg group gap-2 p-1 px-2 text-lg',
           )}>
             <PokemonIngredientRate params={pokemonProducingParams} noIcon dimension="h-6 w-6"/>
+          </FlexLink>
+        </PokemonMetaSection>
+        <PokemonMetaSection
+          title={t2('Stats.MainSkillTriggerRate')}
+          contentClassName="flex justify-center"
+        >
+          <FlexLink href="/info/production" center className={clsx(
+            'button-clickable-bg group gap-2 p-1 px-2 text-lg',
+          )}>
+            <PokemonMainSkillTriggerRate params={pokemonProducingParams} noIcon dimension="h-6 w-6"/>
           </FlexLink>
         </PokemonMetaSection>
         <PokemonMetaSection
