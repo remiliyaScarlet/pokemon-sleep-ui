@@ -2,8 +2,9 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
+import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
-import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
+import {NextImage} from '@/components/shared/common/image/main';
 import {
   PokemonItemStatsFromPokeboxCommonProps,
 } from '@/components/shared/pokemon/icon/itemStats/base/fromPokebox/type';
@@ -45,6 +46,7 @@ export const PokemonItemStatsFromPokeboxList = ({
   } = props;
 
   const t = useTranslations('Game');
+
   const producingStats = React.useMemo(() => (
     pokeInBoxList
       .map((pokeInBox) => {
@@ -112,19 +114,24 @@ export const PokemonItemStatsFromPokeboxList = ({
 
         return (
           <Flex center className="relative gap-1">
-            <Flex noFullWidth className="absolute left-1.5 top-1.5 z-10 opacity-60">
-              <IconWithInfo
-                imageSrc={`/images/pokemon/icons/${id}.png`}
-                imageAlt={pokemonDefaultName}
-                imageDimension="h-14 w-14"
-                imageSizes={imageIconSizes}
-                info={level}
-              />
+            <Flex noFullWidth className="absolute left-1.5 top-1.5 -z-10">
+              <div className="relative h-14 w-14">
+                <NextImage
+                  src={`/images/pokemon/icons/${id}.png`}
+                  alt={pokemonDefaultName}
+                  sizes={imageIconSizes}
+                />
+              </div>
             </Flex>
             <Flex className="place-items-end gap-1 text-sm">
-              <div className="truncate">
-                {name ?? pokemonDefaultName}
-              </div>
+              <Flex direction="row" className="justify-end gap-1.5 truncate">
+                <InfoIcon>
+                  {level}
+                </InfoIcon>
+                <div>
+                  {name ?? pokemonDefaultName}
+                </div>
+              </Flex>
               <PokemonIngredientIcons key="ingredients" ingredients={[ingredients]} noLink/>
               <PokemonProducingRateSingleAtItem
                 rate={itemRate}
