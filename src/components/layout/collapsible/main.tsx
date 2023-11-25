@@ -22,7 +22,7 @@ export const Collapsible = ({state, button, appear, classNameForHeight, children
 
   return (
     <Flex>
-      <button className="button-clickable-bg group p-1" onClick={() => setShow(!show)}>
+      <button type="button" className="button-clickable-bg group p-1" onClick={() => setShow(!show)}>
         <CollapsibleMark show={show}/>
         {button}
       </button>

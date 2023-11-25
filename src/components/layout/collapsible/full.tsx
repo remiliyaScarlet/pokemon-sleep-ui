@@ -36,7 +36,7 @@ export const CollapsibleFull = ({
 
   return (
     <Flex>
-      <button onClick={() => setShow(!show)} disabled={disabled} className={clsx(
+      <button type="button" onClick={() => setShow(!show)} disabled={disabled} className={clsx(
         'button-clickable-bg disabled:button-disabled group relative p-1',
       )}>
         <CollapsibleMark show={show}/>
