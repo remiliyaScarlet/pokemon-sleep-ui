@@ -6,7 +6,13 @@ import {getDataAsArray, getSingleData} from '@/controller/common';
 import {throwIfNotAdmin} from '@/controller/user/account/common';
 import {ControllerRequireUserIdOpts} from '@/controller/user/account/type';
 import mongoPromise from '@/lib/mongodb';
-import {activationContact, ActivationKey, ActivationProperties} from '@/types/mongo/activation';
+import {
+  activationContact,
+  ActivationKey,
+  ActivationKeyAtClient,
+  ActivationProperties,
+} from '@/types/mongo/activation';
+import {toActivationKeyAtClient} from '@/utils/user/activation/utils';
 
 
 const getCollection = async (): Promise<Collection<ActivationKey>> => {
@@ -54,6 +60,11 @@ export const getAllActivationKeys = ({executorUserId, filter}: GetAllActivationK
   throwIfNotAdmin(executorUserId);
 
   return getDataAsArray(getCollection(), filter);
+};
+
+export const getAllActivationKeyAsClient = async (): Promise<ActivationKeyAtClient[]> => {
+  return (await getAllActivationKeys({executorUserId: process.env.NEXTAUTH_ADMIN_UID, filter: {}}))
+    .map(toActivationKeyAtClient);
 };
 
 export const getActivationKeyByFilter = ({executorUserId, filter}: GetActivationKeyByFilterOpts) => {

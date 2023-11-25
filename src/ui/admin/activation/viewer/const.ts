@@ -3,13 +3,13 @@ import {ActivationButtonTextGetter} from '@/ui/admin/activation/viewer/type';
 
 
 export const activationButtonTextGetter: {[source in ActivationSource]: ActivationButtonTextGetter} = {
-  discord: ({userId, contact}) => (
-    contact.discord ?? `(${userId})`
+  discord: ({contact}) => (
+    contact.discord
   ),
-  patreon: ({userId, contact}) => (
-    contact.discord ?? contact.patreon ?? `(${userId})`
+  patreon: ({contact}) => (
+    contact.discord ?? contact.patreon
   ),
-  github: ({userId, contact}) => (
-    contact.patreon ? `@${contact.github}` : (contact.discord ?? `${userId}`)
+  github: ({contact}) => (
+    contact.patreon ? `@${contact.github}` : contact.discord
   ),
 };

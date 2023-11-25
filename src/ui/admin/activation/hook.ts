@@ -1,20 +1,19 @@
 import React from 'react';
 
 import {useUserDataActor} from '@/hooks/userData/actor/main';
-import {ActivationDataAtClient} from '@/types/mongo/activation';
-import {ActivationUiControl, ActivationUiState} from '@/ui/admin/activation/type';
+import {ActivationUiControl, ActivationUiState, AdminActivationPreloadedData} from '@/ui/admin/activation/type';
 import {generateInitialActivationPropertiesAtClient} from '@/ui/admin/activation/utils';
 import {toIsoDateString} from '@/utils/date';
 
 
 type UseActivationUiOpts = {
-  activations: ActivationDataAtClient[],
+  preloaded: AdminActivationPreloadedData,
 };
 
-export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationUiControl | null => {
+export const useActivationUI = ({preloaded}: UseActivationUiOpts): ActivationUiControl | null => {
   const [state, setState] = React.useState<ActivationUiState>({
     // Keep a copy of the data to save refreshes that could create large I/O
-    data: activations,
+    ...preloaded,
     popup: {
       show: false,
       info: {
@@ -64,7 +63,8 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
           action: 'upload',
           options: {type: 'admin.activation.update.key', data},
         });
-        setState(({data, popup}) => ({
+        setState(({data, key, popup}) => ({
+          key: key.map((single) => single.key === info.data.key ? info.data : single),
           data,
           popup: {
             ...popup,
@@ -79,7 +79,8 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
           action: 'upload',
           options: {type: 'admin.activation.update.data', data},
         });
-        setState(({data, popup}) => ({
+        setState(({key, data, popup}) => ({
+          key,
           data: data.map((single) => single.key === info.data.key ? info.data : single),
           popup: {
             ...popup,
@@ -99,7 +100,8 @@ export const useActivationUI = ({activations}: UseActivationUiOpts): ActivationU
           data: popup.info.data.key,
         },
       });
-      setState(({data, popup}) => ({
+      setState(({key, data, popup}) => ({
+        key: key.filter(({key}) => popup.info.data.key !== key),
         data: data.filter(({key}) => popup.info.data.key !== key),
         popup: {
           ...popup,

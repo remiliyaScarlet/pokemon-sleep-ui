@@ -1,4 +1,4 @@
-import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationKeyAtClient} from '@/types/mongo/activation';
 
 
-export type ActivationButtonTextGetter = (data: ActivationDataAtClient) => string;
+export type ActivationButtonTextGetter = (data: ActivationKeyAtClient) => string | null | undefined;

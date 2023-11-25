@@ -2,23 +2,23 @@ import React from 'react';
 
 import {clsx} from 'clsx';
 
-import {ActivationDataAtClient} from '@/types/mongo/activation';
+import {ActivationInfo} from '@/types/mongo/activation';
 import {ActivationUiControl} from '@/ui/admin/activation/type';
 import {isExpiringSoon} from '@/ui/admin/activation/utils';
 
 
 type Props = {
-  data: ActivationDataAtClient,
+  activationInfo: ActivationInfo,
   control: ActivationUiControl,
   button: React.ReactNode,
 };
 
-export const ActivationUnit = ({data, control, button}: Props) => {
-  const {userId} = data;
+export const ActivationUnit = ({activationInfo, control, button}: Props) => {
+  const {data} = activationInfo;
   const {showActivation} = control;
 
   return (
-    <button key={userId} onClick={() => showActivation({type: 'data', data})} className={clsx(
+    <button type="button" onClick={() => showActivation(activationInfo)} className={clsx(
       'truncate p-2',
       isExpiringSoon({data, now: new Date()}) ? 'button-clickable button-warn-bg' : 'button-clickable-bg',
     )}>

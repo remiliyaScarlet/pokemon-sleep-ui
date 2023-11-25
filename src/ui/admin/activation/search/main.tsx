@@ -5,19 +5,18 @@ import {clsx} from 'clsx';
 
 import {InputBox} from '@/components/input/box';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
+import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {FlexForm} from '@/components/layout/flex/form';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {ActivationCheckerState} from '@/ui/admin/activation/search/type';
-import {ActivationUiControl} from '@/ui/admin/activation/type';
+import {ActivationUiCommonProps} from '@/ui/admin/activation/type';
+import {ActivationKeyViewer} from '@/ui/admin/activation/viewer/main/key';
 
 
-type Props = {
-  control: ActivationUiControl,
-};
-
-export const ActivationSearcher = ({control}: Props) => {
+export const ActivationSearcher = (props: ActivationUiCommonProps) => {
+  const {control} = props;
   const {actAsync, showActivation, status} = control;
 
   const [data, setData] = React.useState<ActivationCheckerState>({
@@ -65,6 +64,9 @@ export const ActivationSearcher = ({control}: Props) => {
           Activation not found
         </Flex>
       </AnimatedCollapseQuick>
+      <AnimatedCollapse show>
+        <ActivationKeyViewer {...props}/>
+      </AnimatedCollapse>
     </FlexForm>
   );
 };

@@ -1,5 +1,5 @@
 import {durationOfDay} from '@/const/common';
-import {ActivationDataAtClient, ActivationPropertiesAtClient} from '@/types/mongo/activation';
+import {ActivationKeyAtClient, ActivationPropertiesAtClient} from '@/types/mongo/activation';
 import {toIsoTimestampString} from '@/utils/date';
 import {getActivationExpiryOfDefault} from '@/utils/user/activation/utils';
 
@@ -17,7 +17,7 @@ export const generateInitialActivationPropertiesAtClient = (): ActivationPropert
 });
 
 type IsExpiringSoonOpts = {
-  data: ActivationDataAtClient,
+  data: ActivationKeyAtClient,
   now: Date,
 };
 

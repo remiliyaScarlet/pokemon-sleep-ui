@@ -1,18 +1,20 @@
-import {ActivationDataAtClient, ActivationInfo} from '@/types/mongo/activation';
+import {ActivationDataAtClient, ActivationInfo, ActivationKeyAtClient} from '@/types/mongo/activation';
 import {UserIdToEmailMap} from '@/types/mongo/auth';
 import {ReactStateUpdaterFromOriginal} from '@/types/react';
 import {UserDataActionStatus, UserDataActorAsync} from '@/types/userData/main';
 
 
-export type AdminActivationServerDataProps = {
-  userIdEmailMap: UserIdToEmailMap,
-  preloaded: {
-    activations: ActivationDataAtClient[],
-  },
+export type AdminActivationPreloadedData = {
+  key: ActivationKeyAtClient[],
+  data: ActivationDataAtClient[],
 };
 
-export type ActivationUiState = {
-  data: ActivationDataAtClient[],
+export type AdminActivationServerDataProps = {
+  userIdEmailMap: UserIdToEmailMap,
+  preloaded: AdminActivationPreloadedData,
+};
+
+export type ActivationUiState = AdminActivationPreloadedData & {
   popup: {
     show: boolean,
     info: ActivationInfo,

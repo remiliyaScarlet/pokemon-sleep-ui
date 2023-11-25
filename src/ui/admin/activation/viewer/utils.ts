@@ -1,22 +1,30 @@
 import {activationSourceToText} from '@/const/activation/common';
-import {activationContact, ActivationDataAtClient, ActivationSourceAll} from '@/types/mongo/activation';
+import {
+  activationContact,
+  ActivationDataAtClient,
+  ActivationKeyAtClient,
+  ActivationSourceAll,
+} from '@/types/mongo/activation';
 import {UserIdToEmailMap} from '@/types/mongo/auth';
 import {activationButtonTextGetter} from '@/ui/admin/activation/viewer/const';
 import {isNotNullish} from '@/utils/type';
 import {isActivationSource} from '@/utils/user/activation/type';
 
 
-type GetActivationButtonTextOpts = {
-  data: ActivationDataAtClient,
-  source: ActivationSourceAll | null,
-  userIdEmailMap: UserIdToEmailMap,
+type GetActivationButtonTextOpts<TActivation extends ActivationKeyAtClient> = {
+  data: TActivation,
 };
 
-export const getActivationButtonText = ({
+type GetActivationKeyButtonTextOpts<TDefault> = GetActivationButtonTextOpts<ActivationKeyAtClient> & {
+  defaultOnNotFound: TDefault
+};
+
+export const getActivationKeyButtonText = <TDefault>({
   data,
-  source,
-  userIdEmailMap,
-}: GetActivationButtonTextOpts): string => {
+  defaultOnNotFound,
+}: GetActivationKeyButtonTextOpts<TDefault>): string | TDefault => {
+  const {source} = data;
+
   if (!source) {
     const contact = activationContact.map((channel) => {
       const contact = data.contact[channel];
@@ -34,14 +42,29 @@ export const getActivationButtonText = ({
       return `${contact.channel[0].toUpperCase()}: ${contact.contact}`;
     }
 
-    return userIdEmailMap[data.userId] ?? data.userId;
+    return data.note;
   }
 
   if (!isActivationSource(source)) {
-    return userIdEmailMap[data.userId] ?? data.userId;
+    return data.note;
   }
 
-  return activationButtonTextGetter[source](data);
+  return activationButtonTextGetter[source](data) ?? defaultOnNotFound;
+};
+
+type GetActivationDataButtonTextOpts = GetActivationButtonTextOpts<ActivationDataAtClient> & {
+  userIdEmailMap: UserIdToEmailMap,
+};
+
+export const getActivationDataButtonText = ({
+  data,
+  userIdEmailMap,
+}: GetActivationDataButtonTextOpts): string => {
+  return (
+    getActivationKeyButtonText({data, defaultOnNotFound: null}) ??
+    userIdEmailMap[data.userId] ??
+    data.userId
+  );
 };
 
 export const getActivationTitle = (source: ActivationSourceAll | null) => {

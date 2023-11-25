@@ -10,14 +10,14 @@ import {useActivationUI} from '@/ui/admin/activation/hook';
 import {ActivationSearcher} from '@/ui/admin/activation/search/main';
 import {ActivationStats} from '@/ui/admin/activation/stats/main';
 import {ActivationUiCommonProps, AdminActivationServerDataProps} from '@/ui/admin/activation/type';
-import {ActivationViewer} from '@/ui/admin/activation/viewer/main';
+import {ActivationDataViewer} from '@/ui/admin/activation/viewer/main/data';
 import {ActivationPopup} from '@/ui/admin/activation/viewer/popup/main';
 
 
 export const AdminActivationManagementClient = (data: AdminActivationServerDataProps) => {
   const {preloaded} = data;
 
-  const control = useActivationUI({activations: preloaded.activations});
+  const control = useActivationUI({preloaded});
 
   if (!control) {
     return <Loading text="User Activation UI"/>;
@@ -32,13 +32,13 @@ export const AdminActivationManagementClient = (data: AdminActivationServerDataP
     <Flex className="gap-2">
       <ActivationPopup {...props}/>
       <ActivationGenerator control={control}/>
-      <ActivationSearcher control={control}/>
+      <ActivationSearcher {...props}/>
       <ActivationStats {...props}/>
       <Grid className="grid-cols-1 gap-2 lg:grid-cols-2">
         {activationSourceAll.map((source) => (
-          <ActivationViewer key={source} source={source} {...props}/>
+          <ActivationDataViewer key={source} source={source} {...props}/>
         ))}
-        <ActivationViewer source={null} {...props}/>
+        <ActivationDataViewer source={null} {...props}/>
       </Grid>
     </Flex>
   );

@@ -8,34 +8,40 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
-import {ActivationSourceAll} from '@/types/mongo/activation';
-import {ActivationUiCommonProps, ActivationUiControl} from '@/ui/admin/activation/type';
+import {ActivationInfo, ActivationKeyAtClient} from '@/types/mongo/activation';
+import {ActivationViewerCommonProps} from '@/ui/admin/activation/viewer/main/type';
 import {ActivationUnit} from '@/ui/admin/activation/viewer/unit';
-import {getActivationButtonText, getActivationTitle} from '@/ui/admin/activation/viewer/utils';
 import {isActivationSource} from '@/utils/user/activation/type';
 
 
-type Props = ActivationUiCommonProps & {
-  source: ActivationSourceAll | null,
-  control: ActivationUiControl,
+type Props<TActivation extends ActivationKeyAtClient> = ActivationViewerCommonProps & {
+  data: TActivation[],
+  title: React.ReactNode,
+  getButtonText: (activation: TActivation) => string,
+  getActivationInfo: (activation: TActivation) => ActivationInfo,
 };
 
-export const ActivationViewer = (props: Props) => {
-  const {source, control} = props;
+export const ActivationViewerCommon = <TActivation extends ActivationKeyAtClient>({
+  data,
+  title,
+  getButtonText,
+  getActivationInfo,
+  ...props
+}: Props<TActivation>) => {
+  const {control} = props;
 
   const collapsible = useCollapsible();
   const [search, setSearch] = React.useState('');
 
-  let activationsOfSource = control.state.data
-    .filter((activation) => activation.source === source)
+  let activations = data
     .map((data) => ({
       ...data,
-      buttonText: getActivationButtonText({data, ...props}),
+      buttonText: getButtonText(data),
     }))
     .sort((a, b) => a.buttonText.localeCompare(b.buttonText));
 
   if (search) {
-    activationsOfSource = activationsOfSource.filter(({buttonText, contact}) => (
+    activations = activations.filter(({buttonText, contact, source}) => (
       buttonText.includes(search) || (isActivationSource(source) && contact[source]?.includes(search))
     ));
   }
@@ -43,8 +49,10 @@ export const ActivationViewer = (props: Props) => {
   return (
     <Collapsible state={collapsible} classNameForHeight="h-80" button={
       <Flex direction="row" center className="gap-1.5 p-2">
-        <div>{getActivationTitle(source)}</div>
-        <InfoIcon>{activationsOfSource.length}</InfoIcon>
+        <div>{title}</div>
+        <InfoIcon style="glow" dimension="h-5 w-5" className="p-3">
+          {activations.length}
+        </InfoIcon>
       </Flex>
     }>
       <Flex className="gap-1.5 pr-1.5">
@@ -58,8 +66,13 @@ export const ActivationViewer = (props: Props) => {
         </InputRow>
         <HorizontalSplitter/>
         <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
-          {activationsOfSource.map((data) => (
-            <ActivationUnit key={data.userId} control={control} data={data} button={data.buttonText}/>
+          {activations.map((data) => (
+            <ActivationUnit
+              key={data.key}
+              activationInfo={getActivationInfo(data)}
+              button={data.buttonText}
+              control={control}
+            />
           ))}
         </Grid>
       </Flex>
