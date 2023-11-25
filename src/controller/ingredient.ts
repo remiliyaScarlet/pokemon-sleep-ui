@@ -17,6 +17,10 @@ export const getIngredientData = async (id: IngredientId): Promise<Ingredient | 
   getSingleData(getCollection(), {id})
 );
 
+export const getIngredientIds = async () => {
+  return (await getCollection()).find({}, {projection: {id: 1}}).map(({id}) => id).toArray();
+};
+
 export const getAllIngredients = async (): Promise<IngredientMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };

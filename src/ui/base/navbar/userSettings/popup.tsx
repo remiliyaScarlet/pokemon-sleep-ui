@@ -27,7 +27,7 @@ type Props = UserSettingsProps & {
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
-export const UserSettingsPopup = ({session, mapIds, mealMap, show, setShow}: Props) => {
+export const UserSettingsPopup = ({session, mapIds, show, setShow, ...props}: Props) => {
   const t = useTranslations('UI.UserSettings');
   const {act} = useUserDataActor({statusToast: true});
   const [bundle, setBundleInternal] = React.useState<UserSettingsBundle>({
@@ -93,7 +93,7 @@ export const UserSettingsPopup = ({session, mapIds, mealMap, show, setShow}: Pro
             ...original,
             cooking: cloneMerge(cooking, updated),
           } satisfies UserSettingsBundle))}
-          mealMap={mealMap}
+          {...props}
         />
         <UserSettingsBonusUI
           mapIds={mapIds}

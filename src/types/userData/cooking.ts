@@ -21,6 +21,7 @@ export type UserCookingPreset = {
   target: UserCookingTarget,
   potCapacity: number,
   ingredients: FilterInclusionMap<IngredientId>,
+  unlockedIngredients: FilterInclusionMap<IngredientId>,
   showEnergy: boolean,
   showUnmakeableRecipe: boolean,
   ingredientCount: IngredientCounter,

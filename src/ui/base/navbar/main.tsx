@@ -5,6 +5,7 @@ import {getServerSession} from 'next-auth';
 import {Announcements} from '@/components/announcement/main';
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
+import {getIngredientIds} from '@/controller/ingredient';
 import {getMapIds} from '@/controller/mapMeta';
 import {getAllMealsAsMap} from '@/controller/meal';
 import {NavBarClient} from '@/ui/base/navbar/client';
@@ -20,10 +21,12 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
     session,
     mealMap,
     mapIds,
+    ingredientIds,
   ] = React.use(Promise.all([
     getServerSession(authOptions),
     getAllMealsAsMap(),
     getMapIds(),
+    getIngredientIds(),
   ]));
 
   return (
@@ -36,7 +39,13 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
       'UI.UserSettings',
       'UI.UserControl',
     ]}>
-      <NavBarClient session={session} mapIds={mapIds} mealMap={mealMap} noUserControl={noUserControl}>
+      <NavBarClient
+        noUserControl={noUserControl}
+        session={session}
+        mapIds={mapIds}
+        mealMap={mealMap}
+        ingredientIds={ingredientIds}
+      >
         {announcement && <Announcements showOn="landscape"/>}
       </NavBarClient>
     </I18nProvider>
