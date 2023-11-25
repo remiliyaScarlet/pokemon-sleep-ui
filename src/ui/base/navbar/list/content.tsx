@@ -3,10 +3,10 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
+import {AdsGap} from '@/components/ads/gap';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useNavEntries} from '@/hooks/nav';
-import {AdsGap} from '@/ui/base/gap';
 import {NavListHome} from '@/ui/base/navbar/list/entry/home';
 import {NavListEntry} from '@/ui/base/navbar/list/entry/main';
 

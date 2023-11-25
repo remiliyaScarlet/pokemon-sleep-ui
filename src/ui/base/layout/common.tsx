@@ -6,6 +6,7 @@ import {getServerSession} from 'next-auth';
 import {Toaster} from 'react-hot-toast';
 
 import {adsClientId} from '@/components/ads/const';
+import {AdsGap} from '@/components/ads/gap';
 import {Announcements} from '@/components/announcement/main';
 import {setLocale} from '@/components/i18n/exports';
 import {I18nProvider} from '@/components/i18n/provider';
@@ -13,7 +14,6 @@ import {Loading} from '@/components/icons/loading';
 import {Flex} from '@/components/layout/flex/common';
 import {DocsAutoLink} from '@/components/shared/docs/autoLink/main';
 import {authOptions} from '@/const/auth';
-import {AdsGap} from '@/ui/base/gap';
 import {AdsLayout} from '@/ui/base/layout/ads';
 import {UiPageProps} from '@/ui/base/layout/type';
 import {NavListContent} from '@/ui/base/navbar/list/content';
