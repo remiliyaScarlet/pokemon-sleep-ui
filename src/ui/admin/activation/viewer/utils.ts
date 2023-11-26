@@ -42,11 +42,11 @@ export const getActivationKeyButtonText = <TDefault>({
       return `${contact.channel[0].toUpperCase()}: ${contact.contact}`;
     }
 
-    return data.note;
+    return data.note || defaultOnNotFound;
   }
 
   if (!isActivationSource(source)) {
-    return data.note;
+    return data.note || defaultOnNotFound;
   }
 
   return activationButtonTextGetter[source](data) ?? defaultOnNotFound;
