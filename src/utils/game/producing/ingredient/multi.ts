@@ -3,8 +3,8 @@ import groupBy from 'lodash/groupBy';
 import {IngredientMap} from '@/types/game/ingredient';
 import {IngredientProduction, IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
-import {getIngredientProducingRate} from '@/utils/game/producing/ingredient';
-import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredient/level';
+import {getIngredientProducingRate} from '@/utils/game/producing/ingredient/single';
 import {getMergedItemRateOfSessions} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 

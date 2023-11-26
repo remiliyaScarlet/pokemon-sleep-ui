@@ -5,11 +5,11 @@ import {testBonus} from '@/tests/data/game/bonus';
 import {testIngredientMap} from '@/tests/data/game/ingredient/data';
 import {testIngredientProductions} from '@/tests/data/game/ingredient/production';
 import {testPokemonData} from '@/tests/data/game/pokemon';
-import {getIngredientProducingRates} from '@/utils/game/producing/ingredients';
+import {getIngredientProducingRates} from '@/utils/game/producing/ingredient/multi';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 
-describe('Pokemon Ingredients Production', () => {
+describe('Ingredient Production / Multiple', () => {
   it('is correct using general test data', () => {
     const bonus = testBonus['1'];
     const rate = getIngredientProducingRates({

@@ -12,7 +12,7 @@ import {
 } from '@/types/teamAnalysis';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
+import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 type Props = TeamAnalysisDataProps & {

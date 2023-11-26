@@ -15,7 +15,7 @@ import {groupProducingStats} from '@/ui/team/analysis/setup/utils';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {toSum} from '@/utils/array';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';

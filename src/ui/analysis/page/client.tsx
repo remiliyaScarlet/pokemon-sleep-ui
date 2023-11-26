@@ -16,7 +16,7 @@ import {AnalysisMeta} from '@/ui/analysis/page/meta';
 import {AnalysisStatsUI} from '@/ui/analysis/page/stats/main';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {getPokedexWithField} from '@/utils/game/pokemon';
-import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredient/level';
 
 
 export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {

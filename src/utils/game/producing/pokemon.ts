@@ -17,7 +17,7 @@ import {
   getTheoreticalDailyQuantityInSleep,
 } from '@/utils/game/producing/carryLimit';
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
-import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredients';
+import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredient/multi';
 import {getMainSkillProducingRate, GetMainSkillProducingRateOpts} from '@/utils/game/producing/mainSkill';
 import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';

@@ -18,7 +18,7 @@ import {PokedexLink} from '@/ui/pokedex/index/link';
 import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
 import {getPossibleIngredientsFromChain} from '@/utils/game/ingredientChain';
-import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 

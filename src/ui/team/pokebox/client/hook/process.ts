@@ -5,7 +5,7 @@ import {Pokebox, PokeInBox} from '@/types/game/pokebox';
 import {UserSettings} from '@/types/userData/settings';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,

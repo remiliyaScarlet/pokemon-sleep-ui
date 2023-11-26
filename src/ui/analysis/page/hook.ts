@@ -7,7 +7,7 @@ import {
 } from '@/components/shared/pokemon/filter/utils';
 import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
 import {AnalysisComparisonFilter} from '@/ui/analysis/page/type';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredientChain';
+import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 type UseAnalysisFilterOpts = UsePokemonFilterCommonData & {

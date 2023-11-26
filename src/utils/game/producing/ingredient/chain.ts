@@ -8,7 +8,7 @@ import {
 } from '@/types/game/pokemon/ingredient';
 import {toSum} from '@/utils/array';
 import {cartesianIterator} from '@/utils/compute';
-import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredientLevel';
+import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredient/level';
 import {isNotNullish} from '@/utils/type';
 
 

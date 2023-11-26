@@ -2,7 +2,7 @@ import {GetSkillTriggerValueCommonOpts} from '@/ui/team/mainskill/calc/type';
 import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
 import {SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';

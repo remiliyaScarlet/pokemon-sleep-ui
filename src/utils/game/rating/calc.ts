@@ -5,8 +5,8 @@ import {
   RatingResultOfLevel,
   RatingWorkerOpts,
 } from '@/types/game/pokemon/rating';
-import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getRatingValueOfBase} from '@/utils/game/rating/base';
 import {getRatingValueOfCurrent} from '@/utils/game/rating/current';
 import {getRatingValueOfPossibility} from '@/utils/game/rating/possibility';

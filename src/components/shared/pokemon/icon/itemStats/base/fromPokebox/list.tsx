@@ -14,7 +14,7 @@ import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicat
 import {PokemonProducingRateSingleAtItem} from '@/components/shared/pokemon/production/single/item';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes} from '@/styles/image';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,

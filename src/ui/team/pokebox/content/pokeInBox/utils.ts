@@ -1,6 +1,6 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredients';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,

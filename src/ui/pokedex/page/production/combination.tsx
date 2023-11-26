@@ -13,7 +13,7 @@ import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonProps} from '@/ui/pokedex/page/type';
-import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredientChain';
+import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
