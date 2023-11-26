@@ -4,7 +4,7 @@ import {MealPreparerCommonProps} from '@/ui/cooking/prepare/type';
 import {getMealPreparerIngredientStats} from '@/ui/cooking/prepare/utils';
 import {toSum} from '@/utils/array';
 import {toMealIngredientFromIngredientCounter} from '@/utils/game/cooking';
-import {getMealsIngredientsRequired} from '@/utils/game/meal/count';
+import {getMealIngredientInfo} from '@/utils/game/meal/ingredient';
 import {getMealFinalStrength, getMealFinalStrengthOfNonRecipe} from '@/utils/game/meal/main';
 import {isNotNullish} from '@/utils/type';
 
@@ -26,9 +26,9 @@ export const getMealPreparerInfoOfMealType = ({
 
   const mapBonus = calculatedSettings.bonus.map;
 
-  const required = getMealsIngredientsRequired({meals: mealsOfType, mealCount: filter.mealsWanted});
+  const {ingredientsRequired} = getMealIngredientInfo({meals: mealsOfType, mealCount: filter.mealsWanted});
   const ingredients = getMealPreparerIngredientStats({
-    required,
+    required: ingredientsRequired,
     inventory: filter.inventory,
   });
 

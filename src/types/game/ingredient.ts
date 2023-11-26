@@ -1,3 +1,6 @@
+import {MealId} from '@/types/game/meal/main';
+
+
 export type IngredientId = number;
 
 export type Ingredient = {
@@ -9,3 +12,5 @@ export type Ingredient = {
 export type IngredientMap = {[id in IngredientId]?: Ingredient};
 
 export type IngredientCounter = {[ingredient in IngredientId]?: number | null};
+
+export type IngredientOfMeals = {[ingredient in IngredientId]?: {[meal in MealId]?: number}};

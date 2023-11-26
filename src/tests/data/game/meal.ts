@@ -10,6 +10,16 @@ export const testMealData: {[id in MealId]: Meal} = {
       {id: 6, quantity: 5},
     ],
   },
+  1007: {
+    type: 1,
+    id: 1007,
+    ingredients: [
+      {id: 9, quantity: 12},
+      {id: 5, quantity: 11},
+      {id: 3, quantity: 8},
+      {id: 4, quantity: 4},
+    ],
+  },
   3006: {
     type: 3,
     id: 3006,
