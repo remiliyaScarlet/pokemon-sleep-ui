@@ -4,3 +4,9 @@ export type MealStrengthInfo = {
   strengthFinal: number,
   bonusRate: number,
 };
+
+export type MealBonusInfo = {
+  level: number,
+  rarity: number,
+  total: number,
+};

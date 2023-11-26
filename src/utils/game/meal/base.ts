@@ -1,9 +1,7 @@
 import {IngredientMap} from '@/types/game/ingredient';
 import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal} from '@/types/game/meal/main';
-import {getMealIngredientCount} from '@/utils/game/meal/count';
-import {getRecipeLevelData} from '@/utils/game/meal/level';
-import {getMealRarityBonus} from '@/utils/game/meal/rarity';
+import {getMealBonus} from '@/utils/game/meal/bonus';
 import {getMealIngredientStrength} from '@/utils/game/meal/strength';
 
 
@@ -19,16 +17,15 @@ export const getMealBaseStrength = ({
   meal,
   ingredientMap,
 }: GetMealBaseStrengthOpts): MealStrengthInfo => {
-  const rarityBonus = getMealRarityBonus(getMealIngredientCount(meal));
-  const levelBonus = 1 + getRecipeLevelData(level).bonus;
+  const bonus = getMealBonus({level, meal});
 
   const strengthBase = getMealIngredientStrength({ingredients: meal.ingredients, ingredientMap});
-  const strengthAfterRarity = Math.round(rarityBonus * strengthBase);
+  const strengthAfterRarity = Math.round(bonus.rarity * strengthBase);
 
   return {
     strengthBase,
     strengthAfterRarity,
-    strengthFinal: Math.round(strengthAfterRarity * levelBonus),
-    bonusRate: rarityBonus * levelBonus,
+    strengthFinal: Math.round(strengthAfterRarity * bonus.level),
+    bonusRate: bonus.total,
   };
 };
