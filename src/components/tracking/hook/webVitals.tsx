@@ -2,8 +2,11 @@ import {useReportWebVitals} from 'next/web-vitals';
 
 
 export const useWebVitals = () => useReportWebVitals((metric) => {
-  // Use `window.gtag` if you initialized Google Analytics as this example:
-  // https://github.com/vercel/next.js/blob/canary/examples/with-google-analytics/pages/_app.js
+  // @ts-ignore
+  if (!window.gtag) {
+    return;
+  }
+
   // @ts-ignore
   window.gtag('event', metric.name, {
     value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value), // values must be integers

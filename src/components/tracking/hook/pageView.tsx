@@ -8,6 +8,11 @@ export const usePageView = () => {
 
   React.useEffect(() => {
     // @ts-ignore
+    if (!window.gtag) {
+      return;
+    }
+
+    // @ts-ignore
     window.gtag('event', 'page_view');
   }, [pathname]);
 };
