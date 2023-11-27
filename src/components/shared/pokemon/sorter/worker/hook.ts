@@ -1,5 +1,8 @@
 import React from 'react';
 
+import isEqual from 'lodash/isEqual';
+import {useCustomCompareEffect} from 'use-custom-compare';
+
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
 import {SortingWorkerOpts} from '@/components/shared/pokemon/sorter/worker/type';
 import {useWorker} from '@/hooks/worker';
@@ -34,9 +37,11 @@ export const useSortingWorker = <TExtra, TData extends PokemonInfoWithSortingPay
     setLoading(true);
   };
 
-  React.useEffect(() => {
-    triggerSort();
-  }, triggerDeps);
+  useCustomCompareEffect(
+    triggerSort,
+    triggerDeps,
+    (prev, next) => isEqual(prev, next),
+  );
 
   return sorted;
 };
