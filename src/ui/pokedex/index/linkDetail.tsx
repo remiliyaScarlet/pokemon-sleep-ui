@@ -110,7 +110,7 @@ export const PokedexLinkDetail = React.memo(({
     level,
     snorlaxFavorite,
     calculatedSettings,
-    synergizedSettings: synergizedSettings,
+    synergizedSettings,
     dateAdded: null,
     ...getProducingRateNeutralParams({pokemon}),
   });
@@ -227,7 +227,7 @@ export const PokedexLinkDetail = React.memo(({
         <MainSkillIcon id={skill}/>
         {display === 'mainSkillDailyStrength' && <ColoredEnergyIcon alt={t2('Stats.Energy.Name')}/>}
         <div>
-          {formatFloat3(sorter)}
+          {display === 'mainSkillDailyStrength' ? formatFloat(sorter) : formatFloat3(sorter)}
         </div>
       </Flex>
     );
