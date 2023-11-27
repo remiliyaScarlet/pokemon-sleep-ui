@@ -16,10 +16,11 @@ import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/ind
 import {imageIconSizes} from '@/styles/image';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
+  getPokemonProducingParams,
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
-import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 

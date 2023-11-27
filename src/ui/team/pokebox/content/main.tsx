@@ -14,7 +14,7 @@ import {PokeInBoxViewCommonProps} from '@/ui/team/pokebox/content/pokeInBox/type
 import {PokeboxViewStatus} from '@/ui/team/pokebox/content/status';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingParams} from '@/utils/game/producing/params';
 
 
 type Props = PokeboxCommonProps & PokeInBoxViewCommonProps & {

@@ -18,7 +18,7 @@ import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingParams} from '@/utils/game/producing/params';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {

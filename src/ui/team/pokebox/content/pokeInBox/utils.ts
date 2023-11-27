@@ -2,10 +2,11 @@ import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
+  getPokemonProducingParams,
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
-import {getPokemonProducingParams, getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {toCalculatedUserSettings} from '@/utils/user/settings';

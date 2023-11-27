@@ -6,7 +6,7 @@ import {getAnalysisStatsOfContinuous} from '@/ui/analysis/page/calc/continuous';
 import {PokemonAnalysisRateInfo} from '@/ui/analysis/page/calc/producingRate/type';
 import {isRateOfPokemonSame} from '@/ui/analysis/page/calc/producingRate/utils';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingParams} from '@/utils/game/producing/params';
 
 
 export type ToAnalysisSkillTriggerProducingStatsOpts = {

@@ -1,6 +1,5 @@
-import {defaultHelperCount, defaultProducingParams} from '@/const/game/production';
-import {PokemonId} from '@/types/game/pokemon';
-import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
+import {defaultHelperCount} from '@/const/game/production';
+import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {
   PokemonProducingRate,
@@ -141,14 +140,3 @@ export const getPokemonProducingRate = ({
   };
 };
 
-type GetPokemonProducingParamsOpts = {
-  pokemonId: PokemonId,
-  pokemonProducingParamsMap: PokemonProducingParamsMap,
-};
-
-export const getPokemonProducingParams = ({
-  pokemonId,
-  pokemonProducingParamsMap,
-}: GetPokemonProducingParamsOpts): PokemonProducingParams => {
-  return pokemonProducingParamsMap[pokemonId] ?? {pokemonId, ...defaultProducingParams};
-};

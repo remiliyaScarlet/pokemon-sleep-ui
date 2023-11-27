@@ -1,8 +1,9 @@
-import {defaultNeutralOpts, helpingBonusStackOfFullTeam} from '@/const/game/production';
+import {defaultNeutralOpts, defaultProducingParams, helpingBonusStackOfFullTeam} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
-import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
+import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {ProducingRateImplicitParams, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
@@ -82,4 +83,16 @@ export const getProducingRateImplicitParamsFromPokeInbox = ({
     seeds: seeds ?? defaultSeedUsage,
     evolutionCount,
   };
+};
+
+type GetPokemonProducingParamsOpts = {
+  pokemonId: PokemonId,
+  pokemonProducingParamsMap: PokemonProducingParamsMap,
+};
+
+export const getPokemonProducingParams = ({
+  pokemonId,
+  pokemonProducingParamsMap,
+}: GetPokemonProducingParamsOpts): PokemonProducingParams => {
+  return pokemonProducingParamsMap[pokemonId] ?? {pokemonId, ...defaultProducingParams};
 };

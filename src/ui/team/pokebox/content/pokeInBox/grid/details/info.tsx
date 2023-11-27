@@ -9,7 +9,7 @@ import {PokemonIngredientRate} from '@/components/shared/pokemon/production/para
 import {PokemonSleepTypeIcon} from '@/components/shared/pokemon/sleepType/icon';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingParams} from '@/utils/game/producing/params';
 
 
 export const PokeInBoxGridInfo = ({pokemon, pokemonProducingParamsMap, pokeInBox}: PokeInBoxCommonProps) => {

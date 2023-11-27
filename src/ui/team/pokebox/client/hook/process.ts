@@ -7,10 +7,10 @@ import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {
+  getPokemonProducingParams,
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
-import {getPokemonProducingParams} from '@/utils/game/producing/pokemon';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {isNotNullish} from '@/utils/type';
 import {toCalculatedUserSettings} from '@/utils/user/settings';
