@@ -2,7 +2,6 @@ import {durationOfDay} from '@/const/common';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
-import {ProduceType} from '@/types/game/producing/common';
 import {
   ProducingRateCommonParams,
   ProducingRateOfItem,
@@ -19,7 +18,6 @@ import {getProducingRateBase} from '@/utils/game/producing/rateBase';
 
 type ApplyMainSkillSleepingCapOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
-  produceType: ProduceType,
   producingState: ProducingState,
   timeToFullPack: number,
   sleepDurations: number[],
@@ -28,7 +26,6 @@ type ApplyMainSkillSleepingCapOpts<T extends ProducingRateOfItem | null> = {
 
 export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | null>({
   bonus,
-  produceType,
   producingState,
   timeToFullPack,
   sleepDurations,
@@ -41,7 +38,7 @@ export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | n
   const {stamina} = bonus;
   const staminaBonus = stamina[producingState];
 
-  const energyMultiplier = getEnergyMultiplier({produceType, bonus});
+  const energyMultiplier = getEnergyMultiplier({bonus});
 
   const frequency = Math.max(
     data.frequency / staminaBonus,
@@ -51,7 +48,7 @@ export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | n
 
   return {
     ...data,
-    frequency: frequency,
+    frequency,
     quantity,
     energy: data.energy * quantity * energyMultiplier,
   };
@@ -88,7 +85,6 @@ export const getMainSkillProducingRate = ({
     id,
     sleep: applyBonusWithMainSkillCapping({
       bonus,
-      produceType: 'skill',
       producingState: 'sleep',
       data: {
         id,
@@ -102,7 +98,6 @@ export const getMainSkillProducingRate = ({
     }),
     awake: applyBonus({
       bonus,
-      produceType: 'skill',
       producingState: 'awake',
       data: {
         id,

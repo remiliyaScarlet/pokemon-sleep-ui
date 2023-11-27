@@ -23,7 +23,7 @@ describe('Ingredient Production / Multiple', () => {
 
     const awakeFreq = 2920.2 / bonus.stamina.awake;
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'ingredient', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate[0].id).toBe(5);
     expect(rate[0].awake.id).toBe(5);

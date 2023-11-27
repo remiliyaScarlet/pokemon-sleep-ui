@@ -46,13 +46,11 @@ export const getIngredientProducingRate = ({
     id: ingredient.id,
     sleep: applyBonus({
       bonus,
-      produceType: 'ingredient',
       producingState: 'sleep',
       data,
     }),
     awake: applyBonus({
       bonus,
-      produceType: 'ingredient',
       producingState: 'awake',
       data,
     }),

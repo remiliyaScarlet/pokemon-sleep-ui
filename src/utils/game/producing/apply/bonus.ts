@@ -1,5 +1,4 @@
 import {EffectiveBonus} from '@/types/game/bonus';
-import {ProduceType} from '@/types/game/producing/common';
 import {ProducingRateOfItem} from '@/types/game/producing/rate';
 import {ProducingState} from '@/types/game/producing/state';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
@@ -7,14 +6,12 @@ import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 type ApplyBonusOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
-  produceType: ProduceType,
   producingState: ProducingState,
   data: T,
 };
 
 export const applyBonus = <T extends ProducingRateOfItem | null>({
   bonus,
-  produceType,
   producingState,
   data,
 }: ApplyBonusOpts<T>): T => {
@@ -25,7 +22,7 @@ export const applyBonus = <T extends ProducingRateOfItem | null>({
   const {stamina} = bonus;
   const staminaBonus = stamina[producingState];
 
-  const energyMultiplier = getEnergyMultiplier({produceType, bonus});
+  const energyMultiplier = getEnergyMultiplier({bonus});
 
   return {
     ...data,

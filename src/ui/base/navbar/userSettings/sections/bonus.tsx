@@ -5,7 +5,6 @@ import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCirc
 
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
-import {IngredientBonusSlider} from '@/components/shared/production/bonus/ingredient';
 import {MapBonusSlider} from '@/components/shared/production/bonus/map';
 import {OverallBonusSlider} from '@/components/shared/production/bonus/overall';
 import {UserBonus} from '@/types/game/bonus';
@@ -24,10 +23,6 @@ type Props = {
 export const UserSettingsBonusUI = ({mapIds, bonus, setBonus, currentMap, setCurrentMap}: Props) => {
   return (
     <UserSettingsSection titleIcon={<ArrowUpCircleIcon/>}>
-      <IngredientBonusSlider value={bonus.ingredient} setValue={(ingredient) => setBonus({
-        ...bonus,
-        ingredient,
-      })}/>
       <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2">
         {mapIds.map((mapId) => (
           <MapBonusSlider

@@ -22,7 +22,6 @@ export const toEffectiveBonus = ({settings, skillTriggers}: ToEffectiveBonusOpts
   });
 
   return {
-    ingredient: bonus.ingredient,
     map: bonus.map[settings.currentMap] ?? defaultMapBonus,
     stamina: staminaEfficiency,
     overall: bonus.overall,

@@ -24,7 +24,7 @@ describe('Pokemon Berry Production', () => {
     const awakeFreq = 2920.2 / bonus.stamina.awake;
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
     const berryEnergy = 63;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'berry', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(testPokemonData.absol.berry.id);
     expect(rate.awake.id).toBe(testPokemonData.absol.berry.id);

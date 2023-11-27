@@ -9,7 +9,6 @@ export const defaultMapBonus = 0;
 export const defaultUserBonus: UserBonus = {
   overall: 0,
   map: {},
-  ingredient: 20,
 };
 
 export const defaultRecoveryRate: StaminaRecoveryRateConfig = {

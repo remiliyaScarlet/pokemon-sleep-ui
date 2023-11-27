@@ -41,13 +41,11 @@ export const getBerryProducingRate = ({
     id: pokemon.berry.id,
     sleep: applyBonus({
       bonus,
-      produceType: 'berry',
       producingState: 'sleep',
       data,
     }),
     awake: applyBonus({
       bonus,
-      produceType: 'berry',
       producingState: 'awake',
       data,
     }),

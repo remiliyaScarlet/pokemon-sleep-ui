@@ -26,7 +26,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 14400
     const awakeFreq = 3168 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -56,7 +56,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 14400
     const awakeFreq = 3168 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -86,7 +86,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 21600
     const awakeFreq = 4752 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -116,7 +116,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 21600
     const awakeFreq = 4752 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -146,7 +146,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 28800
     const awakeFreq = 6336 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -176,7 +176,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 28800
     const awakeFreq = 6336 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({produceType: 'skill', bonus});
+    const energyMultiplier = getEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
