@@ -11,8 +11,8 @@ import {recipeMaxLevel} from '@/const/game/meal';
 import {imageGallerySizes} from '@/styles/image';
 import {IngredientMap} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
-import {getMealBaseStrength} from '@/utils/game/meal/base';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
+import {getMealBaseStrength} from '@/utils/game/meal/strength/base';
 
 
 type Props = {

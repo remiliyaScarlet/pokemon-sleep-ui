@@ -2,7 +2,7 @@ import {IngredientMap} from '@/types/game/ingredient';
 import {MealStrengthInfo} from '@/types/game/meal/info';
 import {Meal} from '@/types/game/meal/main';
 import {getMealBonus} from '@/utils/game/meal/bonus';
-import {getMealIngredientStrength} from '@/utils/game/meal/strength';
+import {getMealIngredientStrength} from '@/utils/game/meal/strength/utils';
 
 
 export type GetMealBaseStrengthOpts = {

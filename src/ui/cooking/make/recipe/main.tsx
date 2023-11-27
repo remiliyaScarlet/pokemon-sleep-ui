@@ -3,7 +3,7 @@ import React from 'react';
 import {Grid} from '@/components/layout/grid';
 import {MealMakerRecipeSingle} from '@/ui/cooking/make/recipe/single';
 import {MealMakerCommonProps, MealMakerRecipeData} from '@/ui/cooking/make/type';
-import {getMealFinalStrength} from '@/utils/game/meal/main';
+import {getMealFinalStrength} from '@/utils/game/meal/strength/final';
 
 
 export const MealMakerRecipe = ({meals, ...props}: MealMakerCommonProps) => {

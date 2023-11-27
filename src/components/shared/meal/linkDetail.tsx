@@ -8,7 +8,7 @@ import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/icon
 import {MealLinkProps} from '@/components/shared/meal/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {formatMealStrengthInfo} from '@/utils/game/meal/format';
-import {getMealFinalStrength} from '@/utils/game/meal/main';
+import {getMealFinalStrength} from '@/utils/game/meal/strength/final';
 
 
 export const MealLinkDetail = (props: MealLinkProps) => {

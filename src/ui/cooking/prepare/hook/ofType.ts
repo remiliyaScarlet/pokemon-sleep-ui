@@ -5,7 +5,7 @@ import {getMealPreparerIngredientStats} from '@/ui/cooking/prepare/utils';
 import {toSum} from '@/utils/array';
 import {toMealIngredientFromIngredientCounter} from '@/utils/game/cooking';
 import {getMealIngredientInfo} from '@/utils/game/meal/ingredient';
-import {getMealFinalStrength, getMealFinalStrengthOfNonRecipe} from '@/utils/game/meal/main';
+import {getMealFinalStrength, getMealFinalStrengthOfNonRecipe} from '@/utils/game/meal/strength/final';
 import {isNotNullish} from '@/utils/type';
 
 

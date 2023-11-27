@@ -2,7 +2,7 @@ import {describe, expect, it} from '@jest/globals';
 
 import {testIngredientMap} from '@/tests/data/game/ingredient/data';
 import {testMealData} from '@/tests/data/game/meal';
-import {getMealFinalStrength} from '@/utils/game/meal/main';
+import {getMealFinalStrength} from '@/utils/game/meal/strength/final';
 
 
 describe('Meal / Calculate Final Strength', () => {
