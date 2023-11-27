@@ -6,6 +6,7 @@ import {useTranslations} from 'next-intl';
 import {FilterIconInput} from '@/components/input/filter/preset/icon';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 import {UserCookingByMealType} from '@/ui/base/navbar/userSettings/sections/cooking/mealType';
@@ -32,6 +33,11 @@ export const UserSettingsCooking = (props: UserSettingsCookingCommonProps) => {
       <PotCapacityInput
         isActive={(potCapacity) => potCapacity === cookingPreset.potCapacity}
         onClick={(potCapacity) => setCookingPreset({potCapacity})}
+      />
+      <MealTypeInput
+        mealTypes={mealTypes}
+        isActive={(mealType) => mealType === cookingPreset.mealType}
+        onClick={(mealType) => setCookingPreset({mealType})}
       />
       <FilterIconInput
         idToAlt={(id) => t2(`Food.${id}`)}
