@@ -9,6 +9,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
@@ -16,9 +17,9 @@ import {locales} from '@/types/next/locale';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokedexClient} from '@/ui/pokedex/index/client';
-import {PokedexClientCommonProps, PokedexData, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
+import {PokedexData, PokedexDataProps, PokemonInfoForPokedex} from '@/ui/pokedex/index/type';
 import {getI18nTranslator, isLocale} from '@/utils/i18n';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 const getPokedexData = async (): Promise<PokedexData> => {
@@ -48,6 +49,7 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     ingredientMap,
     ingredientChainMap,
     mainSkillMap,
+    mealMap,
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
@@ -58,10 +60,11 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
     getIngredientChainMap(),
     getMainSkillMap(),
+    getAllMealsAsMap(),
     getAllMapMeta(),
   ]);
 
-  const props: PokedexClientCommonProps = {
+  const props: PokedexDataProps = {
     pokedex,
     pokemonProducingParamsMap,
     maxLevel,
@@ -69,10 +72,11 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
     ingredientMap,
     ingredientChainMap,
     mainSkillMap,
+    mealMap,
     mapMeta,
     preloaded: {
-      settings: createUserSettings(session?.user.preloaded.settings),
       display: session?.user.preloaded.pokedex,
+      bundle: createUserSettingsBundle(session),
     },
   };
 

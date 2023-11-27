@@ -9,24 +9,30 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {IngredientIconsFromMeal} from '@/components/shared/meal/ingredients/iconsFromMeal';
 import {recipeMaxLevel} from '@/const/game/meal';
 import {imageGallerySizes} from '@/styles/image';
-import {IngredientMap} from '@/types/game/ingredient';
-import {Meal} from '@/types/game/meal/main';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
+import {MealMap} from '@/types/game/meal/main';
+import {getCookableMeals} from '@/utils/game/meal/cookable';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
 import {getMealBaseStrength} from '@/utils/game/meal/strength/base';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = {
-  cookableMeals: Meal[],
+  mealMap: MealMap,
   ingredientMap: IngredientMap,
+  ingredientId: IngredientId,
 };
 
-export const IngredientCookableMeals = ({cookableMeals, ingredientMap}: Props) => {
+export const IngredientCookableMeals = ({mealMap, ingredientMap, ingredientId}: Props) => {
   const t = useTranslations('Game.Food');
   const t2 = useTranslations('UI.InPage.Cooking');
 
   return (
     <Flex direction="row" center wrap className="info-section">
-      {cookableMeals
+      {getCookableMeals({
+        meals: Object.values(mealMap).filter(isNotNullish),
+        ingredientId,
+      })
         .sort((a, b) => (
           getMealBaseStrength({level: recipeMaxLevel, meal: a, ingredientMap}).strengthFinal -
           getMealBaseStrength({level: recipeMaxLevel, meal: b, ingredientMap}).strengthFinal

@@ -4,7 +4,7 @@ import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/sha
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
-import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBundle} from '@/types/userData/settings';
 import {PokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
@@ -22,7 +22,7 @@ export type PokeInBoxPopupProps = {
 };
 
 export type PokeInBoxViewCommonProps = {
-  settings: UserSettings,
+  bundle: UserSettingsBundle,
   setEditingPokeInBox: React.Dispatch<React.SetStateAction<PokeInBoxEditorState | undefined>>,
 };
 

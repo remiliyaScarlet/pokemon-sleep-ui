@@ -10,11 +10,11 @@ import {formatMealStrengthInfo} from '@/utils/game/meal/format';
 import {getMealFinalStrength} from '@/utils/game/meal/strength/final';
 
 
-export const MealExp = ({meal, ingredientMap, calculatedSettings}: MealCommonProps) => {
+export const MealExp = ({meal, ingredientMap, translatedSettings}: MealCommonProps) => {
   const t = useTranslations('UI.InPage.Cooking');
   const [level, setLevel] = React.useState(1);
 
-  const mapBonus = calculatedSettings.bonus.map;
+  const mapBonus = translatedSettings.bonus.map;
   const info = React.useMemo(() => getMealFinalStrength({
     filler: [],
     level,

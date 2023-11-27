@@ -4,10 +4,10 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
-import {useUserSettings} from '@/hooks/userData/settings/main';
-import {UserSettings} from '@/types/userData/settings';
+import {useUserSettingsBundle} from '@/hooks/userData/bundle';
+import {UserSettingsBundle} from '@/types/userData/settings';
+import {useTeamProducingStats} from '@/ui/team/analysis/calcHook/main';
 import {TeamAnalysisSetupControl} from '@/ui/team/analysis/setup/control';
-import {useProducingStats} from '@/ui/team/analysis/setup/hook';
 import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/setup/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/setup/summary/main';
 import {TeamAnalysisTeamView} from '@/ui/team/analysis/setup/team/main';
@@ -16,8 +16,8 @@ import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {DeepPartial} from '@/utils/type';
 
 
-type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'settings'> & {
-  settings: DeepPartial<UserSettings> | undefined,
+type Props = TeamAnalysisDataProps & Omit<TeamAnalysisFilledProps, 'showPokemon' | 'bundle'> & {
+  bundleFromClient: DeepPartial<UserSettingsBundle> | undefined,
 };
 
 export const TeamAnalysisSetupView = (props: Props) => {
@@ -25,17 +25,19 @@ export const TeamAnalysisSetupView = (props: Props) => {
     setup,
     setSetup,
     snorlaxRankData,
-    preloadedSettings,
-    settings,
+    preloaded,
+    bundleFromClient,
   } = props;
 
-  const userSettings = useUserSettings({
-    server: preloadedSettings,
-    client: settings,
+  const bundle = useUserSettingsBundle({
+    bundle: {
+      server: preloaded,
+      client: bundleFromClient,
+    },
   });
-  const statsOfTeam = useProducingStats({
+  const statsOfTeam = useTeamProducingStats({
     ...props,
-    settings: userSettings,
+    bundle,
   });
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
@@ -47,7 +49,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
           {...props}
           showPokemon={showPokemon}
           statsOfTeam={statsOfTeam}
-          settings={userSettings}
+          bundle={bundle}
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
         <AdsUnit/>

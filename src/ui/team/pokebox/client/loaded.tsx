@@ -36,7 +36,7 @@ export const PokeboxLoadedClient = (props: Props) => {
   const [editingPokeInBox, setEditingPokeInBox] = React.useState<PokeInBoxEditorState>();
 
   const {
-    settings,
+    bundle,
     filter,
     setFilter,
     processedPokebox,
@@ -126,7 +126,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         filter={filter}
         setFilter={setFilter}
         loading={loading}
-        settings={settings}
+        bundle={bundle}
         totalPokeInBox={processedPokebox.length}
         processedPokebox={processedPokebox}
         setEditingPokeInBox={setEditingPokeInBox}

@@ -20,8 +20,8 @@ import {isPokedexSortExclusion} from '@/components/shared/pokemon/sorter/utils';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {imageSmallIconSizes} from '@/styles/image';
 import {PokedexLinkProps} from '@/ui/pokedex/index/type';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
@@ -36,6 +36,7 @@ export const PokedexLinkDetail = React.memo(({
   ingredients,
   snorlaxFavorite,
   calculatedSettings,
+  synergizedSettings,
 }: PokedexLinkProps) => {
   const {
     id,
@@ -109,6 +110,7 @@ export const PokedexLinkDetail = React.memo(({
     level,
     snorlaxFavorite,
     calculatedSettings,
+    synergizedSettings: synergizedSettings,
     dateAdded: null,
     ...getProducingRateNeutralParams({pokemon}),
   });
@@ -155,7 +157,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'ingredientCount') {
-    const {ingredient} = getPokemonProducingRate({
+    const {ingredient} = getPokemonProducingRateSingle({
       level,
       pokemon,
       pokemonProducingParams,
@@ -165,6 +167,7 @@ export const PokedexLinkDetail = React.memo(({
       skillData: mainSkillMap[pokemon.skill],
       snorlaxFavorite: {},
       ...calculatedSettings,
+      ...synergizedSettings,
       ...getProducingRateNeutralParams({pokemon}),
     });
 

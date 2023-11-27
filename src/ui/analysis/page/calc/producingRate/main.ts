@@ -5,8 +5,8 @@ import {toAnalysisTotalProducingStats} from '@/ui/analysis/page/calc/producingRa
 import {PokemonAnalysisRateInfo} from '@/ui/analysis/page/calc/producingRate/type';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getPokemonProducingParams, getProducingRateNeutralParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 
 
 export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): AnalysisStats['producingRate'] => {
@@ -25,7 +25,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
     pokemonId: pokemon.id,
     pokemonProducingParamsMap,
   });
-  const currentRate = getPokemonProducingRate({
+  const currentRate = getPokemonProducingRateSingle({
     ...opts,
     pokemonProducingParams: currentPokemonProducingParams,
     berryData: berryDataMap[pokemon.berry.id],
@@ -39,7 +39,7 @@ export const getAnalysisStatsOfProducingRate = (opts: GetAnalysisStatsOpts): Ana
   })].map((otherIngredients): PokemonAnalysisRateInfo => ({
     pokemon: otherPokemon,
     productions: otherIngredients,
-    rate: getPokemonProducingRate({
+    rate: getPokemonProducingRateSingle({
       // `opts` has to be the first because `pokemon`, `berryData`, `ingredients` have to be overridden
       ...opts,
       pokemon: otherPokemon,

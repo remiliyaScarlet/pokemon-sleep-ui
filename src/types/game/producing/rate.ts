@@ -1,6 +1,8 @@
+import {BerryId} from '@/types/game/berry';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {IngredientId} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {MainSkillId} from '@/types/game/pokemon/mainSkill';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SeedUsage} from '@/types/game/pokemon/seed';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
@@ -8,6 +10,7 @@ import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {ProducingState, ProducingStateOfRate} from '@/types/game/producing/state';
+import {Indexable} from '@/utils/type';
 
 
 export type ProducingRate<T = number> = {
@@ -49,7 +52,7 @@ export type ProducingRateImplicitParams = {
 };
 
 export type ProducingRateCommonParams = {
-  level: number
+  level: number,
   pokemon: PokemonInfo,
   frequency: number,
   bonus: EffectiveBonus,
@@ -63,4 +66,22 @@ export type PokemonProducingRate = {
   berry: ProducingRateOfStates,
   ingredient: {[ingredientId in IngredientId]: ProducingRateOfStates},
   skill: ProducingRateOfStates,
+};
+
+export type PokemonProducingRateWithPayload<TPayload> = {
+  rate: PokemonProducingRate,
+  payload: TPayload,
+};
+
+export type PokemonProducingRateFinal<TPayload> = {
+  rates: PokemonProducingRateWithPayload<TPayload>[],
+  grouped: GroupedPokemonProducingRate,
+};
+
+export type GroupedProducingRate<TId extends Indexable> = {[id in TId]?: ProducingRate};
+
+export type GroupedPokemonProducingRate = {
+  berry: GroupedProducingRate<BerryId>,
+  ingredient: GroupedProducingRate<IngredientId>,
+  skill: GroupedProducingRate<MainSkillId>,
 };

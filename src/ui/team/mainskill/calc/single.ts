@@ -3,11 +3,12 @@ import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/ty
 import {SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getPokemonProducingParams, getProducingRateSingleParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
-import {toCalculatedUserSettings} from '@/utils/user/settings';
+import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
+import {toSynergizedUserSettings} from '@/utils/user/settings/synergized';
 
 
 type GetSkillTriggerValueOfUnitOpts = GetSkillTriggerValueCommonOpts & {
@@ -23,7 +24,8 @@ export const getSkillTriggerValueOfUnit = ({
   ingredientMap,
   mainSkillMap,
   subSkillMap,
-  settings,
+  mealMap,
+  bundle,
   id,
   unit,
   baseValue,
@@ -55,13 +57,17 @@ export const getSkillTriggerValueOfUnit = ({
     subSkillMap,
   });
 
-  const rate = getPokemonProducingRate({
+  const rate = getPokemonProducingRateSingle({
     // `unit` could have `pokemon` from Poke-in-box, therefore it should always be at the top
     ...unit,
     ...singleParams,
     ...toCalculatedUserSettings({
-      settings,
+      ...bundle,
       recoveryRate: toRecoveryRate(singleParams),
+    }),
+    ...toSynergizedUserSettings({
+      ...bundle,
+      mealMap,
     }),
     pokemon,
     snorlaxFavorite: {},

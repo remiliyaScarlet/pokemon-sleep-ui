@@ -5,7 +5,7 @@ import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
-import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBundle} from '@/types/userData/settings';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 
 
@@ -14,7 +14,7 @@ type ToRatingRequestOpts = {
   pokemon: PokemonInfo,
   snorlaxFavorite: SnorlaxFavorite,
   specialtyId: PokemonSpecialtyId | null,
-  settings: UserSettings,
+  bundle: UserSettingsBundle,
 };
 
 export const toRatingSetup = ({member, specialtyId, ...opts}: ToRatingRequestOpts): RatingSetupData => ({

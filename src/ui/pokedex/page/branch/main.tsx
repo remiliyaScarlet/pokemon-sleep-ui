@@ -7,11 +7,11 @@ import ShareIcon from '@heroicons/react/24/outline/ShareIcon';
 import {UsePokemonLinkPopupReturn} from '@/components/shared/pokemon/linkPopup/type';
 import {PokemonBranchPortrait} from '@/ui/pokedex/page/branch/portrait';
 import {PokemonTitledLayout} from '@/ui/pokedex/page/layout/titled';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = PokemonProps & UsePokemonLinkPopupReturn;
+type Props = PokemonDataProps & UsePokemonLinkPopupReturn;
 
 export const PokemonBranches = ({pokemon, pokemonBranches, pokedex, ...props}: Props) => {
   if (!pokemonBranches) {

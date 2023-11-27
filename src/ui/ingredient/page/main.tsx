@@ -12,7 +12,7 @@ import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients, getIngredientData} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getMealByIngredient} from '@/controller/meal';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByIngredient} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -22,7 +22,7 @@ import {IngredientMeta} from '@/ui/ingredient/page/meta';
 import {IngredientPokemonProduction} from '@/ui/ingredient/page/pokemon';
 import {IngredientCookableMeals} from '@/ui/ingredient/page/recipe';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 type Props = {
@@ -47,8 +47,8 @@ export const IngredientPage = async ({params}: Props) => {
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokedex,
-    cookableMeals,
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
@@ -59,8 +59,8 @@ export const IngredientPage = async ({params}: Props) => {
     getIngredientChainMap(),
     getMainSkillMap(),
     getSubSkillMap(),
+    getAllMealsAsMap(),
     getPokemonAsMap(),
-    getMealByIngredient(ingredient.id),
     getPokemonMaxLevelByBerry(),
   ]);
 
@@ -73,13 +73,15 @@ export const IngredientPage = async ({params}: Props) => {
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (
     <PublicPageLayout locale={locale}>
       <Flex className="gap-1.5 md:flex-row">
         <IngredientMeta {...ingredient}/>
-        <IngredientCookableMeals cookableMeals={cookableMeals} ingredientMap={ingredientMap}/>
+        <IngredientCookableMeals mealMap={mealMap} ingredientMap={ingredientMap} ingredientId={ingredient.id}/>
       </Flex>
       <AdsUnit/>
       <I18nProvider locale={locale} namespaces={[
@@ -92,7 +94,6 @@ export const IngredientPage = async ({params}: Props) => {
         <IngredientPokemonProduction
           pokemonMaxLevel={pokemonMaxLevel}
           ingredient={ingredient}
-          preloadedSettings={createUserSettings(session?.user.preloaded.settings)}
           {...props}
         />
       </I18nProvider>

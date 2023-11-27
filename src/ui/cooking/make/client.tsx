@@ -4,7 +4,7 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {useMealMakerFilter} from '@/ui/cooking/make/hook';
@@ -13,12 +13,13 @@ import {MealMakerRecipe} from '@/ui/cooking/make/recipe/main';
 import {MealMakerCommonProps, MealMakerFilter} from '@/ui/cooking/make/type';
 import {toCookingPreset} from '@/ui/cooking/make/utils';
 import {subtractIngredientCount} from '@/utils/game/cooking';
+import {isNotNullish} from '@/utils/type';
 
 
 export const MealMakerClient = (props: CookingServerDataProps) => {
   const {
-    meals,
     ingredientMap,
+    mealMap,
     preloaded,
   } = props;
 
@@ -28,13 +29,17 @@ export const MealMakerClient = (props: CookingServerDataProps) => {
     isIncluded,
   } = useMealMakerFilter(props);
   const {actAsync, session, status} = useUserDataActor();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloaded.settings,
-    client: session.data?.user.preloaded.settings,
+  const {calculatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: session.data?.user.preloaded,
+    },
+    mealMap,
   });
 
-  const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
+  const meals = Object.values(mealMap).filter(isNotNullish);
   const mealTypes = usePossibleMealTypes(meals);
+  const validMeals = React.useMemo(() => meals.filter(({id}) => isIncluded[id]), [filter]);
 
   const commonProps: MealMakerCommonProps = {
     filter,

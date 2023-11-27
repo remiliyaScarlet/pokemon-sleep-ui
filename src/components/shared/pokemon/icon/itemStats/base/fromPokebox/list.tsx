@@ -15,12 +15,12 @@ import {PokemonProducingRateSingleAtItem} from '@/components/shared/pokemon/prod
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {imageIconSizes} from '@/styles/image';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {
   getPokemonProducingParams,
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
@@ -35,6 +35,7 @@ export const PokemonItemStatsFromPokeboxList = ({
   pokedex,
   pokemonProducingParamsMap,
   berryDataMap,
+  translatedSettings,
   pokeInBoxList,
   filter,
   reCalcDeps,
@@ -66,7 +67,7 @@ export const PokemonItemStatsFromPokeboxList = ({
           ...props,
           ...pokeInBox,
         });
-        const pokemonRate = getPokemonProducingRate({
+        const pokemonRate = getPokemonProducingRateSingle({
           ...props,
           level: pokeInBox.level,
           pokemon,
@@ -77,6 +78,7 @@ export const PokemonItemStatsFromPokeboxList = ({
           snorlaxFavorite: {},
           ...singleParams,
           ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
+          ...translatedSettings,
           berryData: berryDataMap[pokemon.berry.id],
           ingredients,
           skillData: mainSkillMap[pokemon.skill],

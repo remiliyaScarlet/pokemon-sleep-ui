@@ -10,7 +10,7 @@ import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getSingleMeal} from '@/controller/meal';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByIngredientIds} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -18,7 +18,7 @@ import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealClient} from '@/ui/meal/page/client';
 import {MealServerDataProps} from '@/ui/meal/page/type';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 type Props = {
@@ -27,7 +27,8 @@ type Props = {
 
 export const MealPage = async ({params}: Props) => {
   const {id, locale} = params;
-  const meal = await getSingleMeal(Number(id));
+  const mealMap = await getAllMealsAsMap();
+  const meal = mealMap[parseInt(id)];
 
   if (!meal) {
     return <Failed text="Meal"/>;
@@ -66,9 +67,10 @@ export const MealPage = async ({params}: Props) => {
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokemonIngredientProductionMap,
     pokemonMaxLevel,
-    preloadedSettings: createUserSettings(session?.user.preloaded?.settings),
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (

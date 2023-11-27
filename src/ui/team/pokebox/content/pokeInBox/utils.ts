@@ -1,15 +1,15 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {
   getPokemonProducingParams,
   getProducingRateImplicitParamsFromPokeInbox,
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
-import {toCalculatedUserSettings} from '@/utils/user/settings';
+import {toTranslatedSettings} from '@/utils/user/settings/translated';
 
 
 export const toRatingWorkerOpts = ({
@@ -21,8 +21,9 @@ export const toRatingWorkerOpts = ({
   ingredientChainMap,
   mainSkillMap,
   subSkillMap,
+  mealMap,
   snorlaxFavorite,
-  settings,
+  bundle,
   ratingBasis,
 }: PokeInBoxCommonProps): RatingWorkerOpts => {
   const {
@@ -44,12 +45,13 @@ export const toRatingWorkerOpts = ({
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     snorlaxFavorite,
     level,
     ingredients,
     subSkill,
     nature,
-    settings,
+    bundle,
     basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
     friendshipLevel: 0,
     ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
@@ -66,7 +68,8 @@ export const getRateOfPokemon = ({
   const {
     pokemon,
     pokemonProducingParamsMap,
-    settings,
+    mealMap,
+    bundle,
   } = props;
   const {level, ingredients} = pokeInBox;
   const {id, berry, skill} = pokemon;
@@ -77,12 +80,13 @@ export const getRateOfPokemon = ({
     helpingBonusSimulateOnSelf: true,
   });
 
-  return getPokemonProducingRate({
+  return getPokemonProducingRateSingle({
     ...props,
     ...singleParams,
     ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
-    ...toCalculatedUserSettings({
-      settings,
+    ...toTranslatedSettings({
+      ...bundle,
+      mealMap,
       recoveryRate: toRecoveryRate(singleParams),
     }),
     level: pokeInBox.level,

@@ -4,7 +4,7 @@ import {v4} from 'uuid';
 
 import {AdsUnit} from '@/components/ads/main';
 import {TeamAnalysisComp, TeamAnalysisConfig, TeamAnalysisSetup} from '@/types/teamAnalysis';
-import {UserSettings} from '@/types/userData/settings';
+import {UserSettingsBundle} from '@/types/userData/settings';
 import {useTeamAnalysisPokemonFilter} from '@/ui/team/analysis/hook';
 import {TeamAnalysisPokemonFilterUI} from '@/ui/team/analysis/input/main';
 import {TeamAnalysisSetupView} from '@/ui/team/analysis/setup/main';
@@ -18,13 +18,13 @@ import {DeepPartial, isNotNullish} from '@/utils/type';
 
 
 type Props = TeamAnalysisDataProps & {
-  settings: DeepPartial<UserSettings> | undefined,
+  bundleFromClient: DeepPartial<UserSettingsBundle> | undefined,
 };
 
 export const TeamAnalysisLoadedClient = (props: Props) => {
   const {
     pokedexMap,
-    preloaded,
+    data,
   } = props;
   const pokemonList = Object.values(pokedexMap).filter(isNotNullish);
 
@@ -39,12 +39,12 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
         current: initialCompUuid,
         version: 1,
       },
-      override: preloaded?.config ?? null,
+      override: data?.config ?? null,
       migrators: teamAnalysisConfigMigrators,
       migrateParams: {},
     });
 
-    const compsToMigrate = preloaded?.comps ?? [generateEmptyTeam(initialCompUuid)];
+    const compsToMigrate = data?.comps ?? [generateEmptyTeam(initialCompUuid)];
     const comps: TeamAnalysisComp[] = compsToMigrate.map((team) => migrate({
       original: generateEmptyTeam(team.uuid),
       override: team,
@@ -60,7 +60,7 @@ export const TeamAnalysisLoadedClient = (props: Props) => {
   const [setup, setSetup] = React.useState<TeamAnalysisSetup>(initialSetup);
   const currentTeam = getCurrentTeam({setup});
   const {filter, setFilter, isIncluded} = useTeamAnalysisPokemonFilter({
-    data: pokemonList,
+    pokemonList,
     ...props,
   });
 

@@ -5,33 +5,30 @@ import {getServerSession} from 'next-auth';
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
 import {getAllIngredients} from '@/controller/ingredient';
-import {getAllMeals} from '@/controller/meal';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {MealIndexClient} from '@/ui/meal/index/client';
 import {MealDataProps} from '@/ui/meal/index/type';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 export const MealIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
-    meals,
-    ingredientMap,
     session,
+    mealMap,
+    ingredientMap,
   ] = await Promise.all([
-    getAllMeals(),
-    getAllIngredients(),
     getServerSession(authOptions),
+    getAllMealsAsMap(),
+    getAllIngredients(),
   ]);
 
   const props: MealDataProps = {
-    meals,
+    mealMap,
     ingredientMap,
-    preloaded: {
-      cooking: session?.user.preloaded.cooking,
-      settings: createUserSettings(session?.user.preloaded.settings),
-    },
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (

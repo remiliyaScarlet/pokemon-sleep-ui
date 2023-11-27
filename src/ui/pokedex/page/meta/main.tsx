@@ -18,10 +18,10 @@ import {specialtyTextClassDefault} from '@/styles/game/specialty';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonMeta = (props: PokemonProps) => {
+export const PokemonMeta = (props: PokemonDataProps) => {
   const {pokemon, pokemonProducingParams} = props;
   const {specialty, sleepType, skill} = pokemon;
 

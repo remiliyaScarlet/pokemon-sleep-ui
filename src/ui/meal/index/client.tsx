@@ -7,21 +7,27 @@ import {useSession} from 'next-auth/react';
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
 import {MealLink} from '@/components/shared/meal/link';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {useMealFilter} from '@/ui/meal/index/hook';
 import {MealInput} from '@/ui/meal/index/input/main';
 import {MealDataProps} from '@/ui/meal/index/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
+import {isNotNullish} from '@/utils/type';
 
 
-export const MealIndexClient = ({meals, ingredientMap, preloaded}: MealDataProps) => {
-  const {settings, cooking} = preloaded;
+export const MealIndexClient = ({mealMap, ingredientMap, preloaded}: MealDataProps) => {
+  const {cooking} = preloaded;
 
   const {data: session} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: settings,
-    client: session?.user.preloaded.settings,
+  const {calculatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: session?.user.preloaded,
+    },
+    mealMap,
   });
+
+  const meals = Object.values(mealMap).filter(isNotNullish);
   const mealFilterProps = useMealFilter({
     data: meals,
     preloaded: cooking,

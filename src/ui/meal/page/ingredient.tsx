@@ -10,8 +10,7 @@ import {MealIngredientSectionProps} from '@/ui/meal/page/type';
 
 export const MealIngredientSection = ({
   meal,
-  preloadedSettings,
-  calculatedSettings,
+  translatedSettings,
   ingredient,
   pokemonLevel,
   ingredientProductionMapOfLevel,
@@ -34,7 +33,7 @@ export const MealIngredientSection = ({
         ingredient={ingredientMap[id]}
         pokemonIngredientProduction={ingredientProductionMapOfLevel[id] ?? []}
         hidePokebox
-        {...calculatedSettings}
+        translatedSettings={translatedSettings}
         {...props}
       />
     </CollapsibleFull>

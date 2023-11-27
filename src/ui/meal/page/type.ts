@@ -10,10 +10,14 @@ import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {
+  SynergizedSettingsRequiredData,
+  TranslatedUserSettings,
+  UserSettingsBundle,
+} from '@/types/userData/settings';
 
 
-export type MealServerDataProps = {
+export type MealServerDataProps = SynergizedSettingsRequiredData & {
   meal: Meal,
   pokedex: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
@@ -24,11 +28,11 @@ export type MealServerDataProps = {
   subSkillMap: SubSkillMap,
   pokemonIngredientProductionMap: PokemonIngredientProductionMap,
   pokemonMaxLevel: number,
-  preloadedSettings: UserSettings,
+  preloaded: UserSettingsBundle,
 };
 
 export type MealCommonProps = MealServerDataProps & {
-  calculatedSettings: CalculatedUserSettings,
+  translatedSettings: TranslatedUserSettings,
 };
 
 export type MealIngredientSectionProps = MealCommonProps & {

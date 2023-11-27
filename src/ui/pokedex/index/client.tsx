@@ -10,19 +10,19 @@ import {LazyLoad} from '@/components/layout/lazyLoad';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {usePokedexFilter} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
-import {PokedexClientCommonProps} from '@/ui/pokedex/index/type';
+import {PokedexDataProps} from '@/ui/pokedex/index/type';
 import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
 import {getPossibleIngredientsFromChain} from '@/utils/game/ingredientChain';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getPokemonProducingParams, getProducingRateNeutralParams} from '@/utils/game/producing/params';
 
 
-export const PokedexClient = (props: PokedexClientCommonProps) => {
+export const PokedexClient = (props: PokedexDataProps) => {
   const {
     pokedex,
     pokemonProducingParamsMap,
@@ -30,6 +30,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ingredientChainMap,
     ingredientMap,
     mainSkillMap,
+    mealMap,
     preloaded,
   } = props;
 
@@ -41,12 +42,15 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
     ...props,
   });
 
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloaded.settings,
-    client: session?.user.preloaded.settings,
+  const {calculatedSettings, synergizedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded.bundle,
+      client: session?.user.preloaded,
+    },
+    mealMap,
   });
 
-  const sortingDeps = [filter, calculatedSettings];
+  const sortingDeps = [filter, calculatedSettings, synergizedSettings];
 
   const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
@@ -59,6 +63,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
       dateAdded: null,
       extra: null,
       calculatedSettings,
+      synergizedSettings: synergizedSettings,
       ...getProducingRateNeutralParams({pokemon}),
     };
     const chain = ingredientChainMap[pokemon.ingredientChain];
@@ -139,6 +144,7 @@ export const PokedexClient = (props: PokedexClientCommonProps) => {
                 snorlaxFavorite={filter.snorlaxFavorite}
                 ingredients={source.ingredients}
                 calculatedSettings={calculatedSettings}
+                synergizedSettings={synergizedSettings}
                 {...props}
               />
             );

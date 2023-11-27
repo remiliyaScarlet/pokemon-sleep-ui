@@ -11,7 +11,7 @@ export const TeamAnalysisPokemonPopupContent = ({
 }: TeamAnalysisPokemonPopupCommonProps) => {
   const {
     stats,
-    settings,
+    bundle,
     pokemon,
   } = props;
   const {type} = state.control;
@@ -24,7 +24,7 @@ export const TeamAnalysisPokemonPopupContent = ({
     return (
       <PokemonProducingStatsPopupContent
         rate={stats}
-        settings={settings}
+        settings={bundle.settings}
         calculatedSettings={stats.calculatedSettings}
         specialty={pokemon.specialty}
       />

@@ -12,14 +12,14 @@ type UseSkillTriggerAnalysisCalculatedReturn = {
 export const useSkillTriggerAnalysisCalculated = (
   opts: GetSkillTriggerValueOfTargetsOpts,
 ): UseSkillTriggerAnalysisCalculatedReturn => {
-  const {state, settings} = opts;
+  const {state, bundle} = opts;
 
   const [units, setUnits] = React.useState(getSkillTriggerValueOfTargets(opts));
 
   // Recalculate when `state` changes
   React.useEffect(
     () => setUnits(getSkillTriggerValueOfTargets(opts)),
-    [state, settings],
+    [state, bundle],
   );
 
   const sort = React.useCallback(
@@ -29,7 +29,7 @@ export const useSkillTriggerAnalysisCalculated = (
         b.skillTriggerValue.actual - a.skillTriggerValue.actual
       )),
     ]),
-    [units, state, settings],
+    [units, state, bundle],
   );
 
   return {units, sort};

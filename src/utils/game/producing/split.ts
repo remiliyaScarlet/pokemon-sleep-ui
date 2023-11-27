@@ -7,7 +7,7 @@ import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/spl
 import {UserCalculationBehavior} from '@/types/userData/settings';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
-import {isFullPack} from '@/utils/user/settings';
+import {isFullPack} from '@/utils/user/settings/utils';
 
 
 export type GetProduceSplitOpts = {

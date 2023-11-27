@@ -6,14 +6,14 @@ import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {GenericBerryIcon} from '@/components/shared/icon/berry';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
+import {GroupedPokemonProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
 import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisCategorySummary} from '@/ui/team/analysis/setup/summary/grouped/category';
-import {TeamProducingStatsGrouped} from '@/ui/team/analysis/setup/type';
 
 
 type Props = {
-  grouped: TeamProducingStatsGrouped,
+  grouped: GroupedPokemonProducingRate,
 };
 
 export const TeamAnalysisGroupedSummary = ({grouped}: Props) => {

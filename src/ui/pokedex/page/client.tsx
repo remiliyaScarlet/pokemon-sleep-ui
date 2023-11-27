@@ -9,10 +9,10 @@ import {PokemonEvolution} from '@/ui/pokedex/page/evolution/main';
 import {PokemonMeta} from '@/ui/pokedex/page/meta/main';
 import {PokemonProduction} from '@/ui/pokedex/page/production/main';
 import {PokemonSleepStyles} from '@/ui/pokedex/page/sleepStyle/main';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonClient = (props: PokemonProps) => {
+export const PokemonClient = (props: PokemonDataProps) => {
   const {pokemonBranches} = props;
 
   const pokemonLinkPopup = usePokemonLinkPopup();

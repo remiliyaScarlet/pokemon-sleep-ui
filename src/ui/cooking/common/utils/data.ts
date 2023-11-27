@@ -2,25 +2,25 @@ import {getServerSession} from 'next-auth';
 
 import {authOptions} from '@/const/auth';
 import {getAllIngredients} from '@/controller/ingredient';
-import {getAllMeals} from '@/controller/meal';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
-import {toCookingPreloadedData} from '@/ui/cooking/common/utils/main';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 export const getCookingServerDataProps = async (): Promise<CookingServerDataProps> => {
   const [
     session,
-    meals,
+    mealMap,
     ingredientMap,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getAllMeals(),
+    getAllMealsAsMap(),
     getAllIngredients(),
   ]);
 
   return {
-    meals,
+    mealMap,
     ingredientMap,
-    preloaded: toCookingPreloadedData(session),
+    preloaded: createUserSettingsBundle(session),
   };
 };

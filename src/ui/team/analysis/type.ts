@@ -11,12 +11,12 @@ import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxRankInMap} from '@/types/game/snorlax';
 import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserLazyLoadedData} from '@/types/userData/main';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
 export type TeamAnalysisPokemonFilter = PokemonInputFilter;
 
-export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
+export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & SynergizedSettingsRequiredData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
@@ -26,11 +26,11 @@ export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & {
   mapMeta: FieldMetaMap,
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,
-  preloadedSettings: UserSettings,
+  preloaded: UserSettingsBundle,
 };
 
 export type TeamAnalysisDataProps = TeamAnalysisServerDataProps & {
-  preloaded: UserLazyLoadedData['teamAnalysis'],
+  data: UserLazyLoadedData['teamAnalysis'],
   maxEvolutionCount: number,
 };
 

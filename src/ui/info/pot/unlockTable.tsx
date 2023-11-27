@@ -4,7 +4,7 @@ import {useSession} from 'next-auth/react';
 
 import {Flex} from '@/components/layout/flex/common';
 import potCapacity from '@/data/potCapacity.json';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {Meal} from '@/types/game/meal/main';
 import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
 import {PotRecipeUnlockSection} from '@/ui/info/pot/unlockSection';
@@ -16,14 +16,17 @@ type Props = Omit<PotInfoDataProps, 'meals'> & {
   validMeals: Meal[],
 };
 
-export const PotRecipeUnlockTable = ({filter, validMeals, ...props}: Props) => {
+export const PotRecipeUnlockTable = ({mealMap, filter, validMeals, ...props}: Props) => {
   const {preloaded} = props;
   const {capacity, showEmpty} = filter;
 
   const {data: session} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloaded.settings,
-    client: session?.user.preloaded.settings,
+  const {calculatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: session?.user.preloaded,
+    },
+    mealMap,
   });
 
   const sortedMeals = validMeals.sort((a, b) => {

@@ -17,7 +17,7 @@ export type UserCookingTargetOfType = {[meal in UserCookingMeal]?: MealId | null
 export type UserCookingTarget = {[mealType in MealTypeId]?: UserCookingTargetOfType};
 
 export type UserCookingPreset = {
-  mealType: MealTypeId | null,
+  mealType: MealTypeId,
   target: UserCookingTarget,
   potCapacity: number,
   ingredients: FilterInclusionMap<IngredientId>,

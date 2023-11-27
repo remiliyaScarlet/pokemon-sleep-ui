@@ -12,9 +12,9 @@ import {ProducingState} from '@/types/game/producing/state';
 import {getMainSkillEquivalentStrengthOfSingle} from '@/utils/game/mainSkill/effect/main';
 import {GetMainSkillEquivalentStrengthOpts} from '@/utils/game/mainSkill/effect/type';
 import {getSkillTriggerRate} from '@/utils/game/mainSkill/utils';
-import {applyBonus} from '@/utils/game/producing/apply';
+import {applyBonus} from '@/utils/game/producing/apply/bonus';
 import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
-import {getProducingRateBase} from '@/utils/game/producing/rate';
+import {getProducingRateBase} from '@/utils/game/producing/rateBase';
 
 
 type ApplyMainSkillSleepingCapOpts<T extends ProducingRateOfItem | null> = {

@@ -4,8 +4,8 @@ import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProducingRateCommonParams, ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {toSum} from '@/utils/array';
-import {applyBonus} from '@/utils/game/producing/apply';
-import {getProducingRateBase} from '@/utils/game/producing/rate';
+import {applyBonus} from '@/utils/game/producing/apply/bonus';
+import {getProducingRateBase} from '@/utils/game/producing/rateBase';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
 

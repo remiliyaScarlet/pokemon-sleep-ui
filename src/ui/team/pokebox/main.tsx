@@ -9,6 +9,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
@@ -16,7 +17,7 @@ import {DefaultPageProps} from '@/types/next/page/common';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
 import {PokeboxClient} from '@/ui/team/pokebox/client/main';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 const Pokebox = async () => {
@@ -29,6 +30,7 @@ const Pokebox = async () => {
     ingredientMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     mapMeta,
     pokemonMaxLevel,
   ] = await Promise.all([
@@ -40,6 +42,7 @@ const Pokebox = async () => {
     getAllIngredients(),
     getMainSkillMap(),
     getSubSkillMap(),
+    getAllMealsAsMap(),
     getAllMapMeta(),
     getPokemonMaxLevelByBerry(),
   ]);
@@ -52,9 +55,10 @@ const Pokebox = async () => {
     ingredientMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     mapMeta,
     preloaded: {
-      settings: createUserSettings(session?.user.preloaded.settings),
+      bundle: createUserSettingsBundle(session),
       display: session?.user.preloaded.pokeboxDisplay,
     },
     pokemonMaxLevel,

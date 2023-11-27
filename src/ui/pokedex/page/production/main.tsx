@@ -10,30 +10,34 @@ import {FlexLink} from '@/components/layout/flex/link';
 import {NextImage} from '@/components/shared/common/image/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {imageIconSizes} from '@/styles/image';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
 import {PokemonProductionCombination} from '@/ui/pokedex/page/production/combination';
 import {PokemonIngredientPossibilities} from '@/ui/pokedex/page/production/ingredient/possibility';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonProduction = (props: PokemonProps) => {
+export const PokemonProduction = (props: PokemonDataProps) => {
   const {
     pokemon,
     berryData,
     ingredientChainMap,
-    preloadedSettings,
+    mealMap,
+    preloaded,
   } = props;
   const {specialty, berry, ingredientChain} = pokemon;
 
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloadedSettings,
-    client: data?.user.preloaded.settings,
+  const {translatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: data?.user.preloaded,
+    },
+    mealMap,
   });
 
   const t = useTranslations('Game');
@@ -65,7 +69,7 @@ export const PokemonProduction = (props: PokemonProps) => {
         <PokemonProductionCombination
           level={level}
           chain={chain}
-          calculatedSettings={calculatedSettings}
+          translatedSettings={translatedSettings}
           {...props}
         />
       </PokemonMetaSection>

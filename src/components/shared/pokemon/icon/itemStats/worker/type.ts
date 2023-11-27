@@ -4,10 +4,11 @@ import {PokedexMap, PokemonIngredientProduction} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {TranslatedUserSettings} from '@/types/userData/settings';
 
 
-export type PokemonItemStatsWorkerOpts = CalculatedUserSettings & {
+export type PokemonItemStatsWorkerOpts = {
+  level: number,
   pokedex: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   pokemonIngredientProduction: PokemonIngredientProduction[],
@@ -15,5 +16,5 @@ export type PokemonItemStatsWorkerOpts = CalculatedUserSettings & {
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
   mainSkillMap: MainSkillMap,
-  level: number,
+  translatedSettings: TranslatedUserSettings,
 };

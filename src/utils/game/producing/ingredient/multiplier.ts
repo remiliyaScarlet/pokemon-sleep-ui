@@ -7,7 +7,7 @@ import {getMealIngredientInfo} from '@/utils/game/meal/ingredient';
 import {getIngredientBonusOfMeals} from '@/utils/game/producing/ingredient/bonus';
 
 
-type GetIngredientMultiplierOpts = {
+export type GetIngredientMultiplierOpts = {
   production: IngredientCounter,
   targetMeals: Meal[],
   recipeLevel: RecipeLevel,

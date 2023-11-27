@@ -1,7 +1,7 @@
 import {PokemonSorterGetterOpts} from '@/components/shared/pokemon/sorter/type';
 import {PokemonProducingRate, ProducingRateOfStates, ProducingValueOfStates} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {KeysOfType} from '@/utils/type';
 
 
@@ -9,11 +9,13 @@ export const getPokemonRateSorter = ({
   berryData,
   snorlaxFavorite,
   calculatedSettings,
+  synergizedSettings,
   ...opts
 }: PokemonSorterGetterOpts): PokemonProducingRate => {
-  return getPokemonProducingRate({
+  return getPokemonProducingRateSingle({
     ...opts,
     ...calculatedSettings,
+    ...synergizedSettings,
     snorlaxFavorite,
     berryData,
     noCap: true,

@@ -7,16 +7,16 @@ import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
 
 
 export type PokeInBoxChangeableProps = {
-  settings: UserSettings,
+  bundle: UserSettingsBundle,
   snorlaxFavorite: SnorlaxFavorite,
 };
 
-export type PokeInBoxCommonProps = PokeInBoxChangeableProps & {
+export type PokeInBoxCommonProps = PokeInBoxChangeableProps & SynergizedSettingsRequiredData & {
   pokeInBox: PokeInBox,
   pokemon: PokemonInfo,
   pokemonProducingParamsMap: PokemonProducingParamsMap,

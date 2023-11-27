@@ -7,30 +7,32 @@ import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {Ingredient} from '@/types/game/ingredient';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
-import {UserSettings} from '@/types/userData/settings';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
 
 
 type Props = IngredientProductionDataProps & {
   pokemonMaxLevel: number,
   ingredient: Ingredient,
-  preloadedSettings: UserSettings,
 };
 
 export const IngredientPokemonProduction = ({
+  mealMap,
+  preloaded,
   pokemonMaxLevel,
   ingredient,
-  preloadedSettings,
   ...props
 }: Props) => {
   const [level, setLevel] = React.useState(1);
   const {data} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloadedSettings,
-    client: data?.user.preloaded.settings,
+  const {translatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: data?.user.preloaded,
+    },
+    mealMap,
   });
 
   return (
@@ -45,7 +47,7 @@ export const IngredientPokemonProduction = ({
       <PokemonIngredientStats
         level={level}
         ingredient={ingredient}
-        {...calculatedSettings}
+        translatedSettings={translatedSettings}
         {...props}
       />
     </Flex>

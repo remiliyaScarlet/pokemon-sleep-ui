@@ -8,9 +8,10 @@ import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {SynergizedSettingsRequiredData} from '@/types/userData/settings';
 
 
-export type RatingResultProps = {
+export type RatingResultProps = SynergizedSettingsRequiredData & {
   pokemon: PokemonInfo,
   pokemonProducingParams: PokemonProducingParams,
   request: RatingRequest | undefined,

@@ -15,8 +15,9 @@ import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon
 import {PokemonProducingStatsItemLayout} from '@/components/shared/pokemon/production/stats/item';
 import {PokemonProducingStatsCommonProps} from '@/components/shared/pokemon/production/stats/type';
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
+import {applyMultiplierTargets} from '@/types/game/producing/apply';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
-import {applyStaminaMultiplierToPokemonRate} from '@/utils/game/producing/apply';
+import {applyMultiplierToPokemonRate} from '@/utils/game/producing/apply/multiplier';
 import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
@@ -40,8 +41,9 @@ export const PokemonProducingStatsOfState = ({
   targetMultiplier,
 }: Props) => {
   if (targetMultiplier) {
-    rate = applyStaminaMultiplierToPokemonRate({
+    rate = applyMultiplierToPokemonRate({
       rate,
+      target: [...applyMultiplierTargets],
       multiplier: {
         original: calculatedSettings.bonus.stamina.awake,
         target: targetMultiplier,

@@ -4,14 +4,14 @@ import {useWorker} from '@/hooks/worker';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {TranslatedUserSettings} from '@/types/userData/settings';
 import {AnalysisStats, GetAnalysisStatsOpts} from '@/ui/analysis/page/calc/type';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 
 
-type Props =
-  Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloadedSettings'> &
-  CalculatedUserSettings & {
+type UseCalculationWorkerOpts =
+  Omit<AnalysisPageCommonProps, 'pokemonList' | 'mapMeta' | 'preloaded'> &
+  TranslatedUserSettings & {
     level: number,
     ingredients: IngredientProduction[],
     pokemonToAnalyze: PokemonInfo[],
@@ -29,9 +29,12 @@ export const useCalculationWorker = ({
   ingredientChainMap,
   mainSkillMap,
   sleepStyleMap,
+  mealMap,
   bonus,
   sleepDurations,
   behavior,
+  targetMeals,
+  recipeLevel,
   level,
   ingredients,
   pokemonToAnalyze,
@@ -39,7 +42,7 @@ export const useCalculationWorker = ({
   setStats,
   setLoading,
   calculateDeps,
-}: Props) => {
+}: UseCalculationWorkerOpts) => {
   const {work} = useWorker<GetAnalysisStatsOpts, AnalysisStats>({
     workerName: 'Analysis Calculator',
     generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
@@ -59,9 +62,12 @@ export const useCalculationWorker = ({
       ingredientChainMap,
       mainSkillMap,
       sleepStyleMap,
+      mealMap,
       bonus,
       sleepDurations,
       behavior,
+      targetMeals,
+      recipeLevel,
       level,
       ingredients,
       pokemonList: pokemonToAnalyze,

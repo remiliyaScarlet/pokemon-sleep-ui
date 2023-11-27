@@ -37,6 +37,7 @@ export const RatingResultOfLevelUI = ({
   ingredientMap,
   mainSkillMap,
   subSkillMap,
+  mealMap,
 }: Props) => {
   const [loading, setLoading] = React.useState(false);
   const collapsible = useCollapsible();
@@ -51,6 +52,7 @@ export const RatingResultOfLevelUI = ({
       ingredientMap,
       mainSkillMap,
       subSkillMap,
+      mealMap,
     },
   });
 

@@ -19,9 +19,7 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
     ingredientChainMap,
     mainSkillMap,
     level,
-    behavior,
-    bonus,
-    sleepDurations,
+    translatedSettings,
   } = opts;
 
   const [
@@ -57,9 +55,7 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
       ingredientChainMap,
       mainSkillMap,
       level,
-      bonus,
-      sleepDurations,
-      behavior,
+      translatedSettings,
     });
     if (setLoading) {
       setLoading(true);
@@ -68,7 +64,7 @@ export const usePokemonProducingStats = ({setLoading, ...opts}: UsePokemonProduc
 
   React.useEffect(() => {
     calculate();
-  }, [level, bonus, sleepDurations, pokemonIngredientProduction]);
+  }, [level, translatedSettings, pokemonIngredientProduction]);
 
   return producingStats;
 };

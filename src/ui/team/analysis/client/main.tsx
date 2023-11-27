@@ -19,9 +19,9 @@ export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
       loadingText="Team"
       content={(data, session) => (
         <TeamAnalysisLoadedClient
-          preloaded={data?.teamAnalysis}
+          data={data?.teamAnalysis}
           maxEvolutionCount={maxEvolutionCount}
-          settings={session.data?.user.preloaded.settings}
+          bundleFromClient={session.data?.user.preloaded}
           {...props}
         />
       )}

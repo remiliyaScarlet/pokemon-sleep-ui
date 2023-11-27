@@ -18,7 +18,7 @@ type Props = PokeInBoxViewUnitProps & {
 export const PokeInBoxOpenRatingButton = ({
   pokeInBox,
   snorlaxFavorite,
-  settings,
+  bundle,
   pokemon,
   setRatingPopupControl,
 }: Props) => {
@@ -31,7 +31,7 @@ export const PokeInBoxOpenRatingButton = ({
       snorlaxFavorite,
       basis: getDefaultRatingBasis(pokemon.specialty),
       friendshipLevel: 0,
-      settings,
+      bundle,
       ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
     })}>
       <GenericIconLarger src="/images/generic/search.png" alt={t('Rating.Title')}/>

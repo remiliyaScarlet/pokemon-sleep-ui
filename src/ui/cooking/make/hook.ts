@@ -6,13 +6,14 @@ import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {generateCookingCommonFilter} from '@/ui/cooking/common/utils/main';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {getMealIngredientCount} from '@/utils/game/meal/count';
+import {isNotNullish} from '@/utils/type';
 
 
-export const useMealMakerFilter = ({meals, preloaded}: CookingServerDataProps) => {
+export const useMealMakerFilter = ({mealMap, preloaded}: CookingServerDataProps) => {
   const preloadedCooking = preloaded.cooking;
 
   return useFilterInput<MealMakerFilter, Meal, MealId>({
-    data: meals,
+    data: Object.values(mealMap).filter(isNotNullish),
     dataToId: ({id}) => id,
     initialFilter: {
       ...generateCookingCommonFilter(preloadedCooking),

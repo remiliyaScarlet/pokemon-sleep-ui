@@ -8,7 +8,7 @@ import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {FriendshipLevelOfGoldLock, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
 export const ratingBasis = [
@@ -52,7 +52,7 @@ export type RatingOnDeskState = PokemonOnDeskState & {
 };
 
 export type RatingSetupData = Omit<RatingOnDeskState, 'origin'> & {
-  settings: UserSettings,
+  bundle: UserSettingsBundle,
 };
 
 export type RatingRequest = {
@@ -60,7 +60,7 @@ export type RatingRequest = {
   timestamp: number,
 };
 
-export type RatingOpts = {
+export type RatingOpts = SynergizedSettingsRequiredData & {
   level: number,
   pokemon: PokemonInfo | undefined,
   pokemonProducingParams: PokemonProducingParams,

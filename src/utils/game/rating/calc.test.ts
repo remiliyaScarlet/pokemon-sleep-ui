@@ -2,12 +2,13 @@ import {describe, expect, it} from '@jest/globals';
 
 import {defaultProducingParams} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
-import {defaultUserSettings} from '@/const/user/settings';
+import {defaultUserSettingsBundle} from '@/const/user/bundle';
 import {testBerryDataMap} from '@/tests/data/game/berry';
 import {testIngredientChainMap} from '@/tests/data/game/ingredient/chain';
 import {testIngredientMap} from '@/tests/data/game/ingredient/data';
 import {testIngredientProductionAtLevels} from '@/tests/data/game/ingredient/productionAtLevel';
 import {testMainSkillMap} from '@/tests/data/game/mainSkill';
+import {testMealData} from '@/tests/data/game/meal';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testSubSkillMap} from '@/tests/data/game/subSkill';
 import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
@@ -34,9 +35,10 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       mainSkillMap: testMainSkillMap,
       subSkillMap: {},
+      mealMap: testMealData,
       basis: 'totalProduction',
       friendshipLevel: 0,
-      settings: defaultUserSettings,
+      bundle: defaultUserSettingsBundle,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -62,9 +64,10 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       mainSkillMap: testMainSkillMap,
       subSkillMap: testSubSkillMap,
+      mealMap: testMealData,
       basis: 'totalProduction',
       friendshipLevel: 0,
-      settings: defaultUserSettings,
+      bundle: defaultUserSettingsBundle,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -90,9 +93,10 @@ describe('Rating / Calculate', () => {
       ingredientMap: testIngredientMap,
       mainSkillMap: testMainSkillMap,
       subSkillMap: testSubSkillMap,
+      mealMap: testMealData,
       basis: 'totalProduction',
       friendshipLevel: 0,
-      settings: defaultUserSettings,
+      bundle: defaultUserSettingsBundle,
     });
 
     expect(result?.baseDiffPercent).toBe(0);

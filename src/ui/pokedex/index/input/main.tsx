@@ -21,11 +21,11 @@ import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
 import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexClientCommonProps, PokedexFilter} from '@/ui/pokedex/index/type';
+import {PokedexDataProps, PokedexFilter} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
 
 
-type Props = PokedexInputProps & PokedexClientCommonProps;
+type Props = PokedexInputProps & PokedexDataProps;
 
 export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
   const {filter, setFilter, preloaded} = props;

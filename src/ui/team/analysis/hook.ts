@@ -6,15 +6,15 @@ import {TeamAnalysisPokemonFilter} from '@/ui/team/analysis/type';
 
 
 type UseTeamAnalysisPokemonFilterOpts = UsePokemonFilterCommonData & {
-  data: PokemonInfo[],
+  pokemonList: PokemonInfo[],
 };
 
 export const useTeamAnalysisPokemonFilter = ({
-  data,
+  pokemonList,
   ...filterData
 }: UseTeamAnalysisPokemonFilterOpts) => {
   return useFilterInput<TeamAnalysisPokemonFilter, PokemonInfo, PokemonId>({
-    data,
+    data: pokemonList,
     dataToId: ({id}) => id,
     initialFilter: generatePokemonInputFilter(),
     isDataIncluded: (filter, pokemon) => {

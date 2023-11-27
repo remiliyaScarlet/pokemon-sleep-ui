@@ -14,7 +14,12 @@ import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/po
 import {SleepStyleNormal} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {
+  CalculatedUserSettings,
+  SynergizedSettingsRequiredData,
+  SynergizedUserSettings,
+  UserSettingsBundle,
+} from '@/types/userData/settings';
 import {PokedexDisplayType} from '@/ui/pokedex/index/input/type';
 
 
@@ -34,7 +39,7 @@ export type PokedexFilter = PokemonInputFilterExtended & PokedexDisplay & {
   name: string,
 };
 
-export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
+export type PokedexDataProps = UsePokemonFilterCommonData & SynergizedSettingsRequiredData & {
   pokedex: PokedexData,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   maxLevel: number,
@@ -44,14 +49,15 @@ export type PokedexClientCommonProps = UsePokemonFilterCommonData & {
   mapMeta: FieldMetaMap,
   preloaded: {
     display: Partial<PokedexDisplay> | undefined,
-    settings: UserSettings,
+    bundle: UserSettingsBundle,
   }
 };
 
-export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexClientCommonProps & {
+export type PokedexLinkProps = Pick<PokedexFilter, 'display' | 'level'> & PokedexDataProps & {
   pokemon: PokemonInfo,
   pokemonProducingParams: PokemonProducingParams,
   snorlaxFavorite: SnorlaxFavorite,
   ingredients: IngredientProduction[],
+  synergizedSettings: SynergizedUserSettings,
   calculatedSettings: CalculatedUserSettings,
 };

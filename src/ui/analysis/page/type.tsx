@@ -2,19 +2,20 @@ import {PokemonInputFilterExtended, UsePokemonFilterCommonData} from '@/componen
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
+import {MealMap} from '@/types/game/meal/main';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
 export type AnalysisComparisonFilter = PokemonInputFilterExtended & {
   ingredients: IngredientProductionAtLevels,
 };
 
-export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
+export type AnalysisPageCommonProps = UsePokemonFilterCommonData & SynergizedSettingsRequiredData & {
   pokemonList: PokemonInfo[],
   pokemon: PokemonInfo,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
@@ -22,6 +23,7 @@ export type AnalysisPageCommonProps = UsePokemonFilterCommonData & {
   berryDataMap: BerryDataMap,
   mainSkillMap: MainSkillMap,
   sleepStyleMap: SleepStyleNormalMap,
+  mealMap: MealMap,
   mapMeta: FieldMetaMap,
-  preloadedSettings: UserSettings,
+  preloaded: UserSettingsBundle,
 };

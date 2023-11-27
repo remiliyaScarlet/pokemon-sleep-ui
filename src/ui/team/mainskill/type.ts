@@ -9,7 +9,7 @@ import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrTranslationsForPokemonInfo} from '@/types/ocr/extracted/pokemon';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
 export type SkillTriggerOnDeskState = PokemonOnDeskState & {
@@ -25,7 +25,7 @@ export type SkillTriggerAnalysisUnit = PokemonConfigPokemonData & {
   show: boolean,
 };
 
-export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
+export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & SynergizedSettingsRequiredData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   mainSkillMap: MainSkillMap,
@@ -33,13 +33,13 @@ export type SkillTriggerAnalysisServerDataProps = UsePokemonFilterCommonData & {
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   pokemonMaxLevel: number,
-  preloadedSettings: UserSettings,
   ocrTranslations: OcrTranslationsForPokemonInfo,
+  preloaded: UserSettingsBundle,
 };
 
 export type SkillTriggerAnalysisDataProps =
   SkillTriggerAnalysisServerDataProps &
   PokemonComplexFilterDataProps &
   PokemonOnDeskDataProps & {
-    settings: UserSettings,
+    bundle: UserSettingsBundle,
   };

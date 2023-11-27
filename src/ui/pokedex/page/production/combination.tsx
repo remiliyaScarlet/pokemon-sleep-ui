@@ -10,18 +10,18 @@ import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {TranslatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
-type Props = PokemonProps & {
+type Props = PokemonDataProps & {
   level: number,
-  calculatedSettings: CalculatedUserSettings,
+  translatedSettings: TranslatedUserSettings,
   chain: IngredientChain,
 };
 
@@ -29,7 +29,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const {
     level,
     pokemon,
-    calculatedSettings,
+    translatedSettings,
     mainSkillMap,
   } = props;
   const skillData = mainSkillMap[pokemon.skill];
@@ -39,12 +39,12 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
       {[...generatePossibleIngredientProductions({level, chain})].map((ingredients) => {
         const productionKeys = ingredients.map(({id}) => id).join('-');
 
-        const rate = getPokemonProducingRate({
+        const rate = getPokemonProducingRateSingle({
           ingredients,
           snorlaxFavorite: {},
           skillData,
           ...getProducingRateNeutralParams({pokemon}),
-          ...calculatedSettings,
+          ...translatedSettings,
           ...props,
         });
         const {berry, ingredient} = rate;

@@ -15,7 +15,7 @@ import {PotInfoDataProps, PotInfoFilter, PotLevelInfo} from '@/ui/info/pot/type'
 import {formatInt} from '@/utils/number/format';
 
 
-type Props = Omit<PotInfoDataProps, 'meals'> & {
+type Props = Omit<PotInfoDataProps, 'mealMap'> & {
   filter: PotInfoFilter,
   cumulativeCost: number,
   potInfo: PotLevelInfo,

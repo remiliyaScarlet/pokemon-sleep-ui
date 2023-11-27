@@ -1,8 +1,8 @@
 import {RecipeLevel} from '@/types/game/cooking';
 import {IngredientCounter, IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealsMarked} from '@/types/game/meal/main';
+import {MealsMarked} from '@/types/game/meal/main';
 import {UserPreloadedData} from '@/types/userData/main';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettings, UserSettingsBundle} from '@/types/userData/settings';
 
 
 export type CookingPreloadedData = {
@@ -10,10 +10,9 @@ export type CookingPreloadedData = {
   settings: UserSettings,
 };
 
-export type CookingServerDataProps = {
-  meals: Meal[],
+export type CookingServerDataProps = SynergizedSettingsRequiredData & {
   ingredientMap: IngredientMap,
-  preloaded: CookingPreloadedData,
+  preloaded: UserSettingsBundle,
 };
 
 export type CookingCommonFilter = {

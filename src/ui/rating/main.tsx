@@ -10,6 +10,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
@@ -18,7 +19,7 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {RatingClient} from '@/ui/rating/client';
 import {RatingServerDataProps} from '@/ui/rating/type';
 import {getOcrTranslationsForPokemonInfo} from '@/utils/ocr/translations/pokemon';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 export const Rating = async ({params}: DefaultPageProps) => {
@@ -31,6 +32,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     berryDataMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     mapMeta,
     pokemonMaxLevel,
     session,
@@ -43,6 +45,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
     getAllBerryData(),
     getMainSkillMap(),
     getSubSkillMap(),
+    getAllMealsAsMap(),
     getAllMapMeta(),
     getPokemonMaxLevelByBerry(),
     getServerSession(authOptions),
@@ -57,10 +60,11 @@ export const Rating = async ({params}: DefaultPageProps) => {
     berryDataMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     mapMeta,
     pokemonMaxLevel,
-    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
     ocrTranslations,
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (

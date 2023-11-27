@@ -1,13 +1,13 @@
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
 import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getRatingBasisValue} from '@/utils/game/rating/basis';
 import {ratingCalculationNoCap} from '@/utils/game/rating/const';
 import {GetRatingValueOfSimulationOpts} from '@/utils/game/rating/type';
 import {getHelpingBonusSimulateOnSelf} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
-import {toCalculatedUserSettings} from '@/utils/user/settings';
+import {toTranslatedSettings} from '@/utils/user/settings/translated';
 
 
 type GetRatingValueOfPossibilityOpts = Omit<
@@ -26,7 +26,8 @@ export const getRatingValueOfPossibility = ({override, ...opts}: GetRatingValueO
     level,
     basis,
     subSkillMap,
-    settings,
+    mealMap,
+    bundle,
   } = opts;
   const {nature, subSkill, ingredients} = override;
 
@@ -40,12 +41,13 @@ export const getRatingValueOfPossibility = ({override, ...opts}: GetRatingValueO
 
   return getRatingBasisValue({
     ...opts,
-    rate: getPokemonProducingRate({
+    rate: getPokemonProducingRateSingle({
       ...opts,
       ingredients,
       ...singleParams,
-      ...toCalculatedUserSettings({
-        settings,
+      ...toTranslatedSettings({
+        ...bundle,
+        mealMap,
         recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,

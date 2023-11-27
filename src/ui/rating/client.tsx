@@ -9,7 +9,7 @@ import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/sel
 import {RatingFriendshipLevel} from '@/components/shared/pokemon/rating/friendship/main';
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
-import {useUserSettings} from '@/hooks/userData/settings/main';
+import {useUserSettingsBundle} from '@/hooks/userData/bundle';
 import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
@@ -24,14 +24,16 @@ export const RatingClient = (props: RatingServerDataProps) => {
     pokedexMap,
     pokemonProducingParamsMap,
     mapMeta,
-    preloadedSettings,
+    preloaded,
   } = props;
 
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
-  const settings = useUserSettings({
-    server: preloadedSettings,
-    client: session?.user.preloaded.settings,
+  const bundle = useUserSettingsBundle({
+    bundle: {
+      server: preloaded,
+      client: session?.user.preloaded,
+    },
   });
 
   const resultRef = React.useRef<HTMLDivElement>(null);
@@ -52,19 +54,19 @@ export const RatingClient = (props: RatingServerDataProps) => {
         const {origin} = opts;
 
         if (origin === 'pokebox') {
-          setRequest(toRatingRequest({setup: {...setup, settings}}));
+          setRequest(toRatingRequest({setup: {...setup, bundle}}));
           scrollToResult();
         } else if (origin === 'pokedex' && request) {
           // This is for resetting the result layout
           setRequest(toRatingRequest({
-            setup: {...setup, settings},
+            setup: {...setup, bundle},
             timestamp: request.timestamp,
           }));
         }
       }}
       onRun={(setup: RatingOnDeskState) => {
         scrollToResult();
-        setRequest(toRatingRequest({setup: {...setup, settings}}));
+        setRequest(toRatingRequest({setup: {...setup, bundle}}));
       }}
       toState={(onDeskState): RatingOnDeskState => ({
         ...onDeskState,

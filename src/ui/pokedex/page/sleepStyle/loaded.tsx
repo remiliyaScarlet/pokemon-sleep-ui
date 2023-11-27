@@ -4,10 +4,10 @@ import {Flex} from '@/components/layout/flex/common';
 import {SleepdexMap} from '@/types/game/sleepdex';
 import {PokemonSleepStylesIncenseOnly} from '@/ui/pokedex/page/sleepStyle/incenseOnly';
 import {PokemonSleepStylesOfMap} from '@/ui/pokedex/page/sleepStyle/map';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-type Props = PokemonProps & {
+type Props = PokemonDataProps & {
   initialSleepdex: SleepdexMap,
 };
 

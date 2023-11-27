@@ -6,10 +6,10 @@ import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {SleepStyleNormal, SleepStyleSpecial} from '@/types/game/sleepStyle';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
-export type PokemonProps = {
+export type PokemonDataProps = SynergizedSettingsRequiredData & {
   pokedex: PokedexMap,
   pokemon: PokemonInfo,
   pokemonBranches: PokemonBranchData | null,
@@ -20,5 +20,5 @@ export type PokemonProps = {
   ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
   mainSkillMap: MainSkillMap,
-  preloadedSettings: UserSettings,
+  preloaded: UserSettingsBundle,
 };

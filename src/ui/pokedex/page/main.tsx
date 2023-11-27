@@ -12,6 +12,7 @@ import {getBerryData} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
 import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
@@ -19,9 +20,9 @@ import {getSleepStyleNormalList} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonClient} from '@/ui/pokedex/page/client';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 import {getRelatedPokemonIds} from '@/utils/game/pokemon';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 type Props = {
@@ -49,6 +50,7 @@ export const Pokemon = async ({params}: Props) => {
     berryData,
     ingredientMap,
     mainSkillMap,
+    mealMap,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokemonAsMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
@@ -59,13 +61,14 @@ export const Pokemon = async ({params}: Props) => {
     getBerryData(pokemon.berry.id),
     getAllIngredients(),
     getMainSkillMap(),
+    getAllMealsAsMap(),
   ]);
 
   if (!berryData) {
     return <Failed text="Berry"/>;
   }
 
-  const props: PokemonProps = {
+  const props: PokemonDataProps = {
     pokedex,
     pokemon,
     pokemonBranches,
@@ -76,7 +79,8 @@ export const Pokemon = async ({params}: Props) => {
     berryData,
     ingredientMap,
     mainSkillMap,
-    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
+    mealMap,
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (

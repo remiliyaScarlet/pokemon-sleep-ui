@@ -1,8 +1,8 @@
 import {PokemonItemStatsCalcResult} from '@/components/shared/pokemon/icon/itemStats/type';
 import {PokemonItemStatsWorkerOpts} from '@/components/shared/pokemon/icon/itemStats/worker/type';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
+import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getPokemonProducingParams, getProducingRateNeutralParams} from '@/utils/game/producing/params';
-import {getPokemonProducingRate} from '@/utils/game/producing/pokemon';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
@@ -16,6 +16,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
     ingredientChainMap,
     mainSkillMap,
     level,
+    translatedSettings,
   } = data;
 
   const producingStats: PokemonItemStatsCalcResult[] = pokemonIngredientProduction
@@ -34,7 +35,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
 
       return [...generatePossibleIngredientProductions({level, chain})]
         .map((ingredients): PokemonItemStatsCalcResult => {
-          const pokemonRate = getPokemonProducingRate({
+          const pokemonRate = getPokemonProducingRateSingle({
             pokemon,
             pokemonProducingParams: getPokemonProducingParams({
               pokemonId: pokemon.id,
@@ -46,6 +47,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
             skillData: mainSkillMap[pokemon.skill],
             ...getProducingRateNeutralParams({pokemon}),
             ...data,
+            ...translatedSettings,
           });
 
           return {

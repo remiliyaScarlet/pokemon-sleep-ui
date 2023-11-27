@@ -9,10 +9,10 @@ import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {OcrTranslationsForPokemonInfo} from '@/types/ocr/extracted/pokemon';
-import {UserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
-export type RatingServerDataProps = UsePokemonFilterCommonData & {
+export type RatingServerDataProps = UsePokemonFilterCommonData & SynergizedSettingsRequiredData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
@@ -21,8 +21,8 @@ export type RatingServerDataProps = UsePokemonFilterCommonData & {
   subSkillMap: SubSkillMap,
   mapMeta: FieldMetaMap,
   pokemonMaxLevel: number,
-  preloadedSettings: UserSettings,
   ocrTranslations: OcrTranslationsForPokemonInfo,
+  preloaded: UserSettingsBundle,
 };
 
 export type RatingDataProps = RatingServerDataProps & PokemonComplexFilterDataProps & PokemonOnDeskDataProps;

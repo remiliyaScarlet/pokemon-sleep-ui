@@ -7,7 +7,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientPicker} from '@/components/shared/pokemon/ingredients/picker';
-import {useCalculatedUserSettings} from '@/hooks/userData/settings/calculated';
+import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {useCalculationWorker} from '@/ui/analysis/page/calc/hook';
 import {AnalysisStats} from '@/ui/analysis/page/calc/type';
 import {useAnalysisFilter} from '@/ui/analysis/page/hook';
@@ -26,7 +26,8 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     berryDataMap,
     sleepStyleMap,
     ingredientChainMap,
-    preloadedSettings,
+    mealMap,
+    preloaded,
   } = props;
 
   const [stats, setStats] = React.useState<AnalysisStats | null>(null);
@@ -40,9 +41,12 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     .map((level) => filter.ingredients[level]), [filter]);
 
   const {data: session} = useSession();
-  const {calculatedSettings} = useCalculatedUserSettings({
-    server: preloadedSettings,
-    client: session?.user.preloaded.settings,
+  const {translatedSettings} = useTranslatedUserSettings({
+    bundle: {
+      server: preloaded,
+      client: session?.user.preloaded,
+    },
+    mealMap,
   });
 
   useCalculationWorker({
@@ -51,10 +55,10 @@ export const AnalysisPageClient = (props: AnalysisPageCommonProps) => {
     ingredients,
     pokemonToAnalyze: pokemonList.filter(({id}) => isIncluded[id]),
     snorlaxFavorite: filter.snorlaxFavorite,
-    ...calculatedSettings,
+    ...translatedSettings,
     setStats,
     setLoading,
-    calculateDeps: [filter, calculatedSettings],
+    calculateDeps: [filter, translatedSettings],
   });
 
   return (

@@ -9,6 +9,7 @@ import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
 import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
@@ -17,12 +18,13 @@ import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SkillTriggerAnalysisClient} from '@/ui/team/mainskill/client';
 import {SkillTriggerAnalysisServerDataProps} from '@/ui/team/mainskill/type';
 import {getOcrTranslationsForPokemonInfo} from '@/utils/ocr/translations/pokemon';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
   const {locale} = params;
   const [
+    session,
     pokedexMap,
     pokemonProducingParamsMap,
     ingredientChainMap,
@@ -30,10 +32,11 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     ingredientMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokemonMaxLevel,
-    session,
     ocrTranslations,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
     getIngredientChainMap(),
@@ -41,8 +44,8 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     getAllIngredients(),
     getMainSkillMap(),
     getSubSkillMap(),
+    getAllMealsAsMap(),
     getPokemonMaxLevelByBerry(),
-    getServerSession(authOptions),
     getOcrTranslationsForPokemonInfo(),
   ]);
 
@@ -54,8 +57,9 @@ export const SkillTriggerAnalysis = async ({params}: DefaultPageProps) => {
     ingredientMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokemonMaxLevel,
-    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
+    preloaded: createUserSettingsBundle(session),
     ocrTranslations,
   };
 

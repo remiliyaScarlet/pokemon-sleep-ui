@@ -5,7 +5,7 @@ import {useSession} from 'next-auth/react';
 
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
-import {useUserSettings} from '@/hooks/userData/settings/main';
+import {useUserSettingsBundle} from '@/hooks/userData/bundle';
 import {useSkillTriggerAnalysisTargetState} from '@/ui/team/mainskill/state/hook';
 import {SkillTriggerAnalysisTargets} from '@/ui/team/mainskill/targets/main';
 import {
@@ -22,13 +22,15 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   const {
     pokedexMap,
     pokemonMaxLevel,
-    preloadedSettings,
+    preloaded,
   } = props;
 
   const {data: session} = useSession();
-  const settings = useUserSettings({
-    server: preloadedSettings,
-    client: session?.user.preloaded.settings,
+  const bundle = useUserSettingsBundle({
+    bundle: {
+      server: preloaded,
+      client: session?.user.preloaded,
+    },
   });
   const stateControl = useSkillTriggerAnalysisTargetState();
 
@@ -38,7 +40,7 @@ export const SkillTriggerAnalysisClient = (props: SkillTriggerAnalysisServerData
   const data: SkillTriggerAnalysisDataProps = {
     pokemonList,
     maxEvolutionCount: getPokemonMaxEvolutionCount(pokemonList),
-    settings,
+    bundle,
     ...props,
   };
 

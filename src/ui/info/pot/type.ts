@@ -1,18 +1,13 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import potCapacity from '@/data/potCapacity.json';
 import {IngredientId, IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealTypeId} from '@/types/game/meal/main';
-import {UserPreloadedData} from '@/types/userData/main';
-import {UserSettings} from '@/types/userData/settings';
+import {MealTypeId} from '@/types/game/meal/main';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
-export type PotInfoDataProps = {
-  meals: Meal[],
+export type PotInfoDataProps = SynergizedSettingsRequiredData & {
   ingredientMap: IngredientMap,
-  preloaded: {
-    cooking: UserPreloadedData['cooking'],
-    settings: UserSettings,
-  },
+  preloaded: UserSettingsBundle,
 };
 
 export type PotInfoFilter = {

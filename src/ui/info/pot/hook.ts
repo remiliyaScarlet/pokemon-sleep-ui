@@ -2,13 +2,14 @@ import {useFilterInput} from '@/components/input/filter/hook';
 import {isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {Meal, MealId} from '@/types/game/meal/main';
 import {PotInfoDataProps, PotInfoFilter} from '@/ui/info/pot/type';
+import {isNotNullish} from '@/utils/type';
 
 
-export const usePotInfoFilter = ({meals, preloaded}: PotInfoDataProps) => {
+export const usePotInfoFilter = ({mealMap, preloaded}: PotInfoDataProps) => {
   const {cooking} = preloaded;
 
   return useFilterInput<PotInfoFilter, Meal, MealId>({
-    data: meals,
+    data: Object.values(mealMap).filter(isNotNullish),
     dataToId: ({id}) => id,
     initialFilter: {
       mealType: {},

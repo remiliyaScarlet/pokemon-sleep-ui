@@ -1,12 +1,11 @@
-import {defaultHelperCount} from '@/const/game/production';
+import {defaultHelperCount, defaultProductionPeriod} from '@/const/game/production';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {ProductionPeriod} from '@/types/game/producing/display';
 import {
   PokemonProducingRate,
   ProducingRateImplicitParams,
   ProducingRateSingleParams,
 } from '@/types/game/producing/rate';
-import {UserCalculationBehavior} from '@/types/userData/settings';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
@@ -20,34 +19,34 @@ import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/ut
 import {getMainSkillProducingRate, GetMainSkillProducingRateOpts} from '@/utils/game/producing/mainSkill';
 import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
+import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 
 
-type GetPokemonProducingRateOpts =
+export type GetPokemonProducingRateBaseOpts =
   Omit<GetBerryProducingRateOpts, 'frequency'> &
   Omit<GetIngredientProducingRatesOpts, 'frequency'> &
   Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent' | 'skillLevel' | 'timeToFullPack'> &
   ProducingRateSingleParams &
-  ProducingRateImplicitParams & {
+  ProducingRateImplicitParams &
+  GetProducingRateSharedOpts &
+  CalculatedUserSettings & {
     pokemonProducingParams: PokemonProducingParams,
-    behavior: UserCalculationBehavior,
-    period?: ProductionPeriod,
-    noCap?: boolean,
   };
 
-export const getPokemonProducingRate = ({
-  sleepDurations,
+export const getPokemonProducingRateBase = ({
   seeds,
   evolutionCount,
   ...opts
-}: GetPokemonProducingRateOpts): PokemonProducingRate => {
+}: GetPokemonProducingRateBaseOpts): PokemonProducingRate => {
   const {
     pokemon,
     pokemonProducingParams,
     helperCount,
+    sleepDurations,
     behavior,
   } = opts;
 
-  const period = opts.period ?? 'daily';
+  const period = opts.period ?? defaultProductionPeriod;
   const sleepDuration = toSum(sleepDurations);
   const subSkillBonus = opts.subSkillBonus ?? {};
 
@@ -91,7 +90,6 @@ export const getPokemonProducingRate = ({
   // `skill` depends on `fullPackStats.secondsToFull`
   const skill = getMainSkillProducingRate({
     frequency,
-    sleepDurations,
     timeToFullPack: fullPackStats.secondsToFull,
     skillLevel: getMainSkillLevel({
       seedsUsed: seeds.gold,

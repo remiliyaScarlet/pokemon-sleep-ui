@@ -21,10 +21,6 @@ export const getSingleMeal = async (id: number) => (
   getSingleData(getCollection(), {id})
 );
 
-export const getMealByIngredient = async (id: number): Promise<Meal[]> => (
-  getDataAsArray(getCollection(), {'ingredients.id': id})
-);
-
 const addIndex = async () => {
   const collection = await getCollection();
 

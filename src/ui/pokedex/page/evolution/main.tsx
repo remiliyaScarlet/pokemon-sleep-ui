@@ -9,10 +9,10 @@ import {UsePokemonLinkPopupReturn} from '@/components/shared/pokemon/linkPopup/t
 import {PokemonEvolutionNextStage} from '@/ui/pokedex/page/evolution/next';
 import {PokemonEvolutionPortrait} from '@/ui/pokedex/page/evolution/portrait';
 import {PokemonTitledLayout} from '@/ui/pokedex/page/layout/titled';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonEvolution = ({pokedex, pokemon, showPokemon}: PokemonProps & UsePokemonLinkPopupReturn) => {
+export const PokemonEvolution = ({pokedex, pokemon, showPokemon}: PokemonDataProps & UsePokemonLinkPopupReturn) => {
   const {evolution} = pokemon;
 
   return (

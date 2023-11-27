@@ -1,9 +1,6 @@
-import {BerryId} from '@/types/game/berry';
-import {IngredientId} from '@/types/game/ingredient';
-import {PokemonProducingRate, ProducingRate} from '@/types/game/producing/rate';
+import {PokemonProducingRate, ProducingRate, GroupedPokemonProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
-import {Indexable} from '@/utils/type';
 
 
 export type TeamProducingStatsTotal = {
@@ -19,17 +16,10 @@ export type TeamProducingStatsSingle = PokemonProducingRate & {
 
 export type TeamProducingStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProducingStatsSingle | null};
 
-export type TeamProducingStatsGroupedOfItem<TId extends Indexable> = {[id in TId]?: ProducingRate};
-
-export type TeamProducingStatsGrouped = {
-  berry: TeamProducingStatsGroupedOfItem<BerryId>,
-  ingredient: TeamProducingStatsGroupedOfItem<IngredientId>,
-};
-
 export type TeamProducingStats = {
   bySlot: TeamProducingStatsBySlot,
   total: TeamProducingStatsTotal,
-  grouped: TeamProducingStatsGrouped,
+  grouped: GroupedPokemonProducingRate,
   overall: ProducingRate,
 };
 

@@ -1,5 +1,9 @@
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
-import {CalculatedUserSettings} from '@/types/userData/settings';
+import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
 
 
-export type IngredientProductionDataProps = Omit<PokemonIngredientStatsCommonProps, keyof CalculatedUserSettings>;
+export type IngredientProductionDataProps =
+  Omit<PokemonIngredientStatsCommonProps, 'translatedSettings'> &
+  SynergizedSettingsRequiredData & {
+    preloaded: UserSettingsBundle,
+  };

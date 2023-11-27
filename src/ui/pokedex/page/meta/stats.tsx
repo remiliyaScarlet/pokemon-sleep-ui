@@ -4,10 +4,10 @@ import {useTranslations} from 'next-intl';
 
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
-import {PokemonProps} from '@/ui/pokedex/page/type';
+import {PokemonDataProps} from '@/ui/pokedex/page/type';
 
 
-export const PokemonStats = ({pokemon}: PokemonProps) => {
+export const PokemonStats = ({pokemon}: PokemonDataProps) => {
   const t = useTranslations('UI.InPage.Pokedex');
   const t2 = useTranslations('UI.Common');
   const {stats} = pokemon;

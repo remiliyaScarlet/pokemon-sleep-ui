@@ -11,13 +11,14 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getAllMapMeta} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {PublicPageLayout} from '@/ui/base/layout/public';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 type Props = {
@@ -35,6 +36,7 @@ export const AnalysisPage = async ({params}: Props) => {
     ingredientMap,
     mainSkillMap,
     sleepStyleMap,
+    mealMap,
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
@@ -45,6 +47,7 @@ export const AnalysisPage = async ({params}: Props) => {
     getAllIngredients(),
     getMainSkillMap(),
     getSleepStyleNormalMap(),
+    getAllMealsAsMap(),
     getAllMapMeta(),
   ]);
 
@@ -68,7 +71,8 @@ export const AnalysisPage = async ({params}: Props) => {
     berryDataMap,
     sleepStyleMap,
     mapMeta,
-    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
+    mealMap,
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (

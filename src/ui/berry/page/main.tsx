@@ -11,6 +11,7 @@ import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
+import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByBerry} from '@/controller/pokemon/ingredient';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -18,7 +19,7 @@ import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
-import {createUserSettings} from '@/utils/user/settings';
+import {createUserSettingsBundle} from '@/utils/user/settings/create';
 
 
 type Props = {
@@ -30,6 +31,7 @@ export const BerryPage = async ({params}: Props) => {
   const idNumber = parseInt(id);
 
   const [
+    session,
     pokedex,
     pokemonProducingParamsMap,
     pokemonIngredientProduction,
@@ -38,11 +40,12 @@ export const BerryPage = async ({params}: Props) => {
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokemonOfBerry,
     berryData,
     favoriteInfo,
-    session,
   ] = await Promise.all([
+    getServerSession(authOptions),
     getPokemonAsMap(),
     getAllPokemonProducingParams(),
     getPokemonIngredientProductionByBerry(idNumber),
@@ -51,10 +54,10 @@ export const BerryPage = async ({params}: Props) => {
     getIngredientChainMap(),
     getMainSkillMap(),
     getSubSkillMap(),
+    getAllMealsAsMap(),
     getPokemonByBerry(idNumber),
     getBerryData(idNumber),
     getFavoriteInfoOfBerry(idNumber),
-    getServerSession(authOptions),
   ]);
 
   if (!berryData) {
@@ -70,10 +73,11 @@ export const BerryPage = async ({params}: Props) => {
     ingredientChainMap,
     mainSkillMap,
     subSkillMap,
+    mealMap,
     pokemonOfBerry,
     berryData,
     favoriteInfo,
-    preloadedSettings: createUserSettings(session?.user.preloaded.settings),
+    preloaded: createUserSettingsBundle(session),
   };
 
   return (
