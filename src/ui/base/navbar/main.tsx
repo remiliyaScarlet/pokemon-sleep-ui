@@ -10,6 +10,8 @@ import {getMapIds} from '@/controller/mapMeta';
 import {getAllMealsAsMap} from '@/controller/meal';
 import {NavBarClient} from '@/ui/base/navbar/client';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';
+import {getPossibleMealTypes} from '@/utils/game/mealType';
+import {isNotNullish} from '@/utils/type';
 
 
 type Props = NavBarCommonProps & {
@@ -29,6 +31,8 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
     getIngredientIds(),
   ]));
 
+  const mealTypes = getPossibleMealTypes(Object.values(mealMap).filter(isNotNullish));
+
   return (
     <I18nProvider locale={locale} namespaces={[
       'Game',
@@ -43,6 +47,7 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
         noUserControl={noUserControl}
         session={session}
         mapIds={mapIds}
+        mealTypes={mealTypes}
         mealMap={mealMap}
         ingredientIds={ingredientIds}
       >
