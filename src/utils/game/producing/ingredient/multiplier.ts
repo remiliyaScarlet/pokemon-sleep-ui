@@ -35,10 +35,15 @@ export const getIngredientMultiplier = ({
 
     const recipe = Math.min(produced, required);
     const filler = Math.max(produced - required, 0);
+    const total = recipe + filler;
+
+    if (!total) {
+      return [id, 0];
+    }
 
     return [
       id,
-      (recipe * (ingredientBonus[parseInt(id)] ?? 1) + filler) / (recipe + filler),
+      (recipe * (ingredientBonus[parseInt(id)] ?? 1) + filler) / total,
     ];
   }));
 };
