@@ -45,7 +45,7 @@ export type PokemonSubSkill = {[level in PokemonSubSkillLevel]?: SubSkillId};
 export const friendshipLevelsOfGoldLock = [
   0,
   10,
-  45,
+  40,
   100,
 ] as const;
 
