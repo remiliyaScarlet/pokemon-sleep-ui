@@ -18,7 +18,8 @@ export const AdsContent = ({
   children,
 }: React.PropsWithChildren<AdsContentProps>) => {
   const [adblockState, setAdblockState] = React.useState<AdBlockState>({
-    adsFound: false,
+    // Can't contain the word 'ads' here, or it'll get detected
+    found: false,
     isBlocked: false,
   });
 

@@ -12,7 +12,7 @@ export const useAdBlockDetector = ({setAdblockState}: UseAdBlockDetectorOpts) =>
 
   const observer = new MutationObserver((mutations) => {
     setAdblockState({
-      adsFound: mutations.every(({addedNodes, removedNodes}) => !!addedNodes.length && !removedNodes.length),
+      found: mutations.every(({addedNodes, removedNodes}) => !!addedNodes.length && !removedNodes.length),
       isBlocked: false,
     });
   });
@@ -31,7 +31,7 @@ export const useAdBlockDetector = ({setAdblockState}: UseAdBlockDetectorOpts) =>
     // If no DOM mutation detected after the hook is loaded for 7 secs, assume ad-block in effect
     setTimeout(() => setAdblockState((original) => ({
       ...original,
-      isBlocked: !original.adsFound && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
+      isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
     })), 7000);
   }, []);
 

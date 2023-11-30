@@ -9,5 +9,5 @@ export type AdsUnitProps = AdsContentProps & {
 
 export type AdBlockState = {
   isBlocked: boolean,
-  adsFound: boolean,
+  found: boolean,
 };
