@@ -40,7 +40,7 @@ export const AdsContent = ({
       className={clsx(
         'relative w-full overflow-hidden focus:outline-none',
         adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
-        adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/40' : 'border border-green-500'),
+        adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/50 py-1' : 'border border-green-500'),
         className,
       )}
     >
