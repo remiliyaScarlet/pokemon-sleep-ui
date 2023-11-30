@@ -12,11 +12,16 @@ import {AdBlockState, AdsContentProps} from '@/components/ads/type';
 import {isProduction} from '@/utils/environment';
 
 
+type Props = AdsContentProps & {
+  recheckDeps: React.DependencyList,
+};
+
 export const AdsContent = ({
   className,
   heightOverride,
+  recheckDeps,
   children,
-}: React.PropsWithChildren<AdsContentProps>) => {
+}: React.PropsWithChildren<Props>) => {
   const [adblockState, setAdblockState] = React.useState<AdBlockState>({
     // Can't contain the word 'ads' here, or it'll get detected
     found: false,
@@ -26,6 +31,7 @@ export const AdsContent = ({
   const t = useTranslations('UI.Subscription');
   const adsRef = useAdBlockDetector({
     setAdblockState,
+    recheckDeps,
   });
   const {
     contentRef,

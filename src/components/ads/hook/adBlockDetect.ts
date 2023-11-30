@@ -5,9 +5,10 @@ import {AdBlockState} from '@/components/ads/type';
 
 type UseAdBlockDetectorOpts = {
   setAdblockState: React.Dispatch<React.SetStateAction<AdBlockState>>,
+  recheckDeps: React.DependencyList,
 };
 
-export const useAdBlockDetector = ({setAdblockState}: UseAdBlockDetectorOpts) => {
+export const useAdBlockDetector = ({setAdblockState, recheckDeps}: UseAdBlockDetectorOpts) => {
   const adsRef = React.useRef<HTMLDivElement>(null);
 
   const observer = new MutationObserver((mutations) => {
@@ -33,7 +34,7 @@ export const useAdBlockDetector = ({setAdblockState}: UseAdBlockDetectorOpts) =>
       ...original,
       isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
     })), 7000);
-  }, []);
+  }, recheckDeps);
 
   return adsRef;
 };

@@ -45,12 +45,21 @@ export const AdsWrapper = ({
 
   return (
     <Flex direction="row" className={clsx('h-full', className)}>
-      <AdsContent key={`${counter}a`} heightOverride={heightOverride}>
+      <AdsContent
+        key={`${counter}a`}
+        heightOverride={heightOverride}
+        recheckDeps={[counter]}
+      >
         {children}
       </AdsContent>
       {
         !alwaysSingle &&
-        <AdsContent key={`${counter}b`} className="hidden lg:block" heightOverride={heightOverride}>
+        <AdsContent
+          key={`${counter}b`}
+          className="hidden lg:block"
+          heightOverride={heightOverride}
+          recheckDeps={[counter]}
+        >
           {children}
         </AdsContent>
       }
