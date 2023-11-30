@@ -13,7 +13,8 @@ import {
   ActivationData,
   ActivationDataAtClient,
   ActivationKey,
-  ActivationProperties, activationSourceAutomated,
+  ActivationProperties,
+  activationSourceAutomated,
   ActivationStatus,
 } from '@/types/mongo/activation';
 import {toActivationDataAtClient} from '@/utils/user/activation/utils';
@@ -27,17 +28,30 @@ const getCollection = async (): Promise<Collection<ActivationData>> => {
     .collection<ActivationData>('activation');
 };
 
-export const consumeActivationKey = async (userId: string, key: string): Promise<boolean> => {
+export const consumeActivationKey = async (userIdString: string, key: string): Promise<boolean> => {
   const activationKey = await getActivationKey(key);
 
   if (!activationKey) {
     return false;
   }
 
+  const client = await mongoPromise;
+  const collection = await getCollection();
   try {
-    await (await getCollection()).insertOne({userId: new ObjectId(userId), ...activationKey});
+    await client.withSession(async (session) => {
+      await session.withTransaction(async () => {
+        const userId = new ObjectId(userIdString);
+
+        await collection.deleteOne({userId}, {session});
+        await collection.insertOne(
+          {userId: new ObjectId(userId), ...activationKey},
+          {session},
+        );
+      });
+    });
   } catch (e) {
     if (e instanceof MongoError) {
+      console.error(e);
       return false;
     }
 
