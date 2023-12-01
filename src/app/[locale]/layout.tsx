@@ -54,7 +54,8 @@ const RootLayout = ({children, params}: React.PropsWithChildren<LocaleLayoutProp
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-2LL7T4CCZP', {
-                send_page_view: false
+                send_page_view: false,
+                cookie_flags: 'samesite=none;secure'
               });
             `}
           </Script>
