@@ -29,11 +29,13 @@ export const useAdBlockDetector = ({setAdblockState, recheckDeps}: UseAdBlockDet
   }, [adsRef.current]);
 
   React.useEffect(() => {
-    // If no DOM mutation detected after the hook is loaded for 7 secs, assume ad-block in effect
+    // Simply keep checking every 15 secs
+    // uBO has a `no-setTimeout` defuser that invalidates the very 1st call of the setTimeout`
+    // https://github.com/gorhill/uBlock/wiki/Resources-Library#no-settimeout-ifjs-
     setTimeout(() => setAdblockState((original) => ({
       ...original,
       isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
-    })), 7000);
+    } satisfies AdBlockState)), 15000);
   }, recheckDeps);
 
   return adsRef;
