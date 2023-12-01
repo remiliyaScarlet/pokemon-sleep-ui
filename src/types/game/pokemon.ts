@@ -56,4 +56,9 @@ export type PokemonIngredientProductionMapOfLevel = {[ingredient in IngredientId
 
 export type PokemonIngredientProductionMap = {[level in IngredientLevel]: PokemonIngredientProductionMapOfLevel};
 
+export type PokemonFinalEvolutionInfo = {
+  id: PokemonId,
+  evolutionCount: number,
+};
+
 export type PokedexMap = {[id in PokemonId]?: PokemonInfo};

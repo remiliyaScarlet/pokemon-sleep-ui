@@ -1,4 +1,10 @@
-import {PokedexMap, PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
+import {
+  PokedexMap,
+  PokemonFinalEvolutionInfo,
+  PokemonId,
+  PokemonInfo,
+  PokemonInfoWithMap,
+} from '@/types/game/pokemon';
 import {PokemonBranchData} from '@/types/game/pokemon/branch';
 import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
 import {toUnique} from '@/utils/array';
@@ -67,9 +73,14 @@ export const getPokemonSleepStyleId = ({pokemonId, branch}: GetPokemonSleepStyle
 export type GetPokemonFinalEvolutionIdsOpts = {
   pokemonId: PokemonId,
   pokedex: PokedexMap,
+  evolutionCount?: number,
 };
 
-export const getPokemonFinalEvolutionIds = ({pokemonId, pokedex}: GetPokemonFinalEvolutionIdsOpts): PokemonId[] => {
+export const getPokemonFinalEvolutionIds = ({
+  pokemonId,
+  pokedex,
+  evolutionCount = 0,
+}: GetPokemonFinalEvolutionIdsOpts): PokemonFinalEvolutionInfo[] => {
   const pokemon = pokedex[pokemonId];
   if (!pokemon) {
     return [];
@@ -77,10 +88,12 @@ export const getPokemonFinalEvolutionIds = ({pokemonId, pokedex}: GetPokemonFina
 
   const {evolution} = pokemon;
   if (!evolution.next.length) {
-    return [pokemonId];
+    return [{id: pokemonId, evolutionCount}];
   }
 
-  return evolution.next.flatMap(({id}) => (
-    getPokemonFinalEvolutionIds({pokemonId: id, pokedex})
-  ));
+  return evolution.next.flatMap(({id}) => getPokemonFinalEvolutionIds({
+    pokemonId: id,
+    pokedex,
+    evolutionCount: evolutionCount + 1,
+  }));
 };
