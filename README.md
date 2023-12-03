@@ -19,6 +19,8 @@ Discord: https://discord.gg/eeveesleep
 ### Icons
 
 - Discord `@pail5cm`
+- Pixiv [`さめのは`](https://www.pixiv.net/users/72353164)
+  - Source: https://www.pixiv.net/artworks/96177604
 
 ### Images
 
