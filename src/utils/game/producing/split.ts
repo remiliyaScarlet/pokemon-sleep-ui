@@ -5,6 +5,7 @@ import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {ProduceSplit, ProducingSleepStateSplit} from '@/types/game/producing/split';
 import {UserCalculationBehavior} from '@/types/userData/settings';
+import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 import {isFullPack} from '@/utils/user/settings/utils';
@@ -35,9 +36,7 @@ export const getProduceSplit = ({
 
   let ingredientSplit = pokemonProducingParams.ingredientSplit;
 
-  for (const bonusValue of getSubSkillBonusValue(subSkillBonus, 'ingredientProbability')) {
-    ingredientSplit *= (1 + bonusValue / 100);
-  }
+  ingredientSplit *= (1 + toSum(getSubSkillBonusValue(subSkillBonus, 'ingredientProbability')) / 100);
   ingredientSplit *= getNatureMultiplier({id: natureId, effect: 'rateOfIngredient'});
 
   return {

@@ -28,7 +28,7 @@ export const getIngredientProducingRates = ({
       .map(({id, qty}) => getIngredientProducingRate({
         level,
         pokemon,
-        ingredient: id ? ingredientMap[id] : undefined,
+        ingredient: ingredientMap[id],
         count: qty,
         picks: ingredients.length,
         ...opts,
