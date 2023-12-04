@@ -1,6 +1,6 @@
 import {Pool as initWorkerPool, spawn, Worker} from 'threads';
 
-import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc/main';
 
 
 export const workerPool = initWorkerPool(

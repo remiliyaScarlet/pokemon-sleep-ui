@@ -1,24 +1,18 @@
 import {natureData} from '@/data/nature';
-import {
-  RatingCombination,
-  RatingDataPoint,
-  RatingResultOfLevel,
-  RatingWorkerOpts,
-} from '@/types/game/pokemon/rating';
+import {RatingDataPoint, RatingResultOfLevel, RatingWorkerOpts} from '@/types/game/pokemon/rating';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getRatingValueOfBase} from '@/utils/game/rating/base';
+import {calculateRatingValueFromPayload} from '@/utils/game/rating/calc/fromPayload';
+import {CalculateRatingDataWorkerOpts} from '@/utils/game/rating/calc/type';
 import {getRatingValueOfCurrent} from '@/utils/game/rating/current';
-import {getRatingValueOfPossibility} from '@/utils/game/rating/possibility';
-import {generatePossiblePokemonSubSkills} from '@/utils/game/subSkill/generate';
 import {isNotNullish} from '@/utils/type';
 
 
-export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResultOfLevel | null => {
+export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Promise<RatingResultOfLevel | null> => {
   const {
     basis,
     level,
-    friendshipLevel,
     pokemon,
     ingredients,
     subSkill,
@@ -67,38 +61,49 @@ export const calculateRatingResultOfLevel = (opts: RatingWorkerOpts): RatingResu
     [getEffectiveIngredientProductions({level, ingredients})] :
     generatePossibleIngredientProductions({level, chain});
 
+  const promises: Promise<RatingDataPoint[]>[] = [];
   for (const ingredients of ingredientProductions) {
-    for (const subSkill of generatePossiblePokemonSubSkills({
-      level,
+    const calcOpts: CalculateRatingDataWorkerOpts = {
+      ...opts,
+      berryData,
+      skillData,
+      ingredients,
       subSkillData,
-      friendshipLevel,
-    })) {
-      for (const nature of natureIds) {
-        samples++;
+      natureIds,
+    };
 
-        const valueOfPossibility = getRatingValueOfPossibility({
-          ...opts,
-          berryData,
-          skillData,
-          override: {
-            nature,
-            subSkill,
-            ingredients,
-          },
-        });
-        if (valueOfPossibility > valueOfCurrent) {
-          rank++;
-        }
-
-        const combination: RatingCombination = {ingredients, nature, subSkill};
-
-        if (!min || valueOfPossibility < min.value) {
-          min = {value: valueOfPossibility, combination};
-        }
-        if (!max || valueOfPossibility > max.value) {
-          max = {value: valueOfPossibility, combination};
-        }
+    promises.push(new Promise<RatingDataPoint[]>((resolve) => {
+      // Only use worker when the level is >= 50,
+      // because the overhead of creating multiple workers is
+      // greater than the time needed of doing the calculation directly in here
+      if (level >= 50) {
+        const worker = new Worker(new URL('fromPayload.worker', import.meta.url));
+        worker.postMessage(calcOpts);
+        worker.onmessage = ({data}: MessageEvent<RatingDataPoint[]>) => {
+          resolve(data);
+          worker.terminate();
+        };
+      } else {
+        resolve(calculateRatingValueFromPayload(calcOpts));
       }
+    }));
+  }
+
+  const dataPoints = (await Promise.all(promises)).flat();
+
+  for (const dataPoint of dataPoints) {
+    const {value} = dataPoint;
+    samples++;
+
+    if (value > valueOfCurrent) {
+      rank++;
+    }
+
+    if (!min || value < min.value) {
+      min = dataPoint;
+    }
+    if (!max || value > max.value) {
+      max = dataPoint;
     }
   }
 

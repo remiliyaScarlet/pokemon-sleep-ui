@@ -11,12 +11,12 @@ import {testMainSkillMap} from '@/tests/data/game/mainSkill';
 import {testMealData} from '@/tests/data/game/meal';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testSubSkillMap} from '@/tests/data/game/subSkill';
-import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc/main';
 
 
 describe('Rating / Calculate', () => {
-  it('factors in carry limit if the evolution count is changed', () => {
-    const result = calculateRatingResultOfLevel({
+  it('factors in carry limit if the evolution count is changed', async () => {
+    const result = await calculateRatingResultOfLevel({
       level: 30,
       pokemon: testPokemonData.absol,
       seeds: defaultSeedUsage,
@@ -44,8 +44,8 @@ describe('Rating / Calculate', () => {
     expect(result?.baseDiffPercent).not.toBe(0);
   });
 
-  it('factors in carry limit when the level activates subskill bonus', () => {
-    const result = calculateRatingResultOfLevel({
+  it('factors in carry limit when the level activates subskill bonus', async () => {
+    const result = await calculateRatingResultOfLevel({
       level: 30,
       pokemon: testPokemonData.absol,
       seeds: defaultSeedUsage,
@@ -73,8 +73,8 @@ describe('Rating / Calculate', () => {
     expect(result?.baseDiffPercent).not.toBe(0);
   });
 
-  it('factors in carry limit when the level has not activated subskill bonus', () => {
-    const result = calculateRatingResultOfLevel({
+  it('factors in carry limit when the level has not activated subskill bonus', async () => {
+    const result = await calculateRatingResultOfLevel({
       level: 15,
       pokemon: testPokemonData.absol,
       seeds: defaultSeedUsage,

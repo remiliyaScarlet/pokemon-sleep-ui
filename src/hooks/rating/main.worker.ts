@@ -1,9 +1,11 @@
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
-import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc';
+import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc/main';
 
 
-const onMessage = ({data}: MessageEvent<RatingWorkerOpts>) => {
-  postMessage(calculateRatingResultOfLevel(data));
+const onMessage = async ({data}: MessageEvent<RatingWorkerOpts>) => {
+  const result = await calculateRatingResultOfLevel(data);
+
+  postMessage(result);
 };
 
 addEventListener('message', onMessage);
