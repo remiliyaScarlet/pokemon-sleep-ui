@@ -17,6 +17,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.general,
       ingredientMap: testIngredientMap,
     });
@@ -52,6 +53,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1,
       ingredientMap: testIngredientMap,
     });
@@ -75,6 +77,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a2,
       ingredientMap: testIngredientMap,
     });
@@ -98,6 +101,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1b1,
       ingredientMap: testIngredientMap,
     });
@@ -128,6 +132,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a3,
       ingredientMap: testIngredientMap,
     });
@@ -151,6 +156,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a2b1,
       ingredientMap: testIngredientMap,
     });
@@ -181,6 +187,7 @@ describe('Ingredient Production / Multiple', () => {
       pokemon: testPokemonData.absol,
       frequency: 2920.2,
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1b1c1,
       ingredientMap: testIngredientMap,
     });

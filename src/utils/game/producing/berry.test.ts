@@ -17,6 +17,7 @@ describe('Pokemon Berry Production', () => {
       frequency: 2920.2,
       subSkillBonus: {},
       bonus,
+      energyMultiplier: getEnergyMultiplier({bonus}),
       snorlaxFavorite: {},
       berryData: testBerryDataMap['16'],
     });

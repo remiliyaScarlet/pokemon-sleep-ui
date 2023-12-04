@@ -16,15 +16,17 @@ import {
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredient/multi';
 import {getMainSkillProducingRate, GetMainSkillProducingRateOpts} from '@/utils/game/producing/mainSkill';
+import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
 import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 
 
 export type GetPokemonProducingRateBaseOpts =
-  Omit<GetBerryProducingRateOpts, 'frequency'> &
-  Omit<GetIngredientProducingRatesOpts, 'frequency'> &
-  Omit<GetMainSkillProducingRateOpts, 'frequency' | 'skillRatePercent' | 'skillLevel' | 'timeToFullPack'> &
+  Omit<
+    GetBerryProducingRateOpts & GetIngredientProducingRatesOpts & GetMainSkillProducingRateOpts,
+    'frequency' | 'energyMultiplier' | 'skillRatePercent' | 'skillLevel' | 'timeToFullPack'
+  > &
   ProducingRateSingleParams &
   ProducingRateImplicitParams &
   GetProducingRateSharedOpts &
@@ -43,6 +45,7 @@ export const getPokemonProducingRateBase = ({
     helperCount,
     sleepDurationInfo,
     behavior,
+    bonus,
   } = opts;
 
   const period = opts.period ?? defaultProductionPeriod;
@@ -60,12 +63,16 @@ export const getPokemonProducingRateBase = ({
     behavior,
   });
 
+  const energyMultiplier = getEnergyMultiplier({bonus});
+
   const berry = getBerryProducingRate({
     frequency,
+    energyMultiplier,
     ...opts,
   });
   const ingredient = getIngredientProducingRates({
     frequency,
+    energyMultiplier,
     ...opts,
   });
 
@@ -88,6 +95,7 @@ export const getPokemonProducingRateBase = ({
   // `skill` depends on `fullPackStats.secondsToFull`
   const skill = getMainSkillProducingRate({
     frequency,
+    energyMultiplier,
     timeToFullPack: fullPackStats.secondsToFull,
     skillLevel: getMainSkillLevel({
       seedsUsed: seeds.gold,

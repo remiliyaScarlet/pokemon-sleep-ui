@@ -12,8 +12,7 @@ import {getProducingRateBase} from '@/utils/game/producing/rateBase';
 export type GetIngredientProducingRateOpts = ProducingRateCommonParams & {
   ingredient: Ingredient | undefined,
 } & (
-  ProducingRateProportion |
-  {
+  ProducingRateProportion | {
     count?: never,
     picks?: never,
   }
@@ -23,6 +22,7 @@ export const getIngredientProducingRate = ({
   pokemon,
   frequency,
   bonus,
+  energyMultiplier,
   ingredient,
   count,
   picks,
@@ -46,11 +46,13 @@ export const getIngredientProducingRate = ({
     id: ingredient.id,
     sleep: applyBonus({
       bonus,
+      energyMultiplier,
       producingState: 'sleep',
       data,
     }),
     awake: applyBonus({
       bonus,
+      energyMultiplier,
       producingState: 'awake',
       data,
     }),

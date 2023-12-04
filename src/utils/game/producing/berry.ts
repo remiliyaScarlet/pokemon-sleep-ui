@@ -20,6 +20,7 @@ export const getBerryProducingRate = ({
   pokemon,
   frequency,
   bonus,
+  energyMultiplier,
   subSkillBonus,
   snorlaxFavorite,
   berryData,
@@ -41,11 +42,13 @@ export const getBerryProducingRate = ({
     id: pokemon.berry.id,
     sleep: applyBonus({
       bonus,
+      energyMultiplier,
       producingState: 'sleep',
       data,
     }),
     awake: applyBonus({
       bonus,
+      energyMultiplier,
       producingState: 'awake',
       data,
     }),
