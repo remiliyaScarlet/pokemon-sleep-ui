@@ -6,7 +6,6 @@ import {
   ProducingRateSingleParams,
 } from '@/types/game/producing/rate';
 import {CalculatedUserSettings} from '@/types/userData/settings';
-import {toSum} from '@/utils/array';
 import {getMainSkillLevel} from '@/utils/game/mainSkill/level';
 import {getBerryProducingRate, GetBerryProducingRateOpts} from '@/utils/game/producing/berry';
 import {
@@ -42,12 +41,11 @@ export const getPokemonProducingRateBase = ({
     pokemon,
     pokemonProducingParams,
     helperCount,
-    sleepDurations,
+    sleepDurationInfo,
     behavior,
   } = opts;
 
   const period = opts.period ?? defaultProductionPeriod;
-  const sleepDuration = toSum(sleepDurations);
   const subSkillBonus = opts.subSkillBonus ?? {};
 
   const frequency = getBaseFrequencyFromPokemon({
@@ -81,10 +79,10 @@ export const getPokemonProducingRateBase = ({
       rate: {berry, ingredient},
       produceSplit,
     }),
-    sleepDurations,
+    sleepDurationInfo,
   });
   const sleepStateSplit = getProducingSleepStateSplit({
-    sleepDuration,
+    sleepDurationTotal: sleepDurationInfo.total,
     fullPackRatioInSleep: fullPackStats.ratio,
   });
   // `skill` depends on `fullPackStats.secondsToFull`

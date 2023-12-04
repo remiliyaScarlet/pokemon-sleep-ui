@@ -4,6 +4,7 @@ import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
 import {CarryLimitInfo, FullPackStats} from '@/types/game/producing/carryLimit';
 import {ProducingRateOfItemOfSessions} from '@/types/game/producing/rate';
 import {ProduceSplit} from '@/types/game/producing/split';
+import {SleepDurationInfo} from '@/types/game/sleep';
 import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
@@ -50,22 +51,22 @@ export const getCarryLimitInfo = ({
 type GetFullPackRatioInSleepOpts = {
   dailyCount: number,
   carryLimit: number,
-  sleepDurations: number[],
+  sleepDurationInfo: SleepDurationInfo,
 };
 
 export const getFullPackStats = ({
   dailyCount,
   carryLimit,
-  sleepDurations,
+  sleepDurationInfo,
 }: GetFullPackRatioInSleepOpts): FullPackStats => {
   const secondsToFull = getSecondsToFullPackInSleep({dailyCount, carryLimit});
   const fullPackDuration = toSum(
-    sleepDurations.map((duration) => Math.max(duration - secondsToFull, 0)),
+    sleepDurationInfo.durations.map((duration) => Math.max(duration - secondsToFull, 0)),
   );
 
   return {
     secondsToFull,
-    ratio: fullPackDuration / toSum(sleepDurations),
+    ratio: fullPackDuration / sleepDurationInfo.total,
   };
 };
 

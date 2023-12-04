@@ -1,7 +1,8 @@
 import {durationOfDay} from '@/const/common';
 import {staminaDepleteInterval, staminaRecoveryInterval} from '@/const/game/stamina';
-import {SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
+import {SleepDurationInfo, SleepSessionInfo, SleepSessionInternal, SleepSessionTimes} from '@/types/game/sleep';
 import {StaminaSleepSessionConfig} from '@/types/game/stamina/config';
+import {toSum} from '@/utils/array';
 import {rotateTime} from '@/utils/time';
 
 
@@ -61,15 +62,15 @@ export const getSleepSessionInfo = (session: StaminaSleepSessionConfig): SleepSe
   };
 };
 
-export const getSleepDurationsFromSleepSession = ({
+export const getSleepDurationInfo = ({
   primary,
   secondary,
-}: StaminaSleepSessionConfig): number[] => {
-  const sleepDurations = [rotateTime(primary.end - primary.start)];
+}: StaminaSleepSessionConfig): SleepDurationInfo => {
+  const durations = [rotateTime(primary.end - primary.start)];
 
   if (secondary) {
-    sleepDurations.push(rotateTime(secondary.end - secondary.start));
+    durations.push(rotateTime(secondary.end - secondary.start));
   }
 
-  return sleepDurations;
+  return {durations, total: toSum(durations)};
 };

@@ -48,15 +48,15 @@ export const getProduceSplit = ({
 };
 
 type GetProducingSleepStateSplitOpts = {
-  sleepDuration: number,
+  sleepDurationTotal: number,
   fullPackRatioInSleep: number,
 };
 
 export const getProducingSleepStateSplit = ({
-  sleepDuration,
+  sleepDurationTotal,
   fullPackRatioInSleep,
 }: GetProducingSleepStateSplitOpts): ProducingSleepStateSplit => {
-  const sleep = sleepDuration / durationOfDay;
+  const sleep = sleepDurationTotal / durationOfDay;
 
   return {
     awake: 1 - sleep,

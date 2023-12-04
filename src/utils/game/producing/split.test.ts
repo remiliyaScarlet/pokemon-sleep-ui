@@ -65,7 +65,7 @@ describe('Pokemon Producing Split', () => {
 describe('Pokemon Producing Sleep State Split', () => {
   it('is correct', () => {
     const split = getProducingSleepStateSplit({
-      sleepDuration: 8 * 3600,
+      sleepDurationTotal: 8 * 3600,
       fullPackRatioInSleep: 1 / 4,
     });
 

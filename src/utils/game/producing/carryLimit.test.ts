@@ -71,7 +71,10 @@ describe('Pokemon Full Pack Stats', () => {
     const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 104.47,
       carryLimit: 30,
-      sleepDurations: [28800],
+      sleepDurationInfo: {
+        durations: [28800],
+        total: 28800,
+      },
     });
 
     expect(secondsToFull).toBeCloseTo(24810.9505);
@@ -82,7 +85,10 @@ describe('Pokemon Full Pack Stats', () => {
     const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 104.47,
       carryLimit: 30,
-      sleepDurations: [28800, 28800],
+      sleepDurationInfo: {
+        durations: [28800, 28800],
+        total: 57600,
+      },
     });
 
     expect(secondsToFull).toBeCloseTo(24810.9505);
@@ -94,7 +100,10 @@ describe('Pokemon Full Pack Stats', () => {
     const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 106.97,
       carryLimit: 14,
-      sleepDurations: [3600 * 7.5, 3600],
+      sleepDurationInfo: {
+        durations: [3600 * 7.5, 3600],
+        total: 30600,
+      },
     });
 
     expect(secondsToFull).toBeCloseTo(11307.8433);
@@ -106,7 +115,10 @@ describe('Pokemon Full Pack Stats', () => {
     const {ratio, secondsToFull} = getFullPackStats({
       dailyCount: 106.97,
       carryLimit: 14,
-      sleepDurations: [38700],
+      sleepDurationInfo: {
+        durations: [38700],
+        total: 38700,
+      },
     });
 
     expect(secondsToFull).toBeCloseTo(11307.8433);

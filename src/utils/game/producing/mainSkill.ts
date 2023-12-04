@@ -8,6 +8,7 @@ import {
   ProducingRateOfItemOfSessions,
 } from '@/types/game/producing/rate';
 import {ProducingState} from '@/types/game/producing/state';
+import {SleepDurationInfo} from '@/types/game/sleep';
 import {getMainSkillEquivalentStrengthOfSingle} from '@/utils/game/mainSkill/effect/main';
 import {GetMainSkillEquivalentStrengthOpts} from '@/utils/game/mainSkill/effect/type';
 import {getSkillTriggerRate} from '@/utils/game/mainSkill/utils';
@@ -20,7 +21,7 @@ type ApplyMainSkillSleepingCapOpts<T extends ProducingRateOfItem | null> = {
   bonus: EffectiveBonus,
   producingState: ProducingState,
   timeToFullPack: number,
-  sleepDurations: number[],
+  sleepDurationInfo: SleepDurationInfo,
   data: T,
 };
 
@@ -28,7 +29,7 @@ export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | n
   bonus,
   producingState,
   timeToFullPack,
-  sleepDurations,
+  sleepDurationInfo,
   data,
 }: ApplyMainSkillSleepingCapOpts<T>): T => {
   if (!data) {
@@ -42,7 +43,7 @@ export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | n
 
   const frequency = Math.max(
     data.frequency / staminaBonus,
-    Math.min(timeToFullPack, Math.max(...sleepDurations)),
+    Math.min(timeToFullPack, Math.max(...sleepDurationInfo.durations)),
   );
   const quantity = durationOfDay / frequency;
 
@@ -58,7 +59,7 @@ export type GetMainSkillProducingRateOpts =
   Omit<ProducingRateCommonParams, 'level'> &
   GetMainSkillEquivalentStrengthOpts & {
     timeToFullPack: number,
-    sleepDurations: number[],
+    sleepDurationInfo: SleepDurationInfo,
     subSkillBonus: GroupedSubSkillBonus | null,
     skillRatePercent: number | null,
     natureId: NatureId | null,
@@ -69,7 +70,7 @@ export const getMainSkillProducingRate = ({
   frequency,
   bonus,
   timeToFullPack,
-  sleepDurations,
+  sleepDurationInfo,
   subSkillBonus,
   skillRatePercent,
   natureId,
@@ -94,7 +95,7 @@ export const getMainSkillProducingRate = ({
         quantity: 1,
       },
       timeToFullPack,
-      sleepDurations,
+      sleepDurationInfo,
     }),
     awake: applyBonus({
       bonus,

@@ -24,3 +24,8 @@ export type SleepSessionInfo = {
     awake: number,
   },
 };
+
+export type SleepDurationInfo = {
+  durations: number[],
+  total: number,
+};

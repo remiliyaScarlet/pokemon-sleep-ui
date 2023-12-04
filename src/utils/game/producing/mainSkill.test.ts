@@ -21,7 +21,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 21600,
-      sleepDurations: [28800],
+      sleepDurationInfo: {
+        durations: [28800],
+        total: 28800,
+      },
     });
 
     // Skill freq = 14400
@@ -51,7 +54,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 28800,
-      sleepDurations: [21600],
+      sleepDurationInfo: {
+        durations: [21600],
+        total: 21600,
+      },
     });
 
     // Skill freq = 14400
@@ -81,7 +87,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 14400,
-      sleepDurations: [28800],
+      sleepDurationInfo: {
+        durations: [28800],
+        total: 28800,
+      },
     });
 
     // Skill freq = 21600
@@ -111,7 +120,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 28800,
-      sleepDurations: [14400],
+      sleepDurationInfo: {
+        durations: [14400],
+        total: 14400,
+      },
     });
 
     // Skill freq = 21600
@@ -141,7 +153,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 14400,
-      sleepDurations: [21600],
+      sleepDurationInfo: {
+        durations: [21600],
+        total: 21600,
+      },
     });
 
     // Skill freq = 28800
@@ -171,7 +186,10 @@ describe('Pokemon Skill Production', () => {
       skillLevel: 2,
       skillData: testMainSkillMap['2'],
       timeToFullPack: 21600,
-      sleepDurations: [14400],
+      sleepDurationInfo: {
+        durations: [14400],
+        total: 14400,
+      },
     });
 
     // Skill freq = 28800
