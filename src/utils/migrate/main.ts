@@ -15,18 +15,19 @@ export const migrate = <TMigratable extends Migratable, TParams>({
   }
 
   let data: MigrateOpts<TMigratable, TParams>['original'] = cloneMerge(original, override);
+  let migratedVersion = original.version;
 
   for (const singleMigrator of migrators.sort((a, b) => a.toVersion - b.toVersion)) {
-    if ((override?.version ?? -1) >= singleMigrator.toVersion) {
+    if ((override?.version ?? original.version) >= singleMigrator.toVersion) {
       continue;
     }
 
     data = singleMigrator.migrate(data, migrateParams);
+    migratedVersion = singleMigrator.toVersion;
   }
 
   return {
     ...data,
-    // Force-write the version info from `original` - otherwise, version could be overwritten by `override`
-    version: original.version,
+    version: migratedVersion,
   } satisfies MigrateOpts<TMigratable, TParams>['original'];
 };
