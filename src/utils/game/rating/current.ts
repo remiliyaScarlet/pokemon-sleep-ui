@@ -31,7 +31,7 @@ export const getRatingValueOfCurrent = (opts: GetRatingValueOfSimulationOpts) =>
         recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
-    }),
+    }).rate.final,
     singleParams,
   });
 };

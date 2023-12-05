@@ -48,7 +48,7 @@ const onMessage = ({data}: MessageEvent<PokemonItemStatsWorkerOpts>) => {
             ...getProducingRateNeutralParams({pokemon}),
             ...data,
             ...translatedSettings,
-          });
+          }).rate.final;
 
           return {
             pokemon,

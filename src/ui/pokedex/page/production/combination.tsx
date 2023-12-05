@@ -46,7 +46,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
           ...getProducingRateNeutralParams({pokemon}),
           ...translatedSettings,
           ...props,
-        });
+        }).rate.final;
         const {berry, ingredient} = rate;
         const ingredientRates = Object.values(ingredient);
 

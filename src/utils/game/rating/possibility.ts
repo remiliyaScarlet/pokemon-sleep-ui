@@ -46,7 +46,7 @@ export const getRatingValueOfPossibility = ({combination, ...opts}: GetRatingVal
         recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
-    }),
+    }).rate.final,
     singleParams,
   });
 };

@@ -169,7 +169,7 @@ export const PokedexLinkDetail = React.memo(({
       ...calculatedSettings,
       ...synergizedSettings,
       ...getProducingRateNeutralParams({pokemon}),
-    });
+    }).rate.final;
 
     return (
       <Flex>

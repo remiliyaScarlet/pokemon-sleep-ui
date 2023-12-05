@@ -76,7 +76,7 @@ export const getSkillTriggerValueOfUnit = ({
     skillData: mainSkillMap[skill],
     pokemonProducingParams,
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
-  });
+  }).rate.final;
 
   const actual = getSkillTriggerValue({
     rate,

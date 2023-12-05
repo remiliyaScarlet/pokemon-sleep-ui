@@ -40,7 +40,7 @@ export const getRatingValueOfBase = (opts: GetRatingValueOfSimulationOpts) => {
         recoveryRate: toRecoveryRate(singleParams),
       }),
       noCap: ratingCalculationNoCap,
-    }),
+    }).rate.final,
     singleParams,
   });
 };
