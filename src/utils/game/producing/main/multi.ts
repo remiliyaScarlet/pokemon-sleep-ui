@@ -1,13 +1,9 @@
 import {defaultProductionPeriod} from '@/const/game/production';
 import {PokemonProducingRateFinal, PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
-import {applyMultiplierToRateOfStates} from '@/utils/game/producing/apply/multiplier';
+import {applyIngredientMultiplier} from '@/utils/game/producing/apply/ingredient';
 import {groupPokemonProducingRate} from '@/utils/game/producing/group';
-import {
-  getIngredientMultiplier,
-  GetIngredientMultiplierOpts,
-  getIngredientMultiplierValue,
-} from '@/utils/game/producing/ingredient/multiplier';
+import {getIngredientMultiplier, GetIngredientMultiplierOpts} from '@/utils/game/producing/ingredient/multiplier';
 import {getPokemonProducingRateBase, GetPokemonProducingRateBaseOpts} from '@/utils/game/producing/main/base';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 import {isNotNullish} from '@/utils/type';
@@ -59,23 +55,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
 
     return {
       ...rateWithPayload,
-      rate: {
-        ...rate,
-        ingredient: Object.fromEntries(Object.values(rate.ingredient).map((rate) => [
-          rate.id,
-          applyMultiplierToRateOfStates({
-            rate,
-            target: ['energy'],
-            multiplier: {
-              original: 1,
-              target: getIngredientMultiplierValue({
-                multiplier: ingredientMultiplier,
-                ingredientId: rate.id,
-              }),
-            },
-          }),
-        ])),
-      },
+      rate: applyIngredientMultiplier({rate, ingredientMultiplier}),
     };
   });
 
