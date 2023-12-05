@@ -239,6 +239,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         OwnedCandies: string,
         NormalCandy: string,
         HandyCandy: string,
+        Multiplier: {
+          DreamShardDepletion: string,
+          ExpBoost: string,
+        },
       },
       Docs: {
         Title: string,

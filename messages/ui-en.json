@@ -336,7 +336,11 @@
       "ExpToNext": "EXP to Next Level",
       "OwnedCandies": "Owned Candies",
       "NormalCandy": "Pokémon Candy",
-      "HandyCandy": "Handy Candy"
+      "HandyCandy": "Handy Candy",
+      "Multiplier": {
+        "DreamShardDepletion": "Dream Shard Depletion Rate",
+        "ExpBoost": "EXP Boost Rate"
+      }
     },
     "Docs": {
       "Title": "Title"

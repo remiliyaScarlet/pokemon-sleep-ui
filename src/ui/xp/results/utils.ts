@@ -28,6 +28,7 @@ export const getLevelUpRequirementsOfEachLevel = ({
   ownedCandies,
   xpData,
   multiplier,
+  rate,
 }: GetItemsRequiredOpts): PokemonLevelUpRequirements[] => {
   // `currentLv` could be `0` if current level is deleted
   if (!currentLv) {
@@ -46,7 +47,7 @@ export const getLevelUpRequirementsOfEachLevel = ({
     ...xpData.slice(currentLv),
   ];
 
-  const actualCandyExpEquivalent = Math.ceil(candyExpEquivalent * multiplier);
+  const actualCandyExpEquivalent = Math.ceil(candyExpEquivalent * multiplier * rate.candyExpBoost);
   const itemsRequired: PokemonLevelUpRequirements[] = [];
 
   let overfeedExp = 0;
@@ -63,7 +64,7 @@ export const getLevelUpRequirementsOfEachLevel = ({
       lv: lv + 1,
       xp: toNext,
       candy: candySpent,
-      shard: candyActual * (shardPerCandy ?? NaN),
+      shard: candyActual * (shardPerCandy ?? NaN) * rate.dreamShardDepletion,
     });
 
     overfeedExp = candyActual * actualCandyExpEquivalent - expToNextActual;

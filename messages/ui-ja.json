@@ -336,7 +336,11 @@
       "ExpToNext": "次のレベルまで",
       "OwnedCandies": "所有しているアメ",
       "NormalCandy": "ポケモンアメ",
-      "HandyCandy": "ばんのうアメ"
+      "HandyCandy": "ばんのうアメ",
+      "Multiplier": {
+        "DreamShardDepletion": "ゆめのかけら消費倍率",
+        "ExpBoost": "EXPボーナス倍率"
+      }
     },
     "Docs": {
       "Title": "タイトル"

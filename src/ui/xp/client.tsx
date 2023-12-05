@@ -14,6 +14,10 @@ export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps)
     nature: null,
     currentLv: 1,
     xpToNext: xpData.at(0)?.toNext ?? NaN,
+    rate: {
+      candyExpBoost: 1,
+      dreamShardDepletion: 1,
+    },
     ownedCandies: 0,
     showNonBreakthroughLevel: false,
   });

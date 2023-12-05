@@ -337,7 +337,11 @@
       "ExpToNext": "EP bis zum nächsten Level",
       "OwnedCandies": "Eigene Bonbons",
       "NormalCandy": "Pokemon Bonbon",
-      "HandyCandy": "Universalbonbon"
+      "HandyCandy": "Universalbonbon",
+      "Multiplier": {
+        "DreamShardDepletion": "Dream Shard Depletion Rate",
+        "ExpBoost": "EXP Boost Rate"
+      }
     },
     "Docs": {
       "Title": "Titel"

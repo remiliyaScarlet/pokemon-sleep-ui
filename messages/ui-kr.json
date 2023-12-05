@@ -336,7 +336,11 @@
       "ExpToNext": "다음 레벨까지",
       "OwnedCandies": "소유한 사탕",
       "NormalCandy": "사탕",
-      "HandyCandy": "만능사탕"
+      "HandyCandy": "만능사탕",
+      "Multiplier": {
+        "DreamShardDepletion": "Dream Shard Depletion Rate",
+        "ExpBoost": "EXP Boost Rate"
+      }
     },
     "Docs": {
       "Title": "제목"

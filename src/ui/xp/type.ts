@@ -14,6 +14,10 @@ export type PokemonExpCalculatorParams = {
   xpToNext: number,
   currentLv: number,
   ownedCandies: number,
+  rate: {
+    dreamShardDepletion: number,
+    candyExpBoost: number,
+  },
 };
 
 export type PokemonExpCalculatorInput = PokemonExpCalculatorParams & {

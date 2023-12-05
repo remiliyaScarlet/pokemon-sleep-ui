@@ -36,6 +36,7 @@ export const PokemonExpCalculatorInputUI = ({
     currentLv,
     xpToNext,
     ownedCandies,
+    rate,
     pokemon,
     nature,
     showNonBreakthroughLevel,
@@ -99,7 +100,41 @@ export const PokemonExpCalculatorInputUI = ({
           value={ownedCandies.toString()}
           onChange={({target}) => setFilter((original) => ({
             ...original,
-            ownedCandies: parseInt(target.value || '0'),
+            ownedCandies: parseInt(target.value || '1'),
+          }))}
+        />
+      </InputRowWithTitle>
+      <InputRowWithTitle noFixedTitleWidth title={
+        <div className="w-60">
+          {t('Multiplier.ExpBoost')}
+        </div>
+      }>
+        <InputBox
+          type="number"
+          value={rate.candyExpBoost.toString()}
+          onChange={({target}) => setFilter(({rate, ...original}) => ({
+            ...original,
+            rate: {
+              ...rate,
+              candyExpBoost: Math.max(1, parseInt(target.value || '1')),
+            },
+          }))}
+        />
+      </InputRowWithTitle>
+      <InputRowWithTitle noFixedTitleWidth title={
+        <div className="w-60">
+          {t('Multiplier.DreamShardDepletion')}
+        </div>
+      }>
+        <InputBox
+          type="number"
+          value={rate.dreamShardDepletion.toString()}
+          onChange={({target}) => setFilter(({rate, ...original}) => ({
+            ...original,
+            rate: {
+              ...rate,
+              dreamShardDepletion: Math.max(1, parseInt(target.value || '1')),
+            },
           }))}
         />
       </InputRowWithTitle>

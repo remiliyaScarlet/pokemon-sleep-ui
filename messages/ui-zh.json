@@ -336,7 +336,11 @@
       "ExpToNext": "距離下一等級",
       "OwnedCandies": "擁有糖果",
       "NormalCandy": "一般糖果",
-      "HandyCandy": "萬能糖果"
+      "HandyCandy": "萬能糖果",
+      "Multiplier": {
+        "DreamShardDepletion": "夢之碎片消耗倍率",
+        "ExpBoost": "經驗獲取倍率"
+      }
     },
     "Docs": {
       "Title": "標題"

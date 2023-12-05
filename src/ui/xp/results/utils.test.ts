@@ -58,6 +58,10 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
       currentLv: 1,
       multiplier: 1,
       ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
     });
 
     expect(expItemsRequired[0].lv).toBe(2);
@@ -105,6 +109,10 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
       currentLv: 1,
       multiplier: 1.18,
       ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
     });
 
     expect(expItemsRequired[0].lv).toBe(2);
@@ -152,6 +160,10 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
       currentLv: 1,
       multiplier: 0.82,
       ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
     });
 
     expect(expItemsRequired[0].lv).toBe(2);
@@ -199,6 +211,10 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
       currentLv: 1,
       multiplier: 1,
       ownedCandies: 10,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
     });
 
     expect(expItemsRequired[0].lv).toBe(2);
@@ -246,6 +262,10 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
       currentLv: 1,
       multiplier: 1,
       ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
     });
 
     expect(expItemsRequired[0].lv).toBe(2);
@@ -256,6 +276,37 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
     expect(expItemsRequired[1].xp).toBe(71);
     expect(expItemsRequired[1].candy).toBe(2);
     expect(expItemsRequired[1].shard).toBeNaN();
+  });
+
+  it('is correct with non-default rates', () => {
+    const expItemsRequired = getLevelUpRequirementsOfEachLevel({
+      xpData: testExpData,
+      xpToNext: 44,
+      currentLv: 1,
+      multiplier: 1,
+      ownedCandies: 0,
+      rate: {
+        candyExpBoost: 2,
+        dreamShardDepletion: 6,
+      },
+    });
+
+    expect(expItemsRequired[0].lv).toBe(2);
+    expect(expItemsRequired[0].xp).toBe(44);
+    expect(expItemsRequired[0].candy).toBe(1);
+    expect(expItemsRequired[0].shard).toBe(14 * 6);
+    expect(expItemsRequired[1].lv).toBe(3);
+    expect(expItemsRequired[1].xp).toBe(71);
+    expect(expItemsRequired[1].candy).toBe(2);
+    expect(expItemsRequired[1].shard).toBe(2 * 18 * 6);
+    expect(expItemsRequired[2].lv).toBe(4);
+    expect(expItemsRequired[2].xp).toBe(108);
+    expect(expItemsRequired[2].candy).toBe(2);
+    expect(expItemsRequired[2].shard).toBe(2 * 22 * 6);
+    expect(expItemsRequired[3].lv).toBe(5);
+    expect(expItemsRequired[3].xp).toBe(128);
+    expect(expItemsRequired[3].candy).toBe(3);
+    expect(expItemsRequired[3].shard).toBe(3 * 27 * 6);
   });
 });
 
