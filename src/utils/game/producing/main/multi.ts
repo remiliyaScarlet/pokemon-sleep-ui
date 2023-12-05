@@ -3,7 +3,11 @@ import {PokemonProducingRateFinal, PokemonProducingRateWithPayload} from '@/type
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {applyMultiplierToRateOfStates} from '@/utils/game/producing/apply/multiplier';
 import {groupPokemonProducingRate} from '@/utils/game/producing/group';
-import {getIngredientMultiplier, GetIngredientMultiplierOpts} from '@/utils/game/producing/ingredient/multiplier';
+import {
+  getIngredientMultiplier,
+  GetIngredientMultiplierOpts,
+  getIngredientMultiplierValue,
+} from '@/utils/game/producing/ingredient/multiplier';
 import {getPokemonProducingRateBase, GetPokemonProducingRateBaseOpts} from '@/utils/game/producing/main/base';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 import {isNotNullish} from '@/utils/type';
@@ -49,6 +53,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
       .filter(isNotNullish)),
     ...opts,
   });
+
   const ratesAfterIngredient: PokemonProducingRateWithPayload<TPayload>[] = ratesWithPayload.map((rateWithPayload) => {
     const {rate} = rateWithPayload;
 
@@ -63,7 +68,10 @@ export const getPokemonProducingRateMulti = <TPayload>({
             target: ['energy'],
             multiplier: {
               original: 1,
-              target: ingredientMultiplier[rate.id] ?? 1,
+              target: getIngredientMultiplierValue({
+                multiplier: ingredientMultiplier,
+                ingredientId: rate.id,
+              }),
             },
           }),
         ])),
