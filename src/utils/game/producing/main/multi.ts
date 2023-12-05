@@ -14,7 +14,7 @@ type GetPokemonProducingRateOptsWithPayload<TPayload> = {
   payload: TPayload,
 };
 
-type GetFinalProducingRateMultiOpts<TPayload> = Omit<GetIngredientMultiplierOpts, 'production'> & {
+type GetPokemonProducingRateMultiOpts<TPayload> = Omit<GetIngredientMultiplierOpts, 'production'> & {
   rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
   sharedOpts: GetProducingRateSharedOpts,
   groupingState: ProducingStateOfRate,
@@ -25,7 +25,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
   sharedOpts,
   groupingState,
   ...opts
-}: GetFinalProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
+}: GetPokemonProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
   const period = sharedOpts.period ?? defaultProductionPeriod;
 
   const ratesWithPayload = rateOpts.map(({opts, payload}) => ({

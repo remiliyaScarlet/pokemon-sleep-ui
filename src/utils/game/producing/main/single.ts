@@ -4,12 +4,12 @@ import {GetPokemonProducingRateBaseOpts} from '@/utils/game/producing/main/base'
 import {getPokemonProducingRateMulti} from '@/utils/game/producing/main/multi';
 
 
-type GetFinalProducingRateMultiOpts =
+type GetPokemonProducingRateSingleOpts =
   Omit<GetIngredientMultiplierOpts, 'production'> &
   GetPokemonProducingRateBaseOpts;
 
 export const getPokemonProducingRateSingle = (
-  opts: GetFinalProducingRateMultiOpts,
+  opts: GetPokemonProducingRateSingleOpts,
 ): PokemonProducingRate => {
   const rates = getPokemonProducingRateMulti({
     rateOpts: [{opts, payload: null}],
