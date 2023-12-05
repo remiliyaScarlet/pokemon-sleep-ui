@@ -7,7 +7,7 @@ import {PokemonKeyLevel, pokemonKeyLevels} from '@/types/game/pokemon/level';
 import {PokemonExpCalculatorCandyCount} from '@/ui/xp/results/candyCount';
 import {PokemonLevelUpRequirements} from '@/ui/xp/results/type';
 import {PokemonExpCalculatorInput} from '@/ui/xp/type';
-import {formatInt, formatToAbbreviation} from '@/utils/number/format';
+import {formatFloat3, formatInt, formatToAbbreviation} from '@/utils/number/format';
 
 
 type Props = {
@@ -43,6 +43,7 @@ export const PokemonExpCalculatorTableRow = ({input, data}: Props) => {
       <td className="whitespace-nowrap">
         {formatToAbbreviation({num: shard})}
       </td>
+      <td>{formatFloat3(shard / xp)}</td>
     </tr>
   );
 };
