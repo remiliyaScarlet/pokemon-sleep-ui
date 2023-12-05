@@ -18,5 +18,5 @@ export const getPokemonProducingRateSingle = (
     ...opts,
   });
 
-  return rates.rates[0].rate;
+  return rates.rates[0].rate.final;
 };

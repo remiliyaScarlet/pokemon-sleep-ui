@@ -70,7 +70,10 @@ export type PokemonProducingRate = {
 };
 
 export type PokemonProducingRateWithPayload<TPayload> = {
-  rate: PokemonProducingRate,
+  rate: {
+    final: PokemonProducingRate,
+    original: PokemonProducingRate,
+  },
   payload: TPayload,
 };
 

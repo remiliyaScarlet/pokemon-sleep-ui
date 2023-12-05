@@ -72,11 +72,11 @@ export const useTeamProducingStatsComp = ({
         rate,
       }): [TeamAnalysisSlotName, TeamProducingStatsSingle] => {
         const {slotName, calculatedSettings} = payload;
-        const total: ProducingRate = getTotalOfPokemonProducingRate({rate, state});
+        const total: ProducingRate = getTotalOfPokemonProducingRate({rate: rate.final, state});
 
         return [
           slotName,
-          {...rate, calculatedSettings, total},
+          {...rate.final, calculatedSettings, total},
         ];
       })) as TeamProducingStatsBySlot,
       grouped,

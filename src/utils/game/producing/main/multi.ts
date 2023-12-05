@@ -28,13 +28,13 @@ export const getPokemonProducingRateMulti = <TPayload>({
 }: GetFinalProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
   const period = sharedOpts.period ?? defaultProductionPeriod;
 
-  const ratesWithPayload: PokemonProducingRateWithPayload<TPayload>[] = rateOpts.map(({opts, payload}) => ({
-    rate: getPokemonProducingRateBase({...opts, ...sharedOpts}),
+  const ratesWithPayload = rateOpts.map(({opts, payload}) => ({
+    rawRate: getPokemonProducingRateBase({...opts, ...sharedOpts}),
     payload,
   }));
   const groupedOriginalRates = groupPokemonProducingRate({
     period,
-    rates: ratesWithPayload.map(({rate}) => rate),
+    rates: ratesWithPayload.map(({rawRate}) => rawRate),
     state: groupingState,
   });
   const ingredientMultiplier = getIngredientMultiplier({
@@ -51,11 +51,14 @@ export const getPokemonProducingRateMulti = <TPayload>({
   });
 
   const ratesAfterIngredient: PokemonProducingRateWithPayload<TPayload>[] = ratesWithPayload.map((rateWithPayload) => {
-    const {rate} = rateWithPayload;
+    const {rawRate} = rateWithPayload;
 
     return {
       ...rateWithPayload,
-      rate: applyIngredientMultiplier({rate, ingredientMultiplier}),
+      rate: {
+        original: rawRate,
+        final: applyIngredientMultiplier({rate: rawRate, ingredientMultiplier}),
+      },
     };
   });
 
@@ -63,7 +66,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
     rates: ratesAfterIngredient,
     grouped: groupPokemonProducingRate({
       period,
-      rates: ratesAfterIngredient.map(({rate}) => rate),
+      rates: ratesAfterIngredient.map(({rate}) => rate.final),
       state: groupingState,
     }),
   };
