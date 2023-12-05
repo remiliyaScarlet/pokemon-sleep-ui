@@ -12,6 +12,7 @@ import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {FilterInputProps} from '@/components/input/filter/type';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
+import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clickable/image';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
@@ -104,40 +105,6 @@ export const PokemonExpCalculatorInputUI = ({
           }))}
         />
       </InputRowWithTitle>
-      <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-60">
-          {t('Multiplier.ExpBoost')}
-        </div>
-      }>
-        <InputBox
-          type="number"
-          value={rate.candyExpBoost.toString()}
-          onChange={({target}) => setFilter(({rate, ...original}) => ({
-            ...original,
-            rate: {
-              ...rate,
-              candyExpBoost: Math.max(1, parseInt(target.value || '1')),
-            },
-          }))}
-        />
-      </InputRowWithTitle>
-      <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-60">
-          {t('Multiplier.DreamShardDepletion')}
-        </div>
-      }>
-        <InputBox
-          type="number"
-          value={rate.dreamShardDepletion.toString()}
-          onChange={({target}) => setFilter(({rate, ...original}) => ({
-            ...original,
-            rate: {
-              ...rate,
-              dreamShardDepletion: Math.max(1, parseInt(target.value || '1')),
-            },
-          }))}
-        />
-      </InputRowWithTitle>
       <PokemonNatureSelector
         nature={nature}
         setNature={(nature) => setFilter((original) => ({
@@ -145,6 +112,32 @@ export const PokemonExpCalculatorInputUI = ({
           nature,
         }))}
         classNameForHeight="h-8"
+      />
+      <NumberSliderRequired
+        text={t('Multiplier.ExpBoost')}
+        value={rate.candyExpBoost}
+        setValue={(candyExpBoost) => setFilter(({rate, ...original}) => ({
+          ...original,
+          rate: {
+            ...rate,
+            candyExpBoost,
+          },
+        }))}
+        max={5}
+        noSameLine
+      />
+      <NumberSliderRequired
+        text={t('Multiplier.DreamShardDepletion')}
+        value={rate.dreamShardDepletion}
+        setValue={(dreamShardDepletion) => setFilter(({rate, ...original}) => ({
+          ...original,
+          rate: {
+            ...rate,
+            dreamShardDepletion,
+          },
+        }))}
+        max={10}
+        noSameLine
       />
       <InputRow className="justify-end gap-2">
         <ToggleButton
