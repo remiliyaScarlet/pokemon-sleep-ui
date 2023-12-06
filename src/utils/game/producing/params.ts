@@ -1,4 +1,4 @@
-import {defaultNeutralOpts, defaultProducingParams, helpingBonusStackOfFullTeam} from '@/const/game/production';
+import {defaultNeutralOpts, defaultProducingParams, maxTeamMemberCount} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
@@ -26,7 +26,7 @@ export const getHelpingBonusStack = ({
   }
 
   if (helpingBonusSimulateOnSelf) {
-    return helpingBonusStackOfFullTeam;
+    return maxTeamMemberCount;
   }
 
   return helperBonusCount;
