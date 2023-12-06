@@ -25,6 +25,5 @@ export const navEntriesForTeam: NavEntryLink[] = [
     href: '/team/maker',
     imageSrc: '/images/generic/wrenches.png',
     i18nTextId: 'Team.Maker.Title',
-    disabled: true,
   },
 ];

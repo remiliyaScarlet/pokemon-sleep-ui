@@ -226,6 +226,11 @@ declare interface IntlMessages extends UiMessages, GameMessages {
             FinalEvolution: string,
           },
         },
+        Maker: {
+          Behavior: {
+            ToggleInsufficientIngredients: string,
+          },
+        },
       },
       Info: {
         Pot: {

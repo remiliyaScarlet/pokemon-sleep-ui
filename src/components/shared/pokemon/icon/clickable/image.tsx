@@ -33,7 +33,8 @@ export const PokemonClickableIconImage = ({pokemon, dimension}: Props) => {
       </div>
       <div className={clsx('relative', dimension)}>
         <NextImage
-          src={`/images/pokemon/icons/${id}.png`} alt={t(`PokemonName.${id}`)}
+          src={`/images/pokemon/icons/${id}.png`}
+          alt={t(`PokemonName.${id}`)}
           sizes={imageIconSizes}
         />
       </div>

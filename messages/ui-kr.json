@@ -323,6 +323,11 @@
           "Level": "레벨 미리보기",
           "FinalEvolution": "최종 진화 미리보기"
         }
+      },
+      "Maker": {
+        "Behavior": {
+          "ToggleInsufficientIngredients": "Show/Hide the team comps unable to satisfy the ingredient requirements"
+        }
       }
     },
     "Info": {

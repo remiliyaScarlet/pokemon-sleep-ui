@@ -1,5 +1,5 @@
 import {GenerateMetadata} from '@/types/next/metadata';
-import {Constructing} from '@/ui/placeholder/constructing';
+import {TeamMakerEntry} from '@/ui/team/maker/main';
 import {getI18nTranslator} from '@/utils/i18n';
 import {generatePageMetaFromString} from '@/utils/meta';
 
@@ -10,8 +10,8 @@ export const generateMetadata: GenerateMetadata = async ({params}) => {
 
   return generatePageMetaFromString({
     t,
-    title: `${t('Team.Index.Title')} / ${t('Team.Box.Title')}`,
+    title: `${t('Team.Index.Title')} / ${t('Team.Maker.Title')}`,
   });
 };
 
-export default Constructing;
+export default TeamMakerEntry;

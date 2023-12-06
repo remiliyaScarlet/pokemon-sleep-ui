@@ -324,6 +324,11 @@
           "Level": "Vorschau des Levels",
           "FinalEvolution": "Vorschau der finalen Evolution"
         }
+      },
+      "Maker": {
+        "Behavior": {
+          "ToggleInsufficientIngredients": "Show/Hide the team comps unable to satisfy the ingredient requirements"
+        }
       }
     },
     "Info": {

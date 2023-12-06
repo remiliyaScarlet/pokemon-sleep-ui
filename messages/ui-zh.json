@@ -323,6 +323,11 @@
           "Level": "預覽等級中",
           "FinalEvolution": "預覽最終進化中"
         }
+      },
+      "Maker": {
+        "Behavior": {
+          "ToggleInsufficientIngredients": "顯示/隱藏無法滿足食材需求的組合"
+        }
       }
     },
     "Info": {

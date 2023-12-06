@@ -323,6 +323,11 @@
           "Level": " レベルプレビューON",
           "FinalEvolution": "最終進化プレビューON"
         }
+      },
+      "Maker": {
+        "Behavior": {
+          "ToggleInsufficientIngredients": "食材の条件を満たさないチームを表示/除外"
+        }
       }
     },
     "Info": {
