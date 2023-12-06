@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 
 import {InputRow} from '@/components/input/filter/row';
 import {InputRowProps} from '@/components/input/filter/type';
+import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = InputRowProps & {
@@ -24,9 +25,12 @@ export const InputRowWithTitle = ({
       directionOverrideClassName ?? 'sm:flex-row',
       className,
     )}>
-      <div className={clsx('shrink-0 whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
+      <Flex noFullWidth className={clsx(
+        'shrink-0 items-center whitespace-nowrap text-sm',
+        !noFixedTitleWidth && 'w-32',
+      )}>
         {title}
-      </div>
+      </Flex>
       {children}
     </InputRow>
   );
