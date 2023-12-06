@@ -1,5 +1,6 @@
 import {natureData} from '@/data/nature';
 import {RatingDataPoint, RatingResultOfLevel, RatingWorkerOpts} from '@/types/game/pokemon/rating';
+import {isNestedWorkerSupported} from '@/utils/compatibility/nestedWorker';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getRatingValueOfBase} from '@/utils/game/rating/base';
@@ -62,6 +63,7 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
     generatePossibleIngredientProductions({level, chain});
 
   const promises: Promise<RatingDataPoint[]>[] = [];
+  const runAsNestedWorker = level >= 50 && isNestedWorkerSupported();
   for (const ingredients of ingredientProductions) {
     const calcOpts: CalculateRatingDataWorkerOpts = {
       ...opts,
@@ -76,7 +78,7 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
       // Only use worker when the level is >= 50,
       // because the overhead of creating multiple workers is
       // greater than the time needed of doing the calculation directly in here
-      if (level >= 50) {
+      if (runAsNestedWorker) {
         const worker = new Worker(new URL('fromPayload.worker', import.meta.url));
         worker.postMessage(calcOpts);
         worker.onmessage = ({data}: MessageEvent<RatingDataPoint[]>) => {
