@@ -11,7 +11,7 @@ type Props = FilterInputOnClickProps<IngredientId> & {
   ingredientIds: IngredientId[],
 };
 
-export const IngredientInput = ({ingredientIds, ...props}: Props) => {
+export const IngredientSelectionInput = ({ingredientIds, ...props}: Props) => {
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Cooking');
 

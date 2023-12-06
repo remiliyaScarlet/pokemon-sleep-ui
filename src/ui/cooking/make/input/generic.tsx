@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
-import {IngredientInput} from '@/components/shared/input/ingredient';
+import {IngredientSelectionInput} from '@/components/shared/input/ingredient/selection';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealMakerCommonProps} from '@/ui/cooking/make/type';
@@ -27,7 +27,7 @@ export const MealMakerInputGeneral = ({mealTypes, ingredientMap, filter, setFilt
           allowNull: false,
         })}
       />
-      <IngredientInput
+      <IngredientSelectionInput
         ingredientIds={Object.keys(ingredientMap).map((id) => Number(id))}
         {...getMultiSelectOnClickProps({
           filter: filter,

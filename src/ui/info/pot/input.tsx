@@ -3,7 +3,7 @@ import React from 'react';
 import {InputRow} from '@/components/input/filter/row';
 import {FilterWithUpdaterProps} from '@/components/input/filter/type';
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
-import {IngredientInput} from '@/components/shared/input/ingredient';
+import {IngredientSelectionInput} from '@/components/shared/input/ingredient/selection';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealDisplayControl} from '@/components/shared/meal/control';
@@ -38,7 +38,7 @@ export const PotInfoInput = ({filter, setFilter, maxMealLevel, mealTypes, preloa
           setValue={(mealLevel) => setFilter((original) => ({...original, mealLevel}))}
         />
       </InputRow>
-      <IngredientInput
+      <IngredientSelectionInput
         ingredientIds={Object.keys(ingredientMap).map((id) => Number(id))}
         {...getMultiSelectOnClickProps({
           filter: filter,

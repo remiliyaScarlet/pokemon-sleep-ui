@@ -3,7 +3,7 @@ import React from 'react';
 import {InputRow} from '@/components/input/filter/row';
 import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
-import {IngredientInput} from '@/components/shared/input/ingredient';
+import {IngredientSelectionInput} from '@/components/shared/input/ingredient/selection';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealDisplayControl} from '@/components/shared/meal/control';
@@ -50,7 +50,7 @@ export const MealInput = ({data, filter, setFilter, preloaded}: Props) => {
           filterKey: 'potCapacity',
         })}
       />
-      <IngredientInput
+      <IngredientSelectionInput
         ingredientIds={toUnique(data.flatMap(({ingredients}) => ingredients.map(({id}) => id))).sort((a, b) => a - b)}
         {...getMultiSelectOnClickProps({
           filter,
