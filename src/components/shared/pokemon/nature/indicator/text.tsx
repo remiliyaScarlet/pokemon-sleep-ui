@@ -16,12 +16,12 @@ export const PokemonNatureIndicatorText = ({nature, hideName}: PokemonNatureIndi
   const t = useTranslations('Game');
 
   if (!nature) {
-    return <XCircleIcon className="h-5 w-5"/>;
+    return <XCircleIcon className="h-6 w-6"/>;
   }
 
   const dataOfNature = natureDataMap[nature];
   if (!dataOfNature) {
-    return <QuestionMarkCircleIcon className="h-5 w-5"/>;
+    return <QuestionMarkCircleIcon className="h-6 w-6"/>;
   }
 
   const buffEffectId = dataOfNature.buff;

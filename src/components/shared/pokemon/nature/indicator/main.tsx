@@ -12,7 +12,7 @@ export const PokemonNatureIndicator = (props: PokemonNatureIndicatorCommonProps)
 
   return (
     <Flex direction="row" center noFullWidth>
-      {!hideName && <ChevronUpDownIcon className="h-5 w-5"/>}
+      {!hideName && <ChevronUpDownIcon className="h-6 w-6"/>}
       <div>
         <PokemonNatureIndicatorText {...props}/>
       </div>

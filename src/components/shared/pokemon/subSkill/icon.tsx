@@ -28,7 +28,7 @@ export const PokemonSubSkillIcon = ({subSkill, isInactive}: PokemonSubSkillUiPro
     .at(0);
 
   if (!firstEffectiveBonus) {
-    return <QuestionMarkCircleIcon className={clsx('h-5 w-5', opacity)}/>;
+    return <QuestionMarkCircleIcon className={clsx('h-6 w-6', opacity)}/>;
   }
 
   return (
