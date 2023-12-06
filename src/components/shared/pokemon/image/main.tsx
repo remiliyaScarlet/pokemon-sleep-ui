@@ -10,21 +10,23 @@ type Props = {
   pokemonId: PokemonId | null,
   image: PokemonImageType,
   isShiny: boolean,
+  alt?: string,
 };
 
-export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
+export const PokemonImage = ({pokemonId, image, isShiny, alt}: Props) => {
   if (!pokemonId) {
     return (
       <NextImage src="/images/generic/pokeball_unavailable.png" alt="N/A" sizes={imagePortraitSizes}/>
     );
   }
 
-  const alt = `Pokemon #${pokemonId}`;
+  const actualAlt = alt ?? `Pokemon #${pokemonId}`;
 
   if (image === 'portrait') {
     return (
       <NextImage
-        src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${pokemonId}.png`} alt={alt}
+        src={`/images/pokemon/portrait/${isShiny ? 'shiny/' : ''}${pokemonId}.png`}
+        alt={actualAlt}
         sizes={imagePortraitSizes}
       />
     );
@@ -33,7 +35,8 @@ export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
   if (image === 'icon') {
     return (
       <NextImage
-        src={`/images/pokemon/icons/${pokemonId}.png`} alt={alt}
+        src={`/images/pokemon/icons/${pokemonId}.png`}
+        alt={actualAlt}
         sizes={imagePortraitSizes}
       />
     );
@@ -41,7 +44,8 @@ export const PokemonImage = ({pokemonId, image, isShiny}: Props) => {
 
   return (
     <NextImage
-      src={`/images/sleep/${image}/${isShiny ? 'shiny/' : ''}${pokemonId}.png`} alt={alt}
+      src={`/images/sleep/${image}/${isShiny ? 'shiny/' : ''}${pokemonId}.png`}
+      alt={actualAlt}
       sizes={imagePortraitSizes}
     />
   );
