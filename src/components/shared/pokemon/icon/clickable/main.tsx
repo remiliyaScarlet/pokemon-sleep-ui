@@ -23,7 +23,7 @@ export const PokemonClickableIcons = ({pokemonList, onClick, isActive, dimension
   const {state, setState, showPokemon} = usePokemonLinkPopup();
 
   return (
-    <Flex direction="row" center wrap className="gap-1.5">
+    <Flex direction="row" noFullWidth center wrap className="gap-1.5">
       <PokemonLinkPopup state={state} setState={setState}/>
       {pokemonList.map((pokemon) => {
         const id = pokemon?.id ?? null;
