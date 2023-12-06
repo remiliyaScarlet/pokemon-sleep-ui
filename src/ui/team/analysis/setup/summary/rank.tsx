@@ -7,21 +7,22 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
-import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
-import {getSnorlaxRankAtEnergy} from '@/utils/game/snorlax';
+import {useSnorlaxRankFinalEstimate} from '@/hooks/rank';
+import {SnorlaxRankInMap} from '@/types/game/snorlax';
 
 
-type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
+type Props = {
   energy: number,
+  snorlaxRankData: SnorlaxRankInMap[],
 };
 
 export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
   const t = useTranslations('Game.Field');
 
-  const snorlaxRank = React.useMemo(() => snorlaxRankData.map(({mapId, data}) => ({
-    mapId,
-    rank: getSnorlaxRankAtEnergy({energy, data}),
-  })), [energy]);
+  const snorlaxRank = useSnorlaxRankFinalEstimate({
+    energy,
+    snorlaxRankData,
+  });
 
   return (
     <Grid className="grid-cols-1 gap-1.5 lg:grid-cols-2 2xl:grid-cols-4">
