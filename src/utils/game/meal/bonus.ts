@@ -12,7 +12,7 @@ type GetMealBonusOpts = {
 
 export const getMealBonus = ({level, meal}: GetMealBonusOpts): MealBonusInfo => {
   const rarityBonus = getMealRarityBonus(getMealIngredientCount(meal));
-  const levelBonus = 1 + getRecipeLevelData(level).bonus;
+  const levelBonus = 1 + (getRecipeLevelData(level)?.bonus ?? 0);
 
   return {
     level: levelBonus,
@@ -28,7 +28,7 @@ type GetCommonMaxMealBonusOpts = {
 
 export const getCommonMaxMealBonus = ({level, meals}: GetCommonMaxMealBonusOpts) => {
   const rarityBonus = getMealRarityBonus(Math.max(...meals.map(getMealIngredientCount)));
-  const levelBonus = 1 + getRecipeLevelData(level).bonus;
+  const levelBonus = 1 + (getRecipeLevelData(level)?.bonus ?? 0);
 
   return levelBonus * rarityBonus;
 };
