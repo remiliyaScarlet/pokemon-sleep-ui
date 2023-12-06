@@ -3,7 +3,7 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {recipeMaxLevel} from '@/const/game/meal';
-import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
+import {usePossibleMealTypes} from '@/hooks/meal';
 import {usePotInfoFilter} from '@/ui/info/pot/hook';
 import {PotInfoInput} from '@/ui/info/pot/input';
 import {PotInfoDataProps} from '@/ui/info/pot/type';

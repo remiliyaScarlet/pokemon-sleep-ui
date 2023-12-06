@@ -3,9 +3,9 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
+import {usePossibleMealTypes} from '@/hooks/meal';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {useTranslatedUserSettings} from '@/hooks/userData/translated';
-import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {CookingServerDataProps} from '@/ui/cooking/common/type';
 import {useMealMakerFilter} from '@/ui/cooking/make/hook';
 import {MealMakerInputUI} from '@/ui/cooking/make/input/main';

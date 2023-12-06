@@ -9,9 +9,9 @@ import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
 import {MealPlanner} from '@/components/shared/meal/planner/main';
+import {usePossibleMealTypes} from '@/hooks/meal';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 import {UserSettingsCookingCommonProps} from '@/ui/base/navbar/userSettings/sections/cooking/type';
-import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {isNotNullish} from '@/utils/type';
 
 
