@@ -1,11 +1,13 @@
 import {uniqBy} from 'lodash';
+import groupBy from 'lodash/groupBy';
 
 import {IngredientCounter, IngredientOfMeals} from '@/types/game/ingredient';
 import {MealIngredientInfo} from '@/types/game/meal/info';
 import {Meal, MealCounter} from '@/types/game/meal/main';
+import {toSum} from '@/utils/array';
 
 
-type GetMealsIngredientsRequiredOpts = {
+type GetMealIngredientInfoOpts = {
   meals: Meal[],
   mealCount: MealCounter,
 };
@@ -13,7 +15,7 @@ type GetMealsIngredientsRequiredOpts = {
 export const getMealIngredientInfo = ({
   meals,
   mealCount,
-}: GetMealsIngredientsRequiredOpts): MealIngredientInfo => {
+}: GetMealIngredientInfoOpts): MealIngredientInfo => {
   const ingredientsRequired: IngredientCounter = {};
   const ingredientOfMeals: IngredientOfMeals = {};
 
@@ -40,4 +42,26 @@ export const getMealIngredientInfo = ({
     ingredientsRequired,
     ingredientOfMeals,
   };
+};
+
+type GetMealIngredientInfoFromTargetMealsOpts = {
+  targetMeals: Meal[],
+  days: number,
+};
+
+export const getMealIngredientInfoFromTargetMeals = ({
+  targetMeals,
+  days,
+}: GetMealIngredientInfoFromTargetMealsOpts): MealIngredientInfo => {
+  const grouped = groupBy(
+    targetMeals.map(({id}) => ({id, days})),
+    ({id}) => id,
+  );
+
+  return getMealIngredientInfo({
+    meals: targetMeals,
+    mealCount: Object.fromEntries(
+      Object.entries(grouped).map(([id, data]) => [id, toSum(data.map(({days}) => days))]),
+    ),
+  });
 };
