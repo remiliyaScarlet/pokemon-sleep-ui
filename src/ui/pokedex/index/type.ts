@@ -33,6 +33,7 @@ export type PokedexData = PokemonInfoForPokedex[];
 export type PokedexDisplay = Migratable & Pick<PokemonInputFilter, 'mainSkill'> & {
   sort: PokemonSortType,
   display: PokedexDisplayType,
+  level: number,
 };
 
 export type PokedexFilter = PokemonInputFilterExtended & PokedexDisplay & {

@@ -38,6 +38,8 @@ export const generateInitialFilter = (preloadedDisplay: Partial<PokedexDisplay> 
       sort: defaultPokemonSort,
       display: 'mainSkill',
       ...generatePokemonInputFilterExtended(),
+      // Override level to a higher number as lv 1 is actually rare
+      level: 15,
       version: 2,
     },
     override: preloadedDisplay ?? null,
