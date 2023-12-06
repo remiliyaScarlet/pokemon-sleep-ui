@@ -42,6 +42,7 @@ export type UserDataLoadingOpts = {
   type: 'adminActivationCheck',
   opts: {
     key: string,
+    userId: string,
   },
 } | {
   type: 'buildId',

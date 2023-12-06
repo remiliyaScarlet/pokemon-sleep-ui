@@ -1,3 +1,6 @@
+import {ObjectId} from 'bson';
+import {Filter} from 'mongodb';
+
 import {
   getSinglePokeInBox,
   getUserPokebox,
@@ -9,6 +12,7 @@ import {getActivationDataByFilter} from '@/controller/user/activation/data';
 import {generateActivationKey, getActivationKeyByFilter} from '@/controller/user/activation/key';
 import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
+import {ActivationData} from '@/types/mongo/activation';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 import {
@@ -101,9 +105,17 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
       } satisfies UserLazyLoadedData['adminActivationCheck'];
     }
 
+    const userIdOfKey = opts.userId;
+    const filter: Filter<ActivationData> | null = (
+      key ? {key} : (userIdOfKey ? {userId: new ObjectId(userIdOfKey)} : null)
+    );
+    if (!filter) {
+      return null satisfies UserLazyLoadedData['adminActivationCheck'];
+    }
+
     const activationData = await getActivationDataByFilter({
       executorUserId: userId,
-      filter: {key},
+      filter,
     });
     if (activationData) {
       return {
