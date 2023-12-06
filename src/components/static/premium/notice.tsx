@@ -10,14 +10,15 @@ import {PremiumIcon} from '@/components/static/premium/icon';
 
 type Props = {
   className?: string,
+  hideIcon?: boolean,
 };
 
-export const PremiumOnlyNotice = ({className}: Props) => {
+export const PremiumOnlyNotice = ({className, hideIcon}: Props) => {
   const t = useTranslations('UI.Subscription');
 
   return (
     <Flex direction="row" center className="gap-1">
-      <PremiumIcon/>
+      {!hideIcon && <PremiumIcon/>}
       <ReactMarkdown remarkPlugins={[remarkGfm]} className={className}>
         {t('PremiumOnly')}
       </ReactMarkdown>
