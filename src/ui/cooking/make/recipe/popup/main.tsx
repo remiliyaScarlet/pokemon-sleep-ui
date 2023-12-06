@@ -16,10 +16,10 @@ import {Meal} from '@/types/game/meal/main';
 import {MealMakerPopupCommonProps} from '@/ui/cooking/make/recipe/popup/type';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {
-  subtractIngredientCount,
   toIngredientCounterFromMealIngredient,
   toMealIngredientFromIngredientCounter,
 } from '@/utils/game/cooking';
+import {subtractIngredientCount} from '@/utils/game/ingredientCounter';
 import {getMealFinalStrength} from '@/utils/game/meal/strength/final';
 import {formatInt} from '@/utils/number/format';
 

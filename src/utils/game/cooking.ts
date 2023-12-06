@@ -34,25 +34,6 @@ export const toIngredientCounterFromMealIngredient = (ingredients: MealIngredien
   Object.fromEntries(ingredients.map(({id, quantity}) => [id, quantity]))
 );
 
-export const subtractIngredientCount = (
-  minuend: IngredientCounter,
-  subtrahend: IngredientCounter,
-): IngredientCounter => (
-  Object.fromEntries(Object.entries(minuend).map(([id, count]) => {
-    if (!count) {
-      return null;
-    }
-
-    const result = count - (subtrahend[parseInt(id)] ?? 0);
-
-    if (result < 0) {
-      return null;
-    }
-
-    return [id, result];
-  }).filter(isNotNullish))
-);
-
 export const getMealIngredientsRequiredCommon = (counters: IngredientCounter[]): IngredientCounter => {
   if (!counters.length) {
     return {};
