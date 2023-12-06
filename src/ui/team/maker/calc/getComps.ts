@@ -9,6 +9,7 @@ import {getMealIngredientInfoFromTargetMeals} from '@/utils/game/meal/ingredient
 import {getPokemonProducingRateMulti} from '@/utils/game/producing/main/multi';
 import {getTotalOfGroupedProducingRate} from '@/utils/game/producing/rateReducer';
 import {getSnorlaxRankFinalEstimate} from '@/utils/game/rank';
+import {isNotNullish} from '@/utils/type';
 
 
 type GetTeamMakerCompsOpts = TeamMakerDataProps & {
@@ -23,6 +24,12 @@ export const getTeamMakerComps = ({
   candidates,
   snorlaxRankData,
 }: GetTeamMakerCompsOpts): TeamMakerResult[] => {
+  const {
+    snorlaxFavorite,
+    ingredientCount,
+    showInsufficientIngredients,
+  } = input;
+
   const ret: TeamMakerResult[] = [];
   for (const ratesAtMax of combineIterator(candidates, 5)) {
     const rates = getPokemonProducingRateMulti({
@@ -31,7 +38,7 @@ export const getTeamMakerComps = ({
         payload: pokeInBox,
       })),
       sharedOpts: {
-        snorlaxFavorite: input.snorlaxFavorite,
+        snorlaxFavorite,
         period: teamMakerProductionPeriod,
         noCap: false,
       },
@@ -44,6 +51,22 @@ export const getTeamMakerComps = ({
       skill: getTotalOfGroupedProducingRate({rate: rates.grouped.skill, key: 'energy'}),
     };
     const strengthTotal = toSum(Object.values(strengthByType));
+    const ingredientStats = getTeamMakerIngredientStats({
+      required: getMealIngredientInfoFromTargetMeals({
+        targetMeals: calculatedInput.targetMeals,
+        days: productionMultiplierByPeriod[teamMakerProductionPeriod],
+      }).ingredientsRequired,
+      inventory: ingredientCount,
+      production: rates.grouped.ingredient,
+    });
+
+    if (
+      !showInsufficientIngredients &&
+      Object.keys(ingredientStats.shortage).length > 0 &&
+      Object.values(ingredientStats.shortage).filter(isNotNullish).some((count) => count > 0)
+    ) {
+      continue;
+    }
 
     ret.push({
       rates,
@@ -51,14 +74,7 @@ export const getTeamMakerComps = ({
         byType: strengthByType,
         total: strengthTotal,
       },
-      ingredientStats: getTeamMakerIngredientStats({
-        required: getMealIngredientInfoFromTargetMeals({
-          targetMeals: calculatedInput.targetMeals,
-          days: productionMultiplierByPeriod[teamMakerProductionPeriod],
-        }).ingredientsRequired,
-        inventory: input.ingredientCount,
-        production: rates.grouped.ingredient,
-      }),
+      ingredientStats,
       finalEstimates: getSnorlaxRankFinalEstimate({
         energy: strengthTotal,
         snorlaxRankData,
