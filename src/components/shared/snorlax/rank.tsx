@@ -13,10 +13,11 @@ import {Dimension} from '@/types/style';
 type Props = {
   rank: SnorlaxRank,
   dimension?: Dimension,
+  hideText?: boolean,
   hideTextBelowMd?: boolean,
 };
 
-export const SnorlaxRankUI = ({rank, dimension, hideTextBelowMd}: Props) => {
+export const SnorlaxRankUI = ({rank, dimension, hideText, hideTextBelowMd}: Props) => {
   const t = useTranslations('UI.Common');
   const t2 = useTranslations('Game.RankTitle');
 
@@ -30,9 +31,12 @@ export const SnorlaxRankUI = ({rank, dimension, hideTextBelowMd}: Props) => {
           sizes={imageSmallIconSizes}
         />
       </div>
-      <div className={clsx('whitespace-nowrap', hideTextBelowMd && 'hidden md:block')}>
-        {rankTitle}
-      </div>
+      {
+        !hideText &&
+        <div className={clsx('whitespace-nowrap', hideTextBelowMd && 'hidden md:block')}>
+          {rankTitle}
+        </div>
+      }
       <div>{rank.number}</div>
     </Flex>
   );
