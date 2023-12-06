@@ -8,9 +8,8 @@ import {UseTeamProducingStatsOpts} from '@/ui/team/analysis/calcHook/type';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
-import {toSum} from '@/utils/array';
+import {getTotalOfGroupedProducingRate} from '@/utils/game/producing/rateReducer';
 import {hasHelperSubSkill} from '@/utils/game/subSkill/effect';
-import {isNotNullish} from '@/utils/type';
 
 
 export const useTeamProducingStats = (opts: UseTeamProducingStatsOpts): TeamProducingStats => {
@@ -63,8 +62,8 @@ export const useTeamProducingStats = (opts: UseTeamProducingStatsOpts): TeamProd
 
   const overall: ProducingRate = React.useMemo(() => ({
     period: analysisPeriod,
-    energy: toSum(Object.values(total).flatMap((rate) => rate?.energy).filter(isNotNullish)),
-    quantity: toSum(Object.values(total).flatMap((rate) => rate?.quantity).filter(isNotNullish)),
+    energy: getTotalOfGroupedProducingRate({rate: total, key: 'energy'}),
+    quantity: getTotalOfGroupedProducingRate({rate: total, key: 'quantity'}),
   }), deps);
 
   return {bySlot, total, grouped, overall};

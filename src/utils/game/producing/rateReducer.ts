@@ -1,5 +1,6 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
 import {
+  GroupedProducingRate,
   PokemonProducingRate,
   ProducingRate,
   ProducingRateOfItem,
@@ -13,7 +14,7 @@ import {toSum} from '@/utils/array';
 import {getFrequencyFromItemRateOfSessions} from '@/utils/game/producing/frequency';
 import {GetProduceSplitOpts} from '@/utils/game/producing/split';
 import {GetItemRateOfSessionCommonOpts, GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
-import {KeysOfType} from '@/utils/type';
+import {isNotNullish, KeysOfType} from '@/utils/type';
 
 
 type GetProducingRateOfStatesOpts =
@@ -128,6 +129,15 @@ type GetTotalOfItemRatesOpts = {
 export const getTotalOfItemRates = ({rates, target, state}: GetTotalOfItemRatesOpts): number => (
   toSum(rates.map((rate) => rate[target][state]))
 );
+
+type GetTotalOfGroupedProducingRateOpts = {
+  rate: GroupedProducingRate<number>
+  key: KeysOfType<ProducingRate, number>,
+};
+
+export const getTotalOfGroupedProducingRate = ({rate, key}: GetTotalOfGroupedProducingRateOpts) => {
+  return toSum(Object.values(rate).filter(isNotNullish).map((rate) => rate[key]));
+};
 
 type GetPokemonProducingRateComponentOpts = {
   rate: PokemonProducingRate,
