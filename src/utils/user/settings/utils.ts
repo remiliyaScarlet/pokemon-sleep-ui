@@ -1,8 +1,7 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {defaultCookingPreset} from '@/const/user/cooking';
 import {Meal, MealMap, MealTypeId} from '@/types/game/meal/main';
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
-import {UserCookingPreset} from '@/types/userData/cooking';
+import {UserCookingTarget} from '@/types/userData/cooking';
 import {UserCalculationFullPackBehavior} from '@/types/userData/settings';
 import {isNotNullish} from '@/utils/type';
 
@@ -30,12 +29,12 @@ export const isFullPack = ({alwaysFullBack, specialty}: IsFullPackOpts): boolean
 
 export type ToTargetMealsOpts = {
   mealType: MealTypeId,
-  cooking: UserCookingPreset,
+  target: UserCookingTarget,
   mealMap: MealMap,
 };
 
-export const toTargetMeals = ({mealType, cooking, mealMap}: ToTargetMealsOpts): Meal[] => Object
-  .values(cooking.target[mealType] ?? defaultCookingPreset.target[mealType] ?? {})
+export const toTargetMeals = ({mealType, target, mealMap}: ToTargetMealsOpts): Meal[] => Object
+  .values(target[mealType] ?? {})
   .filter(isNotNullish)
   .map((mealId) => mealMap[mealId])
   .filter(isNotNullish);

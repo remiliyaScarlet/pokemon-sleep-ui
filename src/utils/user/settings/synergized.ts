@@ -16,7 +16,7 @@ export const toSynergizedUserSettings = ({
     recipeLevel: cooking.recipeLevel,
     targetMeals: toTargetMeals({
       mealType: cooking.mealType,
-      cooking,
+      target: cooking.target,
       mealMap,
     }),
   };
