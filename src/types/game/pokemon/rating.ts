@@ -69,6 +69,7 @@ export type RatingOpts = SynergizedSettingsRequiredData & {
   berryDataMap: BerryDataMap,
   mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
+  useNestedWorker: boolean,
 };
 
 export type RatingWorkerOpts = RatingSetupData & Omit<RatingOpts, 'pokemon'>;

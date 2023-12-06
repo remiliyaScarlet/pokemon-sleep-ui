@@ -20,6 +20,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     mainSkillMap,
     subSkillMap,
     mealMap,
+    useNestedWorker,
   } = opts;
   const [result, setResult] = React.useState<RatingResultOfLevel>({
     level,
@@ -56,6 +57,7 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
       mainSkillMap,
       subSkillMap,
       mealMap,
+      useNestedWorker,
     });
     setLoading(true);
   };

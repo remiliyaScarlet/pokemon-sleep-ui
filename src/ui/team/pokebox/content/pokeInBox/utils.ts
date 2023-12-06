@@ -54,6 +54,7 @@ export const toRatingWorkerOpts = ({
     bundle,
     basis: ratingBasis ?? getDefaultRatingBasis(pokemon.specialty),
     friendshipLevel: 0,
+    useNestedWorker: false,
     ...getProducingRateImplicitParamsFromPokeInbox({pokeInBox}),
   };
 };

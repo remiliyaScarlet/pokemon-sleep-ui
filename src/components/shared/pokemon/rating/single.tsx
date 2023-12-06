@@ -46,6 +46,7 @@ export const RatingResultOfLevelUI = ({
       mainSkillMap,
       subSkillMap,
       mealMap,
+      useNestedWorker: true,
     },
   });
 

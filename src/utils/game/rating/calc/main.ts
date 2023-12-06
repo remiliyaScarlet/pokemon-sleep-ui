@@ -22,6 +22,7 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
     berryDataMap,
     mainSkillMap,
     subSkillMap,
+    useNestedWorker,
   } = opts;
 
   if (!pokemon) {
@@ -63,7 +64,7 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
     generatePossibleIngredientProductions({level, chain});
 
   const promises: Promise<RatingDataPoint[]>[] = [];
-  const runAsNestedWorker = level >= 50 && isNestedWorkerSupported();
+  const runAsNestedWorker = useNestedWorker && level >= 50 && isNestedWorkerSupported();
   for (const ingredients of ingredientProductions) {
     const calcOpts: CalculateRatingDataWorkerOpts = {
       ...opts,

@@ -39,6 +39,7 @@ describe('Rating / Calculate', () => {
       basis: 'totalProduction',
       friendshipLevel: 0,
       bundle: defaultUserSettingsBundle,
+      useNestedWorker: false,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -68,6 +69,7 @@ describe('Rating / Calculate', () => {
       basis: 'totalProduction',
       friendshipLevel: 0,
       bundle: defaultUserSettingsBundle,
+      useNestedWorker: false,
     });
 
     expect(result?.baseDiffPercent).not.toBe(0);
@@ -97,6 +99,7 @@ describe('Rating / Calculate', () => {
       basis: 'totalProduction',
       friendshipLevel: 0,
       bundle: defaultUserSettingsBundle,
+      useNestedWorker: false,
     });
 
     expect(result?.baseDiffPercent).toBe(0);
