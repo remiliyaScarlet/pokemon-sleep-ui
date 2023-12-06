@@ -24,7 +24,7 @@ export const PokemonProductionSplitFromPokemonRate = ({rate, state, ...props}: P
       {...props}
       berry={berry.energy[state]}
       ingredient={toSum(Object.values(ingredient).map(({energy}) => energy[state]))}
-      mainSkill={skill.energy[state]}
+      skill={skill.energy[state]}
     />
   );
 };

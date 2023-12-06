@@ -47,7 +47,7 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
           specialty={null}
           berry={berry.energy}
           ingredient={ingredient?.energy ?? 0}
-          mainSkill={skill.energy}
+          skill={skill.energy}
         />
         <Flex direction="row" noFullWidth className="justify-end">
           <TeamAnalysisRateLayout period={period} larger showQuantity={false} rate={stats.overall}/>

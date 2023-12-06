@@ -10,27 +10,24 @@ import {GenericMainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/g
 import {PokemonProductionSplitInfo} from '@/components/shared/pokemon/production/split/info';
 import {PokemonProductionSplitCommonProps} from '@/components/shared/pokemon/production/split/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
+import {ProduceType} from '@/types/game/producing/common';
 
 
-type Props = PokemonProductionSplitCommonProps & {
-  berry: number,
-  ingredient: number,
-  mainSkill: number,
-};
+type Props = PokemonProductionSplitCommonProps & {[type in ProduceType]: number};
 
 export const PokemonProductionSplit = ({
   specialty,
   className,
   berry,
   ingredient,
-  mainSkill,
+  skill,
 }: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
-  const total = (berry + ingredient + mainSkill);
+  const total = (berry + ingredient + skill);
   const berrySplit = berry / total * 100;
   const ingredientSplit = ingredient / total * 100;
-  const mainSkillSplit = mainSkill / total * 100;
+  const mainSkillSplit = skill / total * 100;
 
   return (
     <Flex center className={clsx('gap-1', className)}>
