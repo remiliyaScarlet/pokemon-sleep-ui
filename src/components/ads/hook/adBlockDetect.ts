@@ -30,9 +30,9 @@ export const useAdBlockDetector = ({setAdblockState, recheckDeps}: UseAdBlockDet
 
   React.useEffect(() => {
     // Simply keep checking every 15 secs
-    // uBO has a `no-setTimeout` defuser that invalidates the very 1st call of the setTimeout`
+    // uBO has a `no-setTimeout` defuser that invalidates the very 1st call of the `setTimeout()`
     // https://github.com/gorhill/uBlock/wiki/Resources-Library#no-settimeout-ifjs-
-    setTimeout(() => setAdblockState((original) => ({
+    setInterval(() => setAdblockState((original) => ({
       ...original,
       isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
     } satisfies AdBlockState)), 15000);
