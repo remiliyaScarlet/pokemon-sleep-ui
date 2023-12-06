@@ -4,15 +4,11 @@ import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {applyIngredientMultiplier} from '@/utils/game/producing/apply/ingredient';
 import {groupPokemonProducingRate} from '@/utils/game/producing/group';
 import {getIngredientMultiplier, GetIngredientMultiplierOpts} from '@/utils/game/producing/ingredient/multiplier';
-import {getPokemonProducingRateBase, GetPokemonProducingRateBaseOpts} from '@/utils/game/producing/main/base';
+import {getPokemonProducingRateBase} from '@/utils/game/producing/main/base';
+import {GetPokemonProducingRateOptsWithPayload} from '@/utils/game/producing/main/type';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 import {isNotNullish} from '@/utils/type';
 
-
-type GetPokemonProducingRateOptsWithPayload<TPayload> = {
-  opts: Omit<GetPokemonProducingRateBaseOpts, keyof GetProducingRateSharedOpts>,
-  payload: TPayload,
-};
 
 type GetPokemonProducingRateMultiOpts<TPayload> = Omit<GetIngredientMultiplierOpts, 'production'> & {
   rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
