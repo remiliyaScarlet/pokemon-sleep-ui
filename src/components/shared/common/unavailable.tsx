@@ -10,11 +10,12 @@ import {Dimension} from '@/types/style';
 type Props = {
   dimension?: Dimension,
   text?: string,
+  className?: string,
 };
 
-export const UnavailableIcon = ({dimension, text}: Props) => {
+export const UnavailableIcon = ({dimension, text, className}: Props) => {
   return (
-    <div className={clsx('relative', dimension ?? 'h-12 w-12')}>
+    <div className={clsx('relative', dimension ?? 'h-12 w-12', className)}>
       <NextImage
         src="/images/generic/pokeball_unavailable.png" alt="N/A"
         sizes={imageIconSizes} className="invert-hoverable"
