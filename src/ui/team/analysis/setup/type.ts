@@ -1,4 +1,4 @@
-import {PokemonProducingRate, ProducingRate, GroupedPokemonProducingRate} from '@/types/game/producing/rate';
+import {PokemonProducingRate, PokemonProducingRateByType, ProducingRate} from '@/types/game/producing/rate';
 import {TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 
@@ -19,7 +19,7 @@ export type TeamProducingStatsBySlot = {[slot in TeamAnalysisSlotName]: TeamProd
 export type TeamProducingStats = {
   bySlot: TeamProducingStatsBySlot,
   total: TeamProducingStatsTotal,
-  grouped: GroupedPokemonProducingRate,
+  grouped: PokemonProducingRateByType,
   overall: ProducingRate,
 };
 

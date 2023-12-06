@@ -76,16 +76,15 @@ export type PokemonProducingRateWithPayload<TPayload> = {
   },
   payload: TPayload,
 };
-
-export type PokemonProducingRateFinal<TPayload> = {
-  rates: PokemonProducingRateWithPayload<TPayload>[],
-  grouped: GroupedPokemonProducingRate,
-};
-
-export type GroupedProducingRate<TId extends Indexable> = {[id in TId]?: ProducingRate};
-
-export type GroupedPokemonProducingRate = {
+export type PokemonProducingRateByType = {
   berry: GroupedProducingRate<BerryId>,
   ingredient: GroupedProducingRate<IngredientId>,
   skill: GroupedProducingRate<MainSkillId>,
 };
+
+export type PokemonProducingRateFinal<TPayload> = {
+  rates: PokemonProducingRateWithPayload<TPayload>[],
+  grouped: PokemonProducingRateByType,
+};
+
+export type GroupedProducingRate<TId extends Indexable> = {[id in TId]?: ProducingRate};

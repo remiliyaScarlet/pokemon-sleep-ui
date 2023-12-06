@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {ProductionPeriod} from '@/types/game/producing/display';
-import {GroupedPokemonProducingRate} from '@/types/game/producing/rate';
+import {PokemonProducingRateByType} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserSettingsBundle} from '@/types/userData/settings';
@@ -22,5 +22,5 @@ export type UseTeamProducingStatsCommonOpts = {
 
 export type UseTeamCompStatsReturn = {
   bySlot: TeamProducingStatsBySlot,
-  grouped: GroupedPokemonProducingRate,
+  grouped: PokemonProducingRateByType,
 };

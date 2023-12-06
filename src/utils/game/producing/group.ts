@@ -1,8 +1,8 @@
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {
-  GroupedPokemonProducingRate,
   GroupedProducingRate,
   PokemonProducingRate,
+  PokemonProducingRateByType,
   ProducingRateOfStates,
 } from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
@@ -41,7 +41,7 @@ export const groupPokemonProducingRate = ({
   period,
   rates,
   state,
-}: GroupPokemonProducingRateOpts): GroupedPokemonProducingRate => {
+}: GroupPokemonProducingRateOpts): PokemonProducingRateByType => {
   return {
     berry: groupProducingRates({
       period,
