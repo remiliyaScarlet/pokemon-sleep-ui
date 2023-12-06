@@ -24,6 +24,7 @@ type Props = IngredientIconsCommonProps & {
   textSizeClassName?: string,
   showTotalCount?: boolean,
   showXMarkOnEmpty?: boolean,
+  formatQty?: (qty: number) => string,
   className?: string,
 };
 
@@ -36,6 +37,7 @@ export const IngredientIcons = ({
   textSizeClassName,
   showTotalCount,
   showXMarkOnEmpty,
+  formatQty,
   className,
 }: Props) => {
   const t = useTranslations('Game.Food');
@@ -67,7 +69,7 @@ export const IngredientIcons = ({
               useTextShadow && 'text-shadow-preset',
               mark && ingredientIconMarkToStyle[mark],
             )}>
-              {qty}
+              {formatQty ? formatQty(qty) : qty}
             </div>
           </Flex>
         );
