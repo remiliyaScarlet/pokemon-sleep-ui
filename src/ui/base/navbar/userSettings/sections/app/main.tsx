@@ -9,6 +9,8 @@ import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
 import {UserSettingsAppBuildInfo} from '@/ui/base/navbar/userSettings/sections/app/build';
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
+import {isArrayAtSupported} from '@/utils/compatibility/arrayAt';
+import {isStringReplaceAllSupported} from '@/utils/compatibility/stringReplaceAll';
 
 
 export const UserSettingsAppInfo = () => {
@@ -30,8 +32,8 @@ export const UserSettingsAppInfo = () => {
         buildId={process.env.NEXT_PUBLIC_BUILD_ID}
       />
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <UserSettingsAppCompatibility title="Array.at()" result={typeof [].at === 'function'}/>
-        <UserSettingsAppCompatibility title="String.replaceAll()" result={typeof ''.replaceAll === 'function'}/>
+        <UserSettingsAppCompatibility title="Array.at()" result={isArrayAtSupported()}/>
+        <UserSettingsAppCompatibility title="String.replaceAll()" result={isStringReplaceAllSupported()}/>
       </Grid>
     </UserSettingsSection>
   );
