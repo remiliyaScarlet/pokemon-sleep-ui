@@ -8,8 +8,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {PotCapacityInput} from '@/components/shared/input/potCapacity';
+import {MealPlanner} from '@/components/shared/meal/planner/main';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
-import {UserCookingByMealType} from '@/ui/base/navbar/userSettings/sections/cooking/mealType';
 import {UserSettingsCookingCommonProps} from '@/ui/base/navbar/userSettings/sections/cooking/type';
 import {usePossibleMealTypes} from '@/ui/cooking/common/hook/mealType';
 import {isNotNullish} from '@/utils/type';
@@ -51,7 +51,14 @@ export const UserSettingsCooking = (props: UserSettingsCookingCommonProps) => {
         isActive={(id) => !!unlockedIngredients[id]}
         onClick={(id) => setCookingPreset({unlockedIngredients: {[id]: !unlockedIngredients[id]}})}
       />
-      {mealTypes.map((type) => <UserCookingByMealType key={type} {...props} mealType={type}/>)}
+      <MealPlanner
+        target={cookingPreset.target}
+        setTarget={(target) => setCookingPreset({target})}
+        recipeLevel={cookingPreset.recipeLevel}
+        setRecipeLevel={(recipeLevel) => setCookingPreset({recipeLevel})}
+        mealMap={mealMap}
+        mealTypes={mealTypes}
+      />
     </UserSettingsSection>
   );
 };
