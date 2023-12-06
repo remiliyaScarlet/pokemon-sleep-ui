@@ -11,7 +11,7 @@ type Props = {
   rate: ProducingRate,
 };
 
-export const TeamAnalysisBerryRate = ({id, rate}: Props) => {
+export const PokemonBerryProduction = ({id, rate}: Props) => {
   return (
     <ProducingRateUI
       rate={rate}

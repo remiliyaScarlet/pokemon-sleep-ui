@@ -4,11 +4,11 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
 import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
+import {PokemonGroupedProduction} from '@/components/shared/pokemon/production/grouped/main';
 import {useUserSettingsBundle} from '@/hooks/userData/bundle';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {useTeamProducingStats} from '@/ui/team/analysis/calcHook/main';
 import {TeamAnalysisSetupControl} from '@/ui/team/analysis/setup/control';
-import {TeamAnalysisGroupedSummary} from '@/ui/team/analysis/setup/summary/grouped/main';
 import {TeamAnalysisSummary} from '@/ui/team/analysis/setup/summary/main';
 import {TeamAnalysisTeamView} from '@/ui/team/analysis/setup/team/main';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
@@ -53,7 +53,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
         />
         <TeamAnalysisSetupControl setup={setup} setSetup={setSetup}/>
         <AdsUnit/>
-        <TeamAnalysisGroupedSummary grouped={statsOfTeam.grouped}/>
+        <PokemonGroupedProduction grouped={statsOfTeam.grouped}/>
         <TeamAnalysisSummary
           period="weekly"
           stats={statsOfTeam}

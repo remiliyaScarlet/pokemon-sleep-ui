@@ -7,11 +7,11 @@ import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonCarryLimit} from '@/components/shared/pokemon/carryLimit/main';
 import {PokemonFrequencyFromProducingRate} from '@/components/shared/pokemon/frequency/fromRate';
 import {PokemonTimeToFullPack} from '@/components/shared/pokemon/fullPack/main';
+import {PokemonBerryProduction} from '@/components/shared/pokemon/production/berry';
+import {PokemonIngredientProduction} from '@/components/shared/pokemon/production/ingredient';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateUI} from '@/components/shared/production/rate/main';
 import {specialtyIdMap} from '@/const/game/pokemon';
-import {TeamAnalysisBerryRate} from '@/ui/team/analysis/setup/common/berry';
-import {TeamAnalysisIngredientRate} from '@/ui/team/analysis/setup/common/ingredient';
 import {TeamAnalysisSkillRate} from '@/ui/team/analysis/setup/common/skill';
 import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamAnalysisPokemonProps} from '@/ui/team/analysis/setup/pokemon/type';
@@ -45,7 +45,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       />
       <HorizontalSplitter className="w-full"/>
       <Flex center className={clsx(specialty === specialtyIdMap.berry && 'info-highlight')}>
-        <TeamAnalysisBerryRate
+        <PokemonBerryProduction
           id={berryData.id}
           rate={toProducingRateOfState({rate: stats.berry, state: 'equivalent'})}
         />
@@ -53,7 +53,7 @@ export const TeamAnalysisPokemonProduction = (props: TeamAnalysisPokemonProps) =
       <HorizontalSplitter className="w-full"/>
       <Flex center className={clsx(specialty === specialtyIdMap.ingredient && 'info-highlight')}>
         {ingredientRates.map((rate) => (
-          <TeamAnalysisIngredientRate
+          <PokemonIngredientProduction
             key={rate.id}
             id={rate.id}
             rate={toProducingRateOfState({rate, state: 'equivalent'})}
