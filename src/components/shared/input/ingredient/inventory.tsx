@@ -19,7 +19,7 @@ type Props = {
   onValueChanged: (ingredient: Ingredient, count: Nullable<number>) => void,
 };
 
-export const CookingInputIngredientCounter = ({
+export const IngredientInventoryInput = ({
   ingredientMap,
   counter,
   minCount,

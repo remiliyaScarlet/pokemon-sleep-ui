@@ -8,11 +8,11 @@ import {PopupCommon} from '@/components/popup/common/main';
 import {PopupProps} from '@/components/popup/type';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
+import {IngredientInventoryInput} from '@/components/shared/input/ingredient/inventory';
 import {MealMeta} from '@/components/shared/meal/meta';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
-import {CookingInputIngredientCounter} from '@/ui/cooking/common/input/ingredients';
 import {MealMakerPopupCommonProps} from '@/ui/cooking/make/recipe/popup/type';
 import {MealMakerFilter} from '@/ui/cooking/make/type';
 import {
@@ -52,7 +52,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
         <Flex className="gap-1 lg:flex-row">
           <MealMeta meal={meal} className="bg-plate"/>
           <Flex className="bg-plate justify-center gap-2">
-            <CookingInputIngredientCounter
+            <IngredientInventoryInput
               ingredientMap={ingredientMap}
               counter={usages}
               minCount={requiredIngredients}

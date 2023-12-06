@@ -1,13 +1,13 @@
 import React from 'react';
 
 import {isFilterConditionActive} from '@/components/input/filter/utils/check';
-import {CookingInputIngredientCounter} from '@/ui/cooking/common/input/ingredients';
+import {IngredientInventoryInput} from '@/components/shared/input/ingredient/inventory';
 import {MealMakerCommonProps, MealMakerFilter} from '@/ui/cooking/make/type';
 
 
 export const MealMakerInputInventory = ({filter, setFilter, ingredientMap}: MealMakerCommonProps) => {
   return (
-    <CookingInputIngredientCounter
+    <IngredientInventoryInput
       ingredientMap={ingredientMap}
       counter={filter.inventory}
       showIngredient={(ingredient) => !(
