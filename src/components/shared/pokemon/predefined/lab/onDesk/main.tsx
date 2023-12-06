@@ -1,11 +1,10 @@
 import React from 'react';
 
-import BeakerIcon from '@heroicons/react/24/outline/BeakerIcon';
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {OcrPokemonInfoImporter} from '@/components/ocr/importer/pokemonInfo/main';
+import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {PokemonEvolutionCountInput} from '@/components/shared/pokemon/evolution/countInput';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
@@ -127,17 +126,7 @@ const PokemonOnDeskInternal = <TOnDesk extends PokemonOnDeskState>({
           pokemonIdOverride={pokemon.id}
           noFullWidth={!immediateUpdate}
         />
-        {
-          !immediateUpdate &&
-          <button onClick={() => onRun(setup)} className={clsx(
-            'button-base button-bg-hover w-full p-1',
-            'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
-          )}>
-            <Flex center>
-              <BeakerIcon className="h-9 w-9"/>
-            </Flex>
-          </button>
-        }
+        {!immediateUpdate && <ButtonToStartTheSorcery onClick={() => onRun(setup)}/>}
         <PokemonOnDeskExportButton setup={setup} pokemon={setup.pokemon} pokemonMaxLevel={pokemonMaxLevel}/>
       </Flex>
     </Flex>
