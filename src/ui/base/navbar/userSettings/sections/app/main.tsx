@@ -10,10 +10,14 @@ import {UserSettingsAppBuildInfo} from '@/ui/base/navbar/userSettings/sections/a
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
 import {isArrayAtSupported} from '@/utils/compatibility/arrayAt';
+import {isNestedWorkerSupported} from '@/utils/compatibility/nestedWorker';
 import {isStringReplaceAllSupported} from '@/utils/compatibility/stringReplaceAll';
 
 
 export const UserSettingsAppInfo = () => {
+  // Only check once on load to avoid duplicated checking
+  const isNestedWorkerSupportedResult = React.useMemo(isNestedWorkerSupported, []);
+
   return (
     <UserSettingsSection titleIcon={<PuzzlePieceIcon/>}>
       <UserDataLazyLoad
@@ -34,6 +38,7 @@ export const UserSettingsAppInfo = () => {
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <UserSettingsAppCompatibility title="Array.at()" result={isArrayAtSupported()}/>
         <UserSettingsAppCompatibility title="String.replaceAll()" result={isStringReplaceAllSupported()}/>
+        <UserSettingsAppCompatibility title="Nested WebWorker" result={isNestedWorkerSupportedResult}/>
       </Grid>
     </UserSettingsSection>
   );
