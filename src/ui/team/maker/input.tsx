@@ -17,6 +17,7 @@ import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
 import {textFilterButtonStyle} from '@/styles/input';
 import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
+import {cloneMerge} from '@/utils/object/cloneMerge';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -59,14 +60,14 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
       />
       <MealPlanner
         target={target}
-        setTarget={(target) => setInput((original) => ({
+        setTarget={(updated) => setInput(({target, ...original}) => ({
           ...original,
-          target,
+          target: cloneMerge(target, updated),
         }))}
         recipeLevel={recipeLevel}
-        setRecipeLevel={(recipeLevel) => setInput((original) => ({
+        setRecipeLevel={(updated) => setInput(({recipeLevel, ...original}) => ({
           ...original,
-          recipeLevel,
+          recipeLevel: cloneMerge(recipeLevel, updated),
         }))}
         mealMap={mealMap}
         mealTypes={mealTypes}
