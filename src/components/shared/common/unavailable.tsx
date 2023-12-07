@@ -17,7 +17,7 @@ export const UnavailableIcon = ({dimension, text, className}: Props) => {
   return (
     <div className={clsx('relative', dimension ?? 'h-12 w-12', className)}>
       <NextImage
-        src="/images/generic/pokeball_unavailable.png" alt="N/A"
+        src="/images/generic/pokeballUnavailable.png" alt="N/A"
         sizes={imageIconSizes} className="invert-hoverable"
       />
       {text && <div className="absolute bottom-0.5 right-0.5">{text}</div>}

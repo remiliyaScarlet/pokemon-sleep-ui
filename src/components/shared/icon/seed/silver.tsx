@@ -9,5 +9,5 @@ import {IconPropsOfBase, IconPropsOfWrap} from '@/components/shared/icon/type';
 export const SilverSeedIcon = (props: Omit<IconPropsOfBase, 'alt' | 'noInvert'> & IconPropsOfWrap) => {
   const t = useTranslations('Game');
 
-  return <GenericIconLarger src="/images/generic/seed_silver.png" alt={t('Item.33')} noInvert {...props}/>;
+  return <GenericIconLarger src="/images/generic/seedSilver.png" alt={t('Item.33')} noInvert {...props}/>;
 };

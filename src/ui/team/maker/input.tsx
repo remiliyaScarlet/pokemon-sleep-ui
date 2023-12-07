@@ -97,7 +97,7 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
             {showInsufficientIngredients ? <EyeIcon/> : <EyeSlashIcon/>}
           </div>
           <GenericIcon
-            src="/images/generic/ingredient_slash.png"
+            src="/images/generic/ingredientSlash.png"
             alt={t('Maker.Behavior.ToggleInsufficientIngredients')}
             dimension="h-5 w-5"
             noInvert

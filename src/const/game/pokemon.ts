@@ -36,5 +36,5 @@ export const subSkillBonusImageSrcMap: {[bonus in SubSkillBonusCategory]: string
 };
 
 export const subSkillImageOverride: {[id in SubSkillId]?: string} = {
-  19: '/images/subSkill/inventory-2.png',
+  19: '/images/subSkill/inventory2.png',
 };

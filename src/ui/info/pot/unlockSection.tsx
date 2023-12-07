@@ -45,7 +45,7 @@ export const PotRecipeUnlockSection = ({
           <div>{potInfo.capacity}</div>
         </Flex>
         <Flex direction="row" center noFullWidth className="gap-1">
-          <GenericIcon src="/images/generic/shard_white.png" alt={t('Expand')} dimension="h-7 w-7"/>
+          <GenericIcon src="/images/generic/shardWhite.png" alt={t('Expand')} dimension="h-7 w-7"/>
           {!capacity || capacity < potInfo.capacity ?
             <Flex noFullWidth className="gap-0.5">
               <div>{formatInt(cumulativeCost)}</div>

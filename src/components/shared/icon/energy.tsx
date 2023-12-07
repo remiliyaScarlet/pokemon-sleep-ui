@@ -5,5 +5,5 @@ import {IconProps} from '@/components/shared/icon/type';
 
 
 export const EnergyIcon = (props: IconProps) => {
-  return <GenericIcon src="/images/generic/energy_white.png" {...props}/>;
+  return <GenericIcon src="/images/generic/energyWhite.png" {...props}/>;
 };

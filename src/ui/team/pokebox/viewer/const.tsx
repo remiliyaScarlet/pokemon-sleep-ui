@@ -21,7 +21,7 @@ export const pokeboxDisplayTypeToI18nId: {
 };
 
 export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: string} = {
-  productionTotal: '/images/generic/energy_white.png',
+  productionTotal: '/images/generic/energyWhite.png',
   productionBerry: '/images/generic/berry.png',
   productionIngredient: '/images/generic/ingredient.png',
   rating: '/images/generic/search.png',

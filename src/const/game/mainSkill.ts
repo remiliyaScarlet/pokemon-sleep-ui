@@ -14,8 +14,8 @@ export const mainSkillEffectTypeI18nId: {
 };
 
 export const mainSkillEffectTypeImageSrc: {[type in MainSkillEffectType]: string} = {
-  strength: '/images/generic/energy_white.png',
-  shards: '/images/generic/shard_white.png',
+  strength: '/images/generic/energyWhite.png',
+  shards: '/images/generic/shardWhite.png',
   stamina: '/images/generic/mood.png',
   help: '/images/generic/speed.png',
   cooking: '/images/generic/pot.png',

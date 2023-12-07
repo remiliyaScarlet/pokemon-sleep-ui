@@ -56,7 +56,7 @@ export const PokemonExpCalculatorTable = ({
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t('NormalCandy')} src="/images/generic/candy_white.png" dimension={dimension}/>
+                <GenericIcon alt={t('NormalCandy')} src="/images/generic/candyWhite.png" dimension={dimension}/>
               </Flex>
             </td>
             <td>
@@ -79,12 +79,12 @@ export const PokemonExpCalculatorTable = ({
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shard_white.png" dimension={dimension}/>
+                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
               </Flex>
             </td>
             <td>
               <Flex direction="row" center>
-                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shard_white.png" dimension={dimension}/>
+                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
                 <span>/</span>
                 <GenericIcon alt="EXP" src="/images/generic/exp.png" dimension={dimension}/>
               </Flex>
