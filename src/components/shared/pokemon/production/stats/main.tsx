@@ -56,7 +56,7 @@ export const PokemonProducingStatsPopupContent = (props: PokemonProducingStatsCo
         logs={getStaminaEventLogsFlattened(calculatedSettings.bonus.stamina.logs)}
       />
       {/* If no +1 for `getEfficiency()`, the efficiency obtained is actually 1 level lower */}
-      <Grid className="gap-1 xl:grid-cols-2">
+      <Grid className="gap-1 2xl:grid-cols-2">
         {efficiencyBreakPoints.map((breakPoint) => (
           <PokemonProducingStatsOfState
             {...props}
