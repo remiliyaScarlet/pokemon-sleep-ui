@@ -381,7 +381,10 @@
     "Preset": {
       "UnfilledOnly": "주머니가 비었을 때"
     },
-    "Total": "총합"
+    "Total": "총합",
+    "Probability": {
+      "NoSkillAfterWakeup": "Probability of no skill after wakeup"
+    }
   },
   "Stamina": {
     "Title": "기력 계산",

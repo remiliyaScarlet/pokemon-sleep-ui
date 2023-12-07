@@ -382,7 +382,10 @@
     "Preset": {
       "UnfilledOnly": "Inventar nicht gefüllt"
     },
-    "Total": "Gesamt"
+    "Total": "Gesamt",
+    "Probability": {
+      "NoSkillAfterWakeup": "Probability of no skill after wakeup"
+    }
   },
   "Stamina": {
     "Title": "Energieberechnung",

@@ -381,7 +381,10 @@
     "Preset": {
       "UnfilledOnly": "未滿包"
     },
-    "Total": "總計"
+    "Total": "總計",
+    "Probability": {
+      "NoSkillAfterWakeup": "睡醒無技能機率"
+    }
   },
   "Stamina": {
     "Title": "活力計算",

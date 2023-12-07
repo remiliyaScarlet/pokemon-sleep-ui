@@ -284,6 +284,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         UnfilledOnly: string,
       },
       Total: string,
+      Probability: {
+        NoSkillAfterWakeup: string,
+      },
     },
     Stamina: {
       Title: string,

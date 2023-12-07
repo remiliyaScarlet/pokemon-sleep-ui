@@ -381,7 +381,10 @@
     "Preset": {
       "UnfilledOnly": "空き有"
     },
-    "Total": "計"
+    "Total": "計",
+    "Probability": {
+      "NoSkillAfterWakeup": "Probability of no skill after wakeup"
+    }
   },
   "Stamina": {
     "Title": "げんき回復",

@@ -4,7 +4,7 @@ import {ProducingStateWithPack} from '@/types/game/producing/state';
 import {getFrequencyOfStateFromPokemonRate} from '@/utils/game/producing/frequency';
 
 
-type GetProbabilityOfNoSkillOpts = {
+export type GetProbabilityOfNoSkillOpts = {
   rate: PokemonProducingRate,
   state: ProducingStateWithPack,
   skillPercent: number | null,
