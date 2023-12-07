@@ -10,24 +10,29 @@ Discord: https://discord.gg/eeveesleep
 
 ## Credits
 
-### Major data source
+### Data Research
 
 - Discord `@calpistori`
-- https://serebii.net
+- Discord `@tami_ev`
 - RP Model: Discord `@goobliss`, `@harold_grant`, `@jeancroy`, `@dmacaroni`
+
+### Datamining / Images
+
+- Discord `@wei3207`
+- Discord `@yuh926323`
+- Discord `@cccraim`
+
+> #58
+ 
+### Major Data Source
+
+- https://serebii.net
 
 ### Icons
 
 - Discord `@pail5cm`
 - Pixiv [`さめのは`](https://www.pixiv.net/users/72353164)
   - Source: https://www.pixiv.net/artworks/96177604
-
-### Images
-
-- Discord `@wei3207`
-- Discord `@yuh926323`
-
-> #58
 
 ### Translations
 
@@ -49,6 +54,7 @@ Discord: https://discord.gg/eeveesleep
 
 - Every Discord subscribers
 - Every Patreon subscribers
+- Every GitHub sponsors
 
 ### Video Tutorial (Traditional Chinese)
 
