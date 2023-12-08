@@ -1,4 +1,4 @@
-import {maxTeamMemberCount} from '@/const/game/production';
+import {teamMakerMaxMemberCount} from '@/ui/team/maker/calc/const';
 import {TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
 import {toSum} from '@/utils/array';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
@@ -11,20 +11,20 @@ type GetTeamMakerCandidatesOpts = {
 export const getTeamMakerCandidates = ({
   ratesAtMax,
 }: GetTeamMakerCandidatesOpts): TeamMakerRateAtMaxPotentialData[] => {
-  if (ratesAtMax.length <= maxTeamMemberCount) {
+  if (ratesAtMax.length <= teamMakerMaxMemberCount) {
     return ratesAtMax;
   }
 
-  const topComp = ratesAtMax.slice(0, maxTeamMemberCount);
+  const topComp = ratesAtMax.slice(0, teamMakerMaxMemberCount);
   const stopThreshold = toSum(topComp.map(({rate}) => (
     getTotalOfPokemonProducingRate({rate: rate.rate.original, state: 'equivalent'}).energy
   )));
 
   const ret: TeamMakerRateAtMaxPotentialData[] = topComp;
-  for (let idx = maxTeamMemberCount; idx <= ratesAtMax.length; idx++) {
+  for (let idx = teamMakerMaxMemberCount; idx <= ratesAtMax.length; idx++) {
     const tail = ratesAtMax[idx];
 
-    const currentComp = ratesAtMax.slice(idx - maxTeamMemberCount + 1, idx + 1);
+    const currentComp = ratesAtMax.slice(idx - teamMakerMaxMemberCount + 1, idx + 1);
     const currentCompTotalStrength = toSum(currentComp.map(({rate}) => (
       getTotalOfPokemonProducingRate({rate: rate.rate.final, state: 'equivalent'}).energy
     )));

@@ -13,6 +13,16 @@ export type GetTeamMakerResultsOpts = TeamMakerDataProps & {
   settings: UserSettings,
 };
 
+export const teamMakerMemberCount = [
+  1,
+  2,
+  3,
+  4,
+  5,
+] as const;
+
+export type TeamMakerMemberCount = typeof teamMakerMemberCount[number];
+
 export type TeamMakerRateAtMaxPotentialData = {
   rate: PokemonProducingRateWithPayload<null>,
   pokeInBox: PokeInBox,

@@ -1,11 +1,14 @@
 import React from 'react';
 
+import UserCircleIcon from '@heroicons/react/24/outline/UserCircleIcon';
 import EyeIcon from '@heroicons/react/24/solid/EyeIcon';
 import EyeSlashIcon from '@heroicons/react/24/solid/EyeSlashIcon';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
+import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {InputRow} from '@/components/input/filter/row';
+import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
 import {Flex} from '@/components/layout/flex/common';
 import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
@@ -16,6 +19,7 @@ import {MealPlanner} from '@/components/shared/meal/planner/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
 import {textFilterButtonStyle} from '@/styles/input';
+import {teamMakerMemberCount} from '@/ui/team/maker/calc/type';
 import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {isNotNullish} from '@/utils/type';
@@ -83,6 +87,21 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
             [id]: count,
           },
         }))}
+      />
+      <FilterExpandedInput
+        title={
+          <Flex center>
+            <UserCircleIcon className="h-6 w-6"/>
+          </Flex>
+        }
+        ids={[...teamMakerMemberCount]}
+        idToButton={(memberCount) => memberCount}
+        {...getSingleSelectOnClickProps({
+          filter: input,
+          setFilter: setInput,
+          filterKey: 'memberCount',
+          allowNull: false,
+        })}
       />
       <InputRow className="justify-end">
         <ToggleButton

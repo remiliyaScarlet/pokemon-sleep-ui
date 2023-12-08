@@ -1,6 +1,5 @@
-import {maxTeamMemberCount} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
-import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
+import {teamMakerMaxMemberCount, teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {
   GetTeamMakerResultsOpts,
   TeamMakerInputCalculated,
@@ -60,7 +59,7 @@ export const getTeamMakerRateAtMaxPotential = ({
         // Override `ingredients` in `pokeInBox`
         ingredients: getEffectiveIngredientProductions(pokeInBox),
         // Override helper count to maximum possible value to calculate max potential
-        helperCount: maxTeamMemberCount,
+        helperCount: teamMakerMaxMemberCount,
       };
       const rate = getPokemonProducingRateSingle({
         snorlaxFavorite: input.snorlaxFavorite,

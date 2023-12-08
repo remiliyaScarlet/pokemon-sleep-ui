@@ -27,11 +27,12 @@ export const getTeamMakerComps = ({
   const {
     snorlaxFavorite,
     ingredientCount,
+    memberCount,
     showInsufficientIngredients,
   } = input;
 
   const ret: TeamMakerResult[] = [];
-  for (const ratesAtMax of combineIterator(candidates, 5)) {
+  for (const ratesAtMax of combineIterator(candidates, memberCount)) {
     const rates = getPokemonProducingRateMulti({
       rateOpts: ratesAtMax.map(({calcOpts, pokeInBox}) => ({
         opts: calcOpts,

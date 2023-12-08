@@ -26,6 +26,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
     mealType: preloaded.cooking.mealType,
     recipeLevel: preloaded.cooking.recipeLevel,
     ingredientCount: preloaded.cooking.ingredientCount,
+    memberCount: 5,
     target: preloaded.cooking.target,
     showInsufficientIngredients: true,
   });

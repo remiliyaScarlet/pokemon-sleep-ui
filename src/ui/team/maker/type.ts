@@ -14,7 +14,7 @@ import {SnorlaxRankFinalEstimate} from '@/types/game/rank';
 import {SnorlaxFavorite, SnorlaxRankInMap} from '@/types/game/snorlax';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettingsBundle} from '@/types/userData/settings';
-import {TeamMakerIngredientStats} from '@/ui/team/maker/calc/type';
+import {TeamMakerIngredientStats, TeamMakerMemberCount} from '@/ui/team/maker/calc/type';
 
 
 export type TeamMakerDataProps = {
@@ -34,6 +34,7 @@ export type TeamMakerDataProps = {
 
 export type TeamMakerInput = Pick<UserCookingPreset, 'mealType' | 'target' | 'recipeLevel' | 'ingredientCount'> & {
   snorlaxFavorite: SnorlaxFavorite,
+  memberCount: TeamMakerMemberCount,
   showInsufficientIngredients: boolean,
 };
 
