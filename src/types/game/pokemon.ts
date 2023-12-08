@@ -2,6 +2,7 @@ import {BerryId} from '@/types/game/berry';
 import {IngredientId} from '@/types/game/ingredient';
 import {EvolutionData} from '@/types/game/pokemon/evolution';
 import {IngredientChainId, IngredientLevel} from '@/types/game/pokemon/ingredient';
+import {PokemonExpTypeId} from '@/types/game/pokemon/xp';
 import {SleepMapId} from '@/types/game/sleepStyle';
 
 
@@ -40,6 +41,7 @@ export type PokemonInfo = {
   ingredientChain: IngredientChainId,
   skill: PokemonSkillId,
   evolution: EvolutionData,
+  expType: PokemonExpTypeId,
 };
 
 export type PokemonInfoWithMap = {

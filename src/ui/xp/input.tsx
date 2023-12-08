@@ -17,6 +17,7 @@ import {PokemonClickableIconImage} from '@/components/shared/pokemon/icon/clicka
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
+import {defaultExpType} from '@/const/game/xp';
 import {textFilterButtonStyle} from '@/styles/input';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
 import {isNotNullish} from '@/utils/type';
@@ -27,7 +28,6 @@ type Props = PokemonExpCalculatorDataProps & FilterInputProps<PokemonExpCalculat
 };
 
 export const PokemonExpCalculatorInputUI = ({
-  xpMultiplier,
   pokedexMap,
   filter,
   setFilter,
@@ -49,11 +49,9 @@ export const PokemonExpCalculatorInputUI = ({
     <Flex className="info-section">
       <PokemonClickableIcons
         pokemonList={Object
-          .values(xpMultiplier)
+          .values(pokedexMap)
           .filter(isNotNullish)
-          .sort((a, b) => a.pokemon - b.pokemon)
-          .map(({pokemon}) => pokedexMap[pokemon])
-          .filter(isNotNullish)}
+          .filter(({expType}) => expType !== defaultExpType)}
         isActive={(id) => id === pokemon}
         onClick={({id}) => setFilter((original) => ({
           ...original,
@@ -78,9 +76,9 @@ export const PokemonExpCalculatorInputUI = ({
         }))}
       />
       <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-60">
+        <Flex noFullWidth center className="w-60">
           {t('ExpToNext')}
-        </div>
+        </Flex>
       }>
         <InputBox
           type="number"
@@ -92,9 +90,9 @@ export const PokemonExpCalculatorInputUI = ({
         />
       </InputRowWithTitle>
       <InputRowWithTitle noFixedTitleWidth title={
-        <div className="w-60">
+        <Flex noFullWidth center className="w-60">
           {t('OwnedCandies')}
-        </div>
+        </Flex>
       }>
         <InputBox
           type="number"

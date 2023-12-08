@@ -5,12 +5,9 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {LevelIcon} from '@/components/shared/icon/lv';
+import {defaultExpType} from '@/const/game/xp';
 import {PokemonExpCalculatorTableRow} from '@/ui/xp/results/row';
-import {
-  getExpDataWithMultiplier,
-  getLevelUpRequirementsAccumulated,
-  getLevelUpRequirementsOfEachLevel,
-} from '@/ui/xp/results/utils';
+import {getLevelUpRequirementsAccumulated, getLevelUpRequirementsOfEachLevel} from '@/ui/xp/results/utils';
 import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
 import {getNatureMultiplier} from '@/utils/game/nature';
 
@@ -21,8 +18,9 @@ type Props = PokemonExpCalculatorDataProps & {
 };
 
 export const PokemonExpCalculatorTable = ({
-  xpMultiplier,
-  xpData,
+  pokedexMap,
+  xpValueData,
+  xpShardConsumption,
   input,
 }: Props) => {
   const {pokemon, nature} = input;
@@ -31,11 +29,12 @@ export const PokemonExpCalculatorTable = ({
   const t2 = useTranslations('UI.Common');
 
   const dimension = 'h-8 w-8';
-  const multiplier = pokemon ? (xpMultiplier[pokemon]?.multiplier ?? 1) : 1;
 
+  const expType = (pokemon ? pokedexMap[pokemon]?.expType : defaultExpType) ?? defaultExpType;
   const levelUpRequirements = getLevelUpRequirementsOfEachLevel({
     ...input,
-    xpData: getExpDataWithMultiplier({xpData, multiplier}),
+    xpData: xpValueData[expType]?.data ?? [],
+    xpShardConsumption,
     multiplier: getNatureMultiplier({id: nature, effect: 'exp'}),
   });
 

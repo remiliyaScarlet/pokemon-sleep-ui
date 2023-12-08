@@ -1,24 +1,12 @@
 import {candyExpEquivalent} from '@/const/game/xp';
-import {PokemonExpData} from '@/types/game/pokemon/xp';
+import {PokemonExpValueData, PokemonShardConsumptionData} from '@/types/game/pokemon/xp';
 import {PokemonLevelUpRequirements} from '@/ui/xp/results/type';
 import {PokemonExpCalculatorParams} from '@/ui/xp/type';
 
 
-type GetExpDataWithMultiplierOpts = {
-  xpData: PokemonExpData[],
-  multiplier: number,
-};
-
-export const getExpDataWithMultiplier = ({xpData, multiplier}: GetExpDataWithMultiplierOpts): PokemonExpData[] => {
-  return xpData.map((data) => ({
-    ...data,
-    toNext: Math.ceil(data.toNext * multiplier),
-    totalGained: Math.ceil(data.totalGained * multiplier),
-  }));
-};
-
-type GetItemsRequiredOpts = PokemonExpCalculatorParams & {
-  xpData: PokemonExpData[],
+type GetLevelUpRequirementsOfEachLevelOpts = PokemonExpCalculatorParams & {
+  xpData: PokemonExpValueData['data'],
+  xpShardConsumption: PokemonShardConsumptionData,
   multiplier: number,
 };
 
@@ -26,20 +14,25 @@ export const getLevelUpRequirementsOfEachLevel = ({
   xpToNext,
   currentLv,
   ownedCandies,
-  xpData,
-  multiplier,
   rate,
-}: GetItemsRequiredOpts): PokemonLevelUpRequirements[] => {
+  xpData,
+  xpShardConsumption,
+  multiplier,
+}: GetLevelUpRequirementsOfEachLevelOpts): PokemonLevelUpRequirements[] => {
   // `currentLv` could be `0` if current level is deleted
   if (!currentLv) {
     return [];
   }
 
-  const expDataCurrentLevel = xpData[currentLv - 1];
+  // Data unavailable, or there's no next level (the max level is hit)
+  const expDataCurrentLevel = xpData.at(currentLv - 1);
+  if (!expDataCurrentLevel || !expDataCurrentLevel.toNext) {
+    return [];
+  }
+
   const expToNextCurrent = expDataCurrentLevel.toNext - xpToNext;
-  const expDataInRange: PokemonExpData[] = [
+  const expDataInRange: PokemonExpValueData['data'] = [
     {
-      ...expDataCurrentLevel,
       lv: currentLv,
       toNext: xpToNext,
       totalGained: expDataCurrentLevel.totalGained + (expDataCurrentLevel.toNext - expToNextCurrent),
@@ -51,7 +44,12 @@ export const getLevelUpRequirementsOfEachLevel = ({
   const itemsRequired: PokemonLevelUpRequirements[] = [];
 
   let overfeedExp = 0;
-  for (const {lv, toNext, shardPerCandy} of expDataInRange) {
+  for (const {lv, toNext} of expDataInRange) {
+    // Max level reached
+    if (!toNext) {
+      break;
+    }
+
     const expToNextActual = toNext - overfeedExp;
     const candyActual = Math.ceil(expToNextActual / actualCandyExpEquivalent);
 
@@ -64,7 +62,7 @@ export const getLevelUpRequirementsOfEachLevel = ({
       lv: lv + 1,
       xp: toNext,
       candy: candySpent,
-      shard: candyActual * (shardPerCandy ?? NaN) * rate.dreamShardDepletion,
+      shard: candyActual * (xpShardConsumption.data[lv] ?? NaN) * rate.dreamShardDepletion,
     });
 
     overfeedExp = candyActual * actualCandyExpEquivalent - expToNextActual;

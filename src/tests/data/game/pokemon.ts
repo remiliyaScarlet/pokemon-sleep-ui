@@ -1,3 +1,4 @@
+import {defaultExpType} from '@/const/game/xp';
 import {PokemonInfo} from '@/types/game/pokemon';
 
 
@@ -27,6 +28,7 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       stage: 1,
       previous: null,
     },
+    expType: defaultExpType,
   },
   ampharos: {
     id: 181,
@@ -53,5 +55,6 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       stage: 3,
       previous: 180,
     },
+    expType: defaultExpType,
   },
 };

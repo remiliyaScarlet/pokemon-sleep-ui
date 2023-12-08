@@ -1,59 +1,14 @@
 import {describe, expect, it} from '@jest/globals';
 
-import {testExpData, testExpDataWithNull} from '@/tests/data/game/exp';
-import {
-  getExpDataWithMultiplier,
-  getLevelUpRequirementsAccumulated,
-  getLevelUpRequirementsOfEachLevel,
-} from '@/ui/xp/results/utils';
+import {testExpData, testExpShardConsumption} from '@/tests/data/game/exp';
+import {getLevelUpRequirementsAccumulated, getLevelUpRequirementsOfEachLevel} from '@/ui/xp/results/utils';
 
-
-describe('EXP Calculator / Apply Multiplier to Data', () => {
-  it('is correct for default multiplier', () => {
-    const xpData = getExpDataWithMultiplier({
-      xpData: testExpData,
-      multiplier: 1,
-    });
-
-    expect(xpData[0].lv).toBe(1);
-    expect(xpData[0].toNext).toBe(54);
-    expect(xpData[0].shardPerCandy).toBe(14);
-    expect(xpData[0].totalGained).toBe(0);
-    expect(xpData[1].lv).toBe(2);
-    expect(xpData[1].toNext).toBe(71);
-    expect(xpData[1].shardPerCandy).toBe(18);
-    expect(xpData[1].totalGained).toBe(54);
-    expect(xpData[2].lv).toBe(3);
-    expect(xpData[2].toNext).toBe(108);
-    expect(xpData[2].shardPerCandy).toBe(22);
-    expect(xpData[2].totalGained).toBe(125);
-  });
-
-  it('is correct for 1.5x multiplier', () => {
-    const xpData = getExpDataWithMultiplier({
-      xpData: testExpData,
-      multiplier: 1.5,
-    });
-
-    expect(xpData[0].lv).toBe(1);
-    expect(xpData[0].toNext).toBe(81);
-    expect(xpData[0].shardPerCandy).toBe(14);
-    expect(xpData[0].totalGained).toBe(0);
-    expect(xpData[1].lv).toBe(2);
-    expect(xpData[1].toNext).toBe(107);
-    expect(xpData[1].shardPerCandy).toBe(18);
-    expect(xpData[1].totalGained).toBe(81);
-    expect(xpData[2].lv).toBe(3);
-    expect(xpData[2].toNext).toBe(162);
-    expect(xpData[2].shardPerCandy).toBe(22);
-    expect(xpData[2].totalGained).toBe(188);
-  });
-});
 
 describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
   it('is correct with everything on default', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
       xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
       xpToNext: 54,
       currentLv: 1,
       multiplier: 1,
@@ -105,6 +60,7 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
   it('is correct with multiplier > 1', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
       xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
       xpToNext: 54,
       currentLv: 1,
       multiplier: 1.18,
@@ -156,6 +112,7 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
   it('is correct with multiplier < 1', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
       xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
       xpToNext: 54,
       currentLv: 1,
       multiplier: 0.82,
@@ -207,6 +164,7 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
   it('is correct with owned candies', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
       xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
       xpToNext: 54,
       currentLv: 1,
       multiplier: 1,
@@ -257,7 +215,8 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
 
   it('is correct with non-1 current level', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
-      xpData: testExpDataWithNull,
+      xpData: testExpData,
+      xpShardConsumption: {data: {}},
       xpToNext: 54,
       currentLv: 1,
       multiplier: 1,
@@ -281,6 +240,7 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
   it('is correct with non-default rates', () => {
     const expItemsRequired = getLevelUpRequirementsOfEachLevel({
       xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
       xpToNext: 44,
       currentLv: 1,
       multiplier: 1,
@@ -307,6 +267,40 @@ describe('EXP Calculator / Level Up Requirements (Each Level)', () => {
     expect(expItemsRequired[3].xp).toBe(128);
     expect(expItemsRequired[3].candy).toBe(3);
     expect(expItemsRequired[3].shard).toBe(3 * 27 * 6);
+  });
+
+  it('does not have additional entry at the end', () => {
+    const expItemsRequired = getLevelUpRequirementsOfEachLevel({
+      xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
+      xpToNext: 44,
+      currentLv: 1,
+      multiplier: 1,
+      ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
+    });
+
+    expect(expItemsRequired).toHaveLength(9);
+  });
+
+  it('does not have additional entry at max level', () => {
+    const expItemsRequired = getLevelUpRequirementsOfEachLevel({
+      xpData: testExpData,
+      xpShardConsumption: testExpShardConsumption,
+      xpToNext: 44,
+      currentLv: 10,
+      multiplier: 1,
+      ownedCandies: 0,
+      rate: {
+        candyExpBoost: 1,
+        dreamShardDepletion: 1,
+      },
+    });
+
+    expect(expItemsRequired).toHaveLength(0);
   });
 });
 

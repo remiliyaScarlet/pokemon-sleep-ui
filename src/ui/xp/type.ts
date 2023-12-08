@@ -1,12 +1,12 @@
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
-import {PokemonExpData, PokemonExpMultiplierMap} from '@/types/game/pokemon/xp';
+import {PokemonExpValueMap, PokemonShardConsumptionData} from '@/types/game/pokemon/xp';
 
 
 export type PokemonExpCalculatorDataProps = {
   pokedexMap: PokedexMap,
-  xpData: PokemonExpData[],
-  xpMultiplier: PokemonExpMultiplierMap,
+  xpValueData: PokemonExpValueMap,
+  xpShardConsumption: PokemonShardConsumptionData,
   maxLevel: number,
 };
 
