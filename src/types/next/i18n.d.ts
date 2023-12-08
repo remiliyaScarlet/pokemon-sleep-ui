@@ -227,6 +227,12 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           },
         },
         Maker: {
+          State: {
+            IngredientRequirements: {
+              Pass: string,
+              Fail: string,
+            },
+          },
           Behavior: {
             ToggleInsufficientIngredients: string,
           },

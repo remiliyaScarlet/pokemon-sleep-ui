@@ -46,3 +46,7 @@ export const addIngredientCount = (addends: IngredientCounter[]): IngredientCoun
     )),
   );
 };
+
+export const isIngredientCounterEmpty = (counter: IngredientCounter): boolean => {
+  return Object.values(counter).every((count) => !count);
+};

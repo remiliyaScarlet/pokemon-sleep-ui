@@ -325,6 +325,12 @@
         }
       },
       "Maker": {
+        "State": {
+          "IngredientRequirements": {
+            "Pass": "Satisfies ingredient requirements",
+            "Fail": "Does not satisfy ingredient requirements"
+          }
+        },
         "Behavior": {
           "ToggleInsufficientIngredients": "Show/Hide the team comps unable to satisfy the ingredient requirements"
         }

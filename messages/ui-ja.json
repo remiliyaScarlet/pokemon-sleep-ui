@@ -325,6 +325,12 @@
         }
       },
       "Maker": {
+        "State": {
+          "IngredientRequirements": {
+            "Pass": "食材条件⭕",
+            "Fail": "食材条件❌"
+          }
+        },
         "Behavior": {
           "ToggleInsufficientIngredients": "食材の条件を満たさないチームを表示/除外"
         }
