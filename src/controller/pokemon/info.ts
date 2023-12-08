@@ -41,7 +41,7 @@ export const getPokemonByIngredientChain = async (chainIds: IngredientChainId[])
 };
 
 export const getPokemonRequiringItemToEvolve = async () => (
-  (await getCollection()).find({'evolution.next.conditions.type': 'item'})
+  getDataAsArray(getCollection(), {'evolution.next.conditions.type': 'item'})
 );
 
 const addIndex = async () => {
