@@ -3,15 +3,8 @@ import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
-import {UserSettings} from '@/types/userData/settings';
-import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
 
-
-export type GetTeamMakerResultsOpts = TeamMakerDataProps & {
-  input: TeamMakerInput,
-  settings: UserSettings,
-};
 
 export const teamMakerMemberCount = [
   1,

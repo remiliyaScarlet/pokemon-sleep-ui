@@ -1,10 +1,7 @@
 import {defaultSeedUsage} from '@/const/game/seed';
 import {teamMakerMaxMemberCount, teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
-import {
-  GetTeamMakerResultsOpts,
-  TeamMakerInputCalculated,
-  TeamMakerRateAtMaxPotentialData,
-} from '@/ui/team/maker/calc/type';
+import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
+import {GetTeamMakerCalcPrepOpts} from '@/ui/team/maker/hook/type';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
@@ -14,7 +11,7 @@ import {isNotNullish} from '@/utils/type';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
 
-type GetTeamMakerRateAtMaxPotentialOpts = GetTeamMakerResultsOpts & {
+type GetTeamMakerRateAtMaxPotentialOpts = GetTeamMakerCalcPrepOpts & {
   calculatedInput: TeamMakerInputCalculated,
 };
 

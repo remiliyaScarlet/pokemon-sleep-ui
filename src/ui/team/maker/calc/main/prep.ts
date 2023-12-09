@@ -1,12 +1,11 @@
 import {getTeamMakerCandidates} from '@/ui/team/maker/calc/getCandidates';
-import {getTeamMakerComps} from '@/ui/team/maker/calc/getComps';
 import {getTeamMakerRateAtMaxPotential} from '@/ui/team/maker/calc/getMaxPotential';
-import {GetTeamMakerResultsOpts, TeamMakerInputCalculated} from '@/ui/team/maker/calc/type';
-import {TeamMakerResult} from '@/ui/team/maker/type';
+import {TeamMakerInputCalculated} from '@/ui/team/maker/calc/type';
+import {GetTeamMakerCalcPrepOpts, GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
 import {toTargetMeals} from '@/utils/user/settings/utils';
 
 
-export const getTeamMakerResults = (opts: GetTeamMakerResultsOpts): TeamMakerResult[] => {
+export const getTeamMakerResultsOpts = (opts: GetTeamMakerCalcPrepOpts): GetTeamMakerResultsOpts => {
   const {input, mealMap} = opts;
   const calculatedInput: TeamMakerInputCalculated = {
     recipeLevel: input.recipeLevel,
@@ -23,9 +22,9 @@ export const getTeamMakerResults = (opts: GetTeamMakerResultsOpts): TeamMakerRes
   });
   const candidates = getTeamMakerCandidates({ratesAtMax});
 
-  return getTeamMakerComps({
+  return {
     calculatedInput,
     candidates,
     ...opts,
-  });
+  };
 };

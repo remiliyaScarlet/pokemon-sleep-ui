@@ -16,6 +16,7 @@ import {SnorlaxDataOfMap, SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {TeamMakerIngredientStats, TeamMakerMemberCount} from '@/ui/team/maker/calc/type';
+import {GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
 
 
 export type TeamMakerDataProps = {
@@ -53,4 +54,6 @@ export type TeamMakerResult = {
 export type TeamMakerState = {
   loading: boolean,
   results: TeamMakerResult[],
+  combinations: number | null,
+  calcFinalOpts: GetTeamMakerResultsOpts | null,
 };
