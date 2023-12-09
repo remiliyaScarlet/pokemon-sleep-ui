@@ -27,6 +27,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
     recipeLevel: preloaded.cooking.recipeLevel,
     ingredientCount: preloaded.cooking.ingredientCount,
     memberCount: 5,
+    previewLevel: null,
     target: preloaded.cooking.target,
     showInsufficientIngredients: true,
   });
@@ -45,6 +46,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
         <TeamMakerResults
           ref={resultsRef}
           results={state.results}
+          input={input}
           {...props}
         />
       </LazyLoad>

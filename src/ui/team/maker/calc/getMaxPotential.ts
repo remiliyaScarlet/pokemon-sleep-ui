@@ -54,6 +54,8 @@ export const getTeamMakerRateAtMaxPotential = ({
           subSkillMap,
           helpingBonusSimulateOnSelf: true,
         }),
+        // Override `level` because preview level might be active
+        level: input.previewLevel ?? pokeInBox.level,
         // Override `pokemon` in `pokeInBox`
         pokemon,
         // Override `ingredients` in `pokeInBox`

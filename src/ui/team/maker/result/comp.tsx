@@ -12,12 +12,13 @@ import {PokemonProductionSplit} from '@/components/shared/pokemon/production/spl
 import {TeamMakerResultButton} from '@/ui/team/maker/result/button/main';
 import {TeamMakerIngredientStatsUI} from '@/ui/team/maker/result/ingredient';
 import {TeamMakerSnorlaxRankFinalEstimate} from '@/ui/team/maker/result/snorlaxRank';
+import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
 import {TeamMakerResultUnit} from '@/ui/team/maker/result/unit';
 import {TeamMakerDataProps, TeamMakerResult} from '@/ui/team/maker/type';
 import {formatFloat} from '@/utils/number/format';
 
 
-type Props = TeamMakerDataProps & {
+type Props = TeamMakerDataProps & TeamMakerResultUiProps & {
   result: TeamMakerResult,
 };
 

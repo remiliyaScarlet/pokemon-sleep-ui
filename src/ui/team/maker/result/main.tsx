@@ -4,10 +4,11 @@ import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {teamMakerMaxResultCount} from '@/ui/team/maker/const';
 import {TeamMakerResultComp} from '@/ui/team/maker/result/comp';
+import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
 import {TeamMakerDataProps, TeamMakerResult} from '@/ui/team/maker/type';
 
 
-type Props = TeamMakerDataProps & {
+type Props = TeamMakerDataProps & TeamMakerResultUiProps & {
   results: TeamMakerResult[],
 };
 

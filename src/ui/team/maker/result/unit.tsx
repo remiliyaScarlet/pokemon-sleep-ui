@@ -14,12 +14,13 @@ import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/ind
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {teamMakerUnitStrengthAtState} from '@/ui/team/maker/result/const';
+import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {formatFloat} from '@/utils/number/format';
 
 
-type Props = TeamMakerDataProps & {
+type Props = TeamMakerDataProps & TeamMakerResultUiProps & {
   rate: PokemonProducingRateWithPayload<PokeInBox>,
   compStrength: number,
 };
@@ -27,6 +28,7 @@ type Props = TeamMakerDataProps & {
 export const TeamMakerResultUnit = ({
   pokedexMap,
   subSkillMap,
+  input,
   rate,
   compStrength,
 }: Props) => {
@@ -39,6 +41,7 @@ export const TeamMakerResultUnit = ({
     subSkill,
     nature,
   } = rate.payload;
+  const {previewLevel} = input;
 
   const t = useTranslations('UI.Producing');
 
@@ -55,7 +58,9 @@ export const TeamMakerResultUnit = ({
   return (
     <Flex className="bg-plate gap-1.5">
       <Flex direction="row" className="items-center gap-1.5">
-        <InfoIcon style="glow">{level}</InfoIcon>
+        <InfoIcon style={previewLevel ? 'warn' : 'glow'}>
+          {previewLevel ?? level}
+        </InfoIcon>
         <PokemonNameSmall pokemon={pokemonInfo} override={name}/>
       </Flex>
       <Flex direction="row" className="items-center gap-2">
