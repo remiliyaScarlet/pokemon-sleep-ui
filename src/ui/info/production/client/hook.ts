@@ -69,7 +69,7 @@ export const useProducingParams = ({
         }
 
         if (sort === 'skillRate') {
-          return (b.params.skillPercent ?? 0) - (a.params.skillPercent ?? 0);
+          return (b.params.skillPercent ?? b.params.skillValue) - (a.params.skillPercent ?? a.params.skillValue);
         }
 
         throw new Error(`Unhandled Pokemon producing params sorting basis ${sort satisfies never}`);
