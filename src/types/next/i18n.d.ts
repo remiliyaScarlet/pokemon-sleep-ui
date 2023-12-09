@@ -236,6 +236,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           Behavior: {
             ToggleInsufficientIngredients: string,
           },
+          CompCountWarning: string,
         },
       },
       Info: {
