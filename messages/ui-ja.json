@@ -334,7 +334,7 @@
         "Behavior": {
           "ToggleInsufficientIngredients": "食材の条件を満たさないチームを表示/除外"
         },
-        "CompCountWarning": "High amount of team comp will take longer time to calculate, or even worse, crashing the browser. Increasing the production difference in between Pokemon helps reducing the possible count of team comp. This can be done by disabling level previewing, setting Snorlax's favorite berries, reducing team member count, or reducing the count of Pokemon to include in the calculation."
+        "CompCountWarning": "編成候補が多すぎてシミュレートに時間がかかっています（ブラウザクラッシュのおそれもあります）。ポケモンの性能差が大きければ編成候補は絞られるでしょう。レベルプレビューを解除したり、カビゴンの好物を正しく設定したり、チームの匹数を減らしたり、フィルタで対象ポケモンを絞り込んだりしてみてください。"
       }
     },
     "Info": {

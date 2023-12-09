@@ -1,7 +1,9 @@
 import {defaultSeedUsage} from '@/const/game/seed';
+import {PokeInBox} from '@/types/game/pokebox';
 import {teamMakerMaxMemberCount, teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
 import {GetTeamMakerCalcPrepOpts} from '@/ui/team/maker/hook/type';
+import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
@@ -28,6 +30,21 @@ export const getTeamMakerRateAtMaxPotential = ({
   calculatedInput,
 }: GetTeamMakerRateAtMaxPotentialOpts): TeamMakerRateAtMaxPotentialData[] => {
   return pokeboxList
+    .flatMap((pokeInBox): PokeInBox[] => {
+      if (!input.previewFinalEvolution) {
+        return [pokeInBox];
+      }
+
+      return getPokemonFinalEvolutionIds({
+        pokemonId: pokeInBox.pokemon,
+        pokedex: pokedexMap,
+        evolutionCount: pokeInBox.evolutionCount,
+      }).map(({id, evolutionCount}): PokeInBox => ({
+        ...pokeInBox,
+        pokemon: id,
+        evolutionCount,
+      }));
+    })
     .map((pokeInBox) => {
       const pokemon = pokedexMap[pokeInBox.pokemon];
 
@@ -35,12 +52,13 @@ export const getTeamMakerRateAtMaxPotential = ({
         return null;
       }
 
+      const level = input.previewLevel ?? pokeInBox.level;
       const calcOpts: GetPokemonProducingRateOpts = {
         berryData: berryDataMap[pokemon.berry.id],
         skillData: mainSkillMap[pokemon.skill],
         seeds: pokeInBox.seeds ?? defaultSeedUsage,
         pokemonProducingParams: getPokemonProducingParams({
-          pokemonId: pokemon.id,
+          pokemonId: pokeInBox.pokemon,
           pokemonProducingParamsMap,
         }),
         ingredientMap,
@@ -48,11 +66,12 @@ export const getTeamMakerRateAtMaxPotential = ({
         ...toCalculatedUserSettings({settings}),
         ...getProducingRateSingleParams({
           ...pokeInBox,
+          level,
           subSkillMap,
           helpingBonusSimulateOnSelf: true,
         }),
         // Override `level` because preview level might be active
-        level: input.previewLevel ?? pokeInBox.level,
+        level,
         // Override `pokemon` in `pokeInBox`
         pokemon,
         // Override `ingredients` in `pokeInBox`
