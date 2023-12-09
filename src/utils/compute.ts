@@ -1,3 +1,6 @@
+import {factorial} from '@/utils/number/factorial';
+
+
 export function* cartesianIterator<T>(items: T[][]): Generator<T[]> {
   const remainder = items.length > 1 ? cartesianIterator(items.slice(1)) : [[]];
 
@@ -49,3 +52,7 @@ export function* combineIterator<T>(arr: T[], count: number): Generator<T[]> {
     }
   }
 }
+
+export const getCombinationCount = (objects: number, sample: number): number => {
+  return factorial(objects) / (factorial(sample) * factorial(objects - sample));
+};
