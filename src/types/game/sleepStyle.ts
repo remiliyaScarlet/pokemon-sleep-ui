@@ -1,3 +1,4 @@
+import {GameEventId} from '@/types/game/event';
 import {PokemonId} from '@/types/game/pokemon';
 import {SnorlaxRank} from '@/types/game/rank';
 
@@ -19,6 +20,7 @@ export type SleepStyleCommon = {
 
 export type SleepStyle = SleepStyleCommon & {
   rank: SnorlaxRank,
+  events: GameEventId[],
 };
 
 export type SleepStyleNormal = {
