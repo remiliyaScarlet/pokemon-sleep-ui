@@ -8,20 +8,20 @@ import {Grid} from '@/components/layout/grid';
 import {MapLink} from '@/components/shared/map/link';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {useSnorlaxRankFinalEstimate} from '@/hooks/rank';
-import {SnorlaxRankInMap} from '@/types/game/snorlax';
+import {SnorlaxDataOfMap} from '@/types/game/snorlax';
 
 
 type Props = {
   energy: number,
-  snorlaxRankData: SnorlaxRankInMap[],
+  snorlaxData: SnorlaxDataOfMap[],
 };
 
-export const TeamAnalysisSnorlaxRank = ({energy, snorlaxRankData}: Props) => {
+export const TeamAnalysisSnorlaxRank = ({energy, snorlaxData}: Props) => {
   const t = useTranslations('Game.Field');
 
   const snorlaxRank = useSnorlaxRankFinalEstimate({
     energy,
-    snorlaxRankData,
+    snorlaxData,
   });
 
   return (

@@ -22,7 +22,7 @@ export const getTeamMakerComps = ({
   input,
   calculatedInput,
   candidates,
-  snorlaxRankData,
+  snorlaxData,
 }: GetTeamMakerCompsOpts): TeamMakerResult[] => {
   const {
     snorlaxFavorite,
@@ -78,7 +78,7 @@ export const getTeamMakerComps = ({
       ingredientStats,
       finalEstimates: getSnorlaxRankFinalEstimate({
         energy: strengthTotal,
-        snorlaxRankData,
+        snorlaxData,
       }),
     });
   }

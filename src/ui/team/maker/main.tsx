@@ -14,7 +14,7 @@ import {getAllMealsAsMap} from '@/controller/meal';
 import {getUserPokeboxSorted} from '@/controller/pokebox';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
-import {getSnorlaxRank} from '@/controller/snorlaxRank';
+import {getSnorlaxData} from '@/controller/snorlax';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {Locale} from '@/types/next/locale';
 import {DefaultPageProps} from '@/types/next/page/common';
@@ -42,7 +42,7 @@ const TeamMaker = async ({locale}: TeamMakerProps) => {
     subSkillMap,
     mealMap,
     mapMeta,
-    snorlaxRankData,
+    snorlaxData,
   ] = await Promise.all([
     getUserPokeboxSorted(session?.user.id),
     getPokemonAsMap(),
@@ -54,7 +54,7 @@ const TeamMaker = async ({locale}: TeamMakerProps) => {
     getSubSkillMap(),
     getAllMealsAsMap(),
     getAllMapMeta(),
-    getSnorlaxRank(),
+    getSnorlaxData(),
   ]);
 
   const props: TeamMakerDataProps = {
@@ -68,7 +68,7 @@ const TeamMaker = async ({locale}: TeamMakerProps) => {
     subSkillMap,
     mealMap,
     mapMeta,
-    snorlaxRankData,
+    snorlaxData,
     preloaded: createUserSettingsBundle(session),
   };
 

@@ -15,11 +15,11 @@ import {toIsoDateString} from '@/utils/date';
 import {toProducingRateOfPeriod} from '@/utils/game/producing/convert';
 
 
-type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
+type Props = Pick<TeamAnalysisDataProps, 'snorlaxData'> & {
   energyRate: ProducingRate,
 };
 
-export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) => {
+export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxData}: Props) => {
   const t = useTranslations('UI.InPage.Team');
 
   const [estimateInput, setEstimateInput] = React.useState<TeamFinalEstimateInput>(() => {
@@ -72,7 +72,7 @@ export const TeamAnalysisFinalEstimate = ({energyRate, snorlaxRankData}: Props) 
           />
         </Flex>
       </Flex>
-      <TeamAnalysisSnorlaxRank energy={finalEnergy} snorlaxRankData={snorlaxRankData}/>
+      <TeamAnalysisSnorlaxRank energy={finalEnergy} snorlaxData={snorlaxData}/>
     </Flex>
   );
 };

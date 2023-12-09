@@ -8,7 +8,7 @@ import {PokedexMap} from '@/types/game/pokemon';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
-import {SnorlaxRankInMap} from '@/types/game/snorlax';
+import {SnorlaxDataOfMap} from '@/types/game/snorlax';
 import {TeamAnalysisSetup} from '@/types/teamAnalysis';
 import {UserLazyLoadedData} from '@/types/userData/main';
 import {SynergizedSettingsRequiredData, UserSettingsBundle} from '@/types/userData/settings';
@@ -22,7 +22,7 @@ export type TeamAnalysisServerDataProps = UsePokemonFilterCommonData & Synergize
   berryDataMap: BerryDataMap,
   ingredientMap: IngredientMap,
   mainSkillMap: MainSkillMap,
-  snorlaxRankData: SnorlaxRankInMap[],
+  snorlaxData: SnorlaxDataOfMap[],
   mapMeta: FieldMetaMap,
   subSkillMap: SubSkillMap,
   pokemonMaxLevel: number,

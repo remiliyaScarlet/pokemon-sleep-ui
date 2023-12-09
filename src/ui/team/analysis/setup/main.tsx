@@ -24,7 +24,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
   const {
     setup,
     setSetup,
-    snorlaxRankData,
+    snorlaxData,
     preloaded,
     bundleFromClient,
   } = props;
@@ -57,7 +57,7 @@ export const TeamAnalysisSetupView = (props: Props) => {
         <TeamAnalysisSummary
           period="weekly"
           stats={statsOfTeam}
-          snorlaxRankData={snorlaxRankData}
+          snorlaxData={snorlaxData}
         />
         <AdsUnit/>
       </Flex>

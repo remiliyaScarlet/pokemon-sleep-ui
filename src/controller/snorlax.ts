@@ -3,22 +3,22 @@ import {Collection} from 'mongodb';
 import {getDataAsArray, getSingleData} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
 import {SleepMapId} from '@/types/game/sleepStyle';
-import {SnorlaxRankInMap} from '@/types/game/snorlax';
+import {SnorlaxDataOfMap} from '@/types/game/snorlax';
 
 
-const getCollection = async (): Promise<Collection<SnorlaxRankInMap>> => {
+const getCollection = async (): Promise<Collection<SnorlaxDataOfMap>> => {
   const client = await mongoPromise;
 
   return client
-    .db('snorlax')
-    .collection<SnorlaxRankInMap>('rank');
+    .db('map')
+    .collection<SnorlaxDataOfMap>('snorlax');
 };
 
-export const getSnorlaxRank = async () => {
+export const getSnorlaxData = async () => {
   return getDataAsArray(getCollection());
 };
 
-export const getSnorlaxRankOfMap = async (mapId: SleepMapId) => (
+export const getSnorlaxDataOfMap = async (mapId: SleepMapId) => (
   getSingleData(getCollection(), {mapId})
 );
 
@@ -30,4 +30,4 @@ const addIndex = async () => {
   ]);
 };
 
-addIndex().catch((e) => console.error('MongoDB failed to initialize Snorlax rank index', e));
+addIndex().catch((e) => console.error('MongoDB failed to initialize Snorlax data index', e));

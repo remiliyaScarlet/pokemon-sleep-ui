@@ -1,5 +1,5 @@
 import {SleepMapId} from '@/types/game/sleepStyle';
-import {SnorlaxRankData} from '@/types/game/snorlax';
+import {SnorlaxDataAtRank} from '@/types/game/snorlax';
 
 
 export type SnorlaxRankTitleId = number;
@@ -11,5 +11,5 @@ export type SnorlaxRank = {
 
 export type SnorlaxRankFinalEstimate = {
   mapId: SleepMapId,
-  rank: SnorlaxRankData | undefined,
+  rank: SnorlaxDataAtRank | undefined,
 };

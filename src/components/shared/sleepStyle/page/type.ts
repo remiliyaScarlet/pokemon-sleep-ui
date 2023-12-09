@@ -3,8 +3,8 @@ import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/share
 import {MapMeta} from '@/types/game/mapMeta';
 import {PokedexMap, PokemonId} from '@/types/game/pokemon';
 import {SleepdexMap} from '@/types/game/sleepdex';
-import {SleepStyleNormalFlattened, SleepStyleId} from '@/types/game/sleepStyle';
-import {SnorlaxRankInMap, SnorlaxReward} from '@/types/game/snorlax';
+import {SleepStyleId, SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
+import {SnorlaxDataOfMap} from '@/types/game/snorlax';
 
 
 export const mapUnlockTableDisplayType = [
@@ -28,8 +28,7 @@ export type MapPageServerDataProps = UsePokemonFilterCommonData & {
   mapId: number,
   sleepStyles: SleepStyleNormalFlattened[],
   pokedexMap: PokedexMap,
-  snorlaxRank: SnorlaxRankInMap,
-  snorlaxReward: SnorlaxReward[],
+  snorlaxData: SnorlaxDataOfMap,
   mapMeta: MapMeta | null,
   sleepdexMap: SleepdexMap,
   isLoggedIn: boolean,

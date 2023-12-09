@@ -13,12 +13,12 @@ import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 
 
-type Props = Pick<TeamAnalysisDataProps, 'snorlaxRankData'> & {
+type Props = Pick<TeamAnalysisDataProps, 'snorlaxData'> & {
   stats: TeamProducingStats,
   period: ProductionPeriod,
 };
 
-export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => {
+export const TeamAnalysisSummary = ({snorlaxData, stats, period}: Props) => {
   const {
     berry,
     ingredient,
@@ -29,7 +29,7 @@ export const TeamAnalysisSummary = ({snorlaxRankData, stats, period}: Props) => 
 
   return (
     <Flex className="button-bg items-end justify-end gap-3 rounded-lg p-2 md:flex-row">
-      <TeamAnalysisFinalEstimate energyRate={stats.overall} snorlaxRankData={snorlaxRankData}/>
+      <TeamAnalysisFinalEstimate energyRate={stats.overall} snorlaxData={snorlaxData}/>
       <Flex className="justify-end gap-1.5 md:w-fit">
         <Flex direction="row" noFullWidth wrap className="justify-end gap-x-4 gap-y-1.5">
           <TeamAnalysisRateLayout

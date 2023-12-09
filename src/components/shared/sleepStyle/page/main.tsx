@@ -14,8 +14,7 @@ import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
-import {getSnorlaxRankOfMap} from '@/controller/snorlaxRank';
-import {getSnorlaxReward} from '@/controller/snorlaxReward';
+import {getSnorlaxDataOfMap} from '@/controller/snorlax';
 import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
 import {Locale} from '@/types/next/locale';
 import {toUnique} from '@/utils/array';
@@ -35,20 +34,18 @@ export const MapPage = async ({locale, mapId, getDataPromise, isUnique}: Props) 
   const [
     pokedexMap,
     ingredientChainMap,
-    snorlaxRank,
-    snorlaxReward,
+    snorlaxData,
     mapMeta,
     sleepdexMap,
   ] = await Promise.all([
     getPokemonAsMap(toUnique(sleepStyles.map(({pokemonId}) => pokemonId))),
     getIngredientChainMap(),
-    getSnorlaxRankOfMap(mapId),
-    getSnorlaxReward(),
+    getSnorlaxDataOfMap(mapId),
     getMapMeta(mapId),
     getSleepdexMap(session?.user.id),
   ]);
 
-  if (!snorlaxRank) {
+  if (!snorlaxData) {
     return <Failed text="Snorlax"/>;
   }
 
@@ -57,8 +54,7 @@ export const MapPage = async ({locale, mapId, getDataPromise, isUnique}: Props) 
     sleepStyles,
     pokedexMap,
     ingredientChainMap,
-    snorlaxRank,
-    snorlaxReward,
+    snorlaxData,
     mapMeta,
     sleepdexMap,
     isLoggedIn: !!session,

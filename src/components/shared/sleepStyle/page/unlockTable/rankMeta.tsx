@@ -9,7 +9,6 @@ import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
 import {MapUnlockTableRowProps} from '@/components/shared/sleepStyle/page/unlockTable/type';
 import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {toSum} from '@/utils/array';
-import {isSameRank} from '@/utils/game/snorlax';
 import {formatInt} from '@/utils/number/format';
 import {isNotNullish} from '@/utils/type';
 
@@ -19,7 +18,7 @@ export const MapUnlockTableRankMeta = (props: MapUnlockTableRowProps) => {
     rank,
     accumulator,
     matchingStyles,
-    snorlaxReward,
+    snorlaxDataAtRank,
   } = props;
   const {energy} = accumulator;
 
@@ -57,7 +56,7 @@ export const MapUnlockTableRankMeta = (props: MapUnlockTableRowProps) => {
           <GenericIcon src="/images/generic/gift.png" alt={t('DreamShards')} dimension="h-6 w-6"/>
           <GenericIcon src="/images/generic/shard.png" alt={t('DreamShards')} dimension="h-6 w-6" noInvert/>
           <div>
-            {formatInt(snorlaxReward.find((reward) => isSameRank(reward.rank, rank))?.shard)}
+            {formatInt(snorlaxDataAtRank.rewardShard)}
           </div>
         </Flex>
       </Flex>

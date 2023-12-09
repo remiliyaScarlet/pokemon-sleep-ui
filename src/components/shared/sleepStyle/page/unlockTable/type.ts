@@ -5,6 +5,7 @@ import {PokemonSleepTypeId} from '@/types/game/pokemon';
 import {SnorlaxRank} from '@/types/game/rank';
 import {SleepdexMap} from '@/types/game/sleepdex';
 import {SleepStyleNormalFlattened} from '@/types/game/sleepStyle';
+import {SnorlaxDataAtRank} from '@/types/game/snorlax';
 
 
 export type MapUnlockAccumulatorOfSleepType = {[sleepType in PokemonSleepTypeId]?: number};
@@ -25,7 +26,7 @@ export type MapUnlockAccumulator = {
 
 export type MapUnlockTableRowProps = Pick<
   MapCommonProps,
-  'mapId' | 'pokedexMap' | 'snorlaxReward' | 'isLoggedIn'
+  'mapId' | 'pokedexMap' | 'isLoggedIn'
 > & {
   filter: MapPageFilter,
   rank: SnorlaxRank,
@@ -33,4 +34,5 @@ export type MapUnlockTableRowProps = Pick<
   accumulator: MapUnlockAccumulator,
   sleepdex: SleepdexMap,
   setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,
+  snorlaxDataAtRank: SnorlaxDataAtRank,
 };

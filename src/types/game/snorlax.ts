@@ -8,19 +8,13 @@ export type SnorlaxFavorite = FilterInclusionMap<BerryId>;
 
 export type FilterWithSnorlaxFavorite = Record<string, SnorlaxFavorite>;
 
-export type SnorlaxRankData = {
+export type SnorlaxDataAtRank = {
   rank: SnorlaxRank,
-  energy: number
+  energy: number,
+  rewardShard: number,
 };
 
-export type SnorlaxRankInMap = {
+export type SnorlaxDataOfMap = {
   mapId: SleepMapId,
-  data: SnorlaxRankData[],
-};
-
-export type SnorlaxRankMap = {[mapId in SleepMapId]: SnorlaxRankInMap};
-
-export type SnorlaxReward = {
-  rank: SnorlaxRank,
-  shard: number,
+  data: SnorlaxDataAtRank[],
 };

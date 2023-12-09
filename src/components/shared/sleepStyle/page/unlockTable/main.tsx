@@ -13,7 +13,7 @@ import {isSameRank} from '@/utils/game/snorlax';
 
 type Props = Pick<
   MapCommonProps,
-  'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxRank' | 'snorlaxReward' | 'isLoggedIn'
+  'mapId' | 'pokedexMap' | 'sleepStyles' | 'snorlaxData' | 'isLoggedIn'
 > & {
   filter: MapPageFilter,
   isIncluded: FilterInclusionMap<MapInputInclusionKey>,
@@ -25,7 +25,7 @@ export const MapUnlockTable = (props: Props) => {
   const {
     pokedexMap,
     sleepStyles,
-    snorlaxRank,
+    snorlaxData,
     filter,
     isIncluded,
     sleepdex,
@@ -53,14 +53,17 @@ export const MapUnlockTable = (props: Props) => {
         const toHide = !showEmptyRank && !matchingStyles.length;
         const key = `${rank.title}-${rank.number}`;
 
+        const currentSnorlaxDataAtRank = snorlaxData.data.find((data) => isSameRank(data.rank, rank));
+        const current = {
+          rank,
+          value: currentSnorlaxDataAtRank?.energy ?? null,
+        };
+
         // Update accumulator outside once to update energy
         // https://github.com/RaenonX-PokemonSleep/pokemon-sleep-ui/issues/258
         accumulator = getUpdatedAccumulator({
           original: accumulator,
-          current: {
-            rank,
-            value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
-          },
+          current,
         });
 
         for (const data of matchingStyles) {
@@ -76,10 +79,7 @@ export const MapUnlockTable = (props: Props) => {
           accumulator = getUpdatedAccumulator({
             original: accumulator,
             sleepType,
-            current: {
-              rank,
-              value: snorlaxRank.data.find((data) => isSameRank(data.rank, rank))?.energy ?? null,
-            },
+            current,
             inSleepdexOpts: {
               pokemonId: data.pokemonId,
               styleId: data.style.style,
@@ -89,7 +89,7 @@ export const MapUnlockTable = (props: Props) => {
         }
 
         // Have to be after `getUpdatedAccumulator()` or the accumulation will be wrong
-        if (toHide) {
+        if (toHide || !currentSnorlaxDataAtRank) {
           return null;
         }
 
@@ -99,6 +99,7 @@ export const MapUnlockTable = (props: Props) => {
             rank={rank}
             matchingStyles={matchingStyles}
             accumulator={accumulator}
+            snorlaxDataAtRank={currentSnorlaxDataAtRank}
             {...props}
           />
         );

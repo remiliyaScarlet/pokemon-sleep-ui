@@ -12,7 +12,7 @@ import {getAllMapMeta} from '@/controller/mapMeta';
 import {getAllMealsAsMap} from '@/controller/meal';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
-import {getSnorlaxRank} from '@/controller/snorlaxRank';
+import {getSnorlaxData} from '@/controller/snorlax';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -30,7 +30,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     berryDataMap,
     ingredientMap,
-    snorlaxRankData,
+    snorlaxData,
     mapMeta,
     mainSkillMap,
     subSkillMap,
@@ -43,7 +43,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     getIngredientChainMap(),
     getAllBerryData(),
     getAllIngredients(),
-    getSnorlaxRank(),
+    getSnorlaxData(),
     getAllMapMeta(),
     getMainSkillMap(),
     getSubSkillMap(),
@@ -57,7 +57,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     berryDataMap,
     ingredientMap,
-    snorlaxRankData,
+    snorlaxData,
     mapMeta,
     mainSkillMap,
     subSkillMap,
