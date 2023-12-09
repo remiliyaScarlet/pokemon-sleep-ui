@@ -1,15 +1,15 @@
 import {Session} from 'next-auth';
 
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
+import {PokeboxPreviewLevel} from '@/components/shared/pokebox/preview/type';
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
 import {RatingBasis} from '@/types/game/pokemon/rating';
-import {pokemonSubSkillLevel, SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
 
@@ -39,13 +39,6 @@ export type PokeboxPokemonForView = {
   inBox: PokeInBox,
   names: string[],
 };
-
-export const pokeboxPreviewLevel = [
-  ...ingredientLevels,
-  ...pokemonSubSkillLevel,
-] as const;
-
-export type PokeboxPreviewLevel = typeof pokeboxPreviewLevel[number] | null;
 
 export type PokeboxViewerDisplay = Migratable & {
   sort: PokemonSortType,
