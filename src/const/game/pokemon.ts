@@ -1,4 +1,4 @@
-import {PokemonSpecialtyId} from '@/types/game/pokemon';
+import {PokemonEventTypeId, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {SubSkillBonusCategory, SubSkillId} from '@/types/game/pokemon/subSkill';
 
@@ -38,3 +38,5 @@ export const subSkillBonusImageSrcMap: {[bonus in SubSkillBonusCategory]: string
 export const subSkillImageOverride: {[id in SubSkillId]?: string} = {
   19: '/images/subSkill/inventory2.png',
 };
+
+export const defaultPokemonEventType: PokemonEventTypeId = 1;

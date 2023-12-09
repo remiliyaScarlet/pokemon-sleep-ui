@@ -16,6 +16,8 @@ export type PokemonSkillId = number;
 
 export type PokemonSpecialtyId = number;
 
+export type PokemonEventTypeId = number;
+
 export type PokemonStats = {
   frequency: number,
   maxCarry: number,
@@ -42,6 +44,7 @@ export type PokemonInfo = {
   skill: PokemonSkillId,
   evolution: EvolutionData,
   expType: PokemonExpTypeId,
+  eventType: PokemonEventTypeId,
 };
 
 export type PokemonInfoWithMap = {

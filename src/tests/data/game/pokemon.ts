@@ -1,3 +1,4 @@
+import {defaultPokemonEventType} from '@/const/game/pokemon';
 import {defaultExpType} from '@/const/game/xp';
 import {PokemonInfo} from '@/types/game/pokemon';
 
@@ -29,6 +30,7 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       previous: null,
     },
     expType: defaultExpType,
+    eventType: defaultPokemonEventType,
   },
   ampharos: {
     id: 181,
@@ -56,5 +58,6 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       previous: 180,
     },
     expType: defaultExpType,
+    eventType: defaultPokemonEventType,
   },
 };
