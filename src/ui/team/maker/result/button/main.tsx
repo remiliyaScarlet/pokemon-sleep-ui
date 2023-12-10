@@ -44,7 +44,7 @@ export const TeamMakerResultButton = ({result}: Props) => {
         </Flex>
         <TeamMakerResultButtonFinalEstimate finalEstimates={finalEstimates}/>
       </Flex>
-      <Flex center direction="row" className="gap-1">
+      <Flex direction="row" center wrap className="gap-1">
         {Object.entries(rates.grouped.ingredient).map(([id, rate]) => {
           if (!rate) {
             return null;
