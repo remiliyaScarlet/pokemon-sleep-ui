@@ -10,6 +10,6 @@ export const activationButtonTextGetter: {[source in ActivationSource]: Activati
     contact.discord ?? contact.patreon
   ),
   github: ({contact}) => (
-    contact.patreon ? `@${contact.github}` : contact.discord
+    `@${contact.github}` ?? contact.discord
   ),
 };
