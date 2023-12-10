@@ -8,11 +8,11 @@ import {FilterInputOnClickProps} from '@/components/input/filter/common/type';
 import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {Flex} from '@/components/layout/flex/common';
 import {LevelIcon} from '@/components/shared/icon/lv';
-import {PokeboxPreviewLevel, pokeboxPreviewLevel} from '@/components/shared/pokebox/preview/type';
 import {iconFilterButtonStyle} from '@/styles/input';
+import {PokemonKeyLevel, pokemonKeyLevels} from '@/types/game/pokemon/level';
 
 
-export const PokeboxPreviewLevelInput = (props: FilterInputOnClickProps<PokeboxPreviewLevel>) => {
+export const PokemonPreviewLevelInput = (props: FilterInputOnClickProps<PokemonKeyLevel | null>) => {
   return (
     <FilterExpandedInput
       title={
@@ -21,7 +21,7 @@ export const PokeboxPreviewLevelInput = (props: FilterInputOnClickProps<PokeboxP
           <LevelIcon/>
         </Flex>
       }
-      ids={[null, ...[...pokeboxPreviewLevel].sort((a, b) => a - b)]}
+      ids={[null, ...[...pokemonKeyLevels].sort((a, b) => a - b)]}
       idToButton={(level) => (
         level === null ? <XMarkIcon className="h-7 w-7"/> : level
       )}

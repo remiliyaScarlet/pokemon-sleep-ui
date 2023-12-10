@@ -1,4 +1,3 @@
-import {PokeboxPreviewLevel} from '@/components/shared/pokebox/preview/type';
 import {PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
@@ -7,6 +6,7 @@ import {MealMap} from '@/types/game/meal/main';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -39,7 +39,7 @@ export type TeamMakerInput = Pick<UserCookingPreset, 'mealType' | 'target' | 're
   snorlaxFavorite: SnorlaxFavorite,
   pokemon: PokemonInputFilter,
   memberCount: TeamMakerMemberCount,
-  previewLevel: PokeboxPreviewLevel,
+  previewLevel: PokemonKeyLevel | null,
   previewFinalEvolution: boolean,
   showInsufficientIngredients: boolean,
 };

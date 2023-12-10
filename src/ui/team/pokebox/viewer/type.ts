@@ -1,12 +1,12 @@
 import {Session} from 'next-auth';
 
 import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/filter/type';
-import {PokeboxPreviewLevel} from '@/components/shared/pokebox/preview/type';
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
 import {RatingBasis} from '@/types/game/pokemon/rating';
 import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
@@ -46,7 +46,7 @@ export type PokeboxViewerDisplay = Migratable & {
   viewType: PokeboxViewType,
   displayOfGrid: PokeboxDisplayType,
   displayOfTable: FilterInclusionMap<PokeboxDisplayType>,
-  previewLevel: PokeboxPreviewLevel,
+  previewLevel: PokemonKeyLevel | null,
   previewFinalEvolution: boolean,
 };
 

@@ -15,7 +15,7 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {GenericPokeballIcon} from '@/components/shared/icon/pokeball';
-import {PokeboxPreviewLevelInput} from '@/components/shared/pokebox/preview/main';
+import {PokemonPreviewLevelInput} from '@/components/shared/pokemon/level/previewInput';
 import {RatingBasisSelectionNullable} from '@/components/shared/pokemon/rating/basis/selection/nullable';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
@@ -87,7 +87,7 @@ export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommo
             allowNull: false,
           })}
         />
-        <PokeboxPreviewLevelInput
+        <PokemonPreviewLevelInput
           {...getSingleSelectOnClickProps({
             filter,
             setFilter,

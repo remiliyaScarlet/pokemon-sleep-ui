@@ -17,7 +17,7 @@ import {GenericIcon} from '@/components/shared/icon/common/main';
 import {IngredientInventoryInput} from '@/components/shared/input/ingredient/inventory';
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {MealPlanner} from '@/components/shared/meal/planner/main';
-import {PokeboxPreviewLevelInput} from '@/components/shared/pokebox/preview/main';
+import {PokemonPreviewLevelInput} from '@/components/shared/pokemon/level/previewInput';
 import {PokemonCollapsibleFilter} from '@/components/shared/pokemon/predefined/filter';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
@@ -121,7 +121,7 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
           allowNull: false,
         })}
       />
-      <PokeboxPreviewLevelInput
+      <PokemonPreviewLevelInput
         {...getSingleSelectOnClickProps({
           filter: input,
           setFilter: setInput,
