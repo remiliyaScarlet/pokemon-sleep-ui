@@ -3,13 +3,14 @@ import {removeActivationSingle, updateActivationPropertiesSingle} from '@/contro
 import {toActivationPayloadFromGithub} from '@/handler/shared/github/utils';
 import {ActivationContact} from '@/types/mongo/activation';
 import {GithubWebhookPayload} from '@/types/subscription/github/webhook';
+import {toGithubSponsorData} from '@/utils/external/github';
 
 
 export const handleGithubSponsorUpdated = async (payload: GithubWebhookPayload) => {
   const presetLookup = await getActivationPresetLookupOfSource('github');
 
   const {contact, activationProperties} = await toActivationPayloadFromGithub({
-    payload,
+    data: toGithubSponsorData(payload),
     presetLookup,
   });
 

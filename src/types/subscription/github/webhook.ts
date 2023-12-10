@@ -1,19 +1,19 @@
-export type GithubSponsor = {
-  login: string,
-  email?: string | null,
-};
+import {GithubSponsorUser} from '@/types/subscription/github/data';
 
-export type GithubSponsorTier = {
+
+export type GithubWebhookSponsorTier = {
   node_id: string,
+  name: string,
+  monthly_price_in_cents: number,
 };
 
-export type GithubSponsorship = {
-  sponsor: GithubSponsor | null,
-  tier: GithubSponsorTier,
+export type GithubWebhookSponsorData = {
+  sponsor: GithubSponsorUser | null,
+  tier: GithubWebhookSponsorTier,
 };
 
 export type GithubWebhookPayload = {
-  sponsorship: GithubSponsorship,
+  sponsorship: GithubWebhookSponsorData,
 } & ({
   action: 'created' | 'cancelled' | 'tier_changed',
 } | {
