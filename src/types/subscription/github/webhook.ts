@@ -1,5 +1,5 @@
 export type GithubSponsor = {
-  id: number,
+  login: string,
   email?: string | null,
 };
 

@@ -45,10 +45,10 @@ export const toActivationPayloadFromGithub = async (
     throw new Error('No Github sponsor info available');
   }
 
-  const sponsorId = sponsor.id.toString();
+  const sponsorLogin = sponsor.login.toString();
   const existedActivationProperties = (await getActivationPropertiesByContact({
     source: 'github',
-    contact: sponsorId,
+    contact: sponsorLogin,
   }));
 
   /* eslint-disable no-console */
@@ -63,11 +63,11 @@ export const toActivationPayloadFromGithub = async (
 
   const activation = getActivationFromGithubSponsor(opts);
   if (!activation) {
-    return {contact: sponsorId, activationProperties: null};
+    return {contact: sponsorLogin, activationProperties: null};
   }
 
   return {
-    contact: sponsorId,
+    contact: sponsorLogin,
     activationProperties: {
       expiry: (
         payload.action === 'pending_cancellation' ?
@@ -79,7 +79,7 @@ export const toActivationPayloadFromGithub = async (
       contact: {
         ...existedActivationProperties?.contact,
         // Keep the existed ones except `github` to make sure the reference used for polling is correct
-        github: sponsorId,
+        github: sponsorLogin,
       },
       isSpecial: false,
       note: sponsor.email ? `Email: ${sponsor.email}` : '',
