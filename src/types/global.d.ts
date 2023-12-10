@@ -32,6 +32,7 @@ declare global {
 
       // External services - GitHub
       EXTERNAL_GITHUB_WEBHOOK_SECRET: string;
+      EXTERNAL_GITHUB_PAT: string;
 
       // Subscription related
       SUBSCRIPTION_DISCORD_SOURCE_URL: string;

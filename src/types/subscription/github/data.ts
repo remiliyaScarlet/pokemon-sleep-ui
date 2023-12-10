@@ -13,4 +13,5 @@ export type GithubSponsorTier = {
 export type GithubSponsorData = {
   user: GithubSponsorUser,
   tier: GithubSponsorTier,
+  expiry: Date,
 };
