@@ -67,7 +67,8 @@ export const toActivationPayloadFromGithub = async (
   }
 
   return {
-    contact: sponsorLogin,
+    contact: user.login,
+    email,
     activationProperties: {
       expiry: (
         payload.action === 'pending_cancellation' ?

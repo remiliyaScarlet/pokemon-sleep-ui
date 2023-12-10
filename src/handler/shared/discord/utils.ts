@@ -57,11 +57,12 @@ export const toActivationPayloadFromDiscord = async (
   }
 
   if (!activation) {
-    return {contact: userId, activationProperties: null};
+    return {contact: userId, email: null, activationProperties: null};
   }
 
   return {
     contact: userId,
+    email: null,
     activationProperties: {
       expiry: getActivationExpiryOfDefault(),
       activation,

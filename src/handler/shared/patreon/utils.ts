@@ -48,7 +48,7 @@ export const toActivationPayloadFromPatreon = async (
   const {email} = attributes;
 
   if (!isPatronActive(member)) {
-    return {contact: email, activationProperties: null};
+    return {contact: email, email, activationProperties: null};
   }
 
   const memberData = await getPatreonMember({userId: id});
@@ -71,11 +71,12 @@ export const toActivationPayloadFromPatreon = async (
 
   const activation = getActivationFromPatreonMember({email, ...opts});
   if (!activation) {
-    return {contact: email, activationProperties: null};
+    return {contact: email, email, activationProperties: null};
   }
 
   return {
     contact: email,
+    email,
     activationProperties: {
       expiry: getActivationExpiryFromPatreon(member),
       activation,
