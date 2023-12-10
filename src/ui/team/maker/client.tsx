@@ -11,6 +11,7 @@ import {AnimatedCollapse} from '@/components/layout/collapsible/animated';
 import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQuick';
 import {Flex} from '@/components/layout/flex/common';
 import {LazyLoad} from '@/components/layout/lazyLoad';
+import {generatePokemonInputFilter} from '@/components/shared/pokemon/filter/utils';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {teamMakerCompCountWarningThreshold} from '@/ui/team/maker/const';
 import {useTeamMaker} from '@/ui/team/maker/hook/main';
@@ -31,6 +32,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
   });
   const [input, setInput] = React.useState<TeamMakerInput>({
     snorlaxFavorite: {},
+    pokemon: generatePokemonInputFilter(),
     mealType: preloaded.cooking.mealType,
     recipeLevel: preloaded.cooking.recipeLevel,
     ingredientCount: preloaded.cooking.ingredientCount,
@@ -51,10 +53,10 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
   return (
     <Flex className="gap-1.5">
       <TeamMakerInputUI
-        {...props}
         input={input}
         setInput={setInput}
         onRun={() => calculateTeam({...props, input, settings})}
+        {...props}
       />
       <AdsUnit/>
       <AnimatedCollapseQuick show={!!combinations} className="flex flex-col gap-1">

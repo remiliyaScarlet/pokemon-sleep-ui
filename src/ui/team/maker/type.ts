@@ -1,4 +1,5 @@
 import {PokeboxPreviewLevel} from '@/components/shared/pokebox/preview/type';
+import {PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
@@ -36,6 +37,7 @@ export type TeamMakerDataProps = {
 
 export type TeamMakerInput = Pick<UserCookingPreset, 'mealType' | 'target' | 'recipeLevel' | 'ingredientCount'> & {
   snorlaxFavorite: SnorlaxFavorite,
+  pokemon: PokemonInputFilter,
   memberCount: TeamMakerMemberCount,
   previewLevel: PokeboxPreviewLevel,
   previewFinalEvolution: boolean,

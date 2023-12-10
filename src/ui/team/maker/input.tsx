@@ -10,6 +10,7 @@ import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
 import {InputRow} from '@/components/input/filter/row';
 import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {ToggleButton} from '@/components/input/toggleButton';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
 import {GenericIcon} from '@/components/shared/icon/common/main';
@@ -17,6 +18,7 @@ import {IngredientInventoryInput} from '@/components/shared/input/ingredient/inv
 import {MealTypeInput} from '@/components/shared/input/mealType';
 import {MealPlanner} from '@/components/shared/meal/planner/main';
 import {PokeboxPreviewLevelInput} from '@/components/shared/pokebox/preview/main';
+import {PokemonCollapsibleFilter} from '@/components/shared/pokemon/predefined/filter';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
 import {textFilterButtonStyle} from '@/styles/input';
@@ -36,17 +38,20 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
   const {
     pokedexMap,
     ingredientMap,
+    ingredientChainMap,
     mealMap,
     mapMeta,
   } = props;
   const {
     target,
+    pokemon,
     recipeLevel,
     ingredientCount,
     previewFinalEvolution,
     showInsufficientIngredients,
   } = input;
 
+  const collapsible = useCollapsible();
   const t = useTranslations('UI.InPage.Team');
   const t2 = useTranslations('UI.InPage.Pokedex.Input');
   const mealTypes = usePossibleMealTypes(Object.values(mealMap).filter(isNotNullish));
@@ -89,6 +94,16 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
             ...ingredientCount,
             [id]: count,
           },
+        }))}
+      />
+      <PokemonCollapsibleFilter
+        collapsibleState={collapsible}
+        pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
+        ingredientChainMap={ingredientChainMap}
+        filter={pokemon}
+        setFilter={(getUpdated) => setInput(({pokemon, ...original}) => ({
+          ...original,
+          pokemon: getUpdated(pokemon),
         }))}
       />
       <FilterExpandedInput
