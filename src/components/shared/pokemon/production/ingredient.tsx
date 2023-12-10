@@ -11,9 +11,11 @@ import {ProducingRate} from '@/types/game/producing/rate';
 type Props = {
   id: IngredientId | undefined,
   rate: ProducingRate | null,
+  hideStrength?: boolean,
+  noLink?: boolean,
 };
 
-export const PokemonIngredientProduction = ({id, rate}: Props) => {
+export const PokemonIngredientProduction = ({id, rate, hideStrength, noLink}: Props) => {
   if (!id || !rate) {
     return (
       <ProducingRateUI
@@ -26,7 +28,10 @@ export const PokemonIngredientProduction = ({id, rate}: Props) => {
   return (
     <ProducingRateUI
       rate={rate}
-      getIcon={(dimension) => <PokemonIngredientIcon id={id} dimension={dimension}/>}
+      getIcon={(dimension) => (
+        <PokemonIngredientIcon id={id} dimension={dimension} noLink={noLink}/>
+      )}
+      hideStrength={hideStrength}
     />
   );
 };

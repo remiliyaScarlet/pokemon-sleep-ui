@@ -12,6 +12,7 @@ import {Dimension} from '@/types/style';
 type Props = ProducingRateContentCommonProps & {
   rate: ProducingRate | null,
   className?: string,
+  hideStrength?: boolean,
 } & ({
   hideQuantity: true,
   getIcon?: never,
@@ -20,11 +21,11 @@ type Props = ProducingRateContentCommonProps & {
   getIcon: (dimension: Dimension) => React.ReactNode,
 });
 
-export const ProducingRateUI = ({rate, className, hideQuantity, getIcon, ...props}: Props) => {
+export const ProducingRateUI = ({rate, className, hideStrength, hideQuantity, getIcon, ...props}: Props) => {
   return (
     <Flex direction="row" noFullWidth className={clsx('gap-1', className)}>
       {!hideQuantity && <ProducingRateContent dailyRate={rate?.quantity} getIcon={getIcon} {...props}/>}
-      <ProducingRateContent dailyRate={rate?.energy} isEnergy {...props}/>
+      {!hideStrength && <ProducingRateContent dailyRate={rate?.energy} isEnergy {...props}/>}
     </Flex>
   );
 };
