@@ -19,6 +19,7 @@ import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonStats} from '@/ui/pokedex/page/meta/stats';
 import {metaTitleClass} from '@/ui/pokedex/page/style';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
+import {isPokemonEventOnly} from '@/utils/game/pokemon';
 
 
 export const PokemonMeta = (props: PokemonDataProps) => {
@@ -31,6 +32,14 @@ export const PokemonMeta = (props: PokemonDataProps) => {
   return (
     <Flex center className="info-section lg:flex-row">
       <Flex className="gap-2 md:p-5 lg:p-8">
+        {
+          isPokemonEventOnly(pokemon) &&
+          <div className={clsx(
+            'text-event-pokemon rounded-lg p-1 shadow-border shadow-fuchsia-700 dark:shadow-fuchsia-500',
+          )}>
+            {t2('Stats.EventOnly')}
+          </div>
+        }
         <PokemonNameBig pokemon={pokemon}/>
         <PokemonGallery {...props}/>
       </Flex>

@@ -242,7 +242,8 @@
         "TimeToFullPack": "Time to Full Pack",
         "MainSkillValue": "Skill Value",
         "MainSkillTriggerValue": "Skill Trigger Value",
-        "MainSkillTriggerRate": "Skill Trigger Rate"
+        "MainSkillTriggerRate": "Skill Trigger Rate",
+        "EventOnly": "Event Only"
       },
       "Sort": {
         "Id": "ID",

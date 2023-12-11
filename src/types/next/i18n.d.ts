@@ -145,6 +145,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           MainSkillValue: string,
           MainSkillTriggerValue: string,
           MainSkillTriggerRate: string,
+          EventOnly: string,
         },
         Sort: {
           Id: string,

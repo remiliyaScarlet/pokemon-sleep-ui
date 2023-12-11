@@ -242,7 +242,8 @@
         "TimeToFullPack": "주머니가 꽉 찰 때 까지 필요한 시간",
         "MainSkillValue": "스킬 확률",
         "MainSkillTriggerValue": "스킬 발동지",
-        "MainSkillTriggerRate": "스킬 발동률"
+        "MainSkillTriggerRate": "스킬 발동률",
+        "EventOnly": "Event Only"
       },
       "Sort": {
         "Id": "ID",

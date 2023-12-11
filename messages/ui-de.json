@@ -243,7 +243,8 @@
         "TimeToFullPack": "Zeit bis Inventar voll ist",
         "MainSkillValue": "Talentwert",
         "MainSkillTriggerValue": "Talent-Auslösefrequenzwert",
-        "MainSkillTriggerRate": "Skill Trigger Rate"
+        "MainSkillTriggerRate": "Skill Trigger Rate",
+        "EventOnly": "Event Only"
       },
       "Sort": {
         "Id": "ID",

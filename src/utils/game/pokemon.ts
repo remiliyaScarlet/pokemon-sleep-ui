@@ -1,3 +1,4 @@
+import {defaultPokemonEventType} from '@/const/game/pokemon';
 import {
   PokedexMap,
   PokemonFinalEvolutionInfo,
@@ -97,3 +98,5 @@ export const getPokemonFinalEvolutionIds = ({
     evolutionCount: evolutionCount + 1,
   }));
 };
+
+export const isPokemonEventOnly = ({eventType}: PokemonInfo) => eventType !== defaultPokemonEventType;
