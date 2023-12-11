@@ -7,7 +7,7 @@ import {
 } from '@/components/shared/pokemon/filter/utils';
 import {PokemonId, PokemonInfo, PokemonInfoWithMap} from '@/types/game/pokemon';
 import {AnalysisComparisonFilter} from '@/ui/analysis/page/type';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
+import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 type UseAnalysisFilterOpts = UsePokemonFilterCommonData & {
@@ -23,7 +23,7 @@ export const useAnalysisFilter = ({data, currentPokemon, ...filterData}: UseAnal
     dataToId: ({info}) => info.id,
     initialFilter: {
       ...generatePokemonInputFilterExtended(),
-      ingredients: generateIngredientProductionAtLevels(ingredientChainMap[currentPokemon.ingredientChain]),
+      ingredients: generateDefaultIngredientProductionAtLevels(ingredientChainMap[currentPokemon.ingredientChain]),
     },
     isDataIncluded: (filter, data) => {
       if (!isDataIncludingAllOfFilter({

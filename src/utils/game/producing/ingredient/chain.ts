@@ -24,7 +24,7 @@ export const generatePossibleIngredientProductions = ({
   cartesianIterator(getEffectiveIngredientLevels(level).map((level) => chain.ingredients[level]))
 );
 
-export const generateIngredientProductionAtLevels = (chain: IngredientChain): IngredientProductionAtLevels => {
+export const generateDefaultIngredientProductionAtLevels = (chain: IngredientChain): IngredientProductionAtLevels => {
   return Object.fromEntries(ingredientLevels
     .map((ingredientLevel) => {
       const production = chain.ingredients[ingredientLevel].at(0);

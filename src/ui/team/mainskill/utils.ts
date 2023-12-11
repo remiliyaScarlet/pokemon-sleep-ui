@@ -3,7 +3,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {SkillTriggerAnalysisUnit, SkillTriggerOnDeskState} from '@/ui/team/mainskill/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
+import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 export const toSkillTriggerAnalysisUnit = ({pokemon, ...data}: SkillTriggerOnDeskState): SkillTriggerAnalysisUnit => {
@@ -28,7 +28,7 @@ export const generateSkillTriggerAnalysisUnit = ({
   return {
     level: 1,
     pokemonId: id,
-    ingredients: generateIngredientProductionAtLevels(chain),
+    ingredients: generateDefaultIngredientProductionAtLevels(chain),
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     seeds: defaultSeedUsage,
     subSkill: {},

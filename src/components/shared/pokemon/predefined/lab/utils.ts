@@ -1,7 +1,7 @@
 import {PokemonComplexFilterOnSelectOpts} from '@/components/shared/pokemon/predefined/complexPicker/type';
 import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
+import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
 
 
@@ -19,7 +19,7 @@ export const toOnDeskState = ({
 }: ToOnDeskStateOpts): PokemonOnDeskState => {
   return {
     pokemon,
-    ingredients: ingredients ?? generateIngredientProductionAtLevels(chain),
+    ingredients: ingredients ?? generateDefaultIngredientProductionAtLevels(chain),
     subSkill: subSkill ?? {},
     nature: nature ?? null,
     origin,

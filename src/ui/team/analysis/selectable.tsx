@@ -12,7 +12,7 @@ import {
 } from '@/types/teamAnalysis';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
+import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 type Props = TeamAnalysisDataProps & {
@@ -49,7 +49,7 @@ export const TeamAnalysisSelectablePokemon = ({
         level: 1,
         nature: null,
         subSkill: {},
-        ingredients: generateIngredientProductionAtLevels(chain),
+        ingredients: generateDefaultIngredientProductionAtLevels(chain),
         evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
         seeds: defaultSeedUsage,
       },

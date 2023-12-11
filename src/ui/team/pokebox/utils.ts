@@ -5,7 +5,7 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
-import {generateIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
+import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
 
 type GenerateNewPokeInBoxOpts = {
@@ -23,7 +23,7 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
     pokemon: id,
     name: null,
     level: 1,
-    ingredients: generateIngredientProductionAtLevels(chain),
+    ingredients: generateDefaultIngredientProductionAtLevels(chain),
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     subSkill: {},
     nature: null,
