@@ -22,7 +22,11 @@ export const getLogsWithSecondarySleep = ({
     start: newLogs[0].stamina.after,
     duration: secondary.adjustedTiming.start,
   });
-  const recovery = getActualRecoveryAmount({amount: secondary.recovery, recoveryRate, isSleep: true});
+  const recovery = getActualRecoveryAmount({
+    amount: secondary.recovery,
+    recoveryRate,
+    isSleep: true,
+  });
 
   newLogs.push(
     {

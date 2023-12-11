@@ -300,12 +300,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs[1].staminaUnderlying.before).toBe(66);
     expect(logs[2].type).toBe('wakeup');
     expect(logs[2].timing).toBe(25200);
-    expect(logs[2].stamina.after).toBe(86);
-    expect(logs[2].staminaUnderlying.after).toBe(86);
+    expect(logs[2].stamina.after).toBe(70);
+    expect(logs[2].staminaUnderlying.after).toBe(70);
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(57600);
-    expect(logs[3].stamina.before).toBe(32);
-    expect(logs[3].staminaUnderlying.before).toBe(32);
+    expect(logs[3].stamina.before).toBe(16);
+    expect(logs[3].staminaUnderlying.before).toBe(16);
     expect(logs.length).toBe(4);
   });
 
@@ -468,12 +468,12 @@ describe('Stamina Event Log (+Secondary)', () => {
     expect(logs[1].staminaUnderlying.before).toBe(80);
     expect(logs[2].type).toBe('wakeup');
     expect(logs[2].timing).toBe(19200);
-    expect(logs[2].stamina.after).toBe(100);
-    expect(logs[2].staminaUnderlying.after).toBe(100);
+    expect(logs[2].stamina.after).toBe(80);
+    expect(logs[2].staminaUnderlying.after).toBe(80);
     expect(logs[3].type).toBe('sleep');
     expect(logs[3].timing).toBe(51600);
-    expect(logs[3].stamina.before).toBe(46);
-    expect(logs[3].staminaUnderlying.before).toBe(46);
+    expect(logs[3].stamina.before).toBe(26);
+    expect(logs[3].staminaUnderlying.before).toBe(26);
     expect(logs.length).toBe(4);
   });
 

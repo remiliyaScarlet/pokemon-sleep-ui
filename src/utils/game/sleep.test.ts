@@ -4,7 +4,7 @@ import {getSleepSessionExtraInfo, getSleepSessionInfo} from '@/utils/game/sleep'
 
 
 describe('Sleep Session Info', () => {
-  it('converts correctly for overnight primary with secondary', () => {
+  it('is correct for overnight primary with secondary', () => {
     const {session, duration} = getSleepSessionInfo({
       primary: {
         start: 84600, // 23:30
@@ -25,7 +25,7 @@ describe('Sleep Session Info', () => {
     expect(duration.awake).toBe(57600);
   });
 
-  it('converts correctly for overnight primary without secondary', () => {
+  it('is correct for overnight primary without secondary', () => {
     const {session, duration} = getSleepSessionInfo({
       primary: {
         start: 84600, // 23:30
@@ -43,7 +43,7 @@ describe('Sleep Session Info', () => {
     expect(duration.awake).toBe(63000);
   });
 
-  it('converts correctly for same-day primary with secondary', () => {
+  it('is correct for same-day primary with secondary', () => {
     const {session, duration} = getSleepSessionInfo({
       primary: {
         start: 21600, // 06:00
@@ -64,7 +64,7 @@ describe('Sleep Session Info', () => {
     expect(duration.awake).toBe(55800);
   });
 
-  it('converts correctly for same-day primary without secondary', () => {
+  it('is correct for same-day primary without secondary', () => {
     const {session, duration} = getSleepSessionInfo({
       primary: {
         start: 21600, // 06:00
@@ -82,20 +82,74 @@ describe('Sleep Session Info', () => {
     expect(duration.awake).toBe(61200);
   });
 
-  it('gives correct extra sleep session info for overnight session', () => {
+  it('has correct recovery when total sleep time < 8.5h', () => {
+    const {session} = getSleepSessionInfo({
+      primary: {
+        start: 0, // 00:00
+        end: 3600 * 4.25, // 04:15
+      },
+      secondary: {
+        start: 3600 * 5.25, // 05:15
+        end: 3600 * 9, // 09:00
+      },
+    });
+
+    expect(session.primary.recovery).toBe(50);
+    expect(session.secondary?.recovery).toBe(45);
+  });
+
+  it('has correct recovery for total sleep time = 8.5h', () => {
+    const {session} = getSleepSessionInfo({
+      primary: {
+        start: 0, // 00:00
+        end: 3600 * 4.25, // 04:15
+      },
+      secondary: {
+        start: 3600 * 5.25, // 05:15
+        end: 3600 * 9.5, // 09:30
+      },
+    });
+
+    expect(session.primary.recovery).toBe(50);
+    expect(session.secondary?.recovery).toBe(50);
+  });
+
+  it('has correct recovery for total sleep time > 8.5h', () => {
+    const {session} = getSleepSessionInfo({
+      primary: {
+        start: 0, // 00:00
+        end: 3600 * 7, // 07:00
+      },
+      secondary: {
+        start: 3600 * 8, // 08:00
+        end: 3600 * 12, // 12:00
+      },
+    });
+
+    expect(session.primary.recovery).toBe(83);
+    expect(session.secondary?.recovery).toBe(17);
+  });
+});
+
+describe('Sleep Session Info / Extra', () => {
+  it('is correct for overnight session', () => {
     const extra = getSleepSessionExtraInfo({
-      start: 82800, // 23:00
-      end: 21600, // 06:00
+      session: {
+        start: 82800, // 23:00
+        end: 21600, // 06:00
+      },
     });
 
     expect(extra.length).toBe(25200);
     expect(extra.recovery).toBe(83);
   });
 
-  it('gives correct extra sleep session info for same-day session', () => {
+  it('is correct for same-day session', () => {
     const extra = getSleepSessionExtraInfo({
-      start: 21600, // 06:00
-      end: 43200, // 12:00
+      session: {
+        start: 21600, // 06:00
+        end: 43200, // 12:00
+      },
     });
 
     expect(extra.length).toBe(21600);

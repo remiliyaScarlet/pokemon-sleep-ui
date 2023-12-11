@@ -6,6 +6,8 @@ import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 export const staminaStartingDefault = 100;
 
+export const staminaMaxRecovery = 100;
+
 export const staminaDepleteInterval = 600;
 
 const maxSleepDuration = 8.5 * 3600; // 8.5 hrs
