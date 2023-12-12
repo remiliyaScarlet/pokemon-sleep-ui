@@ -14,11 +14,11 @@ import {
 import {TeamAnalysisEmptySlot} from '@/ui/team/analysis/setup/team/empty';
 import {TeamAnalysisFilledSlot} from '@/ui/team/analysis/setup/team/filled';
 import {TeamAnalysisFilledProps} from '@/ui/team/analysis/setup/team/type';
-import {toTeamAnalysisMember} from '@/ui/team/analysis/setup/team/utils';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {TeamAnalysisDataProps} from '@/ui/team/analysis/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {getPokemonProducingParams} from '@/utils/game/producing/params';
+import {toTeamAnalysisMember} from '@/utils/team/toMember';
 
 
 type Props = TeamAnalysisDataProps & TeamAnalysisFilledProps & {
