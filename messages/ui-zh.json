@@ -314,6 +314,7 @@
         "DisplayType": {
           "Frequency": "幫忙間隔",
           "Info": "資訊",
+          "Pokemon": "寶可夢資訊",
           "MaxCarry": "持有上限",
           "ProductionBerry": "生產 (樹果)",
           "ProductionIngredient": "生產 (食材)",

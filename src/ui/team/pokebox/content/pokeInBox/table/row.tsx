@@ -3,8 +3,9 @@ import React from 'react';
 import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Flex} from '@/components/layout/flex/common';
 import {PokeInBoxTableFrequency} from '@/ui/team/pokebox/content/pokeInBox/table/details/frequency';
-import {PokeInBoxTableDetails} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
+import {PokeInBoxTableInfo} from '@/ui/team/pokebox/content/pokeInBox/table/details/info';
 import {PokeInBoxTableMaxCarry} from '@/ui/team/pokebox/content/pokeInBox/table/details/maxCarry';
+import {PokeInBoxTablePokemon} from '@/ui/team/pokebox/content/pokeInBox/table/details/pokemon';
 import {PokeInBoxTableProduction} from '@/ui/team/pokebox/content/pokeInBox/table/details/production';
 import {PokeInBoxTableRating} from '@/ui/team/pokebox/content/pokeInBox/table/details/rating';
 import {PokeInBoxTableSkills} from '@/ui/team/pokebox/content/pokeInBox/table/details/skills';
@@ -55,7 +56,12 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
             filter: display,
             filterKey: 'displayOfTable',
             ids: ['info'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxTableDetails {...detailProps}/>}
+          }) && <PokeInBoxTableInfo {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
+            ids: ['pokemon'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxTablePokemon {...detailProps}/>}
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
@@ -69,6 +75,11 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
           {isFilterIncludingSome({
             filter: display,
             filterKey: 'displayOfTable',
+            ids: ['skills'] satisfies PokeboxDisplayType[],
+          }) && <PokeInBoxTableSkills {...detailProps}/>}
+          {isFilterIncludingSome({
+            filter: display,
+            filterKey: 'displayOfTable',
             ids: ['frequency'] satisfies PokeboxDisplayType[],
           }) && <PokeInBoxTableFrequency {...detailProps}/>}
           {isFilterIncludingSome({
@@ -76,11 +87,6 @@ export const PokeInBoxTableRow = (props: PokeInBoxViewUnitProps) => {
             filterKey: 'displayOfTable',
             ids: ['maxCarry'] satisfies PokeboxDisplayType[],
           }) && <PokeInBoxTableMaxCarry {...detailProps}/>}
-          {isFilterIncludingSome({
-            filter: display,
-            filterKey: 'displayOfTable',
-            ids: ['skills'] satisfies PokeboxDisplayType[],
-          }) && <PokeInBoxTableSkills {...detailProps}/>}
         </Flex>
       </button>
     </Flex>

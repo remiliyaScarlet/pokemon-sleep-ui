@@ -314,6 +314,7 @@
         "DisplayType": {
           "Frequency": "도우미 시간",
           "Info": "정보",
+          "Pokemon": "Pokemon Info",
           "MaxCarry": "최대 소지 수",
           "ProductionBerry": "생산 (나무열매)",
           "ProductionIngredient": "생산 (식재료)",

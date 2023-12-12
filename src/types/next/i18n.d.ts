@@ -216,6 +216,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           DisplayType: {
             Frequency: string,
             Info: string,
+            Pokemon: string,
             MaxCarry: string,
             ProductionBerry: string,
             ProductionIngredient: string,

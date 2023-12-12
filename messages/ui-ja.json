@@ -314,6 +314,7 @@
         "DisplayType": {
           "Frequency": "おてつだい時間",
           "Info": "情報",
+          "Pokemon": "ポケモン情報",
           "MaxCarry": "最大所持数",
           "ProductionBerry": "生産 (きのみ)",
           "ProductionIngredient": "生産 (食材)",

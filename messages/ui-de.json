@@ -315,6 +315,7 @@
         "DisplayType": {
           "Frequency": "Frequenz",
           "Info": "Info",
+          "Pokemon": "Pokemon Info",
           "MaxCarry": "Tragelimit",
           "ProductionBerry": "Produktion (Beeren)",
           "ProductionIngredient": "Produktion (Zutaten)",

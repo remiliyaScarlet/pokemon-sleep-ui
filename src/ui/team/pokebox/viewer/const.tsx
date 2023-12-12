@@ -10,6 +10,8 @@ import {PokeboxDisplayType, PokeboxViewType} from '@/ui/team/pokebox/viewer/type
 export const pokeboxDisplayTypeToI18nId: {
   [sortType in PokeboxDisplayType]: I18nMessageKeysOfNamespace<'UI.InPage.Team.Box.DisplayType'>
 } = {
+  info: 'Info',
+  pokemon: 'Pokemon',
   productionTotal: 'ProductionTotal',
   productionBerry: 'ProductionBerry',
   productionIngredient: 'ProductionIngredient',
@@ -17,10 +19,11 @@ export const pokeboxDisplayTypeToI18nId: {
   skills: 'Skills',
   frequency: 'Frequency',
   maxCarry: 'MaxCarry',
-  info: 'Info',
 };
 
 export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: string} = {
+  info: '/images/generic/info.png',
+  pokemon: '/images/generic/pokeball.png',
   productionTotal: '/images/generic/energyWhite.png',
   productionBerry: '/images/generic/berry.png',
   productionIngredient: '/images/generic/ingredient.png',
@@ -28,7 +31,6 @@ export const pokeboxDisplayTypeToImageSrc: {[sortType in PokeboxDisplayType]: st
   skills: '/images/generic/mainSkill.png',
   frequency: '/images/generic/clock.png',
   maxCarry: '/images/generic/bag.png',
-  info: '/images/generic/info.png',
 };
 
 export const pokeboxViewTypeToIcon: {[viewType in PokeboxViewType]: React.ReactNode} = {

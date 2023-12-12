@@ -22,6 +22,8 @@ export const pokeboxViewType = [
 export type PokeboxViewType = typeof pokeboxViewType[number];
 
 export const pokeboxDisplayType = [
+  'info',
+  'pokemon',
   'productionTotal',
   'productionBerry',
   'productionIngredient',
@@ -29,7 +31,6 @@ export const pokeboxDisplayType = [
   'skills',
   'frequency',
   'maxCarry',
-  'info',
 ] as const;
 
 export type PokeboxDisplayType = typeof pokeboxDisplayType[number];

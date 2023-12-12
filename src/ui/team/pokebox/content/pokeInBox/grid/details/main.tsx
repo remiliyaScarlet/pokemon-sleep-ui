@@ -3,6 +3,7 @@ import React from 'react';
 import {PokeInBoxGridFrequency} from '@/ui/team/pokebox/content/pokeInBox/grid/details/frequency';
 import {PokeInBoxGridInfo} from '@/ui/team/pokebox/content/pokeInBox/grid/details/info';
 import {PokeInBoxGridMaxCarry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/maxCarry';
+import {PokeInBoxGridPokemon} from '@/ui/team/pokebox/content/pokeInBox/grid/details/pokemon';
 import {PokeInBoxGridProductionBerry} from '@/ui/team/pokebox/content/pokeInBox/grid/details/productionBerry';
 import {
   PokeInBoxGridProductionIngredient,
@@ -51,6 +52,10 @@ export const PokeInBoxDetails = (props: Props) => {
 
   if (displayType === 'info') {
     return <PokeInBoxGridInfo {...props}/>;
+  }
+
+  if (displayType === 'pokemon') {
+    return <PokeInBoxGridPokemon {...props}/>;
   }
 
   console.error(`Unhandled Pokebox poke-in-box details display type: ${displayType satisfies never}`);

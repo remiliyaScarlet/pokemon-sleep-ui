@@ -314,6 +314,7 @@
         "DisplayType": {
           "Frequency": "Frequency",
           "Info": "Info",
+          "Pokemon": "Pokemon Info",
           "MaxCarry": "Carry Limit",
           "ProductionBerry": "Production (Berry)",
           "ProductionIngredient": "Production (Ingredient)",
