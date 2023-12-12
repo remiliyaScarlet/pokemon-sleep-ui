@@ -5,7 +5,11 @@ import {Flex} from '@/components/layout/flex/common';
 import {defaultExpType} from '@/const/game/xp';
 import {PokemonExpCalculatorInputUI} from '@/ui/xp/input';
 import {PokemonExpCalculatorTable} from '@/ui/xp/results/table';
-import {PokemonExpCalculatorDataProps, PokemonExpCalculatorInput} from '@/ui/xp/type';
+import {
+  PokemonExpCalculatorCommonProps,
+  PokemonExpCalculatorDataProps,
+  PokemonExpCalculatorInput,
+} from '@/ui/xp/type';
 
 
 export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps) => {
@@ -23,10 +27,16 @@ export const PokemonExpCalculatorClient = (props: PokemonExpCalculatorDataProps)
     showNonBreakthroughLevel: false,
   });
 
+  const commonProps: PokemonExpCalculatorCommonProps = {
+    ...props,
+    filter: input,
+    setFilter: setInput,
+  };
+
   return (
     <Flex className="gap-1.5 xl:flex-row">
-      <PokemonExpCalculatorInputUI filter={input} setFilter={setInput} {...props}/>
-      <PokemonExpCalculatorTable input={input} {...props}/>
+      <PokemonExpCalculatorInputUI {...commonProps} {...props}/>
+      <PokemonExpCalculatorTable {...commonProps} {...props}/>
     </Flex>
   );
 };
