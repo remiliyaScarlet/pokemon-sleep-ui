@@ -5,6 +5,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/production/multiple';
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
@@ -13,7 +14,6 @@ import {defaultSeedUsage} from '@/const/game/seed';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {TranslatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
-import {PokemonProductionInput} from '@/ui/pokedex/page/production/type';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
@@ -23,7 +23,7 @@ import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateR
 
 
 type Props = PokemonDataProps & {
-  input: PokemonProductionInput,
+  input: PokemonIndividualParamsInput,
   translatedSettings: TranslatedUserSettings,
   chain: IngredientChain,
 };
