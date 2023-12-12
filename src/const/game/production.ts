@@ -18,7 +18,7 @@ export const productionStatsPeriodI18nId: {
 
 export const defaultProductionPeriod: ProductionPeriod = 'daily';
 
-export const defaultLevel = 1;
+export const defaultLevel = 30;
 
 export const defaultHelperCount = 0;
 

@@ -18,6 +18,7 @@ import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalList} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
+import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonClient} from '@/ui/pokedex/page/client';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
@@ -50,6 +51,7 @@ export const Pokemon = async ({params}: Props) => {
     berryData,
     ingredientMap,
     mainSkillMap,
+    subSkillMap,
     mealMap,
   ] = await Promise.all([
     getServerSession(authOptions),
@@ -61,6 +63,7 @@ export const Pokemon = async ({params}: Props) => {
     getBerryData(pokemon.berry.id),
     getAllIngredients(),
     getMainSkillMap(),
+    getSubSkillMap(),
     getAllMealsAsMap(),
   ]);
 
@@ -79,6 +82,7 @@ export const Pokemon = async ({params}: Props) => {
     berryData,
     ingredientMap,
     mainSkillMap,
+    subSkillMap,
     mealMap,
     preloaded: createUserSettingsBundle(session),
   };
@@ -93,6 +97,7 @@ export const Pokemon = async ({params}: Props) => {
           'UI.Evolution',
           'UI.InPage.Pokedex',
           'UI.InPage.Sleepdex',
+          'UI.InPage.Team',
           'UI.Metadata',
         ]}>
           <PokemonClient {...props}/>

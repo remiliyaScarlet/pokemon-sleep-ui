@@ -9,29 +9,35 @@ import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/producti
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
+import {defaultSeedUsage} from '@/const/game/seed';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {TranslatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
+import {PokemonProductionInput} from '@/ui/pokedex/page/production/type';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
+import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
-import {getProducingRateNeutralParams} from '@/utils/game/producing/params';
+import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
 type Props = PokemonDataProps & {
-  level: number,
+  input: PokemonProductionInput,
   translatedSettings: TranslatedUserSettings,
   chain: IngredientChain,
 };
 
 export const PokemonProductionCombination = ({chain, ...props}: Props) => {
   const {
-    level,
+    input,
     pokemon,
     translatedSettings,
     mainSkillMap,
+    subSkillMap,
   } = props;
+
+  const {level} = input;
   const skillData = mainSkillMap[pokemon.skill];
 
   return (
@@ -43,7 +49,14 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
           ingredients,
           snorlaxFavorite: {},
           skillData,
-          ...getProducingRateNeutralParams({pokemon}),
+          level,
+          evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+          seeds: defaultSeedUsage,
+          ...getProducingRateSingleParams({
+            ...input,
+            subSkillMap,
+            helpingBonusSimulateOnSelf: true,
+          }),
           ...translatedSettings,
           ...props,
         }).rate.final;
