@@ -4,7 +4,7 @@ import {Flex} from '@/components/layout/flex/common';
 
 
 type Props = {
-  onClick: () => void,
+  onClick?: () => void,
   disabled?: boolean,
   isSubmit?: boolean,
 };

@@ -9,6 +9,7 @@ import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
+import {ToTeamAnalysisCompFromPokeboxOpts} from '@/utils/team/utils';
 
 
 export type UserDataUploadOpts = {
@@ -29,6 +30,9 @@ export type UserDataUploadOpts = {
 } | {
   type: 'teamAnalysis',
   data: UserTeamAnalysisContent,
+} | {
+  type: 'team.maker.export',
+  data: ToTeamAnalysisCompFromPokeboxOpts,
 } | {
   type: 'cooking',
   data: UserCookingPreset,

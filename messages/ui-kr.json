@@ -336,7 +336,11 @@
         "Behavior": {
           "ToggleInsufficientIngredients": "Show/Hide the team comps unable to satisfy the ingredient requirements"
         },
-        "CompCountWarning": "High amount of team comp will take longer time to calculate, or even worse, crashing the browser. Increasing the production difference in between Pokemon helps reducing the possible count of team comp. This can be done by disabling level previewing, setting Snorlax's favorite berries, reducing team member count, or reducing the count of Pokemon to include in the calculation."
+        "CompCountWarning": "High amount of team comp will take longer time to calculate, or even worse, crashing the browser. Increasing the production difference in between Pokemon helps reducing the possible count of team comp. This can be done by disabling level previewing, setting Snorlax's favorite berries, reducing team member count, or reducing the count of Pokemon to include in the calculation.",
+        "Control": {
+          "ExportToTeamAnalysis": "Export to Team Analysis",
+          "ExportTeamName": "Team Name"
+        }
       }
     },
     "Info": {

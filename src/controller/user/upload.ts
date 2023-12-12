@@ -15,10 +15,11 @@ import {
   userDataPokedex,
   userDataSettings,
 } from '@/controller/user/manager';
-import {updateTeamAnalysisComps} from '@/controller/user/teamAnalysis/comp';
+import {addTeamAnalysisComp, updateTeamAnalysisComps} from '@/controller/user/teamAnalysis/comp';
 import {updateTeamAnalysisConfig} from '@/controller/user/teamAnalysis/config';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 import {invalidateDocsPathCaching} from '@/utils/docs';
+import {toTeamAnalysisCompFromPokebox} from '@/utils/team/utils';
 import {toActivationProperties} from '@/utils/user/activation/utils';
 
 
@@ -29,16 +30,6 @@ type UploadUserDataOpts = {
 
 export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
   const {type, data} = opts;
-
-  if (type === 'teamAnalysis') {
-    const {config, comps} = data;
-
-    await Promise.all([
-      updateTeamAnalysisConfig({userId, config}),
-      updateTeamAnalysisComps({userId, comps}),
-    ]);
-    return;
-  }
 
   if (type === 'pokedex') {
     await userDataPokedex.setData(userId, data);
@@ -72,6 +63,24 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
 
   if (type === 'sleepdex.unmark') {
     await removeSleepdexRecord(userId, data);
+    return;
+  }
+
+  if (type === 'teamAnalysis') {
+    const {config, comps} = data;
+
+    await Promise.all([
+      updateTeamAnalysisConfig({userId, config}),
+      updateTeamAnalysisComps({userId, comps}),
+    ]);
+    return;
+  }
+
+  if (type === 'team.maker.export') {
+    await addTeamAnalysisComp({
+      userId,
+      comp: toTeamAnalysisCompFromPokebox(data),
+    });
     return;
   }
 

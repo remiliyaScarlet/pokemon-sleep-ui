@@ -12,7 +12,7 @@ type Props = {
 
 export const TeamMakerSnorlaxRankFinalEstimate = ({finalEstimates}: Props) => {
   return (
-    <Flex direction="row" wrap className="justify-end gap-1">
+    <Flex direction="row" wrap noFullWidth className="gap-1">
       {finalEstimates.map(({mapId, rank}) => {
         if (!rank) {
           return null;

@@ -10,6 +10,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonGroupedProduction} from '@/components/shared/pokemon/production/grouped/main';
 import {PokemonProductionSplit} from '@/components/shared/pokemon/production/split/main';
 import {TeamMakerResultButton} from '@/ui/team/maker/result/button/main';
+import {TeamMakerCompControl} from '@/ui/team/maker/result/control';
 import {TeamMakerIngredientStatsUI} from '@/ui/team/maker/result/ingredient';
 import {TeamMakerSnorlaxRankFinalEstimate} from '@/ui/team/maker/result/snorlaxRank';
 import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
@@ -55,7 +56,10 @@ export const TeamMakerResultComp = ({result, ...props}: Props) => {
             <span>{formatFloat(strength.total)}</span>
           </Flex>
         </Flex>
-        <TeamMakerSnorlaxRankFinalEstimate finalEstimates={finalEstimates}/>
+        <Flex className="justify-between gap-1.5 md:flex-row">
+          <TeamMakerSnorlaxRankFinalEstimate finalEstimates={finalEstimates}/>
+          <TeamMakerCompControl pokeInBoxList={result.rates.rates.map(({payload}) => payload)}/>
+        </Flex>
       </Flex>
     </CollapsibleFull>
   );

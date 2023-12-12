@@ -239,6 +239,10 @@ declare interface IntlMessages extends UiMessages, GameMessages {
             ToggleInsufficientIngredients: string,
           },
           CompCountWarning: string,
+          Control: {
+            ExportToTeamAnalysis: string,
+            ExportTeamName: string,
+          },
         },
       },
       Info: {

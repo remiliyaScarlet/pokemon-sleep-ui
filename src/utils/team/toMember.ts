@@ -1,6 +1,7 @@
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
+import {Nullable} from '@/utils/type';
 
 
 export const toTeamAnalysisMember = ({
@@ -23,4 +24,12 @@ export const toTeamAnalysisMember = ({
     evolutionCount,
     seeds: seeds ?? defaultSeedUsage,
   };
+};
+
+export const toTeamAnalysisMemberNullable = (pokeInBox: Nullable<PokeInBox>): TeamAnalysisMember | null => {
+  if (!pokeInBox) {
+    return null;
+  }
+
+  return toTeamAnalysisMember(pokeInBox);
 };

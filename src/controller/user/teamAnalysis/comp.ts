@@ -51,6 +51,15 @@ export const updateTeamAnalysisComps = async ({userId, comps}: UpdateTeamAnalysi
   await collection.insertMany(comps.map((comp) => ({userId, ...comp})));
 };
 
+type AddTeamAnalysisCompOpts = {
+  userId: string,
+  comp: TeamAnalysisComp,
+};
+
+export const addTeamAnalysisComp = async ({userId, comp}: AddTeamAnalysisCompOpts) => {
+  return (await getCollection()).insertOne({userId, ...comp});
+};
+
 const addIndex = async () => {
   const collection = await getCollection();
 
