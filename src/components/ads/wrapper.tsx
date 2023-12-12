@@ -7,6 +7,7 @@ import {adsRefreshIntervalMs} from '@/components/ads/const';
 import {AdsContent} from '@/components/ads/content';
 import {AdsUnitProps} from '@/components/ads/type';
 import {Flex} from '@/components/layout/flex/common';
+import {useUserActivation} from '@/hooks/userData/activation';
 
 
 export const AdsWrapper = ({
@@ -16,6 +17,7 @@ export const AdsWrapper = ({
   children,
 }: React.PropsWithChildren<AdsUnitProps>) => {
   const {data, status} = useSession();
+  const activation = useUserActivation(data);
   // Running `update()` of `useSession` puts the status to `loading`,
   // which causes the ads to blink briefly for users with ads
   // Therefore caching the ads-free status when the session loading is settled
@@ -27,7 +29,7 @@ export const AdsWrapper = ({
     if (status === 'unauthenticated') {
       setIsAdsFree(false);
     } else if (status === 'authenticated') {
-      setIsAdsFree(data?.user.activation?.adsFree ?? false);
+      setIsAdsFree(activation.isAdsFree);
     }
   }, [status]);
 

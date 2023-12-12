@@ -21,6 +21,7 @@ import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PremiumIcon} from '@/components/static/premium/icon';
 import {usePremiumRequiredToast} from '@/hooks/toast/main';
+import {useUserActivation} from '@/hooks/userData/activation';
 import {iconFilterButtonStyle, textFilterButtonStyle} from '@/styles/input';
 import {inputSectionHeight} from '@/ui/team/pokebox/const';
 import {
@@ -39,12 +40,11 @@ import {
 export const PokeboxViewerConfig = ({session, ...props}: PokeboxViewerInputCommonProps) => {
   const {filter, setFilter} = props;
 
+  const {isPremium} = useUserActivation(session);
   const viewCollapsible = useCollapsible();
   const {showPremiumRequiredToast} = usePremiumRequiredToast();
   const t = useTranslations('UI.InPage.Team.Box.DisplayType');
   const t2 = useTranslations('UI.InPage.Pokedex.Input');
-
-  const isPremium = !!session?.user.activation?.premium;
 
   return (
     <Collapsible state={viewCollapsible} classNameForHeight={inputSectionHeight} appear button={
