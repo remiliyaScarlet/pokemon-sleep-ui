@@ -15,6 +15,7 @@ export const sortTypeToI18nId: {
   ingredientRate: 'Sort.IngredientRate',
   totalEnergy: 'Sort.TotalEnergy',
   friendshipPoint: 'Sort.FriendshipPoint',
+  transferReward: 'Stats.TransferReward',
   frequencyBase: 'Stats.FrequencyBase',
   frequency: 'Stats.FrequencyEquivalent',
   frequencyOfBerry: 'Sort.FrequencyOfBerry',

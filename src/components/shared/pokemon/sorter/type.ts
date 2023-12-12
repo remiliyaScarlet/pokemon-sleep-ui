@@ -34,6 +34,7 @@ export const pokemonSortType = [
   'ingredientRate',
   'totalEnergy',
   'friendshipPoint',
+  'transferReward',
   'frequencyBase',
   'frequency',
   'frequencyOfBerry',

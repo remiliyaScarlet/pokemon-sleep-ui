@@ -4,6 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
 import {NextImage} from '@/components/shared/common/image/main';
+import {GenericIcon} from '@/components/shared/icon/common/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
@@ -39,7 +40,6 @@ export const PokedexLinkDetail = React.memo(({
   synergizedSettings,
 }: PokedexLinkProps) => {
   const {
-    id,
     berry,
     skill,
     stats,
@@ -49,6 +49,7 @@ export const PokedexLinkDetail = React.memo(({
 
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex');
+  const t3 = useTranslations('UI.Common');
 
   if (display === 'berry') {
     return (
@@ -128,6 +129,15 @@ export const PokedexLinkDetail = React.memo(({
     );
   }
 
+  if (display === 'transferReward') {
+    return (
+      <Flex direction="row" className="items-end gap-0.5 text-sm">
+        <GenericIcon src="/images/generic/candyWhite.png" alt={t3('Candy')} noInvert/>
+        <div>{stats.transfer.candy}</div>
+      </Flex>
+    );
+  }
+
   if (display === 'frequencyOfBerry' || display === 'frequencyOfIngredient') {
     return <PokemonFrequency frequency={sorter}/>;
   }
@@ -137,7 +147,7 @@ export const PokedexLinkDetail = React.memo(({
   }
 
   if (display === 'id') {
-    return `#${id}`;
+    return `#${sorter}`;
   }
 
   if (display === 'ingredientEnergy') {

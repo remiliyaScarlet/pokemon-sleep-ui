@@ -1,7 +1,9 @@
 import React from 'react';
 
+import ArchiveBoxXMarkIcon from '@heroicons/react/24/outline/ArchiveBoxXMarkIcon';
 import {useTranslations} from 'next-intl';
 
+import {Flex} from '@/components/layout/flex/common';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonFrequency} from '@/components/shared/pokemon/frequency/main';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
@@ -64,6 +66,17 @@ export const PokemonStats = ({pokemon}: PokemonDataProps) => {
                 </tr>
               </tbody>
             </table>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ArchiveBoxXMarkIcon className="h-5 w-5" title={t('Stats.TransferReward')}/>
+          </td>
+          <td>
+            <Flex direction="row" center noFullWidth className="gap-1.5">
+              <GenericIconLarger src="/images/generic/candyWhite.png" alt={t2('Candy')} noInvert/>
+              <div>{stats.transfer.candy}</div>
+            </Flex>
           </td>
         </tr>
       </tbody>

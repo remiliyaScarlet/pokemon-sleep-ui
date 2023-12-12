@@ -17,6 +17,9 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
         exp: 263,
         shards: 556,
       },
+      transfer: {
+        candy: 5,
+      },
     },
     berry: {
       id: 16,
@@ -44,6 +47,9 @@ export const testPokemonData: {[name in string]: PokemonInfo} = {
       recruit: {
         exp: 397,
         shards: 715,
+      },
+      transfer: {
+        candy: 5,
       },
     },
     berry: {

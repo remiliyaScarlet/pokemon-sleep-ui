@@ -26,6 +26,9 @@ export type PokemonStats = {
     exp: number,
     shards: number
   },
+  transfer: {
+    candy: number,
+  },
 };
 
 export type PokemonBerry = {

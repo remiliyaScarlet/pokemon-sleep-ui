@@ -30,6 +30,7 @@ export const pokemonSorterGetterBySortType: {[type in PokemonSortType]: PokemonS
   berryEnergy: (opts) => getBerryRateSorter({key: 'energy', opts}),
   berryCount: (opts) => getBerryRateSorter({key: 'quantity', opts}),
   friendshipPoint: ({pokemon}) => pokemon.stats.friendshipPoints,
+  transferReward: ({pokemon}) => pokemon.stats.transfer.candy,
   frequencyBase: ({pokemon}) => pokemon.stats.frequency,
   frequency: (opts) => getFrequencyOfStateFromPokemonRate({
     state: 'equivalent',
