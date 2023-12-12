@@ -5,21 +5,18 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {MapLink} from '@/components/shared/map/link';
 import {BerryFavoriteInMapType} from '@/components/shared/pokemon/berry/favoriteType';
-import {BerryLevelSlider} from '@/ui/berry/page/levelSlider';
-import {BerryPageDataProps} from '@/ui/berry/page/type';
+import {BerryFavoriteInfo} from '@/types/game/mapMeta';
 
 
-type Props = BerryPageDataProps & {
-  level: number,
-  setLevel: (level: number) => void,
+type Props = {
+  favoriteInfo: BerryFavoriteInfo,
 };
 
-export const BerryFavoriteInfoUi = ({berryData, favoriteInfo, level, setLevel}: Props) => {
+export const BerryFavoriteInfoUi = ({favoriteInfo}: Props) => {
   const t = useTranslations('Game.Field');
 
   return (
     <Flex center className="info-section">
-      <BerryLevelSlider berryData={berryData} level={level} setLevel={setLevel}/>
       <Flex direction="row" center wrap className="gap-1.5">
         {Object.entries(favoriteInfo).map(([mapId, type]) => {
           if (!type) {

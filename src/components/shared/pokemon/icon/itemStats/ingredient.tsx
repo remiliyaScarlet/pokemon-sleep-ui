@@ -8,13 +8,14 @@ import {PokemonItemStatsFromPokedex} from '@/components/shared/pokemon/icon/item
 import {PokemonItemStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/base/type';
 import {PokemonIngredientStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
+import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {Ingredient} from '@/types/game/ingredient';
 import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 
 
 type Props = PokemonIngredientStatsCommonProps & {
-  level: number,
+  input: PokemonIndividualParamsInput,
   ingredient: Ingredient | undefined,
   hidePokebox?: boolean,
 };

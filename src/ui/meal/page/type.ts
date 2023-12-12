@@ -1,11 +1,7 @@
 import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
-import {Meal, MealIngredient} from '@/types/game/meal/main';
-import {
-  PokedexMap,
-  PokemonIngredientProductionMap,
-  PokemonIngredientProductionMapOfLevel,
-} from '@/types/game/pokemon';
+import {Meal} from '@/types/game/meal/main';
+import {PokedexMap, PokemonIngredientProductionMap} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
@@ -33,10 +29,4 @@ export type MealServerDataProps = SynergizedSettingsRequiredData & {
 
 export type MealCommonProps = MealServerDataProps & {
   translatedSettings: TranslatedUserSettings,
-};
-
-export type MealIngredientSectionProps = MealCommonProps & {
-  ingredient: MealIngredient,
-  pokemonLevel: number,
-  ingredientProductionMapOfLevel: PokemonIngredientProductionMapOfLevel,
 };

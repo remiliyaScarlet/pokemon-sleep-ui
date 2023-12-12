@@ -6,10 +6,12 @@ import {useSession} from 'next-auth/react';
 import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
+import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
+import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
+import {defaultLevel} from '@/const/game/production';
+import {useUserActivation} from '@/hooks/userData/activation';
 import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {Ingredient} from '@/types/game/ingredient';
-import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
 
 
@@ -22,11 +24,17 @@ export const IngredientPokemonProduction = ({
   mealMap,
   preloaded,
   pokemonMaxLevel,
+  subSkillMap,
   ingredient,
   ...props
 }: Props) => {
-  const [level, setLevel] = React.useState(1);
+  const [input, setInput] = React.useState<PokemonIndividualParamsInput>({
+    level: defaultLevel,
+    subSkill: {},
+    nature: null,
+  });
   const {data} = useSession();
+  const {isPremium} = useUserActivation(data);
   const {translatedSettings} = useTranslatedUserSettings({
     bundle: {
       server: preloaded,
@@ -37,17 +45,19 @@ export const IngredientPokemonProduction = ({
 
   return (
     <Flex className="info-section">
-      <PokemonLevelSlider
-        value={level}
-        max={pokemonMaxLevel}
-        setValue={setLevel}
-        presetLevels={[...ingredientLevels]}
+      <PokemonIndividualParamsPicker
+        filter={input}
+        setFilter={setInput}
+        maxLevel={pokemonMaxLevel}
+        isPremium={isPremium}
+        subSkillMap={subSkillMap}
       />
       <HorizontalSplitter/>
       <PokemonIngredientStats
-        level={level}
+        input={input}
         ingredient={ingredient}
         translatedSettings={translatedSettings}
+        subSkillMap={subSkillMap}
         {...props}
       />
     </Flex>

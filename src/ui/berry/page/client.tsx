@@ -12,17 +12,15 @@ import {BerryPageDataProps} from '@/ui/berry/page/type';
 type Props = BerryPageDataProps;
 
 export const BerryPageClient = (props: Props) => {
-  const [level, setLevel] = React.useState(1);
-
   return (
     <Flex className="gap-1.5">
       <Flex className="gap-1.5 lg:flex-row">
         <BerryMeta {...props}/>
         <AdsUnit className="lg:hidden"/>
-        <BerryFavoriteInfoUi level={level} setLevel={setLevel} {...props}/>
+        <BerryFavoriteInfoUi {...props}/>
       </Flex>
       <AdsUnit/>
-      <BerryProducingRatesOfPokemon level={level} {...props}/>
+      <BerryProducingRatesOfPokemon {...props}/>
       <AdsUnit/>
     </Flex>
   );
