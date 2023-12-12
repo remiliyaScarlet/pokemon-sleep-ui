@@ -2,10 +2,7 @@ import {v4} from 'uuid';
 
 import {getSkillTriggerValueOfUnit} from '@/ui/team/mainskill/calc/single';
 import {GetSkillTriggerValueCommonOpts} from '@/ui/team/mainskill/calc/type';
-import {
-  SkillTriggerAnalysisCalculatedUnit,
-
-} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
 import {SkillTriggerAnalysisState} from '@/ui/team/mainskill/type';
 import {isNotNullish} from '@/utils/type';
 
@@ -27,20 +24,22 @@ export const getSkillTriggerValueOfTargets = ({
     ...opts,
     id: v4(),
     unit: baseUnit,
-    baseValue: null,
+    base: null,
   });
 
   return Object.entries(state.targets)
     .map(([id, unit]) => {
-      const baseValue = base?.skillTriggerValue.actual;
-      if (!baseValue) {
+      if (!base) {
         return null;
       }
 
       return getSkillTriggerValueOfUnit({
         id,
         unit,
-        baseValue,
+        base: {
+          skillTriggerValue: base.skillTriggerValue.actual,
+          skillTriggerCount: base.skillTriggerCount?.actual ?? null,
+        },
         ...opts,
       });
     })

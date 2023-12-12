@@ -1,5 +1,5 @@
 import {GetSkillTriggerValueCommonOpts} from '@/ui/team/mainskill/calc/type';
-import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
+import {SkillTriggerAnalysisCalcResult, SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
 import {SkillTriggerAnalysisUnit} from '@/ui/team/mainskill/type';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
@@ -14,7 +14,7 @@ import {toSynergizedUserSettings} from '@/utils/user/settings/synergized';
 type GetSkillTriggerValueOfUnitOpts = GetSkillTriggerValueCommonOpts & {
   id: string,
   unit: SkillTriggerAnalysisUnit,
-  baseValue: number | null,
+  base: SkillTriggerAnalysisCalcResult<number> | null,
 };
 
 export const getSkillTriggerValueOfUnit = ({
@@ -28,7 +28,7 @@ export const getSkillTriggerValueOfUnit = ({
   bundle,
   id,
   unit,
-  baseValue,
+  base,
 } :GetSkillTriggerValueOfUnitOpts): SkillTriggerAnalysisCalculatedUnit | null => {
   const {
     level,
@@ -78,19 +78,28 @@ export const getSkillTriggerValueOfUnit = ({
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
   }).rate.final;
 
-  const actual = getSkillTriggerValue({
+  const skillTriggerValue = getSkillTriggerValue({
     rate,
     skillValue: pokemonProducingParams.skillValue,
     natureId: nature,
     subSkillBonus,
   });
+  const skillTriggerCount = rate.skill.quantity.equivalent;
 
   return {
     ...unit,
     id,
     skillTriggerValue: {
-      actual,
-      ratioToBase: baseValue ? actual / baseValue : 1,
+      actual: skillTriggerValue,
+      ratioToBase: base ? skillTriggerValue / base.skillTriggerValue : 1,
     },
+    skillTriggerCount: (
+      skillTriggerCount ?
+        {
+          actual: skillTriggerCount,
+          ratioToBase: base?.skillTriggerCount ? skillTriggerCount / base.skillTriggerCount : 1,
+        } :
+        null
+    ),
   };
 };

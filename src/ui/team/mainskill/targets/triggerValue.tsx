@@ -4,19 +4,22 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
+import {MainSkillIcon} from '@/components/shared/pokemon/mainSkill/icon/main';
 import {MainSkillTriggerValueIcon} from '@/components/shared/pokemon/mainSkill/icon/trigger';
 import {getNumberStyles} from '@/styles/text/number';
+import {PokemonInfo} from '@/types/game/pokemon';
 import {SkillTriggerAnalysisCalculatedUnit} from '@/ui/team/mainskill/targets/type';
 import {formatFloat, formatFloat3} from '@/utils/number/format';
 
 
 type Props = {
+  pokemon: PokemonInfo,
   unit: SkillTriggerAnalysisCalculatedUnit,
 };
 
-export const SkillTriggerAnalysisTriggerValue = ({unit}: Props) => {
-  const {skillTriggerValue} = unit;
-  const {actual, ratioToBase} = skillTriggerValue;
+export const SkillTriggerAnalysisTriggerValue = ({pokemon, unit}: Props) => {
+  const {skillTriggerValue, skillTriggerCount} = unit;
+  const {actual, ratioToBase} = skillTriggerCount || skillTriggerValue;
 
   const t = useTranslations('UI.InPage.Pokedex');
 
@@ -28,8 +31,12 @@ export const SkillTriggerAnalysisTriggerValue = ({unit}: Props) => {
         {formatFloat3(ratioToBase)}x
       </Flex>
       <Flex direction="row" noFullWidth className="gap-1">
-        <MainSkillTriggerValueIcon alt={t('Stats.MainSkillTriggerValue')}/>
-        <div>{formatFloat(actual)}</div>
+        {skillTriggerCount ?
+          <MainSkillIcon id={pokemon.skill}/> :
+          <MainSkillTriggerValueIcon alt={t('Stats.MainSkillTriggerValue')}/>}
+        <div>
+          {skillTriggerCount ? `${formatFloat3(actual)}x` : formatFloat(actual)}
+        </div>
       </Flex>
     </Flex>
   );

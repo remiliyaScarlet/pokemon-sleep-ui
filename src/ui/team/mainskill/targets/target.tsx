@@ -112,7 +112,7 @@ export const SkillTriggerAnalysisTarget = (props: Props) => {
           subSkillMap={subSkillMap}
           className="justify-center"
         />
-        <SkillTriggerAnalysisTriggerValue unit={unit}/>
+        <SkillTriggerAnalysisTriggerValue pokemon={pokemon} unit={unit}/>
       </Flex>
     </AnimatedCollapseQuick>
   );
