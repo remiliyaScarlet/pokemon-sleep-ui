@@ -1,3 +1,4 @@
+import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {defaultNeutralOpts, defaultProducingParams, maxTeamMemberCount} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
@@ -5,7 +6,11 @@ import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {GroupedSubSkillBonus, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
-import {ProducingRateImplicitParams, ProducingRateSingleParams} from '@/types/game/producing/rate';
+import {
+  ProducingRateImplicitParams,
+  ProducingRateIndividualParams,
+  ProducingRateSingleParams,
+} from '@/types/game/producing/rate';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 
@@ -67,6 +72,29 @@ export const getProducingRateNeutralParams = ({
     ...defaultNeutralOpts,
     seeds: defaultSeedUsage,
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+  };
+};
+
+type GetProducingRateIndividualParamsOpts = {
+  input: PokemonIndividualParamsInput,
+  pokemon: PokemonInfo,
+  subSkillMap: SubSkillMap,
+};
+
+export const getProducingRateIndividualParams = ({
+  input,
+  pokemon,
+  subSkillMap,
+}: GetProducingRateIndividualParamsOpts): ProducingRateIndividualParams => {
+  return {
+    level: input.level,
+    seeds: defaultSeedUsage,
+    evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
+    ...getProducingRateSingleParams({
+      ...input,
+      subSkillMap,
+      helpingBonusSimulateOnSelf: true,
+    }),
   };
 };
 

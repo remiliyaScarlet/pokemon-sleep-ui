@@ -51,6 +51,10 @@ export type ProducingRateImplicitParams = {
   seeds: SeedUsage,
 };
 
+export type ProducingRateIndividualParams = ProducingRateSingleParams & ProducingRateImplicitParams & {
+  level: number,
+};
+
 export type ProducingRateCommonParams = {
   level: number,
   pokemon: PokemonInfo,

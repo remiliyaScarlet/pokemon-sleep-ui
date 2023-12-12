@@ -10,15 +10,13 @@ import {PokemonProducingRateMultiple} from '@/components/shared/pokemon/producti
 import {PokemonProducingRateSingle} from '@/components/shared/pokemon/production/single/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
 import {ProducingRateContent} from '@/components/shared/production/rate/content';
-import {defaultSeedUsage} from '@/const/game/seed';
 import {IngredientChain} from '@/types/game/pokemon/ingredient';
 import {TranslatedUserSettings} from '@/types/userData/settings';
 import {PokemonProductionIngredientLink} from '@/ui/pokedex/page/production/ingredient/link';
 import {PokemonDataProps} from '@/ui/pokedex/page/type';
-import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
-import {getProducingRateSingleParams} from '@/utils/game/producing/params';
+import {getProducingRateIndividualParams} from '@/utils/game/producing/params';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 
 
@@ -49,13 +47,10 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
           ingredients,
           snorlaxFavorite: {},
           skillData,
-          level,
-          evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
-          seeds: defaultSeedUsage,
-          ...getProducingRateSingleParams({
-            ...input,
+          ...getProducingRateIndividualParams({
+            input,
+            pokemon,
             subSkillMap,
-            helpingBonusSimulateOnSelf: true,
           }),
           ...translatedSettings,
           ...props,
