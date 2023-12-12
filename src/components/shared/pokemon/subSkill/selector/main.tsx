@@ -9,6 +9,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
+import {PokemonIndividualParamsSelectorButton} from '@/components/shared/pokemon/selector/button';
+import {PokemonIndividualSelectorButtonProps} from '@/components/shared/pokemon/selector/type';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokemonSubSkillSelectionButtons} from '@/components/shared/pokemon/subSkill/selector/buttons';
 import {PokemonSubSkillSelected} from '@/components/shared/pokemon/subSkill/selector/selected';
@@ -23,14 +25,18 @@ import {
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = {
+type Props = PokemonIndividualSelectorButtonProps & {
   subSkill: PokemonSubSkill,
   setSubSkill: (subSkill: PokemonSubSkill) => void,
   subSkillMap: SubSkillMap,
-  classNameForHeight?: string,
 };
 
-export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap, classNameForHeight}: Props) => {
+export const PokemonSubSkillSelector = ({
+  subSkill,
+  setSubSkill,
+  subSkillMap,
+  ...selectButtonProps
+}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -75,14 +81,11 @@ export const PokemonSubSkillSelector = ({subSkill, setSubSkill, subSkillMap, cla
 
   return (
     <>
-      <button onClick={() => setShow(true)} className={clsx(
-        'button-clickable-bg group w-full whitespace-nowrap px-1.5 text-sm',
-        classNameForHeight ?? 'h-full',
-      )}>
+      <PokemonIndividualParamsSelectorButton setShow={setShow} {...selectButtonProps}>
         <Flex center>
           <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap}/>
         </Flex>
-      </button>
+      </PokemonIndividualParamsSelectorButton>
       <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-3xl gap-2">
           <Grid className={clsx(

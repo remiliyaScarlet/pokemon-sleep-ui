@@ -2,7 +2,6 @@ import React from 'react';
 
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
@@ -11,19 +10,25 @@ import {PopupCommon} from '@/components/popup/common/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonNatureSelectorButton} from '@/components/shared/pokemon/nature/selector/button';
+import {PokemonIndividualParamsSelectorButton} from '@/components/shared/pokemon/selector/button';
+import {PokemonIndividualSelectorButtonProps} from '@/components/shared/pokemon/selector/type';
 import {natureData} from '@/data/nature';
 import {useSearchableData} from '@/hooks/search';
 import {NatureId} from '@/types/game/pokemon/nature';
 
 
-type Props = {
+type Props = PokemonIndividualSelectorButtonProps & {
   nature: NatureId | null,
   setNature: (nature: NatureId | null) => void,
   hideName?: boolean,
-  classNameForHeight?: string,
 };
 
-export const PokemonNatureSelector = ({nature, setNature, hideName, classNameForHeight}: Props) => {
+export const PokemonNatureSelector = ({
+  nature,
+  setNature,
+  hideName,
+  ...selectButtonProps
+}: Props) => {
   const [show, setShow] = React.useState(false);
   const [search, setSearch] = React.useState('');
 
@@ -50,12 +55,9 @@ export const PokemonNatureSelector = ({nature, setNature, hideName, classNameFor
 
   return (
     <>
-      <button onClick={() => setShow(true)} className={clsx(
-        'button-clickable-bg group w-full whitespace-nowrap px-1.5 text-sm',
-        classNameForHeight ?? 'h-full',
-      )}>
+      <PokemonIndividualParamsSelectorButton setShow={setShow} {...selectButtonProps}>
         <PokemonNatureIndicator nature={nature} hideName={hideName}/>
-      </button>
+      </PokemonIndividualParamsSelectorButton>
       <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-2xl gap-2">
           <Flex direction="row" center className="gap-1.5">
