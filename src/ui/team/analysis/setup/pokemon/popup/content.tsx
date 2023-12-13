@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PokemonProducingStatsPopupContent} from '@/components/shared/pokemon/production/stats/main';
+import {PokemonDetailedProducingStats} from '@/components/shared/pokemon/production/stats/main';
 import {TeamAnalysisPokemonMemberConfig} from '@/ui/team/analysis/setup/pokemon/popup/config';
 import {TeamAnalysisPokemonPopupCommonProps} from '@/ui/team/analysis/setup/pokemon/popup/type';
 
@@ -22,7 +22,7 @@ export const TeamAnalysisPokemonPopupContent = ({
 
   if (type === 'detailedStats') {
     return (
-      <PokemonProducingStatsPopupContent
+      <PokemonDetailedProducingStats
         rate={stats}
         settings={bundle.settings}
         calculatedSettings={stats.calculatedSettings}

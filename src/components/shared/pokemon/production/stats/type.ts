@@ -3,7 +3,7 @@ import {PokemonProducingRate} from '@/types/game/producing/rate';
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 
 
-export type PokemonProducingStatsCommonProps = {
+export type PokemonDetailedProducingStatsProps = {
   settings: UserSettings,
   calculatedSettings: CalculatedUserSettings,
   rate: PokemonProducingRate,
