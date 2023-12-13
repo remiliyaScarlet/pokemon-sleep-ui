@@ -80,6 +80,7 @@ const TeamMaker = async ({locale}: TeamMakerProps) => {
       'UI.InPage.Pokedex',
       'UI.InPage.Team',
       'UI.Producing',
+      'UI.Stamina',
     ]}>
       <TeamMakerClient {...props}/>
     </I18nProvider>
