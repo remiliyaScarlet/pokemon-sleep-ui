@@ -13,29 +13,29 @@ import {TeamMakerResultButton} from '@/ui/team/maker/result/button/main';
 import {TeamMakerCompControl} from '@/ui/team/maker/result/control';
 import {TeamMakerIngredientStatsUI} from '@/ui/team/maker/result/ingredient';
 import {TeamMakerSnorlaxRankFinalEstimate} from '@/ui/team/maker/result/snorlaxRank';
-import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
+import {TeamMakerResultCommonProps} from '@/ui/team/maker/result/type';
 import {TeamMakerResultUnit} from '@/ui/team/maker/result/unit';
-import {TeamMakerDataProps, TeamMakerResult} from '@/ui/team/maker/type';
+import {TeamMakerResultComp, TeamMakerDataProps} from '@/ui/team/maker/type';
 import {formatFloat} from '@/utils/number/format';
 
 
-type Props = TeamMakerDataProps & TeamMakerResultUiProps & {
-  result: TeamMakerResult,
+type Props = TeamMakerDataProps & TeamMakerResultCommonProps & {
+  comp: TeamMakerResultComp,
 };
 
-export const TeamMakerResultComp = ({result, ...props}: Props) => {
+export const TeamMakerResultCompUi = ({comp, ...props}: Props) => {
   const {
     rates,
     strength,
     ingredientStats,
     finalEstimates,
-  } = result;
+  } = comp;
 
   const collapsible = useCollapsible();
   const t = useTranslations('UI.Producing');
 
   return (
-    <CollapsibleFull state={collapsible} button={<TeamMakerResultButton result={result}/>}>
+    <CollapsibleFull state={collapsible} button={<TeamMakerResultButton comp={comp}/>}>
       <Flex center className="gap-1.5 p-1">
         <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-5">
           {rates.rates.map((rate) => (
@@ -58,7 +58,7 @@ export const TeamMakerResultComp = ({result, ...props}: Props) => {
         </Flex>
         <Flex className="justify-between gap-1.5 md:flex-row">
           <TeamMakerSnorlaxRankFinalEstimate finalEstimates={finalEstimates}/>
-          <TeamMakerCompControl pokeInBoxList={result.rates.rates.map(({payload}) => payload)}/>
+          <TeamMakerCompControl pokeInBoxList={rates.rates.map(({payload}) => payload)}/>
         </Flex>
       </Flex>
     </CollapsibleFull>

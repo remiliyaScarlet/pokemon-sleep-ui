@@ -9,7 +9,7 @@ import {getCombinationCount} from '@/utils/compute';
 export const useTeamMaker = () => {
   const [state, setState] = React.useState<TeamMakerState>({
     loading: false,
-    results: [],
+    result: null,
     combinations: null,
     calcFinalOpts: null,
   });
@@ -23,7 +23,7 @@ export const useTeamMaker = () => {
       setState({
         // Still loading as `Team Maker (Final)` should be triggered later
         loading: true,
-        results: [],
+        result: null,
         combinations: getCombinationCount(candidates.length, input.memberCount),
         calcFinalOpts,
       });
@@ -33,19 +33,19 @@ export const useTeamMaker = () => {
     },
     onError: () => setState({
       loading: false,
-      results: [],
+      result: null,
       combinations: null,
       calcFinalOpts: null,
     }),
   });
-  const {work: workFinal} = useWorker<GetTeamMakerResultsOpts, TeamMakerResult[]>({
+  const {work: workFinal} = useWorker<GetTeamMakerResultsOpts, TeamMakerResult>({
     workerName: 'Team Maker (Final)',
     generateWorker: () => new Worker(new URL('final.worker', import.meta.url)),
-    onCompleted: (results) => {
+    onCompleted: (result) => {
       setState((original) => ({
         ...original,
         loading: false,
-        results,
+        result,
         calcFinalOpts: null,
       }));
       setTimeout(() => {
@@ -55,7 +55,7 @@ export const useTeamMaker = () => {
     onError: () => setState((original) => ({
       ...original,
       loading: false,
-      results: [],
+      result: null,
       calcFinalOpts: null,
     })),
   });
@@ -63,7 +63,7 @@ export const useTeamMaker = () => {
   const calculateTeam = React.useCallback((opts: GetTeamMakerCalcPrepOpts) => {
     setState({
       loading: true,
-      results: [],
+      result: null,
       combinations: null,
       calcFinalOpts: null,
     });

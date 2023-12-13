@@ -1,6 +1,7 @@
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
+import {CalculatedUserSettings} from '@/types/userData/settings';
 import {teamMakerMaxMemberCount, teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
 import {GetTeamMakerCalcPrepOpts} from '@/ui/team/maker/hook/type';
@@ -11,11 +12,11 @@ import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
 import {getPokemonProducingParams, getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
-import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
 
 type GetTeamMakerRateAtMaxPotentialOpts = GetTeamMakerCalcPrepOpts & {
   calculatedInput: TeamMakerInputCalculated,
+  calculatedSettings: CalculatedUserSettings,
 };
 
 export const getTeamMakerRateAtMaxPotential = ({
@@ -28,7 +29,7 @@ export const getTeamMakerRateAtMaxPotential = ({
   mainSkillMap,
   subSkillMap,
   input,
-  settings,
+  calculatedSettings,
   calculatedInput,
 }: GetTeamMakerRateAtMaxPotentialOpts): TeamMakerRateAtMaxPotentialData[] => pokeboxList
   .flatMap((pokeInBox): PokeInBox[] => {
@@ -68,7 +69,7 @@ export const getTeamMakerRateAtMaxPotential = ({
       }),
       ingredientMap,
       ...pokeInBox,
-      ...toCalculatedUserSettings({settings}),
+      ...calculatedSettings,
       ...getProducingRateSingleParams({
         ...pokeInBox,
         level,

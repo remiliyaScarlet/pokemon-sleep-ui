@@ -1,26 +1,29 @@
 import React from 'react';
 
+import ChartBarIcon from '@heroicons/react/24/outline/ChartBarIcon';
 import {useTranslations} from 'next-intl';
 
 import {InfoIcon} from '@/components/icons/info';
 import {Flex} from '@/components/layout/flex/common';
+import {PopupCommon} from '@/components/popup/common/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonClickableIcons} from '@/components/shared/pokemon/icon/clickable/main';
 import {PokemonIngredientIcons} from '@/components/shared/pokemon/ingredients/icons';
 import {PokemonNameSmall} from '@/components/shared/pokemon/name/small';
 import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicator/main';
 import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon/production/split/fromPokemon';
+import {PokemonDetailedProducingStats} from '@/components/shared/pokemon/production/stats/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {teamMakerUnitStrengthAtState} from '@/ui/team/maker/result/const';
-import {TeamMakerResultUiProps} from '@/ui/team/maker/result/type';
+import {TeamMakerResultCommonProps} from '@/ui/team/maker/result/type';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {formatFloat} from '@/utils/number/format';
 
 
-type Props = TeamMakerDataProps & TeamMakerResultUiProps & {
+type Props = TeamMakerDataProps & TeamMakerResultCommonProps & {
   rate: PokemonProducingRateWithPayload<PokeInBox>,
   compStrength: number,
 };
@@ -29,10 +32,13 @@ export const TeamMakerResultUnit = ({
   pokedexMap,
   subSkillMap,
   input,
+  result,
   rate,
   compStrength,
 }: Props) => {
   const pokemonRate = rate.rate.final;
+  const {previewLevel} = input;
+  const {settings, calculatedSettings} = result;
   const {
     pokemon,
     level,
@@ -41,9 +47,9 @@ export const TeamMakerResultUnit = ({
     subSkill,
     nature,
   } = rate.payload;
-  const {previewLevel} = input;
 
   const t = useTranslations('UI.Producing');
+  const [show, setShow] = React.useState(false);
 
   const pokemonInfo = pokedexMap[pokemon];
   if (!pokemonInfo) {
@@ -57,11 +63,22 @@ export const TeamMakerResultUnit = ({
 
   return (
     <Flex className="bg-plate gap-1.5">
+      <PopupCommon show={show} setShow={setShow}>
+        <PokemonDetailedProducingStats
+          rate={rate.rate.final}
+          settings={settings}
+          calculatedSettings={calculatedSettings}
+          specialty={pokemonInfo.specialty}
+        />
+      </PopupCommon>
       <Flex direction="row" className="items-center gap-1.5">
         <InfoIcon style={previewLevel ? 'warn' : 'glow'}>
           {previewLevel ?? level}
         </InfoIcon>
         <PokemonNameSmall pokemon={pokemonInfo} override={name}/>
+        <button className="button-clickable-bg ml-auto h-7 w-7 p-1" onClick={() => setShow(true)}>
+          <ChartBarIcon/>
+        </button>
       </Flex>
       <Flex direction="row" className="items-center gap-2">
         <PokemonClickableIcons pokemonList={[pokemonInfo]} dimension="h-16 w-16"/>

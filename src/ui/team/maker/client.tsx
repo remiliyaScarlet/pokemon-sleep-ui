@@ -73,7 +73,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
       <LazyLoad loading={state.loading}>
         <TeamMakerResults
           ref={resultsRef}
-          results={state.results}
+          result={state.result}
           input={input}
           {...props}
         />

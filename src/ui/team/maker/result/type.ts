@@ -1,6 +1,7 @@
-import {TeamMakerInput} from '@/ui/team/maker/type';
+import {TeamMakerResult, TeamMakerInput} from '@/ui/team/maker/type';
 
 
-export type TeamMakerResultUiProps = {
+export type TeamMakerResultCommonProps = {
+  result: TeamMakerResult,
   input: TeamMakerInput,
 };

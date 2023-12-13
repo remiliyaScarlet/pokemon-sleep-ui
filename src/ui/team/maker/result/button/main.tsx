@@ -8,21 +8,21 @@ import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientProduction} from '@/components/shared/pokemon/production/ingredient';
 import {TeamMakerResultButtonFinalEstimate} from '@/ui/team/maker/result/button/finalEstimate';
 import {TeamMakerIngredientSatisfactionIndicator} from '@/ui/team/maker/result/button/satisfyIngredients';
-import {TeamMakerResult} from '@/ui/team/maker/type';
+import {TeamMakerResultComp} from '@/ui/team/maker/type';
 import {formatFloat} from '@/utils/number/format';
 
 
 type Props = {
-  result: TeamMakerResult,
+  comp: TeamMakerResultComp,
 };
 
-export const TeamMakerResultButton = ({result}: Props) => {
+export const TeamMakerResultButton = ({comp}: Props) => {
   const {
     rates,
     strength,
     ingredientStats,
     finalEstimates,
-  } = result;
+  } = comp;
   const t = useTranslations('UI.Producing');
 
   return (

@@ -15,7 +15,7 @@ import {PokemonProducingRateFinal} from '@/types/game/producing/rate';
 import {SnorlaxRankFinalEstimate} from '@/types/game/rank';
 import {SnorlaxDataOfMap, SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserCookingPreset} from '@/types/userData/cooking';
-import {UserSettingsBundle} from '@/types/userData/settings';
+import {CalculatedUserSettings, UserSettings, UserSettingsBundle} from '@/types/userData/settings';
 import {TeamMakerIngredientStats, TeamMakerMemberCount} from '@/ui/team/maker/calc/type';
 import {GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
 
@@ -44,7 +44,7 @@ export type TeamMakerInput = Pick<UserCookingPreset, 'mealType' | 'target' | 're
   showInsufficientIngredients: boolean,
 };
 
-export type TeamMakerResult = {
+export type TeamMakerResultComp = {
   rates: PokemonProducingRateFinal<PokeInBox>,
   strength: {
     byType: {[type in ProduceType]: number},
@@ -54,9 +54,15 @@ export type TeamMakerResult = {
   finalEstimates: SnorlaxRankFinalEstimate[],
 };
 
+export type TeamMakerResult = {
+  comps: TeamMakerResultComp[],
+  settings: UserSettings,
+  calculatedSettings: CalculatedUserSettings,
+};
+
 export type TeamMakerState = {
   loading: boolean,
-  results: TeamMakerResult[],
+  result: TeamMakerResult | null,
   combinations: number | null,
   calcFinalOpts: GetTeamMakerResultsOpts | null,
 };

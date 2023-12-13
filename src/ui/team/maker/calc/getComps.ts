@@ -2,7 +2,7 @@ import {productionMultiplierByPeriod} from '@/const/game/production';
 import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {getTeamMakerIngredientStats} from '@/ui/team/maker/calc/ingredient';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
-import {TeamMakerDataProps, TeamMakerInput, TeamMakerResult} from '@/ui/team/maker/type';
+import {TeamMakerDataProps, TeamMakerInput, TeamMakerResultComp} from '@/ui/team/maker/type';
 import {toSum} from '@/utils/array';
 import {combineIterator} from '@/utils/compute';
 import {getMealIngredientInfoFromTargetMeals} from '@/utils/game/meal/ingredient';
@@ -23,7 +23,7 @@ export const getTeamMakerComps = ({
   calculatedInput,
   candidates,
   snorlaxData,
-}: GetTeamMakerCompsOpts): TeamMakerResult[] => {
+}: GetTeamMakerCompsOpts): TeamMakerResultComp[] => {
   const {
     snorlaxFavorite,
     ingredientCount,
@@ -31,7 +31,7 @@ export const getTeamMakerComps = ({
     showInsufficientIngredients,
   } = input;
 
-  const ret: TeamMakerResult[] = [];
+  const ret: TeamMakerResultComp[] = [];
   for (const ratesAtMax of combineIterator(candidates, memberCount)) {
     const rates = getPokemonProducingRateMulti({
       rateOpts: ratesAtMax.map(({calcOpts, pokeInBox}) => ({
