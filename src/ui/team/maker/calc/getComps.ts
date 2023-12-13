@@ -42,6 +42,7 @@ export const getTeamMakerComps = ({
         snorlaxFavorite,
         period: teamMakerProductionPeriod,
         noCap: false,
+        useActualHelperCountInTeam: true,
       },
       groupingState: 'equivalent',
       ...calculatedInput,

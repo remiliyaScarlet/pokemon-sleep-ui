@@ -1,11 +1,13 @@
 import {defaultProductionPeriod} from '@/const/game/production';
 import {PokemonProducingRateFinal, PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
+import {toSum} from '@/utils/array';
 import {applyIngredientMultiplier} from '@/utils/game/producing/apply/ingredient';
 import {groupPokemonProducingRate} from '@/utils/game/producing/group';
 import {getIngredientMultiplier, GetIngredientMultiplierOpts} from '@/utils/game/producing/ingredient/multiplier';
 import {getPokemonProducingRateBase} from '@/utils/game/producing/main/base';
 import {GetPokemonProducingRateOptsWithPayload} from '@/utils/game/producing/main/type';
+import {getHelpingBonusStack} from '@/utils/game/producing/params';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 import {isNotNullish} from '@/utils/type';
 
@@ -23,9 +25,17 @@ export const getPokemonProducingRateMulti = <TPayload>({
   ...opts
 }: GetPokemonProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
   const period = sharedOpts.period ?? defaultProductionPeriod;
+  const actualHelperCount = toSum(rateOpts.map(({opts}) => getHelpingBonusStack({
+    subSkillBonus: opts.subSkillBonus ?? {},
+    helpingBonusSimulateOnSelf: false,
+  })));
 
   const ratesWithPayload = rateOpts.map(({opts, payload}) => ({
-    rawRate: getPokemonProducingRateBase({...opts, ...sharedOpts}),
+    rawRate: getPokemonProducingRateBase({
+      ...opts,
+      ...sharedOpts,
+      helperCount: sharedOpts.useActualHelperCountInTeam ? actualHelperCount : opts.helperCount,
+    }),
     payload,
   }));
   const groupedOriginalRates = groupPokemonProducingRate({
