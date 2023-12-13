@@ -54,7 +54,6 @@ export const useProcessedPokebox = ({
       const singleParams = getProducingRateSingleParams({
         ...pokeInBox,
         subSkillMap,
-        helpingBonusSimulateOnSelf: true,
       });
 
       return {

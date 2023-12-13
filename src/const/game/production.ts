@@ -20,8 +20,6 @@ export const defaultProductionPeriod: ProductionPeriod = 'daily';
 
 export const defaultLevel = 30;
 
-export const defaultHelperCount = 0;
-
 export const defaultSubSkillBonus = {};
 
 export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> = {
@@ -36,7 +34,6 @@ export const defaultProducingParams: Omit<PokemonProducingParams, 'pokemonId'> =
 };
 
 export const defaultNeutralOpts: ProducingRateSingleParams = {
-  helperCount: defaultHelperCount,
   subSkillBonus: defaultSubSkillBonus,
   natureId: null,
 };

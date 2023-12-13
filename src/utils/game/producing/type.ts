@@ -20,5 +20,8 @@ export type GetProducingRateSharedOpts = {
   snorlaxFavorite: SnorlaxFavorite,
   period?: ProductionPeriod,
   noCap?: boolean,
-  useActualHelperCountInTeam?: boolean,
+};
+
+export type GetProducingRateBehavior = {
+  simulateHelperBonusOnSelf?: boolean,
 };

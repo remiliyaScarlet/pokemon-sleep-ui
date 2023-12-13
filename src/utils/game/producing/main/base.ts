@@ -1,4 +1,4 @@
-import {defaultHelperCount, defaultProductionPeriod} from '@/const/game/production';
+import {defaultProductionPeriod} from '@/const/game/production';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {
   PokemonProducingRate,
@@ -32,6 +32,7 @@ export type GetPokemonProducingRateBaseOpts =
   GetProducingRateSharedOpts &
   CalculatedUserSettings & {
     pokemonProducingParams: PokemonProducingParams,
+    helperCount: number,
   };
 
 export const getPokemonProducingRateBase = ({
@@ -54,7 +55,7 @@ export const getPokemonProducingRateBase = ({
   const frequency = getBaseFrequencyFromPokemon({
     ...opts,
     subSkillBonus,
-    helperCount: helperCount ?? defaultHelperCount,
+    helperCount,
   });
   const carryLimitInfo = getCarryLimitInfo({
     pokemon,

@@ -78,7 +78,6 @@ export const getRateOfPokemon = ({
   const singleParams = getProducingRateSingleParams({
     subSkillMap,
     ...pokeInBox,
-    helpingBonusSimulateOnSelf: true,
   });
 
   return getPokemonProducingRateSingle({

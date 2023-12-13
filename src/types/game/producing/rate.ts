@@ -41,7 +41,6 @@ export type ProducingRateOfStates = ProducingRate<ProducingValueOfStates> & {
 };
 
 export type ProducingRateSingleParams = {
-  helperCount: number | null,
   subSkillBonus: GroupedSubSkillBonus | null,
   natureId: NatureId | null,
 };

@@ -2,7 +2,7 @@ import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/ut
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {CalculatedUserSettings} from '@/types/userData/settings';
-import {teamMakerMaxMemberCount, teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
+import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
 import {GetTeamMakerCalcPrepOpts} from '@/ui/team/maker/hook/type';
 import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
@@ -74,7 +74,6 @@ export const getTeamMakerRateAtMaxPotential = ({
         ...pokeInBox,
         level,
         subSkillMap,
-        helpingBonusSimulateOnSelf: true,
       }),
       // Override `level` because preview level might be active
       level,
@@ -82,8 +81,6 @@ export const getTeamMakerRateAtMaxPotential = ({
       pokemon,
       // Override `ingredients` in `pokeInBox`
       ingredients: getEffectiveIngredientProductions(pokeInBox),
-      // Override helper count to maximum possible value to calculate max potential
-      helperCount: teamMakerMaxMemberCount,
     };
     const rate = getPokemonProducingRateSingle({
       snorlaxFavorite: input.snorlaxFavorite,

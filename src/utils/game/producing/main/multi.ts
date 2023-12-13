@@ -1,4 +1,4 @@
-import {defaultProductionPeriod} from '@/const/game/production';
+import {defaultProductionPeriod, maxTeamMemberCount} from '@/const/game/production';
 import {PokemonProducingRateFinal, PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {toSum} from '@/utils/array';
@@ -8,33 +8,40 @@ import {getIngredientMultiplier, GetIngredientMultiplierOpts} from '@/utils/game
 import {getPokemonProducingRateBase} from '@/utils/game/producing/main/base';
 import {GetPokemonProducingRateOptsWithPayload} from '@/utils/game/producing/main/type';
 import {getHelpingBonusStack} from '@/utils/game/producing/params';
-import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
+import {GetProducingRateBehavior, GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 import {isNotNullish} from '@/utils/type';
 
 
 type GetPokemonProducingRateMultiOpts<TPayload> = Omit<GetIngredientMultiplierOpts, 'production'> & {
   rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
   sharedOpts: GetProducingRateSharedOpts,
+  calcBehavior?: GetProducingRateBehavior,
   groupingState: ProducingStateOfRate,
 };
 
 export const getPokemonProducingRateMulti = <TPayload>({
   rateOpts,
   sharedOpts,
+  calcBehavior,
   groupingState,
   ...opts
 }: GetPokemonProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
   const period = sharedOpts.period ?? defaultProductionPeriod;
-  const actualHelperCount = toSum(rateOpts.map(({opts}) => getHelpingBonusStack({
+  // Have to calculate helper stack count first to know if helper bonus is active
+  const helperStacks = toSum(rateOpts.map(({opts}) => getHelpingBonusStack({
     subSkillBonus: opts.subSkillBonus ?? {},
-    helpingBonusSimulateOnSelf: false,
   })));
+  const helperCount = (
+    calcBehavior?.simulateHelperBonusOnSelf ?
+      (helperStacks ? maxTeamMemberCount : 0) :
+      helperStacks
+  );
 
   const ratesWithPayload = rateOpts.map(({opts, payload}) => ({
     rawRate: getPokemonProducingRateBase({
       ...opts,
       ...sharedOpts,
-      helperCount: sharedOpts.useActualHelperCountInTeam ? actualHelperCount : opts.helperCount,
+      helperCount,
     }),
     payload,
   }));

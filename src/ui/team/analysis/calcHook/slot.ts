@@ -1,14 +1,11 @@
-import {ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {TeamAnalysisSlotName} from '@/types/teamAnalysis';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {UseTeamProducingStatsOpts} from '@/ui/team/analysis/calcHook/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
-import {GetPokemonProducingRateBaseOpts} from '@/utils/game/producing/main/base';
-import {getPokemonProducingParams} from '@/utils/game/producing/params';
-import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
+import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
+import {getPokemonProducingParams, getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
-import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
 
@@ -18,7 +15,7 @@ type GetTeamProducingStatsSlotOpts = UseTeamProducingStatsOpts & {
 };
 
 type GetProducingStatsOptsSlotReturn = {
-  rateOpts: Omit<GetPokemonProducingRateBaseOpts, keyof GetProducingRateSharedOpts>,
+  rateOpts: GetPokemonProducingRateOpts,
   calculatedSettings: CalculatedUserSettings,
 };
 
@@ -26,7 +23,6 @@ export const getTeamProducingStatsSlot = ({
   setup,
   bundle,
   slotName,
-  helperCount,
   pokedexMap,
   pokemonProducingParamsMap,
   berryDataMap,
@@ -60,15 +56,12 @@ export const getTeamProducingStatsSlot = ({
     return null;
   }
 
-  const singleParams: ProducingRateSingleParams = {
-    helperCount,
-    subSkillBonus: getSubSkillBonus({
-      level,
-      pokemonSubSkill: subSkill,
-      subSkillMap,
-    }),
-    natureId: nature,
-  };
+  const singleParams = getProducingRateSingleParams({
+    level,
+    subSkill,
+    nature,
+    subSkillMap,
+  });
   const calculatedSettings = toCalculatedUserSettings({
     ...bundle,
     recoveryRate: toRecoveryRate(singleParams),

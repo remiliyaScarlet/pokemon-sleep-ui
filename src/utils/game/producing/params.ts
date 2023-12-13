@@ -1,5 +1,5 @@
 import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
-import {defaultNeutralOpts, defaultProducingParams, maxTeamMemberCount} from '@/const/game/production';
+import {defaultNeutralOpts, defaultProducingParams} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
@@ -17,21 +17,15 @@ import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/eff
 
 type GetHelpingBonusStackOpts = {
   subSkillBonus: GroupedSubSkillBonus,
-  helpingBonusSimulateOnSelf?: boolean,
 };
 
 export const getHelpingBonusStack = ({
   subSkillBonus,
-  helpingBonusSimulateOnSelf,
 }: GetHelpingBonusStackOpts) => {
   const helperBonusCount = getSubSkillBonusValue(subSkillBonus, 'helper').length;
 
   if (!helperBonusCount) {
     return 0;
-  }
-
-  if (helpingBonusSimulateOnSelf) {
-    return maxTeamMemberCount;
   }
 
   return helperBonusCount;
@@ -42,7 +36,6 @@ export type GetProducingRateSingleParamsOpts = {
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
   subSkillMap: SubSkillMap,
-  helpingBonusSimulateOnSelf?: boolean,
 };
 
 export const getProducingRateSingleParams = ({
@@ -50,12 +43,10 @@ export const getProducingRateSingleParams = ({
   subSkill,
   nature,
   subSkillMap,
-  helpingBonusSimulateOnSelf,
 }: GetProducingRateSingleParamsOpts): ProducingRateSingleParams => {
   const subSkillBonus = getSubSkillBonus({level, pokemonSubSkill: subSkill, subSkillMap});
 
   return {
-    helperCount: getHelpingBonusStack({subSkillBonus, helpingBonusSimulateOnSelf}),
     subSkillBonus,
     natureId: nature,
   };
@@ -93,7 +84,6 @@ export const getProducingRateIndividualParams = ({
     ...getProducingRateSingleParams({
       ...input,
       subSkillMap,
-      helpingBonusSimulateOnSelf: true,
     }),
   };
 };

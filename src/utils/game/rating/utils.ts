@@ -8,4 +8,4 @@ export const getDefaultRatingBasis = (specialtyId: PokemonSpecialtyId | null): R
   specialtyId ? defaultRatingBasisOfSpecialty[specialtyIdToType[specialtyId]] : 'totalProduction'
 );
 
-export const getHelpingBonusSimulateOnSelf = (basis: RatingBasis) => basis !== 'skillTriggerValue';
+export const getSimulateHelperBonusOnSelf = (basis: RatingBasis) => basis !== 'skillTriggerValue';
