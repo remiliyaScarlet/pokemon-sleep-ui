@@ -89,7 +89,12 @@ export const TeamMakerResultUnit = ({
             className="gap-1 self-center"
           />
           <PokemonNatureIndicator nature={nature}/>
-          <PokemonSubSkillIndicator subSkill={subSkill} subSkillMap={subSkillMap} className="self-center"/>
+          <PokemonSubSkillIndicator
+            level={level}
+            subSkill={subSkill}
+            subSkillMap={subSkillMap}
+            className="self-center"
+          />
         </Flex>
       </Flex>
       <PokemonProductionSplitFromPokemonRate
