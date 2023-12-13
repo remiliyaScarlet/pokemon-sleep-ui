@@ -46,14 +46,14 @@ export const PokemonConfig = (props: PokemonConfigProps) => {
         })}
       />
       <Flex className="h-20 gap-1.5">
-        <PokemonNatureSelector
-          nature={data.nature}
-          setNature={(nature) => onDataUpdated({nature})}
-        />
         <PokemonSubSkillSelector
           subSkill={data.subSkill}
           setSubSkill={(subSkill) => onDataUpdated({subSkill})}
           subSkillMap={subSkillMap}
+        />
+        <PokemonNatureSelector
+          nature={data.nature}
+          setNature={(nature) => onDataUpdated({nature})}
         />
       </Flex>
       <PokemonLevelSlider
