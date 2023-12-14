@@ -30,7 +30,7 @@ export const MapLink = ({mapId, className, toUnique, noAbsolute, children}: Reac
         src={`/images/field/${mapId}.png`}
         alt={mapName}
         sizes={imageGallerySizes}
-        className="rounded-xl opacity-50 dark:opacity-25"
+        className="rounded-lg opacity-50 dark:opacity-25"
       />
       <Flex center className={clsx('h-full gap-1.5', !noAbsolute && 'absolute left-0 top-0 z-10')}>
         {children}

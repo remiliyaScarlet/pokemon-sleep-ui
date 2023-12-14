@@ -18,7 +18,7 @@ export const NavListHome = () => {
       <div className="relative h-48 w-full">
         <NextImage
           src="/images/theme/3iggs.png" alt="Nav Theme"
-          sizes={imageGallerySizes} className="rounded-xl opacity-50 dark:opacity-25"
+          sizes={imageGallerySizes} className="rounded-lg opacity-50 dark:opacity-25"
         />
       </div>
       <Flex center className="absolute left-0 top-0 z-10 h-full gap-1.5">
