@@ -273,6 +273,7 @@
     "202": "Woingenau",
     "208": "Stahlos",
     "214": "Skaraborn",
+    "225": "Botogel",
     "228": "Hunduster",
     "229": "Hundemon",
     "23": "Rettan",
@@ -309,6 +310,8 @@
     "448": "Lucario",
     "453": "Glibunkel",
     "454": "Toxiquak",
+    "459": "Shnebedeck",
+    "460": "Rexblisar",
     "462": "Magnezone",
     "468": "Togekiss",
     "470": "Folipurba",
@@ -342,6 +345,7 @@
     "85": "Dodri",
     "9": "Turtok",
     "9001": "Pikachu (Halloween)",
+    "9002": "Pikachu (Festtage)",
     "92": "Nebulak",
     "93": "Alpollo",
     "94": "Gengar",
@@ -580,6 +584,11 @@
       "2": "Aufrechtpose",
       "1": "Hornschüttelpose"
     },
+    "225": {
+      "3": "Geschenkpose",
+      "2": "Aufrechtpose",
+      "1": "Sorglospose"
+    },
     "228": {
       "3": "Bauchhochpose",
       "2": "Streckpose",
@@ -759,6 +768,16 @@
       "3": "Giftbeutelpose",
       "2": "Kehlblähpose",
       "1": "Fläzpose"
+    },
+    "459": {
+      "3": "Beerenträgerpose",
+      "2": "Aufrechtpose",
+      "1": "Päuschenpose"
+    },
+    "460": {
+      "3": "Schneesturmpose",
+      "2": "Bedroherpose",
+      "1": "Seufzerpose"
     },
     "462": {
       "3": "Kopfüberpose",

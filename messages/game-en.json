@@ -273,6 +273,7 @@
     "202": "Wobbuffet",
     "208": "Steelix",
     "214": "Heracross",
+    "225": "Delibird",
     "228": "Houndour",
     "229": "Houndoom",
     "23": "Ekans",
@@ -309,6 +310,8 @@
     "448": "Lucario",
     "453": "Croagunk",
     "454": "Toxicroak",
+    "459": "Snover",
+    "460": "Abomasnow",
     "462": "Magnezone",
     "468": "Togekiss",
     "470": "Leafeon",
@@ -342,6 +345,7 @@
     "85": "Dodrio",
     "9": "Blastoise",
     "9001": "Pikachu (Halloween)",
+    "9002": "Pikachu (Festivo)",
     "92": "Gastly",
     "93": "Haunter",
     "94": "Gengar",
@@ -580,6 +584,11 @@
       "2": "Upright Sleep",
       "1": "Horn-Shaking Sleep"
     },
+    "225": {
+      "3": "Gift-Giving Sleep",
+      "2": "Upright Sleep",
+      "1": "Peaceful Sleep"
+    },
     "228": {
       "3": "Belly-Up Sleep",
       "2": "Stretching Sleep",
@@ -759,6 +768,16 @@
       "3": "Poison-Sac Sleep",
       "2": "Throat-Inflating Sleep",
       "1": "Loafing Sleep"
+    },
+    "459": {
+      "3": "Berry-Bearing Sleep",
+      "2": "Upright Sleep",
+      "1": "Seated Sleep"
+    },
+    "460": {
+      "3": "Blizzard Sleep",
+      "2": "Intimidating Sleep",
+      "1": "Sighing Sleep"
     },
     "462": {
       "3": "Upside-Down Sleep",
