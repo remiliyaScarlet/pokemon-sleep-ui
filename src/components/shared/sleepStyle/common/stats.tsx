@@ -1,7 +1,10 @@
 import React from 'react';
 
 import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
+import LockOpenIcon from '@heroicons/react/24/outline/LockOpenIcon';
+import XCircleIcon from '@heroicons/react/24/outline/XCircleIcon';
 import QuestionMarkCircleIcon from '@heroicons/react/24/solid/QuestionMarkCircleIcon';
+import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
@@ -31,7 +34,7 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn
   const pokemonCount = toUnique(sleepStyles?.map(({pokemonId}) => pokemonId) ?? []).length;
 
   return (
-    <Flex className="gap-1.5">
+    <Flex center className="gap-1">
       <Flex direction="row" center className="gap-4 text-lg">
         <Flex direction="row" center noFullWidth className="gap-1.5">
           <div className="relative h-6 w-6">
@@ -71,6 +74,23 @@ export const MapStats = ({sleepStyles, sleepdexCompletionOfMap, meta, isLoggedIn
             meta?.berry.map((berry) => <PokemonBerryIcon key={berry} dimension="h-8 w-8" id={berry}/>) :
             <QuestionMarkCircleIcon className="h-8 w-8"/>}
         </Flex>
+      </Flex>
+      <Flex direction="row" noFullWidth center className={clsx(
+        'w-fit gap-1 rounded-lg bg-slate-300/40 p-2 dark:bg-slate-500/40',
+      )}>
+        <LockOpenIcon className="h-5 w-5" title={t('UnlockConditions')}/>
+        {meta?.unlock ?
+          <>
+            <div className="relative h-6 w-6">
+              <NextImage
+                src="/images/generic/sleep.png" alt={t('SleepStyle')}
+                sizes={imageIconSizes} className="invert-hoverable"
+              />
+            </div>
+            <div>{meta.unlock.count}</div>
+          </> :
+          <XCircleIcon className="h-5 w-5"/>
+        }
       </Flex>
     </Flex>
   );

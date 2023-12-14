@@ -303,7 +303,8 @@
       "Energy": "エナジー",
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔",
-      "SleepStylesUnlocked": "寝顔解放数"
+      "SleepStylesUnlocked": "寝顔解放数",
+      "UnlockConditions": "開放条件"
     },
     "Team": {
       "AnalysisPeriod": "分析周期",

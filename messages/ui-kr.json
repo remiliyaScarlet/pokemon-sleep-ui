@@ -303,7 +303,8 @@
       "Energy": "에너지",
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습",
-      "SleepStylesUnlocked": "개방된 잠자는 모습의 수"
+      "SleepStylesUnlocked": "개방된 잠자는 모습의 수",
+      "UnlockConditions": "Unlock Requirements"
     },
     "Team": {
       "AnalysisPeriod": "분석 주기",

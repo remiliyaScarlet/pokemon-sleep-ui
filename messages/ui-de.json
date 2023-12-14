@@ -304,7 +304,8 @@
       "Energy": "Stärke",
       "Pokemon": "Pokémon",
       "SleepStyle": "Schlafpose",
-      "SleepStylesUnlocked": "Freigeschaltete Schlafstile"
+      "SleepStylesUnlocked": "Freigeschaltete Schlafstile",
+      "UnlockConditions": "Unlock Requirements"
     },
     "Team": {
       "AnalysisPeriod": "Analysezeitraum",

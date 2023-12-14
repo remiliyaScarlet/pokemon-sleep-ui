@@ -27,7 +27,7 @@ export const MapIndexContent = (props: MapIndexServerDataProps) => {
           const mapId = Number(mapIdStr);
 
           return (
-            <MapLink key={mapId} toUnique={isUnique} mapId={mapId} className="h-40">
+            <MapLink key={mapId} toUnique={isUnique} mapId={mapId} className="h-52">
               <Flex className="gap-4">
                 <div className="text-2xl">
                   {t(mapIdStr)}
