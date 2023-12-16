@@ -15,7 +15,6 @@ import {SnorlaxDataOfMap, SnorlaxFavorite} from '@/types/game/snorlax';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {CalculatedUserSettings, UserSettings, UserSettingsBundle} from '@/types/userData/settings';
 import {TeamMakerIngredientStats, TeamMakerMemberCount} from '@/ui/team/maker/calc/type';
-import {GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
 
 
 export type TeamMakerDataProps = UsePokemonFilterCommonData & {
@@ -57,8 +56,30 @@ export type TeamMakerResult = {
 };
 
 export type TeamMakerState = {
-  loading: boolean,
+  status: 'standby' | 'error',
+  result: null,
+  teamCompsCalculated: null,
+  teamCompsTotal: null,
+} | {
+  status: 'initializing',
+  result: null,
+  teamCompsCalculated: null,
+  teamCompsTotal: null,
+} | {
+  status: 'generatingTeams',
+  result: null,
+  teamCompsCalculated: null,
+  teamCompsTotal: number,
+} | {
+  status: 'calculating',
   result: TeamMakerResult | null,
-  combinations: number | null,
-  calcFinalOpts: GetTeamMakerResultsOpts | null,
+  teamCompsCalculated: number,
+  teamCompsTotal: number,
+} | {
+  status: 'completed',
+  result: TeamMakerResult,
+  teamCompsCalculated: number,
+  teamCompsTotal: number,
 };
+
+export type TeamMakerCalcStatus = TeamMakerState['status'];

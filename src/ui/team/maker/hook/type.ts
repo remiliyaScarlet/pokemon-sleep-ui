@@ -3,13 +3,23 @@ import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/te
 import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
 
 
-export type GetTeamMakerCalcPrepOpts = TeamMakerDataProps & {
+export type TeamMakerCalcInitOpts = TeamMakerDataProps & {
   input: TeamMakerInput,
   settings: UserSettings,
 };
 
-export type GetTeamMakerResultsOpts = GetTeamMakerCalcPrepOpts & {
+export type TeamMakerCalcGenerateCompOpts = TeamMakerCalcInitOpts & {
   calculatedInput: TeamMakerInputCalculated,
   calculatedSettings: CalculatedUserSettings,
   candidates: TeamMakerRateAtMaxPotentialData[],
+};
+
+export type TeamMakerCalcResultsOpts = TeamMakerCalcGenerateCompOpts & {
+  teamComps: TeamMakerRateAtMaxPotentialData[][],
+};
+
+export type TeamMakerCalcInitReturn = TeamMakerCalcGenerateCompOpts;
+
+export type TeamMakerCalcGenerateCompReturn = TeamMakerCalcGenerateCompOpts & {
+  allPossibleTeamComps: TeamMakerRateAtMaxPotentialData[][],
 };

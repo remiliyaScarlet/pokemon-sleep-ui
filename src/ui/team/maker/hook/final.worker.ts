@@ -1,8 +1,8 @@
 import {getTeamMakerFinalResult} from '@/ui/team/maker/calc/main/final';
-import {GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
+import {TeamMakerCalcResultsOpts} from '@/ui/team/maker/hook/type';
 
 
-const onMessage = ({data}: MessageEvent<GetTeamMakerResultsOpts>) => {
+const onMessage = ({data}: MessageEvent<TeamMakerCalcResultsOpts>) => {
   const result = getTeamMakerFinalResult(data);
 
   postMessage(result);

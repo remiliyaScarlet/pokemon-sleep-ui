@@ -1,10 +1,10 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
 import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {getTeamMakerIngredientStats} from '@/ui/team/maker/calc/ingredient';
-import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
-import {TeamMakerDataProps, TeamMakerInput, TeamMakerResultComp} from '@/ui/team/maker/type';
+import {reduceTeamMakerResultComp} from '@/ui/team/maker/calc/utils';
+import {TeamMakerCalcResultsOpts} from '@/ui/team/maker/hook/type';
+import {TeamMakerDataProps, TeamMakerResultComp} from '@/ui/team/maker/type';
 import {toSum} from '@/utils/array';
-import {combineIterator} from '@/utils/compute';
 import {getMealIngredientInfoFromTargetMeals} from '@/utils/game/meal/ingredient';
 import {getPokemonProducingRateMulti} from '@/utils/game/producing/main/multi';
 import {getTotalOfGroupedProducingRate} from '@/utils/game/producing/rateReducer';
@@ -12,29 +12,24 @@ import {getSnorlaxRankFinalEstimate} from '@/utils/game/rank';
 import {isNotNullish} from '@/utils/type';
 
 
-type GetTeamMakerCompsOpts = TeamMakerDataProps & {
-  input: TeamMakerInput,
-  calculatedInput: TeamMakerInputCalculated,
-  candidates: TeamMakerRateAtMaxPotentialData[],
-};
+type GetTeamMakerCompsOpts = TeamMakerDataProps & Omit<TeamMakerCalcResultsOpts, 'settings' | 'calculatedSettings'>;
 
 export const getTeamMakerComps = ({
+  snorlaxData,
   input,
   calculatedInput,
-  candidates,
-  snorlaxData,
+  teamComps,
 }: GetTeamMakerCompsOpts): TeamMakerResultComp[] => {
   const {
     snorlaxFavorite,
     ingredientCount,
-    memberCount,
     showInsufficientIngredients,
   } = input;
 
   const ret: TeamMakerResultComp[] = [];
-  for (const ratesAtMax of combineIterator(candidates, memberCount)) {
+  for (const teamComp of teamComps) {
     const rates = getPokemonProducingRateMulti({
-      rateOpts: ratesAtMax.map(({calcOpts, pokeInBox}) => ({
+      rateOpts: teamComp.map(({calcOpts, pokeInBox}) => ({
         opts: calcOpts,
         payload: pokeInBox,
       })),
@@ -83,5 +78,5 @@ export const getTeamMakerComps = ({
     });
   }
 
-  return ret.sort((a, b) => b.strength.total - a.strength.total);
+  return reduceTeamMakerResultComp(ret);
 };

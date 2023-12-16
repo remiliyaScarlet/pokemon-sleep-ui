@@ -4,7 +4,7 @@ import {PokeInBox} from '@/types/game/pokebox';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
-import {GetTeamMakerCalcPrepOpts} from '@/ui/team/maker/hook/type';
+import {TeamMakerCalcInitOpts} from '@/ui/team/maker/hook/type';
 import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
@@ -14,7 +14,7 @@ import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer
 import {isNotNullish} from '@/utils/type';
 
 
-type GetTeamMakerRateAtMaxPotentialOpts = GetTeamMakerCalcPrepOpts & {
+type GetTeamMakerRateAtMaxPotentialOpts = TeamMakerCalcInitOpts & {
   calculatedInput: TeamMakerInputCalculated,
   calculatedSettings: CalculatedUserSettings,
 };

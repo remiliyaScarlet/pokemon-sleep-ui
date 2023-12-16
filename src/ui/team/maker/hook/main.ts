@@ -1,82 +1,128 @@
 import React from 'react';
 
 import {useWorker} from '@/hooks/worker';
-import {GetTeamMakerCalcPrepOpts, GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
+import {reduceTeamMakerResultComp} from '@/ui/team/maker/calc/utils';
+import {teamMakerCalcCompSegmentSize} from '@/ui/team/maker/const';
+import {
+  TeamMakerCalcGenerateCompOpts,
+  TeamMakerCalcGenerateCompReturn,
+  TeamMakerCalcInitOpts,
+  TeamMakerCalcInitReturn,
+  TeamMakerCalcResultsOpts,
+} from '@/ui/team/maker/hook/type';
 import {TeamMakerResult, TeamMakerState} from '@/ui/team/maker/type';
 import {getCombinationCount} from '@/utils/compute';
 
 
 export const useTeamMaker = () => {
   const [state, setState] = React.useState<TeamMakerState>({
-    loading: false,
+    status: 'standby',
     result: null,
-    combinations: null,
-    calcFinalOpts: null,
+    teamCompsCalculated: null,
+    teamCompsTotal: null,
   });
   const resultsRef = React.useRef<HTMLDivElement>(null);
-  const {work: workPrep} = useWorker<GetTeamMakerCalcPrepOpts, GetTeamMakerResultsOpts>({
-    workerName: 'Team Maker (Prep)',
-    generateWorker: () => new Worker(new URL('prep.worker', import.meta.url)),
-    onCompleted: (calcFinalOpts) => {
-      const {candidates, input} = calcFinalOpts;
+
+  const {work: workInit} = useWorker<TeamMakerCalcInitOpts, TeamMakerCalcInitReturn>({
+    workerName: 'Team Maker (Initial)',
+    generateWorker: () => new Worker(new URL('init.worker', import.meta.url)),
+    onCompleted: (calcGenCompOpts) => {
+      const {candidates, input} = calcGenCompOpts;
 
       setState({
-        // Still loading as `Team Maker (Final)` should be triggered later
-        loading: true,
+        status: 'generatingTeams',
         result: null,
-        combinations: getCombinationCount(candidates.length, input.memberCount),
-        calcFinalOpts,
+        teamCompsCalculated: null,
+        teamCompsTotal: getCombinationCount(candidates.length, input.memberCount),
       });
-      setTimeout(() => {
-        resultsRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
-      }, 250);
+
+      workGenComp(calcGenCompOpts);
     },
     onError: () => setState({
-      loading: false,
+      status: 'error',
       result: null,
-      combinations: null,
-      calcFinalOpts: null,
+      teamCompsCalculated: null,
+      teamCompsTotal: null,
     }),
   });
-  const {work: workFinal} = useWorker<GetTeamMakerResultsOpts, TeamMakerResult>({
-    workerName: 'Team Maker (Final)',
-    generateWorker: () => new Worker(new URL('final.worker', import.meta.url)),
-    onCompleted: (result) => {
-      setState((original) => ({
-        ...original,
-        loading: false,
-        result,
-        calcFinalOpts: null,
+
+  const {work: workGenComp} = useWorker<TeamMakerCalcGenerateCompOpts, TeamMakerCalcGenerateCompReturn>({
+    workerName: 'Team Maker (Generate Comp)',
+    generateWorker: () => new Worker(new URL('generateComp.worker', import.meta.url)),
+    onCompleted: ({allPossibleTeamComps, ...calcResultOpts}) => {
+      setState(({teamCompsTotal}): TeamMakerState => ({
+        status: 'calculating',
+        result: null,
+        teamCompsCalculated: 0,
+        teamCompsTotal: teamCompsTotal ?? NaN,
       }));
-      setTimeout(() => {
-        resultsRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
-      }, 250);
+
+      for (let i = 0; i < allPossibleTeamComps.length; i += teamMakerCalcCompSegmentSize) {
+        workFinal({
+          ...calcResultOpts,
+          teamComps: allPossibleTeamComps.slice(i, i + teamMakerCalcCompSegmentSize),
+        });
+      }
     },
-    onError: () => setState((original) => ({
-      ...original,
-      loading: false,
+    onError: () => setState({
+      status: 'error',
       result: null,
-      calcFinalOpts: null,
-    })),
+      teamCompsCalculated: null,
+      teamCompsTotal: null,
+    }),
   });
 
-  const calculateTeam = React.useCallback((opts: GetTeamMakerCalcPrepOpts) => {
-    setState({
-      loading: true,
+  const {work: workFinal} = useWorker<TeamMakerCalcResultsOpts, TeamMakerResult>({
+    workerName: 'Team Maker (Final)',
+    generateWorker: () => new Worker(new URL('final.worker', import.meta.url)),
+    onCompleted: (result) => setState((original): TeamMakerState => {
+      let {teamCompsCalculated, teamCompsTotal} = original;
+      if (teamCompsCalculated === null || teamCompsTotal === null) {
+        return {
+          status: 'error',
+          result: null,
+          teamCompsCalculated: null,
+          teamCompsTotal: null,
+        };
+      }
+
+      teamCompsCalculated = Math.min(teamCompsCalculated + teamMakerCalcCompSegmentSize, teamCompsTotal);
+      const isCompleted = teamCompsCalculated >= teamCompsTotal;
+
+      if (isCompleted) {
+        // A small timeout is needed to allow team comps to complete rendering before scrolling
+        setTimeout(() => {
+          resultsRef.current?.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }, 250);
+      }
+
+      return {
+        status: isCompleted ? 'completed' : 'calculating',
+        result: {
+          ...result,
+          comps: reduceTeamMakerResultComp([...(original.result?.comps ?? []), ...result.comps]),
+        },
+        teamCompsCalculated,
+        teamCompsTotal,
+      };
+    }),
+    onError: () => setState({
+      status: 'error',
       result: null,
-      combinations: null,
-      calcFinalOpts: null,
+      teamCompsCalculated: null,
+      teamCompsTotal: null,
+    }),
+  });
+
+  const calculateTeam = React.useCallback((opts: TeamMakerCalcInitOpts) => {
+    setState({
+      status: 'initializing',
+      result: null,
+      teamCompsCalculated: null,
+      teamCompsTotal: null,
     });
-    workPrep(opts);
-  }, [workPrep, workFinal]);
-
-  React.useEffect(() => {
-    if (!state.calcFinalOpts) {
-      return;
-    }
-
-    workFinal(state.calcFinalOpts);
-  }, [state]);
+    workInit(opts);
+  }, [workInit, workFinal]);
 
   return {state, calculateTeam, resultsRef};
 };
