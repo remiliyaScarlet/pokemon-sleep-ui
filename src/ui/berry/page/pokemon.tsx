@@ -2,7 +2,6 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
@@ -36,13 +35,14 @@ export const BerryProducingRatesOfPokemon = ({
   });
 
   return (
-    <Flex className="info-section">
+    <>
       <PokemonIndividualParamsPicker
         filter={input}
         setFilter={setInput}
         maxLevel={berryData.energy.length}
         isPremium={isPremium}
         subSkillMap={subSkillMap}
+        className="info-section"
       />
       <HorizontalSplitter/>
       <PokemonBerryStats
@@ -50,6 +50,6 @@ export const BerryProducingRatesOfPokemon = ({
         translatedSettings={translatedSettings}
         {...props}
       />
-    </Flex>
+    </>
   );
 };

@@ -3,7 +3,6 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {Flex} from '@/components/layout/flex/common';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
@@ -44,13 +43,14 @@ export const IngredientPokemonProduction = ({
   });
 
   return (
-    <Flex className="info-section">
+    <>
       <PokemonIndividualParamsPicker
         filter={input}
         setFilter={setInput}
         maxLevel={pokemonMaxLevel}
         isPremium={isPremium}
         subSkillMap={subSkillMap}
+        className="info-section"
       />
       <HorizontalSplitter/>
       <PokemonIngredientStats
@@ -60,6 +60,6 @@ export const IngredientPokemonProduction = ({
         subSkillMap={subSkillMap}
         {...props}
       />
-    </Flex>
+    </>
   );
 };

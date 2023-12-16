@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
@@ -14,6 +16,7 @@ type Props = FilterInputProps<PokemonIndividualParamsInput> & {
   maxLevel: number,
   isPremium: boolean,
   subSkillMap: SubSkillMap,
+  className?: string,
 };
 
 export const PokemonIndividualParamsPicker = ({
@@ -22,6 +25,7 @@ export const PokemonIndividualParamsPicker = ({
   maxLevel,
   isPremium,
   subSkillMap,
+  className,
 }: Props) => {
   const selectorProps: PokemonIndividualSelectorButtonProps = {
     classNameForHeight: 'h-8',
@@ -30,7 +34,7 @@ export const PokemonIndividualParamsPicker = ({
   };
 
   return (
-    <Flex className="gap-1.5">
+    <Flex className={clsx('gap-1.5', className)}>
       <PokemonLevelSlider
         value={filter.level}
         setValue={(level) => setFilter((original): PokemonIndividualParamsInput => ({

@@ -32,15 +32,14 @@ export const MealPokemonOfIngredient = ({isPremium, ...props}: Props) => {
 
   return (
     <>
-      <Flex className="info-section">
-        <PokemonIndividualParamsPicker
-          filter={input}
-          setFilter={setInput}
-          maxLevel={pokemonMaxLevel}
-          isPremium={isPremium}
-          subSkillMap={subSkillMap}
-        />
-      </Flex>
+      <PokemonIndividualParamsPicker
+        filter={input}
+        setFilter={setInput}
+        maxLevel={pokemonMaxLevel}
+        isPremium={isPremium}
+        subSkillMap={subSkillMap}
+        className="info-section"
+      />
       <Flex className="gap-1.5">
         {meal.ingredients.map((ingredient) => (
           <MealIngredientSection
