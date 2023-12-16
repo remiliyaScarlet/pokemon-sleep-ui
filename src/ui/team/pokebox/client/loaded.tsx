@@ -127,7 +127,7 @@ export const PokeboxLoadedClient = (props: Props) => {
         setFilter={setFilter}
         loading={loading}
         bundle={bundle}
-        totalPokeInBox={processedPokebox.length}
+        totalPokeInBox={Object.values(pokebox).filter(isNotNullish).length}
         processedPokebox={processedPokebox}
         setEditingPokeInBox={setEditingPokeInBox}
         {...props}
