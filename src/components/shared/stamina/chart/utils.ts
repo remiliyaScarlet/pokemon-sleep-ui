@@ -1,22 +1,6 @@
+import {generateTicks} from '@/utils/chart';
 import {formatSeconds, rotateTime} from '@/utils/time';
 
-
-type GenerateTicksOpts = {
-  max: number,
-  interval: number,
-};
-
-export const generateTicks = ({max, interval}: GenerateTicksOpts): number[] => {
-  let current = 0;
-  const ticks: number[] = [current];
-
-  while (current < max) {
-    current += interval;
-    ticks.push(current);
-  }
-
-  return ticks;
-};
 
 type GenerateTimingTicksOpts = {
   max: number,
