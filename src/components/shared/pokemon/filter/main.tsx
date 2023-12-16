@@ -12,7 +12,6 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
 import {EvolutionStageSelection, PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 import {getFilterIdsFromPokemon} from '@/components/shared/pokemon/filter/utils';
-import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
