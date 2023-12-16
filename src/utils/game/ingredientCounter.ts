@@ -50,3 +50,16 @@ export const addIngredientCount = (addends: IngredientCounter[]): IngredientCoun
 export const isIngredientCounterEmpty = (counter: IngredientCounter): boolean => {
   return Object.values(counter).every((count) => !count);
 };
+
+export const capIngredientCount = (
+  max: IngredientCounter,
+  target: IngredientCounter,
+): IngredientCounter => {
+  return Object.fromEntries(Object.entries(target).map(([id, count]) => {
+    if (!count) {
+      return null;
+    }
+
+    return [id, Math.min(count, max[parseInt(id)] ?? Infinity)];
+  }).filter(isNotNullish));
+};
