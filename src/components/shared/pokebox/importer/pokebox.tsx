@@ -33,9 +33,9 @@ type Props = PokeboxImporterCommonProps & {
 export const PokeboxImporterView = ({
   pokedexMap,
   subSkillMap,
-  ingredientChainMap,
   onPokeboxPicked,
   pokebox,
+  ...props
 }: Props) => {
   const t = useTranslations('UI.Metadata.Team');
   const t2 = useTranslations('Game');
@@ -47,6 +47,7 @@ export const PokeboxImporterView = ({
     setFilter,
     isIncluded,
   } = usePokeboxImporterFilter({
+    ...props,
     data: pokebox
       .map(({pokemon, ...pokeInBox}): PokeInBoxForFilter | null => {
         const pokemonInfo = pokedexMap[pokemon];
@@ -63,7 +64,6 @@ export const PokeboxImporterView = ({
         };
       })
       .filter(isNotNullish),
-    ingredientChainMap,
   });
   const collapsible = useCollapsible();
 
@@ -99,7 +99,7 @@ export const PokeboxImporterView = ({
             pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
             filter={filter}
             setFilter={(getUpdated) => setFilter((original) => getUpdated(original))}
-            ingredientChainMap={ingredientChainMap}
+            {...props}
           />
         </Flex>
       </Collapsible>

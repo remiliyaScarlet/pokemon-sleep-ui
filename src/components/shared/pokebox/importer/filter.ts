@@ -17,15 +17,27 @@ export const usePokeboxImporterFilter = ({
     data,
     dataToId: ({uuid}) => uuid,
     initialFilter: {
-      ...generatePokemonInputFilter(),
+      ...generatePokemonInputFilter({
+        isLevelAgnostic: false,
+        // Global `defaultLevel` might be higher than `1`, filtering out some Pokemon by default, which is undesired
+        defaultPokemonLevel: 1,
+      }),
       name: '',
     },
-    isDataIncluded: (filter, {search, pokemon}) => {
+    isDataIncluded: (
+      filter,
+      {search, pokemon, level},
+    ) => {
       if (!isFilterMatchingSearch({filter, filterKey: 'name', search})) {
         return false;
       }
 
-      return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});
+      return isPokemonIncludedFromFilter({
+        filter,
+        pokemon,
+        pokemonLevel: level,
+        ...filterData,
+      });
     },
   });
 };

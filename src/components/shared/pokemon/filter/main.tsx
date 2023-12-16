@@ -10,42 +10,49 @@ import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/fil
 import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
-import {
-  EvolutionStageSelection,
-  ingredientLevelToPokemonInput,
-  PokemonInputFilter,
-} from '@/components/shared/pokemon/filter/type';
+import {EvolutionStageSelection, PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
 import {getFilterIdsFromPokemon} from '@/components/shared/pokemon/filter/utils';
-import {PokemonIngredientFilter} from '@/components/shared/pokemon/ingredients/filter';
-import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
+import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
+import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
 import {textFilterButtonStyle} from '@/styles/input';
 import {BerryId} from '@/types/game/berry';
-import {IngredientId} from '@/types/game/ingredient';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo, PokemonSleepTypeId, PokemonSpecialtyId, PokemonTypeId} from '@/types/game/pokemon';
-import {IngredientChainMap, ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {MainSkillId} from '@/types/game/pokemon/mainSkill';
-import {KeysOfType} from '@/utils/type';
+import {isNotNullish, KeysOfType} from '@/utils/type';
 
 
 type Props<TFilter extends PokemonInputFilter> = FilterWithUpdaterProps<TFilter> & {
   pokemonList: PokemonInfo[],
-  ingredientChainMap: IngredientChainMap,
+  ingredientMap: IngredientMap,
   className?: string,
 };
 
 export const PokemonFilter = <TFilter extends PokemonInputFilter>({
   pokemonList,
-  ingredientChainMap,
+  ingredientMap,
   className,
   ...props
 }: Props<TFilter>) => {
+  const {filter, setFilter} = props;
+
   const t = useTranslations('Game');
   const t2 = useTranslations('UI.InPage.Pokedex.Input');
 
   return (
     <Flex className={clsx('gap-1', className)}>
+      {
+        filter.level &&
+        <PokemonLevelSliderRow
+          value={filter.level}
+          setValue={(level) => setFilter((original) => ({
+            ...original,
+            level,
+          }))}
+        />
+      }
       <FilterIconInput
         title={<PokemonFilterTitle type="pokemonType"/>}
         idToAlt={(id) => t(`PokemonType.${id}`)}
@@ -85,18 +92,16 @@ export const PokemonFilter = <TFilter extends PokemonInputFilter>({
         })}
         className={textFilterButtonStyle}
       />
-      {ingredientLevels.map((level) => (
-        <PokemonIngredientFilter
-          key={level}
-          title={<PokemonIngredientTypeTitle level={level} lvAsText/>}
-          ingredientChainMap={ingredientChainMap}
-          level={level}
-          {...getMultiSelectOnClickProps({
-            ...props,
-            filterKey: ingredientLevelToPokemonInput[level] as KeysOfType<TFilter, FilterInclusionMap<IngredientId>>,
-          })}
-        />
-      ))}
+      <FilterIconInput
+        title={<PokemonFilterTitle type="ingredient"/>}
+        idToAlt={(id) => t(`Food.${id}`)}
+        idToImageSrc={(id) => `/images/ingredient/${id}.png`}
+        ids={Object.values(ingredientMap).filter(isNotNullish).map(({id}) => id).sort((a, b) => a - b)}
+        {...getMultiSelectOnClickProps({
+          ...props,
+          filterKey: 'ingredient' as KeysOfType<TFilter, FilterInclusionMap<IngredientId>>,
+        })}
+      />
       <FilterIconInput
         title={<PokemonFilterTitle type="berry"/>}
         idToAlt={(id) => t(`Berry.${id}`)}

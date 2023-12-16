@@ -38,7 +38,6 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
   const {
     pokedexMap,
     ingredientMap,
-    ingredientChainMap,
     mealMap,
     mapMeta,
   } = props;
@@ -99,12 +98,12 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
       <PokemonCollapsibleFilter
         collapsibleState={collapsible}
         pokemonList={Object.values(pokedexMap).filter(isNotNullish)}
-        ingredientChainMap={ingredientChainMap}
         filter={pokemon}
         setFilter={(getUpdated) => setInput(({pokemon, ...original}) => ({
           ...original,
           pokemon: getUpdated(pokemon),
         }))}
+        {...props}
       />
       <FilterExpandedInput
         title={

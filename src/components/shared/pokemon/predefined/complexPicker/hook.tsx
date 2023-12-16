@@ -13,7 +13,7 @@ export const usePokemonComplexPickerFilter = ({data, ...filterData}: UsePokemonC
   return useFilterInput<PokemonComplexFilter, PokemonInfo, PokemonId>({
     data,
     dataToId: ({id}) => id,
-    initialFilter: generatePokemonInputFilter(),
+    initialFilter: generatePokemonInputFilter({isLevelAgnostic: true}),
     isDataIncluded: (filter, pokemon) => isPokemonIncludedFromFilter({filter, pokemon, ...filterData}),
   });
 };

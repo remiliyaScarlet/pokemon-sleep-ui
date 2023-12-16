@@ -14,7 +14,7 @@ export const usePokeboxPickerFilter = ({data, ...filterData}: UsePokeboxPickerFi
     data,
     dataToId: ({id}) => id,
     initialFilter: {
-      ...generatePokemonInputFilter(),
+      ...generatePokemonInputFilter({isLevelAgnostic: false}),
     },
     isDataIncluded: (filter, pokemon) => {
       return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});

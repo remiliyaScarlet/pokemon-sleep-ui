@@ -53,6 +53,8 @@ export const getTeamMakerRateAtMaxPotential = ({
     if (!pokemon || !isPokemonIncludedFromFilter({
       filter: input.pokemon,
       pokemon,
+      pokemonLevel: pokeInBox.level,
+      ingredientMap,
       ingredientChainMap,
     })) {
       return null;

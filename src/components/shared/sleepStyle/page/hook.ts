@@ -10,7 +10,7 @@ export const useMapFilter = ({sleepStyles, pokedexMap, ...filterData}: MapCommon
     data: sleepStyles,
     dataToId: ({pokemonId, style}) => `${pokemonId}-${style.style}`,
     initialFilter: {
-      ...generatePokemonInputFilter(),
+      ...generatePokemonInputFilter({isLevelAgnostic: true}),
       showEmptyRank: false,
       showSleepdexStats: true,
       showLockedOnly: true,

@@ -12,7 +12,6 @@ import {PokemonCollapsiblePicker} from '@/components/shared/pokemon/predefined/p
 
 export const PokemonComplexFilter = (props: PokemonComplexFilterCommonProps) => {
   const {
-    ingredientChainMap,
     pokemonList,
     pokedexMap,
     subSkillMap,
@@ -22,7 +21,7 @@ export const PokemonComplexFilter = (props: PokemonComplexFilterCommonProps) => 
 
   const {filter, setFilter, isIncluded} = usePokemonComplexPickerFilter({
     data: pokemonList,
-    ingredientChainMap,
+    ...props,
   });
   const filterCollapsible = useCollapsible();
   const resultCollapsible = useCollapsible();
@@ -37,8 +36,7 @@ export const PokemonComplexFilter = (props: PokemonComplexFilterCommonProps) => 
         collapsibleState={filterCollapsible}
         filter={filter}
         setFilter={setFilter}
-        ingredientChainMap={ingredientChainMap}
-        pokemonList={pokemonList}
+        {...props}
       />
       <PokemonCollapsiblePicker
         collapsibleState={resultCollapsible}

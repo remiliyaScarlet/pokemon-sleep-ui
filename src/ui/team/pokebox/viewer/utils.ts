@@ -3,21 +3,22 @@ import {
   isFilterMatchingSearch,
   isFilterMismatchOnSingle,
 } from '@/components/input/filter/utils/check';
-import {
-  pokemonIngredientInputToLevel,
-  pokemonInputTypeOfIngredients,
-  UsePokemonFilterCommonData,
-} from '@/components/shared/pokemon/filter/type';
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
 import {natureDataMap} from '@/data/nature';
 import {PokeboxDataProps} from '@/ui/team/pokebox/type';
 import {PokeboxPokemonForView, PokeboxViewerFilter} from '@/ui/team/pokebox/viewer/type';
+import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
 import {migrate} from '@/utils/migrate/main';
 import {pokeboxDisplayMigrators} from '@/utils/migrate/pokeboxDisplay/migrators';
 
 
 export const generatePokeboxViewerFilter = (preloaded: PokeboxDataProps['preloaded']): PokeboxViewerFilter => ({
-  ...generatePokemonInputFilter(),
+  ...generatePokemonInputFilter({
+    isLevelAgnostic: false,
+    // Global `defaultLevel` might be higher than `1`, filtering out some Pokemon by default, which is undesired
+    defaultPokemonLevel: 1,
+  }),
   name: '',
   snorlaxFavorite: {},
   subSkill: {},
@@ -46,22 +47,27 @@ export const isPokeInBoxIncluded = (
   filter: PokeboxViewerFilter,
   data: PokeboxPokemonForView,
 ) => {
+  const {level, ingredients, nature, subSkill} = data.inBox;
+
   if (!isFilterMatchingSearch({filter, filterKey: 'name', search: data.names})) {
     return false;
   }
 
-  if (pokemonInputTypeOfIngredients.some((inputType) => isFilterMismatchOnSingle({
+  if (!isFilterIncludingSome({
     filter,
-    filterKey: inputType,
-    id: data.inBox.ingredients[pokemonIngredientInputToLevel[inputType]].id,
-  }))) {
+    filterKey: 'ingredient',
+    ids: getEffectiveIngredientProductions({
+      level,
+      ingredients,
+    }).map(({id}) => id),
+  })) {
     return false;
   }
 
   if (!isFilterIncludingSome({
     filter,
     filterKey: 'subSkill',
-    ids: Object.values(data.inBox.subSkill),
+    ids: Object.values(subSkill),
   })) {
     return false;
   }
@@ -69,7 +75,7 @@ export const isPokeInBoxIncluded = (
   if (isFilterMismatchOnSingle({
     filter,
     filterKey: 'natureBuff',
-    id: data.inBox.nature ? natureDataMap[data.inBox.nature]?.buff : null,
+    id: nature ? natureDataMap[nature]?.buff : null,
   })) {
     return false;
   }
@@ -77,10 +83,15 @@ export const isPokeInBoxIncluded = (
   if (isFilterMismatchOnSingle({
     filter,
     filterKey: 'natureNerf',
-    id: data.inBox.nature ? natureDataMap[data.inBox.nature]?.nerf : null,
+    id: nature ? natureDataMap[nature]?.nerf : null,
   })) {
     return false;
   }
 
-  return isPokemonIncludedFromFilter({filter, pokemon: data.info, ...filterData});
+  return isPokemonIncludedFromFilter({
+    filter,
+    pokemon: data.info,
+    pokemonLevel: level,
+    ...filterData,
+  });
 };

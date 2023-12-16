@@ -7,7 +7,7 @@ import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 
 export const PokemonLevelSliderRow = (props: Omit<NumberSliderRequiredProps, 'text'>) => {
   return (
-    <InputRow className="p-1">
+    <InputRow className="p-1.5">
       <PokemonLevelSlider {...props}/>
     </InputRow>
   );

@@ -25,13 +25,16 @@ type Props = PokeboxCommonProps & {
   onClick: (pokemonId: PokemonId) => void,
 };
 
-export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: Props) => {
+export const PokeboxPickerInput = ({pokemonList, onClick, ...props}: Props) => {
   const t = useTranslations('Game');
   const {
     filter,
     setFilter,
     isIncluded,
-  } = usePokeboxPickerFilter({data: pokemonList, ingredientChainMap});
+  } = usePokeboxPickerFilter({
+    data: pokemonList,
+    ...props,
+  });
   const pickerCollapsible = useCollapsible();
   const resultCollapsible = useCollapsible();
 
@@ -51,9 +54,9 @@ export const PokeboxPickerInput = ({pokemonList, ingredientChainMap, onClick}: P
         <PokemonFilter
           className="pr-1"
           pokemonList={pokemonList}
-          ingredientChainMap={ingredientChainMap}
           filter={filter}
           setFilter={setFilter}
+          {...props}
         />
       </Collapsible>
       <Collapsible state={resultCollapsible} classNameForHeight={inputSectionHeight} appear button={

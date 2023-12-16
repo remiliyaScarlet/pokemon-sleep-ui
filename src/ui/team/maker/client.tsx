@@ -32,7 +32,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
   });
   const [input, setInput] = React.useState<TeamMakerInput>({
     snorlaxFavorite: {},
-    pokemon: generatePokemonInputFilter(),
+    pokemon: generatePokemonInputFilter({isLevelAgnostic: false}),
     mealType: preloaded.cooking.mealType,
     recipeLevel: preloaded.cooking.recipeLevel,
     ingredientCount: preloaded.cooking.ingredientCount,

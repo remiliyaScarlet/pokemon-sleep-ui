@@ -16,7 +16,7 @@ export const useTeamAnalysisPokemonFilter = ({
   return useFilterInput<TeamAnalysisPokemonFilter, PokemonInfo, PokemonId>({
     data: pokemonList,
     dataToId: ({id}) => id,
-    initialFilter: generatePokemonInputFilter(),
+    initialFilter: generatePokemonInputFilter({isLevelAgnostic: true}),
     isDataIncluded: (filter, pokemon) => {
       return isPokemonIncludedFromFilter({filter, pokemon, ...filterData});
     },

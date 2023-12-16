@@ -13,7 +13,6 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
-import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {PokemonSortingPicker} from '@/components/shared/pokemon/sorter/picker';
 import {pokedexSortExclusion} from '@/components/shared/pokemon/sorter/type';
 import {isPokedexSortExclusion} from '@/components/shared/pokemon/sorter/utils';
@@ -63,14 +62,6 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
           <PokemonFilter
             pokemonList={pokedex}
             {...props}
-          />
-          <PokemonLevelSliderRow
-            max={maxLevel}
-            value={filter.level}
-            setValue={(level) => setFilter((original) => ({
-              ...original,
-              level,
-            } satisfies PokedexFilter))}
           />
           <SnorlaxFavoriteInput
             filterKey="snorlaxFavorite"

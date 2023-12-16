@@ -1,6 +1,5 @@
 import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {BerryDataMap} from '@/types/game/berry';
-import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokedexMap} from '@/types/game/pokemon';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
@@ -15,7 +14,6 @@ export type PokeboxDataProps = UsePokemonFilterCommonData & SynergizedSettingsRe
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
-  ingredientMap: IngredientMap,
   pokemonMaxLevel: number,
   preloaded: {
     bundle: UserSettingsBundle,

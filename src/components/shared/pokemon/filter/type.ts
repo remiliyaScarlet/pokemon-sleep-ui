@@ -1,6 +1,6 @@
 import {FilterInclusionMap} from '@/components/input/filter/type';
 import {BerryId} from '@/types/game/berry';
-import {IngredientId} from '@/types/game/ingredient';
+import {IngredientId, IngredientMap} from '@/types/game/ingredient';
 import {
   PokemonInfo,
   PokemonSkillId,
@@ -9,40 +9,21 @@ import {
   PokemonTypeId,
 } from '@/types/game/pokemon';
 import {EvolutionStage} from '@/types/game/pokemon/evolution';
-import {IngredientChainMap, IngredientLevel} from '@/types/game/pokemon/ingredient';
+import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {SleepMapId} from '@/types/game/sleepStyle';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 
 
-export const pokemonInputTypeOfIngredients = [
-  'ingredient1',
-  'ingredient2',
-  'ingredient3',
-] as const;
-
-export type PokemonInputTypeOfIngredients = typeof pokemonInputTypeOfIngredients[number];
-
-export const pokemonIngredientInputToLevel: {[inputType in PokemonInputTypeOfIngredients]: IngredientLevel} = {
-  ingredient1: 1,
-  ingredient2: 30,
-  ingredient3: 60,
-};
-
-export const ingredientLevelToPokemonInput: {[level in IngredientLevel]: PokemonInputTypeOfIngredients} = {
-  1: 'ingredient1',
-  30: 'ingredient2',
-  60: 'ingredient3',
-};
-
 export type EvolutionStageSelection = EvolutionStage | 'final';
 
 export type PokemonInputFilter = {
+  // `null` means that the filter is intended to use as level-agnostic
+  // This affects at least the filtering logic of ingredient
+  level: number | null,
   pokemonType: FilterInclusionMap<PokemonTypeId>,
   specialty: FilterInclusionMap<PokemonSpecialtyId>,
   sleepType: FilterInclusionMap<PokemonSleepTypeId>,
-  ingredient1: FilterInclusionMap<IngredientId>,
-  ingredient2: FilterInclusionMap<IngredientId>,
-  ingredient3: FilterInclusionMap<IngredientId>,
+  ingredient: FilterInclusionMap<IngredientId>,
   berry: FilterInclusionMap<BerryId>,
   evolutionStage: FilterInclusionMap<EvolutionStageSelection>,
   mainSkill: FilterInclusionMap<PokemonSkillId>,
@@ -50,19 +31,21 @@ export type PokemonInputFilter = {
 
 export type PokemonInputType = keyof PokemonInputFilter;
 
-export type PokemonInputFilterExtended = PokemonInputFilter & {
+export type PokemonInputFilterExtended = Omit<PokemonInputFilter, 'level'> & {
   level: number,
   mapId: FilterInclusionMap<SleepMapId>,
   snorlaxFavorite: SnorlaxFavorite,
 };
 
 export type UsePokemonFilterCommonData = {
+  ingredientMap: IngredientMap,
   ingredientChainMap: IngredientChainMap,
 };
 
 export type PokemonInputFilterCheckingOpts = UsePokemonFilterCommonData & {
   filter: PokemonInputFilter,
   pokemon: PokemonInfo,
+  pokemonLevel?: number,
 };
 
 export type PokemonInputFilterCheckExclusion = (opts: PokemonInputFilterCheckingOpts) => boolean;

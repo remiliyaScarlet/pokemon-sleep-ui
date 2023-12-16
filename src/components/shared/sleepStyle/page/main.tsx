@@ -10,6 +10,7 @@ import {MapUniqueWarning} from '@/components/shared/sleepStyle/common/uniqueWarn
 import {MapPageClient} from '@/components/shared/sleepStyle/page/client';
 import {MapPageServerDataProps} from '@/components/shared/sleepStyle/page/type';
 import {authOptions} from '@/const/auth';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMapMeta} from '@/controller/mapMeta';
 import {getPokemonAsMap} from '@/controller/pokemon/info';
@@ -33,12 +34,14 @@ export const MapPage = async ({locale, mapId, getDataPromise, isUnique}: Props) 
   const sleepStyles = await getDataPromise(mapId);
   const [
     pokedexMap,
+    ingredientMap,
     ingredientChainMap,
     snorlaxData,
     mapMeta,
     sleepdexMap,
   ] = await Promise.all([
     getPokemonAsMap(toUnique(sleepStyles.map(({pokemonId}) => pokemonId))),
+    getAllIngredients(),
     getIngredientChainMap(),
     getSnorlaxDataOfMap(mapId),
     getMapMeta(mapId),
@@ -53,6 +56,7 @@ export const MapPage = async ({locale, mapId, getDataPromise, isUnique}: Props) 
     mapId,
     sleepStyles,
     pokedexMap,
+    ingredientMap,
     ingredientChainMap,
     snorlaxData,
     mapMeta,

@@ -7,7 +7,6 @@ import {Flex} from '@/components/layout/flex/common';
 import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
 import {PokemonBerryIcon} from '@/components/shared/pokemon/berry/icon';
 import {PokemonFilterTitle} from '@/components/shared/pokemon/filter/title';
-import {ingredientLevelToPokemonInput} from '@/components/shared/pokemon/filter/type';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {PokemonSpecialty} from '@/components/shared/pokemon/specialty/main';
@@ -60,8 +59,8 @@ export const AnalysisStatsOfPokemonMeta = ({pokemon, stats, level}: AnalysisStat
             threshold={{superRare: 9, rare: 7, ordinary: 3.5}}
             title={
               <Flex direction="row" center className="gap-1">
-                <PokemonFilterTitle type={ingredientLevelToPokemonInput[ingredientLevel]} lvAsText/>
-                <div>#{idx + 1}</div>
+                <PokemonFilterTitle type="ingredient"/>
+                <div>Lv {ingredientLevel} #{idx + 1}</div>
               </Flex>
             }
           >

@@ -1,11 +1,9 @@
-import {PokemonInputFilter} from '@/components/shared/pokemon/filter/type';
+import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {BerryDataMap} from '@/types/game/berry';
-import {IngredientMap} from '@/types/game/ingredient';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {MealMap} from '@/types/game/meal/main';
 import {PokeInBox} from '@/types/game/pokebox';
 import {PokedexMap} from '@/types/game/pokemon';
-import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
@@ -20,13 +18,11 @@ import {TeamMakerIngredientStats, TeamMakerMemberCount} from '@/ui/team/maker/ca
 import {GetTeamMakerResultsOpts} from '@/ui/team/maker/hook/type';
 
 
-export type TeamMakerDataProps = {
+export type TeamMakerDataProps = UsePokemonFilterCommonData & {
   pokeboxList: PokeInBox[],
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
-  ingredientChainMap: IngredientChainMap,
-  ingredientMap: IngredientMap,
   mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
   mealMap: MealMap,

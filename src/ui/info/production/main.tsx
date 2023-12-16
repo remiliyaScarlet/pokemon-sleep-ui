@@ -3,6 +3,7 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Flex} from '@/components/layout/flex/common';
+import {getAllIngredients} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getAllPokemonAsArray} from '@/controller/pokemon/info';
 import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
@@ -21,17 +22,20 @@ export const ProducingParams = async ({params}: DefaultPageProps) => {
     pokemonList,
     producingParamsMap,
     producingParamsMeta,
+    ingredientMap,
     ingredientChainMap,
   ] = await Promise.all([
     getAllPokemonAsArray(),
     getAllPokemonProducingParams(),
     getPokemonProducingParamsMeta(),
+    getAllIngredients(),
     getIngredientChainMap(),
   ]);
 
   const props: ProducingParamsDataProps = {
     pokemonList,
     producingParamsMap,
+    ingredientMap,
     ingredientChainMap,
   };
 

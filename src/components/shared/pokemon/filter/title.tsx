@@ -1,18 +1,13 @@
-import React from 'react';
-
 import {useTranslations} from 'next-intl';
 
-import {pokemonIngredientInputToLevel, PokemonInputType} from '@/components/shared/pokemon/filter/type';
-import {isPokemonInputTypeOfIngredients} from '@/components/shared/pokemon/filter/utils';
-import {PokemonIngredientTypeTitle} from '@/components/shared/pokemon/ingredients/typeTitle';
+import {PokemonInputType} from '@/components/shared/pokemon/filter/type';
 
 
 type Props = {
-  type: PokemonInputType,
-  lvAsText?: boolean,
+  type: Exclude<PokemonInputType, 'level'>,
 };
 
-export const PokemonFilterTitle = ({type, lvAsText}: Props) => {
+export const PokemonFilterTitle = ({type}: Props) => {
   const t = useTranslations('UI.InPage.Pokedex.Info');
 
   if (type === 'pokemonType') {
@@ -31,8 +26,8 @@ export const PokemonFilterTitle = ({type, lvAsText}: Props) => {
     return t('Berry');
   }
 
-  if (isPokemonInputTypeOfIngredients(type)) {
-    return <PokemonIngredientTypeTitle level={pokemonIngredientInputToLevel[type]} lvAsText={lvAsText}/>;
+  if (type === 'ingredient') {
+    return t('Ingredient');
   }
 
   if (type === 'mainSkill') {

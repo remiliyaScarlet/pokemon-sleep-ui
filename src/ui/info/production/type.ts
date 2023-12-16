@@ -1,10 +1,9 @@
+import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 
 
-export type ProducingParamsDataProps = {
+export type ProducingParamsDataProps = UsePokemonFilterCommonData & {
   pokemonList: PokemonInfo[],
   producingParamsMap: PokemonProducingParamsMap,
-  ingredientChainMap: IngredientChainMap,
 };

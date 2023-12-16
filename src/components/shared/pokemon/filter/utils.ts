@@ -1,20 +1,26 @@
 import {isFilterIncludingSome, isFilterMismatchOnSingle} from '@/components/input/filter/utils/check';
 import {
-  pokemonIngredientInputToLevel,
   PokemonInputFilter,
   PokemonInputFilterCheckExclusion,
   PokemonInputFilterCheckingOpts,
   PokemonInputFilterExtended,
   PokemonInputType,
-  pokemonInputTypeOfIngredients,
-  PokemonInputTypeOfIngredients,
 } from '@/components/shared/pokemon/filter/type';
+import {defaultLevel} from '@/const/game/production';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {toUnique} from '@/utils/array';
+import {getPossibleIngredientsFromChain} from '@/utils/game/producing/ingredient/level';
 import {isNotNullish} from '@/utils/type';
 
 
 const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilterCheckExclusion} = {
+  level: ({filter, pokemonLevel}) => {
+    if (!pokemonLevel) {
+      return false;
+    }
+
+    return !!filter.level && pokemonLevel < filter.level;
+  },
   pokemonType: ({filter, pokemon}) => isFilterMismatchOnSingle({
     filter,
     filterKey: 'pokemonType',
@@ -30,20 +36,18 @@ const filterCheckToExclude: {[inputType in PokemonInputType]: PokemonInputFilter
     filterKey: 'sleepType',
     id: pokemon.sleepType,
   }),
-  ...Object.fromEntries(pokemonInputTypeOfIngredients.map((inputType) => [
-    inputType,
-    (({filter, pokemon, ingredientChainMap}) => !isFilterIncludingSome({
-      filter,
-      filterKey: inputType,
-      ids: ingredientChainMap[pokemon.ingredientChain]
-        .ingredients[pokemonIngredientInputToLevel[inputType]]
-        .map(({id}) => id),
-    })) satisfies PokemonInputFilterCheckExclusion,
-  ])) as Record<PokemonInputTypeOfIngredients, PokemonInputFilterCheckExclusion>,
   berry: ({filter, pokemon}) => isFilterMismatchOnSingle({
     filter,
     filterKey: 'berry',
     id: pokemon.berry.id,
+  }),
+  ingredient: ({filter, pokemon, ingredientChainMap}) => !isFilterIncludingSome({
+    filter,
+    filterKey: 'ingredient',
+    ids: getPossibleIngredientsFromChain({
+      level: filter.level,
+      chain: ingredientChainMap[pokemon.ingredientChain],
+    }),
   }),
   mainSkill: ({filter, pokemon}) => isFilterMismatchOnSingle({
     filter,
@@ -67,25 +71,31 @@ export const isPokemonIncludedFromFilter = (opts: PokemonInputFilterCheckingOpts
   return !Object.values(filterCheckToExclude).some((checker) => checker(opts));
 };
 
-export const isPokemonInputTypeOfIngredients = (type: string): type is PokemonInputTypeOfIngredients => {
-  return pokemonInputTypeOfIngredients.includes(type as PokemonInputTypeOfIngredients);
+type GeneratePokemonInputFilterOpts = {
+  isLevelAgnostic: true,
+  defaultPokemonLevel?: never,
+} | {
+  isLevelAgnostic: false,
+  defaultPokemonLevel?: number,
 };
 
-export const generatePokemonInputFilter = (): PokemonInputFilter => ({
+export const generatePokemonInputFilter = ({
+  isLevelAgnostic,
+  defaultPokemonLevel,
+}: GeneratePokemonInputFilterOpts): PokemonInputFilter => ({
+  level: isLevelAgnostic ? null : (defaultPokemonLevel ?? defaultLevel),
   pokemonType: {},
   sleepType: {},
   specialty: {},
-  ingredient1: {},
-  ingredient2: {},
-  ingredient3: {},
+  ingredient: {},
   berry: {},
   mainSkill: {},
   evolutionStage: {},
 });
 
 export const generatePokemonInputFilterExtended = (): PokemonInputFilterExtended => ({
-  ...generatePokemonInputFilter(),
-  level: 1,
+  ...generatePokemonInputFilter({isLevelAgnostic: false}),
+  level: defaultLevel,
   mapId: {},
   snorlaxFavorite: {},
 });

@@ -9,7 +9,6 @@ import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonFilter} from '@/components/shared/pokemon/filter/main';
 import {PokemonMapFilter} from '@/components/shared/pokemon/filter/map';
-import {PokemonLevelSliderRow} from '@/components/shared/pokemon/level/sliderRow';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {AnalysisComparisonFilter, AnalysisPageCommonProps} from '@/ui/analysis/page/type';
 import {toUnique} from '@/utils/array';
@@ -55,14 +54,6 @@ export const AnalysisPageInput = ({
           filter={filter}
           setFilter={setFilter}
           pokemonList={pokemonList}
-        />
-        <PokemonLevelSliderRow
-          value={filter.level}
-          max={maxLevel}
-          setValue={(level) => setFilter((original) => ({
-            ...original,
-            level,
-          } satisfies AnalysisComparisonFilter))}
         />
         <SnorlaxFavoriteInput
           filter={filter}

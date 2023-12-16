@@ -32,7 +32,7 @@ export const useProducingParams = ({
     data: pokemonList,
     dataToId: ({id}) => id,
     initialFilter: {
-      ...generatePokemonInputFilter(),
+      ...generatePokemonInputFilter({isLevelAgnostic: true}),
       sort: 'id',
     },
     isDataIncluded: (filter, pokemon) => isPokemonIncludedFromFilter({
