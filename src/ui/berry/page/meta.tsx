@@ -14,7 +14,7 @@ export const BerryMeta = ({berryData}: BerryPageDataProps) => {
   const {id, energy} = berryData;
 
   const t = useTranslations('Game.Berry');
-  const t2 = useTranslations('UI.InPage.Berry');
+  const t2 = useTranslations('UI.Common');
 
   const berryName = t(id.toString());
   const berryEnergyArray = energy.map(({energy}) => energy);
@@ -31,7 +31,7 @@ export const BerryMeta = ({berryData}: BerryPageDataProps) => {
         className="rounded-lg border border-slate-300 dark:border-slate-700"
       />
       <Flex direction="row" center className="gap-1 text-xl">
-        <ColoredEnergyIcon alt={t2('Energy')}/>
+        <ColoredEnergyIcon alt={t2('Strength')}/>
         <div>
           {formatInt(Math.min(...berryEnergyArray))} ~ {formatInt(Math.max(...berryEnergyArray))}
         </div>

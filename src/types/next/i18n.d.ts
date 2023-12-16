@@ -39,6 +39,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Shiny: string,
       SnorlaxFavorite: string,
       Stamina: string,
+      Strength: string,
     },
     Evolution: {
       SleepTime: string,
@@ -194,15 +195,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         Total: string,
         TargetMealCount: string,
       },
-      Berry: {
-        Energy: string,
-      },
-      Ingredient: {
-        Energy: string,
-      },
       Map: {
         Unique: string,
-        Energy: string,
         Pokemon: string,
         SleepStyle: string,
         SleepStylesUnlocked: string,

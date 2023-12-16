@@ -16,11 +16,10 @@ type Props = {
 
 export const IngredientLink = ({ingredient}: Props) => {
   const {id, price, energy} = ingredient;
-  const t = useTranslations('UI.InPage.Ingredient');
-  const t2 = useTranslations('UI.Common');
-  const t3 = useTranslations('Game.Food');
+  const t = useTranslations('UI.Common');
+  const t2 = useTranslations('Game.Food');
 
-  const ingredientName = t3(id.toString());
+  const ingredientName = t2(id.toString());
 
   return (
     <Link href={`/ingredient/${id}`} className="w-full">
@@ -35,7 +34,7 @@ export const IngredientLink = ({ingredient}: Props) => {
           <tbody>
             <tr>
               <td>
-                <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Energy')}/>
+                <ColoredEnergyIcon dimension="h-4 w-4" alt={t('Strength')}/>
               </td>
               <td>
                 {energy}
@@ -45,7 +44,7 @@ export const IngredientLink = ({ingredient}: Props) => {
               <td>
                 <div className="relative h-4 w-4">
                   <NextImage
-                    src="/images/generic/shard.png" alt={t2('DreamShards')} sizes={imageSmallIconSizes}
+                    src="/images/generic/shard.png" alt={t('DreamShards')} sizes={imageSmallIconSizes}
                   />
                 </div>
               </td>

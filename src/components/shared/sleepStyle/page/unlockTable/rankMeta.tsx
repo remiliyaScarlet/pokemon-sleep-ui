@@ -30,7 +30,7 @@ export const MapUnlockTableRankMeta = (props: MapUnlockTableRowProps) => {
       <Flex direction="row" center noFullWidth className="gap-1 xl:w-52 xl:flex-col">
         <SnorlaxRankUI rank={rank} hideTextBelowMd/>
         <Flex direction="row" center noFullWidth className="gap-0.5">
-          <ColoredEnergyIcon alt={t2('Energy')}/>
+          <ColoredEnergyIcon alt={t('Strength')}/>
           <div>
             {formatInt(energy.current?.value)}
           </div>

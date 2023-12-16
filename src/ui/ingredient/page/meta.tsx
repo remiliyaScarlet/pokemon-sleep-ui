@@ -14,7 +14,6 @@ export const IngredientMeta = (ingredient: Ingredient) => {
 
   const t = useTranslations('Game.Food');
   const t2 = useTranslations('UI.Common');
-  const t3 = useTranslations('UI.InPage.Ingredient');
 
   const ingredientName = t(id.toString());
 
@@ -30,7 +29,7 @@ export const IngredientMeta = (ingredient: Ingredient) => {
         <tbody>
           <tr>
             <td>
-              <ColoredEnergyIcon dimension="h-7 w-7" alt={t3('Energy')}/>
+              <ColoredEnergyIcon dimension="h-7 w-7" alt={t2('Strength')}/>
             </td>
             <td>
               {energy}

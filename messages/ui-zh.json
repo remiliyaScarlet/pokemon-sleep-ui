@@ -22,7 +22,8 @@
     "Rewards": "報酬",
     "Shiny": "異色",
     "SnorlaxFavorite": "卡比獸喜歡的樹果",
-    "Stamina": "活力"
+    "Stamina": "活力",
+    "Strength": "能量"
   },
   "Evolution": {
     "SleepTime": "睡眠時間"
@@ -292,15 +293,8 @@
       "Total": "總計",
       "TargetMealCount": "目標數量"
     },
-    "Berry": {
-      "Energy": "能量"
-    },
-    "Ingredient": {
-      "Energy": "能量"
-    },
     "Map": {
       "Unique": "地圖限定",
-      "Energy": "能量",
       "Pokemon": "寶可夢",
       "SleepStyle": "睡姿",
       "SleepStylesUnlocked": "已解鎖睡姿",

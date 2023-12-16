@@ -6,7 +6,7 @@ import {BerryPageParams} from '@/app/[locale]/berry/[id]/page';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
-import {getBerryDataMap, getBerryData} from '@/controller/berry';
+import {getBerryData, getBerryDataMap} from '@/controller/berry';
 import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
@@ -85,7 +85,6 @@ export const BerryPage = async ({params}: Props) => {
       <I18nProvider locale={locale} namespaces={[
         'Game',
         'UI.Common',
-        'UI.InPage.Berry',
         'UI.InPage.Pokedex',
         'UI.InPage.Team',
         'UI.Metadata',

@@ -19,7 +19,7 @@ export const BerryLink = ({berryData}: Props) => {
   const {id} = berryData;
 
   const t = useTranslations('Game.Berry');
-  const t2 = useTranslations('UI.InPage.Berry');
+  const t2 = useTranslations('UI.Common');
 
   const berryName = t(id.toString());
   const berryEnergyArray = berryData.energy.map(({energy}) => energy);
@@ -37,7 +37,7 @@ export const BerryLink = ({berryData}: Props) => {
           {berryName}
         </div>
         <Flex direction="row" center className="gap-1">
-          <ColoredEnergyIcon alt={t2('Energy')}/>
+          <ColoredEnergyIcon alt={t2('Strength')}/>
           <div>
             {formatInt(Math.min(...berryEnergyArray))} ~ {formatInt(Math.max(...berryEnergyArray))}
           </div>

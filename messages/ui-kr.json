@@ -22,7 +22,8 @@
     "Rewards": "보상",
     "Shiny":"색이 다른",
     "SnorlaxFavorite": "잠만보가 좋아하는 나무열매",
-    "Stamina": "기력"
+    "Stamina": "기력",
+    "Strength": "에너지"
   },
   "Evolution": {
     "SleepTime": "수면 시간"
@@ -292,15 +293,8 @@
       "Total": "총합",
       "TargetMealCount": "목표 요리 수"
     },
-    "Berry": {
-      "Energy": "에너지"
-    },
-    "Ingredient": {
-      "Energy": "에너지"
-    },
     "Map": {
       "Unique": "특정 맵 한정",
-      "Energy": "에너지",
       "Pokemon": "포켓몬",
       "SleepStyle": "잠자는 모습",
       "SleepStylesUnlocked": "개방된 잠자는 모습의 수",

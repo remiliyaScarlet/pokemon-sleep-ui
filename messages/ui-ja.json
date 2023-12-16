@@ -22,7 +22,8 @@
     "Rewards": "報酬",
     "Shiny": "色違い",
     "SnorlaxFavorite": "カビゴンの好きなきのみ",
-    "Stamina": "げんき"
+    "Stamina": "げんき",
+    "Strength": "エナジー"
   },
   "Evolution": {
     "SleepTime": "睡眠時間"
@@ -292,15 +293,8 @@
       "Total": "計",
       "TargetMealCount": "目標料理数"
     },
-    "Berry": {
-      "Energy": "エナジー"
-    },
-    "Ingredient": {
-      "Energy": "エナジー"
-    },
     "Map": {
       "Unique": "マップ限定",
-      "Energy": "エナジー",
       "Pokemon": "ポケモン",
       "SleepStyle": "寝顔",
       "SleepStylesUnlocked": "寝顔解放数",

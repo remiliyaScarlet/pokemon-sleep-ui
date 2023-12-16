@@ -22,7 +22,8 @@
     "Rewards": "Rewards",
     "Shiny": "Shiny",
     "SnorlaxFavorite": "Snorlax's Favorite Berries",
-    "Stamina": "Energy"
+    "Stamina": "Energy",
+    "Strength": "Strength"
   },
   "Evolution": {
     "SleepTime": "Time Slept"
@@ -292,15 +293,8 @@
       "Total": "Total",
       "TargetMealCount": "Target Meal Count"
     },
-    "Berry": {
-      "Energy": "Strength"
-    },
-    "Ingredient": {
-      "Energy": "Strength"
-    },
     "Map": {
       "Unique": "Single Map",
-      "Energy": "Strength",
       "Pokemon": "Pokémon",
       "SleepStyle": "Sleep Style",
       "SleepStylesUnlocked": "Sleep Styles Unlocked",

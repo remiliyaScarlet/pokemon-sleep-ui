@@ -22,7 +22,8 @@
     "Rewards": "Belohnung",
     "Shiny": "Schillernd",
     "SnorlaxFavorite": "Lieblingsbeeren dieses Relaxo",
-    "Stamina": "Energie"
+    "Stamina": "Energie",
+    "Strength": "Stärke"
   },
   "Evolution": {
     "SleepTime": "Gemeinsame Schlafdauer"
@@ -293,15 +294,8 @@
       "Total": "Gesamt",
       "TargetMealCount": "Zielzahl der Mahlzeiten"
     },
-    "Berry": {
-      "Energy": "Stärke"
-    },
-    "Ingredient": {
-      "Energy": "Stärke"
-    },
     "Map": {
       "Unique": "einzelnes Gebiet",
-      "Energy": "Stärke",
       "Pokemon": "Pokémon",
       "SleepStyle": "Schlafpose",
       "SleepStylesUnlocked": "Freigeschaltete Schlafstile",
