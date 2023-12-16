@@ -50,7 +50,7 @@ export const PokemonExpCalculatorTable = ({
   });
 
   return (
-    <Flex className="info-section overflow-x-auto">
+    <Flex className="info-section">
       <InputRow className="justify-end gap-2">
         <ToggleButton
           active={showNonBreakthroughLevel}
@@ -68,66 +68,68 @@ export const PokemonExpCalculatorTable = ({
           </Flex>
         </ToggleButton>
       </InputRow>
-      <table className="-m-1 border-separate border-spacing-0.5 text-center">
-        <thead>
-          <tr>
-            <td>
-              <Flex direction="row" center>
-                <LevelIcon dimension={dimension}/>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt="EXP" src="/images/generic/exp.png" dimension={dimension}/>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t('NormalCandy')} src="/images/generic/candyWhite.png" dimension={dimension}/>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
-                <div>S</div>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
-                <div>M</div>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
-                <div>L</div>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
-              </Flex>
-            </td>
-            <td>
-              <Flex direction="row" center>
-                <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
-                <span>/</span>
-                <GenericIcon alt="EXP" src="/images/generic/exp.png" dimension={dimension}/>
-              </Flex>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          {getLevelUpRequirementsAccumulated(levelUpRequirements).map((data) => (
-            <PokemonExpCalculatorTableRow
-              key={data.lv}
-              input={filter}
-              data={data}
-            />
-          ))}
-        </tbody>
-      </table>
+      <Flex className="overflow-x-auto overflow-y-hidden">
+        <table className="border-separate border-spacing-0.5 text-center [&_td]:px-1.5">
+          <thead>
+            <tr>
+              <td>
+                <Flex direction="row" center>
+                  <LevelIcon dimension={dimension}/>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt="EXP" src="/images/generic/exp.png" dimension={dimension}/>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t('NormalCandy')} src="/images/generic/candyWhite.png" dimension={dimension}/>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
+                  <div>S</div>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
+                  <div>M</div>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t('HandyCandy')} src="/images/generic/candy.png" dimension={dimension} noInvert/>
+                  <div>L</div>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
+                </Flex>
+              </td>
+              <td>
+                <Flex direction="row" center>
+                  <GenericIcon alt={t2('DreamShards')} src="/images/generic/shardWhite.png" dimension={dimension}/>
+                  <span>/</span>
+                  <GenericIcon alt="EXP" src="/images/generic/exp.png" dimension={dimension}/>
+                </Flex>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {getLevelUpRequirementsAccumulated(levelUpRequirements).map((data) => (
+              <PokemonExpCalculatorTableRow
+                key={data.lv}
+                input={filter}
+                data={data}
+              />
+            ))}
+          </tbody>
+        </table>
+      </Flex>
     </Flex>
   );
 };

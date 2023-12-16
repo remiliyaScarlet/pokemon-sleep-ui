@@ -25,7 +25,7 @@ export const PokemonExpCalculatorTableRow = ({input, data}: Props) => {
   }
 
   return (
-    <tr className={clsx('[&>td]:px-1', isBreakthroughLevel && 'bg-blink')}>
+    <tr className={clsx(isBreakthroughLevel && 'bg-blink')}>
       <td>{lv}</td>
       <td>{formatInt(xp)}</td>
       <td>
