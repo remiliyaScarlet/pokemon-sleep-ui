@@ -8,13 +8,10 @@ import {LevelIcon} from '@/components/shared/icon/lv';
 import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
 import {NumberSliderRequired} from '@/components/shared/input/number/required/withSlider';
 import {iconFilterButtonStyle} from '@/styles/input';
+import {pokemonKeyLevels} from '@/types/game/pokemon/level';
 
 
-type Props = Omit<NumberSliderRequiredProps, 'text'> & {
-  presetLevels?: number[],
-};
-
-export const PokemonLevelSlider = ({presetLevels, ...props}: Props) => {
+export const PokemonLevelSlider = (props: Omit<NumberSliderRequiredProps, 'text'>) => {
   const {setValue} = props;
 
   const t = useTranslations('UI.InPage.Pokedex.Info');
@@ -25,21 +22,18 @@ export const PokemonLevelSlider = ({presetLevels, ...props}: Props) => {
         text={t('PokemonLevel')}
         {...props}
       />
-      {
-        presetLevels?.length &&
-        <FilterTextInput
-          title={
-            <Flex center>
-              <LevelIcon/>
-            </Flex>
-          }
-          ids={presetLevels.sort((a, b) => a - b)}
-          idToText={(level) => level.toString()}
-          onClick={setValue}
-          isActive={() => false}
-          className={iconFilterButtonStyle}
-        />
-      }
+      <FilterTextInput
+        title={
+          <Flex center>
+            <LevelIcon/>
+          </Flex>
+        }
+        ids={[...pokemonKeyLevels].sort((a, b) => a - b)}
+        idToText={(level) => level.toString()}
+        onClick={setValue}
+        isActive={() => false}
+        className={iconFilterButtonStyle}
+      />
     </Flex>
   );
 };

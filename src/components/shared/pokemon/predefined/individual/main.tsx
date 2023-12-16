@@ -7,7 +7,6 @@ import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector
 import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {PokemonIndividualSelectorButtonProps} from '@/components/shared/pokemon/selector/type';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
-import {ingredientLevels} from '@/types/game/pokemon/ingredient';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
@@ -39,7 +38,6 @@ export const PokemonIndividualParamsPicker = ({
           level,
         }))}
         max={maxLevel}
-        presetLevels={[...ingredientLevels]}
         noSameLine
       />
       <Flex className="gap-1.5 sm:flex-row">
