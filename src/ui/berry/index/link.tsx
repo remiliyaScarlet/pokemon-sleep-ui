@@ -4,10 +4,9 @@ import {useTranslations} from 'next-intl';
 
 import {Link} from '@/components/i18n/exports';
 import {Flex} from '@/components/layout/flex/common';
-import {NextImage} from '@/components/shared/common/image/main';
 import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonTypeIcon} from '@/components/shared/icon/pokeType';
-import {imageSmallIconSizes} from '@/styles/image';
+import {PokemonBerryIconNoLink} from '@/components/shared/pokemon/berry/iconNoLink';
 import {BerryData} from '@/types/game/berry';
 import {formatInt} from '@/utils/number/format';
 
@@ -32,9 +31,7 @@ export const BerryLink = ({berryData}: Props) => {
           <div className="absolute bottom-0 right-1">
             <PokemonTypeIcon type={id} dimension="h-8 w-8"/>
           </div>
-          <div className="relative h-12 w-12">
-            <NextImage src={`/images/berry/${id}.png`} alt={berryName} sizes={imageSmallIconSizes}/>
-          </div>
+          <PokemonBerryIconNoLink id={id} dimension="h-12 w-12"/>
         </Flex>
         <div className="whitespace-nowrap p-1">
           {berryName}
