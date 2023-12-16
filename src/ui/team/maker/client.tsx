@@ -23,7 +23,8 @@ import {
 import {useTeamMaker} from '@/ui/team/maker/hook/main';
 import {TeamMakerInputUI} from '@/ui/team/maker/input';
 import {TeamMakerResults} from '@/ui/team/maker/result/main';
-import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
+import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerInput} from '@/ui/team/maker/type/input';
 import {isTeamMakerStatusLoading} from '@/ui/team/maker/utils';
 
 

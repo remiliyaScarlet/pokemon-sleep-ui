@@ -8,7 +8,7 @@ import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientProduction} from '@/components/shared/pokemon/production/ingredient';
 import {TeamMakerResultButtonFinalEstimate} from '@/ui/team/maker/result/button/finalEstimate';
 import {TeamMakerIngredientSatisfactionIndicator} from '@/ui/team/maker/result/button/satisfyIngredients';
-import {TeamMakerResultComp} from '@/ui/team/maker/type';
+import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
 import {formatFloat} from '@/utils/number/format';
 
 

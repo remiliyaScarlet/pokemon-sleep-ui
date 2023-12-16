@@ -1,5 +1,5 @@
 import {teamMakerMaxResultCount} from '@/ui/team/maker/const';
-import {TeamMakerResultComp} from '@/ui/team/maker/type';
+import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
 
 
 export const reduceTeamMakerResultComp = (comps: TeamMakerResultComp[]): TeamMakerResultComp[] => {

@@ -6,7 +6,7 @@ import ExclamationCircleIcon from '@heroicons/react/24/outline/ExclamationCircle
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
 import {IngredientIcons} from '@/components/shared/meal/ingredients/icons';
 import {Dimension} from '@/types/style';
-import {TeamMakerIngredientStats} from '@/ui/team/maker/calc/type';
+import {TeamMakerIngredientStats} from '@/ui/team/maker/type/common';
 import {toProducingItemFromIngredientCounter} from '@/utils/game/cooking';
 import {formatInt} from '@/utils/number/format';
 

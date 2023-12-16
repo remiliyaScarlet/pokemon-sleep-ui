@@ -1,5 +1,5 @@
 import {teamMakerMaxMemberCount} from '@/ui/team/maker/calc/const';
-import {TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
+import {TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
 import {toSum} from '@/utils/array';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 

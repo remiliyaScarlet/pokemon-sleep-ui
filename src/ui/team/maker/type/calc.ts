@@ -1,6 +1,7 @@
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
-import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/calc/type';
-import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
+import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
+import {TeamMakerInput} from '@/ui/team/maker/type/input';
 
 
 export type TeamMakerCalcInitOpts = TeamMakerDataProps & {

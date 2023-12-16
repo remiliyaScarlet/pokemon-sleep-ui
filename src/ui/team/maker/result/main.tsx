@@ -4,7 +4,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {UnavailableIcon} from '@/components/shared/common/unavailable';
 import {TeamMakerResultCompUi} from '@/ui/team/maker/result/comp';
 import {TeamMakerResultCommonProps} from '@/ui/team/maker/result/type';
-import {TeamMakerDataProps, TeamMakerResult} from '@/ui/team/maker/type';
+import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerResult} from '@/ui/team/maker/type/result';
 import {getTeamMakerResultCompId} from '@/ui/team/maker/utils';
 
 

@@ -1,4 +1,4 @@
-import {TeamMakerCalcGenerateCompOpts, TeamMakerCalcGenerateCompReturn} from '@/ui/team/maker/hook/type';
+import {TeamMakerCalcGenerateCompOpts, TeamMakerCalcGenerateCompReturn} from '@/ui/team/maker/type/calc';
 import {combineIterator} from '@/utils/compute';
 
 

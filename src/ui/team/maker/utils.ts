@@ -1,7 +1,8 @@
-import {TeamMakerCalcStatus, TeamMakerResultComp} from '@/ui/team/maker/type';
+import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
+import {TeamMakerStatus} from '@/ui/team/maker/type/state';
 
 
-export const isTeamMakerStatusLoading = (status: TeamMakerCalcStatus) => {
+export const isTeamMakerStatusLoading = (status: TeamMakerStatus) => {
   return status !== 'standby' && status !== 'completed' && status !== 'error';
 };
 

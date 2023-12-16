@@ -21,8 +21,9 @@ import {PokemonCollapsibleFilter} from '@/components/shared/pokemon/predefined/f
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
 import {textFilterButtonStyle} from '@/styles/input';
-import {teamMakerMemberCount} from '@/ui/team/maker/calc/type';
-import {TeamMakerDataProps, TeamMakerInput} from '@/ui/team/maker/type';
+import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {teamMakerMemberCount} from '@/ui/team/maker/type/common';
+import {TeamMakerInput} from '@/ui/team/maker/type/input';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {isNotNullish} from '@/utils/type';
 

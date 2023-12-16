@@ -9,8 +9,9 @@ import {
   TeamMakerCalcInitOpts,
   TeamMakerCalcInitReturn,
   TeamMakerCalcResultsOpts,
-} from '@/ui/team/maker/hook/type';
-import {TeamMakerResult, TeamMakerState} from '@/ui/team/maker/type';
+} from '@/ui/team/maker/type/calc';
+import {TeamMakerResult} from '@/ui/team/maker/type/result';
+import {TeamMakerState} from '@/ui/team/maker/type/state';
 import {getCombinationCount} from '@/utils/compute';
 
 

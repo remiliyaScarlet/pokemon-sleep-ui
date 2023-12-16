@@ -15,7 +15,8 @@ import {TeamMakerIngredientStatsUI} from '@/ui/team/maker/result/ingredient';
 import {TeamMakerSnorlaxRankFinalEstimate} from '@/ui/team/maker/result/snorlaxRank';
 import {TeamMakerResultCommonProps} from '@/ui/team/maker/result/type';
 import {TeamMakerResultUnit} from '@/ui/team/maker/result/unit';
-import {TeamMakerResultComp, TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
 import {formatFloat} from '@/utils/number/format';
 
 
