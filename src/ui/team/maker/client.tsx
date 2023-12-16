@@ -99,9 +99,9 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
       >
         {t('CompCountWarning')}
       </AnimatedCollapseQuick>
-      <LazyLoad loading={isLoading}>
+      <LazyLoad loading={status !== 'calculating' && isLoading}>
         <TeamMakerResults
-          result={isLoading ? null : result}
+          result={result}
           input={input}
           {...props}
         />
