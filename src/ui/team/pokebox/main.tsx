@@ -4,14 +4,14 @@ import {getServerSession} from 'next-auth';
 
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getBerryDataMap, getPokemonMaxLevelByBerry} from '@/controller/berry';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getAllMapMeta} from '@/controller/mapMeta';
-import {getAllMealsAsMap} from '@/controller/meal';
-import {getPokemonAsMap} from '@/controller/pokemon/info';
-import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getFieldMetaMap} from '@/controller/mapMeta';
+import {getMealMap} from '@/controller/meal';
+import {getPokedexMap} from '@/controller/pokemon/info';
+import {getPokemonProducingParamsMap} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
@@ -35,15 +35,15 @@ const Pokebox = async () => {
     pokemonMaxLevel,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokemonAsMap(),
-    getAllPokemonProducingParams(),
+    getPokedexMap(),
+    getPokemonProducingParamsMap(),
     getIngredientChainMap(),
-    getAllBerryData(),
-    getAllIngredients(),
+    getBerryDataMap(),
+    getIngredientMap(),
     getMainSkillMap(),
     getSubSkillMap(),
-    getAllMealsAsMap(),
-    getAllMapMeta(),
+    getMealMap(),
+    getFieldMetaMap(),
     getPokemonMaxLevelByBerry(),
   ]);
 

@@ -4,7 +4,7 @@ import {clsx} from 'clsx';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientMap} from '@/controller/ingredient';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {IngredientLink} from '@/ui/ingredient/index/link';
@@ -12,7 +12,7 @@ import {IngredientLink} from '@/ui/ingredient/index/link';
 
 export const IngredientIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const data = await getAllIngredients();
+  const data = await getIngredientMap();
 
   return (
     <PublicPageLayout locale={locale}>

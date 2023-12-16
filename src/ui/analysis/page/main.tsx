@@ -6,14 +6,14 @@ import {AnalysisPageParams} from '@/app/[locale]/analysis/[id]/page';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
-import {getAllBerryData} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getBerryDataMap} from '@/controller/berry';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getAllMapMeta} from '@/controller/mapMeta';
-import {getAllMealsAsMap} from '@/controller/meal';
-import {getAllPokemonAsArray} from '@/controller/pokemon/info';
-import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getFieldMetaMap} from '@/controller/mapMeta';
+import {getMealMap} from '@/controller/meal';
+import {getAllPokemon} from '@/controller/pokemon/info';
+import {getPokemonProducingParamsMap} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {AnalysisPageClient} from '@/ui/analysis/page/client';
 import {AnalysisPageCommonProps} from '@/ui/analysis/page/type';
@@ -40,15 +40,15 @@ export const AnalysisPage = async ({params}: Props) => {
     mapMeta,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getAllPokemonAsArray(),
-    getAllPokemonProducingParams(),
-    getAllBerryData(),
+    getAllPokemon(),
+    getPokemonProducingParamsMap(),
+    getBerryDataMap(),
     getIngredientChainMap(),
-    getAllIngredients(),
+    getIngredientMap(),
     getMainSkillMap(),
     getSleepStyleNormalMap(),
-    getAllMealsAsMap(),
-    getAllMapMeta(),
+    getMealMap(),
+    getFieldMetaMap(),
   ]);
 
   const pokemon = pokemonList.find((pokemon) => pokemon.id === Number(id));

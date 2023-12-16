@@ -15,7 +15,7 @@ const getCollection = async (): Promise<Collection<Meal>> => {
 
 export const getAllMeals = (): Promise<Meal[]> => getDataAsArray(getCollection());
 
-export const getAllMealsAsMap = (): Promise<MealMap> => getDataAsMap(getCollection(), ({id}) => id);
+export const getMealMap = (): Promise<MealMap> => getDataAsMap(getCollection(), ({id}) => id);
 
 const addIndex = async () => {
   const collection = await getCollection();

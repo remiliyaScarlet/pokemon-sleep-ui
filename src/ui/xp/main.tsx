@@ -3,9 +3,9 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
-import {getPokemonAsMap} from '@/controller/pokemon/info';
+import {getPokedexMap} from '@/controller/pokemon/info';
 import {getExpShardConsumption} from '@/controller/pokemon/xpShard';
-import {getAllExpValueSorted} from '@/controller/pokemon/xpValue';
+import {getPokemonExpValueMap} from '@/controller/pokemon/xpValue';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PokemonExpCalculatorClient} from '@/ui/xp/client';
@@ -20,8 +20,8 @@ export const PokemonExpCalculator = async ({params}: DefaultPageProps) => {
     xpValueData,
     xpShardConsumption,
   ] = await Promise.all([
-    getPokemonAsMap(),
-    getAllExpValueSorted(),
+    getPokedexMap(),
+    getPokemonExpValueMap(),
     getExpShardConsumption(),
   ]);
 

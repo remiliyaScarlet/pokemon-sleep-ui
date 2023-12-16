@@ -6,7 +6,7 @@ import {AdsUnit} from '@/components/ads/main';
 import {SignIn} from '@/components/auth/signIn';
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {getAllPokemonAsArray} from '@/controller/pokemon/info';
+import {getAllPokemon} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialMap} from '@/controller/sleepStyleSpecial';
@@ -31,7 +31,7 @@ export const Sleepdex = async ({params}: DefaultPageProps) => {
     sleepStyleSpecialMap,
     sleepdex,
   ] = await Promise.all([
-    getAllPokemonAsArray(),
+    getAllPokemon(),
     getSleepStyleNormalMap(),
     getSleepStyleSpecialMap(),
     getSleepdexMap(session.user.id),

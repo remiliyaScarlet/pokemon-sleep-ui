@@ -6,15 +6,15 @@ import {BerryPageParams} from '@/app/[locale]/berry/[id]/page';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Failed} from '@/components/icons/failed';
 import {authOptions} from '@/const/auth';
-import {getAllBerryData, getBerryData} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getBerryDataMap, getBerryData} from '@/controller/berry';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
 import {getFavoriteInfoOfBerry} from '@/controller/mapMeta';
-import {getAllMealsAsMap} from '@/controller/meal';
-import {getPokemonAsMap, getPokemonByBerry} from '@/controller/pokemon/info';
+import {getMealMap} from '@/controller/meal';
+import {getPokedexMap, getPokemonByBerry} from '@/controller/pokemon/info';
 import {getPokemonIngredientProductionByBerry} from '@/controller/pokemon/ingredient';
-import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getPokemonProducingParamsMap} from '@/controller/pokemon/producing';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryPageClient} from '@/ui/berry/page/client';
@@ -46,15 +46,15 @@ export const BerryPage = async ({params}: Props) => {
     favoriteInfo,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokemonAsMap(),
-    getAllPokemonProducingParams(),
+    getPokedexMap(),
+    getPokemonProducingParamsMap(),
     getPokemonIngredientProductionByBerry(idNumber),
-    getAllBerryData(),
-    getAllIngredients(),
+    getBerryDataMap(),
+    getIngredientMap(),
     getIngredientChainMap(),
     getMainSkillMap(),
     getSubSkillMap(),
-    getAllMealsAsMap(),
+    getMealMap(),
     getPokemonByBerry(idNumber),
     getBerryData(idNumber),
     getFavoriteInfoOfBerry(idNumber),

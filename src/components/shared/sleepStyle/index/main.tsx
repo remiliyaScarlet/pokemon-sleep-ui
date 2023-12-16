@@ -5,7 +5,7 @@ import {getServerSession} from 'next-auth';
 import {MapIndexContent} from '@/components/shared/sleepStyle/index/content';
 import {MapIndexServerDataProps} from '@/components/shared/sleepStyle/index/type';
 import {authOptions} from '@/const/auth';
-import {getAllMapMeta} from '@/controller/mapMeta';
+import {getFieldMetaMap} from '@/controller/mapMeta';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {FieldToFlattenedSleepStyleMap} from '@/types/game/sleepStyle';
 
@@ -25,7 +25,7 @@ export const MapIndex = async ({getDataPromise, isUnique}: Props) => {
   ] = await Promise.all([
     getDataPromise(),
     getSleepdexMap(session?.user.id),
-    getAllMapMeta(),
+    getFieldMetaMap(),
   ]);
 
   const props: MapIndexServerDataProps = {

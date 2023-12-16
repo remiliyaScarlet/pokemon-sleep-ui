@@ -3,10 +3,10 @@ import React from 'react';
 import {AdsUnit} from '@/components/ads/main';
 import {I18nProvider} from '@/components/i18n/provider';
 import {Flex} from '@/components/layout/flex/common';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
-import {getAllPokemonAsArray} from '@/controller/pokemon/info';
-import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getAllPokemon} from '@/controller/pokemon/info';
+import {getPokemonProducingParamsMap} from '@/controller/pokemon/producing';
 import {getPokemonProducingParamsMeta} from '@/controller/pokemon/producingMeta';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -25,10 +25,10 @@ export const ProducingParams = async ({params}: DefaultPageProps) => {
     ingredientMap,
     ingredientChainMap,
   ] = await Promise.all([
-    getAllPokemonAsArray(),
-    getAllPokemonProducingParams(),
+    getAllPokemon(),
+    getPokemonProducingParamsMap(),
     getPokemonProducingParamsMeta(),
-    getAllIngredients(),
+    getIngredientMap(),
     getIngredientChainMap(),
   ]);
 

@@ -1,4 +1,4 @@
-import {getAllBerryData} from '@/controller/berry';
+import {getBerryDataMap} from '@/controller/berry';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
 import {BerryPage} from '@/ui/berry/page/main';
@@ -7,7 +7,7 @@ import {generatePageMeta} from '@/utils/meta';
 
 
 export const generateStaticParams: GenerateStaticParamsFunc<BerryPageParams> = async () => {
-  return Object.values(await getAllBerryData()).map(({id}) => ({id: id.toString()}));
+  return Object.values(await getBerryDataMap()).map(({id}) => ({id: id.toString()}));
 };
 
 export type BerryPageParams = GenerateMetadataParams & {

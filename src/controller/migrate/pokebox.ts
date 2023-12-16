@@ -1,7 +1,7 @@
 import {AnyBulkWriteOperation, Collection} from 'mongodb';
 
 import {getIngredientChainMap} from '@/controller/ingredientChain';
-import {getPokemonAsMap} from '@/controller/pokemon/info';
+import {getPokedexMap} from '@/controller/pokemon/info';
 import {
   IngredientChain,
   IngredientLevel,
@@ -67,7 +67,7 @@ const migrateRandomIngredients = async ({
   }
 
   const [pokedex, ingredientChainMap] = await Promise.all([
-    getPokemonAsMap(),
+    getPokedexMap(),
     getIngredientChainMap(),
   ]);
 
@@ -117,7 +117,7 @@ const migrateCarryLimitToEvolutionCount = async ({
   }
 
   const [pokedex] = await Promise.all([
-    getPokemonAsMap(),
+    getPokedexMap(),
   ]);
 
   const bulkUpdate: AnyBulkWriteOperation<PokeInBoxData>[] = [];

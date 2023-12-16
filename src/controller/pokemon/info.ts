@@ -20,11 +20,11 @@ export const getSinglePokemonInfo = async (id: number) => (
   getSingleData(getCollection(), {id})
 );
 
-export const getAllPokemonAsArray = async (): Promise<PokemonInfo[]> => {
+export const getAllPokemon = async (): Promise<PokemonInfo[]> => {
   return getDataAsArray(getCollection());
 };
 
-export const getPokemonAsMap = async (ids?: PokemonId[]): Promise<PokedexMap> => {
+export const getPokedexMap = async (ids?: PokemonId[]): Promise<PokedexMap> => {
   return getDataAsMap(getCollection(), ({id}) => id, ids ? {id: {$in: ids}} : {});
 };
 

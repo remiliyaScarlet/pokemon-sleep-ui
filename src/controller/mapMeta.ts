@@ -15,7 +15,7 @@ const getCollection = async (): Promise<Collection<MapMeta>> => {
     .collection<MapMeta>('meta');
 };
 
-export const getAllMapMeta = async (): Promise<FieldMetaMap> => {
+export const getFieldMetaMap = async (): Promise<FieldMetaMap> => {
   return getDataAsMap(getCollection(), ({mapId}) => mapId);
 };
 

@@ -4,7 +4,7 @@ import {getServerSession} from 'next-auth';
 
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {getPokemonAsMap} from '@/controller/pokemon/info';
+import {getPokedexMap} from '@/controller/pokemon/info';
 import {getSleepdexMap} from '@/controller/sleepdex';
 import {getSleepStyleSpecialMap} from '@/controller/sleepStyleSpecial';
 import {DefaultPageProps} from '@/types/next/page/common';
@@ -21,7 +21,7 @@ export const SleepStyleSpecial = async ({params}: DefaultPageProps) => {
     sleepdexMap,
     sleepStyleSpecialMap,
   ] = await Promise.all([
-    getPokemonAsMap(),
+    getPokedexMap(),
     getSleepdexMap(session?.user.id),
     getSleepStyleSpecialMap(),
   ]);

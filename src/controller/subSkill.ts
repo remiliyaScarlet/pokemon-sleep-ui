@@ -2,7 +2,7 @@ import {Collection} from 'mongodb';
 
 import {getDataAsArray, getDataAsMap} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {SubSkillData} from '@/types/game/pokemon/subSkill';
+import {SubSkillData, SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
 const getCollection = async (): Promise<Collection<SubSkillData>> => {
@@ -13,11 +13,11 @@ const getCollection = async (): Promise<Collection<SubSkillData>> => {
     .collection<SubSkillData>('sub');
 };
 
-export const getAllSubSkillData = async () => {
+export const getAllSubSkillData = async (): Promise<SubSkillData[]> => {
   return getDataAsArray(getCollection());
 };
 
-export const getSubSkillMap = async () => {
+export const getSubSkillMap = async (): Promise<SubSkillMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };
 

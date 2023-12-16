@@ -38,7 +38,7 @@ export const getAnnouncementsOfLocale = async (locale: Locale | null): Promise<A
   return getDataAsArray(getCollection(), {locale: locale ?? defaultLocale}, {order: -1});
 };
 
-export const getAllAnnouncements = async (): Promise<AnnouncementMap> => {
+export const getAnnouncementMap = async (): Promise<AnnouncementMap> => {
   return getDataAsMap(getCollection(), ({uuid}) => uuid);
 };
 

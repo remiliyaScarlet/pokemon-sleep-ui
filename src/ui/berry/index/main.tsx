@@ -2,7 +2,7 @@ import React from 'react';
 
 import {AdsUnit} from '@/components/ads/main';
 import {Grid} from '@/components/layout/grid';
-import {getAllBerryData} from '@/controller/berry';
+import {getBerryDataMap} from '@/controller/berry';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {BerryLink} from '@/ui/berry/index/link';
@@ -10,7 +10,7 @@ import {BerryLink} from '@/ui/berry/index/link';
 
 export const BerryIndex = async ({params}: DefaultPageProps) => {
   const {locale} = params;
-  const berryDataMap = await getAllBerryData();
+  const berryDataMap = await getBerryDataMap();
 
   return (
     <PublicPageLayout locale={locale}>

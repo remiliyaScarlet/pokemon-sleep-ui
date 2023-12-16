@@ -4,14 +4,14 @@ import {getServerSession} from 'next-auth';
 
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {getAllBerryData, getPokemonMaxLevelByBerry} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getBerryDataMap, getPokemonMaxLevelByBerry} from '@/controller/berry';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getAllMapMeta} from '@/controller/mapMeta';
-import {getAllMealsAsMap} from '@/controller/meal';
-import {getAllPokemonAsArray} from '@/controller/pokemon/info';
-import {getAllPokemonProducingParams} from '@/controller/pokemon/producing';
+import {getFieldMetaMap} from '@/controller/mapMeta';
+import {getMealMap} from '@/controller/meal';
+import {getAllPokemon} from '@/controller/pokemon/info';
+import {getPokemonProducingParamsMap} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {locales} from '@/types/next/locale';
 import {DefaultPageProps} from '@/types/next/page/common';
@@ -30,7 +30,7 @@ const getPokedexData = async (): Promise<PokedexData> => {
       .map((locale) => getI18nTranslator({locale, namespace: 'Game.PokemonName'})),
   );
 
-  return (await getAllPokemonAsArray())
+  return (await getAllPokemon())
     .map((pokemon) => ({
       ...pokemon,
       sleepStyles: sleepStyleMap[pokemon.id] ?? [],
@@ -54,14 +54,14 @@ export const Pokedex = async ({params}: DefaultPageProps) => {
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokedexData(),
-    getAllPokemonProducingParams(),
+    getPokemonProducingParamsMap(),
     getPokemonMaxLevelByBerry(),
-    getAllBerryData(),
-    getAllIngredients(),
+    getBerryDataMap(),
+    getIngredientMap(),
     getIngredientChainMap(),
     getMainSkillMap(),
-    getAllMealsAsMap(),
-    getAllMapMeta(),
+    getMealMap(),
+    getFieldMetaMap(),
   ]);
 
   const props: PokedexDataProps = {

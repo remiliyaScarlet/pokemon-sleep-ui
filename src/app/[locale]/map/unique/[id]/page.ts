@@ -1,4 +1,4 @@
-import {getAllMapMeta} from '@/controller/mapMeta';
+import {getFieldMetaMap} from '@/controller/mapMeta';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
 import {MapUniquePage} from '@/ui/sleepStyle/mapUnique/page';
@@ -8,7 +8,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const generateStaticParams: GenerateStaticParamsFunc<UniqueMapParams> = async () => {
-  return Object.values(await getAllMapMeta())
+  return Object.values(await getFieldMetaMap())
     .filter(isNotNullish)
     .map(({mapId}) => ({id: mapId.toString()}));
 };

@@ -7,7 +7,7 @@ import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
 import {getIngredientIds} from '@/controller/ingredient';
 import {getMapIds} from '@/controller/mapMeta';
-import {getAllMealsAsMap} from '@/controller/meal';
+import {getMealMap} from '@/controller/meal';
 import {NavBarClient} from '@/ui/base/navbar/client';
 import {NavBarCommonProps} from '@/ui/base/navbar/type';
 import {getPossibleMealTypes} from '@/utils/game/mealType';
@@ -26,7 +26,7 @@ export const NavBar = ({noUserControl, locale, announcement}: Props) => {
     ingredientIds,
   ] = React.use(Promise.all([
     getServerSession(authOptions),
-    getAllMealsAsMap(),
+    getMealMap(),
     getMapIds(),
     getIngredientIds(),
   ]));

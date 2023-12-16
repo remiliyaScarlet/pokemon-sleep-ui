@@ -1,4 +1,4 @@
-import {getAllPokemonAsArray} from '@/controller/pokemon/info';
+import {getAllPokemon} from '@/controller/pokemon/info';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
 import {AnalysisPage} from '@/ui/analysis/page/main';
@@ -7,7 +7,7 @@ import {generatePageMeta} from '@/utils/meta';
 
 
 export const generateStaticParams: GenerateStaticParamsFunc<AnalysisPageParams> = async () => {
-  return (await getAllPokemonAsArray()).map(({id}) => ({id: id.toString()}));
+  return (await getAllPokemon()).map(({id}) => ({id: id.toString()}));
 };
 
 export type AnalysisPageParams = GenerateMetadataParams & {

@@ -4,8 +4,8 @@ import {getServerSession} from 'next-auth';
 
 import {I18nProvider} from '@/components/i18n/provider';
 import {authOptions} from '@/const/auth';
-import {getAllIngredients} from '@/controller/ingredient';
-import {getAllMealsAsMap} from '@/controller/meal';
+import {getIngredientMap} from '@/controller/ingredient';
+import {getMealMap} from '@/controller/meal';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {PotInfoClient} from '@/ui/info/pot/client';
@@ -21,8 +21,8 @@ export const PotInfo = async ({params}: DefaultPageProps) => {
     ingredientMap,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getAllMealsAsMap(),
-    getAllIngredients(),
+    getMealMap(),
+    getIngredientMap(),
   ]);
 
   const props: PotInfoDataProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getAllAnnouncements} from '@/controller/announcement';
+import {getAnnouncementMap} from '@/controller/announcement';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {AdminAnnouncementClient} from '@/ui/admin/announcement/client';
 import {AdminAnnouncementServerDataProps} from '@/ui/admin/announcement/type';
@@ -9,7 +9,7 @@ import {AdminOnlyPageLayout} from '@/ui/base/layout/adminOnly';
 
 const AdminAnnouncementInternal = async () => {
   const props: AdminAnnouncementServerDataProps = {
-    preloaded: await getAllAnnouncements(),
+    preloaded: await getAnnouncementMap(),
   };
 
   return <AdminAnnouncementClient {...props}/>;

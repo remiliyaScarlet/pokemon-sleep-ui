@@ -21,7 +21,7 @@ export const getIngredientIds = async () => {
   return (await getCollection()).find({}, {projection: {id: 1}}).map(({id}) => id).toArray();
 };
 
-export const getAllIngredients = async (): Promise<IngredientMap> => {
+export const getIngredientMap = async (): Promise<IngredientMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };
 

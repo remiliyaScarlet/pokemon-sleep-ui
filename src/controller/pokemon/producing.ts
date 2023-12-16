@@ -18,7 +18,7 @@ export const getSinglePokemonProducingParams = async (pokemonId: number): Promis
   return await getSingleData(getCollection(), {pokemonId}) ?? {pokemonId, ...defaultProducingParams};
 };
 
-export const getAllPokemonProducingParams = async (): Promise<PokemonProducingParamsMap> => (
+export const getPokemonProducingParamsMap = async (): Promise<PokemonProducingParamsMap> => (
   getDataAsMap(getCollection(), ({pokemonId}) => pokemonId)
 );
 

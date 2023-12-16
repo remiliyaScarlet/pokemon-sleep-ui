@@ -17,7 +17,7 @@ export const getBerryData = async (id: BerryId): Promise<BerryData | null> => (
   getSingleData(getCollection(), {id})
 );
 
-export const getAllBerryData = async (): Promise<BerryDataMap> => {
+export const getBerryDataMap = async (): Promise<BerryDataMap> => {
   return getDataAsMap(getCollection(), ({id}) => id);
 };
 

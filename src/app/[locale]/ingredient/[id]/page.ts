@@ -1,4 +1,4 @@
-import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientMap} from '@/controller/ingredient';
 import {GenerateMetadata, GenerateMetadataParams} from '@/types/next/metadata';
 import {GenerateStaticParamsFunc} from '@/types/next/static';
 import {IngredientPage} from '@/ui/ingredient/page/main';
@@ -8,7 +8,7 @@ import {isNotNullish} from '@/utils/type';
 
 
 export const generateStaticParams: GenerateStaticParamsFunc<IngredientPageParams> = async () => {
-  return Object.values(await getAllIngredients())
+  return Object.values(await getIngredientMap())
     .filter(isNotNullish)
     .map(({id}) => ({id: id.toString()}));
 };

@@ -9,12 +9,12 @@ import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {getBerryData} from '@/controller/berry';
-import {getAllIngredients} from '@/controller/ingredient';
+import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
-import {getAllMealsAsMap} from '@/controller/meal';
+import {getMealMap} from '@/controller/meal';
 import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
-import {getPokemonAsMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
+import {getPokedexMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalList} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
@@ -55,16 +55,16 @@ export const Pokemon = async ({params}: Props) => {
     mealMap,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokemonAsMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
+    getPokedexMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
     getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
     getSleepStyleNormalList(idNumber),
     getSleepStyleSpecialList(idNumber),
     getBerryData(pokemon.berry.id),
-    getAllIngredients(),
+    getIngredientMap(),
     getMainSkillMap(),
     getSubSkillMap(),
-    getAllMealsAsMap(),
+    getMealMap(),
   ]);
 
   if (!berryData) {

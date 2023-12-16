@@ -13,7 +13,7 @@ const getCollection = async (): Promise<Collection<PokemonExpValueData>> => {
     .collection<PokemonExpValueData>('xp/value');
 };
 
-export const getAllExpValueSorted = async (): Promise<PokemonExpValueMap> => {
+export const getPokemonExpValueMap = async (): Promise<PokemonExpValueMap> => {
   return getDataAsMap(getCollection(), ({type}) => type);
 };
 
