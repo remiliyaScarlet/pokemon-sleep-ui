@@ -63,3 +63,13 @@ export const capIngredientCount = (
     return [id, Math.min(count, max[parseInt(id)] ?? Infinity)];
   }).filter(isNotNullish));
 };
+
+export const applyMultiplierToIngredientCount = (multiplier: number, target: IngredientCounter): IngredientCounter => {
+  return Object.fromEntries(Object.entries(target).map(([id, count]) => {
+    if (!count) {
+      return null;
+    }
+
+    return [id, count * multiplier];
+  }).filter(isNotNullish));
+};
