@@ -19,7 +19,6 @@ export const usePokeboxImporterFilter = ({
     initialFilter: {
       ...generatePokemonInputFilter({
         isLevelAgnostic: false,
-        // Global `defaultLevel` might be higher than `1`, filtering out some Pokemon by default, which is undesired
         defaultPokemonLevel: 1,
       }),
       name: '',

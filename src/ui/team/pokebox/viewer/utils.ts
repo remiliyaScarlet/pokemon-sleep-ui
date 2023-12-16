@@ -16,7 +16,6 @@ import {pokeboxDisplayMigrators} from '@/utils/migrate/pokeboxDisplay/migrators'
 export const generatePokeboxViewerFilter = (preloaded: PokeboxDataProps['preloaded']): PokeboxViewerFilter => ({
   ...generatePokemonInputFilter({
     isLevelAgnostic: false,
-    // Global `defaultLevel` might be higher than `1`, filtering out some Pokemon by default, which is undesired
     defaultPokemonLevel: 1,
   }),
   name: '',
