@@ -8,13 +8,20 @@ import {Flex} from '@/components/layout/flex/common';
 
 type Props = {
   onClick: () => void,
+  disabled?: boolean,
+  ref?: React.ForwardedRef<HTMLButtonElement>,
 };
 
-export const ButtonToStartTheSorcery = ({onClick}: Props) => {
+const ButtonToStartTheSorceryInternal = ({
+  onClick,
+  disabled,
+}: Props, ref: React.ForwardedRef<HTMLButtonElement>) => {
   return (
-    <button onClick={onClick} className={clsx(
-      'button-base button-bg-hover w-full p-1',
-      'bg-purple-400/50 hover:bg-purple-400 dark:bg-purple-600/50 dark:hover:bg-purple-600',
+    <button ref={ref} onClick={onClick} disabled={disabled} className={clsx(
+      'button-base w-full p-1',
+      'enabled:bg-purple-400/50 enabled:hover:bg-purple-400',
+      'enabled:dark:bg-purple-600/50 enabled:dark:hover:bg-purple-600',
+      'disabled:button-disabled',
     )}>
       <Flex center>
         <BeakerIcon className="h-9 w-9"/>
@@ -22,3 +29,5 @@ export const ButtonToStartTheSorcery = ({onClick}: Props) => {
     </button>
   );
 };
+
+export const ButtonToStartTheSorcery = React.forwardRef(ButtonToStartTheSorceryInternal);
