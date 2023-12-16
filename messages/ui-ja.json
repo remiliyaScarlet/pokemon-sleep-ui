@@ -333,6 +333,14 @@
           "IngredientRequirements": {
             "Pass": "食材条件⭕",
             "Fail": "食材条件❌"
+          },
+          "Status": {
+            "Standby": "Ready",
+            "Initializing": "Initializing",
+            "GeneratingTeams": "Generating Teams",
+            "Calculating": "Calculating",
+            "Completed": "Completed",
+            "Error": "Error"
           }
         },
         "Behavior": {

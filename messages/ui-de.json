@@ -334,6 +334,14 @@
           "IngredientRequirements": {
             "Pass": "Satisfies ingredient requirements",
             "Fail": "Does not satisfy ingredient requirements"
+          },
+          "Status": {
+            "Standby": "Ready",
+            "Initializing": "Initializing",
+            "GeneratingTeams": "Generating Teams",
+            "Calculating": "Calculating",
+            "Completed": "Completed",
+            "Error": "Error"
           }
         },
         "Behavior": {

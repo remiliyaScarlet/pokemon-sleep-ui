@@ -2,6 +2,7 @@
 import React from 'react';
 
 import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
+import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 import {useTranslations} from 'next-intl';
 
@@ -10,10 +11,15 @@ import {AnimatedCollapseQuick} from '@/components/layout/collapsible/animatedQui
 import {Flex} from '@/components/layout/flex/common';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {ProgressBar} from '@/components/progressBar';
+import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
 import {CompletionResultUI} from '@/components/shared/completion/main';
 import {generatePokemonInputFilter} from '@/components/shared/pokemon/filter/utils';
 import {useUserSettings} from '@/hooks/userData/settings';
-import {teamMakerCompCountWarningThreshold} from '@/ui/team/maker/const';
+import {
+  teamMakerCompCountWarningThreshold,
+  teamMakerStatusI18nId,
+  teamMakerStatusStyle,
+} from '@/ui/team/maker/const';
 import {useTeamMaker} from '@/ui/team/maker/hook/main';
 import {TeamMakerInputUI} from '@/ui/team/maker/input';
 import {TeamMakerResults} from '@/ui/team/maker/result/main';
@@ -64,11 +70,20 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
       <TeamMakerInputUI
         input={input}
         setInput={setInput}
-        onRun={() => calculateTeam({...props, input, settings})}
         {...props}
       />
+      <ButtonToStartTheSorcery
+        ref={resultsRef}
+        onClick={() => calculateTeam({...props, input, settings})}
+        disabled={isLoading}
+      />
       <AdsUnit/>
-      <div ref={resultsRef}/>
+      <Flex center className={clsx(
+        'transform-smooth rounded-lg p-1 text-lg shadow-border',
+        teamMakerStatusStyle[status],
+      )}>
+        {t(teamMakerStatusI18nId[status])}
+      </Flex>
       <AnimatedCollapseQuick show={teamCompsCalculated !== null || teamCompsTotal !== null}>
         <Flex direction="row" className="justify-end gap-1.5">
           <UserGroupIcon className="h-6 w-6"/>

@@ -333,6 +333,14 @@
           "IngredientRequirements": {
             "Pass": "可滿足食材需求",
             "Fail": "無法滿足食材需求"
+          },
+          "Status": {
+            "Standby": "就緒",
+            "Initializing": "初始化中",
+            "GeneratingTeams": "產生隊伍中",
+            "Calculating": "計算產量中",
+            "Completed": "完成",
+            "Error": "發生錯誤"
           }
         },
         "Behavior": {

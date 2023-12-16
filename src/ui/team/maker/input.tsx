@@ -12,7 +12,6 @@ import {getSingleSelectOnClickProps} from '@/components/input/filter/utils/props
 import {ToggleButton} from '@/components/input/toggleButton';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
-import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
 import {GenericIcon} from '@/components/shared/icon/common/main';
 import {IngredientInventoryInput} from '@/components/shared/input/ingredient/inventory';
 import {MealTypeInput} from '@/components/shared/input/mealType';
@@ -31,10 +30,9 @@ import {isNotNullish} from '@/utils/type';
 export type TeamMakerInputProps = TeamMakerDataProps & {
   input: TeamMakerInput,
   setInput: React.Dispatch<React.SetStateAction<TeamMakerInput>>,
-  onRun: () => void,
 };
 
-export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerInputProps) => {
+export const TeamMakerInputUI = ({input, setInput, ...props}: TeamMakerInputProps) => {
   const {
     pokedexMap,
     ingredientMap,
@@ -159,7 +157,6 @@ export const TeamMakerInputUI = ({input, setInput, onRun, ...props}: TeamMakerIn
           />
         </ToggleButton>
       </InputRow>
-      <ButtonToStartTheSorcery onClick={onRun}/>
     </Flex>
   );
 };

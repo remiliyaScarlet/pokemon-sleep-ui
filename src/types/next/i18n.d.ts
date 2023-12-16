@@ -236,6 +236,14 @@ declare interface IntlMessages extends UiMessages, GameMessages {
               Pass: string,
               Fail: string,
             },
+            Status: {
+              Standby: string,
+              Initializing: string,
+              GeneratingTeams: string,
+              Calculating: string,
+              Completed: string,
+              Error: string,
+            },
           },
           Behavior: {
             ToggleInsufficientIngredients: string,

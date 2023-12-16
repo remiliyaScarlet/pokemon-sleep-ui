@@ -21,7 +21,7 @@ export const useTeamMaker = () => {
     teamCompsCalculated: null,
     teamCompsTotal: null,
   });
-  const resultsRef = React.useRef<HTMLDivElement>(null);
+  const resultsRef = React.useRef<HTMLButtonElement>(null);
 
   const {work: workInit} = useWorker<TeamMakerCalcInitOpts, TeamMakerCalcInitReturn>({
     workerName: 'Team Maker (Initial)',
