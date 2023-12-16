@@ -2,7 +2,6 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
 import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
@@ -44,7 +43,6 @@ export const BerryProducingRatesOfPokemon = ({
         subSkillMap={subSkillMap}
         className="info-section"
       />
-      <HorizontalSplitter/>
       <PokemonBerryStats
         input={input}
         translatedSettings={translatedSettings}

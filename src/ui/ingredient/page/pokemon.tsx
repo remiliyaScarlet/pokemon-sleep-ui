@@ -3,7 +3,6 @@ import React from 'react';
 
 import {useSession} from 'next-auth/react';
 
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
 import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
@@ -52,7 +51,6 @@ export const IngredientPokemonProduction = ({
         subSkillMap={subSkillMap}
         className="info-section"
       />
-      <HorizontalSplitter/>
       <PokemonIngredientStats
         input={input}
         ingredient={ingredient}
