@@ -4,11 +4,12 @@ import {clsx} from 'clsx';
 
 import {Flex} from '@/components/layout/flex/common';
 import {formatFloat, formatInt} from '@/utils/number/format';
+import {Nullable} from '@/utils/type';
 
 
 type Props = {
-  completed: number,
-  total: number,
+  completed: Nullable<number>,
+  total: Nullable<number>,
   className?: string,
 };
 
@@ -18,7 +19,7 @@ export const CompletionResultUI = ({completed, total, className}: Props) => {
       <div>{formatInt(completed)}</div>
       <div>/</div>
       <div>{formatInt(total)}</div>
-      <div>({formatFloat(completed / total * 100)}%)</div>
+      <div>({completed && total ? formatFloat(completed / total * 100) : '-'}%)</div>
     </Flex>
   );
 };
