@@ -7,7 +7,7 @@ export type BerryLevelData = {
 
 export type BerryData = {
   id: BerryId,
-  energy: BerryLevelData[]
+  energy: BerryLevelData[],
 };
 
 export type BerryDataMap = {[id in BerryId]: BerryData};
