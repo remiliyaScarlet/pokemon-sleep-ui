@@ -5,13 +5,14 @@ import {clsx} from 'clsx';
 import {useSession} from 'next-auth/react';
 
 import {AdsUnit} from '@/components/ads/main';
+import {isFilterIncludingSome} from '@/components/input/filter/utils/check';
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
+import {CompletionResultUI} from '@/components/shared/completion/main';
 import {PokemonInfoWithSortingPayload} from '@/components/shared/pokemon/sorter/type';
 import {useSortingWorker} from '@/components/shared/pokemon/sorter/worker/hook';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {useTranslatedUserSettings} from '@/hooks/userData/translated';
-import {PokedexResultCount} from '@/ui/pokedex/index/count';
 import {usePokedexFilter} from '@/ui/pokedex/index/filter';
 import {PokedexInput} from '@/ui/pokedex/index/input/main';
 import {PokedexLink} from '@/ui/pokedex/index/link';
@@ -20,6 +21,7 @@ import {toCalculateAllIngredientPossibilities} from '@/ui/pokedex/index/utils';
 import {getPossibleIngredientsFromChain} from '@/utils/game/ingredientChain';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getPokemonProducingParams, getProducingRateNeutralParams} from '@/utils/game/producing/params';
+import {isNotNullish} from '@/utils/type';
 
 
 export const PokedexClient = (props: PokedexDataProps) => {
@@ -52,7 +54,9 @@ export const PokedexClient = (props: PokedexDataProps) => {
 
   const sortingDeps = [filter, calculatedSettings, synergizedSettings];
 
-  const data = React.useMemo(() => pokedex.flatMap((pokemon): PokemonInfoWithSortingPayload<null>[] => {
+  const allInfoWithSortingPayload = React.useMemo(() => pokedex.flatMap((
+    pokemon,
+  ): PokemonInfoWithSortingPayload<null>[] => {
     const commonOpts: Omit<PokemonInfoWithSortingPayload<null>, 'ingredients'> = {
       pokemon,
       pokemonProducingParams: getPokemonProducingParams({
@@ -82,8 +86,26 @@ export const PokedexClient = (props: PokedexDataProps) => {
     })]
       .map((ingredients) => ({...commonOpts, ingredients}));
   }), sortingDeps);
+
   const sortedData = useSortingWorker({
-    data,
+    // Filtering unwanted data here as `<PokedexResultCount/>` checks the following for result count:
+    // - Result: length of `sortedData`
+    // - Total: length of `allInfoWithSortingPayload`
+    data: allInfoWithSortingPayload
+      .map((single) => {
+        const {ingredients} = single;
+
+        if (!isFilterIncludingSome({
+          filter,
+          filterKey: 'ingredient',
+          ids: ingredients.map(({id}) => id)})
+        ) {
+          return null;
+        }
+
+        return single;
+      })
+      .filter(isNotNullish),
     sort: filter.sort,
     berryDataMap,
     ingredientMap,
@@ -111,7 +133,11 @@ export const PokedexClient = (props: PokedexDataProps) => {
     <>
       <AdsUnit/>
       <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
-      <PokedexResultCount data={sortedData} inclusionMap={isIncluded}/>
+      <CompletionResultUI
+        completed={sortedData.length}
+        total={allInfoWithSortingPayload.length}
+        className="self-end"
+      />
       <LazyLoad loading={loading}>
         <Grid className={clsx(
           filter.display === 'mainSkill' ?
