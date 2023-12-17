@@ -3,6 +3,8 @@ import {defaultSeedUsage} from '@/const/game/seed';
 import {PokeInBox} from '@/types/game/pokebox';
 import {CalculatedUserSettings} from '@/types/userData/settings';
 import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
+import {getTeamMakerBasisValue} from '@/ui/team/maker/calc/getBasisValue';
+import {getTeamMakerDataSorter} from '@/ui/team/maker/calc/getSorter';
 import {TeamMakerCalcInitOpts} from '@/ui/team/maker/type/calc';
 import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
 import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
@@ -10,7 +12,6 @@ import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredie
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
 import {getPokemonProducingParams, getProducingRateSingleParams} from '@/utils/game/producing/params';
-import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -31,23 +32,8 @@ export const getTeamMakerRateAtMaxPotential = ({
   input,
   calculatedSettings,
   calculatedInput,
-}: GetTeamMakerRateAtMaxPotentialOpts): TeamMakerRateAtMaxPotentialData[] => pokeboxList
-  .flatMap((pokeInBox): PokeInBox[] => {
-    if (!input.previewFinalEvolution) {
-      return [pokeInBox];
-    }
-
-    return getPokemonFinalEvolutionIds({
-      pokemonId: pokeInBox.pokemon,
-      pokedex: pokedexMap,
-      evolutionCount: pokeInBox.evolutionCount,
-    }).map(({id, evolutionCount}): PokeInBox => ({
-      ...pokeInBox,
-      pokemon: id,
-      evolutionCount,
-    }));
-  })
-  .map((pokeInBox) => {
+}: GetTeamMakerRateAtMaxPotentialOpts): TeamMakerRateAtMaxPotentialData[] => {
+  const toTeamMakerRateAtMaxPotentialData = (pokeInBox: PokeInBox) => {
     const pokemon = pokedexMap[pokeInBox.pokemon];
 
     if (!pokemon || !isPokemonIncludedFromFilter({
@@ -96,10 +82,35 @@ export const getTeamMakerRateAtMaxPotential = ({
       rate,
       pokeInBox,
       calcOpts,
-      totalStrength: getTotalOfPokemonProducingRate({rate: rate.rate.final, state: 'equivalent'}).energy,
+      basisValue: getTeamMakerBasisValue({
+        pokemonRate: rate.rate.final,
+        targetMeals: calculatedInput.targetMeals,
+      }),
     };
-  })
-  .filter(isNotNullish)
-  .sort((a, b) => (
-    b.totalStrength - a.totalStrength
-  ));
+  };
+
+  const sorter = getTeamMakerDataSorter<TeamMakerRateAtMaxPotentialData>({
+    basis: input.basis,
+    getBasisValue: ({basisValue}) => basisValue,
+  });
+
+  return pokeboxList
+    .flatMap((pokeInBox): PokeInBox[] => {
+      if (!input.previewFinalEvolution) {
+        return [pokeInBox];
+      }
+
+      return getPokemonFinalEvolutionIds({
+        pokemonId: pokeInBox.pokemon,
+        pokedex: pokedexMap,
+        evolutionCount: pokeInBox.evolutionCount,
+      }).map(({id, evolutionCount}): PokeInBox => ({
+        ...pokeInBox,
+        pokemon: id,
+        evolutionCount,
+      }));
+    })
+    .map(toTeamMakerRateAtMaxPotentialData)
+    .filter(isNotNullish)
+    .sort(sorter);
+};

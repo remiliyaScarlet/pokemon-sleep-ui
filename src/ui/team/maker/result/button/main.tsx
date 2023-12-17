@@ -1,29 +1,27 @@
 import React from 'react';
 
-import {useTranslations} from 'next-intl';
-
 import {Flex} from '@/components/layout/flex/common';
-import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonIngredientProduction} from '@/components/shared/pokemon/production/ingredient';
 import {TeamMakerResultButtonFinalEstimate} from '@/ui/team/maker/result/button/finalEstimate';
 import {TeamMakerIngredientSatisfactionIndicator} from '@/ui/team/maker/result/button/satisfyIngredients';
+import {TeamMakerResultSummary} from '@/ui/team/maker/result/button/summary';
+import {TeamMakerBasis} from '@/ui/team/maker/type/input';
 import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
-import {formatFloat} from '@/utils/number/format';
 
 
 type Props = {
   comp: TeamMakerResultComp,
+  basis: TeamMakerBasis,
 };
 
-export const TeamMakerResultButton = ({comp}: Props) => {
+export const TeamMakerResultButton = ({comp, basis}: Props) => {
   const {
     rates,
-    strength,
     ingredientStats,
     finalEstimates,
+    basisValue,
   } = comp;
-  const t = useTranslations('UI.Producing');
 
   return (
     <Flex className="gap-1">
@@ -37,10 +35,7 @@ export const TeamMakerResultButton = ({comp}: Props) => {
         </Flex>
         <Flex noFullWidth direction="row" className="items-center gap-1.5 text-lg">
           <TeamMakerIngredientSatisfactionIndicator shortage={ingredientStats.shortage}/>
-          <Flex noFullWidth direction="row" className="items-center">
-            <ColoredEnergyIcon dimension="h-6 w-6" alt={t('Total')}/>
-            <span>{formatFloat(strength.total)}</span>
-          </Flex>
+          <TeamMakerResultSummary basis={basis} basisValue={basisValue}/>
         </Flex>
         <TeamMakerResultButtonFinalEstimate finalEstimates={finalEstimates}/>
       </Flex>

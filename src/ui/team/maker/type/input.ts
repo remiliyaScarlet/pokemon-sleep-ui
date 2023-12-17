@@ -16,6 +16,7 @@ export type TeamMakerInput = Pick<UserCookingPreset, 'mealType' | 'target' | 're
   snorlaxFavorite: SnorlaxFavorite,
   pokemon: PokemonInputFilter,
   memberCount: TeamMakerMemberCount,
+  basis: TeamMakerBasis,
   previewLevel: PokemonKeyLevel | null,
   previewFinalEvolution: boolean,
   showInsufficientIngredients: boolean,

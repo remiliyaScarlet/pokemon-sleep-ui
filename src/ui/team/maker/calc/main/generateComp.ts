@@ -1,6 +1,6 @@
 import {getTeamMakerCandidates} from '@/ui/team/maker/calc/getCandidates';
 import {getTeamMakerRateAtMaxPotential} from '@/ui/team/maker/calc/getMaxPotential';
-import {TeamMakerCalcInitOpts, TeamMakerCalcGenerateCompOpts} from '@/ui/team/maker/type/calc';
+import {TeamMakerCalcGenerateCompOpts, TeamMakerCalcInitOpts} from '@/ui/team/maker/type/calc';
 import {TeamMakerInputCalculated} from '@/ui/team/maker/type/common';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 import {toTargetMeals} from '@/utils/user/settings/utils';
@@ -27,7 +27,11 @@ export const getTeamMakerCalcGenerateCompOpts = (opts: TeamMakerCalcInitOpts): T
     calculatedSettings,
     ...opts,
   });
-  const candidates = getTeamMakerCandidates({ratesAtMax});
+  const candidates = getTeamMakerCandidates({
+    input,
+    calculatedInput,
+    ratesAtMax,
+  });
 
   return {
     calculatedInput,

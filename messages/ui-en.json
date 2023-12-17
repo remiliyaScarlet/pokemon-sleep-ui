@@ -17,6 +17,7 @@
     "Map": "Map",
     "MainSkill": "Main Skill",
     "MaxCarry": "Carry Limit",
+    "MealCoverage": "Meal Coverage",
     "Pokebox": "Pokémon Box",
     "Rank": "Rank",
     "Rewards": "Rewards",
@@ -323,6 +324,7 @@
         }
       },
       "Maker": {
+        "Basis": "Basis",
         "State": {
           "IngredientRequirements": {
             "Pass": "Satisfies ingredient requirements",

@@ -64,7 +64,7 @@ export const TeamMakerCompControl = ({pokeInBoxList}: Props) => {
         </FlexForm>
       </PopupCommon>
       <FlexButton
-        className="button-clickable-bg items-center gap-1 px-2 py-1"
+        className="button-clickable-bg items-center justify-center gap-1 self-stretch px-2 py-1"
         disabled={status !== 'waiting'}
         onClick={() => setShow(true)}
       >

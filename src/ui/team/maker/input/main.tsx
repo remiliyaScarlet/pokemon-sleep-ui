@@ -21,9 +21,10 @@ import {PokemonCollapsibleFilter} from '@/components/shared/pokemon/predefined/f
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {usePossibleMealTypes} from '@/hooks/meal';
 import {textFilterButtonStyle} from '@/styles/input';
+import {TeamMakerBasisOption} from '@/ui/team/maker/input/basis';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {teamMakerMemberCount} from '@/ui/team/maker/type/common';
-import {TeamMakerInput} from '@/ui/team/maker/type/input';
+import {teamMakerBasis, TeamMakerInput} from '@/ui/team/maker/type/input';
 import {cloneMerge} from '@/utils/object/cloneMerge';
 import {isNotNullish} from '@/utils/type';
 
@@ -55,7 +56,7 @@ export const TeamMakerInputUI = ({input, setInput, ...props}: TeamMakerInputProp
   const mealTypes = usePossibleMealTypes(Object.values(mealMap).filter(isNotNullish));
 
   return (
-    <Flex className="gap-1.5">
+    <Flex className="gap-1">
       <SnorlaxFavoriteInput
         filter={input}
         setFilter={setInput}
@@ -116,6 +117,20 @@ export const TeamMakerInputUI = ({input, setInput, ...props}: TeamMakerInputProp
           filter: input,
           setFilter: setInput,
           filterKey: 'memberCount',
+          allowNull: false,
+        })}
+      />
+      <FilterExpandedInput
+        title={t('Maker.Basis')}
+        ids={[...teamMakerBasis]}
+        idToButton={(basis) => (
+          <TeamMakerBasisOption basis={basis} isActive={basis === input.basis}/>
+        )}
+        className={textFilterButtonStyle}
+        {...getSingleSelectOnClickProps({
+          filter: input,
+          setFilter: setInput,
+          filterKey: 'basis',
           allowNull: false,
         })}
       />

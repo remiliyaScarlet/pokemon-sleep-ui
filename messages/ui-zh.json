@@ -17,6 +17,7 @@
     "Map": "地圖",
     "MainSkill": "主技能",
     "MaxCarry": "持有上限",
+    "MealCoverage": "食譜覆蓋率",
     "Pokebox": "寶可夢盒",
     "Rank": "階級",
     "Rewards": "報酬",
@@ -323,6 +324,7 @@
         }
       },
       "Maker": {
+        "Basis": "基準",
         "State": {
           "IngredientRequirements": {
             "Pass": "可滿足食材需求",

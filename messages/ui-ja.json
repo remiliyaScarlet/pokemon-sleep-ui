@@ -17,6 +17,7 @@
     "Map": "マップ",
     "MainSkill": "メインスキル",
     "MaxCarry": "最大所持数",
+    "MealCoverage": "料理範囲",
     "Pokebox": "ポケモンボックス",
     "Rank": "ランク",
     "Rewards": "報酬",
@@ -305,6 +306,7 @@
       "CurrentEnergy": "エナジー",
       "SubSkill": "サブスキル",
       "NatureEffect": "せいかく効果",
+      "MealCoverage": "",
       "Box": {
         "DisplayType": {
           "Frequency": "おてつだい時間",
@@ -323,18 +325,19 @@
         }
       },
       "Maker": {
+        "Basis": "基準",
         "State": {
           "IngredientRequirements": {
             "Pass": "食材条件⭕",
             "Fail": "食材条件❌"
           },
           "Status": {
-            "Standby": "Ready",
-            "Initializing": "Initializing",
-            "GeneratingTeams": "Generating Teams",
-            "Calculating": "Calculating",
-            "Completed": "Completed",
-            "Error": "Error"
+            "Standby": "スタンバイ",
+            "Initializing": "初期化中",
+            "GeneratingTeams": "編成中",
+            "Calculating": "計算中",
+            "Completed": "完了",
+            "Error": "エラー"
           }
         },
         "Behavior": {

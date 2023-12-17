@@ -77,7 +77,9 @@ export const useTeamMaker = () => {
     workerName: 'Team Maker (Final)',
     generateWorker: () => new Worker(new URL('final.worker', import.meta.url)),
     onCompleted: (result) => setState((original): TeamMakerState => {
+      const {basis} = result;
       let {teamCompsCalculated, teamCompsTotal} = original;
+
       if (teamCompsCalculated === null || teamCompsTotal === null) {
         return {
           status: 'error',
@@ -101,7 +103,10 @@ export const useTeamMaker = () => {
         status: isCompleted ? 'completed' : 'calculating',
         result: {
           ...result,
-          comps: reduceTeamMakerResultComp([...(original.result?.comps ?? []), ...result.comps]),
+          comps: reduceTeamMakerResultComp({
+            basis,
+            comps: [...(original.result?.comps ?? []), ...result.comps],
+          }),
         },
         teamCompsCalculated,
         teamCompsTotal,

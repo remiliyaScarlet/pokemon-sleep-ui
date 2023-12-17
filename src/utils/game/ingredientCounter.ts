@@ -56,19 +56,6 @@ export const isIngredientCounterEmpty = (counter: IngredientCounter): boolean =>
   return Object.values(counter).every((count) => !count);
 };
 
-export const capIngredientCount = (
-  max: IngredientCounter,
-  target: IngredientCounter,
-): IngredientCounter => {
-  return Object.fromEntries(Object.entries(target).map(([id, count]) => {
-    if (!count) {
-      return null;
-    }
-
-    return [id, Math.min(count, max[parseInt(id)] ?? Infinity)];
-  }).filter(isNotNullish));
-};
-
 export const applyMultiplierToIngredientCount = (multiplier: number, target: IngredientCounter): IngredientCounter => {
   return Object.fromEntries(Object.entries(target).map(([id, count]) => {
     if (!count) {
@@ -77,4 +64,8 @@ export const applyMultiplierToIngredientCount = (multiplier: number, target: Ing
 
     return [id, count * multiplier];
   }).filter(isNotNullish));
+};
+
+export const getTotalIngredientCount = (counter: IngredientCounter): number => {
+  return toSum(Object.values(counter).filter(isNotNullish));
 };

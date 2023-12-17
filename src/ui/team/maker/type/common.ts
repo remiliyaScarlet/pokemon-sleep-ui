@@ -1,4 +1,4 @@
-import {RecipeLevel} from '@/types/game/cooking';
+import {MealCoverage, RecipeLevel} from '@/types/game/cooking';
 import {IngredientCounter} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {PokeInBox} from '@/types/game/pokebox';
@@ -16,11 +16,16 @@ export const teamMakerMemberCount = [
 
 export type TeamMakerMemberCount = typeof teamMakerMemberCount[number];
 
+export type TeamMakerBasisValue = {
+  strength: number,
+  mealCoverage: MealCoverage,
+};
+
 export type TeamMakerRateAtMaxPotentialData = {
   rate: PokemonProducingRateWithPayload<null>,
   pokeInBox: PokeInBox,
   calcOpts: GetPokemonProducingRateOpts,
-  totalStrength: number,
+  basisValue: TeamMakerBasisValue,
 };
 
 export type TeamMakerInputCalculated = {

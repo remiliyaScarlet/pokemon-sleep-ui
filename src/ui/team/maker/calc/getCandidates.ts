@@ -1,35 +1,46 @@
-import {teamMakerMaxMemberCount} from '@/ui/team/maker/calc/const';
-import {TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
-import {toSum} from '@/utils/array';
-import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
+import {getTeamMakerBasisValue} from '@/ui/team/maker/calc/getBasisValue';
+import {isCurrentTeamMakerBasisValueWorse, sumTeamMakerBasisValue} from '@/ui/team/maker/calc/utils';
+import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
+import {TeamMakerInput} from '@/ui/team/maker/type/input';
 
 
 type GetTeamMakerCandidatesOpts = {
+  input: TeamMakerInput,
+  calculatedInput: TeamMakerInputCalculated,
   ratesAtMax: TeamMakerRateAtMaxPotentialData[],
 };
 
 export const getTeamMakerCandidates = ({
+  input,
+  calculatedInput,
   ratesAtMax,
 }: GetTeamMakerCandidatesOpts): TeamMakerRateAtMaxPotentialData[] => {
-  if (ratesAtMax.length <= teamMakerMaxMemberCount) {
+  const {basis, memberCount} = input;
+  if (ratesAtMax.length <= memberCount) {
     return ratesAtMax;
   }
 
-  const topComp = ratesAtMax.slice(0, teamMakerMaxMemberCount);
-  const stopThreshold = toSum(topComp.map(({rate}) => (
-    getTotalOfPokemonProducingRate({rate: rate.rate.original, state: 'equivalent'}).energy
-  )));
+  const topComp = ratesAtMax.slice(0, memberCount);
+  const stopThreshold = sumTeamMakerBasisValue(topComp.map(({rate}) => getTeamMakerBasisValue({
+    pokemonRate: rate.rate.original,
+    targetMeals: calculatedInput.targetMeals,
+  })));
 
   const ret: TeamMakerRateAtMaxPotentialData[] = topComp;
-  for (let idx = teamMakerMaxMemberCount; idx <= ratesAtMax.length; idx++) {
-    const tail = ratesAtMax[idx];
+  for (let idx = memberCount + 1; idx < ratesAtMax.length; idx++) {
+    const tail = ratesAtMax[idx - 1];
 
-    const currentComp = ratesAtMax.slice(idx - teamMakerMaxMemberCount + 1, idx + 1);
-    const currentCompTotalStrength = toSum(currentComp.map(({rate}) => (
-      getTotalOfPokemonProducingRate({rate: rate.rate.final, state: 'equivalent'}).energy
-    )));
+    const currentComp = ratesAtMax.slice(idx - memberCount, idx);
+    const currentCompBasisValue = sumTeamMakerBasisValue(currentComp.map(({rate}) => getTeamMakerBasisValue({
+      pokemonRate: rate.rate.final,
+      targetMeals: calculatedInput.targetMeals,
+    })));
 
-    if (currentCompTotalStrength < stopThreshold) {
+    if (isCurrentTeamMakerBasisValueWorse({
+      basis,
+      current: currentCompBasisValue,
+      baseline: stopThreshold,
+    })) {
       break;
     }
 

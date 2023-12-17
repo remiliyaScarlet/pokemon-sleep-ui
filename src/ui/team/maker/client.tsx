@@ -21,7 +21,7 @@ import {
   teamMakerStatusStyle,
 } from '@/ui/team/maker/const';
 import {useTeamMaker} from '@/ui/team/maker/hook/main';
-import {TeamMakerInputUI} from '@/ui/team/maker/input';
+import {TeamMakerInputUI} from '@/ui/team/maker/input/main';
 import {TeamMakerResults} from '@/ui/team/maker/result/main';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {TeamMakerInput} from '@/ui/team/maker/type/input';
@@ -47,6 +47,7 @@ export const TeamMakerClient = (props: TeamMakerDataProps) => {
     recipeLevel: preloaded.cooking.recipeLevel,
     ingredientCount: preloaded.cooking.ingredientCount,
     memberCount: 5,
+    basis: 'strength',
     previewLevel: null,
     previewFinalEvolution: false,
     target: preloaded.cooking.target,

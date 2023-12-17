@@ -1,10 +1,10 @@
 import {productionMultiplierByPeriod} from '@/const/game/production';
+import {MealCoverage} from '@/types/game/cooking';
 import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {Meal, MealIngredient} from '@/types/game/meal/main';
 import {PokemonProducingItem} from '@/types/game/pokemon/producing';
 import {ProductionPeriod} from '@/types/game/producing/display';
-import {toSum} from '@/utils/array';
-import {applyMultiplierToIngredientCount, capIngredientCount} from '@/utils/game/ingredientCounter';
+import {applyMultiplierToIngredientCount, getTotalIngredientCount} from '@/utils/game/ingredientCounter';
 import {getMealIngredientInfoFromTargetMeals} from '@/utils/game/meal/ingredient';
 import {isNotNullish} from '@/utils/type';
 
@@ -67,7 +67,7 @@ export const getMealCoverage = ({
   meals,
   ingredientProduction,
   period,
-}: GetMealCoverageOpts): number => {
+}: GetMealCoverageOpts): MealCoverage => {
   const dailyProduction = applyMultiplierToIngredientCount(
     productionMultiplierByPeriod.daily / productionMultiplierByPeriod[period],
     ingredientProduction,
@@ -77,10 +77,29 @@ export const getMealCoverage = ({
     days: 1,
   });
 
-  const totalIngredientsUsed = toSum(
-    Object.values(capIngredientCount(ingredientsRequired, dailyProduction)).filter(isNotNullish),
-  );
-  const totalIngredientsRequired = toSum(Object.values(ingredientsRequired).filter(isNotNullish));
+  const effectiveProduction = Object.fromEntries(Object.entries(ingredientsRequired)
+    .map(([id, requiredCount]) => {
+      if (!requiredCount) {
+        return null;
+      }
 
-  return totalIngredientsUsed / totalIngredientsRequired;
+      return [id, Math.min(dailyProduction[parseInt(id)] ?? 0, requiredCount)];
+    })
+    .filter(isNotNullish),
+  );
+  const byIngredient = Object.fromEntries(Object.entries(ingredientsRequired)
+    .map(([id, requiredCount]) => {
+      if (!requiredCount) {
+        return null;
+      }
+
+      return [id, (effectiveProduction[parseInt(id)] ?? 0) / requiredCount];
+    })
+    .filter(isNotNullish),
+  );
+
+  return {
+    byIngredient,
+    total: getTotalIngredientCount(effectiveProduction) / getTotalIngredientCount(ingredientsRequired),
+  };
 };

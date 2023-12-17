@@ -33,6 +33,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Map: string,
       MainSkill: string,
       MaxCarry: string,
+      MealCoverage: string,
       Pokebox: string,
       Rank: string,
       Rewards: string,
@@ -225,6 +226,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
           },
         },
         Maker: {
+          Basis: string,
           State: {
             IngredientRequirements: {
               Pass: string,

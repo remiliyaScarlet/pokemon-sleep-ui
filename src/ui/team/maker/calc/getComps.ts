@@ -6,6 +6,7 @@ import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {TeamMakerCalcResultsOpts} from '@/ui/team/maker/type/calc';
 import {TeamMakerResultComp} from '@/ui/team/maker/type/result';
 import {toSum} from '@/utils/array';
+import {getMealCoverage} from '@/utils/game/cooking';
 import {getMealIngredientInfoFromTargetMeals} from '@/utils/game/meal/ingredient';
 import {getPokemonProducingRateMulti} from '@/utils/game/producing/main/multi';
 import {getTotalOfGroupedProducingRate} from '@/utils/game/producing/rateReducer';
@@ -27,7 +28,7 @@ export const getTeamMakerComps = ({
     showInsufficientIngredients,
   } = input;
 
-  const ret: TeamMakerResultComp[] = [];
+  const comps: TeamMakerResultComp[] = [];
   for (const teamComp of teamComps) {
     const rates = getPokemonProducingRateMulti({
       rateOpts: teamComp.map(({calcOpts, pokeInBox}) => ({
@@ -65,11 +66,23 @@ export const getTeamMakerComps = ({
       continue;
     }
 
-    ret.push({
+    comps.push({
       rates,
-      strength: {
-        byType: strengthByType,
-        total: strengthTotal,
+      strengthByType,
+      basisValue: {
+        mealCoverage: getMealCoverage({
+          meals: calculatedInput.targetMeals,
+          ingredientProduction: Object.fromEntries(
+            Object.entries(rates.grouped.ingredient)
+              .map(([id, rate]) => [
+                id,
+                rate?.quantity,
+              ])
+              .filter(isNotNullish),
+          ),
+          period: teamMakerProductionPeriod,
+        }),
+        strength: strengthTotal,
       },
       ingredientStats,
       finalEstimates: getSnorlaxRankFinalEstimate({
@@ -79,5 +92,5 @@ export const getTeamMakerComps = ({
     });
   }
 
-  return reduceTeamMakerResultComp(ret);
+  return reduceTeamMakerResultComp({comps, basis: input.basis});
 };
