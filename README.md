@@ -10,6 +10,9 @@ Discord: https://discord.gg/eeveesleep
 
 ## Credits
 
+> [!NOTE]  
+> Check the [credit list on the website](https://pks.raenonx.cc/en/docs/view/credits) for the latest version.
+
 ### Data Research
 
 - Discord `@calpistori`
