@@ -5,13 +5,23 @@ import {clsx} from 'clsx';
 
 type Props = {
   percent: number,
+  heightClass?: `h-${number}`,
   className?: string,
 };
 
-export const ProgressBar = ({percent, className}: Props) => {
+export const ProgressBar = ({percent, heightClass, className}: Props) => {
+  heightClass ??= 'h-2.5';
+
   return (
-    <div className={clsx('transform-smooth h-2.5 w-full rounded-full bg-gray-400/50 dark:bg-gray-700/50', className)}>
-      <div className="transform-smooth h-2.5 rounded-full bg-slate-500" style={{width: `${percent}%`}}/>
+    <div className={clsx(
+      'transform-smooth w-full rounded-full bg-gray-400/50 dark:bg-gray-700/50',
+      heightClass,
+      className,
+    )}>
+      <div
+        className={clsx('transform-smooth rounded-full bg-slate-500', heightClass)}
+        style={{width: `${percent}%`}}
+      />
     </div>
   );
 };
