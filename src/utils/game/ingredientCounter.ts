@@ -5,18 +5,23 @@ import {toSum} from '@/utils/array';
 import {isNotNullish} from '@/utils/type';
 
 
+type SubtractIngredientCountOpts = {
+  includeNegativeResult?: boolean,
+};
+
 export const subtractIngredientCount = (
   minuend: IngredientCounter,
   subtrahend: IngredientCounter,
+  opts?: SubtractIngredientCountOpts,
 ): IngredientCounter => (
   Object.fromEntries(Object.entries(minuend).map(([id, count]) => {
-    if (!count) {
+    if (count == null) {
       return null;
     }
 
     const result = count - (subtrahend[parseInt(id)] ?? 0);
 
-    if (result < 0) {
+    if (!opts?.includeNegativeResult && result < 0) {
       return null;
     }
 
@@ -29,7 +34,7 @@ export const addIngredientCount = (addends: IngredientCounter[]): IngredientCoun
     addends.flatMap((addend) => (
       Object.entries(addend)
         .map(([id, quantity]) => {
-          if (!quantity) {
+          if (quantity == null) {
             return null;
           }
 
