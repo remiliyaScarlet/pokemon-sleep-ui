@@ -87,13 +87,17 @@ export const PokedexClient = (props: PokedexDataProps) => {
       .map((ingredients) => ({...commonOpts, ingredients}));
   }), sortingDeps);
 
-  const sortedData = useSortingWorker({
+  const sortedFilteredData = useSortingWorker({
     // Filtering unwanted data here as `<PokedexResultCount/>` checks the following for result count:
     // - Result: length of `sortedData`
     // - Total: length of `allInfoWithSortingPayload`
     data: allInfoWithSortingPayload
       .map((single) => {
-        const {ingredients} = single;
+        const {ingredients, pokemon} = single;
+
+        if (!isIncluded[pokemon.id]) {
+          return null;
+        }
 
         if (!isFilterIncludingSome({
           filter,
@@ -134,7 +138,7 @@ export const PokedexClient = (props: PokedexDataProps) => {
       <AdsUnit/>
       <PokedexInput filter={filter} setFilter={setFilter} {...props}/>
       <CompletionResultUI
-        completed={sortedData.length}
+        completed={sortedFilteredData.length}
         total={allInfoWithSortingPayload.length}
         className="self-end"
       />
@@ -147,16 +151,13 @@ export const PokedexClient = (props: PokedexDataProps) => {
             'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 2xl:grid-cols-5' :
             'grid-cols-2 gap-1.5 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 2xl:grid-cols-6',
         )}>
-          {sortedData.map(({source}) => {
+          {sortedFilteredData.map(({source}) => {
             const ingredientIds = source.ingredients.map(({id}) => id);
             const pokemonId = source.pokemon.id;
             const key = `${pokemonId}-${ingredientIds.join('-')}`;
 
-            if (!isIncluded[pokemonId]) {
-              return null;
-            }
-
-            // --- Any other filtering condition should **NOT** go here as it makes the result count incorrect
+            // --- Any filtering condition should **NOT** go here as it makes the result count incorrect
+            // Filter it at the creation of `sortedFilteredData` instead (`useSortingWorker.data`)
 
             return (
               <PokedexLink
