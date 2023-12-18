@@ -72,10 +72,14 @@ export type PokemonProducingRate = {
   skill: ProducingRateOfStates,
 };
 
-export type PokemonProducingRateAtStage = {
-  final: PokemonProducingRate,
-  original: PokemonProducingRate,
-};
+export const pokemonProducingRateStage = [
+  'original',
+  'final',
+] as const;
+
+export type PokemonProducingRateStage = typeof pokemonProducingRateStage[number];
+
+export type PokemonProducingRateAtStage = {[stage in PokemonProducingRateStage]: PokemonProducingRate};
 
 export type PokemonProducingRateWithPayload<TPayload> = {
   atStage: PokemonProducingRateAtStage,

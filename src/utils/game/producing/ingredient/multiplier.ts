@@ -4,45 +4,32 @@ import {RecipeLevel} from '@/types/game/cooking';
 import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {Meal} from '@/types/game/meal/main';
 import {IngredientMultiplier} from '@/types/game/producing/multiplier';
-import {getCommonMaxMealBonus} from '@/utils/game/meal/bonus';
 import {getMealIngredientInfo} from '@/utils/game/meal/ingredient';
 import {getIngredientBonusOfMeals} from '@/utils/game/producing/ingredient/bonus';
-import {isNotNullish} from '@/utils/type';
 
 
 export type GetIngredientMultiplierOpts = {
   production: IngredientCounter,
   targetMeals: Meal[],
   recipeLevel: RecipeLevel,
-  useMaxIngredientMultiplier?: boolean,
 };
 
 export const getIngredientMultiplier = ({
   production,
   targetMeals,
   recipeLevel,
-  useMaxIngredientMultiplier,
 }: GetIngredientMultiplierOpts): IngredientMultiplier => {
-  if (useMaxIngredientMultiplier) {
-    return {
-      override: {},
-      defaultValue: getCommonMaxMealBonus({
-        level: Math.max(...Object.values(recipeLevel).filter(isNotNullish)),
-        meals: targetMeals},
-      ),
-    };
-  }
-
   const mealIngredientInfo = getMealIngredientInfo({
     meals: targetMeals,
     mealCount: countBy(targetMeals, ({id}) => id),
   });
+  const {ingredientsRequired} = mealIngredientInfo;
+
   const ingredientBonus = getIngredientBonusOfMeals({
     meals: targetMeals,
     mealIngredientInfo,
     recipeLevel,
   });
-  const {ingredientsRequired} = mealIngredientInfo;
 
   return {
     override: Object.fromEntries(Object.entries(production).map(([id, quantity]) => {

@@ -52,25 +52,4 @@ describe('Ingredient Production / Multiplier', () => {
     expect(override['5']).toBeCloseTo(0);
     expect(defaultValue).toBeCloseTo(1);
   });
-
-  it('is correct using max multiplier', () => {
-    const meals = [testMealData['1003'], testMealData['1007'], testMealData['3006']];
-    const {override, defaultValue} = getIngredientMultiplier({
-      production: {
-        2: 18,
-        3: 27,
-        4: 40,
-        5: 20,
-      },
-      targetMeals: meals,
-      recipeLevel: {
-        1007: 15,
-        3006: 20,
-      },
-      useMaxIngredientMultiplier: true,
-    });
-
-    expect(Object.keys(override)).toHaveLength(0);
-    expect(defaultValue).toBeCloseTo(1.35 * 1.35);
-  });
 });

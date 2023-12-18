@@ -1,6 +1,6 @@
 import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
-import {TeamMakerInputCalculated, TeamMakerRateAtMaxPotentialData} from '@/ui/team/maker/type/common';
+import {TeamMakerInputCalculated, TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
 import {TeamMakerInput} from '@/ui/team/maker/type/input';
 
 
@@ -12,15 +12,15 @@ export type TeamMakerCalcInitOpts = TeamMakerDataProps & {
 export type TeamMakerCalcGenerateCompOpts = TeamMakerCalcInitOpts & {
   calculatedInput: TeamMakerInputCalculated,
   calculatedSettings: CalculatedUserSettings,
-  candidates: TeamMakerRateAtMaxPotentialData[],
+  candidates: TeamMakerIntermediateRate[],
 };
 
 export type TeamMakerCalcResultsOpts = TeamMakerCalcGenerateCompOpts & {
-  teamComps: TeamMakerRateAtMaxPotentialData[][],
+  teamComps: TeamMakerIntermediateRate[][],
 };
 
 export type TeamMakerCalcInitReturn = TeamMakerCalcGenerateCompOpts;
 
 export type TeamMakerCalcGenerateCompReturn = TeamMakerCalcGenerateCompOpts & {
-  allPossibleTeamComps: TeamMakerRateAtMaxPotentialData[][],
+  allPossibleTeamComps: TeamMakerIntermediateRate[][],
 };
