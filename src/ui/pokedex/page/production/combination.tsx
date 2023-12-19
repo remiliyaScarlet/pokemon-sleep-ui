@@ -54,7 +54,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
           }),
           ...translatedSettings,
           ...props,
-        }).rate.final;
+        }).atStage.final;
         const {berry, ingredient} = rate;
         const ingredientRates = Object.values(ingredient);
 

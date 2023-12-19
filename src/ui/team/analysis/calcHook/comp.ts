@@ -69,14 +69,14 @@ export const useTeamProducingStatsComp = ({
     return {
       bySlot: Object.fromEntries(rates.map(({
         payload,
-        rate,
+        atStage,
       }): [TeamAnalysisSlotName, TeamProducingStatsSingle] => {
         const {slotName, calculatedSettings} = payload;
-        const total: ProducingRate = getTotalOfPokemonProducingRate({rate: rate.final, state});
+        const total: ProducingRate = getTotalOfPokemonProducingRate({rate: atStage.final, state});
 
         return [
           slotName,
-          {...rate.final, calculatedSettings, total},
+          {...atStage.final, calculatedSettings, total},
         ];
       })) as TeamProducingStatsBySlot,
       grouped,

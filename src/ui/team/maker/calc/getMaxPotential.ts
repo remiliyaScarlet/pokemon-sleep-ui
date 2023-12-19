@@ -83,7 +83,7 @@ export const getTeamMakerRateAtMaxPotential = ({
       pokeInBox,
       calcOpts,
       basisValue: getTeamMakerBasisValue({
-        pokemonRate: rate.rate.final,
+        pokemonRate: rate.atStage.final,
         targetMeals: calculatedInput.targetMeals,
       }),
     };

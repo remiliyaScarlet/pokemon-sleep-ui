@@ -36,7 +36,7 @@ export const TeamMakerResultUnit = ({
   rate,
   compStrength,
 }: Props) => {
-  const pokemonRate = rate.rate.final;
+  const pokemonRate = rate.atStage.final;
   const {previewLevel} = input;
   const {settings, calculatedSettings} = result;
   const {
@@ -65,7 +65,7 @@ export const TeamMakerResultUnit = ({
     <Flex className="bg-plate gap-1.5">
       <PopupCommon show={show} setShow={setShow}>
         <PokemonDetailedProducingStats
-          rate={rate.rate.final}
+          rate={rate.atStage.final}
           settings={settings}
           calculatedSettings={calculatedSettings}
           specialty={pokemonInfo.specialty}

@@ -19,7 +19,7 @@ export const getPokemonRateSorter = ({
     snorlaxFavorite,
     berryData,
     noCap: true,
-  }).rate.final;
+  }).atStage.final;
 };
 
 type GetPokemonItemRateSorterOpts = {

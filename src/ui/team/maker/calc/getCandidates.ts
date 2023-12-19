@@ -22,7 +22,7 @@ export const getTeamMakerCandidates = ({
 
   const topComp = ratesAtMax.slice(0, memberCount);
   const stopThreshold = sumTeamMakerBasisValue(topComp.map(({rate}) => getTeamMakerBasisValue({
-    pokemonRate: rate.rate.original,
+    pokemonRate: rate.atStage.original,
     targetMeals: calculatedInput.targetMeals,
   })));
 
@@ -32,7 +32,7 @@ export const getTeamMakerCandidates = ({
 
     const currentComp = ratesAtMax.slice(idx - memberCount, idx);
     const currentCompBasisValue = sumTeamMakerBasisValue(currentComp.map(({rate}) => getTeamMakerBasisValue({
-      pokemonRate: rate.rate.final,
+      pokemonRate: rate.atStage.final,
       targetMeals: calculatedInput.targetMeals,
     })));
 

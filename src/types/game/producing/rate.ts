@@ -72,13 +72,16 @@ export type PokemonProducingRate = {
   skill: ProducingRateOfStates,
 };
 
+export type PokemonProducingRateAtStage = {
+  final: PokemonProducingRate,
+  original: PokemonProducingRate,
+};
+
 export type PokemonProducingRateWithPayload<TPayload> = {
-  rate: {
-    final: PokemonProducingRate,
-    original: PokemonProducingRate,
-  },
+  atStage: PokemonProducingRateAtStage,
   payload: TPayload,
 };
+
 export type PokemonProducingRateByType = {
   berry: GroupedProducingRate<BerryId>,
   ingredient: GroupedProducingRate<IngredientId>,
