@@ -12,12 +12,13 @@ import {GetProducingRateBehavior, GetProducingRateSharedOpts} from '@/utils/game
 import {isNotNullish} from '@/utils/type';
 
 
-type GetPokemonProducingRateMultiOpts<TPayload> = Omit<GetIngredientMultiplierOpts, 'production'> & {
-  rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
-  sharedOpts: GetProducingRateSharedOpts,
-  calcBehavior?: GetProducingRateBehavior,
-  groupingState: ProducingStateOfRate,
-};
+type GetPokemonProducingRateMultiOpts<TPayload> =
+  Pick<GetIngredientMultiplierOpts, 'targetMeals' | 'recipeLevel'> & {
+    rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
+    sharedOpts: GetProducingRateSharedOpts,
+    calcBehavior?: GetProducingRateBehavior,
+    groupingState: ProducingStateOfRate,
+  };
 
 export const getPokemonProducingRateMulti = <TPayload>({
   rateOpts,
@@ -61,6 +62,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
       })
       .filter(isNotNullish)),
     ...opts,
+    period,
   });
 
   const ratesAfterIngredient: PokemonProducingRateWithPayload<TPayload>[] = ratesWithPayload.map((rateWithPayload) => {

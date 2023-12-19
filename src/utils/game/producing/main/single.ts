@@ -6,7 +6,7 @@ import {GetProducingRateBehavior, GetProducingRateSharedOpts} from '@/utils/game
 
 
 type GetPokemonProducingRateSingleOpts =
-  Omit<GetIngredientMultiplierOpts, 'production'> &
+  Pick<GetIngredientMultiplierOpts, 'targetMeals' | 'recipeLevel'> &
   GetPokemonProducingRateOpts &
   GetProducingRateSharedOpts & {
     calcBehavior?: GetProducingRateBehavior,
