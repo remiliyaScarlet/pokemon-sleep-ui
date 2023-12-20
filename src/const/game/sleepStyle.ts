@@ -3,4 +3,4 @@
 export const spoStrengthAmplifier = 100;
 
 // Multiplier that converts SPO to drowsy score
-export const spoToDrowsyScoreMultiplier = 38500;
+export const spoToDrowsyScoreMultiplier = 38000;
