@@ -42,7 +42,12 @@ export const AdsContent = ({
   // Check if the ads DOM is getting hidden
   const [domHidden, setDomHidden] = React.useState(false);
   useTimedTick({
-    onTick: () => {
+    onTick: (counter) => {
+      if (!counter) {
+        // Skipping the first check because `offsetHeight` on load will be 0
+        return;
+      }
+
       if (!contentRef.current?.offsetHeight || !adsRef.current?.offsetHeight) {
         setDomHidden(true);
       }

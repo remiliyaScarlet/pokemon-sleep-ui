@@ -17,10 +17,17 @@ export const useAdBlockDetector = ({setAdblockState, recheckDeps}: UseAdBlockDet
   // https://github.com/gorhill/uBlock/wiki/Resources-Library#no-setinterval-ifjs-
   // https://github.com/gorhill/uBlock/wiki/Resources-Library#no-settimeout-ifjs-
   useTimedTick({
-    onTick: () => setAdblockState((original) => ({
-      ...original,
-      isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
-    } satisfies AdBlockState)),
+    onTick: (counter) => {
+      // Ignore the first tick
+      if (!counter) {
+        return;
+      }
+
+      setAdblockState((original) => ({
+        ...original,
+        isBlocked: !original.found && !adsRef.current?.querySelector('ins.adsbygoogle > div'),
+      } satisfies AdBlockState));
+    },
     intervalMs: adsCheckIntervalMs,
     rescheduleDeps: recheckDeps,
   });
