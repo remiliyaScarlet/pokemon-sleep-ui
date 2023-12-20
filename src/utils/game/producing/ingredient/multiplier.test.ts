@@ -15,10 +15,12 @@ describe('Ingredient Production / Multiplier', () => {
         4: 40,
         5: 20,
       },
-      targetMeals: meals,
-      recipeLevel: {
-        1007: 15,
-        3006: 20,
+      synergizedSettings: {
+        targetMeals: meals,
+        recipeLevel: {
+          1007: 15,
+          3006: 20,
+        },
       },
     });
 
@@ -40,10 +42,12 @@ describe('Ingredient Production / Multiplier', () => {
         4: 40 * 7,
         5: 20 * 7,
       },
-      targetMeals: meals,
-      recipeLevel: {
-        1007: 15,
-        3006: 20,
+      synergizedSettings: {
+        targetMeals: meals,
+        recipeLevel: {
+          1007: 15,
+          3006: 20,
+        },
       },
     });
 
@@ -65,10 +69,12 @@ describe('Ingredient Production / Multiplier', () => {
         4: 0,
         5: 0,
       },
-      targetMeals: meals,
-      recipeLevel: {
-        1007: 15,
-        3006: 20,
+      synergizedSettings: {
+        targetMeals: meals,
+        recipeLevel: {
+          1007: 15,
+          3006: 20,
+        },
       },
     });
 

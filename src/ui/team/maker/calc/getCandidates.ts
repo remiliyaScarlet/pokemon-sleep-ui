@@ -1,23 +1,24 @@
+import {SynergizedUserSettings} from '@/types/userData/settings';
 import {getTeamMakerBasisValue} from '@/ui/team/maker/calc/getBasisValue';
 import {
   getSortedTeamMakerIntermediateRate,
   isCurrentTeamMakerBasisValueWorse,
   sumTeamMakerBasisValue,
 } from '@/ui/team/maker/calc/utils';
-import {TeamMakerInputCalculated, TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
+import {TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
 import {TeamMakerInput} from '@/ui/team/maker/type/input';
 import {generateSegments} from '@/utils/array';
 
 
 type GetTeamMakerCandidatesOpts = {
   input: TeamMakerInput,
-  calculatedInput: TeamMakerInputCalculated,
+  synergizedSettings: SynergizedUserSettings,
   rates: TeamMakerIntermediateRate[],
 };
 
 export const getTeamMakerCandidates = ({
   input,
-  calculatedInput,
+  synergizedSettings,
   rates,
 }: GetTeamMakerCandidatesOpts): TeamMakerIntermediateRate[] => {
   const {basis, memberCount} = input;
@@ -43,7 +44,7 @@ export const getTeamMakerCandidates = ({
   const stopThreshold = sumTeamMakerBasisValue(topCompAtOriginal.map(({rate}) => (
     getTeamMakerBasisValue({
       pokemonRate: rate.atStage.original,
-      targetMeals: calculatedInput.targetMeals,
+      targetMeals: synergizedSettings.targetMeals,
     })
   )));
 
@@ -60,7 +61,7 @@ export const getTeamMakerCandidates = ({
 
     const currentCompBasisValue = sumTeamMakerBasisValue(currentComp.map(({rate}) => getTeamMakerBasisValue({
       pokemonRate: rate.atStage.final,
-      targetMeals: calculatedInput.targetMeals,
+      targetMeals: synergizedSettings.targetMeals,
     })));
 
     if (isCurrentTeamMakerBasisValueWorse({

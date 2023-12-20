@@ -19,7 +19,7 @@ type GetTeamMakerCompsOpts = TeamMakerDataProps & Omit<TeamMakerCalcResultsOpts,
 export const getTeamMakerComps = ({
   snorlaxData,
   input,
-  calculatedInput,
+  synergizedSettings,
   teamComps,
 }: GetTeamMakerCompsOpts): TeamMakerResultComp[] => {
   const {
@@ -41,7 +41,7 @@ export const getTeamMakerComps = ({
         noCap: false,
       },
       groupingState: 'equivalent',
-      ...calculatedInput,
+      synergizedSettings,
     });
     const strengthByType = {
       berry: getTotalOfGroupedProducingRate({rate: rates.grouped.berry, key: 'energy'}),
@@ -51,7 +51,7 @@ export const getTeamMakerComps = ({
     const strengthTotal = toSum(Object.values(strengthByType));
     const ingredientStats = getTeamMakerIngredientStats({
       required: getMealIngredientInfoFromTargetMeals({
-        targetMeals: calculatedInput.targetMeals,
+        targetMeals: synergizedSettings.targetMeals,
         days: productionMultiplierByPeriod[teamMakerProductionPeriod],
       }).ingredientsRequired,
       inventory: ingredientCount,
@@ -71,7 +71,7 @@ export const getTeamMakerComps = ({
       strengthByType,
       basisValue: {
         mealCoverage: getMealCoverage({
-          meals: calculatedInput.targetMeals,
+          meals: synergizedSettings.targetMeals,
           ingredientProduction: Object.fromEntries(
             Object.entries(rates.grouped.ingredient)
               .map(([id, rate]) => [

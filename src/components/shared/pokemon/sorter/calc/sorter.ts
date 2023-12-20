@@ -14,8 +14,8 @@ export const getPokemonRateSorter = ({
 }: PokemonSorterGetterOpts): PokemonProducingRate => {
   return getPokemonProducingRateSingle({
     ...opts,
-    ...calculatedSettings,
-    ...synergizedSettings,
+    calculatedSettings,
+    synergizedSettings,
     snorlaxFavorite,
     berryData,
     noCap: true,

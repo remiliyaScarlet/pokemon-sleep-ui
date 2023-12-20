@@ -1,8 +1,7 @@
+import {SynergizedUserSettings} from '@/types/userData/settings';
 import {getTeamMakerCandidates} from '@/ui/team/maker/calc/getCandidates';
 import {getTeamMakerCalcIntermediate} from '@/ui/team/maker/calc/getIntermediate';
 import {TeamMakerCalcGenerateCompOpts, TeamMakerCalcInitOpts} from '@/ui/team/maker/type/calc';
-import {TeamMakerInputCalculated} from '@/ui/team/maker/type/common';
-import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 import {toTargetMeals} from '@/utils/user/settings/utils';
 
 
@@ -10,9 +9,9 @@ export const getTeamMakerCalcGenerateCompOpts = (opts: TeamMakerCalcInitOpts): T
   const {
     input,
     mealMap,
-    settings,
   } = opts;
-  const calculatedInput: TeamMakerInputCalculated = {
+
+  const synergizedSettings: SynergizedUserSettings = {
     recipeLevel: input.recipeLevel,
     targetMeals: toTargetMeals({
       mealType: input.mealType,
@@ -20,22 +19,19 @@ export const getTeamMakerCalcGenerateCompOpts = (opts: TeamMakerCalcInitOpts): T
       mealMap,
     }),
   };
-  const calculatedSettings = toCalculatedUserSettings({settings});
 
   const intermediateRates = getTeamMakerCalcIntermediate({
-    calculatedInput,
-    calculatedSettings,
+    synergizedSettings,
     ...opts,
   });
   const candidates = getTeamMakerCandidates({
     input,
-    calculatedInput,
+    synergizedSettings,
     rates: intermediateRates,
   });
 
   return {
-    calculatedInput,
-    calculatedSettings,
+    synergizedSettings,
     candidates,
     ...opts,
   };

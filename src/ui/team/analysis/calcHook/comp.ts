@@ -33,7 +33,7 @@ export const useTeamProducingStatsComp = ({
 }: UseTeamProducingStatsCompOpts): UseTeamCompStatsReturn => {
   return React.useMemo(() => {
     const {rates, grouped} = getPokemonProducingRateMulti({
-      ...synergizedSettings,
+      synergizedSettings,
       groupingState: state,
       sharedOpts: {
         snorlaxFavorite,

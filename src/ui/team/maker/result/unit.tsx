@@ -32,13 +32,11 @@ export const TeamMakerResultUnit = ({
   pokedexMap,
   subSkillMap,
   input,
-  result,
   rate,
   compStrength,
 }: Props) => {
   const pokemonRate = rate.atStage.final;
   const {previewLevel} = input;
-  const {settings, calculatedSettings} = result;
   const {
     pokemon,
     level,
@@ -66,8 +64,7 @@ export const TeamMakerResultUnit = ({
       <PopupCommon show={show} setShow={setShow}>
         <PokemonDetailedProducingStats
           rate={rate.atStage.final}
-          settings={settings}
-          calculatedSettings={calculatedSettings}
+          calculatedSettings={rate.calculatedSettings}
           specialty={pokemonInfo.specialty}
         />
       </PopupCommon>

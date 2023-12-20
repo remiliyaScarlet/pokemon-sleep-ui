@@ -5,9 +5,7 @@ import {useUserSettingsBundle} from '@/hooks/userData/bundle';
 import {UseUserDataOpts} from '@/hooks/userData/type';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {
-  CalculatedUserSettings,
   SynergizedSettingsRequiredData,
-  SynergizedUserSettings,
   TranslatedUserSettings,
   UserSettings,
   UserSettingsBundle,
@@ -23,8 +21,6 @@ type UseTranslatedUserSettingsOpts = SynergizedSettingsRequiredData & {
 type UseTranslatedUserSettingsReturn = {
   settings: UserSettings,
   cooking: UserCookingPreset,
-  calculatedSettings: CalculatedUserSettings,
-  synergizedSettings: SynergizedUserSettings,
   translatedSettings: TranslatedUserSettings,
 };
 
@@ -45,9 +41,10 @@ export const useTranslatedUserSettings = ({
       return {
         settings,
         cooking,
-        calculatedSettings,
-        synergizedSettings,
-        translatedSettings: {...calculatedSettings, ...synergizedSettings},
+        translatedSettings: {
+          calculatedSettings,
+          synergizedSettings,
+        },
       };
     },
     [settings, cooking],

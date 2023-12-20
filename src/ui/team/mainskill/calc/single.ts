@@ -61,11 +61,11 @@ export const getSkillTriggerValueOfUnit = ({
     // `unit` could have `pokemon` from Poke-in-box, therefore it should always be at the top
     ...unit,
     ...singleParams,
-    ...toCalculatedUserSettings({
+    calculatedSettings: toCalculatedUserSettings({
       ...bundle,
       recoveryRate: toRecoveryRate(singleParams),
     }),
-    ...toSynergizedUserSettings({
+    synergizedSettings: toSynergizedUserSettings({
       ...bundle,
       mealMap,
     }),

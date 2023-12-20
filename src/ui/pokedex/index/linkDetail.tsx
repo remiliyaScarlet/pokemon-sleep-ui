@@ -176,8 +176,8 @@ export const PokedexLinkDetail = React.memo(({
       ingredients,
       skillData: mainSkillMap[pokemon.skill],
       snorlaxFavorite: {},
-      ...calculatedSettings,
-      ...synergizedSettings,
+      calculatedSettings,
+      synergizedSettings,
       ...getProducingRateNeutralParams({pokemon}),
     }).atStage.final;
 

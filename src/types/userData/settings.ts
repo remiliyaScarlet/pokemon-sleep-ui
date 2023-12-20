@@ -30,6 +30,7 @@ export type UserSettingsBundle = {
 };
 
 export type CalculatedUserSettings = Pick<UserSettings, 'behavior'> & {
+  origin: UserSettings,
   bonus: EffectiveBonus,
   sleepDurationInfo: SleepDurationInfo,
 };
@@ -42,4 +43,7 @@ export type SynergizedUserSettings = Pick<UserCookingPreset, 'recipeLevel'> & {
   targetMeals: Meal[],
 };
 
-export type TranslatedUserSettings = CalculatedUserSettings & SynergizedUserSettings;
+export type TranslatedUserSettings = {
+  calculatedSettings: CalculatedUserSettings,
+  synergizedSettings: SynergizedUserSettings,
+};

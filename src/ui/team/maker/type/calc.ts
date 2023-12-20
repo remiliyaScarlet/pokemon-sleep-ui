@@ -1,6 +1,6 @@
-import {CalculatedUserSettings, UserSettings} from '@/types/userData/settings';
+import {SynergizedUserSettings, UserSettings} from '@/types/userData/settings';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
-import {TeamMakerInputCalculated, TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
+import {TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
 import {TeamMakerInput} from '@/ui/team/maker/type/input';
 
 
@@ -10,8 +10,7 @@ export type TeamMakerCalcInitOpts = TeamMakerDataProps & {
 };
 
 export type TeamMakerCalcGenerateCompOpts = TeamMakerCalcInitOpts & {
-  calculatedInput: TeamMakerInputCalculated,
-  calculatedSettings: CalculatedUserSettings,
+  synergizedSettings: SynergizedUserSettings,
   candidates: TeamMakerIntermediateRate[],
 };
 

@@ -7,7 +7,7 @@ type ToTranslatedSettingsOpts = ToCalculatedUserSettingsOpts & ToSynergizedUserS
 
 export const toTranslatedSettings = (opts: ToTranslatedSettingsOpts): TranslatedUserSettings => {
   return {
-    ...toCalculatedUserSettings(opts),
-    ...toSynergizedUserSettings(opts),
+    calculatedSettings: toCalculatedUserSettings(opts),
+    synergizedSettings: toSynergizedUserSettings(opts),
   };
 };
