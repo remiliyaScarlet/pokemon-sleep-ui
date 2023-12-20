@@ -50,6 +50,7 @@ export const AdsWrapper = ({
       <AdsContent
         key={`${counter}a`}
         heightOverride={heightOverride}
+        checkDom
         recheckDeps={[counter]}
       >
         {children}
@@ -60,6 +61,7 @@ export const AdsWrapper = ({
           key={`${counter}b`}
           className="hidden lg:block"
           heightOverride={heightOverride}
+          checkDom={false}
           recheckDeps={[counter]}
         >
           {children}

@@ -13,12 +13,14 @@ import {isProduction} from '@/utils/environment';
 
 
 type Props = AdsContentProps & {
+  checkDom: boolean,
   recheckDeps: React.DependencyList,
 };
 
 export const AdsContent = ({
   className,
   heightOverride,
+  checkDom,
   recheckDeps,
   children,
 }: React.PropsWithChildren<Props>) => {
@@ -54,7 +56,7 @@ export const AdsContent = ({
     adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/50 py-1' : 'border border-green-500'),
   ), [adblockState]);
 
-  if (domHidden) {
+  if (checkDom && domHidden) {
     return (
       <Flex className={adsContentWrapperClass}>
         <AdBlockWarning/>
