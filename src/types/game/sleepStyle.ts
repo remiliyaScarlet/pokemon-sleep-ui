@@ -15,6 +15,8 @@ export type SleepReward = {
 
 export type SleepStyleCommon = {
   style: SleepStyleId,
+  spo: number,
+  rarity: number,
   rewards: SleepReward,
 };
 
