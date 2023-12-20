@@ -64,7 +64,7 @@ export const PokemonProductionCombination = ({chain, ...props}: Props) => {
               <Flex direction="row" center wrap className="gap-1">
                 {ingredients.map((production) => (
                   <PokemonProductionIngredientLink
-                    key={`${productionKeys}-${production.qty}`}
+                    key={`${production.id}-${production.qty}`}
                     production={production}
                   />
                 ))}
