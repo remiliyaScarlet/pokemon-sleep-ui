@@ -8,7 +8,7 @@ import {getPokemonProducingParams, getProducingRateSingleParams} from '@/utils/g
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {getSubSkillBonus} from '@/utils/game/subSkill/effect';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
-import {toSynergizedUserSettings} from '@/utils/user/settings/synergized';
+import {toCookingUserSettings} from '@/utils/user/settings/cooking';
 
 
 type GetSkillTriggerValueOfUnitOpts = GetSkillTriggerValueCommonOpts & {
@@ -65,7 +65,7 @@ export const getSkillTriggerValueOfUnit = ({
       ...bundle,
       recoveryRate: toRecoveryRate(singleParams),
     }),
-    synergizedSettings: toSynergizedUserSettings({
+    cookingSettings: toCookingUserSettings({
       ...bundle,
       mealMap,
     }),

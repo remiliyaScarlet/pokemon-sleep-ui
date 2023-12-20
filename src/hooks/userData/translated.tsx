@@ -5,16 +5,16 @@ import {useUserSettingsBundle} from '@/hooks/userData/bundle';
 import {UseUserDataOpts} from '@/hooks/userData/type';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {
-  SynergizedSettingsRequiredData,
+  CookingUserSettingsRequiredData,
   TranslatedUserSettings,
   UserSettings,
   UserSettingsBundle,
 } from '@/types/userData/settings';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
-import {toSynergizedUserSettings} from '@/utils/user/settings/synergized';
+import {toCookingUserSettings} from '@/utils/user/settings/cooking';
 
 
-type UseTranslatedUserSettingsOpts = SynergizedSettingsRequiredData & {
+type UseTranslatedUserSettingsOpts = CookingUserSettingsRequiredData & {
   bundle: UseUserDataOpts<UserSettingsBundle>,
 };
 
@@ -33,7 +33,7 @@ export const useTranslatedUserSettings = ({
   return useCustomCompareMemo(
     () => {
       const calculatedSettings = toCalculatedUserSettings({settings});
-      const synergizedSettings = toSynergizedUserSettings({
+      const cookingSettings = toCookingUserSettings({
         cooking,
         mealMap,
       });
@@ -43,7 +43,7 @@ export const useTranslatedUserSettings = ({
         cooking,
         translatedSettings: {
           calculatedSettings,
-          synergizedSettings,
+          cookingSettings,
         },
       };
     },

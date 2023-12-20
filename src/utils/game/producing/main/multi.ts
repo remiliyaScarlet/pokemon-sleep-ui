@@ -1,7 +1,7 @@
 import {defaultProductionPeriod, maxTeamMemberCount} from '@/const/game/production';
 import {PokemonProducingRateFinal, PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
-import {SynergizedUserSettings} from '@/types/userData/settings';
+import {CookingUserSettings} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {applyIngredientMultiplier} from '@/utils/game/producing/apply/ingredient';
 import {groupPokemonProducingRate} from '@/utils/game/producing/group';
@@ -17,7 +17,7 @@ type GetPokemonProducingRateMultiOpts<TPayload> = {
   rateOpts: GetPokemonProducingRateOptsWithPayload<TPayload>[],
   sharedOpts: GetProducingRateSharedOpts,
   groupingState: ProducingStateOfRate,
-  synergizedSettings: SynergizedUserSettings,
+  cookingSettings: CookingUserSettings,
   calcBehavior?: GetProducingRateBehavior,
 };
 
@@ -25,7 +25,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
   rateOpts,
   sharedOpts,
   groupingState,
-  synergizedSettings,
+  cookingSettings,
   calcBehavior,
 }: GetPokemonProducingRateMultiOpts<TPayload>): PokemonProducingRateFinal<TPayload> => {
   const period = sharedOpts.period ?? defaultProductionPeriod;
@@ -64,7 +64,7 @@ export const getPokemonProducingRateMulti = <TPayload>({
       })
       .filter(isNotNullish)),
     period,
-    synergizedSettings,
+    cookingSettings,
   });
 
   const ratesAfterIngredient: PokemonProducingRateWithPayload<TPayload>[] = ratesWithPayload.map((rateWithPayload) => {

@@ -1,5 +1,5 @@
 import {PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
-import {SynergizedUserSettings} from '@/types/userData/settings';
+import {CookingUserSettings} from '@/types/userData/settings';
 import {getPokemonProducingRateMulti} from '@/utils/game/producing/main/multi';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
 import {GetProducingRateBehavior, GetProducingRateSharedOpts} from '@/utils/game/producing/type';
@@ -8,7 +8,7 @@ import {GetProducingRateBehavior, GetProducingRateSharedOpts} from '@/utils/game
 type GetPokemonProducingRateSingleOpts =
   GetPokemonProducingRateOpts &
   GetProducingRateSharedOpts & {
-    synergizedSettings: SynergizedUserSettings,
+    cookingSettings: CookingUserSettings,
     calcBehavior?: GetProducingRateBehavior,
   };
 

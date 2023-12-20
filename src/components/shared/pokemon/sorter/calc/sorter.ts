@@ -9,13 +9,13 @@ export const getPokemonRateSorter = ({
   berryData,
   snorlaxFavorite,
   calculatedSettings,
-  synergizedSettings,
+  cookingSettings,
   ...opts
 }: PokemonSorterGetterOpts): PokemonProducingRate => {
   return getPokemonProducingRateSingle({
     ...opts,
     calculatedSettings,
-    synergizedSettings,
+    cookingSettings,
     snorlaxFavorite,
     berryData,
     noCap: true,

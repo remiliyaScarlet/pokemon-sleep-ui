@@ -15,7 +15,7 @@ describe('Ingredient Production / Multiplier', () => {
         4: 40,
         5: 20,
       },
-      synergizedSettings: {
+      cookingSettings: {
         targetMeals: meals,
         recipeLevel: {
           1007: 15,
@@ -42,7 +42,7 @@ describe('Ingredient Production / Multiplier', () => {
         4: 40 * 7,
         5: 20 * 7,
       },
-      synergizedSettings: {
+      cookingSettings: {
         targetMeals: meals,
         recipeLevel: {
           1007: 15,
@@ -69,7 +69,7 @@ describe('Ingredient Production / Multiplier', () => {
         4: 0,
         5: 0,
       },
-      synergizedSettings: {
+      cookingSettings: {
         targetMeals: meals,
         recipeLevel: {
           1007: 15,

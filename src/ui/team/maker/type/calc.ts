@@ -1,4 +1,4 @@
-import {SynergizedUserSettings, UserSettings} from '@/types/userData/settings';
+import {CookingUserSettings, UserSettings} from '@/types/userData/settings';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
 import {TeamMakerIntermediateRate} from '@/ui/team/maker/type/common';
 import {TeamMakerInput} from '@/ui/team/maker/type/input';
@@ -10,7 +10,7 @@ export type TeamMakerCalcInitOpts = TeamMakerDataProps & {
 };
 
 export type TeamMakerCalcGenerateCompOpts = TeamMakerCalcInitOpts & {
-  synergizedSettings: SynergizedUserSettings,
+  cookingSettings: CookingUserSettings,
   candidates: TeamMakerIntermediateRate[],
 };
 

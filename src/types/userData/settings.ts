@@ -35,15 +35,15 @@ export type CalculatedUserSettings = Pick<UserSettings, 'behavior'> & {
   sleepDurationInfo: SleepDurationInfo,
 };
 
-export type SynergizedSettingsRequiredData = {
+export type CookingUserSettingsRequiredData = {
   mealMap: MealMap,
 };
 
-export type SynergizedUserSettings = Pick<UserCookingPreset, 'recipeLevel'> & {
+export type CookingUserSettings = Pick<UserCookingPreset, 'recipeLevel'> & {
   targetMeals: Meal[],
 };
 
 export type TranslatedUserSettings = {
   calculatedSettings: CalculatedUserSettings,
-  synergizedSettings: SynergizedUserSettings,
+  cookingSettings: CookingUserSettings,
 };

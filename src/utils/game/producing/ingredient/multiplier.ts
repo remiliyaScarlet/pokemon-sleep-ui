@@ -4,7 +4,7 @@ import {productionMultiplierByPeriod} from '@/const/game/production';
 import {IngredientCounter, IngredientId} from '@/types/game/ingredient';
 import {ProductionPeriod} from '@/types/game/producing/display';
 import {IngredientMultiplier} from '@/types/game/producing/multiplier';
-import {SynergizedUserSettings} from '@/types/userData/settings';
+import {CookingUserSettings} from '@/types/userData/settings';
 import {getMealIngredientInfo} from '@/utils/game/meal/ingredient';
 import {getIngredientBonusOfMeals} from '@/utils/game/producing/ingredient/bonus';
 
@@ -12,15 +12,15 @@ import {getIngredientBonusOfMeals} from '@/utils/game/producing/ingredient/bonus
 export type GetIngredientMultiplierOpts = {
   period: ProductionPeriod,
   production: IngredientCounter,
-  synergizedSettings: SynergizedUserSettings,
+  cookingSettings: CookingUserSettings,
 };
 
 export const getIngredientMultiplier = ({
   period,
   production,
-  synergizedSettings,
+  cookingSettings,
 }: GetIngredientMultiplierOpts): IngredientMultiplier => {
-  const {recipeLevel, targetMeals} = synergizedSettings;
+  const {recipeLevel, targetMeals} = cookingSettings;
 
   const mealIngredientInfo = getMealIngredientInfo({
     meals: targetMeals,
