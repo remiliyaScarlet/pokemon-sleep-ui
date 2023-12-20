@@ -12,7 +12,6 @@
     "Day": "일",
     "Default": "기본",
     "DreamShards": "꿈의조각",
-    "DrowsyPower": "졸음 파워",
     "Exp": "경험치",
     "Hour": "시간",
     "Map": "맵",
@@ -404,6 +403,13 @@
     "Total": "총합",
     "Probability": {
       "NoSkillAfterWakeup": "Probability of no skill after wakeup"
+    }
+  },
+  "SleepStyle": {
+    "DrowsyPowerRequired": "필요한 졸음 파워",
+    "SleepStyleDifficulty": "잠자는 모습 난이도",
+    "Message": {
+      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power required. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details."
     }
   },
   "Stamina": {

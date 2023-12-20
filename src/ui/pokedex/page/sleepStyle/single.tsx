@@ -6,12 +6,10 @@ import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {SleepStyleDrowsyPowerRequirement} from '@/components/shared/sleepStyle/components/requirement';
-import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
+import {SleepStyleUnlockRequirement} from '@/components/shared/sleepStyle/components/requirement';
 import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {getToggleButtonClass} from '@/styles/input';
-import {SnorlaxRank} from '@/types/game/rank';
 import {SleepStyleCommon} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleRewardCell} from '@/ui/pokedex/page/sleepStyle/reward';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
@@ -21,17 +19,18 @@ import {isInSleepdex} from '@/utils/game/sleepdex';
 
 type Props<TSleepStyle extends SleepStyleCommon> = PokemonSleepStyleProps & {
   sleepStyle: TSleepStyle,
-  getRank?: (style: TSleepStyle) => SnorlaxRank,
 };
 
 export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
-  pokemon,
-  pokemonBranch,
-  sleepdex,
-  setSleepdex,
   sleepStyle,
-  getRank,
+  ...props
 }: Props<TSleepStyle>) => {
+  const {
+    pokemon,
+    pokemonBranch,
+    sleepdex,
+    setSleepdex,
+  } = props;
   const {
     style,
     spo,
@@ -75,8 +74,7 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
             <small className="text-slate-600 dark:text-slate-400">#{style}</small>
           </Flex>
         </Flex>
-        {getRank && <SnorlaxRankUI rank={getRank(sleepStyle)}/>}
-        <SleepStyleDrowsyPowerRequirement spo={spo}/>
+        <SleepStyleUnlockRequirement spo={spo} {...props}/>
         <Flex direction="row" center className="gap-1.5">
           <PokemonSleepStyleRewardCell
             iconSrc="/images/generic/research.png"

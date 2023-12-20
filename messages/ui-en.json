@@ -12,7 +12,6 @@
     "Day": "Day",
     "Default": "Default",
     "DreamShards": "Dream Shards",
-    "DrowsyPower": "Drowsy Power",
     "Exp": "EXP",
     "Hour": "Hrs",
     "Map": "Map",
@@ -404,6 +403,13 @@
     "Total": "Total",
     "Probability": {
       "NoSkillAfterWakeup": "Probability of no skill after wakeup"
+    }
+  },
+  "SleepStyle": {
+    "DrowsyPowerRequired": "Drowsy Power Required",
+    "SleepStyleDifficulty": "Sleep Style Difficulty",
+    "Message": {
+      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power required. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details."
     }
   },
   "Stamina": {

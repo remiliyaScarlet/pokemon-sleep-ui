@@ -13,7 +13,7 @@ type Props = {
 
 export const PokemonSleepStyleRewardCell = ({iconSrc, iconAlt, value}: Props) => {
   return (
-    <Flex direction="row" className="gap-0.5">
+    <Flex direction="row" center className="gap-0.5">
       <GenericIconLarger src={iconSrc} alt={iconAlt} noInvert/>
       <div>{formatInt(value)}</div>
     </Flex>

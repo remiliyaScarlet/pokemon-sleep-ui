@@ -28,7 +28,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Day: string,
       Default: string,
       DreamShards: string,
-      DrowsyPower: string,
       Exp: string,
       Hour: string,
       Map: string,
@@ -306,6 +305,13 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Total: string,
       Probability: {
         NoSkillAfterWakeup: string,
+      },
+    },
+    SleepStyle: {
+      DrowsyPowerRequired: string,
+      SleepStyleDifficulty: string,
+      Message: {
+        UnlockRankDiffers: string,
       },
     },
     Stamina: {

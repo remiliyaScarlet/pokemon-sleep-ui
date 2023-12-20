@@ -19,7 +19,7 @@ export const getSnorlaxRankAtEnergy = ({
 
 export const isSameRank = (a: SnorlaxRank, b: SnorlaxRank): boolean => a.title === b.title && a.number === b.number;
 
-export const getSnorlaxRankEquivalentNumber = ({title, number}: SnorlaxRank) => {
+export const getSnorlaxRankEquivalentNumber = ({title, number}: SnorlaxRank): number => {
   let sum = 0;
 
   for (const passedTitle of Array(title).keys()) {
