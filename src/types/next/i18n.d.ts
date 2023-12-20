@@ -28,6 +28,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Day: string,
       Default: string,
       DreamShards: string,
+      DrowsyPower: string,
       Exp: string,
       Hour: string,
       Map: string,
