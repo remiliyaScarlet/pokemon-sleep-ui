@@ -309,7 +309,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     },
     SleepStyle: {
       DrowsyPowerRequired: string,
-      SleepStyleDifficulty: string,
+      DrowsyPowerMultiplier: string,
       Message: {
         UnlockRankDiffers: string,
       },

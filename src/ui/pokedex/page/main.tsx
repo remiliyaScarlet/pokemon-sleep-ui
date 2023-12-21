@@ -9,6 +9,7 @@ import {Failed} from '@/components/icons/failed';
 import {Flex} from '@/components/layout/flex/common';
 import {authOptions} from '@/const/auth';
 import {getBerryData} from '@/controller/berry';
+import {getPossiblyActiveDrowsyPowerMultiplier} from '@/controller/event/drowsyPowerMultiplier';
 import {getIngredientMap} from '@/controller/ingredient';
 import {getIngredientChainMap} from '@/controller/ingredientChain';
 import {getMainSkillMap} from '@/controller/mainSkill';
@@ -55,6 +56,7 @@ export const Pokemon = async ({params}: Props) => {
     subSkillMap,
     snorlaxDataMap,
     mealMap,
+    eventDrowsyPowerMultipliers,
   ] = await Promise.all([
     getServerSession(authOptions),
     getPokedexMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
@@ -68,6 +70,7 @@ export const Pokemon = async ({params}: Props) => {
     getSubSkillMap(),
     getSnorlaxDataMap(),
     getMealMap(),
+    getPossiblyActiveDrowsyPowerMultiplier(),
   ]);
 
   if (!berryData) {
@@ -88,6 +91,7 @@ export const Pokemon = async ({params}: Props) => {
     subSkillMap,
     snorlaxDataMap,
     mealMap,
+    eventDrowsyPowerMultipliers,
     preloaded: createUserSettingsBundle(session),
   };
 

@@ -12,6 +12,7 @@ export type PokemonSleepStyleProps = {
   pokemonBranch: PokemonBranchData | null,
   sleepdex: SleepdexMap,
   setSleepdex: React.Dispatch<React.SetStateAction<SleepdexMap>>,
+  drowsyPowerMultiplier: number,
   snorlaxData?: SnorlaxDataOfMap,
   sleepStyleUnlockRank?: SnorlaxRank,
 };

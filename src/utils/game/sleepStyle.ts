@@ -1,12 +1,17 @@
-import {spoStrengthAmplifier, spoToDrowsyScoreMultiplier} from '@/const/game/sleepStyle';
+import {spoToDrowsyScoreMultiplier} from '@/const/game/sleepStyle';
 import {SleepStyleSpoRequirement} from '@/types/game/sleepStyle';
 
 
-export const getSpoRequirement = (spo: number): SleepStyleSpoRequirement => {
+type GetSpoRequirementOpts = {
+  spo: number,
+  drowsyPowerMultiplier: number,
+};
+
+export const getSpoRequirement = ({spo, drowsyPowerMultiplier}: GetSpoRequirementOpts): SleepStyleSpoRequirement => {
   const drowsyScore = spo * spoToDrowsyScoreMultiplier;
 
   return {
-    snorlaxStrength: drowsyScore / spoStrengthAmplifier,
+    snorlaxStrength: drowsyScore / drowsyPowerMultiplier,
     drowsyScore,
   };
 };

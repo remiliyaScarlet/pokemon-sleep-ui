@@ -17,17 +17,27 @@ import {isNotNullish} from '@/utils/type';
 
 type Props = PokemonSleepStyleProps & {
   spo: number,
+  drowsyPowerMultiplier: number,
   dimension?: Dimension,
 };
 
-export const SleepStyleUnlockRequirement = ({snorlaxData, sleepStyleUnlockRank, spo, dimension}: Props) => {
+export const SleepStyleUnlockRequirement = ({
+  snorlaxData,
+  sleepStyleUnlockRank,
+  spo,
+  drowsyPowerMultiplier,
+  dimension,
+}: Props) => {
   const t = useTranslations('UI.SleepStyle');
 
   const {
     minimumRank,
     drowsyScore,
   } = React.useMemo(() => {
-    const {drowsyScore, snorlaxStrength} = getSpoRequirement(spo);
+    const {drowsyScore, snorlaxStrength} = getSpoRequirement({
+      spo,
+      drowsyPowerMultiplier,
+    });
 
     const rankRequirement = [
       snorlaxData ?
@@ -44,7 +54,7 @@ export const SleepStyleUnlockRequirement = ({snorlaxData, sleepStyleUnlockRank, 
       minimumRank,
       drowsyScore,
     };
-  }, [spo, snorlaxData, sleepStyleUnlockRank]);
+  }, [snorlaxData, sleepStyleUnlockRank, spo, drowsyPowerMultiplier]);
 
   return (
     <Flex direction="row" center noFullWidth className="gap-2">

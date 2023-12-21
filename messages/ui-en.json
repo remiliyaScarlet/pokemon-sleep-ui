@@ -407,7 +407,7 @@
   },
   "SleepStyle": {
     "DrowsyPowerRequired": "Drowsy Power Requirement",
-    "SleepStyleDifficulty": "Sleep Style Difficulty",
+    "DrowsyPowerMultiplier": "Strength × Score",
     "Message": {
       "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power Requirement. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details."
     }
