@@ -57,7 +57,7 @@ export const SleepStyleUnlockRequirement = ({snorlaxData, sleepStyleUnlockRank, 
             sizes={imageSmallIconSizes}
           />
         </div>
-        <div>{formatInt(drowsyScore)}+</div>
+        <div>{formatInt(drowsyScore)}</div>
       </Flex>
     </Flex>
   );
