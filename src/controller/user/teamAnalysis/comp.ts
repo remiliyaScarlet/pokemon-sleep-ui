@@ -26,7 +26,7 @@ export const getTeamMemberById = async ({uuid, slotName}: TeamMemberIdData): Pro
   // Migrate to ensure the data structure is the latest
   const migratedComp = migrate({
     original: comp,
-    override: comp,
+    override: null,
     migrators: teamAnalysisCompMigrators,
     migrateParams: {},
   });
