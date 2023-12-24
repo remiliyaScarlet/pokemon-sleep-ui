@@ -72,6 +72,7 @@
   },
   "devDependencies": {
     "@savvywombat/tailwindcss-grid-areas": "^3.1.0",
+    "@types/gtag.js": "^0.0.18",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20.10.5",
     "@types/nodemailer": "^6.4.14",

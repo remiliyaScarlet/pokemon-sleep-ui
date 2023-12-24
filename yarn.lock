@@ -1793,6 +1793,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/gtag.js@npm:^0.0.18":
+  version: 0.0.18
+  resolution: "@types/gtag.js@npm:0.0.18"
+  checksum: af7a0a5769c5cfbe75e47f2b0346a65db8234b3c89775b897681548dfb6898edb3145153e2bc5dd1751a5ace221e03e6a68b7650ecacc6aa16a099aa9d925c99
+  languageName: node
+  linkType: hard
+
 "@types/hast@npm:^2.0.0":
   version: 2.3.8
   resolution: "@types/hast@npm:2.3.8"
@@ -8159,6 +8166,7 @@ __metadata:
     "@headlessui/react": "npm:^1.7.17"
     "@heroicons/react": "npm:^2.1.1"
     "@savvywombat/tailwindcss-grid-areas": "npm:^3.1.0"
+    "@types/gtag.js": "npm:^0.0.18"
     "@types/lodash": "npm:^4.14.202"
     "@types/node": "npm:^20.10.5"
     "@types/nodemailer": "npm:^6.4.14"
