@@ -8,7 +8,6 @@ import {TeamAnalysisMember} from '@/types/teamAnalysis';
 import {PokeInBox} from '@/types/userData/pokebox/main';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
-import {pokeInBoxMigrators} from '@/utils/migrate/pokebox/migrators';
 
 
 type ToRatingRequestOpts = {
