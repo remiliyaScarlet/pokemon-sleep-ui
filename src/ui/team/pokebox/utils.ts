@@ -1,9 +1,9 @@
 import {v4} from 'uuid';
 
-import {defaultSeedUsage} from '@/const/game/seed';
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {defaultCommonConstPokeInBox} from '@/const/user/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {generateDefaultIngredientProductionAtLevels} from '@/utils/game/producing/ingredient/chain';
 
@@ -18,6 +18,7 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
   const chain = ingredientChainMap[ingredientChain];
 
   return {
+    ...defaultCommonConstPokeInBox,
     uuid: v4(),
     dateAdded: Date.now(),
     pokemon: id,
@@ -27,6 +28,5 @@ export const generateNewPokeInBox = ({pokemon, ingredientChainMap}: GenerateNewP
     evolutionCount: getEvolutionCountFromPokemonInfo({pokemon}),
     subSkill: {},
     nature: null,
-    seeds: defaultSeedUsage,
   };
 };

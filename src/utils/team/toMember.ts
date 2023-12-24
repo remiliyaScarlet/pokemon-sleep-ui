@@ -1,6 +1,5 @@
-import {defaultSeedUsage} from '@/const/game/seed';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {Nullable} from '@/utils/type';
 
 
@@ -22,7 +21,7 @@ export const toTeamAnalysisMember = ({
     subSkill,
     ingredients,
     evolutionCount,
-    seeds: seeds ?? defaultSeedUsage,
+    seeds,
   };
 };
 

@@ -1,12 +1,14 @@
 import {v4} from 'uuid';
 
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {defaultCommonConstPokeInBox} from '@/const/user/pokebox';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
 import {RatingSetupData} from '@/types/game/pokemon/rating';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';
+import {pokeInBoxMigrators} from '@/utils/migrate/pokebox/migrators';
 
 
 type ToRatingRequestOpts = {
@@ -26,6 +28,7 @@ export const toRatingSetup = ({member, specialtyId, ...opts}: ToRatingRequestOpt
 
 export const toPokeInBox = ({pokemonId, name, ...member}: TeamAnalysisMember): PokeInBox => {
   return {
+    ...defaultCommonConstPokeInBox,
     ...member,
     uuid: v4(),
     dateAdded: Date.now(),

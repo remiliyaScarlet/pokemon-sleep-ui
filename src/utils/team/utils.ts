@@ -1,7 +1,7 @@
 import {v4} from 'uuid';
 
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {TeamAnalysisComp} from '@/types/teamAnalysis';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {getDefaultTeamName} from '@/ui/team/analysis/utils';
 import {teamAnalysisCompMigrators} from '@/utils/migrate/teamAnalysis/comp/migrators';
 import {toTeamAnalysisMemberNullable} from '@/utils/team/toMember';

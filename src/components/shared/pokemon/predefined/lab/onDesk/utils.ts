@@ -1,8 +1,9 @@
 import {v4} from 'uuid';
 
 import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {defaultCommonConstPokeInBox} from '@/const/user/pokebox';
 import {PokemonInfo} from '@/types/game/pokemon';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 
 
 type ToPokeInBoxOpts = {
@@ -23,6 +24,7 @@ export const toPokeInBox = ({pokemon, name, level, setup}: ToPokeInBoxOpts): Pok
 
   // Explicit assignments to avoid extra unwanted properties
   return {
+    ...defaultCommonConstPokeInBox,
     uuid: v4(),
     dateAdded: Date.now(),
     pokemon: id,

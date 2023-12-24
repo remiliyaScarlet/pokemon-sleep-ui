@@ -8,6 +8,8 @@ import {
   PokemonItemStatsFromPokeboxCommonProps,
 } from '@/components/shared/pokemon/icon/itemStats/base/fromPokebox/type';
 import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
+import {migrate} from '@/utils/migrate/main';
+import {pokeInBoxMigrators} from '@/utils/migrate/pokebox/migrators';
 
 
 export const PokemonItemStatsFromPokebox = (
@@ -26,7 +28,12 @@ export const PokemonItemStatsFromPokebox = (
         content={(data, session) => (
           <PokemonItemStatsFromPokeboxContent
             session={session}
-            pokeInBoxList={data?.pokeboxWithFilter ?? []}
+            pokeInBoxList={(data?.pokeboxWithFilter ?? []).map((pokeInBox) => migrate({
+              original: pokeInBox,
+              override: null,
+              migrators: pokeInBoxMigrators,
+              migrateParams: {},
+            }))}
             {...props}
           />
         )}

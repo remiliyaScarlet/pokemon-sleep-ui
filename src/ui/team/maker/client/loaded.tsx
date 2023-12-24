@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import UserGroupIcon from '@heroicons/react/24/outline/UserGroupIcon';
@@ -28,7 +27,7 @@ import {TeamMakerInput} from '@/ui/team/maker/type/input';
 import {isTeamMakerStatusLoading} from '@/ui/team/maker/utils';
 
 
-export const TeamMakerClient = (props: TeamMakerDataProps) => {
+export const TeamMakerLoadedClient = (props: TeamMakerDataProps) => {
   const {preloaded} = props;
 
   const t = useTranslations('UI.InPage.Team.Maker');

@@ -1,7 +1,7 @@
 import {MealCoverage} from '@/types/game/cooking';
 import {IngredientCounter} from '@/types/game/ingredient';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokemonProducingRateStage, PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {GetPokemonProducingRateOpts} from '@/utils/game/producing/main/type';
 
 

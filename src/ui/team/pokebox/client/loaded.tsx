@@ -6,7 +6,7 @@ import {v4} from 'uuid';
 import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
-import {Pokebox} from '@/types/game/pokebox/main';
+import {Pokebox, PokeInBox} from '@/types/userData/pokebox/main';
 import {useCalculatedData} from '@/ui/team/pokebox/client/hook/main';
 import {PokeboxContent} from '@/ui/team/pokebox/content/main';
 import {PokeInBoxEditPopup} from '@/ui/team/pokebox/editor/main';
@@ -19,11 +19,11 @@ import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokeboxCommonProps & {
-  initialPokebox: Pokebox,
+  pokeInBoxList: PokeInBox[],
 };
 
 export const PokeboxLoadedClient = (props: Props) => {
-  const {pokedexMap, subSkillMap, initialPokebox} = props;
+  const {pokedexMap, subSkillMap, pokeInBoxList} = props;
 
   const {act, session} = useUserDataActor({
     statusToast: true,
@@ -32,7 +32,9 @@ export const PokeboxLoadedClient = (props: Props) => {
   const [loading, setLoading] = React.useState(false);
   // Keeping a local copy of the pokebox so no need to lazy load the whole box on every change
   // Not doing so could potentially create large unnecessary I/Os for large Pokebox
-  const [pokebox, setPokebox] = React.useState(initialPokebox);
+  const [pokebox, setPokebox] = React.useState<Pokebox>(
+    Object.fromEntries(pokeInBoxList.map((pokeInBox) => [pokeInBox.uuid, pokeInBox])),
+  );
   const [editingPokeInBox, setEditingPokeInBox] = React.useState<PokeInBoxEditorState>();
 
   const {

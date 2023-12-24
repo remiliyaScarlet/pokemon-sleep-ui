@@ -1,5 +1,5 @@
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokemonId} from '@/types/game/pokemon';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {PokeboxDataProps} from '@/ui/team/pokebox/type';
 
 

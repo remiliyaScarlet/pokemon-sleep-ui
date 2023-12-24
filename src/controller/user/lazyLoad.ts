@@ -1,12 +1,7 @@
 import {ObjectId} from 'bson';
 import {Filter} from 'mongodb';
 
-import {
-  getSinglePokeInBox,
-  getUserPokebox,
-  getUserPokeboxSorted,
-  getUserPokeboxWithFilter,
-} from '@/controller/pokebox/main';
+import {getSinglePokeInBox, getUserPokeboxSorted, getUserPokeboxWithFilter} from '@/controller/pokebox/main';
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
 import {getActivationDataByFilter} from '@/controller/user/activation/data';
 import {generateActivationKey, getActivationKeyByFilter} from '@/controller/user/activation/key';
@@ -56,10 +51,6 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
     }
 
     return member satisfies UserLazyLoadedData['teamAnalysisMember'];
-  }
-
-  if (type === 'pokebox') {
-    return await getUserPokebox(userId) satisfies UserLazyLoadedData['pokebox'];
   }
 
   if (type === 'pokeboxSingle') {

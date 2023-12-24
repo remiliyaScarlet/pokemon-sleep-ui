@@ -22,6 +22,8 @@ import {
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
 import {getTotalEnergyOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
+import {migrate} from '@/utils/migrate/main';
+import {pokeInBoxMigrators} from '@/utils/migrate/pokebox/migrators';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -58,7 +60,15 @@ export const PokemonItemStatsFromPokeboxList = ({
           return null;
         }
 
-        return {pokeInBox, pokemonInfo};
+        return {
+          pokeInBox: migrate({
+            original: pokeInBox,
+            override: null,
+            migrators: pokeInBoxMigrators,
+            migrateParams: {},
+          }),
+          pokemonInfo,
+        };
       })
       .filter(isNotNullish)
       .map(({pokeInBox, pokemonInfo: pokemon}) => {

@@ -3,9 +3,10 @@ import {IngredientProductionAtLevels} from '@/types/game/pokemon/ingredient';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {SeedUsage} from '@/types/game/pokemon/seed';
 import {PokemonSubSkill} from '@/types/game/pokemon/subSkill';
+import {Migratable} from '@/types/migrate';
 
 
-export type PokeInBox = {
+export type PokeInBox = Migratable & {
   uuid: string,
   dateAdded: number,
   pokemon: PokemonId,
@@ -15,9 +16,9 @@ export type PokeInBox = {
   evolutionCount: number,
   subSkill: PokemonSubSkill,
   nature: NatureId | null,
-  isShiny?: boolean,
-  isFavorite?: boolean,
-  seeds?: SeedUsage,
+  isShiny: boolean,
+  isFavorite: boolean,
+  seeds: SeedUsage,
 };
 
 export type Pokebox = {[uuid in string]?: PokeInBox};

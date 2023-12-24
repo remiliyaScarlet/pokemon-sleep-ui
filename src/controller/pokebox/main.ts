@@ -2,8 +2,8 @@ import {Collection, Filter, WithId} from 'mongodb';
 
 import {runPokeBoxMigrations} from '@/controller/migrate/pokebox';
 import mongoPromise from '@/lib/mongodb';
-import {Pokebox, PokeInBox} from '@/types/game/pokebox/main';
 import {PokeInBoxData} from '@/types/mongo/pokebox/main';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 
 
 const getCollection = async (): Promise<Collection<PokeInBoxData>> => {
@@ -37,16 +37,6 @@ export const getUserPokeboxSorted = async (owner: string | undefined): Promise<P
   }
 
   return getUserPokeboxWithFilter(owner, {});
-};
-
-export const getUserPokebox = async (owner: string | undefined): Promise<Pokebox> => {
-  if (!owner) {
-    return {};
-  }
-
-  const pokeboxArray = await getUserPokeboxSorted(owner);
-
-  return Object.fromEntries(pokeboxArray.map((pokeInBox) => [pokeInBox.uuid, pokeInBox]));
 };
 
 export const getSinglePokeInBox = async (uuid: string): Promise<PokeInBox | null> => {

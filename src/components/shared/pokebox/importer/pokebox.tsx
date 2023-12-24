@@ -22,7 +22,7 @@ import {PokemonNatureIndicator} from '@/components/shared/pokemon/nature/indicat
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {pokeInBoxFavoriteStyle} from '@/styles/game/pokebox';
 import {imageIconSizes, imageSmallIconSizes} from '@/styles/image';
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -107,7 +107,7 @@ export const PokeboxImporterView = ({
         {pokebox.filter(({uuid}) => isIncluded[uuid]).map(({name, isShiny, isFavorite, ...pokeInBox}) => (
           <button
             key={pokeInBox.uuid} className="button-clickable-bg group p-1"
-            onClick={() => onPokeboxPicked({name, ...pokeInBox})}
+            onClick={() => onPokeboxPicked({name, isShiny, isFavorite, ...pokeInBox})}
           >
             <Flex direction="row" className="items-center gap-1.5">
               <IconWithInfo

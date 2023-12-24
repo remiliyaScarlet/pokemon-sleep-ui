@@ -7,8 +7,8 @@ import {PopupCommon} from '@/components/popup/common/main';
 import {PokeboxImporterView} from '@/components/shared/pokebox/importer/pokebox';
 import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/type';
 import {PokeboxImporterViaUuid} from '@/components/shared/pokebox/importer/uuid';
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {UserDataLazyLoadPokeboxSorted} from '@/components/shared/userData/lazyLoad/pokeboxSorted';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 
 
 type Props = PokeboxImporterCommonProps & {
@@ -24,15 +24,13 @@ export const PokeboxImporter = ({show, setShow, isPokeInBoxIncluded, ...props}: 
     <PopupCommon show={show} setShow={setShow}>
       <Flex className="gap-1.5 sm:w-[60vw]">
         <PokeboxImporterViaUuid {...props}/>
-        <UserDataLazyLoad
-          options={{type: 'pokeboxSorted'}}
-          loadingText="Pokebox"
+        <UserDataLazyLoadPokeboxSorted
           sessionOverride={session}
           actDeps={[show]}
           toAct={() => show}
-          content={(data) => (
+          render={(pokeInBoxList) => (
             <PokeboxImporterView
-              pokebox={(data?.pokeboxSorted ?? [])
+              pokebox={pokeInBoxList
                 .filter((pokeInBox) => isPokeInBoxIncluded ? isPokeInBoxIncluded(pokeInBox) : true)}
               {...props}
             />

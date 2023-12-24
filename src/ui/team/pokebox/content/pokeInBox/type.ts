@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {PokemonInfoWithSortingPayload, SortedPokemonInfo} from '@/components/shared/pokemon/sorter/type';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokedexMap, PokemonInfo} from '@/types/game/pokemon';
 import {RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {PokeInBoxChangeableProps} from '@/ui/team/pokebox/content/type';
 import {PokeInBoxEditorState} from '@/ui/team/pokebox/editor/type';

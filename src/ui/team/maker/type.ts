@@ -2,17 +2,16 @@ import {UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/typ
 import {BerryDataMap} from '@/types/game/berry';
 import {FieldMetaMap} from '@/types/game/mapMeta';
 import {MealMap} from '@/types/game/meal/main';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokedexMap} from '@/types/game/pokemon';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxDataOfMap} from '@/types/game/snorlax';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {UserSettingsBundle} from '@/types/userData/settings';
 
 
-export type TeamMakerDataProps = UsePokemonFilterCommonData & {
-  pokeboxList: PokeInBox[],
+export type TeamMakerServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,
   pokemonProducingParamsMap: PokemonProducingParamsMap,
   berryDataMap: BerryDataMap,
@@ -22,4 +21,9 @@ export type TeamMakerDataProps = UsePokemonFilterCommonData & {
   mapMeta: FieldMetaMap,
   snorlaxData: SnorlaxDataOfMap[],
   preloaded: UserSettingsBundle,
+};
+
+
+export type TeamMakerDataProps = TeamMakerServerDataProps & {
+  pokeboxList: PokeInBox[],
 };

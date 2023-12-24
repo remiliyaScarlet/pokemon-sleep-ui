@@ -24,9 +24,9 @@ import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/sele
 import {defaultSeedUsage} from '@/const/game/seed';
 import {imageSmallIconSizes} from '@/styles/image';
 import {getToggleButtonClass} from '@/styles/input';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {pokemonSubSkillLevel} from '@/types/game/pokemon/subSkill';
 import {Dimension} from '@/types/style';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {PokeInBoxEditCommonProps, PokeInBoxEditStateProps} from '@/ui/team/pokebox/editor/type';
 import {toIsoDateString} from '@/utils/date';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';

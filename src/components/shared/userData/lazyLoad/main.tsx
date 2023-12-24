@@ -4,24 +4,17 @@ import {useSession} from 'next-auth/react';
 
 import {Failed} from '@/components/icons/failed';
 import {Loading, LoadingText} from '@/components/icons/loading';
+import {UserDataLazyLoadCommonProps} from '@/components/shared/userData/lazyLoad/types';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserDataLoadingOpts} from '@/types/userData/load';
 import {UserLazyLoadedData} from '@/types/userData/main';
 
 
-type Props = {
+type Props = UserDataLazyLoadCommonProps & {
   options: UserDataLoadingOpts,
   loadingText: string,
   content: (data: UserLazyLoadedData | null, session: ReturnType<typeof useSession>) => React.ReactNode,
-  sessionOverride?: ReturnType<typeof useSession>,
-  smallLoading?: boolean,
-} & ({
-  actDeps: React.DependencyList,
-  toAct: () => boolean,
-} | {
-  actDeps?: never,
-  toAct?: never,
-});
+};
 
 export const UserDataLazyLoad = ({
   options,

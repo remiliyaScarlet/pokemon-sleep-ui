@@ -1,10 +1,10 @@
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {SleepdexData} from '@/types/game/sleepdex';
 import {ActivationDataAtClient, ActivationKeyAtClient} from '@/types/mongo/activation';
 import {ActivationPresetMap} from '@/types/mongo/activationPreset';
 import {AnnouncementClientMap} from '@/types/mongo/announcement';
 import {DocsData, DocsDataEditable, DocsDataEditableFetched} from '@/types/mongo/docs';
 import {UserCookingPreset} from '@/types/userData/cooking';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';

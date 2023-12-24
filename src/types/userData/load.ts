@@ -14,9 +14,6 @@ export type UserDataLoadingOpts = {
     teamMemberId: string,
   },
 } | {
-  type: 'pokebox',
-  opts?: never,
-} | {
   type: 'pokeboxSingle',
   opts: {
     pokeInBoxUuid: string,

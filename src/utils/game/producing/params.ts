@@ -1,7 +1,6 @@
 import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {defaultNeutralOpts, defaultProducingParams} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
@@ -11,6 +10,7 @@ import {
   ProducingRateIndividualParams,
   ProducingRateSingleParams,
 } from '@/types/game/producing/rate';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {getEvolutionCountFromPokemonInfo} from '@/utils/game/pokemon';
 import {getSubSkillBonus, getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 

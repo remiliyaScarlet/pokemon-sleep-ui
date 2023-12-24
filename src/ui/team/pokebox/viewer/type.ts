@@ -4,7 +4,6 @@ import {FilterInclusionMap, FilterWithUpdaterProps} from '@/components/input/fil
 import {PokemonInputFilter, UsePokemonFilterCommonData} from '@/components/shared/pokemon/filter/type';
 import {PokemonSortType} from '@/components/shared/pokemon/sorter/type';
 import {FieldMetaMap} from '@/types/game/mapMeta';
-import {PokeInBox} from '@/types/game/pokebox/main';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
@@ -12,6 +11,7 @@ import {RatingBasis} from '@/types/game/pokemon/rating';
 import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 
 
 export const pokeboxViewType = [

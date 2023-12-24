@@ -8,6 +8,8 @@ import {PokeboxImporterCommonProps} from '@/components/shared/pokebox/importer/t
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {regexUuid} from '@/const/regex';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
+import {migrate} from '@/utils/migrate/main';
+import {pokeInBoxMigrators} from '@/utils/migrate/pokebox/migrators';
 
 
 type Props = PokeboxImporterCommonProps;
@@ -39,7 +41,12 @@ export const PokeboxImporterViaUuid = ({onPokeboxPicked}: Props) => {
       return;
     }
 
-    onPokeboxPicked(pokeInBox);
+    onPokeboxPicked(migrate({
+      original: pokeInBox,
+      override: null,
+      migrators: pokeInBoxMigrators,
+      migrateParams: {},
+    }));
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

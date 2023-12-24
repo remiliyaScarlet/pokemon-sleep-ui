@@ -1,4 +1,4 @@
-import {PokeInBox} from '@/types/game/pokebox/main';
+import {PokeInBox} from '@/types/userData/pokebox/main';
 import {Optional} from '@/utils/type';
 
 
