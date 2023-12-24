@@ -81,7 +81,6 @@ export const addActivationDataByAdsClick = async ({
     generatedAt: new Date(),
     key: v4(),
     note: '',
-    isSpecial: false,
   });
 };
 
@@ -174,7 +173,6 @@ export const updateActivationDataByKey = async ({
   expiry,
   source,
   contact,
-  isSpecial,
   isCmsMod,
   isActivationLocked,
   isFrozen,
@@ -188,7 +186,6 @@ export const updateActivationDataByKey = async ({
     expiry,
     source,
     contact,
-    isSpecial,
     isCmsMod: isCmsMod ?? false,
     isActivationLocked: isActivationLocked ?? false,
     isFrozen: isFrozen ?? false,

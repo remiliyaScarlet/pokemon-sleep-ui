@@ -87,7 +87,6 @@ export const toActivationPayloadFromPatreon = async (
         patreon: email,
         ...(social?.discord && {discord: social.discord.user_id}),
       },
-      isSpecial: false,
       note: '',
     },
   };

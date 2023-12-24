@@ -72,7 +72,6 @@ export const toActivationPayloadFromDiscord = async (
         ...existedActivationProperties?.contact,
         discord: userId,
       },
-      isSpecial: false,
       note: '',
     },
   };

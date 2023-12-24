@@ -70,7 +70,6 @@ export const toActivationPayloadFromGithub = async (
         // Keep the existed ones except `github` to make sure the reference used for polling is correct
         github: contact,
       },
-      isSpecial: false,
       note: !!user.email ? `Email: ${user.email}` : '',
     },
   };

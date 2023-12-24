@@ -41,7 +41,6 @@ export const ActivationEditor = ({
   const {
     expiry,
     contact,
-    isSpecial,
     note,
   } = data;
   const commonInputStyle = 'h-8 w-full sm:w-96';
@@ -108,16 +107,6 @@ export const ActivationEditor = ({
       ))}
       <InputRowWithTitle title="Properties">
         <Flex direction="row" wrap noFullWidth className="gap-1">
-          <ToggleButton
-            active={isSpecial}
-            onClick={() => setData((original) => ({
-              ...original,
-              isSpecial: !original.isSpecial,
-            } satisfies ActivationPropertiesAtClient))}
-            className={textFilterButtonStyle}
-          >
-            Special Grant
-          </ToggleButton>
           <ToggleButton
             active={isCmsMod}
             onClick={() => setData((original) => ({
