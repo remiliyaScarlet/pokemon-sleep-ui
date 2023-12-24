@@ -1,4 +1,4 @@
-import {PokeInBox} from '@/types/game/pokebox';
+import {PokeInBox} from '@/types/game/pokebox/main';
 import {ProduceType} from '@/types/game/producing/common';
 import {PokemonProducingRateFinal} from '@/types/game/producing/rate';
 import {SnorlaxRankFinalEstimate} from '@/types/game/rank';

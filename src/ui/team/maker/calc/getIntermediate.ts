@@ -1,5 +1,5 @@
 import {isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
-import {PokeInBox} from '@/types/game/pokebox';
+import {PokeInBox} from '@/types/game/pokebox/main';
 import {pokemonProducingRateStage} from '@/types/game/producing/rate';
 import {CookingUserSettings, UserSettings} from '@/types/userData/settings';
 import {teamMakerProductionPeriod} from '@/ui/team/maker/calc/const';
