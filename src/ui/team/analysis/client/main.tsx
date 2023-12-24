@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 import {TeamAnalysisLoadedClient} from '@/ui/team/analysis/client/loaded';
 import {TeamAnalysisServerDataProps} from '@/ui/team/analysis/type';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';

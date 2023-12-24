@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 import {PokeboxLoadedClient} from '@/ui/team/pokebox/client/loaded';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 

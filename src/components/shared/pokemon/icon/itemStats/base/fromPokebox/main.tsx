@@ -7,7 +7,7 @@ import {PokemonItemStatsFromPokeboxLayout} from '@/components/shared/pokemon/ico
 import {
   PokemonItemStatsFromPokeboxCommonProps,
 } from '@/components/shared/pokemon/icon/itemStats/base/fromPokebox/type';
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 
 
 export const PokemonItemStatsFromPokebox = (

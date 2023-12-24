@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 import {PokemonSleepStylesLoaded} from '@/ui/pokedex/page/sleepStyle/loaded';
 import {PokemonDataCommonProps} from '@/ui/pokedex/page/type';
 

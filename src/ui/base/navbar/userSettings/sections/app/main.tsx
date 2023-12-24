@@ -5,7 +5,7 @@ import PuzzlePieceIcon from '@heroicons/react/24/outline/PuzzlePieceIcon';
 import ServerIcon from '@heroicons/react/24/outline/ServerIcon';
 
 import {Grid} from '@/components/layout/grid';
-import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad';
+import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 import {UserSettingsAppBuildInfo} from '@/ui/base/navbar/userSettings/sections/app/build';
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
