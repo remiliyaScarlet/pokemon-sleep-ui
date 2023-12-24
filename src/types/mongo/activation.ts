@@ -51,6 +51,7 @@ export type ActivationProperties = {
   isSpecial: boolean,
   isCmsMod?: boolean,
   isActivationLocked?: boolean,
+  isFrozen?: boolean,
   note: string,
   activation: ActivationStatus,
 };

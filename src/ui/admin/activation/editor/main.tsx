@@ -48,6 +48,7 @@ export const ActivationEditor = ({
 
   const isCmsMod = data.isCmsMod ?? false;
   const isActivationLocked = data.isActivationLocked ?? false;
+  const isFrozen = data.isFrozen ?? false;
 
   return (
     <FlexForm className="gap-1.5" onSubmit={async () => {
@@ -136,6 +137,16 @@ export const ActivationEditor = ({
             className={textFilterButtonStyle}
           >
             Activation Locked (Founder)
+          </ToggleButton>
+          <ToggleButton
+            active={isFrozen}
+            onClick={() => setData((original) => ({
+              ...original,
+              isFrozen: !original.isFrozen,
+            } satisfies ActivationPropertiesAtClient))}
+            className={textFilterButtonStyle}
+          >
+            Frozen
           </ToggleButton>
         </Flex>
       </InputRowWithTitle>
