@@ -78,6 +78,7 @@ export const toActivationPayloadFromPatreon = async (
     contact: email,
     email,
     activationProperties: {
+      ...existedActivationProperties,
       expiry: getActivationExpiryFromPatreon(member),
       activation,
       source: 'patreon',

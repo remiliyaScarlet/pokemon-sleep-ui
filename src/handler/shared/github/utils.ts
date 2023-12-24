@@ -62,6 +62,7 @@ export const toActivationPayloadFromGithub = async (
     contact: user.login,
     email,
     activationProperties: {
+      ...existedActivationProperties,
       expiry,
       activation,
       source: 'github',
