@@ -89,7 +89,7 @@ export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorR
     }
 
     if (opts?.statusNoReset) {
-      return undefined;
+      return;
     }
 
     const timeoutId = setTimeout(
