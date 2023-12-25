@@ -45,6 +45,7 @@ export const authOptions: AuthOptions = {
     googleProvider({
       clientId: process.env.NEXTAUTH_GOOGLE_CLIENT_ID,
       clientSecret: process.env.NEXTAUTH_GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   cookies: {
