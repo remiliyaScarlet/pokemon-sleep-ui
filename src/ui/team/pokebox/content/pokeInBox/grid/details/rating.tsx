@@ -1,8 +1,8 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
-import {PokeInBoxRatingStats} from '@/ui/team/pokebox/content/pokeInBox/common/rating/rating';
-import {PokeInBoxRelativeStrength} from '@/ui/team/pokebox/content/pokeInBox/common/rating/relativeStrength';
+import {RatingRelativeStrength} from '@/components/shared/pokemon/rating/units/relativeStrength';
+import {PokeInBoxRatingStats} from '@/ui/team/pokebox/content/pokeInBox/common/rating/main';
 import {useCalculatePokeInBoxRating} from '@/ui/team/pokebox/content/pokeInBox/hook';
 import {PokeInBoxCommonProps} from '@/ui/team/pokebox/content/type';
 
@@ -14,7 +14,7 @@ export const PokeInBoxGridRating = (props: PokeInBoxCommonProps) => {
 
   return (
     <Flex>
-      <PokeInBoxRelativeStrength baseDiffPercent={baseDiffPercent}/>
+      <RatingRelativeStrength baseDiffPercent={baseDiffPercent}/>
       <PokeInBoxRatingStats {...ratingReturn}/>
     </Flex>
   );
