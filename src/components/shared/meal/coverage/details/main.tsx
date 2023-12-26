@@ -24,7 +24,7 @@ export const MealCoverageDetails = ({coverage}: Props) => {
             return <MealCoverageDetailsSingle key={id} id={parseInt(id)} coverage={coverage}/>;
           })}
         </Flex>
-        <ProgressBar percent={coverage.total * 100} heightClass="h-2"/>
+        <ProgressBar percent={coverage.total * 100} classBarHeight="h-2"/>
       </Flex>
       <MealCoverageSummary coverage={coverage} dimension="h-7 w-7" className="text-xl"/>
     </Flex>

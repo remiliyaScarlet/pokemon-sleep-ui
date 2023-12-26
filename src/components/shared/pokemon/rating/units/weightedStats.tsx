@@ -37,7 +37,7 @@ export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps
               )}>
                 {isNaN(percentile) ? '-' : <><span className="text-lg">PR</span>{formatInt(percentile)}</>}
               </Flex>
-              <ProgressBar percent={percentile} heightClass="h-1.5"/>
+              <ProgressBar percent={percentile} classBarHeight="h-1.5"/>
             </Flex>
           ),
           percentage: (
@@ -45,7 +45,7 @@ export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps
               <div className="text-3xl">
                 {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
               </div>
-              <ProgressBar percent={percentage} heightClass="h-1.5"/>
+              <ProgressBar percent={percentage} classBarHeight="h-1.5"/>
             </Flex>
           ),
           relativeStrength: (

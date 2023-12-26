@@ -83,7 +83,7 @@ export const RatingConfigPopup = ({initial, activeKeyLevels, show, setShow, onCl
                   1
                 </button>
               </Flex>
-              <ProgressBar percent={currentWeight / maxWeight * 100} heightClass="h-1.5"/>
+              <ProgressBar percent={currentWeight / maxWeight * 100} classBarHeight="h-1.5"/>
             </Flex>
           );
         })}

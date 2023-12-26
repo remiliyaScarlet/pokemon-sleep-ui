@@ -20,7 +20,7 @@ export const MealCoverageDetailsSingle = ({id, coverage}: Props) => {
       <PokemonIngredientIcon id={id} noLink/>
       <Flex className="text-xs">
         <div>{formatFloat3(percent)}%</div>
-        <ProgressBar percent={percent} heightClass="h-1"/>
+        <ProgressBar percent={percent} classBarHeight="h-1"/>
       </Flex>
     </Flex>
   );
