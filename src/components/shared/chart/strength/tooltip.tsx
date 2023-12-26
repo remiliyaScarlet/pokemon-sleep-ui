@@ -27,7 +27,7 @@ export const StrengthGrowthChartTooltip = ({active, payload, label}: TooltipProp
   const strength = data.value;
 
   return (
-    <Flex direction="row" noFullWidth className="info-section gap-1.5">
+    <Flex direction="row" noFullWidth className="info-section items-center gap-1.5">
       <LevelIcon dimension={dimension}/>
       <div>{level}</div>
       <ColoredEnergyIcon alt={t('Strength')} dimension={dimension}/>
