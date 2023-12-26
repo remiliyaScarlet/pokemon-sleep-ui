@@ -76,6 +76,7 @@ export const TeamAnalysis = async ({params}: DefaultPageProps) => {
         'UI.Metadata',
         'UI.Producing',
         'UI.Stamina',
+        'UI.Rating',
         'UI.UserSettings',
       ]}>
         <TeamAnalysisClient {...props}/>

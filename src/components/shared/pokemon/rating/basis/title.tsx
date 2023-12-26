@@ -23,7 +23,7 @@ export const RatingBasisTitle = ({basis, isActive, larger}: Props) => {
   }
 
   return (
-    <Flex direction="row" center className={clsx('gap-1', larger && 'text-2xl')}>
+    <Flex direction="row" noFullWidth center className={clsx('gap-1', larger && 'text-2xl')}>
       {ratingBasisSpecialty[basis].map((specialty) => (
         <PokemonSpecialtyIcon
           key={specialty}

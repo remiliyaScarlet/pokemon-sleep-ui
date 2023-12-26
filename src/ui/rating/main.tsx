@@ -78,6 +78,7 @@ export const Rating = async ({params}: DefaultPageProps) => {
         'UI.InPage.Team',
         'UI.Metadata',
         'UI.Ocr',
+        'UI.Rating',
       ]}>
         <RatingClient {...props}/>
       </I18nProvider>

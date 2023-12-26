@@ -405,6 +405,13 @@
       "NoSkillAfterWakeup": "Probability of no skill after wakeup"
     }
   },
+  "Rating": {
+    "WeightedStatsBasis": {
+      "Percentile": "백분위수",
+      "Percentage": "백분율",
+      "RelativeStrength": "상대강도"
+    }
+  },
   "SleepStyle": {
     "DrowsyPowerRequired": "필요한 졸음 파워",
     "DrowsyPowerMultiplier": "에너지 x 스코어",

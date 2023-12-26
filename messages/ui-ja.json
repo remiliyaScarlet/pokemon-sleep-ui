@@ -406,6 +406,13 @@
       "NoSkillAfterWakeup": "起床時スキル不発率"
     }
   },
+  "Rating": {
+    "WeightedStatsBasis": {
+      "Percentile": "パーセンタイル (PR)",
+      "Percentage": "パーセンテージ",
+      "RelativeStrength": "相対力"
+    }
+  },
   "SleepStyle": {
     "DrowsyPowerRequired": "必要ねむけパワー",
     "DrowsyPowerMultiplier": "エナジー xスコア",

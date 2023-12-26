@@ -307,6 +307,13 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         NoSkillAfterWakeup: string,
       },
     },
+    Rating: {
+      WeightedStatsBasis: {
+        Percentile: string,
+        Percentage: string,
+        RelativeStrength: string,
+      },
+    },
     SleepStyle: {
       DrowsyPowerRequired: string,
       DrowsyPowerMultiplier: string,

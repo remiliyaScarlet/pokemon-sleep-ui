@@ -1,9 +1,21 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
-import {RatingBasis, RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingBasis, RatingWeight, RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
+
+export const defaultRatingWeight: RatingWeight = {
+  1: 0,
+  10: 0,
+  25: 0.75,
+  30: 1,
+  50: 1,
+  60: 0.5,
+  75: 0.25,
+  100: 0.1,
+};
 
 export const initialRatingResult: Omit<RatingResultOfLevel, 'level'> = {
   samples: NaN,
@@ -32,6 +44,14 @@ export const ratingBasisI18nId: {
   ingredientCount: 'Sort.IngredientCount',
   ingredientProduction: 'Sort.IngredientEnergy',
   skillTriggerValue: 'Stats.MainSkillTriggerValue',
+};
+
+export const ratingWeightedStatsBasisI18nId: {
+  [basis in RatingWeightedStatsBasis]: I18nMessageKeysOfNamespace<'UI.Rating.WeightedStatsBasis'>
+} = {
+  percentage: 'Percentage',
+  percentile: 'Percentile',
+  relativeStrength: 'RelativeStrength',
 };
 
 export const defaultRatingBasisOfSpecialty: {[specialty in SpecialtyType]: RatingBasis} = {

@@ -4,6 +4,7 @@ import {BerryDataMap} from '@/types/game/berry';
 import {IngredientMap} from '@/types/game/ingredient';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
+import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
 import {RatingRequest, RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
@@ -35,4 +36,4 @@ export type RatingPopupControl = {
   sendRequest: (setup: RatingSetupData) => void,
 };
 
-export type RatingResultMap = {[keyLevel in number]?: RatingResultOfLevel};
+export type RatingResultMap = {[keyLevel in PokemonKeyLevel]?: RatingResultOfLevel};

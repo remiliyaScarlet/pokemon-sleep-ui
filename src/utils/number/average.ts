@@ -1,7 +1,7 @@
 import {toSum} from '@/utils/array';
 
 
-type WeightedAverageDataPoint = {
+export type WeightedAverageDataPoint = {
   num: number,
   weight: number,
 };

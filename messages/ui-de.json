@@ -406,6 +406,13 @@
       "NoSkillAfterWakeup": "Probability of no skill after wakeup"
     }
   },
+  "Rating": {
+    "WeightedStatsBasis": {
+      "Percentile": "Percentile",
+      "Percentage": "Percentage",
+      "RelativeStrength": "Relative Strength"
+    }
+  },
   "SleepStyle": {
     "DrowsyPowerRequired": "Drowsy Power Requirement",
     "DrowsyPowerMultiplier": "Stärke × Resultat",
