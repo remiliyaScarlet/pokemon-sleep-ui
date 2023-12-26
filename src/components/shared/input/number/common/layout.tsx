@@ -17,13 +17,15 @@ export const NumberInputLayout = ({
   onClickDefault,
   min,
   max,
+  step,
   className,
   textClassName,
   disabled,
   children,
-}: React.PropsWithChildren<NumberInputLayoutProps<Nullable<number>>>) => {
+}: React.PropsWithChildren<Omit<NumberInputLayoutProps<Nullable<number>>, 'formatValue'>>) => {
   const inUseMin = min ?? -Infinity;
   const inUseMax = max ?? Infinity;
+  const inUseStep = step ?? 1;
 
   const isValueNumber = typeof value === 'number';
   const isDefaultUnavailable = onClickDefault == null && !isValueNumber;
@@ -39,7 +41,7 @@ export const NumberInputLayout = ({
       <button
         className={changeButtonClass}
         disabled={value === inUseMin || isDefaultUnavailable || disabled}
-        onClick={() => setValue(isValueNumber ? Math.max(value - 1, inUseMin) : (onClickDefault ?? value))}
+        onClick={() => setValue(isValueNumber ? Math.max(value - inUseStep, inUseMin) : (onClickDefault ?? value))}
         tabIndex={-1}
       >
         <ChevronDownIcon/>
@@ -48,7 +50,7 @@ export const NumberInputLayout = ({
       <button
         className={changeButtonClass}
         disabled={value === inUseMax || isDefaultUnavailable || disabled}
-        onClick={() => setValue(isValueNumber ? Math.min(value + 1, inUseMax) : (onClickDefault ?? value))}
+        onClick={() => setValue(isValueNumber ? Math.min(value + inUseStep, inUseMax) : (onClickDefault ?? value))}
         tabIndex={-1}
       >
         <ChevronUpIcon/>

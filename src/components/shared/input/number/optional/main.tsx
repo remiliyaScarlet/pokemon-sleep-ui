@@ -9,13 +9,13 @@ import {Nullable} from '@/utils/type';
 
 
 export const NumberInputOptional = (props: NumberInputLayoutProps<Nullable<number>>) => {
-  const {value, min, setValue, disabled} = props;
+  const {value, setValue, formatValue, min, disabled} = props;
 
   return (
     <NumberInputLayout {...props}>
       <InputBox
         type="number"
-        value={value ?? ''}
+        value={value != null ? (formatValue ? formatValue(value) : value.toString()) : ''}
         className={clsx(
           'w-12 text-center',
           value != null && min && value < min && 'text-danger',

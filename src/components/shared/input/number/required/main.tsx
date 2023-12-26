@@ -12,12 +12,17 @@ export const NumberInputRequired = ({
   max = Infinity,
   ...props
 }: NumberInputLayoutProps<number>) => {
-  const {value, setValue, disabled} = props;
+  const {value, setValue, formatValue, disabled} = props;
 
   return (
-    <NumberInputLayout {...props} min={min} max={max} setValue={(value) => value != null && setValue(value)}>
+    <NumberInputLayout
+      {...props}
+      min={min}
+      max={max}
+      setValue={(value) => value != null && setValue(value)}
+    >
       <InputBox
-        value={value.toString()}
+        value={formatValue ? formatValue(value) : value.toString()}
         type="number"
         className={clsx('w-12 text-center', disabled && 'text-disabled')}
         onChange={({target}) => {
