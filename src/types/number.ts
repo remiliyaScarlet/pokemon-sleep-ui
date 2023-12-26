@@ -1,1 +1,1 @@
-export type NumberFormat = 'int' | 'float' | 'float3';
+export type NumberFormat = 'int' | 'float1' | 'float' | 'float3';
