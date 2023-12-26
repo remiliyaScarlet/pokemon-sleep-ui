@@ -45,6 +45,14 @@ export const formatNumber = ({format, num}: FormatNumberOpts): string | null => 
   return formatter[format].format(num);
 };
 
+export const formatSignedNumber = ({format, num}: FormatNumberOpts): string | null => {
+  if (!isNotNullish(num) || isNaN(num)) {
+    return null;
+  }
+
+  return `${num > 0 ? '+' : ''}${formatter[format].format(num)}`;
+};
+
 type FormatToAbbreviationOpts = {
   num: number | undefined,
   decimals?: number

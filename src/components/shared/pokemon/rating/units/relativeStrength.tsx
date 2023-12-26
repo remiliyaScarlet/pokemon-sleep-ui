@@ -6,7 +6,7 @@ import {clsx} from 'clsx';
 import {Flex} from '@/components/layout/flex/common';
 import {getNumberStyles} from '@/styles/text/number';
 import {Dimension} from '@/types/style';
-import {formatFloat} from '@/utils/number/format';
+import {formatSignedNumber} from '@/utils/number/format';
 
 
 type Props = {
@@ -24,7 +24,7 @@ export const RatingRelativeStrength = ({baseDiffPercent, iconDimension, classNam
     )}>
       <ArrowsUpDownIcon className={iconDimension ?? 'h-4 w-4'}/>
       <div>
-        {baseDiffPercent > 0 && '+'}{isNaN(baseDiffPercent) ? '-' : formatFloat(baseDiffPercent)}%
+        {formatSignedNumber({format: 'float', num: baseDiffPercent}) ?? '-'}%
       </div>
     </Flex>
   );
