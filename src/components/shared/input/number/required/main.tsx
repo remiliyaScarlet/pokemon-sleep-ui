@@ -15,7 +15,7 @@ export const NumberInputRequired = ({
   const {value, setValue, disabled} = props;
 
   return (
-    <NumberInputLayout {...props} min={min} max={max} setValue={(value) => value && setValue(value)}>
+    <NumberInputLayout {...props} min={min} max={max} setValue={(value) => value != null && setValue(value)}>
       <InputBox
         value={value.toString()}
         type="number"
