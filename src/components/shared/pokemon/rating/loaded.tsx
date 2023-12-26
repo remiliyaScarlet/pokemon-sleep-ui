@@ -9,10 +9,9 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {RatingConfigPopup} from '@/components/shared/pokemon/rating/config/main';
 import {useRatingResult} from '@/components/shared/pokemon/rating/hook';
+import {RatingResultSummary} from '@/components/shared/pokemon/rating/section/summary';
 import {RatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
-import {RatingResultTitle} from '@/components/shared/pokemon/rating/units/title';
-import {RatingWeightedStatsUI} from '@/components/shared/pokemon/rating/units/weightedStats';
 import {ratingWeightedStatsBasisI18nId} from '@/const/game/rating';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
 import {RatingConfig, ratingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
@@ -82,14 +81,12 @@ const RatingResultLoadedInternal = ({
         ids={[...ratingWeightedStatsBasis]}
         idToText={(basis) => t(ratingWeightedStatsBasisI18nId[basis])}
       />
-      <Flex className="items-center gap-1.5 md:flex-row">
-        <Flex>
-          <RatingResultTitle {...props}/>
-        </Flex>
-        <Flex>
-          <RatingWeightedStatsUI stats={weightedStats} basis={basis}/>
-        </Flex>
-      </Flex>
+      <RatingResultSummary
+        stats={weightedStats}
+        basis={basis}
+        pokemonMaxLevel={pokemonMaxLevel}
+        {...props}
+      />
       <Grid ref={ref} className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
         {activeKeyLevels.map((level) => {
           const result = resultMap[level];

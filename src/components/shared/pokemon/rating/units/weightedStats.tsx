@@ -13,12 +13,12 @@ import {RatingWeightedStats, RatingWeightedStatsBasis} from '@/types/game/pokemo
 import {formatFloat, formatInt} from '@/utils/number/format';
 
 
-type Props = {
+export type RatingWeightedStatsUiProps = {
   stats: RatingWeightedStats,
   basis: RatingWeightedStatsBasis,
 };
 
-export const RatingWeightedStatsUI = ({stats, basis}: Props) => {
+export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps) => {
   const {percentile, percentage, relativeStrength} = stats;
 
   const heightClass = 'h-12';
