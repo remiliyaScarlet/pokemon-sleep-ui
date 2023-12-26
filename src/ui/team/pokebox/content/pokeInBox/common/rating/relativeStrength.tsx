@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/relativeStrength';
+import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/units/relativeStrength';
 
 
 type Props = {

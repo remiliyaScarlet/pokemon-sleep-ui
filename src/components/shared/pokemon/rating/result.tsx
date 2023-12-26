@@ -6,7 +6,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {ProgressBar} from '@/components/progressBar';
 import {LevelIcon} from '@/components/shared/icon/lv';
 import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
-import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/relativeStrength';
+import {PokemonRatingRelativeStrength} from '@/components/shared/pokemon/rating/units/relativeStrength';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {RatingResultOfLevel} from '@/types/game/pokemon/rating';

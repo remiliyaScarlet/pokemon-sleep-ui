@@ -5,8 +5,8 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {useRatingResult} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
-import {RatingResultTitle} from '@/components/shared/pokemon/rating/title';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
+import {RatingResultTitle} from '@/components/shared/pokemon/rating/units/title';
 
 
 const RatingResultInternal = ({
