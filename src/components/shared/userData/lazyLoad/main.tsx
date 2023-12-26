@@ -12,7 +12,7 @@ import {UserLazyLoadedData} from '@/types/userData/main';
 
 type Props = UserDataLazyLoadCommonProps & {
   options: UserDataLoadingOpts,
-  loadingText: string,
+  loadingText: string | null,
   content: (data: UserLazyLoadedData | null, session: ReturnType<typeof useSession>) => React.ReactNode,
 };
 
@@ -59,6 +59,10 @@ export const UserDataLazyLoad = ({
     // Loading data through `update()` of the session sets the status to `loading`
     // So this has to be placed before `session.status === `loading` to show correct loading text
     if (status === 'processing') {
+      if (!loadingText) {
+        return null;
+      }
+
       if (smallLoading) {
         return <LoadingText text={loadingText} dimension="h-4 w-4"/>;
       }
@@ -79,6 +83,10 @@ export const UserDataLazyLoad = ({
     }
 
     if (status === 'failed') {
+      if (!loadingText) {
+        return content(null, session);
+      }
+
       return <Failed text={loadingText}/>;
     }
 
