@@ -1,1 +1,1 @@
-export const trustedDataCount = 15;
+export const trustedDataCount = 20;
