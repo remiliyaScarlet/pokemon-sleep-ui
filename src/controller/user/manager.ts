@@ -1,4 +1,5 @@
 import {createUserDataManager} from '@/controller/user/common';
+import {RatingConfig} from '@/types/game/pokemon/rating/config';
 import {UserCookingPreset} from '@/types/userData/cooking';
 import {UserSettings} from '@/types/userData/settings';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
@@ -13,3 +14,5 @@ export const userDataPokedex = createUserDataManager<PokedexDisplay>('pokedex');
 export const userDataPokeboxDisplay = createUserDataManager<PokeboxViewerDisplay>('pokeboxDisplay');
 
 export const userDataSettings = createUserDataManager<UserSettings>('settings');
+
+export const userRatingConfig = createUserDataManager<RatingConfig>('ratingConfig');

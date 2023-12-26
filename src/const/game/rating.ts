@@ -1,6 +1,6 @@
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {PokemonSpecialtyId} from '@/types/game/pokemon';
-import {RatingBasis, RatingWeight, RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
+import {RatingBasis, RatingConfig, RatingWeight, RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
 import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
@@ -15,6 +15,11 @@ export const defaultRatingWeight: RatingWeight = {
   60: 0.5,
   75: 0.25,
   100: 0.1,
+};
+
+export const defaultRatingConfig: RatingConfig = {
+  basis: 'percentile',
+  weight: defaultRatingWeight,
 };
 
 export const initialRatingResult: Omit<RatingResultOfLevel, 'level'> = {

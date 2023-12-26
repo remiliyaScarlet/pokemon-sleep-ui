@@ -33,6 +33,9 @@ export type UserDataLoadingOpts = {
     pokemonId: PokemonId,
   },
 } | {
+  type: 'ratingConfig',
+  opts?: never,
+} | {
   type: 'adminActivationCreate',
   opts: ActivationPropertiesAtClient,
 } | {

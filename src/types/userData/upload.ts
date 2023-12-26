@@ -1,3 +1,4 @@
+import {RatingConfig} from '@/types/game/pokemon/rating/config';
 import {SleepdexData} from '@/types/game/sleepdex';
 import {ActivationDataAtClient, ActivationKeyAtClient} from '@/types/mongo/activation';
 import {ActivationPresetMap} from '@/types/mongo/activationPreset';
@@ -36,6 +37,9 @@ export type UserDataUploadOpts = {
 } | {
   type: 'cooking',
   data: UserCookingPreset,
+} | {
+  type: 'rating',
+  data: RatingConfig,
 } | {
   type: 'settings',
   data: UserSettingsBundle,

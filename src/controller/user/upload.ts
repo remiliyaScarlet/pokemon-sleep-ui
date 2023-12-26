@@ -14,6 +14,7 @@ import {
   userDataPokeboxDisplay,
   userDataPokedex,
   userDataSettings,
+  userRatingConfig,
 } from '@/controller/user/manager';
 import {addTeamAnalysisComp, updateTeamAnalysisComps} from '@/controller/user/teamAnalysis/comp';
 import {updateTeamAnalysisConfig} from '@/controller/user/teamAnalysis/config';
@@ -95,6 +96,11 @@ export const uploadUserData = async ({userId, opts}: UploadUserDataOpts) => {
       userDataSettings.setData(userId, settings),
       userDataCooking.setData(userId, cooking),
     ]);
+    return;
+  }
+
+  if (type === 'rating') {
+    await userRatingConfig.setData(userId, data);
     return;
   }
 

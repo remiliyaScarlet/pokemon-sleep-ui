@@ -39,13 +39,13 @@ const getRatingWeightedStatsFromResult = ({
 
 export type GetRatingWeightedStatsOpts = {
   activeKeyLevels: PokemonKeyLevel[],
-  result: RatingResultMap,
+  resultMap: RatingResultMap,
   weight: RatingWeight,
 };
 
 export const getRatingWeightedStats = ({
   activeKeyLevels,
-  result,
+  resultMap,
   weight,
 }: GetRatingWeightedStatsOpts): RatingWeightedStats => {
   return Object.fromEntries(ratingWeightedStatsBasis.map((basis) => [
@@ -53,7 +53,7 @@ export const getRatingWeightedStats = ({
     getWeightedAverage(
       activeKeyLevels
         .map((level): WeightedAverageDataPoint | null => {
-          const resultOfLevel = result[level];
+          const resultOfLevel = resultMap[level];
           const weightOfLevel = weight[level];
 
           if (!resultOfLevel || !weightOfLevel) {

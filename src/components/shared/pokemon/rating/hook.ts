@@ -36,18 +36,18 @@ export const useRatingResult = ({
   pokemonMaxLevel,
   request,
 }: UseRatingResultOpts) => {
-  const validKeyLevels: PokemonKeyLevel[] = React.useMemo(() => (
+  const activeKeyLevels: PokemonKeyLevel[] = React.useMemo(() => (
     pokemonKeyLevels
       .filter((level) => level <= pokemonMaxLevel)
       .sort((a, b) => a - b)
   ), [pokemonMaxLevel]);
 
   const generateEmptyRatingResultMap = React.useCallback((): RatingResultMap => {
-    return Object.fromEntries(validKeyLevels.map((level) => [
+    return Object.fromEntries(activeKeyLevels.map((level) => [
       level,
       {level, ...initialRatingResult} satisfies ValueOf<RatingResultMap>,
     ])) as RatingResultMap;
-  }, [validKeyLevels]);
+  }, [activeKeyLevels]);
 
   const [
     resultMap,
@@ -68,7 +68,7 @@ export const useRatingResult = ({
   }, []);
 
   return {
-    validKeyLevels,
+    activeKeyLevels,
     resultMap,
     updateResultOfLevel,
   };

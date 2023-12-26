@@ -5,6 +5,7 @@ import {getSinglePokeInBox, getUserPokeboxSorted, getUserPokeboxWithFilter} from
 import {getSleepdexMap, getSleepdexMapOfPokemon} from '@/controller/sleepdex';
 import {getActivationDataByFilter} from '@/controller/user/activation/data';
 import {generateActivationKey, getActivationKeyByFilter} from '@/controller/user/activation/key';
+import {userRatingConfig} from '@/controller/user/manager';
 import {getTeamAnalysisCompsOfUser, getTeamMemberById} from '@/controller/user/teamAnalysis/comp';
 import {getTeamAnalysisConfigOfUser} from '@/controller/user/teamAnalysis/config';
 import {ActivationData} from '@/types/mongo/activation';
@@ -71,6 +72,10 @@ const loadData = async ({userId, options}: GetUserLazyDataOpts) => {
 
   if (type === 'sleepdexOfPokemon') {
     return await getSleepdexMapOfPokemon(userId, opts.pokemonId) satisfies UserLazyLoadedData['sleepdexOfPokemon'];
+  }
+
+  if (type === 'ratingConfig') {
+    return (await userRatingConfig.getData(userId))?.data satisfies UserLazyLoadedData['ratingConfig'];
   }
 
   if (type === 'adminActivationCreate') {

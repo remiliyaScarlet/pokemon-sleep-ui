@@ -23,5 +23,6 @@ export type RatingWeightedStatsBasis = typeof ratingWeightedStatsBasis[number];
 export type RatingWeightedStats = {[basis in RatingWeightedStatsBasis]: number};
 
 export type RatingConfig = {
+  basis: RatingWeightedStatsBasis,
   weight: RatingWeight,
 };
