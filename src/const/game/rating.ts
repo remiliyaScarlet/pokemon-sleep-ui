@@ -5,7 +5,7 @@ import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
 
 
-export const initialResult: Omit<RatingResultOfLevel, 'level'> = {
+export const initialRatingResult: Omit<RatingResultOfLevel, 'level'> = {
   samples: NaN,
   rank: NaN,
   percentage: NaN,

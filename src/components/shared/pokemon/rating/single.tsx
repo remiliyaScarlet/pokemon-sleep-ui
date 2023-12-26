@@ -14,15 +14,17 @@ import {RatingResultUI} from '@/components/shared/pokemon/rating/result';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {useRatingWorker} from '@/hooks/rating/hook';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
 
 
 type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {
   level: PokemonKeyLevel,
+  result: RatingResultOfLevel,
+  onRated: (result: RatingResultOfLevel) => void,
 };
 
 export const RatingResultOfLevelUI = ({
   request,
-  level,
   pokemon,
   pokemonProducingParams,
   berryDataMap,
@@ -31,11 +33,15 @@ export const RatingResultOfLevelUI = ({
   mainSkillMap,
   subSkillMap,
   mealMap,
+  level,
+  result,
+  onRated,
 }: Props) => {
   const [loading, setLoading] = React.useState(false);
   const collapsible = useCollapsible();
-  const {result, resetResult, rate} = useRatingWorker({
+  const {rate} = useRatingWorker({
     setLoading,
+    onRated,
     opts: {
       level,
       pokemon,
@@ -49,10 +55,6 @@ export const RatingResultOfLevelUI = ({
       useNestedWorker: true,
     },
   });
-
-  React.useEffect(() => {
-    resetResult();
-  }, [request]);
 
   React.useEffect(() => {
     if (!request) {

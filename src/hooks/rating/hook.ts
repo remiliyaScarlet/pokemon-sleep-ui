@@ -1,16 +1,16 @@
-import React from 'react';
 
-import {initialResult} from '@/const/game/rating';
+import {RatingWorkerHookReturn} from '@/hooks/rating/type';
 import {useWorker} from '@/hooks/worker';
 import {RatingOpts, RatingResultOfLevel, RatingSetupData, RatingWorkerOpts} from '@/types/game/pokemon/rating';
 
 
 type UseRatingWorkerOpts = {
   setLoading: (loading: boolean) => void,
+  onRated: (result: RatingResultOfLevel) => void,
   opts: RatingOpts,
 };
 
-export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
+export const useRatingWorker = ({setLoading, onRated, opts}: UseRatingWorkerOpts): RatingWorkerHookReturn => {
   const {
     level,
     pokemonProducingParams,
@@ -22,16 +22,12 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     mealMap,
     useNestedWorker,
   } = opts;
-  const [result, setResult] = React.useState<RatingResultOfLevel>({
-    level,
-    ...initialResult,
-  });
   const {work} = useWorker<RatingWorkerOpts, RatingResultOfLevel>({
     workerName: 'Rating',
     generateWorker: () => new Worker(new URL('main.worker', import.meta.url)),
     onCompleted: (result) => {
       setLoading(false);
-      setResult(result);
+      onRated(result);
     },
     onError: () => setLoading(false),
   });
@@ -62,9 +58,5 @@ export const useRatingWorker = ({setLoading, opts}: UseRatingWorkerOpts) => {
     setLoading(true);
   };
 
-  const resetResult = () => {
-    setResult((original) => ({...original, ...initialResult}));
-  };
-
-  return {result, resetResult, rate};
+  return {rate};
 };

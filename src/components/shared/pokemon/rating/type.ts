@@ -6,7 +6,7 @@ import {PokemonInfo} from '@/types/game/pokemon';
 import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingRequest, RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {CookingUserSettingsRequiredData} from '@/types/userData/settings';
 
@@ -34,3 +34,5 @@ export type RatingPopupControl = {
   setState: React.Dispatch<React.SetStateAction<RatingPopupControlState>>,
   sendRequest: (setup: RatingSetupData) => void,
 };
+
+export type RatingResultMap = {[keyLevel in number]?: RatingResultOfLevel};

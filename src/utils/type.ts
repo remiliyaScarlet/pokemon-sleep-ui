@@ -2,6 +2,8 @@ export type KeysOfType<T, KT> = {
   [K in keyof T]: T[K] extends KT ? K : never
 }[keyof T];
 
+export type ValueOf<T> = T[keyof T];
+
 export type IndexableNonSymbol = number | string;
 
 export type Indexable = IndexableNonSymbol | symbol;

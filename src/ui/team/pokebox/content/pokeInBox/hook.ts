@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {initialResult} from '@/const/game/rating';
+import {initialRatingResult} from '@/const/game/rating';
 import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
 import {UseCalculatePokeInBoxRatingReturn} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {toRatingWorkerOpts} from '@/ui/team/pokebox/content/pokeInBox/utils';
@@ -13,7 +13,7 @@ export const useCalculatePokeInBoxRating = (opts: PokeInBoxCommonProps): UseCalc
 
   const [loading, setLoading] = React.useState(false);
   const [result, setResult] = React.useState<RatingResultOfLevel>({
-    ...initialResult,
+    ...initialRatingResult,
     level: pokeInBox.level,
   });
 
