@@ -1,5 +1,6 @@
 import {natureData} from '@/data/nature';
-import {RatingDataPoint, RatingResultOfLevel, RatingWorkerOpts} from '@/types/game/pokemon/rating';
+import {RatingWorkerOpts} from '@/types/game/pokemon/rating/request';
+import {RatingDataPoint, RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {isNestedWorkerSupported} from '@/utils/compatibility/nestedWorker';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';

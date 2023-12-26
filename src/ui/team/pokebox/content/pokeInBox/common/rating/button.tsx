@@ -4,7 +4,7 @@ import {useTranslations} from 'next-intl';
 
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonInfo} from '@/types/game/pokemon';
-import {RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingSetupData} from '@/types/game/pokemon/rating/request';
 import {PokeInBoxViewUnitProps} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {getProducingRateImplicitParamsFromPokeInbox} from '@/utils/game/producing/params';
 import {getDefaultRatingBasis} from '@/utils/game/rating/utils';

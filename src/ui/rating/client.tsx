@@ -10,7 +10,7 @@ import {RatingFriendshipLevel} from '@/components/shared/pokemon/rating/friendsh
 import {RatingResult} from '@/components/shared/pokemon/rating/main';
 import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {useUserSettingsBundle} from '@/hooks/userData/bundle';
-import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating';
+import {RatingOnDeskState, RatingRequest} from '@/types/game/pokemon/rating/request';
 import {RatingDataProps, RatingServerDataProps} from '@/ui/rating/type';
 import {toRatingRequest} from '@/ui/rating/utils';
 import {getPokemonMaxEvolutionCount} from '@/utils/game/pokemon';

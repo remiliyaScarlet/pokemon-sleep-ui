@@ -6,7 +6,7 @@ import {useTranslations} from 'next-intl';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonSpecialtyIcon} from '@/components/shared/pokemon/specialty/icon';
 import {ratingBasisI18nId, ratingBasisSpecialty} from '@/const/game/rating';
-import {RatingBasis} from '@/types/game/pokemon/rating';
+import {RatingBasis} from '@/types/game/pokemon/rating/config';
 
 
 type Props = {

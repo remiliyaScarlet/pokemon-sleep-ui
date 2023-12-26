@@ -1,5 +1,5 @@
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {RatingBasis} from '@/types/game/pokemon/rating';
+import {RatingBasis} from '@/types/game/pokemon/rating/config';
 import {PokemonProducingRate, ProducingRateSingleParams} from '@/types/game/producing/rate';
 import {toSum} from '@/utils/array';
 import {getSkillTriggerValue} from '@/utils/game/mainSkill/utils';

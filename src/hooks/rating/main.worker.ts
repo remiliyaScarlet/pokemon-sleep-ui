@@ -1,4 +1,4 @@
-import {RatingWorkerOpts} from '@/types/game/pokemon/rating';
+import {RatingWorkerOpts} from '@/types/game/pokemon/rating/request';
 import {calculateRatingResultOfLevel} from '@/utils/game/rating/calc/main';
 
 

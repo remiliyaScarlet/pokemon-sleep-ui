@@ -7,7 +7,8 @@ import {IngredientChainMap} from '@/types/game/pokemon/ingredient';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {MainSkillMap} from '@/types/game/pokemon/mainSkill';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {RatingRequest, RatingResultOfLevel, RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating/request';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {CookingUserSettingsRequiredData} from '@/types/userData/settings';
 

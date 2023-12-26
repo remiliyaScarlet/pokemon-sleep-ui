@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {initialRatingResult} from '@/const/game/rating';
-import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {UseCalculatePokeInBoxRatingReturn} from '@/ui/team/pokebox/content/pokeInBox/type';
 import {toRatingWorkerOpts} from '@/ui/team/pokebox/content/pokeInBox/utils';
 import {workerPool} from '@/ui/team/pokebox/content/pokeInBox/workerPool';

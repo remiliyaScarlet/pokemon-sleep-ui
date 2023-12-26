@@ -1,4 +1,4 @@
-import {RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingSetupData} from '@/types/game/pokemon/rating/request';
 
 
 export type RatingWorkerHookReturn = {

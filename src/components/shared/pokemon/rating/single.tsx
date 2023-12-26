@@ -14,7 +14,7 @@ import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {RatingDataPointUI} from '@/components/shared/pokemon/rating/units/point';
 import {useRatingWorker} from '@/hooks/rating/hook';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
-import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 
 
 type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {

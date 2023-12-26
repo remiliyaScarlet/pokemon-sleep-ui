@@ -7,7 +7,7 @@ import {FilterExpandedInputProps} from '@/components/input/filter/expanded/type'
 import {Flex} from '@/components/layout/flex/common';
 import {RatingBasisSelectionCommonProps} from '@/components/shared/pokemon/rating/basis/selection/type';
 import {textFilterButtonStyle} from '@/styles/input';
-import {RatingBasis} from '@/types/game/pokemon/rating';
+import {RatingBasis} from '@/types/game/pokemon/rating/config';
 
 
 type Props<TRatingBasis extends RatingBasis | null> =

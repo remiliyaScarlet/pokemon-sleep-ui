@@ -1,12 +1,12 @@
 import {RatingResultMap} from '@/components/shared/pokemon/rating/type';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {
-  RatingResultOfLevel,
   RatingWeight,
   RatingWeightedStats,
   ratingWeightedStatsBasis,
   RatingWeightedStatsBasis,
-} from '@/types/game/pokemon/rating';
+} from '@/types/game/pokemon/rating/config';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {getWeightedAverage, WeightedAverageDataPoint} from '@/utils/number/average';
 import {isNotNullish} from '@/utils/type';
 

@@ -2,7 +2,7 @@ import {v4} from 'uuid';
 
 import {defaultCommonConstPokeInBox} from '@/const/user/pokebox';
 import {PokemonInfo, PokemonSpecialtyId} from '@/types/game/pokemon';
-import {RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingSetupData} from '@/types/game/pokemon/rating/request';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {TeamAnalysisMember} from '@/types/teamAnalysis';
 import {PokeInBox} from '@/types/userData/pokebox/main';

@@ -3,7 +3,8 @@ import React from 'react';
 import {RatingPopupControl, RatingPopupControlState, RatingResultMap} from '@/components/shared/pokemon/rating/type';
 import {initialRatingResult} from '@/const/game/rating';
 import {PokemonKeyLevel, pokemonKeyLevels} from '@/types/game/pokemon/level';
-import {RatingRequest, RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingRequest} from '@/types/game/pokemon/rating/request';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {ValueOf} from '@/utils/type';
 
 

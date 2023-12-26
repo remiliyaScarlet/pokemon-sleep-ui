@@ -7,7 +7,7 @@ import {ColoredEnergyIcon} from '@/components/shared/icon/energyColored';
 import {GenericIngredientIcon} from '@/components/shared/icon/ingredient';
 import {MainSkillTriggerValueIcon} from '@/components/shared/pokemon/mainSkill/icon/trigger';
 import {ratingBasisI18nId} from '@/const/game/rating';
-import {RatingBasis} from '@/types/game/pokemon/rating';
+import {RatingBasis} from '@/types/game/pokemon/rating/config';
 
 
 type Props = {

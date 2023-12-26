@@ -7,7 +7,7 @@ import {FieldMetaMap} from '@/types/game/mapMeta';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {NatureEffectId} from '@/types/game/pokemon/nature';
-import {RatingBasis} from '@/types/game/pokemon/rating';
+import {RatingBasis} from '@/types/game/pokemon/rating/config';
 import {SubSkillData, SubSkillId, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {SnorlaxFavorite} from '@/types/game/snorlax';
 import {Migratable} from '@/types/migrate';

@@ -9,7 +9,7 @@ import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const'
 import {RatingRelativeStrength} from '@/components/shared/pokemon/rating/units/relativeStrength';
 import {classOfMarkStyle} from '@/styles/text/mark/style';
 import {getMarkByThreshold} from '@/styles/text/mark/utils';
-import {RatingResultOfLevel} from '@/types/game/pokemon/rating';
+import {RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {formatFloat, formatInt, formatToAbbreviation} from '@/utils/number/format';
 
 

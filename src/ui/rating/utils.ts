@@ -1,4 +1,4 @@
-import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating';
+import {RatingRequest, RatingSetupData} from '@/types/game/pokemon/rating/request';
 
 
 export type ToRatingSetupDataOpts = {
