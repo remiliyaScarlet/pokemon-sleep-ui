@@ -16,7 +16,7 @@ export const UserDataLazyLoadPokeboxSorted = ({render, ...props}: Props) => {
     <UserDataLazyLoad
       options={{type: 'pokeboxSorted'}}
       loadingText="Pokebox"
-      content={(data) => render(
+      content={({data}) => render(
         data?.pokeboxSorted?.map((pokeInBox) => migrate({
           original: pokeInBox,
           override: null,

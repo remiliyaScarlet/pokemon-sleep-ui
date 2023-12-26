@@ -23,7 +23,7 @@ export const UserSettingsAppInfo = () => {
       <UserDataLazyLoad
         options={{type: 'buildId'}}
         loadingText="Server Build"
-        content={(data) => (
+        content={({data}) => (
           <UserSettingsAppBuildInfo
             icon={<ServerIcon/>}
             buildId={data?.buildId}

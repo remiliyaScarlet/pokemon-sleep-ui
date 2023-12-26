@@ -4,7 +4,7 @@ import {useSession} from 'next-auth/react';
 
 import {UserDataUploadStatus} from '@/components/shared/userData/uploadStatus';
 import {useOverridableSession} from '@/hooks/session';
-import {UserDataActorState} from '@/hooks/userData/actor/type';
+import {UserDataActorState, UseUserDataActorReturn} from '@/hooks/userData/actor/type';
 import {UserDataActor, UserDataActorAsync, UserDataActorAsyncReturn} from '@/types/userData/main';
 import {showToast} from '@/utils/toast';
 
@@ -13,12 +13,6 @@ type UseUserDataActorOpts = {
   override?: ReturnType<typeof useSession>,
   statusToast?: boolean,
   statusNoReset?: boolean,
-};
-
-type UseUserDataActorReturn = UserDataActorState & {
-  actAsync: UserDataActorAsync | null,
-  act: UserDataActor | null,
-  session: ReturnType<typeof useSession>,
 };
 
 export const useUserDataActor = (opts?: UseUserDataActorOpts): UseUserDataActorReturn => {

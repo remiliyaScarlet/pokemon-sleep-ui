@@ -25,7 +25,7 @@ export const PokemonItemStatsFromPokebox = (
           opts: filter.external,
         }}
         loadingText="Pokebox"
-        content={(data, session) => (
+        content={({data, session}) => (
           <PokemonItemStatsFromPokeboxContent
             session={session}
             pokeInBoxList={(data?.pokeboxWithFilter ?? []).map((pokeInBox) => migrate({

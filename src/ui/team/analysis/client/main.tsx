@@ -17,7 +17,7 @@ export const TeamAnalysisClient = (props: TeamAnalysisServerDataProps) => {
     <UserDataLazyLoad
       options={{type: 'teamAnalysis'}}
       loadingText="Team"
-      content={(data, session) => (
+      content={({data, session}) => (
         <TeamAnalysisLoadedClient
           data={data?.teamAnalysis}
           maxEvolutionCount={maxEvolutionCount}

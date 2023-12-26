@@ -12,7 +12,7 @@ export const PokemonSleepStyles = (props: PokemonDataCommonProps) => {
     <UserDataLazyLoad
       options={{type: 'sleepdexOfPokemon', opts: {pokemonId: pokemon.id}}}
       loadingText="Sleepdex"
-      content={(data) => (
+      content={({data}) => (
         <PokemonSleepStylesLoaded
           initialSleepdex={data?.sleepdexOfPokemon ?? {}}
           {...props}

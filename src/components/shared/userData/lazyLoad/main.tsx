@@ -1,19 +1,16 @@
 import React from 'react';
 
-import {useSession} from 'next-auth/react';
-
 import {Failed} from '@/components/icons/failed';
 import {Loading, LoadingText} from '@/components/icons/loading';
-import {UserDataLazyLoadCommonProps} from '@/components/shared/userData/lazyLoad/types';
+import {UserDataLazyLoadCommonProps, UserDataLazyLoadRenderOpts} from '@/components/shared/userData/lazyLoad/types';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
 import {UserDataLoadingOpts} from '@/types/userData/load';
-import {UserLazyLoadedData} from '@/types/userData/main';
 
 
 type Props = UserDataLazyLoadCommonProps & {
   options: UserDataLoadingOpts,
   loadingText: string | null,
-  content: (data: UserLazyLoadedData | null, session: ReturnType<typeof useSession>) => React.ReactNode,
+  content: (opts: UserDataLazyLoadRenderOpts) => React.ReactNode,
 };
 
 export const UserDataLazyLoad = ({
@@ -25,15 +22,16 @@ export const UserDataLazyLoad = ({
   actDeps,
   toAct,
 }: Props) => {
+  const actorReturn = useUserDataActor({
+    override: sessionOverride,
+    statusNoReset: true,
+  });
   const {
     act,
     status,
     session,
     lazyLoaded,
-  } = useUserDataActor({
-    override: sessionOverride,
-    statusNoReset: true,
-  });
+  } = actorReturn;
   // This is needed because `status` can't be used for evaluating if the data is loaded
   // > `status` can be `waiting` on init or after data is loaded
   const [loaded, setLoaded] = React.useState(false);
@@ -79,12 +77,12 @@ export const UserDataLazyLoad = ({
     }
 
     if (session.status === 'unauthenticated') {
-      return content(null, session);
+      return content({data: null, session, actorReturn});
     }
 
     if (status === 'failed') {
       if (!loadingText) {
-        return content(null, session);
+        return content({data: null, session, actorReturn});
       }
 
       return <Failed text={loadingText}/>;
@@ -105,5 +103,5 @@ export const UserDataLazyLoad = ({
     console.warn(`Uncaught lazy load status: Session: ${session.status} / User data action: ${status}`);
   }
 
-  return content(lazyLoaded, session);
+  return content({data: lazyLoaded, session, actorReturn});
 };
