@@ -342,6 +342,10 @@
     @apply rounded-lg shadow-border shadow-slate-700 dark:shadow-slate-300;
   }
   
+  .info-highlight-inner {
+    @apply rounded-lg shadow-border-inner shadow-slate-800 dark:shadow-slate-200;
+  }
+  
   /* endregion */
 
   /* region Image inverting (invert-*) */

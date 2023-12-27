@@ -28,8 +28,8 @@ export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps
           percentile: (
             <RankingResultPercentile
               percentile={percentile}
-              classOfMark="text-3xl"
-              classOfValue="text-lg"
+              classOfMark="text-lg"
+              classOfValue="text-3xl"
               classBarHeight="h-1.5"
               className={clsx('justify-around', heightClass)}
             />

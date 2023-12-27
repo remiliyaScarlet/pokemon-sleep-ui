@@ -63,7 +63,7 @@ const RatingResultLoadedInternal = ({
         setShow={setShow}
         onClose={setConfig}
       />
-      <Flex className="items-end">
+      <Flex ref={ref} className="items-end">
         <button className="button-clickable-bg h-8 w-8 rounded-full p-1" onClick={() => setShow(true)}>
           <Cog6ToothIcon/>
         </button>
@@ -93,7 +93,7 @@ const RatingResultLoadedInternal = ({
         resultMap={resultMap}
         basis={basis}
       />
-      <Grid ref={ref} className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
+      <Grid className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
         {activeKeyLevels.map((level) => {
           const result = resultMap[level];
 
