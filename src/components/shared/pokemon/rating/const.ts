@@ -6,3 +6,5 @@ export const ratingMarkThresholdByPr: TextMarkThreshold = {
   rare: 70,
   ordinary: 15,
 };
+
+export const ratingExtremaDisplayMax = 50;

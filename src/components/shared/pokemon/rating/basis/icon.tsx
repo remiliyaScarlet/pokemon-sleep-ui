@@ -29,7 +29,7 @@ export const RatingBasisIcon = ({basis}: Props) => {
 
   if (basis === 'ingredientProduction') {
     return (
-      <Flex direction="row">
+      <Flex direction="row" noFullWidth>
         <GenericIngredientIcon alt={basisName} dimension="h-7 w-7"/>
         <ColoredEnergyIcon alt={basisName} dimension="h-7 w-7"/>
       </Flex>

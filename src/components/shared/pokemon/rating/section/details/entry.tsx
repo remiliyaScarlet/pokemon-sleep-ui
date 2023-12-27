@@ -35,7 +35,7 @@ export const RatingDetailsEntry = ({
   result,
   onRated,
 }: Props) => {
-  const {points} = result;
+  const {extrema} = result;
 
   const collapsible = useCollapsible();
   const [loading, setLoading] = React.useState(false);
@@ -67,7 +67,7 @@ export const RatingDetailsEntry = ({
   return (
     <CollapsibleFull
       state={collapsible}
-      disabled={loading || (!points.min && !points.current && !points.max)}
+      disabled={loading || !extrema}
       button={
         <RatingDetailsButton
           level={level}
@@ -76,35 +76,32 @@ export const RatingDetailsEntry = ({
         />
       }
     >
-      {
-        request?.setup &&
-        <Flex className="gap-1.5 md:flex-row">
-          <RatingDataPointUI
-            level={level}
-            point={points.max}
-            subSkillMap={subSkillMap}
-            icon={<HandThumbUpIcon/>}
-            basis={request?.setup.basis}
-            className="bg-green-500/10"
-          />
-          <RatingDataPointUI
-            level={level}
-            point={points.current}
-            subSkillMap={subSkillMap}
-            icon={<BeakerIcon/>}
-            basis={request?.setup.basis}
-            className="bg-slate-500/10"
-          />
-          <RatingDataPointUI
-            level={level}
-            point={points.min}
-            subSkillMap={subSkillMap}
-            icon={<HandThumbDownIcon/>}
-            basis={request?.setup.basis}
-            className="bg-red-500/10"
-          />
-        </Flex>
-      }
+      <Flex className="gap-1.5">
+        <RatingDataPointUI
+          level={level}
+          extrema={extrema?.max}
+          subSkillMap={subSkillMap}
+          icon={<HandThumbUpIcon/>}
+          basis={request?.setup.basis}
+          className="bg-green-500/10"
+        />
+        <RatingDataPointUI
+          level={level}
+          extrema={extrema?.current}
+          subSkillMap={subSkillMap}
+          icon={<BeakerIcon/>}
+          basis={request?.setup.basis}
+          className="bg-slate-500/10"
+        />
+        <RatingDataPointUI
+          level={level}
+          extrema={extrema?.min}
+          subSkillMap={subSkillMap}
+          icon={<HandThumbDownIcon/>}
+          basis={request?.setup.basis}
+          className="bg-red-500/10"
+        />
+      </Flex>
     </CollapsibleFull>
   );
 };

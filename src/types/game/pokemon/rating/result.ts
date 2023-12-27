@@ -14,6 +14,11 @@ export type RatingDataPoint = {
   combination: RatingCombination,
 };
 
+export type RatingExtrema = {
+  value: number,
+  combinations: RatingCombination[],
+};
+
 export type RatingResultOfLevel = {
   level: number,
   samples: number,
@@ -21,9 +26,9 @@ export type RatingResultOfLevel = {
   percentage: number,
   percentile: number,
   baseDiffPercent: number,
-  points: {
-    min: RatingDataPoint | null,
-    current: RatingDataPoint | null,
-    max: RatingDataPoint | null,
+  extrema: null | {
+    min: RatingExtrema,
+    current: RatingExtrema,
+    max: RatingExtrema,
   },
 };

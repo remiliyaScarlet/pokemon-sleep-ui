@@ -28,11 +28,7 @@ export const initialRatingResult: Omit<RatingResultOfLevel, 'level'> = {
   percentage: NaN,
   percentile: NaN,
   baseDiffPercent: NaN,
-  points: {
-    min: null,
-    current: null,
-    max: null,
-  },
+  extrema: null,
 };
 
 export const ratingBasisSpecialty: {[basis in RatingBasis]: PokemonSpecialtyId[]} = {

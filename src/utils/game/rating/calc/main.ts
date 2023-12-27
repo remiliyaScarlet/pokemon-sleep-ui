@@ -1,6 +1,6 @@
 import {natureData} from '@/data/nature';
 import {RatingWorkerOpts} from '@/types/game/pokemon/rating/request';
-import {RatingDataPoint, RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
+import {RatingDataPoint, RatingExtrema, RatingResultOfLevel} from '@/types/game/pokemon/rating/result';
 import {isNestedWorkerSupported} from '@/utils/compatibility/nestedWorker';
 import {generatePossibleIngredientProductions} from '@/utils/game/producing/ingredient/chain';
 import {getEffectiveIngredientProductions} from '@/utils/game/producing/ingredient/multi';
@@ -56,8 +56,16 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
 
   let samples = 0;
   let rank = 1;
-  let min: RatingDataPoint | null = null;
-  let max: RatingDataPoint | null = null;
+  let min: RatingExtrema | null = null;
+  let max: RatingExtrema | null = null;
+  const current: RatingExtrema = {
+    value: valueOfCurrent,
+    combinations: [{
+      ingredients: currentProductions,
+      subSkill,
+      nature,
+    }],
+  };
 
   // `ingredientCount` should only get compared within the same combination
   const ingredientProductions = basis == 'ingredientCount' ?
@@ -96,7 +104,7 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
   const dataPoints = (await Promise.all(promises)).flat();
 
   for (const dataPoint of dataPoints) {
-    const {value} = dataPoint;
+    const {value, combination} = dataPoint;
     samples++;
 
     if (value > valueOfCurrent) {
@@ -104,10 +112,19 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
     }
 
     if (!min || value < min.value) {
-      min = dataPoint;
+      min = {value, combinations: [combination]};
+    } else if (value === min.value) {
+      min.combinations.push(combination);
     }
+
     if (!max || value > max.value) {
-      max = dataPoint;
+      max = {value, combinations: [combination]};
+    } else if (value === max.value) {
+      max.combinations.push(combination);
+    }
+
+    if (value === current.value) {
+      current.combinations.push(combination);
     }
   }
 
@@ -120,17 +137,6 @@ export const calculateRatingResultOfLevel = async (opts: RatingWorkerOpts): Prom
     percentage: isValid && min && max ? Math.abs((valueOfCurrent - min.value) / (max.value - min.value) * 100) : NaN,
     percentile: isValid ? Math.abs((samples + 1 - rank) / (samples + 1) * 100) : NaN,
     baseDiffPercent: (valueOfCurrent / valueOfBase - 1) * 100,
-    points: {
-      min,
-      current: {
-        value: valueOfCurrent,
-        combination: {
-          ingredients: currentProductions,
-          subSkill,
-          nature,
-        },
-      },
-      max,
-    },
+    extrema: min && max && {min, current, max},
   };
 };
