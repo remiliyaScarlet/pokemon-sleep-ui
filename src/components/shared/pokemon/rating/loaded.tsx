@@ -4,6 +4,7 @@ import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
 import Cog6ToothIcon from '@heroicons/react/24/solid/Cog6ToothIcon';
 import {useTranslations} from 'next-intl';
 
+import {AdsUnit} from '@/components/ads/main';
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
 import {RatingConfigPopup} from '@/components/shared/pokemon/rating/config/main';
@@ -92,6 +93,7 @@ const RatingResultLoadedInternal = ({
         resultMap={resultMap}
         basis={basis}
       />
+      <AdsUnit/>
       <RatingDetails
         activeKeyLevels={activeKeyLevels}
         resultMap={resultMap}
