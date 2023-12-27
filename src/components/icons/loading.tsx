@@ -1,19 +1,21 @@
 /* eslint-disable max-len */
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {Flex} from '@/components/layout/flex/common';
 import {Dimension} from '@/types/style';
 
 
-type Props = {
-  text?: string,
+type LoadingSvgProps = {
+  className?: string,
 };
 
-export const LoadingSvg = () => {
+export const LoadingSvg = ({className}: LoadingSvgProps) => {
   return (
     <svg
       aria-hidden="true"
-      className="animate-spin fill-gray-700 text-gray-200"
+      className={clsx('animate-spin fill-gray-700 text-gray-200', className)}
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +34,11 @@ export const LoadingSvg = () => {
   );
 };
 
-export const LoadingIcon = ({text}: Props) => {
+type LoadingPredefinedProps = {
+  text?: string,
+};
+
+export const LoadingIcon = ({text}: LoadingPredefinedProps) => {
   return (
     <Flex center className="h-full gap-1">
       <div className="h-6 w-6">
@@ -45,7 +51,7 @@ export const LoadingIcon = ({text}: Props) => {
   );
 };
 
-type LoadingTextProps = Props & {
+type LoadingTextProps = LoadingPredefinedProps & {
   dimension?: Dimension,
 };
 
@@ -62,7 +68,7 @@ export const LoadingText = ({text, dimension}: LoadingTextProps) => {
   );
 };
 
-export const Loading = ({text}: Props) => {
+export const Loading = ({text}: LoadingPredefinedProps) => {
   return (
     <div className="h-36">
       <LoadingIcon text={text}/>
@@ -70,7 +76,7 @@ export const Loading = ({text}: Props) => {
   );
 };
 
-export const LoadingFullScreen = ({text}: Props) => {
+export const LoadingFullScreen = ({text}: LoadingPredefinedProps) => {
   return (
     <div className="h-screen">
       <LoadingIcon text={text}/>
