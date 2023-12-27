@@ -4,13 +4,10 @@ import {clsx} from 'clsx';
 
 import {FadingLayout} from '@/components/layout/fading/main';
 import {Flex} from '@/components/layout/flex/common';
-import {ProgressBar} from '@/components/progressBar';
-import {ratingMarkThresholdByPr} from '@/components/shared/pokemon/rating/const';
+import {RankingResultPercentage} from '@/components/shared/pokemon/rating/units/percentage';
+import {RankingResultPercentile} from '@/components/shared/pokemon/rating/units/percentile';
 import {RatingRelativeStrength} from '@/components/shared/pokemon/rating/units/relativeStrength';
-import {classOfMarkStyle} from '@/styles/text/mark/style';
-import {getMarkByThreshold} from '@/styles/text/mark/utils';
 import {RatingWeightedStats, RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
-import {formatFloat, formatInt} from '@/utils/number/format';
 
 
 export type RatingWeightedStatsUiProps = {
@@ -22,7 +19,6 @@ export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps
   const {percentile, percentage, relativeStrength} = stats;
 
   const heightClass = 'h-12';
-  const percentileMark = getMarkByThreshold(percentile, ratingMarkThresholdByPr);
 
   return (
     <Flex center className={heightClass}>
@@ -30,23 +26,21 @@ export const RatingWeightedStatsUI = ({stats, basis}: RatingWeightedStatsUiProps
         current={basis}
         contents={{
           percentile: (
-            <Flex noFullWidth className={clsx('justify-around gap-1', heightClass)}>
-              <Flex direction="row" noFullWidth className={clsx(
-                'items-end justify-center gap-1 text-3xl',
-                percentileMark && classOfMarkStyle[percentileMark],
-              )}>
-                {isNaN(percentile) ? '-' : <><span className="text-lg">PR</span>{formatInt(percentile)}</>}
-              </Flex>
-              <ProgressBar percent={percentile} classBarHeight="h-1.5"/>
-            </Flex>
+            <RankingResultPercentile
+              percentile={percentile}
+              classOfMark="text-3xl"
+              classOfValue="text-lg"
+              classBarHeight="h-1.5"
+              className={clsx('justify-around', heightClass)}
+            />
           ),
           percentage: (
-            <Flex center noFullWidth className={clsx('justify-around gap-1', heightClass)}>
-              <div className="text-3xl">
-                {isNaN(percentage) ? '-' : `${formatFloat(percentage)}%`}
-              </div>
-              <ProgressBar percent={percentage} classBarHeight="h-1.5"/>
-            </Flex>
+            <RankingResultPercentage
+              percentage={percentage}
+              classOfValue="text-3xl"
+              classBarHeight="h-1.5"
+              className={clsx('justify-around', heightClass)}
+            />
           ),
           relativeStrength: (
             <RatingRelativeStrength
