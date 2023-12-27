@@ -16,7 +16,7 @@ type GetRatingWeightedStatsDataPointOpts = {
   basis: RatingWeightedStatsBasis,
 };
 
-const getRatingWeightedStatsFromResult = ({
+export const getRatingWeightedStatsFromResult = ({
   resultOfLevel,
   basis,
 }: GetRatingWeightedStatsDataPointOpts): number => {

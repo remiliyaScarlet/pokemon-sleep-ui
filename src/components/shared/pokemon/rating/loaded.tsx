@@ -9,6 +9,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {RatingConfigPopup} from '@/components/shared/pokemon/rating/config/main';
 import {useRatingResult} from '@/components/shared/pokemon/rating/hook';
+import {RatingResultChart} from '@/components/shared/pokemon/rating/section/chart/main';
 import {RatingResultSummary} from '@/components/shared/pokemon/rating/section/summary';
 import {RatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
@@ -86,6 +87,11 @@ const RatingResultLoadedInternal = ({
         basis={basis}
         pokemonMaxLevel={pokemonMaxLevel}
         {...props}
+      />
+      <RatingResultChart
+        activeKeyLevels={activeKeyLevels}
+        resultMap={resultMap}
+        basis={basis}
       />
       <Grid ref={ref} className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
         {activeKeyLevels.map((level) => {
