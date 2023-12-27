@@ -177,6 +177,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       },
       Rating: {
         FriendshipLevel: string,
+        AdvancedOptions: string,
       },
       Cooking: {
         Energy: string,

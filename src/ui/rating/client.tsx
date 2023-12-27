@@ -2,7 +2,10 @@
 import React from 'react';
 
 import {useSession} from 'next-auth/react';
+import {useTranslations} from 'next-intl';
 
+import {CollapsibleFull} from '@/components/layout/collapsible/full';
+import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLab} from '@/components/shared/pokemon/predefined/lab/main';
 import {RatingBasisSelection} from '@/components/shared/pokemon/rating/basis/selection/main';
@@ -27,6 +30,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
     preloaded,
   } = props;
 
+  const t = useTranslations('UI.InPage.Rating');
   const [request, setRequest] = React.useState<RatingRequest>();
   const {data: session} = useSession();
   const bundle = useUserSettingsBundle({
@@ -35,6 +39,7 @@ export const RatingClient = (props: RatingServerDataProps) => {
       client: session?.user.preloaded,
     },
   });
+  const advancedOptionsCollapsible = useCollapsible();
 
   const resultRef = React.useRef<HTMLDivElement>(null);
 
@@ -76,13 +81,6 @@ export const RatingClient = (props: RatingServerDataProps) => {
       })}
       renderAdditional={(onDesk, setOnDesk) => (
         <Flex className="gap-1.5">
-          <SnorlaxFavoriteInput
-            pokemonList={pokemonList}
-            mapMeta={mapMeta}
-            filter={onDesk}
-            setFilter={setOnDesk}
-            filterKey="snorlaxFavorite"
-          />
           <RatingBasisSelection
             current={onDesk.basis}
             onSelect={(basis) => setOnDesk((original) => ({
@@ -90,13 +88,24 @@ export const RatingClient = (props: RatingServerDataProps) => {
               basis,
             }))}
           />
-          <RatingFriendshipLevel
-            current={onDesk.friendshipLevel}
-            onUpdated={(friendshipLevel) => setOnDesk((original) => ({
-              ...original,
-              friendshipLevel,
-            }))}
-          />
+          <CollapsibleFull state={advancedOptionsCollapsible} button={t('AdvancedOptions')}>
+            <Flex className="gap-1.5">
+              <SnorlaxFavoriteInput
+                pokemonList={pokemonList}
+                mapMeta={mapMeta}
+                filter={onDesk}
+                setFilter={setOnDesk}
+                filterKey="snorlaxFavorite"
+              />
+              <RatingFriendshipLevel
+                current={onDesk.friendshipLevel}
+                onUpdated={(friendshipLevel) => setOnDesk((original) => ({
+                  ...original,
+                  friendshipLevel,
+                }))}
+              />
+            </Flex>
+          </CollapsibleFull>
         </Flex>
       )}
       renderResult={({pokemon}) => (

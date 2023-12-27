@@ -274,7 +274,8 @@
       "LastSleepStyle": "마지막 잠자는 모습 - {mapName}"
     },
     "Rating": {
-      "FriendshipLevel": "프렌드 레벨"
+      "FriendshipLevel": "프렌드 레벨",
+      "AdvancedOptions": "고급 옵션"
     },
     "Cooking": {
       "Energy": "최종 에너지",

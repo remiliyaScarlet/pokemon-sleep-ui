@@ -274,7 +274,8 @@
       "LastSleepStyle": "最後の寝顔 - {mapName}"
     },
     "Rating": {
-      "FriendshipLevel": "フレンドレベル"
+      "FriendshipLevel": "フレンドレベル",
+      "AdvancedOptions": "詳細オプション"
     },
     "Cooking": {
       "Energy": "最終エナジー",

@@ -274,7 +274,8 @@
       "LastSleepStyle": "Last Sleep Style - {mapName}"
     },
     "Rating": {
-      "FriendshipLevel": "Friendship Level"
+      "FriendshipLevel": "Friendship Level",
+      "AdvancedOptions": "Advanced Options"
     },
     "Cooking": {
       "Energy": "Final Strength",

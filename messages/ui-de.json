@@ -275,7 +275,8 @@
       "LastSleepStyle": "Letzte Schlafpose - {mapName}"
     },
     "Rating": {
-      "FriendshipLevel": "Freundeslevel"
+      "FriendshipLevel": "Freundeslevel",
+      "AdvancedOptions": "Advanced Options"
     },
     "Cooking": {
       "Energy": "Endstärke",
