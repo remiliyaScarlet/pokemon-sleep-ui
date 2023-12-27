@@ -10,14 +10,15 @@ import {Dimension} from '@/types/style';
 
 type Props = {
   className?: string,
+  classTextSize?: `text-${string}`,
   dimension?: Dimension,
   style?: InfoIconStyle,
 };
 
-export const InfoIcon = ({className, dimension, style, children}: React.PropsWithChildren<Props>) => {
+export const InfoIcon = ({className, classTextSize, dimension, style, children}: React.PropsWithChildren<Props>) => {
   return (
     <Flex center noFullWidth className={clsx(
-      'text-xs',
+      classTextSize ?? 'text-xs',
       dimension ?? 'h-5 w-5',
       style ? infoIconStyleClass[style] : infoIconStyleClass.normal,
       className,
