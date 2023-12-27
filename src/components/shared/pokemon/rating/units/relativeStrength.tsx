@@ -12,12 +12,13 @@ import {formatSignedNumber} from '@/utils/number/format';
 type Props = {
   baseDiffPercent: number,
   iconDimension?: Dimension,
+  noFullWidth?: boolean,
   className?: string,
 };
 
-export const RatingRelativeStrength = ({baseDiffPercent, iconDimension, className}: Props) => {
+export const RatingRelativeStrength = ({baseDiffPercent, iconDimension, noFullWidth, className}: Props) => {
   return (
-    <Flex direction="row" center noFullWidth className={clsx(
+    <Flex direction="row" center noFullWidth={noFullWidth ?? true} className={clsx(
       'group gap-1 whitespace-nowrap',
       getNumberStyles({num: baseDiffPercent}),
       className,

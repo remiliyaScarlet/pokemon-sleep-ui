@@ -7,9 +7,7 @@ import HandThumbUpIcon from '@heroicons/react/24/outline/HandThumbUpIcon';
 import {CollapsibleFull} from '@/components/layout/collapsible/full';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
-import {Grid} from '@/components/layout/grid';
-import {LazyLoad} from '@/components/layout/lazyLoad';
-import {RatingResultUI} from '@/components/shared/pokemon/rating/result';
+import {RatingDetailsButton} from '@/components/shared/pokemon/rating/section/details/button/main';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {RatingDataPointUI} from '@/components/shared/pokemon/rating/units/point';
 import {useRatingWorker} from '@/hooks/rating/hook';
@@ -23,8 +21,7 @@ type Props = Omit<RatingResultProps, 'pokemonMaxLevel'> & {
   onRated: (result: RatingResultOfLevel) => void,
 };
 
-export const RatingResultOfLevelUI = ({
-  request,
+export const RatingDetailsEntry = ({
   pokemon,
   pokemonProducingParams,
   berryDataMap,
@@ -33,12 +30,15 @@ export const RatingResultOfLevelUI = ({
   mainSkillMap,
   subSkillMap,
   mealMap,
+  request,
   level,
   result,
   onRated,
 }: Props) => {
-  const [loading, setLoading] = React.useState(false);
+  const {points} = result;
+
   const collapsible = useCollapsible();
+  const [loading, setLoading] = React.useState(false);
   const {rate} = useRatingWorker({
     setLoading,
     onRated,
@@ -64,25 +64,27 @@ export const RatingResultOfLevelUI = ({
     rate(request.setup);
   }, [request?.timestamp]);
 
-  const {points} = result;
-  const basis = request?.setup.basis;
-
   return (
-    <LazyLoad loading={loading} loadingFullHeight className="info-section relative">
-      <RatingResultUI result={result} level={level}/>
-      <CollapsibleFull state={collapsible} disabled={!points.min && !points.current && !points.max} button={
-        <Flex direction="row" center className="gap-1">
-          <HandThumbDownIcon className="h-6 w-6"/>
-          <HandThumbUpIcon className="h-6 w-6"/>
-        </Flex>
-      }>
-        <Grid className="grid-rows-3 gap-1.5">
+    <CollapsibleFull
+      state={collapsible}
+      disabled={loading || (!points.min && !points.current && !points.max)}
+      button={
+        <RatingDetailsButton
+          level={level}
+          loading={loading}
+          result={result}
+        />
+      }
+    >
+      {
+        request?.setup &&
+        <Flex className="gap-1.5 md:flex-row">
           <RatingDataPointUI
             level={level}
             point={points.max}
             subSkillMap={subSkillMap}
             icon={<HandThumbUpIcon/>}
-            basis={basis}
+            basis={request?.setup.basis}
             className="bg-green-500/10"
           />
           <RatingDataPointUI
@@ -90,7 +92,7 @@ export const RatingResultOfLevelUI = ({
             point={points.current}
             subSkillMap={subSkillMap}
             icon={<BeakerIcon/>}
-            basis={basis}
+            basis={request?.setup.basis}
             className="bg-slate-500/10"
           />
           <RatingDataPointUI
@@ -98,11 +100,11 @@ export const RatingResultOfLevelUI = ({
             point={points.min}
             subSkillMap={subSkillMap}
             icon={<HandThumbDownIcon/>}
-            basis={basis}
+            basis={request?.setup.basis}
             className="bg-red-500/10"
           />
-        </Grid>
-      </CollapsibleFull>
-    </LazyLoad>
+        </Flex>
+      }
+    </CollapsibleFull>
   );
 };

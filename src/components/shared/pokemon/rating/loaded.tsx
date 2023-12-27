@@ -6,12 +6,11 @@ import {useTranslations} from 'next-intl';
 
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {Flex} from '@/components/layout/flex/common';
-import {Grid} from '@/components/layout/grid';
 import {RatingConfigPopup} from '@/components/shared/pokemon/rating/config/main';
 import {useRatingResult} from '@/components/shared/pokemon/rating/hook';
 import {RatingResultChart} from '@/components/shared/pokemon/rating/section/chart/main';
+import {RatingDetails} from '@/components/shared/pokemon/rating/section/details/main';
 import {RatingResultSummary} from '@/components/shared/pokemon/rating/section/summary';
-import {RatingResultOfLevelUI} from '@/components/shared/pokemon/rating/single';
 import {RatingResultProps} from '@/components/shared/pokemon/rating/type';
 import {ratingWeightedStatsBasisI18nId} from '@/const/game/rating';
 import {useAutoUpload} from '@/hooks/userData/autoUpload';
@@ -93,25 +92,12 @@ const RatingResultLoadedInternal = ({
         resultMap={resultMap}
         basis={basis}
       />
-      <Grid className="grid-cols-1 gap-2 md:grid-cols-2 xl:grid-cols-3">
-        {activeKeyLevels.map((level) => {
-          const result = resultMap[level];
-
-          if (!result) {
-            return null;
-          }
-
-          return (
-            <RatingResultOfLevelUI
-              key={level}
-              level={level}
-              result={result}
-              onRated={updateResultOfLevel}
-              {...props}
-            />
-          );
-        })}
-      </Grid>
+      <RatingDetails
+        activeKeyLevels={activeKeyLevels}
+        resultMap={resultMap}
+        onRated={updateResultOfLevel}
+        {...props}
+      />
     </>
   );
 };
