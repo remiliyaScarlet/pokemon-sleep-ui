@@ -8,7 +8,7 @@ import {Flex} from '@/components/layout/flex/common';
 import {PopupCommon} from '@/components/popup/common/main';
 import {GenericIconLarger} from '@/components/shared/icon/common/larger';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
-import {PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
+import {PokemonOnDeskExportState, PokemonOnDeskState} from '@/components/shared/pokemon/predefined/lab/onDesk/type';
 import {toPokeInBox} from '@/components/shared/pokemon/predefined/lab/onDesk/utils';
 import {UserActionStatusIcon} from '@/components/shared/userData/statusIcon';
 import {useUserDataActor} from '@/hooks/userData/actor/main';
@@ -22,31 +22,50 @@ type Props = {
 };
 
 export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Props) => {
-  const [level, setLevel] = React.useState(1);
-  const [name, setName] = React.useState<string | null>(null);
-  const [show, setShow] = React.useState(false);
+  const [state, setState] = React.useState<PokemonOnDeskExportState>({
+    level: 1,
+    name: null,
+    show: false,
+  });
   const {act, status} = useUserDataActor();
   const t = useTranslations('UI.Metadata');
   const t2 = useTranslations('Game');
 
   React.useEffect(() => {
     if (status === 'completed') {
-      setShow(false);
+      setState((original) => ({
+        ...original,
+        name: null,
+        show: false,
+      }));
     }
   }, [status]);
 
+  const {level, name, show} = state;
+
   return (
     <>
-      <PopupCommon show={show} setShow={setShow}>
+      <PopupCommon show={show} setShow={(show) => setState((original) => ({...original, show}))}>
         <Flex className="max-w-2xl gap-2 overflow-hidden sm:min-w-[24rem]">
           <InputBox
             value={name ?? ''}
             type="text"
             placeholder={t2(`PokemonName.${pokemon.id}`)}
             className="w-full"
-            onChange={({target}) => setName(target.value || null)}
+            onChange={({target}) => setState((original) => ({
+              ...original,
+              name: target.value || null,
+            }))}
           />
-          <PokemonLevelSlider value={level} max={pokemonMaxLevel} setValue={setLevel} noSameLine/>
+          <PokemonLevelSlider
+            max={pokemonMaxLevel}
+            value={level}
+            setValue={(level) => setState((original) => ({
+              ...original,
+              level,
+            }))}
+            noSameLine
+          />
           <Flex>
             <button
               className="button-clickable-bg disabled:button-disabled ml-auto p-1"
@@ -80,7 +99,7 @@ export const PokemonOnDeskExportButton = ({setup, pokemon, pokemonMaxLevel}: Pro
       <button
         className="button-clickable-bg disabled:button-disabled w-32 p-1"
         disabled={!act || status === 'processing'}
-        onClick={() => setShow(true)}
+        onClick={() => setState((original) => ({...original, show: true}))}
       >
         <Flex direction="row" center className="group gap-1">
           {status !== 'waiting' ?

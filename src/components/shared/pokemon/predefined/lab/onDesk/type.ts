@@ -31,3 +31,9 @@ export type PokemonOnDeskCommonProps<TOnDesk extends PokemonOnDeskState> = Pokem
   immediateUpdate?: boolean,
   renderAdditional: (onDesk: TOnDesk, setOnDesk: ReactStateUpdaterFromOriginal<TOnDesk>) => React.ReactNode,
 };
+
+export type PokemonOnDeskExportState = {
+  level: number,
+  name: string | null,
+  show: boolean,
+};
