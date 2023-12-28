@@ -18,7 +18,10 @@ export const getPossiblyActiveDrowsyPowerMultiplier = (): Promise<EventDrowsyPow
   return getDataAsArray(
     getCollection(),
     // Get multipliers within the time range of (current - 24 hrs) to (current + 24 hrs)
-    {startEpoch: {$gt: Date.now() - millisecondsInDay}, endEpoch: {$lt: Date.now() + millisecondsInDay}},
+    {
+      startEpoch: {$gt: (Date.now() - millisecondsInDay) / 1000},
+      endEpoch: {$lt: (Date.now() + millisecondsInDay) / 1000},
+    },
     {startEpoch: 1},
   );
 };
