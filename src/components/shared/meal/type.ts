@@ -7,5 +7,5 @@ export type MealLinkProps = {
   meal: Meal,
   showEnergy: boolean,
   ingredientMap: IngredientMap,
-  mapBonus: number,
+  mapMultiplier: number,
 };

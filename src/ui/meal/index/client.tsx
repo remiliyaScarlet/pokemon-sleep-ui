@@ -71,7 +71,7 @@ export const MealIndexClient = ({mealMap, ingredientMap, preloaded}: MealDataPro
                 level={filter.mealLevel}
                 showEnergy={filter.showEnergy}
                 ingredientMap={ingredientMap}
-                mapBonus={translatedSettings.calculatedSettings.bonus.map}
+                mapMultiplier={translatedSettings.calculatedSettings.bonus.mapMultiplier}
               />
             </div>
           ))}

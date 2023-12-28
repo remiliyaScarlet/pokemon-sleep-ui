@@ -40,7 +40,7 @@ export const MealMakerPopup = ({filter, calculatedSettings, status, onCook, ...p
     ...props,
     level: filter.recipeLevel[meal.id] ?? 1,
     filler: toMealIngredientFromIngredientCounter(subtractIngredientCount(usages, requiredIngredients)),
-    mapBonus: calculatedSettings.bonus.map,
+    mapMultiplier: calculatedSettings.bonus.mapMultiplier,
   });
 
   const isRequirementSatisfied = Object.values(subtractIngredientCount(requiredIngredients, usages))

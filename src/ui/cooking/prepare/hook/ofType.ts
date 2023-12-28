@@ -24,7 +24,7 @@ export const getMealPreparerInfoOfMealType = ({
 }: GetMealPreparerInfoOfMealTypeOpts): MealPreparerInfoOfMealType => {
   const {mealsWanted, recipeLevel} = filter;
 
-  const mapBonus = calculatedSettings.bonus.map;
+  const mapMultiplier = calculatedSettings.bonus.mapMultiplier;
 
   const {ingredientsRequired} = getMealIngredientInfo({meals: mealsOfType, mealCount: filter.mealsWanted});
   const ingredients = getMealPreparerIngredientStats({
@@ -41,7 +41,7 @@ export const getMealPreparerInfoOfMealType = ({
 
       const info = getMealFinalStrength({
         filler: [],
-        mapBonus,
+        mapMultiplier,
         level: recipeLevel[meal.id] ?? 1,
         meal,
         ingredientMap,
@@ -55,7 +55,7 @@ export const getMealPreparerInfoOfMealType = ({
   const fillerStrength = getMealFinalStrengthOfNonRecipe({
     filler: toMealIngredientFromIngredientCounter(ingredients.filler),
     ingredientMap,
-    mapBonus,
+    mapMultiplier,
   }).strengthFinal;
 
   return {

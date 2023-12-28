@@ -10,6 +10,6 @@ describe('Pokemon Energy Multiplier', () => {
   it('is correct', () => {
     const multiplier = getCommonEnergyMultiplier({bonus});
 
-    expect(multiplier).toBeCloseTo(1 + bonus.overall / 100);
+    expect(multiplier).toBeCloseTo(bonus.overallMultiplier);
   });
 });

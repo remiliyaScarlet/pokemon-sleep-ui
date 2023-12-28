@@ -28,7 +28,10 @@ describe('Pokemon Berry Production', () => {
 
     const awakeFreq = 2920.2 / bonus.stamina.awake;
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
-    const berryEnergy = 63;
+    // Math.ceil(63 * 1.05) where
+    // - 63 is the berry strength
+    // - 1.05 is map multiplier from `testBonus['1']`
+    const berryEnergy = 67;
     const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(testPokemonData.absol.berry.id);

@@ -8,7 +8,7 @@ export type UserBonus = {
 };
 
 export type EffectiveBonus = {
-  map: number,
+  mapMultiplier: number,
   stamina: StaminaEfficiency,
-  overall: number,
+  overallMultiplier: number,
 };

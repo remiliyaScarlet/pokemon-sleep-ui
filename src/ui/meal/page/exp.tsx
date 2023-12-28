@@ -14,14 +14,14 @@ export const MealExp = ({meal, ingredientMap, translatedSettings}: MealCommonPro
   const t = useTranslations('UI.InPage.Cooking');
   const [level, setLevel] = React.useState(1);
 
-  const mapBonus = translatedSettings.calculatedSettings.bonus.map;
+  const mapMultiplier = translatedSettings.calculatedSettings.bonus.mapMultiplier;
   const info = React.useMemo(() => getMealFinalStrength({
     filler: [],
     level,
     meal,
     ingredientMap,
-    mapBonus,
-  }), [meal, ingredientMap, level, mapBonus]);
+    mapMultiplier,
+  }), [meal, ingredientMap, level, mapMultiplier]);
 
   return (
     <InfoSlider

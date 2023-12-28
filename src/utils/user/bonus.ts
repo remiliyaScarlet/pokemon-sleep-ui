@@ -22,8 +22,8 @@ export const toEffectiveBonus = ({settings, skillTriggers}: ToEffectiveBonusOpts
   });
 
   return {
-    map: bonus.map[settings.currentMap] ?? defaultMapBonus,
+    mapMultiplier: 1 + (bonus.map[settings.currentMap] ?? defaultMapBonus) / 100,
     stamina: staminaEfficiency,
-    overall: bonus.overall,
+    overallMultiplier: 1 + (bonus.overall / 100),
   };
 };

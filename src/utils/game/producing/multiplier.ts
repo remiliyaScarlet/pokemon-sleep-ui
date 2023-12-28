@@ -6,7 +6,7 @@ type GetCommonEnergyMultiplierOpts = {
 };
 
 export const getCommonEnergyMultiplier = ({bonus}: GetCommonEnergyMultiplierOpts): number => {
-  const {overall} = bonus;
+  const {overallMultiplier} = bonus;
 
   return (
     (1 + map / 100) *

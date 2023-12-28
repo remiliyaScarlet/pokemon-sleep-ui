@@ -18,7 +18,7 @@ export const MealMakerRecipe = ({meals, ...props}: MealMakerCommonProps) => {
         level: filter.recipeLevel[meal.id] ?? 1,
         meal,
         ingredientMap,
-        mapBonus: calculatedSettings.bonus.map,
+        mapMultiplier: calculatedSettings.bonus.mapMultiplier,
       }),
     })),
     [filter, meals, ingredientMap, calculatedSettings],

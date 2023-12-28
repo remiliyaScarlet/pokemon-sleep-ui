@@ -71,7 +71,7 @@ export const PotRecipeUnlockSection = ({
               level={mealLevel}
               showEnergy={showEnergy}
               ingredientMap={ingredientMap}
-              mapBonus={calculatedSettings.bonus.map}
+              mapMultiplier={calculatedSettings.bonus.mapMultiplier}
             />
           ))}
         </Grid> :
