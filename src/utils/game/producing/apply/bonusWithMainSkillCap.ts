@@ -10,12 +10,12 @@ type ApplyBonusWithMainSkillCappingOpts<T extends ProducingRateOfItem | null> = 
 };
 
 export const applyBonusWithMainSkillCapping = <T extends ProducingRateOfItem | null>({
+  data,
   bonus,
   energyMultiplier,
   producingState,
   timeToFullPack,
   sleepDurationInfo,
-  data,
 }: ApplyBonusWithMainSkillCappingOpts<T>): T => {
   if (!data) {
     return data;

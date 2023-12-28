@@ -33,6 +33,8 @@ export const getIngredientProducingRate = ({
     return null;
   }
 
+  const {mapMultiplier} = bonus;
+
   const data = {
     id: ingredient.id,
     frequency,
@@ -40,7 +42,7 @@ export const getIngredientProducingRate = ({
       frequency,
       count: count || (pokemon.specialty === specialtyIdMap.ingredient ? 2 : 1),
       picks: picks ?? 1,
-      energyPerCount: ingredient.energy,
+      energyPerCount: ingredient.energy * mapMultiplier,
     }),
   };
 

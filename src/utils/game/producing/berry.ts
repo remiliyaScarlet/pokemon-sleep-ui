@@ -26,6 +26,8 @@ export const getBerryProducingRate = ({
   berryData,
 }: GetBerryProducingRateOpts): ProducingRateOfItemOfSessions => {
   const {bonus} = calculatedSettings;
+  const {mapMultiplier} = bonus;
+
   const isSnorlaxFavorite = snorlaxFavorite[berryData.id] ?? false;
   const data = {
     id: pokemon.berry.id,
@@ -35,7 +37,10 @@ export const getBerryProducingRate = ({
       // Specialty handling is already included in `pokemon.berry.quantity`
       count: pokemon.berry.quantity + toSum(getSubSkillBonusValue(subSkillBonus, 'berryCount')),
       picks: 1,
-      energyPerCount: (berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * (isSnorlaxFavorite ? 2 : 1),
+      energyPerCount: (
+        Math.ceil((berryData.energy[(level ?? defaultLevel) - 1]?.energy ?? NaN) * mapMultiplier) *
+        (isSnorlaxFavorite ? 2 : 1)
+      ),
     }),
   };
 

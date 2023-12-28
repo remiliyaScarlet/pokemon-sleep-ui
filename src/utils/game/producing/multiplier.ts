@@ -8,8 +8,10 @@ type GetCommonEnergyMultiplierOpts = {
 export const getCommonEnergyMultiplier = ({bonus}: GetCommonEnergyMultiplierOpts): number => {
   const {overallMultiplier} = bonus;
 
-  return (
-    (1 + map / 100) *
-    (1 + overall / 100)
-  );
+  // `overall` only, as map bonus is handled differently in different branch
+  // - Berry: Math.ceil(unit strength * map bonus)
+  // - Ingredient: unit strength * map bonus
+  // - Skill: Math.ceil(unit strength * map bonus)
+  // >>> This might not be up-to-date, check the actual implementation
+  return overallMultiplier;
 };

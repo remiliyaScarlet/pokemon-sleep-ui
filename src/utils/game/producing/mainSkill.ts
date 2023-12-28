@@ -30,12 +30,13 @@ export const getMainSkillProducingRate = ({
   ...opts
 }: GetMainSkillProducingRateOpts): ProducingRateOfItemOfSessions => {
   const {bonus, sleepDurationInfo} = calculatedSettings;
+  const {mapMultiplier} = bonus;
 
   frequency *= (1 / getSkillTriggerRate({skillRatePercent, subSkillBonus, natureId}));
 
   const id = pokemon.skill;
 
-  const strengthPerSkill = getMainSkillEquivalentStrengthOfSingle(opts);
+  const strengthPerSkill = Math.ceil(getMainSkillEquivalentStrengthOfSingle(opts) * mapMultiplier);
 
   return {
     id,
