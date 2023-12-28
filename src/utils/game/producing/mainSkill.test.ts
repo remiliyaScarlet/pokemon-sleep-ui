@@ -6,7 +6,7 @@ import {testMainSkillMap} from '@/tests/data/game/mainSkill';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testDefaultCalculatedUserSettings} from '@/tests/data/user/settings';
 import {getMainSkillProducingRate} from '@/utils/game/producing/mainSkill';
-import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
+import {getCommonEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 
 describe('Pokemon Skill Production', () => {
@@ -23,7 +23,7 @@ describe('Pokemon Skill Production', () => {
           total: 28800,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -34,7 +34,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 14400
     const awakeFreq = 3168 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -60,7 +60,7 @@ describe('Pokemon Skill Production', () => {
           total: 21600,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -71,7 +71,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 14400
     const awakeFreq = 3168 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -97,7 +97,7 @@ describe('Pokemon Skill Production', () => {
           total: 28800,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -108,7 +108,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 21600
     const awakeFreq = 4752 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -134,7 +134,7 @@ describe('Pokemon Skill Production', () => {
           total: 14400,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -145,7 +145,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 21600
     const awakeFreq = 4752 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -171,7 +171,7 @@ describe('Pokemon Skill Production', () => {
           total: 21600,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -182,7 +182,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 28800
     const awakeFreq = 6336 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);
@@ -208,7 +208,7 @@ describe('Pokemon Skill Production', () => {
           total: 14400,
         },
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       subSkillBonus: {},
       skillRatePercent: 10,
       natureId: null,
@@ -219,7 +219,7 @@ describe('Pokemon Skill Production', () => {
 
     // Skill freq = 28800
     const awakeFreq = 6336 / bonus.stamina.awake;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(2);
     expect(rate.awake.id).toBe(2);

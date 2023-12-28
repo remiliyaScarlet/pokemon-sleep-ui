@@ -16,7 +16,7 @@ import {
 import {getBaseFrequencyFromPokemon} from '@/utils/game/producing/frequency';
 import {getIngredientProducingRates, GetIngredientProducingRatesOpts} from '@/utils/game/producing/ingredient/multi';
 import {getMainSkillProducingRate, GetMainSkillProducingRateOpts} from '@/utils/game/producing/mainSkill';
-import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
+import {getCommonEnergyMultiplier} from '@/utils/game/producing/multiplier';
 import {getProducingRateOfStates} from '@/utils/game/producing/rateReducer';
 import {getProduceSplit, getProducingSleepStateSplit} from '@/utils/game/producing/split';
 import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
@@ -68,7 +68,7 @@ export const getPokemonProducingRateBase = ({
     behavior,
   });
 
-  const energyMultiplier = getEnergyMultiplier({bonus});
+  const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
   const berry = getBerryProducingRate({
     frequency,

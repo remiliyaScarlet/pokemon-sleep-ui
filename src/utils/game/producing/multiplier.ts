@@ -1,12 +1,12 @@
 import {EffectiveBonus} from '@/types/game/bonus';
 
 
-type GetEnergyMultiplierOpts = {
+type GetCommonEnergyMultiplierOpts = {
   bonus: EffectiveBonus,
 };
 
-export const getEnergyMultiplier = ({bonus}: GetEnergyMultiplierOpts): number => {
-  const {map, overall} = bonus;
+export const getCommonEnergyMultiplier = ({bonus}: GetCommonEnergyMultiplierOpts): number => {
+  const {overall} = bonus;
 
   return (
     (1 + map / 100) *

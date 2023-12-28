@@ -7,7 +7,7 @@ import {testIngredientProductions} from '@/tests/data/game/ingredient/production
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testDefaultCalculatedUserSettings} from '@/tests/data/user/settings';
 import {getIngredientProducingRates} from '@/utils/game/producing/ingredient/multi';
-import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
+import {getCommonEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 
 describe('Ingredient Production / Multiple', () => {
@@ -21,14 +21,14 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.general,
       ingredientMap: testIngredientMap,
     });
 
     const awakeFreq = 2920.2 / bonus.stamina.awake;
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate[0].id).toBe(5);
     expect(rate[0].awake.id).toBe(5);
@@ -60,7 +60,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1,
       ingredientMap: testIngredientMap,
     });
@@ -87,7 +87,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a2,
       ingredientMap: testIngredientMap,
     });
@@ -114,7 +114,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1b1,
       ingredientMap: testIngredientMap,
     });
@@ -148,7 +148,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a3,
       ingredientMap: testIngredientMap,
     });
@@ -175,7 +175,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a2b1,
       ingredientMap: testIngredientMap,
     });
@@ -209,7 +209,7 @@ describe('Ingredient Production / Multiple', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       ingredients: testIngredientProductions.a1b1c1,
       ingredientMap: testIngredientMap,
     });

@@ -6,7 +6,7 @@ import {testBonus} from '@/tests/data/game/bonus';
 import {testPokemonData} from '@/tests/data/game/pokemon';
 import {testDefaultCalculatedUserSettings} from '@/tests/data/user/settings';
 import {getBerryProducingRate} from '@/utils/game/producing/berry';
-import {getEnergyMultiplier} from '@/utils/game/producing/multiplier';
+import {getCommonEnergyMultiplier} from '@/utils/game/producing/multiplier';
 
 
 describe('Pokemon Berry Production', () => {
@@ -21,7 +21,7 @@ describe('Pokemon Berry Production', () => {
         ...testDefaultCalculatedUserSettings,
         bonus,
       },
-      energyMultiplier: getEnergyMultiplier({bonus}),
+      energyMultiplier: getCommonEnergyMultiplier({bonus}),
       snorlaxFavorite: {},
       berryData: testBerryDataMap['16'],
     });
@@ -29,7 +29,7 @@ describe('Pokemon Berry Production', () => {
     const awakeFreq = 2920.2 / bonus.stamina.awake;
     const sleepFreq = 2920.2 / bonus.stamina.sleep;
     const berryEnergy = 63;
-    const energyMultiplier = getEnergyMultiplier({bonus});
+    const energyMultiplier = getCommonEnergyMultiplier({bonus});
 
     expect(rate.id).toBe(testPokemonData.absol.berry.id);
     expect(rate.awake.id).toBe(testPokemonData.absol.berry.id);
