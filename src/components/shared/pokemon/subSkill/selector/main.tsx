@@ -88,7 +88,7 @@ export const PokemonSubSkillSelector = ({
       </PokemonIndividualParamsSelectorButton>
       <PopupCommon show={show} setShow={setShow}>
         <Flex className="max-w-3xl gap-1.5">
-          <Flex className="sticky -top-2 z-10 gap-1.5 rounded-lg bg-slate-50/90 p-2 dark:bg-black/90">
+          <Flex className="sticky -top-2 z-10 gap-1.5 bg-slate-200/80 p-2 dark:bg-gray-950/90">
             <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-5">
               {pokemonSubSkillLevel.map((level) => {
                 const subSkillId = subSkill[level];
