@@ -21,9 +21,8 @@ export const PokemonSubSkillSelectionButton = ({data, selectable, onClick}: Prop
   const t = useTranslations('Game.SubSkill.Name');
 
   return (
-    <FlexButton onClick={onClick} stretch disabled={!data.rarity || !selectable} className={clsx(
-      'enabled:button-clickable disabled:button-disabled gap-1 rounded-lg p-1.5',
-      'width-with-gap xs:width-with-gap-2-items sm:width-with-gap-3-items',
+    <FlexButton noFullWidth={false} onClick={onClick} disabled={!data.rarity || !selectable} className={clsx(
+      'enabled:button-clickable disabled:button-disabled items-center gap-1 self-stretch rounded-lg p-1.5',
       data.rarity ? subSkillRaritySectionBg[data.rarity] : 'text-slate-500',
     )}>
       <PokemonSubSkillIcon subSkill={data}/>

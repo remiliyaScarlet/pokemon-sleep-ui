@@ -1,7 +1,7 @@
 import React from 'react';
 
+import ArrowPathIcon from '@heroicons/react/24/outline/ArrowPathIcon';
 import MagnifyingGlassIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon';
-import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {InputBox} from '@/components/input/box';
@@ -87,23 +87,27 @@ export const PokemonSubSkillSelector = ({
         </Flex>
       </PokemonIndividualParamsSelectorButton>
       <PopupCommon show={show} setShow={setShow}>
-        <Flex className="max-w-3xl gap-2">
-          <Grid className={clsx(
-            'sticky -top-2 z-10 gap-2 rounded-lg bg-slate-50/90 p-1.5 dark:bg-slate-950/90',
-            'grid-cols-1 sm:grid-cols-2 md:grid-cols-5',
-          )}>
-            {pokemonSubSkillLevel.map((level) => {
-              const subSkillId = subSkill[level];
-              const selected = subSkillId ? subSkillMap[subSkillId] : undefined;
+        <Flex className="max-w-3xl gap-1.5">
+          <Flex className="sticky -top-2 z-10 gap-1.5 rounded-lg bg-slate-50/90 p-2 dark:bg-black/90">
+            <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 md:grid-cols-5">
+              {pokemonSubSkillLevel.map((level) => {
+                const subSkillId = subSkill[level];
+                const selected = subSkillId ? subSkillMap[subSkillId] : undefined;
 
-              return (
-                <PokemonSubSkillSelected
-                  key={level} level={level} selected={selected}
-                  onClick={() => onRemove(level)}
-                />
-              );
-            })}
-          </Grid>
+                return (
+                  <PokemonSubSkillSelected
+                    key={level}
+                    level={level}
+                    selected={selected}
+                    onClick={() => onRemove(level)}
+                  />
+                );
+              })}
+            </Grid>
+            <button className="button-clickable-bg h-7 w-7 self-end p-1" onClick={() => setSubSkill({})}>
+              <ArrowPathIcon/>
+            </button>
+          </Flex>
           <Flex direction="row" center className="gap-1.5">
             <MagnifyingGlassIcon className="h-6 w-6"/>
             <InputBox
@@ -124,13 +128,11 @@ export const PokemonSubSkillSelector = ({
               <HorizontalSplitter className="my-2"/>
             </>
           }
-          <Flex direction="row" center wrap className="gap-2">
-            <PokemonSubSkillSelectionButtons
-              data={subSkills}
-              selectedSubSkills={selectedSubSkills}
-              onSelect={onSelect}
-            />
-          </Flex>
+          <PokemonSubSkillSelectionButtons
+            data={subSkills}
+            selectedSubSkills={selectedSubSkills}
+            onSelect={onSelect}
+          />
         </Flex>
       </PopupCommon>
     </>

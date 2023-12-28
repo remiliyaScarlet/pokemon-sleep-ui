@@ -2,7 +2,7 @@ import React from 'react';
 
 import QuestionMarkCircleIcon from '@heroicons/react/24/outline/QuestionMarkCircleIcon';
 
-import {Flex} from '@/components/layout/flex/common';
+import {Grid} from '@/components/layout/grid';
 import {PokemonSubSkillSelectionButton} from '@/components/shared/pokemon/subSkill/selector/button';
 import {SubSkillData, SubSkillId} from '@/types/game/pokemon/subSkill';
 
@@ -15,7 +15,7 @@ type Props = {
 
 export const PokemonSubSkillSelectionButtons = ({data, selectedSubSkills, onSelect}: Props) => {
   return (
-    <Flex direction="row" center wrap className="gap-2">
+    <Grid center className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3">
       {data.length ?
         data.map((single) => (
           <PokemonSubSkillSelectionButton
@@ -26,6 +26,6 @@ export const PokemonSubSkillSelectionButtons = ({data, selectedSubSkills, onSele
           />
         )) :
         <QuestionMarkCircleIcon className="h-9 w-9"/>}
-    </Flex>
+    </Grid>
   );
 };
