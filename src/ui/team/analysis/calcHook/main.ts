@@ -9,13 +9,11 @@ import {stateOfRateToShow} from '@/ui/team/analysis/setup/const';
 import {TeamProducingStats} from '@/ui/team/analysis/setup/type';
 import {getCurrentTeam} from '@/ui/team/analysis/utils';
 import {getTotalOfGroupedProducingRate} from '@/utils/game/producing/rateReducer';
-import {hasHelperSubSkill} from '@/utils/game/subSkill/effect';
 
 
 export const useTeamProducingStats = (opts: UseTeamProducingStatsOpts): TeamProducingStats => {
   const {
     setup,
-    subSkillMap,
     mealMap,
     bundle,
   } = opts;
@@ -25,20 +23,9 @@ export const useTeamProducingStats = (opts: UseTeamProducingStatsOpts): TeamProd
     members,
   } = getCurrentTeam({setup});
 
-  const helperCount = React.useMemo(() => Object.values(members)
-    .filter((member) => {
-      if (!member) {
-        return false;
-      }
-
-      const {level, subSkill} = member;
-      return hasHelperSubSkill({level, pokemonSubSkill: subSkill, subSkillMap});
-    }).length,
-  [members, subSkillMap],
-  );
   const cookingSettings = useCookingUserSettings({...bundle, mealMap});
 
-  const deps: React.DependencyList = [snorlaxFavorite, analysisPeriod, members, setup, helperCount, bundle];
+  const deps: React.DependencyList = [snorlaxFavorite, analysisPeriod, members, setup, bundle];
 
   const {
     bySlot,
@@ -49,7 +36,6 @@ export const useTeamProducingStats = (opts: UseTeamProducingStatsOpts): TeamProd
     deps,
     cookingSettings,
     snorlaxFavorite,
-    helperCount,
     ...opts,
   });
 

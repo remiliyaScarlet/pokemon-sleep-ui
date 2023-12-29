@@ -22,8 +22,8 @@ export const getPokemonProducingRateSingle = ({
     groupingState: 'equivalent',
     calcBehavior: {
       ...calcBehavior,
-      // Simulate on self by default
-      simulateHelperBonusOnSelf: calcBehavior?.simulateHelperBonusOnSelf ?? true,
+      // Calculate as single by default
+      asSingle: calcBehavior?.asSingle ?? true,
     },
     ...opts,
   });

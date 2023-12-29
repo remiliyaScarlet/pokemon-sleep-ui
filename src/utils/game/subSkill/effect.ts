@@ -58,7 +58,3 @@ export const getSubSkillBonusValue = (
 
   return bonus[key] ?? [];
 };
-
-export const hasHelperSubSkill = (opts: SubSkillCheckOpts): boolean => (
-  getEffectiveSubSkills(opts).some(({bonus}) => !!bonus.helper)
-);

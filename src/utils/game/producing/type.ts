@@ -19,9 +19,8 @@ export type GetSpecificItemRateOfSessionCommonOpts = GetItemRateOfSessionCommonO
 export type GetProducingRateSharedOpts = {
   snorlaxFavorite: SnorlaxFavorite,
   period?: ProductionPeriod,
-  noCap?: boolean,
 };
 
 export type GetProducingRateBehavior = {
-  simulateHelperBonusOnSelf?: boolean,
+  asSingle?: boolean,
 };

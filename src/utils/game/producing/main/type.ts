@@ -4,7 +4,7 @@ import {GetProducingRateSharedOpts} from '@/utils/game/producing/type';
 
 export type GetPokemonProducingRateOpts = Omit<
   GetPokemonProducingRateBaseOpts,
-  keyof GetProducingRateSharedOpts | 'helperCount'
+  keyof GetProducingRateSharedOpts | 'helpingBonusEffect'
 >;
 
 export type GetPokemonProducingRateOptsWithPayload<TPayload> = {

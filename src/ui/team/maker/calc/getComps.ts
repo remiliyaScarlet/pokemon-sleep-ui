@@ -38,7 +38,6 @@ export const getTeamMakerComps = ({
       sharedOpts: {
         snorlaxFavorite,
         period: teamMakerProductionPeriod,
-        noCap: false,
       },
       groupingState: 'equivalent',
       cookingSettings,

@@ -11,7 +11,6 @@ import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
 type GetTeamProducingStatsSlotOpts = UseTeamProducingStatsOpts & {
   slotName: TeamAnalysisSlotName,
-  helperCount: number,
 };
 
 type GetProducingStatsOptsSlotReturn = {
@@ -22,13 +21,13 @@ type GetProducingStatsOptsSlotReturn = {
 export const getTeamProducingStatsSlot = ({
   setup,
   bundle,
-  slotName,
   pokedexMap,
   pokemonProducingParamsMap,
   berryDataMap,
   ingredientMap,
   mainSkillMap,
   subSkillMap,
+  slotName,
 }: GetTeamProducingStatsSlotOpts): GetProducingStatsOptsSlotReturn | null => {
   const {
     members,

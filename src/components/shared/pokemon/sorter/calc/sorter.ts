@@ -18,7 +18,6 @@ export const getPokemonRateSorter = ({
     cookingSettings,
     snorlaxFavorite,
     berryData,
-    noCap: true,
   }).atStage.final;
 };
 

@@ -18,9 +18,13 @@ export const getCommonEnergyMultiplier = ({bonus}: GetCommonEnergyMultiplierOpts
   return overallMultiplier;
 };
 
+export const getHelperBonusMultiplier = (stacks: number) => {
+  return helperBonusEffectPerStack * stacks;
+};
+
 export const getHelperBonusSimpleMultiplier = (maxMemberCount: number) => {
   const gains: number[] = [...Array(maxMemberCount).keys()]
-    .map((i) => (1 - helperBonusEffectPerStack * i) / (1 - helperBonusEffectPerStack * (i + 1)) - 1);
+    .map((i) => (1 - getHelperBonusMultiplier(i)) / (1 - getHelperBonusMultiplier(i + 1)) - 1);
 
   return 1 + getAverage(gains) * maxMemberCount;
 };

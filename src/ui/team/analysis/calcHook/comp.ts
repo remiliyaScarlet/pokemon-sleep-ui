@@ -19,7 +19,6 @@ import {isNotNullish} from '@/utils/type';
 type UseTeamProducingStatsCompOpts = UseTeamProducingStatsCommonOpts & UseTeamProducingStatsOpts & {
   cookingSettings: CookingUserSettings,
   snorlaxFavorite: SnorlaxFavorite,
-  helperCount: number,
 };
 
 export const useTeamProducingStatsComp = ({
@@ -28,7 +27,6 @@ export const useTeamProducingStatsComp = ({
   deps,
   cookingSettings,
   snorlaxFavorite,
-  helperCount,
   ...opts
 }: UseTeamProducingStatsCompOpts): UseTeamCompStatsReturn => {
   return React.useMemo(() => {
@@ -44,7 +42,6 @@ export const useTeamProducingStatsComp = ({
           .map((slotName) => {
             const producingStatsOpts = getTeamProducingStatsSlot({
               slotName,
-              helperCount,
               ...opts,
             });
 

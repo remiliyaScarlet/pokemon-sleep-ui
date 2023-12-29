@@ -97,6 +97,5 @@ export const getRateOfPokemon = ({
     berryData: berryDataMap[berry.id],
     ingredients: getEffectiveIngredientProductions({level, ingredients}),
     skillData: mainSkillMap[skill],
-    noCap: true,
   }).atStage.final;
 };

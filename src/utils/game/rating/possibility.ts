@@ -2,9 +2,8 @@ import {RatingCombination} from '@/types/game/pokemon/rating/result';
 import {getPokemonProducingRateSingle} from '@/utils/game/producing/main/single';
 import {getProducingRateSingleParams} from '@/utils/game/producing/params';
 import {getRatingBasisValue} from '@/utils/game/rating/basis';
-import {ratingCalculationNoCap} from '@/utils/game/rating/const';
 import {GetRatingValueOfSimulationOpts} from '@/utils/game/rating/type';
-import {getSimulateHelperBonusOnSelf} from '@/utils/game/rating/utils';
+import {getRatingProducingRateCalcBehavior} from '@/utils/game/rating/utils';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
 import {toTranslatedSettings} from '@/utils/user/settings/translated';
 
@@ -44,10 +43,7 @@ export const getRatingValueOfPossibility = ({combination, ...opts}: GetRatingVal
         mealMap,
         recoveryRate: toRecoveryRate(singleParams),
       }),
-      noCap: ratingCalculationNoCap,
-      calcBehavior: {
-        simulateHelperBonusOnSelf: getSimulateHelperBonusOnSelf(basis),
-      },
+      calcBehavior: getRatingProducingRateCalcBehavior(basis),
     }).atStage.final,
     singleParams,
   });
