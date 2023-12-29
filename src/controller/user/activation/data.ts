@@ -72,16 +72,21 @@ export const addActivationDataByAdsClick = async ({
 }: AddActivationDataByAdsClick) => {
   throwIfNotAdmin(executorUserId);
 
-  return (await getCollection()).insertOne({
+  const key = v4();
+  await (await getCollection()).insertOne({
     userId: new ObjectId(userId),
     expiry: new Date(Date.now() + adsFreeByAdsClickDuration),
     source: 'adClick',
     contact: {},
     activation: {adsFree: true},
     generatedAt: new Date(),
-    key: v4(),
+    key,
     note: '',
   });
+
+  /* eslint-disable no-console */
+  console.log(`Ad-click activation generated for user ${userId} with key ${key}`);
+  /* eslint-enable no-console */
 };
 
 type GetActivationDataByFilterOpts = ControllerRequireUserIdOpts & {

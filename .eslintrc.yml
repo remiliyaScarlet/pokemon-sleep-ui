@@ -66,8 +66,8 @@ rules:
   no-console:
     - error
     - allow:
-        - warn
-        - error
+      - warn
+      - error
 
   import/order:
     - error
