@@ -1,7 +1,7 @@
 import {describe, expect, it} from '@jest/globals';
 
 import {testBonus} from '@/tests/data/game/bonus';
-import {getCommonEnergyMultiplier, getHelperBonusSimpleMultiplier} from '@/utils/game/producing/multiplier';
+import {getCommonEnergyMultiplier, getHelpingBonusSimpleMultiplier} from '@/utils/game/producing/multiplier';
 
 
 describe('Pokemon Energy Multiplier', () => {
@@ -14,9 +14,9 @@ describe('Pokemon Energy Multiplier', () => {
   });
 });
 
-describe('Pokemon Helper Bonus Simple Multiplier', () => {
+describe('Pokemon Helping Bonus Simple Multiplier', () => {
   it('is correct', () => {
-    const multiplier = getHelperBonusSimpleMultiplier(5);
+    const multiplier = getHelpingBonusSimpleMultiplier(5);
 
     expect(multiplier).toBeCloseTo(1.296177);
   });

@@ -1,5 +1,5 @@
 import {maxTeamMemberCount} from '@/const/game/production';
-import {getHelperBonusSimpleMultiplier} from '@/utils/game/producing/multiplier';
+import {getHelpingBonusSimpleMultiplier} from '@/utils/game/producing/multiplier';
 
 
-export const helperBonusSimpleMultiplier = getHelperBonusSimpleMultiplier(maxTeamMemberCount);
+export const helpingBonusSimpleMultiplier = getHelpingBonusSimpleMultiplier(maxTeamMemberCount);

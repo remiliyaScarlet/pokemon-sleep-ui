@@ -1,6 +1,6 @@
 import {defaultProductionPeriod} from '@/const/game/production';
 import {PokemonProducingParams} from '@/types/game/pokemon/producing';
-import {HelperBonusEffect} from '@/types/game/producing/helperBonus';
+import {HelpingBonusEffect} from '@/types/game/producing/helpingBonus';
 import {
   PokemonProducingRate,
   ProducingRateImplicitParams,
@@ -33,7 +33,7 @@ export type GetPokemonProducingRateBaseOpts =
   GetProducingRateSharedOpts & {
     calculatedSettings: CalculatedUserSettings,
     pokemonProducingParams: PokemonProducingParams,
-    helperBonusEffect: HelperBonusEffect,
+    helpingBonusEffect: HelpingBonusEffect,
   };
 
 export const getPokemonProducingRateBase = ({

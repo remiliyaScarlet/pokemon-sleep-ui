@@ -11,7 +11,7 @@ describe('Pokemon Base Producing Frequency', () => {
       level: 30,
       subSkillBonus: {},
       pokemon: testPokemonData.absol,
-      helperBonusEffect: {
+      helpingBonusEffect: {
         context: 'single',
         active: false,
       },
@@ -27,7 +27,7 @@ describe('Pokemon Base Producing Frequency', () => {
       level: 30,
       subSkillBonus: {},
       pokemon: testPokemonData.absol,
-      helperBonusEffect: {
+      helpingBonusEffect: {
         context: 'single',
         active: false,
       },
@@ -41,12 +41,12 @@ describe('Pokemon Base Producing Frequency', () => {
     expect(frequency).toBeCloseTo(2433);
   });
 
-  it('is correct calculating helper bonus with team', () => {
+  it('is correct calculating helping bonus with team', () => {
     const frequency = getBaseFrequencyFromPokemon({
       level: 30,
       subSkillBonus: {},
       pokemon: testPokemonData.absol,
-      helperBonusEffect: {
+      helpingBonusEffect: {
         context: 'team',
         stack: 3,
       },
@@ -57,12 +57,12 @@ describe('Pokemon Base Producing Frequency', () => {
     expect(frequency).toBeCloseTo(2482);
   });
 
-  it('is correct calculating helper bonus as single', () => {
+  it('is correct calculating helping bonus as single', () => {
     const frequency = getBaseFrequencyFromPokemon({
       level: 30,
       subSkillBonus: {},
       pokemon: testPokemonData.absol,
-      helperBonusEffect: {
+      helpingBonusEffect: {
         context: 'single',
         active: true,
       },

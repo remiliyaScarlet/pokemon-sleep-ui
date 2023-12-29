@@ -3,14 +3,14 @@ import {goodCampTicketBonus} from '@/const/game/bonus';
 import {PokemonInfo} from '@/types/game/pokemon';
 import {NatureId} from '@/types/game/pokemon/nature';
 import {GroupedSubSkillBonus} from '@/types/game/pokemon/subSkill';
-import {HelperBonusEffect} from '@/types/game/producing/helperBonus';
+import {HelpingBonusEffect} from '@/types/game/producing/helpingBonus';
 import {PokemonProducingRate, ProducingValueOfStates} from '@/types/game/producing/rate';
 import {ProducingStateOfRate} from '@/types/game/producing/state';
 import {UserCalculationBehavior} from '@/types/userData/settings';
 import {toSum} from '@/utils/array';
 import {getNatureMultiplier} from '@/utils/game/nature';
-import {helperBonusSimpleMultiplier} from '@/utils/game/producing/const';
-import {getHelperBonusMultiplier} from '@/utils/game/producing/multiplier';
+import {helpingBonusSimpleMultiplier} from '@/utils/game/producing/const';
+import {getHelpingBonusMultiplier} from '@/utils/game/producing/multiplier';
 import {GetSpecificItemRateOfSessionCommonOpts} from '@/utils/game/producing/type';
 import {getSubSkillBonusValue} from '@/utils/game/subSkill/effect';
 import {roundDown} from '@/utils/number/round';
@@ -21,7 +21,7 @@ type GetBaseFrequencyOpts = {
   frequency: PokemonInfo['stats']['frequency'],
   natureId: NatureId | null,
   subSkillBonusRates: number[],
-  helperBonusEffect: HelperBonusEffect,
+  helpingBonusEffect: HelpingBonusEffect,
   behavior: UserCalculationBehavior,
 };
 
@@ -30,10 +30,10 @@ const getBaseFrequency = ({
   frequency,
   natureId,
   subSkillBonusRates,
-  helperBonusEffect,
+  helpingBonusEffect,
   behavior,
 }: GetBaseFrequencyOpts) => {
-  const {context} = helperBonusEffect;
+  const {context} = helpingBonusEffect;
 
   let bonus = (1 - (level - 1) * 0.002);
   bonus *= getNatureMultiplier({id: natureId, effect: 'frequencyOfBase'});
@@ -43,12 +43,12 @@ const getBaseFrequency = ({
     1 -
     Math.min(
       0.35,
-      toSum(subSkillBonusRates) / 100 + (context === 'team' ? getHelperBonusMultiplier(helperBonusEffect.stack) : 0),
+      toSum(subSkillBonusRates) / 100 + (context === 'team' ? getHelpingBonusMultiplier(helpingBonusEffect.stack) : 0),
     )
   );
 
-  if (context === 'single' && helperBonusEffect.active) {
-    bonus /= helperBonusSimpleMultiplier;
+  if (context === 'single' && helpingBonusEffect.active) {
+    bonus /= helpingBonusSimpleMultiplier;
   }
 
   if (behavior.goodCampTicket) {
@@ -62,7 +62,7 @@ const getBaseFrequency = ({
 
 export type GetFrequencyFromPokemonOpts = Pick<
   GetBaseFrequencyOpts,
-  'behavior' | 'helperBonusEffect' | 'natureId'
+  'behavior' | 'helpingBonusEffect' | 'natureId'
 > & {
   level: number,
   subSkillBonus: GroupedSubSkillBonus,

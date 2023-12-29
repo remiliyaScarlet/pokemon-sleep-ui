@@ -1,4 +1,4 @@
-export type HelperBonusEffect = {
+export type HelpingBonusEffect = {
   context: 'team',
   stack: number,
 } | {

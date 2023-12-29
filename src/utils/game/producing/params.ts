@@ -22,13 +22,13 @@ type GetHelpingBonusStackOpts = {
 export const getHelpingBonusStack = ({
   subSkillBonus,
 }: GetHelpingBonusStackOpts) => {
-  const helperBonusCount = getSubSkillBonusValue(subSkillBonus, 'helper').length;
+  const helpingBonusCount = getSubSkillBonusValue(subSkillBonus, 'helper').length;
 
-  if (!helperBonusCount) {
+  if (!helpingBonusCount) {
     return 0;
   }
 
-  return helperBonusCount;
+  return helpingBonusCount;
 };
 
 export type GetProducingRateSingleParamsOpts = {

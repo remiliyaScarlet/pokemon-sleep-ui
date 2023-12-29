@@ -1,4 +1,4 @@
-import {helperBonusEffectPerStack} from '@/const/game/production';
+import {helpingBonusEffectPerStack} from '@/const/game/production';
 import {EffectiveBonus} from '@/types/game/bonus';
 import {getAverage} from '@/utils/number/average';
 
@@ -18,13 +18,13 @@ export const getCommonEnergyMultiplier = ({bonus}: GetCommonEnergyMultiplierOpts
   return overallMultiplier;
 };
 
-export const getHelperBonusMultiplier = (stacks: number) => {
-  return helperBonusEffectPerStack * stacks;
+export const getHelpingBonusMultiplier = (stacks: number) => {
+  return helpingBonusEffectPerStack * stacks;
 };
 
-export const getHelperBonusSimpleMultiplier = (maxMemberCount: number) => {
+export const getHelpingBonusSimpleMultiplier = (maxMemberCount: number) => {
   const gains: number[] = [...Array(maxMemberCount).keys()]
-    .map((i) => (1 - getHelperBonusMultiplier(i)) / (1 - getHelperBonusMultiplier(i + 1)) - 1);
+    .map((i) => (1 - getHelpingBonusMultiplier(i)) / (1 - getHelpingBonusMultiplier(i + 1)) - 1);
 
   return 1 + getAverage(gains) * maxMemberCount;
 };
