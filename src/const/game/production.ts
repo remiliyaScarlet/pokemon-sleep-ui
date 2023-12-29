@@ -39,3 +39,5 @@ export const defaultNeutralOpts: ProducingRateSingleParams = {
 };
 
 export const maxTeamMemberCount = 5;
+
+export const helperBonusEffectPerStack = 0.05;
