@@ -12,3 +12,7 @@ export const getWeightedAverage = (points: WeightedAverageDataPoint[]): number =
 
   return sum / sumWeights;
 };
+
+export const getAverage = (arr: number[]): number => {
+  return toSum(arr) / arr.length;
+};
