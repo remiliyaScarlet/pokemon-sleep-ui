@@ -9,7 +9,6 @@ import {AdBlockState, AdsContentProps} from '@/components/ads/type';
 import {AdBlockWarning} from '@/components/ads/warning';
 import {Flex} from '@/components/layout/flex/common';
 import {useTimedTick} from '@/hooks/timedTick';
-import {isProduction} from '@/utils/environment';
 
 
 type Props = AdsContentProps & {
@@ -56,14 +55,9 @@ export const AdsContent = ({
     rescheduleDeps: [],
   });
 
-  const adsContentWrapperClass = React.useMemo(() => clsx(
-    adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
-    adblockState.isBlocked && (isProduction() ? 'rounded-lg bg-red-500/50 py-1' : 'border border-green-500'),
-  ), [adblockState]);
-
   if (checkDom && domHidden) {
     return (
-      <Flex className={adsContentWrapperClass}>
+      <Flex className={adsHeightAdBlockActive}>
         <AdBlockWarning/>
       </Flex>
     );
@@ -76,7 +70,7 @@ export const AdsContent = ({
       {...adClickDetectProps}
       className={clsx(
         'relative w-full overflow-hidden focus:outline-none',
-        adsContentWrapperClass,
+        adblockState.isBlocked ? adsHeightAdBlockActive : (heightOverride ?? adsHeight),
         className,
       )}
     >
