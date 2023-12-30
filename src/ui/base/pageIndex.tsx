@@ -6,14 +6,14 @@ import {AdsUnit} from '@/components/ads/main';
 import {Flex} from '@/components/layout/flex/common';
 import {Grid} from '@/components/layout/grid';
 import {FeatureLinkImage} from '@/components/shared/link/featureImage';
-import {NavEntryLink} from '@/types/nav';
+import {NavEntry} from '@/types/nav';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 
 
 type Props = {
   pageProps: DefaultPageProps,
-  entries: NavEntryLink[],
+  entries: NavEntry[],
 };
 
 export const PageIndex = ({pageProps, entries}: Props) => {

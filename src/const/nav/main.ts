@@ -1,7 +1,7 @@
 import {navEntriesForCooking} from '@/const/nav/cooking';
 import {navEntriesForInfo} from '@/const/nav/info';
-import {navEntryForItem} from '@/const/nav/item';
-import {navEntriesForSleepStyle} from '@/const/nav/sleepStyle';
+import {navEntriesForItem} from '@/const/nav/item';
+import {navEntriesForSleepStyle} from '@/const/nav/sleepStyle/main';
 import {navEntriesForTeam} from '@/const/nav/team';
 import {NavEntry} from '@/types/nav';
 
@@ -82,7 +82,7 @@ export const navEntries: NavEntry[] = [
     href: '/item',
     imageSrc: '/images/generic/bag.png',
     i18nTextId: 'Item.Index.Title',
-    entries: navEntryForItem,
+    entries: navEntriesForItem,
   },
   {
     type: 'link',

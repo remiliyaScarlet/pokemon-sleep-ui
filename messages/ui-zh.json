@@ -68,8 +68,14 @@
         "Title": "地圖、睡姿"
       },
       "Sleepdex": {
+        "Index": {
+          "Title": "睡姿圖鑑"
+        },
         "Record": {
           "Title": "睡姿圖鑑 (記錄)"
+        },
+        "Lookup": {
+          "Title": "睡姿圖鑑 (搜尋)"
         }
       },
       "Map": {

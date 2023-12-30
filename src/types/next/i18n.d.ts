@@ -71,7 +71,9 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       SleepStyle: {
         Index: I18nMetadata,
         Sleepdex: {
+          Index: I18nMetadata,
           Record: I18nMetadata,
+          Lookup: I18nMetadata,
         },
         Map: PageWithIndividual,
         UniqueMap: PageWithIndividual,

@@ -68,8 +68,14 @@
         "Title": "マップ / 寝顔"
       },
       "Sleepdex": {
+        "Index": {
+          "Title": "睡眠図鑑"
+        },
         "Record": {
           "Title": "睡眠図鑑 (記録)"
+        },
+        "Lookup": {
+          "Title": "睡眠図鑑 (検索)"
         }
       },
       "Map": {

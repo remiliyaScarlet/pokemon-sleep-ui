@@ -1,7 +1,7 @@
 import {NavEntryLink} from '@/types/nav';
 
 
-export const navEntryForItem: NavEntryLink[] = [
+export const navEntriesForItem: NavEntryLink[] = [
   {
     type: 'link',
     href: '/item/evolution',

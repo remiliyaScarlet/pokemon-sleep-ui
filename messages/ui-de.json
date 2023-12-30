@@ -68,8 +68,14 @@
         "Title": "Karte / Schlafposen"
       },
       "Sleepdex": {
+        "Index": {
+          "Title": "Schlafdex"
+        },
         "Record": {
-          "Title": "Schlafdex Rekord"
+          "Title": "Schlafdex (Record)"
+        },
+        "Lookup": {
+          "Title": "Schlafdex (Search)"
         }
       },
       "Map": {

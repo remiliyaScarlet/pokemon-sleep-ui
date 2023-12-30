@@ -1,7 +1,8 @@
-import {NavEntryLink} from '@/types/nav';
+import {navEntriesForSleepdex} from '@/const/nav/sleepStyle/sleepdex';
+import {NavEntry} from '@/types/nav';
 
 
-export const navEntriesForSleepStyle: NavEntryLink[] = [
+export const navEntriesForSleepStyle: NavEntry[] = [
   {
     type: 'link',
     href: '/map',
@@ -21,9 +22,10 @@ export const navEntriesForSleepStyle: NavEntryLink[] = [
     i18nTextId: 'SleepStyle.Special.Title',
   },
   {
-    type: 'link',
+    type: 'group',
     href: '/sleepdex',
     imageSrc: '/images/generic/sleep.png',
-    i18nTextId: 'SleepStyle.Sleepdex.Record.Title',
+    i18nTextId: 'SleepStyle.Sleepdex.Index.Title',
+    entries: navEntriesForSleepdex,
   },
 ];
