@@ -50,7 +50,7 @@ export const getTeamMakerCandidates = ({
 
   const ret: Map<string, TeamMakerIntermediateRate> = new Map();
   for (const rate of [...topCompAtOriginal, ...topCompAtFinal]) {
-    ret.set(rate.pokeInBox.uuid, rate);
+    ret.set(rate.refData.pokeInBox.uuid, rate);
   }
 
   for (const currentComp of generateSegments(memberCount, sortedFinalRates)) {
@@ -72,7 +72,7 @@ export const getTeamMakerCandidates = ({
       break;
     }
 
-    ret.set(tail.pokeInBox.uuid, tail);
+    ret.set(tail.refData.pokeInBox.uuid, tail);
   }
 
   return [...ret.values()];

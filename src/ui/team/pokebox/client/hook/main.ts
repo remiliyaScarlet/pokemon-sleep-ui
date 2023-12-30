@@ -10,6 +10,7 @@ import {useProcessedPokebox} from '@/ui/team/pokebox/client/hook/process';
 import {PokeboxCommonProps} from '@/ui/team/pokebox/type';
 import {usePokeboxViewerFilter} from '@/ui/team/pokebox/viewer/hook';
 import {getPokemonFinalEvolutionIds} from '@/utils/game/pokemon';
+import {getLevelToCalcForPokeInBox} from '@/utils/team/previewLevel';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -55,7 +56,10 @@ export const useCalculatedData = (
   const processedPokebox = useProcessedPokebox({
     ...opts,
     pokeInBoxToCalc: Object.values(pokebox).filter(isNotNullish).flatMap((pokeInBox) => {
-      const level = filter.previewLevel ?? pokeInBox.level;
+      const level = getLevelToCalcForPokeInBox({
+        actualLevel: pokeInBox.level,
+        previewLevel: filter.previewLevel,
+      });
 
       if (!filter.previewFinalEvolution) {
         return [{...pokeInBox, level}];

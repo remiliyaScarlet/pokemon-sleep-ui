@@ -44,7 +44,7 @@ export const TeamMakerResultCompUi = ({comp, ...props}: Props) => {
         <Grid className="grid-cols-1 gap-1.5 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-5">
           {rates.rates.map((rate) => (
             <TeamMakerResultUnit
-              key={rate.payload.uuid}
+              key={rate.payload.pokeInBox.uuid}
               rate={rate}
               compStrength={basisValue.strength}
               {...props}
@@ -63,7 +63,9 @@ export const TeamMakerResultCompUi = ({comp, ...props}: Props) => {
         <MealCoverageDetails coverage={basisValue.mealCoverage}/>
         <Flex className="items-center gap-1.5 md:flex-row md:justify-between">
           <TeamMakerSnorlaxRankFinalEstimate finalEstimates={finalEstimates}/>
-          <TeamMakerCompControl pokeInBoxList={rates.rates.map(({payload}) => payload)}/>
+          <TeamMakerCompControl
+            pokeInBoxList={rates.rates.map(({payload}) => payload.pokeInBox)}
+          />
         </Flex>
       </Flex>
     </CollapsibleFull>

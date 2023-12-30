@@ -22,9 +22,14 @@ export type TeamMakerBasisValue = {
 
 export type TeamMakerBasisValueAtStage = {[stage in PokemonProducingRateStage]: TeamMakerBasisValue};
 
+export type TeamMakerReferenceUnit = {
+  pokeInBox: PokeInBox,
+  levelUsed: number,
+};
+
 export type TeamMakerIntermediateRate = {
   rate: PokemonProducingRateWithPayload<null>,
-  pokeInBox: PokeInBox,
+  refData: TeamMakerReferenceUnit,
   calcOpts: GetPokemonProducingRateOpts,
   basisValueAtStage: TeamMakerBasisValueAtStage,
 };

@@ -7,5 +7,5 @@ export const isTeamMakerStatusLoading = (status: TeamMakerStatus) => {
 };
 
 export const getTeamMakerResultCompId = (comp: TeamMakerResultComp): string => {
-  return comp.rates.rates.map(({payload}) => payload.uuid).join('|');
+  return comp.rates.rates.map(({payload}) => payload.pokeInBox.uuid).join('|');
 };

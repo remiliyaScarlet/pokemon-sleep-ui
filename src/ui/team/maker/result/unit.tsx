@@ -15,16 +15,16 @@ import {PokemonProductionSplitFromPokemonRate} from '@/components/shared/pokemon
 import {PokemonDetailedProducingStats} from '@/components/shared/pokemon/production/stats/main';
 import {PokemonSubSkillIndicator} from '@/components/shared/pokemon/subSkill/indicator';
 import {PokemonProducingRateWithPayload} from '@/types/game/producing/rate';
-import {PokeInBox} from '@/types/userData/pokebox/main';
 import {teamMakerUnitStrengthAtState} from '@/ui/team/maker/result/const';
 import {TeamMakerResultCommonProps} from '@/ui/team/maker/result/type';
 import {TeamMakerDataProps} from '@/ui/team/maker/type';
+import {TeamMakerReferenceUnit} from '@/ui/team/maker/type/common';
 import {getTotalOfPokemonProducingRate} from '@/utils/game/producing/rateReducer';
 import {formatFloat} from '@/utils/number/format';
 
 
 type Props = TeamMakerDataProps & TeamMakerResultCommonProps & {
-  rate: PokemonProducingRateWithPayload<PokeInBox>,
+  rate: PokemonProducingRateWithPayload<TeamMakerReferenceUnit>,
   compStrength: number,
 };
 
@@ -36,15 +36,14 @@ export const TeamMakerResultUnit = ({
   compStrength,
 }: Props) => {
   const pokemonRate = rate.atStage.final;
-  const {previewLevel} = input;
+  const {pokeInBox, levelUsed} = rate.payload;
   const {
     pokemon,
-    level,
     name,
     ingredients,
     subSkill,
     nature,
-  } = rate.payload;
+  } = pokeInBox;
 
   const t = useTranslations('UI.Producing');
   const [show, setShow] = React.useState(false);
@@ -69,8 +68,8 @@ export const TeamMakerResultUnit = ({
         />
       </PopupCommon>
       <Flex direction="row" className="items-center gap-1.5">
-        <InfoIcon style={previewLevel ? 'warn' : 'glow'}>
-          {previewLevel ?? level}
+        <InfoIcon style={input.previewLevel ? 'warn' : 'glow'}>
+          {levelUsed}
         </InfoIcon>
         <PokemonNameSmall pokemon={pokemonInfo} override={name}/>
         <button className="button-clickable-bg ml-auto h-7 w-7 p-1" onClick={() => setShow(true)}>
@@ -87,7 +86,7 @@ export const TeamMakerResultUnit = ({
           />
           <PokemonNatureIndicator nature={nature}/>
           <PokemonSubSkillIndicator
-            level={level}
+            level={levelUsed}
             subSkill={subSkill}
             subSkillMap={subSkillMap}
             className="self-center"

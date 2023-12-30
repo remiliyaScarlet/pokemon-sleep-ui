@@ -16,6 +16,7 @@ import {
   getProducingRateSingleParams,
 } from '@/utils/game/producing/params';
 import {toRecoveryRate} from '@/utils/game/stamina/recovery';
+import {getLevelToCalcForPokeInBox} from '@/utils/team/previewLevel';
 import {isNotNullish} from '@/utils/type';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
@@ -51,7 +52,10 @@ export const getTeamMakerCalcIntermediate = ({
       return null;
     }
 
-    const level = input.previewLevel ?? pokeInBox.level;
+    const level = getLevelToCalcForPokeInBox({
+      actualLevel: pokeInBox.level,
+      previewLevel: input.previewLevel,
+    });
     const singleParams = getProducingRateSingleParams({
       ...pokeInBox,
       level,
@@ -90,7 +94,10 @@ export const getTeamMakerCalcIntermediate = ({
 
     return {
       rate,
-      pokeInBox,
+      refData: {
+        pokeInBox,
+        levelUsed: level,
+      },
       calcOpts,
       basisValueAtStage: Object.fromEntries(pokemonProducingRateStage.map((stage) => [
         stage,

@@ -10,7 +10,7 @@ import {UserSettingsBundle} from '@/types/userData/settings';
 import {UserTeamAnalysisContent} from '@/types/userData/teamAnalysis';
 import {PokedexDisplay} from '@/ui/pokedex/index/type';
 import {PokeboxViewerDisplay} from '@/ui/team/pokebox/viewer/type';
-import {ToTeamAnalysisCompFromPokeboxOpts} from '@/utils/team/utils';
+import {ToTeamAnalysisCompFromPokeboxOpts} from '@/utils/team/toComp';
 
 
 export type UserDataUploadOpts = {

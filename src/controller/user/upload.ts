@@ -20,7 +20,7 @@ import {addTeamAnalysisComp, updateTeamAnalysisComps} from '@/controller/user/te
 import {updateTeamAnalysisConfig} from '@/controller/user/teamAnalysis/config';
 import {UserDataUploadOpts} from '@/types/userData/upload';
 import {invalidateDocsPathCaching} from '@/utils/docs';
-import {toTeamAnalysisCompFromPokebox} from '@/utils/team/utils';
+import {toTeamAnalysisCompFromPokebox} from '@/utils/team/toComp';
 import {toActivationProperties} from '@/utils/user/activation/utils';
 
 

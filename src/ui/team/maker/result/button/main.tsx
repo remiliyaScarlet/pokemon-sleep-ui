@@ -28,8 +28,13 @@ export const TeamMakerResultButton = ({comp, basis}: Props) => {
       <Flex center className="gap-1.5 md:flex-row">
         <Flex noFullWidth direction="row" className="gap-1.5">
           {rates.rates.map(({payload}) => (
-            <div key={payload.uuid} className="relative h-8 w-8">
-              <PokemonImage pokemonId={payload.pokemon} image="icon" isShiny={false} alt={payload.name ?? undefined}/>
+            <div key={payload.pokeInBox.uuid} className="relative h-8 w-8">
+              <PokemonImage
+                pokemonId={payload.pokeInBox.pokemon}
+                image="icon"
+                isShiny={false}
+                alt={payload.pokeInBox.name ?? undefined}
+              />
             </div>
           ))}
         </Flex>
