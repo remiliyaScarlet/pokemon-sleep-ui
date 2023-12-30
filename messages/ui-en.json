@@ -275,7 +275,10 @@
     },
     "Rating": {
       "FriendshipLevel": "Friendship Level",
-      "AdvancedOptions": "Advanced Options"
+      "AdvancedOptions": "Advanced Options",
+      "Message": {
+        "RatingBasisIsIngredientRelated": "Ingredient-related rating basis is picked. Make sure the cooking schedule in user settings is set up.\n\nCheck the documentation available at the top right side of the page for details."
+      }
     },
     "Cooking": {
       "Energy": "Final Strength",

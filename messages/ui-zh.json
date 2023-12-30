@@ -275,7 +275,10 @@
     },
     "Rating": {
       "FriendshipLevel": "友情等級",
-      "AdvancedOptions": "進階選項"
+      "AdvancedOptions": "進階選項",
+      "Message": {
+        "RatingBasisIsIngredientRelated": "目前評級基準和食材有關。請確認使用者設定中的料理製作行程是否正確。\n\n詳情請見頁面右上方的相關說明文件。"
+      }
     },
     "Cooking": {
       "Energy": "最終能量",

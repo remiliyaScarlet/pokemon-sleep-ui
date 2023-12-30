@@ -275,7 +275,10 @@
     },
     "Rating": {
       "FriendshipLevel": "フレンドレベル",
-      "AdvancedOptions": "詳細オプション"
+      "AdvancedOptions": "詳細オプション",
+      "Message": {
+        "RatingBasisIsIngredientRelated": "評価基準に食材系統が選ばれています。ユーザ設定の料理スケジュールが評価を大きく左右するので、設定抜かりなく。\n\n詳細は右上のヘルプボタンから。"
+      }
     },
     "Cooking": {
       "Energy": "最終エナジー",
