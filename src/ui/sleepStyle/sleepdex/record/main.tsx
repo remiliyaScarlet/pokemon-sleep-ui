@@ -12,11 +12,11 @@ import {getSleepStyleNormalMap} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialMap} from '@/controller/sleepStyleSpecial';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {LoginRequiredPageLayout} from '@/ui/base/layout/loginRequired';
-import {SleepdexClient} from '@/ui/sleepStyle/sleepdex/client';
-import {SleepdexDataProps} from '@/ui/sleepStyle/sleepdex/type';
+import {SleepdexRecordClient} from '@/ui/sleepStyle/sleepdex/record/client';
+import {SleepdexRecordDataProps} from '@/ui/sleepStyle/sleepdex/record/type';
 
 
-export const Sleepdex = async ({params}: DefaultPageProps) => {
+export const SleepdexRecord = async ({params}: DefaultPageProps) => {
   const {locale} = params;
 
   const session = await getServerSession(authOptions);
@@ -37,7 +37,7 @@ export const Sleepdex = async ({params}: DefaultPageProps) => {
     getSleepdexMap(session.user.id),
   ]);
 
-  const props: SleepdexDataProps = {
+  const props: SleepdexRecordDataProps = {
     pokemonList,
     sleepStyleMap,
     sleepStyleSpecialMap,
@@ -49,7 +49,7 @@ export const Sleepdex = async ({params}: DefaultPageProps) => {
   return (
     <LoginRequiredPageLayout locale={locale}>
       <I18nProvider locale={locale} namespaces={['Game', 'UI.Metadata']}>
-        <SleepdexClient {...props}/>
+        <SleepdexRecordClient {...props}/>
       </I18nProvider>
       <AdsUnit/>
     </LoginRequiredPageLayout>

@@ -7,13 +7,13 @@ import {PokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/main';
 import {PokemonSleepType} from '@/components/shared/pokemon/sleepType/main';
 import {SleepdexSection} from '@/components/shared/sleepdex/section/main';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
-import {SleepdexUnlockedCount} from '@/ui/sleepStyle/sleepdex/count';
-import {SleepdexDataProps} from '@/ui/sleepStyle/sleepdex/type';
+import {SleepdexRecordUnlockedCount} from '@/ui/sleepStyle/sleepdex/record/count';
+import {SleepdexRecordDataProps} from '@/ui/sleepStyle/sleepdex/record/type';
 import {toUnique} from '@/utils/array';
 import {getAvailableSleepStylesFromNormal, getAvailableSleepStylesFromSpecial} from '@/utils/game/sleepdex';
 
 
-export const SleepdexClient = (props: SleepdexDataProps) => {
+export const SleepdexRecordClient = (props: SleepdexRecordDataProps) => {
   const {
     pokemonList,
     sleepStyleMap,
@@ -44,7 +44,7 @@ export const SleepdexClient = (props: SleepdexDataProps) => {
   return (
     <Flex className="gap-2">
       <PokemonLinkPopup state={state} setState={setState}/>
-      <SleepdexUnlockedCount
+      <SleepdexRecordUnlockedCount
         sleepStyleMap={sleepStyleMap}
         sleepStyleSpecialMap={sleepStyleSpecialMap}
         sleepdex={sleepdex}

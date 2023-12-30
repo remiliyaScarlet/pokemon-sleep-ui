@@ -68,7 +68,9 @@
         "Title": "Map / Sleep Styles"
       },
       "Sleepdex": {
-        "Title": "Sleepdex"
+        "Record": {
+          "Title": "Sleepdex Record"
+        }
       },
       "Map": {
         "Index": {

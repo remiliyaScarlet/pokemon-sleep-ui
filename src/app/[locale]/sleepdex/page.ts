@@ -1,7 +1,8 @@
-import {Sleepdex} from '@/ui/sleepStyle/sleepdex/main';
-import {generatePageMeta} from '@/utils/meta';
+import {redirect} from '@/components/i18n/exports';
 
 
-export const generateMetadata = generatePageMeta({key: 'SleepStyle.Sleepdex.Title'});
+const redirectToNewPath = () => {
+  redirect('/sleepdex/record');
+};
 
-export default Sleepdex;
+export default redirectToNewPath;

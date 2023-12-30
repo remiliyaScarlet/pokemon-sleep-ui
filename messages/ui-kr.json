@@ -68,7 +68,9 @@
         "Title": "맵 / 잠자는 모습"
       },
       "Sleepdex": {
-        "Title": "수면 도감"
+        "Record": {
+          "Title": "수면 도감 (기록)"
+        }
       },
       "Map": {
         "Index": {

@@ -14,7 +14,7 @@ type Props = {
   sleepdex: SleepdexMap,
 };
 
-export const SleepdexUnlockedCount = ({sleepStyleMap, sleepStyleSpecialMap, sleepdex}: Props) => {
+export const SleepdexRecordUnlockedCount = ({sleepStyleMap, sleepStyleSpecialMap, sleepdex}: Props) => {
   const total = React.useMemo(
     () => (
       getAllPossibleSleepStyles({normal: sleepStyleMap, special: sleepStyleSpecialMap}).length
