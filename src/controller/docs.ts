@@ -53,13 +53,13 @@ type UploadDocOpts<TDoc> = ControllerRequireUserIdOpts & {
 };
 
 export const addDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditable>) => {
-  throwIfNotCmsMod(executorUserId);
+  await throwIfNotCmsMod(executorUserId);
 
   return (await getCollection()).insertOne(getSanitizedDoc(doc));
 };
 
 export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEditableFetched>) => {
-  throwIfNotCmsMod(executorUserId);
+  await throwIfNotCmsMod(executorUserId);
 
   // Explicit to avoid updating unwanted properties
   const {
@@ -91,7 +91,7 @@ export const updateDoc = async ({executorUserId, doc}: UploadDocOpts<DocsDataEdi
 type DeleteDocOpts = ControllerRequireUserIdOpts & Pick<DocsData, 'locale' | 'path'>;
 
 export const deleteDoc = async ({executorUserId, locale, path}: DeleteDocOpts) => {
-  throwIfNotCmsMod(executorUserId);
+  await throwIfNotCmsMod(executorUserId);
 
   return (await getCollection()).deleteOne({locale, path});
 };

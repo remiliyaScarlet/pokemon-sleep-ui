@@ -29,8 +29,8 @@ export const isCmsMod = async (userId: string | undefined): Promise<boolean> => 
   return user?.isCmsMod ?? false;
 };
 
-export const throwIfNotCmsMod = (userId: string | undefined) => {
-  if (!isCmsMod(userId)) {
+export const throwIfNotCmsMod = async (userId: string | undefined) => {
+  if (!await isCmsMod(userId)) {
     throw new Error(`User ID ${userId} does not have CMS Moderator privilege!`);
   }
 };
