@@ -9,7 +9,7 @@ import {UserDataLazyLoad} from '@/components/shared/userData/lazyLoad/main';
 import {UserSettingsAppBuildInfo} from '@/ui/base/navbar/userSettings/sections/app/build';
 import {UserSettingsAppCompatibility} from '@/ui/base/navbar/userSettings/sections/app/compatibility';
 import {UserSettingsSection} from '@/ui/base/navbar/userSettings/sections/base';
-import {isArrayAtSupported} from '@/utils/compatibility/arrayAt';
+import {isArrayAtSupported, isArrayToSortedSupported} from '@/utils/compatibility/array';
 import {isNestedWorkerSupported} from '@/utils/compatibility/nestedWorker';
 import {isStringReplaceAllSupported} from '@/utils/compatibility/stringReplaceAll';
 
@@ -37,6 +37,7 @@ export const UserSettingsAppInfo = () => {
       />
       <Grid className="grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <UserSettingsAppCompatibility title="Array.at()" result={isArrayAtSupported()}/>
+        <UserSettingsAppCompatibility title="Array.toSorted()" result={isArrayToSortedSupported()}/>
         <UserSettingsAppCompatibility title="String.replaceAll()" result={isStringReplaceAllSupported()}/>
         <UserSettingsAppCompatibility title="Nested WebWorker" result={isNestedWorkerSupportedResult}/>
       </Grid>
