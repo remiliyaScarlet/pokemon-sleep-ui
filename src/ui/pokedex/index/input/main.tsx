@@ -80,6 +80,7 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
               filter,
               setFilter,
               filterKey: 'display',
+              allowNull: false,
             })}
           />
           <PokemonSortingPicker

@@ -100,6 +100,7 @@ export const SleepdexLookupInput = (props: Props) => {
             filter,
             setFilter,
             filterKey: 'display',
+            allowNull: false,
           })}
           className={textFilterButtonStyle}
         />
@@ -115,6 +116,7 @@ export const SleepdexLookupInput = (props: Props) => {
             filter,
             setFilter,
             filterKey: 'sort',
+            allowNull: false,
           })}
           className={textFilterButtonStyle}
         />
