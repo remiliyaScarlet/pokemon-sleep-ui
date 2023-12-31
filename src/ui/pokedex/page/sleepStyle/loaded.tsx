@@ -25,13 +25,13 @@ export const PokemonSleepStylesLoaded = ({
   sleepStyles,
   sleepStylesSpecial,
   snorlaxDataMap,
-  eventDrowsyPowerMultipliers,
+  eventDrowsyPowerMultiplierData,
   translatedSettings,
   initialSleepdex,
 }: Props) => {
   const [sleepdex, setSleepdex] = React.useState(initialSleepdex);
   const [drowsyPowerMultiplier, setDrowsyPowerMultiplier] = React.useState(
-    getCurrentDrowsyPowerMultiplier(eventDrowsyPowerMultipliers),
+    getCurrentDrowsyPowerMultiplier(eventDrowsyPowerMultiplierData),
   );
   const t = useTranslations('UI.SleepStyle');
 

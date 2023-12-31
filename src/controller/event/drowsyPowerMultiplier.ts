@@ -1,21 +1,25 @@
 import {millisecondsInDay} from 'date-fns/constants';
 import {Collection} from 'mongodb';
 
+import {defaultDrowsyPowerMultiplier} from '@/const/game/event';
 import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
-import {EventDrowsyPowerMultiplierData} from '@/types/game/event/drowsyPowerMultiplier';
+import {
+  EventDrowsyPowerMultiplierData,
+  EventDrowsyPowerMultiplierEntry,
+} from '@/types/game/event/drowsyPowerMultiplier';
 
 
-const getCollection = async (): Promise<Collection<EventDrowsyPowerMultiplierData>> => {
+const getCollection = async (): Promise<Collection<EventDrowsyPowerMultiplierEntry>> => {
   const client = await mongoPromise;
 
   return client
     .db('event')
-    .collection<EventDrowsyPowerMultiplierData>('drowsyPowerMultiplier');
+    .collection<EventDrowsyPowerMultiplierEntry>('drowsyPowerMultiplier');
 };
 
-export const getPossiblyActiveDrowsyPowerMultiplier = (): Promise<EventDrowsyPowerMultiplierData[]> => {
-  return getDataAsArray(
+export const getEventDrowsyPowerMultiplierData = async (): Promise<EventDrowsyPowerMultiplierData> => {
+  const entries = await getDataAsArray(
     getCollection(),
     // Get multipliers within the time range of (current - 24 hrs) to (current + 24 hrs)
     {
@@ -24,6 +28,14 @@ export const getPossiblyActiveDrowsyPowerMultiplier = (): Promise<EventDrowsyPow
     },
     {startEpoch: 1},
   );
+
+  return {
+    entries,
+    max: (await (await getCollection()).findOne(
+      {},
+      {sort: {multiplier: -1}},
+    ))?.multiplier ?? defaultDrowsyPowerMultiplier,
+  };
 };
 
 const addIndex = async () => {
@@ -31,7 +43,7 @@ const addIndex = async () => {
 
   return Promise.all([
     collection.createIndex({entryId: 1}, {unique: true}),
-    collection.createIndex({startEpoch: 1, endEpoch: 1}),
+    collection.createIndex({startEpoch: 1, endEpoch: 1, multiplier: -1}),
   ]);
 };
 

@@ -29,7 +29,7 @@ export type PokemonDataProps = CookingUserSettingsRequiredData & {
   mainSkillMap: MainSkillMap,
   subSkillMap: SubSkillMap,
   snorlaxDataMap: SnorlaxDataMap,
-  eventDrowsyPowerMultipliers: EventDrowsyPowerMultiplierData[],
+  eventDrowsyPowerMultiplierData: EventDrowsyPowerMultiplierData,
   preloaded: UserSettingsBundle,
 };
 
