@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {clsx} from 'clsx';
+
 import {Grid} from '@/components/layout/grid';
 import {LazyLoad} from '@/components/layout/lazyLoad';
 import {usePokemonLinkPopup} from '@/components/shared/pokemon/linkPopup/hook';
@@ -21,7 +23,9 @@ export const SleepdexLookupResult = ({dataToShow, loading, ...props}: Props) => 
     <>
       <PokemonLinkPopup {...pokemonLinkPopup}/>
       <LazyLoad loading={loading}>
-        <Grid className="grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <Grid className={clsx(
+          'grid-cols-1 gap-1.5 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6',
+        )}>
           {dataToShow.map((data) => (
             <SleepdexLookupResultCell
               key={data.sleepdexStyleId}

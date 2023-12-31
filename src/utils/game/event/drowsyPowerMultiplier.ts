@@ -8,7 +8,7 @@ export const getCurrentDrowsyPowerMultiplier = ({entries}: EventDrowsyPowerMulti
   }
 
   const now = Date.now() / 1000;
-  const multiplierFromData = entries.find(({startEpoch, endEpoch}) => now >= startEpoch && now <= endEpoch)?.multiplier;
+  const dataInRange = entries.find(({startEpoch, endEpoch}) => now >= startEpoch && now <= endEpoch);
 
-  return multiplierFromData ?? defaultDrowsyPowerMultiplier;
+  return dataInRange?.multiplier ?? defaultDrowsyPowerMultiplier;
 };
