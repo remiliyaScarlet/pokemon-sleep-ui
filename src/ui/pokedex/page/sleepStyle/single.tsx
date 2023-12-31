@@ -1,13 +1,12 @@
 import React from 'react';
 
 import BookmarkIcon from '@heroicons/react/24/outline/BookmarkIcon';
-import {StarIcon} from '@heroicons/react/24/solid';
 import {clsx} from 'clsx';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
+import {SleepStyleBrief} from '@/components/shared/sleepStyle/components/brief';
 import {SleepStyleUnlockRequirement} from '@/components/shared/sleepStyle/components/requirement';
-import {useSleepStyleName} from '@/hooks/sleepdex/name';
 import {useUpdateSleepdex} from '@/hooks/sleepdex/update';
 import {getToggleButtonClass} from '@/styles/input';
 import {SleepStyleCommon} from '@/types/game/sleepStyle';
@@ -33,7 +32,6 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
   const {
     style,
     spo,
-    rarity,
     rewards,
   } = sleepStyle;
 
@@ -41,11 +39,6 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
 
   const t = useTranslations('UI.Common');
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
-  const sleepStyleName = useSleepStyleName({
-    pokemonId,
-    pokemonBranch,
-    sleepStyleId: sleepStyle.style,
-  });
 
   return (
     <Flex direction="row" center className="gap-1.5 p-2.5" noFullWidth>
@@ -60,16 +53,12 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
         <BookmarkIcon/>
       </button>
       <Flex className="gap-1">
-        <Flex direction="row" center className="items-center gap-1">
-          <Flex direction="row" noFullWidth className="items-center gap-0.5">
-            <StarIcon className="h-5 w-5"/>
-            <div>{rarity}</div>
-          </Flex>
-          <Flex direction="row" noFullWidth className="items-end gap-1">
-            <div>{sleepStyleName}</div>
-            <small className="text-slate-600 dark:text-slate-400">#{style}</small>
-          </Flex>
-        </Flex>
+        <SleepStyleBrief
+          pokemonId={pokemonId}
+          pokemonBranch={pokemonBranch}
+          sleepStyle={sleepStyle}
+          className="justify-center"
+        />
         <SleepStyleUnlockRequirement spo={spo} {...props}/>
         <Flex direction="row" center className="gap-1.5">
           <PokemonSleepStyleRewardCell
