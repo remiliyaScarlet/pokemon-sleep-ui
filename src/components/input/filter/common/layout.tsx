@@ -4,6 +4,7 @@ import {clsx} from 'clsx';
 
 import {FilterInputLayoutProps} from '@/components/input/filter/common/type';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
+import {Flex} from '@/components/layout/flex/common';
 
 
 export const FilterInputLayout = ({
@@ -18,9 +19,9 @@ export const FilterInputLayout = ({
   return (
     <InputRowWithTitle
       title={
-        <div className={clsx('whitespace-nowrap text-center text-sm', !noFixedTitleWidth && 'w-32')}>
+        <Flex noFullWidth center className={clsx('whitespace-nowrap text-sm', !noFixedTitleWidth && 'w-32')}>
           {title}
-        </div>
+        </Flex>
       }
       style={style}
       ender={ender}

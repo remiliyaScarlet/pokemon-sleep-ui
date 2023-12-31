@@ -3,9 +3,8 @@ import React from 'react';
 import {useTranslations} from 'next-intl';
 
 import {Flex} from '@/components/layout/flex/common';
-import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {CompletionResultUI} from '@/components/shared/completion/main';
-import {NumberInputRequired} from '@/components/shared/input/number/required/main';
+import {DrowsyPowerMultiplierInput} from '@/components/shared/sleepStyle/input/drowsyPowerMultiplier';
 import {SleepdexMap} from '@/types/game/sleepdex';
 import {PokemonSleepStylesIncenseOnly} from '@/ui/pokedex/page/sleepStyle/incenseOnly';
 import {PokemonSleepStylesOfMap} from '@/ui/pokedex/page/sleepStyle/map';
@@ -67,13 +66,11 @@ export const PokemonSleepStylesLoaded = ({
 
   return (
     <Flex className="info-section">
-      <NumberInputRequired
-        text={t('DrowsyPowerMultiplier')}
-        value={drowsyPowerMultiplier}
-        setValue={setDrowsyPowerMultiplier}
-        className="self-end"
+      <DrowsyPowerMultiplierInput
+        multiplier={drowsyPowerMultiplier}
+        setMultiplier={setDrowsyPowerMultiplier}
+        maxMultiplier={eventDrowsyPowerMultiplierData.max}
       />
-      <HorizontalSplitter/>
       <Flex center wrap className="gap-1.5 md:flex-row">
         {sleepStyles.map((sleepStyleOfMap) => (
           <PokemonSleepStylesOfMap
