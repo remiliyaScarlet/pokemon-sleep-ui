@@ -13,7 +13,6 @@ import {getToggleButtonClass} from '@/styles/input';
 import {SleepStyleCommon} from '@/types/game/sleepStyle';
 import {PokemonSleepStyleRewardCell} from '@/ui/pokedex/page/sleepStyle/reward';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
-import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {isInSleepdex} from '@/utils/game/sleepdex';
 
 
@@ -42,12 +41,9 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
 
   const t = useTranslations('UI.Common');
   const updateSleepdex = useUpdateSleepdex({sleepdex, setSleepdex});
-  const pokemonSleepStyleId = getPokemonSleepStyleId({
-    pokemonId,
-    branch: pokemonBranch,
-  });
   const sleepStyleName = useSleepStyleName({
-    pokemonId: pokemonSleepStyleId,
+    pokemonId,
+    pokemonBranch,
     sleepStyleId: sleepStyle.style,
   });
 

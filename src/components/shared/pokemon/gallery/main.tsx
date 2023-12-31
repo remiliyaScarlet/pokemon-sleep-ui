@@ -13,13 +13,12 @@ import {PokemonGalleryCommonProps} from '@/components/shared/pokemon/gallery/typ
 import {PokemonImage} from '@/components/shared/pokemon/image/main';
 import {PokemonImageType} from '@/components/shared/pokemon/image/type';
 import {textFilterButtonStyle} from '@/styles/input';
-import {getPokemonSleepStyleId} from '@/utils/game/pokemon';
 import {getAvailableSleepStylesFromNormal, getAvailableSleepStylesFromSpecial} from '@/utils/game/sleepdex';
 
 
 export const PokemonGallery = ({
   pokemon,
-  pokemonBranches,
+  pokemonBranch,
   sleepStyles,
   sleepStylesSpecial,
 }: PokemonGalleryCommonProps) => {
@@ -74,10 +73,7 @@ export const PokemonGallery = ({
             >
               <PokemonGalleryButton
                 pokemonId={pokemon.id}
-                pokemonSleepStyleId={getPokemonSleepStyleId({
-                  pokemonId: pokemon.id,
-                  branch: pokemonBranches,
-                })}
+                pokemonBranch={pokemonBranch}
                 image={image}
                 isActive={isActive}
               />

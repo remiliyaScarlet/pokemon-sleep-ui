@@ -9,6 +9,7 @@ import {
 import {PokemonBranchData} from '@/types/game/pokemon/branch';
 import {SleepStyleNormalMap} from '@/types/game/sleepStyle';
 import {toUnique} from '@/utils/array';
+import {Nullable} from '@/utils/type';
 
 
 type GetRelatedPokemonIdsOpts = {
@@ -60,12 +61,12 @@ export const getPokemonMaxEvolutionCount = (pokemonList: PokemonInfo[]) => (
 
 type GetPokemonSleepStyleId = {
   pokemonId: number,
-  branch: PokemonBranchData | null | undefined,
+  pokemonBranch: Nullable<PokemonBranchData>,
 };
 
-export const getPokemonSleepStyleId = ({pokemonId, branch}: GetPokemonSleepStyleId): PokemonId => {
-  if (branch && branch.branches.includes(pokemonId)) {
-    return branch.pokemonId;
+export const getPokemonIdForSleepStyle = ({pokemonId, pokemonBranch}: GetPokemonSleepStyleId): PokemonId => {
+  if (pokemonBranch && pokemonBranch.branches.includes(pokemonId)) {
+    return pokemonBranch.pokemonId;
   }
 
   return pokemonId;
