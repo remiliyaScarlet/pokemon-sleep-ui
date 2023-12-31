@@ -18,7 +18,7 @@ import {getAssociatedPokemonBranchData} from '@/controller/pokemon/branch';
 import {getPokedexMap, getSinglePokemonInfo} from '@/controller/pokemon/info';
 import {getSinglePokemonProducingParams} from '@/controller/pokemon/producing';
 import {getSleepStyleNormalList} from '@/controller/sleepStyle';
-import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
+import {getSleepStyleSpecialListOfPokemon} from '@/controller/sleepStyleSpecial';
 import {getSnorlaxDataMap} from '@/controller/snorlax';
 import {getSubSkillMap} from '@/controller/subSkill';
 import {PublicPageLayout} from '@/ui/base/layout/public';
@@ -63,7 +63,7 @@ export const Pokemon = async ({params}: Props) => {
     getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
     getSleepStyleNormalList(idNumber),
-    getSleepStyleSpecialList(idNumber),
+    getSleepStyleSpecialListOfPokemon(idNumber),
     getBerryData(pokemon.berry.id),
     getIngredientMap(),
     getMainSkillMap(),

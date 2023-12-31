@@ -52,3 +52,9 @@ export type SleepStyleSpecial = SleepStyleCommon & {
 };
 
 export type SleepStyleSpecialMap = {[id in PokemonId]?: SleepStyleSpecial[]};
+
+export type SleepStyleMerged = SleepStyleCommon & {
+  pokemonId: PokemonId,
+  mapIds: SleepMapId[],
+  incenseOnly: boolean,
+};

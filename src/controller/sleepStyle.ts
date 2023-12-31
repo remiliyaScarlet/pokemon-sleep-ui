@@ -1,4 +1,4 @@
-import {Collection} from 'mongodb';
+import {Collection, Filter} from 'mongodb';
 
 import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
@@ -94,7 +94,13 @@ export const getSleepStyleNormalUniqueByMap = async (): Promise<FieldToFlattened
 };
 
 export const getSleepStyleNormalOfMap = async (mapId: number): Promise<SleepStyleNormalFlattened[]> => (
-  (await (await getCollection()).find({mapId}, {projection: {_id: false}}).toArray())
+  getSleepStyleNormalFlattenedList({mapId})
+);
+
+export const getSleepStyleNormalFlattenedList = async (
+  filter?: Filter<SleepStyleNormal>,
+): Promise<SleepStyleNormalFlattened[]> => (
+  (await (await getCollection()).find(filter ?? {}, {projection: {_id: false}}).toArray())
     .flatMap(({styles, ...props}) => (
       styles.map((style) => ({style, ...props}))
     ))

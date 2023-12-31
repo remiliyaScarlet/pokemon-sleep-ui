@@ -1,4 +1,4 @@
-import {Collection} from 'mongodb';
+import {Collection, Filter} from 'mongodb';
 
 import {getDataAsArray} from '@/controller/common';
 import mongoPromise from '@/lib/mongodb';
@@ -29,8 +29,14 @@ export const getSleepStyleSpecialMap = async (): Promise<SleepStyleSpecialMap> =
   return ret;
 };
 
-export const getSleepStyleSpecialList = async (pokemonId: number): Promise<SleepStyleSpecial[]> => {
-  return getDataAsArray(getCollection(), {pokemonId});
+export const getSleepStyleSpecialListOfPokemon = async (pokemonId: number): Promise<SleepStyleSpecial[]> => {
+  return getSleepStyleSpecialList({pokemonId});
+};
+
+export const getSleepStyleSpecialList = async (
+  filter?: Filter<SleepStyleSpecial>,
+): Promise<SleepStyleSpecial[]> => {
+  return getDataAsArray(getCollection(), filter);
 };
 
 const addIndex = async () => {
