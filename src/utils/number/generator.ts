@@ -14,3 +14,19 @@ export function* generateDecimalsAndOnes(num: number): Generator<number> {
     yield num;
   }
 }
+
+type GenerateNumberTicksOpts = {
+  max: number,
+  interval: number,
+  start?: number,
+};
+
+export function* generateNumberTicks({max, interval, start}: GenerateNumberTicksOpts): Generator<number> {
+  let current = start ?? 0;
+  yield current;
+
+  while (current < max) {
+    current += interval;
+    yield current;
+  }
+}

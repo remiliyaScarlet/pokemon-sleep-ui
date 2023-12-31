@@ -1,4 +1,4 @@
-import {generateTicks} from '@/utils/chart';
+import {generateNumberTicks} from '@/utils/number/generator';
 import {formatSeconds, rotateTime} from '@/utils/time';
 
 
@@ -7,13 +7,18 @@ type GenerateTimingTicksOpts = {
   isLandscape: boolean,
 };
 
-export const generateTimingTicks = ({max, isLandscape}: GenerateTimingTicksOpts): number[] => generateTicks({
+export const generateTimingTicks = ({
+  max,
+  isLandscape,
+}: GenerateTimingTicksOpts): number[] => [...generateNumberTicks({
   max,
   // 4/8 is (the number of the ticks to show - 1)
   interval: Math.ceil(max / (isLandscape ? 8 : 4) / 1800) * 1800,
-});
+})];
 
-export const generateStaminaTicks = (max: number): number[] => generateTicks({max, interval: 20});
+export const generateStaminaTicks = (max: number): number[] => (
+  [...generateNumberTicks({max, interval: 20})]
+);
 
 type ToFormattedTimeFromTimingOpts = {
   start: number,

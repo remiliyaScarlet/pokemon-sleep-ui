@@ -16,8 +16,8 @@ import {RatingResultMap} from '@/components/shared/pokemon/rating/type';
 import {useLayout} from '@/hooks/layout/main';
 import {PokemonKeyLevel} from '@/types/game/pokemon/level';
 import {RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
-import {generateTicks} from '@/utils/chart';
 import {getRatingWeightedStatsFromResult} from '@/utils/game/rating/result/weighted';
+import {generateNumberTicks} from '@/utils/number/generator';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -54,11 +54,11 @@ export const RatingResultChart = ({activeKeyLevels, resultMap, basis}: Props) =>
           <XAxis
             type="number"
             dataKey={({level}: RatingResultChartDataPoint) => level}
-            ticks={generateTicks({
+            ticks={[...generateNumberTicks({
               max: maxLevel,
               interval: isLandscape ? 5 : 10,
               start: 5,
-            })}
+            })]}
             domain={[1, 'dataMax']}
             dy={10}
             interval={0}

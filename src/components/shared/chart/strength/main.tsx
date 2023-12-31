@@ -5,7 +5,7 @@ import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAx
 import {StrengthGrowthChartTooltip} from '@/components/shared/chart/strength/tooltip';
 import {StrengthGrowthData, StrengthGrowthDataEntry} from '@/components/shared/chart/strength/type';
 import {useLayout} from '@/hooks/layout/main';
-import {generateTicks} from '@/utils/chart';
+import {generateNumberTicks} from '@/utils/number/generator';
 
 
 type Props = {
@@ -22,11 +22,11 @@ export const StrengthGrowthChart = ({data}: Props) => {
         <XAxis
           type="number"
           dataKey={({level}: StrengthGrowthDataEntry) => level}
-          ticks={generateTicks({
+          ticks={[...generateNumberTicks({
             max: data.length,
             interval: isLandscape ? 5 : 10,
             start: 1,
-          })}
+          })]}
           domain={[1, 'dataMax']}
           dy={10}
           interval={0}

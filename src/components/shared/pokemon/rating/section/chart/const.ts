@@ -4,8 +4,9 @@ import {YAxisProps} from 'recharts';
 
 import {RatingResultChartDataPoint} from '@/components/shared/pokemon/rating/section/chart/type';
 import {RatingWeightedStatsBasis} from '@/types/game/pokemon/rating/config';
-import {generateTicks, generateTicksFromData} from '@/utils/chart';
+import {generateTicksFromData} from '@/utils/chart';
 import {formatFloat, formatFloat1, formatInt, formatSignedNumber} from '@/utils/number/format';
+import {generateNumberTicks} from '@/utils/number/generator';
 
 
 export const ratingResultChartYAxisDomain: {
@@ -19,8 +20,8 @@ export const ratingResultChartYAxisDomain: {
 export const ratingResultChartYAxisTicks: {
   [basis in RatingWeightedStatsBasis]: (data: RatingResultChartDataPoint[]) => number[]
 } = {
-  percentile: () => generateTicks({max: 100, interval: 20}),
-  percentage: () => generateTicks({max: 100, interval: 20}),
+  percentile: () => [...generateNumberTicks({max: 100, interval: 20})],
+  percentage: () => [...generateNumberTicks({max: 100, interval: 20})],
   relativeStrength: (data) => generateTicksFromData({
     data: data.map(({value}) => value),
     count: 5,
