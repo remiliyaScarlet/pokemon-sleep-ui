@@ -63,7 +63,7 @@ export const SleepStyleUnlockRequirement = ({
         <div className={clsx('relative', dimension ?? 'h-6 w-6')}>
           <NextImage
             src="/images/generic/snorlax.png"
-            alt={t('DrowsyPowerRequired')}
+            alt={t('DrowsyPowerRequirement')}
             sizes={imageSmallIconSizes}
           />
         </div>

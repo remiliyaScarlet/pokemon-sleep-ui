@@ -426,7 +426,7 @@
     }
   },
   "SleepStyle": {
-    "DrowsyPowerRequired": "必要ねむけパワー",
+    "DrowsyPowerRequirement": "必要ねむけパワー",
     "DrowsyPowerMultiplier": "エナジー xスコア",
     "Message": {
       "UnlockRankDiffers": "※ここに掲げる寝顔開放ランクは、必要ねむけパワーも考慮した実質ランクです。データ上の開放ランク（Serebiiなど他サイトが掲載するもの）とは異なる場合があります。詳しくはヘルプへ（ページ右上部ヘルプアイコンからどうぞ）。"
