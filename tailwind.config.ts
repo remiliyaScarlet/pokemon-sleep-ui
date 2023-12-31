@@ -27,6 +27,9 @@ const config: Config = {
           },
         },
       },
+      spacing: {
+        '18': '4.5rem',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
