@@ -16,6 +16,7 @@ export type SleepReward = {
 export type SleepStyleSpoRequirement = {
   drowsyScore: number,
   snorlaxStrength: number,
+  snorlaxRankMinimum: SnorlaxRank | null,
 };
 
 export type SleepStyleCommon = {
@@ -56,5 +57,6 @@ export type SleepStyleSpecialMap = {[id in PokemonId]?: SleepStyleSpecial[]};
 export type SleepStyleMerged = SleepStyleCommon & {
   pokemonId: PokemonId,
   mapIds: SleepMapId[],
+  rank: SnorlaxRank | null,
   incenseOnly: boolean,
 };

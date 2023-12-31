@@ -10,9 +10,7 @@ import {imageSmallIconSizes} from '@/styles/image';
 import {Dimension} from '@/types/style';
 import {PokemonSleepStyleProps} from '@/ui/pokedex/page/sleepStyle/type';
 import {getSpoRequirement} from '@/utils/game/sleepStyle';
-import {getSnorlaxRankAtEnergy, sortBySnorlaxRankAsc} from '@/utils/game/snorlax';
 import {formatInt} from '@/utils/number/format';
-import {isNotNullish} from '@/utils/type';
 
 
 type Props = PokemonSleepStyleProps & {
@@ -31,34 +29,18 @@ export const SleepStyleUnlockRequirement = ({
   const t = useTranslations('UI.SleepStyle');
 
   const {
-    minimumRank,
+    snorlaxRankMinimum,
     drowsyScore,
-  } = React.useMemo(() => {
-    const {drowsyScore, snorlaxStrength} = getSpoRequirement({
-      spo,
-      drowsyPowerMultiplier,
-    });
-
-    const rankRequirement = [
-      snorlaxData ?
-        getSnorlaxRankAtEnergy({energy: snorlaxStrength, data: snorlaxData.data})?.rank :
-        null,
-    ];
-    if (sleepStyleUnlockRank) {
-      rankRequirement.push(sleepStyleUnlockRank);
-    }
-
-    const minimumRank = rankRequirement.filter(isNotNullish).sort(sortBySnorlaxRankAsc).at(-1);
-
-    return {
-      minimumRank,
-      drowsyScore,
-    };
-  }, [snorlaxData, sleepStyleUnlockRank, spo, drowsyPowerMultiplier]);
+  } = React.useMemo(() => getSpoRequirement({
+    spo,
+    drowsyPowerMultiplier,
+    sleepStyleUnlockRank,
+    snorlaxData,
+  }), [snorlaxData, sleepStyleUnlockRank, spo, drowsyPowerMultiplier]);
 
   return (
     <Flex direction="row" center noFullWidth className="gap-2">
-      {minimumRank && <SnorlaxRankUI rank={minimumRank}/>}
+      {snorlaxRankMinimum && <SnorlaxRankUI rank={snorlaxRankMinimum}/>}
       <Flex direction="row" center noFullWidth className="gap-1">
         <div className={clsx('relative', dimension ?? 'h-6 w-6')}>
           <NextImage

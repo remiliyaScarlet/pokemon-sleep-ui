@@ -1,27 +1,53 @@
 import groupBy from 'lodash/groupBy';
 
 import {spoToDrowsyScoreMultiplier} from '@/const/game/sleepStyle';
+import {SnorlaxRank} from '@/types/game/rank';
 import {
   SleepStyleMerged,
   SleepStyleNormalFlattened,
   SleepStyleSpecial,
   SleepStyleSpoRequirement,
 } from '@/types/game/sleepStyle';
+import {SnorlaxDataOfMap} from '@/types/game/snorlax';
 import {toSleepdexStyleId} from '@/utils/game/sleepdex';
-import {isNotNullish} from '@/utils/type';
+import {getSnorlaxRankAtEnergy, sortBySnorlaxRankAsc} from '@/utils/game/snorlax';
+import {isNotNullish, Nullable} from '@/utils/type';
 
 
 type GetSpoRequirementOpts = {
   spo: number,
   drowsyPowerMultiplier: number,
+  sleepStyleUnlockRank: Nullable<SnorlaxRank>,
+  snorlaxData: Nullable<SnorlaxDataOfMap>,
 };
 
-export const getSpoRequirement = ({spo, drowsyPowerMultiplier}: GetSpoRequirementOpts): SleepStyleSpoRequirement => {
+export const getSpoRequirement = ({
+  spo,
+  drowsyPowerMultiplier,
+  sleepStyleUnlockRank,
+  snorlaxData,
+}: GetSpoRequirementOpts): SleepStyleSpoRequirement => {
   const drowsyScore = spo * spoToDrowsyScoreMultiplier;
+  const snorlaxStrength = drowsyScore / drowsyPowerMultiplier;
+
+  const rankRequirement = [
+    snorlaxData ?
+      getSnorlaxRankAtEnergy({energy: snorlaxStrength, data: snorlaxData.data})?.rank :
+      null,
+  ];
+  if (sleepStyleUnlockRank) {
+    rankRequirement.push(sleepStyleUnlockRank);
+  }
+
+  const snorlaxRankMinimum = rankRequirement
+    .filter(isNotNullish)
+    .sort(sortBySnorlaxRankAsc)
+    .at(-1) ?? null;
 
   return {
-    snorlaxStrength: drowsyScore / drowsyPowerMultiplier,
     drowsyScore,
+    snorlaxStrength,
+    snorlaxRankMinimum,
   };
 };
 
