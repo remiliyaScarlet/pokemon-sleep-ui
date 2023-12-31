@@ -41,7 +41,7 @@ export const Pokemon = async ({params}: Props) => {
     return <Failed text="Pokemon"/>;
   }
 
-  const pokemonBranches = await getAssociatedPokemonBranchData(pokemon.id);
+  const pokemonBranch = await getAssociatedPokemonBranchData(pokemon.id);
 
   const [
     session,
@@ -59,7 +59,7 @@ export const Pokemon = async ({params}: Props) => {
     eventDrowsyPowerMultiplierData,
   ] = await Promise.all([
     getServerSession(authOptions),
-    getPokedexMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranches})),
+    getPokedexMap(getRelatedPokemonIds({pokemon, branchData: pokemonBranch})),
     getSinglePokemonProducingParams(pokemon.id),
     getIngredientChainMap(),
     getSleepStyleNormalList(idNumber),
@@ -80,7 +80,7 @@ export const Pokemon = async ({params}: Props) => {
   const props: PokemonDataProps = {
     pokedex,
     pokemon,
-    pokemonBranches,
+    pokemonBranch,
     pokemonProducingParams,
     ingredientChainMap,
     sleepStyles,

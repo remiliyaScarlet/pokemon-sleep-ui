@@ -17,7 +17,7 @@ import {PokemonDataCommonProps, PokemonDataProps} from '@/ui/pokedex/page/type';
 
 export const PokemonClient = (props: PokemonDataProps) => {
   const {
-    pokemonBranches,
+    pokemonBranch,
     mealMap,
     preloaded,
   } = props;
@@ -45,7 +45,7 @@ export const PokemonClient = (props: PokemonDataProps) => {
       <PokemonProduction session={data} {...commonProps}/>
       <AdsUnit/>
       <PokemonEvolution {...pokemonLinkPopup} {...props}/>
-      {pokemonBranches && <AdsUnit/>}
+      {pokemonBranch && <AdsUnit/>}
       <PokemonBranches {...pokemonLinkPopup} {...props}/>
       <AdsUnit/>
       <PokemonSleepStyles {...commonProps}/>

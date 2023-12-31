@@ -19,7 +19,7 @@ import {
 export type PokemonDataProps = CookingUserSettingsRequiredData & {
   pokedex: PokedexMap,
   pokemon: PokemonInfo,
-  pokemonBranches: PokemonBranchData | null,
+  pokemonBranch: PokemonBranchData | null,
   pokemonProducingParams: PokemonProducingParams,
   sleepStyles: SleepStyleNormal[],
   sleepStylesSpecial: SleepStyleSpecial[],

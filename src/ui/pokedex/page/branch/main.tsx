@@ -13,12 +13,12 @@ import {isNotNullish} from '@/utils/type';
 
 type Props = PokemonDataProps & UsePokemonLinkPopupReturn;
 
-export const PokemonBranches = ({pokemon, pokemonBranches, pokedex, ...props}: Props) => {
-  if (!pokemonBranches) {
+export const PokemonBranches = ({pokemon, pokemonBranch, pokedex, ...props}: Props) => {
+  if (!pokemonBranch) {
     return null;
   }
 
-  const {pokemonId, branches} = pokemonBranches;
+  const {pokemonId, branches} = pokemonBranch;
 
   return (
     <PokemonTitledLayout title={<ShareIcon className="h-6 w-6"/>} className="!gap-5 lg:flex-row">
