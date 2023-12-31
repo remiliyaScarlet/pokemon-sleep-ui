@@ -12,19 +12,6 @@ const env = {
   queuedById: 'AZ_DEVOPS_QUEUED_BY_ID',
 };
 
-const azureRequesterIdToDiscordUid = {
-  '7b5961c4-6acb-4c84-be52-7627a62b90a2': '503484431437398016',
-  '00000002-0000-8888-8000-000000000000': '153943999185420288',
-  '0435d0c0-44f0-4fc6-abfc-6bc7d4a92571': '153943999185420288',
-};
-
-const getRequesterDiscordUid = (requesterId) => {
-  const discordUid = azureRequesterIdToDiscordUid[requesterId];
-
-  // `503484431437398016` is the UID of `@raenonx`
-  return discordUid ?? '503484431437398016';
-};
-
 for (const [key, variableName] of Object.entries(env)) {
   const value = process.env[variableName];
 
@@ -50,7 +37,8 @@ writeFile('devops-env.txt', JSON.stringify(env), (err) => {
 
 const discordData = {
   timestamp: Date.now(),
-  content: `**${env.status}** / ${env.title} <@${getRequesterDiscordUid(env.requesterId)}>`,
+  // `503484431437398016` is the UID of `@raenonx`
+  content: `**${env.status}** / ${env.title} <@503484431437398016>`,
   embeds: [
     {
       'title': env.title,
