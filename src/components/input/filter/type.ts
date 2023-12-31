@@ -27,3 +27,7 @@ export type FilterWithUpdaterProps<TFilter> = {
   setFilter: ReactStateUpdaterFromOriginal<TFilter>,
 };
 
+export type FilterEnforcerOpts<TFilter> = {
+  original: TFilter,
+  updated: TFilter,
+};

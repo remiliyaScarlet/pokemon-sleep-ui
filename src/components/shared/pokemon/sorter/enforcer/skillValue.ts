@@ -1,4 +1,4 @@
-import {FilterWithInclusionMap} from '@/components/input/filter/type';
+import {FilterEnforcerOpts, FilterWithInclusionMap} from '@/components/input/filter/type';
 import {getFilterIncludedKeys, getFilterNewlySelectedKeys} from '@/components/input/filter/utils';
 import {FilterEnforcerKeyWithDefault} from '@/components/shared/pokemon/sorter/enforcer/type';
 import {isPokemonSortSkillValue} from '@/components/shared/pokemon/sorter/utils';
@@ -8,9 +8,7 @@ import {MainSkillId} from '@/types/game/pokemon/mainSkill';
 type EnforceFilterWithSkillValueOpts<
   TFilter extends FilterWithInclusionMap<MainSkillId>,
   TSort extends string,
-> = {
-  original: TFilter,
-  updated: TFilter,
+> = FilterEnforcerOpts<TFilter> & {
   config: {
     mainSkill: FilterEnforcerKeyWithDefault<TFilter, FilterWithInclusionMap<MainSkillId>>,
     sort: FilterEnforcerKeyWithDefault<TFilter, TSort>[],
