@@ -26,7 +26,7 @@ export const NumberPresetRequired = ({sliderTitle, presetTitle, presetValues, ..
       />
       <FilterTextInput
         title={presetTitle}
-        ids={presetValues.toSorted((a, b) => a - b)}
+        ids={presetValues.sort((a, b) => a - b)}
         idToText={(level) => level.toString()}
         onClick={setValue}
         isActive={() => false}
