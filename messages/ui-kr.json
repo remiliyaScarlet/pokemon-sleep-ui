@@ -23,6 +23,7 @@
     "Rewards": "보상",
     "Shiny":"색이 다른",
     "SnorlaxFavorite": "잠만보가 좋아하는 나무열매",
+    "SnorlaxRank": "잠만보 평가",
     "Stamina": "기력",
     "Strength": "에너지"
   },
@@ -426,7 +427,8 @@
     "IncenseOnly": "향로 전용",
     "Unreleased": "미구현",
     "Message": {
-      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power Requirement. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details."
+      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power Requirement. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details.",
+      "ChooseMapFirst": "맵를 선택해주세요."
     }
   },
   "Stamina": {

@@ -19,5 +19,9 @@ export const useSleepdexLookupSortTypeText = (sort: SleepdexLookupSortType) => {
     return t('ResearchExp');
   }
 
+  if (sort === 'minSnorlaxRank') {
+    return t('SnorlaxRank');
+  }
+
   throw new Error(`Unhandled sleepdex sort type of ${sort satisfies never} for text`);
 };

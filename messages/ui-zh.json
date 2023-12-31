@@ -23,6 +23,7 @@
     "Rewards": "報酬",
     "Shiny": "異色",
     "SnorlaxFavorite": "卡比獸喜歡的樹果",
+    "SnorlaxRank": "卡比獸級別",
     "Stamina": "活力",
     "Strength": "能量"
   },
@@ -426,7 +427,8 @@
     "IncenseOnly": "薰香限定",
     "Unreleased": "未釋出",
     "Message": {
-      "UnlockRankDiffers": "本站部分睡姿的解鎖等級有算入睡意之力需求所需要的卡比獸等級，因此會和 Serebii 或其他來源有所出入。詳情請見頁面右上方的相關文件。"
+      "UnlockRankDiffers": "本站部分睡姿的解鎖等級有算入睡意之力需求所需要的卡比獸等級，因此會和 Serebii 或其他來源有所出入。詳情請見頁面右上方的相關文件。",
+      "ChooseMapFirst": "請先選擇地圖。"
     }
   },
   "Stamina": {

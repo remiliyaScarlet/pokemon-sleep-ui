@@ -30,5 +30,11 @@ export const SleepdexLookupSortTypeIcon = ({sort}: Props) => {
     );
   }
 
+  if (sort === 'minSnorlaxRank') {
+    return (
+      <GenericIconLarger src="/images/rank/4.png" alt={text} noInvert/>
+    );
+  }
+
   throw new Error(`Unhandled sleepdex sort type of ${sort satisfies never} for icon`);
 };

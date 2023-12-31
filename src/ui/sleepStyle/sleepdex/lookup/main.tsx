@@ -9,6 +9,7 @@ import {getPokemonBranchMapByLeaf} from '@/controller/pokemon/branch';
 import {getPokedexMap} from '@/controller/pokemon/info';
 import {getSleepStyleNormalFlattenedList} from '@/controller/sleepStyle';
 import {getSleepStyleSpecialList} from '@/controller/sleepStyleSpecial';
+import {getSnorlaxDataMap} from '@/controller/snorlax';
 import {DefaultPageProps} from '@/types/next/page/common';
 import {PublicPageLayout} from '@/ui/base/layout/public';
 import {SleepdexLookupClient} from '@/ui/sleepStyle/sleepdex/lookup/client';
@@ -23,6 +24,7 @@ export const SleepdexLookup = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     pokedexMap,
     pokemonBranchMapByLeaf,
+    snorlaxDataMap,
     eventDrowsyPowerMultiplierData,
     mapIds,
     normal,
@@ -32,6 +34,7 @@ export const SleepdexLookup = async ({params}: DefaultPageProps) => {
     getIngredientChainMap(),
     getPokedexMap(),
     getPokemonBranchMapByLeaf(),
+    getSnorlaxDataMap(),
     getEventDrowsyPowerMultiplierData(),
     getMapIds(),
     getSleepStyleNormalFlattenedList(),
@@ -43,6 +46,7 @@ export const SleepdexLookup = async ({params}: DefaultPageProps) => {
     ingredientChainMap,
     pokedexMap,
     pokemonBranchMapByLeaf,
+    snorlaxDataMap,
     eventDrowsyPowerMultiplierData,
     mapIds,
     sleepStyles: {

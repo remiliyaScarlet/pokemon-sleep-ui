@@ -39,6 +39,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Rewards: string,
       Shiny: string,
       SnorlaxFavorite: string,
+      SnorlaxRank: string,
       Stamina: string,
       Strength: string,
     },
@@ -325,6 +326,7 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Unreleased: string,
       Message: {
         UnlockRankDiffers: string,
+        ChooseMapFirst: string,
       },
     },
     Stamina: {

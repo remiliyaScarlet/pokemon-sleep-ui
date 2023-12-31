@@ -8,6 +8,7 @@ export const sleepdexLookupSortType = [
   'drowsyPowerRequirements',
   'shards',
   'researchExp',
+  'minSnorlaxRank',
 ] as const;
 
 export type SleepdexLookupSortType = typeof sleepdexLookupSortType[number];
@@ -21,6 +22,12 @@ export type SleepdexLookupFilter = PokemonInputFilter & {
   incenseOnly: boolean,
   display: SleepdexLookupDisplayType,
   sort: SleepdexLookupSortType,
+};
+
+export type SleepdexLookupFilterEnforcingCommonOpts = {
+  isPremium: boolean,
+  showMapToast: () => void,
+  showPremiumRequired: () => void,
 };
 
 export type SleepdexLookupDataEntry = {

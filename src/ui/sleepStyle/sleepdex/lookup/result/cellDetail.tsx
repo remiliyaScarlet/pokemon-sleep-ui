@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {Flex} from '@/components/layout/flex/common';
+import {SnorlaxRankUI} from '@/components/shared/snorlax/rank';
 import {SleepdexLookupDataEntry, SleepdexLookupDisplayType} from '@/ui/sleepStyle/sleepdex/lookup/filter/type';
 import {SleepdexLookupSortTypeIcon} from '@/ui/sleepStyle/sleepdex/lookup/sort/icon';
 import {formatInt, formatToAbbreviation} from '@/utils/number/format';
@@ -37,6 +38,14 @@ export const SleepdexLookupResultCellDetails = ({display, data}: Props) => {
       <Flex direction="row" center noFullWidth className="gap-1">
         <SleepdexLookupSortTypeIcon sort="researchExp"/>
         <div>{formatInt(sleepStyle.rewards.exp)}</div>
+      </Flex>
+    );
+  }
+
+  if (display === 'minSnorlaxRank') {
+    return (
+      <Flex center noFullWidth>
+        {spoRequirement.snorlaxRankMinimum && <SnorlaxRankUI rank={spoRequirement.snorlaxRankMinimum}/>}
       </Flex>
     );
   }

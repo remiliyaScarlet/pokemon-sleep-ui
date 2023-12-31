@@ -4,7 +4,7 @@ import FunnelIcon from '@heroicons/react/24/outline/FunnelIcon';
 import Bars3BottomLeftIcon from '@heroicons/react/24/solid/Bars3BottomLeftIcon';
 import InformationCircleIcon from '@heroicons/react/24/solid/InformationCircleIcon';
 import {clsx} from 'clsx';
-import {useSession} from 'next-auth/react';
+import {Session} from 'next-auth';
 import {useTranslations} from 'next-intl';
 
 import {FilterExpandedInput} from '@/components/input/filter/expanded/main';
@@ -26,9 +26,16 @@ import {SleepdexLookupServerDataProps} from '@/ui/sleepStyle/sleepdex/lookup/typ
 import {isNotNullish} from '@/utils/type';
 
 
-type Props = SleepdexLookupServerDataProps & FilterWithUpdaterProps<SleepdexLookupFilter>;
+type Props = SleepdexLookupServerDataProps & FilterWithUpdaterProps<SleepdexLookupFilter> & {
+  isPremium: boolean,
+  session: Session | null,
+};
 
-export const SleepdexLookupInput = (props: Props) => {
+export const SleepdexLookupInput = ({
+  isPremium,
+  session,
+  ...props
+}: Props) => {
   const {
     pokedexMap,
     eventDrowsyPowerMultiplierData,
@@ -43,7 +50,6 @@ export const SleepdexLookupInput = (props: Props) => {
   } = filter;
 
   const collapsible = useCollapsible();
-  const {data} = useSession();
   const t = useTranslations('UI.SleepStyle');
 
   return (
@@ -55,7 +61,7 @@ export const SleepdexLookupInput = (props: Props) => {
       <Flex className="gap-1 pr-1">
         <PokemonMapFilter
           premiumOnly
-          session={data}
+          session={session}
           mapIds={mapIds}
           {...getSingleSelectOnClickProps({
             filter,
@@ -66,7 +72,7 @@ export const SleepdexLookupInput = (props: Props) => {
         />
         <DrowsyPowerMultiplierInput
           premiumOnly
-          session={data}
+          session={session}
           multiplier={drowsyPowerMultiplier}
           setMultiplier={(drowsyPowerMultiplier) => setFilter((original) => ({
             ...original,
@@ -76,7 +82,7 @@ export const SleepdexLookupInput = (props: Props) => {
         />
         <DrowsyPowerRequirementInput
           premiumOnly
-          session={data}
+          session={session}
           drowsyPowerRequirement={drowsyPowerRequirement}
           setDrowsyPowerRequirement={(drowsyPowerRequirement) => setFilter((original) => ({
             ...original,
@@ -94,7 +100,9 @@ export const SleepdexLookupInput = (props: Props) => {
               <InformationCircleIcon className="h-6 w-6"/>
             </Flex>
           }
-          idToButton={(display) => <SleepdexLookupSortTypeUi sort={display}/>}
+          idToButton={(display) => (
+            <SleepdexLookupSortTypeUi isPremium={isPremium} sort={display}/>
+          )}
           ids={[...sleepdexLookupSortType]}
           {...getSingleSelectOnClickProps({
             filter,
@@ -110,7 +118,9 @@ export const SleepdexLookupInput = (props: Props) => {
               <Bars3BottomLeftIcon className="h-6 w-6"/>
             </Flex>
           }
-          idToButton={(sort) => <SleepdexLookupSortTypeUi sort={sort}/>}
+          idToButton={(sort) => (
+            <SleepdexLookupSortTypeUi isPremium={isPremium} sort={sort}/>
+          )}
           ids={[...sleepdexLookupSortType]}
           {...getSingleSelectOnClickProps({
             filter,

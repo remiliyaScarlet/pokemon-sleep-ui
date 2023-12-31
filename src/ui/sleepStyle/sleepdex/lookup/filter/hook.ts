@@ -1,7 +1,12 @@
 import {useFilterInput} from '@/components/input/filter/hook';
 import {generatePokemonInputFilter, isPokemonIncludedFromFilter} from '@/components/shared/pokemon/filter/utils';
 import {SleepdexStyleId} from '@/types/game/sleepdex';
-import {SleepdexLookupDataEntry, SleepdexLookupFilter} from '@/ui/sleepStyle/sleepdex/lookup/filter/type';
+import {enforceFilterSelectedMapToShowSnorlaxRank} from '@/ui/sleepStyle/sleepdex/lookup/filter/enforcer';
+import {
+  SleepdexLookupDataEntry,
+  SleepdexLookupFilter,
+  SleepdexLookupFilterEnforcingCommonOpts,
+} from '@/ui/sleepStyle/sleepdex/lookup/filter/type';
 import {SleepdexLookupServerDataProps} from '@/ui/sleepStyle/sleepdex/lookup/type';
 import {getCurrentDrowsyPowerMultiplier} from '@/utils/game/event/drowsyPowerMultiplier';
 import {toSleepdexStyleId} from '@/utils/game/sleepdex';
@@ -9,14 +14,17 @@ import {getSleepStyleMerged, getSpoRequirement} from '@/utils/game/sleepStyle';
 import {isNotNullish} from '@/utils/type';
 
 
+type UseSleepdexLookupFilterOpts = SleepdexLookupServerDataProps & SleepdexLookupFilterEnforcingCommonOpts;
+
 export const useSleepdexLookupFilter = ({
   sleepStyles,
   pokedexMap,
+  snorlaxDataMap,
   eventDrowsyPowerMultiplierData,
-  ...filterData
-}: SleepdexLookupServerDataProps) => {
+  ...opts
+}: UseSleepdexLookupFilterOpts) => {
   return useFilterInput<SleepdexLookupFilter, SleepdexLookupDataEntry, SleepdexStyleId>({
-    data: ({drowsyPowerMultiplier}) => getSleepStyleMerged(sleepStyles)
+    data: ({mapId, drowsyPowerMultiplier}) => getSleepStyleMerged(sleepStyles)
       .map((sleepStyle): SleepdexLookupDataEntry | null => {
         const {pokemonId, spo, style} = sleepStyle;
         const pokemon = pokedexMap[pokemonId];
@@ -34,6 +42,8 @@ export const useSleepdexLookupFilter = ({
           spoRequirement: getSpoRequirement({
             spo,
             drowsyPowerMultiplier,
+            sleepStyleUnlockRank: sleepStyle.rank,
+            snorlaxData: mapId ? snorlaxDataMap[mapId] : null,
           }),
           pokemon,
         };
@@ -68,8 +78,13 @@ export const useSleepdexLookupFilter = ({
       return isPokemonIncludedFromFilter({
         filter,
         pokemon: data.pokemon,
-        ...filterData,
+        ...opts,
       });
     },
+    onSetFilter: (original, updated) => enforceFilterSelectedMapToShowSnorlaxRank({
+      original,
+      updated,
+      ...opts,
+    }),
   });
 };

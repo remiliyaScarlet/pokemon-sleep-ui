@@ -23,6 +23,7 @@
     "Rewards": "Rewards",
     "Shiny": "Shiny",
     "SnorlaxFavorite": "Snorlax's Favorite Berries",
+    "SnorlaxRank": "Snorlax's Rating",
     "Stamina": "Energy",
     "Strength": "Strength"
   },
@@ -426,7 +427,8 @@
     "IncenseOnly": "Incense Only",
     "Unreleased": "Unreleased",
     "Message": {
-      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power Requirement. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details."
+      "UnlockRankDiffers": "The sleep style unlocking Snorlax rank includes minimum Drowsy Power Requirement. Therefore, what is shown here might differ from Serebii or the other sources. Check the docs accessible at the top right side of the page for details.",
+      "ChooseMapFirst": "Please choose a map first."
     }
   },
   "Stamina": {

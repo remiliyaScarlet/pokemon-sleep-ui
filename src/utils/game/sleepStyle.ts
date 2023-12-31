@@ -85,6 +85,7 @@ export const getSleepStyleMerged = ({normal, special}: GetSleepStyleMergedOpts):
     ...special.map(({pokemonId, ...style}): SleepStyleMerged => ({
       pokemonId,
       mapIds: [],
+      rank: null,
       incenseOnly: !style.unreleased,
       ...style,
     })),

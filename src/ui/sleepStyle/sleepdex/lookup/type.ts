@@ -3,11 +3,13 @@ import {EventDrowsyPowerMultiplierData} from '@/types/game/event/drowsyPowerMult
 import {PokedexMap} from '@/types/game/pokemon';
 import {PokemonBranchMapByLeaf} from '@/types/game/pokemon/branch';
 import {SleepMapId, SleepStyleNormalFlattened, SleepStyleSpecial} from '@/types/game/sleepStyle';
+import {SnorlaxDataMap} from '@/types/game/snorlax';
 
 
 export type SleepdexLookupServerDataProps = UsePokemonFilterCommonData & {
   pokedexMap: PokedexMap,
   pokemonBranchMapByLeaf: PokemonBranchMapByLeaf,
+  snorlaxDataMap: SnorlaxDataMap,
   eventDrowsyPowerMultiplierData: EventDrowsyPowerMultiplierData,
   sleepStyles: {
     normal: SleepStyleNormalFlattened[],
