@@ -8,11 +8,7 @@ import {NumberInputRequired} from '@/components/shared/input/number/required/mai
 import {NumberSliderRequiredProps} from '@/components/shared/input/number/required/type';
 
 
-export type Props = NumberSliderRequiredProps & {
-  text: string,
-};
-
-export const NumberSliderRequired = (props: Props) => {
+export const NumberSliderRequired = (props: NumberSliderRequiredProps) => {
   const {value, min = 1, max, setValue, noSameLine} = props;
 
   return (
