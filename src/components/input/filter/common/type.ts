@@ -26,3 +26,4 @@ export type FilterInputLayoutProps = Omit<InputRowProps, 'className'> & {
 export type FilterInputCommonProps<TId extends IndexableNonSymbol | null> =
   FilterInputLayoutProps &
   FilterToggleButtonsProps<TId>;
+
