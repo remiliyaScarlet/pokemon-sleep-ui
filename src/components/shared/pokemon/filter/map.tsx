@@ -47,7 +47,7 @@ export const PokemonMapFilter = ({onClick, mapIds, highlight, title, premiumOnly
             <div className="relative -mx-2 h-full w-40">
               <NextImage
                 src={`/images/field/${id}.png`} alt={mapName}
-                sizes={imageGallerySizes} className="rounded-lg opacity-50 dark:opacity-25"
+                sizes={imageGallerySizes} className="rounded-full opacity-50 dark:opacity-25"
               />
             </div>
             <Flex direction="row" center className="absolute z-10 h-full">
