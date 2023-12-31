@@ -50,7 +50,7 @@ export const PokemonStats = ({pokemon}: PokemonDataProps) => {
               <tbody>
                 <tr>
                   <td>
-                    <GenericIconLarger src="/images/generic/research.png" alt={t2('Exp')} noInvert/>
+                    <GenericIconLarger src="/images/generic/research.png" alt={t2('ResearchExp')} noInvert/>
                   </td>
                   <td>
                     {stats.recruit.exp}

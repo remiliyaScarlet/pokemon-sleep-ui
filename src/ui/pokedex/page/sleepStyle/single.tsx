@@ -78,7 +78,7 @@ export const PokemonSingleSleepStyle = <TSleepStyle extends SleepStyleCommon>({
         <Flex direction="row" center className="gap-1.5">
           <PokemonSleepStyleRewardCell
             iconSrc="/images/generic/research.png"
-            iconAlt={t('Exp')}
+            iconAlt={t('ResearchExp')}
             value={rewards.exp}
           />
           <PokemonSleepStyleRewardCell
