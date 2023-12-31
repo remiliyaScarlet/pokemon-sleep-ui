@@ -7,7 +7,7 @@ import {useTranslations} from 'next-intl';
 import {InputBox} from '@/components/input/box';
 import {FilterTextInput} from '@/components/input/filter/preset/text';
 import {InputRowWithTitle} from '@/components/input/filter/rowWithTitle';
-import {getMultiSelectOnClickProps} from '@/components/input/filter/utils/props';
+import {getMultiSelectOnClickProps, getSingleSelectOnClickProps} from '@/components/input/filter/utils/props';
 import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Collapsible} from '@/components/layout/collapsible/main';
 import {Flex} from '@/components/layout/flex/common';
@@ -20,7 +20,7 @@ import {SnorlaxFavoriteInput} from '@/components/shared/snorlax/favorite';
 import {PokedexInputClearer} from '@/ui/pokedex/index/input/clearer';
 import {displayTypeToI18nId} from '@/ui/pokedex/index/input/const';
 import {pokedexDisplayType, PokedexInputProps} from '@/ui/pokedex/index/input/type';
-import {PokedexDataProps, PokedexFilter} from '@/ui/pokedex/index/type';
+import {PokedexDataProps} from '@/ui/pokedex/index/type';
 import {toUnique} from '@/utils/array';
 
 
@@ -69,11 +69,6 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             {...props}
           />
           <FilterTextInput
-            onClick={(display) => setFilter((original) => ({
-              ...original,
-              display,
-            } satisfies PokedexFilter))}
-            isActive={(display) => filter.display === display}
             title={
               <Flex center>
                 <InformationCircleIcon className="h-6 w-6"/>
@@ -81,6 +76,11 @@ export const PokedexInput = ({pokedex, maxLevel, ...props}: Props) => {
             }
             ids={[...pokedexDisplayType].filter((displayType) => !isPokedexSortExclusion(displayType))}
             idToText={(display) => t(displayTypeToI18nId[display])}
+            {...getSingleSelectOnClickProps({
+              filter,
+              setFilter,
+              filterKey: 'display',
+            })}
           />
           <PokemonSortingPicker
             sort={filter.sort}
