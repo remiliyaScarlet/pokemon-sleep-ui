@@ -6,10 +6,11 @@ import {Indexable} from '@/utils/type';
 
 
 type UseFilterInputOpts<TFilter, TData, TId extends Indexable> = {
-  data: TData[],
+  data: TData[] | ((filter: TFilter) => TData[]),
   dataToId: (data: TData) => TId,
   initialFilter: TFilter,
   isDataIncluded: (filter: TFilter, data: TData) => boolean,
+  dataDeps?: React.DependencyList,
   deps?: React.DependencyList,
   onSetFilter?: (original: TFilter, updated: TFilter) => TFilter,
 };
@@ -19,14 +20,23 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
   dataToId,
   initialFilter,
   isDataIncluded,
+  dataDeps,
   deps,
   onSetFilter,
 }: UseFilterInputOpts<TFilter, TData, TId>) => {
   const [filter, setFilterInternal] = React.useState<TFilter>(
     onSetFilter ? onSetFilter(initialFilter, initialFilter): initialFilter,
   );
+  const dataAfterFilter = React.useMemo(() => {
+    if (typeof data === 'function') {
+      return data(filter);
+    }
+
+    return data;
+  }, [filter, ...(dataDeps ?? [])]);
+
   const isIncluded = React.useMemo((): FilterInclusionMap<TId> => (
-    Object.fromEntries(data.map((single) => (
+    Object.fromEntries(dataAfterFilter.map((single) => (
       [dataToId(single), isDataIncluded(filter, single)]
     ))) as FilterInclusionMap<TId>
   ), [filter, ...(deps ?? [])]);
@@ -43,5 +53,10 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
     })
   ), [onSetFilter, setFilterInternal]);
 
-  return {filter, setFilter, isIncluded};
+  return {
+    data: dataAfterFilter,
+    filter,
+    setFilter,
+    isIncluded,
+  };
 };
