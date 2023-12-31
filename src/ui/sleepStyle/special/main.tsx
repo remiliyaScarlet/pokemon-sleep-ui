@@ -34,7 +34,11 @@ export const SleepStyleSpecial = async ({params}: DefaultPageProps) => {
 
   return (
     <PublicPageLayout locale={locale}>
-      <I18nProvider locale={locale} namespaces={['Game', 'UI.Metadata', 'UI.InPage.Sleepdex']}>
+      <I18nProvider locale={locale} namespaces={[
+        'Game',
+        'UI.Metadata',
+        'UI.SleepStyle',
+      ]}>
         <SleepStyleSpecialClient {...props}/>
       </I18nProvider>
     </PublicPageLayout>

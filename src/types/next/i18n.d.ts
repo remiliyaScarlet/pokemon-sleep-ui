@@ -279,10 +279,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
       Docs: {
         Title: string,
       },
-      Sleepdex: {
-        IncenseOnly: string,
-        Unreleased: string,
-      },
       ProducingParams: {
         Notice: string,
       },
@@ -325,6 +321,8 @@ declare interface IntlMessages extends UiMessages, GameMessages {
     SleepStyle: {
       DrowsyPowerRequirement: string,
       DrowsyPowerMultiplier: string,
+      IncenseOnly: string,
+      Unreleased: string,
       Message: {
         UnlockRankDiffers: string,
       },

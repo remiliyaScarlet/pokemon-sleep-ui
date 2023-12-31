@@ -23,7 +23,7 @@ export const SleepStyleSpecialClient = ({
 }: SleepStyleSpecialServerDataProps) => {
   const [sleepdex, setSleepdex] = React.useState(sleepdexMap);
 
-  const t = useTranslations('UI.InPage.Sleepdex');
+  const t = useTranslations('UI.SleepStyle');
   const {
     pokemonIdWithIncenseOnly,
     pokemonIdWithUnreleased,

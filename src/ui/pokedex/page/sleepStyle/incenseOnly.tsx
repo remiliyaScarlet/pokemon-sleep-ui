@@ -14,7 +14,7 @@ type Props = PokemonSleepStyleProps & {
 };
 
 export const PokemonSleepStylesIncenseOnly = ({sleepStylesIncenseOnly, ...props}: Props) => {
-  const t = useTranslations('UI.InPage.Sleepdex');
+  const t = useTranslations('UI.SleepStyle');
 
   if (!sleepStylesIncenseOnly.length) {
     return null;

@@ -318,7 +318,6 @@
       "CurrentEnergy": "エナジー",
       "SubSkill": "サブスキル",
       "NatureEffect": "せいかく効果",
-      "MealCoverage": "",
       "Box": {
         "DisplayType": {
           "Frequency": "おてつだい時間",
@@ -382,10 +381,6 @@
     "Docs": {
       "Title": "タイトル"
     },
-    "Sleepdex": {
-      "IncenseOnly": "お香限定",
-      "Unreleased": "未実装"
-    },
     "ProducingParams": {
       "Notice": "- このページは毎日更新されます\n- スキル指数はポケモンのレベルに影響されません\n  - スキル生産指数については [ポケモン図鑑](https://pks.raenonx.cc/pokedex) や [スキル発動分析](https://pks.raenonx.cc/team/mainskill) を参照してください\n- スキル発動率が空欄のポケモンは、値の確証がとれていないものです\n- スペシャルサンクス:\n  - `@jc`, `@goobliss`, `@harold_grant` (Mathcord): 計算モデル構築・関連データ集積\n  - `@calpistori`: 検査・データ照合"
     }
@@ -428,6 +423,8 @@
   "SleepStyle": {
     "DrowsyPowerRequirement": "必要ねむけパワー",
     "DrowsyPowerMultiplier": "エナジー xスコア",
+    "IncenseOnly": "お香限定",
+    "Unreleased": "未実装",
     "Message": {
       "UnlockRankDiffers": "※ここに掲げる寝顔開放ランクは、必要ねむけパワーも考慮した実質ランクです。データ上の開放ランク（Serebiiなど他サイトが掲載するもの）とは異なる場合があります。詳しくはヘルプへ（ページ右上部ヘルプアイコンからどうぞ）。"
     }

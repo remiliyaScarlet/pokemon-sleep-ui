@@ -381,10 +381,6 @@
     "Docs": {
       "Title": "標題"
     },
-    "Sleepdex": {
-      "IncenseOnly": "薰香限定",
-      "Unreleased": "未釋出"
-    },
     "ProducingParams": {
       "Notice": "- 此頁面每日更新。\n- 技能值和等級無關。技能觸發值請見 [寶可夢圖鑑](https://pks.raenonx.cc/pokedex) 或 [主技能觸發分析](https://pks.raenonx.cc/team/mainskill)。\n- 沒有列出的技能發動率代表尚未測定。\n- 感謝 Mathcord 內的 @jc、@goobliss、@harold_grant 提供模型及相關資訊；感謝 @calpistori 協助測定和驗證資訊。"
     }
@@ -426,7 +422,9 @@
   },
   "SleepStyle": {
     "DrowsyPowerRequirement": "睡意之力需求",
-    "DrowsyPowerMultiplier": "能量 x分數",
+    "DrowsyPowerMultiplier": "能量 x 分數",
+    "IncenseOnly": "薰香限定",
+    "Unreleased": "未釋出",
     "Message": {
       "UnlockRankDiffers": "本站部分睡姿的解鎖等級有算入睡意之力需求所需要的卡比獸等級，因此會和 Serebii 或其他來源有所出入。詳情請見頁面右上方的相關文件。"
     }

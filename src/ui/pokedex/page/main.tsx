@@ -104,7 +104,6 @@ export const Pokemon = async ({params}: Props) => {
           'UI.Common',
           'UI.Evolution',
           'UI.InPage.Pokedex',
-          'UI.InPage.Sleepdex',
           'UI.InPage.Team',
           'UI.Metadata',
           'UI.SleepStyle',
