@@ -17,6 +17,10 @@ export const toLocalIsoTimestampString = (timestamp: IsoTimestampString | null):
   return formatISO(new Date(`${timestamp}Z`)).slice(0, 19) as IsoTimestampString;
 };
 
-export const toUtcIsoTimestampString = (timestamp: string) => (
-  toIsoTimestampString(new Date(timestamp)) as IsoTimestampString
-);
+export const toUtcIsoTimestampString = (timestamp: string): IsoTimestampString => {
+  try {
+    return toIsoTimestampString(new Date(timestamp)) as IsoTimestampString;
+  } catch (e) {
+    return toIsoTimestampString(new Date()) as IsoTimestampString;
+  }
+};
