@@ -39,7 +39,7 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
     }
 
     setFilterInternal(updatedFilter);
-  }, [onSetFilter, setFilterInternal]);
+  }, [filter, onSetFilter, setFilterInternal]);
 
   const {
     isIncluded,
