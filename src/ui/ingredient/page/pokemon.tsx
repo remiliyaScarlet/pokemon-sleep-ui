@@ -5,11 +5,11 @@ import {useSession} from 'next-auth/react';
 
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
-import {defaultLevel} from '@/const/game/production';
+import {defaultPokemonIndividualParams} from '@/const/game/pokemon';
 import {useUserActivation} from '@/hooks/userData/activation';
 import {useTranslatedUserSettings} from '@/hooks/userData/translated';
 import {Ingredient} from '@/types/game/ingredient';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {IngredientProductionDataProps} from '@/ui/ingredient/page/type';
 
 
@@ -26,11 +26,9 @@ export const IngredientPokemonProduction = ({
   ingredient,
   ...props
 }: Props) => {
-  const [input, setInput] = React.useState<PokemonIndividualParamsInput>({
-    level: defaultLevel,
-    subSkill: {},
-    nature: null,
-  });
+  const [input, setInput] = React.useState<PokemonIndividualParams>(
+    defaultPokemonIndividualParams,
+  );
   const {data} = useSession();
   const {isPremium} = useUserActivation(data);
   const {translatedSettings} = useTranslatedUserSettings({

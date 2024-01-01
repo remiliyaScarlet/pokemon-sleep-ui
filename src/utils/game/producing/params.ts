@@ -1,10 +1,9 @@
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {defaultNeutralOpts, defaultProducingParams} from '@/const/game/production';
 import {defaultSeedUsage} from '@/const/game/seed';
 import {PokemonId, PokemonInfo} from '@/types/game/pokemon';
-import {NatureId} from '@/types/game/pokemon/nature';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {PokemonProducingParams, PokemonProducingParamsMap} from '@/types/game/pokemon/producing';
-import {GroupedSubSkillBonus, PokemonSubSkill, SubSkillMap} from '@/types/game/pokemon/subSkill';
+import {GroupedSubSkillBonus, SubSkillMap} from '@/types/game/pokemon/subSkill';
 import {
   ProducingRateImplicitParams,
   ProducingRateIndividualParams,
@@ -31,10 +30,7 @@ export const getHelpingBonusStack = ({
   return helpingBonusCount;
 };
 
-export type GetProducingRateSingleParamsOpts = {
-  level: number,
-  subSkill: PokemonSubSkill,
-  nature: NatureId | null,
+export type GetProducingRateSingleParamsOpts = PokemonIndividualParams & {
   subSkillMap: SubSkillMap,
 };
 
@@ -67,7 +63,7 @@ export const getProducingRateNeutralParams = ({
 };
 
 type GetProducingRateIndividualParamsOpts = {
-  input: PokemonIndividualParamsInput,
+  input: PokemonIndividualParams,
   pokemon: PokemonInfo,
   subSkillMap: SubSkillMap,
 };

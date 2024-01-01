@@ -4,10 +4,10 @@ import {useSession} from 'next-auth/react';
 
 import {PokemonBerryStats} from '@/components/shared/pokemon/icon/itemStats/berry';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
-import {defaultLevel} from '@/const/game/production';
+import {defaultPokemonIndividualParams} from '@/const/game/pokemon';
 import {useUserActivation} from '@/hooks/userData/activation';
 import {useTranslatedUserSettings} from '@/hooks/userData/translated';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {BerryPageDataProps} from '@/ui/berry/page/type';
 
 
@@ -27,11 +27,9 @@ export const BerryProducingRatesOfPokemon = ({
     },
     mealMap,
   });
-  const [input, setInput] = React.useState<PokemonIndividualParamsInput>({
-    level: defaultLevel,
-    subSkill: {},
-    nature: null,
-  });
+  const [input, setInput] = React.useState<PokemonIndividualParams>(
+    defaultPokemonIndividualParams,
+  );
 
   return (
     <>

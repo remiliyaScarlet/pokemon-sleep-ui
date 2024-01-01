@@ -10,11 +10,10 @@ import {FlexLink} from '@/components/layout/flex/link';
 import {NextImage} from '@/components/shared/common/image/main';
 import {HorizontalSplitter} from '@/components/shared/common/splitter';
 import {PokemonIndividualParamsPicker} from '@/components/shared/pokemon/predefined/individual/main';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
-import {specialtyIdMap} from '@/const/game/pokemon';
-import {defaultLevel} from '@/const/game/production';
+import {defaultPokemonIndividualParams, specialtyIdMap} from '@/const/game/pokemon';
 import {useUserActivation} from '@/hooks/userData/activation';
 import {imageIconSizes} from '@/styles/image';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {PokemonMetaSection} from '@/ui/pokedex/page/meta/section';
 import {PokemonBerryProduction} from '@/ui/pokedex/page/production/berry';
 import {PokemonProductionCombination} from '@/ui/pokedex/page/production/combination';
@@ -37,11 +36,9 @@ export const PokemonProduction = (props: Props) => {
   } = props;
   const {specialty, berry, ingredientChain} = pokemon;
 
-  const [input, setInput] = React.useState<PokemonIndividualParamsInput>({
-    level: defaultLevel,
-    subSkill: {},
-    nature: null,
-  });
+  const [input, setInput] = React.useState<PokemonIndividualParams>(
+    defaultPokemonIndividualParams,
+  );
   const {isPremium} = useUserActivation(session);
 
   const t = useTranslations('Game');

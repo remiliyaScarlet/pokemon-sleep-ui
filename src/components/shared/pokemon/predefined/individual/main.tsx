@@ -6,13 +6,13 @@ import {FilterInputProps} from '@/components/input/filter/type';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonLevelSlider} from '@/components/shared/pokemon/level/slider';
 import {PokemonNatureSelector} from '@/components/shared/pokemon/nature/selector/main';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {PokemonIndividualSelectorButtonProps} from '@/components/shared/pokemon/selector/type';
 import {PokemonSubSkillSelector} from '@/components/shared/pokemon/subSkill/selector/main';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {SubSkillMap} from '@/types/game/pokemon/subSkill';
 
 
-type Props = FilterInputProps<PokemonIndividualParamsInput> & {
+type Props = FilterInputProps<PokemonIndividualParams> & {
   maxLevel: number,
   isPremium: boolean,
   subSkillMap: SubSkillMap,
@@ -37,7 +37,7 @@ export const PokemonIndividualParamsPicker = ({
     <Flex className={clsx('gap-1.5', className)}>
       <PokemonLevelSlider
         value={filter.level}
-        setValue={(level) => setFilter((original): PokemonIndividualParamsInput => ({
+        setValue={(level) => setFilter((original): PokemonIndividualParams => ({
           ...original,
           level,
         }))}
@@ -47,7 +47,7 @@ export const PokemonIndividualParamsPicker = ({
       <Flex className="gap-1.5 sm:flex-row">
         <PokemonSubSkillSelector
           subSkill={filter.subSkill}
-          setSubSkill={(subSkill) => setFilter((original): PokemonIndividualParamsInput => ({
+          setSubSkill={(subSkill) => setFilter((original): PokemonIndividualParams => ({
             ...original,
             subSkill,
           }))}
@@ -56,7 +56,7 @@ export const PokemonIndividualParamsPicker = ({
         />
         <PokemonNatureSelector
           nature={filter.nature}
-          setNature={(nature) => setFilter((original): PokemonIndividualParamsInput => ({
+          setNature={(nature) => setFilter((original): PokemonIndividualParams => ({
             ...original,
             nature,
           }))}

@@ -8,13 +8,13 @@ import {PokemonItemStatsFromPokebox} from '@/components/shared/pokemon/icon/item
 import {PokemonItemStatsFromPokedex} from '@/components/shared/pokemon/icon/itemStats/base/fromPokedex';
 import {PokemonItemStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/base/type';
 import {PokemonBerryStatsCommonProps} from '@/components/shared/pokemon/icon/itemStats/type';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {specialtyIdMap} from '@/const/game/pokemon';
 import {BerryData, BerryDataMap} from '@/types/game/berry';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 
 
 type Props = PokemonBerryStatsCommonProps & {
-  input: PokemonIndividualParamsInput,
+  input: PokemonIndividualParams,
   berryData: BerryData,
   berryDataMap: BerryDataMap,
 };

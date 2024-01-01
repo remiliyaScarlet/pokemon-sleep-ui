@@ -1,4 +1,6 @@
+import {defaultLevel} from '@/const/game/production';
 import {PokemonEventTypeId, PokemonSpecialtyId} from '@/types/game/pokemon';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {SpecialtyType} from '@/types/game/pokemon/specialty';
 import {SubSkillBonusCategory, SubSkillId} from '@/types/game/pokemon/subSkill';
 
@@ -40,3 +42,9 @@ export const subSkillImageOverride: {[id in SubSkillId]?: string} = {
 };
 
 export const defaultPokemonEventType: PokemonEventTypeId = 1;
+
+export const defaultPokemonIndividualParams: PokemonIndividualParams = {
+  level: defaultLevel,
+  subSkill: {},
+  nature: null,
+};

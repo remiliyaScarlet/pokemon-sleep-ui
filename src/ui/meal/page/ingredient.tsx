@@ -5,15 +5,15 @@ import {useCollapsible} from '@/components/layout/collapsible/hook';
 import {Flex} from '@/components/layout/flex/common';
 import {PokemonIngredientStats} from '@/components/shared/pokemon/icon/itemStats/ingredient';
 import {PokemonIngredientIcon} from '@/components/shared/pokemon/ingredients/icon';
-import {PokemonIndividualParamsInput} from '@/components/shared/pokemon/predefined/individual/type';
 import {MealIngredient} from '@/types/game/meal/main';
 import {PokemonIngredientProductionMapOfLevel} from '@/types/game/pokemon';
+import {PokemonIndividualParams} from '@/types/game/pokemon/params';
 import {MealCommonProps} from '@/ui/meal/page/type';
 
 
 type Props = MealCommonProps & {
   ingredient: MealIngredient,
-  input: PokemonIndividualParamsInput,
+  input: PokemonIndividualParams,
   ingredientProductionMapOfLevel: PokemonIngredientProductionMapOfLevel,
 };
 
