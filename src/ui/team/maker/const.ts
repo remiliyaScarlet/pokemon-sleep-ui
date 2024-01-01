@@ -1,4 +1,5 @@
 import {I18nMessageKeysOfNamespace} from '@/types/i18n';
+import {TeamMakerSource} from '@/ui/team/maker/type/input';
 import {TeamMakerStatus} from '@/ui/team/maker/type/state';
 
 
@@ -26,4 +27,11 @@ export const teamMakerStatusI18nId: {
   calculating: 'State.Status.Calculating',
   completed: 'State.Status.Completed',
   error: 'State.Status.Error',
+};
+
+export const teamMakerSourceI18nId: {
+  [source in TeamMakerSource]: I18nMessageKeysOfNamespace<'UI.InPage.Team.Maker'>
+} = {
+  pokebox: 'Source.Pokebox',
+  vanilla: 'Source.Vanilla',
 };

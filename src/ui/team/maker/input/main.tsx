@@ -8,6 +8,7 @@ import {TeamMakerInputCooking} from '@/ui/team/maker/input/cooking';
 import {TeamMakerInputGeneral} from '@/ui/team/maker/input/general';
 import {TeamMakerInputToggles} from '@/ui/team/maker/input/toggle';
 import {TeamMakerInputCommonProps} from '@/ui/team/maker/input/type';
+import {TeamMakerInputVanillaPresets} from '@/ui/team/maker/input/vanillaPresets';
 import {isNotNullish} from '@/utils/type';
 
 
@@ -45,6 +46,7 @@ export const TeamMakerInputUI = (props: TeamMakerInputCommonProps) => {
         {...props}
       />
       <TeamMakerInputGeneral {...props}/>
+      <TeamMakerInputVanillaPresets {...props}/>
       <TeamMakerInputToggles {...props}/>
     </Flex>
   );

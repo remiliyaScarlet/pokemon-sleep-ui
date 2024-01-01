@@ -12,11 +12,10 @@ import {textFilterButtonStyle} from '@/styles/input';
 import {TeamMakerInputCommonProps} from '@/ui/team/maker/input/type';
 
 
-export const TeamMakerInputToggles = (props: TeamMakerInputCommonProps) => {
-  const {
-    input,
-    setInput,
-  } = props;
+export const TeamMakerInputToggles = ({
+  input,
+  setInput,
+}: TeamMakerInputCommonProps) => {
   const {
     previewFinalEvolution,
     showInsufficientIngredients,

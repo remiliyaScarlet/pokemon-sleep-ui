@@ -338,6 +338,18 @@
       },
       "Maker": {
         "Basis": "基準",
+        "Behavior": {
+          "ToggleInsufficientIngredients": "食材の条件を満たさないチームを表示/除外"
+        },
+        "CompCountWarning": "編成候補が多すぎてシミュレートに時間がかかっています（ブラウザクラッシュのおそれもあります）。ポケモンの性能差が大きければ編成候補は絞られるでしょう。レベルプレビューを解除したり、カビゴンの好物を正しく設定したり、チームの匹数を減らしたり、フィルタで対象ポケモンを絞り込んだりしてみてください。",
+        "Control": {
+          "ExportToTeamAnalysis": "チーム分析へエクスポート",
+          "ExportTeamName": "チーム名"
+        },
+        "Source": {
+          "Pokebox": "ポケモンボックス",
+          "Vanilla": "無補正ポケモン"
+        },
         "State": {
           "IngredientRequirements": {
             "Pass": "食材条件⭕",
@@ -351,14 +363,6 @@
             "Completed": "完了",
             "Error": "エラー"
           }
-        },
-        "Behavior": {
-          "ToggleInsufficientIngredients": "食材の条件を満たさないチームを表示/除外"
-        },
-        "CompCountWarning": "編成候補が多すぎてシミュレートに時間がかかっています（ブラウザクラッシュのおそれもあります）。ポケモンの性能差が大きければ編成候補は絞られるでしょう。レベルプレビューを解除したり、カビゴンの好物を正しく設定したり、チームの匹数を減らしたり、フィルタで対象ポケモンを絞り込んだりしてみてください。",
-        "Control": {
-          "ExportToTeamAnalysis": "チーム分析へエクスポート",
-          "ExportTeamName": "チーム名"
         }
       }
     },

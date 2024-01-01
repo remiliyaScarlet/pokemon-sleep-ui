@@ -21,13 +21,14 @@ import {isNotNullish} from '@/utils/type';
 import {toCalculatedUserSettings} from '@/utils/user/settings/calculated';
 
 
-type GetTeamMakerCalcIntermediateOpts = TeamMakerCalcInitOpts & {
+type GetTeamMakerCalcIntermediateOpts = Omit<TeamMakerCalcInitOpts, 'pokeboxList'> & {
+  pokeboxSource: PokeInBox[],
   settings: UserSettings,
   cookingSettings: CookingUserSettings,
 };
 
 export const getTeamMakerCalcIntermediate = ({
-  pokeboxList,
+  pokeboxSource,
   pokedexMap,
   pokemonProducingParamsMap,
   berryDataMap,
@@ -109,7 +110,7 @@ export const getTeamMakerCalcIntermediate = ({
     };
   };
 
-  return pokeboxList
+  return pokeboxSource
     .flatMap((pokeInBox): PokeInBox[] => {
       if (!input.previewFinalEvolution) {
         return [pokeInBox];

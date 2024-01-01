@@ -13,6 +13,7 @@ import {ProgressBar} from '@/components/progressBar';
 import {ButtonToStartTheSorcery} from '@/components/shared/common/button/sorcery';
 import {CompletionResultUI} from '@/components/shared/completion/main';
 import {generatePokemonInputFilter} from '@/components/shared/pokemon/filter/utils';
+import {defaultPokemonIndividualParams} from '@/const/game/pokemon';
 import {useUserSettings} from '@/hooks/userData/settings';
 import {
   teamMakerCompCountWarningThreshold,
@@ -37,6 +38,7 @@ export const TeamMakerLoadedClient = (props: TeamMakerDataProps) => {
     client: data?.user.preloaded.settings,
   });
   const [input, setInput] = React.useState<TeamMakerInput>({
+    source: 'pokebox',
     snorlaxFavorite: {},
     pokemon: generatePokemonInputFilter({
       isLevelAgnostic: false,
@@ -48,6 +50,7 @@ export const TeamMakerLoadedClient = (props: TeamMakerDataProps) => {
     memberCount: 5,
     basis: 'strength',
     previewLevel: null,
+    vanillaPresets: defaultPokemonIndividualParams,
     previewFinalEvolution: false,
     target: preloaded.cooking.target,
     showInsufficientIngredients: true,

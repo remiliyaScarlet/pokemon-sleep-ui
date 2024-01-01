@@ -236,6 +236,18 @@ declare interface IntlMessages extends UiMessages, GameMessages {
         },
         Maker: {
           Basis: string,
+          Behavior: {
+            ToggleInsufficientIngredients: string,
+          },
+          CompCountWarning: string,
+          Control: {
+            ExportToTeamAnalysis: string,
+            ExportTeamName: string,
+          },
+          Source: {
+            Pokebox: string,
+            Vanilla: string,
+          },
           State: {
             IngredientRequirements: {
               Pass: string,
@@ -249,14 +261,6 @@ declare interface IntlMessages extends UiMessages, GameMessages {
               Completed: string,
               Error: string,
             },
-          },
-          Behavior: {
-            ToggleInsufficientIngredients: string,
-          },
-          CompCountWarning: string,
-          Control: {
-            ExportToTeamAnalysis: string,
-            ExportTeamName: string,
           },
         },
       },

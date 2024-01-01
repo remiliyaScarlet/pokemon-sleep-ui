@@ -9,13 +9,12 @@ import {cloneMerge} from '@/utils/object/cloneMerge';
 import {isNotNullish} from '@/utils/type';
 
 
-export const TeamMakerInputCooking = (props: TeamMakerInputCommonProps) => {
-  const {
-    input,
-    setInput,
-    ingredientMap,
-    mealMap,
-  } = props;
+export const TeamMakerInputCooking = ({
+  input,
+  setInput,
+  ingredientMap,
+  mealMap,
+}: TeamMakerInputCommonProps) => {
   const {
     target,
     recipeLevel,
