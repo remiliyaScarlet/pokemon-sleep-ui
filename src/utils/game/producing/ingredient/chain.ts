@@ -12,7 +12,7 @@ import {getEffectiveIngredientLevels} from '@/utils/game/producing/ingredient/le
 import {isNotNullish} from '@/utils/type';
 
 
-export type GetPossibleIngredientProductionOpts = {
+export type GeneratePossibleIngredientProductionsOpts = {
   level: number,
   chain: IngredientChain,
 };
@@ -20,9 +20,22 @@ export type GetPossibleIngredientProductionOpts = {
 export const generatePossibleIngredientProductions = ({
   level,
   chain,
-}: GetPossibleIngredientProductionOpts): Generator<IngredientProduction[]> => (
+}: GeneratePossibleIngredientProductionsOpts): Generator<IngredientProduction[]> => (
   cartesianIterator(getEffectiveIngredientLevels(level).map((level) => chain.ingredients[level]))
 );
+
+export function* generatePossibleIngredientProductionAtLevels({
+  level,
+  chain,
+}: GeneratePossibleIngredientProductionsOpts): Generator<IngredientProductionAtLevels> {
+  for (const cartesianIteratorElement of cartesianIterator(getEffectiveIngredientLevels(level).map((level) => (
+    chain.ingredients[level].map((production) => ({level, production}))
+  )))) {
+    yield Object.fromEntries(
+      cartesianIteratorElement.map(({level, production}) => [level, production]),
+    ) as IngredientProductionAtLevels;
+  }
+}
 
 export const generateDefaultIngredientProductionAtLevels = (chain: IngredientChain): IngredientProductionAtLevels => {
   return Object.fromEntries(ingredientLevels

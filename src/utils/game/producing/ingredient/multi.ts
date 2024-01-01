@@ -51,6 +51,6 @@ type GetEffectiveIngredientProductionsOpts = {
 export const getEffectiveIngredientProductions = ({
   level,
   ingredients,
-}: GetEffectiveIngredientProductionsOpts) => (
+}: GetEffectiveIngredientProductionsOpts): IngredientProduction[] => (
   getEffectiveIngredientLevels(level).map((level) => ingredients[level])
 );
