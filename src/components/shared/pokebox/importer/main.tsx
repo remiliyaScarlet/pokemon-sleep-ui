@@ -22,7 +22,7 @@ export const PokeboxImporter = ({show, setShow, isPokeInBoxIncluded, ...props}: 
 
   return (
     <PopupCommon show={show} setShow={setShow}>
-      <Flex className="gap-1.5 sm:w-[60vw]">
+      <Flex className="gap-1.5 sm:w-[60vw] md:w-[50vw] lg:w-[40vw] xl:w-[35vw] 2xl:w-[25vw]">
         <PokeboxImporterViaUuid {...props}/>
         <UserDataLazyLoadPokeboxSorted
           sessionOverride={session}

@@ -16,7 +16,7 @@ export const PokeInBoxTable = ({
   ...props
 }: PokeInBoxViewOfTypeProps) => {
   return (
-    <Flex className="h-[70vh] gap-1 overflow-auto">
+    <Flex className="h-[70vh]">
       <AutoSizer disableWidth>
         {({height}) => (
           <FixedSizeList
@@ -24,6 +24,7 @@ export const PokeInBoxTable = ({
             itemCount={processedPokebox.length}
             itemSize={51}
             itemData={processedPokebox}
+            itemKey={(idx, data) => getPokeInBoxEntryKey(data[idx].source.extra)}
             width="100%"
             overscanCount={10}
           >
@@ -35,7 +36,7 @@ export const PokeInBoxTable = ({
               const {width, ...styleToUse} = style;
 
               return (
-                <div key={getPokeInBoxEntryKey(source.extra)} style={styleToUse}>
+                <div style={styleToUse}>
                   <PokeInBoxTableRow
                     pokeInBox={source.extra}
                     display={filter}
