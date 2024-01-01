@@ -28,13 +28,11 @@ export const useSleepdexLookupDataCalcWorker = ({
     onError: () => setLoading(false),
   });
 
-  const triggerSort = () => {
-    work(workerOpts);
-    setLoading(true);
-  };
-
   useCustomCompareEffect(
-    triggerSort,
+    () => {
+      work(workerOpts);
+      setLoading(true);
+    },
     [workerOpts],
     (prev, next) => isEqual(prev, next),
   );

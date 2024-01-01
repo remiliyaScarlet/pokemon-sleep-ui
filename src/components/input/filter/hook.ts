@@ -12,7 +12,7 @@ type UseFilterInputOpts<TFilter, TData, TId extends Indexable> = {
   isDataIncluded: (filter: TFilter, data: TData) => boolean,
   dataDeps?: React.DependencyList,
   deps?: React.DependencyList,
-  onSetFilter?: (original: TFilter, updated: TFilter) => TFilter,
+  onSetFilter?: (original: TFilter, updated: TFilter) => TFilter | null,
 };
 
 export const useFilterInput = <TFilter, TData, TId extends Indexable>({
@@ -25,33 +25,35 @@ export const useFilterInput = <TFilter, TData, TId extends Indexable>({
   onSetFilter,
 }: UseFilterInputOpts<TFilter, TData, TId>) => {
   const [filter, setFilterInternal] = React.useState<TFilter>(
-    onSetFilter ? onSetFilter(initialFilter, initialFilter): initialFilter,
+    onSetFilter ? (onSetFilter(initialFilter, initialFilter) ?? initialFilter) : initialFilter,
   );
-  const dataAfterFilter = React.useMemo(() => {
-    if (typeof data === 'function') {
-      return data(filter);
+
+  const setFilter: ReactStateUpdaterFromOriginal<TFilter> = React.useCallback((getUpdated) => {
+    let updatedFilter: TFilter | null = getUpdated(filter);
+    updatedFilter = onSetFilter ? onSetFilter(filter, updatedFilter) : updatedFilter;
+
+    // If `onSetFilter()` returns `null`, it means the original filter should be kept,
+    // therefore `setFilterInternal()` shouldn't trigger to avoid unnecessary rerender
+    if (!updatedFilter) {
+      return;
     }
 
-    return data;
-  }, [filter, ...(dataDeps ?? [])]);
+    setFilterInternal(updatedFilter);
+  }, [onSetFilter, setFilterInternal]);
 
-  const isIncluded = React.useMemo((): FilterInclusionMap<TId> => (
-    Object.fromEntries(dataAfterFilter.map((single) => (
-      [dataToId(single), isDataIncluded(filter, single)]
-    ))) as FilterInclusionMap<TId>
-  ), [filter, ...(deps ?? [])]);
+  const {
+    isIncluded,
+    dataAfterFilter,
+  } = React.useMemo(() => {
+    const dataAfterFilter = typeof data === 'function' ? data(filter) : data;
 
-  const setFilter: ReactStateUpdaterFromOriginal<TFilter> = React.useCallback((getUpdated) => (
-    setFilterInternal((original) => {
-      const updated = getUpdated(original);
-
-      if (!onSetFilter) {
-        return updated;
-      }
-
-      return onSetFilter(original, updated);
-    })
-  ), [onSetFilter, setFilterInternal]);
+    return {
+      dataAfterFilter,
+      isIncluded: Object.fromEntries(dataAfterFilter.map((single) => (
+        [dataToId(single), isDataIncluded(filter, single)]
+      ))) as FilterInclusionMap<TId>,
+    };
+  }, [filter, ...(dataDeps ?? []), ...(deps ?? [])]);
 
   return {
     data: dataAfterFilter,
