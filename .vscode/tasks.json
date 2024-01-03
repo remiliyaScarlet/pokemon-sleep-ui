@@ -1,0 +1,175 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Yarn: Dev",
+      "detail": "Starts the next.js dev server without server debugging.",
+      "command": "yarn",
+      "type": "process",
+      "args": ["run", "dev"],
+      "isBackground": true,
+      "problemMatcher": [
+        "$tsc-watch",
+        "$node-sass",
+        {
+          "owner": "typescript",
+          "source": "Typescript",
+          "fileLocation": ["relative", "${workspaceRoot}"],
+          "applyTo": "allDocuments",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^(▲ Next.js)",
+            "endsPattern": "^(✓ Ready in (.*)s)$"
+          },
+          "pattern": [
+            {
+              "regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
+              "severity": 1,
+              "message": 2
+            },
+            {
+              "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+              "file": 1,
+              "line": 2,
+              "column": 3
+            }
+          ]
+        },
+        {
+          "owner": "eslint",
+          "source": "ESLint",
+          "fileLocation": "relative",
+          "applyTo": "allDocuments",
+          "background": {
+            "activeOnStart": true
+            // "beginsPattern": "sd",
+            // "endsPattern": " > "
+          },
+          "pattern": [
+            {
+              "regexp": "^ (ERROR|WARNING)\\(ESLint\\)  (.*)$",
+              "severity": 1,
+              "message": 2
+            },
+            {
+              "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+              "file": 1,
+              "line": 2,
+              "column": 3
+            }
+          ]
+        }
+      ],
+      "presentation": {
+        "group": "dev"
+      }
+    },
+    {
+      "label": "Yarn: Debug Server",
+      "detail": "Starts the next.js dev server with server debugging.",
+      "command": "yarn",
+      "type": "process",
+      "args": ["run", "dev:debug:server"],
+      "isBackground": true,
+      "problemMatcher": [
+        "$tsc-watch",
+        {
+          "owner": "typescript",
+          "source": "Typescript",
+          "fileLocation": ["relative", "${workspaceRoot}"],
+          "applyTo": "allDocuments",
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^(▲ Next.js)",
+            "endsPattern": "^(✓ Ready in (.*)s)$"
+          },
+          "pattern": [
+            {
+              "regexp": "(ERROR|WARNING)\\(TypeScript\\)  (.*)",
+              "severity": 1,
+              "message": 2
+            },
+            {
+              "regexp": "^ FILE  (.*):(\\d*):(\\d*)$",
+              "file": 1,
+              "line": 2,
+              "column": 3
+            }
+          ]
+        }
+      ],
+      "presentation": {
+        "group": "dev"
+      }
+    },
+    {
+      "label": "wait for server delay",
+      "detail": "Waits for http://localhost:3000 response or up to 25 seconds.",
+      "type": "process",
+      "command": "yarn",
+      "hide": true,
+      "isBackground": true,
+      "args": ["run", "dev:debug:delay"],
+      "problemMatcher": [
+        {
+          "owner": "javascript",
+          "source": "Javascript",
+          "fileLocation": "relative",
+          "pattern": [
+            {
+              "regexp": "ERROR in [^ ]* (.*):(.*):(.*)",
+              "file": 1,
+              "line": 2,
+              "column": 3
+            },
+            {
+              "regexp": ".*",
+              "message": 0
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^(Waiting for server to come online)",
+            "endsPattern": "^(✓ Done)$"
+          }
+        }
+      ],
+      "presentation": {
+        "group": "dev"
+      }
+    },
+    {
+      "label": "Yarn: React DevTools",
+      "detail": "Starts the standalone React DevTools applicaiton.",
+      "type": "process",
+      "command": "yarn",
+      "isBackground": true,
+      "args": ["run", "dev:react-devtools"],
+      "problemMatcher": [],
+      "presentation": {
+        "group": "dev"
+      }
+    },
+    {
+      "label": "Launch: Client (Chrome) & Server Debug Session",
+      "detail": "Starts a debug session in Chrome with complete breakpoint support through VSCode.",
+      "type": "process",
+      "command": "echo ${command:workbench.action.debug.start}",
+      "args": ["Debug Next.js Server & Client"],
+      "problemMatcher": [],
+      "presentation": {
+        "group": "debug"
+      }
+    },
+    {
+      "label": "Launch: Select Debug",
+      "detail": "Select and Start a VSCode debug session.",
+      "type": "process",
+      "command": "echo ${command:workbench.action.debug.selectandstart}",
+      "problemMatcher": [],
+      "presentation": {
+        "group": "debug"
+      }
+    },
+  ]
+}

@@ -10,6 +10,9 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:debug:server": "node --inspect=9229 ./node_modules/next/dist/bin/next",
+    "dev:debug:delay": "node scripts/client-ready.js",
+    "dev:react-devtools": "react-devtools",
     "build": "next build",
     "start": "next start",
     "tsc": "tsc --noemit",

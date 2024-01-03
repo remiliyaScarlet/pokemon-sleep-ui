@@ -2,8 +2,7 @@ import React from 'react';
 
 import {useTranslations} from 'next-intl';
 
-import {Link} from '@/components/i18n/exports';
-import {Flex} from '@/components/layout/flex/common';
+import {FlexLink} from '@/components/layout/flex/link';
 import {IconWithInfo} from '@/components/shared/common/image/iconWithInfo';
 import {imageSmallIconSizes} from '@/styles/image';
 import {IngredientProduction} from '@/types/game/pokemon/ingredient';
@@ -21,19 +20,22 @@ export const PokemonProductionIngredientLink = ({production}: Props) => {
   const ingredientName = t(id.toString());
 
   return (
-    <Link href={`/ingredient/${id}`} className="button-clickable-bg p-1.5">
-      <Flex center className="gap-0.5">
-        <IconWithInfo
-          imageSrc={`/images/ingredient/${id}.png`}
-          imageAlt={ingredientName}
-          imageDimension="h-12 w-12"
-          imageSizes={imageSmallIconSizes}
-          info={qty}
-        />
-        <div className="whitespace-nowrap text-sm">
-          {ingredientName}
-        </div>
-      </Flex>
-    </Link>
+    <FlexLink
+      href={`/ingredient/${id}`}
+      direction="col"
+      center
+      className="button-clickable-bg gap-0.5 p-1.5"
+    >
+      <IconWithInfo
+        imageSrc={`/images/ingredient/${id}.png`}
+        imageAlt={ingredientName}
+        imageDimension="h-12 w-12"
+        imageSizes={imageSmallIconSizes}
+        info={qty}
+      />
+      <div className="whitespace-nowrap text-sm">
+        {ingredientName}
+      </div>
+    </FlexLink>
   );
 };
